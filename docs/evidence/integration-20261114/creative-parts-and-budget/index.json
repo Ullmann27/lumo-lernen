@@ -1,0 +1,284 @@
+{
+  "archive": {
+    "bytes": 224438,
+    "path": "original-evidence.tar.gz",
+    "sha256": "a8535fb1d8501125536777768d40c27576a81563a32343abf42a95c1be4cb0b7"
+  },
+  "excluded": [],
+  "files": [
+    {
+      "archive_path": "repair/README.md",
+      "bytes": 4275,
+      "sha256": "088d6ab9d5ffdc11fb4eab9f40b6464693a07f9b93c7ca4595aa11e1c6148e5e",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/README.md"
+    },
+    {
+      "archive_path": "repair/SHA256SUMS",
+      "bytes": 2081,
+      "sha256": "fd27bcfca074c94eb57ddade78074aa82ec6db941f4cda7c72d2bc8d4f08ca7d",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/SHA256SUMS"
+    },
+    {
+      "archive_path": "repair/actionlint-result.json",
+      "bytes": 520,
+      "sha256": "5163d393e5d231180fd43bfc29f3945c44ce73fecc16b52ca060a1955839c3b6",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/actionlint-result.json"
+    },
+    {
+      "archive_path": "repair/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/actionlint.log"
+    },
+    {
+      "archive_path": "repair/after/.github/workflows/lumo-kart-graphics-2019.yml",
+      "bytes": 61366,
+      "sha256": "1356506d64a8777d7aeddeaf78de47f4aceb8aaa3c0fdd07d5166da2fb53f800",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/after/.github/workflows/lumo-kart-graphics-2019.yml"
+    },
+    {
+      "archive_path": "repair/after/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 53716,
+      "sha256": "817d4d88b13d163546aee309a4b82838dc75c967121f4e32a5da1acbab73dc03",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/after/.github/workflows/lumo-studio-2019.yml"
+    },
+    {
+      "archive_path": "repair/after/scripts/export_creative_evidence_parts.py",
+      "bytes": 12658,
+      "sha256": "290c1d5aa61fa490508312b4c254fb37c045e5e5babcfed26530e496c8a0ded7",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/after/scripts/export_creative_evidence_parts.py"
+    },
+    {
+      "archive_path": "repair/after/scripts/tests/test_creative_evidence_parts.py",
+      "bytes": 17683,
+      "sha256": "73c90149ab11868e568b86415f4f2991240e7544ffc5a4aefe0685a041aa004e",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/after/scripts/tests/test_creative_evidence_parts.py"
+    },
+    {
+      "archive_path": "repair/archive-index.json",
+      "bytes": 3177,
+      "sha256": "1fca0292e267014fb05d1e93a8a7f0f63d883deeca2a691c54aa25d644eac4c9",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/archive-index.json"
+    },
+    {
+      "archive_path": "repair/before/.github/workflows/lumo-kart-graphics-2019.yml",
+      "bytes": 56750,
+      "sha256": "2c56d31039be7ba03f5899a86215bfdaca2c449a53a4cdf883f9d7bc89b84943",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/before/.github/workflows/lumo-kart-graphics-2019.yml"
+    },
+    {
+      "archive_path": "repair/before/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 49163,
+      "sha256": "45a3c23329d6cceec6bdae5af5e6b45587c4d65433b3490f5a60f1c6a08cd1c5",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/before/.github/workflows/lumo-studio-2019.yml"
+    },
+    {
+      "archive_path": "repair/compact-originals.tar.gz",
+      "bytes": 93840,
+      "sha256": "7918a3ede9eb3494e229ef3c939ddc4ecb371e9fa5553e503bf854fc2a439fda",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/compact-originals.tar.gz"
+    },
+    {
+      "archive_path": "repair/focused-tests-result.json",
+      "bytes": 1865,
+      "sha256": "58d86edf51835c2c79e332e33b24be67e65bc83df822987b97adfe857627f057",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/focused-tests-result.json"
+    },
+    {
+      "archive_path": "repair/focused-tests.log",
+      "bytes": 4338,
+      "sha256": "1eadf04e1b0cf2642a3c63d9e04b77fe9f54c020e51722ff9f34bb517e352916",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/focused-tests.log"
+    },
+    {
+      "archive_path": "repair/handoff.json",
+      "bytes": 2354,
+      "sha256": "d9fcebbb9bfeac36286da36d03459cfed270591b5939f8dbc3ebff1706cf6beb",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/handoff.json"
+    },
+    {
+      "archive_path": "repair/manifest.json",
+      "bytes": 3488,
+      "sha256": "3b16dce566ee68d556484441f2647acfc503757ea17780a5face1281bdacced7",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/manifest.json"
+    },
+    {
+      "archive_path": "repair/old-size-observation.json",
+      "bytes": 805,
+      "sha256": "830fe1ace6ea3b6d1515d8f5726b9f3efaaa65fed8b1e6555fd2008ee95a610e",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/old-size-observation.json"
+    },
+    {
+      "archive_path": "repair/old-size-partition-plan.json",
+      "bytes": 819,
+      "sha256": "7dd954f91221cd024188e9e8f9feef95e8373c6065bfe8c1215b18fbea6d00a9",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/old-size-partition-plan.json"
+    },
+    {
+      "archive_path": "repair/old-zip-directory.json",
+      "bytes": 350768,
+      "sha256": "25b4b187b3f49401a20c138609c2a1466de09f5a93c86c25c70b56213298290e",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/old-zip-directory.json"
+    },
+    {
+      "archive_path": "repair/repair.patch",
+      "bytes": 41097,
+      "sha256": "21ef6586ecabee2d40b7fa8156363b6aee0970cb5a59968fc5c5a86ba110abef",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/repair.patch"
+    },
+    {
+      "archive_path": "repair/source-freeze.json",
+      "bytes": 1797,
+      "sha256": "c337e69d296092309ca48e93d3671bdfde229b8f0361c89c18ba2045997705dc",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/source-freeze.json"
+    },
+    {
+      "archive_path": "repair/upload-artifact-v4-original.json",
+      "bytes": 4022,
+      "sha256": "97fa7061e7fc6ac8683a451a74be8208cff7d4975b1b43802bdff00a09fe69a6",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/upload-artifact-v4-original.json"
+    },
+    {
+      "archive_path": "repair/workflow-preservation.json",
+      "bytes": 1246,
+      "sha256": "e29b45cd0156b02542fd0d176a453c4852f236e62e1a85700c94495b540b3c2e",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair/workflow-preservation.json"
+    },
+    {
+      "archive_path": "independent-review/README.md",
+      "bytes": 1313,
+      "sha256": "d79810c0d434845b2d3f4c7b29977e7158f36059cb988b3aa257f35bf03a552b",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-independent-review/README.md"
+    },
+    {
+      "archive_path": "independent-review/manifest.json",
+      "bytes": 675,
+      "sha256": "ddf4d4aae52088a79f1383ae8bb661b4b906597a828a08b42e5bb8e74d76629a",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-independent-review/manifest.json"
+    },
+    {
+      "archive_path": "independent-review/original-reference.json",
+      "bytes": 1138,
+      "sha256": "91d4e918ba9e30466e47e2ae2d00bdca4edc9ee1e9d9841abb7b216df066dc8f",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-independent-review/original-reference.json"
+    },
+    {
+      "archive_path": "independent-review/pack-integrity.json",
+      "bytes": 3592,
+      "sha256": "6057e4b855015798d50fd518ac3e40a3d327fe1df31c7327078d34db2d19977a",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-independent-review/pack-integrity.json"
+    },
+    {
+      "archive_path": "independent-review/review.json",
+      "bytes": 9754,
+      "sha256": "bdc2dbab78fad7b44baacfe3429ffca97372ae61b15fc8b0de961f4499b78ec4",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-independent-review/review.json"
+    },
+    {
+      "archive_path": "build-budget-17f5/README.md",
+      "bytes": 2104,
+      "sha256": "641f43ac7027f99cc9501bd9c7037cde85fb42b73fe7c6914a03c8afb067d10d",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/README.md"
+    },
+    {
+      "archive_path": "build-budget-17f5/SHA256SUMS",
+      "bytes": 1385,
+      "sha256": "e38fdd7a93c7d0ae1ddd9b65ec0238812b8fc4a12dac12d69a468c54dd317a35",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/SHA256SUMS"
+    },
+    {
+      "archive_path": "build-budget-17f5/current-host-native-step.txt",
+      "bytes": 2209,
+      "sha256": "f7249b8f8ac252e202bccc9a336af294a7e0c8791b54cd7e484cc6b432cc5558",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/current-host-native-step.txt"
+    },
+    {
+      "archive_path": "build-budget-17f5/current-nextgen-runner.sh",
+      "bytes": 8144,
+      "sha256": "2a6f6ef0dcdfc6a40a1c9efa4494157dc81525b492acac7c231a23b7f84d120c",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/current-nextgen-runner.sh"
+    },
+    {
+      "archive_path": "build-budget-17f5/log-boundaries.json",
+      "bytes": 1769,
+      "sha256": "4a4aa51f87f893f3cf454154f5ccd75a2209c9c7e0119454048f2572d39f1863",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/log-boundaries.json"
+    },
+    {
+      "archive_path": "build-budget-17f5/manifest.json",
+      "bytes": 2292,
+      "sha256": "a8d0be3eee3168286056248653a4d208f6b2a49cd63f2b3b3cbf1020a430c9d8",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/manifest.json"
+    },
+    {
+      "archive_path": "build-budget-17f5/observed-comparison.json",
+      "bytes": 6971,
+      "sha256": "f52d63dd0b01dc21b5275d1d90a73584ae570efe60a9610fd5b2d7d786e39270",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/observed-comparison.json"
+    },
+    {
+      "archive_path": "build-budget-17f5/old-host-nextgen-results.tsv",
+      "bytes": 1884,
+      "sha256": "c2ad35e8e2851c085346de34edd800ac25db8a1aed1509e628febca2266475ff",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/old-host-nextgen-results.tsv"
+    },
+    {
+      "archive_path": "build-budget-17f5/originals/baseline848.json.gz",
+      "bytes": 1187,
+      "sha256": "8bbe6516ae957111f1c83e43820941c2c55108d7387911063af4710108860c05",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/originals/baseline848.json.gz"
+    },
+    {
+      "archive_path": "build-budget-17f5/originals/godot-observed-spans.json.gz",
+      "bytes": 3196,
+      "sha256": "e3a884630cdefe4a7a9fa48430698d2adf296157d8be0edb578709cc41c2f9d0",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/originals/godot-observed-spans.json.gz"
+    },
+    {
+      "archive_path": "build-budget-17f5/originals/graphics-jobs.json.gz",
+      "bytes": 1154,
+      "sha256": "10977b300a2d6b6c5e05ccd923fd945cd22455dab950edd70277ca3b4693b210",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/originals/graphics-jobs.json.gz"
+    },
+    {
+      "archive_path": "build-budget-17f5/originals/graphics-run.json.gz",
+      "bytes": 1723,
+      "sha256": "4341863f0da079a46397ee370d07c5b900c0c793fc4d65d4de9e79c468a9d50a",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/originals/graphics-run.json.gz"
+    },
+    {
+      "archive_path": "build-budget-17f5/originals/host848-jobs.json.gz",
+      "bytes": 3057,
+      "sha256": "3f4f55495698e6b566147fbda470d9aeb1b755e3339857b46082e495a733a1b7",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/originals/host848-jobs.json.gz"
+    },
+    {
+      "archive_path": "build-budget-17f5/originals/nextgen-jobs.json.gz",
+      "bytes": 1817,
+      "sha256": "6b010c815b7651b6daa34fc8a01d3ca5fffa4b1387568dc16438d0f58b1a2882",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/originals/nextgen-jobs.json.gz"
+    },
+    {
+      "archive_path": "build-budget-17f5/originals/nextgen-run.json.gz",
+      "bytes": 1715,
+      "sha256": "c8ddcf9d7583504f572db466f1deba507661f903b496d7b3f9b277c93068c357",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/originals/nextgen-run.json.gz"
+    },
+    {
+      "archive_path": "build-budget-17f5/source-index.json",
+      "bytes": 4949,
+      "sha256": "bb7d1a29e27f48b2a244bd24799f376794a322640fc0df3a425deb755a976ba4",
+      "source_path": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final/source-index.json"
+    }
+  ],
+  "included_file_count": 44,
+  "original_bytes_unchanged": true,
+  "schema": 1,
+  "source_file_count": 44,
+  "source_packs": {
+    "build-budget-17f5": "/workspace/scratch/b3485b7bb989/host-build-budget-review/17f5-final",
+    "independent-review": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-independent-review",
+    "repair": "/workspace/scratch/b3485b7bb989/host-creative-evidence-parts-repair"
+  },
+  "uncompressed_original_bytes": 829856
+}

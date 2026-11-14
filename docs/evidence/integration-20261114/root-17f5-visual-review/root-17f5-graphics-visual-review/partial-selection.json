@@ -1,0 +1,17 @@
+[
+  {
+    "area": "winter_sprint",
+    "artifact_entry": "images/winter_sprint/02_world_landmark.png",
+    "findings": "Root directly opened the new 1280x720 original. The snowy mountain course, bend, blue course hoops, cable-car towers and cabins are visible. Menu, pause, lap/place/speed HUD, minimap and separate movement, drift, speed, brake, gas and tactic controls remain inside the image. This is an elevated course landmark view; it does not establish driving behavior, touch response or device frame rate."
+  },
+  {
+    "area": "crystal_canyon",
+    "artifact_entry": "images/crystal_canyon/02_world_landmark.png",
+    "findings": "Root directly opened the new 1280x720 original. The road passes beneath the large dark stone arch, with cyan and violet crystals, railings, signs and the next bend visible. The HUD, minimap and all displayed control groups remain readable inside the frame. Static composition and materials are observed; no Android interaction or performance result is inferred."
+  },
+  {
+    "area": "feedback",
+    "artifact_entry": "images/03_drift_release.png",
+    "findings": "Root directly opened the new 1280x720 original. Lumo and the kart are centered on the course, with bright rear exhaust trails and colored speed streaks. The HUD shows FREIES TRAINING, 86 km/h and the Oranger Drift-Turbo message; pause, minimap and the distinct touch controls are visible. The still image confirms the displayed feedback state only, not measured speed, animation timing, input latency or device frame rate."
+  }
+]

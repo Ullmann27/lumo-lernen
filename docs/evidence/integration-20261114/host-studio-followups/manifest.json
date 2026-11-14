@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "file_count": 5,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2116,
+      "sha256": "850b65e79e868e1f5cf1477930fd8ed2c18124b5bac5f88f8b4eee12a2004ee6"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1616,
+      "sha256": "8b9fbc73547fd3fcb51126e507a404ecbbc868c15810b3d2d2eb98870e60c332"
+    },
+    {
+      "path": "index.json",
+      "bytes": 27535,
+      "sha256": "2218684c733c96b522f6413f8b4c70e5f052bb85f787984dbce0557edd73c62b"
+    },
+    {
+      "path": "late-followup-evidence.tar.gz",
+      "bytes": 914993,
+      "sha256": "12ce50076f040d397a2d20a9bad7c31939adad2b4155df3e5997e0bb8309065f"
+    },
+    {
+      "path": "roundtrip.json",
+      "bytes": 39698,
+      "sha256": "d76c92368dd2cefc0a50ae4705c80b7f18634b93744c7e3142384c714c135c7b"
+    }
+  ]
+}

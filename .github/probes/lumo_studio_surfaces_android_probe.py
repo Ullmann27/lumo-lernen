@@ -19,9 +19,10 @@ import traceback
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import modernization_android_tour as tour
 import lumo_education_android_probe as education
+from flutter_surface_readiness import inspect_flutter_frame
 from nextgen_evidence import (require_cards_authority_binding, require_cards_draw, require_learning_bridge_moves,
                              require_learning_voice, require_public_saved_match, require_saved_round)
-from nextgen_evidence import cards_projected_faces, require_cards_face_pixels
+from nextgen_evidence import cards_projected_faces, require_cards_face_pixels, require_cards_layout
 
 probe, base, live = tour.probe, tour.base, tour.live
 PACKAGE = probe.PACKAGE
@@ -73,7 +74,85 @@ def resumed_activity() -> str:
         raise
 
 
-def returned_to_flutter(out: Path, caption: str, tag: str, *, scroll_to_caption=False) -> None:
+def capture_returned_flutter(out: Path, tag: str, captions: list[str], *, timeout=30) -> None:
+    """Require two fresh Flutter frames with actual expected visible captions.
+
+    MainActivity/accessibility may already be current while SurfaceFlinger
+    still presents the removed Godot surface. Pixel entropy alone cannot
+    distinguish those two fully rendered scenes.
+    """
+    started = time.monotonic()
+    deadline = started + timeout
+    report = {'status': 'WAITING', 'expected_captions': captions, 'frames': [],
+              'scope': 'Unmodified consecutive Android captures plus actual OCR; no input or state repair'}
+    consecutive = 0
+    try:
+        for index in range(12):
+            if time.monotonic() >= deadline:
+                break
+            frame = {'status': 'CHECKING'}
+            report['frames'].append(frame)
+            try:
+                if tour.godot_alive() or not tour.alive() or 'MainActivity' not in resumed_activity():
+                    raise RuntimeError('Flutter activity is not the current returned application')
+                name = f'{tag}-return-candidate-{index + 1}'
+                shot = probe.capture(out, name, timeout=max(.001, deadline-time.monotonic()))
+                source = out / shot['file']
+                frame.update(source=source.name, source_sha256=probe.digest(source))
+                ready = inspect_flutter_frame(source)
+                frame['render_readiness'] = ready
+                if not ready['visually_ready']:
+                    raise RuntimeError('Flutter pixels still contain an unpainted surface')
+                found = []
+                lines = []
+                for caption in captions:
+                    wanted = probe.normalized(caption)
+                    matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
+                    if not matches:
+                        lines = probe.image_lines(out, name + '-caption-' + str(len(found)), wanted,
+                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()))
+                        matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
+                    valid = []
+                    for line in matches:
+                        bounds = line.get('bounds')
+                        if (isinstance(bounds, (list, tuple)) and len(bounds) == 4 and
+                                all(type(value) in (int, float) for value in bounds) and
+                                0 <= bounds[0] < bounds[2] <= ready['width'] and
+                                0 <= bounds[1] < bounds[3] <= ready['height']):
+                            valid.append(line)
+                    if not valid:
+                        raise RuntimeError('Flutter caption is not visible in the captured pixels: ' + caption)
+                    found.append({'expected': caption, 'ocr': valid[0]})
+                frame['captions'] = found
+                if tour.godot_alive() or not tour.alive() or 'MainActivity' not in resumed_activity():
+                    raise RuntimeError('Flutter activity changed while its captured pixels were inspected')
+                if time.monotonic() >= deadline:
+                    raise TimeoutError('Flutter return pixel deadline exceeded during observation')
+                consecutive += 1
+                frame['status'] = 'CONFIRMED_FLUTTER_PIXELS'
+                if consecutive == 2:
+                    target = out / (tag + '.png')
+                    if target.exists():
+                        raise FileExistsError('Refusing to overwrite accepted Flutter return evidence')
+                    target.write_bytes(source.read_bytes())
+                    report.update(status='PASS', consecutive_confirmed_frames=2,
+                                  source=target.name, source_sha256=probe.digest(target))
+                    return
+            except (RuntimeError, TimeoutError) as error:
+                frame.update(status='REJECTED', error=str(error))
+                consecutive = 0
+            time.sleep(min(.5, max(0, deadline-time.monotonic())))
+        raise RuntimeError('Flutter return pixels did not expose the expected captions twice before deadline')
+    except Exception as error:
+        report.update(status='FAIL', error=f'{type(error).__name__}: {error}')
+        raise
+    finally:
+        report['elapsed_seconds'] = round(time.monotonic()-started, 6)
+        (out / (tag + '-return-pixels.json')).write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+
+
+def returned_to_flutter(out: Path, caption: str, tag: str, *, scroll_to_caption=False,
+                        visual_captions=None) -> None:
     wait_for('Native return and isolated process exit',
              lambda: not tour.godot_alive() and 'MainActivity' in resumed_activity(),
              bool, timeout=45)
@@ -86,7 +165,7 @@ def returned_to_flutter(out: Path, caption: str, tag: str, *, scroll_to_caption=
         education.wait_text(out, caption, tag, timeout=45, scroll=True)
     else:
         must_see(out, caption, tag)
-    probe.capture_flutter_ready(out, tag)
+    capture_returned_flutter(out, tag, visual_captions or [caption])
 
 
 def local_voice_permission(out: Path) -> dict:
@@ -207,7 +286,8 @@ def learning_roundtrip(out: Path) -> dict:
     probe.native_text(out, 'Zur Aufgabe', 'learning-back', tap=True, exact=True, settle=True,
                       orientation='responsive')
     returned_to_flutter(out, 'Acht und fünf', '05_learning_same_flutter_lesson',
-                        scroll_to_caption=True)
+                        scroll_to_caption=True,
+                        visual_captions=['Erklärung lesen', 'Schritt 6 von 6'])
     after = probe.prefs(out, 'learning-after-native')
     preservation = tour.evidence.learning_preserved(before, after)
     if tour.evidence.learning_snapshot(before) != tour.evidence.learning_snapshot(after):
@@ -462,6 +542,24 @@ def cards_display_density(out: Path) -> float:
     return min(4, max(.75, int(values[0]) / 160))
 
 
+def read_cards_layout(out: Path, box: CardsMailbox, tag: str, *, timeout: float) -> dict:
+    """Observe only the native diagnostic file; never modify it or Cards saves."""
+    if timeout <= 0:
+        raise TimeoutError('Cards layout read exceeded the existing capture deadline')
+    if not re.fullmatch(r'[a-f0-9]{32}', box.token):
+        raise RuntimeError('Layout observation requires the located private Cards session')
+    raw = base.adb('exec-out', 'cat', f'/data/user/0/{PACKAGE}/files/cards_layout_v1.json',
+                   timeout=min(4, max(.001, timeout)))
+    source = out / (tag + '-layout.json')
+    source.write_text(raw)
+    if len(raw.encode()) > 128 * 1024:
+        raise RuntimeError('Native Cards layout observation exceeds its diagnostic bound')
+    layout = json.loads(raw)
+    if not isinstance(layout, dict) or layout.get('token') != box.token:
+        raise RuntimeError('Native Cards layout belongs to another private session')
+    return {'layout': layout, 'source': source.name, 'source_sha256': probe.digest(source)}
+
+
 def capture_cards_faces(out: Path, box: CardsMailbox, tag: str, identity: dict,
                         density: float, *, timeout=60) -> tuple[dict, dict]:
     """Wait for two actual unpaused frames of one public revision and page."""
@@ -470,6 +568,7 @@ def capture_cards_faces(out: Path, box: CardsMailbox, tag: str, identity: dict,
     report = {'status': 'WAITING', 'stage': tag, 'frames': [],
               'scope': 'Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim'}
     previous = None
+    previous_layout = None
     expected = tuple(identity.get(key) for key in ('token', 'roundId', 'viewer'))
 
     def observe():
@@ -484,20 +583,26 @@ def capture_cards_faces(out: Path, box: CardsMailbox, tag: str, identity: dict,
             if (before.get('paused') is not False or before.get('canDraw') is not True or
                     before.get('phase') != 'playing' or before.get('current') != 0):
                 previous = None
+                previous_layout = None
                 time.sleep(min(.5, max(0, deadline - time.monotonic())))
                 continue
             name = f'{tag}-face-check-{len(report["frames"]):02d}'
-            shot = probe.capture(out, name, timeout=deadline - time.monotonic())
-            source = out / shot['file']
-            frame = {'source': source.name, 'source_sha256': probe.digest(source),
-                     'revision': before.get('revision'), 'public_before': before, 'status': 'CHECKING'}
+            frame = {'revision': before.get('revision'), 'public_before': before, 'status': 'CHECKING'}
             report['frames'].append(frame)
             try:
+                layout_before = read_cards_layout(out, box, name + '-before',
+                                                  timeout=deadline-time.monotonic())
+                frame['layout_before'] = layout_before
+                shot = probe.capture(out, name, timeout=deadline - time.monotonic())
+                source = out / shot['file']
+                frame.update(source=source.name, source_sha256=probe.digest(source))
                 surface = probe.inspect_surface(source, orientation='responsive')
                 if not surface['acceptable_for_target_sampling']:
                     raise RuntimeError('Cards viewport is not complete')
                 width, height = surface['pixels']
-                geometry = cards_projected_faces(width, height, density, len(before.get('hand', [])))
+                binding = require_cards_layout(layout_before['layout'], before, width=width,
+                                               height=height, density=density)
+                geometry = binding['geometry']
                 lines = probe.image_lines(out, name, probe.normalized('Pause'), source_path=source,
                                           exact=True, timeout=max(.001, deadline - time.monotonic()))
                 pauses = [line for line in lines if line.get('text', '').strip() == 'Pause']
@@ -516,23 +621,35 @@ def capture_cards_faces(out: Path, box: CardsMailbox, tag: str, identity: dict,
                                 'page': max(pages, key=lambda line: line['bounds'][1])}
                 after = observe()
                 frame['public_after'] = after
+                layout_after = read_cards_layout(out, box, name + '-after',
+                                                 timeout=deadline-time.monotonic())
+                frame['layout_after'] = layout_after
                 if before != after:
                     raise RuntimeError('Cards public state changed while its current frame was inspected')
-                pixels = require_cards_face_pixels(source, after, density=density, observations=observations)
+                if layout_before['source_sha256'] != layout_after['source_sha256']:
+                    raise RuntimeError('Cards measured layout changed while its current frame was inspected')
+                pixels = require_cards_face_pixels(source, after, density=density, observations=observations,
+                                                   layout=layout_after['layout'])
+                if time.monotonic() >= deadline:
+                    raise TimeoutError('Cards pixel observation exceeded the existing capture deadline')
                 frame.update(status='VISIBLE_FRONT_ARTWORK', observations=observations, pixels=pixels)
-                if previous == after:
+                if previous == after and previous_layout == binding['layout_sha256']:
                     # Keep the original captured bytes; this is not an edited
                     # screenshot or an image synthesized from the saved state.
                     (out / (tag + '.png')).write_bytes(source.read_bytes())
                     report.update(status='PASS', consecutive_same_revision_frames=2,
                                   revision=after['revision'], page=geometry['page'],
+                                  layout_sequence=binding['layout_sequence'],
+                                  layout_sha256=binding['layout_sha256'],
                                   token=after['token'], roundId=after['roundId'], viewer=after['viewer'],
                                   source=tag + '.png', source_sha256=frame['source_sha256'])
                     return after, report
                 previous = after
+                previous_layout = binding['layout_sha256']
             except (RuntimeError, TimeoutError) as error:
                 frame.update(status='REJECTED', error=str(error))
                 previous = None
+                previous_layout = None
             time.sleep(min(.5, max(0, deadline - time.monotonic())))
         raise RuntimeError('Cards front faces did not pass current unpaused pixel/UI evidence before deadline')
     except Exception as error:

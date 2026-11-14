@@ -117,7 +117,7 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             'Missing actual Android binding between native activity and Dart authority')
     require(host.get('status') == 'PASS' and host.get('flutter_source_commit') == source and
             COMPILED_CLASSES <= set(host.get('classes', {})), 'Current Android host bytecode not verified')
-    card_pixels = verify_cards_front_faces(cards, surface_evidence)
+    card_pixels = verify_cards_front_faces(cards, surface_evidence, require_layout=True)
     return {'package': PACKAGE_ID, 'versionName': version_name, 'versionCode': 2019,
             'flutterSourceCommit': source, 'godotSourceCommit': native,
             'signingCertificateSha256': EXPECTED_CERT_SHA256, 'apkSha256': digest, 'apkBytes': size,

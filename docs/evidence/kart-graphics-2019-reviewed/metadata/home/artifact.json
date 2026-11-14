@@ -1,1 +1,20 @@
-{"id":14068903423,"node_id":"MDg6QXJ0aWZhY3QxNDA2ODkwMzQyMw==","name":"lumo-kart-experience-home","size_in_bytes":37408028,"url":"https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14068903423","archive_download_url":"https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14068903423/zip","expired":false,"digest":"sha256:75559a06d3e330260a9b845d041eafa0f5944b7c3889da7fcb3877ed8ce39591","created_at":"2026-11-13T19:23:25Z","updated_at":"2026-11-13T19:23:25Z","expires_at":"2026-12-13T19:23:22Z","workflow_run":{"id":43489950655,"repository_id":1251414584,"head_repository_id":1251414584,"head_branch":"integration/lumo-connections-20261113","head_sha":"993c145304c3e5f8aa947e1c7a949a8ef8685415"}}
+{
+  "id": 14088966002,
+  "node_id": "MDg6QXJ0aWZhY3QxNDA4ODk2NjAwMg==",
+  "name": "lumo-kart-experience-home",
+  "size_in_bytes": 37407980,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14088966002",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14088966002/zip",
+  "expired": false,
+  "digest": "sha256:1c800dbea14a7e33c84caee7176a42a3619524126c3326ca0987d164aad2b6da",
+  "created_at": "2026-11-14T00:21:50Z",
+  "updated_at": "2026-11-14T00:21:50Z",
+  "expires_at": "2026-12-14T00:21:47Z",
+  "workflow_run": {
+    "id": 43532048253,
+    "repository_id": 1251414584,
+    "head_repository_id": 1251414584,
+    "head_branch": "integration/lumo-safe-area-20261113",
+    "head_sha": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
+  }
+}

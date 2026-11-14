@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "scope": "Exact original Root observations and recorder outcomes for current Native 17f5; images themselves remain at the content-addressed paths in the production receipts. Earlier pending/partial records are retained as historical records, not rewritten.",
+  "files": [
+    {
+      "source": "root-17f5-nextgen-visual-review/final-bundle-byte-binding.json",
+      "path": "root-17f5-nextgen-visual-review/final-bundle-byte-binding.json",
+      "bytes": 9794,
+      "sha256": "8efb144ed9941cab3a62da8ebe415e647e69b8c7c7bcaac3884c90a7ce2101e6"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/final-pin-and-receipt-binding.json",
+      "path": "root-17f5-nextgen-visual-review/final-pin-and-receipt-binding.json",
+      "bytes": 1090,
+      "sha256": "91d66d45f738441dc50c35677f25daddbec1377b7adc3406ee0fd27f320f3e91"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/preview-learning-review.json",
+      "path": "root-17f5-nextgen-visual-review/preview-learning-review.json",
+      "bytes": 1183,
+      "sha256": "6cba4e77882368aae91b5f1bac1972cc3adc27a468b74aca8da0f11fef83e448"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/previous-host-receipt.json",
+      "path": "root-17f5-nextgen-visual-review/previous-host-receipt.json",
+      "bytes": 19482,
+      "sha256": "1ed85c672b956792498ab3cf3948dab0bc0417ccb071e13c51ef2f1840c78943"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/recording-result.json",
+      "path": "root-17f5-nextgen-visual-review/recording-result.json",
+      "bytes": 2199,
+      "sha256": "aa00aeab5f4006834c7fedb27985e371ba11f0cd68806d335fccc50da1467002"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/recording.log",
+      "path": "root-17f5-nextgen-visual-review/recording.log",
+      "bytes": 140,
+      "sha256": "130297a2512c136e7825e71271e8a24e0eacfa03b13e8f5046112896b3b5e535"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/selection.json",
+      "path": "root-17f5-nextgen-visual-review/selection.json",
+      "bytes": 18310,
+      "sha256": "54ed5e8037e79e6194528ff683316ff9342630c3c8781d0bc12f9cc031715724"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/touch-review.json",
+      "path": "root-17f5-nextgen-visual-review/touch-review.json",
+      "bytes": 4578,
+      "sha256": "85811d5c035256e86ec05d58f8dc5bed7d4783a9d24eb717609762845561aa84"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/touch-selection.json",
+      "path": "root-17f5-nextgen-visual-review/touch-selection.json",
+      "bytes": 1990,
+      "sha256": "5d658137c7c5664ce15b13995a1c2f502f1bf1a85bee9ada9e945914dd7cf489"
+    },
+    {
+      "source": "root-17f5-nextgen-visual-review/worlds-observations.json",
+      "path": "root-17f5-nextgen-visual-review/worlds-observations.json",
+      "bytes": 35445,
+      "sha256": "0f6f78db5b03bb6315ef6cf4ad4afb9e4c81da6a22d63f91c0ec42b76a7c3224"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/artifact-slice-provenance.json",
+      "path": "root-17f5-graphics-visual-review/artifact-slice-provenance.json",
+      "bytes": 1416,
+      "sha256": "60b8a34b6b6b5bac5eb61192801d9b42076f86cdbf2428ab7e87dd18561236b1"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/final-visual-observations.json",
+      "path": "root-17f5-graphics-visual-review/final-visual-observations.json",
+      "bytes": 6248,
+      "sha256": "fc1f1406accc6b719bb7096db04e975175c0df6f2e3d2d4d10cd054480057b1e"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/original-api/feedback-artifact.json",
+      "path": "root-17f5-graphics-visual-review/original-api/feedback-artifact.json",
+      "bytes": 813,
+      "sha256": "d5df7fff2e68abfd1d43e874c1827f309e14b87c6b70964501b373e3dd1380ac"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/original-api/home-artifact.json",
+      "path": "root-17f5-graphics-visual-review/original-api/home-artifact.json",
+      "bytes": 809,
+      "sha256": "083f0a9c5256e4710644ea40e8ef79580d1e4015bfff77f4b2cf497e5e7e7de3"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/original-api/jobs.json",
+      "path": "root-17f5-graphics-visual-review/original-api/jobs.json",
+      "bytes": 9359,
+      "sha256": "231ae84086d67e173733d6ad21288e8a6eb99ca372d328eff793041da5c1c9c9"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/original-api/run.json",
+      "path": "root-17f5-graphics-visual-review/original-api/run.json",
+      "bytes": 12890,
+      "sha256": "ed81688900113ec9d9f1021b73efe7436ce74d8a2fc28fc1c2b332e9fdca12b0"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/original-api/worlds-artifact.json",
+      "path": "root-17f5-graphics-visual-review/original-api/worlds-artifact.json",
+      "bytes": 811,
+      "sha256": "d8b7e33147c9a7a8d1c5c14da52ffa87df45df999f350273c0f17c7e8b4da1b7"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/partial-review.json",
+      "path": "root-17f5-graphics-visual-review/partial-review.json",
+      "bytes": 4186,
+      "sha256": "e072c94057e4380c0b75b0c00690fc756f0868b3d05d3991aeda20777036ac97"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/partial-selection.json",
+      "path": "root-17f5-graphics-visual-review/partial-selection.json",
+      "bytes": 1537,
+      "sha256": "c081eb9e55416eb52d672740e582b08dc5e27e7f4a976d214a3fc9125bb95d5a"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/previous-host-receipt.json",
+      "path": "root-17f5-graphics-visual-review/previous-host-receipt.json",
+      "bytes": 8728,
+      "sha256": "7b92eef83695cd35f1712b4095a6389e4d661eeabe5bf9ed03d8c0304608170a"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/recording-result.json",
+      "path": "root-17f5-graphics-visual-review/recording-result.json",
+      "bytes": 393,
+      "sha256": "942f5c527eb4652d8111bf6dc82695f7e60f44d6f398f48e4b546186013eb756"
+    },
+    {
+      "source": "root-17f5-graphics-visual-review/selection.json",
+      "path": "root-17f5-graphics-visual-review/selection.json",
+      "bytes": 2479,
+      "sha256": "8c916b096b9101bcf8330830a0681119fbd80e6cf35d4ba2ab4de6b9d9414802"
+    },
+    {
+      "source": "host-studio-final-publication-preparation/application-source-preservation.json",
+      "path": "application-source-preservation.json",
+      "bytes": 1016,
+      "sha256": "e5451caae4426d24dafc2e6b3ab28c97db0acb395f6ed12207be79b62d8162ca"
+    }
+  ],
+  "files_verified": 23
+}

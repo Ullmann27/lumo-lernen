@@ -159,7 +159,8 @@ def require_cards_draw(before: dict, request: dict, after: dict, saved: dict, *,
     return report
 
 
-def cards_projected_faces(width: int, height: int, density: float, hand_count: int) -> dict:
+def cards_projected_faces(width: int, height: int, density: float, hand_count: int,
+                          *, ui_rect=None) -> dict:
     """Project the actual Cards plane meshes; these are never input coordinates.
 
     This layout contract follows cards_table.gd's billboard/projection and is
@@ -176,25 +177,37 @@ def cards_projected_faces(width: int, height: int, density: float, hand_count: i
         raise RuntimeError('Cards pixel proof requires valid viewport/density/hand geometry')
     supported = {(1080, 2400, 2.625), (1280, 720, 1), (412, 915, 1),
                  (690, 829, 1), (2400, 1080, 2.625)}
-    if (width, height, density) not in supported:
+    if ui_rect is None and (width, height, density) not in supported:
         raise RuntimeError('Cards pixel proof has no verified production geometry for this layout')
-    compact = height / density < 520 and width > height
-    page_size = 7 if width / density > 850 else 5 if width / density > 550 else 3
+    if ui_rect is None:
+        ui_rect = [0, 0, width, height]
+    if (not isinstance(ui_rect, (list, tuple)) or len(ui_rect) != 4 or
+            any(isinstance(value, bool) or not isinstance(value, (int, float)) or
+                not math.isfinite(value) for value in ui_rect)):
+        raise RuntimeError('Cards projection requires a finite measured UI rectangle')
+    ui_x, ui_y, ui_width, ui_height = ui_rect
+    if not (0 <= ui_x < width and 0 <= ui_y < height and
+            0 < ui_width <= width - ui_x and 0 < ui_height <= height - ui_y):
+        raise RuntimeError('Cards measured UI rectangle exceeds its native viewport')
+    compact = ui_height / density < 520 and ui_width > ui_height
+    page_size = 7 if ui_width / density > 850 else 5 if ui_width / density > 550 else 3
     if hand_count < page_size:
         raise RuntimeError('Cards pixel proof requires the verified full first hand page')
     visible = min(page_size, hand_count)
-    card_height = 96 * density if compact else min(max(height * .28, 96 * density), 180 * density)
+    card_height = 96 * density if compact else min(max(ui_height * .28, 96 * density), 180 * density)
     card_width = card_height * .83 / 1.18
-    spacing = min(card_width * 1.08, (width - 32 * density - card_width) / max(1, visible - 1))
+    spacing = min(card_width * 1.08, (ui_width - 32 * density - card_width) / max(1, visible - 1))
     focal = height / (2 * math.tan(math.radians(23)))
     # PlaneMesh is 0.017 units in front of the body; retain its true projection
     # instead of using the nominal screen-space layout rectangle.
     scale = 4 * card_height / focal / 1.18
     magnification = 4 / (4 - .017 * scale)
-    center_y = height / 2 + (height / 2 - (76 if compact else 140) * density - card_height / 2) * magnification
+    anchor_y = ui_y + ui_height - (76 if compact else 140) * density - card_height / 2
+    center_y = height / 2 + (anchor_y - height / 2) * magnification
     hand = []
     for index in range(visible):
-        center_x = width / 2 + (index - (visible - 1) / 2) * spacing * magnification
+        anchor_x = ui_x + ui_width / 2 + (index - (visible - 1) / 2) * spacing
+        center_x = width / 2 + (anchor_x - width / 2) * magnification
         x0, x1 = center_x - card_width * magnification / 2, center_x + card_width * magnification / 2
         y0, y1 = center_y - card_height * magnification / 2, center_y + card_height * magnification / 2
         hand.append([[x0, y0], [x1, y0], [x1, y1], [x0, y1]])
@@ -215,7 +228,123 @@ def cards_projected_faces(width: int, height: int, density: float, hand_count: i
             'page': f'1/{math.ceil(hand_count / page_size)}', 'compact': compact}
 
 
-def require_cards_face_pixels(source, public: dict, *, density: float, observations: dict) -> dict:
+def require_cards_layout(layout: dict, public: dict, *, width: int, height: int,
+                         density: float, allow_fixture: bool = False) -> dict:
+    """Bind measured Android edges and actual mesh readbacks to one Cards state.
+
+    Pixel polygons are calculated independently. Supplied Godot polygons are
+    cross-checks only and never become the pixel sampling coordinates.
+    """
+    import hashlib
+    import json
+    import math
+
+    def vector(value, count, label):
+        if (not isinstance(value, (list, tuple)) or len(value) != count or
+                any(isinstance(number, bool) or not isinstance(number, (int, float)) or
+                    not math.isfinite(number) for number in value)):
+            raise RuntimeError('Invalid Cards layout measurement: ' + label)
+        return list(value)
+
+    def close(actual, expected, label, tolerance=.01):
+        actual = vector(actual, len(expected), label)
+        if any(abs(a-b) > tolerance for a, b in zip(actual, expected)):
+            raise RuntimeError('Cards layout measurement disagrees with ' + label)
+
+    if not isinstance(layout, dict) or type(layout.get('schema')) is not int or layout['schema'] != 1:
+        raise RuntimeError('Cards requires the current native layout observation schema')
+    origin = layout.get('observation_source')
+    if origin != 'android_window_insets' and not (allow_fixture and origin == 'fixture'):
+        raise RuntimeError('Cards requires actual Android window-inset observations')
+    if (layout.get('settled') is not True or layout.get('ui_visible') is not True or
+            layout.get('selected_card_id') != '' or type(layout.get('pending')) is not int or
+            layout['pending'] != 0 or type(layout.get('page')) is not int or layout['page'] != 0):
+        raise RuntimeError('Cards layout is unsettled, pending, hidden, selected or on another page')
+    for field, minimum in (('layout_sequence', 1), ('ticks_msec', 0), ('page_size', 1),
+                           ('revision', 0), ('ack', 0), ('viewer', 0)):
+        if type(layout.get(field)) is not int or layout[field] < minimum:
+            raise RuntimeError('Invalid Cards layout sequence/state field: ' + field)
+    for field in ('token', 'roundId'):
+        if not isinstance(layout.get(field), str) or not layout[field] or layout[field] != public.get(field):
+            raise RuntimeError('Cards layout belongs to another public ' + field)
+    for field in ('revision', 'ack', 'viewer', 'paused', 'phase'):
+        if layout.get(field) != public.get(field):
+            raise RuntimeError('Cards layout has stale or changed public state: ' + field)
+    if (layout.get('paused') is not False or layout.get('phase') != 'playing' or
+            public.get('canDraw') is not True or public.get('viewer') != 0 or public.get('current') != 0):
+        raise RuntimeError('Cards layout requires the active unpaused child turn')
+    close([layout.get('density')], [density], 'actual display density', .00001)
+    observation = layout.get('android_observation')
+    if not isinstance(observation, dict):
+        raise RuntimeError('Missing Cards Android View observations')
+    decor = vector(observation.get('decor_size'), 2, 'decor_size')
+    close(decor, [width, height], 'current screenshot size')
+    window = vector(layout.get('window_px'), 2, 'window_px')
+    if any(not 64 <= value <= 8192 or int(value) != value for value in window):
+        raise RuntimeError('Cards native window has invalid pixel dimensions')
+    close(layout.get('viewport_px'), window, 'unscaled native Cards viewport')
+    view = vector(observation.get('view_size'), 2, 'view_size')
+    render = vector(observation.get('render_rect'), 4, 'render_rect')
+    x, y, render_width, render_height = render
+    if not (0 <= x < width and 0 <= y < height and 0 < render_width <= width-x and
+            0 < render_height <= height-y):
+        raise RuntimeError('Cards RenderView extends beyond the current screenshot')
+    close(view, [render_width, render_height], 'RenderView bounds')
+    system = vector(observation.get('system_insets'), 4, 'system_insets')
+    if (any(value < 0 for value in system) or system[0]+system[2] >= width or
+            system[1]+system[3] >= height):
+        raise RuntimeError('Cards system insets leave no usable content')
+    overlap = [max(0, system[0]-x), max(0, system[1]-y),
+               max(0, x+render_width-(width-system[2])),
+               max(0, y+render_height-(height-system[3]))]
+    if overlap[0]+overlap[2] >= render_width or overlap[1]+overlap[3] >= render_height:
+        raise RuntimeError('Cards system insets cover its complete RenderView')
+    close(observation.get('insets'), overlap, 'measured RenderView/system-bar intersection')
+    scale_x, scale_y = window[0]/view[0], window[1]/view[1]
+    inset = [overlap[0]*scale_x, overlap[1]*scale_y,
+             overlap[2]*scale_x, overlap[3]*scale_y]
+    ui = [inset[0], inset[1], window[0]-inset[0]-inset[2], window[1]-inset[1]-inset[3]]
+    close(layout.get('ui_rect'), ui, 'derived safe UI rectangle')
+    hand = public.get('hand')
+    top = public.get('top')
+    if (not isinstance(hand, list) or not hand or not isinstance(top, dict) or
+            not isinstance(top.get('id'), str) or any(not isinstance(card, dict) or
+            not isinstance(card.get('id'), str) for card in hand)):
+        raise RuntimeError('Cards layout lacks actual public card identities')
+    native = cards_projected_faces(int(window[0]), int(window[1]), density, len(hand), ui_rect=ui)
+    if layout['page_size'] != native['page_size']:
+        raise RuntimeError('Cards measured page size differs from its independent projection')
+    observed_hand = layout.get('hand')
+    observed_top = layout.get('discard')
+    if (not isinstance(observed_hand, list) or len(observed_hand) != len(native['hand']) or
+            not isinstance(observed_top, dict) or observed_top.get('id') != top['id']):
+        raise RuntimeError('Cards mesh readbacks do not cover the current complete first page/discard')
+    pairs = [(observed_top, top['id'], native['discard'])]
+    pairs += [(observed, card['id'], calculated) for observed, card, calculated in
+              zip(observed_hand, hand, native['hand'])]
+    for observed, card_id, calculated in pairs:
+        if not isinstance(observed, dict) or observed.get('id') != card_id:
+            raise RuntimeError('Cards mesh identity differs from the current public hand')
+        quad = observed.get('quad')
+        if not isinstance(quad, list) or len(quad) != 4:
+            raise RuntimeError('Cards requires four real projected corners per mesh')
+        for actual, expected in zip(quad, calculated):
+            close(actual, expected, 'independent projected mesh ' + card_id, .05)
+
+    def to_screen(quad):
+        return [[x+point[0]/scale_x, y+point[1]/scale_y] for point in quad]
+
+    geometry = dict(native, hand=[to_screen(quad) for quad in native['hand']],
+                    discard=to_screen(native['discard']))
+    canonical = json.dumps(layout, sort_keys=True, separators=(',', ':'), ensure_ascii=False)
+    return {'geometry': geometry, 'layout_sha256': hashlib.sha256(canonical.encode()).hexdigest(),
+            'layout_sequence': layout['layout_sequence'], 'observation_source': origin,
+            'safe_ui_rect': [x+ui[0]/scale_x, y+ui[1]/scale_y, ui[2]/scale_x, ui[3]/scale_y],
+            'mesh_readback_tolerance_px': .05, 'scope': 'Independent projection agrees with actual native mesh readbacks'}
+
+
+def require_cards_face_pixels(source, public: dict, *, density: float, observations: dict,
+                             layout: dict | None = None, allow_fixture_layout: bool = False) -> dict:
     """Require visible artwork in actual projected front faces, not the whole image.
 
     This rejects blank/flat fronts. It does not identify card art, assess exact
@@ -246,7 +375,11 @@ def require_cards_face_pixels(source, public: dict, *, density: float, observati
             not isinstance(top.get('id'), str) or
             any(not isinstance(card, dict) or not isinstance(card.get('id'), str) for card in hand)):
         raise RuntimeError('Cards pixel proof requires public hand and discard identities')
-    geometry = cards_projected_faces(image.width, image.height, density, len(hand))
+    layout_binding = (require_cards_layout(layout, public, width=image.width, height=image.height,
+                                           density=density, allow_fixture=allow_fixture_layout)
+                      if layout is not None else None)
+    geometry = (layout_binding['geometry'] if layout_binding is not None else
+                cards_projected_faces(image.width, image.height, density, len(hand)))
 
     def caption(name, expected):
         item = observations.get(name, {})
@@ -265,6 +398,8 @@ def require_cards_face_pixels(source, public: dict, *, density: float, observati
               'density': density, 'roundId': public.get('roundId'), 'revision': public.get('revision'),
               'page': geometry['page'], 'faces': [],
               'scope': 'Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim'}
+    if layout_binding is not None:
+        report['layout_binding'] = {key: value for key, value in layout_binding.items() if key != 'geometry'}
     faces = [(card['id'], quad) for card, quad in zip(hand, geometry['hand'])]
     faces.append((top['id'], geometry['discard']))
     red, green, blue = image.split()
@@ -303,11 +438,13 @@ def require_cards_face_pixels(source, public: dict, *, density: float, observati
         if colored < .12 or spread < 24:
             raise RuntimeError('Cards front face is blank or lacks visible artwork: ' + str(face))
     pause = caption('pause', 'Pause')
-    if pause[0] < image.width * .65 or pause[3] > min(image.height * .2, 100 * density):
+    ui_x, ui_y, ui_width, ui_height = (layout_binding['safe_ui_rect'] if layout_binding is not None
+                                     else [0, 0, image.width, image.height])
+    if pause[0] < ui_x + ui_width * .65 or pause[3] > ui_y + min(ui_height * .2, 100 * density):
         raise RuntimeError('Cards Pause caption is not the current top navigation control')
     page = caption('page', geometry['page'])
     hand_bottom = max(point[1] for quad in geometry['hand'] for point in quad)
-    if not hand_bottom < page[1] < page[3] < min(image.height, hand_bottom + 100 * density):
+    if not hand_bottom < page[1] < page[3] < min(ui_y + ui_height, hand_bottom + 100 * density):
         raise RuntimeError('Cards page caption does not confirm the projected visible hand layout')
 
     return report

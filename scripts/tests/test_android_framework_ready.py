@@ -7,6 +7,7 @@ upstream fixture comes from the separately pinned action checkout in CI.
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -63,13 +64,71 @@ class SyntheticRecorder:
             "settings-read": sample.get("boot_count", "1"),
             "package-read": "package:/system/framework/framework-res.apk",
             "window-read": "Physical size: 1080x2340",
+            "window-state": self.window_state(sample),
+            "events-anr": sample.get("anr_events", "--------- beginning of events\n"),
+            "unlock-keyguard": "",
         }
         values.update({f"service-{service}": f"Service {service}: found" for service in READY.SERVICES})
         for missing in sample.get("missing", []):
             values[f"service-{missing}"] = f"Service {missing}: not found"
         if sample.get("settings_failure"):
             values["settings-read"] = ""
-        return {"returncode": 20 if sample.get("settings_failure") and name == "settings-read" else 0, "timed_out": False, "stdout": values[name], "stderr": "", "stdout_file": f"synthetic/{self.index}/{name}"}
+        failed = ((sample.get("settings_failure") and name == "settings-read")
+                  or (sample.get("unlock_failure") and name == "unlock-keyguard"))
+        timed_out = sample.get("timeout_command") == name
+        return {"returncode": 20 if failed or timed_out else 0, "timed_out": timed_out,
+                "stdout": values[name], "stderr": "", "stdout_file": f"synthetic/{self.index}/{name}"}
+
+    @staticmethod
+    def window_state(sample):
+        """AOSP-format synthetic states; these are not emulator captures."""
+        truth = lambda value: "true" if value else "false"
+        locked = sample.get("locked", False)
+        component = sample.get("component", "com.example.launcher/.Home")
+        token = sample.get("focus_token", "12ab")
+        focus = f"Window{{{token} u0 {component}}}" if sample.get("focus", True) else "null"
+        if locked:
+            focus = f"Window{{{token} u0 NotificationShade}}"
+        last_anr = sample.get("last_anr", "  <no ANR has occurred since boot>")
+        state = f"""WINDOW MANAGER LAST ANR (dumpsys window lastanr)
+{last_anr}
+
+{'-' * 79}
+WINDOW MANAGER POLICY STATE (dumpsys window policy)
+  KeyguardServiceDelegate
+    showing={truth(locked)}
+    inputRestricted={truth(sample.get('input_restricted', locked))}
+    occluded=false
+    secure={truth(sample.get('secure', False))}
+    dreaming=false
+    systemIsReady=true
+    deviceHasKeyguard=true
+    enabled=true
+    bootCompleted=true
+    screenState={'SCREEN_STATE_ON' if sample.get('awake', True) else 'SCREEN_STATE_OFF'}
+    interactiveState={'INTERACTIVE_STATE_AWAKE' if sample.get('awake', True) else 'INTERACTIVE_STATE_SLEEP'}
+
+{'-' * 79}
+WINDOW MANAGER DISPLAY CONTENTS (dumpsys window displays)
+  mCurrentFocus={focus}
+  mFocusedApp=ActivityRecord{{34cd u0 {sample.get('focused_app', component)} t1}}
+
+{'-' * 79}
+WINDOW MANAGER WINDOWS (dumpsys window windows)
+  Window #0 {focus}:
+    mHasSurface={truth(sample.get('surface', True))} isReadyForDisplay()={truth(sample.get('surface', True))} mWindowRemovalAllowed=false
+  mSystemBooted=true mDisplayEnabled=true
+  mDisplayFrozen={truth(sample.get('display_frozen', False))} windows=0 client=false apps=0
+"""
+        if sample.get("ambiguous_focus"):
+            state += "  mCurrentFocus=Window{99ef u0 com.example.other/.Other}\n"
+        if sample.get("unknown_keyguard"):
+            state = state.replace("  KeyguardServiceDelegate\n", "  UnknownKeyguardFormat\n")
+        if sample.get("unknown_secure"):
+            state = state.replace("    secure=false\n", "")
+        if sample.get("input_freeze"):
+            state += "  mInputFreezeReason=synthetic resize\n"
+        return state
 
 
 class FrameworkReadinessTests(unittest.TestCase):
@@ -123,6 +182,88 @@ class FrameworkReadinessTests(unittest.TestCase):
             self.assertEqual((root / result["stdout_file"]).read_bytes(), b"raw-out\x00\n")
             self.assertEqual((root / result["stderr_file"]).read_bytes(), b"raw-error\n")
 
+    def test_unlocked_visible_focused_activity_needs_no_input(self):
+        result, recorder = self.poll([{}])
+        self.assertEqual(result["status"], "PASS")
+        self.assertTrue(result["samples"][-1]["interactive"]["ready"])
+        self.assertFalse(result["unlock_action"]["attempted"])
+        self.assertFalse(any(name == "unlock-keyguard" or args[:1] == ["input"]
+                             for name, args, _ in recorder.commands))
+
+    def test_actual_848_anr_events_reject_service_positive_counterexample(self):
+        folder = ROOT / "scripts/tests/fixtures/android37_system_anr_848"
+        meta = json.loads((folder / "manifest.json").read_text())
+        original = (folder / meta["fixture"]).read_bytes()
+        self.assertEqual(hashlib.sha256(original).hexdigest(), meta["fixture_sha256"])
+        self.assertIn(b"keyCode=MENU(82)", original)
+        result, recorder = self.poll([{"anr_events": original.decode()}])
+        self.assertEqual(result["status"], "FAIL")
+        self.assertEqual(result["reason"], "observed_android_anr")
+        self.assertEqual(result["consecutive_ready_samples"], 0)
+        self.assertFalse(any(name == "unlock-keyguard" for name, _, _ in recorder.commands))
+
+    def test_window_last_anr_cannot_be_hidden_by_empty_event_buffer(self):
+        result, _ = self.poll([{"last_anr": "  ANR in system: missing focused window"}])
+        self.assertEqual(result["status"], "FAIL")
+        self.assertEqual(result["reason"], "observed_android_anr")
+
+    def test_unknown_ambiguous_or_unready_surface_is_not_a_pass(self):
+        for sample in ({"focus": False}, {"ambiguous_focus": True},
+                       {"unknown_keyguard": True}, {"surface": False},
+                       {"focused_app": "com.example.other/.Other"},
+                       {"input_restricted": True}, {"awake": False},
+                       {"display_frozen": True}, {"input_freeze": True},
+                       {"timeout_command": "window-state"}):
+            with self.subTest(sample=sample):
+                result, recorder = self.poll([sample])
+                self.assertEqual(result["status"], "FAIL")
+                self.assertLessEqual(result["elapsed_seconds"], 14.000001)
+                self.assertFalse(any(name == "unlock-keyguard" for name, _, _ in recorder.commands))
+
+    def test_one_observed_nonsecure_unlock_requires_new_stable_surface(self):
+        result, recorder = self.poll([{"locked": True}, {}], timeout=18)
+        self.assertEqual(result["status"], "PASS")
+        unlocks = [(args, timeout) for name, args, timeout in recorder.commands if name == "unlock-keyguard"]
+        self.assertEqual(len(unlocks), 1)
+        self.assertEqual(unlocks[0][0], ["wm", "dismiss-keyguard"])
+        self.assertLessEqual(unlocks[0][1], 5)
+        self.assertTrue(result["unlock_action"]["attempted"])
+        self.assertFalse(result["samples"][0]["ready"])
+        self.assertGreaterEqual(result["stable_observed_seconds"], 10)
+        self.assertGreaterEqual(result["consecutive_ready_samples"], 3)
+
+    def test_zero_exit_from_unlock_is_not_a_surface_acknowledgment(self):
+        result, recorder = self.poll([{"locked": True}])
+        self.assertEqual(result["status"], "FAIL")
+        self.assertEqual(sum(name == "unlock-keyguard" for name, _, _ in recorder.commands), 1)
+        self.assertEqual(result["consecutive_ready_samples"], 0)
+
+    def test_secure_unknown_or_sleeping_keyguard_never_gets_blind_input(self):
+        for sample in ({"locked": True, "secure": True},
+                       {"locked": True, "unknown_secure": True},
+                       {"locked": True, "awake": False}):
+            with self.subTest(sample=sample):
+                result, recorder = self.poll([sample])
+                self.assertEqual(result["status"], "FAIL")
+                self.assertFalse(any(name == "unlock-keyguard" for name, _, _ in recorder.commands))
+
+    def test_failed_unlock_stops_and_preserves_the_failure(self):
+        result, recorder = self.poll([{"locked": True, "unlock_failure": True}])
+        self.assertEqual(result["status"], "FAIL")
+        self.assertEqual(result["reason"], "keyguard_unlock_command_failed")
+        self.assertEqual(sum(name == "unlock-keyguard" for name, _, _ in recorder.commands), 1)
+
+    def test_focus_change_restarts_the_same_stability_requirement(self):
+        result, _ = self.poll([{"focus_token": f"token{i}"} for i in range(20)])
+        self.assertEqual(result["status"], "FAIL")
+        self.assertLess(result["stable_observed_seconds"], 10)
+
+    def test_anr_after_unlock_is_terminal_without_another_unlock(self):
+        result, recorder = self.poll([{"locked": True}, {"last_anr": "  ANR in system"}])
+        self.assertEqual(result["status"], "FAIL")
+        self.assertEqual(result["reason"], "observed_android_anr")
+        self.assertEqual(sum(name == "unlock-keyguard" for name, _, _ in recorder.commands), 1)
+
 
 class ExactUpstreamActionTests(unittest.TestCase):
     @classmethod
@@ -134,18 +275,21 @@ class ExactUpstreamActionTests(unittest.TestCase):
             if actual != digest:
                 raise AssertionError(f"Unreviewed upstream fixture: {path}")
 
-    def test_only_additive_guard_is_accepted_and_tampered_upstream_rejected(self):
+    def test_only_observed_setup_replaces_menu_and_tampered_upstream_is_rejected(self):
         for path in PATCH.MODIFIED_PATHS:
             original = (self.source / path).read_bytes()
             patched = PATCH.patch_bytes(path, original)
             lines = patched.decode().splitlines(keepends=True)
             stripped = "".join(line for line in lines if not any(line.strip() == guard for guard in PATCH.GUARD_LINES)).encode()
-            self.assertEqual(stripped, original)
+            menu = b"await adb(port, `shell input keyevent 82`);\n"
+            original_lines = original.splitlines(keepends=True)
+            self.assertEqual(sum(line.strip() == menu.strip() for line in original_lines), 1)
+            self.assertEqual(stripped, b"".join(line for line in original_lines if line.strip() != menu.strip()))
             with self.assertRaises(ValueError):
                 PATCH.patch_bytes(path, original + b"\n")
         self.assertEqual(PATCH.sha256((self.source / "LICENSE").read_bytes()), PATCH.ORIGINAL_HASHES["LICENSE"])
 
-    def test_exact_original_main_keeps_keyevent_settings_and_cleanup(self):
+    def test_exact_original_main_keeps_settings_tour_and_cleanup_after_observed_setup(self):
         node = r'''
 const fs = require('fs'), vm = require('vm');
 const [managerPath, mainPath, scenario] = process.argv.slice(2);
@@ -191,15 +335,13 @@ main.finished.then(()=>process.stdout.write(JSON.stringify({calls,failures}))).c
                     self.assertEqual(len(kills), 1)
                     self.assertGreater(kills[0], guard)
                     keys = [i for i, command in enumerate(commands) if "shell input keyevent 82" in command]
-                    if scenario == "guard-failure":
-                        self.assertEqual(keys, [])
-                        self.assertTrue(record["failures"])
-                    else:
-                        self.assertEqual(len(keys), 1)
-                        self.assertGreater(keys[0], guard)
-                        settings = [command for command in commands if "settings put global" in command]
-                        self.assertEqual(len(settings), 3 if scenario == "success" else 0)
-                        self.assertEqual(bool(record["failures"]), scenario == "keyevent-failure")
+                    self.assertEqual(keys, [], "A positively confirmed unlocked surface must not receive redundant MENU82")
+                    settings = [command for command in commands if "settings put global" in command]
+                    self.assertEqual(len(settings), 0 if scenario == "guard-failure" else 3)
+                    self.assertEqual(bool(record["failures"]), scenario == "guard-failure")
+                    tours = [item for item in record["calls"]
+                             if item["command"] == "sh" and item["args"] == ["-c", "unchanged-tour-command"]]
+                    self.assertEqual(len(tours), 0 if scenario == "guard-failure" else 1)
 
 
 if __name__ == "__main__":

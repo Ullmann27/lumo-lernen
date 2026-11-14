@@ -490,6 +490,126 @@ def _stage_cup_text(out: Path, tag: str, *, tap: bool = False, timeout: float = 
         journal.write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
 
 
+def _return_stage_kart_menu(out: Path, tag: str, *, timeout: float = 120) -> dict:
+    """Observe the section/footer and the real landing; a press is never a return."""
+    if type(timeout) not in (int, float) or not 0 < timeout <= 150:
+        raise ValueError('Kart return requires a bounded positive observation deadline')
+    started = time.monotonic()
+    deadline = started + timeout
+    journal = out / (tag + '-return-readiness.json')
+    report = {'status': 'WAITING', 'timeout_seconds': timeout, 'touch_budget': 3,
+              'frames': [], 'touches': [],
+              'scope': 'Observed section/footer touches and confirmed landing; no race or gameplay PASS'}
+    previous_footer = previous_landing = None
+    footer_caption = landing_caption = None
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-return-observation-{len(report["frames"])}'
+            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source, orientation='landscape')
+            frame['state'] = 'unready'
+            report['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous_footer = previous_landing = None
+            else:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                rows = probe.image_lines(out, name, source_path=source, timeout=remaining)
+                garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                       'Current Kart return screenshot changed during observation')
+                words = {garage_evidence.normalize(word) for row in rows
+                         for word in row['text'].split()}
+                # The existing direct sections expose Karts; the illustrated
+                # landing exposes Fahrer/Garage instead. The full original cup
+                # validator still owns landing geometry and ambiguity checks.
+                if 'karts' not in words and {'fahrer', 'garage'} <= words:
+                    choice = garage_evidence.stage_cup_target_observation(frame, rows)
+                    if choice['caption'] != landing_caption:
+                        previous_landing = None
+                    observed = probe.target_observation(frame, choice['target']['bounds'],
+                                                        previous_landing)
+                    frame.update(state='landing', cup_choice=choice, target=observed)
+                    previous_landing, landing_caption = observed, choice['caption']
+                    previous_footer = None
+                    if observed['stable_observed_target']:
+                        report.update(status='PASS', landing_caption=choice['caption'],
+                                      landing_frame_index=len(report['frames']) - 1)
+                        last = report['touches'][-1] if report['touches'] else None
+                        return {'caption': choice['caption'], 'readiness': journal.name,
+                                'return_caption': last['caption'] if last else None,
+                                'return_touch': last['point'] if last else None}
+                elif {'fahrer', 'karts'} <= words:
+                    frame['state'] = 'section'
+                    previous_landing = None
+                    exact = [row for row in rows
+                             if probe.normalized(row['text']) == 'kartmenu']
+                    # Preserve the historical Menu alias only when the full
+                    # Kart-Menü caption is absent; never aim at part of a label.
+                    matches = exact or [row for row in rows
+                                        if probe.normalized(row['text']) == 'menu']
+                    footer = []
+                    for row in matches:
+                        geometry = probe.target_observation(frame, row.get('bounds'))
+                        garage_evidence.demand(geometry['target_geometry_valid'],
+                                               'Invalid observed Kart return bounds')
+                        if (row['bounds'][1] + row['bounds'][3]) / 2 >= frame['pixels'][1] * .6:
+                            footer.append(row)
+                    if not footer:
+                        previous_footer = None
+                        frame['reasons'].append('actual section return footer not observed')
+                    else:
+                        selected = footer[0]
+                        x0, y0, x1, y1 = selected['bounds']
+                        for row in footer[1:]:
+                            a0, b0, a1, b1 = row['bounds']
+                            overlap = max(0, min(x1, a1) - max(x0, a0)) * max(
+                                0, min(y1, b1) - max(y0, b0))
+                            union = (x1 - x0) * (y1 - y0) + (a1 - a0) * (b1 - b0) - overlap
+                            garage_evidence.demand(overlap / union >= .6,
+                                                   'Ambiguous current Kart return targets')
+                        caption = 'Kart-Menü' if exact else 'Menü'
+                        if caption != footer_caption:
+                            previous_footer = None
+                        observed = probe.target_observation(frame, selected['bounds'], previous_footer)
+                        frame.update(return_caption=caption, observed_caption=selected['text'],
+                                     target=observed)
+                        previous_footer, footer_caption = observed, caption
+                        if observed['stable_observed_target']:
+                            garage_evidence.demand(len(report['touches']) < report['touch_budget'],
+                                'Spatial Kart section did not return after three observed footer gestures')
+                            remaining = deadline - time.monotonic()
+                            if remaining <= 0:
+                                break
+                            point = [round((x0 + x1) / 2), round((y0 + y1) / 2)]
+                            touch = {'status': 'REQUESTED', 'caption': caption,
+                                     'point': point, 'bounds': observed['bounds'],
+                                     'source_sha256': frame['source_sha256'],
+                                     'frame_index': len(report['frames']) - 1, 'duration_ms': 120}
+                            report['touches'].append(touch)
+                            # Same observed120ms stationary gesture as the
+                            # successful current Garage/Comet/Gecko touches.
+                            base.adb('shell', 'input', 'swipe', str(point[0]), str(point[1]),
+                                     str(point[0]), str(point[1]), '120', timeout=min(15, remaining))
+                            touch['status'] = 'TOUCH_SENT'
+                            # A possible retry needs two NEW section frames.
+                            # Observe after the final allowed gesture as well.
+                            previous_footer = None
+                else:
+                    frame['state'] = 'unknown'
+                    frame['reasons'].append('neither current section nor actual landing observed')
+                    previous_footer = previous_landing = None
+            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+        raise TimeoutError('Actual Kart landing was not observed after the section return')
+    except Exception as error:
+        report.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        report['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+
+
 def _inspect_spatial_kart_menu(out: Path) -> dict:
     """Use the 2017 mode and direct sections through their actual rendered labels."""
     mode = _stage_cup_text(out, '21_stage_mode_cup', tap=True)
@@ -508,26 +628,11 @@ def _inspect_spatial_kart_menu(out: Path) -> dict:
             # A retained setup may contain another driver. Select the original
             # free Lumo card explicitly before requiring fox in the real save.
             selection_touches.append(_select_stage_driver(out))
-        for attempt in range(8):
-            screen = _screencap()
-            (out / f'{tag}-return-{attempt}.png').write_bytes(screen)
-            point = None
-            caption = ''
-            for candidate in ('Kart-Menü', 'Menü'):
-                point = _read_garage_footer(screen, candidate)
-                if point is not None:
-                    caption = candidate
-                    break
-            if point is not None:
-                base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
-                time.sleep(2)
-                break
-            time.sleep(1)
-        else:
-            raise RuntimeError('Spatial Kart section has no visible return footer: ' + label)
-        landing = _stage_cup_text(out, tag + '-landing-restored')
+        landing = _return_stage_kart_menu(out, tag)
         sections.append({'section': key, 'visible_label': label,
-                         'return_caption': caption, 'return_touch': point,
+                         'return_caption': landing['return_caption'],
+                         'return_touch': landing['return_touch'],
+                         'return_evidence': landing['readiness'],
                          'landing_caption': landing['caption'],
                          'touch_evidence': tag + '-open-surface-readiness.json'})
     report = {'status': 'PASS', 'selected_mode': 'cup', 'sections': sections,

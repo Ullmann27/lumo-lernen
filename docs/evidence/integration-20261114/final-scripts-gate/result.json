@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "started_at": "2026-11-14T01:02:35.575349+00:00",
+  "finished_at": "2026-11-14T01:06:13.691068+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "seconds": 217.9029375609971,
+  "exit_code": 0,
+  "log": "scripts-tests.log",
+  "log_bytes": 116496,
+  "log_sha256": "2f3fc3aea2852af3778aa563357a8bd4a2c2610c91f2800d573b38325222437c",
+  "unittest_summaries": [
+    [
+      "574",
+      "217.631"
+    ]
+  ],
+  "test_count": 574,
+  "failure_count": 0,
+  "error_count": 0,
+  "skip_lines": [],
+  "skip_count": 0,
+  "failure_headers": [],
+  "error_headers": [],
+  "source_count_before": 1383,
+  "source_count_after": 1383,
+  "source_changes": [],
+  "head_before": "12ccd3c23a71d077c0f25bb744baff565a9a3a60",
+  "head_after": "12ccd3c23a71d077c0f25bb744baff565a9a3a60",
+  "tree_before": "400830eb09aa1f5110b54c70311a8de1db37d3fe",
+  "tree_after": "400830eb09aa1f5110b54c70311a8de1db37d3fe",
+  "head_and_tree_unchanged": true,
+  "strict_local_gate_pass": true,
+  "not_claimed": [
+    "Android runtime acceptance",
+    "CI execution",
+    "Repeated870 Android-QA suite",
+    "Native renderer acceptance"
+  ]
+}

@@ -13,6 +13,7 @@ from datetime import datetime
 import hashlib
 from io import BytesIO
 import json
+import math
 from pathlib import Path, PurePosixPath
 import re
 import stat
@@ -46,6 +47,12 @@ TOUCH_CAPTURE_PROBES = frozenset({
     'touch-evidence/treasure/captures/treasure_density_regression',
     'touch-evidence/build/captures/build_dialog_density_regression',
 })
+PUZZLE_MENU_CAPTURE_PROBE = 'studio-evidence/captures/puzzle_menu_lifecycle_regression'
+CARDS_SAFE_AREA_CAPTURE_PROBE = 'studio-evidence/captures/cards_safe_area_regression'
+MOBILE_SAFE_AREA_CAPTURE_MODULES = MappingProxyType({
+    f'studio-evidence/captures/mobile_safe_area_regression/{module}-landscape-cutout.png': module
+    for module in ('jump', 'build', 'puzzle', 'treasure')
+})
 # Pose-studio images are useful technical evidence, but cannot stand in for an
 # actual production scene. The probe directory fixes the image's module.
 CAPTURE_MODULES = {
@@ -56,8 +63,10 @@ CAPTURE_MODULES = {
     'nextgen-evidence/nextgen/captures/build_settlement_play_regression': 'settlement',
     'nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression': 'garage',
     'nextgen-evidence/nextgen/captures/cards_table_capture': 'cards',
+    CARDS_SAFE_AREA_CAPTURE_PROBE: 'cards',
     'nextgen-evidence/nextgen/captures/rhythm_tour_play_regression': 'rhythm',
     'studio-evidence/captures/puzzle_rotation_regression': 'puzzle',
+    PUZZLE_MENU_CAPTURE_PROBE: 'puzzle',
     'studio-evidence/captures/treasure_exploration_regression': 'treasure',
     'touch-evidence/workshop/captures/kart_workshop_density_regression': 'garage',
     'touch-evidence/treasure/captures/treasure_density_regression': 'treasure',
@@ -69,6 +78,27 @@ CAPTURE_MODULES = {
 NEXTGEN_PREFIX = 'nextgen-evidence/nextgen'
 NEXTGEN_VILLAGE_CAPTURE = NEXTGEN_PREFIX + '/captures/build_village_scene_regression'
 NEXTGEN_PUZZLE_MENU_CAPTURE = NEXTGEN_PREFIX + '/captures/puzzle_menu_lifecycle_regression'
+NEXTGEN_CARDS_SAFE_AREA_CAPTURE = NEXTGEN_PREFIX + '/captures/cards_safe_area_regression'
+NEXTGEN_MOBILE_SAFE_AREA_CAPTURE = NEXTGEN_PREFIX + '/captures/mobile_safe_area_regression'
+NEXTGEN_SAFE_AREA_PNGS = MappingProxyType({
+    'captures/cards_safe_area_regression/android35_portrait-playing.png': (1080, 2400),
+    'captures/cards_safe_area_regression/android35_portrait-paused.png': (1080, 2400),
+    'captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png': (2400, 1080),
+    **{f'captures/mobile_safe_area_regression/{module}-landscape-cutout.png': (2400, 1080)
+       for module in ('jump', 'build', 'puzzle', 'treasure')},
+})
+NEXTGEN_SAFE_AREA_CAPTURE_IMAGES = MappingProxyType({
+    NEXTGEN_PREFIX + '/' + path: (
+        'cards' if '/cards_safe_area_regression/' in path else PurePosixPath(path).name.split('-')[0])
+    for path in NEXTGEN_SAFE_AREA_PNGS
+})
+NEXTGEN_SAFE_AREA_PROBES = frozenset({
+    ('cards_safe_area_android_contract', 'headless'),
+    ('cards_safe_area_regression', 'headless'),
+    ('mobile_safe_area_regression', 'headless'),
+    ('cards_safe_area_regression', 'rendered'),
+    ('mobile_safe_area_regression', 'rendered'),
+})
 NEXTGEN_CAPTURE_MODULES = MappingProxyType({
     **{NEXTGEN_PREFIX + '/captures/' + probe: module for probe, module in (
         ('learning_world_capture', 'learning'), ('learning_sharing_capture', 'learning'),
@@ -82,7 +112,7 @@ NEXTGEN_CAPTURE_MODULES = MappingProxyType({
     )},
     **{probe: CAPTURE_MODULES[probe] for probe in TOUCH_CAPTURE_PROBES},
 })
-NEXTGEN_REQUIRED_PROBES = frozenset(
+NEXTGEN_REQUIRED_PROBES = NEXTGEN_SAFE_AREA_PROBES | frozenset(
     (probe, 'headless') for probe in (
         'learning_world_regression', 'learning_sharing_regression', 'learning_studio_regression',
         'learning_host_payload_regression', 'puzzle_rotation_regression',
@@ -260,7 +290,11 @@ def capture_module(entry: str, *, native_profile: str = 'studio-2019') -> str:
     require(not path.is_absolute() and '..' not in path.parts and str(path) == entry and
             bool(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*\.png', path.name)),
             'Only original current production-scene PNGs may be reviewed')
-    module = profile.capture_modules.get(str(path.parent))
+    image_modules = (NEXTGEN_SAFE_AREA_CAPTURE_IMAGES if native_profile == 'nextgen-2019'
+                     else MOBILE_SAFE_AREA_CAPTURE_MODULES)
+    module = image_modules.get(entry)
+    if module is None:
+        module = profile.capture_modules.get(str(path.parent))
     require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
     return module
 
@@ -324,7 +358,7 @@ def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
             'Every original Nextgen probe must report PASS')
     observed = [(row[0], row[1]) for row in rows[1:]]
     require(len(observed) == len(set(observed)) and set(observed) == NEXTGEN_REQUIRED_PROBES,
-            'The complete original 43-probe Nextgen result is required')
+            'The complete original 48-probe Nextgen result is required')
     images = roster.get('images') if isinstance(roster, dict) else None
     require(isinstance(images, list) and len(images) == len(NEXTGEN_STUDIO_PNGS),
             'The complete original 24-PNG Studio roster is required')
@@ -347,6 +381,7 @@ def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
     return {'native_capture_tree': tree, 'native_probe_count': len(observed),
             'native_studio_raster_count': len(seen), **verify_nextgen_village_archive(zipped),
             **verify_nextgen_puzzle_menu_archive(zipped),
+            **verify_nextgen_safe_area_archive(zipped),
             **verify_nextgen_touch_archive(zipped, tree)}
 
 
@@ -409,6 +444,254 @@ def verify_nextgen_puzzle_menu_archive(zipped: zipfile.ZipFile) -> dict:
         zipped, capture=NEXTGEN_PUZZLE_MENU_CAPTURE, manifest='puzzle-menu-images.json',
         expected=NEXTGEN_PUZZLE_MENU_PNGS, label='Puzzle menu')
     return {'native_puzzle_menu_raster_count': count}
+
+
+def _safe_area_numbers(value: object, length: int, label: str) -> list:
+    require(isinstance(value, list) and len(value) == length and
+            all(type(number) in (int, float) and math.isfinite(number) for number in value),
+            'Invalid safe-area geometry: ' + label)
+    return value
+
+
+def _safe_area_rect(value: object, bounds: list, label: str, tolerance: float = 0.51) -> list:
+    rect = _safe_area_numbers(value, 4, label)
+    x, y, width, height = rect
+    sx, sy, sw, sh = bounds
+    require(width > 0 and height > 0 and x >= sx - tolerance and y >= sy - tolerance and
+            x + width <= sx + sw + tolerance and y + height <= sy + sh + tolerance,
+            'Safe-area target leaves its actual fixture bounds: ' + label)
+    return rect
+
+
+def _safe_area_bound_json(zipped: zipfile.ZipFile, descriptor: object,
+                         path: str, *, limit: int) -> dict:
+    require(isinstance(descriptor, dict) and descriptor.get('path') == path,
+            'Safe-area original metadata names another archive member')
+    data = archive_member(zipped, NEXTGEN_PREFIX + '/' + path)
+    require(0 < len(data) <= limit and type(descriptor.get('bytes')) is int and
+            descriptor['bytes'] == len(data) and
+            descriptor.get('sha256') == hashlib.sha256(data).hexdigest(),
+            'Safe-area original JSON digest or byte count differs')
+    try:
+        result = json.loads(data)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError('Invalid original safe-area JSON: ' + path) from error
+    require(isinstance(result, dict), 'Safe-area original JSON must be an object')
+    return result
+
+
+def _safe_area_layout(layout: dict, size: tuple[int, int], *, paused: bool,
+                      report_roundtrip: bool = False) -> None:
+    # The primary sidecar preserves Godot's explicitly written integer fields.
+    # The independent report parses that JSON in Godot and serializes it again,
+    # which records those same integral values as floats. Limit that conversion
+    # to this secondary report; fractions, booleans and nonfinite values fail.
+    integer_types = (int, float) if report_roundtrip else (int,)
+
+    def integer(value: object, minimum: int) -> bool:
+        return (type(value) in integer_types and math.isfinite(value) and
+                value >= minimum and int(value) == value)
+
+    require(integer(layout.get('schema'), 1) and layout['schema'] == 1 and
+            layout.get('settled') is True and layout.get('ui_visible') is True and
+            integer(layout.get('pending'), 0) and layout['pending'] == 0 and
+            layout.get('observation_source') == 'fixture' and layout.get('paused') is paused,
+            'Cards renderer layout must be settled, visible and explicitly a fixture')
+    require(_safe_area_numbers(layout.get('window_px'), 2, 'Cards window') == list(size) and
+            integer(layout.get('layout_sequence'), 1) and
+            all(isinstance(layout.get(key), str) and bool(layout[key]) for key in ('token', 'roundId')),
+            'Cards renderer layout does not identify its actual window and settled state')
+    _safe_area_rect(layout.get('ui_rect'), [0, 0, *size], 'Cards UI')
+    hand, discard = layout.get('hand'), layout.get('discard')
+    require(isinstance(hand, list) and bool(hand) and isinstance(discard, dict) and bool(discard),
+            'Cards renderer layout must retain its hand and discard projections')
+    seen = set()
+    for card in [*hand, discard]:
+        require(isinstance(card, dict) and isinstance(card.get('id'), str) and bool(card['id']),
+                'Cards renderer layout has an invalid original face identity')
+        require(card['id'] not in seen, 'Cards renderer layout repeats an original face identity')
+        seen.add(card['id'])
+        quad = card.get('quad')
+        require(isinstance(quad, list) and len(quad) == 4, 'Cards renderer face projection is incomplete')
+        for point in quad:
+            x, y = _safe_area_numbers(point, 2, 'Cards face corner')
+            require(-1 <= x <= size[0] + 1 and -1 <= y <= size[1] + 1,
+                    'Cards renderer face projection leaves the captured window')
+        area = abs(sum(quad[i][0] * quad[(i + 1) % 4][1] -
+                       quad[(i + 1) % 4][0] * quad[i][1] for i in range(4))) / 2
+        require(area > 1, 'Cards renderer face projection has no visible area')
+
+
+def _verify_safe_area_reports(cards: dict, mobile: dict, images: dict[str, dict]) -> None:
+    """Retain the producer's fixture scope and recompute its geometric claims."""
+    for report in (cards, mobile):
+        require(type(report.get('checks')) is int and report['checks'] > 0 and report.get('failures') == [],
+                'The original safe-area renderer report contains failures or no checks')
+    require(cards.get('android_device_measurement') is False and
+            isinstance(cards.get('renderer'), str) and cards['renderer'] not in ('', 'headless') and
+            isinstance(cards.get('fixture_scope'), str) and bool(cards['fixture_scope']),
+            'Cards renderer fixtures must not be relabelled as Android device measurements')
+    profiles = {
+        'android35_portrait': ((1080, 2400), 2.625, [0, 136, 1080, 2201]),
+        'android35_portrait_earlier_inset': ((1080, 2400), 2.625, [0, 145, 1080, 2192]),
+        'landscape_cutout_fixture': ((2400, 1080), 2.625, [136, 63, 2264, 954]),
+        'short_landscape_fixture': ((640, 360), 1.0, [0, 32, 640, 304]),
+        'desktop_without_insets': ((1280, 720), 1.0, [0, 0, 1280, 720]),
+    }
+    observed = cards.get('images')
+    require(isinstance(observed, list) and len(observed) == 3, 'All three original Cards captures are required')
+    seen = set()
+    for item in observed:
+        require(isinstance(item, dict) and isinstance(item.get('path'), str), 'Invalid Cards capture report entry')
+        relative = 'captures/cards_safe_area_regression/' + PurePosixPath(item['path']).name
+        require(relative in NEXTGEN_SAFE_AREA_PNGS and relative not in seen and
+                item.get('size') == list(NEXTGEN_SAFE_AREA_PNGS[relative]),
+                'Original Cards report names missing, duplicate or differently sized captures')
+        seen.add(relative)
+        profile = PurePosixPath(relative).name.rsplit('-', 1)[0]
+        require(item.get('profile') == profile and item.get('safe_rect_px') == profiles[profile][2],
+                'Original Cards capture has another inset fixture')
+    targets = cards.get('targets')
+    require(isinstance(targets, list) and bool(targets), 'Missing original Cards safe-area targets')
+    target_profiles = set()
+    for item in targets:
+        require(isinstance(item, dict) and item.get('profile') in profiles, 'Unknown Cards target fixture')
+        profile = item['profile']
+        target_profiles.add(profile)
+        _, density, bounds = profiles[profile]
+        require(item.get('safe_rect_px') == bounds, 'Cards target reports another safe rectangle')
+        rect = _safe_area_rect(item.get('rect_px'), bounds, 'Cards target')
+        dp = _safe_area_numbers(item.get('dp'), 2, 'Cards target dp')
+        require(min(dp) >= 47.99 and all(abs(dp[i] - rect[i + 2] / density) < 0.001 for i in range(2)),
+                'Cards target does not preserve the original 48-dp fixture geometry')
+    require(target_profiles == set(profiles), 'All five original Cards inset profiles are required')
+    projections = cards.get('projected_views')
+    require(isinstance(projections, list) and len(projections) == len(profiles),
+            'All five original Cards projection comparisons are required')
+    seen = set()
+    for item in projections:
+        require(isinstance(item, dict) and isinstance(item.get('profile'), str) and
+                item['profile'] in profiles and item['profile'] not in seen,
+                'Missing, duplicate or unknown Cards projected view')
+        seen.add(item['profile'])
+        layout = item.get('native_layout')
+        require(isinstance(layout, dict), 'Missing original Cards projected layout')
+        _safe_area_layout(layout, profiles[item['profile']][0], paused=False, report_roundtrip=True)
+        hand = item.get('hand')
+        require(isinstance(hand, list) and len(hand) == len(layout['hand']),
+                'Independent Cards projection does not retain the original hand')
+        for actual, original in zip(hand, layout['hand']):
+            require(isinstance(actual, dict) and actual.get('id') == original['id'] and
+                    isinstance(actual.get('quad'), list) and len(actual['quad']) == 4,
+                    'Independent Cards projection changes the public hand order')
+            for actual_point, original_point in zip(actual['quad'], original['quad']):
+                point = _safe_area_numbers(actual_point, 2, 'Independent Cards face corner')
+                require(math.dist(point, original_point) < 0.1,
+                        'Independent Cards projection differs from the native layout')
+    require(mobile.get('scope') ==
+            'production cache and scenes with asynchronous Android boundary fixture; not device execution' and
+            mobile.get('surface') == [2400, 1080] and mobile.get('density') == 2.625 and
+            mobile.get('observed_system_inset_fixture') == [136, 63, 0, 63],
+            'Mobile renderer report must retain its exact asynchronous boundary fixture scope')
+    captures = mobile.get('images')
+    require(isinstance(captures, list) and len(captures) == 4, 'All four original mobile captures are required')
+    seen = set()
+    for item in captures:
+        require(isinstance(item, dict) and isinstance(item.get('path'), str), 'Invalid original mobile capture')
+        relative = 'captures/mobile_safe_area_regression/' + item['path']
+        require(relative in NEXTGEN_SAFE_AREA_PNGS and relative not in seen,
+                'Missing, duplicate or unexpected mobile capture')
+        seen.add(relative)
+        original = images[relative]
+        require(item.get('module') == NEXTGEN_SAFE_AREA_CAPTURE_IMAGES[NEXTGEN_PREFIX + '/' + relative] and
+                all(item.get(key) == original[key] for key in ('width', 'height', 'sha256')),
+                'Original mobile report does not identify the captured scene and original pixels')
+    expected_targets = {
+        ('jump', '‹ Spiele'), ('jump', 'Pause'), ('jump', 'MovementStick'), ('jump', 'JumpAction'),
+        ('build', '‹ Spiele'), ('build', 'Ⅱ'), ('build', 'Verschieben'),
+        ('puzzle', '‹ Spiele'), ('puzzle', 'Ⅱ'),
+        ('treasure', '‹ Spiele'), ('treasure', 'Rucksack'), ('treasure', 'Ⅱ'),
+        ('treasure', 'Springen'), ('treasure', 'MovementStick'), ('treasure', 'ANSEHEN'),
+    }
+    targets = mobile.get('targets')
+    require(isinstance(targets, list) and len(targets) == 15, 'All fifteen original mobile targets are required')
+    seen = set()
+    for item in targets:
+        require(isinstance(item, dict) and isinstance(item.get('module'), str) and
+                isinstance(item.get('caption'), str), 'Invalid original mobile target')
+        key = item['module'], item['caption']
+        require(key in expected_targets and key not in seen and item.get('fully_inside_true_safe_area') is True,
+                'Mobile report omits, duplicates or exposes an unsafe original control')
+        seen.add(key)
+        rect = _safe_area_rect(item.get('rect_px'), [136, 63, 2264, 954], 'Mobile ' + '/'.join(key))
+        dp = _safe_area_numbers(item.get('target_dp'), 2, 'Mobile target dp')
+        exposed = _safe_area_numbers(item.get('exposed_dp'), 2, 'Mobile exposed dp')
+        intersection = [max(0, min(rect[0] + rect[2], 2400) - max(rect[0], 136)),
+                        max(0, min(rect[1] + rect[3], 1017) - max(rect[1], 63))]
+        require(min(dp) >= 47.95 and all(abs(dp[i] - rect[i + 2] / 2.625) < 0.001 and
+                abs(exposed[i] - intersection[i] / 2.625) < 0.001 for i in range(2)),
+                'Mobile target geometry does not preserve the original 48-dp control')
+
+
+def verify_nextgen_safe_area_archive(zipped: zipfile.ZipFile) -> dict:
+    """Bind seven renderer originals, three native layouts and two original reports."""
+    try:
+        roster = json.loads(archive_member(zipped, NEXTGEN_PREFIX + '/safe-area-images.json'))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError('Invalid original safe-area raster metadata') from error
+    require(isinstance(roster, dict) and type(roster.get('schema')) is int and roster['schema'] == 1,
+            'Unknown original safe-area raster schema')
+    images = roster.get('images')
+    require(isinstance(images, list) and len(images) == 7, 'All seven original safe-area rasters are required')
+    prefixes = (NEXTGEN_CARDS_SAFE_AREA_CAPTURE + '/', NEXTGEN_MOBILE_SAFE_AREA_CAPTURE + '/')
+    originals = [item.filename for item in zipped.infolist()
+                 if item.filename.startswith(prefixes) and PurePosixPath(item.filename).suffix.lower() == '.png']
+    require(len(originals) == len(set(originals)) and set(originals) == set(NEXTGEN_SAFE_AREA_CAPTURE_IMAGES),
+            'The complete original seven-PNG safe-area capture directories are required')
+    captured, layout_count = {}, 0
+    from PIL import Image
+    for item in images:
+        require(isinstance(item, dict) and isinstance(item.get('path'), str), 'Invalid original safe-area raster')
+        relative = item['path']
+        require(relative in NEXTGEN_SAFE_AREA_PNGS and relative not in captured,
+                'Missing, duplicate or unexpected original safe-area raster path')
+        data = archive_member(zipped, NEXTGEN_PREFIX + '/' + relative)
+        require(type(item.get('bytes')) is int and len(data) == item['bytes'] and
+                item.get('sha256') == hashlib.sha256(data).hexdigest(),
+                'Original safe-area raster digest or byte count differs')
+        dimensions = png_dimensions(data)
+        require(all(type(item.get(key)) is int for key in ('width', 'height')) and
+                dimensions == [item['width'], item['height']] == list(NEXTGEN_SAFE_AREA_PNGS[relative]),
+                'Original safe-area raster dimensions differ from the production probe')
+        with Image.open(BytesIO(data)) as image:
+            visible = Image.alpha_composite(Image.new('RGBA', image.size, (0, 0, 0, 255)),
+                                            image.convert('RGBA')).convert('RGB')
+            require(any(low != high for low, high in visible.getextrema()),
+                    'Original safe-area PNG is empty or a uniform color')
+        if relative.startswith('captures/cards_safe_area_regression/'):
+            layout = _safe_area_bound_json(zipped, item.get('native_layout'),
+                                          str(PurePosixPath(relative).with_suffix('.layout.json')), limit=131072)
+            _safe_area_layout(layout, NEXTGEN_SAFE_AREA_PNGS[relative], paused=relative.endswith('-paused.png'))
+            layout_count += 1
+        else:
+            require('native_layout' not in item, 'Mobile captures cannot borrow Cards layout observations')
+        captured[relative] = item
+    reports = roster.get('reports')
+    expected_reports = {'captures/cards_safe_area_regression/cards-safe-area.json',
+                        'captures/mobile_safe_area_regression/mobile-safe-area.json'}
+    require(isinstance(reports, list) and len(reports) == 2, 'Both original safe-area reports are required')
+    original_reports = {}
+    for descriptor in reports:
+        require(isinstance(descriptor, dict) and isinstance(descriptor.get('path'), str) and
+                descriptor['path'] in expected_reports and descriptor['path'] not in original_reports,
+                'Missing, duplicate or unexpected original safe-area report')
+        path = descriptor['path']
+        original_reports[path] = _safe_area_bound_json(zipped, descriptor, path, limit=1048576)
+    _verify_safe_area_reports(original_reports['captures/cards_safe_area_regression/cards-safe-area.json'],
+                              original_reports['captures/mobile_safe_area_regression/mobile-safe-area.json'], captured)
+    return {'native_safe_area_raster_count': len(captured), 'native_cards_layout_count': layout_count,
+            'native_safe_area_report_count': len(original_reports),
+            'native_safe_area_scope': 'Source-bound renderer and platform-boundary fixtures; not Android device execution'}
 
 
 def verify_nextgen_touch_archive(zipped: zipfile.ZipFile, tree: str) -> dict:
@@ -528,6 +811,16 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
         require(NEXTGEN_PUZZLE_MENU_CAPTURE in capture_probes,
                 'Visual review must include the current Puzzle menu lifecycle capture')
         additional['reviewed_puzzle_menu_capture_probes'] = [NEXTGEN_PUZZLE_MENU_CAPTURE]
+        require(set(NEXTGEN_SAFE_AREA_CAPTURE_IMAGES).issubset(entries),
+                'Visual review must include all seven current Cards and mobile safe-area originals')
+        additional['reviewed_safe_area_entries'] = sorted(NEXTGEN_SAFE_AREA_CAPTURE_IMAGES)
+        additional['reviewed_cards_safe_area_capture_probe'] = NEXTGEN_CARDS_SAFE_AREA_CAPTURE
+    else:
+        require(PUZZLE_MENU_CAPTURE_PROBE in capture_probes,
+                'Visual review must include the current Puzzle menu lifecycle capture')
+        require(CARDS_SAFE_AREA_CAPTURE_PROBE in capture_probes,
+                'Visual review must include the current Cards safe-area capture')
+        additional['reviewed_cards_safe_area_capture_probe'] = CARDS_SAFE_AREA_CAPTURE_PROBE
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,
@@ -628,7 +921,7 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             'Missing actual Android binding between native activity and Dart authority')
     require(host.get('status') == 'PASS' and host.get('flutter_source_commit') == source and
             COMPILED_CLASSES <= set(host.get('classes', {})), 'Current Android host bytecode not verified')
-    card_pixels = verify_cards_front_faces(cards, surface_evidence)
+    card_pixels = verify_cards_front_faces(cards, surface_evidence, require_layout=True)
     return {'package': PACKAGE_ID, 'versionName': version_name, 'versionCode': VERSION_CODE,
             'flutterSourceCommit': source, 'godotSourceCommit': native,
             'signingCertificateSha256': EXPECTED_CERT_SHA256, 'apkSha256': digest, 'apkBytes': size,

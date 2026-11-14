@@ -172,10 +172,10 @@ class CardsLifecycleObservationTest(unittest.TestCase):
         self.assertEqual(lifecycle_file.read_bytes(), original)
         self.assertEqual(len(commands), 1)
 
-    def test_all_established_cards_action_deadline_and_pixel_guards_are_unchanged(self):
+    def test_established_cards_actions_and_deadline_pixel_guards_survive_layout_binding(self):
         original = ast.parse((ROOT / '.github/probes/lumo_nextgen_surfaces_android_probe.py').read_text())
         current = ast.parse(PROBE.read_text())
-        names = {'cards_ready_to_draw', 'cards_display_density', 'capture_cards_faces', 'cards_roundtrip'}
+        names = {'cards_ready_to_draw', 'cards_display_density', 'cards_roundtrip'}
         # The existing Studio and Nextgen probes describe the same missing
         # Pause control differently. Bind both exact diagnostics before
         # comparing every other part of the unchanged guard implementations.
@@ -196,6 +196,43 @@ class CardsLifecycleObservationTest(unittest.TestCase):
                                   and node.name in names}
         self.assertEqual(set(functions(current)), names)
         self.assertEqual(functions(current), functions(original))
+        capture = lambda tree: next(node for node in tree.body if isinstance(node, ast.FunctionDef)
+                                    and node.name == 'capture_cards_faces')
+        before, after = capture(original), capture(current)
+        dump = lambda node: ast.dump(node, include_attributes=False)
+        # The new layout binding is additive. Keep the original 60-second
+        # budget, public-state/identity guards, exact OCR, viewport gate and
+        # original pixel check. Do not silently replace this with a new oracle.
+        self.assertEqual(dump(before.args), dump(after.args))
+        current_nodes = {dump(node) for node in ast.walk(after)}
+        for node in ast.walk(before):
+            if isinstance(node, ast.If):
+                # The original same-state comparison must remain even though
+                # a same-layout comparison is now required alongside it.
+                self.assertIn(dump(node.test), current_nodes)
+            elif isinstance(node, ast.Raise):
+                self.assertIn(dump(node), current_nodes)
+        critical = {'probe.capture', 'probe.inspect_surface', 'probe.image_lines',
+                    'time.sleep', 'require_cards_face_pixels'}
+
+        def critical_calls(function):
+            calls = set()
+            for node in ast.walk(function):
+                if isinstance(node, ast.Call) and ast.unparse(node.func) in critical:
+                    # Only the new actual layout input is stripped here; every
+                    # old positional/keyword parameter must stay identical.
+                    normalized = ast.Call(func=node.func, args=node.args,
+                        keywords=[value for value in node.keywords if value.arg != 'layout'])
+                    calls.add(dump(normalized))
+            return calls
+
+        self.assertTrue(critical_calls(before) <= critical_calls(after))
+        readbacks = [node for node in ast.walk(after) if isinstance(node, ast.Call)
+                     and isinstance(node.func, ast.Name) and node.func.id == 'read_cards_layout']
+        self.assertEqual(len(readbacks), 2, 'Both sides of the actual capture must read the layout')
+        self.assertIn("previous_layout == binding['layout_sha256']", ast.unparse(after))
+        self.assertIn("layout_before['source_sha256'] != layout_after['source_sha256']",
+                      ast.unparse(after))
 
 
 if __name__ == '__main__':

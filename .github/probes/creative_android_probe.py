@@ -515,14 +515,15 @@ def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') 
     native_text(out, header, tag+'-header')
 
 
-def leave(out: Path, tag: str, already_menu: bool = False, return_label: str = '') -> None:
+def leave(out: Path, tag: str, already_menu: bool = False, return_label: str = '', *,
+          orientation: str = 'landscape') -> None:
     if not already_menu:
         base.adb('shell','input','keyevent','KEYCODE_BACK')
         time.sleep(1)
     if return_label:
-        native_text(out,return_label,tag+'-pause',tap=True,exact=True)
+        native_text(out,return_label,tag+'-pause',tap=True,exact=True,orientation=orientation)
     else:
-        native_text(out,'Zur Spielewelt',tag+'-pause',tap=True)
+        native_text(out,'Zur Spielewelt',tag+'-pause',tap=True,orientation=orientation)
     for _ in range(15):
         if not base.adb('shell','pidof',PACKAGE+':lumo_game',check=False):
             break

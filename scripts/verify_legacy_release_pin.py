@@ -140,7 +140,7 @@ APPROVED = {
     # 2019: integrated Nextgen source after exact native and visual review.
     # This approves source identity only. Fresh native renderer review, APK,
     # Android integration and preserved 2017 upgrade remain mandatory.
-    2019: "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+    2019: "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

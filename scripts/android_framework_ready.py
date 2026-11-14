@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Observe a real API37 framework before the upstream action sends its keyevent.
+"""Observe the real API37 framework and unlocked foreground before app setup.
 
 This program never installs an APK, sets a property, supplies adb responses, or
-suppresses an upstream failure. The separate monitor records unfiltered logcat
-from the first available adb connection, including the crash buffer.
+suppresses an upstream failure. One observed nonsecure keyguard may receive a
+bounded dismissal request; only subsequent stable window observations can pass.
+The separate monitor records unfiltered startup logcat, including the crash buffer.
 """
 
 from __future__ import annotations
@@ -162,10 +163,128 @@ class Recorder:
         return {**record, "stdout": stdout.decode("utf-8", errors="replace"), "stderr": stderr.decode("utf-8", errors="replace")}
 
 
+def interactive_surface(window_dump: str, anr_events: str) -> dict:
+    """Read actual WindowManager dump fields; unknown or conflicting states fail.
+
+    The named fields come from WindowManagerService, DisplayContent, WindowState
+    and KeyguardServiceDelegate. These observations do not prove future emulator
+    stability or app input delivery. No coordinate or application name is assumed.
+    """
+    errors = []
+    event_lines = [line for line in anr_events.splitlines() if line.strip()
+                   and not line.startswith("--------- beginning of ")]
+    observed_anrs = [line for line in event_lines if re.search(r"\bam_anr\s*:", line)]
+    if any(line not in observed_anrs for line in event_lines):
+        errors.append("unrecognized_anr_event_output")
+    last_anr = re.search(
+        r"(?ms)^WINDOW MANAGER LAST ANR \(dumpsys window lastanr\)\s*\n(.*?)(?=^WINDOW MANAGER |\Z)",
+        window_dump,
+    )
+    # The -a dump inserts a separator before the next service section. Ignore
+    # only that structural line, never arbitrary ANR text or an empty response.
+    last_anr_lines = ([line.strip() for line in last_anr[1].splitlines()
+                       if line.strip() and not re.fullmatch(r"-{8,}", line.strip())]
+                      if last_anr else [])
+    no_window_anr = last_anr_lines == ["<no ANR has occurred since boot>"]
+    window_anr = bool(last_anr_lines and not no_window_anr)
+    error_window = bool(re.search(r"Application (?:Not Responding|Error)|AppNotRespondingDialog|AppErrorDialog", window_dump))
+    anr_observed = bool(observed_anrs or window_anr or error_window)
+    if anr_observed:
+        errors.append("android_anr_or_error_window_observed")
+    elif not no_window_anr:
+        errors.append("window_anr_state_not_observed")
+
+    lines = window_dump.splitlines()
+    starts = [i for i, line in enumerate(lines) if line.strip() == "KeyguardServiceDelegate"]
+    keyguard = {}
+    if len(starts) == 1:
+        start = starts[0]
+        indent = len(lines[start]) - len(lines[start].lstrip())
+        for line in lines[start + 1:]:
+            if not line.strip():
+                continue
+            depth = len(line) - len(line.lstrip())
+            if depth <= indent:
+                break
+            if depth == indent + 2 and "=" in line:
+                key, value = line.strip().split("=", 1)
+                if key in keyguard:
+                    errors.append("ambiguous_keyguard_field:" + key)
+                keyguard[key] = value
+    fields = ("showing", "inputRestricted", "occluded", "secure", "dreaming",
+              "systemIsReady", "deviceHasKeyguard", "enabled", "bootCompleted")
+    keyguard_known = all(keyguard.get(key) in ("true", "false") for key in fields)
+    if not keyguard_known:
+        errors.append("keyguard_state_not_observed")
+    awake = (keyguard.get("screenState") == "SCREEN_STATE_ON"
+             and keyguard.get("interactiveState") == "INTERACTIVE_STATE_AWAKE"
+             and keyguard.get("dreaming") == "false")
+    if not awake:
+        errors.append("interactive_display_not_awake")
+    if keyguard.get("systemIsReady") != "true" or keyguard.get("bootCompleted") != "true":
+        errors.append("keyguard_framework_not_ready")
+
+    focuses = re.findall(r"(?m)^\s*mCurrentFocus=(.+)$", window_dump)
+    applications = re.findall(r"(?m)^\s*mFocusedApp=(.+)$", window_dump)
+    focus = focuses[0].strip() if len(focuses) == 1 else ""
+    application = applications[0].strip() if len(applications) == 1 else ""
+    focused_window = bool(re.fullmatch(r"Window\{[^\n{}]+\}", focus))
+    if not focused_window:
+        errors.append("focused_window_missing_or_ambiguous")
+    blocks = list(re.finditer(r"(?m)^\s*Window #\d+ (Window\{[^\n{}]+\}):\s*$", window_dump))
+    surfaces = []
+    for index, block in enumerate(blocks):
+        if block[1] == focus:
+            end = blocks[index + 1].start() if index + 1 < len(blocks) else len(window_dump)
+            surfaces += re.findall(r"\bmHasSurface=(true|false)\s+isReadyForDisplay\(\)=(true|false)", window_dump[block.end():end])
+    surface_ready = surfaces == [("true", "true")]
+    if not surface_ready:
+        errors.append("focused_window_surface_not_ready")
+    boot_display = re.findall(r"\bmSystemBooted=(true|false)\s+mDisplayEnabled=(true|false)", window_dump)
+    frozen = re.findall(r"\bmDisplayFrozen=(true|false)\b", window_dump)
+    if boot_display != [("true", "true")] or frozen != ["false"] or "mInputFreezeReason=" in window_dump:
+        errors.append("display_dispatch_not_observed_unfrozen")
+
+    # Only an explicitly visible, awake, nonsecure keyguard is eligible for one
+    # request. A zero request exit is never treated as an unlocked acknowledgment.
+    unlock_eligible = (not errors and keyguard_known and focused_window and surface_ready
+                       and keyguard.get("showing") == "true"
+                       and keyguard.get("inputRestricted") == "true"
+                       and keyguard.get("secure") == "false"
+                       and keyguard.get("occluded") == "false"
+                       and keyguard.get("enabled") == "true"
+                       and keyguard.get("deviceHasKeyguard") == "true")
+    if keyguard.get("showing") != "false" or keyguard.get("inputRestricted") != "false":
+        errors.append("keyguard_not_observed_unlocked")
+
+    def component(value: str) -> str | None:
+        matches = re.findall(r"\b([A-Za-z_][\w.]*)/(\.?[A-Za-z_$][\w.$]*)\b", value)
+        if len(matches) != 1:
+            return None
+        package, activity = matches[0]
+        return package + "/" + (package + activity if activity.startswith(".") else activity)
+
+    focus_component = component(focus)
+    app_component = component(application)
+    if not application.startswith("ActivityRecord{") or not focus_component or focus_component != app_component:
+        errors.append("focused_activity_not_consistent")
+    return {"ready": not errors, "errors": errors, "keyguard": keyguard,
+            "focused_window": focus, "focused_application": application,
+            "surface_ready": surface_ready, "anr_observed": anr_observed,
+            "anr_events": observed_anrs, "window_last_anr_clear": no_window_anr,
+            "unlock_eligible": unlock_eligible}
+
+
 def observe(recorder: Recorder, deadline: float, clock=time.monotonic) -> dict:
     commands = [("properties", ["getprop"]), ("pid-before", ["pidof", "system_server"])]
     commands += [(f"service-{name}", ["service", "check", name]) for name in SERVICES]
-    commands += [("settings-read", ["settings", "get", "global", "boot_count"]), ("package-read", ["cmd", "package", "path", "android"]), ("window-read", ["wm", "size"]), ("pid-after", ["pidof", "system_server"]), ("count-after", ["getprop", "sys.system_server.start_count"])]
+    commands += [("settings-read", ["settings", "get", "global", "boot_count"]),
+                 ("package-read", ["cmd", "package", "path", "android"]),
+                 ("window-read", ["wm", "size"]),
+                 ("window-state", ["dumpsys", "window", "-a"]),
+                 ("events-anr", ["logcat", "-b", "events", "-d", "-v", "threadtime", "-s", "am_anr"]),
+                 ("pid-after", ["pidof", "system_server"]),
+                 ("count-after", ["getprop", "sys.system_server.start_count"])]
     results = {}
     for name, arguments in commands:
         remaining = deadline - clock()
@@ -199,7 +318,16 @@ def observe(recorder: Recorder, deadline: float, clock=time.monotonic) -> dict:
     runtime = {"sdk": properties.get("ro.build.version.sdk", ""), "release": properties.get("ro.build.version.release", ""), "fingerprint": properties.get("ro.build.fingerprint", "")}
     if runtime["sdk"] != "37" or runtime["release"] != "17" or not runtime["fingerprint"]:
         errors.append("expected_android37_release17_not_observed")
-    return {"observed_at": utc(), "ready": not errors, "errors": errors, "pid": pid, "start_count": count, "android_runtime": runtime, "services": {name: output(f"service-{name}") for name in SERVICES}, "settings_boot_count": output("settings-read"), "package_android": output("package-read"), "window_size": output("window-read"), "command_records": {name: {key: value for key, value in item.items() if key not in ("stdout", "stderr")} for name, item in results.items()}}
+    interactive = interactive_surface(output("window-state"), output("events-anr"))
+    unlock_eligible = not errors and interactive["unlock_eligible"]
+    errors += interactive["errors"]
+    return {"observed_at": utc(), "ready": not errors, "errors": errors, "pid": pid,
+            "start_count": count, "android_runtime": runtime, "interactive": interactive,
+            "unlock_eligible": unlock_eligible,
+            "services": {name: output(f"service-{name}") for name in SERVICES},
+            "settings_boot_count": output("settings-read"), "package_android": output("package-read"),
+            "window_size": output("window-read"),
+            "command_records": {name: {key: value for key, value in item.items() if key not in ("stdout", "stderr")} for name, item in results.items()}}
 
 
 def observe_resources(recorder: Recorder, deadline: float, clock=time.monotonic) -> dict:
@@ -222,6 +350,8 @@ def poll_framework(recorder: Recorder, timeout: float, stable_seconds: float, mi
     stable_since = None
     consecutive = 0
     identity = None
+    stable_surface = None
+    unlock_action = {"attempted": False, "scope": "At most one observed nonsecure keyguard request; no MENU82 or dialog clicks."}
     samples = []
     reason = "framework_readiness_deadline_exceeded"
     status = "FAIL"
@@ -239,19 +369,37 @@ def poll_framework(recorder: Recorder, timeout: float, stable_seconds: float, mi
         if (runtime["sdk"] and runtime["sdk"] != "37") or (runtime["release"] and runtime["release"] != "17"):
             reason = "wrong_android_runtime"
             break
+        if sample["interactive"]["anr_observed"]:
+            reason = "observed_android_anr"
+            break
+        if sample["unlock_eligible"] and not unlock_action["attempted"]:
+            remaining = deadline - clock()
+            if remaining <= 0:
+                break
+            command = recorder.run("unlock-keyguard", ["wm", "dismiss-keyguard"], min(5, remaining))
+            unlock_action.update(attempted=True, observed_sample=len(samples) - 1,
+                                 command_record={key: value for key, value in command.items()
+                                                 if key not in ("stdout", "stderr")})
+            if command["returncode"] != 0 or command["timed_out"]:
+                reason = "keyguard_unlock_command_failed"
+                break
         if sample["ready"]:
+            surface = (sample["interactive"]["focused_window"], sample["interactive"]["focused_application"])
+            if surface != stable_surface:
+                stable_since, consecutive = None, 0
+                stable_surface = surface
             stable_since = clock() if stable_since is None else stable_since
             consecutive += 1
             if consecutive >= minimum_samples and clock() - stable_since >= stable_seconds and clock() < deadline:
-                reason = "required_framework_services_observed_stable"
+                reason = "required_framework_and_interactive_surface_observed_stable"
                 status = "PASS"
                 break
         else:
-            stable_since, consecutive = None, 0
+            stable_since, consecutive, stable_surface = None, 0, None
         remaining = deadline - clock()
         if remaining > 0:
             sleeper(min(poll_seconds, remaining))
-    return {"schema": 1, "status": status, "reason": reason, "elapsed_seconds": clock() - start, "budget_seconds": timeout, "required_stable_seconds": stable_seconds, "required_minimum_samples": minimum_samples, "consecutive_ready_samples": consecutive, "stable_observed_seconds": 0 if stable_since is None else clock() - stable_since, "samples": samples, "observed_start_count_greater_than_one": any(s["start_count"].isdigit() and int(s["start_count"]) > 1 for s in samples), "scope": "Sampled pre-app framework readiness only; raw startup logs must distinguish any early race from a system-server failure. This is not an app test or physical-device performance measurement."}
+    return {"schema": 1, "status": status, "reason": reason, "elapsed_seconds": clock() - start, "budget_seconds": timeout, "required_stable_seconds": stable_seconds, "required_minimum_samples": minimum_samples, "consecutive_ready_samples": consecutive, "stable_observed_seconds": 0 if stable_since is None else clock() - stable_since, "samples": samples, "unlock_action": unlock_action, "redundant_menu_keyevent_82": "NOT_SENT", "observed_start_count_greater_than_one": any(s["start_count"].isdigit() and int(s["start_count"]) > 1 for s in samples), "scope": "Sampled pre-app framework, keyguard, visible focus and ANR observations. The same stable positive window is required after any unlock request. No app input delivery, later system stability or physical-device performance is certified."}
 
 
 def wait_for_framework(out: Path, serial: str, timeout: float, stable_seconds: float, minimum_samples: int, cli22_proof: Path | None = None) -> int:

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "status": "COMPLETE_LOSSLESS_ROUNDTRIP_PASS",
+  "archive": "originals.tar.gz",
+  "archive_bytes": 1892708,
+  "archive_sha256": "51fed950d4c0e213cc35f602a28386d51e0950cc2ee416829f380d9c0fcb128f",
+  "complete_gzip_stream_and_trailer_read": true,
+  "decompressed_tar_bytes": 12881920,
+  "decompressed_tar_sha256": "4b34d5e0019ccd794a5f90fb0656e8b948fc72e6b1fe4144d61419c8b4a97b87",
+  "exact_tar_member_set_checked": true,
+  "regular_members_only": true,
+  "all_members_byte_compared_to_unmodified_originals": 482,
+  "all_member_sha256_and_sizes_match": true,
+  "all_member_modes_preserved": true,
+  "original_inventory_sha256": "7a8735328d42e720a7f1c3c94e403d8517b2d768fccae2d83046162a1223aa08",
+  "both_frozen_input_pack_regular_file_sets_unchanged_before_after": true,
+  "original_zip_digests_checked": 10,
+  "current_host_receipts_unchanged": 2,
+  "existing_review_image_hashes_checked_before_after": 34,
+  "normalization": "Only tar owner/mtime and gzip metadata are deterministic. No original payload byte, line ending, BOM, ANSI sequence or EOF whitespace was altered.",
+  "product_tests_run": 0
+}

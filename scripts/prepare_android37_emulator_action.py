@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Add one fail-closed readiness call to an exact upstream action checkout.
+"""Bind exact upstream setup to observed API37 readiness and keyguard state.
 
 The upstream action, dependencies and LICENSE remain in their original checkout.
 No dependency installation or TypeScript rebuild is performed. Both the readable
-TypeScript and its checked-in JavaScript receive the same additive call; only the
-JavaScript is executed by the action.
+TypeScript and checked-in JavaScript replace the same unconditional MENU82 input
+with the same bounded setup call. Only the JavaScript is executed by the action.
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ ORIGINAL_HASHES = {
 }
 MODIFIED_PATHS = ("src/emulator-manager.ts", "lib/emulator-manager.js")
 GUARD_LINES = (
-    "// LUMO modification: bounded framework readiness; original boot/keyevent/settings/cleanup remain unchanged.",
+    "// LUMO modification: require observed unlocked focus without ANR; the bounded guard owns any nonsecure keyguard request, so no redundant MENU82 follows.",
     "await exec.exec('python3', [`${process.env.GITHUB_WORKSPACE}/scripts/android_framework_ready.py`, 'wait', '--serial', `emulator-${port}`, '--out', `${process.env.GITHUB_WORKSPACE}/tour/framework-start`, '--timeout', '120', '--stable-seconds', '10', '--minimum-samples', '3', '--cli22-proof', `${process.env.GITHUB_WORKSPACE}/tour/framework-start/cli22`]);",
 )
 
@@ -50,7 +50,8 @@ def patch_bytes(path: str, original: bytes) -> bytes:
     if text.count(anchor) != 1:
         raise ValueError(f"Unique readiness insertion point missing: {path}")
     inserted = "".join(f"{indent * 2}{line}\n" for line in GUARD_LINES)
-    return text.replace(anchor, anchor.replace("\n", "\n" + inserted, 1), 1).encode("utf-8")
+    replacement = f"{indent * 2}await waitForDevice(port, emulatorBootTimeout);\n" + inserted.rstrip("\n")
+    return text.replace(anchor, replacement, 1).encode("utf-8")
 
 
 def git(directory: Path, *args: str) -> str:
@@ -68,7 +69,7 @@ def prepare(action_dir: Path, out: Path, probe_root: Path, probe_source: str, wo
     if git(action_dir, "rev-parse", "HEAD") != UPSTREAM_REVISION:
         raise ValueError("Action checkout is not the exact reviewed upstream commit")
     if git(action_dir, "status", "--porcelain", "--untracked-files=all"):
-        raise ValueError("Action checkout must be clean before the additive patch")
+        raise ValueError("Action checkout must be clean before the bounded setup patch")
     if git(probe_root, "rev-parse", "HEAD") != probe_source:
         raise ValueError("Unexpected actual diagnostic source commit")
     if git(probe_root, "status", "--porcelain", "--untracked-files=no"):
@@ -101,18 +102,20 @@ def prepare(action_dir: Path, out: Path, probe_root: Path, probe_source: str, wo
         (out / (relative.replace("/", "-") + ".patch")).write_text(diff)
     actual_changed = set(git(action_dir, "diff", "--name-only").splitlines())
     if actual_changed != set(MODIFIED_PATHS):
-        raise ValueError("Unexpected action mutation outside the two mirrored guard insertions")
+        raise ValueError("Unexpected action mutation outside the two mirrored setup replacements")
     runtime_files = (
         workflow,
         "scripts/android_framework_ready.py",
         "scripts/prepare_android37_emulator_action.py",
         "scripts/tests/test_android_framework_ready.py",
+        "scripts/tests/fixtures/android37_system_anr_848/manifest.json",
+        "scripts/tests/fixtures/android37_system_anr_848/original-am-anr-events.txt",
         "scripts/prepare_android37_cli22.py",
         "scripts/tests/test_android37_cli22.py",
     )
     manifest = {
         "schema": 1,
-        "status": "EXACT_UPSTREAM_PLUS_ADDITIVE_GUARD",
+        "status": "EXACT_UPSTREAM_PLUS_OBSERVED_SETUP_GUARD",
         "upstream_repository": "ReactiveCircus/android-emulator-runner",
         "upstream_revision": UPSTREAM_REVISION,
         "upstream_tree": git(action_dir, "rev-parse", "HEAD^{tree}"),
@@ -121,9 +124,10 @@ def prepare(action_dir: Path, out: Path, probe_root: Path, probe_source: str, wo
         "license_note": "Original LICENSE retained byte-for-byte; it contains Apache License 2.0. Upstream package.json says MIT; neither metadata file is rewritten.",
         "original_verified_files": ORIGINAL_HASHES,
         "modified_files": changes,
-        "source_and_execution": "Equivalent additive calls in src/emulator-manager.ts and checked-in lib/emulator-manager.js; no npm install, compilation, or other action modification.",
-        "guard_position": "After original waitForDevice; before original input keyevent 82.",
-        "original_calls_preserved": ["waitForDevice", "input keyevent 82", "settings put", "killEmulator"],
+        "source_and_execution": "Equivalent setup calls replace only unconditional MENU82 in src/emulator-manager.ts and checked-in lib/emulator-manager.js; no npm install, compilation, or other action modification.",
+        "guard_position": "After original waitForDevice; replaces redundant MENU82 before original settings and workflow script.",
+        "original_calls_preserved": ["waitForDevice", "settings put", "killEmulator"],
+        "replaced_original_input": {"command": "input keyevent 82", "condition": "The guard must observe stable unlocked foreground, keyguard and no ANR before returning success. An explicitly observed nonsecure keyguard permits one bounded dismissal request, never an ANR dialog click."},
         "probe_revision": probe_source,
         "probe_tree": git(probe_root, "rev-parse", "HEAD^{tree}"),
         "probe_file_sha256": {path: sha256((probe_root / path).read_bytes()) for path in runtime_files},

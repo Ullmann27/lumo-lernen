@@ -1,1 +1,20 @@
-{"id":14069811657,"node_id":"MDg6QXJ0aWZhY3QxNDA2OTgxMTY1Nw==","name":"lumo-kart-experience-worlds","size_in_bytes":25146322,"url":"https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14069811657","archive_download_url":"https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14069811657/zip","expired":false,"digest":"sha256:54ed82e4f47fc559cecf5471e9f7ad62546ff46df40fc93a18ae34cb2ee5add6","created_at":"2026-11-13T19:15:00Z","updated_at":"2026-11-13T19:15:00Z","expires_at":"2026-12-13T19:14:57Z","workflow_run":{"id":43489950655,"repository_id":1251414584,"head_repository_id":1251414584,"head_branch":"integration/lumo-connections-20261113","head_sha":"993c145304c3e5f8aa947e1c7a949a8ef8685415"}}
+{
+  "id": 14088495335,
+  "node_id": "MDg6QXJ0aWZhY3QxNDA4ODQ5NTMzNQ==",
+  "name": "lumo-kart-experience-worlds",
+  "size_in_bytes": 25146332,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14088495335",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14088495335/zip",
+  "expired": false,
+  "digest": "sha256:fb49e7e807878c40888dacf88dc26d939dfcb449894a325731a049fe16dd22cc",
+  "created_at": "2026-11-14T00:10:08Z",
+  "updated_at": "2026-11-14T00:10:08Z",
+  "expires_at": "2026-12-14T00:10:05Z",
+  "workflow_run": {
+    "id": 43532048253,
+    "repository_id": 1251414584,
+    "head_repository_id": 1251414584,
+    "head_branch": "integration/lumo-safe-area-20261113",
+    "head_sha": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
+  }
+}

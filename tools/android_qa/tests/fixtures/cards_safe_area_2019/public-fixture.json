@@ -1,0 +1,84 @@
+{
+  "ack": 0.0,
+  "canDraw": true,
+  "current": 0.0,
+  "drawCount": 97.0,
+  "hand": [
+    {
+      "color": "orange",
+      "id": "r1",
+      "number": 1.0,
+      "playable": true,
+      "type": "number"
+    },
+    {
+      "color": "blue",
+      "id": "b2",
+      "number": 2.0,
+      "playable": false,
+      "type": "number"
+    },
+    {
+      "color": "green",
+      "id": "wild",
+      "playable": true,
+      "type": "colorMagic"
+    },
+    {
+      "color": "green",
+      "id": "g4",
+      "number": 4.0,
+      "playable": false,
+      "type": "number"
+    },
+    {
+      "color": "purple",
+      "id": "y5",
+      "number": 5.0,
+      "playable": true,
+      "type": "number"
+    },
+    {
+      "color": "orange",
+      "id": "r6",
+      "number": 6.0,
+      "playable": true,
+      "type": "number"
+    },
+    {
+      "color": "blue",
+      "id": "pause",
+      "playable": false,
+      "type": "thinkPause"
+    }
+  ],
+  "message": "Dein Zug · Goldene Karten passen.",
+  "paused": false,
+  "phase": "playing",
+  "players": [
+    {
+      "count": 7.0,
+      "name": "Du",
+      "stars": 0.0
+    },
+    {
+      "count": 7.0,
+      "name": "Lumo",
+      "stars": 0.0
+    }
+  ],
+  "protocol": 1.0,
+  "reduceMotion": true,
+  "revision": 4.0,
+  "roundId": "cards-render-fixture",
+  "selectedColor": "orange",
+  "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "top": {
+    "color": "orange",
+    "id": "r5",
+    "number": 5.0,
+    "type": "number"
+  },
+  "viewer": 0.0,
+  "winner": null
+}

@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "Signed/download URL query credentials",
+    "GitHub personal token values",
+    "Opaque Bearer credential values",
+    "Private-key headers",
+    "URL passwords"
+  ],
+  "direct_source_files": 44,
+  "excluded_count": 0,
+  "excluded_files": [],
+  "nested_compact_members": 18,
+  "note": "GitHub API/documentation URLs and workflow variable references are retained; they contain no embedded access credential values.",
+  "schema": 1,
+  "scope": "Read-only full UTF-8 content screening, including complete nested compact archive members and gzip raw responses. No matched URL or credential values are reproduced.",
+  "screened_payloads_including_decompressed": 69
+}

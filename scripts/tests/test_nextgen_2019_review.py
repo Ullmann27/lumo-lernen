@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import record_studio_visual_review as recorder
 import test_nextgen_delivery as historical_tests
 import test_studio_delivery as studio_tests
+from test_studio_safe_area_review import safe_area_members
 import verify_studio_delivery as delivery
 
 
@@ -44,6 +45,13 @@ PUZZLE_MENU_PNGS = {
     for width, height in ((960, 540), (640, 360))
     for stage in ('rotation-menu', 'rotation-play', 'classic-play')
 }
+SAFE_AREA_PROBES = frozenset({
+    ('cards_safe_area_android_contract', 'headless'),
+    ('cards_safe_area_regression', 'headless'),
+    ('mobile_safe_area_regression', 'headless'),
+    ('cards_safe_area_regression', 'rendered'),
+    ('mobile_safe_area_regression', 'rendered'),
+})
 
 
 @lru_cache(maxsize=128)
@@ -111,6 +119,7 @@ class Nextgen2019ReviewTests(unittest.TestCase):
                                        'sha256': hashlib.sha256(data).hexdigest(),
                                        'width': dimensions[0], 'height': dimensions[1]})
         members[prefix + '/puzzle-menu-images.json'] = json.dumps({'images': puzzle_menu_roster}).encode()
+        members.update({prefix + '/' + path: data for path, data in safe_area_members().items()})
         color = 50
         for touch_prefix, probe in delivery.NEXTGEN_TOUCH_PROBES.items():
             members.update({
@@ -138,12 +147,18 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             'reviewed_at': '2026-11-13T00:00:00+00:00',
             'notes': 'Synthetic parser fixture, never renderer or visual acceptance', 'images': [],
         }
+        selected_entries = []
         for index, (probe, module) in enumerate(sorted(profile.capture_modules.items())):
             existing = sorted(name for name in members if name.startswith(probe + '/') and name.endswith('.png'))
             entry = existing[0] if existing else probe + '/actual.png'
             if not existing:
                 dimensions = (412, 915) if module == 'learning' else (640, 360)
                 members[entry] = fixture_png(*dimensions, index + 100)
+            selected_entries.append((entry, module))
+        # Mobile safe-area captures share a directory but have different fixed
+        # production modules. Select all seven actual paths, never one per folder.
+        selected_entries.extend(sorted(delivery.NEXTGEN_SAFE_AREA_CAPTURE_IMAGES.items()))
+        for entry, module in selected_entries:
             data = members[entry]
             digest = hashlib.sha256(data).hexdigest()
             relative = delivery.reviewed_relative_path(digest, module, entry, native_profile=PROFILE)
@@ -180,7 +195,7 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             'Synthetic unit-test reviewer', 'Synthetic parser test; never production approval',
             native_profile=PROFILE)
 
-    def test_exact_archive_keeps_43_core_24_studio_4_village_6_puzzle_menu_and_all_touch_evidence(self):
+    def test_exact_archive_keeps_48_core_24_studio_4_village_6_puzzle_menu_7_safe_area_and_all_touch_evidence(self):
         args = self.review_fixture()
         before = copy.deepcopy(args[:6]), args[6].read_bytes()
         facts = self.verify(args)
@@ -188,7 +203,7 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         self.assertEqual(facts['native_acceptance_jobs'], [
             'bundle-evidence', 'gameplay', 'learning-preview', 'new-worlds',
             'touch-build', 'touch-treasure', 'touch-workshop'])
-        self.assertEqual(facts['native_probe_count'], 43)
+        self.assertEqual(facts['native_probe_count'], 48)
         self.assertEqual(facts['native_studio_raster_count'], 24)
         self.assertEqual(facts['native_village_raster_count'], 4)
         self.assertEqual(facts['reviewed_village_capture_probes'], [VILLAGE_CAPTURE])
@@ -198,6 +213,12 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         self.assertEqual(facts['reviewed_puzzle_menu_capture_probes'], [PUZZLE_MENU_CAPTURE])
         self.assertEqual(dict(delivery.NEXTGEN_PUZZLE_MENU_PNGS), PUZZLE_MENU_PNGS)
         self.assertTrue(PUZZLE_MENU_PROBES.issubset(delivery.NEXTGEN_REQUIRED_PROBES))
+        self.assertEqual(facts['native_safe_area_raster_count'], 7)
+        self.assertEqual(facts['native_cards_layout_count'], 3)
+        self.assertEqual(facts['native_safe_area_report_count'], 2)
+        self.assertEqual(facts['reviewed_safe_area_entries'], sorted(delivery.NEXTGEN_SAFE_AREA_CAPTURE_IMAGES))
+        self.assertEqual(delivery.NEXTGEN_SAFE_AREA_PROBES, SAFE_AREA_PROBES)
+        self.assertTrue(SAFE_AREA_PROBES.issubset(delivery.NEXTGEN_REQUIRED_PROBES))
         self.assertEqual(facts['native_capture_tree'], 'c' * 40)
         self.assertEqual(facts['native_capture_sources'], {
             'nextgen-evidence/nextgen': args[2], 'touch-evidence/workshop': args[2],
@@ -215,10 +236,11 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         key = delivery.NEXTGEN_PREFIX + '/results.tsv'
         with zipfile.ZipFile(args[6]) as zipped:
             rows = zipped.read(key).decode().splitlines()
-        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in VILLAGE_PROBES | PUZZLE_MENU_PROBES]
+        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in
+                VILLAGE_PROBES | PUZZLE_MENU_PROBES | SAFE_AREA_PROBES]
         self.assertEqual(len(rows), 38, 'The previously accepted 37-pair result is retained as a negative fixture')
         self.archive_change(args, {key: ('\n'.join(rows) + '\n').encode()})
-        with self.assertRaisesRegex(ValueError, '43-probe'):
+        with self.assertRaisesRegex(ValueError, '48-probe'):
             self.verify(args)
 
     def test_legacy_41_gate_result_cannot_omit_the_new_puzzle_menu_modes(self):
@@ -226,11 +248,45 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         key = delivery.NEXTGEN_PREFIX + '/results.tsv'
         with zipfile.ZipFile(args[6]) as zipped:
             rows = zipped.read(key).decode().splitlines()
-        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in PUZZLE_MENU_PROBES]
+        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in PUZZLE_MENU_PROBES | SAFE_AREA_PROBES]
         self.assertEqual(len(rows), 42, 'The previous complete 41-pair result is a negative fixture')
         self.archive_change(args, {key: ('\n'.join(rows) + '\n').encode()})
-        with self.assertRaisesRegex(ValueError, '43-probe'):
+        with self.assertRaisesRegex(ValueError, '48-probe'):
             self.verify(args)
+
+    def test_legacy_43_gate_result_cannot_omit_the_new_safe_area_modes(self):
+        args = self.review_fixture()
+        key = delivery.NEXTGEN_PREFIX + '/results.tsv'
+        with zipfile.ZipFile(args[6]) as zipped:
+            rows = zipped.read(key).decode().splitlines()
+        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in SAFE_AREA_PROBES]
+        self.assertEqual(len(rows), 44, 'The previous complete 43-pair result is a negative fixture')
+        self.archive_change(args, {key: ('\n'.join(rows) + '\n').encode()})
+        with self.assertRaisesRegex(ValueError, '48-probe'):
+            self.verify(args)
+
+    def test_each_new_safe_area_probe_mode_is_mandatory(self):
+        for probe, mode in sorted(SAFE_AREA_PROBES):
+            args = self.review_fixture()
+            key = delivery.NEXTGEN_PREFIX + '/results.tsv'
+            with zipfile.ZipFile(args[6]) as zipped:
+                rows = zipped.read(key).decode().splitlines()
+            rows.remove(f'{probe}\t{mode}\tPASS')
+            self.archive_change(args, {key: ('\n'.join(rows) + '\n').encode()})
+            with self.subTest(probe=probe, mode=mode), self.assertRaisesRegex(ValueError, '48-probe'):
+                self.verify(args)
+
+    def test_existing_module_images_cannot_replace_any_required_safe_area_review(self):
+        for entry in sorted(delivery.NEXTGEN_SAFE_AREA_CAPTURE_IMAGES):
+            args = self.review_fixture()
+            args[1]['images'] = [item for item in args[1]['images'] if item['artifact_entry'] != entry]
+            self.assertEqual({item['module'] for item in args[1]['images']}, delivery.REVIEW_MODULES)
+            with self.subTest(entry=entry), self.assertRaisesRegex(ValueError, 'all seven current Cards and mobile safe-area originals'):
+                self.verify(args)
+            destination = self.base / ('missing-safe-area-' + Path(entry).name)
+            with self.subTest(entry=entry, recorder=True), self.assertRaisesRegex(ValueError, 'all seven current Cards and mobile safe-area originals'):
+                self.record(args, destination)
+            self.assertFalse(destination.exists(), 'A missing required safe-area review must not publish any receipt or PNG')
 
     def test_previous_puzzle_scene_does_not_replace_current_menu_lifecycle_review(self):
         args = self.review_fixture()
@@ -534,7 +590,7 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 self.verify(args)
 
-    def test_each_of_the_43_probe_modes_must_be_present_once_and_pass(self):
+    def test_each_of_the_48_probe_modes_must_be_present_once_and_pass(self):
         for mutation in ('old-32-probe-run', 'missing-treasure', 'missing-village-headless',
                          'missing-village-rendered', 'missing-puzzle-menu-headless',
                          'missing-puzzle-menu-rendered', 'duplicate', 'wrong-mode', 'failed'):

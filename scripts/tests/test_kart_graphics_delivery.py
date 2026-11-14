@@ -31,7 +31,7 @@ QA_BRANCH = 'integration/lumo-connections-20261113'
 
 
 class KartGraphicsDeliveryTests(unittest.TestCase):
-    def fixture(self):
+    def fixture(self, *, layout=True):
         producer = previous.NextgenDeliveryTests()
         self.addCleanup(producer.doCleanups)
         args = producer.proof_fixture()
@@ -40,12 +40,38 @@ class KartGraphicsDeliveryTests(unittest.TestCase):
                    args[9]['steps'][0], args[10]['apk_identity']]
         for record in records:
             record.update(versionCode=2019, versionName='0.13.7')
+        if layout:
+            studio_tests.attach_synthetic_layouts(args[10]['cards'], args[12])
         return args
 
     def test_current_android_and_arm64_sources_form_2019_delivery_facts(self):
         facts = delivery.verify_proofs(*self.fixture())
         self.assertEqual((facts['versionName'], facts['versionCode']), ('0.13.7', 2019))
         self.assertEqual(len(facts['cardsFrontFacePixels']['stages']), 4)
+
+    def test_graphics_requires_layout_for_otherwise_valid_legacy_pixels(self):
+        args = self.fixture(layout=False)
+        with self.assertRaisesRegex(ValueError, 'layout'):
+            delivery.verify_proofs(*args)
+
+    def test_missing_or_changed_native_layout_originals_cannot_pass(self):
+        for mutation in ('absent-record', 'missing-file', 'changed-raw-bytes', 'report-binding'):
+            args = self.fixture()
+            cards = args[10]['cards']
+            report = cards['front_face_pixels'][0]
+            frame = report['frames'][-1]
+            path = args[12] / frame['layout_after']['source']
+            if mutation == 'absent-record':
+                del frame['layout_after']
+            elif mutation == 'missing-file':
+                path.unlink()
+            elif mutation == 'changed-raw-bytes':
+                path.write_bytes(path.read_bytes() + b' ')
+            else:
+                report['layout_sequence'] += 1
+            previous.NextgenDeliveryTests.write_pixel_reports(cards, args[12])
+            with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                delivery.verify_proofs(*args)
 
     def test_both_actual_arm64_reinspections_must_match_the_native_pck(self):
         for position in (6, 7):
@@ -157,7 +183,7 @@ class KartGraphicsDeliveryTests(unittest.TestCase):
         self.assertEqual(facts['visualReview']['areas'], ['crystal_canyon', 'feedback', 'home', 'winter_sprint'])
         self.assertEqual(set(facts['nativeVisualReview']['modules']),
                          {'learning', 'jump', 'build', 'settlement', 'garage', 'cards', 'rhythm', 'puzzle', 'treasure'})
-        self.assertEqual(facts['nativeVisualReview']['native_probe_count'], 43)
+        self.assertEqual(facts['nativeVisualReview']['native_probe_count'], 48)
         self.assertEqual(facts['nativeVisualReview']['native_village_raster_count'], 4)
         self.assertEqual(facts['nativeVisualReview']['native_puzzle_menu_raster_count'], 6)
 
@@ -261,8 +287,8 @@ class KartGraphicsWorkflowTests(unittest.TestCase):
                 self.assertIn(gate, source)
         verifier_job = source.split('  verify-reviewed-2019:\n', 1)[1].split('  publish-reviewed-2019:\n', 1)[0]
         publisher = source.split('  publish-reviewed-2019:\n', 1)[1]
-        self.assertIn('needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017]', verifier_job)
-        self.assertIn('needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017, verify-reviewed-2019]', publisher)
+        self.assertIn('needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017, creative-android]', verifier_job)
+        self.assertIn('needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017, verify-reviewed-2019, creative-android]', publisher)
         for name in ('verify-and-build', 'android-host-compile', 'android-tour', 'update-2019-from-2017'):
             self.assertIn("needs." + name + ".result == 'success'", verifier_job)
             self.assertIn("needs." + name + ".result == 'success'", publisher)
@@ -374,6 +400,7 @@ class KartGraphicsWorkflowTests(unittest.TestCase):
             'github.event.pull_request.head.ref': QA_BRANCH,
             'needs.verify-and-build.result': 'success', 'needs.android-tour.result': 'success',
             'needs.android-host-compile.result': 'success', 'needs.update-2019-from-2017.result': 'success',
+            'needs.creative-android.result': 'success',
         }
 
         def allowed(overrides):
@@ -410,6 +437,7 @@ class KartGraphicsWorkflowTests(unittest.TestCase):
             'github.event.pull_request.head.ref': BRANCH,
             'needs.verify-and-build.result': 'success', 'needs.android-tour.result': 'success',
             'needs.android-host-compile.result': 'success', 'needs.update-2019-from-2017.result': 'success',
+            'needs.creative-android.result': 'success',
             'needs.verify-reviewed-2019.result': 'success',
         }
         positive = expression

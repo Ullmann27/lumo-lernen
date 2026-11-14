@@ -62,6 +62,9 @@ jobs:
       github.ref_name == 'integration/lumo-connections-20261113')))
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    outputs:
+      candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
+      candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
     env:
       LUMO_SPLIT_PER_ABI: '1'
     steps:
@@ -311,6 +314,7 @@ jobs:
           sha256sum dist/x86_64/Lumo-Lernen-Neu.apk > dist/ANDROID-TOUR-SHA256SUMS.txt
           grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
       - name: Upload exact candidate (no release or synthetic screenshots)
+        id: upload-candidate
         if: success()
         uses: actions/upload-artifact@v4
         with:
@@ -588,9 +592,228 @@ jobs:
           path: tour/
           retention-days: 30
 
+  creative-android:
+    name: Android API 35 additional creative gameplay
+    needs: [verify-and-build, android-host-compile]
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    permissions:
+      contents: read
+      actions: read
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
+      CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Read the current immutable native source
+        id: native-pin
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          pin = json.loads(Path('config/godot-source.json').read_text())
+          assert pin['repository'] == 'https://github.com/Ullmann27/lumo-godot.git'
+          assert re.fullmatch(r'[a-f0-9]{40}', pin['revision'])
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write('revision=' + pin['revision'] + '\n')
+          PY
+      - name: Read exact native scene sources without exporting them
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: ${{ steps.native-pin.outputs.revision }}
+          persist-credentials: false
+          path: native-source
+          sparse-checkout: |
+            scripts/games
+            scripts/creative
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Bind the fresh candidate to this run and its actual upload outputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p creative/metadata
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > creative/metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?per_page=100" > creative/metadata/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > creative/metadata/jobs.json
+          git rev-parse HEAD > creative/apk-source-sha.txt
+          git rev-parse HEAD > creative/probe-source-sha.txt
+          git -C native-source rev-parse HEAD > creative/native-source-sha.txt
+      - name: Download only this verify-and-build candidate
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
+          merge-multiple: true
+          path: candidate/dist/
+      - name: Install original live UI helpers and verify the nine creative contracts
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ffmpeg
+          python3 -m venv .creative-venv
+          .creative-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .creative-venv/bin/python .github/probes/studio_creative_android_probe.py --candidate-source . --metadata-dir creative/metadata --verify-metadata-only --expected-source "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --workflow-path .github/workflows/lumo-kart-graphics-2019.yml --out creative
+          .creative-venv/bin/python -m unittest discover -s scripts/tests -p test_studio_creative_android_probe.py -v 2>&1 | tee creative/local-contracts.log
+      - name: Enable disposable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start software display for the independent creative tour
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > creative/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > creative/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' creative/mesa-renderer.txt
+      - name: Genuine Jump Build Puzzle Treasure inputs and read-only saves
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          PYTHONDONTWRITEBYTECODE: '1'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .creative-venv/bin/python .github/probes/studio_creative_android_probe.py --candidate-source . --native-source native-source --probe-source . --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --metadata-dir creative/metadata --expected-source "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --workflow-path .github/workflows/lumo-kart-graphics-2019.yml --out creative/tour
+      - name: Preserve actual creative Android evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-android
+          path: creative/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
+      - name: Export complete creative evidence into bounded additional parts
+        id: creative-parts
+        if: always()
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          python3 -B scripts/export_creative_evidence_parts.py \
+            --source creative \
+            --output "$RUNNER_TEMP/lumo-creative-evidence-parts" \
+            --repository "$GITHUB_REPOSITORY" \
+            --workflow-path .github/workflows/lumo-kart-graphics-2019.yml \
+            --source-sha "$SOURCE_SHA" \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --github-output "$GITHUB_OUTPUT"
+      - name: Preserve complete creative evidence part 01
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_01 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-01
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-01/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 02
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_02 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-02
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-02/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 03
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_03 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-03
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-03/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 04
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_04 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-04
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-04/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 05
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_05 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-05
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-05/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 06
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_06 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-06
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-06/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 07
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_07 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-07
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-07/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 08
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_08 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-part-08
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-08/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+
   verify-reviewed-2019:
     name: Verify reviewed native source and both Android platform results
-    needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017]
+    needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017, creative-android]
     # Exact reviewed native images and all independent live proofs remain mandatory.
     if: >-
       github.event_name == 'pull_request' &&
@@ -601,7 +824,8 @@ jobs:
       needs.verify-and-build.result == 'success' &&
       needs.android-tour.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
-      needs.update-2019-from-2017.result == 'success'
+      needs.update-2019-from-2017.result == 'success' &&
+      needs.creative-android.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -645,6 +869,10 @@ jobs:
         with:
           name: lumo-kart-graphics-2019-android-host-compile
           path: proofs/host/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-kart-graphics-2019-creative-android
+          path: proofs/creative/
       - name: Fetch public identities for the three reviewed original graphics artifacts
         run: |
           set -euo pipefail
@@ -715,6 +943,8 @@ jobs:
       - name: Reverify actual ARM64 bytes and bind all live proofs to the reviewed 2019 source
         env:
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+          CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
+          CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
@@ -722,6 +952,7 @@ jobs:
           sha256sum -c dist/APK-SHA256.txt
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > dist/PUBLISH-VERIFICATION.json
           .publish-venv/bin/python scripts/verify_kart_graphics_delivery.py --source-sha "$SOURCE_SHA"
+          .publish-venv/bin/python scripts/verify_studio_creative_android.py --source-sha "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --creative proofs/creative --main-tour proofs/tour/tour-result.json --workflow-path .github/workflows/lumo-kart-graphics-2019.yml --out dist/CREATIVE-ANDROID-FACTS.json
           cp config/kart-graphics-2019-visual-review.json dist/VISUAL-REVIEW.json
           cp config/nextgen-2019-visual-review.json dist/NATIVE-VISUAL-REVIEW.json
       - uses: actions/upload-artifact@v4
@@ -740,6 +971,9 @@ jobs:
             dist/PUBLISH-VERIFICATION.json
             dist/VISUAL-REVIEW.json
             dist/NATIVE-VISUAL-REVIEW.json
+            dist/CREATIVE-ANDROID-FACTS.json
+            proofs/creative/candidate-artifact-binding.json
+            proofs/creative/metadata/
             proofs/native-graphics/
             proofs/native-nextgen/
           if-no-files-found: warn
@@ -747,7 +981,7 @@ jobs:
 
   publish-reviewed-2019:
     name: Publish visually reviewed Build 2019 ARM64 APK for direct Chrome download
-    needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017, verify-reviewed-2019]
+    needs: [verify-and-build, android-host-compile, android-tour, update-2019-from-2017, verify-reviewed-2019, creative-android]
     if: >-
       github.event_name == 'pull_request' &&
       github.repository == 'Ullmann27/lumo-lernen' &&
@@ -757,7 +991,8 @@ jobs:
       needs.android-tour.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.update-2019-from-2017.result == 'success' &&
-      needs.verify-reviewed-2019.result == 'success'
+      needs.verify-reviewed-2019.result == 'success' &&
+      needs.creative-android.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -775,6 +1010,8 @@ jobs:
       - name: Recheck accepted artifact bytes and exact sources before publication
         env:
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+          CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
+          CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
@@ -793,6 +1030,18 @@ jobs:
           assert facts['versionCode'] == 2019 and facts['versionName'] == '0.13.7'
           assert apk.stat().st_size == facts['apkBytes'] > 0
           assert hashlib.sha256(apk.read_bytes()).hexdigest() == facts['apkSha256']
+          creative = json.loads(Path('dist/CREATIVE-ANDROID-FACTS.json').read_text())
+          verification = json.loads(Path('dist/PUBLISH-VERIFICATION.json').read_text())
+          provenance = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          assert creative['status'] == 'FUNCTIONAL_CONTRACTS_PASSED_VISUAL_REVIEW_PENDING'
+          assert creative['visual_motion_review'] == 'REQUIRED'
+          assert creative['host_source'] == os.environ['SOURCE_SHA']
+          assert creative['native_source'] == native
+          assert creative['workflow_path'] == '.github/workflows/lumo-kart-graphics-2019.yml'
+          assert creative['build_run'] == int(os.environ['GITHUB_RUN_ID'])
+          assert creative['artifact_id'] == int(os.environ['CANDIDATE_ARTIFACT_ID'])
+          assert creative['artifact_digest'] == 'sha256:' + os.environ['CANDIDATE_ARTIFACT_DIGEST'].removeprefix('sha256:')
+          assert creative['pck_sha256'] == verification['godot']['pck_sha256'] == provenance['godot']['pck_sha256']
           PY
       - name: Preserve existing releases and select create-or-verify
         id: release-state
@@ -862,6 +1111,7 @@ jobs:
             dist/RELEASE-FACTS.json \
             dist/VISUAL-REVIEW.json \
             dist/NATIVE-VISUAL-REVIEW.json \
+            dist/CREATIVE-ANDROID-FACTS.json \
             --repo Ullmann27/lumo-lernen \
             --target "$SOURCE_SHA" \
             --title 'Lumo 2019 Android ARM64 Test-APK' \
@@ -917,5 +1167,6 @@ jobs:
             dist/DIRECT-APK-URL.txt
             dist/VISUAL-REVIEW.json
             dist/NATIVE-VISUAL-REVIEW.json
+            dist/CREATIVE-ANDROID-FACTS.json
           if-no-files-found: warn
           retention-days: 90
