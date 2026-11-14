@@ -1,0 +1,9 @@
+00:00 +0: loading /home/agent/lumo-play-image-2708/.audit-harness/test/core/lumo_image_generator_test.dart
+00:00 +0: ohne Elternfreigabe wird nie eine Online-Adresse gebaut
+00:00 +1: mit Freigabe: nur Themen der Positivliste, übersetzt, ohne freien Kindertext
+00:00 +2: Orange als einziges Motiv sendet keinen persönlichen Freitext
+00:00 +3: Orange ohne weiteres Motiv bleibt die erlaubte Frucht
+00:00 +4: Farbe und Motiv werden ausschließlich aus festen Werten gebaut
+00:00 +5: Farbe allein und nicht erlaubte Motive erzeugen keine Online-Adresse
+00:00 +6: Orange und Farb-Motiv-Kombinationen benötigen weiterhin Elternfreigabe
+00:00 +7: All tests passed!

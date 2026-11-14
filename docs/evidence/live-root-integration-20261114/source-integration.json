@@ -11,8 +11,9 @@
     "native_runtime_plus_garden": "9ad09a32bcd42d21b89b2a83ceee68b1dd2bd7cf",
     "native_basis_reconciliation": "454e81229b0193cba75844e9985a53deb2ce5c91",
     "final_flutter_c4_union": "e5c4868ebb7a10ec6b69f6700c7fff8cc1bedea3",
-    "final_android_workflow_union": "734dc193bf74090f0ef407129c358f06383a7745"
+    "final_android_workflow_union": "734dc193bf74090f0ef407129c358f06383a7745",
+    "current_quality_followup": "803a4e960ffb804a46b6d09417731c031f00f680"
   },
-  "preservation": "The complete 01575aaf tree is the base; its AAB tools, actual Android fixtures, source-bound curriculum audit and original evidence archives are retained. Only explicitly listed feature or conflict-resolution paths are overlaid.",
+  "preservation": "The complete 01575aaf tree is the base; its AAB tools, actual Android fixtures, source-bound curriculum audit and original evidence archives are retained. Only explicitly listed feature or conflict-resolution paths are overlaid. The complete six-commit follow-up through 803a4e9 is also retained; its stronger FFmpeg prerequisite checks supersede the identical install-only change.",
   "limits": "Individual passing checks precede the final source union. The combined C4/Dart and workflow union after the environment outage must pass the mandatory current-source CI suite; no unexecuted test or APK is marked successful."
 }
