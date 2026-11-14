@@ -84,6 +84,7 @@ class Build2019IndependentEvidenceMigrationTests(legacy.Build2018IndependentEvid
 class StudioUpdateWrapperExecutionTests(unittest.TestCase):
     """Execute the real wrapper and identity gates; stop before Android I/O."""
     source = 'a' * 40
+    native = '17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845'
     baseline_source = '47889f74a651b073965def70743417cf320b1eb9'
     baseline_native = '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57'
     package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
@@ -94,7 +95,17 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         self.directory = Path(temporary.name)
-        self.native = json.loads((_ROOT / 'config/godot-source.json').read_text())['revision']
+        # The historical wrapper must read a 2019 checkout even when the
+        # current application has advanced. Execute unchanged production
+        # wrapper/policy bytes against this explicit source fixture.
+        self.source_root = self.directory / 'source'
+        for relative in ('.github/probes/lumo_2019_update_android_probe.py',
+                         'scripts/verify_legacy_release_pin.py'):
+            destination = self.source_root / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes((_ROOT / relative).read_bytes())
+        (self.source_root / 'config').mkdir()
+        self.write_source_identity(2019, self.native)
         self.paths = {}
         for label, version, source, native in (
             ('baseline', 2017, self.baseline_source, self.baseline_native),
@@ -112,6 +123,15 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
                 'abis': ['x86_64'], 'godot': {'revision': native},
             }))
             self.paths[label] = apk
+
+    def write_source_identity(self, version, native):
+        (self.source_root / 'pubspec.yaml').write_text(
+            f'version: 0.13.8+{version}\n', encoding='utf-8')
+        (self.source_root / 'config/godot-source.json').write_text(json.dumps({
+            'repository': 'https://github.com/Ullmann27/lumo-godot.git',
+            'revision': native,
+            'engine': '4.6.3',
+        }), encoding='utf-8')
 
     def run_wrapper(self):
         # Only external device boundaries are replaced. The real wrapper,
@@ -139,7 +159,7 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
                 contextlib.redirect_stdout(io.StringIO()):
             spec.loader.exec_module(module)
             with self.assertRaises(SystemExit) as stopped:
-                runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+                runpy.run_path(str(self.source_root / '.github/probes/lumo_2019_update_android_probe.py'),
                                run_name='__main__')
         # This unit probe deliberately cannot issue Android PASS.
         self.assertEqual(stopped.exception.code, 1)
@@ -155,6 +175,19 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
         self.assertEqual(report['candidate']['versionCode'], 2019)
         self.assertEqual(report['candidate_source'], self.source)
         boundary.assert_called_once()
+
+    def test_actual_wrapper_rejects_other_approved_version_before_artifact_checks(self):
+        self.write_source_identity(2018, 'ada5ed81ad62339f15289da62670c0a4f9f7f2b9')
+        with self.assertRaisesRegex(
+                ValueError, 'This update proof requires candidate version 2019'):
+            self.run_wrapper()
+        self.assertFalse((self.directory / 'result').exists())
+
+    def test_actual_wrapper_rejects_wrong_native_pin_before_artifact_checks(self):
+        self.write_source_identity(2019, self.baseline_native)
+        with self.assertRaisesRegex(ValueError, 'Native revision mismatch for build 2019'):
+            self.run_wrapper()
+        self.assertFalse((self.directory / 'result').exists())
 
     def test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity(self):
         invalid = [
