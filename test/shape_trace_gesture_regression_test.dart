@@ -129,8 +129,8 @@ void main() {
     await tester.pump();
     await tester.tap(find.text('Fertig'));
     await tester.pump();
-    debugPrint('[ShapeGesture] secondPointer results=' +
-        results.map((value) => '${value.correct}:${value.feedback}').join('|'));
+    debugPrint('[ShapeGesture] secondPointer results='
+        '${results.map((value) => '${value.correct}:${value.feedback}').join('|')}');
     expect(results, hasLength(1));
     expect(results.single.correct, isTrue,
         reason: 'An unrelated second touch cannot corrupt the first square.');
@@ -147,8 +147,8 @@ void main() {
     await tester.pump();
     await tester.tap(find.text('Fertig'), warnIfMissed: false);
     await tester.pump();
-    debugPrint('[ShapeGesture] cancel results=' +
-        results.map((value) => '${value.correct}:${value.feedback}').join('|'));
+    debugPrint('[ShapeGesture] cancel results='
+        '${results.map((value) => '${value.correct}:${value.feedback}').join('|')}');
     expect(results, isEmpty,
         reason: 'Cancellation must discard this incomplete pointer transaction.');
   });

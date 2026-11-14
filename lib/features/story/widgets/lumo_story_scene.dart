@@ -147,7 +147,6 @@ class _ScenePainter extends CustomPainter {
   static const _blue = Color(0xFF1975D9);
   static const _teal = Color(0xFF57E5EC);
   static const _gold = Color(0xFFFFD68E);
-  static const _ink = Color(0xFF102A50);
 
   void _rect(Rect r, Color color, {double radius = 0, Color? end}) {
     _c.drawRRect(

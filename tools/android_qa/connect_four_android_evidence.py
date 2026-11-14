@@ -21,7 +21,8 @@ WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
 BRANCH = 'integration/lumo-c4-connections-20261114'
 ALLOWED_BRANCHES = frozenset((BRANCH, 'work/lumo-play-quality-20261114',
                              'integration/lumo-agent-execution-20261114',
-                             'integration/lumo-live-connections-20261114'))
+                             'integration/lumo-live-connections-20261114',
+                             'repair/lumo-single-apk-20261114'))
 CANDIDATE = 'lumo-connect-four-2020-candidate'
 PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
 CERT = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'

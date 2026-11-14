@@ -374,15 +374,36 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
     return None
 
 
-def _stage_kart_scroll_recovery():
+def _stage_kart_scroll_recovery(kart: str | None = None):
     """Reuse the observed two-frame list scroll from supplemental Garage QA."""
     previous, swipes = None, 0
+    last_direction, direction_changes = None, 0
 
     def recovery(frame, lines, source, *, deadline, previous_missing_frame):
-        nonlocal previous, swipes
-        current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+        nonlocal previous, swipes, last_direction, direction_changes
+        current_lines, cards = lines, None
+        try:
+            current = garage_evidence.stage_garage_scroll_observation(
+                frame, current_lines, target_kart=kart, direction_changes=direction_changes)
+        except RuntimeError as error:
+            if str(error) != 'No currently visible vehicle card in the actual left list':
+                raise
+            cards = garage_evidence.stage_garage_card_observations(
+                source, frame, lines, base.command,
+                timeout=min(15, deadline - time.monotonic()))
+            current_lines = lines + cards['cards']
+            current = garage_evidence.stage_garage_scroll_observation(
+                frame, current_lines, target_kart=kart, direction_changes=direction_changes)
+        changes = direction_changes + int(last_direction is not None and current['direction'] != last_direction)
+        if changes != direction_changes:
+            current = garage_evidence.stage_garage_scroll_observation(
+                frame, current_lines, target_kart=kart, direction_changes=changes)
+        if cards is not None:
+            current.update(card_ocr=cards, line_ocr_error='No currently visible vehicle card in the actual left list')
         stable = (previous is not None and previous_missing_frame is not None and
                   previous_missing_frame.get('pixels') == frame['pixels'] and
+                  current['direction'] == previous['direction'] and
+                  garage_evidence.normalize(current['card']['text']) == garage_evidence.normalize(previous['card']['text']) and
                   max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
         previous = current
         if not stable:
@@ -395,6 +416,7 @@ def _stage_kart_scroll_recovery():
         base.adb('shell', 'input', 'swipe', *map(str, current['gesture']), '650',
                  timeout=min(15, remaining))
         swipes += 1
+        last_direction, direction_changes = current['direction'], changes
         previous = None
         return {'status': 'SWIPE_SENT', 'swipe_number': swipes, **current}
 
@@ -405,7 +427,7 @@ def _select_stage_kart(out: Path, kart: str) -> dict:
     label = garage_evidence.KARTS[kart]
     tag = '21_stage_select_' + kart
     probe.native_tap(out, label, tag, exact=True, timeout=150,
-                     missing_caption=_stage_kart_scroll_recovery())
+                     missing_caption=_stage_kart_scroll_recovery(kart))
     journal = out / (tag + '-surface-readiness.json')
     touch = json.loads(journal.read_text())
     garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',

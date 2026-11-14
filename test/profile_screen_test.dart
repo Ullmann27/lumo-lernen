@@ -66,6 +66,62 @@ void main() {
     }
   });
 
+  testWidgets('Profil-Extras öffnet die vorhandenen Einstellungen als echte Schaltfläche',
+      (tester) async {
+    final semantics = tester.ensureSemantics();
+    final app = LumoAppState();
+    final sections = <LumoSection>[];
+    try {
+      await tester.binding.setSurfaceSize(const Size(392, 1400));
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: ProfileScreen(
+            appState: app,
+            onSection: sections.add,
+            childName: 'Mia',
+            grade: 2,
+            stars: 12,
+            xp: 520,
+            level: 2,
+          ),
+        ),
+      ));
+      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+      await tester.pump();
+      final extrasRow = find.ancestor(
+        of: find.byKey(const ValueKey('profile-extras')),
+        matching: find.byType(Row),
+      ).first;
+      final actions = find.descendant(
+        of: extrasRow,
+        matching: find.byType(InkWell),
+      );
+      expect(actions, findsNWidgets(2));
+      final profile = actions.last;
+      await tester.ensureVisible(profile);
+      await tester.pump();
+      expect(tester.getSize(profile).width, greaterThanOrEqualTo(48));
+      expect(tester.getSize(profile).height, greaterThanOrEqualTo(48));
+      await tester.tap(profile);
+      expect(sections, [LumoSection.settings]);
+      expect(find.text('Dein Profil'), findsOneWidget);
+      expect(find.text('Klasse und Einstellungen ansehen'), findsOneWidget);
+      expect(find.textContaining('bald verfügbar'), findsNothing);
+      final node = tester.getSemantics(
+          find.byKey(const ValueKey('profile-settings')));
+      expect(node.label, contains('Dein Profil'));
+      expect(node.getSemanticsData().hasAction(SemanticsAction.tap), isTrue);
+      expect(node.getSemanticsData().hasFlag(SemanticsFlag.isButton), isTrue);
+      expect(tester.takeException(), isNull);
+    } finally {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      app.dispose();
+      semantics.dispose();
+      await tester.binding.setSurfaceSize(null);
+    }
+  });
+
   test('Level-Titel steigen mit dem Level', () {
     expect(ProfileScreen.levelTitle(1), 'Entdecker:in');
     expect(ProfileScreen.levelTitle(3), 'Forscher:in');

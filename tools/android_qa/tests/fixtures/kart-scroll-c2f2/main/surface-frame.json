@@ -1,0 +1,32 @@
+{
+  "source": "21_stage_select_gecko_velo-2.png",
+  "source_sha256": "0f5995fe791492290fe8063bf25a5de2d8b9ea709622c5154725faff3b916501",
+  "source_bytes": 759970,
+  "pixels": [
+    2400,
+    1080
+  ],
+  "orientation_policy": "landscape",
+  "sample_rows": [
+    130,
+    238,
+    346,
+    454,
+    562,
+    670,
+    778,
+    886
+  ],
+  "blank_edge_columns": {
+    "left": 0,
+    "right": 0
+  },
+  "blank_threshold_rgb_max": 8,
+  "blank_required_rows": 7,
+  "acceptable_for_target_sampling": true,
+  "reasons": [
+    "actual requested caption not observed"
+  ],
+  "scope": "Reject observed partial surface; no scene/gameplay PASS",
+  "captured_after_seconds": 29.262168
+}

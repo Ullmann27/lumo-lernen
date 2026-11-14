@@ -23,6 +23,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  image_picker_platform_interface: ^2.11.1
   shared_preferences_platform_interface: ^2.4.2
 
 flutter:

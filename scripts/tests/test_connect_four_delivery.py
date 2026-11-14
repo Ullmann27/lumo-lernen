@@ -105,7 +105,8 @@ class OriginalAcceptanceTests(unittest.TestCase):
     def test_exact_integration_branches_require_the_same_current_pull_branch(self):
         for branch in ('work/lumo-play-quality-20261114',
                        'integration/lumo-agent-execution-20261114',
-                       'integration/lumo-live-connections-20261114'):
+                       'integration/lumo-live-connections-20261114',
+                       'repair/lumo-single-apk-20261114'):
             with self.subTest(branch=branch):
                 self.run['head_branch'] = branch
                 self.pull['head']['ref'] = branch
@@ -118,11 +119,47 @@ class OriginalAcceptanceTests(unittest.TestCase):
         for branch in ('work/unapproved', 'integration/lumo-c4-connections-20261114-copy',
                        'work/lumo-play-quality-20261114-copy',
                        'integration/lumo-agent-execution-20261114-copy',
-                       'integration/lumo-live-connections-20261114-copy'):
+                       'integration/lumo-live-connections-20261114-copy',
+                       'repair/lumo-single-apk-20261114-copy',
+                       'repair/lumo-single-apk-20261115',
+                       'outside/repair/lumo-single-apk-20261114'):
             self.run['head_branch'] = branch
             self.pull['head']['ref'] = branch
             with self.subTest(branch=branch), self.assertRaises(ValueError):
                 self.check()
+
+    def test_exact_repair_branch_still_requires_same_repository_source_and_seven_jobs(self):
+        self.assertEqual(delivery.REPAIR_BRANCH, 'repair/lumo-single-apk-20261114')
+        self.assertEqual(delivery.ACCEPTED_BRANCHES, frozenset((
+            'integration/lumo-c4-connections-20261114',
+            'work/lumo-play-quality-20261114',
+            'integration/lumo-agent-execution-20261114',
+            'integration/lumo-live-connections-20261114',
+            'repair/lumo-single-apk-20261114',
+        )))
+        self.run['head_branch'] = delivery.REPAIR_BRANCH
+        self.pull['head']['ref'] = delivery.REPAIR_BRANCH
+        self.assertEqual(len(self.jobs['jobs']), 7)
+        self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
+        for obj, key, value in (
+            (self.run['repository'], 'full_name', 'outside/fork'),
+            (self.pull['head']['repo'], 'full_name', 'outside/fork'),
+            (self.pull['base']['repo'], 'full_name', 'outside/fork'),
+            (self.run, 'event', 'push'), (self.run, 'event', 'workflow_dispatch'),
+            (self.run, 'head_sha', 'd'*40), (self.pull['head'], 'sha', 'd'*40),
+            (self.run, 'run_attempt', 2), (self.pull, 'state', 'closed'),
+            (self.jobs['jobs'][0], 'conclusion', 'skipped'),
+        ):
+            previous = obj[key]; obj[key] = value
+            with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                self.check()
+            obj[key] = previous
+        original = self.jobs
+        self.jobs = {'total_count': 6, 'jobs': original['jobs'][:-1]}
+        with self.assertRaises(ValueError): self.check()
+        self.jobs = original
+        with self.assertRaises(ValueError):
+            delivery.checked_jobs(self.run, self.jobs, self.pull, self.binding, 999, publication=True)
 
     def test_each_failure_skip_cancel_and_foreign_attempt_blocks_delivery(self):
         for row in self.jobs['jobs'][:-1]:
@@ -925,12 +962,15 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             self.assertFalse(args.out.exists())
 
     def test_current_publication_gate_replays_completed_source_and_whole_original_bundle(self):
+        from scripts.tests.test_native_completion_delivery import synthetic_completion_facts
+
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); source, args, facts = self.preparation_fixture(root)
             with mock.patch('verify_connect_four_candidate.verify', return_value=facts), \
                  mock.patch.object(delivery, 'committed_pcm_sources', return_value={'fixture': {}}), \
                  mock.patch.object(delivery, 'learning_source_identity', return_value=learning_identity()), \
-                 mock.patch.object(delivery, 'checked_native', return_value={'core_modes': 52}), \
+                 mock.patch.object(delivery, 'checked_native', return_value=synthetic_completion_facts(
+                     revision='b'*40, tree='c'*40)), \
                  mock.patch.object(delivery, 'ROOT', source), \
                  mock.patch.object(delivery.subprocess, 'check_output', return_value='e'*40+'\n'), \
                  contextlib.redirect_stdout(io.StringIO()):

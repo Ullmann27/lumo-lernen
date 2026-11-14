@@ -64,7 +64,16 @@ class EmbeddedAndroidTest(unittest.TestCase):
             self.assertEqual(services[1].get(attr('exported')), 'false')
             self.assertIsNone(services[1].get(attr('process')))
             self.assertIn('-keep class dev.ullmann.lumo.lumo_lernen.ConnectFourHostPlugin { *; }', rules.read_text())
-            self.assertFalse(doc.findall('uses-permission'), 'No new background/wake/network permissions')
+            self.assertEqual(
+                [entry.attrib for entry in doc.findall('uses-permission')],
+                [{attr('name'): 'android.permission.POST_NOTIFICATIONS'}],
+                'Only the bundled Godot downloader notification permission is added',
+            )
+            self.assertLess(
+                list(doc).index(doc.find('uses-permission')),
+                list(doc).index(doc.find('application')),
+                'Permission declarations must precede the application element',
+            )
             service_file = main / 'kotlin/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.kt'
             self.assertTrue(service_file.is_file())
             self.assertIn('package dev.ullmann.lumo.lumo_lernen', service_file.read_text())

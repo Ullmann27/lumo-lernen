@@ -1,0 +1,19 @@
+// Run full Android lint with the exact properties supplied by Flutter's build.
+// This CI-only hook leaves the prepared Android host and signing untouched.
+def lumoWorkspace = System.getenv('GITHUB_WORKSPACE')
+
+gradle.projectsEvaluated {
+    if (!lumoWorkspace) return
+    def lumoAndroidProject = new File(lumoWorkspace, 'android').canonicalFile
+    if (gradle.rootProject.projectDir.canonicalFile != lumoAndroidProject) return
+    def lumoRequestedTasks = gradle.startParameter.taskNames.collect {
+        it.tokenize(':').last()
+    }
+    if (lumoRequestedTasks != ['assembleRelease']) return
+
+    def lumoApp = gradle.rootProject.project(':app')
+    def lumoReleaseLint = lumoApp.tasks.named('lintRelease')
+    lumoApp.tasks.named('assembleRelease').configure {
+        finalizedBy(lumoReleaseLint)
+    }
+}
