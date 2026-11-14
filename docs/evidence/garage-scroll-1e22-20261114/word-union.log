@@ -1,0 +1,28 @@
+test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job) ... ok
+test_distant_columns_or_disjoint_word_rows_are_not_joined (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_distant_columns_or_disjoint_word_rows_are_not_joined) ... ok
+test_duplicate_real_regions_and_conflicting_names_are_ambiguous (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_duplicate_real_regions_and_conflicting_names_are_ambiguous) ... FAIL
+test_five_gesture_limit_remains_hard_after_word_recovery (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_five_gesture_limit_remains_hard_after_word_recovery) ... ok
+test_invalid_or_outside_word_rectangles_are_rejected (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_invalid_or_outside_word_rectangles_are_rejected) ... ok
+test_known_complete_names_keep_case_whitespace_and_longest_caption (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_known_complete_names_keep_case_whitespace_and_longest_caption) ... ok
+test_missing_anchors_or_incomplete_surface_never_activate_word_recovery (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_missing_anchors_or_incomplete_surface_never_activate_word_recovery) ... ok
+test_original_boru_frame_recovers_only_scroll_after_two_bound_frames (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_original_boru_frame_recovers_only_scroll_after_two_bound_frames) ... ok
+test_original_line_failure_and_existing_exact_comet_path_are_preserved (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_original_line_failure_and_existing_exact_comet_path_are_preserved) ... ok
+test_partial_interrupted_cross_line_and_word_number_gap_are_rejected (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_partial_interrupted_cross_line_and_word_number_gap_are_rejected) ... ok
+test_right_preview_header_and_footer_captions_cannot_be_scroll_cards (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_right_preview_header_and_footer_captions_cannot_be_scroll_cards) ... ok
+test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved) ... ok
+test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe) ... ok
+test_word_confidence_and_original_tsv_presence_remain_mandatory (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_word_confidence_and_original_tsv_presence_remain_mandatory) ... ok
+
+======================================================================
+FAIL: test_duplicate_real_regions_and_conflicting_names_are_ambiguous (test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_duplicate_real_regions_and_conflicting_names_are_ambiguous)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/909ddb52fe7b/garage-probe-repair-1e22/tools/android_qa/tests/test_kart_scroll_word_evidence.py", line 223, in test_duplicate_real_regions_and_conflicting_names_are_ambiguous
+    with self.assertRaisesRegex(RuntimeError, 'Ambiguous repeated vehicle caption'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.257s
+
+FAILED (failures=1)

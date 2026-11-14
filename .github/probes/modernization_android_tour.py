@@ -380,9 +380,31 @@ def _stage_kart_scroll_recovery():
 
     def recovery(frame, lines, source, *, deadline, previous_missing_frame):
         nonlocal previous, swipes
-        current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+        try:
+            current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+        except RuntimeError as error:
+            if str(error) != 'No currently visible vehicle card in the actual left list':
+                raise
+            words = garage_evidence.stage_garage_word_observations(
+                source.parent, source.stem, lines)
+            try:
+                current = garage_evidence.stage_garage_scroll_observation(
+                    frame, lines, caption_words=words['captions'])
+            except RuntimeError as word_error:
+                if str(word_error) != 'No currently visible vehicle card in the actual left list':
+                    raise
+                current = garage_evidence.stage_garage_scroll_observation(
+                    frame, lines, caption_words=words['captions'], source=source)
+            current['caption_source'] = ('original_tsv_word_sequences'
+                                         if current['anchor_kind'] == 'current-caption'
+                                         else 'no_complete_caption_current_pixel_geometry')
+            current['ocr_sources'] = words['sources']
         stable = (previous is not None and previous_missing_frame is not None and
                   previous_missing_frame.get('pixels') == frame['pixels'] and
+                   current['anchor_kind'] == previous['anchor_kind'] and
+                   current.get('anchor_caption') == previous.get('anchor_caption') and
+                   max(abs(a - b) for a, b in zip(
+                       current['anchor_bounds'], previous['anchor_bounds'])) <= 12 and
                   max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
         previous = current
         if not stable:
