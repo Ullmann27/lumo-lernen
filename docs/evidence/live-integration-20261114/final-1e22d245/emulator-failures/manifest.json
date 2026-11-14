@@ -1,0 +1,3801 @@
+{
+  "schema": 1,
+  "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "host_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run_id": 43596913210,
+  "run_attempt": 1,
+  "pr": 497,
+  "overall": "FAIL",
+  "publication": "BLOCKED",
+  "job_logs": [
+    {
+      "job_id": 132484382995,
+      "git_blob": "97d8ef88efa269e6c85526d9629631bd3d11b2df",
+      "path": "job-132484382995-original.log",
+      "sha256": "ac393718a4ef5928d2f12b9d107702a1fccf0ddb950f5cc3d641cae9bfe08650",
+      "utf8_bytes": 1302823,
+      "retrieval_count": 1,
+      "remote_readback_byte_identical": true
+    },
+    {
+      "job_id": 132484382954,
+      "git_blob": "7ce3fcefbd974fbf18fa39ef32bde03688ad8c1a",
+      "path": "job-132484382954-original.log",
+      "sha256": "53fd07896bd8c71179d7fb4b12cb976046a2bd41355c48ff6e24921b8886d3fa",
+      "utf8_bytes": 267836,
+      "retrieval_count": 1,
+      "remote_readback_byte_identical": true
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 14119041396,
+      "node_id": "MDg6QXJ0aWZhY3QxNDExOTA0MTM5Ng==",
+      "name": "lumo-connect-four-2020-android-c4",
+      "size_in_bytes": 52608076,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14119041396",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14119041396/zip",
+      "expired": false,
+      "digest": "sha256:85a2772ba860e8b5b03cb1a5b3ea35ee32cf40c66305be700144a2b11df70296",
+      "created_at": "2026-11-14T15:03:09Z",
+      "updated_at": "2026-11-14T15:03:09Z",
+      "expires_at": "2026-12-14T15:03:07Z",
+      "workflow_run": {
+        "id": 43596913210,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    },
+    {
+      "id": 14118638414,
+      "node_id": "MDg6QXJ0aWZhY3QxNDExODYzODQxNA==",
+      "name": "lumo-connect-four-2020-in-place-update-proof",
+      "size_in_bytes": 60621212,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14118638414",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14118638414/zip",
+      "expired": false,
+      "digest": "sha256:6e1665739388ff4f1b0405ff7e994eec2a14bdb50bdedcbf5891d2cce059e0ae",
+      "created_at": "2026-11-14T15:03:11Z",
+      "updated_at": "2026-11-14T15:03:11Z",
+      "expires_at": "2026-12-14T15:03:09Z",
+      "workflow_run": {
+        "id": 43596913210,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    }
+  ],
+  "original_artifact_verification": [
+    {
+      "path": "14119041396/artifact-manifest.json",
+      "sha256": "ae22d971b8e156eea0b32c87ba970470b35d79af876709a53b5c4b7dfaa23412",
+      "verification": {
+        "artifact_id": 14119041396,
+        "artifact_name": "lumo-connect-four-2020-android-c4",
+        "archive_bytes": 52608076,
+        "archive_sha256": "85a2772ba860e8b5b03cb1a5b3ea35ee32cf40c66305be700144a2b11df70296",
+        "source": {
+          "id": 43596913210,
+          "repository_id": 1222433959,
+          "head_repository_id": 1222433959,
+          "head_branch": "integration/lumo-live-connections-20261114",
+          "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+        },
+        "attempt": 1,
+        "zip_crc": "PASS",
+        "files": [
+          {
+            "path": "android-release.txt",
+            "bytes": 3,
+            "sha256": "238903180cc104ec2c5d8b3f20c5bc61b389ec0a967df8cc208cdc7cd454174f"
+          },
+          {
+            "path": "android-sdk.txt",
+            "bytes": 3,
+            "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5"
+          },
+          {
+            "path": "android-emulator-version.txt",
+            "bytes": 655,
+            "sha256": "0db3b7136e8bef389a3d7d9261221475ec77cdcde4e774d052cadd0aab7852cc"
+          },
+          {
+            "path": "main/01_erster_start.png",
+            "bytes": 200660,
+            "sha256": "bddff522e57920499eeeaf14aa2f5784e2902cab8aada12446691137cb5f9410"
+          },
+          {
+            "path": "main/07_home_after_onboarding-render-candidate-1.png",
+            "bytes": 20795,
+            "sha256": "a0953495b4cd2b913361623025635252994b9eb28d648f8a56136eddca0c08a1"
+          },
+          {
+            "path": "main/07_home_after_onboarding-render-candidate-2.png",
+            "bytes": 21324,
+            "sha256": "397c77c4dcc96add02deb40a683c36e7b07d31a5b9169eb54e0884c0cd261680"
+          },
+          {
+            "path": "main/07_home_after_onboarding-render-readiness.json",
+            "bytes": 1335,
+            "sha256": "2b8b460d46637ebf98b8fdacb4e87c0eab7acb1007d565bbae3ecd53cdbbe80b"
+          },
+          {
+            "path": "main/07_home_after_onboarding.png",
+            "bytes": 3042046,
+            "sha256": "e055ae69ec5af9128e1de7cf894e89fe37792388fbc0389a5e6f4c69631b58e9"
+          },
+          {
+            "path": "main/08_games_after_navigation.png",
+            "bytes": 880463,
+            "sha256": "44d60ba2817862fa3871e165755e3dbccb37e7d4e4fe7cf76a047afe35b57252"
+          },
+          {
+            "path": "main/10_lernen-render-readiness.json",
+            "bytes": 528,
+            "sha256": "5811d60d0e16c1dbd967e4999ee4a186e2c96d64d3b879e01b444cdae146a5f3"
+          },
+          {
+            "path": "main/10_lernen.png",
+            "bytes": 1892203,
+            "sha256": "7e5ed95068789fb0359a57094e0054d793ec7d71d75c5fa9f1a74904ebfa4ee2"
+          },
+          {
+            "path": "main/10_start-render-readiness.json",
+            "bytes": 525,
+            "sha256": "94a2cf814908127aadcc36948de08a5898eb88d4da7e6b0d3b78132431eb720d"
+          },
+          {
+            "path": "main/10_start.png",
+            "bytes": 3042119,
+            "sha256": "9a61513fb5b858d326c957deaa259b10b5d916efce8d14bfb4ff538fbfd381be"
+          },
+          {
+            "path": "main/11_atelier_hub-render-readiness.json",
+            "bytes": 538,
+            "sha256": "4b64c047d76b181b4ca31f11044f15c08394422bddffb5390c040ab61d05578c"
+          },
+          {
+            "path": "main/11_atelier_hub.png",
+            "bytes": 485511,
+            "sha256": "0ec825b7cc37d3a97f0fe1b5f53ec1ade67ebd59a35c6feb88342d4b68e5c1d2"
+          },
+          {
+            "path": "main/12_atelier_beispiel-render-readiness.json",
+            "bytes": 548,
+            "sha256": "12f814abd38ce7f8cbf6cac95a7e0702d290edc1c42cbacd868c004ad2300970"
+          },
+          {
+            "path": "main/12_atelier_beispiel.png",
+            "bytes": 347846,
+            "sha256": "32d6dc244db512638217ebb6b431884c49f50373c411c74c05ff8ead3627ab82"
+          },
+          {
+            "path": "main/13_atelier_zehnerbruecke-render-readiness.json",
+            "bytes": 558,
+            "sha256": "a03421deb0792b4e9d98cbc9b03ec10a54ef2a388c722f28ec996585efae10d1"
+          },
+          {
+            "path": "main/13_atelier_zehnerbruecke.png",
+            "bytes": 679780,
+            "sha256": "dab7d940835a907e9f1b9a747360c283296dd57a256570f514a3538a353d7a6f"
+          },
+          {
+            "path": "main/20_spiele-render-readiness.json",
+            "bytes": 528,
+            "sha256": "18905e3c84bcc76312c055546b449fe6bfd4b37ad2551acdc3be04399a626520"
+          },
+          {
+            "path": "main/20_spiele.png",
+            "bytes": 1957031,
+            "sha256": "e20a9da9a6bd4114a88d002b7ebb4e426a4bcc494f0fdcb0e264a61cb4ae1ae1"
+          },
+          {
+            "path": "main/21_lumo_kart_12s.png",
+            "bytes": 2659877,
+            "sha256": "59097a192cf665e8c73d28dd61f5c052918a08c1c76084028296774730b83321"
+          },
+          {
+            "path": "main/21_lumo_kart_20s.png",
+            "bytes": 1158120,
+            "sha256": "f8b1ed4ef0fd866f260744b76c145ed89bc37dfbd1d4ba5fe8b930ba490dcbe0"
+          },
+          {
+            "path": "main/21_stage_garage-open-0-ocr-contrast.tsv",
+            "bytes": 6030,
+            "sha256": "b2f51eb4d193c7c9af5a20b3f1c700a398db3e99250a74875942a069ad2eb79e"
+          },
+          {
+            "path": "main/21_stage_garage-open-0-ocr.json",
+            "bytes": 4841,
+            "sha256": "6a8da09b24cd3c13ba84f2d5dcb40fb4a4d59fc34494f03dee979f5b3955a98d"
+          },
+          {
+            "path": "main/21_stage_garage-open-0.png",
+            "bytes": 1158949,
+            "sha256": "a0da7cd1be01c8999c86b0e55cf8626b58ccdf5e1b0daccba5de4947f2f91b08"
+          },
+          {
+            "path": "main/21_stage_garage-open-1-ocr-contrast.tsv",
+            "bytes": 6063,
+            "sha256": "f12d65187bca94dd7c7abbf767b06dbe074171d3a6491679989645622ae7d927"
+          },
+          {
+            "path": "main/21_stage_garage-open-1-ocr.json",
+            "bytes": 4845,
+            "sha256": "2c9ce0414f779d3591b735ce05fe172c841e01e22b6e0741958152e719134110"
+          },
+          {
+            "path": "main/21_stage_garage-open-1.png",
+            "bytes": 1159080,
+            "sha256": "ae7443870e69f80a72996d21fd67db5905ea14cdde96a4989fc4d0b69573569b"
+          },
+          {
+            "path": "main/21_stage_garage-open-surface-readiness.json",
+            "bytes": 2746,
+            "sha256": "7e28eebdd0011374ff191a9eaed9902c0dd660eb370f0b09f7918c46f3e670bf"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-components.json",
+            "bytes": 7158,
+            "sha256": "cb24e30bc90efaf131df085024a8b998ba92db181d56cd67fd1ccc4a5a32d7af"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-contrast.tsv",
+            "bytes": 5995,
+            "sha256": "cc292d6bd51e7d38371782f1fcd064e2db33d7b3c1eb0ee4250666a86a2e15e8"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-0.png",
+            "bytes": 35096,
+            "sha256": "a5119302e809d107bbf632fdef294d6347b1a43905f5e81af2ccdd0b5278715c"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-0.tsv",
+            "bytes": 545,
+            "sha256": "0dda2f505e5be7649245e243e8f81e56009d99f786d0213f5258f45eabb119c9"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-1.png",
+            "bytes": 29591,
+            "sha256": "05c23e6855123dc3ff8017aa65e89db1a28e1fd8516fbd53b99f4bfae4e932f3"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-1.tsv",
+            "bytes": 390,
+            "sha256": "a66f84f73bd95ba5f591455f290a11d335c72a32852e1b1fdd0618dfd9f7b820"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-10.png",
+            "bytes": 5592,
+            "sha256": "8b31e0f992be7eb693e72910babd1a87a5060d64555d109e66817b78de1560c5"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-10.tsv",
+            "bytes": 355,
+            "sha256": "386818c7c59361f45f8b0b103dd18282866ee0dfc27e39aa241ba82cd3b26377"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-11.png",
+            "bytes": 3440,
+            "sha256": "c98c83e603d7ac629a9dcdd69fbd2441d9149d34719e5c5a7a8f6bd43293dd8c"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-11.tsv",
+            "bytes": 319,
+            "sha256": "377eaa98f691e3e56e9c7d4afb6d3b1feb0ec5647b25782c70b0b2ecc0dfa5f0"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-12.png",
+            "bytes": 4336,
+            "sha256": "3168be2ae635538fbf27272ac98d773c4471b42fcfa016af3bbc84b6147141ea"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-12.tsv",
+            "bytes": 221,
+            "sha256": "6211ac3f92185e3ea6774b52cf6a277cff346624bf033a8946c16a20ac4cebbc"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-13.png",
+            "bytes": 3318,
+            "sha256": "40c47549843be61ff9792dc7497379d0f1d74822874c8305e893a92ab255e348"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-13.tsv",
+            "bytes": 226,
+            "sha256": "191075a170cd618eda0bbbff98144c1b34d23e9049b79be3da6ed3081b189223"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-14.png",
+            "bytes": 3548,
+            "sha256": "baa4fc9bc0b7c4568dbcac7c9d6b18667c33175bca3e3efd1971df0c37d5a2b3"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-14.tsv",
+            "bytes": 223,
+            "sha256": "5316a0b87bfc19e57ab616866e525dbec829f62b7b3f5d004ab9ea3cb3bf3bd5"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-15.png",
+            "bytes": 3105,
+            "sha256": "0ef64db0f558b3268947d0f45cac7441f82984da401a55940ae66cf1cfd33ade"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-15.tsv",
+            "bytes": 226,
+            "sha256": "1050d21d546746f9fb98ae1b5ec412b35914eb3c1687c2ab6cdfc914b440d7b2"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-16.png",
+            "bytes": 3553,
+            "sha256": "d4f79d73593ef9ba29bf29bdfef16d888a3e546262b47bb3f07be247a82029be"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-16.tsv",
+            "bytes": 222,
+            "sha256": "32ba315d896edc5d46b48e8f47379c42c3df64cb2a68066d2aaa186fc2b41cfe"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-2.tsv",
+            "bytes": 224,
+            "sha256": "633c6a8db4e4243ebbbd8d3371eb6b3ca01c06babe233b780e3349ecd15c0b41"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-2.png",
+            "bytes": 4340,
+            "sha256": "18cb09960f8b14c3c899b47f34e25d64cb523ba714fd9091b16173940cf2f70a"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-3.png",
+            "bytes": 8185,
+            "sha256": "ef064cc101f85d680e34a169b18e064e2f5cd8dbb96a1504c34ba056e9f903e9"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-3.tsv",
+            "bytes": 226,
+            "sha256": "a650d2bbbfdc186a4cd519985db0c3e810020d168068befa872137bacdc091d5"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-4.png",
+            "bytes": 15274,
+            "sha256": "7e34eb4d89ae3fd9c3393a9746519fe256c08c5b89c9b97ff02d425e5943f0d8"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-4.tsv",
+            "bytes": 391,
+            "sha256": "720f78b5d9c519a164427e442513443d51c609282da9b66eb2c36cc9d8af6a3d"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-5.png",
+            "bytes": 5616,
+            "sha256": "010e45e0456da85cddddfecf662cae396a4d0b121a6131c83a9d5ed5b3ca28c8"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-5.tsv",
+            "bytes": 223,
+            "sha256": "13b1dbb5ba2a65b872f4c9c935c7e69deb1cdf00113463d154dd298a9fab5254"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-6.png",
+            "bytes": 4535,
+            "sha256": "9b7212e47f4095c2419c69864124cf7025f1a3b48d02d06f52d4612c59330b82"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-6.tsv",
+            "bytes": 285,
+            "sha256": "b1c80be66609348a289e93ae06e72050302efc27f9012eb6c4cb5eebe452180d"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-7.png",
+            "bytes": 3737,
+            "sha256": "5f7d633eac21c7313551207aa83b7a7d34999b2c733f5003f7ab74df066af459"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-7.tsv",
+            "bytes": 257,
+            "sha256": "9f598a75b79d476a854b222afc3efd3dbb8a4f718a88337e2ab566277898659b"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-8.png",
+            "bytes": 3843,
+            "sha256": "bef8c1047e78561c2f15b2d38f0de1192346880bab78bfb2876515d2fa64e66c"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-8.tsv",
+            "bytes": 223,
+            "sha256": "58c18ee1780af6c66a3fbebece53dad51ff2c197bc566d6fbab654f9495039c6"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-9.tsv",
+            "bytes": 223,
+            "sha256": "7cf1041cad0723f5c10d556b2ce9edbf91e73ac9acd6c06fe71bdac8205226fe"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-navy-latin-1x.tsv",
+            "bytes": 1076,
+            "sha256": "c6a36d4fc99953e1d0e527c808d15ea398f3bdbb35900e8f0464c2f5c3ad0ee7"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-gold-component-9.png",
+            "bytes": 3847,
+            "sha256": "15800d80461713dc4f8e7ef2c62b323e9d167f9be9a58262326b6edb22ffa424"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-navy-latin.tsv",
+            "bytes": 1499,
+            "sha256": "ed7ef149d1eca5cfab4ddde862c0c6f6530cde7c2674712cdea39c61070e4476"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-raw.tsv",
+            "bytes": 5721,
+            "sha256": "54d3ca8e69c30c674c3d6a3a7319de145357973d47166932153dc757d64ea4fc"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-teal-text-1x.tsv",
+            "bytes": 7362,
+            "sha256": "5d84bb1d56d950bcff4158227c0d81dda0894fe53642a955a9defb9cf599669d"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-tiles.json",
+            "bytes": 5218,
+            "sha256": "393dd471c98ec4d7c0cbba28265d362592dac241965adcd231942d6c09feb816"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.png",
+            "bytes": 75955,
+            "sha256": "46155eb30a14012168c8008be19ff265a47c85af04f5cef44e1a4b1fdd472567"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 2079,
+            "sha256": "47589696810ce32a5dd8fe1384a9d82f802a12ca4a9f7af83b61c5bb586f8f5b"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.png",
+            "bytes": 49650,
+            "sha256": "a8f696ddfcfcab3668739e10ba6a49b05114e01ae1358c8d2b509092e6421602"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.png",
+            "bytes": 113188,
+            "sha256": "cedef3ac9b651181cd78290790e78b8c1e0cfab2a1ad6b644f9be4bf1a7683ec"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 2134,
+            "sha256": "9dbe8fb2724f96e6048f29004f1e3aa2c3ed0c27b0e9e1b3ab4b758dca9a6185"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 3772,
+            "sha256": "3b984d102376c63a960da7a022094828a13d98d91063c04db7b6fcea81f6c48d"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.png",
+            "bytes": 72605,
+            "sha256": "c9e1af71bfa6347d72c0dd15188725a5685bb7ee4666dc7046d332982c4e896a"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 1595,
+            "sha256": "b7d351a58a07f53c8f30ffa96aadac69d9f9d67cc194d8dd452556377c10ba46"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.png",
+            "bytes": 77945,
+            "sha256": "7c3150f4f87a06ceecd7933eba1055a25818b038a020270a9e4cc74f8c6636f8"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 3593,
+            "sha256": "9e40275867bc2706a44daa23f4e82fda72e01ebc1241723fd5e1a913d5f77e04"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.png",
+            "bytes": 75574,
+            "sha256": "81206485f4ac709fa3c3d67abb26675bda85819e23b9201466992011c7d446f8"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 3964,
+            "sha256": "e31f48faed9c0a80a5e1ce093ba9d717f9fcf080e14c84a29574c65e72b0bc60"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-0.png",
+            "bytes": 62391,
+            "sha256": "a17170c52cf8750511969aa115e5b6b95317bafa327231959f378b9c8a747f9a"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-0.tsv",
+            "bytes": 3249,
+            "sha256": "608d6432efbafbffa04ba9608322cd5c7819d3a551965daa94f90a8e6b781d40"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-1.png",
+            "bytes": 49454,
+            "sha256": "1218f6312e1eac12d2712c06811d396c0ecf7b3fa3a19b8cad7fd515375d9628"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-1.tsv",
+            "bytes": 1880,
+            "sha256": "17fbb4393a68416f7d93f932b5199e60cb2a5379441bf50e15141d3c1141751c"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-2.png",
+            "bytes": 87689,
+            "sha256": "638df077a63425461956b4c7ffccf9cd40b07995fbb3b57e4aad5298737c54dc"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-2.tsv",
+            "bytes": 3626,
+            "sha256": "6a80f8d1d2602d22eae4f10c19ed6716ae5d37b6fbb05fa35bfaf01440bde468"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-3.png",
+            "bytes": 69582,
+            "sha256": "63c5367c0872901f968646801967ff4000042d2d766d437deca602036ee108c2"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-3.tsv",
+            "bytes": 972,
+            "sha256": "37274ddd7cdf6d6c1e09ff285c102f3839ca5f5ec279e834131ecd2cb0102f30"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-4.png",
+            "bytes": 78056,
+            "sha256": "770bbf772105ec4ccd808ff079343118857ee8a824bfa0708b63c81bb1cc8fb9"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-4.tsv",
+            "bytes": 4050,
+            "sha256": "bd71927d5ad0a4923c2310e80236e37b7ab0fabffa9f44adad039b0b2faeb855"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-5.png",
+            "bytes": 74651,
+            "sha256": "e460cafbd08d711351a5cbb08ee10d14ec758501dcf264ba16c90a3d21459c30"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin-tile-5.tsv",
+            "bytes": 2829,
+            "sha256": "5a2d8775b0bc8e6249635cdea264f41d1a93e26d28b4396f4966b2dab8c97b31"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-latin.tsv",
+            "bytes": 7256,
+            "sha256": "15ca96c07f57cccd5937479c543811ce85f5ce35698e84f1d77a32c3df26e84f"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr-white-text.tsv",
+            "bytes": 7412,
+            "sha256": "a8b7337ac0de2e660b70851c349f2c99f9b7c288cca386f4598ccfd8de32e3d8"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0-ocr.json",
+            "bytes": 26667,
+            "sha256": "20943960b5b04a2bfc661ae3f3861c2da6c1259bfb0d5ebfabd4e03cebf873b5"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-1-ocr-contrast.tsv",
+            "bytes": 4818,
+            "sha256": "92ec251a7e3eb8852a8070f85d33fd26cd8d86e665d7e5fd8405a0b7abeb31ee"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-0.png",
+            "bytes": 1157371,
+            "sha256": "7144f2f3ca789efc241f2d10a950d7909dfc8d486ae74bc1446834d4bb0cce45"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-1-ocr.json",
+            "bytes": 3684,
+            "sha256": "821dd54359ff98d9229f33e9d1a470206af8a81a99effffe9340dc1d6b3a4b7e"
+          },
+          {
+            "path": "main/21_stage_garage-section-visible-1.png",
+            "bytes": 787475,
+            "sha256": "f494adf94a44319d844e377b11ff1b3ba453272f20c90ac39e2d1c9293bdc35b"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr-contrast.tsv",
+            "bytes": 6234,
+            "sha256": "0a185625e8773390bed13c1b5340df5baf0045513d7ec956ed847ba383031301"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr-navy-latin-1x.tsv",
+            "bytes": 805,
+            "sha256": "dd307d3eaf467243c2bf8aafa636e1dfb6b13937aec6edc9589aedc00dbae2b3"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr-raw.tsv",
+            "bytes": 6736,
+            "sha256": "bec8c0a1eadddd6cf638ea50773496c51bb0fad8fbb615f72427e21398229139"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr-navy-latin.tsv",
+            "bytes": 2099,
+            "sha256": "b23c01522c5ded067f2a23a055bdab6ff08d8364c859a48a411ad9ea56cba679"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr-teal-text-1x.tsv",
+            "bytes": 8358,
+            "sha256": "1fac0dda3040f6ddd3bd2605a3a994d2b3f6baee968d42069bcb715d86532bc0"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr-white-latin.tsv",
+            "bytes": 7255,
+            "sha256": "47f2783a5747d4f387180379001f0fe70385d7784b8fd986fb9e8c223ac73d37"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr-white-text.tsv",
+            "bytes": 7387,
+            "sha256": "42d282830ae11db62637c95b11abbf08c62ccbd462a73d0864046a5af0111986"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0-ocr.json",
+            "bytes": 37957,
+            "sha256": "89584d1383bee7ede8c3fa22413c7e2e48525ee280abf6a0c40db548d1b31947"
+          },
+          {
+            "path": "main/21_stage_mode_cup-0.png",
+            "bytes": 1156762,
+            "sha256": "f633c18251bf5110b8cb8d534cef81837f0023cf60b338552bddf557be5846ca"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr-contrast.tsv",
+            "bytes": 6427,
+            "sha256": "8c7842635876f0e2bff90a20ef9e6e4b135169f79270d66d50d7191ee696d3ed"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr-navy-latin-1x.tsv",
+            "bytes": 905,
+            "sha256": "66bfd27c9b87d3b228153c0a17431c8a54ac7bb139d8fa3fca986908b7882532"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr-navy-latin.tsv",
+            "bytes": 2323,
+            "sha256": "b691c618d2f16447e7ef0ad9b2344c47e1a6b19133216200a4c2631bb5511473"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr-raw.tsv",
+            "bytes": 5961,
+            "sha256": "736accad2c6812d7ad56b945ea68a00ed0e5a68680dc3cf23f1e83d9452b3a8e"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr-teal-text-1x.tsv",
+            "bytes": 7981,
+            "sha256": "da67b55356da6f9a4e7c115c239536ce80153477f179b0ee055a6a601f55b476"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr-white-latin.tsv",
+            "bytes": 7629,
+            "sha256": "51489cf787bf168ee6c7082450bfc3c767cc5e553dd6c19a40300292ad2ce5f0"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr-white-text.tsv",
+            "bytes": 7961,
+            "sha256": "7bdd224479a7d5fa56afe3462739a05fe36f9c110cefebff8c496dee14e1c10f"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1-ocr.json",
+            "bytes": 39245,
+            "sha256": "134020ef4fc6eb0015959b0ef4237bd0f1b6a5c37139a5fb2fa7a8423fc92614"
+          },
+          {
+            "path": "main/21_stage_mode_cup-1.png",
+            "bytes": 1161670,
+            "sha256": "7641ce92b77c0ba5aca74b18391830ff2976038ac8592749f7a5965bee6245ba"
+          },
+          {
+            "path": "main/21_stage_mode_cup-surface-readiness.json",
+            "bytes": 3451,
+            "sha256": "b2786b4c113ee68bac3d090b3b97b3021bd3468711db8a5e3e6872f0ce53a40e"
+          },
+          {
+            "path": "main/21_stage_select_comet-0-ocr-contrast.tsv",
+            "bytes": 5332,
+            "sha256": "bdf2829f6b5ce87ed011827fb58ef6924d8270ed6134080ff17f3f4334ec513a"
+          },
+          {
+            "path": "main/21_stage_select_comet-0-ocr.json",
+            "bytes": 4215,
+            "sha256": "9ee08bda29401f54e5f475c390aa0a095c3b554ce68660da2d449423e491cd2d"
+          },
+          {
+            "path": "main/21_stage_select_comet-0.png",
+            "bytes": 787521,
+            "sha256": "6167593bd431cd7e7452a47c153d5b259540be32661665eebe0eed6d8d3e849d"
+          },
+          {
+            "path": "main/21_stage_select_comet-1-ocr-contrast.tsv",
+            "bytes": 5110,
+            "sha256": "03a82404109fdc89a5101f8b32f4820ace75bfff3381266ebe47fe60a7734062"
+          },
+          {
+            "path": "main/21_stage_select_comet-1-ocr.json",
+            "bytes": 3944,
+            "sha256": "25dd64537949ab49964ae6f22b6c1feca44af46826db3e2242d9cbf59ee054b2"
+          },
+          {
+            "path": "main/21_stage_select_comet-1.png",
+            "bytes": 787623,
+            "sha256": "abd9f6f60b97c846c9f31c715df4946ae89892dcbbbcc5810ff991ed9000c38a"
+          },
+          {
+            "path": "main/21_stage_select_comet-surface-readiness.json",
+            "bytes": 2744,
+            "sha256": "0e5487a474ac39b640e6a7a6d0984898d2b45c0120d6ddc3b072d0b122adfeee"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-components.json",
+            "bytes": 2761,
+            "sha256": "fca271a85f79bdb0946342d50903741e06213d169bffbe00b0cea20ddfe6fc08"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+            "bytes": 4628,
+            "sha256": "e1bd46c18953ebc44992f0ffd3320dea492efb379d25a891512b113a60facf78"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-0.png",
+            "bytes": 27086,
+            "sha256": "d843e175c30a44c6bd6b5a63e007565b62a0b38c72916a2df54568e2ac66c8a7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-0.tsv",
+            "bytes": 112,
+            "sha256": "c125ad5270f874831e35cf85eae78bd00eca3a88a7612c7484f011052c8df475"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-1.tsv",
+            "bytes": 109,
+            "sha256": "c4e6f42a33f538e4bdb9c5beaf67fdc0906683357f95fc53dd0dcbc0621680b7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-1.png",
+            "bytes": 2712,
+            "sha256": "6cc2f01497ff3e403af782090f6871f7d0112cf8b3435b95a272024b2fe8723e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-2.png",
+            "bytes": 2764,
+            "sha256": "eca6912fbefb58c5546e45cdc405f7d83666093e553403d396be325bd3727702"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-2.tsv",
+            "bytes": 109,
+            "sha256": "973b56e3a54fed531570e04aa7a782bb50a79a7dad66c0f96996616d7474cb0d"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-3.png",
+            "bytes": 2150,
+            "sha256": "d214227c8ff3b2eaf8a1ccafd64c88f0bef89c87fc6ab748739d8b46d1c0fccd"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-3.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-4.png",
+            "bytes": 4358,
+            "sha256": "8f38e20e0ff85c066d7820b001c89916176c13e570756950fbb2e3edcb01f9fd"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-4.tsv",
+            "bytes": 222,
+            "sha256": "8a5f64fd17ec2c6d9a3ce4a807a3382eff05b92f55aeb064a954f7f8d47fbb1e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-5.png",
+            "bytes": 4850,
+            "sha256": "f5deb06e32fbb088edd71f6b00963e85b7d418254b7c1b96adc16be4c4252913"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-gold-component-5.tsv",
+            "bytes": 222,
+            "sha256": "72d07b7876e3f54f67dbfb23d985297431a3d0c976ea74c7fe7925b1ab43f245"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+            "bytes": 3386,
+            "sha256": "b1234628331c48da59e3711ec63d21de7993865cfc2d562c216b4a72abc6bbd4"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+            "bytes": 3828,
+            "sha256": "16219d0a245affb4d92b3ee97f3701762333ed1f3c42cb7080efbf4cba9301e6"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+            "bytes": 5219,
+            "sha256": "e681d68e9e7b6036c2f621857400c0770dc3d7881d075f9965d804427cebb2dc"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+            "bytes": 5000,
+            "sha256": "dfdbec66c9c479e327bcc7f32a725b01ab28544b3401ab733b5433ce0b037aba"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-tiles.json",
+            "bytes": 5072,
+            "sha256": "96918fa26e88be702729aaa4e56b74b999bf46a5ff25828ddc6e4e4d38bd5dc0"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-0.png",
+            "bytes": 31712,
+            "sha256": "60dde703fb6c3449ff036e35206621b58eef34692e9e68a3b1cde00fc34a09ba"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 1924,
+            "sha256": "3d66fbdc0714ff6d560310eb967066d275d2218237317d9fcb21d5c330ee69ca"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-1.png",
+            "bytes": 30965,
+            "sha256": "5879d1fc0d3f6f3bdfc4cb4b64d991311a82aeaa1cdad8bd6db20441b3445f4c"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 890,
+            "sha256": "a14cb6074841ebc59e9722ee2dbde8dc333beeea5c929e68ce82fae48a98dbb8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-2.png",
+            "bytes": 29736,
+            "sha256": "b82b15f24c1fb272c819d236862fec8d4296399642abb5a8a3cee414e6e0ef77"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 1325,
+            "sha256": "42bc76ac0c061915700c0c459914cdc0d76177b374b4663e4e2b22b456cbbf70"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-3.png",
+            "bytes": 40064,
+            "sha256": "b354f5702de72917f5cca5e1dde455796aa7941e54b1b8143436acd28dafdf2e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 1469,
+            "sha256": "5d4216f731da20feeb5273059e4e74db356e35fbb737803dfba5309fb355debb"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-4.png",
+            "bytes": 36428,
+            "sha256": "e28aa53030638224f806dc7c9c15fae98efd6b0f343afcea20c39ce519e4294f"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 1444,
+            "sha256": "a12c75281e305326454f7cdc7d6683b45d330949ba0dab1ce6710cf67595386d"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-5.png",
+            "bytes": 28122,
+            "sha256": "a453186811d2f643467b112d7ecc94437bc166ffb41756eab1caded427f5b132"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 1070,
+            "sha256": "c4d24d597a41c714e65d738f3b3a59603e4b57b8d43f9cfefd527f4809e846de"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-0.png",
+            "bytes": 29256,
+            "sha256": "e77cd084253bb86435bb6d83db3cc32f7586b717ebcbcd824222fbb519eb86b6"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-0.tsv",
+            "bytes": 1544,
+            "sha256": "e5d189fad9edb7e5f04606f5559c034f8f85f79ac701ff6b318ff249443303f6"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-1.png",
+            "bytes": 28144,
+            "sha256": "03acce6b1610fc606e5844604d44e17b8d9f06c978c49336bfa8985f236e16e8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-1.tsv",
+            "bytes": 709,
+            "sha256": "8a631de02fcdfd52e02150dbb1c43816a77e547f44d21fd1f1ee50d26811e2aa"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-2.tsv",
+            "bytes": 790,
+            "sha256": "d5eec0ed83d333eab0ca7cf7c9f4ee6061cb9ce061c6fcfaec551b87b685f8a7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-2.png",
+            "bytes": 22959,
+            "sha256": "165e710b56d701e15d5d57a7f8624062034c31f4c480b7ad408049d88a8d24d9"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-3.png",
+            "bytes": 28651,
+            "sha256": "bf27ef92377b50e3ebf0cd9988ede981a88011d3a32b3bd3cbee296645f2dcf4"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-3.tsv",
+            "bytes": 796,
+            "sha256": "502e8f8a1922c13515a6bcc4041bf8629d44105288a53f4f0e90bc4401b61ec2"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-4.png",
+            "bytes": 34658,
+            "sha256": "94d2b1697435ce31772ec8a75504c5b07377a0fa7bfa04c21ab7ef388622f298"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-4.tsv",
+            "bytes": 1180,
+            "sha256": "b2f23504718deffe481f70abfcf2d7aa6b754769722d4521fdb3d71090474da2"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-5.png",
+            "bytes": 23831,
+            "sha256": "934fa8c6bdfe8533396d4d47bc543ae736ddc32ecec7648a820e491f22d73ced"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin-tile-5.tsv",
+            "bytes": 550,
+            "sha256": "e77e684a642c09cbeb2be772dbf32ea64d87bd8efd828e7e6fd137e4732bd43a"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+            "bytes": 2933,
+            "sha256": "2ba70db0ecb04946393389ca08861f074e252414b2beb31d3b45e7b76bddd950"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+            "bytes": 2968,
+            "sha256": "4400830fcdffd836af7d07141d94bd960491bf8b60733d6fd2f85e4bac61eaed"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0-ocr.json",
+            "bytes": 21121,
+            "sha256": "13ef269552bed5dff28779b596017efaf6b211fef6ac25d789bdbe3999c5d33b"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-0.png",
+            "bytes": 788919,
+            "sha256": "2c5214fe0ae35668c6e547dabcf14772a6e06101e52edd5e13bf01e99c7ab290"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-components.json",
+            "bytes": 2761,
+            "sha256": "81a786246a40cbb9909ed1a7d50cfc6a75de023d63567f861b6a338e93841e2e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+            "bytes": 4860,
+            "sha256": "25cc97cee82d2cac632769a6f7b9c14124d970c1aa9b2936708c9e49cb6d6ff7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-0.png",
+            "bytes": 27032,
+            "sha256": "f09f8daeb4769eebf8b3c1e0c304b2609052785c2228ddd5f3461037ecf119c3"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-0.tsv",
+            "bytes": 112,
+            "sha256": "c125ad5270f874831e35cf85eae78bd00eca3a88a7612c7484f011052c8df475"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-1.png",
+            "bytes": 2712,
+            "sha256": "6cc2f01497ff3e403af782090f6871f7d0112cf8b3435b95a272024b2fe8723e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-1.tsv",
+            "bytes": 109,
+            "sha256": "c4e6f42a33f538e4bdb9c5beaf67fdc0906683357f95fc53dd0dcbc0621680b7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-2.png",
+            "bytes": 2764,
+            "sha256": "eca6912fbefb58c5546e45cdc405f7d83666093e553403d396be325bd3727702"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-2.tsv",
+            "bytes": 109,
+            "sha256": "973b56e3a54fed531570e04aa7a782bb50a79a7dad66c0f96996616d7474cb0d"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-3.png",
+            "bytes": 7985,
+            "sha256": "de05d5c5ee9e39b8970bd75b27ee06202980b668c076f815219d318b1b5696d8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-3.tsv",
+            "bytes": 109,
+            "sha256": "a1f252a32360e8fa360a2aeca07e0f37809c0c45e7f6d8dec61a91b79b14d789"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-4.png",
+            "bytes": 2150,
+            "sha256": "d214227c8ff3b2eaf8a1ccafd64c88f0bef89c87fc6ab748739d8b46d1c0fccd"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-4.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-5.png",
+            "bytes": 4751,
+            "sha256": "58e139d14b1adfa6323ee421ba453df9d55dd3f46d5753e49eaac3558818cd3f"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-gold-component-5.tsv",
+            "bytes": 222,
+            "sha256": "15c76c62537d64e01d81b0eaa2b58fcbc741eb368b586a07c4c51b3d24b4b5f5"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+            "bytes": 2452,
+            "sha256": "37001f717359686469a8bc922eff09fe1db44594d56e04a8f93ab254472516e1"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+            "bytes": 3059,
+            "sha256": "3105a42a6d7cfc2419790c12f5205554f2c17339160eadc65119b2c0819f8268"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+            "bytes": 4423,
+            "sha256": "c12267287b4dbbaa7b566ac68131ec64a770f93e06b1a72464f13396ba7b43c3"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+            "bytes": 5652,
+            "sha256": "1fee5bc6b6fe9981cc1d89520d12221cb8769c137e0a0f27a1d6ddf40019f089"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-tiles.json",
+            "bytes": 5073,
+            "sha256": "4612524531b8b837b44f6207a769ccf5c0579323560249ad2a816dc9d3155427"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-0.png",
+            "bytes": 31712,
+            "sha256": "60dde703fb6c3449ff036e35206621b58eef34692e9e68a3b1cde00fc34a09ba"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 1924,
+            "sha256": "3d66fbdc0714ff6d560310eb967066d275d2218237317d9fcb21d5c330ee69ca"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-1.png",
+            "bytes": 30965,
+            "sha256": "5879d1fc0d3f6f3bdfc4cb4b64d991311a82aeaa1cdad8bd6db20441b3445f4c"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 890,
+            "sha256": "a14cb6074841ebc59e9722ee2dbde8dc333beeea5c929e68ce82fae48a98dbb8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-2.png",
+            "bytes": 29809,
+            "sha256": "1abb3acda20c7c228124f42e6692ed2d43a6c182f28d8fab534483423d2573d8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-3.png",
+            "bytes": 40555,
+            "sha256": "55ff3c56c2e12ca2ad9035c00eaeb2011886ac8cef38efec28d2537ce8a9d7db"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 1288,
+            "sha256": "fdca0b4dd458c8a6b6eae6ba59c4a33ae18f583f2b5d1fc5d259bad535bbb74f"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 1644,
+            "sha256": "3750d9ccb2568cbf593c62295e7f2141ec25da5edcc012a70498c317602144c1"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-4.png",
+            "bytes": 36475,
+            "sha256": "5b42fcd1c28d51979d05695bba32c19f704402abb67066879a2923dbe2481434"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 1523,
+            "sha256": "a76b00108f2f86c6c84d211b581363fee76f8efd5c4859b3e0591ccb7f28e7f1"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-5.png",
+            "bytes": 28160,
+            "sha256": "3cb0074f66513e8f7d59409347cddbfa912a6de547942c0e6f7876b09a26256d"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 902,
+            "sha256": "d60a3d3330d35ee78b1bfa5ae51d85ceb19ef58c067a7e4c15144ab08381ca5f"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-0.png",
+            "bytes": 29256,
+            "sha256": "e77cd084253bb86435bb6d83db3cc32f7586b717ebcbcd824222fbb519eb86b6"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-1.png",
+            "bytes": 28144,
+            "sha256": "03acce6b1610fc606e5844604d44e17b8d9f06c978c49336bfa8985f236e16e8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-0.tsv",
+            "bytes": 1544,
+            "sha256": "e5d189fad9edb7e5f04606f5559c034f8f85f79ac701ff6b318ff249443303f6"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-1.tsv",
+            "bytes": 709,
+            "sha256": "8a631de02fcdfd52e02150dbb1c43816a77e547f44d21fd1f1ee50d26811e2aa"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-2.png",
+            "bytes": 22692,
+            "sha256": "ade50c59bdae387bb7f1d3e04900f18e8f679e2d38a05da4157c3aafb82e007e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-2.tsv",
+            "bytes": 1369,
+            "sha256": "87c2f71d7aab09e0f9e2ec37a7d4e7630d0ef314f973df5fc6e922b3bab06d96"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-3.png",
+            "bytes": 29248,
+            "sha256": "82591dd76294e90827d3ba0f2b9c811ede70fa4823a2fa34d2c6e720c02c1b02"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-3.tsv",
+            "bytes": 1505,
+            "sha256": "03b0e8c040d6e576fc786b9cbb2e528a21ac2d5a350c263ec421d6967e170944"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-4.png",
+            "bytes": 34327,
+            "sha256": "8844059633f40c552f749327b8a0f52c870d39b434e48e3849fe08ef1a0c39ff"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-4.tsv",
+            "bytes": 1310,
+            "sha256": "b71b548daed387c55d87c49630a43fc86f74acd77688e3e4db855f6cdcc0e16c"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-5.png",
+            "bytes": 23682,
+            "sha256": "9865c1034dd118459cbe65bfacbbf9f64601c161baff4733b09bc904fcbeaa58"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin-tile-5.tsv",
+            "bytes": 792,
+            "sha256": "5e215a0ec58be8b04241cadcd4cc093d82dcb9d5ad64e76fc1c09cd6b1b8d583"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+            "bytes": 3485,
+            "sha256": "a9e4d551122f41cb56c7945622a611c64442994f3ddcfb3b5ac41956424ffc33"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+            "bytes": 3521,
+            "sha256": "d1a027012b0b452e5654314a05db64c4f42f0a5fb7a06571f959b993d700d8d3"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1-ocr.json",
+            "bytes": 20512,
+            "sha256": "e03329c988e841bf0b119547e87f847ded67bd59ad84fd6722f9e810c57e20f9"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-1.png",
+            "bytes": 792428,
+            "sha256": "72b7daf2f72af853c02f32eae564aa35d1619313d33682ab5a5462eb4e0e98ec"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-components.json",
+            "bytes": 2761,
+            "sha256": "2590332871aafda81cd3b28ca41479399e0e577c29e0f80b2573ef1fe14ccbdc"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+            "bytes": 5488,
+            "sha256": "bdab95b03e080bef08ba949a5d2d442f384b311e2db71bb7ed9c02422108133f"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-0.png",
+            "bytes": 27032,
+            "sha256": "a91fd85575d47d1ad6daa7945a470bd935ee83d5bc89918e913907db65c464a8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-0.tsv",
+            "bytes": 112,
+            "sha256": "c125ad5270f874831e35cf85eae78bd00eca3a88a7612c7484f011052c8df475"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-1.png",
+            "bytes": 2712,
+            "sha256": "6cc2f01497ff3e403af782090f6871f7d0112cf8b3435b95a272024b2fe8723e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-1.tsv",
+            "bytes": 109,
+            "sha256": "c4e6f42a33f538e4bdb9c5beaf67fdc0906683357f95fc53dd0dcbc0621680b7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-2.png",
+            "bytes": 2764,
+            "sha256": "eca6912fbefb58c5546e45cdc405f7d83666093e553403d396be325bd3727702"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-2.tsv",
+            "bytes": 109,
+            "sha256": "973b56e3a54fed531570e04aa7a782bb50a79a7dad66c0f96996616d7474cb0d"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-3.png",
+            "bytes": 8379,
+            "sha256": "519435f4bea60697e018a0ec7188ce3921393927d9540fe649253f1358a38609"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-3.tsv",
+            "bytes": 386,
+            "sha256": "fdf9265bf919f09381e1568183384d47a3e544a8cfa6e9cd85b37f32d905e0f7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-4.png",
+            "bytes": 2150,
+            "sha256": "d214227c8ff3b2eaf8a1ccafd64c88f0bef89c87fc6ab748739d8b46d1c0fccd"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-4.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-5.png",
+            "bytes": 4711,
+            "sha256": "e93505af6d7eeed9e2e24722f23df2b119b701482418c15f0592fcacd213e2de"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-gold-component-5.tsv",
+            "bytes": 222,
+            "sha256": "379dea8bea474af57de2b31d3b13bece18af002020bdce660c8ca41d62dc191e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+            "bytes": 2666,
+            "sha256": "9d4895b3e25c25f8c59436e8672498e19e0376134933e47a419d76cb67447513"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+            "bytes": 3671,
+            "sha256": "00cc8d631ece747ac8aff38c38dcb37d8f6e63634885cc2d06cacceacd215db7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+            "bytes": 3901,
+            "sha256": "208227fa84300a4db3562b36c62e3380277bc76afc8a2db2034b5964700b64bb"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+            "bytes": 5782,
+            "sha256": "e404018db4dce416def45f5e0e34fb834c6f7ce243b2791950e5b0496386e559"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-tiles.json",
+            "bytes": 5072,
+            "sha256": "77b817d14a1a476836ac39a597d7a4831a40309860b5c9ded3c1b0cad4664d49"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-0.png",
+            "bytes": 29681,
+            "sha256": "afa799916f94762063048d6743bd799d66cff8e9a85c650696cd5bc5b270c4ed"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 2045,
+            "sha256": "baffef3f930b06174768b73871ef212d2b77a1cdf550465dbd9a129e846bf041"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-1.png",
+            "bytes": 24692,
+            "sha256": "b0eb8a370fdb1d218ec24517e82d68222f381a8d621db632f936dc72d2bf3e09"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 758,
+            "sha256": "4b19971395fd16c016f0dc8274ce0431976b4b815a2c12cfb18777385bef0c67"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-2.png",
+            "bytes": 29593,
+            "sha256": "dd1f7db946e741168788dbb836d4e67aec4e067133d57a9a1f4cb18754f5facf"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-3.png",
+            "bytes": 41315,
+            "sha256": "71b4fa3e25b99017ca1d834f5cab7a28ebaa7836f2118d57c7ad991eec037a19"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 1735,
+            "sha256": "d1a163f693f5f072be40422cedd0a73ada447fcd78673148e69baef2182d923f"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 1644,
+            "sha256": "cccbd724e22cc27555a201efda5f4dc9f7a5a2bd82827d0ff5c64f11b0f1b0e0"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-4.png",
+            "bytes": 36304,
+            "sha256": "5cb06f3c949a6d43fb96ee9a3fc653fa535d0eb67ae8c31adb0f0b7f1bebb90e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 1485,
+            "sha256": "64328fff71386fc3bf66161f0afecc77b07a112e797340aa5ac5853c4909ad3e"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-5.png",
+            "bytes": 28181,
+            "sha256": "00c9a252675045cfd795195ae941cd36e9bebd40de97c0478be46fbb5e82b3a6"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 1105,
+            "sha256": "f0ef212bb729493aa2ef2f9a90bf494a4b30060fa940264d17f26cde25f1f87b"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-0.png",
+            "bytes": 26981,
+            "sha256": "aa54e6a23f77549e6c22931947a098fea42ace8d713c82a5583d7a424460d158"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-0.tsv",
+            "bytes": 1902,
+            "sha256": "774fd53a5ac8f1229883854cf4b2511c994f6fafce7c52d9c40dd0b4a3f3d296"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-1.png",
+            "bytes": 22052,
+            "sha256": "babd052d5f3ed69976fa114c7b0dde8efe9ace41ea1b000fdf1a43cc3b00d027"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-1.tsv",
+            "bytes": 577,
+            "sha256": "38925fb7dbe57181aa0d34cae791e497ecf9cc45b66677334fbaa561f089dea8"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-2.png",
+            "bytes": 22435,
+            "sha256": "64923fee91617ab5ac32317bdf7a33554c445ff284355e69b841df9c0c4ac8b6"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-2.tsv",
+            "bytes": 968,
+            "sha256": "24745e366944889df4b91f2a206e2fb1d5879199624a0ba2ff387bae8eeab18b"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-3.png",
+            "bytes": 28888,
+            "sha256": "fdb5f5bf31feba8b20589b69eb3547eae4641bfabd104d6a8c433572e45b99fb"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-3.tsv",
+            "bytes": 843,
+            "sha256": "c21b0e5567b2eb29d1c0fde9a6c91c80dc3bf6797e2e47c8efe521c5f50dd768"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-4.png",
+            "bytes": 34042,
+            "sha256": "9bbc21aeafeb55acc6ff3e3ac8a239bb1f265f6786124d9b86197859fffa4da7"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-4.tsv",
+            "bytes": 1437,
+            "sha256": "65a0189e8c9e09d1d63f757fc8e4932d8a7009040073784d363b45393d53c599"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-5.png",
+            "bytes": 23468,
+            "sha256": "d817ef65becfbfd2cc647df8f3df21ebfdcdde426df54702e161a5ba51403ded"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin-tile-5.tsv",
+            "bytes": 805,
+            "sha256": "0ea3022827a36423ed2ff37e08b692ccb670431e1c1e1605334b637e89775933"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+            "bytes": 3341,
+            "sha256": "c849d024c34b76e5fc99e595365cf30de926439c611d68b2d358583304383f26"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+            "bytes": 3376,
+            "sha256": "2472e42b87d5fc632d7c22c9e6e365ecbc318f426b1c1c5b60076492c9c8e2b1"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2-ocr.json",
+            "bytes": 20046,
+            "sha256": "5dff830cd46daf8c3cd83d9d10629fc528adb0f41ebefc5df9b0c6885b242be0"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-2.png",
+            "bytes": 784389,
+            "sha256": "33ff8013d1541f6c1d0367caba494a4f8cd29578cd2d6c783d636d75386a6549"
+          },
+          {
+            "path": "main/21_stage_select_gecko_velo-surface-readiness.json",
+            "bytes": 3833,
+            "sha256": "e72b8aab506d8809518d4784a8d4438c7965d55dcb87a3d496792c1ae9573533"
+          },
+          {
+            "path": "main/23_zurueck_in_flutter-flutter-return.json",
+            "bytes": 467,
+            "sha256": "25178e5f7b11ff6f49d5bc91928855fd6ca93dfd372295d465e326ca068f6e1a"
+          },
+          {
+            "path": "main/23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+            "bytes": 7038,
+            "sha256": "d512a465ba4dc8abb6d82364a65b4d9827c9d318e8d8345a2dcf60e3405ad995"
+          },
+          {
+            "path": "main/23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+            "bytes": 5653,
+            "sha256": "cbec9830fc4269df4b1186cbc7670125197e0b4aa4c778c531ffcada041869be"
+          },
+          {
+            "path": "main/23_zurueck_in_flutter-flutter-visible-0.png",
+            "bytes": 1947442,
+            "sha256": "04047929018154303ee4ad645f7ee0a66589e88d42067a0eeb983ba748f214dd"
+          },
+          {
+            "path": "main/23_zurueck_in_flutter.png",
+            "bytes": 1947442,
+            "sha256": "04047929018154303ee4ad645f7ee0a66589e88d42067a0eeb983ba748f214dd"
+          },
+          {
+            "path": "main/24_lernen_nach_kart.png",
+            "bytes": 1892317,
+            "sha256": "96bca0a78a4257c2fba3fc406a6452d52d7525789001bd0acdcace43b9a9f929"
+          },
+          {
+            "path": "main/25_start_nach_kart.png",
+            "bytes": 2616697,
+            "sha256": "ae6d4a40fa4e0fa73559bf4e1c66d2a154fc0c1280d30339692ba954c9735320"
+          },
+          {
+            "path": "main/26_neustart.png",
+            "bytes": 3041703,
+            "sha256": "8c9fc754b08105d0b373d161b335b6b95fcc0aa3521bc6eeff2d3d53fba44b03"
+          },
+          {
+            "path": "main/30_fold_aussen.png",
+            "bytes": 2556891,
+            "sha256": "625ea3514ab6f93ff8e50f455810cfd780978a849aca04781e03f99cb11785e9"
+          },
+          {
+            "path": "main/30_fold_offen.png",
+            "bytes": 4248657,
+            "sha256": "58cc4767c7a8476af5ea5f878eabaab083eb2b21bee6be4bfa343b2574778fca"
+          },
+          {
+            "path": "main/30_quer.png",
+            "bytes": 1820111,
+            "sha256": "d966758f524f8d8623d3197278b4bcbc9a9ea58b0dc4abc8ed8a5b0f5d58cc0f"
+          },
+          {
+            "path": "main/99_fehler.png",
+            "bytes": 3089493,
+            "sha256": "b0de370fbe6f36eb5cbe39934e9eb56e05f99209200b79f95c2cd81dca5630fd"
+          },
+          {
+            "path": "main/after-kart-preferences.xml",
+            "bytes": 2011,
+            "sha256": "20f57559627687044f12f0c5d769b971e16d7dd99469acebc561ea59d2d7746f"
+          },
+          {
+            "path": "main/after-restart-preferences.xml",
+            "bytes": 2011,
+            "sha256": "f18e982144def629a8e434888d94964509ea155459ecee23877340378d031c4d"
+          },
+          {
+            "path": "main/atelier-after-return.xml",
+            "bytes": 34004,
+            "sha256": "d9191e60a829bd3da44e61e546f73b32e4d1cd7e45b659394422816487da8193"
+          },
+          {
+            "path": "main/atelier-build--1-0.xml",
+            "bytes": 21276,
+            "sha256": "7e6a0dc267a25753956532feedebf16b7fc46e8eb647fc1437355f6ac3798bae"
+          },
+          {
+            "path": "main/atelier-enter-bridge--1-0.xml",
+            "bytes": 23538,
+            "sha256": "dd5bad23c81d0ec6a183ac39d2e415c27b438078c47c46c8a3ade2fb3d2a1332"
+          },
+          {
+            "path": "main/atelier-home-entry--1-0.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-1.xml",
+            "bytes": 32711,
+            "sha256": "a57c624f93ea51e25e0b501b615e375db459118d45c3eb70f033ea4ea134522e"
+          },
+          {
+            "path": "main/atelier-home-entry--1-10.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-11.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-13.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-14.xml",
+            "bytes": 32704,
+            "sha256": "c2cdc654a6fb8ad96b5815b0b54941f33206981ae38a3a4c26e88bdb1fed8511"
+          },
+          {
+            "path": "main/atelier-home-entry--1-12.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-15.xml",
+            "bytes": 32704,
+            "sha256": "c2cdc654a6fb8ad96b5815b0b54941f33206981ae38a3a4c26e88bdb1fed8511"
+          },
+          {
+            "path": "main/atelier-home-entry--1-16.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-17.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-18.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-2.xml",
+            "bytes": 32704,
+            "sha256": "448513eaee183e704b876757cebab7e09a5ccefb7329f86b26a149a7be89d7c8"
+          },
+          {
+            "path": "main/atelier-home-entry--1-3.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-4.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-5.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-6.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-7.xml",
+            "bytes": 32704,
+            "sha256": "c2cdc654a6fb8ad96b5815b0b54941f33206981ae38a3a4c26e88bdb1fed8511"
+          },
+          {
+            "path": "main/atelier-home-entry--1-8.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry--1-9.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry-1-0.xml",
+            "bytes": 32704,
+            "sha256": "6bf4bdaf8b6bd5a4ed5af70c0479fe83c8fb431b8de80efe80132488dc8ce8b6"
+          },
+          {
+            "path": "main/atelier-home-entry-1-1.xml",
+            "bytes": 34119,
+            "sha256": "168335d131407c6b07e1ee54517184f789022de21f93f8aa4e90952d6f219542"
+          },
+          {
+            "path": "main/atelier-home-entry-1-2.xml",
+            "bytes": 33511,
+            "sha256": "a172b85e44c2f4680a2b9cc18ca11627e6f9f0b27e8c46eb21e0e3d181ef6fce"
+          },
+          {
+            "path": "main/atelier-home-entry-1-3.xml",
+            "bytes": 34001,
+            "sha256": "f60740f121bb2396995def85a3a55fbdf96144ed223134f6b7f7e87789c95ffe"
+          },
+          {
+            "path": "main/atelier-hub-0.xml",
+            "bytes": 23538,
+            "sha256": "dd5bad23c81d0ec6a183ac39d2e415c27b438078c47c46c8a3ade2fb3d2a1332"
+          },
+          {
+            "path": "main/atelier-model-check-0.xml",
+            "bytes": 24414,
+            "sha256": "1a1579f50026a1e294719bd69f65526762cb76c1117c3a2b525d76a5e09b1d7d"
+          },
+          {
+            "path": "main/atelier-real-ten-frame-0.xml",
+            "bytes": 24414,
+            "sha256": "1a1579f50026a1e294719bd69f65526762cb76c1117c3a2b525d76a5e09b1d7d"
+          },
+          {
+            "path": "main/atelier-topic-list-0.xml",
+            "bytes": 23538,
+            "sha256": "dd5bad23c81d0ec6a183ac39d2e415c27b438078c47c46c8a3ade2fb3d2a1332"
+          },
+          {
+            "path": "main/atelier-worked-example-0.xml",
+            "bytes": 21276,
+            "sha256": "7e6a0dc267a25753956532feedebf16b7fc46e8eb647fc1437355f6ac3798bae"
+          },
+          {
+            "path": "main/cold-start-launch.txt",
+            "bytes": 547,
+            "sha256": "5e8c70e8296c23b32bf0e041d6fdd0c126ee69778f80b47f225d8119bbaebf9e"
+          },
+          {
+            "path": "main/before-kart-preferences.xml",
+            "bytes": 1646,
+            "sha256": "4bb00983bede94a79fe7d3fb30c594f7675ca73de85be4d242ad5e6f2e8e2337"
+          },
+          {
+            "path": "main/fatal-logcat.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "main/home-to-games-0.xml",
+            "bytes": 32706,
+            "sha256": "6459e1cc741fba8e39a12d654198d079d0df33fcd2588bb46228c87cd900c59e"
+          },
+          {
+            "path": "main/install.txt",
+            "bytes": 139,
+            "sha256": "5f5ea3d43fe2d5f7e0993b8d04b3ad01000e2f9554853d05595a40512abd6753"
+          },
+          {
+            "path": "main/installed-package-uid.txt",
+            "bytes": 59,
+            "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+          },
+          {
+            "path": "main/installed-package.txt",
+            "bytes": 9107,
+            "sha256": "c882821f9fd3f5307a1b1c939eae825e361432cb95d400623b9d41f2cad0cbc2"
+          },
+          {
+            "path": "main/lernen-after-kart.xml",
+            "bytes": 31306,
+            "sha256": "71bfdf7f9f3410b656e407a890cbc9fc8058b7fbb7a9cf25a7b36409324fbfff"
+          },
+          {
+            "path": "main/logcat.txt",
+            "bytes": 2000022,
+            "sha256": "a5536a50221f200c0ebe697264830cb8a18e34288f878f1d38bea40d2c3cfcab"
+          },
+          {
+            "path": "main/lernen-before-kart.xml",
+            "bytes": 31305,
+            "sha256": "5159fa90d66ee4670fab592aec725485a198268b86b739317a8ea4dd2d551d93"
+          },
+          {
+            "path": "main/nav-lernen-6--1-0.xml",
+            "bytes": 34004,
+            "sha256": "d9191e60a829bd3da44e61e546f73b32e4d1cd7e45b659394422816487da8193"
+          },
+          {
+            "path": "main/nav-lernen-after-kart-6--1-0.xml",
+            "bytes": 28137,
+            "sha256": "e5e7eea65294555896085904b980008f8aff808ec126199ee9d694eb3b784aa1"
+          },
+          {
+            "path": "main/nav-spiele-7--1-0.xml",
+            "bytes": 31305,
+            "sha256": "5159fa90d66ee4670fab592aec725485a198268b86b739317a8ea4dd2d551d93"
+          },
+          {
+            "path": "main/nav-start-5--1-0.xml",
+            "bytes": 28133,
+            "sha256": "5c17c05c36bd0830821f35aacfb74628d17afa8cf5945626ffc1fa126dcac700"
+          },
+          {
+            "path": "main/ocr-work.png",
+            "bytes": 204295,
+            "sha256": "88843d192e1686eccc49de52a39a43302d0f4ee6eb935cdeba56de1aada94f4b"
+          },
+          {
+            "path": "main/nav-start-after-kart-5--1-0.xml",
+            "bytes": 31306,
+            "sha256": "71bfdf7f9f3410b656e407a890cbc9fc8058b7fbb7a9cf25a7b36409324fbfff"
+          },
+          {
+            "path": "main/onboard-age-next-0.xml",
+            "bytes": 24051,
+            "sha256": "7cb32b2a2fe8129c666152b1ed944e5a76d6aa52167e5e85b4c4682fdddb3bc8"
+          },
+          {
+            "path": "main/onboard-games-Spiele-1.xml",
+            "bytes": 28135,
+            "sha256": "244ce55689ffd1e2fee5c016a5c4ae287d5549cb3db559e3ed406b7491831c66"
+          },
+          {
+            "path": "main/onboard-grade-save-0.xml",
+            "bytes": 23245,
+            "sha256": "fc8e31fcdb838c9cae7f5272f0e21dc3741752896f443343cad70cf90c483a16"
+          },
+          {
+            "path": "main/onboard-games-Spiele-0.xml",
+            "bytes": 21450,
+            "sha256": "564c43442fe0ac24e25cb6a7d26572dac447b1cbc59deaaadfab1ad2057045a7"
+          },
+          {
+            "path": "main/onboard-home-0.xml",
+            "bytes": 32706,
+            "sha256": "523bb42c3e7835dd14e070d932e0f7ce7268c953a9a0bf9a686115714eaa5705"
+          },
+          {
+            "path": "main/onboard-ime-before-dismiss.xml",
+            "bytes": 95915,
+            "sha256": "8a5440c4b476619bb6aa52b38cf9a602070ce39902f4f62c9a5908af3a9510e9"
+          },
+          {
+            "path": "main/onboard-name-next-0.xml",
+            "bytes": 22745,
+            "sha256": "10f0118b308612c151e40486c6773b5c6071fdfd43bcea83cf3d9eb1e02e4a11"
+          },
+          {
+            "path": "main/onboard-name-written-1-0.xml",
+            "bytes": 95954,
+            "sha256": "b7ab3d7ccbf2c6bc9cf95d56681973ad85871253aa3ea7c769800bef8bcd481d"
+          },
+          {
+            "path": "main/onboard-name-written-2-0.xml",
+            "bytes": 95894,
+            "sha256": "e0c91109c6165631e95e17d50bffeda67c4c80c8e98d54e79ac30eecbfcc9557"
+          },
+          {
+            "path": "main/onboard-name-written-3-0.xml",
+            "bytes": 95895,
+            "sha256": "d2d466f3a94be2aa288f577ebfa627f35bf41dc468575efe34f7a5e5533ad18b"
+          },
+          {
+            "path": "main/onboard-name-written-4-0.xml",
+            "bytes": 95898,
+            "sha256": "eb02c84cebb610394387020ba0d408632fe76d726ace4112a50e0b0e431ada87"
+          },
+          {
+            "path": "main/onboard-name-written-6-0.xml",
+            "bytes": 95902,
+            "sha256": "3ea7b82478d08f87d7f9afae91e066fcac7633f34093c3addca3dd8f847da697"
+          },
+          {
+            "path": "main/onboard-name-written-5-0.xml",
+            "bytes": 95901,
+            "sha256": "6d01f936ff7e7607c68957a0dc49102f43ebe6b733e658e1f5b85f35a7013cd7"
+          },
+          {
+            "path": "main/onboard-name-written-7-0.xml",
+            "bytes": 95908,
+            "sha256": "1d8b5c71a53839faefaf2ddca48b88d9e4027c51b430c6c9657316255b44e31c"
+          },
+          {
+            "path": "main/onboard-name-written-8-0.xml",
+            "bytes": 95909,
+            "sha256": "ccd65bd06449295cf77a4db76ce54f6e7296d753243ea8a3e4e7afbcfd73bd66"
+          },
+          {
+            "path": "main/onboard-name.xml",
+            "bytes": 22759,
+            "sha256": "51a225f5b04deea739b06423318796929bba3a0a91fc6bc1f0595aef25d27d99"
+          },
+          {
+            "path": "main/onboard-welcome--1-0.xml",
+            "bytes": 22419,
+            "sha256": "4abb5efb7c3dee14362cd08e6f83fbee853462c2e95dadc87541fb4f5f740147"
+          },
+          {
+            "path": "main/open-kart-47-1-0.xml",
+            "bytes": 28136,
+            "sha256": "9712d3d9faba905135586311f00c12eafb64e05db17b96900266f34c3b50c34d"
+          },
+          {
+            "path": "main/restart-0.xml",
+            "bytes": 32708,
+            "sha256": "58fc6c9efa57f5032c4c9d1e18a6a95a6fcc8208905325d6fb82c2d52667ca6e"
+          },
+          {
+            "path": "main/restart-after-kart-launch.txt",
+            "bytes": 547,
+            "sha256": "b0a3098f8c638b13b52fe16c787f6ea1c6b4a93094154467c4eb823d61ae9388"
+          },
+          {
+            "path": "main/rooted-emulator.json",
+            "bytes": 1522,
+            "sha256": "93ba2c031e167d121bb9f0d6affd8c4136b3028810b1a0d70291f4a22c716043"
+          },
+          {
+            "path": "main/start-after-kart-0.xml",
+            "bytes": 34005,
+            "sha256": "cd0e8118e900f0238f3d5db5c60786ff14b9d731b4d04c9b6936ec2655e41a1b"
+          },
+          {
+            "path": "main/start-after-kart-1.xml",
+            "bytes": 32558,
+            "sha256": "c6c0e2347d77516a4f04ea7ff9b7a5a3c576c4d81e1ff35e8097ff8f880ce059"
+          },
+          {
+            "path": "main/start-after-kart-2.xml",
+            "bytes": 34000,
+            "sha256": "769d216b3992b67d274d6b7765b7fb881920b2fece3de572268aef796bce27c5"
+          },
+          {
+            "path": "main/start-after-kart-3.xml",
+            "bytes": 34111,
+            "sha256": "9ba23bd7d10025ff333ad1996f4a51db3a7cbe517255770427f3da4a22e5a8b9"
+          },
+          {
+            "path": "main/tour-result.json",
+            "bytes": 6239,
+            "sha256": "6e6d8b5f288df95cef372db7408c1fa69d793c181c9e67c635f54c900b7c9f3c"
+          },
+          {
+            "path": "main/uiautomator-config.json",
+            "bytes": 189,
+            "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+          },
+          {
+            "path": "mesa-renderer.txt",
+            "bytes": 1724,
+            "sha256": "b277253727c4bde756f6a883f72ef6a9501369c98fbec6260d74ae7bfc295bdf"
+          },
+          {
+            "path": "metadata/artifacts.json",
+            "bytes": 8265,
+            "sha256": "7c3ecbbb250f45f64e51847fa1e900093200889bbe5e446908d47956d3078989"
+          },
+          {
+            "path": "metadata/jobs.json",
+            "bytes": 21198,
+            "sha256": "d0b82159af6b6298347dd70ab379ce2570db1b644a92199dc155e1a3a319de70"
+          },
+          {
+            "path": "metadata/run.json",
+            "bytes": 13647,
+            "sha256": "c3ccf36cedb674caf18b2494f9580fc8cd2813765988cfc462f52c40786273a7"
+          },
+          {
+            "path": "tesseract-installed-languages.txt",
+            "bytes": 87,
+            "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850"
+          },
+          {
+            "path": "tested-apk-sha256.txt",
+            "bytes": 108,
+            "sha256": "0e4be4a06d5b6c94bc41769835876d26f7a1c95769ca0ca2588ebc926c980732"
+          },
+          {
+            "path": "xvfb.log",
+            "bytes": 4696,
+            "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+          }
+        ],
+        "verified_at_utc": "2026-11-14T15:09:47.734740+00:00"
+      }
+    },
+    {
+      "path": "14118638414/artifact-manifest.json",
+      "sha256": "29b97256ce980bb7117d4d52592ae9e95f582b1f0e418df661bc91ccb1ea2ecc",
+      "verification": {
+        "artifact_id": 14118638414,
+        "artifact_name": "lumo-connect-four-2020-in-place-update-proof",
+        "archive_bytes": 60621212,
+        "archive_sha256": "6e1665739388ff4f1b0405ff7e994eec2a14bdb50bdedcbf5891d2cce059e0ae",
+        "source": {
+          "id": 43596913210,
+          "repository_id": 1222433959,
+          "head_repository_id": 1222433959,
+          "head_branch": "integration/lumo-live-connections-20261114",
+          "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+        },
+        "attempt": 1,
+        "zip_crc": "PASS",
+        "files": [
+          {
+            "path": "07_home_after_onboarding-render-candidate-1.png",
+            "bytes": 20795,
+            "sha256": "a0953495b4cd2b913361623025635252994b9eb28d648f8a56136eddca0c08a1"
+          },
+          {
+            "path": "07_home_after_onboarding.png",
+            "bytes": 3055477,
+            "sha256": "442d9169278f91556ab952002eee045714132b9f5d0be5686fbfc587ca0887dd"
+          },
+          {
+            "path": "07_home_after_onboarding-render-readiness.json",
+            "bytes": 946,
+            "sha256": "3c407e620d457e3c158a2e079b7d5f14ab14d914b9510653c091c1ca9ac40d8a"
+          },
+          {
+            "path": "08_games_after_navigation.png",
+            "bytes": 1669354,
+            "sha256": "3f2f61836999f8bd8a918939be91763a267a198bed5f0b4526016d81ad8d0d4f"
+          },
+          {
+            "path": "20_spiele-render-readiness.json",
+            "bytes": 528,
+            "sha256": "fa9bb551580be0db1804458c2663c0c95c58ce9ca3f9e2509c892ff9da6f39ba"
+          },
+          {
+            "path": "20_spiele.png",
+            "bytes": 1929264,
+            "sha256": "531370e8ff3f962a714084166191e471bc1c35157fa006a2626699989b4d403e"
+          },
+          {
+            "path": "21_stage_garage-open-0-ocr-contrast.tsv",
+            "bytes": 6844,
+            "sha256": "37c6aa5da2a40558a3f4efefabd524c5eafbfe05c4ed50fb168efcfcf4e2e8e1"
+          },
+          {
+            "path": "21_stage_garage-open-0-ocr.json",
+            "bytes": 5226,
+            "sha256": "f403720b5eec5d458dbf8c329e483a588b744c16e1aca4524ff50a74abb72512"
+          },
+          {
+            "path": "21_stage_garage-open-0.png",
+            "bytes": 1121703,
+            "sha256": "45840d5a990f339a948fcc8a7ab3e1f0f7bc228b40c66b0836eef58075805dc6"
+          },
+          {
+            "path": "21_stage_garage-open-1-ocr-contrast.tsv",
+            "bytes": 7048,
+            "sha256": "be97f5f964c8131360ee60006ceb28483ebab305102cda61579fcc74f9f5781a"
+          },
+          {
+            "path": "21_stage_garage-open-1-ocr.json",
+            "bytes": 5495,
+            "sha256": "d34907fa3b6d77d11f9ae7d6af8565902694d3bae4161711d74d73319e2b2b9c"
+          },
+          {
+            "path": "21_stage_garage-open-1.png",
+            "bytes": 1124505,
+            "sha256": "d80effb4e876ee13a06c184d26bbd9945755578f797c5c49358b0fc8475885ea"
+          },
+          {
+            "path": "21_stage_garage-open-surface-readiness.json",
+            "bytes": 2746,
+            "sha256": "6547a49362c63e714f44ef01e83f10dd8e0dbb707bbb227f5729350d913d4c36"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-contrast.tsv",
+            "bytes": 6065,
+            "sha256": "afea7a5ec190d6f62a5f6be8d8a741433634c69aab0361f1e23d8a6ff17a5648"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-components.json",
+            "bytes": 6770,
+            "sha256": "76ce5f81735952c818d5192ab8b5bd2a6e35277dd3461217e82ddbfe38324d8a"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-0.png",
+            "bytes": 34340,
+            "sha256": "5ce633d1c47cb3d9acae5d3ef5827a0eccbb2ca9ec11eac7334970e3f00e5c07"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-0.tsv",
+            "bytes": 281,
+            "sha256": "3f6047d651ad05cfb7502d7e40047296de303f61f6cc0cffabbcd267888088ac"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-1.png",
+            "bytes": 29296,
+            "sha256": "dc8bda616fe4d779f5c683b2b3d9587e8d0a07efee1e2abbc1bc3b0ce26ef853"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-1.tsv",
+            "bytes": 389,
+            "sha256": "7590256827a86a0007796962a1cd410298ea19b3645aafbe1d07f7ac4f87f9c9"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-10.png",
+            "bytes": 3885,
+            "sha256": "1205f564a52835551fb3a166bb00772b0f3f9fcd99fb1cabb8a4d7d2b3241d7a"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-11.png",
+            "bytes": 4577,
+            "sha256": "14a64a9d140beb9f36e39ab4cafc92bf4024a96d0e1952c63fb55b00ebfa8e63"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-10.tsv",
+            "bytes": 223,
+            "sha256": "87eac808a133b1c91613393e5153957456374fe3158ced1306a0e9c8ae27ad6b"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-11.tsv",
+            "bytes": 227,
+            "sha256": "762ed03986295017be1c9d0af6bb63ba3b91e4d14ad8406dabb27b9b843b9e37"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-12.tsv",
+            "bytes": 221,
+            "sha256": "abd075f4e11430897a4e78f8f7225a1580104f4d33367ee599773d240b19ceb5"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-13.png",
+            "bytes": 3348,
+            "sha256": "ea60933d5944f5bf0c40983b3e392ee6c678983c77e131ffa09403964fea7461"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-12.png",
+            "bytes": 3535,
+            "sha256": "22afc7de5d254d561aed276d7649686d571a2bbaf19ccb428aa4d260b7a43633"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-13.tsv",
+            "bytes": 222,
+            "sha256": "46db38226d192a9096597b1715b757e891277dfe0d019d7d098db2b72d212ef4"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-14.png",
+            "bytes": 3189,
+            "sha256": "4b52b2d4c8a70156bd31c3c62361131f42091d75b7cb11b6fba5d145d32435a4"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-14.tsv",
+            "bytes": 226,
+            "sha256": "5aedac1cf9fd6c2a2d2e6716045437dbc4c5568aed98a3c832efb7f35452030c"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-15.png",
+            "bytes": 3884,
+            "sha256": "1d0ff93193b3135ee8602a32ce4661fcb040d012ead55a2523da5b8de475faa5"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-15.tsv",
+            "bytes": 109,
+            "sha256": "cc935a60f9f84f75118f138ffec62c2eac434145c4c4eb6bcc088e76f1f70e4a"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-2.png",
+            "bytes": 4657,
+            "sha256": "149584350908c40cd785815cb431c6a21c06a177d0d1e1b60192a59fdbcdc7b1"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-2.tsv",
+            "bytes": 224,
+            "sha256": "fae9c6df974ffdc3895629f728f6e4ef280116870097e24e01ad7d2af193553a"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-3.png",
+            "bytes": 14386,
+            "sha256": "a8996eed2b114082060a314c25817051a4136671f577e844dbb062491653f9df"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-3.tsv",
+            "bytes": 291,
+            "sha256": "54c6807b4555dc6cfb636d5ca4e293e0029c7a521c5755fea170ca617a52001f"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-4.png",
+            "bytes": 6126,
+            "sha256": "39a8255ecc0571cc6f8f9f5543dbc37149e387a55cbe302ff4d52b490f07be6c"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-4.tsv",
+            "bytes": 226,
+            "sha256": "2c78284d69fbf910dcade7d609623ff0979fe4400aee7fac701e3f0b1bf9d742"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-5.png",
+            "bytes": 4176,
+            "sha256": "33222f11a6299b543620ae6413fcc6a089312ec572fd25ece1d3d81a2093af5f"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-5.tsv",
+            "bytes": 224,
+            "sha256": "aab22d54d021af1ca035ae77bed59103997d96cf08f273096f71b60f28d30150"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-6.png",
+            "bytes": 2432,
+            "sha256": "6b6b4a85f5a120aae34f951aec9da39f4ade09ddfb929c05e2ce675d95ed6d19"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-6.tsv",
+            "bytes": 256,
+            "sha256": "195ef659da07fda9459fccd21457ff47d4295f4d982cb0171c1040282c7201a3"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-7.png",
+            "bytes": 3729,
+            "sha256": "e780f676dae2ff41739b4ca44d177b552f6848945c4d2cb891166f7c7c7a3aec"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-7.tsv",
+            "bytes": 221,
+            "sha256": "334afae8b175932e17f060fb644339fca26d8645b8ba564417c96c5bc29c64ee"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-8.png",
+            "bytes": 3863,
+            "sha256": "513e27e4404ed444f96b1cf389f29e58ab76871c5752f260603272943e51532d"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-8.tsv",
+            "bytes": 223,
+            "sha256": "7ce71526e7d18b71b5634ee8336a7ae5625e29552d66efb2649df276055888aa"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-9.png",
+            "bytes": 5563,
+            "sha256": "ba8aced9bbd609759c35c497349db5065301cd83704fd77f3cfe09880df81e35"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-gold-component-9.tsv",
+            "bytes": 227,
+            "sha256": "0fe40010f8b404630c7fc45e529c02af9272abe92d437de9fac664cf08b12795"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-navy-latin-1x.tsv",
+            "bytes": 944,
+            "sha256": "794723a26fbd452501c27eb56924a5975a0c8515bebe38153dd2f19a5478bbaf"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-navy-latin.tsv",
+            "bytes": 969,
+            "sha256": "e54dd3f96e57ad0cb144b82f9165c13fa45635f66beb87edcd93d69cdf993dfb"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-raw.tsv",
+            "bytes": 7695,
+            "sha256": "e3855b851c4f881b4335baba170695e5316a4aaca0d1210ff55b7234aeefff5d"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.png",
+            "bytes": 60422,
+            "sha256": "f05892ebd5cdea7069b93b06ee2eda6485ed7765cb36debf5e0ed7349c17f1c2"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-tiles.json",
+            "bytes": 5280,
+            "sha256": "6a3ea758523833ca14a8de06224df295a36b75e89eebf8f6333a356a8ed0af30"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-teal-text-1x.tsv",
+            "bytes": 8180,
+            "sha256": "3cb58cc68d95f237eae173a5a8cb3302114a1ab65f62f4e739ee4706a4eab547"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.png",
+            "bytes": 42614,
+            "sha256": "eef63e510729a712bad719b6b1dff7e65b4a75748f470fc9fdbba7d8a6f472bd"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 2244,
+            "sha256": "1ee81c89322f6f775ae1d15ceebcbbea96d6b33bbc33ed6fb521a91dada890c4"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 3276,
+            "sha256": "ec04017b77aad80f3871bcaa83b3c18909d571cfd1b84f6344a948198a4b8d5c"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.png",
+            "bytes": 113368,
+            "sha256": "03ba94310f63f4f6c094c25b818756618def9c40a1a253d7129178f4dce76404"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 2184,
+            "sha256": "69f0a6358464c4c4d5dcb4128ec533094b5869ebf8f4f30b113e226b0d654881"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.png",
+            "bytes": 71748,
+            "sha256": "b6508c48bc70a504b46271837bc0e3c1be08ed39e7e44ecb6fbc07c5f9634e0b"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 1270,
+            "sha256": "08b7714de374d297f0303e50d59174ab3dcc6aa9a693ea7bc1c7c15bd7c2d07f"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.png",
+            "bytes": 82280,
+            "sha256": "5e288eec3089adad0b15749de568fb229e10d2ae5e1ba0723caa0b2fc171895a"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 4697,
+            "sha256": "5a7c364373f7d75e6006e109aac348371675b55582c389d637a6c565bf55a458"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.png",
+            "bytes": 74911,
+            "sha256": "8b8166e6ce8e4637699e84f150e45d75e45834f5cb667063b1243b3fd3cb433c"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 4932,
+            "sha256": "4945e30e1226ddc9ec7569e974024f1a64d010111f78153c95e88d747874dedf"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-0.png",
+            "bytes": 53424,
+            "sha256": "0801c9794dd0a149d95455febb3232895de6c68f4b8fd6cecc0b175c67bb4ce8"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-0.tsv",
+            "bytes": 2853,
+            "sha256": "41ae38e005d049f1ea396bfb06b549967da4d04970041fea2740947b6feeb7a5"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-1.png",
+            "bytes": 41473,
+            "sha256": "8bd6ab1df59717baefc80064a6d584d84e36252f0b10b183a09dce64b65ce799"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-1.tsv",
+            "bytes": 2705,
+            "sha256": "6daf45fb753b222ad543108560dcce2178148dd33128e8308aab051b38990f1c"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-2.png",
+            "bytes": 85779,
+            "sha256": "659fb3df3d1dac6e6b05190b188acb6e7cfa67d532812e4eac41269c6966120b"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-2.tsv",
+            "bytes": 2967,
+            "sha256": "f5d4e8cbc964704540ed886f14b5a1a2e67ebec6cdbe999a35ca1612c0b6ea91"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-3.png",
+            "bytes": 69117,
+            "sha256": "bf82e01311f6e23388e6efebf361d4bb3714647c65a1d90e9203c5e062b12460"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-3.tsv",
+            "bytes": 1491,
+            "sha256": "a80714c7826f0553ff83de200577c143ee918eebdc6fcbc240ea796beec45add"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-4.png",
+            "bytes": 80528,
+            "sha256": "40de0ead1e4963353877020ac94801ebcde192fdf3c1850714263662d74ad02a"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-4.tsv",
+            "bytes": 4776,
+            "sha256": "81f663e1c09e337592f45e2de22fed33860dfc845a0d0eb3a9d03348a739bf8c"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-5.png",
+            "bytes": 73571,
+            "sha256": "c9b90861a593ca6f11d582ba419aaed63d898eaef9d7eccc3c6c11583111815b"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-5.tsv",
+            "bytes": 3393,
+            "sha256": "89fbe14566bae4b3e2a100e4fa4e44fbf83f267cbc778dd004d51996d2038cf8"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-latin.tsv",
+            "bytes": 8392,
+            "sha256": "c368c498422bdbbb04540b63fd1099ed680c116d1eeb79b051bb7fc622daa719"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr-white-text.tsv",
+            "bytes": 8780,
+            "sha256": "f7f37f5db289234d0f8090660f6af98006300f1d8dc4652bed8d54b7eecd1fe5"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0-ocr.json",
+            "bytes": 29222,
+            "sha256": "ee35d83eaf0e8404c10c19840d6fa0d64137d0116590db094f40003092c4e646"
+          },
+          {
+            "path": "21_stage_garage-section-visible-0.png",
+            "bytes": 1115149,
+            "sha256": "2fa956dbd984cdf22324d5fb1737d3edfa3b01e4484517b81db8999e396d3ebb"
+          },
+          {
+            "path": "21_stage_garage-section-visible-1-ocr-contrast.tsv",
+            "bytes": 5548,
+            "sha256": "d74cd09c538b1ab52014c0b6a064a985579d5bf5fa2c1dc1b29501439af8b148"
+          },
+          {
+            "path": "21_stage_garage-section-visible-1-ocr-raw.tsv",
+            "bytes": 3556,
+            "sha256": "a728ee4dc7e8a6be55c39eee77deebbcc58ce00a34edbc3c3447432aec84fde0"
+          },
+          {
+            "path": "21_stage_garage-section-visible-1-ocr.json",
+            "bytes": 9455,
+            "sha256": "e82bfc816a898f5a0fcfe55081b9d69f006c444345f93c2aacf83ce9dc8bbcd0"
+          },
+          {
+            "path": "21_stage_garage-section-visible-1.png",
+            "bytes": 765359,
+            "sha256": "e13d2cf34d8e68af52dff1874dbf05c18200970cd0bb84fe2f7450424612cfbd"
+          },
+          {
+            "path": "21_stage_garage-section-visible-1-ocr-white-text.tsv",
+            "bytes": 3251,
+            "sha256": "aecf4ab2524d63ca065d7b999403b999a84b7127e33e2e5c5a8597d93aac5c2d"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr-contrast.tsv",
+            "bytes": 6773,
+            "sha256": "8cc3f60294382b3ce127a4e2eb29aa3329236e883abdc11abc445bad48bf40e2"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr-navy-latin-1x.tsv",
+            "bytes": 1110,
+            "sha256": "6ecb65d3d0543083bebb646d665ba76f3d3e35f4cfb4dc32f0bd382f9d26d216"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr-navy-latin.tsv",
+            "bytes": 843,
+            "sha256": "61405e7f063a1cf806b92a511d3f9389032d78b8a354b86bd2a3242d8106982e"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr-raw.tsv",
+            "bytes": 7717,
+            "sha256": "b3547ee2c4d423033dfab5ba2118ad7d2b497473a90d9b08cd2e8f0d9cf14d3f"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr-teal-text-1x.tsv",
+            "bytes": 9305,
+            "sha256": "70f9b2c254be9ff504d73ccbc96699160968cf680a326b56f7144f256cbfbc3f"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr-white-text.tsv",
+            "bytes": 8974,
+            "sha256": "59256343d9b5f548c08778a22ed2b32cd05e011963980ca484ac0eee504b35ba"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr-white-latin.tsv",
+            "bytes": 8583,
+            "sha256": "cccfd8aac3a3d0d9f0982be7916d76f02a48c3b55fa8c7d461a6d7ad41dd14ef"
+          },
+          {
+            "path": "21_stage_mode_cup-0-ocr.json",
+            "bytes": 45063,
+            "sha256": "c243fb046a9ec796140401789a0c1c7daff7c80cf5a5f7754b25508e6f44265d"
+          },
+          {
+            "path": "21_stage_mode_cup-0.png",
+            "bytes": 1119041,
+            "sha256": "b26df210d236c9e730e234163195879521ae8865d328bbfa0c6369de30c9c1c6"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr-contrast.tsv",
+            "bytes": 6255,
+            "sha256": "2442aba5a9bd9e96fbf85c4702eb27b7671076d392af70c5602bf928f5bc196a"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr-navy-latin-1x.tsv",
+            "bytes": 979,
+            "sha256": "edc68361ea3b431967e6fa70c42cf2df3d8892afd9c74c8e00da6c6b916e15bf"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr-navy-latin.tsv",
+            "bytes": 1776,
+            "sha256": "c38295069d2c6acbe85fdf01ac9badce999dde1a0164fe7dc4fe2d3b4b89f6ad"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr-raw.tsv",
+            "bytes": 8246,
+            "sha256": "ee070e2121fe7ec692d0138578980301d0f44207383e5fafcf25bc5e3d6bf907"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr-teal-text-1x.tsv",
+            "bytes": 8114,
+            "sha256": "7de4446ebbfab111a3087c14e36ead2b9ecd1651821d7ce9d3a61603fd7cfc67"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr-white-latin.tsv",
+            "bytes": 8431,
+            "sha256": "1bc1cd5c301a3bce2347a90b42c352359fd3b0f72838eee0aa595c6b6ab322b0"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr-white-text.tsv",
+            "bytes": 8736,
+            "sha256": "ffd9d5bf1b4ecd42329ba0b51fc6f061a53113e1efc5fac6276a93b5d32b5bfa"
+          },
+          {
+            "path": "21_stage_mode_cup-1-ocr.json",
+            "bytes": 42710,
+            "sha256": "8bd2b751f7c73f4ef8ea6ea04737674d2179bc7fce14b29028451ffaccda5f00"
+          },
+          {
+            "path": "21_stage_mode_cup-1.png",
+            "bytes": 1124305,
+            "sha256": "945719abaab91dec77753ab3d29e2fd48122ab68de39fbeff246d2350353a85d"
+          },
+          {
+            "path": "21_stage_mode_cup-surface-readiness.json",
+            "bytes": 3451,
+            "sha256": "ae1b2d01246f26f3216b3c76f34425b3333bbc7e028016c141cdd53bb1278568"
+          },
+          {
+            "path": "21_stage_select_comet-0-ocr-contrast.tsv",
+            "bytes": 5679,
+            "sha256": "94e93be7c64a2a348fd562789ee0f5037b5d8453752d92b961022b434d133f2e"
+          },
+          {
+            "path": "21_stage_select_comet-0-ocr.json",
+            "bytes": 4734,
+            "sha256": "ad052795ea59a1d73a2ee04d84749d9955f7dbec4e5c889a5adb7d6c52d39a6e"
+          },
+          {
+            "path": "21_stage_select_comet-0.png",
+            "bytes": 765934,
+            "sha256": "3c736e1c52d3987a8a4ae2ce597fdaa8a852c713c7c11de6d5466a8d63f4faeb"
+          },
+          {
+            "path": "21_stage_select_comet-1-ocr-contrast.tsv",
+            "bytes": 5597,
+            "sha256": "7f6bf0e3b5cf96d33bfb8dd1fc6efd3187d7056baea0ed4b7fb2848a9d3389dd"
+          },
+          {
+            "path": "21_stage_select_comet-1-ocr.json",
+            "bytes": 4728,
+            "sha256": "a4498e80a7315f3fe1a19d8d1d40571687ff3cc9e275460dc9a9a55f3ad8cad0"
+          },
+          {
+            "path": "21_stage_select_comet-1.png",
+            "bytes": 765682,
+            "sha256": "524678cb647e536612ac7ce109033b04748dbc96ad083c7f26509ed1e5d04394"
+          },
+          {
+            "path": "21_stage_select_comet-surface-readiness.json",
+            "bytes": 2743,
+            "sha256": "848db27807210a9b95cb0170a5951ac8eb372fc5573af8bbcb8f4c98251a389b"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-components.json",
+            "bytes": 2763,
+            "sha256": "7ed0e2088186876642e2663f8f7a615d67dac60922a8b8b8377c195bfa7dbed0"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-0.tsv",
+            "bytes": 112,
+            "sha256": "0fd9672f810ab69e93871a94d1e5dce1f2c5304e1f0fe3c61ae0d96b78f6901e"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-0.png",
+            "bytes": 26981,
+            "sha256": "0732c1bbe7a9defbf3a9e2fd90d57908ed386adfd6994b35b580b44d4fed8b61"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+            "bytes": 5759,
+            "sha256": "93f5acb925446f77ed8237dd5871d2d1289e94323b635a991216123f61014bc5"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-1.png",
+            "bytes": 2890,
+            "sha256": "e1c43742faa484b78b7012fed79a522a3ed8bac2a4ec982bbc20abd72992aae2"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-1.tsv",
+            "bytes": 109,
+            "sha256": "973b56e3a54fed531570e04aa7a782bb50a79a7dad66c0f96996616d7474cb0d"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-2.png",
+            "bytes": 2153,
+            "sha256": "1385f6f5dbb437a38dd78ad5ba0e795310cc5b14286a3fd0f29829b09a547914"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-2.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-3.png",
+            "bytes": 2189,
+            "sha256": "a238084bc7d5b09bb93ab4aba7dbf6b59456db10b2a2c8090030af189d296249"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-3.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-4.png",
+            "bytes": 4389,
+            "sha256": "03744c8d9509497acf2c685c3c499afd10287358126d144eb38b43a86bd34d55"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-4.tsv",
+            "bytes": 222,
+            "sha256": "135aa7131befa8ce0361b6b10d3baeeea5d86b689b6fa97aecaab3e27ef67bcf"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-5.png",
+            "bytes": 3954,
+            "sha256": "bd18c0987e1fcf94df76dbcabe2b7852547fab80367a9ee55db048cbe7b1b9d8"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-gold-component-5.tsv",
+            "bytes": 222,
+            "sha256": "ca561b2f7058fa3daaf37ac3f9b8d0783ca5bfcf7aa05d0070867375612edf7f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+            "bytes": 2748,
+            "sha256": "65358e66e8be1c7e5b97303b70ce80189c2c07811cf9a298c5a0f9b613473be2"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+            "bytes": 2754,
+            "sha256": "d84aace947677cdfb78f286ab1593f302a72dbd3963207120ac4b533aa27c204"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-raw.tsv",
+            "bytes": 3849,
+            "sha256": "1d2c438fb2d56bb52ad2251525bc67f41fe670b981bfc196c65026eba06ae837"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+            "bytes": 6138,
+            "sha256": "73ea9ba109d701320900e20b300824c8d83273a1cce79ffa5a15f897e7ba303c"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-tiles.json",
+            "bytes": 5071,
+            "sha256": "3948085d193e957e755ae3dc9ebb7322d496fcf4eaad2fe56f78971ded89f6b4"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-0.png",
+            "bytes": 29939,
+            "sha256": "396d2ac7238c02ea402bc6db7a62c244b27a21531948fbd7f85863e0bf448825"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-1.png",
+            "bytes": 28860,
+            "sha256": "777b87f3bb7bf5160445ded137a6ea11f56292ea8ef29132db9632c3435fe0bb"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 1469,
+            "sha256": "3263e34943aef12deac9e143e71badbf8bee114c4233b190b725a5d75d74145f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 714,
+            "sha256": "f3922270374d2b27c145392b09eef7776cc8f3110bc2d068352047a4c99791d2"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 1685,
+            "sha256": "53f096c27632c7a7ca5255b422c33ba5e6f354a1a6b70875491113f19fb507fb"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-2.png",
+            "bytes": 27822,
+            "sha256": "1ec4476d7a99a096eb4bbeee393d28c79d1cfe0dfbb4061440956355f75bc4d5"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-3.png",
+            "bytes": 40791,
+            "sha256": "cf22790a1211c661a7d5d8b05a2b6d6d1a27ea2a80f2cb55282d945043cbe8c5"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 1783,
+            "sha256": "983ce0cd228f396d094f53d2b12f6ffa5d91ddf1b91ac45ccb71824149d81aaa"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-4.png",
+            "bytes": 36134,
+            "sha256": "c053d5b44efb791f659519b83e0223b135d68bc21dcdb728003886e4bb6fa4d4"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 1262,
+            "sha256": "68e5797e21ef0d5ddaf45ba18c1efd4047ea18f4d702995b123d471ed9347613"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-5.png",
+            "bytes": 29453,
+            "sha256": "9674f1d2fdd986b9dc4134c7ea9a00812de6324df27bf05cda0c59ee2537249a"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 926,
+            "sha256": "d9b8016f87ca2e32f142009209760397db7fda8690d23346bc9eb952cce8ac42"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-0.png",
+            "bytes": 28635,
+            "sha256": "653503e3b7cdbb7b5043d44695f6b349148408c24fd89201ede0dfe2e117fb50"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-0.tsv",
+            "bytes": 1326,
+            "sha256": "34996506d90c7b735a2829ca6ba89817d79e02ca8ba1a53e3c913d2bde4e84ee"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-1.png",
+            "bytes": 28377,
+            "sha256": "40891e94e700383ade298cb9474bff1328d9ea91ccae7b18c61b36a91ec7a616"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-1.tsv",
+            "bytes": 714,
+            "sha256": "0b20d5907c1a30fc7c20fe1cc30436fed4d8d1dc3153b4f87893bfff7b206575"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-2.png",
+            "bytes": 22529,
+            "sha256": "9593a78f8977635e18dfa492b5444f29e21c028707153b49915f47d6b89bc0f8"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-2.tsv",
+            "bytes": 1166,
+            "sha256": "d0a1abb25a8051ffc0cd9fc12a4ad4952667572b078467c3204b9e9f5d8095c8"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-3.png",
+            "bytes": 30842,
+            "sha256": "da495d7618b258dcd04ef8150edfc4adb3aff3f9e3572784536a34ff0998d2f8"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-3.tsv",
+            "bytes": 824,
+            "sha256": "31b36b0b63a2dad559177fa7f5334d78d99966b8013f9cd0c00a281929597a40"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-4.png",
+            "bytes": 34333,
+            "sha256": "8ad5b67bd554b91801514caeff8d737bec41626037baf1869d3e3c20e2a3819a"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-4.tsv",
+            "bytes": 1893,
+            "sha256": "e1cbbcf57a78089a443b622744436297545fb4fb0e78b659b5363666e7c935a6"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-5.png",
+            "bytes": 24863,
+            "sha256": "3bb5dc43c89333f6290de48a1591a0e5301aa65e47a303ebd9b85524bb2759b1"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin-tile-5.tsv",
+            "bytes": 858,
+            "sha256": "26a9757b2d68215dcf1868852615788fae14c16f2c562a5a651ed1e0e29f347e"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+            "bytes": 3283,
+            "sha256": "126072f1a8ce19726e9a250048e983297ccf2f960925a2179bdb58ccfd7a1235"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+            "bytes": 3294,
+            "sha256": "f7f6787d957834d13ba938e3dc29792bf2850273c574937af84063accf4b938b"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0-ocr.json",
+            "bytes": 20989,
+            "sha256": "f56cebfefebedfe9ca488a48bc0bb7e27dee09ca1ad8a9ee144e5953ddb9557d"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-0.png",
+            "bytes": 766876,
+            "sha256": "22b2311774c6fdd87c331c52eef39eb9bced9d99aab5723bf7ed4164fe42c0a4"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-components.json",
+            "bytes": 2378,
+            "sha256": "b3c56e95c5dc9c606859475e33aa73f311307df672c3ad022f86c939496306d9"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+            "bytes": 5438,
+            "sha256": "9e8ddd78520916a4666389a5f7c5791004d12e8a9c30f36cb73650b452c69576"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-0.png",
+            "bytes": 26987,
+            "sha256": "7d9a047bdfb8c0d16961ceb9acf8e06f9dae7b00cb6818de2584a8d261b94691"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-0.tsv",
+            "bytes": 112,
+            "sha256": "0fd9672f810ab69e93871a94d1e5dce1f2c5304e1f0fe3c61ae0d96b78f6901e"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-1.png",
+            "bytes": 2890,
+            "sha256": "e1c43742faa484b78b7012fed79a522a3ed8bac2a4ec982bbc20abd72992aae2"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-1.tsv",
+            "bytes": 109,
+            "sha256": "973b56e3a54fed531570e04aa7a782bb50a79a7dad66c0f96996616d7474cb0d"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-2.png",
+            "bytes": 8022,
+            "sha256": "ad3a293bfce9da1eec7d395a0fe96d4f5fe42444d261e04835a7bdb7e55e8b96"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-2.tsv",
+            "bytes": 109,
+            "sha256": "a1f252a32360e8fa360a2aeca07e0f37809c0c45e7f6d8dec61a91b79b14d789"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-3.png",
+            "bytes": 2153,
+            "sha256": "1385f6f5dbb437a38dd78ad5ba0e795310cc5b14286a3fd0f29829b09a547914"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-3.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-4.png",
+            "bytes": 2189,
+            "sha256": "a238084bc7d5b09bb93ab4aba7dbf6b59456db10b2a2c8090030af189d296249"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-gold-component-4.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+            "bytes": 2382,
+            "sha256": "a18d4d702f945ec934e2d8e73568eda569273ec31a38b94729df8e247d8e40a3"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+            "bytes": 2190,
+            "sha256": "41a1554eff49416bd08a717765caf4bbe4a78dff4cf67fe67e125f8f302d5c5f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-raw.tsv",
+            "bytes": 4098,
+            "sha256": "d2b97355fb5e50e207c5dcf379645d3a78ad793e38df9003f34132e9c8668fc6"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+            "bytes": 5364,
+            "sha256": "691d6ecaa8554b28668f01ebd32902a31f2217de01a5fe5247d4b9ac1fc23717"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-tiles.json",
+            "bytes": 5072,
+            "sha256": "dd921930bf3baaeef3f59a707836a7c42f348d2171dc156793277035ff497276"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 1469,
+            "sha256": "3263e34943aef12deac9e143e71badbf8bee114c4233b190b725a5d75d74145f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-0.png",
+            "bytes": 29939,
+            "sha256": "396d2ac7238c02ea402bc6db7a62c244b27a21531948fbd7f85863e0bf448825"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-1.png",
+            "bytes": 28860,
+            "sha256": "777b87f3bb7bf5160445ded137a6ea11f56292ea8ef29132db9632c3435fe0bb"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 714,
+            "sha256": "f3922270374d2b27c145392b09eef7776cc8f3110bc2d068352047a4c99791d2"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-2.png",
+            "bytes": 27976,
+            "sha256": "3e57907c4712e442d1f18ead2bb7c82fb4eb5843abf2f85ea4c92b1fdcc73607"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 1692,
+            "sha256": "4e1ed0f7ab542a09a3f17ba851ecb050e581dc57875507fc5124d5a83c55abf7"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-3.png",
+            "bytes": 41131,
+            "sha256": "ac6f795277a1cf46df432562311f90ab590bdadbb4720c78f736a7d87818038f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 1697,
+            "sha256": "7a0ca800c58fb10eaf2a5c8efc3519a7e986f487da0b63434cb486060f8036fa"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-4.png",
+            "bytes": 36070,
+            "sha256": "9fb6ca49fa881f0e747e56f5e4e9e0c917d49e395e87fbc0daea923c62e0446b"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 1370,
+            "sha256": "294266d49e02ce0c2de19480d024b55dd697533cd6b5ce9074a52171ab5fca70"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-5.png",
+            "bytes": 28954,
+            "sha256": "5c66e7740ca9f8a03f7436a70144aa612908fc03e7b2fc552ff330477b2a0778"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 1101,
+            "sha256": "ad9728a2fb6c0a46d1ed4fc205b5164d6ba690955fc31c06738a0235b823b7f5"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-0.png",
+            "bytes": 28635,
+            "sha256": "653503e3b7cdbb7b5043d44695f6b349148408c24fd89201ede0dfe2e117fb50"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-0.tsv",
+            "bytes": 1326,
+            "sha256": "34996506d90c7b735a2829ca6ba89817d79e02ca8ba1a53e3c913d2bde4e84ee"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-1.png",
+            "bytes": 28377,
+            "sha256": "40891e94e700383ade298cb9474bff1328d9ea91ccae7b18c61b36a91ec7a616"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-1.tsv",
+            "bytes": 714,
+            "sha256": "0b20d5907c1a30fc7c20fe1cc30436fed4d8d1dc3153b4f87893bfff7b206575"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-2.png",
+            "bytes": 22681,
+            "sha256": "05a69c2d72c3ad3b957bd9fd235f4a758b5f5419525449507feb4eae03b0e125"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-3.png",
+            "bytes": 30871,
+            "sha256": "cda0722108441ed01cdc44d5e51b828b343eb083040f172834348132306e67c9"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-2.tsv",
+            "bytes": 714,
+            "sha256": "4fea19271f2dffa86976d2bb64df5cc0cd12eec43f327d2b5aa489d8a727ce34"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-3.tsv",
+            "bytes": 1246,
+            "sha256": "e4842522855cf10f37e69e6ea460f3a69700a7aa2eff9898915baa4f88927829"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-4.png",
+            "bytes": 34423,
+            "sha256": "a4964791198930056e3523525128ed9e2186290fd83f2c3705de3aa185f51b4b"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-4.tsv",
+            "bytes": 1399,
+            "sha256": "77cd7c76a31e8b7f84c4d93fdc9cdda377ea790c5688c5dd29e8c9a2663e8eff"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-5.png",
+            "bytes": 24585,
+            "sha256": "c461e1d6ebca5a3f71e3dfd35b085ddad161da8d40128dde1f160973032ddcea"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin-tile-5.tsv",
+            "bytes": 552,
+            "sha256": "b2737593a8453b1df4644506cb58e653505351136c0545e1b2afd94c61f4130f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+            "bytes": 3383,
+            "sha256": "51a99d5d19a566e7165cd52ce45694fefc64bfbc9ff4d1f2c48645f7c57b8374"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+            "bytes": 3347,
+            "sha256": "88a25fdf5dcdaebecc509918b6e1f8380bc230383b25fbf1f42c3ab78adcf2f8"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1-ocr.json",
+            "bytes": 19640,
+            "sha256": "27063254a1d5afd5f3d2761c165736986226636bd1712892d6d760c963ce815d"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-1.png",
+            "bytes": 769329,
+            "sha256": "04263acffae479dbb9f2d4238fa5a641388656b45ed6742411438f6aeb59c3ca"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-components.json",
+            "bytes": 2762,
+            "sha256": "7b5232bfd6a34e8628ee10da4ed34da7c98a2c82f7d7a535aeb7f5030374dc82"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+            "bytes": 6459,
+            "sha256": "a2f7cf5ce3f0386e678078ce0d0acb5effdc13a3d3747625fcb08c0b17e4493e"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-0.png",
+            "bytes": 26990,
+            "sha256": "9a4e320da50b302d494dd805707f5577af31edab6b6751d4b4454e98344b66ff"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-0.tsv",
+            "bytes": 112,
+            "sha256": "0fd9672f810ab69e93871a94d1e5dce1f2c5304e1f0fe3c61ae0d96b78f6901e"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-1.png",
+            "bytes": 2890,
+            "sha256": "e1c43742faa484b78b7012fed79a522a3ed8bac2a4ec982bbc20abd72992aae2"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-1.tsv",
+            "bytes": 109,
+            "sha256": "973b56e3a54fed531570e04aa7a782bb50a79a7dad66c0f96996616d7474cb0d"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-2.png",
+            "bytes": 2153,
+            "sha256": "1385f6f5dbb437a38dd78ad5ba0e795310cc5b14286a3fd0f29829b09a547914"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-2.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-3.png",
+            "bytes": 2189,
+            "sha256": "a238084bc7d5b09bb93ab4aba7dbf6b59456db10b2a2c8090030af189d296249"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-3.tsv",
+            "bytes": 109,
+            "sha256": "b77e5593e9ff1f60c2e48f6a575c2be7207e5df1f2dd4ba48a06c03f59643848"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-4.png",
+            "bytes": 4364,
+            "sha256": "aef2f69b17e31bfa7b94c132904d5e7fc3fd6dabfcc038e20f7f2955c514d9ec"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-4.tsv",
+            "bytes": 222,
+            "sha256": "8eb13e4ef75fefad835c382050ff32ec0c0a0eb1529d564a8f1a9561cff5de73"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-5.png",
+            "bytes": 4303,
+            "sha256": "c1b78cf8b862f73ebfcbd86156a24524ac67377d487f537567b649626a41ec1f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-gold-component-5.tsv",
+            "bytes": 222,
+            "sha256": "17ff2b4f0ff12ff67654e644e28170db190bce8fa56e7aed02fa45d88f47bfd6"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+            "bytes": 3247,
+            "sha256": "0ee3c5fb05aa214599f1a8ad24486e20535202259777269b1880628e47891ed0"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+            "bytes": 2504,
+            "sha256": "f38d49916292aefe2a3d1988127ecdc3c998090366a80afea0ae081d402e808a"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-raw.tsv",
+            "bytes": 3774,
+            "sha256": "6863367eb3d2e3c9f3fde416793cc1864c9ea7556fe39b2d3dc7a24e3af8a410"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+            "bytes": 5396,
+            "sha256": "bb40d564bcb51fda10ff3c1c82a1eeb738ecbaf3669946c05e31308eb6796976"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-tiles.json",
+            "bytes": 5072,
+            "sha256": "250ec0655d049f9357e010921fe298d9d80768e4a8fa0b03ac757970c0f49a8a"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-0.png",
+            "bytes": 28405,
+            "sha256": "546b66a5fce420ebc4b651d77758f6fe04614db0a97c8f7d4ee571545c6b3ab9"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-0.tsv",
+            "bytes": 2289,
+            "sha256": "992474e5cfae9761980c9bed0be223e70cb9ed4427ffdbb2cde125e71199a0d7"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-1.png",
+            "bytes": 22913,
+            "sha256": "d862c6248b97d48e2e9083d069840673f3b3e84e336e57560c6540b64b4ab05c"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-1.tsv",
+            "bytes": 578,
+            "sha256": "35ecc91d329a22a0b8a1f06cee100d704136f9427c14a6e3a72d72571a0bd57d"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-2.png",
+            "bytes": 27903,
+            "sha256": "cf07ede11028a3852bf4981a5ad7649fe9ec2b6bd42435de3ed2e99cae1da5d2"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-2.tsv",
+            "bytes": 1313,
+            "sha256": "2711ed77a15e89cb7531e81736d1ea77a1ffaf0372203b92a5485bff18dba816"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-3.png",
+            "bytes": 41299,
+            "sha256": "288b1a5c0c165b2b3c29a91ea64f8cfb080d20e1fdb6af5eb90d00794edf6519"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-3.tsv",
+            "bytes": 962,
+            "sha256": "1d6affbf811dc22f5732200ab83423db5c48b971cc9829d5479a29c9cdb1f9a1"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-4.png",
+            "bytes": 36028,
+            "sha256": "4708fad46c22a1905369f5c7b2416add117eac8b86f2266ee7633362b8e8315f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-4.tsv",
+            "bytes": 1720,
+            "sha256": "51977de246915e9e4ee583a5ff747cd0e0ec9e09ec531094fd4615923869fb8f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-5.png",
+            "bytes": 29188,
+            "sha256": "f7ebcac9189d19b0c421ae3e5db3046dfa23cb906b473ef6cfded2badfdd886c"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-dim-tile-5.tsv",
+            "bytes": 1233,
+            "sha256": "123ac65af625acf84a820370685baeb58f7f5465c915d293f60a7054acacc8d7"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-0.tsv",
+            "bytes": 2287,
+            "sha256": "18da869654992a738bf028f23bf234a326cd3644976a292fed69ad3eaf8d5c3e"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-0.png",
+            "bytes": 27097,
+            "sha256": "385981967b22544bffa28a9473916b86ef57df36cfc1b389b5a37a70215042f0"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-1.png",
+            "bytes": 22762,
+            "sha256": "17712672c79fd8960163fcf00ebfe49c93d68d482c29528dfaa6ddcf18e2575d"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-1.tsv",
+            "bytes": 578,
+            "sha256": "f787c3fd336ce4f1dbcea555b805eb29f22e0099cc5cbfbf7e50b86f509fc70f"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-2.png",
+            "bytes": 22472,
+            "sha256": "e37c7bb3a50ee20e224e398670fffeb1c760e4c3ec60635fb1f9cd6744b93f0c"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-2.tsv",
+            "bytes": 1248,
+            "sha256": "5ea899bc85a6959f7ec26bedc42762f62fdb8de668241e761814210f17495134"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-3.png",
+            "bytes": 30980,
+            "sha256": "fd45779a97b4bb6d2646b35ccab2718c7eb3aa77c7eb6e20dc5fb612d8d7a045"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-3.tsv",
+            "bytes": 842,
+            "sha256": "e5e1ad6d3d3b6b447e674e083fc2e070666b2cb7469dba39d96ec42b0d927758"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-4.tsv",
+            "bytes": 1748,
+            "sha256": "386cd533fea90070d5da04388917bc74be88c0eb22edfbaf82d1096f229fdabb"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-5.png",
+            "bytes": 24785,
+            "sha256": "975dcb809d5c7ab31c9b6ae9686ea88dcf75feb7d2e0e06d5e2b6c7bcb7e33e9"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-4.png",
+            "bytes": 34192,
+            "sha256": "117686b479e2bf94223cd0628398e8861b83485126190262920a6ef0b982efeb"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin-tile-5.tsv",
+            "bytes": 989,
+            "sha256": "66b84d9fe72c4e58e3d3e6cf8924feb01e3beca2ab82d04aaaa642bead5b048a"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+            "bytes": 3460,
+            "sha256": "7313c5e15c1ed2619889a3edc47354da896d39d8ad2646cfc7c893ab960dbd58"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+            "bytes": 3568,
+            "sha256": "628807f5d882e060f192c9b9bee0e2f52f9e1c4317e5b44a183e2f020d4561c9"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2-ocr.json",
+            "bytes": 20942,
+            "sha256": "a35786b91d34cc190ea4f397b2d7f6e2a330fd39a83698899a577bcf0d053c93"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-surface-readiness.json",
+            "bytes": 3841,
+            "sha256": "1dbea82afb7e57c2ee80b34aa0fba5bb7f58c37fc9df39a109c6a9b2a58e8057"
+          },
+          {
+            "path": "21_stage_select_gecko_velo-2.png",
+            "bytes": 760982,
+            "sha256": "b3ce33bfffbca15d696adada0045f8edd52ff2db30c85f0b4f20fac084f3627f"
+          },
+          {
+            "path": "99_fehler.png",
+            "bytes": 760310,
+            "sha256": "6ea957b794bfef42b16a705379d8aa37a4da363685ffda3092e63a394e21f674"
+          },
+          {
+            "path": "after-update-preferences.xml",
+            "bytes": 4515,
+            "sha256": "d15d4266995a599a170bd683195b1f36811678fbf0f2f9b54c5954a3d0fd292e"
+          },
+          {
+            "path": "baseline-install.txt",
+            "bytes": 138,
+            "sha256": "a5a4f29645312f56d7721e9c5f7ce06f98f1252c2bcf70ea26ee16e1bd6d407f"
+          },
+          {
+            "path": "baseline-launch.txt",
+            "bytes": 547,
+            "sha256": "060f8929f7d545d708e91d948b34db4431a93bf537d5b59ca311ad739c9539cc"
+          },
+          {
+            "path": "baseline-learning/00-initial-preferences.xml",
+            "bytes": 1646,
+            "sha256": "7c79d4e60ca484fbb6044b4851cda72b9406358863e9179d9a76d05922bb8fe9"
+          },
+          {
+            "path": "baseline-learning/01-launch-launch.txt",
+            "bytes": 545,
+            "sha256": "d25dfaacd80ed092067f677252f5a84585aa61df851c6ce3ed02ce10ac5664ae"
+          },
+          {
+            "path": "baseline-learning/02-learning-hub-0.xml",
+            "bytes": 31766,
+            "sha256": "2b28b88cf2d4c2ad3fa1595677539b9687a834d5b02dba4c14cad135b2b3e42a"
+          },
+          {
+            "path": "baseline-learning/02-learn--1-0.xml",
+            "bytes": 28561,
+            "sha256": "29e2fb4c688cdb0a4e1a998ef215b83b4289bf1e4d3ad6f614abecd28d42c6ef"
+          },
+          {
+            "path": "baseline-learning/02-learning-hub.png",
+            "bytes": 1838953,
+            "sha256": "848a34448773fb1768741b53adc14d5bbbc0b9a799e49ddce9e32cc385226337"
+          },
+          {
+            "path": "baseline-learning/04-math--1-0.xml",
+            "bytes": 31766,
+            "sha256": "2b28b88cf2d4c2ad3fa1595677539b9687a834d5b02dba4c14cad135b2b3e42a"
+          },
+          {
+            "path": "baseline-learning/04-math-topics-0.xml",
+            "bytes": 30251,
+            "sha256": "05c97a47e8914ee9cc990042d96b9bbe65d1b6401926b7c62e431a8bedf41dc7"
+          },
+          {
+            "path": "baseline-learning/05-topic--1-0.xml",
+            "bytes": 30251,
+            "sha256": "05c97a47e8914ee9cc990042d96b9bbe65d1b6401926b7c62e431a8bedf41dc7"
+          },
+          {
+            "path": "baseline-learning/06-math-task.png",
+            "bytes": 1972595,
+            "sha256": "40c9efa8bca05d66a24ac089a507181d6b535c2ae3e33fbbb3d746024a863073"
+          },
+          {
+            "path": "baseline-learning/06-prompt-0.xml",
+            "bytes": 34042,
+            "sha256": "cefee72650001ba53296bc04594cf7bc661ce2120cb64ac0b0019fdb5640b988"
+          },
+          {
+            "path": "baseline-learning/06-task-0.xml",
+            "bytes": 34042,
+            "sha256": "cefee72650001ba53296bc04594cf7bc661ce2120cb64ac0b0019fdb5640b988"
+          },
+          {
+            "path": "baseline-learning/07-answer--1-0.xml",
+            "bytes": 34042,
+            "sha256": "cefee72650001ba53296bc04594cf7bc661ce2120cb64ac0b0019fdb5640b988"
+          },
+          {
+            "path": "baseline-learning/07-feedback.png",
+            "bytes": 1965456,
+            "sha256": "cdcd889bf947a55063e6e704d89fe76c36a5603a4b7b24b1838b4a5dbcf84537"
+          },
+          {
+            "path": "baseline-learning/08-next-task-0.xml",
+            "bytes": 34042,
+            "sha256": "092e92024a3e21da879008e42d9c04bde06458413ba259b8cf98817f9fee2414"
+          },
+          {
+            "path": "baseline-learning/08-wallet-preferences.xml",
+            "bytes": 4150,
+            "sha256": "535fcbf6f221cfe41ff1bdc9f0553cb66be1f4100ed03aa1f41cea45bad235f8"
+          },
+          {
+            "path": "baseline-learning/09-after-lesson.png",
+            "bytes": 1618644,
+            "sha256": "fea796c39aa24d97b9d723523595153d30dc87de980925e5f2b88d318375c916"
+          },
+          {
+            "path": "baseline-learning/10-before-restart-preferences.xml",
+            "bytes": 4150,
+            "sha256": "535fcbf6f221cfe41ff1bdc9f0553cb66be1f4100ed03aa1f41cea45bad235f8"
+          },
+          {
+            "path": "baseline-learning/11-after-restart-preferences.xml",
+            "bytes": 4150,
+            "sha256": "d77ad6422d70428c9bd27385bbc4f45bcfab3b33f5ab783d7bb55845e9d88387"
+          },
+          {
+            "path": "baseline-learning/11-restart-launch.txt",
+            "bytes": 547,
+            "sha256": "412f8614e52a7b61760ab661fdb9adefb552ba880e8be65a1d8ba07b790548d3"
+          },
+          {
+            "path": "baseline-learning/12-learn-after-restart--1-0.xml",
+            "bytes": 32230,
+            "sha256": "084a67495aa818cfbfd22cf9571a00131f87edb87005129cf19c8c751865952e"
+          },
+          {
+            "path": "baseline-learning/12-learning-hub-restored-0.xml",
+            "bytes": 31770,
+            "sha256": "e0e9d3be45bf94056e09d00fa383930b882256f4d49a5186b5df585f58dd6a69"
+          },
+          {
+            "path": "baseline-learning/12-restored-learning-menu.png",
+            "bytes": 1839767,
+            "sha256": "65fca92b6f08b747e19a2fc5b258c5452bacc5c763aefd0564f784b388131b07"
+          },
+          {
+            "path": "baseline-learning/learning-journey-logcat.txt",
+            "bytes": 441339,
+            "sha256": "8fd60f68bffec1349437151174b86eed6fae5c61a4512c5faf06c626aee61da5"
+          },
+          {
+            "path": "baseline-learning/learning-journey-result.json",
+            "bytes": 4215,
+            "sha256": "4b53023521404b0c8eef5767d7388a0de20b098974a993ae9e68c913c143ae36"
+          },
+          {
+            "path": "baseline-learning/t1-deutsch-0.xml",
+            "bytes": 31773,
+            "sha256": "5d1ec253fc4e57cb46e0dcf5782ffc2e70c830ef6d45e84980e06887d49c5997"
+          },
+          {
+            "path": "baseline-learning/t1-deutsch-1.xml",
+            "bytes": 31324,
+            "sha256": "1a689e37b491ad165df374388611e96966cd7f6660979455d5d0a066cdec0661"
+          },
+          {
+            "path": "baseline-learning/t1-deutsch-2.xml",
+            "bytes": 31324,
+            "sha256": "fd52b6bc3964e7b387790089c08ce102b7495c4e0196d5f53ae88452a103523d"
+          },
+          {
+            "path": "baseline-learning/t1-deutsch-3.xml",
+            "bytes": 31324,
+            "sha256": "fd52b6bc3964e7b387790089c08ce102b7495c4e0196d5f53ae88452a103523d"
+          },
+          {
+            "path": "baseline-learning/t1-deutsch-4.xml",
+            "bytes": 31324,
+            "sha256": "fd52b6bc3964e7b387790089c08ce102b7495c4e0196d5f53ae88452a103523d"
+          },
+          {
+            "path": "baseline-learning/t1-deutsch-missing.png",
+            "bytes": 1997797,
+            "sha256": "e8820ea18739a26bc072c11ecc4910574d0c695bef97dc5b123c71cebc13d603"
+          },
+          {
+            "path": "baseline-learning/t1-deutsch-5.xml",
+            "bytes": 31324,
+            "sha256": "fd52b6bc3964e7b387790089c08ce102b7495c4e0196d5f53ae88452a103523d"
+          },
+          {
+            "path": "baseline-learning/t2-englisch-0.xml",
+            "bytes": 31324,
+            "sha256": "fd52b6bc3964e7b387790089c08ce102b7495c4e0196d5f53ae88452a103523d"
+          },
+          {
+            "path": "baseline-learning/t2-englisch-1.xml",
+            "bytes": 31324,
+            "sha256": "fd52b6bc3964e7b387790089c08ce102b7495c4e0196d5f53ae88452a103523d"
+          },
+          {
+            "path": "baseline-learning/t2-englisch-2.xml",
+            "bytes": 31324,
+            "sha256": "1eb0ac74eecc9a60a4e71f3cb74b4180845b5a2a6adffeb8107eddd7c0c3e74f"
+          },
+          {
+            "path": "baseline-learning/t2-englisch-3.xml",
+            "bytes": 31324,
+            "sha256": "1eb0ac74eecc9a60a4e71f3cb74b4180845b5a2a6adffeb8107eddd7c0c3e74f"
+          },
+          {
+            "path": "baseline-learning/t2-englisch-4.xml",
+            "bytes": 31324,
+            "sha256": "1eb0ac74eecc9a60a4e71f3cb74b4180845b5a2a6adffeb8107eddd7c0c3e74f"
+          },
+          {
+            "path": "baseline-learning/t2-englisch-5.xml",
+            "bytes": 31324,
+            "sha256": "1eb0ac74eecc9a60a4e71f3cb74b4180845b5a2a6adffeb8107eddd7c0c3e74f"
+          },
+          {
+            "path": "baseline-learning/t2-englisch-missing.png",
+            "bytes": 1997249,
+            "sha256": "9d16bf1da9b89f2380f77dc0e1f73b3a40584901bdefb2c7b473939447a8e76e"
+          },
+          {
+            "path": "baseline-learning/t3-spiele-tap-0--1-0.xml",
+            "bytes": 31324,
+            "sha256": "1eb0ac74eecc9a60a4e71f3cb74b4180845b5a2a6adffeb8107eddd7c0c3e74f"
+          },
+          {
+            "path": "baseline-learning/t3-spiele.png",
+            "bytes": 1820824,
+            "sha256": "699c31c9e4367f79d68e261ef97b6cda733d793b3ce8ebb083edc427a446f138"
+          },
+          {
+            "path": "baseline-learning/t4-tests-tap-0--1-0.xml",
+            "bytes": 28565,
+            "sha256": "08343b37f2c6f7d591b770c46f7b5fe773946d56c0bae977d4cc3303d7435bde"
+          },
+          {
+            "path": "baseline-learning/t5-belohnungen-tap-0--1-0.xml",
+            "bytes": 31507,
+            "sha256": "a59a72b604cb79e59b4a7657f31b62cf2f17b069e19536b0ece0345d2e91525d"
+          },
+          {
+            "path": "baseline-learning/t5-belohnungen-tap-1--1-0.xml",
+            "bytes": 23587,
+            "sha256": "dd1c1b545e8e32d2654844cb6918b2b0c127997c2959a93761b489cfe1269e3f"
+          },
+          {
+            "path": "baseline-learning/t4-tests.png",
+            "bytes": 2176834,
+            "sha256": "a2ced8b74551167f0162ee949421057d0d3d6472ed4e79a3ed6c91c9c658353c"
+          },
+          {
+            "path": "baseline-learning/t6-lumo-agent-tap-0--1-0.xml",
+            "bytes": 32721,
+            "sha256": "62009ab35180b2cf9708c7f42e25c6ae218018ed7c6b663b124e1ee51d46829b"
+          },
+          {
+            "path": "baseline-learning/t5-belohnungen.png",
+            "bytes": 2060317,
+            "sha256": "acfdca1c7243a2e4c9a7a00db24e8d3f770fdb98ac4110c770de0a74cb35b42a"
+          },
+          {
+            "path": "baseline-learning/t6-lumo-agent-tap-1--1-0.xml",
+            "bytes": 23586,
+            "sha256": "0324bce267e4e053dc255f10d25eaf5892d98bd0b6dceffa5391ceb239dafb1d"
+          },
+          {
+            "path": "baseline-learning/t6-lumo-agent.png",
+            "bytes": 1365034,
+            "sha256": "24ccf43e0b75ecaab81e9524f2803ce0e86d674b37b721223b3f1781aa16cdff"
+          },
+          {
+            "path": "baseline-learning/t7-elternbereich-tap-0--1-0.xml",
+            "bytes": 30346,
+            "sha256": "d093cd74ca25576f9bdb2cc8c68ad2588bc6db75d8110b1014fe1f88782e7793"
+          },
+          {
+            "path": "baseline-learning/t7-elternbereich.png",
+            "bytes": 1597301,
+            "sha256": "f4f92d290a61d6a52de9b0571097ba75dfbd43888a6577754a00bed29666b87b"
+          },
+          {
+            "path": "baseline-learning/t8-start-tap-0--1-0.xml",
+            "bytes": 30079,
+            "sha256": "15742eb540e9e3bf79aa680ba27f3b2f5f072e9c3c1cd513dd3513da05c37b40"
+          },
+          {
+            "path": "baseline-learning/t7-elternbereich-tap-1--1-0.xml",
+            "bytes": 23586,
+            "sha256": "c7761ee8e8a1b54d92e11d9b35d2c360974a55997961c28a3749ad77f6e883ff"
+          },
+          {
+            "path": "baseline-learning/t8-start.png",
+            "bytes": 3037220,
+            "sha256": "12e29925f64d49f2d0d15d0c142a9b1607132803c649d15bafcff238da4aeeb4"
+          },
+          {
+            "path": "baseline-learning/t9-fold-cover-home--1-0.xml",
+            "bytes": 31862,
+            "sha256": "436f8353efc89a629fab05b6637c6efdad4b4add1431fafa11a58e97de831050"
+          },
+          {
+            "path": "baseline-learning/t9-fold-cover-lernen-tap-0--1-0.xml",
+            "bytes": 32200,
+            "sha256": "2a64f3168c31516a51d5114bcc55fdc1f35fca2c5d01868d580ca3af9092c7a5"
+          },
+          {
+            "path": "baseline-learning/t9-fold-cover-lernen.png",
+            "bytes": 1721842,
+            "sha256": "83ef7e33fc50bc3f3f21216caded79f2f57331753d23eb77363b462c7435fff1"
+          },
+          {
+            "path": "baseline-learning/t9-fold-cover-start.png",
+            "bytes": 2584382,
+            "sha256": "08083021bbe4cb625c64200032ce5e1b7e4e9061de0bd096526063b4dae28019"
+          },
+          {
+            "path": "baseline-learning/t9-fold-inner-home--1-0.xml",
+            "bytes": 31913,
+            "sha256": "98c19a210b897a4645ddc1f2504302316b6c9daba8b496dd1ea4f2629fab4db2"
+          },
+          {
+            "path": "baseline-learning/t9-fold-inner-lernen-tap-0--1-0.xml",
+            "bytes": 31346,
+            "sha256": "ee7249c8d8daad7f1642c02c156e812513347365d4007045acfabdac0e100934"
+          },
+          {
+            "path": "baseline-learning/t9-fold-inner-lernen.png",
+            "bytes": 2440776,
+            "sha256": "869e2deafe79a146298ae4e68fd9ddc18614144478f78f16a2c02346890f43b1"
+          },
+          {
+            "path": "baseline-learning/t9-fold-inner-start.png",
+            "bytes": 4267622,
+            "sha256": "e29ca2657ab2033f0ec1b5cf20a3b5962948544c385080d85deac8b4c71c2b98"
+          },
+          {
+            "path": "baseline-learning/uiautomator-config.json",
+            "bytes": 189,
+            "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+          },
+          {
+            "path": "baseline-package-uid.txt",
+            "bytes": 59,
+            "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+          },
+          {
+            "path": "baseline-package.txt",
+            "bytes": 9968,
+            "sha256": "87c16cbe093a6c7b60420f8588de299d0404e83217bd3a7e37911909bc85a843"
+          },
+          {
+            "path": "before-update-preferences.xml",
+            "bytes": 4363,
+            "sha256": "39d340012f16be907822d594ea538e89eb3dbe53c4c2a5475ab5c55758dd9172"
+          },
+          {
+            "path": "home-to-games-0.xml",
+            "bytes": 33133,
+            "sha256": "bf4d3a8e0d014e8efa1539c76ae1a3cb195d28d3f91e3aa93f6206656fa89784"
+          },
+          {
+            "path": "logcat.txt",
+            "bytes": 9850607,
+            "sha256": "8560b5e83251f5af6746b8311d1bd2fa30af6d50c96d102affc4df14458c87ce"
+          },
+          {
+            "path": "mesa-renderer.txt",
+            "bytes": 1724,
+            "sha256": "ec1c6b023dd7b10037bc695849f979932575364d9663e6a82b778ba28414f168"
+          },
+          {
+            "path": "ocr-work.png",
+            "bytes": 34065,
+            "sha256": "a9923f44f079442b9c67847c18d428d67dedc56f08d5258fc2fb7a17c7e7c41e"
+          },
+          {
+            "path": "onboard-age-next-0.xml",
+            "bytes": 24478,
+            "sha256": "9e25386e6b6c90502a902bb15f5db351c9f474d1bddcc9ffc696e53909fc581b"
+          },
+          {
+            "path": "onboard-games-Spiele-0.xml",
+            "bytes": 28528,
+            "sha256": "559840b42f758d8c329838f5d39b02dc6a87a7a3a910912e14b8104a5b76b151"
+          },
+          {
+            "path": "onboard-grade-save-0.xml",
+            "bytes": 23672,
+            "sha256": "1876f6a3fce5bfa93dcdf604e961a68ce318db9b863d923f45212e51db4a950d"
+          },
+          {
+            "path": "onboard-home-0.xml",
+            "bytes": 33133,
+            "sha256": "bf4d3a8e0d014e8efa1539c76ae1a3cb195d28d3f91e3aa93f6206656fa89784"
+          },
+          {
+            "path": "onboard-ime-before-dismiss.xml",
+            "bytes": 96342,
+            "sha256": "3e590568f60a1868f4ba7a8fbd6c4864b072224c8dae680a943f0f12fef72540"
+          },
+          {
+            "path": "onboard-name-next-0.xml",
+            "bytes": 23172,
+            "sha256": "d736d587e666b26072f44b989cffac0fa142cd878f5f94a5ce7071a9df5d5a44"
+          },
+          {
+            "path": "onboard-name-written-1-0.xml",
+            "bytes": 96381,
+            "sha256": "b947a62535477ac1942628050abfa199bd3e7526af90fee08ae53d26463369c3"
+          },
+          {
+            "path": "onboard-name-written-3-0.xml",
+            "bytes": 96322,
+            "sha256": "be7c5f87dbdec01a1ec80640ca0f5327fbdfb30475b833599c3d68a7f621846f"
+          },
+          {
+            "path": "onboard-name-written-2-0.xml",
+            "bytes": 96319,
+            "sha256": "0b86cfe2be70e3e3f59b10a6a924021dd118bbdc1694127858f5ef652566d33d"
+          },
+          {
+            "path": "onboard-name-written-4-0.xml",
+            "bytes": 96325,
+            "sha256": "b9ed1447dcbc38820495b41561e5f4c286edc5776675bac47959ce5d95010e2c"
+          },
+          {
+            "path": "onboard-name-written-7-0.xml",
+            "bytes": 96335,
+            "sha256": "f93d07a874b033f2cc5f5ec04fa00899cd3f034baccc7385e7c44b9df29024ff"
+          },
+          {
+            "path": "onboard-name-written-8-0.xml",
+            "bytes": 96336,
+            "sha256": "2130ae372f490b3a90912eb1dac90a08c30229309c614acffd57b5cd014b9f30"
+          },
+          {
+            "path": "onboard-name-written-6-0.xml",
+            "bytes": 96329,
+            "sha256": "68de5088bfc3e1f0be38d60cdc669e7798a5db03e57bd5057501bc799580efc9"
+          },
+          {
+            "path": "onboard-name-written-5-0.xml",
+            "bytes": 96325,
+            "sha256": "d5edf599906e8bf1147aebe5b945200c55c341e4a69f0bc1234086b82b85fad6"
+          },
+          {
+            "path": "onboard-name.xml",
+            "bytes": 23187,
+            "sha256": "5eba88f65058430c0c02db4a1215da9ce71937a0809e0f5e3092f9bcae938c3e"
+          },
+          {
+            "path": "onboard-welcome--1-0.xml",
+            "bytes": 22847,
+            "sha256": "43b7db42af6c5d09792a2579109409e67e7162ca7b5cb8f9fde7b6cf6394d877"
+          },
+          {
+            "path": "open-kart-47-1-0.xml",
+            "bytes": 25269,
+            "sha256": "522dbd381a80e6e808d86c749eed7cc697688742d75caf99b044de6325c91d10"
+          },
+          {
+            "path": "rooted-emulator.json",
+            "bytes": 1545,
+            "sha256": "f3f7c0e292bf1ef68381758531219c9cc99f4d188d8706e4c7447c636c5c59a6"
+          },
+          {
+            "path": "tesseract-installed-languages.txt",
+            "bytes": 87,
+            "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850"
+          },
+          {
+            "path": "tested-apk-sha256.txt",
+            "bytes": 108,
+            "sha256": "0e4be4a06d5b6c94bc41769835876d26f7a1c95769ca0ca2588ebc926c980732"
+          },
+          {
+            "path": "uiautomator-config.json",
+            "bytes": 189,
+            "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+          },
+          {
+            "path": "update-install.txt",
+            "bytes": 139,
+            "sha256": "b7997e847aa2e4c773a05c80b13eadcde45db00d0b9d16544e999c67b4e38b48"
+          },
+          {
+            "path": "update-result.json",
+            "bytes": 26753,
+            "sha256": "319fac86b4c7ccdb764bf34b04fc1cbd01b9c194fff9b6b1f3016b8af6b88dd4"
+          },
+          {
+            "path": "updated-games-7--1-0.xml",
+            "bytes": 28900,
+            "sha256": "dedff45c2b38d652719aa32ec2f05ca09e02f81852fbd5ddf23cc638ec50d31f"
+          },
+          {
+            "path": "updated-offline-launch.txt",
+            "bytes": 547,
+            "sha256": "1820006b8a2a27c0f32537fa56928fd67ddea574775d1d1b83d0ea73121ef753"
+          },
+          {
+            "path": "updated-package-uid.txt",
+            "bytes": 59,
+            "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+          },
+          {
+            "path": "updated-package.txt",
+            "bytes": 9341,
+            "sha256": "41a4abc276f3622929c509853077a2541333e72387a4fb953e827d1d2fecee76"
+          },
+          {
+            "path": "updated-profile-offline-0.xml",
+            "bytes": 28900,
+            "sha256": "dedff45c2b38d652719aa32ec2f05ca09e02f81852fbd5ddf23cc638ec50d31f"
+          },
+          {
+            "path": "updated-profile-offline-render-readiness.json",
+            "bytes": 555,
+            "sha256": "0df256014265e8271c6fd8cb616efbeb89dda5268e6e3b468b0a51d528e28b89"
+          },
+          {
+            "path": "updated-profile-offline-start--1-0.xml",
+            "bytes": 28900,
+            "sha256": "dedff45c2b38d652719aa32ec2f05ca09e02f81852fbd5ddf23cc638ec50d31f"
+          },
+          {
+            "path": "updated-profile-offline.png",
+            "bytes": 3091108,
+            "sha256": "d167901ae56a1622fbd569019c7f16298c88fd7189e1e3a9dd574f0f87f4a364"
+          },
+          {
+            "path": "xvfb.log",
+            "bytes": 4696,
+            "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+          }
+        ],
+        "verified_at_utc": "2026-11-14T15:09:49.989971+00:00"
+      }
+    }
+  ],
+  "first_failures": [
+    {
+      "job_id": 132484382995,
+      "at": "2026-11-14T15:01:53.2298579Z",
+      "line": 2252,
+      "step": "start-kart-race",
+      "error": "RuntimeError: No currently visible vehicle card in the actual left list",
+      "last_selection_capture": "main/21_stage_select_gecko_velo-2.png",
+      "hard_failure_line": 2562,
+      "reported_crashes": 0,
+      "reported_process_alive": true,
+      "not_reached": [
+        "race-running",
+        "race-hud",
+        "race-drive",
+        "pause-menu"
+      ],
+      "subsequent_checks": [
+        "return-from-kart",
+        "learning-state-after-kart",
+        "lernen-usable-after-kart",
+        "profile-after-kart"
+      ],
+      "village_and_connect_four": "NOT_REACHED_AFTER_FAILED_MAIN_TOUR"
+    },
+    {
+      "job_id": 132484382954,
+      "at": "2026-11-14T15:03:07.7499973Z",
+      "line": 2779,
+      "error": "No currently visible vehicle card in the actual left list",
+      "traceback_original": "14118638414/originals/update-result.json",
+      "last_selection_capture": "21_stage_select_gecko_velo-2.png",
+      "not_reached": [
+        "completed-native-tour",
+        "post-native-restart",
+        "post-update-fold-matrix"
+      ]
+    }
+  ],
+  "update_completed_phase": {
+    "baseline_version": 2017,
+    "candidate_version": 2020,
+    "installation_result": "Success",
+    "same_uid": "10209",
+    "first_install_time": "2026-11-14 14:57:07",
+    "actual_math_prompt": "5 + 1 = ?",
+    "actual_answer": 6,
+    "correct_answers_preserved": 1,
+    "earned_stars": 1,
+    "earned_xp": 5,
+    "learning_keys_compared": 7,
+    "learning_keys_added": [],
+    "preference_keys_before": 15,
+    "preference_keys_after": 15,
+    "allowed_change": "independentEvidence-v1 within the original mathematics skill; existing fields preserved",
+    "writing_or_journal_keys_present": [],
+    "specific_populated_writing_or_journal_preservation": "NOT_DEMONSTRATED_NO_SUCH_ORIGINAL_KEYS",
+    "baseline_additional_tour_failures": {
+      "t1-deutsch": "Kein Bedienelement beginnt mit: Deutsch. ",
+      "t2-englisch": "Kein Bedienelement beginnt mit: Englisch. "
+    },
+    "baseline_fold_captures": "2017 baseline only; not a completed 2020 post-update fold matrix",
+    "total_update_acceptance": "FAIL"
+  },
+  "independent_visual_review": {
+    "actually_viewed": [
+      "14119041396/originals/main/21_stage_select_gecko_velo-2.png",
+      "14118638414/originals/21_stage_select_gecko_velo-2.png"
+    ],
+    "findings": [
+      "Both originals show the actual garage, original fox, kart preview and start-race control.",
+      "The left list is clipped: the upper visible green vehicle has no visible name; the lower Boru Rally caption is partly cut at the list footer.",
+      "No crash dialog is visible in these two frames."
+    ],
+    "limitation": "These images are an intermediate failed selection state, not race, Village or Connect Four completion proof."
+  },
+  "scope": "Immutable originals and diagnosis only. No rerun, source change, SDK execution, publication or passing emulator/Delivery claim."
+}
