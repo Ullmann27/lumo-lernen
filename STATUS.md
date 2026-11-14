@@ -1,3 +1,29 @@
+# LUMO 2020 – vollständige Abnahme nach konkret belegter C4-Reparatur
+
+Der neue vollständige Kandidat folgt unmittelbar auf den geprüften
+Quellcheckpoint `6ab8748c1910b256adfde909809e01995c87acf2`
+(Tree `17d791e868f5449b3a7591a432947b39bae7f3a1`). Die anschließend tatsächlich
+auf diesen Quellen ausgeführten 21 Pythonfälle bestanden mit Exit 0; sämtliche
+30 Materialisierungsdateien blieben unverändert. Der vorherige gezielte Rotlauf
+und seine zwei eng korrigierten Fehlerklassen-Erwartungen bleiben erhalten.
+
+Der echte vorherige Gesamtlauf 43637785992/1 auf 0cda ist fehlgeschlagen:
+2.732 Flutterfälle bestanden, ein Retry-Uhr-Vorbedingungsfall scheiterte.
+Genau diese unverändert streng geprüfte Vorbedingung wird nun durch die
+passende Widget-Zeitfortschaltung erreicht. Der neue Gesamtstatus ist noch
+nicht bekannt. Die 82 gezielt zugeordneten Flutterfälle müssen auf dem neuen
+Host erneut anhand ihrer tatsächlichen Start-/Endereignisse bestehen.
+
+Alle Produktdateien, Native f9, Version 0.13.8+2020 und der vollständige
+Sieben-Job-Workflow bleiben gegenüber 0cda unverändert. Geändert sind nur der
+konkrete Retry-Test, die begrenzten beobachtenden Rückkehrabfragen und ihre
+Vertragstests. Keine frühere Runtime-/Compile-/Flutterabnahme ersetzt den
+aktuellen vollständigen Lauf. Erst nach allen sieben tatsächlichen Erfolgen,
+gebundenem Delivery-Bundle und überprüftem öffentlichem APK-Download darf
+Build 2020 als verfügbar ausgewiesen werden. Der Publisher bleibt inaktiv.
+
+## Archiv: vorheriger Quellcheckpoint
+
 # LUMO 2020 – beobachteten C4-Testfehler und begrenzte Rückkehrabfragen reparieren
 
 Der vollständige Lauf 43637785992 / Versuch 1 auf Host

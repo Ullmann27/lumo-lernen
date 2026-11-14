@@ -1,0 +1,989 @@
+{
+  "schema": 3,
+  "revision": 3,
+  "created_utc": "2026-11-14T20:54:21.177011+00:00",
+  "status": "BOUND_TO_A5AC_SOURCE_CHECKPOINT_AWAITING_NEW_ACTUAL_RUN",
+  "source_checkpoint": {
+    "host": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+    "tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb",
+    "branch": "integration/lumo-next-repair-1952-20261114",
+    "parent": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+    "leaf_count": 4963,
+    "all_tree_bytes_recomputed_exactly": true
+  },
+  "prior_catalog": {
+    "path": "/tmp/host-next-repair-82-case-catalog-v2-20261114/catalog.json",
+    "bytes": 39986,
+    "sha256": "4a4bd535610d1f82ba59ce5f6bbb70ba370fc097b5aef030036bd7d6e092af3a",
+    "git_blob": "19ffb1b3118828b1bd01937c9c24410dfe12a4b9",
+    "retained_unchanged": true
+  },
+  "flutter_roster_totals": {
+    "per_group": {
+      "pr507_new": 45,
+      "pr507_existing_corrected": 30,
+      "pr508_selected_proposal": 7
+    },
+    "total_targeted_visible_cases": 82,
+    "full_suite_total": "Must be derived from the actual future stream, not from this subset."
+  },
+  "flutter_files": [
+    {
+      "group": "pr507_new",
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host0cda-c4-reward-clock-fixture-repair-20261114/final-source/test/games/connect_four_bot_save_retry_test.dart",
+        "bytes": 11449,
+        "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+        "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+      },
+      "expected_visible_cases": 6,
+      "cases": [
+        {
+          "name": "Failed bot save retries once after the child resumes",
+          "source_line": 118,
+          "registration": "testWidgets",
+          "source_expression": "'Failed bot save retries once after the child resumes'"
+        },
+        {
+          "name": "Repeated bot save failure remains paused until explicit retry",
+          "source_line": 142,
+          "registration": "testWidgets",
+          "source_expression": "'Repeated bot save failure remains paused until explicit retry'"
+        },
+        {
+          "name": "Restart cancels the queued failed bot retry for the old round",
+          "source_line": 166,
+          "registration": "testWidgets",
+          "source_expression": "'Restart cancels the queued failed bot retry for the old round'"
+        },
+        {
+          "name": "Failed local Gold move never schedules an automatic bot",
+          "source_line": 181,
+          "registration": "testWidgets",
+          "source_expression": "'Failed local Gold move never schedules an automatic bot'"
+        },
+        {
+          "name": "A saved winning move retries only its unconfirmed reward",
+          "source_line": 206,
+          "registration": "testWidgets",
+          "source_expression": "'A saved winning move retries only its unconfirmed reward'"
+        },
+        {
+          "name": "Lifecycle pause during reward retry defers the settled result",
+          "source_line": 243,
+          "registration": "testWidgets",
+          "source_expression": "'Lifecycle pause during reward retry defers the settled result'"
+        }
+      ],
+      "checkpoint_git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    },
+    {
+      "group": "pr507_new",
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr507-0d7e-integration-7ac-20261114/final-source/test/games/memory_native_commit_confirmation_test.dart",
+        "bytes": 29908,
+        "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+        "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+      },
+      "expected_visible_cases": 25,
+      "cases": [
+        {
+          "name": "round falseAfterMemory is unconfirmed while reload remains a read-only native snapshot",
+          "source_line": 340,
+          "registration": "test",
+          "source_expression": "target + ' ' + reply.name +\n          ' is unconfirmed while reload remains a read-only native snapshot'",
+          "expansion": {
+            "reply.name": "falseAfterMemory",
+            "target": "round"
+          }
+        },
+        {
+          "name": "stats falseAfterMemory is unconfirmed while reload remains a read-only native snapshot",
+          "source_line": 340,
+          "registration": "test",
+          "source_expression": "target + ' ' + reply.name +\n          ' is unconfirmed while reload remains a read-only native snapshot'",
+          "expansion": {
+            "reply.name": "falseAfterMemory",
+            "target": "stats"
+          }
+        },
+        {
+          "name": "round throwAfterMemory is unconfirmed while reload remains a read-only native snapshot",
+          "source_line": 340,
+          "registration": "test",
+          "source_expression": "target + ' ' + reply.name +\n          ' is unconfirmed while reload remains a read-only native snapshot'",
+          "expansion": {
+            "reply.name": "throwAfterMemory",
+            "target": "round"
+          }
+        },
+        {
+          "name": "stats throwAfterMemory is unconfirmed while reload remains a read-only native snapshot",
+          "source_line": 340,
+          "registration": "test",
+          "source_expression": "target + ' ' + reply.name +\n          ' is unconfirmed while reload remains a read-only native snapshot'",
+          "expansion": {
+            "reply.name": "throwAfterMemory",
+            "target": "stats"
+          }
+        },
+        {
+          "name": "Initial falseAfterMemory requires a positive barrier even after a new Dart store",
+          "source_line": 368,
+          "registration": "test",
+          "source_expression": "'Initial ' + reply.name +\n        ' requires a positive barrier even after a new Dart store'",
+          "expansion": {
+            "reply.name": "falseAfterMemory"
+          }
+        },
+        {
+          "name": "Initial throwAfterMemory requires a positive barrier even after a new Dart store",
+          "source_line": 368,
+          "registration": "test",
+          "source_expression": "'Initial ' + reply.name +\n        ' requires a positive barrier even after a new Dart store'",
+          "expansion": {
+            "reply.name": "throwAfterMemory"
+          }
+        },
+        {
+          "name": "Flip falseAfterMemory and uncertain follow-up cannot expose native cache without ACK",
+          "source_line": 400,
+          "registration": "test",
+          "source_expression": "'Flip ' + reply.name +\n        ' and uncertain follow-up cannot expose native cache without ACK'",
+          "expansion": {
+            "reply.name": "falseAfterMemory"
+          }
+        },
+        {
+          "name": "Flip throwAfterMemory and uncertain follow-up cannot expose native cache without ACK",
+          "source_line": 400,
+          "registration": "test",
+          "source_expression": "'Flip ' + reply.name +\n        ' and uncertain follow-up cannot expose native cache without ACK'",
+          "expansion": {
+            "reply.name": "throwAfterMemory"
+          }
+        },
+        {
+          "name": "New controller cannot adopt an unsaved flip from shared native memory",
+          "source_line": 444,
+          "registration": "test",
+          "source_expression": "'New controller cannot adopt an unsaved flip from shared native memory'"
+        },
+        {
+          "name": "Modeled native process restart reloads disk instead of the failed map",
+          "source_line": 469,
+          "registration": "test",
+          "source_expression": "'Modeled native process restart reloads disk instead of the failed map'"
+        },
+        {
+          "name": "Lost reply after actual commit needs one positive identical retry",
+          "source_line": 487,
+          "registration": "test",
+          "source_expression": "'Lost reply after actual commit needs one positive identical retry'"
+        },
+        {
+          "name": "A committed value with no positive reply remains unconfirmed on failure",
+          "source_line": 505,
+          "registration": "test",
+          "source_expression": "'A committed value with no positive reply remains unconfirmed on failure'"
+        },
+        {
+          "name": "Initial statistics falseAfterMemory is not swallowed as corrupt legacy data",
+          "source_line": 527,
+          "registration": "test",
+          "source_expression": "'Initial statistics ' + reply.name +\n        ' is not swallowed as corrupt legacy data'",
+          "expansion": {
+            "reply.name": "falseAfterMemory"
+          }
+        },
+        {
+          "name": "Initial statistics throwAfterMemory is not swallowed as corrupt legacy data",
+          "source_line": 527,
+          "registration": "test",
+          "source_expression": "'Initial statistics ' + reply.name +\n        ' is not swallowed as corrupt legacy data'",
+          "expansion": {
+            "reply.name": "throwAfterMemory"
+          }
+        },
+        {
+          "name": "Unconfirmed finish statistics blocks reopen instead of skipping stats",
+          "source_line": 543,
+          "registration": "test",
+          "source_expression": "'Unconfirmed finish statistics blocks reopen instead of skipping stats'"
+        },
+        {
+          "name": "Corrupt historical statistics remain unchanged without a write barrier",
+          "source_line": 584,
+          "registration": "test",
+          "source_expression": "'Corrupt historical statistics remain unchanged without a write barrier'"
+        },
+        {
+          "name": "Foreign round payload is rejected before any confirming write",
+          "source_line": 596,
+          "registration": "test",
+          "source_expression": "'Foreign round payload is rejected before any confirming write'"
+        },
+        {
+          "name": "Profile revocation during round snapshot prevents a new confirmation write",
+          "source_line": 611,
+          "registration": "test",
+          "source_expression": "'Profile revocation during ' + target +\n        ' snapshot prevents a new confirmation write'",
+          "expansion": {
+            "target": "round"
+          }
+        },
+        {
+          "name": "Profile revocation during stats snapshot prevents a new confirmation write",
+          "source_line": 611,
+          "registration": "test",
+          "source_expression": "'Profile revocation during ' + target +\n        ' snapshot prevents a new confirmation write'",
+          "expansion": {
+            "target": "stats"
+          }
+        },
+        {
+          "name": "Profile revoked during confirmation cannot expose its late ACK",
+          "source_line": 635,
+          "registration": "test",
+          "source_expression": "'Profile revoked during confirmation cannot expose its late ACK'"
+        },
+        {
+          "name": "Profile loss on uncertain recovery blocks its confirming retry",
+          "source_line": 660,
+          "registration": "test",
+          "source_expression": "'Profile loss on uncertain recovery blocks its confirming retry'"
+        },
+        {
+          "name": "Uncertain recovery confirms the observed newer revision exactly",
+          "source_line": 683,
+          "registration": "test",
+          "source_expression": "'Uncertain recovery confirms the observed newer revision exactly'"
+        },
+        {
+          "name": "Real AppState reward stays once after unconfirmed stats",
+          "source_line": 709,
+          "registration": "test",
+          "source_expression": "'Real AppState reward stays once after unconfirmed ' + target",
+          "expansion": {
+            "target": "stats"
+          }
+        },
+        {
+          "name": "Real AppState reward stays once after unconfirmed rewarded receipt",
+          "source_line": 709,
+          "registration": "test",
+          "source_expression": "'Real AppState reward stays once after unconfirmed ' + target",
+          "expansion": {
+            "target": "rewarded receipt"
+          }
+        },
+        {
+          "name": "Real completed Memory cannot accept an unconfirmed duplicate wallet ID",
+          "source_line": 766,
+          "registration": "test",
+          "source_expression": "'Real completed Memory cannot accept an unconfirmed duplicate wallet ID'"
+        }
+      ],
+      "checkpoint_git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "group": "pr507_new",
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr507-0d7e-integration-7ac-20261114/final-source/test/reward_wallet_dedup_confirmation_test.dart",
+        "bytes": 13409,
+        "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+        "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+      },
+      "expected_visible_cases": 14,
+      "cases": [
+        {
+          "name": "game: known result waits for a positive duplicate commit",
+          "source_line": 227,
+          "registration": "test",
+          "source_expression": "'${award.name}: known result waits for a positive duplicate commit'",
+          "expansion": {
+            "award.name": "game"
+          }
+        },
+        {
+          "name": "quiz: known result waits for a positive duplicate commit",
+          "source_line": 227,
+          "registration": "test",
+          "source_expression": "'${award.name}: known result waits for a positive duplicate commit'",
+          "expansion": {
+            "award.name": "quiz"
+          }
+        },
+        {
+          "name": "cards: known result waits for a positive duplicate commit",
+          "source_line": 227,
+          "registration": "test",
+          "source_expression": "'${award.name}: known result waits for a positive duplicate commit'",
+          "expansion": {
+            "award.name": "cards"
+          }
+        },
+        {
+          "name": "game: falseAfterMemory stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "game",
+            "fault.name": "falseAfterMemory"
+          }
+        },
+        {
+          "name": "game: throwAfterMemory stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "game",
+            "fault.name": "throwAfterMemory"
+          }
+        },
+        {
+          "name": "game: throwAfterCommit stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "game",
+            "fault.name": "throwAfterCommit"
+          }
+        },
+        {
+          "name": "quiz: falseAfterMemory stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "quiz",
+            "fault.name": "falseAfterMemory"
+          }
+        },
+        {
+          "name": "quiz: throwAfterMemory stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "quiz",
+            "fault.name": "throwAfterMemory"
+          }
+        },
+        {
+          "name": "quiz: throwAfterCommit stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "quiz",
+            "fault.name": "throwAfterCommit"
+          }
+        },
+        {
+          "name": "cards: falseAfterMemory stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "cards",
+            "fault.name": "falseAfterMemory"
+          }
+        },
+        {
+          "name": "cards: throwAfterMemory stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "cards",
+            "fault.name": "throwAfterMemory"
+          }
+        },
+        {
+          "name": "cards: throwAfterCommit stays unconfirmed in a new wallet",
+          "source_line": 261,
+          "registration": "test",
+          "source_expression": "'${award.name}: ${fault.name} stays unconfirmed in a new wallet'",
+          "expansion": {
+            "award.name": "cards",
+            "fault.name": "throwAfterCommit"
+          }
+        },
+        {
+          "name": "AppState falseAfterMemory: fresh wallet cannot clear an unsaved result",
+          "source_line": 325,
+          "registration": "test",
+          "source_expression": "'AppState ${fault.name}: fresh wallet cannot clear an unsaved result'",
+          "expansion": {
+            "fault.name": "falseAfterMemory"
+          }
+        },
+        {
+          "name": "AppState throwAfterMemory: fresh wallet cannot clear an unsaved result",
+          "source_line": 325,
+          "registration": "test",
+          "source_expression": "'AppState ${fault.name}: fresh wallet cannot clear an unsaved result'",
+          "expansion": {
+            "fault.name": "throwAfterMemory"
+          }
+        }
+      ],
+      "checkpoint_git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+    },
+    {
+      "group": "pr507_existing_corrected",
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr507-0d7e-integration-7ac-20261114/final-source/test/reward_wallet_queue_zone_test.dart",
+        "bytes": 10757,
+        "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+        "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+      },
+      "expected_visible_cases": 4,
+      "cases": [
+        {
+          "name": "An unused wallet constructed in another zone starts in its caller zone",
+          "source_line": 120,
+          "registration": "test",
+          "source_expression": "'An unused wallet constructed in another zone starts in its caller zone'"
+        },
+        {
+          "name": "A fully committed wallet tail releases its completed originating zone",
+          "source_line": 142,
+          "registration": "test",
+          "source_expression": "'A fully committed wallet tail releases its completed originating zone'"
+        },
+        {
+          "name": "A failed durable write releases its zone and the exact reward can retry",
+          "source_line": 180,
+          "registration": "test",
+          "source_expression": "'A failed durable write releases its zone and the exact reward can retry'"
+        },
+        {
+          "name": "An older completion cannot release a younger pending durable write",
+          "source_line": 232,
+          "registration": "test",
+          "source_expression": "'An older completion cannot release a younger pending durable write'"
+        }
+      ],
+      "checkpoint_git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+    },
+    {
+      "group": "pr507_existing_corrected",
+      "path": "test/reward_wallet_transaction_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr507-0d7e-integration-7ac-20261114/final-source/test/reward_wallet_transaction_test.dart",
+        "bytes": 22807,
+        "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+        "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+      },
+      "expected_visible_cases": 20,
+      "cases": [
+        {
+          "name": "Old flat wallet JSON keeps balances, levels, streak and earned stars",
+          "source_line": 55,
+          "registration": "test",
+          "source_expression": "'Old flat wallet JSON keeps balances, levels, streak and earned stars'"
+        },
+        {
+          "name": "A combined lesson reward (_Outcome.falseResult) is all-or-nothing and safely retried",
+          "source_line": 85,
+          "registration": "test",
+          "source_expression": "'A combined lesson reward ($failure) is all-or-nothing and safely retried'",
+          "expansion": {
+            "failure": "_Outcome.falseResult"
+          }
+        },
+        {
+          "name": "A combined lesson reward (_Outcome.exception) is all-or-nothing and safely retried",
+          "source_line": 85,
+          "registration": "test",
+          "source_expression": "'A combined lesson reward ($failure) is all-or-nothing and safely retried'",
+          "expansion": {
+            "failure": "_Outcome.exception"
+          }
+        },
+        {
+          "name": "Combined lessons and a game share the queue without partial reward snapshots",
+          "source_line": 124,
+          "registration": "test",
+          "source_expression": "'Combined lessons and a game share the queue without partial reward snapshots'"
+        },
+        {
+          "name": "Combined deductions clamp balances and do not increase earned-star totals",
+          "source_line": 152,
+          "registration": "test",
+          "source_expression": "'Combined deductions clamp balances and do not increase earned-star totals'"
+        },
+        {
+          "name": "Failed game write (_Outcome.falseResult) preserves concurrent learning and allows replay",
+          "source_line": 171,
+          "registration": "test",
+          "source_expression": "'Failed game write ($failure) preserves concurrent learning and allows replay'",
+          "expansion": {
+            "failure": "_Outcome.falseResult"
+          }
+        },
+        {
+          "name": "Failed game write (_Outcome.exception) preserves concurrent learning and allows replay",
+          "source_line": 171,
+          "registration": "test",
+          "source_expression": "'Failed game write ($failure) preserves concurrent learning and allows replay'",
+          "expansion": {
+            "failure": "_Outcome.exception"
+          }
+        },
+        {
+          "name": "Successful game write commits balance and identity together before queued changes",
+          "source_line": 239,
+          "registration": "test",
+          "source_expression": "'Successful game write commits balance and identity together before queued changes'"
+        },
+        {
+          "name": "Concurrent duplicate awards and a fresh-process replay grant one reward",
+          "source_line": 266,
+          "registration": "test",
+          "source_expression": "'Concurrent duplicate awards and a fresh-process replay grant one reward'"
+        },
+        {
+          "name": "Reset waits for an in-flight award and does not restore its old snapshot",
+          "source_line": 286,
+          "registration": "test",
+          "source_expression": "'Reset waits for an in-flight award and does not restore its old snapshot'"
+        },
+        {
+          "name": "A failed reset reports failure and preserves the existing balance",
+          "source_line": 315,
+          "registration": "test",
+          "source_expression": "'A failed reset reports failure and preserves the existing balance'"
+        },
+        {
+          "name": "A failed lesson mutation does not poison later XP or its explicit retry",
+          "source_line": 339,
+          "registration": "test",
+          "source_expression": "'A failed lesson mutation does not poison later XP or its explicit retry'"
+        },
+        {
+          "name": "Failed legacy migration keeps saved rewards for the next transaction",
+          "source_line": 359,
+          "registration": "test",
+          "source_expression": "'Failed legacy migration keeps saved rewards for the next transaction'"
+        },
+        {
+          "name": "AppState exposes failed save and flush retries the complete lesson once",
+          "source_line": 377,
+          "registration": "test",
+          "source_expression": "'AppState exposes failed save and flush retries the complete lesson once'"
+        },
+        {
+          "name": "AppState keeps younger rewards queued after the oldest storage error",
+          "source_line": 407,
+          "registration": "test",
+          "source_expression": "'AppState keeps younger rewards queued after the oldest storage error'"
+        },
+        {
+          "name": "Flush includes a reward queued while saved state notifies its listeners",
+          "source_line": 437,
+          "registration": "test",
+          "source_expression": "'Flush includes a reward queued while saved state notifies its listeners'"
+        },
+        {
+          "name": "Cards win sequence, Stars and XP survive new AppState and settings hydration",
+          "source_line": 468,
+          "registration": "test",
+          "source_expression": "'Cards win sequence, Stars and XP survive new AppState and settings hydration'"
+        },
+        {
+          "name": "Failed Cards persistence cannot advance its series or grant half a reward",
+          "source_line": 494,
+          "registration": "test",
+          "source_expression": "'Failed Cards persistence cannot advance its series or grant half a reward'"
+        },
+        {
+          "name": "Native import cannot acknowledge an event after a failed lesson flush",
+          "source_line": 532,
+          "registration": "test",
+          "source_expression": "'Native import cannot acknowledge an event after a failed lesson flush'"
+        },
+        {
+          "name": "Invalid native rewards cannot write balances or poison the queue",
+          "source_line": 589,
+          "registration": "test",
+          "source_expression": "'Invalid native rewards cannot write balances or poison the queue'"
+        }
+      ],
+      "checkpoint_git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+    },
+    {
+      "group": "pr507_existing_corrected",
+      "path": "test/games/memory_profile_storage_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr507-8e64-regression-cleanup-v2-37414-20261114/final-source/test/games/memory_profile_storage_test.dart",
+        "bytes": 12937,
+        "sha256": "33d2b6b63a139f0cd8b8ef75197d515e7c04a3cc9a043e0b07e5815de7dee20f",
+        "git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+      },
+      "expected_visible_cases": 6,
+      "cases": [
+        {
+          "name": "Old unowned record stays byte-identical and is assigned to no child",
+          "source_line": 88,
+          "registration": "testWidgets",
+          "source_expression": "'Old unowned record stays byte-identical and is assigned to no child'"
+        },
+        {
+          "name": "Real completed round restores only its child best and difficulty",
+          "source_line": 113,
+          "registration": "testWidgets",
+          "source_expression": "'Real completed round restores only its child best and difficulty'"
+        },
+        {
+          "name": "Delayed old-child write cannot overwrite the newly selected child",
+          "source_line": 159,
+          "registration": "testWidgets",
+          "source_expression": "'Delayed old-child write cannot overwrite the newly selected child'"
+        },
+        {
+          "name": "Delayed identity load cannot expose old best after profile switch",
+          "source_line": 223,
+          "registration": "testWidgets",
+          "source_expression": "'Delayed identity load cannot expose old best after profile switch'"
+        },
+        {
+          "name": "Pending successive choices retain captured snapshots and final order",
+          "source_line": 248,
+          "registration": "testWidgets",
+          "source_expression": "'Pending successive choices retain captured snapshots and final order'"
+        },
+        {
+          "name": "Unreadable existing child stats are preserved instead of reset",
+          "source_line": 297,
+          "registration": "testWidgets",
+          "source_expression": "'Unreadable existing child stats are preserved instead of reset'"
+        }
+      ],
+      "checkpoint_git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+    },
+    {
+      "group": "pr508_selected_proposal",
+      "path": "test/games/connect_four_native_route_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/test/games/connect_four_native_route_test.dart",
+        "bytes": 5165,
+        "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6",
+        "git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+      },
+      "expected_visible_cases": 1,
+      "cases": [
+        {
+          "name": "Actual Android Flutter route opens independent C4, returns paused and reopens exact round",
+          "source_line": 14,
+          "registration": "testWidgets",
+          "source_expression": "'Actual Android Flutter route opens independent C4, returns paused and reopens exact round'"
+        }
+      ],
+      "checkpoint_git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+    },
+    {
+      "group": "pr508_selected_proposal",
+      "path": "test/games/games_screen_flow_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/test/games/games_screen_flow_test.dart",
+        "bytes": 15945,
+        "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+        "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+      },
+      "expected_visible_cases": 4,
+      "cases": [
+        {
+          "name": "Cards outer/inner Fold layouts, full touch game, result, replay, back",
+          "source_line": 75,
+          "registration": "testWidgets",
+          "source_expression": "'Cards outer/inner Fold layouts, full touch game, result, replay, back'"
+        },
+        {
+          "name": "Four in a row completes a full touch game and restart cancels old bot",
+          "source_line": 174,
+          "registration": "testWidgets",
+          "source_expression": "'Four in a row completes a full touch game and restart cancels old bot'"
+        },
+        {
+          "name": "Four in a row delayed native refusal unlocks the real Flutter board",
+          "source_line": 254,
+          "registration": "testWidgets",
+          "source_expression": "'Four in a row delayed native refusal unlocks the real Flutter board'"
+        },
+        {
+          "name": "Dice full touch game, saved result, restart and pause during rolling",
+          "source_line": 324,
+          "registration": "testWidgets",
+          "source_expression": "'Dice full touch game, saved result, restart and pause during rolling'"
+        }
+      ],
+      "checkpoint_git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+    },
+    {
+      "group": "pr508_selected_proposal",
+      "path": "test/games/connect_four_navigation_test.dart",
+      "selected_source": {
+        "local_path": "/tmp/host-pr508-c4-optin-followup-v2-20261114/final-source/test/games/connect_four_navigation_test.dart",
+        "bytes": 5291,
+        "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+        "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+      },
+      "expected_visible_cases": 2,
+      "cases": [
+        {
+          "name": "Connect Four pushes, leaves and restores its real route at Size(320.0, 740.0)",
+          "source_line": 13,
+          "registration": "testWidgets",
+          "source_expression": "'Connect Four pushes, leaves and restores its real route at $size'",
+          "expansion": {
+            "size": "Size(320.0, 740.0)",
+            "width": 320,
+            "height": 740
+          }
+        },
+        {
+          "name": "Connect Four pushes, leaves and restores its real route at Size(640.0, 360.0)",
+          "source_line": 13,
+          "registration": "testWidgets",
+          "source_expression": "'Connect Four pushes, leaves and restores its real route at $size'",
+          "expansion": {
+            "size": "Size(640.0, 360.0)",
+            "width": 640,
+            "height": 360
+          }
+        }
+      ],
+      "checkpoint_git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+    }
+  ],
+  "speech_contracts": [
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "source": {
+        "bytes": 4381,
+        "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+        "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+      },
+      "checkpoint37414_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+      "unittest_method": "SpeechEnvelopeContractTest.test_original_pcm_envelope_contract",
+      "jvm_main": "dev.ullmann.lumo.SpeechEnvelopeContractKt",
+      "required_marker": "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47",
+      "required_reported_checks": 23,
+      "status": "AWAITING_NEW_ACTUAL_RUN"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "source": {
+        "bytes": 4342,
+        "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+        "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+      },
+      "checkpoint37414_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+      "unittest_method": "SpeechEnvelopeContractTest.test_original_learning_lifecycle_contract",
+      "jvm_main": "dev.ullmann.lumo.LearningSpeechLifecycleContractKt",
+      "required_marker": "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+      "required_reported_checks": 17,
+      "status": "AWAITING_NEW_ACTUAL_RUN"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+      "source": {
+        "bytes": 4948,
+        "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8",
+        "git_blob": "a75173645c2f6cc67bc30956accc11793a1fc87a"
+      },
+      "checkpoint37414_blob": "a75173645c2f6cc67bc30956accc11793a1fc87a",
+      "unittest_method": "SpeechEnvelopeContractTest.test_build_consent_rate_and_activity_contract",
+      "jvm_main": "dev.ullmann.lumo.LearningSpeechBuildContractKt",
+      "required_marker": "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+      "required_reported_checks": 30,
+      "status": "AWAITING_NEW_ACTUAL_RUN"
+    }
+  ],
+  "speech_support_sources": [
+    {
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "bytes": 3660,
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f",
+      "git_blob": "5037fd4078e5f73078cd28e4054992f12e07f317"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "bytes": 798,
+      "sha256": "d67fa4f5a281248ace0164b118be4fe705d5337116b1411a61afd9a3c1ce27b0",
+      "git_blob": "0869980e2111cd3f6f8dcf7f81054f0d286b078f"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "bytes": 1324,
+      "sha256": "1ad133a550ee517a5645b081da2f176f1298b95a332dc41bdaa49a5a7b7e9423",
+      "git_blob": "0b0a447556323ea0a0eadd03019157ea8ed9d1bb"
+    }
+  ],
+  "selected_sources": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "mode": "100644",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "mode": "100644",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob": "4615f10622420d53dedb380ff4648e5692995861"
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "mode": "100644",
+      "bytes": 10757,
+      "sha256": "082861273c381ffb946ac6b4205d41eb77065868bfc5d70c165cac7464c0753c",
+      "git_blob": "79d94286312aea5231b0906e8514be132aeee94b"
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "mode": "100644",
+      "bytes": 22807,
+      "sha256": "295a857b766a6ddf5107dd7f1bf8824eeec5d32f0772a3ebefe297f2a1269128",
+      "git_blob": "77862a23eb251266b319beb4d2fe24251e409dab"
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "mode": "100644",
+      "bytes": 12937,
+      "sha256": "33d2b6b63a139f0cd8b8ef75197d515e7c04a3cc9a043e0b07e5815de7dee20f",
+      "git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "mode": "100644",
+      "bytes": 5165,
+      "sha256": "7e4637c8c0a1330738723d2398a88e2e45ceb1d892e925f04c52ff58f93e99a6",
+      "git_blob": "8f9a3a275edec12141b88804ef36dc11dc12d524"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "mode": "100644",
+      "bytes": 15945,
+      "sha256": "af22d37de998a52ac7c403f5531eea2287eb5b12b60fb1d491ee9921b2573566",
+      "git_blob": "6b47469525edf37135802be0b9546b22394b3e00"
+    },
+    {
+      "path": "test/games/connect_four_navigation_test.dart",
+      "mode": "100644",
+      "bytes": 5291,
+      "sha256": "15904ba2dff28e5afbef5d4f23febfca8f2a70066a6e081c873dad57da219f08",
+      "git_blob": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "mode": "100644",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "mode": "100644",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+    },
+    {
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+      "mode": "100644",
+      "bytes": 4948,
+      "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8",
+      "git_blob": "a75173645c2f6cc67bc30956accc11793a1fc87a"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/test_speech_envelope_contract.py",
+      "bytes": 3660,
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f",
+      "git_blob": "5037fd4078e5f73078cd28e4054992f12e07f317"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "bytes": 798,
+      "sha256": "d67fa4f5a281248ace0164b118be4fe705d5337116b1411a61afd9a3c1ce27b0",
+      "git_blob": "0869980e2111cd3f6f8dcf7f81054f0d286b078f"
+    },
+    {
+      "mode": "100644",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "bytes": 1324,
+      "sha256": "1ad133a550ee517a5645b081da2f176f1298b95a332dc41bdaa49a5a7b7e9423",
+      "git_blob": "0b0a447556323ea0a0eadd03019157ea8ed9d1bb"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "bytes": 45094,
+      "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+      "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+    }
+  ],
+  "selected_source_count": 16,
+  "changes_from_0cda_binding": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "before": {
+        "path": "test/games/connect_four_bot_save_retry_test.dart",
+        "mode": "100644",
+        "bytes": 10816,
+        "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+        "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+      },
+      "after": {
+        "path": "test/games/connect_four_bot_save_retry_test.dart",
+        "mode": "100644",
+        "bytes": 11449,
+        "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+        "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+      }
+    }
+  ],
+  "all_82_path_name_pairs_unchanged": true,
+  "unchanged_82_pairs_sha256": "855c33f3bbe06e471b91e8b53b7a351025ced7c7db8046be9f536572dbaf864e",
+  "future_actual_run_bound": false,
+  "future_observation_requirement": "Use only a new Root-supplied exact Host/Tree/Run/Attempt; recheck all16 selected blobs. Resolve all82 unique actual visible testStart/testDone pairs with names/path matches, require no skipped/failed/missing cases and successful final done/exit. Full suite totals derive from that complete stream. Speech23/17/30 requires actual later execution; no current pass is assigned.",
+  "historical_0cda": {
+    "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+    "run_id": 43637785992,
+    "attempt": 1,
+    "full_flutter": "2732PASS/1FAIL/0SKIP",
+    "target82": "81PASS/1FAIL",
+    "speech23_17_30": "NOT_RUN_STEP20_SKIPPED",
+    "unchanged_originals": true,
+    "no_result_transferred_to_new_blob": true
+  },
+  "local_actions": {
+    "tests": false,
+    "api_calls": false,
+    "downloads": false,
+    "product_changes": false,
+    "git_writes": false,
+    "ci_starts": false
+  }
+}
