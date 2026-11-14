@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-14 17:47:42 UTC",
+  "candidate": {
+    "sha": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+    "parent": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+    "frozen27": true,
+    "appFullDiff35": true,
+    "refAdvanced": true
+  },
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "native_tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+  "original_diagnostic": {
+    "run": 43616584326,
+    "attempt": 1,
+    "job": 132512855551,
+    "source": "cd03e1e2da22efa2e982795cddc12217f821b14b",
+    "artifact": 14122019894,
+    "status": "FAIL",
+    "later_cleanup_observed": false
+  },
+  "recovery": {
+    "run": 43622102571,
+    "attempt": 1,
+    "job": 132529833810,
+    "source": "ad1fbec313701217e6582b3617b06a5bc5926f5f",
+    "status": "SUCCESS",
+    "scope": "Frozen source recovery; not candidate runtime acceptance",
+    "artifact_id": 14124008849,
+    "artifact_bytes": 167740,
+    "artifact_api_sha256": "9606d911b09593d157fa5bc59ff6f21e23d5fd8aa58dbd1593b2945d03b09b86",
+    "recovery_archive_locally_rehashed": false
+  },
+  "new_acceptance": {
+    "run": 43622379532,
+    "attempt": 1,
+    "source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "complete": false
+  },
+  "new_separate_diagnostic": {
+    "run": 43622794130,
+    "attempt": 1,
+    "source": "2322632c4adca243cea2ebdc5ecbfaa01c7e51cd",
+    "app": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+    "observer": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "complete": false,
+    "eligible_for_candidate_acceptance": false
+  },
+  "inactive_publisher": {
+    "sha": "9f5c4615acf8db841ded419d7e3780c9f87e57b8",
+    "tree": "3ca4ff6dc7edef3564c2928d10830167a6034fc3",
+    "branch": "checkpoint/lumo-agent-publication-9de-20261114",
+    "workflow_blob": "640d610abac609e430d0db1bb677119e20b4fbe0",
+    "source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "run": 43622379532,
+    "inactive": true
+  },
+  "local_tests": {
+    "tests": 56,
+    "seconds": 59.129,
+    "returncode": 0,
+    "skips": 0,
+    "original_full_log_bytes": 11076,
+    "original_full_log_sha256": "7a234316cb69c4a2ef1ae1ca5dfb96dfc74de09ea62597b20dbe64fa3c64c09b",
+    "complete_log_recovered": false,
+    "exact_available_suffix_bytes": 6500,
+    "exact_available_suffix_sha256": "76b37b233a12bc5febb12a3ba6bc6cb0eec8668a6b0ad4622b49ac324141aa4a",
+    "baseline_full_log_recovered": false,
+    "baseline_recorded_sha256": "c94635003d91dc3aa703c168bb87bff8cf843cdbed2013e7d7377e9ff9109040"
+  },
+  "root_source_verification": {
+    "all27Verified": true,
+    "totalBytes": 142338,
+    "fetchedNewUniqueBlobs": 15,
+    "method": "Read immutable Git blobs and independently computed UTF-8 byte size and SHA256 against the pre-test frozen manifest; verified code blobs reused from prior fresh reads"
+  }
+}

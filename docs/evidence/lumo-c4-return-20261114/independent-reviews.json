@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "recovery_code": {
+    "result": "GO",
+    "script_blob": "118f2d83c82664bc8e354225367bbff895812c27",
+    "workflow_blob": "329f771b52610d171ad0c17a848c5de9ebd0f851",
+    "checkpoint": "3dd945b74cfcbd1c2c8b0bc265f67807493f02a7",
+    "tree": "ea7c01d4817b97280d0c3738804df8dd9af44b80",
+    "scope": "Full independent source/API/provenance review, only exact frozen blob recovery"
+  },
+  "recovered_originals": {
+    "artifact_id": 14122019894,
+    "bytes": 140850732,
+    "sha256": "03dbde65dba65c00d3b36f0283d3d66fee7778d9bd176005c66e470c16eeaaaa",
+    "full_archive_sha256_checked": true,
+    "all_member_crcs_checked": true,
+    "c4_inventory_files_checked": 1335,
+    "original_diagnostic_status": "FAIL",
+    "known_xvfb_difference": {
+      "inventory_bytes": 3522,
+      "inventory_sha256": "f55e2a6894d1dfbec3e5fcb281a8d1d729dfe04923cdfe02ca3a4e801739b3f2",
+      "archive_bytes": 4696,
+      "archive_sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc",
+      "prefix_bytes": 3522,
+      "prefix_sha256": "f55e2a6894d1dfbec3e5fcb281a8d1d729dfe04923cdfe02ca3a4e801739b3f2",
+      "prefix_matches_inventory": true,
+      "appended_bytes": 1174,
+      "not_established_as_c4_failure_cause": true
+    }
+  },
+  "exact_code_and_partial_log_hash_checks": [
+    {
+      "key": "return_probe_verified_text",
+      "bytes": 29187,
+      "sha256": "df9148ab323e6e3255a23449d5342c5a033c9a20361d3d1e4a615b7eb5043583"
+    },
+    {
+      "key": "return_regression_test_verified_text",
+      "bytes": 18191,
+      "sha256": "bd03248a177a33df7f399c90984c995e3f0352cfe14ef7f1974a9e3f590cfb53"
+    },
+    {
+      "key": "return_green_original_partial_text",
+      "bytes": 6500,
+      "sha256": "76b37b233a12bc5febb12a3ba6bc6cb0eec8668a6b0ad4622b49ac324141aa4a"
+    },
+    {
+      "key": "return_green_original_metadata_text",
+      "bytes": 528,
+      "sha256": "d2d815a8912f78776bc8c6a0c63906da980f48cbd7a042e692ce9f2a950c1d2e"
+    }
+  ],
+  "candidate_independent_review": "lumo_learning independently verified entire27-path frozen blob set, exact35-path two-commit app comparison, tree, parent and actual PR head/base",
+  "diagnostic_source_review": {
+    "result": "GO",
+    "reviewer": "lumo_gameplay",
+    "checkpoint": "40853963929f54922fe327effae9009b4aaab12d",
+    "tree": "dc31bc3d18a4e5ea3e51a96aaa3eedce1fbb8f55",
+    "driver_blob": "549fce8c61fe5dbdf7ebf4fb3409cc40af391daa",
+    "workflow_blob": "a87b74f1c2e0f0393c2262cbce62cf589e122dcd",
+    "scope": "Complete sources and independent UTF8 hashes; exact35 complete tree differences; full two-generation ancestry; unchanged core flow/binding; separate immutable Xvfb snapshot"
+  },
+  "scope": "Records only actually completed code/original-byte reviews; actual new Android acceptance still pending"
+}
