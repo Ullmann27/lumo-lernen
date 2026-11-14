@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "host_base": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "host_base": "7fd9e91683ecf703c00f100e314aced9191f7847",
   "original_host_base": "4564ad40c4d000b764e67719d19bd2445c04c870",
-  "native": "454e81229b0193cba75844e9985a53deb2ce5c91",
+  "native": "7d53f29e68269c21d1d5a66bdf3d488f8e886970",
   "sources": {
     "drawing_learning_and_atmosphere_checkpoint": "69cadb6cad90c653cc044e8d073b06e5906ee97d",
     "historical_android_c4_and_pipeline_checkpoint": "2d8ff889dcd172bfd694309a064a40e3e6a749a6",
@@ -12,8 +12,35 @@
     "native_basis_reconciliation": "454e81229b0193cba75844e9985a53deb2ce5c91",
     "final_flutter_c4_union": "e5c4868ebb7a10ec6b69f6700c7fff8cc1bedea3",
     "final_android_workflow_union": "734dc193bf74090f0ef407129c358f06383a7745",
-    "current_quality_followup": "803a4e960ffb804a46b6d09417731c031f00f680"
+    "current_quality_followup": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "previous_native_integration": "454e81229b0193cba75844e9985a53deb2ce5c91",
+    "native_discovery_union": "a7bb5815009ea4ae9b8842026f4f3761ae99c98b",
+    "village_host": "99f04bff80f82a3ee4963aaf29f970a7f79ba0cc",
+    "home_cover_title": "4a5649ec245c970f2ad7113a60752f4fa8c34035",
+    "diktat_real_surface_test_helper": "73fa836056910341d9566d3df21d3af6cb15e4b6",
+    "eleven_portal_qa": "03095109bd07d70ccf40448d1e10f0c4fa64e269",
+    "village_responsive_title": "e55b2ddde0296ed2d05ed5823743a837400dcf5a",
+    "native_final_basis_reconciliation": "7d53f29e68269c21d1d5a66bdf3d488f8e886970",
+    "native_actual_latest_base": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "final_native_delivery_checks": "157e6349a253c108c007340e1fae7b4e2df377fa"
   },
   "preservation": "The complete 01575aaf tree is the base; its AAB tools, actual Android fixtures, source-bound curriculum audit and original evidence archives are retained. Only explicitly listed feature or conflict-resolution paths are overlaid. The complete six-commit follow-up through 803a4e9 is also retained; its stronger FFmpeg prerequisite checks supersede the identical install-only change.",
-  "limits": "Individual passing checks precede the final source union. The combined C4/Dart and workflow union after the environment outage must pass the mandatory current-source CI suite; no unexecuted test or APK is marked successful."
+  "limits": "The first combined source passed native C4 runtime, Android host compilation and 877 script tests; full Flutter acceptance failed three obsolete Diktat test finders. Their helper is repaired to draw through the actual shared ink surface without weakening persistence or reward assertions. The expanded final union requires its own complete current-source Flutter/native/APK/Android/update/delivery acceptance. No prior or producer pass is presented as that final result.",
+  "first_combined_run": {
+    "host": "7fd9e91683ecf703c00f100e314aced9191f7847",
+    "run": 43579007561,
+    "passed": 2612,
+    "failed": 3,
+    "skipped": 0,
+    "rendered_pngs": 546,
+    "apk_built": false
+  },
+  "native_local_acceptance": {
+    "probes": 10,
+    "original_pngs": 38,
+    "passed": true,
+    "runtime_assets_scenes_scripts_unchanged_from_tested_union": true,
+    "physical_android_fps_measured": false,
+    "evidence": "https://github.com/Ullmann27/lumo-godot/blob/7d53f29e68269c21d1d5a66bdf3d488f8e886970/docs/integration/2026-11-14/DISCOVERY_FINAL_VERIFICATION.md"
+  }
 }

@@ -1,3 +1,52 @@
+# Active LUMO 2020 combined integration — 2026-11-14
+
+Active review: https://github.com/Ullmann27/lumo-lernen/pull/497
+Working branch: `integration/lumo-live-connections-20261114`.
+Version: `0.13.8+2020`.
+Exact native source: `7d53f29e68269c21d1d5a66bdf3d488f8e886970`.
+Native review: https://github.com/Ullmann27/lumo-godot/pull/173.
+Main remains protected.
+
+## Integrated source and acceptance boundary
+
+The complete Play-quality follow-up through `803a4e960ffb804a46b6d09417731c031f00f680`
+is preserved in the host integration. The native integration also includes the
+actual latest native base `f052c2795b765265dbb6f5c27b9e92b557d39a39`; all original
+Wisp checks and the four additional GPU checks remain enabled.
+
+This candidate connects the eleven game portals, the direct Dorfwirtschaft
+Flutter/Android/native route, the shared drawing surface, native learning
+feedback and celebrations, game-hub routes, the learning world and its garden,
+and the existing learning/journal modules. Responsive Home and village title
+layouts retain real touch, navigation, large-text and original-image checks.
+The Diktat tests now draw on the actual shared ink surface while retaining all
+progress, repeated-rating and earned-reward assertions.
+
+The first combined host `7fd9e91683ecf703c00f100e314aced9191f7847` was tested in
+run https://github.com/Ullmann27/lumo-lernen/actions/runs/43579007561.
+Native C4 runtime and Android host compilation passed. Full Flutter acceptance
+reported 2,612 passed, three failed, zero skipped and 546 original PNGs.
+All three failures came from the outdated Diktat gesture finder; their original
+failure evidence is retained. No APK was built by that failed run.
+
+The expanded native source passed ten local probes and all 38 discovery PNG
+checks. The delivery verifier passed 129 Python tests, including its negative
+checks. These focused results do not replace the new combined acceptance run.
+The exact current host must pass the complete Flutter and native suites, signed
+APK build, Android API35 journey, 2017-to-2020 data-preserving update, and final
+delivery verification before its APK can be presented as accepted.
+Physical Android 60-FPS performance has not been measured.
+
+Source provenance and original evidence:
+`docs/evidence/live-root-integration-20261114/source-integration.json`.
+The full acceptance runner now requires original Village, Home and Nextgen
+captures. The main C4 workflow also requires all discovery probes and images,
+and the delivery verifier replays both original native connection helpers.
+
+---
+
+## Preserved earlier project handoff
+
 # Active LUMO 2020 Play-quality candidate — 2026-11-14
 
 Active review: https://github.com/Ullmann27/lumo-lernen/pull/491

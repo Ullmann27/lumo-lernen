@@ -15,6 +15,8 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
+import 'package:lumo_lernen/features/learning_modules/wort_diktat/wort_diktat_screen.dart';
+import 'package:lumo_lernen/features/writing/widgets/lumo_ink_surface.dart';
 import 'package:lumo_lernen/features/teacher_mode/topic_curriculum.dart';
 import 'package:lumo_lernen/widgets/design/lumo_learning_module_frame.dart';
 
@@ -186,12 +188,16 @@ Finder _firstVisibleAnswer() => find
 
 Future<void> _revealWrittenWord(WidgetTester tester) async {
   expect(find.text('Das richtige Wort war:'), findsNothing);
-  final canvas = find
-      .byWidgetPredicate((widget) =>
-          widget is GestureDetector &&
-          widget.onPanStart != null &&
-          widget.onPanUpdate != null)
-      .first;
+  final writingRows = find.descendant(
+    of: find.byType(WortDiktatScreen),
+    matching: find.byType(LumoInkSurface),
+  );
+  expect(writingRows, findsWidgets,
+      reason: 'Draw through the real Diktat input surface');
+  final canvas = writingRows.first;
+  await tester.ensureVisible(canvas);
+  await tester.pump();
+  expect(canvas.hitTestable(), findsOneWidget);
   await tester.drag(canvas, const Offset(70, 20));
   await tester.pump();
   await _tapText(tester, 'Fertig ✓', frames: 40);

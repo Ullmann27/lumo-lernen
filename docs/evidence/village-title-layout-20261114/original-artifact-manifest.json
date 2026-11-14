@@ -1,0 +1,46 @@
+{
+  "source_commit": "99f04bff80f82a3ee4963aaf29f970a7f79ba0cc",
+  "run_id": 43577377587,
+  "run_attempt": 1,
+  "artifact_id": 14107710171,
+  "archive_bytes": 2436216,
+  "archive_sha256": "1ed819cd79d631737ebeb5e5c4dc252b8931236c89dd27f5affe8f27745ade76",
+  "images": [
+    {
+      "name": "village-fold-cover.png",
+      "dimensions": [
+        344,
+        882
+      ],
+      "bytes": 336725,
+      "sha256": "598c9a5363199be26f5ddd9bdefbd37552e6df9d6368ef267ecec4d7286487ef"
+    },
+    {
+      "name": "village-phone.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 400468,
+      "sha256": "c06daf1d655afdc49636959374e41f191519e1e4ac7daef3a53f07fe0d5f235a"
+    },
+    {
+      "name": "village-fold-open.png",
+      "dimensions": [
+        690,
+        829
+      ],
+      "bytes": 595307,
+      "sha256": "e1157f86a5d97cacb2b23a92bdae8315cfff9441ab1932ce5724607abcf93eca"
+    },
+    {
+      "name": "village-fold-landscape.png",
+      "dimensions": [
+        1200,
+        900
+      ],
+      "bytes": 1102817,
+      "sha256": "869818d3c17dcf295ff1d903e4a6c0fcc4941d9d6a46b1057d52a53dc6bb2164"
+    }
+  ]
+}

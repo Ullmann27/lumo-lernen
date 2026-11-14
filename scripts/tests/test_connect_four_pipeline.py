@@ -160,11 +160,15 @@ class WorkflowTests(unittest.TestCase):
             'cd "$native_source"',
             'LUMO_LIVE_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/live" '
             'bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-runner.log"',
+            'LUMO_DISCOVERY_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/discovery" '
+            'bash tools/validate_discovery_connections.sh 2>&1 | tee "$native_logs/discovery-runner.log"',
         ):
             with self.subTest(required=required): self.assertIn(required,block)
         self.assertIn('config/godot-source.json',block)
         self.assertLess(block.index('rev-parse HEAD'),block.index('cd "$native_source"'))
         self.assertLess(block.index('cd "$native_source"'),block.index('bash tools/validate_live_connections.sh'))
+        self.assertLess(block.index('bash tools/validate_live_connections.sh'),
+                        block.index('bash tools/validate_discovery_connections.sh'))
 
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
         build=job(self.workflow,'verify-and-build')
