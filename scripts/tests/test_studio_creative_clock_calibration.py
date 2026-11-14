@@ -155,8 +155,9 @@ class CreativeClockAndCalibration(unittest.TestCase):
             observed.append(name)
             return {'file': name, 'sha256': probe.sha(out / name),
                     'width': 1920, 'height': 1080}
-        def image_lines(out, tag, source_path, timeout):
+        def image_lines(out, tag, source_path, timeout, *, parallel_inventory=False):
             self.assertGreater(timeout, 0)
+            self.assertIs(parallel_inventory, True)
             return json.loads((FIXTURES / (source_path.name + '.ocr.json')).read_text())['lines']
         tour.probe = SimpleNamespace(
             capture=capture, image_lines=image_lines,
