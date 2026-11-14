@@ -1,0 +1,930 @@
+{
+  "expected_head": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "expected_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "attempt": 1,
+  "run": {
+    "id": 43633922088,
+    "name": "LUMO Connect Four 2020 signed test candidate",
+    "node_id": "WFR_kwLOSNzcp88AAAAKKMjQKA",
+    "head_branch": "integration/lumo-live-connections-20261114",
+    "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "path": ".github/workflows/lumo-connect-four-2020.yml",
+    "display_title": "Connect original Lumo, direct Village return and complete Android delivery proof",
+    "run_number": 65,
+    "event": "pull_request",
+    "status": "in_progress",
+    "conclusion": null,
+    "workflow_id": 418104700,
+    "check_suite_id": 118143083987,
+    "check_suite_node_id": "CS_kwDOSNzcp88AAAAbgeBl0w",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43633922088",
+    "pull_requests": [
+      {
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls/497",
+        "id": 5309537942,
+        "number": 497,
+        "head": {
+          "ref": "integration/lumo-live-connections-20261114",
+          "sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+          "repo": {
+            "id": 1222433959,
+            "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+            "name": "lumo-lernen"
+          }
+        },
+        "base": {
+          "ref": "work/lumo-play-quality-20261114",
+          "sha": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+          "repo": {
+            "id": 1222433959,
+            "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+            "name": "lumo-lernen"
+          }
+        }
+      }
+    ],
+    "created_at": "2026-11-14T19:46:42Z",
+    "updated_at": "2026-11-14T19:52:51Z",
+    "actor": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T19:46:42Z",
+    "triggering_actor": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088/jobs",
+    "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088/logs",
+    "check_suite_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-suites/118143083987",
+    "artifacts_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088/artifacts",
+    "cancel_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088/cancel",
+    "rerun_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/workflows/418104700",
+    "head_commit": {
+      "id": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "tree_id": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+      "message": "fix: await actual C4 session cleanup within the shared return deadline",
+      "timestamp": "2026-11-14T19:46:24Z",
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 1222433959,
+      "node_id": "R_kgDOSNzcpw",
+      "name": "lumo-lernen",
+      "full_name": "Ullmann27/lumo-lernen",
+      "private": false,
+      "owner": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/Ullmann27/lumo-lernen",
+      "description": "Lumo Lernen Flutter Android App",
+      "fork": false,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+      "forks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/forks",
+      "keys_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/teams",
+      "hooks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/hooks",
+      "issue_events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/events",
+      "assignees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/tags",
+      "blobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/languages",
+      "stargazers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/stargazers",
+      "contributors_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contributors",
+      "subscribers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscribers",
+      "subscription_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscription",
+      "commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/merges",
+      "archive_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/downloads",
+      "issues_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/labels{/name}",
+      "releases_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/deployments"
+    },
+    "head_repository": {
+      "id": 1222433959,
+      "node_id": "R_kgDOSNzcpw",
+      "name": "lumo-lernen",
+      "full_name": "Ullmann27/lumo-lernen",
+      "private": false,
+      "owner": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/Ullmann27/lumo-lernen",
+      "description": "Lumo Lernen Flutter Android App",
+      "fork": false,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+      "forks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/forks",
+      "keys_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/teams",
+      "hooks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/hooks",
+      "issue_events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/events",
+      "assignees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/tags",
+      "blobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/languages",
+      "stargazers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/stargazers",
+      "contributors_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contributors",
+      "subscribers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscribers",
+      "subscription_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscription",
+      "commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/merges",
+      "archive_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/downloads",
+      "issues_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/labels{/name}",
+      "releases_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/deployments"
+    }
+  },
+  "jobs": {
+    "total_count": 3,
+    "jobs": [
+      {
+        "id": 132566627698,
+        "run_id": 43633922088,
+        "workflow_name": "LUMO Connect Four 2020 signed test candidate",
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOSNzcp88AAAAe3ZY1cg",
+        "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132566627698",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43633922088/job/132566627698",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-14T19:47:24Z",
+        "started_at": "2026-11-14T19:47:26Z",
+        "completed_at": "2026-11-14T19:52:49Z",
+        "name": "android-host-compile",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T19:47:27Z",
+            "completed_at": "2026-11-14T19:47:28Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T19:47:28Z",
+            "completed_at": "2026-11-14T19:47:40Z"
+          },
+          {
+            "name": "Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T19:47:40Z",
+            "completed_at": "2026-11-14T19:47:40Z"
+          },
+          {
+            "name": "Run subosito/flutter-action@v2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T19:47:40Z",
+            "completed_at": "2026-11-14T19:48:03Z"
+          },
+          {
+            "name": "Run android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T19:48:03Z",
+            "completed_at": "2026-11-14T19:48:09Z"
+          },
+          {
+            "name": "Compile actual current Android host before native release pin approval",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T19:48:09Z",
+            "completed_at": "2026-11-14T19:52:45Z"
+          },
+          {
+            "name": "Bind actual compiled C4 Activity bridge and Binder bytecode",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-14T19:52:45Z",
+            "completed_at": "2026-11-14T19:52:45Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-14T19:52:45Z",
+            "completed_at": "2026-11-14T19:52:46Z"
+          },
+          {
+            "name": "Post Run subosito/flutter-action@v2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-14T19:52:46Z",
+            "completed_at": "2026-11-14T19:52:47Z"
+          },
+          {
+            "name": "Post Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-14T19:52:47Z",
+            "completed_at": "2026-11-14T19:52:47Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-11-14T19:52:47Z",
+            "completed_at": "2026-11-14T19:52:47Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-11-14T19:52:47Z",
+            "completed_at": "2026-11-14T19:52:47Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132566627698",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000019078,
+        "runner_name": "GitHub Actions 1000019078",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 132566627882,
+        "run_id": 43633922088,
+        "workflow_name": "LUMO Connect Four 2020 signed test candidate",
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOSNzcp88AAAAe3ZY2Kg",
+        "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132566627882",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43633922088/job/132566627882",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-14T19:47:24Z",
+        "started_at": "2026-11-14T19:47:26Z",
+        "completed_at": "2026-11-14T19:50:09Z",
+        "name": "connect-four-runtime",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T19:47:27Z",
+            "completed_at": "2026-11-14T19:47:28Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T19:47:28Z",
+            "completed_at": "2026-11-14T19:47:38Z"
+          },
+          {
+            "name": "Bind the approved 2020 host and exact native source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T19:47:38Z",
+            "completed_at": "2026-11-14T19:47:38Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T19:47:38Z",
+            "completed_at": "2026-11-14T19:47:44Z"
+          },
+          {
+            "name": "Run subosito/flutter-action@v2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T19:47:44Z",
+            "completed_at": "2026-11-14T19:48:05Z"
+          },
+          {
+            "name": "Prepare genuine desktop renderer dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T19:48:05Z",
+            "completed_at": "2026-11-14T19:48:17Z"
+          },
+          {
+            "name": "Install the actual pinned Godot engine",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-14T19:48:17Z",
+            "completed_at": "2026-11-14T19:48:18Z"
+          },
+          {
+            "name": "Import the exact configured native source in its own directory",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-14T19:48:18Z",
+            "completed_at": "2026-11-14T19:48:55Z"
+          },
+          {
+            "name": "Retry the acknowledged native exit after a transient Android refusal",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-14T19:48:55Z",
+            "completed_at": "2026-11-14T19:48:56Z"
+          },
+          {
+            "name": "Require the additional pinned native Treasure wisp regression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-14T19:48:56Z",
+            "completed_at": "2026-11-14T19:48:56Z"
+          },
+          {
+            "name": "Require the actual production Dart and rendered Godot two-process gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-14T19:48:56Z",
+            "completed_at": "2026-11-14T19:50:02Z"
+          },
+          {
+            "name": "Preserve every original C4 runtime result and rendered frame",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-11-14T19:50:02Z",
+            "completed_at": "2026-11-14T19:50:05Z"
+          },
+          {
+            "name": "Post Run subosito/flutter-action@v2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22,
+            "started_at": "2026-11-14T19:50:05Z",
+            "completed_at": "2026-11-14T19:50:06Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23,
+            "started_at": "2026-11-14T19:50:06Z",
+            "completed_at": "2026-11-14T19:50:06Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 24,
+            "started_at": "2026-11-14T19:50:06Z",
+            "completed_at": "2026-11-14T19:50:07Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25,
+            "started_at": "2026-11-14T19:50:07Z",
+            "completed_at": "2026-11-14T19:50:07Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132566627882",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000019079,
+        "runner_name": "GitHub Actions 1000019079",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 132568119078,
+        "run_id": 43633922088,
+        "workflow_name": "LUMO Connect Four 2020 signed test candidate",
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43633922088",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOSNzcp88AAAAe3az3Jg",
+        "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132568119078",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43633922088/job/132568119078",
+        "status": "in_progress",
+        "conclusion": null,
+        "created_at": "2026-11-14T19:52:49Z",
+        "started_at": "2026-11-14T19:52:51Z",
+        "completed_at": null,
+        "name": "verify-and-build",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T19:52:52Z",
+            "completed_at": "2026-11-14T19:52:54Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T19:52:54Z",
+            "completed_at": "2026-11-14T19:53:16Z"
+          },
+          {
+            "name": "Save source identity and validate exact Godot integration pin",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T19:53:16Z",
+            "completed_at": "2026-11-14T19:53:16Z"
+          },
+          {
+            "name": "Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T19:53:16Z",
+            "completed_at": "2026-11-14T19:53:17Z"
+          },
+          {
+            "name": "Run subosito/flutter-action@v2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T19:53:17Z",
+            "completed_at": "2026-11-14T19:53:46Z"
+          },
+          {
+            "name": "Install real system emoji for ABC screenshots and Flutter test suite",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T19:53:46Z",
+            "completed_at": "2026-11-14T19:53:52Z"
+          },
+          {
+            "name": "Resolve immutable Flutter dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-14T19:53:52Z",
+            "completed_at": "2026-11-14T19:53:53Z"
+          },
+          {
+            "name": "Audit every exact current-grade learning family on this candidate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-14T19:53:53Z",
+            "completed_at": "2026-11-14T19:53:55Z"
+          },
+          {
+            "name": "Preserve the original current-source learning family audit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-14T19:53:55Z",
+            "completed_at": "2026-11-14T19:53:56Z"
+          },
+          {
+            "name": "Flutter static analysis",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-14T19:53:56Z",
+            "completed_at": "2026-11-14T19:54:09Z"
+          },
+          {
+            "name": "Real widget tests for premium quiz and 3D learning islands",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-14T19:54:09Z",
+            "completed_at": "2026-11-14T19:54:28Z"
+          },
+          {
+            "name": "Save genuine rendered Quizshow screenshots for reference comparison",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-11-14T19:54:28Z",
+            "completed_at": "2026-11-14T19:54:30Z"
+          },
+          {
+            "name": "Full Flutter regression suite including every capture",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-11-14T19:54:30Z",
+            "completed_at": "2026-11-14T20:02:10Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-14T20:02:10Z",
+            "completed_at": "2026-11-14T20:02:19Z"
+          },
+          {
+            "name": "Capture and verify actual 2001 tutor, transfer and daily-plan routes",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-14T20:02:19Z",
+            "completed_at": "2026-11-14T20:02:31Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-11-14T20:02:31Z",
+            "completed_at": "2026-11-14T20:02:34Z"
+          },
+          {
+            "name": "Capture spatial reading, answer retry and subject cards on phone and Fold",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-11-14T20:02:34Z",
+            "completed_at": "2026-11-14T20:02:40Z"
+          },
+          {
+            "name": "Install actual app-script verification dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-14T20:02:40Z",
+            "completed_at": "2026-11-14T20:03:05Z"
+          },
+          {
+            "name": "Install verified Gradle for the real build-contract probe",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-14T20:03:05Z",
+            "completed_at": "2026-11-14T20:03:06Z"
+          },
+          {
+            "name": "Verify all build and preservation contracts",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 20,
+            "started_at": "2026-11-14T20:03:06Z",
+            "completed_at": null
+          },
+          {
+            "name": "Preserve the complete original script contracts for PCM delivery replay",
+            "status": "pending",
+            "conclusion": null,
+            "number": 21,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Code-level Android probe regression with verified image dependencies",
+            "status": "pending",
+            "conclusion": null,
+            "number": 22,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Reject unreadable Ahem-font captures before issuing visual proof",
+            "status": "pending",
+            "conclusion": null,
+            "number": 23,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety",
+            "status": "pending",
+            "conclusion": null,
+            "number": 24,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Render actual premium lessons on phone and Fold",
+            "status": "pending",
+            "conclusion": null,
+            "number": 25,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Render actual app sections on phone and Fold",
+            "status": "pending",
+            "conclusion": null,
+            "number": 26,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Render playable Connect Four on five real layout sizes",
+            "status": "pending",
+            "conclusion": null,
+            "number": 27,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Render genuine offline atelier on phone and Fold",
+            "status": "pending",
+            "conclusion": null,
+            "number": 28,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Archive only verified readable Flutter captures",
+            "status": "pending",
+            "conclusion": null,
+            "number": 29,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Install Godot 4.6.3 for the exact pinned Kart source",
+            "status": "pending",
+            "conclusion": null,
+            "number": 30,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Require actual gameplay gates on the exact pinned native source",
+            "status": "pending",
+            "conclusion": null,
+            "number": 31,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Require acknowledged Connect Four return retry",
+            "status": "pending",
+            "conclusion": null,
+            "number": 32,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Require actual Dream gates on the exact pinned native source",
+            "status": "pending",
+            "conclusion": null,
+            "number": 33,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Verify connected dream ambience and garden on exact native source",
+            "status": "pending",
+            "conclusion": null,
+            "number": 34,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Require actual Discovery gates on the exact pinned native source",
+            "status": "pending",
+            "conclusion": null,
+            "number": 35,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 36,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Build unified real Android APK",
+            "status": "pending",
+            "conclusion": null,
+            "number": 37,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Verify APK archive and collect reproducible source hashes",
+            "status": "pending",
+            "conclusion": null,
+            "number": 38,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Upload exact candidate (no release or synthetic screenshots)",
+            "status": "pending",
+            "conclusion": null,
+            "number": 39,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Deliver verified ARM64 APK separately for direct download",
+            "status": "pending",
+            "conclusion": null,
+            "number": 40,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Post Run subosito/flutter-action@v2",
+            "status": "pending",
+            "conclusion": null,
+            "number": 78,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Post Run actions/setup-java@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 79,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "pending",
+            "conclusion": null,
+            "number": 80,
+            "started_at": null,
+            "completed_at": null
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132568119078",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000019100,
+        "runner_name": "GitHub Actions 1000019100",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  },
+  "artifact": {
+    "id": 14130021635,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEzMDAyMTYzNQ==",
+    "name": "lumo-candidate-all-flutter-tests-and-captures",
+    "size_in_bytes": 364047895,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130021635",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130021635/zip",
+    "expired": false,
+    "digest": "sha256:378b6ef4a5d81f179a9cc1454e4d662017e253d5dbfba690d3f678aeb3baa04b",
+    "created_at": "2026-11-14T20:02:18Z",
+    "updated_at": "2026-11-14T20:02:18Z",
+    "expires_at": "2026-12-14T20:02:10Z",
+    "workflow_run": {
+      "id": 43633922088,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e"
+    }
+  }
+}

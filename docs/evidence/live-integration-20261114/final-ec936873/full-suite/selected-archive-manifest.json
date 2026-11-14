@@ -1,0 +1,48 @@
+{
+  "source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "source_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "run_id": 43633922088,
+  "attempt": 1,
+  "artifact_id": 14130021635,
+  "archive_sha256": "378b6ef4a5d81f179a9cc1454e4d662017e253d5dbfba690d3f678aeb3baa04b",
+  "storage_method": "Reuse existing immutable Git archive blobs only after exact byte comparison of every member with the freshly extracted current original PNG. No prior run result is inherited.",
+  "archives": [
+    {
+      "name": "selected-home-premium-originals.zip",
+      "bytes": 7068222,
+      "sha256": "a17dd8933c0d368a70931f7cb46ebf10e087a39f791ccf5a6b14c9e641ee04a1",
+      "git_blob": "a22b2d3562ed02c40925683d696fc43422b39e9a",
+      "original_image_members": [
+        "home-premium/fold-cover-start.png",
+        "home-premium/fold-cover-learning-cards.png",
+        "home-premium/phone-learning-cards.png",
+        "home-premium/fold-open-learning-cards.png",
+        "home-premium/large-text-learning-cards.png"
+      ],
+      "all_original_members_revalidated_after_packaging": true,
+      "current_member_bytes_equal_prior_container": true,
+      "current_source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "current_artifact_id": 14130021635,
+      "prior_container_local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/selected-home-premium-originals.zip"
+    },
+    {
+      "name": "selected-village-originals.zip",
+      "bytes": 3595304,
+      "sha256": "6ea916712b59596afc737f0efeed49f59f33507df24261ef852464e3b195c8df",
+      "git_blob": "0c04d782db44b911cee7a48419f84df83f9e1f41",
+      "original_image_members": [
+        "village/village-fold-cover.png",
+        "village/village-fold-landscape.png",
+        "village/village-fold-open-large-text.png",
+        "village/village-fold-open.png",
+        "village/village-fold-wide-min.png",
+        "village/village-phone.png"
+      ],
+      "all_original_members_revalidated_after_packaging": true,
+      "current_member_bytes_equal_prior_container": true,
+      "current_source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "current_artifact_id": 14130021635,
+      "prior_container_local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/selected-village-originals.zip"
+    }
+  ]
+}

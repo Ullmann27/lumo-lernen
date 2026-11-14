@@ -1,0 +1,35 @@
+{
+  "sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "node_id": "C_kwDOSNzcp9oAKGVjOTM2ODczYTQ1ZmZlYjlhYjM0N2NjNmJkYjEwOTUxZTM4ZmFjNWU",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "author": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T19:46:24Z"
+  },
+  "committer": {
+    "name": "Ullmann27",
+    "email": "64243701+Ullmann27@users.noreply.github.com",
+    "date": "2026-11-14T19:46:24Z"
+  },
+  "tree": {
+    "sha": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/c7d6541e474f8d8ba64b204beb6466c811fb246b"
+  },
+  "message": "fix: await actual C4 session cleanup within the shared return deadline",
+  "parents": [
+    {
+      "sha": "d04ac2596fdd383dc49b1a111d9f6d699bd7cb76",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/d04ac2596fdd383dc49b1a111d9f6d699bd7cb76",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/d04ac2596fdd383dc49b1a111d9f6d699bd7cb76"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}
