@@ -17,8 +17,13 @@ prüft exakt diesen neuen Pin. Die API35-Diagnose
 prüft bewusst die unveränderte frühere 1e22-APK mit getrennt gebundener QA-Quelle
 4017a94d. Ihre 101 Vorlaufverträge sind bestanden; beide Gerätetouren laufen.
 Die neue Hostunion bestand 177 gezielte Scriptverträge und danach 25 aktuelle
-Pinverträge. Die verzögerte Safari-Fortsetzung wird noch an den ursprünglichen
-Modus gebunden. Diese Teilnachweise sind keine abschließende neue APK-Abnahme.
+Pinverträge. Die verzögerte Safari-Fortsetzung aus fe5df7f4 ist jetzt an denselben
+Modus und dasselbe Profil gebunden; acht zusätzliche Widgetfälle prüfen richtige
+und falsche Antworten bei Moduswechsel, Rückwechsel, unveränderter Safari und
+Profilwechsel. Der 30-Fälle-Featureworkflow ist zusätzlich an den zentralen
+App-Entwicklungszweig angeschlossen. Die neuen Widgetfälle wurden lokal nicht
+ausgeführt; ihr tatsächlicher CI-Lauf bleibt erforderlich. Diese Teilnachweise
+sind keine abschließende neue APK-Abnahme.
 
 ## Tatsächlich abgeschlossener Lauf auf 1e22
 
