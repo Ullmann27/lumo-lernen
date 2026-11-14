@@ -1,6 +1,8 @@
 import '../learning/lumo_learning_domain.dart';
 
-/// The first bounded set with an actual, distinguishable native 3D object.
+/// A bounded set with an actual, distinguishable native 3D object.
+/// Includes all ten concrete grade-one/two Schulsachen entries; abstract
+/// later-grade phrases remain outside this object illustration contract.
 /// These words already occur in the local exercise generator. This is help
 /// for the current task, not a second exercise generator or answer channel.
 abstract final class NativeEnglishVocabulary {
@@ -12,6 +14,13 @@ abstract final class NativeEnglishVocabulary {
     'car': {'Auto'},
     'sun': {'Sonne'},
     'apple': {'Apfel'},
+    'bag': {'Tasche'},
+    'rubber': {'Radiergummi'},
+    'school bag': {'Schultasche'},
+    'desk': {'Schreibtisch'},
+    'chair': {'Sessel'},
+    'pencil case': {'Federpennal'},
+    'paper': {'Papier'},
   };
 
   static Map<String, Object>? illustrationFor(TaskInstance task) {
@@ -23,9 +32,11 @@ abstract final class NativeEnglishVocabulary {
     // Match only the two actual reviewed local prompt forms. Free text,
     // a coincidental word in another question, and a wrong answer fail closed.
     final prompt = task.prompt;
-    final generated = RegExp(r'^Was bedeutet „([a-z]+)“\?$').firstMatch(prompt);
+    final generated = RegExp(
+      r'^Was bedeutet „([a-z]+(?: [a-z]+)*)“\?$',
+    ).firstMatch(prompt);
     final fallback = RegExp(
-      r'^Was heißt ([a-z]+) auf Deutsch\?$',
+      r'^Was heißt ([a-z]+(?: [a-z]+)*) auf Deutsch\?$',
     ).firstMatch(prompt);
     final word = generated?.group(1) ?? fallback?.group(1);
     final accepted = meanings[word];

@@ -10,6 +10,19 @@ import '../lib/features/learning/adapters/legacy_lumo_task_adapter.dart';
 int checks = 0;
 int cases = 0;
 
+const schoolWords = <String, String>{
+  'book': 'Buch',
+  'pen': 'Kugelschreiber',
+  'bag': 'Tasche',
+  'ruler': 'Lineal',
+  'rubber': 'Radiergummi',
+  'school bag': 'Schultasche',
+  'desk': 'Schreibtisch',
+  'chair': 'Sessel',
+  'pencil case': 'Federpennal',
+  'paper': 'Papier',
+};
+
 void check(bool condition, String label) {
   checks++;
   if (!condition) throw StateError(label);
@@ -55,12 +68,14 @@ TaskInstance typed({
 
 void main(List<String> args) {
   final realExamples = <String, Map<String, Object?>>{};
+  final schoolExamples = <int, Map<String, Map<String, Object?>>>{1: {}, 2: {}};
   scenario(
-    'actual generator and unchanged checked adapter reach all seven words',
+    'actual generator and unchanged checked adapter reach all fourteen words',
     () {
       final factory = ExerciseFactory(seed: 741);
       for (final family in [
         (1, 'Schulsachen'),
+        (2, 'Schulsachen'),
         (2, 'Spielzeug'),
         (3, 'Wetter'),
         (3, 'Essen'),
@@ -98,6 +113,11 @@ void main(List<String> args) {
                 ]),
             'task/child/options/help unchanged',
           );
+          final isFirstSchoolUnit =
+              original.unit == 'Schulsachen' && original.grade <= 2;
+          if (isFirstSchoolUnit) {
+            check(descriptor != null, 'Every actual grade-one/two school object is supported');
+          }
           if (descriptor == null) continue;
           final payload = descriptor.toLaunchOptions();
           final word = payload['word'] as String;
@@ -134,14 +154,72 @@ void main(List<String> args) {
               'activity': payload,
             },
           );
+          if (isFirstSchoolUnit) {
+            check(schoolWords[word] == payload['meaning'],
+                'Exact original school translation, including pen/Kugelschreiber');
+            schoolExamples[original.grade]!.putIfAbsent(
+              word,
+              () => {
+                'prompt': task.prompt,
+                'answer': task.correctAnswer,
+                'options': task.options.map((option) => option.payload).toList(),
+                'grade': original.grade,
+                'unit': original.unit,
+                'activity': payload,
+              },
+            );
+          }
         }
       }
       check(
-        realExamples.length == 7,
-        'all seven intended local vocabulary entries reached: ${realExamples.keys}',
+        realExamples.length == 14,
+        'all fourteen intended local vocabulary entries reached: ${realExamples.keys}',
       );
     },
   );
+  scenario('both first school grades retain all ten real school objects', () {
+    for (final grade in [1, 2]) {
+      final observed = schoolExamples[grade]!;
+      check(observed.length == schoolWords.length &&
+          observed.keys.toSet().containsAll(schoolWords.keys),
+          'Actual grade $grade school collection has every intended word');
+    }
+  });
+  scenario('multiword objects require the exact prompt and actual answer', () {
+    for (final word in ['school bag', 'pencil case']) {
+      final answer = schoolWords[word]!;
+      final options = [
+        AnswerOption(id: 'actual', label: answer, payload: answer),
+        const AnswerOption(id: 'book', label: 'Buch', payload: 'Buch'),
+        const AnswerOption(id: 'ball', label: 'Ball', payload: 'Ball'),
+      ];
+      for (final prompt in ['Was bedeutet „$word“?', 'Was heißt $word auf Deutsch?']) {
+        final descriptor = NativeLearningActivity.fromTask(
+          typed(prompt: prompt, answer: answer, options: options),
+        );
+        check(descriptor?.toLaunchOptions()['word'] == word &&
+            descriptor?.toLaunchOptions()['meaning'] == answer,
+            'Actual supported multiword object remains exact');
+      }
+      for (final prompt in [
+        'Was bedeutet „${word.replaceAll(' ', '  ')}“?',
+        'Was bedeutet „${word.replaceAll(' ', '-')}“?',
+        'Was bedeutet „$word“? Zusatz',
+      ]) {
+        check(NativeLearningActivity.fromTask(
+          typed(prompt: prompt, answer: answer, options: options),
+        ) == null, 'Modified multiword prompt rejected');
+      }
+    }
+    for (final prompt in [
+      'Was bedeutet „homework“?',
+      'Was bedeutet „lesson“?',
+      'Was bedeutet „Please open your book.“?',
+    ]) {
+      check(NativeLearningActivity.fromTask(typed(prompt: prompt)) == null,
+          'Abstract/phrase school content is not replaced by a guessed object');
+    }
+  });
   scenario('fallback prompt remains bound to its actual German answer', () {
     final result = NativeLearningActivity.fromTask(
       typed(prompt: 'Was heißt book auf Deutsch?'),
@@ -272,6 +350,9 @@ void main(List<String> args) {
     'checks': checks,
     'failures': 0,
     'examples': realExamples,
+    'school_examples': {
+      for (final entry in schoolExamples.entries) '${entry.key}': entry.value,
+    },
   };
   if (args.length == 2 && args[0] == '--out') {
     File(args[1]).writeAsStringSync(

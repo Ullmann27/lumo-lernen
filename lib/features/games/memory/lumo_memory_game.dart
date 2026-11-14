@@ -305,7 +305,9 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
     if (!_nativePreparing && !_clock.value && _pendingActions == 0 &&
         _game.state.complete && _game.round.rewarded && _shownResult != id) {
       _shownResult = id;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      // The durable turn has already completed outside build. Queue the
+      // route before the next frame rather than inserting it after that frame.
+      scheduleMicrotask(() {
         if (_canPlay && !_clock.value && _game.round.id == id) {
           _showGameOver();
         } else if (_shownResult == id) {

@@ -45,7 +45,12 @@ TaskInstance _task(String word) {
       unit: 'Schulsachen',
       prompt: 'Was bedeutet „$word“?',
       answer: answer,
-      choices: [answer, if (answer != 'Buch') 'Buch', 'Tasche', 'Heft'],
+      choices: [
+        answer,
+        ...['Buch', 'Tasche', 'Lineal', 'Heft']
+            .where((candidate) => candidate != answer)
+            .take(3),
+      ],
       explanation: 'Das Wort bedeutet $answer.',
     ),
     childId: 'synthetic-english-child',
@@ -121,7 +126,7 @@ void main() {
   );
 
   _androidWidgetTest(
-    'all seven English descriptors use the existing learning bridge',
+    'all fourteen English descriptors use the existing learning bridge',
     (tester) async {
       final app = _EnglishLaunchState();
       addTearDown(app.dispose);
@@ -149,7 +154,7 @@ void main() {
         expect(current.taskInstanceId, originalId);
         expect(current.correctAnswer, originalAnswer);
       }
-      expect(calls, hasLength(7));
+      expect(calls, hasLength(14));
       expect(tester.takeException(), isNull);
     },
   );

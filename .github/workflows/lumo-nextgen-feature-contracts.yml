@@ -68,6 +68,8 @@ jobs:
         run: |
           set -euo pipefail
           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/games/memory_result_frame_test.dart \
+            test/games/game_round_regression_test.dart \
             test/games/memory_native_entry_test.dart \
             test/games/memory_screen_test.dart \
             test/games/memory_theme_pack_test.dart \
