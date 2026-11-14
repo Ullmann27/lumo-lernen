@@ -1,0 +1,748 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Explicit docs-only local source/render freeze; no runtime caches or asset copies; source files only referenced by manifest and diff",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/README.md",
+      "path": "docs/evidence/studio-english-school-objects-20261114/README.md",
+      "bytes": 4832,
+      "sha256": "c75afd8596efda29ed69ae3c5fa5a708a1a4dcfd9b39cac5164f21ef95621083",
+      "git_blob_sha": "5cb7c0132a584fe9c65ea5ab5c78ea18eee527d2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline-index.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/baseline-index.json",
+      "bytes": 4667,
+      "sha256": "e847454ee4c588d9ab92bc46f3b5e9a1349bfce33f8d470fe7f8f7348f94baa3",
+      "git_blob_sha": "476979860a2975662a1ee232790447926cc0d254",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/early-source-manifest.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/early-source-manifest.json",
+      "bytes": 7860,
+      "sha256": "8ae5f1ea41f4855757fbfa09c56a042735a81bd92b902504ce905c43359770c1",
+      "git_blob_sha": "b826eb05526f360de68543f78f73fdf11d4dd3de",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/early-confirmed-source-blobs.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/early-confirmed-source-blobs.json",
+      "bytes": 8516,
+      "sha256": "33a1c7ab26af305e67196bef9b00029a7f9a38179075d54e92ab2634852e926f",
+      "git_blob_sha": "7d21d6dffa5a45be1a9c5fa1cb3b9857c2df838d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/source-upload-manifest.json",
+      "bytes": 7797,
+      "sha256": "c1a0e4b65edc78d6840c385297071a7de286c8763742a2b029191ec7b0a92d8c",
+      "git_blob_sha": "91de9c76cbffca7c858f9dbf28a82f1f04a77f46",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/native-source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/native-source-upload-manifest.json",
+      "bytes": 3585,
+      "sha256": "1a7fd3fdd062a29c7c13a124497575decda29b9c335b21d269fe5e04f1697f28",
+      "git_blob_sha": "6fe6bb8c6c0ad1c49e7419e1956a896eb0533fd6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/host-product-source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/host-product-source-upload-manifest.json",
+      "bytes": 2936,
+      "sha256": "84eb87fec403edffd765d71f1885b43ca213c0c6c1cc0b9c360f7fd18234980b",
+      "git_blob_sha": "ce32d278ec0f8139f3bea39f291a61b5a2e1c7a0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/host-probe-source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/host-probe-source-upload-manifest.json",
+      "bytes": 4669,
+      "sha256": "6b8eaa83a234e49cb4c32e2cd9fdc75bb6157e5777b9f09159ce8e5be8d094f7",
+      "git_blob_sha": "3001e01ec93f80cdbd1f8ab55904a42d5c863894",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/final-review.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/final-review.json",
+      "bytes": 4452,
+      "sha256": "ede5a206b89549ea5281d61fb3eb8aab8d14c6f1276cb874f0fe530e23bb97e7",
+      "git_blob_sha": "050b147cb5c3c83a2d73c050b792477a44bc7c66",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/runtime-baseline.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/runtime-baseline.json",
+      "bytes": 13249,
+      "sha256": "b9389c50289ad948050248e684dadea3920b99ccda1221294e153e781fe6ce82",
+      "git_blob_sha": "98fce6ed797bf71a0e357daf126570abc72cd25f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/early-implementation.patch",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/early-implementation.patch",
+      "bytes": 28479,
+      "sha256": "7b755f28996baa0707d1d04e00baea676ac86d717070ab57eba72b0d54af7477",
+      "git_blob_sha": "b705f292dca0b59e430d62c9281944440e8a1697",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/final-implementation.patch",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/final-implementation.patch",
+      "bytes": 28373,
+      "sha256": "23af9ee965dac7971d4f2ee15b3d1ca33a1c55ee4e79204caea2eea717f78a84",
+      "git_blob_sha": "f6850d589dfb714c55baf37d244017edaa695c65",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/final-runtime-source-binding.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/final-runtime-source-binding.json",
+      "bytes": 23213,
+      "sha256": "6de1114807b23af1f50ea066c0484ecf1194d4a299d4064332dd12e22d463334",
+      "git_blob_sha": "1181bb69e575709dffb5788172e881b5407f2f22",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/final-image-review.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/final-image-review.json",
+      "bytes": 16892,
+      "sha256": "18d1edb0a1bddb4977452f93cba959e3b777ca359e20960b25d03e81a8660f78",
+      "git_blob_sha": "e9be6ead8390b2db8137303465a5620363571df2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/final-log-summary.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/final-log-summary.json",
+      "bytes": 3501,
+      "sha256": "861ce8292fb6fc3ad654c6fd570443506b2c04cff58874933c9b7165aa89667f",
+      "git_blob_sha": "12fb3b677bf93d0940c586f7426e5ef1ba3ba7c3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/final-render-validator-replay.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/final-render-validator-replay.json",
+      "bytes": 30958,
+      "sha256": "2229295afa10f13be3c6dbe39e682d928860f6473fd6bf94dff071d1f3e90cad",
+      "git_blob_sha": "2ea8cea3ddc4aecd64016e1a51dfaa1cabdbd7a7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/import-first/execution.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/import-first/execution.json",
+      "bytes": 1027,
+      "sha256": "ff73fa4ad58700df8ab7d646f92a0e2772d59954995df514548835cfe6929474",
+      "git_blob_sha": "5aaa3c0d1d746f0faf9a6761f5b5dd09e6178e37",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/import-first/original.log",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/import-first/original.log",
+      "bytes": 6312,
+      "sha256": "e4f2ee3d25f6862130a1a0f9358e33db1b60ef6f388bb1fd18ffb30303f49294",
+      "git_blob_sha": "1f869936e9cfe652a233088fc0484c693d1e59f7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/headless-first/execution.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/headless-first/execution.json",
+      "bytes": 1754,
+      "sha256": "8435f518b32daa1f2efc315216d036216754bfdb4318b8f21c21c6277532f936",
+      "git_blob_sha": "d4fe81e975bad6bf7c1e7c74848b7dfda6a30c95",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/headless-first/original.log",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/headless-first/original.log",
+      "bytes": 8496,
+      "sha256": "d52169cd8fec844573db58e377c241ceac8a0172b60b1f6b8be6125975865639",
+      "git_blob_sha": "bc4fd4f1cba7157bd38ca2ce56ebcfc2e06e8ffb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/headless-first/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/headless-first/captures/learning-english-report.json",
+      "bytes": 89750,
+      "sha256": "12518d0d7c0ab7a71e942ac48427772b68704b80d0ef3dc4ef23b69bf6489260",
+      "git_blob_sha": "a21b61f262c6aefdbed41711c8089c61c0b23ec8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/headless-hint-padding/execution.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/headless-hint-padding/execution.json",
+      "bytes": 1762,
+      "sha256": "794da10a65fd181522c49e6aeac69f521cc87f9000f88a27b29a0a144eeada46",
+      "git_blob_sha": "854274b020efd67ee8eba8c2979d27b3f8044cd3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/headless-hint-padding/original.log",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/headless-hint-padding/original.log",
+      "bytes": 6523,
+      "sha256": "551fc0e27ce5d853de457696e1a7387d7d295710488c72453c8a2a967a84e2d2",
+      "git_blob_sha": "4f9c72727833932e01cc62ff70da62da4fd03bce",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/headless-hint-padding/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/headless-hint-padding/captures/learning-english-report.json",
+      "bytes": 136424,
+      "sha256": "949657093b188c363a98ad3c46570de226ed61245b502415c787f99ccbd886e6",
+      "git_blob_sha": "1a239646beb87f0930ad567e29472f647db61051",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/probe-contracts/execution.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/probe-contracts/execution.json",
+      "bytes": 320,
+      "sha256": "b0a485e1bb80794c7f5cbfdfd34b16ed9fe6c4c77d65772bc220360d6f8a8a06",
+      "git_blob_sha": "f364c6a6b2605fe309a77d352e85f3d0d580793a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/probe-contracts/original.log",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/probe-contracts/original.log",
+      "bytes": 5484,
+      "sha256": "301f04c8c72416013b974fa4f1a26b39b2392606b711a9ea727ffc38c16dd3f5",
+      "git_blob_sha": "2d48eca113271adb01bdc63828043a326d660a5c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first/run.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first/run.json",
+      "bytes": 480,
+      "sha256": "8e7781785666a81a5c34438c30f38083bfcc17b661c1d961d3671884b696bbed",
+      "git_blob_sha": "de38773dcf6e39b1a0739bb068cb4199765d981c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first/godot.log",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first/godot.log",
+      "bytes": 6819,
+      "sha256": "5753f81ed23d1d5bd9c010c436fee82296855f2d40230de13bd3c649e3238b8e",
+      "git_blob_sha": "06b35d924db279edcf27dc4e792307c6ae28374e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first/Xorg.log",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first/Xorg.log",
+      "bytes": 71596,
+      "sha256": "a65cecbdae5ba97a3f253e6c23761cc4ddb6d3b68cdc8442c1ccfe83ee12c5fc",
+      "git_blob_sha": "870600b14973e1b3b63f74ee570a409690d7de9e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first/server-stdout.log",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first/server-stdout.log",
+      "bytes": 2141,
+      "sha256": "cbad675d92d8129513ec9fd40b13f0e81905d80dc7bd205b48e78f3ea057a209",
+      "git_blob_sha": "05842bd7f3183622281006b627d248afbca8b83c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-apple-960x540-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-apple-960x540-start.json",
+      "bytes": 2837,
+      "sha256": "277e2262cca61fc16fb154fbb5c46d4013dc869807385e2944ffd30374ed15e5",
+      "git_blob_sha": "173771c51047c02e27bc06553d3bbe67439dc4e1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-apple-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-apple-960x540-start.layout.json",
+      "bytes": 33502,
+      "sha256": "265f6ba622de63b073fb2b98bb3f1935bf7363fc4f5486da608499d8787173bd",
+      "git_blob_sha": "1f4dc5f67c22b940c71304b2494150fe1e6e1ac0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-apple-960x540-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-apple-960x540-start.png",
+      "bytes": 171145,
+      "sha256": "ca5681c82c3b8f4630743e98bf694ca08805d310ca5ca4a01e1972a45b759f43",
+      "git_blob_sha": "7738f2f3b741ecbcd696d8f072483cae62f5c0aa",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-bag-960x540-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-bag-960x540-start.json",
+      "bytes": 2852,
+      "sha256": "7f3039357e38af86bde926b62f5d80105bc1c09fd87bbf004cd5f83210f46aab",
+      "git_blob_sha": "206855f2c8bbfcbbe7ccfa6f1c72a2baa546e7a2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-bag-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-bag-960x540-start.layout.json",
+      "bytes": 44645,
+      "sha256": "33a4e019ce84867ed9b644311b60dd5e73ee6bc0093597231ce1dc478219bfa9",
+      "git_blob_sha": "c61eb96ec2a79c6625252b009a4384f0608b8b44",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-bag-960x540-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-bag-960x540-start.png",
+      "bytes": 169529,
+      "sha256": "60cc3040acc3f6083b142b0abb3447aa0cfabf6eb2025174c358f5035a5ce726",
+      "git_blob_sha": "17689ec05fc9ff3ccb0879e902c41167ce9d0a3f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-complete.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-complete.json",
+      "bytes": 2835,
+      "sha256": "9354d76ef884ce4edb7a027a9992a11e268834217ad60c3ac5de94e8bda1689c",
+      "git_blob_sha": "7b61da901148ca9a936b9a393b4be0ebf161686a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-complete.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-complete.layout.json",
+      "bytes": 34746,
+      "sha256": "fe1f4153c88b22f0a19c7fa237909ed91977843ff0897bc655554d922b80430d",
+      "git_blob_sha": "4fd76a37a9208aed581d1f181dcbb9308a724af2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-complete.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-complete.png",
+      "bytes": 171007,
+      "sha256": "5a93fd3e78c22f6d386d7f6106184a52e7225d2442a076391677d3cbafaa162b",
+      "git_blob_sha": "8aae9d586dcfa83a4b22ef43a1d2fcdab662a724",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-hint.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-hint.json",
+      "bytes": 2832,
+      "sha256": "70bcb69e0e75dce0fbe1d5bfe16aae5cf46533bad22439a9b9df73404bde60d2",
+      "git_blob_sha": "a788b34ae526e8f2432e465d83b40a5463d3c49e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-hint.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-hint.layout.json",
+      "bytes": 34747,
+      "sha256": "4f98d1a12a3ed800b5b113b2619b036b7c7bf9dd9a43e6d8c7d0ffec7a90f1c1",
+      "git_blob_sha": "e8625c87d9fed19bf603086f685a582002b5eeec",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-hint.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-hint.png",
+      "bytes": 171401,
+      "sha256": "4a7796e4d9d4294aec0043781f376307b88c24f6aef2c5a93e1a00d1458f200a",
+      "git_blob_sha": "0a27d730da6b616557c69de4120670191abbfbf7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-start.json",
+      "bytes": 2828,
+      "sha256": "899c2b0042ae959bea49c378e0710c327a41f84e7e2a7edcbd40647611c04116",
+      "git_blob_sha": "bc7e82339eed4e36090bc4c9d984238d74963f6d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-start.layout.json",
+      "bytes": 33954,
+      "sha256": "46a9c4d4f7cc310fd992a9374f98eb973de20b3d93af9573c0845890b61cf6f4",
+      "git_blob_sha": "8283455d65e0f5f6bbde7305002a00de1368973f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ball-960x540-start.png",
+      "bytes": 170576,
+      "sha256": "87f2a1fecc1c187ad1a184b9aa098108745ceeceed86464214999b009d7a5387",
+      "git_blob_sha": "bd6c86b76856531368abf1d13d1c3584c6ce83b8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-complete.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-book-412x915-complete.json",
+      "bytes": 2837,
+      "sha256": "8824208d6d7dae865f70c42c3bca2e0ed592af51c461850e61a9f2f5064976ad",
+      "git_blob_sha": "4a3e0882b3036b91c5ff404aceac15a952a528fb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-complete.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-book-412x915-complete.layout.json",
+      "bytes": 37716,
+      "sha256": "0a8d9582c30f3dce379dd21123bf68a236982ce36064876639ff5ae622a3f3fc",
+      "git_blob_sha": "cca61fc6e745a3482a9ea5be3fdb114d102e58a4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-complete.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-book-412x915-complete.png",
+      "bytes": 117153,
+      "sha256": "0f36483f46b731ee068652dcff086bbf489525911bb2e8bba3802c7624dfeed6",
+      "git_blob_sha": "f1d78bccd71334ab91c669e6831723baee4aecf8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-book-412x915-start.json",
+      "bytes": 2830,
+      "sha256": "275742780232bc9111b0bdd50b54d3d253ba67cea601df320178400172471a01",
+      "git_blob_sha": "7cfbcade946c0472912450e28e10623cb43691a6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-book-412x915-start.layout.json",
+      "bytes": 36947,
+      "sha256": "76b6e9cc04bb9150425f0adaa6c893988e964b91ddaddc64b4b02e9d67365f49",
+      "git_blob_sha": "b5586002e2ef5a1b60b587f62c865ef26374ea6a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-book-412x915-start.png",
+      "bytes": 118909,
+      "sha256": "754f945be12243e3043e3dbd9d333a1949b1eb6c6f7e41db957d2415845d3a1c",
+      "git_blob_sha": "f66cbb23b9992b13ed111d79d99edc54ae640a56",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-car-2400x1080-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-car-2400x1080-start.json",
+      "bytes": 3074,
+      "sha256": "ccf24eba66471f41a90a9044a3ebbc2d29964e3e945fc13ccb56c1058c0e4d1a",
+      "git_blob_sha": "f0a7abac64092b9082123e4a1d8d7860c5694dc4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-car-2400x1080-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-car-2400x1080-start.layout.json",
+      "bytes": 50900,
+      "sha256": "f304ac79f17ec2cafc0b95306856eb5b3fc03aa996b1f737639d6cfd52a1fac4",
+      "git_blob_sha": "c70b093e644278249c235f5c91502e8d8c7cf712",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-car-2400x1080-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-car-2400x1080-start.png",
+      "bytes": 685040,
+      "sha256": "8ff4eeb359d2cd78541ea436567b4122aca6edeb0a33a10fe6a53ef48afb517c",
+      "git_blob_sha": "5df06010e7bcb657dc9fa26527e829d8d0eaccd5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-chair-640x360-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-chair-640x360-start.json",
+      "bytes": 2836,
+      "sha256": "14d3bcb336142ec3ee6de62534f2849caac2f80ab443cc0ea26c3eb6dce13849",
+      "git_blob_sha": "8a21ddaac3311b21f1f89b029d7994a5ce86274d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-chair-640x360-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-chair-640x360-start.layout.json",
+      "bytes": 38158,
+      "sha256": "aef95c2ac5d6b02218279391196e61363f1e542874cf12939ff3de670129d818",
+      "git_blob_sha": "b5a8d19e7896d08f801a56e7707d0ac913051f72",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-chair-640x360-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-chair-640x360-start.png",
+      "bytes": 93604,
+      "sha256": "33633677c2ee9a109ab0f5d36ff92700c3973854fd333e48fbb590517b933a0e",
+      "git_blob_sha": "306401da4b1298627d614932d7ca5cabee0baca9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-desk-960x540-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-desk-960x540-start.json",
+      "bytes": 2830,
+      "sha256": "8feb901587715ab4780ea4a2f3e734c7500667f353d9d8016a0016a800dddb35",
+      "git_blob_sha": "cd5b9932bdc23f8f941f59bdf5c0a8ddde099eba",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-desk-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-desk-960x540-start.layout.json",
+      "bytes": 33152,
+      "sha256": "2827d229207e655338d760b8ae4aca5ba9113174f17c82c390c4d435a12d5bd0",
+      "git_blob_sha": "479cf6d1018839d74205a7d03bf2b6c989ea26be",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-desk-960x540-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-desk-960x540-start.png",
+      "bytes": 164222,
+      "sha256": "9ce6f5d02687c5595dfbf3eb3a7efe6286841a10b31db7dd0be1f2fa1a73660f",
+      "git_blob_sha": "064f91378445bd6403924fd344fa8b2a1dcae677",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-paper-2400x1080-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-paper-2400x1080-start.json",
+      "bytes": 3087,
+      "sha256": "1fd6b2c57eb1e3097d2336e29851550d5db9f563e5a7ce19e88ff72668629aea",
+      "git_blob_sha": "a568f0c166ac5cb16460acf83ed8fa67651959dc",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-paper-2400x1080-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-paper-2400x1080-start.layout.json",
+      "bytes": 30508,
+      "sha256": "2ade85ec92556981cbb6c96354b9f35210c487e70b7bfb529c2d73d96eea4951",
+      "git_blob_sha": "56d7d7fb2a9f57d632ac270966a793944eaba29c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-paper-2400x1080-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-paper-2400x1080-start.png",
+      "bytes": 692699,
+      "sha256": "1864997d8ec21c9cfeb6f9bda6c42ea02dcb2746e9ae7d2c9581f1ac95a828d0",
+      "git_blob_sha": "43226be8178ae5425f86221110184546b87757df",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pen-1080x2400-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-pen-1080x2400-start.json",
+      "bytes": 2951,
+      "sha256": "69c7dccc8c024ebf45c9f73970b435ed8405ffde220543c59f9bd8f53a6f8ffe",
+      "git_blob_sha": "cf12d2483548cc6cb7a14768a5e5a56ea1218811",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pen-1080x2400-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-pen-1080x2400-start.layout.json",
+      "bytes": 25604,
+      "sha256": "11c45fb83d171b87d19fec35e88e254f1e178755fbf714c6ec702dc291d16782",
+      "git_blob_sha": "4ff5a2a4a5884c1da108acd6594a1a6ae6c6a256",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pen-1080x2400-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-pen-1080x2400-start.png",
+      "bytes": 611735,
+      "sha256": "27b92f58f12de1a39cfc6cafa385687d917a5d1908cd0a616733bc2297a8820e",
+      "git_blob_sha": "42d306080f05df467d634188bb93179f4e5136ff",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.json",
+      "bytes": 3132,
+      "sha256": "09c160359e09b7c38ba905f703e14e240d459efcd3c1c839a05d0beb59a7f993",
+      "git_blob_sha": "fe91f888fb0b6abe73812f91b53659d1168de8a9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 32967,
+      "sha256": "950b2d4451d1a8d7dcaba10f87b1ba09cd5a9cb6f2182622db42ce439f362770",
+      "git_blob_sha": "dd8fd27d22b27d2f39bcd09f7f0115fedcf5137a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.png",
+      "bytes": 613216,
+      "sha256": "13886f5506eb1abcd0a72fb3da356a91676403a3b9af946993e699567e255597",
+      "git_blob_sha": "9c2a7c90829c39eaa58932b7a9e8cab5c984fabd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-rubber-640x360-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-rubber-640x360-start.json",
+      "bytes": 2831,
+      "sha256": "f0799a31e75797a1e7931bdfc2d40fb3c936dce38bf3af092ec734d4aac8bc22",
+      "git_blob_sha": "bce761f53b5ca7ab211bda5377e2c18285a9b838",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-rubber-640x360-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-rubber-640x360-start.layout.json",
+      "bytes": 30203,
+      "sha256": "61918bd811c6c88fc31a672d1509c32e11a302e0edc9c57be8fd82985e649a91",
+      "git_blob_sha": "5930d8e0349229b6b05808b34b8a0dbe023c656f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-rubber-640x360-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-rubber-640x360-start.png",
+      "bytes": 94926,
+      "sha256": "8e835351c88930b15b29815d6f4fc898b63fedc3039e3effffdb0b2c4f4c96f7",
+      "git_blob_sha": "955f54ad632b83b77a1dde36d37c47bb7009049f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ruler-640x360-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ruler-640x360-start.json",
+      "bytes": 2824,
+      "sha256": "9f9a5b83b7e8da31c8f92210d7c8c2cb0ccbb52fe75aab37c3bc452f3ee0a05b",
+      "git_blob_sha": "26109360a07b5c54d925a1fa90f5e9b7eb11ca85",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ruler-640x360-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ruler-640x360-start.layout.json",
+      "bytes": 41701,
+      "sha256": "16c5605b93b6aa8be2e8d9be1d6e2ffd964831d50cf6c91f8603b7dae3868cc1",
+      "git_blob_sha": "0e476889942a7f2abeb37b6ecb33abaa76624497",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ruler-640x360-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-ruler-640x360-start.png",
+      "bytes": 94608,
+      "sha256": "700ce0c26366d9080738a7eb799adaac9d84e59ba4da399a7214ea609502ec2b",
+      "git_blob_sha": "6ed736b981039997e089b05ac0550c9bae258ae9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-school-bag-412x915-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-school-bag-412x915-start.json",
+      "bytes": 2873,
+      "sha256": "9c5a22661c87e38e554f143350ebb695c921eaf5a994521e3458151a92341416",
+      "git_blob_sha": "aae1a3a8ec233ba7f9f17164f6300c1f6a8a6217",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-school-bag-412x915-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-school-bag-412x915-start.layout.json",
+      "bytes": 44322,
+      "sha256": "240d845053a90b0ea6852a2b206c10b6a701594e5de2608a7954d4063d5b9915",
+      "git_blob_sha": "8f37179e9d304a941d1be043ddea704edc682a99",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-school-bag-412x915-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-school-bag-412x915-start.png",
+      "bytes": 122489,
+      "sha256": "ceacf072e6418bd442bb1a9c725bbb1f7007d96ab21191fe603d0858013bad7a",
+      "git_blob_sha": "bd7e5f9dbec2a63b6f02cc56f58d097a25559d21",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-sun-960x540-start.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-sun-960x540-start.json",
+      "bytes": 2824,
+      "sha256": "bf4e3aa53a3dce8667aad35ea6cc1d38e56871b1ce14dfba4f01700597bfdb95",
+      "git_blob_sha": "08db535f1620b3b931c7de4dd141fc7faafe0ca4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-sun-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-sun-960x540-start.layout.json",
+      "bytes": 30786,
+      "sha256": "d07e0e5b36d8d641024cb572b3f66639aa406458253713e2b426acfc76dcd94c",
+      "git_blob_sha": "bfca9370a9eedceb6c3c75c695fa976ec9ecd31b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-sun-960x540-start.png",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/english-sun-960x540-start.png",
+      "bytes": 167603,
+      "sha256": "6dc958cf51ffa2cdb68d12bd4db7286a5dbba3139d4d011afbfb9e6ef1bd1250",
+      "git_blob_sha": "ad575dd8e0c0f3dcc25879f99567a266fbd109e0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-school-objects-20261114/evidence/render-first-captures/learning-english-report.json",
+      "bytes": 138834,
+      "sha256": "f925df6b8aeddad4a8950c4ed9aa44e1ac6883db7a442dfe215c122fab9c7dfa",
+      "git_blob_sha": "e0df8935123bafd3a20370c4a4da1b4156e64dde",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 82,
+  "total_bytes": 5765234,
+  "git_ref_mutation": false
+}

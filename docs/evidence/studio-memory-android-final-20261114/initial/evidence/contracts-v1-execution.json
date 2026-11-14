@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_memory_android_probe.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114",
+  "elapsed_seconds": 0.3924478890003229,
+  "exit_code": 1,
+  "before": {
+    ".github/probes/lumo_memory_android_probe.py": "b9738543bac6c113d45b3cce7659708e26bf92bcc913dce788f19fc6ff41509a",
+    "tools/android_qa/tests/test_memory_android_probe.py": "85496e15d198e37b2d3f1cad924e8db4807ba47d495ed216a5f62b0c92b7f033",
+    "tools/android_qa/tests/fixtures/memory_android/layout-face.json": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+    "tools/android_qa/tests/fixtures/memory_android/layout-hidden.json": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+    "tools/android_qa/tests/fixtures/memory_android/public-states.json": "7b60a5e26c71f137217a3c180d25025a1eac7aa7bd10a96bfb5654d52ea546b6",
+    "tools/android_qa/tests/fixtures/memory_android/saved-paused.json": "a3e37dba067f76daa1d4104f51ef6d98cccee04fbd6421fbc0cdd60905d095d6"
+  },
+  "after": {
+    ".github/probes/lumo_memory_android_probe.py": "b9738543bac6c113d45b3cce7659708e26bf92bcc913dce788f19fc6ff41509a",
+    "tools/android_qa/tests/test_memory_android_probe.py": "85496e15d198e37b2d3f1cad924e8db4807ba47d495ed216a5f62b0c92b7f033",
+    "tools/android_qa/tests/fixtures/memory_android/layout-face.json": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+    "tools/android_qa/tests/fixtures/memory_android/layout-hidden.json": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+    "tools/android_qa/tests/fixtures/memory_android/public-states.json": "7b60a5e26c71f137217a3c180d25025a1eac7aa7bd10a96bfb5654d52ea546b6",
+    "tools/android_qa/tests/fixtures/memory_android/saved-paused.json": "a3e37dba067f76daa1d4104f51ef6d98cccee04fbd6421fbc0cdd60905d095d6"
+  },
+  "scope": "Pure Python validator/transport-countercases; no Android, Flutter or game execution"
+}

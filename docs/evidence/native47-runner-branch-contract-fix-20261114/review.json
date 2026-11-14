@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T15:44:30.369066+00:00",
+  "base_native_source": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "base_tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+  "original_ci": {
+    "run_id": 43607369276,
+    "original_log_path": "/workspace/scratch/5987865ae883/qa/native47-new-worlds-failure-20261114/original-job.log",
+    "bytes": 292054,
+    "sha256": "1a493721e0f2d772e107cd6ad99b92f77d9b99fd21ab065e5fdf18efac594912",
+    "selected_original_lines": [
+      {
+        "line": 2825,
+        "text": "2026-11-14T15:21:44.9021633Z FAIL: test_new_workflow_preserves_all_required_jobs_and_exact_source_archive (test_nextgen_runner.StudioPuzzleMenuContractTests.test_new_workflow_preserves_all_required_jobs_and_exact_source_archive)"
+      },
+      {
+        "line": 2828,
+        "text": "2026-11-14T15:21:44.9024229Z   File \"/home/runner/work/lumo-godot/lumo-godot/tools/tests/test_nextgen_runner.py\", line 770, in test_new_workflow_preserves_all_required_jobs_and_exact_source_archive"
+      },
+      {
+        "line": 2829,
+        "text": "2026-11-14T15:21:44.9025123Z     self.assertIn('branches: [chatgpt/lumo-studio-2020-20261114]', workflow)"
+      },
+      {
+        "line": 2833,
+        "text": "2026-11-14T15:21:44.9162383Z Ran 16 tests in 63.816s"
+      },
+      {
+        "line": 2835,
+        "text": "2026-11-14T15:21:44.9162576Z FAILED (failures=1)"
+      },
+      {
+        "line": 2836,
+        "text": "2026-11-14T15:21:44.9171240Z ##[error]Process completed with exit code 1."
+      }
+    ],
+    "status_scope": "Original failed test and exit are directly preserved in this log; parent supplied the terminal CI failure. No new CI run requested."
+  },
+  "source": {
+    "path": "tools/tests/test_nextgen_runner.py",
+    "bytes": 49768,
+    "sha256": "848a5b772bc6176d9f1e19f41878a32abc99eac0aa4a983b0335a3840a9d0232",
+    "git_blob": "799a068b20f446e14f6bafe42cffb186fc3e8189",
+    "mode": "100644"
+  },
+  "changes": [
+    "Replace obsolete single-branch literal with the exact Studio/Feature push list including multiplicity. Main, unknown, missing and duplicate branch entries fail this assertion.",
+    "Require the complete same-repository archive condition with exactly those two branches. A foreign repository or OR bypass changes that assertion.",
+    "Require actual github.sha/github.run_id and the corresponding downloaded-artifact head_sha/run-id assertions."
+  ],
+  "preserved": [
+    "All remaining assertions and all other 22 method definitions.",
+    "All 16 existing tests, source workflow, native probe/harness calls, budgets and required raster contracts.",
+    "Product, scenes, assets, same-source archive download and publication behavior."
+  ],
+  "local_validation": {
+    "existing_suite_tests": 16,
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0,
+    "unittest_seconds": 148.878,
+    "exit_code": 0,
+    "targeted_existing_method_pass": true,
+    "targeted_method_is_already_included_in_16": true,
+    "source_before_after_identical": true,
+    "log_sha256": "709c0fc50a465c9e074d8d8e73b4322f75f4a332ee661698144cd302931788bd",
+    "execution_sha256": "c4faecfe06d057316a6b20383a746d629ffaf98a106314192b3b9755cd346924"
+  },
+  "upload": {
+    "repository": "Ullmann27/lumo-godot",
+    "immutable_blob_only": true,
+    "full_utf8_readback": true,
+    "tree_commit_ref_pr_changed": false
+  },
+  "limits": [
+    "Only existing Python orchestration/workflow tests with explicitly synthetic native/PNG fixtures ran locally.",
+    "No Godot rerender, Flutter, Android, new full native CI or release approval is claimed."
+  ]
+}

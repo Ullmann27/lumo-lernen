@@ -1,0 +1,66 @@
+--- a/.github/probes/lumo_memory_android_probe.py
++++ b/.github/probes/lumo_memory_android_probe.py
+@@ -35,6 +35,11 @@
+ COUNTS = {'leicht': 8, 'mittel': 12, 'schwer': 16, 'knifflig': 20, 'profi': 24}
+ MOTIFS = frozenset(('panda', 'giraffe', 'lumo', 'hase', 'pinguin', 'stern',
+                     'laterne', 'truhe', 'note', 'fahne', 'pilz', 'stein'))
++TOUR_STEPS = frozenset(('apk-identity', 'launch', 'onboarding', 'navigate-start', 'navigate-lernen',
++    'atelier-roundtrip', 'navigate-spiele', 'open-kart', 'start-kart-race', 'race-running', 'race-hud',
++    'race-drive', 'pause-menu', 'return-from-kart', 'learning-state-after-kart',
++    'lernen-usable-after-kart', 'profile-after-kart', 'restart-keeps-learning-state',
++    'display-fold_offen', 'display-fold_aussen', 'display-quer'))
+ require, write, sha, parse_json = common.require, common.write, common.sha, common.parse_json
+ vector, rectangle, inside = common.vector, common.rectangle, common.inside
+ project, to_decor, same_numbers = common.project, common.to_decor, common.same_numbers
+@@ -66,6 +71,19 @@
+ def allowed_read(path):
+     return path == LAYOUT or re.fullmatch(
+         re.escape(SESSION) + r'[a-f0-9]{32}/(state|request|lifecycle)\.json', path) is not None
++
++
++def check_tour(prior, apk_sha256, api):
++    require(type(prior) is dict and prior.get('status') == 'PASS' and
++            prior.get('apk_sha256') == apk_sha256 and prior.get('android_sdk') == str(api),
++            'Normal real tour not passed on this binary/runtime')
++    steps = prior.get('steps')
++    require(type(steps) is list and len(steps) == 21 and
++            all(type(s) is dict and s.get('ok') is True for s in steps),
++            'Every actual tour step must have passed')
++    names = [s.get('step') for s in steps]
++    require(all(type(name) is str for name in names) and set(names) == TOUR_STEPS,
++            'Actual tour steps are missing, duplicated or unknown')
+ 
+ 
+ def check_state(state, owner=None):
+@@ -594,9 +612,7 @@
+                 runtime['fingerprint'], 'Actual Android runtime differs')
+         before_binding = self.binding()
+         prior = parse_json(a.tour_result.read_text())
+-        require(prior.get('status') == 'PASS' and prior.get('apk_sha256') == before_binding['apk']['apk_sha256'] and
+-                int(prior.get('android_sdk', 0)) == a.expected_api and len(prior.get('steps', [])) == 21 and
+-                all(x.get('ok') is True for x in prior['steps']), 'Normal real tour not passed on this binary/runtime')
++        check_tour(prior, before_binding['apk']['apk_sha256'], a.expected_api)
+         density_raw = self.adb('shell', 'wm', 'density')
+         (self.out / 'actual-density.txt').write_text(density_raw)
+         densities = re.findall(r'(?:Override|Physical) density:\s*(\d+)', density_raw)
+--- a/tools/android_qa/tests/test_memory_android_probe.py
++++ b/tools/android_qa/tests/test_memory_android_probe.py
+@@ -68,6 +68,18 @@
+         receipt = probe.check_ack(self.state, self.data['flip_request'],
+                                   self.face, 'flip', {'index': 0})
+         self.assertEqual(receipt['sequence'], 1)
++
++    def test_all_exact_tour_names_and_same_binary_runtime_required(self):
++        prior = {'status': 'PASS', 'apk_sha256': 'a' * 64, 'android_sdk': '35',
++                 'steps': [{'step': name, 'ok': True} for name in sorted(probe.TOUR_STEPS)]}
++        probe.check_tour(prior, 'a' * 64, 35)
++        for patch in ({'status': 'FAIL'}, {'apk_sha256': 'b' * 64}, {'android_sdk': '37'},
++                      {'android_sdk': 35}, {'steps': prior['steps'][:-1]},
++                      {'steps': prior['steps'][:-1] + [prior['steps'][0]]},
++                      {'steps': prior['steps'][:-1] + [{'step': 'fake-step', 'ok': True}]},
++                      {'steps': prior['steps'][:-1] + [{'step': prior['steps'][-1]['step'], 'ok': False}]}):
++            with self.subTest(patch=patch), self.assertRaises(RuntimeError):
++                probe.check_tour({**prior, **patch}, 'a' * 64, 35)
+ 
+     def test_desktop_fixture_cannot_pass_android_default(self):
+         with self.assertRaisesRegex(RuntimeError, 'Android inset'):

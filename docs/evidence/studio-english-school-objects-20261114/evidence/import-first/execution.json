@@ -1,0 +1,25 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--editor",
+    "--path",
+    "/tmp/lumo-english-school-objects-9f2",
+    "--rendering-method",
+    "gl_compatibility",
+    "--import"
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 9.215110381999693,
+  "source_before": {
+    "scripts/learning/english_vocabulary.gd": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+    "scripts/learning/english_object_gallery.gd": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+    "scripts/tests/learning_english_regression.gd": "0b276a4c28ae1152c1799e8d78ad0080d2374ec0f0815a8d11d4154d13439a12"
+  },
+  "source_after": {
+    "scripts/learning/english_vocabulary.gd": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+    "scripts/learning/english_object_gallery.gd": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+    "scripts/tests/learning_english_regression.gd": "0b276a4c28ae1152c1799e8d78ad0080d2374ec0f0815a8d11d4154d13439a12"
+  }
+}

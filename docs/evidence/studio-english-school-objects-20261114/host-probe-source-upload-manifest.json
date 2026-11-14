@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T14:53:57.226064+00:00",
+  "native_base": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "host_base": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "state": "Final local source freeze; actual new Dart producer and Android execution pending",
+  "git_ref_mutated": false,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Two current probe/test files plus four unchanged declared desktop JSON fixtures; 28 pure validators, no Android run",
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": ".github/probes/lumo_english_objects_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/.github/probes/lumo_english_objects_android_probe.py",
+      "bytes": 55089,
+      "sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+      "git_blob_sha": "ee4e1d59c43a6e27c464208e26eedc694a516df9",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/host/.github/probes/lumo_english_objects_android_probe.py",
+      "baseline_sha256": "bb0fbb24159b38942bf2002062c825640a5b9e0bea9304cc6e5a3e704152c0e6",
+      "baseline_git_blob_sha": "88e16570561053c275e6c7051585b7c3e1197117"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/android_qa/tests/test_english_objects_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/tools/android_qa/tests/test_english_objects_android_probe.py",
+      "bytes": 20503,
+      "sha256": "ecd76b3da990e5477cadd77223782ca7af853a0f8e4753b67a9008c83c460d8c",
+      "git_blob_sha": "19f640b0f534837eb53be1e401f471a6a9e280d5",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/host/tools/android_qa/tests/test_english_objects_android_probe.py",
+      "baseline_sha256": "f8bd1bad5dee391e73f4585f703dd3087231e5210ed6d9724ac3e82f06a40b42",
+      "baseline_git_blob_sha": "6ba4764d740a91bb540ea824fee22a793d369279"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/host/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-complete.layout.json",
+      "bytes": 43004,
+      "sha256": "a9d4da5aa6a1666edc1a15324ce9412be42c2ac420e2bda98cb7035fbd1a9a4d",
+      "git_blob": "17c5648abd3b3ba5ef5b8d884093e1e1445e62df",
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-complete.layout.json",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "git_blob_sha": "17c5648abd3b3ba5ef5b8d884093e1e1445e62df"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/host/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-hint.layout.json",
+      "bytes": 43005,
+      "sha256": "d0059e9bf1351b32364747dbbb3214c2cda7dc153b2d04689b503efe015f5682",
+      "git_blob": "935b65a28f105301176a9aacf659582ba630b7d5",
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-hint.layout.json",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "git_blob_sha": "935b65a28f105301176a9aacf659582ba630b7d5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/host/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-start.layout.json",
+      "bytes": 42195,
+      "sha256": "e1e79909c444444ac45e467d6abfd9f792f999fe1f37bf9e28425dd17885e6e8",
+      "git_blob": "a32884e7ed90cfe888aeb50e86f9ed9ba57d2391",
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-start.layout.json",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "git_blob_sha": "a32884e7ed90cfe888aeb50e86f9ed9ba57d2391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/host/tools/android_qa/tests/fixtures/english_objects/english-pen-1080x2400-start.layout.json",
+      "bytes": 37009,
+      "sha256": "91c4a6d3ce55a918b9854fd692869bb1b97fcacaa05dfc76c3dbbf711a27166f",
+      "git_blob": "1bf23985d82681f5a152790ae39cbbdbd31fe431",
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-pen-1080x2400-start.layout.json",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "git_blob_sha": "1bf23985d82681f5a152790ae39cbbdbd31fe431"
+    }
+  ]
+}

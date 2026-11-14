@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "sources": [
+    {
+      "version": "host50503",
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob_sha": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+    },
+    {
+      "version": "host50503",
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 39906,
+      "sha256": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+      "git_blob_sha": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e"
+    },
+    {
+      "version": "host50503",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10634,
+      "sha256": "79af6bc42ee5d08004b93b543fc6b7013c646a7c18605ab6184b70ee658d1ddc",
+      "git_blob_sha": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca"
+    },
+    {
+      "version": "native9f2e",
+      "path": "scripts/games/memory/memory_table.gd",
+      "bytes": 31443,
+      "sha256": "929d4a32e9dd0528e4941208dfaf949ef286e584685924af28bbe8e403be8c33",
+      "git_blob_sha": "9c998e33aee127453a67d25a6e020638472b8387"
+    },
+    {
+      "version": "native9f2e",
+      "path": "scenes/games/memory_table.tscn",
+      "bytes": 187,
+      "sha256": "e01304d304878fa091303fc047e3a659860309befbce8d8159a12124bc11ec99",
+      "git_blob_sha": "95a6a9f9055b3df6dc31e6c36e7cc38e10fb04c8"
+    },
+    {
+      "version": "host8b09",
+      "path": "tools/auto_install/TableGamesBridge.kt",
+      "bytes": 8236,
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "git_blob_sha": "4b25e208043ac9cd939e98eb955ef6a850315461"
+    },
+    {
+      "version": "host8b09",
+      "path": "tools/auto_install/TableGameActivity.kt",
+      "bytes": 6633,
+      "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+      "git_blob_sha": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+    }
+  ],
+  "scope": "Actual version-qualified GitHub text reads consulted for this reader. Runtime independently binds all declared candidate source files plus full immutable checkout/PCK/APK identity."
+}

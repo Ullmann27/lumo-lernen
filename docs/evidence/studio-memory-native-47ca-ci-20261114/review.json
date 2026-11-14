@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "status": "PASS_WITH_EXPLICIT_ADAPTER_LIMITS",
+  "reviewed_at_utc": "2026-11-14T15:28:10.892391+00:00",
+  "reviewer": "games_worlds",
+  "repository": "Ullmann27/lumo-godot",
+  "run_id": 43607369297,
+  "run_conclusion": "success",
+  "job_id": 132484813190,
+  "job_conclusion": "success",
+  "artifact": {
+    "id": 14119281510,
+    "name": "lumo-nextgen-actual-authority-evidence-memory",
+    "bytes": 3943934,
+    "sha256": "e72064bcc6b796b6949c6a6b823fadb1bb8a2e23f6c05be6419ee4c2e60dcb76",
+    "members_crc_verified": 73,
+    "single_download": true
+  },
+  "source_identity": {
+    "native": {
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274"
+    },
+    "host": {
+      "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+    }
+  },
+  "original_job_log": {
+    "path": "original-job.log",
+    "bytes": 308932,
+    "sha256": "45c8521b5c1a470d30c26a4e173e0bca028f942ed5aa9a60731b45da2a731f8b"
+  },
+  "results": {
+    "pure_authority": {
+      "status": "PASS",
+      "cases": 30,
+      "passed": 30,
+      "failed": [],
+      "checks": 1694,
+      "skipped": 0,
+      "scope": "Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim."
+    },
+    "scheduler": {
+      "status": "PASS",
+      "cases": 7,
+      "passed": 7,
+      "failed": [],
+      "checks": 13,
+      "skipped": 0,
+      "scope": "Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim."
+    },
+    "view": {
+      "checks": 7020,
+      "captures": 8,
+      "errors": 0,
+      "scope": "Production Godot presenter; synthetic public-state/transport fixture and actual ScreenTouch events; no Dart, Android, wallet or device FPS claim."
+    },
+    "paired_runtime": {
+      "reported_checks": 243,
+      "terminal_checks": 244,
+      "failures": 0,
+      "input_entries": 57,
+      "physical_press_release_pairs": 19,
+      "native_to_dart_requests": 19,
+      "public_states": 32,
+      "durable_returns": 3,
+      "unique_tokens": 3,
+      "captures": 8,
+      "motion_frames": 12,
+      "qa_award_calls": 1,
+      "qa_stars": 2,
+      "qa_xp": 16,
+      "elapsed_wall_seconds": 98.013,
+      "process_exit_codes": {
+        "DartAuthority": 0,
+        "GodotMemory": 0
+      }
+    }
+  },
+  "visual_review": {
+    "images_in_original": 28,
+    "all_images_fully_decoded": true,
+    "images_personally_opened": 15,
+    "blocking_findings": 0,
+    "selected_images": [
+      {
+        "artifact_entry": "memory-pair/native/01-memory-real-hidden.png",
+        "bytes": 101718,
+        "sha256": "925d8730f6e8efc1fcb888f094a7df3ab01f2b9482f83ef9717279345f767af7",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Acht getrennte plastische Kartenrückseiten, klare Kopf-/Fußleisten und rechts frei sichtbarer Lumo; keine verdeckte Kartenwahl.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/01-memory-real-hidden.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/02-memory-real-face.png",
+        "bytes": 137048,
+        "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Die obere linke Karte zeigt die Schatztruhe, die anderen sieben bleiben verdeckt. Goldene Kante und Schatten bleiben sichtbar.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/02-memory-real-face.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/03-memory-real-paused.png",
+        "bytes": 52851,
+        "sha256": "b7edc981fb904cb8b56663ef26d6a7ae343757d3a65264f8bb03cfd15a66cf68",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Lesbare Pause mit Fortsetzen, Neue Runde und Brettgrößen; die weiterlaufende Liste hat einen sichtbaren Scrollbalken. Keine Aussage über nicht sichtbare untere Einträge.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/03-memory-real-paused.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/04-memory-real-reopened.png",
+        "bytes": 52891,
+        "sha256": "a99264d13091d49baf897fd05f99ebbf2eefabe706363a598b1d0968e682678d",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Wiederöffnung zeigt die Pauseoberfläche mit Fortsetzen. Die Identität derselben Runde wird separat aus den Rohzuständen belegt, nicht aus diesem Bild allein.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/04-memory-real-reopened.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/05-memory-real-bot-first.png",
+        "bytes": 128086,
+        "sha256": "a24c57107edfb85f45738c26734895631ae3ba83315480eec88218f212f25297",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Erste sichtbare Bot-Aufdeckung unten links, Hinweis Mein Zug und Zugzähler 1; übrige sieben Karten verdeckt.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/05-memory-real-bot-first.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/06-memory-real-bot-second.png",
+        "bytes": 160052,
+        "sha256": "577dea2a2d773af23a5be2a5392c5c2fd64cfb413782947cd715268098d24fce",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Zwei unterschiedliche offene Motive unten links und unten rechts, passend zur zweiten Bot-Aufdeckung; die Schrift bleibt frei.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/06-memory-real-bot-second.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/07-memory-real-win.png",
+        "bytes": 66227,
+        "sha256": "7c224189d4e1e064704a9f2c15e56accb6cb5cbd6289ebc29eb799b045a8f75b",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Ergebnisdialog zeigt den Sieg und 2 Sterne, Brett ansehen sowie Neue Runde. Der Bildtext belegt allein keine reale Android-Walletgutschrift.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/07-memory-real-win.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/08-memory-real-paid-reopen.png",
+        "bytes": 101633,
+        "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Nach der bestätigten abgeschlossenen Runde ist wieder ein verdecktes Achtkartenbrett mit Zähler 0 sichtbar; neue Runde und ausbleibende Doppelbelohnung werden durch den Authoritybericht gebunden.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.png"
+      },
+      {
+        "artifact_entry": "memory-view/memory-phone-profi.png",
+        "bytes": 380149,
+        "sha256": "a0e0590f526843971d9f76aa90eb6a826da0f1671abb5117d28a940b2cd25e90",
+        "dimensions": [
+          1080,
+          2400
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "24 Karten in vier Spalten und sechs Zeilen vollständig sichtbar; Kopf- und Fußleiste bleiben frei. In dieser Hochformatansicht ist kein Lumo-Avatar sichtbar.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-phone-profi.png"
+      },
+      {
+        "artifact_entry": "memory-view/memory-fold-profi.png",
+        "bytes": 502671,
+        "sha256": "a82093ca97217b867ebcf4a59dc18fe5e6065243ca860263fe7b164b5424af35",
+        "dimensions": [
+          2208,
+          1840
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "24 Karten in sechs Spalten und vier Zeilen vollständig sichtbar; Lumo rechts sowie Rückkehr-/Pausetasten und Fußtext werden nicht überdeckt.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-fold-profi.png"
+      },
+      {
+        "artifact_entry": "memory-view/memory-compact-profi.png",
+        "bytes": 52152,
+        "sha256": "55f2c87a865a9b94231e869595fe5603cadc1b0f5a8242cad19a5ec9b7d95964",
+        "dimensions": [
+          640,
+          320
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Kompakte Ansicht zeigt acht vollständige Karten und die klare Seitenangabe 1–8 von 24 Karten; Weiterpfeil ist sichtbar, keine abgeschnittene Kartenreihe.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-compact-profi.png"
+      },
+      {
+        "artifact_entry": "memory-view/memory-cutout-profi.png",
+        "bytes": 264076,
+        "sha256": "5a2b1842c264a535549950604338ac031e0f22973e6e8dec4a7e15c2e26d911c",
+        "dimensions": [
+          2400,
+          1080
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Breite Ansicht zeigt zwölf vollständige Karten mit Seitenangabe 1–12 von 24 und sichtbarem Weiterpfeil; die linke HUD-Einrückung ist erkennbar. Insets stammen hier aus einer Plattformfixture.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-cutout-profi.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/motion-00.png",
+        "bytes": 101285,
+        "sha256": "a3c31660363757456acba9a44d4bc907874a4802e560223e524e13be84a57a3a",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Anfang der aktuellen Drehsequenz: obere linke Karte zeigt noch die Rückseite, restliches Brett bleibt unverändert.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-00.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/motion-04.png",
+        "bytes": 107350,
+        "sha256": "8b8003ad00ce1ef9c90195ccc683fc9686c1b044c60c14532767f8e3d1a3f81d",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Die gleiche Karte steht sichtbar schmal auf der Kante; Kartenstärke und die einsetzende Vorderseite sind erkennbar.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-04.png"
+      },
+      {
+        "artifact_entry": "memory-pair/native/motion-11.png",
+        "bytes": 137003,
+        "sha256": "32976fa0acdfe5728f16117b05563ec3abf630cef5dbc91f8c6ea9b09133c154",
+        "dimensions": [
+          960,
+          540
+        ],
+        "format": "PNG",
+        "fully_decoded": true,
+        "reviewed": true,
+        "blocking_issue": false,
+        "findings": "Ende der ausgewählten Drehsequenz: die Schatztruhenfront ist vollständig sichtbar; kein schwebender oder abgeschnittener Kartenrest.",
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-11.png"
+      }
+    ]
+  },
+  "limits": [
+    "The paired run used production Dart rules/controller/session and production Godot geometry with real ScreenTouch events, through explicit QA disk transport, deterministic clock/private deck plan and idempotent QA reward ledger.",
+    "The four format images are production presenter renders with synthetic public-state and platform-inset fixtures.",
+    "This is not Android Binder/Activity, SharedPreferences disk/process restart, real global wallet, physical-device input/timing or device frame-rate acceptance.",
+    "The --fixed-fps 60 argument is a deterministic harness clock and does not establish 60 device FPS.",
+    "Only 15 of 28 PNGs were personally opened; all 28 were fully decoded. Three of twelve motion images were visually sampled, not the entire motion sequence.",
+    "The 57 input log entries comprise 19 press entries, 19 release entries and 19 request journals; they are not 57 card moves.",
+    "The older 9f2e pair and the cb85 Flutter result remain separate evidence; no earlier result was substituted for this 47ca artifact."
+  ],
+  "warnings": [
+    {
+      "file": "memory-view.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "file": "memory-view.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "file": "memory-view.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    }
+  ],
+  "new_execution_by_reviewer": false
+}

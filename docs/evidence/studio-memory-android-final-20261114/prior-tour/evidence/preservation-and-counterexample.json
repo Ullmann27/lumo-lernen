@@ -1,0 +1,11 @@
+{
+  "existing_top_level_functions_unchanged": 12,
+  "new_functions": [
+    "check_tour"
+  ],
+  "only_changed_method": "AndroidProbe.run",
+  "other_methods_unchanged": 16,
+  "actual_v1_duplicate_predicate_accepted": true,
+  "new_reader_duplicate_rejection": "Actual tour steps are missing, duplicated or unknown",
+  "original_pixel_function_unchanged": true
+}

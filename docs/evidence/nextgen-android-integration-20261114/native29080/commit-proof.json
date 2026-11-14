@@ -1,0 +1,30 @@
+{
+  "base_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "base_tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+  "new_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "changed": [
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "799a068b20f446e14f6bafe42cffb186fc3e8189"
+    }
+  ],
+  "modified": 1,
+  "added": 0,
+  "unchanged": 2268,
+  "leaves": 2269,
+  "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "branch": "chatgpt/lumo-nextgen-feature-20261114",
+  "update_result": {
+    "success": true
+  },
+  "local_tests": {
+    "tests": 16,
+    "failures": 0,
+    "skipped": 0,
+    "elapsed_seconds": 148.878,
+    "scope": "Python runner/workflow fixtures; no actual Native render/Android/FPS claim"
+  },
+  "independent_review": "character_animation confirmed exact one-method delta; all other source/workflow/gates unchanged"
+}

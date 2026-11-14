@@ -1,0 +1,451 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "run_id": 43607369297,
+  "job_id": 132484813190,
+  "artifact_id": 14119281510,
+  "archive_bytes": 3943934,
+  "archive_sha256": "e72064bcc6b796b6949c6a6b823fadb1bb8a2e23f6c05be6419ee4c2e60dcb76",
+  "all_member_crc_pass": true,
+  "members": 73,
+  "files": [
+    {
+      "entry": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "crc32": "343aebe3",
+      "sha256": "49031b96beda83b0bec23c48d3f807dc063a143e12b3509ddf3ca0265587fa4c"
+    },
+    {
+      "entry": "NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "crc32": "0eeb812e",
+      "sha256": "820181c17cda08fee4d82f5f6507177e001e729fa719ab6a9153960de24666ce"
+    },
+    {
+      "entry": "HOST-TREE.txt",
+      "bytes": 41,
+      "crc32": "7530f7f7",
+      "sha256": "719000255e57b9b48526e32fe4a0552d89ebae2094f638d8f2686912edb12d56"
+    },
+    {
+      "entry": "NATIVE-TREE.txt",
+      "bytes": 41,
+      "crc32": "02c9b48f",
+      "sha256": "7de1fb8b462a697335fff70d3b22c4ed02ce0f543a882a9ab4607aa66b1e0277"
+    },
+    {
+      "entry": "godot-version.txt",
+      "bytes": 32,
+      "crc32": "12281f13",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "entry": "dart-version.txt",
+      "bytes": 81,
+      "crc32": "a9679d22",
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495"
+    },
+    {
+      "entry": "import.log",
+      "bytes": 165491,
+      "crc32": "be47ea4b",
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf"
+    },
+    {
+      "entry": "memory-authority-contract.log",
+      "bytes": 2319,
+      "crc32": "92460123",
+      "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c"
+    },
+    {
+      "entry": "memory-pair/authority/authority-result.json",
+      "bytes": 43958,
+      "crc32": "2a3a6d6e",
+      "sha256": "54d258495c393f5883f8c5d05a3ef6a03250e17b3b15e0d8d75e9d1757a81486"
+    },
+    {
+      "entry": "memory-pair/authority/input.json",
+      "bytes": 44,
+      "crc32": "2c6e025f",
+      "sha256": "11a47515d57a6acedbba91f739e3e435d84b1a6cda991d944ad94f009a76e909"
+    },
+    {
+      "entry": "memory-pair/authority/native-result.json",
+      "bytes": 16487,
+      "crc32": "53d3508d",
+      "sha256": "6513b8490062fb81c6bab99d2341166ff26f1406aa5d4abb8c5a5f8181ed4f80"
+    },
+    {
+      "entry": "memory-pair/authority/other-child.json",
+      "bytes": 52,
+      "crc32": "13e9d31b",
+      "sha256": "03b54b31f843366d751d73a74dbf00be5c56b1b4a272232bee9ba3c59b3471f2"
+    },
+    {
+      "entry": "memory-pair/authority/paid-reopen-before-round.json",
+      "bytes": 806,
+      "crc32": "1576155e",
+      "sha256": "a5ebe72eb299f636031d93720f9ffdba38482bccc9289b917a4cb518bc1b8479"
+    },
+    {
+      "entry": "memory-pair/authority/private-test-control.json",
+      "bytes": 165,
+      "crc32": "3f6c9bc3",
+      "sha256": "deb52df913e3605d21678240123a401ec946e333100c109f947f8100fe992a8b"
+    },
+    {
+      "entry": "memory-pair/authority/public-state.json",
+      "bytes": 1054,
+      "crc32": "abe463ef",
+      "sha256": "cae5ec991519a93a258b208ffe7caf508c0df92246e779fe82caf9776dd94c37"
+    },
+    {
+      "entry": "memory-pair/authority/stats-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 83,
+      "crc32": "72638ba3",
+      "sha256": "cc538b5b72f794aa0bef462530c32fea0c6771dda152857c0084981c7cba82ca"
+    },
+    {
+      "entry": "memory-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 770,
+      "crc32": "10e37dfb",
+      "sha256": "b1faff56f84eb76ab6e8b52801a515eb97d3f02d84d01262e21cb5ca8316fc9b"
+    },
+    {
+      "entry": "memory-pair/authority/step-receipt.json",
+      "bytes": 141,
+      "crc32": "f2f863bb",
+      "sha256": "bdd5899510b7abcb44cfcd54061affefc3e11cc4655e96136d197fa85685bd20"
+    },
+    {
+      "entry": "memory-pair/authority/unfinished-reopen-before-round.json",
+      "bytes": 698,
+      "crc32": "de612968",
+      "sha256": "cc7f252210b077169f46b14cb6d29cd9b64787171f80b857ecb72a91f77f7d45"
+    },
+    {
+      "entry": "memory-pair/authority/wallet.json",
+      "bytes": 134,
+      "crc32": "6e0b8d7e",
+      "sha256": "14ddc3f5096f0305607cd7cecca229993b12dfa7c03c08e6ddbc4b0b34ffe506"
+    },
+    {
+      "entry": "memory-pair/dart-authority.log",
+      "bytes": 95,
+      "crc32": "6a1faaf0",
+      "sha256": "d323cd94dae4d968f732d4d6ccb716dc2030c4924056c850687df94967ff0b23"
+    },
+    {
+      "entry": "memory-pair/godot-runtime.log",
+      "bytes": 1163,
+      "crc32": "8c04a180",
+      "sha256": "2542a0d5d96bcd64bfe62cda5ca2eda54bce50bd951d15253c8fa6cc29487d8f"
+    },
+    {
+      "entry": "memory-pair/native/01-memory-real-hidden.layout.json",
+      "bytes": 7965,
+      "crc32": "19fe2804",
+      "sha256": "a34d0862d5e26ab0ba54794ed0b4cd190dc8000f9e7e5aca5b018c7684d6326c"
+    },
+    {
+      "entry": "memory-pair/native/01-memory-real-hidden.png",
+      "bytes": 101718,
+      "crc32": "5d7929c5",
+      "sha256": "925d8730f6e8efc1fcb888f094a7df3ab01f2b9482f83ef9717279345f767af7"
+    },
+    {
+      "entry": "memory-pair/native/02-memory-real-face.layout.json",
+      "bytes": 7968,
+      "crc32": "8426d456",
+      "sha256": "f0123f02a5ba4b3aa88f190c1cc540d0af3a8acf88d984cd1fdc4bb5c1eb8066"
+    },
+    {
+      "entry": "memory-pair/native/02-memory-real-face.png",
+      "bytes": 137048,
+      "crc32": "34a34987",
+      "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b"
+    },
+    {
+      "entry": "memory-pair/native/03-memory-real-paused.layout.json",
+      "bytes": 8045,
+      "crc32": "1810c37d",
+      "sha256": "c19c3980e4e1259da3b73bac906d79cbd8de6b3c01b83c11ebcb2992a14e39bb"
+    },
+    {
+      "entry": "memory-pair/native/03-memory-real-paused.png",
+      "bytes": 52851,
+      "crc32": "3a65225a",
+      "sha256": "b7edc981fb904cb8b56663ef26d6a7ae343757d3a65264f8bb03cfd15a66cf68"
+    },
+    {
+      "entry": "memory-pair/native/04-memory-real-reopened.png",
+      "bytes": 52891,
+      "crc32": "2a4af60a",
+      "sha256": "a99264d13091d49baf897fd05f99ebbf2eefabe706363a598b1d0968e682678d"
+    },
+    {
+      "entry": "memory-pair/native/04-memory-real-reopened.layout.json",
+      "bytes": 8045,
+      "crc32": "70c320d1",
+      "sha256": "13fe548f250ad630ff94e5a82012f0d14ee8d0f1ae1fcf39abef4cb8f6af1dab"
+    },
+    {
+      "entry": "memory-pair/native/05-memory-real-bot-first.layout.json",
+      "bytes": 8054,
+      "crc32": "dd1d653b",
+      "sha256": "0e25c79269245c3d1e09fd90e2ee19fb2e9d19445a19ae1758f41183f7a6dff7"
+    },
+    {
+      "entry": "memory-pair/native/05-memory-real-bot-first.png",
+      "bytes": 128086,
+      "crc32": "5ffba20e",
+      "sha256": "a24c57107edfb85f45738c26734895631ae3ba83315480eec88218f212f25297"
+    },
+    {
+      "entry": "memory-pair/native/06-memory-real-bot-second.layout.json",
+      "bytes": 8057,
+      "crc32": "e6b61948",
+      "sha256": "366784f84c07414cb843cd3b1778c969f87e870d4c9026bc3c43b7745c95220b"
+    },
+    {
+      "entry": "memory-pair/native/06-memory-real-bot-second.png",
+      "bytes": 160052,
+      "crc32": "faf3d228",
+      "sha256": "577dea2a2d773af23a5be2a5392c5c2fd64cfb413782947cd715268098d24fce"
+    },
+    {
+      "entry": "memory-pair/native/07-memory-real-win.layout.json",
+      "bytes": 8048,
+      "crc32": "6477e9ab",
+      "sha256": "c5174f400e73f203262554a5d188dc36cacb1803d3360909117f3dcc66814c93"
+    },
+    {
+      "entry": "memory-pair/native/07-memory-real-win.png",
+      "bytes": 66227,
+      "crc32": "6f5bdd68",
+      "sha256": "7c224189d4e1e064704a9f2c15e56accb6cb5cbd6289ebc29eb799b045a8f75b"
+    },
+    {
+      "entry": "memory-pair/native/08-memory-real-paid-reopen.layout.json",
+      "bytes": 7967,
+      "crc32": "559c5631",
+      "sha256": "91d39fdccbbd8bff697aa751d5eca6409d5d2d2991c18273bc6b9c651e77d487"
+    },
+    {
+      "entry": "memory-pair/native/08-memory-real-paid-reopen.png",
+      "bytes": 101633,
+      "crc32": "3a068549",
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9"
+    },
+    {
+      "entry": "memory-pair/native/memory-runtime-report.json",
+      "bytes": 19438,
+      "crc32": "e03ff13e",
+      "sha256": "af049b84e9592279b2d48fbbb2925fd2688cc47471c45a8419602b75d71d41bd"
+    },
+    {
+      "entry": "memory-pair/native/motion-00.png",
+      "bytes": 101285,
+      "crc32": "efcc1e9f",
+      "sha256": "a3c31660363757456acba9a44d4bc907874a4802e560223e524e13be84a57a3a"
+    },
+    {
+      "entry": "memory-pair/native/motion-01.png",
+      "bytes": 103273,
+      "crc32": "521bb2f2",
+      "sha256": "27128a75472634fd84ad3caf82f719a7901e234542e89792220fd8426237ab83"
+    },
+    {
+      "entry": "memory-pair/native/motion-02.png",
+      "bytes": 102129,
+      "crc32": "d97d1397",
+      "sha256": "fa4066fe5a7247ee811e1f2b64e40ecca58c6ef4521ab0b199e3293d62896124"
+    },
+    {
+      "entry": "memory-pair/native/motion-03.png",
+      "bytes": 102530,
+      "crc32": "303fde62",
+      "sha256": "b7f9e91ed0c234baa031771a2d1328dfdd38490f3165ec4f6e27e0fcb9875eeb"
+    },
+    {
+      "entry": "memory-pair/native/motion-04.png",
+      "bytes": 107350,
+      "crc32": "35eb3b56",
+      "sha256": "8b8003ad00ce1ef9c90195ccc683fc9686c1b044c60c14532767f8e3d1a3f81d"
+    },
+    {
+      "entry": "memory-pair/native/motion-05.png",
+      "bytes": 122809,
+      "crc32": "544ce72c",
+      "sha256": "413a113112d077f24dc3b6719e37717a5d98072ba12b9339e3b746874fcb9ebd"
+    },
+    {
+      "entry": "memory-pair/native/motion-06.png",
+      "bytes": 132797,
+      "crc32": "b14b0f38",
+      "sha256": "2285b988d0c60f6d501a5f8b354ec62377927196d01eaf6cbcbc6f613d24aeda"
+    },
+    {
+      "entry": "memory-pair/native/motion-07.png",
+      "bytes": 136501,
+      "crc32": "42420f90",
+      "sha256": "95a664a9a7dda0fbba57178e1b7e6391c848daf49ac5115515478ae12e8241e5"
+    },
+    {
+      "entry": "memory-pair/native/motion-08.png",
+      "bytes": 137422,
+      "crc32": "dbe6fa94",
+      "sha256": "7ea551866c2860764686b1261b3da2d988f7cd93226cbaf543f9abbf916f0c95"
+    },
+    {
+      "entry": "memory-pair/native/motion-09.png",
+      "bytes": 136792,
+      "crc32": "b00dd6d1",
+      "sha256": "d7602432962b518c4411c254e60a2525c852b1d281a7d7a50f8d1829d2ffce53"
+    },
+    {
+      "entry": "memory-pair/native/motion-10.png",
+      "bytes": 136989,
+      "crc32": "ae4b2ce9",
+      "sha256": "4ade6eba0f9b240babfeac4444f713c2b99340b6213e62273443a2b2f85f1d7c"
+    },
+    {
+      "entry": "memory-pair/native/motion-11.png",
+      "bytes": 137003,
+      "crc32": "3066c96f",
+      "sha256": "32976fa0acdfe5728f16117b05563ec3abf630cef5dbc91f8c6ea9b09133c154"
+    },
+    {
+      "entry": "memory-pair/pair-result.json",
+      "bytes": 9524,
+      "crc32": "8a78aa29",
+      "sha256": "87528c0cdecea65d53b7047887cd5ea85da0aafb51131a73afb08bc2b4fa3ca7"
+    },
+    {
+      "entry": "memory-pair/source-identity.json",
+      "bytes": 265,
+      "crc32": "df1c8d37",
+      "sha256": "8d6ec21c2d8ac57fa956c1b48b7b233d05b9f756f717668cac46fca026288984"
+    },
+    {
+      "entry": "memory-scheduler-contract.log",
+      "bytes": 689,
+      "crc32": "8082ae07",
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1"
+    },
+    {
+      "entry": "memory-view/memory-compact-profi.layout.json",
+      "bytes": 17157,
+      "crc32": "34ca1e4d",
+      "sha256": "c8ad9060e18e5865b3716854815af8fda4ed7423969e2fde23ff9204efbc589c"
+    },
+    {
+      "entry": "memory-view/memory-compact-profi.png",
+      "bytes": 52152,
+      "crc32": "31641d25",
+      "sha256": "55f2c87a865a9b94231e869595fe5603cadc1b0f5a8242cad19a5ec9b7d95964"
+    },
+    {
+      "entry": "memory-view/memory-cutout-profi.layout.json",
+      "bytes": 18260,
+      "crc32": "50992c97",
+      "sha256": "ca5000bd74db9850113776a27b523d72b412e64ca668b9033631938768be5d0b"
+    },
+    {
+      "entry": "memory-view/memory-cutout-profi.png",
+      "bytes": 264076,
+      "crc32": "095023ed",
+      "sha256": "5a2b1842c264a535549950604338ac031e0f22973e6e8dec4a7e15c2e26d911c"
+    },
+    {
+      "entry": "memory-view/memory-fold-profi.layout.json",
+      "bytes": 16884,
+      "crc32": "0dd1e5d5",
+      "sha256": "72bea0a1db8a26bfd1e51e9471873044a6160144fad0cfed1f45d2cf80900e6b"
+    },
+    {
+      "entry": "memory-view/memory-fold-profi.png",
+      "bytes": 502671,
+      "crc32": "dcac3527",
+      "sha256": "a82093ca97217b867ebcf4a59dc18fe5e6065243ca860263fe7b164b5424af35"
+    },
+    {
+      "entry": "memory-view/memory-landscape-hidden.layout.json",
+      "bytes": 7965,
+      "crc32": "30d3278d",
+      "sha256": "a88b6b13f71a4b24d7b6c6243ab7b93bc8508d1e4989940e6bc10c61e4d629d5"
+    },
+    {
+      "entry": "memory-view/memory-landscape-hidden.png",
+      "bytes": 101633,
+      "crc32": "3a068549",
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9"
+    },
+    {
+      "entry": "memory-view/memory-landscape-matched.layout.json",
+      "bytes": 8044,
+      "crc32": "3961e6b8",
+      "sha256": "dc65ac98277695f42b76c78704f6232464df5ac40fead62b43048a224766582a"
+    },
+    {
+      "entry": "memory-view/memory-landscape-matched.png",
+      "bytes": 153394,
+      "crc32": "585a1169",
+      "sha256": "ded1940f58bc4a5a0e8783ed1195a8192068d5403884d14fce611c3c58fbec54"
+    },
+    {
+      "entry": "memory-view/memory-landscape-one-flipped.layout.json",
+      "bytes": 7969,
+      "crc32": "e119df85",
+      "sha256": "f9b515861ebe7183f1787a73ee2b7a28e5e0349f81836c955e1decc7e61f0548"
+    },
+    {
+      "entry": "memory-view/memory-landscape-paused.layout.json",
+      "bytes": 8040,
+      "crc32": "6e1fa6fc",
+      "sha256": "898db8f381036edb6b15a13b7602506d84dfb93fde2a6a26fac3c3ba09657678"
+    },
+    {
+      "entry": "memory-view/memory-landscape-one-flipped.png",
+      "bytes": 132499,
+      "crc32": "fe731f5f",
+      "sha256": "e4e9ae047faca1a2a21a87544bbe91ef108363fe7fd6fbfa1b615147d392ebd3"
+    },
+    {
+      "entry": "memory-view/memory-landscape-paused.png",
+      "bytes": 49827,
+      "crc32": "c3da759e",
+      "sha256": "7e2cd46bf55b6bb200b5559ed6be1d1d79219aa1e8fe30dcd738fd886dfd92a1"
+    },
+    {
+      "entry": "memory-view/memory-phone-profi.layout.json",
+      "bytes": 18333,
+      "crc32": "23039404",
+      "sha256": "31217d9f8d30e173f2346fbb0916962f03650b9e7c9f2c922e99a65019cd9f6c"
+    },
+    {
+      "entry": "memory-view/memory-phone-profi.png",
+      "bytes": 380149,
+      "crc32": "a17dc81c",
+      "sha256": "a0e0590f526843971d9f76aa90eb6a826da0f1671abb5117d28a940b2cd25e90"
+    },
+    {
+      "entry": "memory-view/memory-view-result.json",
+      "bytes": 182227,
+      "crc32": "393d739f",
+      "sha256": "af0796ecb1710d0748647f3c84495af939733573f6da950fdbba80161c68d238"
+    },
+    {
+      "entry": "memory-view.log",
+      "bytes": 1156,
+      "crc32": "9573caed",
+      "sha256": "f76ffcaff5633e95a2316ccc90405075f51473cf255cb73dcc10f3f1d6a163d0"
+    },
+    {
+      "entry": "project-validation.log",
+      "bytes": 6138,
+      "crc32": "38dc876c",
+      "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7"
+    }
+  ]
+}

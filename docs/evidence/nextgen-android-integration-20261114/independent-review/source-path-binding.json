@@ -1,0 +1,104 @@
+{
+  "host": {
+    "queried_revision": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+    "truncated": false,
+    "files": [
+      {
+        "path": "tool/check_native_english_activity.dart",
+        "git_blob_sha": "2d304dfbf89e7be2cd123808b8a3352d7622e87b",
+        "bytes": 12610,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/android_qa/quiz_round_contract.dart",
+        "git_blob_sha": "cc25a01bba32ffab5eef37483e4697927db70081",
+        "bytes": 20965,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/android_qa/memory_round_contract.dart",
+        "git_blob_sha": "6a06883ce1f8a03205b914d30a2dfd55acb96597",
+        "bytes": 31437,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/android_qa/memory_turn_scheduler_contract.dart",
+        "git_blob_sha": "6414c553eec694508363d8bff55affee5489827f",
+        "bytes": 4580,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/android_qa/quiz_native_authority.dart",
+        "git_blob_sha": "7ded270bb685306e74faa024043ec9638f0cc8d1",
+        "bytes": 5561,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/android_qa/memory_native_authority.dart",
+        "git_blob_sha": "1126cbb3c26c7f4f4b48eb58910cdb30d73d1f0d",
+        "bytes": 15449,
+        "mode": "100644"
+      }
+    ]
+  },
+  "native": {
+    "queried_revision": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+    "truncated": false,
+    "files": [
+      {
+        "path": "tools/validate_project.py",
+        "git_blob_sha": "9cfe2db9504c0141061a2388deb6dc73be9513ec",
+        "bytes": 13288,
+        "mode": "100755"
+      },
+      {
+        "path": "tools/run_godot_probe.py",
+        "git_blob_sha": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+        "bytes": 2934,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/run_quiz_native_authority.py",
+        "git_blob_sha": "5f02cec5a8eb9f2d0addd43fcfa1cd5717ff63b8",
+        "bytes": 10531,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/run_memory_native_authority.py",
+        "git_blob_sha": "54103c9ee0cd4070b808273dca48a169883a1ec5",
+        "bytes": 12800,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/tests/test_memory_native_pair_evidence.py",
+        "git_blob_sha": "f61c72a6691b186d6682c7407c50394a7b132091",
+        "bytes": 6544,
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/tests/learning_english_regression.gd",
+        "git_blob_sha": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+        "bytes": 33455,
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/tests/memory_table_regression.gd",
+        "git_blob_sha": "b9122337e25e9a529e4e8602a0c5e8e3e680f831",
+        "bytes": 14227,
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/tests/quiz_studio_runtime.gd",
+        "git_blob_sha": "623e76afd47d1cd96fcaebdebacac0a684f38f7b",
+        "bytes": 40358,
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/tests/memory_table_runtime.gd",
+        "git_blob_sha": "f4fc0d96b5b67e91969dac610bdc5c550f590640",
+        "bytes": 14860,
+        "mode": "100644"
+      }
+    ]
+  }
+}

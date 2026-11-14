@@ -1,0 +1,30 @@
+{
+  "native_revision": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "host_revision": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "reviewer": "root",
+  "reviewed_at": "2026-11-14T15:39:36.753117+00:00",
+  "scope": "Three original PNGs actually opened separately in this turn; complements owners reviews, no all-image/manual or Android/FPS approval.",
+  "images": [
+    {
+      "module": "english",
+      "original_local_path": "qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-bag-960x540-start.png",
+      "sha256": "dc4c3ed13d92c458912e1401a5b0f699b75ef022cef0f53260ed550f79a959d7",
+      "bytes": 164035,
+      "findings": "Original-Lumo steht links neben den drei räumlichen Gegenständen Tisch, Tasche und Radiergummi. Wort bag, Aufforderung, Zahlenzuordnung und sämtliche unteren Aktionen sind im 960×540-Bild lesbar. Untere Aktionsleiste ist dicht, aber ohne sichtbare gegenseitige Überlagerung. Ein Standbild belegt keine Sprachausgabe oder Android-Toucheingabe."
+    },
+    {
+      "module": "quiz",
+      "original_local_path": "qa/studio-quiz-native-47ca-ci-20261114/originals/quiz-pair/native/quiz-dart-question.png",
+      "sha256": "403a353f906446acaffcda7f0f23f9689eedf1b74e1e7b95322bf4812febaf2a",
+      "bytes": 87139,
+      "findings": "Die Sachunterrichtsfrage Womit riechen wir?, alle vier Antworten, drei Joker und noch deaktivierte Aufdeckaktion sind lesbar. Original-Lumo steht links auf einer beleuchteten kleinen Bühne. Einfacher Hintergrund und großer flacher UI-Anteil bleiben sichtbare Qualitätsgrenzen; kein umfassendes AAA-Studiourteil."
+    },
+    {
+      "module": "memory",
+      "original_local_path": "qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/02-memory-real-face.png",
+      "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b",
+      "bytes": 137048,
+      "findings": "Eine Original-Schatztruhe ist auf einer aufgedeckten Karte sichtbar; sieben Rückseiten, Schatten/Kartenkanten, beide Punktstände, Pause/Zurück und Seitenzähler sind erkennbar. Kleiner Original-Lumo rechts. Kein eigener Beweis für vollständige Runde oder Gerätebildrate."
+    }
+  ]
+}

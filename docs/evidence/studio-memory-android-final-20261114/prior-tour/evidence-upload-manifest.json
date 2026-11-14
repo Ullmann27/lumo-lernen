@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/README.md",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/README.md",
+      "bytes": 1235,
+      "sha256": "e1347ac0bc9ab11cfb56aa4508813c7ad0198eacdef083bc3e722cb031b66397"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/source-upload-manifest.json",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/source-upload-manifest.json",
+      "bytes": 4993,
+      "sha256": "8e5a913d01c6e199230854331a278dd1620aebf9ec1c47a1253ad8ef80c7074a"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/confirmed-tree-inputs.json",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/confirmed-tree-inputs.json",
+      "bytes": 1257,
+      "sha256": "b4cb4388d563c9cbc403504777d9ca621eee1f06c509a134325f3506a77df1f1"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/upload-proof.json",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/upload-proof.json",
+      "bytes": 2693,
+      "sha256": "ed2c09852ae5486e10b5b4d555ad39339d4de8381bc447d5f9d1e091d57c7fec"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/evidence/execution.json",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/evidence/execution.json",
+      "bytes": 1008,
+      "sha256": "3debce68978856c32885873655f4c497cc20c39df542117ec6a2c4ca4fb57fb4"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/evidence/final-25-contracts-original.log",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/evidence/final-25-contracts-original.log",
+      "bytes": 4101,
+      "sha256": "51ce0958206b64e8d3f2c5a938efca7881ca652832747991812bf199fd516247"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/evidence/preservation-and-counterexample.json",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/evidence/preservation-and-counterexample.json",
+      "bytes": 359,
+      "sha256": "bd78ae06674569b22bd395cd22217a326fa9fa88964b264d3fd06b40166e0da6"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/evidence/prior-tour-only.patch",
+      "target": "docs/evidence/studio-memory-android-prior-tour-followup-20261114/evidence/prior-tour-only.patch",
+      "bytes": 4163,
+      "sha256": "06f029eef8a4a0c77db58c662e2037f3f85a8f29ef0b77aa312117a4323dbb4e"
+    }
+  ],
+  "source_installation": false
+}

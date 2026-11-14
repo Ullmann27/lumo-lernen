@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 867.5382321409998,
+  "display": 150,
+  "project": "/tmp/lumo-english-school-objects-9f2",
+  "godot_arguments": [
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--capture",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

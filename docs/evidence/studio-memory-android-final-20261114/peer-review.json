@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_utc": "2026-11-14T15:25:30.362957+00:00",
+  "status": "READ_ONLY_NO_ADDITIONAL_CONCRETE_BLOCKER_FOUND",
+  "bindings": {
+    "probe": {
+      "path": "qa/studio-memory-android-prior-tour-followup-20261114/.github/probes/lumo_memory_android_probe.py",
+      "bytes": 49666,
+      "sha256": "7ed28770dbe692d5e0d8d2032805fda91262de2716b5b8badab2c07cb51aeb01",
+      "git_blob_sha": "4e84bedec42e80072d6db43423058ff5c7525ad4"
+    },
+    "tests": {
+      "path": "qa/studio-memory-android-prior-tour-followup-20261114/tools/android_qa/tests/test_memory_android_probe.py",
+      "bytes": 16780,
+      "sha256": "f869d05d1e93f81de083ff8582163945eab288ae27b2797aab8e8c4fdd88b397",
+      "git_blob_sha": "b9c247134d8027f03369f0d43b10732488fef30b"
+    },
+    "manifest": {
+      "path": "qa/studio-memory-android-prior-tour-followup-20261114/source-upload-manifest.json",
+      "bytes": 4993,
+      "sha256": "8e5a913d01c6e199230854331a278dd1620aebf9ec1c47a1253ad8ef80c7074a",
+      "git_blob_sha": "8db4b20d35a37924748f7df35932aa6037e552e0"
+    },
+    "shared_navigation": {
+      "path": "qa/nextgen-android-integration-20261114/assembled-host/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 39906,
+      "sha256": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+      "git_blob_sha": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e"
+    },
+    "native_presenter": {
+      "path": "qa/studio-memory-next-v2-20261114/prepared/native/scripts/games/memory/memory_table.gd",
+      "bytes": 31443,
+      "sha256": "929d4a32e9dd0528e4941208dfaf949ef286e584685924af28bbe8e403be8c33",
+      "git_blob_sha": "9c998e33aee127453a67d25a6e020638472b8387"
+    },
+    "execution": {
+      "path": "qa/studio-memory-android-prior-tour-followup-20261114/evidence/execution.json",
+      "bytes": 1008,
+      "sha256": "3debce68978856c32885873655f4c497cc20c39df542117ec6a2c4ca4fb57fb4",
+      "git_blob_sha": "93fe371de1e1f0f549a7e9ae5ddb408fea070e4e"
+    },
+    "original_test_log": {
+      "path": "qa/studio-memory-android-prior-tour-followup-20261114/evidence/final-25-contracts-original.log",
+      "bytes": 4101,
+      "sha256": "51ce0958206b64e8d3f2c5a938efca7881ca652832747991812bf199fd516247",
+      "git_blob_sha": "36d0f50c3296ba0e419ffd27fc6a4da4f78bb0c0"
+    },
+    "original_pixel_replay": {
+      "path": "qa/studio-memory-android-probe-8b09-20261114/evidence/original-pixel-replay.json",
+      "bytes": 1770,
+      "sha256": "a8231e6d609f8f82933ec3bf98491b41b08ee0a51d5c064e168967a6407827b0",
+      "git_blob_sha": "884baf3154b67d38142b14c0ced450125409bd5b"
+    }
+  },
+  "scope": [
+    "Full final 780-line Android Memory reader, new exact prior-tour check, imported actual navigation/return API interfaces and relevant original test/replay records read.",
+    "No source changes, test execution, new rendering, image viewing or Android execution by this reviewer."
+  ],
+  "findings": [
+    {
+      "area": "Prior tour and source identity",
+      "finding": "Exact APK SHA, SDK string, PASS, 21 successful rows and exactly the actual 21-name set are required. Equal list/set cardinality rejects missing or duplicated steps. Actual clean Host/Native checkouts and per-file Git bytes, installed APK and embedded PCK remain bound before/after."
+    },
+    {
+      "area": "Real navigation and interfaces",
+      "finding": "The imported shared C4 navigation helper handles the existing paused-game and Cards-showcase intermediate routes. It receives fresh confirmed semantics, actual size/density and current MainActivity checks. Runtime capture/prefs and returned_to_flutter signatures match; the latter retains native-process exit plus two actual Flutter pixel frames."
+    },
+    {
+      "area": "Inputs and durable authority",
+      "finding": "Actual card/button coordinates derive from current geometry with 48dp exposure, unchanged layout hash, state, token and PID rechecked before ADB tap. Actual request token/round/revision/action/fields and strictly newer sequence require positive same-session ACK; hidden deck is only a recorded read-only QA selection oracle. No request, save or lifecycle data is injected."
+    },
+    {
+      "area": "Lifecycle and recovery",
+      "finding": "Durable pause is separately checked against the private save. An actual Home event must produce inactive lease and durable frozen unfinished state, followed by same-process return and increased pauseEpoch. Native exit preserves rules, removes old mailbox and reentry requires a new token with the same unfinished paused saved round."
+    },
+    {
+      "area": "Geometry and pixels",
+      "finding": "The exact Native47ca presenter Gitblob9c998e33aee127453a67d25a6e020638472b8387 matches the local read; its actual front/rest depth0.057 and sidecar conventions agree with the independent projection. Pixel comparison claims visible face change only, not OCR/semantic motif recognition."
+    },
+    {
+      "area": "Bounds and time",
+      "finding": "The 600-second overall budget is checked by actual ADB commands and final result, and snapshot/wait observations are rejected after their subdeadline. Bounded page/navigation iteration and read-only raw error retention remain. No device frame-rate interpretation is introduced."
+    }
+  ],
+  "original_results_read_only": {
+    "pure_contracts": 25,
+    "unittest_seconds": 0.048,
+    "process_seconds": 0.27054230899921095,
+    "exit_code": 0,
+    "note": "Existing author log read only; no independent test rerun. Existing original desktop pixel replay is separately labelled and is not an Android result."
+  },
+  "blocking_issues": [],
+  "remaining_limits": [
+    "No actual Android Memory pass exists in this review.",
+    "Real bot-window timing and device route/screens must still be established by the required Android job.",
+    "No full reward-round, cross-child-switching, every motif/difficulty, physical Fold7 performance or audio claim."
+  ]
+}

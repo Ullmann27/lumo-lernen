@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "scope": "Offline replay of exact original desktop Dart/Godot pixels; no Android or new rendering execution",
+  "artifact_id": 14117292610,
+  "archive_sha256": "4b812683569e29cb00e5f019ed4ebd579459decf8db4f658c46a1355bd677505",
+  "inputs": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-9f2e-ci-20261114/originals/memory-pair/native/01-memory-real-hidden.png",
+      "sha256": "925d8730f6e8efc1fcb888f094a7df3ab01f2b9482f83ef9717279345f767af7",
+      "bytes": 101718
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-9f2e-ci-20261114/originals/memory-pair/native/02-memory-real-face.png",
+      "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b",
+      "bytes": 137048
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-9f2e-ci-20261114/originals/memory-pair/native/01-memory-real-hidden.layout.json",
+      "sha256": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+      "bytes": 7965
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-9f2e-ci-20261114/originals/memory-pair/native/02-memory-real-face.layout.json",
+      "sha256": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+      "bytes": 7968
+    }
+  ],
+  "result": {
+    "index": 0,
+    "samples": 63,
+    "changed_fraction": 0.9841269841269841,
+    "mean_channel_difference": 87.88888888888889,
+    "scope": "visible change; no motif recognition claim"
+  },
+  "unchanged_original_rejected": "Actual projected card has no verified face change",
+  "elapsed_seconds": 0.04479124200042861,
+  "probe_sha256": "b9738543bac6c113d45b3cce7659708e26bf92bcc913dce788f19fc6ff41509a"
+}

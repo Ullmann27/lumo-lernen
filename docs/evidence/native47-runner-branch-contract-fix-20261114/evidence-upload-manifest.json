@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "scope": "Docs only; source remains separate and exact CI originals are referenced, not reconstructed.",
+  "files": [
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/README.md",
+      "bytes": 1482,
+      "sha256": "a8b679226510d64f8dcb61e2227a65f5e3e181fb00fe476851a7218202387989",
+      "git_blob": "64812f3a242b5f8baa7d78fd525356a926d20e95",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/review.json",
+      "bytes": 3610,
+      "sha256": "80ad133aa44c1151577d385643ca3dcdf021bbaca6df0c52ca7f5d4f7ea63912",
+      "git_blob": "f9f6feffcef76cc950b5898a5518bd93a59d4336",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/source-upload-manifest.json",
+      "bytes": 762,
+      "sha256": "cbcbc5e5017a35c1ea1418fd357721e3fa5765abda20c929986d5f3120d68c3c",
+      "git_blob": "80ccaacbe6a6b4207381987819707cd73ad79876",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/confirmed-tree-inputs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/confirmed-tree-inputs.json",
+      "bytes": 158,
+      "sha256": "c3a30b785866da42aa829d4c94181a44a4b96cedc617b66a9a8ae3f6311be713",
+      "git_blob": "f173c065bb8bb29fb3fa67b2228dc43be418557d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/blob-upload-proof.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/blob-upload-proof.json",
+      "bytes": 736,
+      "sha256": "a1b31cee4cdcaf890ac329c29d8cef791a1b06e78614920caaccc1ad9685c85c",
+      "git_blob": "dbcdf1f1444e577389c8c786358374ce7c7013d5",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/evidence/baseline-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/baseline-binding.json",
+      "bytes": 3309,
+      "sha256": "6b86cf9daf67d8952b6cf00dd0884df65fa53c112d94227bc178d8c394ee3415",
+      "git_blob": "a5863f9d4ae1cb43995ed489882e03a6796f3969",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/evidence/scope-check.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/scope-check.json",
+      "bytes": 1184,
+      "sha256": "d6891d30efd27340186a565c9759b60637571cf7f4ba2811f4638112549b597d",
+      "git_blob": "88c582ea6832276e5882d7099da97a4c65f6345d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/evidence/implementation-against-exact-47ca.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/implementation-against-exact-47ca.patch",
+      "bytes": 1848,
+      "sha256": "fad2292b1807bf07626f73add1d773c56c02f8d32482f9b49b6e8cc67f232f70",
+      "git_blob": "35af7f4252502b5feff431f77b73ecc111b07ba0",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-original.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-original.log",
+      "bytes": 3252,
+      "sha256": "709c0fc50a465c9e074d8d8e73b4322f75f4a332ee661698144cd302931788bd",
+      "git_blob": "c871dbafea84419951389600d6710873e15294c7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-execution.json",
+      "bytes": 848,
+      "sha256": "c4faecfe06d057316a6b20383a746d629ffaf98a106314192b3b9755cd346924",
+      "git_blob": "a99ae8b7a4c12f2adde77e44c22f0282b73c0dea",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/evidence/targeted-workflow-contract.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/targeted-workflow-contract.log",
+      "bytes": 298,
+      "sha256": "daa8d353d277616b22d3812d820daba47b11bb9b7c982fcd01bd52270c53c7a0",
+      "git_blob": "212ac65cc47bf25d153c73901ae89f95a4700e7c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/native47-runner-branch-contract-fix-20261114/evidence/targeted-workflow-contract-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/evidence/targeted-workflow-contract-execution.json",
+      "bytes": 735,
+      "sha256": "f202f30593ba0ffe9ef46a850acdee8734de3372fea123b626a95ec4b184851e",
+      "git_blob": "3ab21d9aa23f1eafce4078ff0232ba5d10407ee7",
+      "mode": "100644"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-school-objects-9f2",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/headless-first/captures"
+  ],
+  "returncode": 1,
+  "timed_out": false,
+  "budget_seconds": 120,
+  "elapsed_seconds": 26.49845585500043,
+  "fixture": "native_catalogue_fixture; not an executed new Dart producer",
+  "source_before": {
+    "scripts/learning/english_vocabulary.gd": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+    "scripts/learning/english_object_gallery.gd": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+    "scripts/learning/learning_activity.gd": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+    "scripts/learning/learning_world.gd": "3078e3aaba4bf5a811ddc5878370cdf945ddf8313c0cba6d4f9089e1c4062c6d",
+    "scripts/tests/learning_english_regression.gd": "0b276a4c28ae1152c1799e8d78ad0080d2374ec0f0815a8d11d4154d13439a12"
+  },
+  "source_after": {
+    "scripts/learning/english_vocabulary.gd": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+    "scripts/learning/english_object_gallery.gd": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+    "scripts/learning/learning_activity.gd": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+    "scripts/learning/learning_world.gd": "3078e3aaba4bf5a811ddc5878370cdf945ddf8313c0cba6d4f9089e1c4062c6d",
+    "scripts/tests/learning_english_regression.gd": "0b276a4c28ae1152c1799e8d78ad0080d2374ec0f0815a8d11d4154d13439a12"
+  }
+}

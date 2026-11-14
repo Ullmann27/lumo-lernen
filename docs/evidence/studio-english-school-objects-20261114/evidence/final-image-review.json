@@ -1,0 +1,352 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T14:53:57.226064+00:00",
+  "scope": "Actual local software-renderer originals with declared platform/JNI/audio fixtures; no Android screenshots",
+  "images": [
+    {
+      "artifact_entry": "evidence/render-first-captures/english-ball-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-start.png",
+      "bytes": 170576,
+      "sha256": "87f2a1fecc1c187ad1a184b9aa098108745ceeceed86464214999b009d7a5387",
+      "git_blob_sha": "bd6c86b76856531368abf1d13d1c3584c6ce83b8",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "46a9c4d4f7cc310fd992a9374f98eb973de20b3d93af9573c0845890b61cf6f4",
+      "word": "ball",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Blauer Ball mit gelben Nähten auf Podest 2, daneben Buch und rotes Auto. Anleitung verlangt eigene Auswahl; Lumo und sieben Bedienfelder sichtbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-ball-960x540-hint.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-hint.png",
+      "bytes": 171401,
+      "sha256": "4a7796e4d9d4294aec0043781f376307b88c24f6aef2c5a93e1a00d1458f200a",
+      "git_blob_sha": "0a27d730da6b616557c69de4120670191abbfbf7",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "4f98d1a12a3ed800b5b113b2619b036b7c7bf9dd9a43e6d8c7d0ffec7a90f1c1",
+      "word": "ball",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Heller Ring markiert den Ball, der Text verlangt weiter eigenes Tippen. Hinweis nach zwei Hilfen deaktiviert, Rückkehr frei."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-ball-960x540-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-complete.png",
+      "bytes": 171007,
+      "sha256": "5a93fd3e78c22f6d386d7f6106184a52e7225d2442a076391677d3cbafaa162b",
+      "git_blob_sha": "8aae9d586dcfa83a4b22ef43a1d2fcdab662a724",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "fe1f4153c88b22f0a19c7fa237909ed91977843ff0897bc655554d922b80430d",
+      "word": "ball",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Korrekte Zuordnung ball = Ball und Aufforderung Zur Aufgabe sichtbar. Auswahl deaktiviert; Neu und Rückkehr verfügbar. Keine angezeigte Sterne-/Masteryvergabe."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-book-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-start.png",
+      "bytes": 118909,
+      "sha256": "754f945be12243e3043e3dbd9d333a1949b1eb6c6f7e41db957d2415845d3a1c",
+      "git_blob_sha": "f66cbb23b9992b13ed111d79d99edc54ae640a56",
+      "dimensions": [
+        412,
+        915
+      ],
+      "layout_sha256": "76b6e9cc04bb9150425f0adaa6c893988e964b91ddaddc64b4b02e9d67365f49",
+      "word": "book",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Lineal, Kugelschreiber und Buch vertikal auf drei Podesten; Buch auf Position 3. Anleitung umbrochen, Lumo vollständig, Footer zweireihig lesbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-book-412x915-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-complete.png",
+      "bytes": 117153,
+      "sha256": "0f36483f46b731ee068652dcff086bbf489525911bb2e8bba3802c7624dfeed6",
+      "git_blob_sha": "f1d78bccd71334ab91c669e6831723baee4aecf8",
+      "dimensions": [
+        412,
+        915
+      ],
+      "layout_sha256": "0a8d9582c30f3dce379dd21123bf68a236982ce36064876639ff5ae622a3f3fc",
+      "word": "book",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Korrektmeldung Buch und book = Buch sichtbar, Auswahl/Hilfe deaktiviert und Rückkehr verfügbar. Untere Podestnummer berührt die Podestkante; der zugehörige Bedienknopf bleibt vollständig sichtbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-ruler-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ruler-640x360-start.png",
+      "bytes": 94608,
+      "sha256": "700ce0c26366d9080738a7eb799adaac9d84e59ba4da399a7214ea609502ec2b",
+      "git_blob_sha": "6ed736b981039997e089b05ac0550c9bae258ae9",
+      "dimensions": [
+        640,
+        360
+      ],
+      "layout_sha256": "16c5605b93b6aa8be2e8d9be1d6e2ffd964831d50cf6c91f8603b7dae3868cc1",
+      "word": "ruler",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Lineal mit Messstrichen auf Podest 1 neben Apfel und Sonnenmodell. Kompakter Header, Original-Lumo und gesamte Bedienreihe sichtbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-car-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-car-2400x1080-start.png",
+      "bytes": 685040,
+      "sha256": "8ff4eeb359d2cd78541ea436567b4122aca6edeb0a33a10fe6a53ef48afb517c",
+      "git_blob_sha": "5df06010e7bcb657dc9fa26527e829d8d0eaccd5",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "layout_sha256": "f304ac79f17ec2cafc0b95306856eb5b3fc03aa996b1f737639d6cfd52a1fac4",
+      "word": "car",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Rotes Auto mit Rädern auf Podest 2 neben Sonne und Lineal. Linker Fixture-Inset frei; Header, Lumo, Nummern und Rückkehr sichtbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-pen-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pen-1080x2400-start.png",
+      "bytes": 611735,
+      "sha256": "27b92f58f12de1a39cfc6cafa385687d917a5d1908cd0a616733bc2297a8820e",
+      "git_blob_sha": "42d306080f05df467d634188bb93179f4e5136ff",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "layout_sha256": "11c45fb83d171b87d19fec35e88e254f1e178755fbf714c6ec702dc291d16782",
+      "word": "pen",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Blauer Kugelschreiber mit Clip und Spitze auf Podest 1, darunter Buch und Apfel. Lumo vollständig und alle Aktionen in zwei Reihen; keine Bildbehauptung über die unangezeigte Wortbedeutung."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-sun-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-sun-960x540-start.png",
+      "bytes": 167603,
+      "sha256": "6dc958cf51ffa2cdb68d12bd4db7286a5dbba3139d4d011afbfb9e6ef1bd1250",
+      "git_blob_sha": "ad575dd8e0c0f3dcc25879f99567a266fbd109e0",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "d07e0e5b36d8d641024cb572b3f66639aa406458253713e2b426acfc76dcd94c",
+      "word": "sun",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Gelbes strahlenförmiges Sonnenmodell auf Podest 2 neben Apfel und Kugelschreiber. Titel, Nummern, Lumo und Aktionszeile lesbar; stilisiertes Lehrmodell."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-apple-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-apple-960x540-start.png",
+      "bytes": 171145,
+      "sha256": "ca5681c82c3b8f4630743e98bf694ca08805d310ca5ca4a01e1972a45b759f43",
+      "git_blob_sha": "7738f2f3b741ecbcd696d8f072483cae62f5c0aa",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "265f6ba622de63b073fb2b98bb3f1935bf7363fc4f5486da608499d8787173bd",
+      "word": "apple",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Roter Apfel mit Blatt und Stiel auf Podest 3 neben Ball und Lineal. Alle Objekte getrennt; Lumo und komplette Aktionszeile sichtbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-bag-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-bag-960x540-start.png",
+      "bytes": 169529,
+      "sha256": "60cc3040acc3f6083b142b0abb3447aa0cfabf6eb2025174c358f5035a5ce726",
+      "git_blob_sha": "17689ec05fc9ff3ccb0879e902c41167ce9d0a3f",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "33a4e019ce84867ed9b644311b60dd5e73ee6bc0093597231ce1dc478219bfa9",
+      "word": "bag",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Gelbe offene Tasche mit zwei durchbrochenen Henkeln auf Podest 2; Schulrucksack und Etui sichtbar unterschiedlich. Titel, Nummern, Lumo und vollständige Aktionszeile frei sichtbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-rubber-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-rubber-640x360-start.png",
+      "bytes": 94926,
+      "sha256": "8e835351c88930b15b29815d6f4fc898b63fedc3039e3effffdb0b2c4f4c96f7",
+      "git_blob_sha": "955f54ad632b83b77a1dde36d37c47bb7009049f",
+      "dimensions": [
+        640,
+        360
+      ],
+      "layout_sha256": "61918bd811c6c88fc31a672d1509c32e11a302e0edc9c57be8fd82985e649a91",
+      "word": "rubber",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Heller Radiergummi mit blauer Papierhülle auf Podest 1; Blatt und Buch getrennt erkennbar. Kleines Querformat mit vollständiger Aktionsreihe und freiem Lumo."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-school-bag-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-school-bag-412x915-start.png",
+      "bytes": 122489,
+      "sha256": "ceacf072e6418bd442bb1a9c725bbb1f7007d96ab21191fe603d0858013bad7a",
+      "git_blob_sha": "bd7e5f9dbec2a63b6f02cc56f58d097a25559d21",
+      "dimensions": [
+        412,
+        915
+      ],
+      "layout_sha256": "240d845053a90b0ea6852a2b206c10b6a701594e5de2608a7954d4063d5b9915",
+      "word": "school bag",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Blauer Schulrucksack mit oranger Vordertasche und Riemen auf Podest 3. Mehrworttitel und umbrochene Anleitung lesbar; drei Objekte vertikal, alle Aktionen in zwei Reihen."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-desk-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-desk-960x540-start.png",
+      "bytes": 164222,
+      "sha256": "9ce6f5d02687c5595dfbf3eb3a7efe6286841a10b31db7dd0be1f2fa1a73660f",
+      "git_blob_sha": "064f91378445bd6403924fd344fa8b2a1dcae677",
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout_sha256": "2827d229207e655338d760b8ae4aca5ba9113174f17c82c390c4d435a12d5bd0",
+      "word": "desk",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Schreibtisch mit Holzplatte, Beinen und freiem Unterraum auf Podest 1. Sessel und Tasche unterscheiden sich; Lumo, Nummern und Rückkehrbedienung vollständig sichtbar."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-chair-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-chair-640x360-start.png",
+      "bytes": 93604,
+      "sha256": "33633677c2ee9a109ab0f5d36ff92700c3973854fd333e48fbb590517b933a0e",
+      "git_blob_sha": "306401da4b1298627d614932d7ca5cabee0baca9",
+      "dimensions": [
+        640,
+        360
+      ],
+      "layout_sha256": "aef95c2ac5d6b02218279391196e61363f1e542874cf12939ff3de670129d818",
+      "word": "chair",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Türkiser Sessel mit Sitzfläche, Lehne und Beinen auf Podest 2; Tisch und Schulrucksack als Ablenker. Kein sichtbarer Schnitt durch Header/Footer, Lumo frei."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-pencil-case-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.png",
+      "bytes": 613216,
+      "sha256": "13886f5506eb1abcd0a72fb3da356a91676403a3b9af946993e699567e255597",
+      "git_blob_sha": "9c2a7c90829c39eaa58932b7a9e8cab5c984fabd",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "layout_sha256": "950b2d4451d1a8d7dcaba10f87b1ba09cd5a9cb6f2182622db42ce439f362770",
+      "word": "pencil case",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Rotes längliches Etui mit sichtbaren Reißverschlusszähnen und Schieber auf Podest 1; Radiergummi und Kugelschreiber unterscheidbar. Vollständiger Mehrworttitel, Lumo und zweireihige Bedienung. Hochskalierte Viewportkanten sind weich."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "evidence/render-first-captures/english-paper-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-paper-2400x1080-start.png",
+      "bytes": 692699,
+      "sha256": "1864997d8ec21c9cfeb6f9bda6c42ea02dcb2746e9ae7d2c9581f1ac95a828d0",
+      "git_blob_sha": "43226be8178ae5425f86221110184546b87757df",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "layout_sha256": "2ade85ec92556981cbb6c96354b9f35210c487e70b7bfb529c2d73d96eea4951",
+      "word": "paper",
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "method": "Original individually opened with view_image",
+      "findings": [
+        "Dünnes liniertes Blatt mit rotem Rand und angehobener Ecke auf Podest 1; Buch und Radiergummi getrennt. Linker Fixture-Inset bleibt frei, Lumo und Footer vollständig sichtbar."
+      ],
+      "blocking_issue": false
+    }
+  ],
+  "status": "No concrete blocking issue in these 17 images",
+  "android_verified": false,
+  "fps_verified": false,
+  "audio_listened": false,
+  "english_pronunciation_verified": false
+}
