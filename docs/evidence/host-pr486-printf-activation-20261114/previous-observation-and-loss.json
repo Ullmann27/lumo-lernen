@@ -1,0 +1,21 @@
+{
+  "kind": "Historical observed run with lost transient raw files; not reconstructed",
+  "source": "230f3a8a3460576fd63d0ae64cb870fec53ba177",
+  "tree": "ea36060e04ee619bcd7a0a67aee8eba11e61bc5d",
+  "actually_reported_before_environment_disconnect": {
+    "tests": 15,
+    "passed": 15,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "actionlint_workflows": 1,
+    "actionlint_exit": 0,
+    "source_count": 41,
+    "source_and_git_unchanged": true
+  },
+  "previous_reported_handoff_sha256": "5b206da1f96ee0880fcee70c55b2ff6f95514b834f614a152d12b90781d9ff35",
+  "previous_reported_manifest_sha256": "411e8260247888732588f6d0861515a859bc1380102a44b3d824416c0a0a94c2",
+  "previous_directory": "/tmp/host-console-230f3a8a-targeted-validation-20261114",
+  "loss": "After exec-server disconnection/recovery, the previous /tmp directory was observed absent. No old raw log, timestamp or hash is recreated.",
+  "new_execution_authorization": "Root explicitly authorized one distinct new 9+6 run plus actionlint1 on unchanged published 230f."
+}

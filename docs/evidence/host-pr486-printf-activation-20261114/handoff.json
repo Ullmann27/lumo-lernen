@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "pack": "/workspace/scratch/b3485b7bb989/host-console-230f3a8a-recovery-validation-20261114",
+  "head": "230f3a8a3460576fd63d0ae64cb870fec53ba177",
+  "tree": "ea36060e04ee619bcd7a0a67aee8eba11e61bc5d",
+  "execution_kind": "NEW_RECOVERY_VALIDATION",
+  "tests": {
+    "executed": 15,
+    "passed": 15,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0
+  },
+  "actionlint_exit": 0,
+  "source_count": 41,
+  "source_and_git_unchanged": true,
+  "result": {
+    "path": "result.json",
+    "bytes": 3047,
+    "sha256": "f2726d3bd1a95d7efe0ef1f4a49533abd919293f36d497522b3a7487ed1441ce"
+  },
+  "historical_loss": {
+    "path": "previous-observation-and-loss.json",
+    "bytes": 1046,
+    "sha256": "ec432b9f5f2b65bc841a77bdaa787cff6b4ab31bb26ccb77effc76c278af6f60"
+  },
+  "scope": "New authorized focused local validation after environment recovery. Actual API37 execution remains required."
+}
