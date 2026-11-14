@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import verify_android_apk
 import verify_unified_apk as verifier
 import test_unified_apk_voice as voice_fixtures
+from notice_fixtures import fixture as notice_fixture
 
 ROOT = Path(__file__).resolve().parents[2]
 PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
@@ -76,6 +77,21 @@ class HistoricalApkExpectationsTest(unittest.TestCase):
 
     def git(self, *arguments):
         return self.real_check_output(['git', '-C', str(self.source), *arguments], text=True)
+
+    def commit_notice_inputs(self):
+        self.git('add', '.')
+        self.git('-c', 'user.name=Contract Fixture', '-c',
+                 'user.email=fixture@example.invalid', 'commit', '-qm', 'Synthetic notice policy inputs')
+        self.revision = self.git('rev-parse', 'HEAD').strip()
+
+    def add_notice_policy(self):
+        native = {'repository': 'https://example.invalid/native.git', 'revision': self.pin}
+        policy, members, _ = notice_fixture(native)
+        (self.source / 'config/godot-source.json').write_text(json.dumps(native))
+        (self.source / 'config/lumo-notices.json').write_bytes(policy)
+        self.files.update(members)
+        self.commit_notice_inputs()
+        return next(name for name in members if name.endswith('OFL.txt'))
 
     def tool_output(self, command, **kwargs):
         if command[0] == 'git':
@@ -141,6 +157,90 @@ class HistoricalApkExpectationsTest(unittest.TestCase):
         result = self.verify()
         self.assertEqual(result['versionCode'], 1999)
         self.assertEqual(result['godot']['revision'], self.pin)
+
+    def test_current_default_requires_the_notice_policy(self):
+        with patch.object(verifier, 'ROOT', self.source):
+            with self.assertRaises(FileNotFoundError):
+                verifier.verify(self.apk(), {'arm64-v8a'})
+
+    def test_old_historical_notice_policy_absence_is_explicitly_unverified(self):
+        result = self.verify()
+        self.assertEqual(result['notices']['status'], 'not_verified_for_historical_source')
+        self.assertEqual(result['notices']['expectationRevision'], self.revision)
+        self.assertEqual(len(result['expectationsSource']['files']), 4)
+
+    def test_present_historical_notice_policy_is_enforced(self):
+        member = self.add_notice_policy()
+        result = self.verify()
+        self.assertEqual(result['notices']['status'], 'verified')
+        self.assertEqual(result['notices']['nativeRevision'], self.pin)
+        self.assertEqual(len(result['expectationsSource']['files']), 5)
+        with patch.object(verifier, 'ROOT', self.source), redirect_stdout(io.StringIO()):
+            current = verifier.verify(self.apk(), {'arm64-v8a'})
+        self.assertEqual(current['notices']['status'], 'verified')
+        del self.files[member]
+        with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+            self.verify()
+
+    def test_malformed_historical_notice_policy_is_not_absence(self):
+        self.add_notice_policy()
+        (self.source / 'config/lumo-notices.json').write_bytes(b'not valid JSON')
+        self.commit_notice_inputs()
+        with self.assertRaises(json.JSONDecodeError):
+            self.verify()
+
+    def test_repository_subdirectory_cannot_hide_a_present_notice_policy(self):
+        nested = self.source / 'config'
+        legacy = self.verify(expectations_repository=nested)
+        self.assertEqual(legacy['notices']['status'], 'not_verified_for_historical_source')
+        member = self.add_notice_policy()
+        with self.subTest(case='present-policy'):
+            self.assertEqual(self.verify(expectations_repository=nested)['notices']['status'],
+                             'verified')
+        original = self.files[member]
+        for mutation in ('missing', 'changed'):
+            if mutation == 'missing':
+                del self.files[member]
+            else:
+                self.files[member] = original + b'changed'
+            with self.subTest(case=mutation):
+                try:
+                    with self.assertRaisesRegex(RuntimeError, 'notice'):
+                        self.verify(expectations_repository=nested)
+                finally:
+                    self.files[member] = original
+
+    def test_historical_notice_policy_tree_or_symlink_is_not_absence(self):
+        path = self.source / 'config/lumo-notices.json'
+        for kind in ('symlink', 'tree'):
+            with self.subTest(kind=kind):
+                if path.is_symlink():
+                    path.unlink()
+                if kind == 'symlink':
+                    path.symlink_to('godot-source.json')
+                else:
+                    path.mkdir()
+                    (path / 'nested.json').write_text('{}')
+                self.commit_notice_inputs()
+                with self.assertRaisesRegex(RuntimeError, 'regular tracked file'):
+                    self.verify()
+
+    def test_failed_historical_notice_policy_git_read_is_not_absence(self):
+        self.add_notice_policy()
+        original = self.tool_output
+        for stage in ('ls-tree', 'show-policy'):
+            def failed_read(command, **kwargs):
+                if command[0] == 'git' and (
+                        (stage == 'ls-tree' and 'ls-tree' in command)
+                        or (stage == 'show-policy' and 'show' in command
+                            and command[-1].endswith(':config/lumo-notices.json'))):
+                    raise subprocess.CalledProcessError(128, command)
+                return original(command, **kwargs)
+
+            with self.subTest(stage=stage), patch.object(
+                    verifier.subprocess, 'check_output', side_effect=failed_read):
+                with self.assertRaises(subprocess.CalledProcessError):
+                    self.verify()
 
     def test_revision_must_be_a_full_immutable_commit(self):
         for revision in ('HEAD', 'main', self.revision[:8], '0' * 40):
