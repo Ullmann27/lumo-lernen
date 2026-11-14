@@ -175,7 +175,7 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.head_ref == 'integration/lumo-c4-connections-20261114')
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     outputs:
       candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
       candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
@@ -540,7 +540,7 @@ jobs:
   android-c4:
     needs: [verify-and-build, android-host-compile, connect-four-runtime]
     runs-on: ubuntu-latest
-    timeout-minutes: 65
+    timeout-minutes: 80
     permissions:
       contents: read
       actions: read

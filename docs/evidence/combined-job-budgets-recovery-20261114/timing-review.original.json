@@ -1,0 +1,299 @@
+{
+  "schema": 1,
+  "kind": "read_only_outer_job_budget_assessment",
+  "created_at": "2026-11-14T12:26:34.669923+00:00",
+  "decision": "The proposed outer budgets are justified by observed work and preserve acceptance semantics if every inner deadline and result gate stays unchanged. They are not guarantees that every allowed worst-case invocation fits.",
+  "scope": {
+    "no_sources_changed": true,
+    "no_tests_or_engine_or_device_runs": true,
+    "no_ci_or_git_mutations": true,
+    "current_host_run_unchanged": 43589206933,
+    "village_five_file_review_unchanged": "40bb4811ece377090074b825cb29461bbc8403a942a3564f6b226bbe0a64463d"
+  },
+  "planned_root_only_changes": [
+    {
+      "job": "verify-and-build",
+      "current_minutes": 90,
+      "proposed_minutes": 120,
+      "additional_seconds": 1800
+    },
+    {
+      "job": "android-c4",
+      "current_minutes": 65,
+      "proposed_minutes": 80,
+      "additional_seconds": 900
+    }
+  ],
+  "observed_originals": {
+    "older_host_reference": {
+      "host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+      "run_id": 43540111465,
+      "job_id": 132278438809,
+      "conclusion": "success",
+      "started_at": "2026-11-14T01:21:38Z",
+      "completed_at": "2026-11-14T02:26:13Z",
+      "total_seconds": 3875,
+      "total_mmss": "64:35",
+      "native_seconds": 2343,
+      "apk_start_to_job_completion_seconds": 448,
+      "limitation": "Different older Host/native/version. Used only as a bounded timing comparison, not current acceptance or a future guarantee."
+    },
+    "current_host_partial": {
+      "host": "3d91bd8355a539c3c2413760959684cd3fee985a",
+      "tree": "d5bef399ddf3e6a87d9305253ee8042ec1eb0820",
+      "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+      "run_id": 43589206933,
+      "job_id": 132431095702,
+      "snapshot_utc": "2026-11-14T12:24:21Z",
+      "conclusion": null,
+      "started_at": "2026-11-14T11:20:12Z",
+      "native_started_at": "2026-11-14T11:36:30Z",
+      "native_completed_at": "2026-11-14T12:21:34Z",
+      "native_conclusion": "success",
+      "native_seconds": 2704,
+      "dream_started_at": "2026-11-14T12:21:34Z",
+      "dream_completed_at": "2026-11-14T12:22:32Z",
+      "dream_conclusion": "success",
+      "dream_seconds": 58,
+      "apk_started_at": "2026-11-14T12:22:44Z",
+      "elapsed_until_apk_start_seconds": 3752,
+      "elapsed_until_apk_start_mmss": "62:32",
+      "limitation": "Job still in progress. Current source has Dream but no newly integrated Discovery or Village Android stage."
+    },
+    "separate_native_discovery": {
+      "native": "c3008e6bba3909f422da127ba8d711f9bd821a33",
+      "tree": "ef34a6b4972c6bcf693f9556333732e05085d583",
+      "run_id": 43592406370,
+      "job_id": 132439731866,
+      "job_conclusion": "success",
+      "job_seconds": 1339,
+      "discovery_started_at": "2026-11-14T12:00:07Z",
+      "discovery_completed_at": "2026-11-14T12:19:12Z",
+      "discovery_step_seconds": 1145,
+      "calls_seconds": 1138.486344075,
+      "calls": [
+        {
+          "ordinal": 1,
+          "probe": "learning_world_regression",
+          "mode": "headless",
+          "timeout_seconds": 420,
+          "elapsed_ns": 19729497068,
+          "elapsed_seconds": 19.729497068,
+          "returncode": 0
+        },
+        {
+          "ordinal": 2,
+          "probe": "learning_sharing_regression",
+          "mode": "headless",
+          "timeout_seconds": 420,
+          "elapsed_ns": 3083457174,
+          "elapsed_seconds": 3.083457174,
+          "returncode": 0
+        },
+        {
+          "ordinal": 3,
+          "probe": "learning_studio_regression",
+          "mode": "headless",
+          "timeout_seconds": 420,
+          "elapsed_ns": 8009943640,
+          "elapsed_seconds": 8.00994364,
+          "returncode": 0
+        },
+        {
+          "ordinal": 4,
+          "probe": "game_hub_magic_regression",
+          "mode": "headless",
+          "timeout_seconds": 150,
+          "elapsed_ns": 943396229,
+          "elapsed_seconds": 0.943396229,
+          "returncode": 0
+        },
+        {
+          "ordinal": 5,
+          "probe": "village_host_launch_regression",
+          "mode": "headless",
+          "timeout_seconds": 150,
+          "elapsed_ns": 941784938,
+          "elapsed_seconds": 0.941784938,
+          "returncode": 0
+        },
+        {
+          "ordinal": 6,
+          "probe": "learning_wonder_details_regression",
+          "mode": "headless",
+          "timeout_seconds": 150,
+          "elapsed_ns": 5312059515,
+          "elapsed_seconds": 5.312059515,
+          "returncode": 0
+        },
+        {
+          "ordinal": 7,
+          "probe": "learning_wonder_details_regression",
+          "mode": "rendered",
+          "timeout_seconds": 420,
+          "elapsed_ns": 169220812603,
+          "elapsed_seconds": 169.220812603,
+          "returncode": 0
+        },
+        {
+          "ordinal": 8,
+          "probe": "game_hub_magic_capture",
+          "mode": "rendered",
+          "timeout_seconds": 180,
+          "elapsed_ns": 17457167333,
+          "elapsed_seconds": 17.457167333,
+          "returncode": 0
+        },
+        {
+          "ordinal": 9,
+          "probe": "learning_world_capture",
+          "mode": "rendered",
+          "timeout_seconds": 900,
+          "elapsed_ns": 773477093322,
+          "elapsed_seconds": 773.477093322,
+          "returncode": 0
+        },
+        {
+          "ordinal": 10,
+          "probe": "learning_wonder_details_capture",
+          "mode": "rendered",
+          "timeout_seconds": 420,
+          "elapsed_ns": 140311132253,
+          "elapsed_seconds": 140.311132253,
+          "returncode": 0
+        }
+      ],
+      "limitation": "Different source and a separate runner. Addition to a Host duration is illustrative arithmetic, not an observed combined run."
+    }
+  },
+  "calculations": {
+    "older_baseline_plus_discovery": {
+      "formula_seconds": "3875 + 1145",
+      "seconds": 5020,
+      "mmss": "83:40",
+      "reserve_at_90_seconds": 380,
+      "reserve_at_120_seconds": 2180
+    },
+    "current_partial_plus_reference_tail_plus_discovery": {
+      "formula_seconds": "3752 + 448 + 1145",
+      "seconds": 5345,
+      "mmss": "89:05",
+      "reserve_at_90_seconds": 55,
+      "reserve_at_120_seconds": 1855,
+      "classification": "Cross-run illustrative estimate only; APK tail and new Native source may differ."
+    },
+    "discovery_individual_caps": {
+      "seconds": 3630,
+      "mmss": "60:30",
+      "not_a_typical_runtime": true,
+      "not_a_total_collector_deadline": true
+    }
+  },
+  "android_c4_assessment": {
+    "change_reason": "The new mandatory Village roundtrip is inserted between Main and C4 on the same exact APK. Raising only the outer job by 900 seconds preserves the existing 65-minute allowance plus the new 900-second probe budget.",
+    "probe_source_sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+    "probe_global_budget_seconds": 900,
+    "native_return_observation_seconds": 90,
+    "flutter_return_observation_seconds": 60,
+    "actual_combined_android_duration_available": false,
+    "limitation": "A source-enforced functional probe deadline does not establish the exact full CI job duration including setup, evidence handling and cleanup. No new Android run has been performed for this assessment.",
+    "update_job_unchanged_minutes": 55
+  },
+  "counterarguments_and_limits": [
+    "A larger outer timeout can prolong runner occupation and a later cancellation. Preserve strict per-probe timeouts, process exits, missing-artifact rejection and all mandatory result checks.",
+    "The ten Discovery per-call caps sum to 60:30. Adding the maximum allowed durations of every other stage can still exceed a 120-minute outer limit. The proposed 120 minutes is evidence-based capacity, not a proof of worst-case schedulability.",
+    "The current Native gate took 45:04 versus 39:03 in the older reference. The older 64:35 whole build cannot be treated as a fixed baseline.",
+    "The dominant new capture took 773.477093322 seconds of its unchanged 900-second individual allowance. Increasing the outer budget does not cure an individual probe timeout; do not relax that gate.",
+    "Cache state, source, runner load, APK build duration and artifact work differ between the cited runs. Actual combined completion remains a future CI observation.",
+    "Two existing delivery source tests literally require 90 minutes and must be explicitly changed with the separate Root budget patch; otherwise the desired workflow change will correctly fail those source contracts. All their other assertions should remain unchanged.",
+    "The active Host3d run and the frozen five-file Village integration review remain unchanged; this document authorizes no ref movement, rerun or acceptance transfer."
+  ],
+  "test_expectations_affected_by_root_patch": [
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "class": "DreamRequiredStepTests",
+      "method": "test_workflow_keeps_exact_pin_fresh_output_and_absolute_python_after_native_gate",
+      "assertion_line": 538,
+      "old_literal": "    timeout-minutes: 90\\n"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "class": "DiscoveryRequiredStepTests",
+      "method": "test_new_workflow_step_binds_every_helper_after_full52_and_dream_without_budget_change",
+      "assertion_line": 738,
+      "old_literal": "    timeout-minutes: 90\\n"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-integration-4f5d66f-20261114/final-source/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49102,
+      "sha256": "cb65111034d95d63475de7d556f7d16f6217365119251de6a076a2caf1b78f1c",
+      "git_blob": "152295fba33a15be64185921b00c71f1b7319dd6"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-integration-4f5d66f-20261114/final-source/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 86756,
+      "sha256": "58b7436afff9760d25ff01c0ef7a1fd0f5861da25a5cb31722199d25bcb0d560",
+      "git_blob": "bd568dbc81f73b4c12fe60dd07c189a241ee06be"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/final-source/.github/probes/lumo_village_android_probe.py",
+      "bytes": 11541,
+      "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+      "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+    }
+  ],
+  "original_files": [
+    {
+      "member": "host7b-jobs.original.json",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/snapshots/20261114T031747Z/jobs.json",
+      "bytes": 29940,
+      "sha256": "06f1dca91f9eaed20b563cfd7e06aecfc2aeb45efe8e910d8b8158d5ce1b2e98",
+      "git_blob": "02e5df464eb1f810f938cb2ca939b4482bf46872"
+    },
+    {
+      "member": "host3d-jobs.original.json",
+      "original_path": "/tmp/host-pr485-3d91bd83-pipeline-evidence-20261114/snapshots/20261114T122421Z/jobs.original.json",
+      "bytes": 15287,
+      "sha256": "cad10265291832aac17be0d93f1aa95808fa1043daf0e6c454d4c401b2804687",
+      "git_blob": "b34ae6f041e68817141485da488adc001e392f1d"
+    },
+    {
+      "member": "native-c300-jobs.original.json",
+      "original_path": "/tmp/native-discovery-c3008e6-ci-evidence-20261114/api-originals/20261114T121939Z/jobs.json",
+      "bytes": 3919,
+      "sha256": "9da10aac76cbc9967c0cb0b1b5a5630d86d25199dbd4cbcdd8fa8301613a09d9",
+      "git_blob": "c2b560b1f253b99c26daa2dd116924966cb6eff0"
+    },
+    {
+      "member": "native-c300-invocations.original.json",
+      "original_path": "/tmp/native-discovery-c3008e6-ci-evidence-20261114/originals/discovery/invocations.json",
+      "bytes": 23018,
+      "sha256": "82d166c5794e93505a0862c8ae032ce3c93393aca3754fad9f1cf601bfce3348",
+      "git_blob": "ca283cb81678e30ece445fd22ab271e0558463b4"
+    },
+    {
+      "member": "native-c300-timings.owner.json",
+      "original_path": "/tmp/native-discovery-c3008e6-ci-evidence-20261114/timings.json",
+      "bytes": 7268,
+      "sha256": "b37f3814ae52464f2029027008ad094c3588893b8da09302ae29dbbd84e42a30",
+      "git_blob": "cef4fc4e204207fcb9ea5ded0881655b154ff517"
+    },
+    {
+      "member": "native-discovery-gate-contract.original.json",
+      "original_path": "/tmp/native173-discovery-strict-gate-20261114/gate-contract.json",
+      "bytes": 8503,
+      "sha256": "7aea1777bbf1d93f6f0f248df63d6ea7c1b0e7efdb9d5246dd324c7712de5e2c",
+      "git_blob": "076e29b2f9c6d59309f6e8ddc1bf71c15bae099c"
+    },
+    {
+      "member": "host-discovery-gate-contract.original.json",
+      "original_path": "/tmp/host-discovery-gate-integration-7136fd69-20261114/gate-contract.json",
+      "bytes": 2714,
+      "sha256": "2ec25593c624a8a54345807b3886f3d9f58f800bed98d0848395e7b126dee11a",
+      "git_blob": "36224474af39293339ce25b246fd6dc5aad39dec"
+    }
+  ],
+  "provenance_note": "Only the verified native-c300 api-originals/20261114T121939Z/jobs.json is used. Earlier malformed local snapshot copies are not timing evidence. The separately preserved owner materialization diagnosis is unchanged."
+}

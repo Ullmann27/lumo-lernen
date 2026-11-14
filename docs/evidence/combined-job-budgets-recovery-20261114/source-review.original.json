@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T12:28:42.336651+00:00",
+  "reviewer": "pipeline_repair",
+  "scope": "Independent read-only review of the two-file outer-budget follow-up. No source edits, tests, lint, Git or CI actions.",
+  "decision": "NO_CONCRETE_SOURCE_BLOCKER",
+  "author_pack": "/tmp/host-combined-budget-source-e168-20261114",
+  "source_freeze": {
+    "bytes": 1972,
+    "sha256": "96755d13547f75c95a0543609d6c7ef2d391c6e88b2eca3a4b4e38f0fe8919d6",
+    "git_blob": "76472ccd4f2ab33af956ff992835a6880aae1fa9"
+  },
+  "base_as_declared_in_frozen_pack": {
+    "head": "e168f6ae96c4a1a50fb7c4313963425d0b15a1eb",
+    "tree": "522b84e760dd8526429c0ba031628236457cb4e0"
+  },
+  "integration_patch": {
+    "bytes": 2718,
+    "sha256": "5f5c74d93e68489721b88aa778e7a847884bac12cd10c9b3252c47facc51aec2",
+    "git_blob": "3e5d8d64d483886bc748a36be608583a3b8e77f0"
+  },
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "before": {
+        "bytes": 49102,
+        "sha256": "cb65111034d95d63475de7d556f7d16f6217365119251de6a076a2caf1b78f1c",
+        "git_blob": "152295fba33a15be64185921b00c71f1b7319dd6"
+      },
+      "after": {
+        "bytes": 49103,
+        "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e",
+        "git_blob": "2110d672ede7c80819fe3ff365339936b5406d8c"
+      },
+      "before_byte_equal_to_frozen_village_pack": true,
+      "only_exact_authorized_replacements": true
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "before": {
+        "bytes": 86756,
+        "sha256": "58b7436afff9760d25ff01c0ef7a1fd0f5861da25a5cb31722199d25bcb0d560",
+        "git_blob": "bd568dbc81f73b4c12fe60dd07c189a241ee06be"
+      },
+      "after": {
+        "bytes": 86764,
+        "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88",
+        "git_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16"
+      },
+      "before_byte_equal_to_frozen_village_pack": true,
+      "only_exact_authorized_replacements": true
+    }
+  ],
+  "findings": [
+    "Workflow changes exactly verify-and-build from 90 to 120 minutes and android-c4 from 65 to 80 minutes. Reversing only those two literals restores every original workflow byte.",
+    "The test changes exactly two 90-minute expectations to 120 and clarifies one method name to without_probe_budget_change. Reversing only those three edits restores every original test byte.",
+    "Every before-source byte equals the previously independently reviewed five-file Village integration output. That previous review and sourcefreeze remain unchanged.",
+    "All job dependencies, conditionals, permissions, APK/native binding, collection and replay commands, individual timeouts, output gates and other job budgets are unchanged.",
+    "The separate timing assessment supports the outer reserve, without promising worst-case completion or accepting any new renderer/Android evidence."
+  ],
+  "budget_assessment": {
+    "path": "/tmp/host-combined-outer-budget-assessment-20261114/review.json",
+    "sha256": "af4e8dfd9bae68ca2ddd34376b685cb7213e7881d2b54b9312abee23a96bb698"
+  },
+  "actual_new_tests_run": 0,
+  "remaining": "Root owns checkpoint, targeted test execution and the future combined CI run."
+}

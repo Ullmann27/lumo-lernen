@@ -535,7 +535,7 @@ class DreamRequiredStepTests(unittest.TestCase):
         step = build[begin:end]
         self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), begin)
         self.assertLess(end, build.index('      - name: Build unified real Android APK'))
-        self.assertIn('    timeout-minutes: 90\n', build)
+        self.assertIn('    timeout-minutes: 120\n', build)
         self.assertIn('set -euo pipefail', step)
         self.assertIn('export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"', step)
         self.assertLess(step.index('export PATH='), step.index('cd "$native_source"'))
@@ -726,7 +726,7 @@ class DiscoveryRequiredStepTests(unittest.TestCase):
             with self.subTest(steps=changed), self.assertRaises(ValueError):
                 delivery.checked_jobs(run, jobs, pull, binding, 999)
 
-    def test_new_workflow_step_binds_every_helper_after_full52_and_dream_without_budget_change(self):
+    def test_new_workflow_step_binds_every_helper_after_full52_and_dream_without_probe_budget_change(self):
         text = (ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
         build = job_block(text, 'verify-and-build')
         begin = build.index('      - name: '+delivery.DISCOVERY_STEP+'\n')
@@ -735,7 +735,7 @@ class DiscoveryRequiredStepTests(unittest.TestCase):
         self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), build.index('      - name: '+delivery.DREAM_STEP))
         self.assertLess(build.index('bash tools/validate_dream_connections.sh'), begin)
         self.assertLess(end, build.index('      - name: Build unified real Android APK'))
-        self.assertIn('    timeout-minutes: 90\n', build)
+        self.assertIn('    timeout-minutes: 120\n', build)
         for wanted in ('set -euo pipefail', 'export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"',
                        'native_source="$RUNNER_TEMP/lumo-native-acceptance"',
                        'native_logs="$GITHUB_WORKSPACE/acceptance-native"',
