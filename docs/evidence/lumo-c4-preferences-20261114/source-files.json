@@ -1,0 +1,81 @@
+{
+  "base_host": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+  "base_tree": "e922f8d01fe31b07ac3c5cb196451dcbedb269d0",
+  "files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 28988,
+      "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2",
+      "git_blob_sha1": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_preferences_observation.py",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/test_connect_four_preferences_observation.py",
+      "bytes": 17147,
+      "sha256": "6b493f9f5239a546abef96e273d1a28a8a4712a51a519c760555c79193353118",
+      "git_blob_sha1": "ba828cee6be0fd740dbef412afa9e1a263871227"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.json",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.json",
+      "bytes": 444,
+      "sha256": "71ca8b275ea85cbe8ad9a01d36c7877aee24cf132c1933cc6b487a766c7d6c7d",
+      "git_blob_sha1": "102e1107edd589541b59870036a91c57af0c3677"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stderr",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stdout",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stdout",
+      "bytes": 2485,
+      "sha256": "c1f6883e8047900e28981cd7d6bde7b379bd18edd80693b51ff4fd5d88f8811e",
+      "git_blob_sha1": "dacc36247689ea598cf75d228428d72a5b581317"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.json",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.json",
+      "bytes": 444,
+      "sha256": "7f990fc9ded4487e15e04e21a44c14ecd9b7d2524c5a554d60b98ed68fa85c42",
+      "git_blob_sha1": "94fdb4fc2ad03ced6e1474053efac74e447070dc"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stderr",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stdout",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stdout",
+      "bytes": 129,
+      "sha256": "18cc4a1f125474c5c4f1f3bf5f414a2e05095b766b5254c2cab20a0db7a4f4ac",
+      "git_blob_sha1": "5c20e833439163d483d0424511d19d577b601e61"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/source.json",
+      "local_path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/fixtures/c4-preferences-read-51ec/source.json",
+      "bytes": 3189,
+      "sha256": "4c181f977cccd874e4b13d39bc6796c11e2c9f859bf6480818c503b31ea70023",
+      "git_blob_sha1": "61f4b00fbbabb4240ba3204ac5425bd14766ce20"
+    }
+  ],
+  "changed_paths": [
+    ".github/probes/lumo_connect_four_android_probe.py",
+    "tools/android_qa/tests/test_connect_four_preferences_observation.py",
+    "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.json",
+    "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stderr",
+    "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stdout",
+    "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.json",
+    "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stderr",
+    "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stdout",
+    "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/source.json"
+  ],
+  "source_scope": "Only normalize ET.ParseError from the already saved original preferences response; no parser/contract, product, native, touch, source binding or deadline changes."
+}

@@ -1,0 +1,33 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_connect_four*.py",
+    "-v"
+  ],
+  "exit": 0,
+  "wall_seconds": 46.34627103300045,
+  "log": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/review/c4-preferences-and-existing-tests.log",
+  "log_bytes": 9147,
+  "log_sha256": "cd04302760de3d5c9de9c5e668375e55471e25ca2bea16eec29dfdbe8d3feebf",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow": "13.0.0",
+  "actual_tests": 47,
+  "actual_result": "OK",
+  "skips": 0,
+  "baseline_case": "OriginalPreferencesObservationTests.test_one_touch_missing_then_old_data_requires_fresh_matching_ack",
+  "baseline_result": "Original ParseError reproduced, exit 1",
+  "baseline_log": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/review/baseline-original-boundary.log",
+  "baseline_log_sha256": "def09380dac18965400887731f8fc7e89477a254e953f03c2b4d313d86ee985b",
+  "post_run_change": "Only module docstring explicitly names the synthetic surface-readiness boundary; all executable test AST unchanged.",
+  "changed_probe_methods": [
+    "read_preferences"
+  ],
+  "source_manifest": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/review/source-files.json",
+  "android_acceptance_claim": false
+}

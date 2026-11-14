@@ -1,0 +1,53 @@
+{
+  "status": "NO_BLOCKER_FOR_EXACT_QA_PATCH_INTEGRATION",
+  "reviewer": "lumo_learning",
+  "base_host": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+  "source_manifest_sha256": "7fe579386efc37aba77d398515e04b020e26c0aba7a5798327fc537a70346329",
+  "final_files_hash_verified": 9,
+  "patch_sha256": "52618869bad2efdc0824e9a22e11a9691fe3cda4b1d61f98f35a6014e2a5f851",
+  "strict_contract_unchanged_git_blob": "d577691946a3c4100c6665efcc934eab6b7fe9aa",
+  "three_existing_test_modules_unchanged": true,
+  "six_fixture_raw_files_match_actual_51ec_artifact": true,
+  "fixture_scope": "Missing 129-byte read plus previous valid 2485-byte pre-touch XML. No observed later recovery is inferred.",
+  "semantics_reviewed": [
+    "ET.ParseError normalizes only at read_preferences with saved original path and exception cause",
+    "Existing bounded wait and exact single dispatch retained",
+    "Original parser remains strict and has no backup/cache/empty fallback",
+    "Missing and invalid reads cannot produce accepted observations",
+    "Old ACK and old valid preferences cannot confirm the new turn",
+    "Wrong owner, round or recordRevision remain failures",
+    "Two current target observations, real layout and 48dp/board-pixel/ACK checks remain",
+    "120-second exact boundary and 900-second global deadline remain closed",
+    "Test patching binds to PROBE.contract, not a separately imported module instance"
+  ],
+  "baseline_log": {
+    "path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/review/baseline-original-boundary.log",
+    "sha256": "def09380dac18965400887731f8fc7e89477a254e953f03c2b4d313d86ee985b",
+    "observed": "One real-method replay fails with original ET.ParseError after exactly the first requested touch; no attribute/import/signature failure"
+  },
+  "passing_log": {
+    "path": "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/review/c4-preferences-and-existing-tests.log",
+    "sha256": "cd04302760de3d5c9de9c5e668375e55471e25ca2bea16eec29dfdbe8d3feebf",
+    "tests": 47,
+    "new_tests": 9,
+    "existing_tests": 38,
+    "seconds": 46.119,
+    "result": "OK",
+    "exit_from_receipt": 0,
+    "skips": 0
+  },
+  "post_run_docstring_only_change": {
+    "prior_sha256": "392614ffbba1d53dd46d4451f4fb720319dabde2d51fa65103f7195a82ef06fd",
+    "final_sha256": "6b493f9f5239a546abef96e273d1a28a8a4712a51a519c760555c79193353118",
+    "exact_prior_bytes_reconstructed": true,
+    "executable_AST_identical": true
+  },
+  "local_environment": {
+    "python": "3.12.14",
+    "Pillow": "13.0.0",
+    "ci_Pillow": "12.3.0"
+  },
+  "tests_run_by_reviewer": false,
+  "no_actual_new_android_acceptance": true,
+  "publication_status": "NO_GO until new exact-source seven-gate run and current delivery binding succeed"
+}

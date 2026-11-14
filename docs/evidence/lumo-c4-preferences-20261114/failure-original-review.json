@@ -1,0 +1,74 @@
+{
+  "scope": "Read-only verification of existing failed 51ec Android originals; no new Android run and no acceptance PASS",
+  "contract_blob": "d577691946a3c4100c6665efcc934eab6b7fe9aa",
+  "result_status": "FAIL",
+  "candidate_metadata_binding_verified": {
+    "host_source": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+    "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "run_id": 43605863655,
+    "run_attempt": 1,
+    "candidate_artifact_id": 14120856158,
+    "candidate_artifact_digest": "sha256:12b60eb2013536065808892c4f82e6682a495f291e9b6d71c5dc4dadcfea0071"
+  },
+  "identity_record": {
+    "apk_sha256": "70dcdf23005390ed5f3b8b4ffe92f987801ecf45dba1a51344a091e2ef6ffd9c",
+    "flutter_source_commit": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+    "godot_revision": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "godot_pck_sha256": "80d83d9baf67344f56ac235a38d3e829f112740eeb2520ece50afb6d81479787",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "complete_observations": [
+    {
+      "id": "initial-017",
+      "device_clock_utc": "2026-11-14T16:11:27.032000+00:00",
+      "native_pid": 6696,
+      "host_pid": 6379,
+      "ack": 0,
+      "revision": 2,
+      "recordRevision": 1,
+      "columns": []
+    },
+    {
+      "id": "child-first-first-000",
+      "device_clock_utc": "2026-11-14T16:11:29.442000+00:00",
+      "native_pid": 6696,
+      "host_pid": 6379,
+      "ack": 0,
+      "revision": 2,
+      "recordRevision": 1,
+      "columns": []
+    },
+    {
+      "id": "child-first-second-000",
+      "device_clock_utc": "2026-11-14T16:11:32.220000+00:00",
+      "native_pid": 6696,
+      "host_pid": 6379,
+      "ack": 0,
+      "revision": 2,
+      "recordRevision": 1,
+      "columns": []
+    }
+  ],
+  "checked_native_touch": "child-first-touch.json",
+  "touch_count": 1,
+  "confirmed_transitions": 0,
+  "returns": 0,
+  "fatal_pattern_matches": [],
+  "error": "ParseError: syntax error: line 1, column 0",
+  "truth_limit": "No valid confirmed post-touch observation or later successful preferences read exists in this aborted run."
+}

@@ -1,0 +1,82 @@
+{
+  "candidate": {
+    "sha": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+    "tree": "10af7af91d03e2c768e574fd0b79be3f3011a8d4",
+    "parent": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+    "files": [
+      {
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "sha": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 1
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.json",
+        "sha": "102e1107edd589541b59870036a91c57af0c3677",
+        "status": "added",
+        "additions": 14,
+        "deletions": 0
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stderr",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0074-child-first-second-000-preferences.stdout",
+        "sha": "dacc36247689ea598cf75d228428d72a5b581317",
+        "status": "added",
+        "additions": 13,
+        "deletions": 0
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.json",
+        "sha": "94fdb4fc2ad03ced6e1474053efac74e447070dc",
+        "status": "added",
+        "additions": 14,
+        "deletions": 0
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stderr",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/0087-child-first-confirmed-000-preferences.stdout",
+        "sha": "5c20e833439163d483d0424511d19d577b601e61",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/c4-preferences-read-51ec/source.json",
+        "sha": "61f4b00fbbabb4240ba3204ac5425bd14766ce20",
+        "status": "added",
+        "additions": 73,
+        "deletions": 0
+      },
+      {
+        "path": "tools/android_qa/tests/test_connect_four_preferences_observation.py",
+        "sha": "ba828cee6be0fd740dbef412afa9e1a263871227",
+        "status": "added",
+        "additions": 340,
+        "deletions": 0
+      }
+    ],
+    "verified": true
+  },
+  "main_run": {
+    "id": 43616126710,
+    "attempt": 1,
+    "source": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "status_at_checkpoint": "in_progress"
+  },
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "publication_eligible": false
+}

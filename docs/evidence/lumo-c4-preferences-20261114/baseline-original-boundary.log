@@ -1,0 +1,35 @@
+test_one_touch_missing_then_old_data_requires_fresh_matching_ack (test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_one_touch_missing_then_old_data_requires_fresh_matching_ack) ... ERROR
+
+======================================================================
+ERROR: test_one_touch_missing_then_old_data_requires_fresh_matching_ack (test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_one_touch_missing_then_old_data_requires_fresh_matching_ack)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/test_connect_four_preferences_observation.py", line 230, in test_one_touch_missing_then_old_data_requires_fresh_matching_ack
+    result = d.probe.transition('child-first', 'drop', 'column_3')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/baseline/lumo_connect_four_android_probe.py", line 217, in transition
+    after = self.wait_observation(tag + '-confirmed', arrived, timeout=120)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/baseline/lumo_connect_four_android_probe.py", line 179, in wait_observation
+    observed = self.observation(name, control)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/tests/test_connect_four_preferences_observation.py", line 131, in observe
+    return self.actual_observation(tag, control)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/baseline/lumo_connect_four_android_probe.py", line 137, in observation
+    prefs, prefs_file = self.read_preferences(tag)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/baseline/lumo_connect_four_android_probe.py", line 92, in read_preferences
+    return contract.preferences(raw), source
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/ced1df3de65a/lumo-c4-preferences-read-repair/tools/android_qa/connect_four_android_evidence.py", line 95, in preferences
+    tree = ET.fromstring(raw)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/xml/etree/ElementTree.py", line 1335, in XML
+    parser.feed(text)
+xml.etree.ElementTree.ParseError: syntax error: line 1, column 0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.299s
+
+FAILED (errors=1)
