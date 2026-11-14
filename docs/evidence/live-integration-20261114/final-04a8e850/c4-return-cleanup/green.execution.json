@@ -1,0 +1,80 @@
+{
+  "phase": "green",
+  "source_base": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "started_at": "2026-11-14T19:35:33.305331+00:00",
+  "elapsed_seconds": 138.30912471000192,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "-v",
+    "tools.android_qa.tests.test_connect_four_probe_deadlines",
+    "tools.android_qa.tests.test_connect_four_android_evidence"
+  ],
+  "exit_code": 0,
+  "before": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 29336,
+      "sha256": "4818dff314e39ae993d19a054b33f83bb351e98c58a1d673cc3bc2b6ed16250a",
+      "git_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "bytes": 19927,
+      "sha256": "a575c5b0dad164e411f181ea89d38797ed448ff262431892df4674ad90672a78",
+      "git_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 28636,
+      "sha256": "a305542998c70789cae6499f3e5c4c1507488ef360fa29ec5ea792b730bcd94c",
+      "git_blob": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36432,
+      "sha256": "0f09d08607e51f19c2e0be9f35bf876d8606fd73644b96a2eb39c2ffff15a88f",
+      "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    }
+  ],
+  "after": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 29336,
+      "sha256": "4818dff314e39ae993d19a054b33f83bb351e98c58a1d673cc3bc2b6ed16250a",
+      "git_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "bytes": 19927,
+      "sha256": "a575c5b0dad164e411f181ea89d38797ed448ff262431892df4674ad90672a78",
+      "git_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 28636,
+      "sha256": "a305542998c70789cae6499f3e5c4c1507488ef360fa29ec5ea792b730bcd94c",
+      "git_blob": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36432,
+      "sha256": "0f09d08607e51f19c2e0be9f35bf876d8606fd73644b96a2eb39c2ffff15a88f",
+      "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    }
+  ],
+  "scope": "Synthetic boundary regression using actual Probe.original journals and unchanged offline verifier; no device, SDK, Flutter or renderer"
+}
