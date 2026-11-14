@@ -1,0 +1,25 @@
+# Studio 2020 actual Android observations and narrow QA corrections
+
+This source checkpoint follows exact Host ae1ba5e68438e0acc89b4df92650d28c9328bed4 with Native34421df83566dd4773420cc2a225887956459435. Main and the separate Nextgen feature work remain unchanged. The production game rules, Flutter library, Android classes, native pin, saved data and reviewed native assets are not modified here. No successful new Android run is claimed at this checkpoint.
+
+## Original run retained
+
+[Run 43592240598](https://github.com/Ullmann27/lumo-lernen/actions/runs/43592240598) built and verified the exact Android candidate and passed the actual 2017 to 2020 update-preservation job. Both API35 and API37 general application tours passed all 21 steps, including existing learning and Cards interactions. Both then failed in the additional Connect Four navigation probe before reaching that scene. The observed screen was the legitimate Cards showcase; its actual 48dp “Zur Spielwelt zurück” control was visible. The old probe sought a main navigation tab on that showcase.
+
+The separate Creative job passed actual Build placement, exact undo/redo and durable reopening, and actual Puzzle quarter-turn and durable reopening. Its Jump and Treasure cases failed. No full creative or Android acceptance follows from those partial successes.
+
+The failed tour originals were downloaded once and independently checked against artifact bytes/digests and all ZIP CRCs: API35 artifact14115708726, 155067028 bytes, SHA2567b28e7b76d6d04b22f85397db26a4320173c6fcda7a48b2ca6ccf7cc10151772; API37 artifact14116755654, 155507236 bytes, SHA256b84adc9bf2809354bf0848154f0fdadd078480da0da39f24a5344cb8a6b832be. Creative artifact14116319078 is 366952594 bytes, SHA2561fbacc6c397880be834028c42b5ada4ffa95ee9a5625c54cd8c61246e971d31e, with all 1404 entries checked. These immutable negative results are not relabelled.
+
+## Exact corrections
+
+Connect Four navigation now distinguishes the native pause return, Cards showcase return, actual Flutter main tabs and actual games hub. It chooses only a unique enabled control from the current application, checks visible bounds and the 48dp minimum, confirms the choice against a second fresh hierarchy, and verifies MainActivity and the remaining deadline immediately before a real input. All previous board, layout, save, ownership and game checks remain mandatory. Five local counterexample cases use six original failed-run hierarchies and passed.
+
+The original Jump MP4 contains 86 H.264 frames with strictly increasing source PTS and DTS in a 1/90000 time base. The old null-output decode rounded these distinct times to its nominal-rate clock and emitted three output-muxer warnings. The corrected full decode preserves the input clock and every frame. It still requires exit zero and an empty error log; it does not suppress errors, rewrite media, retime the recording or skip frames. The actual unchanged original now decodes with an empty log, while an explicitly truncated negative copy is rejected. This is decoder evidence, not a successful rerun of Jump gameplay or proof of game frame rate. New recordings still require human motion review.
+
+Treasure's first real 1500ms hold changed its saved position by about 0.011 units toward the first clue. Its earlier joystick-localization image still showed the pause modal; the subsequent pre-input image showed the playable scene. No claim about an exact number of engine physics steps is made. The new probe requires two fresh playable HUD/ring observations without a known modal before moving. One small positive first segment is recorded as CALIBRATION_ONLY and may inform the next bounded real hold. The next segment must still satisfy the original movement and target-progress thresholds. Zero movement, movement away, identity changes and repeated tiny progress fail. The original 12 segments, 6000ms individual hold, 60000ms total hold and 900-second wall limit remain unchanged, as do the actual clue radius, answer, inventory and same-round reopening checks.
+
+## Actual local validation and next gate
+
+Nine original Creative parser/input cases, eleven existing Treasure controller cases and eight new original-media/calibration cases passed locally. The existing Treasure test changed only the mocked observation-method name to match the new explicit playable-frame boundary; its assertions and recorded historical failure remain intact. Original fixture bytes without a terminal newline were restored exactly before verification. Fourteen original controller fixture identities remain covered by the unchanged fixture test. These local tests launch no Android process and use explicitly labelled boundary doubles for hypothetical continuations.
+
+The workflow now executes the new C4 and Creative counterexamples before their actual Android tours. The current source must rebuild its own candidate and rerun all existing Flutter, native, compilation, API35/API37, Creative and update gates. No completed old artifact is substituted for that new run. Physical Fold7 measurements, thermal behavior and input latency remain unavailable.

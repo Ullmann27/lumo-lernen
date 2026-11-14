@@ -204,9 +204,20 @@ void main() {
       expect(savedAward['stars'], 9);
       expect(savedAward['xp'], 25);
       expect(savedAward['gameResultIds'], ['race-1']);
-      await wallet.awardGameResult(resultId: 'race-1', stars: 6, xp: 20);
-      expect(wallet.snapshot.stars, 9);
       expect(store.writtenSnapshots, hasLength(4));
+      final writesBeforeReplay =
+          List<Map<String, dynamic>>.of(store.writtenSnapshots);
+      await Future<void>.delayed(Duration.zero);
+      final emissionsBeforeReplay = List<RewardWallet>.of(emitted);
+      final replay =
+          await wallet.awardGameResult(resultId: 'race-1', stars: 6, xp: 20);
+      await Future<void>.delayed(Duration.zero);
+      expect(wallet.snapshot.stars, 9);
+      expect(wallet.snapshot.toJson(), savedAward);
+      expect(replay.toJson(), savedAward);
+      expect(store.writtenSnapshots, [...writesBeforeReplay, savedAward]);
+      expect(await store.persistedWallet(), savedAward);
+      expect(emitted, emissionsBeforeReplay);
       await subscription.cancel();
     });
   }

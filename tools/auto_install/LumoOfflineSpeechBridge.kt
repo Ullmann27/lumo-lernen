@@ -60,11 +60,24 @@ class LumoOfflineSpeechBridge(private val context: Context) {
     /** Same verified local voice for Flutter and the embedded learning activity. */
     fun synthesize(text: String?, style: String, localLicenseAccepted: Boolean,
         result: MethodChannel.Result) {
+        synthesizeBound(text, style, localLicenseAccepted, result, null)
+    }
+
+    /** Native lesson opt-in only. The unchanged Flutter channel remains German. */
+    fun synthesizeEnglishLesson(word: String, text: String?, style: String,
+        localLicenseAccepted: Boolean, result: MethodChannel.Result) {
+        synthesizeBound(text, style, localLicenseAccepted, result, word)
+    }
+
+    private fun synthesizeBound(text: String?, style: String, localLicenseAccepted: Boolean,
+        result: MethodChannel.Result, englishWord: String?) {
         // Licensing assent is not an online/privacy/microphone consent.
         if (!localLicenseAccepted) {
             result.error("local_license", "Lokale Sprachlizenz nicht bestätigt.", null)
         } else if (text.isNullOrBlank() || text.length > 220 ||
-            style !in setOf("warm", "greeting", "explain", "celebrate", "comfort", "question")) {
+            style !in setOf("warm", "greeting", "explain", "celebrate", "comfort", "question") ||
+            (englishWord != null && (englishWord.length > 24 ||
+                !englishWord.matches(Regex("[a-z]+(?: [a-z]+)*"))))) {
             result.error("local_input", "Ungültiger lokaler Sprachtext.", null)
         } else {
             cancelCurrent()
@@ -79,19 +92,28 @@ class LumoOfflineSpeechBridge(private val context: Context) {
                         prepareModels(request.id)
                     ).also { engine = it }
                     val started = System.nanoTime()
-                    val wav = voice.synthesize(text, style) { request.id != revision.get() }
+                    val cancelled = java.util.function.BooleanSupplier { request.id != revision.get() }
+                    val wav = if (englishWord == null) {
+                        voice.synthesize(text, style, cancelled)
+                    } else {
+                        voice.synthesizeEnglishLesson(englishWord, text, style, cancelled)
+                    }
+                    if (cancelled.getAsBoolean()) throw InterruptedException()
                     val elapsed = (System.nanoTime() - started) / 1_000_000
                     main.post {
                         if (request.id == revision.get() &&
                             request.finished.compareAndSet(false, true)) {
                             if (pending === request) pending = null
-                            result.success(mapOf(
+                            val response = mutableMapOf<String, Any>(
                                 "wav" to wav, "profile" to LumoOfflineSpeechEngine.PROFILE,
                                 "preset" to LumoOfflineSpeechEngine.PRESET,
-                                "language" to "de", "local" to true,
+                                "language" to if (englishWord == null) "de" else "en-de",
+                                "local" to true,
                                 "sampleRate" to LumoOfflineSpeechEngine.SAMPLE_RATE,
                                 "synthesisMs" to elapsed
-                            ))
+                            )
+                            if (englishWord != null) response["englishWord"] = englishWord
+                            result.success(response)
                         }
                     }
                 } catch (_: Throwable) {

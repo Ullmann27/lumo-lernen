@@ -1,0 +1,60 @@
+{
+  "host_source": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+  "native_source": "34421df83566dd4773420cc2a225887956459435",
+  "run_id": 43592240598,
+  "job_id": 132461143397,
+  "artifact_id": 14116319078,
+  "artifact_sha256": "1fbacc6c397880be834028c42b5ada4ffa95ee9a5625c54cd8c61246e971d31e",
+  "artifact_bytes": 366952594,
+  "status": "ORIGINAL_ANDROID_FAILURE_RETAINED",
+  "scope": "Decoder/controller regression fixtures. No replacement gameplay result. Original MP4 and input/save/PNG bytes are unchanged. Fresh OCR derivatives are explicitly labelled.",
+  "files": [
+    {
+      "file": "jump-actual-android.mp4",
+      "artifact_entry": "tour/jump-actual-android.mp4",
+      "bytes": 475169,
+      "sha256": "57da6a532a3ed2e2e0c4ee32400d392b463eef7539ca1ec34954c1913fb5e1e3",
+      "scope": "untouched original Android artifact member"
+    },
+    {
+      "file": "0179-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "artifact_entry": "tour/0179-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "bytes": 276,
+      "sha256": "b134ba5f90c2e9de9c57161e42916829b524a702a41c079f543ef65ed91c6338",
+      "scope": "untouched original Android artifact member"
+    },
+    {
+      "file": "0185-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "artifact_entry": "tour/0185-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "bytes": 306,
+      "sha256": "8cff949dfc4f383eea1f2caf49ede60ed42c314e59db1a30f5b010d37a685534",
+      "scope": "untouched original Android artifact member"
+    },
+    {
+      "file": "0182-observe-original-stick.png",
+      "artifact_entry": "tour/0182-observe-original-stick.png",
+      "bytes": 1986804,
+      "sha256": "b147f32acb2118f844f68ff4da1324c12f2a7848f304a3e11964aa4d9092a949",
+      "scope": "untouched original Android artifact member"
+    },
+    {
+      "file": "0183-before-real-input.png",
+      "artifact_entry": "tour/0183-before-real-input.png",
+      "bytes": 2242412,
+      "sha256": "0eee666dbd19ba578843a891d2a375e4818cac0a6e78997d836846a3f5251d55",
+      "scope": "untouched original Android artifact member"
+    },
+    {
+      "file": "0182-observe-original-stick.png.ocr.json",
+      "bytes": 14006,
+      "sha256": "169e4c371977282e7f3ffc96cf1f60c09bf2a2c8cba0c38270c9ac0e1e26c23f",
+      "scope": "fresh local OCR of unchanged original screenshots, not new Android execution"
+    },
+    {
+      "file": "0183-before-real-input.png.ocr.json",
+      "bytes": 17771,
+      "sha256": "2941c7a65c3982811d3989960466aa08d1fab030fce8d9157a7b9cc830f4ad13",
+      "scope": "fresh local OCR of unchanged original screenshots, not new Android execution"
+    }
+  ]
+}

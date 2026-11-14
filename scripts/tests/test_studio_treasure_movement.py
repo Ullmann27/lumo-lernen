@@ -212,7 +212,7 @@ class TreasureControllerContracts(unittest.TestCase):
     def test_touch_uses_fresh_observed_ring_and_bounded_hold(self):
         tour = probe.Tour.__new__(probe.Tour)
         target = {'center': [400, 500], 'diameter': 200, 'capture': {'file': 'actual-frame.png'}}
-        tour.current_stick = lambda: copy.deepcopy(target)
+        tour.current_treasure_stick = lambda: copy.deepcopy(target)
         sent = []
         tour.touch = lambda point, context, milliseconds: sent.append((point, context, milliseconds))
         tour.move_treasure_stick([-3, -4], 6000)

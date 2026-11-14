@@ -110,7 +110,8 @@ def capture_returned_flutter(out: Path, tag: str, captions: list[str], *, timeou
                     matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
                     if not matches:
                         lines = probe.image_lines(out, name + '-caption-' + str(len(found)), wanted,
-                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()))
+                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()),
+                            reject_captions=('Die Spielwelt wird geöffnet',))
                         matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
                     valid = []
                     for line in matches:
@@ -780,6 +781,17 @@ def cards_roundtrip(out: Path) -> dict:
             'learning_preservation': preservation}
 
 
+def require_studio_version(identity: dict, studio_version: int = 2019) -> None:
+    """Only the explicitly selected Studio generation may use this proof."""
+    versions = {2019: '0.13.7', 2020: '0.13.8'}
+    if type(studio_version) is not int or studio_version not in versions:
+        raise RuntimeError('Unsupported explicit Studio version')
+    if (type(identity.get('versionCode')) is not int or
+            identity['versionCode'] != studio_version or
+            identity.get('versionName') != versions[studio_version]):
+        raise RuntimeError(f'Studio surface acceptance requires {versions[studio_version]}+{studio_version}')
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--apk', required=True, type=Path)
@@ -787,6 +799,7 @@ def main() -> int:
     parser.add_argument('--sums', required=True, type=Path)
     parser.add_argument('--prior-tour', required=True, type=Path)
     parser.add_argument('--expected-api', required=True, type=int, choices=(35, 37))
+    parser.add_argument('--studio-version', type=int, choices=(2019, 2020), default=2019)
     parser.add_argument('--out', required=True, type=Path)
     args = parser.parse_args()
     out = args.out.resolve()
@@ -798,8 +811,7 @@ def main() -> int:
         prior = json.loads(args.prior_tour.read_text())
         if prior.get('status') != 'PASS' or prior.get('apk_sha256') != identity['apk_sha256']:
             raise RuntimeError('The mandatory original Android tour did not pass')
-        if identity['versionCode'] != 2019:
-            raise RuntimeError('Studio surface acceptance requires versionCode 2019')
+        require_studio_version(identity, args.studio_version)
         runtime = {
             'sdk': int(base.adb('shell', 'getprop', 'ro.build.version.sdk').strip()),
             'release': base.adb('shell', 'getprop', 'ro.build.version.release').strip(),

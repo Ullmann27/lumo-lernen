@@ -88,7 +88,7 @@ class LumoCardsRules {
         phase: GamePhase.gameOver,
         winnerIndex: state.currentPlayerIndex,
         lastActionMessage:
-            '${state.currentPlayer.name} hat alle Karten abgelegt!',
+            '${_subject(state.currentPlayer, 'hast', 'hat')} alle Karten abgelegt!',
       );
     }
 
@@ -100,7 +100,7 @@ class LumoCardsRules {
           discardPile: newDiscard,
           selectedColor: card.color,
           lastActionMessage:
-              '${state.currentPlayer.name} legt ${card.color.name} ${card.number}.',
+              '${_subject(state.currentPlayer, 'legst', 'legt')} ${card.color.displayName} ${card.number}.',
         ));
 
       case LumoCardType.lumoJump:
@@ -150,7 +150,7 @@ class LumoCardsRules {
             discardPile: restDiscardRain,
             selectedColor: card.color,
             lastActionMessage:
-                'Sternenregen! ${state.players[nextIdxRain].name} zieht 2 Karten.',
+                'Sternenregen! ${_subject(state.players[nextIdxRain], 'ziehst', 'zieht')} 2 Karten.',
           ),
           steps: rainSteps,
         );
@@ -162,7 +162,7 @@ class LumoCardsRules {
           discardPile: newDiscard,
           phase: GamePhase.chooseColor,
           lastActionMessage:
-              'Farbzauber! ${state.currentPlayer.name} waehlt eine Farbe.',
+              'Farbzauber! ${_subject(state.currentPlayer, 'wählst', 'wählt')} eine Farbe.',
         );
 
       case LumoCardType.superRain:
@@ -187,7 +187,7 @@ class LumoCardsRules {
           discardPile: restDiscardSuper,
           phase: GamePhase.chooseColor,
           lastActionMessage:
-              'Super-Sternenregen! ${state.players[nextIdxSuper].name} zieht 4 Karten - jetzt Farbe waehlen.',
+              'Super-Sternenregen! ${_subject(state.players[nextIdxSuper], 'ziehst', 'zieht')} 4 Karten - jetzt Farbe wählen.',
         );
 
       case LumoCardType.whirlwind:
@@ -211,7 +211,7 @@ class LumoCardsRules {
             discardPile: restDiscardWind,
             selectedColor: card.color,
             lastActionMessage:
-                'Wirbelwind! ${state.otherPlayer.name} zieht 1 Karte.',
+                'Wirbelwind! ${_subject(state.otherPlayer, 'ziehst', 'zieht')} 1 Karte.',
           ));
         }
         // 3-4P: direction flippen + 1 Schritt
@@ -237,7 +237,7 @@ class LumoCardsRules {
           phase: GamePhase.learningQuestion,
           pendingLearningQuestion: q,
           lastActionMessage:
-              'Denkpause! Lumo hat eine kleine Frage fuer ${state.currentPlayer.name}.',
+              'Denkpause! Lumo hat eine kleine Frage für ${state.currentPlayer.name == 'Du' ? 'dich' : state.currentPlayer.name}.',
         );
     }
   }
@@ -259,7 +259,8 @@ class LumoCardsRules {
       state.copyWith(
         selectedColor: chosen,
         phase: GamePhase.playing,
-        lastActionMessage: '${state.currentPlayer.name} waehlt ${chosen.name}.',
+        lastActionMessage:
+            '${_subject(state.currentPlayer, 'wählst', 'wählt')} ${chosen.displayName}.',
       ),
       steps: steps,
     );
@@ -287,7 +288,7 @@ class LumoCardsRules {
         phase: GamePhase.playing,
         pendingLearningQuestion: null,
         lastActionMessage:
-            'Richtig! ${state.currentPlayer.name} bekommt einen Stern und darf nochmal.',
+            'Richtig! ${_subject(state.currentPlayer, 'bekommst', 'bekommt')} einen Stern und ${state.currentPlayer.name == 'Du' ? 'darfst' : 'darf'} nochmal.',
       );
     } else {
       return _passTurn(state.copyWith(
@@ -355,7 +356,8 @@ class LumoCardsRules {
       players: newPlayers,
       drawPile: restDraw,
       discardPile: restDiscard,
-      lastActionMessage: '${state.currentPlayer.name} zieht eine Karte.',
+      lastActionMessage:
+          '${_subject(state.currentPlayer, 'ziehst', 'zieht')} eine Karte.',
     ));
   }
 
@@ -368,6 +370,11 @@ class LumoCardsRules {
   // ──────────────────────────────────────────────────────────────────
   // Private Helfer
   // ──────────────────────────────────────────────────────────────────
+
+  /// Only the visible pronoun "Du" takes the second person. A named child
+  /// uses the same third-person grammar as a named bot; no player ID changes.
+  static String _subject(LumoPlayer player, String addressed, String named) =>
+      '${player.name} ${player.name == 'Du' ? addressed : named}';
 
   /// Schaltet `steps` Spieler weiter in der aktuellen Richtung und
   /// setzt phase = passDevice.

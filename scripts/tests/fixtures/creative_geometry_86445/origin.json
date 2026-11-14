@@ -1,0 +1,45 @@
+{
+  "artifact_id": 14099161487,
+  "run_id": 43549076631,
+  "host_source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "original_zip_sha256": "c8b78ebfccf0db7f6a05db94208fcb6f95218fdd29accef175d68c82016b7347",
+  "fixtures": [
+    {
+      "file": "jump-portrait.png",
+      "original_member": "tour/0020-observe-original-stick.png",
+      "bytes": 1634627,
+      "sha256": "8c95fc1433958c63b53727f36f4bc414d1caf2935544b1fb3cbc46036c735c07"
+    },
+    {
+      "file": "puzzle-board.png",
+      "original_member": "tour/0130-puzzle-observed-board.png",
+      "bytes": 1017338,
+      "sha256": "0ffb971f2ec18e8031cd58f9370a44e41c09fdda7c099456365e177253641eb3"
+    },
+    {
+      "file": "build-loading.png",
+      "original_member": "tour/0085-native-weiterbauen-0.png",
+      "bytes": 1871144,
+      "sha256": "b6805765bf524301a036bb87207d3572e8f475164692bd0039420160c8f4cd38"
+    },
+    {
+      "file": "build-playing.png",
+      "original_member": "tour/0036-build-free-land.png",
+      "bytes": 2480067,
+      "sha256": "cd4efedb88413e2de07755dce3bb99ed2440fe6de4fb075b5c9900a6ea44f7a1"
+    },
+    {
+      "file": "build-loading-ocr.json",
+      "original_member": "tour/0085-native-weiterbauen-0-ocr.json",
+      "bytes": 22464,
+      "sha256": "1869325650b5e41f21aa48e5275c937a655fd6e1fff6169ea1d211c15a460b66"
+    },
+    {
+      "file": "puzzle-save.json",
+      "original_member": "tour/0127-puzzle-save-lumo_puzzle_p_f9bdcf80a21031fc0c9077d4769f4efc.json",
+      "bytes": 950,
+      "sha256": "29a335c9ee631fb25fb0dbd55b4889daa0a2755d8f7c7ac7a308ecd1d43c28d0"
+    }
+  ]
+}

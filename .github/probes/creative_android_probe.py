@@ -369,8 +369,11 @@ def read_component_caption(source: Path, out: Path, tag: str, wanted: str, comma
 
 
 def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None,
-                timeout: float = 225, exact: bool = False) -> list[dict]:
+                timeout: float = 225, exact: bool = False, *,
+                reject_captions: tuple[str, ...] = (), parallel_inventory: bool = False) -> list[dict]:
     deadline = time.monotonic() + timeout
+    if parallel_inventory and (wanted or reject_captions):
+        raise ValueError('Parallel OCR is only a complete, untargeted caption inventory')
     if source_path is None:
         snapshot = capture(out, tag)
         source = out / snapshot['file']
@@ -378,6 +381,7 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
         source = source_path
     image = Image.open(source).convert('RGB')
     result = []
+    rejected_captions = {normalized(caption) for caption in reject_captions if caption}
     # White UI letters on dark glass can disappear among the detailed 3D
     # background. A second read separates their contrast, without changing
     # any screenshot used as evidence or inventing a control coordinate.
@@ -424,15 +428,90 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     teal_ink = ImageChops.multiply(ImageChops.multiply(teal_dark, teal_blue), teal_balance)
     if teal_ink.getbbox():
         variants.append(('teal-text-1x', ImageChops.invert(teal_ink), 'deu+eng', 1))
+    # The actual Kart intro uses muted blue text over translucent 3D scenery.
+    # Its first captured frame can still be fading. Exhausting every general
+    # OCR fallback on that frame consumed the shared race-ready deadline in
+    # run 43626348513. For this exact cue, read two full-frame colour/scale
+    # variants and return missing promptly so native_tap observes a NEW frame.
+    # Two independently captured exact captions, stable bounds and the original
+    # deadline are still required before any touch. No region is assumed.
+    preview_cue = exact and wanted == normalized('Tippen zum Überspringen')
+    if preview_cue:
+        muted_red = red.point(lambda value: 255 if 80 <= value <= 220 else 0)
+        muted_blue = ImageChops.subtract(blue, red).point(
+            lambda value: 255 if 8 <= value <= 65 else 0)
+        muted_green = ImageChops.subtract(green, red).point(
+            lambda value: 255 if 5 <= value <= 45 else 0)
+        muted_text = ImageChops.invert(ImageChops.multiply(
+            ImageChops.multiply(muted_red, muted_blue), muted_green))
+        variants = [('preview-muted-blue', muted_text, 'deu+eng', 2),
+                    ('preview-raw-1x', image, 'deu+eng', 1)]
+    if parallel_inventory or (exact and wanted == normalized('Zur Spieleauswahl · Abenteuer behalten')):
+        # Actual run43626348519 frames have pale neutral captions beside large
+        # bright panels/scenery. Sparse-page OCR merged those regions at 2x.
+        # At captured scale, retain the observed grey ink and remove only large
+        # filled regions with a morphological opening. No screen region, word
+        # shape, caption or touch coordinate is supplied to recognition.
+        from PIL import ImageFilter
+        pale = darkest.point(lambda value: 255 if 150 <= value <= 235 else 0)
+        ink = ImageChops.multiply(pale, neutral)
+        # Seven radius-one passes equal one radius-seven square operation,
+        # retaining exactly the same 15x15 opening without its larger sort.
+        filled_regions = ink
+        for _ in range(7):
+            filled_regions = filled_regions.filter(ImageFilter.MinFilter(3))
+        for _ in range(7):
+            filled_regions = filled_regions.filter(ImageFilter.MaxFilter(3))
+        isolated_ink = ImageChops.invert(ImageChops.subtract(ink, filled_regions))
+        variants.insert(0, ('neutral-ink-1x', isolated_ink, 'deu+eng', 1))
+    if parallel_inventory:
+        # Modal exclusions are not monotone: a later palette can reveal a
+        # pause caption after an earlier one saw the background HUD. Require
+        # EVERY original palette plus the new one before returning any lines.
+        # Only this opted-in full inventory uses a bounded OCR worker pool.
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        source_before = digest(source)
+
+        def read_inventory_variant(spec):
+            variant, pixels, language, scale = spec
+            if time.monotonic() >= deadline:
+                raise TimeoutError('Current native screenshot OCR deadline exceeded')
+            prefix = out / (tag + '-ocr-' + variant)
+            expanded = prefix.with_suffix('.png')
+            pixels.resize((image.width * scale, image.height * scale)).save(expanded)
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('Current native screenshot OCR deadline exceeded')
+            base.command('tesseract', str(expanded), str(prefix), '--psm', '11',
+                         '-l', language, 'tsv', timeout=min(45, remaining))
+            if time.monotonic() >= deadline:
+                raise TimeoutError('Current native screenshot OCR deadline exceeded')
+
+        workers = ThreadPoolExecutor(max_workers=3)
+        futures = []
+        try:
+            for spec in variants:
+                futures.append(workers.submit(read_inventory_variant, spec))
+            for future in as_completed(futures):
+                future.result()
+        finally:
+            # No unfinished OCR may outlive this frame or use the next frame's
+            # files. Running commands already have the same absolute deadline.
+            for future in futures:
+                future.cancel()
+            workers.shutdown(wait=True, cancel_futures=True)
+        if time.monotonic() >= deadline or digest(source) != source_before:
+            raise RuntimeError('Complete screenshot OCR inventory expired or source changed')
     for variant, pixels, language, scale in variants:
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             raise TimeoutError('Current native screenshot OCR deadline exceeded')
-        expanded = out / 'ocr-work.png'
-        pixels.resize((image.width*scale,image.height*scale)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
-        base.command('tesseract',str(expanded),str(prefix),'--psm','11',
-                     '-l',language,'tsv',timeout=min(45, remaining))
+        if not parallel_inventory:
+            expanded = out / 'ocr-work.png'
+            pixels.resize((image.width*scale,image.height*scale)).save(expanded)
+            base.command('tesseract',str(expanded),str(prefix),'--psm','11',
+                         '-l',language,'tsv',timeout=min(45, remaining))
         groups: dict[tuple,list[dict]] = {}
         with prefix.with_suffix('.tsv').open() as stream:
             # Tesseract-TSV ist nie gequotet; ein erkanntes „"“ verschmolz sonst
@@ -451,7 +530,8 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
             for start in range(len(words)):
                 for end in range(start+1,min(len(words),start+8)+1):
                     span=words[start:end]
-                    if normalized(' '.join(word['text'] for word in span)) == wanted:
+                    span_text = normalized(' '.join(word['text'] for word in span))
+                    if span_text == wanted or span_text in rejected_captions:
                         spans.append(span)
             for span in spans:
                 x0=min(int(word['left']) for word in span)/scale
@@ -460,10 +540,29 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
                 y1=max(int(word['top'])+int(word['height']) for word in span)/scale
                 result.append({'text':' '.join(word['text'] for word in span),
                                'bounds':[x0,y0,x1,y1],'variant':variant})
+        if rejected_captions:
+            # Only an explicitly opted-in, actually observed complete caption
+            # rejects this frame. Do not spend the remaining return budget on
+            # more OCR variants of an already identified launch cover.
+            rejected = [line for line in result
+                        if normalized(line['text']) in rejected_captions and
+                        0 <= line['bounds'][0] < line['bounds'][2] <= image.width and
+                        0 <= line['bounds'][1] < line['bounds'][3] <= image.height]
+            if rejected:
+                (out / (tag + '-ocr.json')).write_text(
+                    json.dumps(result, indent=2, ensure_ascii=False))
+                (out / (tag + '-ocr-rejected.json')).write_text(json.dumps({
+                    'status': 'REJECTED_FRAME', 'source': source.name,
+                    'source_sha256': digest(source), 'surface': list(image.size),
+                    'variant': variant, 'observed_captions': rejected,
+                    'scope': 'Negative current-frame evidence only; no input or positive acceptance',
+                }, indent=2, ensure_ascii=False) + '\n')
+                raise RuntimeError('Rejected captured Flutter frame: observed caption ' +
+                                   rejected[0]['text'])
         if wanted and any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
             break
-    if wanted and not any(wanted == normalized(line['text']) if exact
+    if wanted and not preview_cue and not any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
         # Real API35/37 frames can lose a complete dark caption inside its gold
         # rounded outline under sparse-page segmentation. Find colour regions
@@ -474,7 +573,7 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
             raise TimeoutError('Current native screenshot OCR deadline exceeded')
         result.extend(read_component_caption(source, out, tag, wanted, base.command,
                                              timeout=min(15, remaining)))
-    if wanted and not any(wanted == normalized(line['text']) if exact
+    if wanted and not preview_cue and not any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
         # The API 36 cover frame has a visible empty ITEM caption which all four
         # whole-frame variants miss among adjacent 3D edges. Read the same full
@@ -485,6 +584,8 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
             raise TimeoutError('Current native screenshot OCR deadline exceeded')
         result.extend(read_tiled_word(source, out, tag, wanted, normalized, base.command,
                                      timeout=min(45, remaining)))
+    if parallel_inventory and time.monotonic() >= deadline:
+        raise TimeoutError('Current native screenshot OCR inventory parsing deadline exceeded')
     (out/(tag+'-ocr.json')).write_text(json.dumps(result,indent=2,ensure_ascii=False))
     return result
 

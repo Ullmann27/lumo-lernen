@@ -1,3 +1,5 @@
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,8 +21,9 @@ Future<LumoAppState> setupGame(WidgetTester tester,
   LumoVoice.instance.isEnabled = false;
   await tester.binding.setSurfaceSize(const Size(360, 800));
   addTearDown(() => tester.binding.setSurfaceSize(null));
-  final app = LumoAppState();
+  final app = LumoAppState(walletRepository: RewardWalletRepository());
   await app.hydrateFromWallet();
+    LumoVoice.instance.isEnabled = false;
   await tester.pumpWidget(MaterialApp(
     builder: (context, child) => MediaQuery(
       data: MediaQuery.of(context).copyWith(disableAnimations: reduced),
@@ -28,11 +31,18 @@ Future<LumoAppState> setupGame(WidgetTester tester,
     ),
     home: LumoConnectFourScreen(appState: app, seed: 1),
   ));
-  await tester.pump();
+  await tester.pumpAndSettle();
   return app;
 }
 
 void main() {
+  setUp(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            const MethodChannel('lumo_lernen/connect_four'),
+            (_) async =>
+                throw MissingPluginException('Flutter fallback fixture'));
+  });
   testWidgets('tapping the board selects its column and locks repeated taps',
       (tester) async {
     final app = await setupGame(tester);
@@ -92,6 +102,9 @@ void main() {
       await tester.tap(find.byKey(ValueKey('connect-column-$c')));
       await tester.pump(const Duration(milliseconds: 1));
       await tester.pump();
+    }
+    for (var i = 0; i < 20 && app.state.stars != 5; i++) {
+      await tester.pump(const Duration(milliseconds: 1));
     }
     expect(find.byType(AlertDialog), findsNothing,
         reason: 'Win replay highlights the line before the result dialog');

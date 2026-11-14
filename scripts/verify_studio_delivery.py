@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bind Studio 2019 publication to its exact APK, Android and renderer evidence.
+"""Bind each explicit Studio release to its exact APK, Android and renderer evidence.
 
 Historical release receipts remain immutable; the shared verifier preserves
 its legacy behavior by default. Studio explicitly requires current native
@@ -14,6 +14,8 @@ import hashlib
 from io import BytesIO
 import json
 from pathlib import Path, PurePosixPath
+from types import MappingProxyType
+from typing import Mapping, NamedTuple
 import re
 import stat
 import struct
@@ -72,9 +74,61 @@ CAPTURE_MODULES = {
 }
 
 
-def verify_native_acceptance(native: str, artifact: dict, workflow: dict, jobs: dict) -> None:
+C4_CAPTURE_PROBE = 'studio-evidence/captures/connect_four_visual_capture'
+FACIAL_CAPTURE_PROBE = 'studio-evidence/captures/lumo_facial_capture'
+TREASURE_TITLE_CAPTURE_PROBE = 'studio-evidence/captures/treasure_title_contrast_regression'
+STUDIO_2020_REQUIRED_IMAGES = frozenset({
+    f'{C4_CAPTURE_PROBE}/{name}.png' for name in (
+        'c4-empty-landscape', 'c4-playing-phone', 'c4-win-landscape', 'c4-paused-small')
+} | {
+    f'{FACIAL_CAPTURE_PROBE}/{name}.png' for name in (
+        'teacher_scene', 'neutral', 'audio_jaw', 'blink', 'blink_intermediate',
+        'muted', 'gaze_left', 'stopped')
+} | {
+    f'{TREASURE_TITLE_CAPTURE_PROBE}/treasure-title-{profile}.png'
+    for profile in ('landscape', 'compact', 'portrait', 'fold', 'landscape-cutout')
+})
+
+
+class StudioRelease(NamedTuple):
+    version_code: int
+    version_name: str
+    native_artifact: str
+    native_workflow: str
+    review_directory: PurePosixPath
+    review_receipt: str
+    review_modules: frozenset[str]
+    capture_modules: Mapping[str, str]
+    required_images: frozenset[str]
+
+
+_RELEASES = MappingProxyType({
+    2019: StudioRelease(
+        VERSION_CODE, VERSION_NAME, NATIVE_ARTIFACT, NATIVE_WORKFLOW,
+        REVIEW_DIRECTORY, REVIEW_RECEIPT, REVIEW_MODULES,
+        MappingProxyType(dict(CAPTURE_MODULES)), frozenset()),
+    2020: StudioRelease(
+        2020, '0.13.8', 'lumo-studio-2020-native-evidence',
+        '.github/workflows/lumo-studio-2020.yml',
+        PurePosixPath('docs/evidence/studio-2020-reviewed'),
+        'config/studio-2020-visual-review.json', REVIEW_MODULES | {'connect_four'},
+        MappingProxyType({**CAPTURE_MODULES, C4_CAPTURE_PROBE: 'connect_four',
+                          FACIAL_CAPTURE_PROBE: 'learning',
+                          TREASURE_TITLE_CAPTURE_PROBE: 'treasure'}),
+        STUDIO_2020_REQUIRED_IMAGES),
+})
+
+
+def studio_release(version_code: int = VERSION_CODE) -> StudioRelease:
+    require(type(version_code) is int and version_code in _RELEASES,
+            'Only the explicit Studio 2019 and 2020 contracts are supported')
+    return _RELEASES[version_code]
+
+
+def verify_native_acceptance(native: str, artifact: dict, workflow: dict, jobs: dict, *, studio_version: int = VERSION_CODE) -> None:
+    release = studio_release(studio_version)
     require(bool(re.fullmatch(r'[a-f0-9]{40}', str(native))), 'Invalid reviewed native SHA')
-    require(artifact.get('name') == NATIVE_ARTIFACT and artifact.get('expired') is False,
+    require(artifact.get('name') == release.native_artifact and artifact.get('expired') is False,
             'Current Studio native visual evidence is missing or expired')
     require(type(artifact.get('id')) is int and artifact['id'] > 0, 'Invalid native artifact identity')
     run_id = workflow.get('id')
@@ -82,7 +136,7 @@ def verify_native_acceptance(native: str, artifact: dict, workflow: dict, jobs: 
             artifact.get('workflow_run', {}).get('id') == run_id and
             artifact['workflow_run'].get('head_sha') == native,
             'Native artifact was rendered from another source or workflow run')
-    require(workflow.get('path') == NATIVE_WORKFLOW and workflow.get('head_sha') == native and
+    require(workflow.get('path') == release.native_workflow and workflow.get('head_sha') == native and
             workflow.get('status') == 'completed' and workflow.get('conclusion') == 'success',
             'Current Studio native workflow did not succeed at the exact pin')
     actual_jobs = jobs.get('jobs')
@@ -123,7 +177,8 @@ def verify_archive_sources(zipped: zipfile.ZipFile, native: str) -> dict:
     return sources
 
 
-def capture_module(entry: str) -> str:
+def capture_module(entry: str, *, studio_version: int = VERSION_CODE) -> str:
+    release = studio_release(studio_version)
     require(isinstance(entry, str) and '\\' not in entry, 'Invalid original artifact image path')
     path = PurePosixPath(entry)
     require(not path.is_absolute() and '..' not in path.parts and str(path) == entry and
@@ -131,8 +186,8 @@ def capture_module(entry: str) -> str:
             'Only original current production-scene PNGs may be reviewed')
     module = MOBILE_SAFE_AREA_CAPTURE_MODULES.get(entry)
     if module is None:
-        module = CAPTURE_MODULES.get(str(path.parent))
-    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+        module = release.capture_modules.get(str(path.parent))
+    require(module in release.review_modules, 'Unknown production capture; a pose studio is not a product module')
     return module
 
 
@@ -155,15 +210,17 @@ def png_dimensions(data: bytes) -> list[int]:
     return [width, height]
 
 
-def reviewed_relative_path(digest: str, module: str, entry: str) -> str:
+def reviewed_relative_path(digest: str, module: str, entry: str, *, studio_version: int = VERSION_CODE) -> str:
+    release = studio_release(studio_version)
     require(bool(re.fullmatch(r'[a-f0-9]{64}', str(digest))), 'Invalid reviewed image SHA-256')
-    require(capture_module(entry) == module, 'Reviewed module differs from its actual production capture')
-    return str(REVIEW_DIRECTORY / f'{digest}-{module}-{PurePosixPath(entry).name}')
+    require(capture_module(entry, studio_version=studio_version) == module, 'Reviewed module differs from its actual production capture')
+    return str(release.review_directory / f'{digest}-{module}-{PurePosixPath(entry).name}')
 
 
-def reviewed_file(root: Path, relative: str) -> Path:
+def reviewed_file(root: Path, relative: str, *, studio_version: int = VERSION_CODE) -> Path:
+    release = studio_release(studio_version)
     parts = PurePosixPath(relative).parts
-    require(parts[:3] == REVIEW_DIRECTORY.parts and len(parts) == 4 and '\\' not in relative,
+    require(parts[:3] == release.review_directory.parts and len(parts) == 4 and '\\' not in relative,
             'Reviewed image must be a content-addressed committed Studio PNG')
     path = root
     for component in parts:
@@ -173,10 +230,11 @@ def reviewed_file(root: Path, relative: str) -> Path:
 
 
 def verify_visual_review(root: Path, receipt: dict, native: str,
-                         artifact: dict, workflow: dict, jobs: dict, archive: Path) -> dict:
+                         artifact: dict, workflow: dict, jobs: dict, archive: Path, *, studio_version: int = VERSION_CODE) -> dict:
+    release = studio_release(studio_version)
     require(receipt.get('schema') == 1 and receipt.get('status') == 'approved',
             'The final Studio visual review is not approved')
-    require(receipt.get('versionCode') == VERSION_CODE and receipt.get('native_revision') == native,
+    require(receipt.get('versionCode') == release.version_code and receipt.get('native_revision') == native,
             'Visual review belongs to another native source or version')
     require(bool(str(receipt.get('reviewed_by') or '').strip()) and
             bool(str(receipt.get('notes') or '').strip()), 'Missing actual reviewer/findings')
@@ -185,7 +243,7 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
     except (TypeError, ValueError, AttributeError) as error:
         raise ValueError('Missing dated visual review') from error
     require(reviewed_at.tzinfo is not None, 'Visual review date must include its time zone')
-    verify_native_acceptance(native, artifact, workflow, jobs)
+    verify_native_acceptance(native, artifact, workflow, jobs, studio_version=studio_version)
     require(artifact['id'] == receipt.get('native_artifact_id') and
             workflow['id'] == receipt.get('native_workflow_run_id'),
             'Visual artifact or workflow identity differs from the reviewed artifact')
@@ -204,13 +262,13 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
             require(isinstance(entry, dict), 'Invalid reviewed image entry')
             module, original = entry.get('module'), entry.get('artifact_entry')
             image_digest = entry.get('sha256')
-            relative = reviewed_relative_path(image_digest, module, original)
+            relative = reviewed_relative_path(image_digest, module, original, studio_version=studio_version)
             require(entry.get('path') == relative, 'Reviewed PNG filename must contain its full SHA-256 and module')
             require(relative not in paths and original not in entries, 'Duplicate reviewed image path or archive entry')
             paths.add(relative)
             entries.add(original)
             capture_probes.add(str(PurePosixPath(original).parent))
-            path = reviewed_file(root, relative)
+            path = reviewed_file(root, relative, studio_version=studio_version)
             require(path.is_file(), 'Reviewed PNG is not committed as a real file')
             data = path.read_bytes()
             require(hashlib.sha256(data).hexdigest() == image_digest and image_digest not in hashes,
@@ -222,13 +280,15 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
             hashes.add(image_digest)
             modules.add(module)
             orientations.add('portrait' if dimensions[1] > dimensions[0] else 'landscape')
-    require(modules == REVIEW_MODULES, 'Visual review must cover all nine changed production scenes')
+    require(modules == release.review_modules, 'Visual review must cover all nine changed production scenes')
     require(TOUCH_CAPTURE_PROBES.issubset(capture_probes),
             'Visual review must include the current workshop, treasure and build touch captures')
     require(PUZZLE_MENU_CAPTURE_PROBE in capture_probes,
             'Visual review must include the current puzzle menu lifecycle capture')
     require(CARDS_SAFE_AREA_CAPTURE_PROBE in capture_probes,
             'Visual review must include the current Cards safe-area capture')
+    require(release.required_images.issubset(entries),
+            'The selected Studio release requires every current C4 and facial production capture')
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,
@@ -241,13 +301,14 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
 
 def verify_proofs(source: str, native: str, version_name: str, digest: str, size: int,
                   proof: dict, verification: dict, measured: dict, update: dict,
-                  tour: dict, surfaces: dict, host: dict, surface_evidence: Path) -> dict:
-    require(version_name == VERSION_NAME, 'This publisher only accepts Studio 0.13.7+2019')
+                  tour: dict, surfaces: dict, host: dict, surface_evidence: Path, *, studio_version: int = VERSION_CODE) -> dict:
+    release = studio_release(studio_version)
+    require(version_name == release.version_name, f'This publisher only accepts Studio {release.version_name}+{release.version_code}')
     require(bool(re.fullmatch(r'[a-f0-9]{40}', source)), 'Missing immutable Flutter source')
     require(proof.get('flutter_source_commit') == source and proof.get('tracked_source_clean') is True,
             'APK provenance belongs to different or uncommitted Flutter source')
     for info in (proof, verification, measured):
-        require(info.get('versionCode') == VERSION_CODE and info.get('versionName') == version_name,
+        require(info.get('versionCode') == release.version_code and info.get('versionName') == version_name,
                 'Wrong Android delivery version')
         require(info.get('package') == PACKAGE_ID and
                 info.get('signingCertificateSha256') == EXPECTED_CERT_SHA256,
@@ -265,7 +326,7 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             'In-place upgrade did not use the real 2017 baseline and this candidate')
     candidate = update.get('candidate', {})
     require(candidate.get('flutter_source_commit') == source and candidate.get('tracked_source_clean') is True and
-            candidate.get('versionCode') == VERSION_CODE and candidate.get('versionName') == version_name and
+            candidate.get('versionCode') == release.version_code and candidate.get('versionName') == version_name and
             candidate.get('package') == PACKAGE_ID and
             candidate.get('signingCertificateSha256') == EXPECTED_CERT_SHA256 and
             candidate.get('abis') == ['x86_64'] and candidate.get('godot', {}).get('revision') == native,
@@ -274,7 +335,7 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
     require(len(identities) == 1 and identities[0].get('ok') is True, 'Missing actual tour APK identity')
     for identity in (identities[0], surfaces.get('apk_identity', {})):
         require(identity.get('flutter_source_commit') == source and identity.get('godot_revision') == native and
-                identity.get('versionCode') == VERSION_CODE and identity.get('versionName') == version_name and
+                identity.get('versionCode') == release.version_code and identity.get('versionName') == version_name and
                 identity.get('signingCertificateSha256') == EXPECTED_CERT_SHA256,
                 'Android surface or tour tested another source/version/signature')
         require(identity.get('apk_sha256') == tour.get('apk_sha256') == candidate.get('sha256'),
@@ -331,7 +392,7 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
     require(host.get('status') == 'PASS' and host.get('flutter_source_commit') == source and
             COMPILED_CLASSES <= set(host.get('classes', {})), 'Current Android host bytecode not verified')
     card_pixels = verify_cards_front_faces(cards, surface_evidence, require_layout=True)
-    return {'package': PACKAGE_ID, 'versionName': version_name, 'versionCode': VERSION_CODE,
+    return {'package': PACKAGE_ID, 'versionName': version_name, 'versionCode': release.version_code,
             'flutterSourceCommit': source, 'godotSourceCommit': native,
             'signingCertificateSha256': EXPECTED_CERT_SHA256, 'apkSha256': digest, 'apkBytes': size,
             'androidTourApkSha256': candidate['sha256'],
@@ -367,7 +428,7 @@ def verify_tour_android_runtime(tour: dict, runtime: dict) -> None:
 def verify_android_platforms(source: str, native: str, version_name: str, digest: str, size: int,
                              proof: dict, verification: dict, measured: dict, update: dict,
                              tour: dict, surfaces: dict, host: dict, surface_evidence: Path,
-                             android17_root: Path) -> dict:
+                             android17_root: Path, *, studio_version: int = VERSION_CODE) -> dict:
     """Require both original emulator datasets without altering any input proof.
 
     The same ARM64 delivery and exact x86_64 candidate/PCK must satisfy the full
@@ -391,9 +452,9 @@ def verify_android_platforms(source: str, native: str, version_name: str, digest
     verify_tour_android_runtime(tour, runtime35)
     verify_tour_android_runtime(android17_tour, runtime37)
     facts = verify_proofs(source, native, version_name, digest, size, proof, verification, measured,
-                          update, tour, surfaces, host, surface_evidence)
+                          update, tour, surfaces, host, surface_evidence, studio_version=studio_version)
     android17 = verify_proofs(source, native, version_name, digest, size, proof, verification, measured,
-                              update, android17_tour, android17_surfaces, host, android17_evidence)
+                              update, android17_tour, android17_surfaces, host, android17_evidence, studio_version=studio_version)
     facts['androidEmulatorAcceptance'] = [
         {'status': 'PASS', 'android_runtime': runtime35,
          'androidTourApkSha256': facts['androidTourApkSha256'],
@@ -412,20 +473,22 @@ def verify_android_platforms(source: str, native: str, version_name: str, digest
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha', required=True)
+    parser.add_argument('--studio-version', type=int, choices=(2019, 2020), default=VERSION_CODE)
     parser.add_argument('--root', type=Path, default=Path('.'))
     parser.add_argument('--dist', type=Path, default=Path('dist'))
     parser.add_argument('--proofs', type=Path, default=Path('proofs'))
     parser.add_argument('--native-archive', type=Path,
                         help='Original downloaded ZIP, default: <proofs>/native-evidence.zip')
     args = parser.parse_args()
+    release = studio_release(args.studio_version)
     root, dist, proofs = args.root, args.dist, args.proofs
     pubspec = (root / 'pubspec.yaml').read_text()
     source_config = (root / 'config/godot-source.json').read_text()
     version_name, version_code = parse_pubspec_version(pubspec)
     build, native = verify_pin(pubspec, source_config)
-    require(build == version_code == VERSION_CODE and version_name == VERSION_NAME,
-            'This publisher only accepts reviewed Studio 0.13.7+2019')
-    require((dist / 'APP-VERSION.txt').read_text().strip() == f'version: {VERSION_NAME}+{VERSION_CODE}',
+    require(build == version_code == release.version_code and version_name == release.version_name,
+            'This publisher only accepts the explicitly selected reviewed Studio release')
+    require((dist / 'APP-VERSION.txt').read_text().strip() == f'version: {release.version_name}+{release.version_code}',
             'Packaged application version differs from current source')
     require(read_json(dist / 'GODOT-SOURCE.json') == json.loads(source_config), 'Packaged source pin differs')
     apk = dist / 'Lumo-Lernen-Neu.apk'
@@ -435,12 +498,13 @@ def main() -> int:
                           read_json(proofs / 'tour/tour-result.json'),
                           read_json(proofs / 'tour/nextgen/native-surfaces-result.json'),
                           read_json(proofs / 'host/result.json'), proofs / 'tour/nextgen',
-                          proofs / 'android17')
-    facts['visualReview'] = verify_visual_review(root, read_json(root / REVIEW_RECEIPT), native,
+                          proofs / 'android17', studio_version=args.studio_version)
+    facts['visualReview'] = verify_visual_review(root, read_json(root / release.review_receipt), native,
                                                read_json(proofs / 'native-artifact.json'),
                                                read_json(proofs / 'native-run.json'),
                                                read_json(proofs / 'native-jobs.json'),
-                                               args.native_archive or proofs / 'native-evidence.zip')
+                                               args.native_archive or proofs / 'native-evidence.zip',
+                                               studio_version=args.studio_version)
     (dist / 'RELEASE-FACTS.json').write_text(json.dumps(facts, indent=2) + '\n')
     (dist / 'Lumo-Lernen-Neu.apk.sha256').write_text(f"{facts['apkSha256']}  Lumo-Lernen-Neu.apk\n")
     print(json.dumps(facts, indent=2))

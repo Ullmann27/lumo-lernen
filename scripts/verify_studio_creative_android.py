@@ -35,9 +35,9 @@ def evidence_file(root: Path, name: str, digest: str) -> Path:
     return path
 
 
-def verify(root: Path, expected: dict, main_tour: dict, probe_sha256: str) -> dict:
+def verify(root: Path, expected: dict, main_tour: dict, probe_sha256: str, *, studio_version: int = 2019) -> dict:
     binding = creative.verify_candidate_metadata(*[
-        read(root / 'metadata' / name) for name in ('run.json', 'artifacts.json', 'jobs.json')], expected)
+        read(root / 'metadata' / name) for name in ('run.json', 'artifacts.json', 'jobs.json')], expected, studio_version=studio_version)
     creative.require(read(root / 'candidate-artifact-binding.json') == binding,
                      'Creative preflight metadata differs from the current upload')
     tour = root / 'tour'
@@ -132,6 +132,7 @@ def verify(root: Path, expected: dict, main_tour: dict, probe_sha256: str) -> di
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha', required=True)
+    parser.add_argument('--studio-version', type=int, choices=(2019, 2020), default=2019)
     parser.add_argument('--build-run', required=True, type=int)
     parser.add_argument('--artifact-id', required=True, type=int)
     parser.add_argument('--artifact-digest', required=True)
@@ -143,7 +144,7 @@ def main() -> int:
                 'native_source': read(ROOT / 'config/godot-source.json')['revision'],
                 'build_run': args.build_run, 'artifact_id': args.artifact_id,
                 'artifact_digest': 'sha256:' + args.artifact_digest.removeprefix('sha256:')}
-    facts = verify(args.creative, expected, read(args.main_tour), creative.sha(PROBE))
+    facts = verify(args.creative, expected, read(args.main_tour), creative.sha(PROBE), studio_version=args.studio_version)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(facts, indent=2) + '\n')
     print(json.dumps(facts, indent=2))
