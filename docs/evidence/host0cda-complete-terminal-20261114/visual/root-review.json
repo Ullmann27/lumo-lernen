@@ -1,0 +1,28 @@
+{
+  "reviewed_at_utc": "2026-11-14T20:44:39.807650+00:00",
+  "reviewer": "root",
+  "kind": "direct_original_png_review",
+  "host_sha": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "native_sha": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "run_id": 43637785992,
+  "job_id": 132578338806,
+  "selection_sha256": "112650dd63e3d5254358aacd6c24d6dfd892c5440ae2af0e8eb91a3f1bca87bf",
+  "observations": [
+    {
+      "frame": "00000.png",
+      "observed": "Empty seven-column board, legible saved/Cyan turn status, visible numbered column controls, Back and Pause."
+    },
+    {
+      "frame": "00043.png",
+      "observed": "One settled cyan piece in bottom-left cell, saved/Gold turn status, same visible controls."
+    },
+    {
+      "frame": "00220.png",
+      "observed": "Four contiguous cyan pieces with white winning rings along bottom-left row, three gold pieces on right, Cyan wins text, dimmed numbered column controls, Menu at top right."
+    }
+  ],
+  "limits": [
+    "Still images only; no Android acceptance or device FPS measurement.",
+    "Input, ACK and source identities are separately bound by the unchanged original selection and runtime pack."
+  ]
+}

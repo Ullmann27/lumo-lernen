@@ -1,0 +1,11 @@
+{
+  "checked_at_utc": "2026-11-14T20:53:34.321719+00:00",
+  "status": "ALL_188_MAPPED_ORIGINALS_BYTE_EQUAL",
+  "archive_sha256": "7b2b84746de7e4910db85ae422d9317e44617dbd75df251245a12766d627fa8d",
+  "archive_bytes": 3787926,
+  "archive_members": 188,
+  "uncompressed_bytes": 15282094,
+  "mapping": "/tmp/host0cda-runtime-originals-checkpoint-20261114/inclusion.json",
+  "mapping_sha256": "40bd5cf57c15ce9d56f78242041ab81f442d80fabbd6951436e0ae422df1ba92",
+  "method": "Complete tar member reads compared to each explicit immutable source_path from the original inclusion map; no synthetic directory mapping."
+}

@@ -1,0 +1,131 @@
+{
+  "schema": "lumo.original-compile-review.v1",
+  "created_utc": "2026-11-14T20:40:17.811824+00:00",
+  "status": "PASS_ORIGINAL_CI_COMPILE_EVIDENCE",
+  "repository": "Ullmann27/lumo-lernen",
+  "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "run_id": 43637785992,
+  "attempt": 1,
+  "job_id": 132578338582,
+  "job_started_at": "2026-11-14T20:29:53Z",
+  "job_completed_at": "2026-11-14T20:34:24Z",
+  "job_conclusion": "success",
+  "relevant_steps": [
+    {
+      "name": "Compile actual current Android host before native release pin approval",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-14T20:30:41Z",
+      "completed_at": "2026-11-14T20:34:19Z"
+    },
+    {
+      "name": "Bind actual compiled C4 Activity bridge and Binder bytecode",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-14T20:34:19Z",
+      "completed_at": "2026-11-14T20:34:19Z"
+    }
+  ],
+  "artifact": {
+    "id": 14130856331,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEzMDg1NjMzMQ==",
+    "name": "lumo-connect-four-2020-android-host-compile",
+    "size_in_bytes": 6631,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130856331",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130856331/zip",
+    "expired": false,
+    "digest": "sha256:45f60fc873eb8275a978ef29c612e7eafab0d54eb60c669d63c4423bf4523305",
+    "created_at": "2026-11-14T20:34:20Z",
+    "updated_at": "2026-11-14T20:34:20Z",
+    "expires_at": "2026-12-14T20:34:19Z",
+    "workflow_run": {
+      "id": 43637785992,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-c4-connections-20261114",
+      "head_sha": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9"
+    }
+  },
+  "zip": {
+    "bytes": 6631,
+    "sha256": "45f60fc873eb8275a978ef29c612e7eafab0d54eb60c669d63c4423bf4523305",
+    "git_blob": "8ca86fa16e637238387b612774cfcbe20e33e1ab"
+  },
+  "zip_members_complete_crc_sha_checked": 6,
+  "full_original_job_log": {
+    "path": "job-132578338582.original.log",
+    "bytes": 241333,
+    "sha256": "ade82ea052bde93bf0faa72d1dc3ca2fcf50a127de78f473a53cdef3fe443015",
+    "git_blob": "a19509260cc271aef8ed60c5775d26f6d918e79f"
+  },
+  "actual_compile_markers": [
+    "> Task :app:compileDebugKotlin",
+    "> Task :app:compileDebugJavaWithJavac",
+    "BUILD SUCCESSFUL in 2m 57s",
+    "107 actionable tasks: 102 executed, 5 up-to-date"
+  ],
+  "host_class_report_count": 15,
+  "host_class_names": [
+    "MainActivity",
+    "LumoGameActivity",
+    "LumoHostPlugin",
+    "CardsTableBridge",
+    "CardsAuthorityService",
+    "CardsAuthorityRegistry",
+    "LumoLearningSpeech",
+    "LumoOfflineSpeechBridge",
+    "LumoOfflineSpeechEngine",
+    "LumoSpeechEnvelope",
+    "TableGameActivity",
+    "TableGamesHostPlugin",
+    "TableGamesBridge",
+    "TableAuthorityService",
+    "TableGameIntent"
+  ],
+  "c4_class_report_count": 3,
+  "c4_class_names": [
+    "ConnectFourGameActivity",
+    "ConnectFourAuthorityService",
+    "ConnectFourBridge"
+  ],
+  "class_binary_limitation": "The original reports contain paths/sizes/SHA256. Actual .class bytes are not in this artifact and were not independently rehashed here.",
+  "actual_registry_contracts": {
+    "count": 10,
+    "passed": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "runtime_seconds": 16.96,
+    "methods": [
+      "scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_actual_stale_mailbox_does_not_revive_session",
+      "scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_close_revokes_before_file_cleanup",
+      "scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_detach_and_replacement_engine_revoke_old_tokens",
+      "scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_invalid_and_foreign_tokens_never_gain_authority",
+      "scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_restarted_process_requires_new_live_session",
+      "scripts.tests.test_embedded_android.EmbeddedAndroidTest.test_same_package_private_engine_repeatable_preparation",
+      "scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_cards_initializes_real_start_flags_and_resume_window_calls",
+      "scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_cards_waits_for_engine_and_dispatches_main_loop_window_calls_on_ui_thread",
+      "scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_cards_window_hook_keeps_live_authority_pause_resume_and_stop_guards",
+      "scripts.tests.test_embedded_android.EmbeddedCardsWindowTest.test_other_games_keep_their_original_arguments_and_window_lifecycle"
+    ],
+    "source": "artifact-originals/cards-authority-registry.log"
+  },
+  "flutter_version_original": "Flutter 3.44.9 • channel stable • https://github.com/flutter/flutter.git\nFramework • revision 6b182d2c75 (3 months ago) • 2026-08-05 10:04:07 -0700\nEngine • hash b9499e4c25212536ba3a4eec4f5c1905fb3214fe (revision 5a2a6a42cc) (3 months ago) • 2026-07-31 18:31:59.000Z\nTools • Dart 3.12.2 • DevTools 2.57.0\n",
+  "exit_observation": {
+    "numeric_child_exit_not_separately_stored_in_artifact": true,
+    "github_compile_step": "success",
+    "gradle": "BUILD SUCCESSFUL",
+    "unittest": "OK"
+  },
+  "preservation": "Original bytes, all Gradle warnings and normal Gradle skipped/no-source task records are retained. Gradle task states are not counted as unittest skips.",
+  "scope": "Actual Kotlin/Java host compilation and original 10 registry/embedded boundary tests only. No APK, Android runtime, pixels, audio, or full-suite acceptance is inferred.",
+  "pending_separate_evidence": [
+    "current full Flutter stream and exact 82 target cases",
+    "current build Speech23/17/30 contracts",
+    "remaining C4 build/device/delivery gates"
+  ],
+  "local_actions": "Read and verify existing original evidence only; no tests, imports, product/source/index/ref modifications, or additional API polls."
+}

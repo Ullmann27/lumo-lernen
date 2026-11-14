@@ -1,0 +1,1511 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "archive_path": "exact-f9-reader-checkout/commit.original",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/commit.original",
+      "mode": "100644",
+      "bytes": 332,
+      "sha256": "6bd7675b329f5b01134e534a92957577c64dcf9c87d32fd389de915c973e2879",
+      "git_blob": "ffd65b31ce65da3b077a2ebc2c870f73e401fd1d"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/head.txt",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/head.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "fe5b5870a5142667e3ecc6748bffebd51b0c2858dae11e3fff1d179f65b95448",
+      "git_blob": "1a68b247c75e28bab892499cc0ec96684a39802c"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/index-flags.original",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/index-flags.original",
+      "mode": "100644",
+      "bytes": 277731,
+      "sha256": "eb14fcc842737d87563ddd3b729d4ee12308a2af7ac9b2cca251656d5845bbda",
+      "git_blob": "88acad0502e1630fe0e3de89ea8a45503d347be4"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/index-stage.original",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/index-stage.original",
+      "mode": "100644",
+      "bytes": 458067,
+      "sha256": "a40ada8f5c67042dab3f58f94ad35a62bcfd13154c2000b33d24262987b60bf2",
+      "git_blob": "a10244022ac8e1ee8119d68b2f039fd935e8b0f8"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/index.original",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/index.original",
+      "mode": "100644",
+      "bytes": 558570,
+      "sha256": "661b556869a3121baa1ccb5246e87644dc6fe72ae06b2eea20f7c39a68c099c7",
+      "git_blob": "8c98d740eb9a80ce582f249b772058deb604da53"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/source-inventory.json",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/source-inventory.json",
+      "mode": "100644",
+      "bytes": 991020,
+      "sha256": "61e969c111b70c2ae6312b5a2a09a725adc8eae23468fdc892c72a70eff22c04",
+      "git_blob": "0c6467504eec1463f12af06ebd1d6da280382cfa"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/status.original",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/status.original",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/tree-recursive.original",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/tree-recursive.original",
+      "mode": "100644",
+      "bytes": 469338,
+      "sha256": "1fe3d9c5bf818332311b2651dbed8a03b29df35a342c730e1c29f272f737c4c2",
+      "git_blob": "c67bc4b38bfb6b77801ffca6808cd17d42f430fd"
+    },
+    {
+      "archive_path": "exact-f9-reader-checkout/tree.txt",
+      "source_path": "/tmp/host7ac-f9-reader-checkout-20261114/source-inventory/tree.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "af356305905b89287b3c5a22d7730c44ef6d5d70493b555ba269d951ea838be0",
+      "git_blob": "4898979f607f9c67646543c8c5915909035f0a57"
+    },
+    {
+      "archive_path": "runtime/bound-readers/run_connect_four_runtime.py",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/bound-readers/run_connect_four_runtime.py",
+      "mode": "100644",
+      "bytes": 15683,
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5"
+    },
+    {
+      "archive_path": "runtime/bound-readers/verify_connect_four_delivery.py",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/bound-readers/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "bytes": 67003,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+    },
+    {
+      "archive_path": "runtime/collector-provenance.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/collector-provenance.json",
+      "mode": "100644",
+      "bytes": 377,
+      "sha256": "987003523830831944b1442a6f547763ebb04dbf663df1ac00c864f246dbaa4c",
+      "git_blob": "0050073eec5537a520187391f4d48dd7e0f52f2c"
+    },
+    {
+      "archive_path": "runtime/download-original-result.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/download-original-result.json",
+      "mode": "100644",
+      "bytes": 501,
+      "sha256": "a592711a8246804a4b87092c7ff97497432a2d6b333c2257b2e2f56b9c07c3d9",
+      "git_blob": "af33a6697afdfd0e63e05594f6f29eb9e0134ad6"
+    },
+    {
+      "archive_path": "runtime/freeze_runtime_technical.py",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/freeze_runtime_technical.py",
+      "mode": "100644",
+      "bytes": 9236,
+      "sha256": "fabe5af854137ab28a586d32b00c38155cc7fc05de7d408573eccf777cd769ee",
+      "git_blob": "d6fe932a3e714b8a6ec64a60d21cf9fcbb8105d4"
+    },
+    {
+      "archive_path": "runtime/inspect_original_archive.py",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspect_original_archive.py",
+      "mode": "100644",
+      "bytes": 4188,
+      "sha256": "cddd741acf803e631ada120c5d19716b6af79d513bd65f835bf56ffe0b039f1c",
+      "git_blob": "8ee2c99139b0230e8a01f721aac30df229eeba51"
+    },
+    {
+      "archive_path": "runtime/inspection-invocation.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection-invocation.json",
+      "mode": "100644",
+      "bytes": 1050,
+      "sha256": "2ed58a5fcceef4437fb3fa16c400a1ecf4789ccf07fc4318e231e65a9b8ff4a4",
+      "git_blob": "f4ab253aec7b3b711c4b9ac6ba2e2f3a7f4d4dda"
+    },
+    {
+      "archive_path": "runtime/inspection.stderr",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection.stderr",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "archive_path": "runtime/inspection.stdout",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection.stdout",
+      "mode": "100644",
+      "bytes": 261,
+      "sha256": "1b930263bc4fea9fce9f80e8e8b435b9825788c590a7a5c9b5b3a8f9549782d0",
+      "git_blob": "32f18f476cc162af72a9067ae1366e324986dbe8"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/original-import.log",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/original-import.log",
+      "mode": "100644",
+      "bytes": 171048,
+      "sha256": "cda10bad405a64ef704205602a451203e3eeca85e212e55bedc481b8e1f60c78",
+      "git_blob": "0e9a8b888249799c07dddac99413bd1e1e2dff85"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/return-recovery.log",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/return-recovery.log",
+      "mode": "100644",
+      "bytes": 504,
+      "sha256": "c9b12b15260782cb5064dbdf8bace72556a9456ce4ba8190fc276235cfc591bc",
+      "git_blob": "8de162aff32c523cc9bf5a73fffe7e594e9494f9"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/closed.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/closed.json",
+      "mode": "100644",
+      "bytes": 44,
+      "sha256": "922b529a830f497aae1e84cb1e1b60f62dea9e64f9d168e45037d94d3ac414b9",
+      "git_blob": "14143da215bd17cf2fc16a3f4393d0e02671d848"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_empty.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_empty.layout.json",
+      "mode": "100644",
+      "bytes": 19574,
+      "sha256": "a5c489e9845a5c3e0616aeb3df4f04db3e1482d17fecbcff7304b22ff02595b0",
+      "git_blob": "1f368ffaaccb42b50986c6cc6c11cf409b6f2153"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_empty.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_empty.png",
+      "mode": "100644",
+      "bytes": 82537,
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "git_blob": "e2ca2570863ef418c7cf93e443cb176c776b045f"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_fold_landscape.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_fold_landscape.layout.json",
+      "mode": "100644",
+      "bytes": 20950,
+      "sha256": "86496da1f8abcb57e66da71c9ba57b2627153ff94fcf0518fb0248c4010a758d",
+      "git_blob": "0007f1aca78d482d22cdb4cdbfe09a218f1637b0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_fold_landscape.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_fold_landscape.png",
+      "mode": "100644",
+      "bytes": 123809,
+      "sha256": "aac2efa26eafaf9eebdd9288f4db8b7a7f747860ebaade1a159b54a2747e7e96",
+      "git_blob": "77ea72a849d314f89820f8c208989969afdfc56b"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_pause.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_pause.layout.json",
+      "mode": "100644",
+      "bytes": 19586,
+      "sha256": "8ecefa641c29fc2b3314d3b5977569a72d4305663ffba5bbff95738d5474fa11",
+      "git_blob": "d7fe8af90ed0fa70615cd52a59ee9110fc52e52a"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_pause.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_pause.png",
+      "mode": "100644",
+      "bytes": 47760,
+      "sha256": "7203ccc962921b3573febf6a56fcfd60af3178cbbb0ad99cc623857b0e662ee1",
+      "git_blob": "5abe3eff8900f7399bc8aa3c7e754f2eccd49250"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_phone_bot_response.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_phone_bot_response.layout.json",
+      "mode": "100644",
+      "bytes": 20995,
+      "sha256": "8b363a3ecf5ee06a30f8d609e62a7f14470b058f2442acf7fe1d482aede91f62",
+      "git_blob": "d55448df34fae82b675bb161aef0bce0fedf2d63"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_phone_bot_response.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_phone_bot_response.png",
+      "mode": "100644",
+      "bytes": 239686,
+      "sha256": "3278b7867f790cc16f60738995404b436d8dd05b02a3132387005872a671ab04",
+      "git_blob": "a64c4d69283f9bf7967b8e298c4de0caad5e96f7"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_phone_playing.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_phone_playing.layout.json",
+      "mode": "100644",
+      "bytes": 20992,
+      "sha256": "9c24331409b6feb3c75aa42d2e625e4bf7017d7b0cb453b5d5d2dd1d65b15525",
+      "git_blob": "38d8e508f00d757f5c95ec72ab61f888c235c3c4"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_phone_playing.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_phone_playing.png",
+      "mode": "100644",
+      "bytes": 235104,
+      "sha256": "daec6b50de75b5932865e7e25d79cd6fa181e974291df26b0371a18b60605dab",
+      "git_blob": "80c092411772330a1bcc0674d5540dd4534adf17"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_phone_portrait.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_phone_portrait.layout.json",
+      "mode": "100644",
+      "bytes": 21036,
+      "sha256": "df9638f1ef1d30ad275442959909eb945c5516735be93222716021676d2d24f7",
+      "git_blob": "d3d2ef4bf8c65711d81097c9d0bbbff7118f8253"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_phone_portrait.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_phone_portrait.png",
+      "mode": "100644",
+      "bytes": 170661,
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "git_blob": "328038c8271f171e9575a021145fd090b83e9307"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_small_landscape.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_small_landscape.layout.json",
+      "mode": "100644",
+      "bytes": 19743,
+      "sha256": "ca31fa553c8d9003f448e1bcfe8b2680ce5d2fa54366d67667fa3e36dc6e6cb8",
+      "git_blob": "e43fccceb9b2c24c5d604a100165ebbf07fd3ac7"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_small_landscape.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_small_landscape.png",
+      "mode": "100644",
+      "bytes": 22915,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "git_blob": "ec730039bb8e2ec4fea8ed293c914cff24d81289"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_small_portrait.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_small_portrait.layout.json",
+      "mode": "100644",
+      "bytes": 19745,
+      "sha256": "43baa5523e320fee93d817a42b23185c4a871613b7f55747d0fd9ba49296a69f",
+      "git_blob": "93e2ce6c85ab9114db46cc6b9e6189cb13db83f5"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_small_portrait.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_small_portrait.png",
+      "mode": "100644",
+      "bytes": 35739,
+      "sha256": "dc189342ac6f0150c5a1a569d4377d484a015a49fbafafe3e924e9f51f1740e1",
+      "git_blob": "c779335f67dbb45221d084951a621097a46ccc32"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_win.layout.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_win.layout.json",
+      "mode": "100644",
+      "bytes": 19620,
+      "sha256": "cbfe8e90fa2b8830675c6d956c70d02e667938c0c81223ecb51787a4b9d603da",
+      "git_blob": "8b6377ac8c2ec259b724a430de937b4530c83a44"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/connect_four_win.png",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/connect_four_win.png",
+      "mode": "100644",
+      "bytes": 84544,
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "git_blob": "5165b197e9b7deb677975e4bdf0ce6cf0737076f"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/dart-result.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/dart-result.json",
+      "mode": "100644",
+      "bytes": 20387,
+      "sha256": "6b17aea773ef419091544995d10f29e7ff7ca2b98af7726b3fd3412477303522",
+      "git_blob": "09cbef3986318ecd7be7a134d9971d460e27c061"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/done.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/done.json",
+      "mode": "100644",
+      "bytes": 17,
+      "sha256": "baf7c3be410aa877bd98a1776555e86da13a23212e363e0e87e2040768f24710",
+      "git_blob": "67f49cd9c460cbcaa519d63e8147a4e1186b0de7"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/input.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/input.json",
+      "mode": "100644",
+      "bytes": 221,
+      "sha256": "0a80c83f9a6a60d6e4ff29b3154b89ef2f60829e5a56476b88a0c62e2e1ebfcd",
+      "git_blob": "87c71ba43ed86f3ae479d38261d9d6b55856b7d2"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/native-result.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/native-result.json",
+      "mode": "100644",
+      "bytes": 73209,
+      "sha256": "a1d8758aa40ef270fa302c15a689dce34c4233571108da2ddca60b31179f3c9e",
+      "git_blob": "c103035c438258db654103f51d292f324257ab59"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/original-dart.log",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/original-dart.log",
+      "mode": "100644",
+      "bytes": 325,
+      "sha256": "4044a9157f42af7f7555f05a5c17c9aa8bfd4f3861cc21eebbcc99eafba478fa",
+      "git_blob": "21d6bf2af645c6bde3d8e44e77caefe36d8d1566"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/original-godot.log",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/original-godot.log",
+      "mode": "100644",
+      "bytes": 2551,
+      "sha256": "27a7f71c661cc67f06f58d0895b2f67cc17624331ae1bf0459b22312c493e4f0",
+      "git_blob": "8206a5a9c8556154f8a70ea2325b185f2afb2ebd"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/runtime-gate.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/runtime-gate.json",
+      "mode": "100644",
+      "bytes": 55426,
+      "sha256": "0fcf0eefd10c07ae26387822de3cff7f9cc9925d7ab6f1d1f5f4490945973759",
+      "git_blob": "b166b7421785f1d91efad592e2f45aea7512a1c0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/session.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/session.json",
+      "mode": "100644",
+      "bytes": 164,
+      "sha256": "7a2a4d562b67088333f863ed0639296c1e7b21d277ca0640ebda1bd6ab443405",
+      "git_blob": "f30393467eab6f9dd3ffdb35975904e80b853152"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/source-after.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/source-after.json",
+      "mode": "100644",
+      "bytes": 490803,
+      "sha256": "91536913b66860d156fbab4738189213d198abd32399b6d6ab6837a15f4446f4",
+      "git_blob": "ea24e971067242f5845d43eac8be78e7e1f5bdf1"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/source-before.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/source-before.json",
+      "mode": "100644",
+      "bytes": 490803,
+      "sha256": "91536913b66860d156fbab4738189213d198abd32399b6d6ab6837a15f4446f4",
+      "git_blob": "ea24e971067242f5845d43eac8be78e7e1f5bdf1"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/state.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/state.json",
+      "mode": "100644",
+      "bytes": 594,
+      "sha256": "c86bc34dc45377c8c7b1eff8a4bc1bca85112dca660f9f85819b65cf576ea6c2",
+      "git_blob": "fa86a85cc3ef493fe2bfd8b5141e49f98629e4a2"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/04/3cdc77f448eb9a78674264cb764a7c99fa8265",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/04/3cdc77f448eb9a78674264cb764a7c99fa8265",
+      "mode": "100644",
+      "bytes": 1389,
+      "sha256": "fba24025940dc11232de1a26edcef14f53fd74702746459268de4f5c9d57c692",
+      "git_blob": "845cf18d6883a3ee7731ec23b3946468e1dc439c"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/04/958c83bd7675650dfb7fc55012d02dc6ea9daf",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/04/958c83bd7675650dfb7fc55012d02dc6ea9daf",
+      "mode": "100644",
+      "bytes": 2805,
+      "sha256": "e4d65099267b134e20fe6d6a1a050afdd106eaf2482e789358b086a39c1c3156",
+      "git_blob": "52db0034934b4eb6f4d8a3d6d6fa4507397c6380"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/06/e364f2ffa12f5d03eb2d0d2f99d0474ae0d013",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/06/e364f2ffa12f5d03eb2d0d2f99d0474ae0d013",
+      "mode": "100644",
+      "bytes": 930,
+      "sha256": "fefdb92ea7d2d102d8df4adc3d38ec8c2e217ad66563ae68011eb97aa848742f",
+      "git_blob": "bec2eab198632cfa82d426c115ddf4681fa3722d"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/08/6761c3328470b2baaf6a0d7a0ebd108581f409",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/08/6761c3328470b2baaf6a0d7a0ebd108581f409",
+      "mode": "100644",
+      "bytes": 2520,
+      "sha256": "3ce8ce8441ea35c65df616a6e6b9ccfbc20c70657f35ced368cd418c4af2a2b3",
+      "git_blob": "bf158cda5e3f41570fb30ec5928f280f854d276a"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/0d/c229e69ea867e245a2bd9307e483f9871efc24",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/0d/c229e69ea867e245a2bd9307e483f9871efc24",
+      "mode": "100644",
+      "bytes": 26077,
+      "sha256": "133e4b8c3cb7f7b0595bad82042ec36ca54bb1be1b85cefb73db3875f18ed5e6",
+      "git_blob": "a4206efde31fdcf0d945fd2ceaeae09297f69d5e"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/0e/8c709fc3f177c971775652f27a98637f8ac338",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/0e/8c709fc3f177c971775652f27a98637f8ac338",
+      "mode": "100644",
+      "bytes": 719,
+      "sha256": "82c9162b6173022546f9f255b425faab9c8919c9d24004ec289473fb84ecc99b",
+      "git_blob": "e3e67a2b0268c627f5420ffe92b2dbf09c57e009"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/11/b5daadd47f4312a17b4cfc496b1252ea3231d2",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/11/b5daadd47f4312a17b4cfc496b1252ea3231d2",
+      "mode": "100644",
+      "bytes": 1510,
+      "sha256": "a1bc0485a551299464d0a070ae72f64a0450d1a753064435a617356b6042556d",
+      "git_blob": "6152a575c5eb96f9d37eb2d1757cc8ca1c6e2b4f"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/14/9780f9261d0e1fc0a79d82538fa7a103d1110a",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/14/9780f9261d0e1fc0a79d82538fa7a103d1110a",
+      "mode": "100644",
+      "bytes": 436,
+      "sha256": "203db3d8bc056574dbf8fbb700a8d134cf4a15fb6152ea63678e1714ec4e5eb3",
+      "git_blob": "ddb6ee46d2663dabe6d55bb4b1a52e2cf362f3fd"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/15/355e0efdeecfbd2d77f01980ffcb6f88f156de",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/15/355e0efdeecfbd2d77f01980ffcb6f88f156de",
+      "mode": "100644",
+      "bytes": 3645,
+      "sha256": "1ba204ca7c4b66287764d0253a590e242400151a406a074e6444e081c8492c17",
+      "git_blob": "819f050c5de4df9fc70a56b04af20bb3530483f0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/15/8bf4da2987adb1990b20b10c22f50f1f02e8a0",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/15/8bf4da2987adb1990b20b10c22f50f1f02e8a0",
+      "mode": "100644",
+      "bytes": 3112,
+      "sha256": "156b64540948f34beae2c222ef2d8a6a8977f37f812d91a158dbe7bc549aa3ce",
+      "git_blob": "d978ae5b2d953bdf5a53922df67fe1f078d3ae48"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/1c/6699347f26c5d5012c2127f982baa0e8e0c73b",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/1c/6699347f26c5d5012c2127f982baa0e8e0c73b",
+      "mode": "100644",
+      "bytes": 811,
+      "sha256": "c37ad2ea0028a54cce7745406b461453e7a61f1f2702c5e52c11587cd5926cfe",
+      "git_blob": "c05864623eb2de1c2b977b6df98b1d3134ce15ce"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/21/09289678e85a4a43e3e1e7dab5e72647ed3835",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/21/09289678e85a4a43e3e1e7dab5e72647ed3835",
+      "mode": "100644",
+      "bytes": 588,
+      "sha256": "de98bc0773458838a99a897149904dde415a58e435faad10396bffb904ce31ed",
+      "git_blob": "4cb12e8154092d69a40d04a46dd922b1fb0bf577"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/21/3f47611979fc5f7a279cecd0bd046a499937f4",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/21/3f47611979fc5f7a279cecd0bd046a499937f4",
+      "mode": "100644",
+      "bytes": 3677,
+      "sha256": "90115bf4bf9a064882ce6e6e953ceb31803d496733221c8dea86958fab2afb36",
+      "git_blob": "d00bbc596cf81d12acb60876224eb23bc6f62304"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/22/6903e0db3a572cc18330f2fdfcb94af355db9b",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/22/6903e0db3a572cc18330f2fdfcb94af355db9b",
+      "mode": "100644",
+      "bytes": 1413,
+      "sha256": "0efe3368d3d0beebced4abc353cacb23fed2ad956b29011cc77c09af2a7fe925",
+      "git_blob": "036d36a58b1848edbf05292b988af9cc1ac2aee0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/22/f3655d8b4113a172966ecb00547debdc183846",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/22/f3655d8b4113a172966ecb00547debdc183846",
+      "mode": "100644",
+      "bytes": 4412,
+      "sha256": "d0efae8298a68e250a3d4f6c73446b520c295626997b6ded6c9171ca8f06348a",
+      "git_blob": "a5d08a69fd27d5b7a8b7b91eb8861cec76c8604c"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/25/b0bf4ba153161cc487a55d54d25dcb657f96ec",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/25/b0bf4ba153161cc487a55d54d25dcb657f96ec",
+      "mode": "100644",
+      "bytes": 676,
+      "sha256": "25ed033f1fc392beda95636c4ce44d35d7b36f7dbdb191f24477e94835e3a9a9",
+      "git_blob": "c066055a2c0836359adc464957f46c4465d5d7a7"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2a/1e68e49e7dfb320272d62af20bcc5b66b4d830",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2a/1e68e49e7dfb320272d62af20bcc5b66b4d830",
+      "mode": "100644",
+      "bytes": 6985,
+      "sha256": "8699fe9f21a63e55c02ce34e69735901deb087b8023956f88012313223cf7ed2",
+      "git_blob": "d7623e71f072579ed4ef432ad48656a26fcdc896"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2b/c3011d3bac10a2ee31f207cc0abd74cdf6aa9b",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2b/c3011d3bac10a2ee31f207cc0abd74cdf6aa9b",
+      "mode": "100644",
+      "bytes": 589,
+      "sha256": "7b059bfdca8132ec90fd51f5ba8b69cea642815e3b4d06c248a0f10de747ca2e",
+      "git_blob": "d58680fe40f1a1c4b461cf872a75dd537dfdc7e5"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2c/24646bddbce8b1a48232bcc3ee5292fe6c7301",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2c/24646bddbce8b1a48232bcc3ee5292fe6c7301",
+      "mode": "100644",
+      "bytes": 579,
+      "sha256": "6a9f9188a434eb53b6d813b9f146e1bf796997fdb8d68bb1321a46a3e4118315",
+      "git_blob": "ea655e47194f90557884ed9d1febc660cfc04c20"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2d/795b0d5d07d948701f4aec01c2211460106734",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/2d/795b0d5d07d948701f4aec01c2211460106734",
+      "mode": "100644",
+      "bytes": 1422,
+      "sha256": "36c04a4ed4373cf8e511b2da85a62fe936b785214e8aa9d8a4d85c182310583c",
+      "git_blob": "64d700c32e2e81a42675db72ad78360e17685ea8"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/30/2079739bc499fc99bf877ffe7df53bf9a7a857",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/30/2079739bc499fc99bf877ffe7df53bf9a7a857",
+      "mode": "100644",
+      "bytes": 882,
+      "sha256": "d18994d49aaceb55a7bc237c7c24a03d7dbf3effbe4ce77abfa13b5f399287f1",
+      "git_blob": "fe6db8c9b86c3d7068b78b583542434a540d4052"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/39/1e1f1b02ddbf80fa134710d376730350d93f01",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/39/1e1f1b02ddbf80fa134710d376730350d93f01",
+      "mode": "100644",
+      "bytes": 550,
+      "sha256": "94f3c001eac23ce7e61ab33956b18179404ec1d13bccff25d229dc9c041e35d9",
+      "git_blob": "f32b7d54fb60e5a4d85133217f249ad926d7d241"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/41/2543ddef2bc823951924e1de7e80f72b8955bf",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/41/2543ddef2bc823951924e1de7e80f72b8955bf",
+      "mode": "100644",
+      "bytes": 32962,
+      "sha256": "4b46929b29ef202702665bb845a30cab1ea3bcb2a45df4840b9724f9f846962e",
+      "git_blob": "b9ceb1073816b9f21762360be907b6113045f406"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/42/f975ad67234f8f77dfd2ad494873bf8ef20880",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/42/f975ad67234f8f77dfd2ad494873bf8ef20880",
+      "mode": "100644",
+      "bytes": 21978,
+      "sha256": "c416472ebfa6327d29d076b45980190fe2717cb0599336cc9c541829847fc38f",
+      "git_blob": "0bfd733e90fcc814fad4aa8c038f814aa1fb1e72"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/42/fa84b034981afd903c07c8d989de1306e58ae2",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/42/fa84b034981afd903c07c8d989de1306e58ae2",
+      "mode": "100644",
+      "bytes": 3647,
+      "sha256": "705f080f30c599200242a7e0ba5bed03dca7df5c41b662b368cd9ef4c8cd7c45",
+      "git_blob": "2294e893e57a1b8318167fc9e22eb3983904d0ce"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/43/25543b98b911a4de35c2d81b4d13db22fcbaf6",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/43/25543b98b911a4de35c2d81b4d13db22fcbaf6",
+      "mode": "100644",
+      "bytes": 7144,
+      "sha256": "22a172d784cf73ee6d8477bec782bf458ac31dcd41310659a55dd4f7d989a360",
+      "git_blob": "dbde06902250191f1c072ebd7920e2b07eed8e43"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/44/7c3a8417f38d093675a121d8ef36624d9c3ca6",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/44/7c3a8417f38d093675a121d8ef36624d9c3ca6",
+      "mode": "100644",
+      "bytes": 940,
+      "sha256": "43327e696b70c28572ac7cdad3fcde6f4d62ab30d205c0a1acd0c36a92e1db5b",
+      "git_blob": "07b6c290de501c83e0a7089a223a860ac349ff90"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/47/8318a5dc67fbabd4394a67bd8336626d445b98",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/47/8318a5dc67fbabd4394a67bd8336626d445b98",
+      "mode": "100644",
+      "bytes": 589,
+      "sha256": "e44009aa36adedc01f4b2bf31def7cc42c5c9b0744d3c11f4cb4004651c23c48",
+      "git_blob": "046713053cd9c5240627299c801342c2c34d87f0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/48/567017aab679df42d5066510dd6702262b59b5",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/48/567017aab679df42d5066510dd6702262b59b5",
+      "mode": "100644",
+      "bytes": 714,
+      "sha256": "6871666d516c6dd0d88d4ecc30c121b1ea667d83d1131fc6fb48ecf1474a58f3",
+      "git_blob": "569f3615561d21eabf5d9be635671dc1c7a14e72"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/4a/dd667b7e5c95fd822d0c80158457c87e1f30fe",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/4a/dd667b7e5c95fd822d0c80158457c87e1f30fe",
+      "mode": "100644",
+      "bytes": 3044,
+      "sha256": "9b95d0f9fb25f4fbb771313fb900d5d6957605d91095f088950e7d6fc0d5e5b5",
+      "git_blob": "07b644ab00ddd6e6d2d670b7503182fc2b2dcbe4"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/51/00fc3ef9dc1ccf1d56bf960474eb6972bfe4c4",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/51/00fc3ef9dc1ccf1d56bf960474eb6972bfe4c4",
+      "mode": "100644",
+      "bytes": 22504,
+      "sha256": "5eb2dbd8169be473bcfed1b83d6c1376532c0fdf518f0c639252ff5accb97b7c",
+      "git_blob": "2bc37ce52fe2d03f8b2edfc5a306ab31b6aa5892"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/52/225135a58acd8c5482f61a9166904aee5e0a99",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/52/225135a58acd8c5482f61a9166904aee5e0a99",
+      "mode": "100644",
+      "bytes": 3007,
+      "sha256": "17d7cd9576672fb25333b354f41e4920e1022ab63a3bf531229aa8d79a0c799d",
+      "git_blob": "3082543341768fddb64bf032166e28f3cef43106"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/53/d17e773cd87d6ecc8cac184ef2f68fcd0b3fb0",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/53/d17e773cd87d6ecc8cac184ef2f68fcd0b3fb0",
+      "mode": "100644",
+      "bytes": 555,
+      "sha256": "a1640d38c0a18e2b7dc8ab00ef5f081fd85bc4008b5896ea09cb7a963b7114e4",
+      "git_blob": "27719ca5a39d1b3ce5badfe9f8a9983d1e8375fe"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/57/4c6e91708633303de2d31125fff43322fa7a11",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/57/4c6e91708633303de2d31125fff43322fa7a11",
+      "mode": "100644",
+      "bytes": 2913,
+      "sha256": "455afe6494668e2e9295b633238e1962c844d64e3f773e864e7845ce601fb2bc",
+      "git_blob": "17a9bf6568ab38c705adf0ab5a337ccc9e4b6fa2"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/59/214fcd7794c2cfe5b3eb0fa169dc29a6900b89",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/59/214fcd7794c2cfe5b3eb0fa169dc29a6900b89",
+      "mode": "100644",
+      "bytes": 3006,
+      "sha256": "cf9f47bcf575d07b7f5fb273fad0c4c163de58d8c3edb9008eea05f56acc4d77",
+      "git_blob": "23a74df09f45fdbb539d5fcba11a7a91bc683ade"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5b/0d7315e008030ab562c208213e3281b355f2ae",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5b/0d7315e008030ab562c208213e3281b355f2ae",
+      "mode": "100644",
+      "bytes": 27784,
+      "sha256": "90caf4261397e36e517a5f00c5751cdfe457f76c14872fb370b8b7acb5f57294",
+      "git_blob": "23c8cfaace31de5fdde43520004b9ca07ce3bd9f"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5c/798d481a7f5c3f6b774c3c23caa6439ff7bc13",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5c/798d481a7f5c3f6b774c3c23caa6439ff7bc13",
+      "mode": "100644",
+      "bytes": 497,
+      "sha256": "b5f2957e932121ce4e275dcbf74db065cb77d8424e9dcdc4c5a0fdb8839a7a6a",
+      "git_blob": "c0adc82970e9edf4c97de664372a9551c3912cd2"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5d/905ebc54e4e941dbde1879ec0275faa1b2e3f8",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5d/905ebc54e4e941dbde1879ec0275faa1b2e3f8",
+      "mode": "100644",
+      "bytes": 27848,
+      "sha256": "3702b06c0c5ba17e12e699151b77c595dd1caecce85304815ff7501adba3aab7",
+      "git_blob": "65c40afa9a46f942df86274b487a83e293a0d166"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5e/b170d87d90283baa79d6cd8b69381906cc2f91",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/5e/b170d87d90283baa79d6cd8b69381906cc2f91",
+      "mode": "100644",
+      "bytes": 1556,
+      "sha256": "50135e3cee1f6d8e3e242ee566dc1bd430bbc470316c4a7329ab58bb9e22934f",
+      "git_blob": "908803c14574672c4c9d1a057fe92dd09288ecb4"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/62/2be83cd62b963481e00d01fbb09501ba6bd02e",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/62/2be83cd62b963481e00d01fbb09501ba6bd02e",
+      "mode": "100644",
+      "bytes": 22069,
+      "sha256": "defd10a66b821763f6662d1757edb2ca57ab5994c1211b85f8423df3f1d9e5b5",
+      "git_blob": "f28496c2092eecfe8434a2f4544c42136175b0d1"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/62/57f922a35057c516e8c9cb54e797ad475724e3",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/62/57f922a35057c516e8c9cb54e797ad475724e3",
+      "mode": "100644",
+      "bytes": 834,
+      "sha256": "a0c86918361e77fd6e268d9e4c28bb66fa97bf339b6ddfdb967ba892d41c3c03",
+      "git_blob": "7703e731455cceded2dfd743cc12b7f34e51091e"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/66/b8461eeedfc73e746b4b42e3b5b88f2c455a63",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/66/b8461eeedfc73e746b4b42e3b5b88f2c455a63",
+      "mode": "100644",
+      "bytes": 3007,
+      "sha256": "17d7cd9576672fb25333b354f41e4920e1022ab63a3bf531229aa8d79a0c799d",
+      "git_blob": "3082543341768fddb64bf032166e28f3cef43106"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/67/df77d5b7bd80cc7648342d8a5223c85ff19342",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/67/df77d5b7bd80cc7648342d8a5223c85ff19342",
+      "mode": "100644",
+      "bytes": 6322,
+      "sha256": "31b7c72cb04d581aec72ebf4d99b1236ab0e856a31253708aa11d06c50f1ef78",
+      "git_blob": "2efb418b644095558fc9fc9683c8d9c35a544796"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/68/761c505474dcba7b1cc24a7f4243400896b79e",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/68/761c505474dcba7b1cc24a7f4243400896b79e",
+      "mode": "100644",
+      "bytes": 2659,
+      "sha256": "98b32b123076f32f6fe3bdd5ec19f3e78fbfb1d7696fab2be793958df926924e",
+      "git_blob": "b4de26e1bd25782e8e447167506c8c2d37f8aedb"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/69/a35f2c3884b5f670ead2a3468c4e9d59638ee3",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/69/a35f2c3884b5f670ead2a3468c4e9d59638ee3",
+      "mode": "100644",
+      "bytes": 3759,
+      "sha256": "5e0f2bd3b55d0ac535a5bb043474310c49b60c9f4423b9403a3c31003ea45309",
+      "git_blob": "54fc7c4355eb0428180d041cf9d71b70a4fd4dd0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/6d/f31b3c98ad4d09c26206e72327350f9fee6e1b",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/6d/f31b3c98ad4d09c26206e72327350f9fee6e1b",
+      "mode": "100644",
+      "bytes": 27705,
+      "sha256": "5b684b0e0aedd4eda2ce1bb1020a58b70a9d5b745c4225b39296b571f4d8a3e0",
+      "git_blob": "5b9bb39d04f49ce8b73fa03815fa19a79a53c395"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/6e/b551b5ba20910786880db88b9eb5049ea27ee3",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/6e/b551b5ba20910786880db88b9eb5049ea27ee3",
+      "mode": "100644",
+      "bytes": 28010,
+      "sha256": "3f692277366898da488f7197bf7e3e74df5c24a06136f8b324da102e9dac58c2",
+      "git_blob": "d6f900972d11445b1fc8a6273cfdf3859e6a5557"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/6f/1e2f8002a57ecd63877a007c0a29465574b6e9",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/6f/1e2f8002a57ecd63877a007c0a29465574b6e9",
+      "mode": "100644",
+      "bytes": 27967,
+      "sha256": "14c71e07786294926198fb5e557e1d3aa6a8fb6b090e5b29c0851b88eb55bb94",
+      "git_blob": "bc620cb973e99c8b65bc573a8fc7871e8eac63e4"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/70/e5f497ecf44fb5cb7125edf6e434ac8b1d9f58",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/70/e5f497ecf44fb5cb7125edf6e434ac8b1d9f58",
+      "mode": "100644",
+      "bytes": 6238,
+      "sha256": "3d2a06dd8d6e51ff405832019da63a34f61b8718dc1891d6d1ac1b5b9966970b",
+      "git_blob": "8a9e1ea05d5a618f14e94d0cc53fde6ea700acbb"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/74/d3e289c3c62c1f8b61017ba953b1960ce9ece2",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/74/d3e289c3c62c1f8b61017ba953b1960ce9ece2",
+      "mode": "100644",
+      "bytes": 22438,
+      "sha256": "2822080e0b7d8fa3ef61574b48b8a21c9d986d907222161148867076cdf8d5b0",
+      "git_blob": "28b367916818eb368dfb88c9011384fae5934e4a"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/77/ef992f15721160b03f3a21a87de8d0ef9d2f0a",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/77/ef992f15721160b03f3a21a87de8d0ef9d2f0a",
+      "mode": "100644",
+      "bytes": 6148,
+      "sha256": "6a3ac26833050d060b6d8f160f65ab79e4c1d989a1dabd5ab4bb5a94bd54b908",
+      "git_blob": "c81d03155e35161a3874ac92f78a9948e0181e71"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/78/aaa7eedb47c434150d1ead20c0ec2b6a505ba4",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/78/aaa7eedb47c434150d1ead20c0ec2b6a505ba4",
+      "mode": "100644",
+      "bytes": 3954,
+      "sha256": "9bbf81ffc8c463afd0b68b5b15e1e8f3b196966efa8f81f0fb3eee34326e3fe1",
+      "git_blob": "bb474570b7b4dbffd7a5f0ff230f80ff14e420a9"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/78/f110201db259c602afc5d91cde7953ee533e9f",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/78/f110201db259c602afc5d91cde7953ee533e9f",
+      "mode": "100644",
+      "bytes": 1669,
+      "sha256": "b16c4bc924f78ae43c64c7bb16e10df58a3c1577f88eb61f5f38cd1d234dcd5a",
+      "git_blob": "3b93d403185584e769dfa09b9ce86c90b993735a"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7b/5546685f97bf8da0ca8735c0d2013b9627a82d",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7b/5546685f97bf8da0ca8735c0d2013b9627a82d",
+      "mode": "100644",
+      "bytes": 676,
+      "sha256": "6702831f24e8d0a20afc967ab0db2fed31b44cfeb5c840a83ea57679da05a429",
+      "git_blob": "a33c22752334638f1a6950149400c1e6c367eb8a"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7d/68e8d072b19a1204baab1cfba34f5d7dab30cb",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7d/68e8d072b19a1204baab1cfba34f5d7dab30cb",
+      "mode": "100644",
+      "bytes": 1348,
+      "sha256": "8fd0a18cad5e763ac03f27da1619cc7c66c2576c404f9b28fa611502dbc8e16a",
+      "git_blob": "1679b9c88de645a3ca565d4b047a7684477ddfee"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7d/f6a0dcd8a94c5bfe3d0718c21ad52fab9a97bd",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7d/f6a0dcd8a94c5bfe3d0718c21ad52fab9a97bd",
+      "mode": "100644",
+      "bytes": 4657,
+      "sha256": "b14b702f25cedf50a0752f1159b0584c03972daaeee8f474ee562fd181d00f64",
+      "git_blob": "9ed9ceb76e5485bc485fa0623014182e8fae5c59"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7e/139fe05655de6671b7c3004b4197f764293378",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/7e/139fe05655de6671b7c3004b4197f764293378",
+      "mode": "100644",
+      "bytes": 3143,
+      "sha256": "a7356f0f192d447fc67d1ad9ff2b35f09ed861a48faf96ea20a2a618013b9979",
+      "git_blob": "8d5c7a6519b013a7f2b7227b122d2d7c28618b69"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/80/62f5c9daf2b3b55326269388925ac219c16faa",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/80/62f5c9daf2b3b55326269388925ac219c16faa",
+      "mode": "100644",
+      "bytes": 3006,
+      "sha256": "cf9f47bcf575d07b7f5fb273fad0c4c163de58d8c3edb9008eea05f56acc4d77",
+      "git_blob": "23a74df09f45fdbb539d5fcba11a7a91bc683ade"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/80/94b0a18fad88f848a11f21d8f1c19ce779d62b",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/80/94b0a18fad88f848a11f21d8f1c19ce779d62b",
+      "mode": "100644",
+      "bytes": 926,
+      "sha256": "6c5ea1e7f808c9ae4a6bd551446d36396dfe02ee65d3dfe69aae1d62c77200b4",
+      "git_blob": "698a81e8613f66696789d6d5081ca5695d282a89"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/8c/eb942ba66c0d2f91c273cdeb3bf97d2cf2d987",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/8c/eb942ba66c0d2f91c273cdeb3bf97d2cf2d987",
+      "mode": "100644",
+      "bytes": 3131,
+      "sha256": "1a5ff71d5720ec96541eb79a21ba766c0a869c6a55fe1eefad885f16414c0bc1",
+      "git_blob": "3fab10f855df9e7f4a72bc899d93c39415fff67c"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/8d/a0b880494cd5e2d89d85758837d6485706e42c",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/8d/a0b880494cd5e2d89d85758837d6485706e42c",
+      "mode": "100644",
+      "bytes": 4170,
+      "sha256": "0bb53e51611a9497918d77bb256b0f0306e8a33c184cc37d5c929885faf1bc5e",
+      "git_blob": "2b57d5d7cb229bfc874a886b4857af755b5ffc3d"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/8f/205a0a1764e4f7e56e43c8cb842f85bc1c0f26",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/8f/205a0a1764e4f7e56e43c8cb842f85bc1c0f26",
+      "mode": "100644",
+      "bytes": 3647,
+      "sha256": "9cc394af12f7f852db93e05caa1af416f31f1bfa1d4542ef87678b1854ea6a4f",
+      "git_blob": "d51b191d9153835cb00bc0c45bb1a826171df533"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/91/4ae58d475345395dec4c3b8db453b5f5dd8c4a",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/91/4ae58d475345395dec4c3b8db453b5f5dd8c4a",
+      "mode": "100644",
+      "bytes": 22586,
+      "sha256": "86b85f4b9764687ccd444d89aa1ea84973b42f693fed0831c3a95fb2521ddff3",
+      "git_blob": "8517106bd4d4f4430c3f14957197a5304ba13639"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/93/10c6274c7586c1ca36b81dc8e9a2b2203168c2",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/93/10c6274c7586c1ca36b81dc8e9a2b2203168c2",
+      "mode": "100644",
+      "bytes": 8100,
+      "sha256": "f4b9368e82d0af68375fa9f1eac6666913f79197147b6d7ca984219c2c4f63e6",
+      "git_blob": "0c345ee2b2b3643527dba5d8be2ec26cc817701b"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/94/84c576f6677e10abaff6cd59ecedf28cdd20db",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/94/84c576f6677e10abaff6cd59ecedf28cdd20db",
+      "mode": "100644",
+      "bytes": 3042,
+      "sha256": "475b9a7637db92409934b22f385f954d98b3c961d399d6bf7896abbf2b85787b",
+      "git_blob": "92d11dfbe2945efc588144222defcd8650f5a46c"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/95/0dfa44a8917f5b0d59400c1fd26804ad9cf437",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/95/0dfa44a8917f5b0d59400c1fd26804ad9cf437",
+      "mode": "100644",
+      "bytes": 7143,
+      "sha256": "cbd2ca445ebf2c2f7ad3598b75c68e5e372a83c3ab8f886387286ef6dc0ca9a4",
+      "git_blob": "357db9b8f4548a7d2b616c1a69c0d0d40924bd45"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9a/ae37ed5960f9fc69ce66077290e5ece219cb5a",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9a/ae37ed5960f9fc69ce66077290e5ece219cb5a",
+      "mode": "100644",
+      "bytes": 588,
+      "sha256": "a2e758843c1f9987dddf8f0089f7dc11026ae8796f27d722da52b27ca6055f81",
+      "git_blob": "541cd32451a3689c020744fdb3da9512a52dd4c5"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9b/35bd92da58c4de5e9efeb9e51a3663d602f00d",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9b/35bd92da58c4de5e9efeb9e51a3663d602f00d",
+      "mode": "100644",
+      "bytes": 25726,
+      "sha256": "75ea4854b13603add663c78305d6a0be7e5a6f79d33b372071c2815c773d8438",
+      "git_blob": "c79a2477b36ad906b64d2a384f51b838bb2a5388"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9b/53e3a23535dd06ad9cc4300b31204843c64d0c",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9b/53e3a23535dd06ad9cc4300b31204843c64d0c",
+      "mode": "100644",
+      "bytes": 3649,
+      "sha256": "d62b0e71eeab9e3de3dd131a9a48bbeda23af548c1d9e1915e9ec84be5fd8f44",
+      "git_blob": "29db3b7ac588e2815484673cfee26b3850a9f3c1"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9c/bebbb035487fed0df087c08bc07d07138a0d8b",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9c/bebbb035487fed0df087c08bc07d07138a0d8b",
+      "mode": "100644",
+      "bytes": 3678,
+      "sha256": "37650b1ba51f3dafec2ff77789269f58cecde7f53e043415685dd42af5e4cd92",
+      "git_blob": "74f8ef8a7664cdfd3fd4902a814c25c326f40707"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9e/286d813ee0d565fbde95aa0aa977a98470198c",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/9e/286d813ee0d565fbde95aa0aa977a98470198c",
+      "mode": "100644",
+      "bytes": 593,
+      "sha256": "1008944573e6b70706e0fedf077a841b492b9d58bf2ec40a297725e5d8fe4651",
+      "git_blob": "417707ec68b10923e42978873b73b5748df20b2b"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/a2/118f670a275e8b1f3a1c03b133e086faec4d7e",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/a2/118f670a275e8b1f3a1c03b133e086faec4d7e",
+      "mode": "100644",
+      "bytes": 962,
+      "sha256": "57ad4417f74e4c826a38b99b57f22e6804eb60547f8417e3f444ddc47945bf59",
+      "git_blob": "6389c48f97bb41bd2ae637d1a97f4aea099a33d1"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/a2/149ecab1ba8a80bf4aa956c141b767c0a7c387",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/a2/149ecab1ba8a80bf4aa956c141b767c0a7c387",
+      "mode": "100644",
+      "bytes": 4052,
+      "sha256": "a6d1d22b5e1107fbe504432473c9386773b63d98ab6e0ccecadd5cabd7f7c47f",
+      "git_blob": "c80cf1d8bcdee0a1a66e30ef8a0e6ae270046691"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/a4/30a56139d09176ca87542c851b068488bbb2cb",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/a4/30a56139d09176ca87542c851b068488bbb2cb",
+      "mode": "100644",
+      "bytes": 959,
+      "sha256": "bb0a0fad18c4a6c30ef4460d451d5d70318790a594f7c809e13f95184b1b6048",
+      "git_blob": "b3bd28d92e4516f5e000f43c74863fca4882fc48"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/aa/e472a72dbac686b7052b97f41eef9bda030c2d",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/aa/e472a72dbac686b7052b97f41eef9bda030c2d",
+      "mode": "100644",
+      "bytes": 962,
+      "sha256": "c75c601bae9838494280e0fbe11e4f2ed2173a75616746b46a7c7453f376d7d6",
+      "git_blob": "f9eb4df522d465f39ccd51fd238ccbf1c6dd0701"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ab/638e25d709f11e75a152f1b5a4f2a88e35a1e1",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ab/638e25d709f11e75a152f1b5a4f2a88e35a1e1",
+      "mode": "100644",
+      "bytes": 22385,
+      "sha256": "892c82627a074b056474b741444b54a9af1769241464670c57dca61c371d4ec6",
+      "git_blob": "55dae745aeed3f0ebb7ed1fd7c57c220f7052101"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ab/988b3b9ae3d8b55d9f8177b6f16ea2746dbc30",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ab/988b3b9ae3d8b55d9f8177b6f16ea2746dbc30",
+      "mode": "100644",
+      "bytes": 3958,
+      "sha256": "1dd5fb2c928afb1454128c840af33cd100bc7c0037ba0ae51c9cb2981e766504",
+      "git_blob": "cc7622ba77b7b35cd0f9259b5f9a45059b7a29ba"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/b8/c66d71b5599204c90ddb9e6b168540f67764bb",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/b8/c66d71b5599204c90ddb9e6b168540f67764bb",
+      "mode": "100644",
+      "bytes": 2019,
+      "sha256": "81aea36adec89ef6b292338aacdbf5b37ad0da5decbfe33bdfcdeb003cc6e955",
+      "git_blob": "b7d981d7a5fbdcb269da000d9b3f291469dd7190"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/b9/c6986903aae8b5a09755507b61066888384178",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/b9/c6986903aae8b5a09755507b61066888384178",
+      "mode": "100644",
+      "bytes": 1421,
+      "sha256": "d113bac729bf005ad41e0963f17717ca3d1cb3123742b175fdf1a4e1ff7ab39e",
+      "git_blob": "7d8244598f7912cfd3611f59b4e67e4f6efcdb24"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/c0/43f75f678a995cf388e59edb9eae2996315d38",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/c0/43f75f678a995cf388e59edb9eae2996315d38",
+      "mode": "100644",
+      "bytes": 3955,
+      "sha256": "b169150222b80535be73929f0972b52c93f5c0199d838aba5de5c60af7c623dd",
+      "git_blob": "4eb9a140c1e592846f3ce68ee38d7e355a0db368"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/c6/b742b403484e06016c033c57ca7c6f321e1c45",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/c6/b742b403484e06016c033c57ca7c6f321e1c45",
+      "mode": "100644",
+      "bytes": 3045,
+      "sha256": "218d25f3826395cdd91057afd4e9e0f6555317b73f5915f2e56bb351aa470704",
+      "git_blob": "d5d4b07f911f0b365034eb64eead3dcb06c6c845"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/cc/2718f603d42b975803d907185ffa1318be51c9",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/cc/2718f603d42b975803d907185ffa1318be51c9",
+      "mode": "100644",
+      "bytes": 27756,
+      "sha256": "b278c408b5fcf0907892a2352d4700e46dcabb88365eda58681c8dcbe4681f09",
+      "git_blob": "0144f3a8d6fc51928a63b2ab0b2ed564eda5bb95"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d0/edf64a400a27b0d7fa295a0a3a3808fbfc25f2",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d0/edf64a400a27b0d7fa295a0a3a3808fbfc25f2",
+      "mode": "100644",
+      "bytes": 3999,
+      "sha256": "9b31143ac10f4bfcb6bb56b23ca2dd5e2d9f90bccd60d80c946d4fc06f740db5",
+      "git_blob": "4f9c5998a1a54f2d7b3c5d9ff05b64971c686c33"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d5/a60f5df8ea2e7a30f3b37ac05a01b6e362174d",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d5/a60f5df8ea2e7a30f3b37ac05a01b6e362174d",
+      "mode": "100644",
+      "bytes": 1422,
+      "sha256": "945aab2d0991a50a04d97d69785cd27152a84d60f371970fcde81bbf8c65b4db",
+      "git_blob": "19467a9f4f9234117a4401539e869b74f8532572"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d7/4f51c1d0f823245bc56e1b42c51de2fcf81ddb",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d7/4f51c1d0f823245bc56e1b42c51de2fcf81ddb",
+      "mode": "100644",
+      "bytes": 28708,
+      "sha256": "74ec3aa77756d3526f1c53e4a0cab71998756c236ec16289302184a23d14310c",
+      "git_blob": "ff9e9517028338ef7895ba06f825c57814302cf8"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d7/b3377273717508fd4f334ee795dd75c71bca51",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/d7/b3377273717508fd4f334ee795dd75c71bca51",
+      "mode": "100644",
+      "bytes": 3346,
+      "sha256": "75a9a4c235950bf826aa33fd3e300fb5b522e6fe6092e31b8c3308bb55687a12",
+      "git_blob": "522ae9099ffc20084e204eb25c4cce11a71976e7"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e2/5f368b26a6f4b44d320bdcc7529ca859ca93de",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e2/5f368b26a6f4b44d320bdcc7529ca859ca93de",
+      "mode": "100644",
+      "bytes": 28391,
+      "sha256": "4513da4020c96b6a1675d9d476e59b21d4a45d166ce1edc97a83cce0db9a988b",
+      "git_blob": "69c2b93d7129df92c90e96a96850b8f38468ce86"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e3/c9f4da539262f0ea563c61143eb7b180c1ab71",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e3/c9f4da539262f0ea563c61143eb7b180c1ab71",
+      "mode": "100644",
+      "bytes": 1047,
+      "sha256": "58152df53af57998614a69a2eac15eb68d5657441bd1a5b15de05195baf626cf",
+      "git_blob": "8e9595d5aae8885ccc8b3ab73de61a20ca955f93"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e7/5d2e520171ac96e3f61348d78ee848d78d3b89",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e7/5d2e520171ac96e3f61348d78ee848d78d3b89",
+      "mode": "100644",
+      "bytes": 413,
+      "sha256": "90f0084de1804fcd815ae8d4c9c188ab501449ec734f343f430dfd576a1c2e24",
+      "git_blob": "d513a97e4b3784f98eb9aa7878c633fd83ec6f27"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e7/ce2f4535152f185d0fb482b8db579c1d59f8ee",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/e7/ce2f4535152f185d0fb482b8db579c1d59f8ee",
+      "mode": "100644",
+      "bytes": 3291,
+      "sha256": "331f0443867103a0c8640e058fd1afc8a684c19cdf8c07344594910315bcb6a5",
+      "git_blob": "9e0a003237ea3bd6248a297f1384948e2ce1ff09"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ea/08ae59a4fa5eac55cb4ef99acc98b597c5a76c",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ea/08ae59a4fa5eac55cb4ef99acc98b597c5a76c",
+      "mode": "100644",
+      "bytes": 22264,
+      "sha256": "98671b6fe38d27106eb46f4689c81a3de175f86fd88718e8880a80a2ec2354ff",
+      "git_blob": "d4d47d9711bd416b2f02adf774a2bc499d91a7a8"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ec/b6d31f6e183811fc090eae72aaada86f566f6d",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ec/b6d31f6e183811fc090eae72aaada86f566f6d",
+      "mode": "100644",
+      "bytes": 32627,
+      "sha256": "8052b727f3e2f2bc7a3349fda7dd5a43f02b857d724b5c588c04e17c3ec7d49f",
+      "git_blob": "e90f45754aee41f73ec5da73cc6e62b64a4265f6"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ed/0910c0372b88a5551e7c93abe125b0bfe86de6",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ed/0910c0372b88a5551e7c93abe125b0bfe86de6",
+      "mode": "100644",
+      "bytes": 3041,
+      "sha256": "d60a731a40fea046eeb6a5caa995274b44f9546541a01f1c803975ec63e1e757",
+      "git_blob": "7b797aa8b5f64e0177cd338463c54f44a93c6977"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ee/e64691b5be5d545f3127ad29a6f4d226c507bf",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/ee/e64691b5be5d545f3127ad29a6f4d226c507bf",
+      "mode": "100644",
+      "bytes": 23432,
+      "sha256": "9343dad87b935c7032d2fa9b00a17a881a6b2bfa8a19028c5a09d5232903e61e",
+      "git_blob": "ea378ca81e961f9822f3ccb69af9402e0bda8ef2"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f0/4582b5e3d304813d849351d12a0aa0fabcabac",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f0/4582b5e3d304813d849351d12a0aa0fabcabac",
+      "mode": "100644",
+      "bytes": 6986,
+      "sha256": "6c0491cdce97824f13035d27e8c4b48562923b94485769bdc30ecbeca8df8fcd",
+      "git_blob": "f361f2689d28a977662304fbe6b3323646e0066a"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f1/1aabcac239e5917ae448af4e82448784902423",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f1/1aabcac239e5917ae448af4e82448784902423",
+      "mode": "100644",
+      "bytes": 962,
+      "sha256": "fd32d68ea560d939535ce4adbd79bf13d3b166a06ec78aa05dee671b7597ce81",
+      "git_blob": "8481352ceb23385f520d1992c904aa3d53e93857"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f3/0bd8cc01ba6893c508ec76861b7e063f383e48",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f3/0bd8cc01ba6893c508ec76861b7e063f383e48",
+      "mode": "100644",
+      "bytes": 746,
+      "sha256": "d0d9d4615610032bd7389a1f26e3e141c954a9eb93d0bc7b01d3762e17c71d40",
+      "git_blob": "6b285608b8364320383697d030ce320696f165e0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f3/c3171b9617f970ee0ca02f6b9775b571fc09c7",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f3/c3171b9617f970ee0ca02f6b9775b571fc09c7",
+      "mode": "100644",
+      "bytes": 3347,
+      "sha256": "8048973aa02f3890d334e513503d69f1d7ac2f77ae9c9cb2efbf993b6ac8b08e",
+      "git_blob": "913e8944737fda753de5d3287d707abdec87c011"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f9/a8c458b8ad9e6820d04a7829c2667dcbcc7e59",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/f9/a8c458b8ad9e6820d04a7829c2667dcbcc7e59",
+      "mode": "100644",
+      "bytes": 3344,
+      "sha256": "0d3ee1726168c3ddd57a84cf752adf3baf2c7ecb0cf767000fc2beae4afd5e8a",
+      "git_blob": "af20e93f9e39caf215b37650a0a13c773335766d"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/fc/c4c75e7fdda8190594bee69a6f0cddea326174",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/fc/c4c75e7fdda8190594bee69a6f0cddea326174",
+      "mode": "100644",
+      "bytes": 3759,
+      "sha256": "5d7169d10a97690a993d51c1dcbf42f2f5a267160fb3effc5b355480043aff7b",
+      "git_blob": "1535f48ab802d342d1aa8ce77bc2af750480b3de"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/fd/8c59e7c0781f072abeca12a0312196e61c9087",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/fd/8c59e7c0781f072abeca12a0312196e61c9087",
+      "mode": "100644",
+      "bytes": 1422,
+      "sha256": "ef07ef3f6b5c5e0ebc9610d35ca77e2b27aba381cb8b8a86184db94ab6330622",
+      "git_blob": "08fa5764192a14ec19912ecd6e0bc8a19b5c3349"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/index",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/index",
+      "mode": "100644",
+      "bytes": 1310728,
+      "sha256": "a7381f85940075efca5a3d2fb7baf192d710686fe792917e3fd6727417c00b1e",
+      "git_blob": "7ded97bbdea7597003331dce65be10f993911a63"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/marker",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-cache/mesa_shader_cache/marker",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-config/tool_state",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-config/tool_state",
+      "mode": "100644",
+      "bytes": 21,
+      "sha256": "b74b1eaf3ebb5dec3e407a1a458298f1f4311028f3d6b2e2bd6ba1ef5795c6b5",
+      "git_blob": "1f664e80093f4aa4ece442f33dc4eae834559f38"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "mode": "100644",
+      "bytes": 2545,
+      "sha256": "c4e35bab2a8f6407296b0f7ce4397e4c0c69ca28b228c96b7e4d832b9c17c813",
+      "git_blob": "baae0b03517d7ab123fbefb9c03d96a2788e71ba"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CanvasShaderGLES3/ec4ada8cee357dc1d60cc059a0f84ad21dee27e29d58fa9a87f46f2aef80c3ea/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CanvasShaderGLES3/ec4ada8cee357dc1d60cc059a0f84ad21dee27e29d58fa9a87f46f2aef80c3ea/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "mode": "100644",
+      "bytes": 34246,
+      "sha256": "2d1aceddd20701611a3128c5372ed4a78cfff02c16b9eb14487d7e9df3a65c71",
+      "git_blob": "d05434758674b0cf6b6a0ea39b9935366c566ff8"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CopyShaderGLES3/d2a6cb0418a1a9d4daa260504f4bcfe1b8f47c80b93a4b02975c6c8e4cdec734/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CopyShaderGLES3/d2a6cb0418a1a9d4daa260504f4bcfe1b8f47c80b93a4b02975c6c8e4cdec734/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "mode": "100644",
+      "bytes": 66022,
+      "sha256": "c57bd8ac6f37afc7ff795d6df6c688ca6f0ae94df1ef9969f649c1c4e3d058dd",
+      "git_blob": "397f736e023127257ad98c3fd560538bcca0102d"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/FeedShaderGLES3/ff8ce52247f567be25a85ee57b249f526c39fe4595e675da7a92cda3482cc47b/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/FeedShaderGLES3/ff8ce52247f567be25a85ee57b249f526c39fe4595e675da7a92cda3482cc47b/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "mode": "100644",
+      "bytes": 4613,
+      "sha256": "e95ba89db099344fc1a40f804cd561960fe2549c69e24eee5eacefe60956966d",
+      "git_blob": "042f71c0a0fbe135a3d7c5a0187297a22bae544e"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/PostShaderGLES3/314401684c9d4037d224f17896fb50fc3cae526688b7f2cd4b73d1ce59d68cc7/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/PostShaderGLES3/314401684c9d4037d224f17896fb50fc3cae526688b7f2cd4b73d1ce59d68cc7/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "mode": "100644",
+      "bytes": 10125,
+      "sha256": "5ffccf2c311d95d5183c1320f3ad73a080c79ad449131fe0b5e6194756adc00b",
+      "git_blob": "87ac62bf49e3a78c5e94921caa625a035504cfc7"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "mode": "100644",
+      "bytes": 551608,
+      "sha256": "c0da884e700ad0ed2ef4664f21d862b3d72e6f8e67ea0c9b24480273971194db",
+      "git_blob": "1e19f43b4676da78cf475989ba2f7b46ccd20f97"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/75dbda390b4d6b8d1bba67e8943ace8a4f64f756.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/75dbda390b4d6b8d1bba67e8943ace8a4f64f756.cache",
+      "mode": "100644",
+      "bytes": 747326,
+      "sha256": "1dc1cd90a24396fb08a72142421669133b0897e6be3dc8aa52baadac25b0abcd",
+      "git_blob": "294a2cc01188bb1774c8b889355ce1d19f199ce0"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/7610c7e24170c9ff2ef8d8f3a542d89520b2e49f.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/7610c7e24170c9ff2ef8d8f3a542d89520b2e49f.cache",
+      "mode": "100644",
+      "bytes": 753446,
+      "sha256": "0a3a4ba277af76c5a460d899e72a8c10fda80abb4a7f792c31f0f5c08a56b4b8",
+      "git_blob": "cce44be94419793f06c9b2e00b34b44450e70761"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/77047cd41f429f33ceff24e890e174f5465e755e.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/77047cd41f429f33ceff24e890e174f5465e755e.cache",
+      "mode": "100644",
+      "bytes": 532721,
+      "sha256": "b291e50cb3ddfe17601726fe33d3c2a2597e082ab2931526a20e1b750a6dcfb4",
+      "git_blob": "3b051cad22ce0d3ebfef85c868e78900c123ebbe"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/84366ed46520476083c6b869fefb772ed1a067ee.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/84366ed46520476083c6b869fefb772ed1a067ee.cache",
+      "mode": "100644",
+      "bytes": 762974,
+      "sha256": "211e539362a27f903bab84c475ae41d53c2b29fe7b9c65a7a8407e7ccf0de40c",
+      "git_blob": "dbff6f45e0960aa528188d3280060d6757fdc04b"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/f2e328ac8a780a17a0c65e242b0c8bc4fc063f03.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/f2e328ac8a780a17a0c65e242b0c8bc4fc063f03.cache",
+      "mode": "100644",
+      "bytes": 747110,
+      "sha256": "951172903a66829998866416c9a2fdf4c87db376ea66fe493ee77a188cca92cf",
+      "git_blob": "2f95df06c7f363d0114a1eea1a676417c5b227ab"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SkeletonShaderGLES3/84035b3cefc09f9557dd6bf4f292f5563f0545ca349eba904f9efc23e561e23f/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SkeletonShaderGLES3/84035b3cefc09f9557dd6bf4f292f5563f0545ca349eba904f9efc23e561e23f/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "mode": "100644",
+      "bytes": 47513,
+      "sha256": "dde4cb4530501e509701a83574f706fce6c93ea5d189a0b0a92497bffec7eab1",
+      "git_blob": "735ea84fab014cd409bc6fcccede0c14aab09d83"
+    },
+    {
+      "archive_path": "runtime/inspection/originals/wisps.log",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/originals/wisps.log",
+      "mode": "100644",
+      "bytes": 499,
+      "sha256": "5a69401f82c15fb6c1f50e1ab93d7f70c9a56e8d4097565f67c145f9a0f6ed51",
+      "git_blob": "a0d9f6aba7bdfd561543d70df90f3367c750fd7c"
+    },
+    {
+      "archive_path": "runtime/inspection/verification.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/inspection/verification.json",
+      "mode": "100644",
+      "bytes": 196718,
+      "sha256": "3631430f11e7e8dcc1fb2e6beab0bef50927b25d0e16def35a9f904e51de2edc",
+      "git_blob": "951a280dc35ec59b480cae09ddbf9e2e479df41b"
+    },
+    {
+      "archive_path": "runtime/job-132578338806.original.log",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/job-132578338806.original.log",
+      "mode": "100644",
+      "bytes": 293390,
+      "sha256": "c9084ede77503455ec36eed7abf9d08f84eee10c1a03302792dddc4e09f5cf8b",
+      "git_blob": "5fa9893697221b7f2f224755b22a210c2a83d67f"
+    },
+    {
+      "archive_path": "runtime/original-metadata-binding.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/original-metadata-binding.json",
+      "mode": "100644",
+      "bytes": 6836,
+      "sha256": "1b796a022c5e10e2c1c54a83ae5b5d81fd407c1e36164d3d1d706e3ae3ca6472",
+      "git_blob": "45b5aaa1d1f91021a4ab6b5ceb6ddee87892e7eb"
+    },
+    {
+      "archive_path": "runtime/original-metadata/artifacts.original.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/original-metadata/artifacts.original.json",
+      "mode": "100644",
+      "bytes": 778,
+      "sha256": "09241b45c3b288dbb487d18d2fc347d2f85500bc58b979cec8aebdf715ea783f",
+      "git_blob": "908e05b16af6770fdc3f52503773b9f476441d3f"
+    },
+    {
+      "archive_path": "runtime/original-metadata/jobs.original.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/original-metadata/jobs.original.json",
+      "mode": "100644",
+      "bytes": 6592,
+      "sha256": "1b95c3e1482cc0fb1ca29514166d5a4acb96ea3962b536a59c36e98a62718d2e",
+      "git_blob": "bb6db63f92bf7a6261ec07c816f3dab89780b68a"
+    },
+    {
+      "archive_path": "runtime/original-metadata/raw-manifest.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/original-metadata/raw-manifest.json",
+      "mode": "100644",
+      "bytes": 684,
+      "sha256": "3877a3d863cc46589b22c0e6610b38f0f89d6afaf729cdc3f87b2a4bba515e23",
+      "git_blob": "e221ac802c6ee46c862aa614aca57b7831386a29"
+    },
+    {
+      "archive_path": "runtime/original-metadata/run.original.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/original-metadata/run.original.json",
+      "mode": "100644",
+      "bytes": 12988,
+      "sha256": "0d68e7248b27f87787902878748a678bfe08615e2b3d1a139283bf0375d8241a",
+      "git_blob": "eff620d2d4c6034e43194fbace8b3668108bfeeb"
+    },
+    {
+      "archive_path": "runtime/preflight/initial-manifest-path-error.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/preflight/initial-manifest-path-error.json",
+      "mode": "100644",
+      "bytes": 372,
+      "sha256": "770cdb369148ff282e2a616a5330454122d3bb728ca6a735c4c33bc31d39e909",
+      "git_blob": "5dbfd32059df56757947ab111a0e18cfdb4d163e"
+    },
+    {
+      "archive_path": "runtime/reader-state-after-replay.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/reader-state-after-replay.json",
+      "mode": "100644",
+      "bytes": 2966,
+      "sha256": "cab84d4a482b4f4b0c1fc85a913dd555770bb212b31f7a80dac6842521d5e5d6",
+      "git_blob": "57374e05fa4335e52c19ec06a816fd22e0f0bdcb"
+    },
+    {
+      "archive_path": "runtime/replay-invocation.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/replay-invocation.json",
+      "mode": "100644",
+      "bytes": 744,
+      "sha256": "c2037c5bbeea8d24f46be3325539ebc707c597743a0532e4971be2bd93ce4b53",
+      "git_blob": "a146c48092e96997d282d0439d84d6b71c9f7048"
+    },
+    {
+      "archive_path": "runtime/replay-wrapper-identity-delta.patch",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/replay-wrapper-identity-delta.patch",
+      "mode": "100644",
+      "bytes": 4246,
+      "sha256": "5aa50ca0cd3b02f4d58a38f2e24410c79ef4c4556fefb9072c5200ed5f8db336",
+      "git_blob": "f23731816f2e043a469b2c7ffb6138cff5948a87"
+    },
+    {
+      "archive_path": "runtime/replay-wrapper-provenance.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/replay-wrapper-provenance.json",
+      "mode": "100644",
+      "bytes": 1154,
+      "sha256": "a0e02b18373f2956f10585d75983fd4edf2085aed447e8eb27e5bb612d9d928c",
+      "git_blob": "70586fcb45ffc804a6e2031ecc59301accde185a"
+    },
+    {
+      "archive_path": "runtime/replay.stderr",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/replay.stderr",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "archive_path": "runtime/replay.stdout",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/replay.stdout",
+      "mode": "100644",
+      "bytes": 281,
+      "sha256": "76697fb698b757817c9a7ad93707e880816e4c5bfd9b8a919c374cd45bd792a9",
+      "git_blob": "ee3411d254fa59dc4825ba54949c5224c857c1b8"
+    },
+    {
+      "archive_path": "runtime/replay_runtime_originals.py",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/replay_runtime_originals.py",
+      "mode": "100644",
+      "bytes": 13076,
+      "sha256": "1f4043e3337214451f878983c02a444b5acc042f4a82ac3ff8b4c4aa048b29e6",
+      "git_blob": "050591fc78448630ca31d7b157079a426b557815"
+    },
+    {
+      "archive_path": "runtime/runtime-original-replay.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/runtime-original-replay.json",
+      "mode": "100644",
+      "bytes": 58660,
+      "sha256": "4043be8899e025a195894d3d1a4e138b41d0f48d6a499cf0b3c9ad1c9b9b0ab1",
+      "git_blob": "7f61205d43aa5cdcc740139f7daca99d602757d7"
+    },
+    {
+      "archive_path": "runtime/runtime-visual-catalog.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/runtime-visual-catalog.json",
+      "mode": "100644",
+      "bytes": 2265,
+      "sha256": "5822bf93f1e9de9228932578d5b23bf31a7a49506bd2f06127cfd26a7747e182",
+      "git_blob": "1ad94ebe78488de883fc28ae9fa90b56f4b613af"
+    },
+    {
+      "archive_path": "runtime/source-binding/binding.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/source-binding/binding.json",
+      "mode": "100644",
+      "bytes": 649,
+      "sha256": "e0e2c8907fdca1d7aa2f63ca10d0c56764c02f852b711082e5507eac7dd05395",
+      "git_blob": "a23aa78b474654ba0566a4967ac28ee0d359c815"
+    },
+    {
+      "archive_path": "runtime/source-binding/host-tree-binding.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/source-binding/host-tree-binding.json",
+      "mode": "100644",
+      "bytes": 1532469,
+      "sha256": "673825edfeb7ca4456da7ee70c2165252a6630f89c85401c8f5dc44fa12032a1",
+      "git_blob": "da5ec457c5bcfd91f5533796f94b2fd159d03b9f"
+    },
+    {
+      "archive_path": "runtime/source-binding/manifest.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/source-binding/manifest.json",
+      "mode": "100644",
+      "bytes": 1432,
+      "sha256": "0470bae102e8e5977d7273d22e0dfe4d5cd33ae20a49db0bcb177dca3b344210",
+      "git_blob": "dd63d25afb6adf892481a1dcf51bb8de67d05d09"
+    },
+    {
+      "archive_path": "runtime/source-binding/tree-leaves.json",
+      "source_path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/source-binding/tree-leaves.json",
+      "mode": "100644",
+      "bytes": 1456742,
+      "sha256": "0f5a094c03533bbb19dd58b17d32a20f56e434ca711a87ddd5149194f41c9d78",
+      "git_blob": "ede3a7b67531af9b08cdf341dc87b43707d176b8"
+    }
+  ],
+  "count": 188,
+  "uncompressed_bytes": 15282094
+}
