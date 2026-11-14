@@ -1,5 +1,7 @@
 # Historical 2019 update-wrapper fixture repair — 2026-11-14
 
+> **Execution update — 2026-11-14, 08:59 UTC:** The three affected wrapper tests have now actually passed. See the [execution follow-up](execution-followup.md), [raw unittest log](wrapper-tests.raw.log), and [source/timing manifest](execution.json). The execution-unavailable description below records the earlier checkpoint `cadfeb090a5d665557fd5ffa4d7943ef1a4a50c1`; it is no longer the latest execution status. Full candidate CI and Android acceptance remain separate.
+
 ## Original CI failure
 
 - Tested host: `01575aafc3f5b9032900bb57520ee65e98d7546c`.
