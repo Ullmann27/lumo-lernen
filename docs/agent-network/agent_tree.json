@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "created": "2026-11-14",
+  "mode": "PLANNED_NOT_RUNNING",
+  "description": "Rollen und abgrenzbare Aufgaben; GitHub-Profile starten keine Agents.",
+  "root_agents": 3,
+  "max_depth": 3,
+  "max_concurrent_sessions": 3,
+  "max_total_tasks": 30,
+  "allow_infinite_delegation": false,
+  "allow_automatic_merge": false,
+  "allow_publication_without_owner": false,
+  "allow_paid_services_without_approval": false,
+  "nodes": [
+    {
+      "id": "learning",
+      "parent": null,
+      "depth": 1,
+      "team": "learning",
+      "mission": "Arbeite chronologisch in Klasse 1 bis 4. Inventarisiere jede registrierte Lernaufgabe und Variante aus allen Aufgabenbanken. Pruefe Schulstufe, Fach, Loesung, Erklaerung, Fehlermuster, drei Hilfen und Adaptivitaet. Verwende den geprueften PR 484 als Ausgangspunkt, aber 7552 Stichproben sind KEINE didaktische Komplettabnahme. Schuetze Schreiben, Journal und Lernstaende.",
+      "children_limit": 3
+    },
+    {
+      "id": "learning.inventory",
+      "parent": "learning",
+      "depth": 2,
+      "team": "learning",
+      "mission": "Alle Generatoren, Varianten, Faecher und Klassen durchsaetzbar inventarisieren",
+      "children_limit": 2
+    },
+    {
+      "id": "learning.inventory.code",
+      "parent": "learning.inventory",
+      "depth": 3,
+      "team": "learning",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Alle Generatoren, Varianten, Faecher und Klassen durchsaetzbar inventarisieren",
+      "children_limit": 0
+    },
+    {
+      "id": "learning.inventory.qa",
+      "parent": "learning.inventory",
+      "depth": 3,
+      "team": "learning",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Alle Generatoren, Varianten, Faecher und Klassen durchsaetzbar inventarisieren",
+      "children_limit": 0
+    },
+    {
+      "id": "learning.competency",
+      "parent": "learning",
+      "depth": 2,
+      "team": "learning",
+      "mission": "Konkret belegte Lehrplan- und Kompetenzmatrix fuer jedes Thema erstellen",
+      "children_limit": 2
+    },
+    {
+      "id": "learning.competency.code",
+      "parent": "learning.competency",
+      "depth": 3,
+      "team": "learning",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Konkret belegte Lehrplan- und Kompetenzmatrix fuer jedes Thema erstellen",
+      "children_limit": 0
+    },
+    {
+      "id": "learning.competency.qa",
+      "parent": "learning.competency",
+      "depth": 3,
+      "team": "learning",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Konkret belegte Lehrplan- und Kompetenzmatrix fuer jedes Thema erstellen",
+      "children_limit": 0
+    },
+    {
+      "id": "learning.tutor",
+      "parent": "learning",
+      "depth": 2,
+      "team": "learning",
+      "mission": "Interaktive Erklaerung, adaptive Fehlerhilfe und richtige Bewertungsregeln",
+      "children_limit": 2
+    },
+    {
+      "id": "learning.tutor.code",
+      "parent": "learning.tutor",
+      "depth": 3,
+      "team": "learning",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Interaktive Erklaerung, adaptive Fehlerhilfe und richtige Bewertungsregeln",
+      "children_limit": 0
+    },
+    {
+      "id": "learning.tutor.qa",
+      "parent": "learning.tutor",
+      "depth": 3,
+      "team": "learning",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Interaktive Erklaerung, adaptive Fehlerhilfe und richtige Bewertungsregeln",
+      "children_limit": 0
+    },
+    {
+      "id": "3d",
+      "parent": null,
+      "depth": 1,
+      "team": "3d",
+      "mission": "Zielrepo Ullmann27/lumo-godot. Verbinde echte Unterrichtsaufgaben mit manipulierbaren 3D-Szenen, Original-Lumo, Kamera, Licht und Feedback. Animierte Erklaerungen statt statischer Kulissen. Eigene Originalassets, keine Nintendo-Kopien. Touchziele mindestens 48dp, Fold7 Portrait/Querformat. Echte Renderer-Captures samt SHA; 60fps nur nach physischer Messung behaupten.",
+      "children_limit": 3
+    },
+    {
+      "id": "3d.learning-scenes",
+      "parent": "3d",
+      "depth": 2,
+      "team": "3d",
+      "mission": "Godot-Aufgaben-3D-Szenen und interaktive Lerndramaturgie",
+      "children_limit": 2
+    },
+    {
+      "id": "3d.learning-scenes.code",
+      "parent": "3d.learning-scenes",
+      "depth": 3,
+      "team": "3d",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Godot-Aufgaben-3D-Szenen und interaktive Lerndramaturgie",
+      "children_limit": 0
+    },
+    {
+      "id": "3d.learning-scenes.qa",
+      "parent": "3d.learning-scenes",
+      "depth": 3,
+      "team": "3d",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Godot-Aufgaben-3D-Szenen und interaktive Lerndramaturgie",
+      "children_limit": 0
+    },
+    {
+      "id": "3d.characters-art",
+      "parent": "3d",
+      "depth": 2,
+      "team": "3d",
+      "mission": "Originalfuchs, GLBs, Bewegungen, PBR, Licht, Renderbudget und LOD",
+      "children_limit": 2
+    },
+    {
+      "id": "3d.characters-art.code",
+      "parent": "3d.characters-art",
+      "depth": 3,
+      "team": "3d",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Originalfuchs, GLBs, Bewegungen, PBR, Licht, Renderbudget und LOD",
+      "children_limit": 0
+    },
+    {
+      "id": "3d.characters-art.qa",
+      "parent": "3d.characters-art",
+      "depth": 3,
+      "team": "3d",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Originalfuchs, GLBs, Bewegungen, PBR, Licht, Renderbudget und LOD",
+      "children_limit": 0
+    },
+    {
+      "id": "3d.gameplay",
+      "parent": "3d",
+      "depth": 2,
+      "team": "3d",
+      "mission": "Kart, Bauwelt, Cards und die weiteren Spiele: KI, Spieltiefe, Bedienung",
+      "children_limit": 2
+    },
+    {
+      "id": "3d.gameplay.code",
+      "parent": "3d.gameplay",
+      "depth": 3,
+      "team": "3d",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Kart, Bauwelt, Cards und die weiteren Spiele: KI, Spieltiefe, Bedienung",
+      "children_limit": 0
+    },
+    {
+      "id": "3d.gameplay.qa",
+      "parent": "3d.gameplay",
+      "depth": 3,
+      "team": "3d",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Kart, Bauwelt, Cards und die weiteren Spiele: KI, Spieltiefe, Bedienung",
+      "children_limit": 0
+    },
+    {
+      "id": "release",
+      "parent": null,
+      "depth": 1,
+      "team": "release",
+      "mission": "Bau eine reproduzierbare AAB-Produktionspipeline; die vorhandene Debug-signierte ARM64-Test-APK darf nicht als Play-Signing gelten. Pruefe Target API 36+, 16KB, Asset Delivery, Families/Kinderdaten, Berechtigungen, Store Listing und Rechtsrechte. Konkrete Emulator- und Fold7-Abnahme samt Upgrade. Keine Secrets ins Repository, keine Veroeffentlichung oder Kosten ohne Freigabe.",
+      "children_limit": 3
+    },
+    {
+      "id": "release.bundle",
+      "parent": "release",
+      "depth": 2,
+      "team": "release",
+      "mission": "AAB, Upload/Play-Signatur, ABI, Target API 36 und grosse native PCK-Assets",
+      "children_limit": 2
+    },
+    {
+      "id": "release.bundle.code",
+      "parent": "release.bundle",
+      "depth": 3,
+      "team": "release",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: AAB, Upload/Play-Signatur, ABI, Target API 36 und grosse native PCK-Assets",
+      "children_limit": 0
+    },
+    {
+      "id": "release.bundle.qa",
+      "parent": "release.bundle",
+      "depth": 3,
+      "team": "release",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: AAB, Upload/Play-Signatur, ABI, Target API 36 und grosse native PCK-Assets",
+      "children_limit": 0
+    },
+    {
+      "id": "release.families",
+      "parent": "release",
+      "depth": 2,
+      "team": "release",
+      "mission": "Kinder-/Familienrichtlinien, DS, IP, Barrierefreiheit, Store-Texte",
+      "children_limit": 2
+    },
+    {
+      "id": "release.families.code",
+      "parent": "release.families",
+      "depth": 3,
+      "team": "release",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Kinder-/Familienrichtlinien, DS, IP, Barrierefreiheit, Store-Texte",
+      "children_limit": 0
+    },
+    {
+      "id": "release.families.qa",
+      "parent": "release.families",
+      "depth": 3,
+      "team": "release",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Kinder-/Familienrichtlinien, DS, IP, Barrierefreiheit, Store-Texte",
+      "children_limit": 0
+    },
+    {
+      "id": "release.devices",
+      "parent": "release",
+      "depth": 2,
+      "team": "release",
+      "mission": "Emulator/API-Matrix, Fold7 Touch, FPS, Temperatur, Daten-Upgrade",
+      "children_limit": 2
+    },
+    {
+      "id": "release.devices.code",
+      "parent": "release.devices",
+      "depth": 3,
+      "team": "release",
+      "mission": "Quellcode implementieren; reproduzierbare Tests beilegen: Emulator/API-Matrix, Fold7 Touch, FPS, Temperatur, Daten-Upgrade",
+      "children_limit": 0
+    },
+    {
+      "id": "release.devices.qa",
+      "parent": "release.devices",
+      "depth": 3,
+      "team": "release",
+      "mission": "Unabhaengig Negativtests, SHA und Originalbilder kontrollieren: Emulator/API-Matrix, Fold7 Touch, FPS, Temperatur, Daten-Upgrade",
+      "children_limit": 0
+    }
+  ]
+}

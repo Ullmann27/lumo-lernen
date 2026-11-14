@@ -375,43 +375,119 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
 
 
 def _stage_kart_scroll_recovery():
-    """Reuse the observed two-frame list scroll from supplemental Garage QA."""
+    """Use the caller's current validated list; rehash both frames before input."""
     previous, swipes = None, 0
 
-    def recovery(frame, lines, source, *, deadline, previous_missing_frame):
+    def recovery(frame, current, source, *, deadline, previous_missing_frame):
         nonlocal previous, swipes
-        current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+        garage_evidence.demand(current['source_sha256'] == frame['source_sha256'],
+                               'Observed vehicle-list proof belongs to a different current screenshot')
         stable = (previous is not None and previous_missing_frame is not None and
                   previous_missing_frame.get('pixels') == frame['pixels'] and
-                  max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
+                  previous_missing_frame.get('source') != frame.get('source') and
+                  current['direction'] == previous['direction'] and
+                  all(max(abs(a - b) for a, b in zip(current[key], previous[key])) <= 3
+                      for key in ('viewport_bounds', 'gesture')) and
+                  all(max(abs(a - b) for a, b in zip(current['scrollbar'][key], previous['scrollbar'][key])) <= 3
+                      for key in ('track_bounds', 'thumb_bounds')))
         previous = current
         if not stable:
             return {'status': 'WAITING_FOR_SECOND_LIST_FRAME', **current}
         garage_evidence.demand(swipes < 5, 'Vehicle card remained offscreen after five observed list gestures')
         garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
                                'Observed vehicle-list screenshot changed before gesture')
+        prior_source = Path(source).parent / previous_missing_frame['source']
+        garage_evidence.demand(probe.digest(prior_source) == previous_missing_frame['source_sha256'],
+                               'Previous observed vehicle-list screenshot changed before gesture')
         remaining = deadline - time.monotonic()
         garage_evidence.demand(remaining > 0, 'Vehicle list scrolling exceeded its bounded deadline')
         base.adb('shell', 'input', 'swipe', *map(str, current['gesture']), '650',
                  timeout=min(15, remaining))
         swipes += 1
         previous = None
+        garage_evidence.demand(time.monotonic() < deadline,
+                               'Vehicle list gesture completed beyond its bounded deadline')
         return {'status': 'SWIPE_SENT', 'swipe_number': swipes, **current}
 
     return recovery
 
 
-def _select_stage_kart(out: Path, kart: str) -> dict:
+def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:
+    """Require two complete current card names inside the real list before a tap."""
     label = garage_evidence.KARTS[kart]
     tag = '21_stage_select_' + kart
-    probe.native_tap(out, label, tag, exact=True, timeout=150,
-                     missing_caption=_stage_kart_scroll_recovery())
     journal = out / (tag + '-surface-readiness.json')
-    touch = json.loads(journal.read_text())
-    garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',
-                           'No observed native kart-selection touch was sent')
-    return {'kart': kart, 'caption': label, 'touch': touch['touch'],
-            'readiness': journal.name, 'scope': 'Touch only; actual new race selection is checked separately'}
+    started = time.monotonic()
+    deadline = started + timeout
+    touch = {'status': 'WAITING', 'label': label, 'timeout_seconds': timeout,
+             'exact_caption_required': True, 'orientation_policy': 'landscape',
+             'scope': 'Current complete card touch; actual new race selection is checked separately',
+             'frames': []}
+    previous, previous_viewport, previous_missing_frame = None, None, None
+    recovery = _stage_kart_scroll_recovery()
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-{len(touch["frames"])}'
+            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source, orientation='landscape')
+            frame['captured_after_seconds'] = round(time.monotonic() - started, 6)
+            touch['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous, previous_viewport, previous_missing_frame = None, None, None
+                time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+            else:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                lines = probe.image_lines(out, name, probe.normalized(label), source_path=source,
+                                          timeout=remaining, exact=True, all_caption_regions=True)
+                current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)
+                frame['kart_list'] = current
+                choice = garage_evidence.stage_kart_target_observation(frame, lines, kart, current['viewport_bounds'])
+                if choice is None:
+                    previous, previous_viewport = None, None
+                    frame['reasons'].append('complete requested caption not observed inside the current card clip')
+                    if time.monotonic() >= deadline:
+                        break
+                    report = recovery(frame, current, source, deadline=deadline,
+                                      previous_missing_frame=previous_missing_frame)
+                    frame['missing_caption_recovery'] = report
+                    previous_missing_frame = None if report['status'] == 'SWIPE_SENT' else frame
+                    if report['status'] == 'SWIPE_SENT':
+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                else:
+                    previous_missing_frame = None
+                    if (previous_viewport is None or
+                            max(abs(a - b) for a, b in zip(current['viewport_bounds'], previous_viewport)) > 3):
+                        previous = None
+                    observed = probe.target_observation(frame, choice['target']['bounds'], previous)
+                    frame['target'] = observed
+                    previous, previous_viewport = observed, current['viewport_bounds']
+                    if observed['stable_observed_target']:
+                        garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                               'Observed kart screenshot changed before touch')
+                        remaining = deadline - time.monotonic()
+                        if remaining <= 0:
+                            break
+                        x0, y0, x1, y1 = observed['bounds']
+                        x, y = round((x0 + x1) / 2), round((y0 + y1) / 2)
+                        touch.update(touch=[x, y], final_observed_bounds=observed['bounds'])
+                        base.adb('shell', 'input', 'swipe', str(x), str(y), str(x), str(y), '120',
+                                 timeout=min(15, remaining))
+                        garage_evidence.demand(time.monotonic() < deadline,
+                                               'Kart selection completed beyond its bounded deadline')
+                        touch['status'] = 'TOUCH_SENT'
+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                        return {'kart': kart, 'caption': label, 'touch': touch['touch'],
+                                'readiness': journal.name, 'scope': touch['scope']}
+        raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)
+    except Exception as error:
+        touch.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        touch['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(touch, indent=2, ensure_ascii=False) + '\n')
 
 
 def _select_stage_driver(out: Path, timeout: float = 150) -> dict:

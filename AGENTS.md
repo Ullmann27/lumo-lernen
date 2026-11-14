@@ -41,3 +41,6 @@ Die **Lumo-Lern-App** und die vorgegebenen originalen Fuchs-/Lernwelt-/Mathe-/St
 3. Fehlt jeder Cloud-Commit, ist der genaue lokale Code über GitHub nicht nachweisbar und muss anhand des letzten gesicherten Commits und der Testprotokolle rekonstruiert werden. Niemals eine Cloud-Wiederherstellung erfinden.
 
 Ausführlicher Ablauf: \`docs/CLOUD_RECOVERY_PROTOCOL_2026-10-20.md\`.
+
+## Play-Store-Agentennetz (14.11.2026)
+Fuer neue delegierte Aufgaben gelten auch docs/agent-network/LUMO_PLAYSTORE_AGENT_TREE_20261114.md und die Copilot-Rollen in .github/agents/. Die Dateien starten keine Agent-Sessions; echte Agentenausfuehrung und Kosten benoetigen eine autorisierte Laufzeit. Tiefe maximal 3, hoechstens 3 parallele Sessions, main unveraendert. Gefordert sind reale sichtbare Lern-/Spielegewinne, keine Versionsnummer statt Funktion.

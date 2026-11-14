@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "source_type": "original_failed_android_c4_run",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+  "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43605863655,
+  "run_attempt": 1,
+  "job_id": 132499595540,
+  "artifact_id": 14121596843,
+  "artifact_bytes": 128234694,
+  "artifact_sha256": "6b55e5424b4177b8daa5b342d8ac5c64e3b7b802bfdd84805cec3974b1f0506c",
+  "entire_archive_size_and_sha256_verified": true,
+  "c4_result_status": "FAIL",
+  "files": [
+    {
+      "path": "0074-child-first-second-000-preferences.stdout",
+      "archive_path": "c4/commands/0074-child-first-second-000-preferences.stdout",
+      "bytes": 2485,
+      "sha256": "c1f6883e8047900e28981cd7d6bde7b379bd18edd80693b51ff4fd5d88f8811e",
+      "zip_crc32": 3301971014,
+      "result_inventory_verified": true
+    },
+    {
+      "path": "0074-child-first-second-000-preferences.stderr",
+      "archive_path": "c4/commands/0074-child-first-second-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_crc32": 0,
+      "result_inventory_verified": true
+    },
+    {
+      "path": "0074-child-first-second-000-preferences.json",
+      "archive_path": "c4/commands/0074-child-first-second-000-preferences.json",
+      "bytes": 444,
+      "sha256": "71ca8b275ea85cbe8ad9a01d36c7877aee24cf132c1933cc6b487a766c7d6c7d",
+      "zip_crc32": 2157464562,
+      "result_inventory_verified": true
+    },
+    {
+      "path": "0087-child-first-confirmed-000-preferences.stdout",
+      "archive_path": "c4/commands/0087-child-first-confirmed-000-preferences.stdout",
+      "bytes": 129,
+      "sha256": "18cc4a1f125474c5c4f1f3bf5f414a2e05095b766b5254c2cab20a0db7a4f4ac",
+      "zip_crc32": 1765415444,
+      "result_inventory_verified": true
+    },
+    {
+      "path": "0087-child-first-confirmed-000-preferences.stderr",
+      "archive_path": "c4/commands/0087-child-first-confirmed-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_crc32": 0,
+      "result_inventory_verified": true
+    },
+    {
+      "path": "0087-child-first-confirmed-000-preferences.json",
+      "archive_path": "c4/commands/0087-child-first-confirmed-000-preferences.json",
+      "bytes": 444,
+      "sha256": "7f990fc9ded4487e15e04e21a44c14ecd9b7d2524c5a554d60b98ed68fa85c42",
+      "zip_crc32": 4135266426,
+      "result_inventory_verified": true
+    }
+  ],
+  "chronology": [
+    "0074 is the last valid preferences XML before the first native drop touch.",
+    "0078 dispatches exactly one stationary 120ms Android input swipe.",
+    "0079 still reports ack=0, revision=2, recordRevision=1, columns=[].",
+    "0087 is the first post-touch preferences read; it returns a 129-byte cat ENOENT message on stdout with adb returncode=0 and empty stderr.",
+    "This failed run contains no later successful preferences read, confirmed drop transition, or native return."
+  ],
+  "fixture_scope": "Original byte replay; it does not establish that the missing file recovered in this Android run."
+}

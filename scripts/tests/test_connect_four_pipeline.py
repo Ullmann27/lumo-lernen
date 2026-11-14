@@ -50,12 +50,21 @@ class WorkflowTests(unittest.TestCase):
                 'github.head_ref':'integration/lumo-c4-connections-20261114'}
         for name in ('connect-four-runtime','android-host-compile','verify-and-build'):
             block=job(self.workflow,name)
-            self.assertTrue(condition(block,values))
+            for branch in ('integration/lumo-c4-connections-20261114',
+                           'integration/lumo-agent-execution-20261114'):
+                with self.subTest(job=name,branch=branch):
+                    self.assertTrue(condition(block,{**values,'github.head_ref':branch}))
             for key,value in (('github.event_name','push'),('github.event_name','workflow_dispatch'),
                               ('github.event.pull_request.head.repo.full_name','outside/fork'),
-                              ('github.head_ref','integration/lumo-connections-20261113')):
+                              ('github.head_ref','integration/lumo-connections-20261113'),
+                              ('github.head_ref','integration/lumo-agent-execution-20261114-copy'),
+                              ('github.repository','outside/fork')):
                 with self.subTest(job=name,key=key,value=value):
                     self.assertFalse(condition(block,{**values,key:value}))
+            with self.subTest(job=name,branch='new branch with fork'):
+                self.assertFalse(condition(block,{**values,
+                    'github.head_ref':'integration/lumo-agent-execution-20261114',
+                    'github.event.pull_request.head.repo.full_name':'outside/fork'}))
 
     def test_source_pin_guard_executes_real_existing_policy(self):
         block=step(job(self.workflow,'connect-four-runtime'),
@@ -84,6 +93,14 @@ class WorkflowTests(unittest.TestCase):
 
     def test_real_runtime_compile_and_existing_build_gates_remain_mandatory(self):
         runtime=job(self.workflow,'connect-four-runtime')
+        recovery='Retry the acknowledged native exit after a transient Android refusal'
+        recovery_step=step(runtime,recovery)
+        self.assertIn('res://scripts/tests/connect_four_return_regression.gd',recovery_step)
+        self.assertIn("grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21'",recovery_step)
+        self.assertIn("if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:'",recovery_step)
+        self.assertNotIn('if:',recovery_step)
+        self.assertLess(runtime.index(recovery),
+                        runtime.index('Require the actual production Dart and rendered Godot two-process gate'))
         self.assertIn('scripts/run_connect_four_runtime.py --host "$GITHUB_WORKSPACE"',runtime)
         self.assertIn('--native "$GITHUB_WORKSPACE/native-source"',runtime)
         self.assertIn('command -v xvfb-run',runtime)
@@ -116,6 +133,25 @@ class WorkflowTests(unittest.TestCase):
                                           command+' 2>&1 | tee "$native_logs/nextgen-runner.log"')
             with self.subTest(step=name): self.assertEqual(step(build,name),expected)
         self.assertNotIn('continue-on-error',self.workflow)
+
+    def test_wisp_feedback_has_its_own_mandatory_original_runtime_gate(self):
+        runtime=job(self.workflow,'connect-four-runtime')
+        label='Require bounded native Wisp feedback on the exact source'
+        probe=step(runtime,label)
+        self.assertIn('set -euo pipefail',probe)
+        self.assertIn('timeout 180s godot --headless --audio-driver Dummy --path native-source',probe)
+        self.assertIn('--script res://scripts/tests/treasure_wisp_regression.gd',probe)
+        self.assertIn('tee c4-runtime/treasure-wisps.log',probe)
+        self.assertIn("grep -Fx '[TreasureWisp] PASS checks=14'",probe)
+        self.assertIn('ObjectDB instances leaked|resources still in use at exit',probe)
+        self.assertNotIn('if:',probe)
+        self.assertLess(runtime.index('Import the exact configured native source in its own directory'),
+                        runtime.index(label))
+        self.assertLess(runtime.index(label),
+                        runtime.index('Require the actual production Dart and rendered Godot two-process gate'))
+        saved=step(runtime,'Preserve every original C4 runtime result and rendered frame')
+        self.assertIn('path: c4-runtime/',saved)
+        self.assertIn('if: always()',saved)
 
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
         build=job(self.workflow,'verify-and-build')
@@ -190,12 +226,14 @@ class WorkflowTests(unittest.TestCase):
             self.assertNotIn(forbidden,self.workflow)
         self.assertNotIn('27ae4270',self.workflow)
 
-    def test_only_c4_branch_is_added_to_existing_unified_exclusions(self):
+    def test_both_c4_branches_are_excluded_from_duplicate_unified_builds(self):
         unified=(ROOT/'.github/workflows/lumo-unified-integration-2026.yml').read_text()
         block=job(unified,'verify-and-build')
-        c4='integration/lumo-c4-connections-20261114'
-        self.assertFalse(condition(block,{'github.head_ref':c4,'github.ref_name':'123/merge'}))
-        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':c4}))
+        for c4 in ('integration/lumo-c4-connections-20261114',
+                   'integration/lumo-agent-execution-20261114'):
+            with self.subTest(branch=c4):
+                self.assertFalse(condition(block,{'github.head_ref':c4,'github.ref_name':'123/merge'}))
+                self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':c4}))
         self.assertTrue(condition(block,{'github.head_ref':'unrelated-existing-branch','github.ref_name':'123/merge'}))
         self.assertIn("assert int(version[1]) != 2018",block)
         self.assertIn("assert int(version[1]) != 2019",block)

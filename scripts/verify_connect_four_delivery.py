@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = 'Ullmann27/lumo-lernen'
 WORKFLOW = '.github/workflows/lumo-connect-four-2020.yml'
 BRANCH = 'integration/lumo-c4-connections-20261114'
+ALLOWED_BRANCHES = frozenset((BRANCH, 'integration/lumo-agent-execution-20261114'))
 DELIVERY_JOB = 'prepare-c4-delivery'
 BUNDLE_ARTIFACT = 'lumo-connect-four-2020-delivery-bundle'
 LEARNING_AUDIT_ARTIFACT = 'lumo-connect-four-2020-learning-curriculum-audit'
@@ -50,6 +51,8 @@ DELIVERY_ASSETS = {
 REQUIRED_STEPS = {
     'connect-four-runtime': (
         'Import the exact configured native source in its own directory',
+        'Retry the acknowledged native exit after a transient Android refusal',
+        'Require bounded native Wisp feedback on the exact source',
         'Require the actual production Dart and rendered Godot two-process gate',
     ),
     'android-host-compile': (
@@ -143,7 +146,7 @@ def checked_jobs(run: dict, jobs: dict, pull: dict, binding: dict, pr_number: in
                  *, publication: bool = False) -> dict:
     source, run_id, attempt = (binding['host_source'], binding['run_id'], binding['run_attempt'])
     require(run.get('id') == run_id and run.get('run_attempt') == attempt
-            and run.get('head_sha') == source and run.get('head_branch') == BRANCH
+            and run.get('head_sha') == source and run.get('head_branch') in ALLOWED_BRANCHES
             and run.get('path') == WORKFLOW and run.get('event') == 'pull_request'
             and run.get('repository', {}).get('full_name') == REPOSITORY
             and run.get('status') == ('completed' if publication else 'in_progress')
@@ -151,7 +154,7 @@ def checked_jobs(run: dict, jobs: dict, pull: dict, binding: dict, pr_number: in
             'Delivery requires the corresponding exact C4 workflow phase/attempt')
     require(pull.get('number') == pr_number and pull.get('state') == 'open'
             and pull.get('head', {}).get('sha') == source
-            and pull.get('head', {}).get('ref') == BRANCH
+            and pull.get('head', {}).get('ref') == run.get('head_branch')
             and pull.get('head', {}).get('repo', {}).get('full_name') == REPOSITORY
             and pull.get('base', {}).get('repo', {}).get('full_name') == REPOSITORY,
             'The current same-repository C4 pull request moved or closed')

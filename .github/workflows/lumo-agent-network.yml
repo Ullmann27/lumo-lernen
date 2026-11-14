@@ -1,0 +1,14 @@
+name: LUMO Agentenstruktur pruefen
+on:
+  push:
+    branches: [chatgpt/lumo-playstore-agent-network-20261114]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-agent-tree:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/check_lumo_agent_tree.py

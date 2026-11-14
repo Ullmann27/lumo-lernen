@@ -12,7 +12,8 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114'
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114')
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
@@ -59,6 +60,10 @@ jobs:
           .c4-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           flutter pub get --enforce-lockfile
           command -v xvfb-run
+      - name: Verify historical APK source isolation before native integration
+        run: .c4-python/bin/python -m unittest discover -s scripts/tests -p 'test_verify_unchanged_apk_diagnostic.py' -v
+      - name: Verify the historical 2019 update wrapper in its own source fixture
+        run: .c4-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_update_2019_preservation.py' -v
       - name: Install the actual pinned Godot engine
         run: bash scripts/install_godot_for_build.sh
       - name: Import the exact configured native source in its own directory
@@ -77,6 +82,24 @@ jobs:
             echo 'Actual C4 source import failed' >&2
             exit 1
           fi
+      - name: Retry the acknowledged native exit after a transient Android refusal
+        run: |
+          set -euo pipefail
+          timeout 60s godot --headless --audio-driver Dummy --path native-source --script res://scripts/tests/connect_four_return_regression.gd 2>&1 | tee c4-runtime/return-recovery.log
+          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:' c4-runtime/return-recovery.log; then
+            echo 'The actual native return regression reported an engine or script failure' >&2
+            exit 1
+          fi
+          grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log
+      - name: Require bounded native Wisp feedback on the exact source
+        run: |
+          set -euo pipefail
+          timeout 180s godot --headless --audio-driver Dummy --path native-source --script res://scripts/tests/treasure_wisp_regression.gd 2>&1 | tee c4-runtime/treasure-wisps.log
+          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|ObjectDB instances leaked|resources still in use at exit' c4-runtime/treasure-wisps.log; then
+            echo 'The actual native Wisp regression reported an engine or resource failure' >&2
+            exit 1
+          fi
+          grep -Fx '[TreasureWisp] PASS checks=14' c4-runtime/treasure-wisps.log
       - name: Require the actual production Dart and rendered Godot two-process gate
         run: |
           set -euo pipefail
@@ -96,7 +119,8 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114')
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -151,9 +175,10 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114')
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114'))
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     outputs:
       candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
       candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
@@ -729,7 +754,8 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114' &&
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'integration/lumo-agent-execution-20261114') &&
       needs.verify-and-build.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.connect-four-runtime.result == 'success' &&
