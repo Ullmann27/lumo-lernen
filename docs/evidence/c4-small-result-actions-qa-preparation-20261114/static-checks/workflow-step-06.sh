@@ -1,0 +1,1 @@
+bash scripts/install_godot_for_build.sh

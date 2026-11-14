@@ -1,0 +1,65 @@
+{
+  "kind": "Godot --headless --check-only; no QA runtime execution",
+  "command": [
+    "/usr/local/bin/godot",
+    "--headless",
+    "--path",
+    "/home/agent/lumo-c4-small-modal-qa-2708/parser-source",
+    "--check-only",
+    "--script",
+    "res://scripts/tests/connect_four_small_result_actions_qa.gd"
+  ],
+  "started_utc": "2026-11-14T12:15:38.965345+00:00",
+  "seconds": 0.315,
+  "exit_code": 1,
+  "version_exit_code": 0,
+  "engine_version": "4.6.3.stable.official.7d41c59c4",
+  "version_log_sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+  "native_pin": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "complete_git_checkout": false,
+  "materialization": "All 1454 copied tracked source bytes verified against the exact pinned tree",
+  "source_before": {
+    "files": 1454,
+    "sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe"
+  },
+  "source_after": {
+    "files": 1454,
+    "sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe"
+  },
+  "origin_before": {
+    "files": 1454,
+    "sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe"
+  },
+  "origin_after": {
+    "files": 1454,
+    "sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe"
+  },
+  "overlay_before": {
+    "bytes": 16802,
+    "sha256": "2c5e4a16a39817359e8748970d41238e518e1244525e643660c6e0bd760b3288",
+    "git_blob": "92368c1e776c3b32ed2147127ea0c5d52f66df70"
+  },
+  "overlay_after": {
+    "bytes": 16802,
+    "sha256": "2c5e4a16a39817359e8748970d41238e518e1244525e643660c6e0bd760b3288",
+    "git_blob": "92368c1e776c3b32ed2147127ea0c5d52f66df70"
+  },
+  "source_unchanged": true,
+  "overlay_unchanged": true,
+  "helper": {
+    "bytes": 14782,
+    "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+    "git_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+  },
+  "log_bytes": 447,
+  "log_sha256": "ef21fb7b094d60627c00e90e563958ce3b69439e2516b7ce17a26a857ff5832a",
+  "engine_import_invoked": false,
+  "renderer_or_probe_invoked": false,
+  "frame_rate_measured": false,
+  "environment": {
+    "XDG_DATA_HOME": "/home/agent/lumo-c4-small-modal-qa-2708/parser-user-data",
+    "XDG_CONFIG_HOME": "/home/agent/lumo-c4-small-modal-qa-2708/parser-user-config",
+    "DISPLAY": null,
+    "LUMO_C4_RUNTIME_DIR": null
+  }
+}

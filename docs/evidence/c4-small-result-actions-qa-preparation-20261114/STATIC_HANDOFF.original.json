@@ -1,0 +1,706 @@
+{
+  "schema": 1,
+  "scope": "Prepared and actually statically checked separate two-action QA. No local renderer or runtime execution. CI result pending and independent.",
+  "product": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
+  },
+  "qa": {
+    "commit": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+    "tree": "f332fbe5593d1f18dba5f93e01a7d2c3112fb99e",
+    "parent": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "branch": "qa/lumo-c4-small-result-actions-20261114-2708",
+    "source_entries": [
+      {
+        "path": ".github/workflows/lumo-c4-small-result-actions-qa.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5c4b9ef0d35c73934030e472d50157c92db468fa",
+        "bytes": 4480,
+        "sha256": "4740f0e46c98b8feebfd49b5e28ebbc2a2846d57cec6eddbd3a1440447b6bd34"
+      },
+      {
+        "path": "scripts/run_connect_four_small_result_actions_qa.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d5038a4e41c5cbf45b7df7e40f936f3091cf40c5",
+        "bytes": 18764,
+        "sha256": "8fcd13fe421b9dce90fbbae6d47b6a22a23df4670004cb7cec45acd181cc0435"
+      },
+      {
+        "path": "test/games/connect_four_small_result_actions_qa.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+        "bytes": 9498,
+        "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b"
+      },
+      {
+        "path": "tools/qa/connect_four_small_result_actions_qa.gd",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+        "bytes": 16807,
+        "sha256": "2c0e7d1aedec11140dd6004c4023a63e8671de973c2cd67986f6f6efb5c44469"
+      }
+    ]
+  },
+  "actual_local_checks": {
+    "python_compile": {
+      "version": "3.12.14",
+      "exit_code": 0,
+      "runner_executed": false
+    },
+    "actionlint": {
+      "version": "1.7.12",
+      "exit_code": 0,
+      "external_shellcheck": false,
+      "external_pyflakes": false
+    },
+    "bash_syntax": {
+      "version": "5.2.37",
+      "actual_run_blocks": 5,
+      "all_exit_codes": 0
+    },
+    "dart_format_parse": {
+      "version": "3.12.2",
+      "output": "none",
+      "exit_code": 0,
+      "source_bytes_unchanged": true
+    },
+    "dart_analyzer": {
+      "attempts": 1,
+      "exit_code": 3,
+      "issues": 30,
+      "status": "BLOCKED_BY_MISSING_PACKAGES; not a passing type check",
+      "config_entries": 104,
+      "existing_package_roots": 5,
+      "packages_installed_or_stubbed": false
+    },
+    "godot_check_only": {
+      "version": "4.6.3.stable.official.7d41c59c4",
+      "old_blob": "92368c1e776c3b32ed2147127ea0c5d52f66df70",
+      "old_exit_code": 1,
+      "final_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+      "final_exit_code": 0,
+      "only_change": "var exact := ( -> var exact: bool = (",
+      "rendering_or_probe_execution": false
+    }
+  },
+  "unchanged_sources": {
+    "host_verified_materialized_files": 446,
+    "native_verified_materialized_files": 1454,
+    "full_checkout_claim": false,
+    "all_three_other_qa_files_unchanged": true
+  },
+  "actual_ci_seen": {
+    "run_id": 43594135818,
+    "attempt": 1,
+    "event": "push",
+    "head_sha": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43594135818",
+    "status_at_first_observation": "in_progress",
+    "job_id": 132444932236,
+    "terminal_result_not_claimed": true
+  },
+  "interpretation_limits": [
+    "Static syntax and source review do not establish the two lower actions work.",
+    "The missing local Dart type check must be resolved by the actual narrow CI Flutter compilation.",
+    "No APK, Android Binder/disk, 52-mode replay or measured-FPS result belongs to this handoff.",
+    "The failed original GDScript and failed clone/analyzer outputs are retained.",
+    "Root created the separate QA ref after review; frozen candidate/release allowlists were not changed."
+  ],
+  "evidence_entries": [
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/actionlint-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f689b41e26bf40b7f6b5493e046df51a33d92f2",
+      "bytes": 95,
+      "sha256": "9d34cdaec053c6005199c08f2bac628bd8c087303faa26fd8ab58c3e22216ff5"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-03.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-05.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-06.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-07.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-08.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59685567829d7e6c1d37b07ab2c9b9778f0dd22f",
+      "bytes": 308,
+      "sha256": "f21766c2171625ffe29bcbd9c8fa9bd89da3014e9ecc6ec15e477e8056e87209"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-analyzer.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "648d1ab6411b17df57ccc06b18f83ca21290506a",
+      "bytes": 5815,
+      "sha256": "476ac62764db0d7b4b851a7756be4c156f161fb87f421f407dc0c6565897fa5d"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-command-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e230afb52ebabf99dc3b85fcd1f882e3074d57ce",
+      "bytes": 1235,
+      "sha256": "68c75d89859ccab7df11a2a8336767b9f2bed5c9048692a6edd1ce03ca2a0810"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-isolation-setup.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87c9d597334460dfa0f18ba483190657734f4743",
+      "bytes": 683,
+      "sha256": "4007b2701c830a50ec88c1327c1cd8fc929cc9d713d40a923c62a5b7ae88c064"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-package-availability.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a165ce701193add8543ca412dac4aa15f9745bc",
+      "bytes": 15485,
+      "sha256": "2f979cad6d711ec786fdd05059d7a8fdd800c1a770001ee99d2a3f4786ca86f5"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-parser.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c16e5894ef92062f3554e215847cc68af567271",
+      "bytes": 271,
+      "sha256": "bdaadebc600142e62fbabdfd1d7aa11c039959fde32ad891291cc026ff518c22"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-production-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6370e8cc0fdd56bf8db82535341450d60c9ff77f",
+      "bytes": 366,
+      "sha256": "a18f9aed52e79e0c5e0eaec6666a70103d0bc8b2ee3194be4a4e5b560bdbbba1"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-production-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0baba9cc7ca860edee354fce3df11d679622bc52",
+      "bytes": 119230,
+      "sha256": "12859da1434c4e6796f27ea20cbd1cd4deabfb188ee70f53d0fbd121f2e96115"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/python-compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7105c99fc2d53299613c49eec81a93a71f931b3e",
+      "bytes": 51,
+      "sha256": "320b6aa3cd2c949b1fa7743f59b531c9971c17c1334a0625c0eb0d51c33aacc5"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/python-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21653a17c2deee727bbc899024c7c49ca70d699e",
+      "bytes": 15,
+      "sha256": "4c3569f5da09975434dd9fd9a91fadbc4367a91d8f3c3fab59e9241ab9ee4bd8"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49ca6aca348f24b2838145e987a10ea56c6ad62a",
+      "bytes": 989,
+      "sha256": "66ff1c21a8a41673f94419d1349215d079a5a268b13a5e6962b9dd767a637651"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef2f85a2402467189aeb935047444168d2d90d81",
+      "bytes": 901,
+      "sha256": "94545ef649b5ea8f79a710c3b995e7e16a60d4f11818242188f2b61156809d2d"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/static-command-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73e979e049be2ba2f79f07b1a4a4691380da502b",
+      "bytes": 2650,
+      "sha256": "1d1c6d63cd07461fc9cb2b6da6dbeee795376ae6439dfea60523307bd69793df"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-03.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c64cc51e112fedf46ea5b78de010adc98dcb17b3",
+      "bytes": 338,
+      "sha256": "e02dfccf86c25277f2cecd05e54d410086e781e3da7740d9794c970faab41adb"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-05.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "850027ccf019adb71b8ae9af024462a42502952a",
+      "bytes": 349,
+      "sha256": "22a9d2081c19ec93df625c986925f83772bb3685e3a593b3d92f1e02d30aac24"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-06.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c474adc7216893fc7be5c21e03d321bd443023f6",
+      "bytes": 39,
+      "sha256": "84cea2f3c679475d8e0d87c5aac20dfb0dca449ba132e61ddd2a59b66f820960"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-07.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57a4bc5b53fd2c9bf94859c794fd336893bbebe4",
+      "bytes": 654,
+      "sha256": "a5829a46fef87e82549c8d2825a98384e418767075f8bd39aac660beb59b6987"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-08.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe386451af205233f021ada83df42a734d9df904",
+      "bytes": 284,
+      "sha256": "e6673ff60dbfc1b0ddbf2909c597737df235840422a6e9c61e87fe215ee3e882"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/existing-push-filters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98eb50098d06a21ee2170c7ecbaed6cd56fe9c1c",
+      "bytes": 39657,
+      "sha256": "dc2e531fe5845365558c674dff718c276ecbec16e452dd3dd10fd68d9a4582b9"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/QA_PREPARATION.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d2723dde6c1095d8608ff520fbb162061452cbd",
+      "bytes": 11963,
+      "sha256": "38ac4700660349fd3ec73f26199855346f1fc5ae4fb40dccd6f9088b8349a82a"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/source-final.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0086dcbefe973f31c2aa5866d5721ad58cba2df7",
+      "bytes": 1572,
+      "sha256": "bb0e4cfd2b499cc48f3fa86f262282d4d3670b6c4abb5055819e6777fdc49144"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/prepare.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "712c365b9eefdd182b45936d36283469026842ad",
+      "bytes": 1463,
+      "sha256": "7e5c234658ce91148e404b8634399cd2920fc8c938bc14431eed82930f1c1f33"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/check-only.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e5f681dfe83713f7f7bfa7a4def3265c3163064",
+      "bytes": 447,
+      "sha256": "ef21fb7b094d60627c00e90e563958ce3b69439e2516b7ce17a26a857ff5832a"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/check-only.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "892b5c7d13534cc0691956d4ec05c1e5b8126002",
+      "bytes": 2337,
+      "sha256": "3516bace89f849cc61f771f7195879579cd8502c48f85aa6ab671b2c2260e47e"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-green/version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-green/check-only.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "771eb42085fbde88e19dbb14c6bedb74adb015d7",
+      "bytes": 73,
+      "sha256": "a9912b85473f126d3f4f63ec824170c828df3473a292f866dde86cafda5b66da"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-green/check-only.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ffd6462d2ba4312a9d7c826ab4b4209a13a347d",
+      "bytes": 2336,
+      "sha256": "c260cc82e89d1de349b8f401fa2c22bd201aab0939b6dd3cbaeb4ab3f50fe80d"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/source-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "147f1db829cda3e2cf7fdbe98bc6ccb4a8cd1fd5",
+      "bytes": 289176,
+      "sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/prepare-parser.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1abc2b3e7cfaea0b9824b3d7ff98179aa25536e",
+      "bytes": 4784,
+      "sha256": "b93e616060f2a4f16b33b10b61778a5d95b3621133a8ad2f97c54713aae381e1"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/run-parser-red.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a2926370d0ba2ba714ae48db6399e99b1d2bafb",
+      "bytes": 4394,
+      "sha256": "c9a7c8b1db70ec8a40a688d47b7fa1c9ac23f93c16f933a6b4d8bf15d958c60c"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/run-parser-green.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92462e51b9cba8d6f8012c27deca2379559e07ce",
+      "bytes": 4436,
+      "sha256": "72814e1a1b69f8b0ea71cbd8801f2ee58be4698c083c1d6656899d34ba64eb97"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "495673f773cb236cfd1303bdbcfdcb3811502be3",
+      "sha256": "8797974c8f8c2f52eee59afb02f7e61f8d7958bc77de2067d99ebe2538bf01dd"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/independent-dart-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9615ad95c2e882237fe21238a3a265e31a7f521",
+      "bytes": 5046,
+      "sha256": "3bfa58ac2d5e1acfddf1596c46d8c60b21828a6d21462f4fb075f7b975ab65d4"
+    }
+  ],
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/actionlint-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f689b41e26bf40b7f6b5493e046df51a33d92f2"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-03.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-05.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-06.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-07.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-step-08.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/bash-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59685567829d7e6c1d37b07ab2c9b9778f0dd22f"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-analyzer.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "648d1ab6411b17df57ccc06b18f83ca21290506a"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-command-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e230afb52ebabf99dc3b85fcd1f882e3074d57ce"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-isolation-setup.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87c9d597334460dfa0f18ba483190657734f4743"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-package-availability.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a165ce701193add8543ca412dac4aa15f9745bc"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-parser.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c16e5894ef92062f3554e215847cc68af567271"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-production-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6370e8cc0fdd56bf8db82535341450d60c9ff77f"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-production-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0baba9cc7ca860edee354fce3df11d679622bc52"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/dart-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/python-compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7105c99fc2d53299613c49eec81a93a71f931b3e"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/python-version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21653a17c2deee727bbc899024c7c49ca70d699e"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49ca6aca348f24b2838145e987a10ea56c6ad62a"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef2f85a2402467189aeb935047444168d2d90d81"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/static-command-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73e979e049be2ba2f79f07b1a4a4691380da502b"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-03.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c64cc51e112fedf46ea5b78de010adc98dcb17b3"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-05.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "850027ccf019adb71b8ae9af024462a42502952a"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-06.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c474adc7216893fc7be5c21e03d321bd443023f6"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-07.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57a4bc5b53fd2c9bf94859c794fd336893bbebe4"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/workflow-step-08.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe386451af205233f021ada83df42a734d9df904"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/existing-push-filters.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98eb50098d06a21ee2170c7ecbaed6cd56fe9c1c"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/QA_PREPARATION.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d2723dde6c1095d8608ff520fbb162061452cbd"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/static-checks/source-final.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0086dcbefe973f31c2aa5866d5721ad58cba2df7"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/prepare.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "712c365b9eefdd182b45936d36283469026842ad"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/check-only.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e5f681dfe83713f7f7bfa7a4def3265c3163064"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-red/check-only.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "892b5c7d13534cc0691956d4ec05c1e5b8126002"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-green/version.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-green/check-only.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "771eb42085fbde88e19dbb14c6bedb74adb015d7"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-green/check-only.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ffd6462d2ba4312a9d7c826ab4b4209a13a347d"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/source-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "147f1db829cda3e2cf7fdbe98bc6ccb4a8cd1fd5"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/prepare-parser.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1abc2b3e7cfaea0b9824b3d7ff98179aa25536e"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/run-parser-red.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a2926370d0ba2ba714ae48db6399e99b1d2bafb"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser/run-parser-green.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92462e51b9cba8d6f8012c27deca2379559e07ce"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/godot-parser-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "495673f773cb236cfd1303bdbcfdcb3811502be3"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-preparation-20261114/independent-dart-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9615ad95c2e882237fe21238a3a265e31a7f521"
+    }
+  ]
+}

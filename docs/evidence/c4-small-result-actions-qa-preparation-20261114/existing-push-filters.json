@@ -1,0 +1,1262 @@
+{
+  "source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "branch": "qa/lumo-c4-small-result-actions-20261114-2708",
+  "qa_paths": [
+    ".github/workflows/lumo-c4-small-result-actions-qa.yml",
+    "scripts/run_connect_four_small_result_actions_qa.py",
+    "test/games/connect_four_small_result_actions_qa.dart",
+    "tools/qa/connect_four_small_result_actions_qa.gd"
+  ],
+  "total_workflows": 110,
+  "push_workflows": 79,
+  "interpretation": "Python fnmatch is a conservative filter; all potential branch matches require manual review of literal GitHub filters. This is a source review, no trigger executed.",
+  "push_filters": [
+    {
+      "file": ".github/workflows/android-debug-apk.yml",
+      "git_blob": "31a75d48c6ca8d3b2bf03c84d950142bfdc756cd",
+      "push": {
+        "branches": [
+          "main"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/android-delivery.yml",
+      "git_blob": "3f3184d8981e13b463e962f19a4e483a02651c9d",
+      "push": {
+        "branches": [
+          "codex/lumo-unified-android-2026-10-03"
+        ],
+        "paths": [
+          ".github/workflows/android-delivery.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/android-integration-qa.yml",
+      "git_blob": "e1347537d54673c6930b3ca9b1c4473ba3850446",
+      "push": {
+        "branches": [
+          "codex/lumo-unified-android-2026-10-03"
+        ],
+        "paths": [
+          ".github/workflows/android-integration-qa.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/argon-source-pdfs.yml",
+      "git_blob": "6b2631c1acb56a0f9de430f6ea8665ee1f54522b",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16"
+        ],
+        "paths": [
+          "tools/argon_source_pdf.py",
+          ".github/workflows/argon-source-pdfs.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/cards-session-check.yml",
+      "git_blob": "5fe2d5704c3082dbda22834d0f8383359074a06c",
+      "push": {
+        "branches": [
+          "chatgpt/cards-resume-safety-2026-10-06"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/copilot-setup-steps.yml",
+      "git_blob": "c432108e44f35d35d3ef35502afc6cb6726bdd08",
+      "push": {
+        "paths": [
+          ".github/workflows/copilot-setup-steps.yml"
+        ]
+      },
+      "proposed_branch_match": true,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/editable-source.yml",
+      "git_blob": "ccfaec4a9605dc2e2070240fb3fa0000b0f60c00",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-complete-games-2026-10-07"
+        ],
+        "paths": [
+          ".github/workflows/editable-source.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/import-lumo-references.yml",
+      "git_blob": "68f7a3eb72d314bcd43a534dc2834f480488a11d",
+      "push": {
+        "branches": [
+          "codex/lumo-reference-assets-2026-10-10"
+        ],
+        "paths": [
+          ".github/workflows/import-lumo-references.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1918-apk-artifact.yml",
+      "git_blob": "1847e7f850d40d0925c70e1a4f4b3dce68db51a4",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1918-apk-artifact-2026-10-09"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1918-apk-artifact.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1925-apk.yml",
+      "git_blob": "642ab34ee9b96adcfcb4740747173afbcaafcb50",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1925-apk-build-2026-10-10"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1925-apk.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1926-sulafat-apk.yml",
+      "git_blob": "c122bed6b962af0fc1e7307c3c0ac27e667c8c0a",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1926-sulafat-apk-2026-10-10"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1926-sulafat-apk.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1929-runtime-repair.yml",
+      "git_blob": "23f16c6029535a8f5bc7df23fe212b493f5d66b0",
+      "push": {
+        "branches": [
+          "computer/lumo-android-1929-runtime-repair-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1929-runtime-repair.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1930-runtime-repair.yml",
+      "git_blob": "f3b260773a1baceec41d93c7dc0a828a701e0088",
+      "push": {
+        "branches": [
+          "computer/lumo-android-1930-verified-bundle-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1930-runtime-repair.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1934-runtime.yml",
+      "git_blob": "128387cbfecc311bc429630c514492d55a1dcb40",
+      "push": {
+        "branches": [
+          "sol/lumo-1934-android-delivery-2026-10-12"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1934-runtime.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1938-screenshots.yml",
+      "git_blob": "c8e294836a52c5b1d9f5cf13c4abdf5ff51a3bab",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1938-complete-integration-2026-10-12"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1938-screenshots.yml",
+          ".github/workflows/lumo-education-1938.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1939-android-recheck.yml",
+      "git_blob": "1c688db215bfc93dbe29583fced9268918fe4874",
+      "push": {
+        "branches": [
+          "sol/lumo-1939-runtime-followup-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1939-android-recheck.yml",
+          ".github/probes/lumo_1939_*.py"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1939-verified-delivery.yml",
+      "git_blob": "b9298453f047a098ecd2b7bdad8c828a8d630af9",
+      "push": {
+        "branches": [
+          "sol/lumo-1939-runtime-followup-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1939-verified-delivery.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1940-unified-probe.yml",
+      "git_blob": "6a5911f79b308d76463ca47918eb84e3434d72e5",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1940-combined-test-apk-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1940-unified-probe.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1941-unified-probe.yml",
+      "git_blob": "5c971e3827cac168baa525208f85200493ad12fb",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1941-tutor-voice-hologlass-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1941-unified-probe.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1942-family-update-probe.yml",
+      "git_blob": "16c3cb4b0656923fdf67e3a0e41a0e60dbeff702",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1942-family-preview-updates-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1942-family-update-probe.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1943-curriculum-menu-audit.yml",
+      "git_blob": "5e72a2e88556cfdda3edf5c8b600bf4518f71a59",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1943-grade-menu-content-audit-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1943-curriculum-menu-audit.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1944-mobile-learning-qa.yml",
+      "git_blob": "693cfcb3621895875f1ba0d25e9f8e9ef947cd56",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1944-mobile-learning-qa-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1944-mobile-learning-qa.yml",
+          "lib/features/sections/section_content.dart",
+          "test/section_action_responsive_test.dart \\ test/academy_grade_3_4_visible_navigation_test.dart",
+          "lib/features/teacher_mode/lumo_akademie_screen.dart",
+          "test/academy_grade_3_4_visible_navigation_test.dart",
+          "pubspec.yaml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1949-combined-apk.yml",
+      "git_blob": "ae31203c10865006a51ee8dca6b403bcae99d3f3",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1949-all-integrated-2026-10-16"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-1950-unified-visual-apk.yml",
+      "git_blob": "7c4bd40150ca1e0356f177a84a5b9764e4ff73e1",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1950-all-integrated-2026-10-16"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-1951-writing-apk.yml",
+      "git_blob": "41dab09bac9163e48f7d39e3ef7976de2bc882b5",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-schreiben-repair-1951-2026-10-16"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-1952-child-writing-apk.yml",
+      "git_blob": "97f25b36b09a81609d5084fb1aff7342f59451cd",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-writing-no-score-child-flow-1952-2026-10-16"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-1954-followup-android.yml",
+      "git_blob": "b495825f0e9c4a709efd302ebde72c0b6aaaad5a",
+      "push": {
+        "branches": [
+          "chatgpt/opus-1953-mentor-journal-followup-2026-10-16",
+          "chatgpt/lumo-1954-preserve-ui-validation-2026-10-16"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "assets/**",
+          "config/**",
+          "scripts/**",
+          "pubspec.yaml",
+          "pubspec.lock",
+          ".github/workflows/lumo-1954-followup-android.yml",
+          ".github/probes/modernization_android_tour.py"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-1954-tour-cli-contract.yml",
+      "git_blob": "c058bde801a6127d6d36629da41159522f1c7662",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-stability-1954-provenance-cli-2026-10-17"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1954-followup-android.yml",
+          ".github/workflows/lumo-1954-tour-cli-contract.yml",
+          "scripts/tests/test_android_tour_provenance_args.py",
+          ".github/probes/modernization_android_tour.py"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1955-original-ui-feedback.yml",
+      "git_blob": "b98135aa3be43735a3ce73d340eb22a8af1e55cd",
+      "push": {
+        "branches": [
+          "chatgpt/opus-1953-mentor-journal-followup-2026-10-16",
+          "chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16",
+          "chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16",
+          "claude/lumo-android-integration-m0-aloove",
+          "chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16",
+          "chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16",
+          "chatgpt/lumo-1964-abc-premium-design-2026-10-16",
+          "chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16",
+          "chatgpt/lumo-1967-sonnenhafen-crane-integrated-2026-10-17",
+          "chatgpt/lumo-1968-audio-event-channel-capture-2026-10-17",
+          "chatgpt/lumo-1958-visual-story-integration-2026-10-16"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "assets/**",
+          "config/**",
+          "scripts/**",
+          "pubspec.yaml",
+          "pubspec.lock",
+          ".github/workflows/lumo-1955-original-ui-feedback.yml",
+          ".github/workflows/lumo-unified-integration-2026.yml",
+          ".github/probes/**",
+          "tools/android_qa/**"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-1964-abc-visual.yml",
+      "git_blob": "e56cc861746334aaa9c7fc0afa589cbcd20662f4",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1964-abc-premium-design-2026-10-16"
+        ],
+        "paths": [
+          "lib/features/learning/lumo_abc_tafel_screen.dart",
+          "test/abc_premium_visual_test.dart",
+          ".github/workflows/lumo-1964-abc-visual.yml",
+          "pubspec.yaml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1965-cards-reference-hub.yml",
+      "git_blob": "675b2f715003331fd328df068f1a14fe32ac13b4",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1965-cards-reference-hub-2026-10-16"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "git_blob": "cc3f9d8f395b108d5212df601e1c0540b82504b9",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16"
+        ],
+        "paths": [
+          "test/design/parent_games_polish_test.dart",
+          ".github/probes/modernization_android_tour.py",
+          ".github/workflows/lumo-1966-cards-route-kart-qa.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1968-audio-capture-qa.yml",
+      "git_blob": "41a0ca881badb6b600d0d3166bba11b9cbe4e7cd",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1968-audio-event-channel-capture-2026-10-17"
+        ],
+        "paths": [
+          "test/design/app_tour_capture_test.dart",
+          ".github/workflows/lumo-1968-audio-capture-qa.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1980-mobile-apk-download.yml",
+      "git_blob": "7f427ac132c185a3343c4ba18dbe27eaa78ac306",
+      "push": {
+        "branches": [
+          "codex/lumo-learning-lab-2026-10-18"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1980-mobile-apk-download.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1980-publish-phone-prerelease.yml",
+      "git_blob": "ccb9f2d94774eb929d46e5be0c25e562afc6f197",
+      "push": {
+        "branches": [
+          "codex/lumo-learning-lab-2026-10-18"
+        ],
+        "paths": [
+          ".github/workflows/lumo-1980-publish-phone-prerelease.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-1981-storybook-qa.yml",
+      "git_blob": "c06a7cb3e65e8edb401c6a7cd1016176a680ec08",
+      "push": {
+        "branches": [
+          "codex/lumo-learning-lab-2026-10-18"
+        ],
+        "paths": [
+          "lib/core/lumo_story_generator.dart",
+          "lib/core/lumo_story_library.dart",
+          "lib/features/story/**",
+          "test/story_*.dart",
+          "test/design/lumo_story_actual_reader_visual_test.dart",
+          ".github/workflows/lumo-1981-storybook-qa.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-action-android-qa.yml",
+      "git_blob": "cc690b40482431e951f0bae76932dd8cc21a08a3",
+      "push": {
+        "branches": [
+          "codex/lumo-action-android-qa-2026-10-09"
+        ],
+        "paths": [
+          "tools/android_qa/**",
+          ".github/probes/**",
+          "scripts/probes/**",
+          ".github/workflows/lumo-action-android-qa.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-android-qa-followup.yml",
+      "git_blob": "37a7fec6ab05ba768c3344a62ebcd101f3b2f238",
+      "push": {
+        "branches": [
+          "codex/lumo-android-qa-followup-2026-10-08"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-astra-script-recovery.yml",
+      "git_blob": "777d8f3c3bb7dad2a0155a156c6a1f9f7d37e11b",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-astra-app-script-recovery-2026-10-18"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-atelier-visual-qa-1979.yml",
+      "git_blob": "cb660026fd41d70415b3a03e64aed2684faa3589",
+      "push": {
+        "branches": [
+          "codex/lumo-learning-lab-2026-10-18"
+        ],
+        "paths": [
+          "lib/features/learning/lab/**",
+          "test/learning_lab_runtime_test.dart",
+          "test/design/learning_lab_visual_capture_test.dart",
+          ".github/workflows/lumo-atelier-visual-qa-1979.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-complete-games.yml",
+      "git_blob": "d8ff04145e0755e343bd9d3754e845d33770ce0b",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-complete-games-2026-10-07"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "tools/**",
+          "scripts/**",
+          "config/**",
+          "assets/**",
+          "pubspec.yaml",
+          ".github/workflows/lumo-complete-games.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-complete-native.yml",
+      "git_blob": "3fc088b5b0d68fbf409d134061e37898f6553a74",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-complete-games-2026-10-07"
+        ],
+        "paths": [
+          ".github/workflows/lumo-complete-native.yml",
+          ".github/probes/creative_android_probe.py"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-complete-surface-qa.yml",
+      "git_blob": "0329d75223149b1340f855742c126216208198d5",
+      "push": {
+        "branches": [
+          "codex/lumo-android-surface-qa-2026-10-08"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-crystal-depth-integration-20261021.yml",
+      "git_blob": "c3f9c1a69a0fd63204ff197899d6ebf6d072ffad",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-crystal-depth-integration-20261021"
+        ],
+        "paths": [
+          "lib/widgets/design/lumo_answer_crystal.dart",
+          "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+          "test/design/minus_crystal_depth_regression_test.dart",
+          ".github/workflows/lumo-crystal-depth-integration-20261021.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1930.yml",
+      "git_blob": "9d8cf7c26f4d7bbde3143b3c2d28f6d506d61c8f",
+      "push": {
+        "branches": [
+          "computer/lumo-android-1930-verified-bundle-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1930.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1931.yml",
+      "git_blob": "267d1318761764aabf89eeba5f51cf51c2d5867c",
+      "push": {
+        "branches": [
+          "sol/lumo-adaptive-local-help-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1931.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1932.yml",
+      "git_blob": "0e208ba38bb03740a63194c4b667550013a00927",
+      "push": {
+        "branches": [
+          "sol/lumo-active-companion-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1932.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1934.yml",
+      "git_blob": "30be1a106f4f5bbdbf267f72632ca7d70feeaf5d",
+      "push": {
+        "branches": [
+          "sol/lumo-1934-android-delivery-2026-10-12"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1934.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1935.yml",
+      "git_blob": "41aac38e79608fef8b44ed50a409ebca81b884d0",
+      "push": {
+        "branches": [
+          "sol/lumo-1935-fold-return-2026-10-12"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1935.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1937.yml",
+      "git_blob": "052b52e5f9a52b3184fa1f00c3eb16a83ebdb50d",
+      "push": {
+        "branches": [
+          "sol/lumo-1937-content-kart-2026-10-12"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1937.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1938.yml",
+      "git_blob": "56066518d0335e02aab8d06cb9915f8d74376b4f",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1938-complete-integration-2026-10-12"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1938.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-education-1939.yml",
+      "git_blob": "9cfe577bd2fb0ac6c0df554c605b2fdf4178ce8b",
+      "push": {
+        "branches": [
+          "sol/lumo-hologlass-quality-1939-2026-10-14"
+        ],
+        "paths": [
+          ".github/workflows/lumo-education-1939.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-family-2012-publish.yml",
+      "git_blob": "c7fb5e51ba4737ab40cc110d0bd901130f01f878",
+      "push": {
+        "branches": [
+          "lumo-next/integration-20261110"
+        ],
+        "paths": [
+          ".github/workflows/lumo-family-2012-publish.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-flutter-render-readiness-contract.yml",
+      "git_blob": "2da81e35198073aaa99cfb36353a66680f49b1b6",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-flutter-render-readiness-2026-10-17"
+        ],
+        "paths": [
+          ".github/probes/flutter_surface_readiness.py",
+          ".github/probes/creative_android_probe.py",
+          ".github/probes/modernization_android_tour.py",
+          "scripts/tests/test_flutter_surface_readiness.py",
+          ".github/workflows/lumo-flutter-render-readiness-contract.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-fold-controls.yml",
+      "git_blob": "dd4fbf7d0a494c9c6ed9c368b11f843b6b86fd45",
+      "push": {
+        "branches": [
+          "chatgpt/fold-kart-controls-2026-10-07"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "tools/**",
+          "scripts/**",
+          "config/**",
+          "assets/**",
+          "pubspec.yaml",
+          ".github/workflows/lumo-fold-controls.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-free-voice-1929.yml",
+      "git_blob": "7c51f835d12ed76f8a1d00299812dbf91deca239",
+      "push": {
+        "branches": [
+          "computer/lumo-education-excellence-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/lumo-free-voice-1929.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-kart-stage2.yml",
+      "git_blob": "8e76afd68e099e4afed3da2b054d8dfa293bd950",
+      "push": {
+        "branches": [
+          "codex/lumo-kart-stage2-android-2026-10-08",
+          "codex/lumo-reference-app-2026-10-08"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "scripts/**",
+          "tools/**",
+          "config/**",
+          "assets/**",
+          "pubspec.yaml",
+          ".github/workflows/lumo-kart-stage2.yml",
+          ".github/probes/**"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-launcher-check.yml",
+      "git_blob": "4e4e8cf7f439000723edc5cd57ee262d8f60e2d2",
+      "push": {
+        "branches": [
+          "chatgpt/3d-launch-lifecycle-2026-10-07"
+        ],
+        "paths": [
+          "lib/features/lumo3d/**",
+          "test/lumo3d_launcher_lifecycle_test.dart",
+          ".github/workflows/lumo-launcher-check.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-learning-cinematic-art.yml",
+      "git_blob": "7e53088de2ede4522d42fa6ae1a4ff0f7e0577cb",
+      "push": {
+        "branches": [
+          "chatgpt/learning-tree-cinematic-qa-2026-10-09"
+        ],
+        "paths": [
+          "scripts/render_learning_island.py",
+          ".github/workflows/lumo-learning-cinematic-art.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-learning-curriculum-audit.yml",
+      "git_blob": "0bf54fe2224a74d383d3929afd56d8cd04169e7a",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-learning-curriculum-audit-20261114"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-learning-visual-fold.yml",
+      "git_blob": "06d4c116e13d305de5e0e91a69afa775ce6e5132",
+      "push": {
+        "branches": [
+          "chatgpt/learning-visual-fold-tree-2026-10-09",
+          "chatgpt/learning-tree-cinematic-qa-2026-10-09",
+          "chatgpt/learning-tablet-answer-grid-2026-10-09",
+          "chatgpt/learning-symbols-ui-2026-10-09",
+          "chatgpt/learning-number-compare-responsive-2026-10-09"
+        ],
+        "paths": [
+          "lib/features/learning/**",
+          "assets/lumo_design/learning_world/**",
+          "scripts/render_learning_island.py",
+          "pubspec.yaml",
+          "lib/features/teacher_mode/lumo_akademie_screen.dart",
+          "lib/features/lumo_welt/lumo_welt_screen.dart",
+          "lib/app/app_shell.dart",
+          "test/design/lumo_learning_tree_fold_visual_test.dart",
+          ".github/workflows/lumo-learning-visual-fold.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-modernization-apk.yml",
+      "git_blob": "7ce980aa1a400119b06853853b423ba7bf2b931a",
+      "push": {
+        "branches": [
+          "claude/lumo-lernen-kart-modernisierung-ild8i2"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "assets/**",
+          "config/**",
+          "scripts/**",
+          "pubspec.yaml",
+          "pubspec.lock",
+          ".github/workflows/lumo-modernization-apk.yml",
+          ".github/probes/modernization_android_tour.py"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-ndk-archive-contract.yml",
+      "git_blob": "82e066913444c4e2754b29eeec74f6502eb1c96d",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-stability-ndk-unknown-archive-2026-10-17"
+        ],
+        "paths": [
+          "scripts/install_ndk_for_build.sh",
+          "scripts/tests/test_install_ndk_for_build.py",
+          ".github/workflows/lumo-ndk-archive-contract.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-pr207-candidate.yml",
+      "git_blob": "d7fe98f68db21904d8ab9252ead82bf743ebaf91",
+      "push": {
+        "branches": [
+          "chatgpt/3d-launch-lifecycle-2026-10-07"
+        ],
+        "paths": [
+          ".github/workflows/lumo-pr207-candidate.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-pr207-packaging-audit.yml",
+      "git_blob": "7002546e69d573111bd2511a2a4ac0a5f630dd5c",
+      "push": {
+        "branches": [
+          "chatgpt/3d-launch-lifecycle-2026-10-07"
+        ],
+        "paths": [
+          ".github/workflows/lumo-pr207-packaging-audit.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-pr207-runtime-smoke.yml",
+      "git_blob": "5dc4f8ad1ca6f4a996e5fbd2f535492c239a621f",
+      "push": {
+        "branches": [
+          "chatgpt/3d-launch-lifecycle-2026-10-07"
+        ],
+        "paths": [
+          ".github/workflows/lumo-pr207-runtime-smoke.yml",
+          "scripts/probes/pr207_android_smoke.py",
+          "scripts/probes/pr207_android_ui_probe.py"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-progress-order-check.yml",
+      "git_blob": "5c0d587cc62410748e0ae540aa05dc2a57f2b163",
+      "push": {
+        "branches": [
+          "chatgpt/3d-launch-lifecycle-2026-10-07"
+        ],
+        "paths": [
+          "lib/core/game_progress_repository.dart",
+          "test/games/game_progress_ordering_test.dart",
+          ".github/workflows/lumo-progress-order-check.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-real-font-visual-qa.yml",
+      "git_blob": "f0315d85965da5708b17e842db26eb52c70a2119",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1977-real-font-screenshot-qa-2026-10-18"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-real-race-hud-ocr.yml",
+      "git_blob": "9deddbff99371e87a38f8b7f7ec448a7e2f2faa5",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-1978-real-hud-ocr-recovery-2026-10-18"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-repair-followup.yml",
+      "git_blob": "d900ef18a3e6e63ae56b1e97a00206626774b73f",
+      "push": {
+        "branches": [
+          "chatgpt/repair-android16-qa-2026-10-07"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-repair.yml",
+      "git_blob": "22ec54848681eb4ac22adea97834ffb5f44ee96f",
+      "push": {
+        "branches": [
+          "chatgpt/repair-opus-handoff-2026-10-07"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "scripts/**",
+          "tools/**",
+          "config/**",
+          "assets/**",
+          "pubspec.yaml",
+          ".github/workflows/lumo-repair.yml",
+          ".github/probes/**"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-review-recovery.yml",
+      "git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-2018-review-recovery-20261113"
+        ],
+        "paths": [
+          ".github/workflows/lumo-review-recovery.yml",
+          "scripts/record_nextgen_visual_review.py",
+          "scripts/tests/test_nextgen_review_recovery.py"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-runtime-apk.yml",
+      "git_blob": "140647d97e7da0f927b31c320e9b7efb3b9c24d6",
+      "push": {
+        "branches": [
+          "codex/lumo-kart-menu-1921-2026-10-10",
+          "codex/lumo-next-2026-10-10",
+          "codex/lumo-action-apk-2026-10-09",
+          "codex/lumo-apk-1910-2026-10-09",
+          "codex/lumo-runtime-apk-2026-10-08",
+          "codex/lumo-integrated-runtime-2026-10-08",
+          "chatgpt/lumo-apk-1914-qa-2026-10-09",
+          "chatgpt/learning-tree-cinematic-qa-2026-10-09",
+          "chatgpt/lumo-character-apk-1919-2026-10-09",
+          "claude/continue-previous-chat-KtY7p",
+          "codex/lumo-claude-game-entry-2026-10-09",
+          "codex/lumo-host-finish-numeric-2026-10-09",
+          "chatgpt/lumo-stabilisierung-2026-10-17"
+        ],
+        "paths": [
+          "lib/**",
+          "test/**",
+          "scripts/**",
+          "tools/**",
+          "config/**",
+          "assets/**",
+          "pubspec.yaml",
+          ".github/workflows/lumo-runtime-apk.yml",
+          ".github/probes/**"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-stabilization-contracts.yml",
+      "git_blob": "c2eb034822acffe2f54361dbd02cac624a0ee819",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-stabilisierung-nativehash-fix-2026-10-17"
+        ],
+        "paths": [
+          "tools/android_qa/native_lap_evidence_recovery.py",
+          "tools/android_qa/native_handoff_evidence_recovery.py",
+          "scripts/verify_legacy_release_pin.py",
+          "scripts/tests/test_native_source_bindings.py",
+          "scripts/tests/test_legacy_release_pin.py",
+          ".github/workflows/lumo-1950-unified-visual-apk.yml",
+          ".github/workflows/lumo-1951-writing-apk.yml",
+          ".github/workflows/lumo-1952-child-writing-apk.yml",
+          ".github/workflows/lumo-stabilization-contracts.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-sulafat-ci.yml",
+      "git_blob": "14db9d1297318239f27163ec4afa53490cd42746",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-sulafat-everywhere-2026-10-10",
+          "computer/lumo-education-excellence-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/lumo-sulafat-ci.yml",
+          "assets/audio/voice/lumo/**",
+          "lib/core/lumo_voice.dart",
+          "lib/core/lumo_sulafat_client.dart",
+          "lib/core/lumo_speech_readiness.dart",
+          "lib/widgets/lumo_speech_controls.dart",
+          "lib/features/settings/settings_content.dart",
+          "lib/features/settings/lumo_voice_diagnostics_card.dart",
+          "lib/features/games/mini_games/lesson_trail_game.dart",
+          "test/lumo_sulafat_client_test.dart",
+          "test/lumo_voice_clips_test.dart",
+          "test/lumo_speech_readiness_test.dart",
+          "test/lumo_speech_matrix_test.dart",
+          "test/design/lumo_sulafat_controls_capture_test.dart",
+          "test/helpers/lumo_native_audio_harness.dart",
+          "server/lumo-ai-proxy/**"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/lumo-unified-integration-2026.yml",
+      "git_blob": "99a18f4d28a41e46a75deae966ed9255bcd5fb14",
+      "push": {
+        "branches": [
+          "chatgpt/lumo-lernen-kart-unified-2026-10-15",
+          "chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15",
+          "chatgpt/lumo-technical-art-host-20261111",
+          "chatgpt/lumo-2016-host-integration-20261111",
+          "chatgpt/lumo-spielewelt-stage-20261112"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/lumo-video-quality.yml",
+      "git_blob": "df78d3726c8b601f7f76e009cd44e0bd492037d0",
+      "push": {
+        "branches": [
+          "chatgpt/kart-video-quality-2026-10-07"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": true
+    },
+    {
+      "file": ".github/workflows/publish-kart-1928-technical-test.yml",
+      "git_blob": "a47ab6c3127bf3ab8a2efa525673b9a290bd54be",
+      "push": {
+        "branches": [
+          "computer/lumo-kart-android-1928-2026-10-11"
+        ],
+        "paths": [
+          ".github/workflows/publish-kart-1928-technical-test.yml"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    },
+    {
+      "file": ".github/workflows/release-apk.yml",
+      "git_blob": "7db04919bdc8777389a8538c32202b9b77a4d4db",
+      "push": {
+        "branches": [
+          "copilot/5979796457-update-integrationsaudit",
+          "chatgpt/lumo-aaa-kart-integration-2026-10-10",
+          "chatgpt/lumo-onboarding-voice-1924-2026-10-10"
+        ],
+        "paths": [
+          ".github/workflows/release-apk.yml",
+          "config/godot-source.json",
+          "pubspec.yaml",
+          "lib/features/onboarding/**",
+          "lib/core/lumo_voice.dart",
+          "test/onboarding_visual_capture_test.dart",
+          "test/lumo_voice_clips_test.dart"
+        ]
+      },
+      "proposed_branch_match": false,
+      "four_path_match": false
+    }
+  ],
+  "downstream_workflow_events": [],
+  "other_event_counts": {
+    "workflow_dispatch": 98,
+    "push": 79,
+    "pull_request": 49
+  },
+  "all_branch_patterns_are_literals": true,
+  "no_branch_ignore_or_tag_only_push_filters": true,
+  "trigger_scope": "Exact aab09275 workflow bytes only; proposed four-file QA child commit, no pull request, no dispatch, no ref update performed."
+}

@@ -1,0 +1,20 @@
+{
+  "candidate": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "branch": "qa/lumo-c4-small-result-actions-20261114-2708",
+  "workflow_count": 110,
+  "push_count": 79,
+  "branch_candidates": [
+    {
+      "path": ".github/workflows/copilot-setup-steps.yml",
+      "branches": null,
+      "branches_ignore": [],
+      "paths": [
+        ".github/workflows/copilot-setup-steps.yml"
+      ],
+      "paths_ignore": null,
+      "branch_can_match_by_fnmatch": true
+    }
+  ],
+  "workflow_run_or_call": [],
+  "scope": "Read-only independent enumeration; only branch candidates require an explicit path check. No ref or workflow started."
+}

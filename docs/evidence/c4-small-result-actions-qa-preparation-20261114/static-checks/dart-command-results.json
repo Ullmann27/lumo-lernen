@@ -1,0 +1,39 @@
+[
+  {
+    "name": "dart-version",
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "cwd": "/home/agent/lumo-c4-small-modal-qa-2708/static-host-files",
+    "exit_code": 0,
+    "timeout_seconds": 20,
+    "log": "dart-version.log"
+  },
+  {
+    "name": "dart-parser",
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+      "format",
+      "--output=none",
+      "/home/agent/lumo-c4-small-modal-qa-2708/static-host-files/test/games/connect_four_small_result_actions_qa.dart"
+    ],
+    "cwd": "/home/agent/lumo-c4-small-modal-qa-2708/static-host-files",
+    "exit_code": 0,
+    "timeout_seconds": 30,
+    "log": "dart-parser.log"
+  },
+  {
+    "name": "dart-analyzer",
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+      "analyze",
+      "--no-fatal-warnings",
+      "/home/agent/lumo-c4-small-modal-qa-2708/static-host-files/test/games/connect_four_small_result_actions_qa.dart"
+    ],
+    "cwd": "/home/agent/lumo-c4-small-modal-qa-2708/static-host-files",
+    "exit_code": 3,
+    "timeout_seconds": 60,
+    "log": "dart-analyzer.log"
+  }
+]

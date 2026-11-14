@@ -1,0 +1,9 @@
+$ ['git', 'clone', '--shared', '--no-checkout', '/home/agent/lumo-host-preflight-2708', '/home/agent/lumo-c4-small-modal-qa-2708/static-host']
+Cloning into '/home/agent/lumo-c4-small-modal-qa-2708/static-host'...
+remote: warning: lazy fetching disabled; some objects may not be available        
+remote: fatal: could not fetch ddab539b4521bbb8b4d60ad86077e08efa4209c1 from promisor remote        
+error: git upload-pack: git-pack-objects died with error.
+fatal: git upload-pack: aborting due to possible repository corruption on the remote side.
+remote: aborting due to possible repository corruption on the remote side.
+fatal: early EOF
+fatal: fetch-pack: invalid index-pack output

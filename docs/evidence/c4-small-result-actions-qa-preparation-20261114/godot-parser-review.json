@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "subject": "Actual authorized static Godot parser red/green for the separate small-result-actions QA overlay",
+  "production": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "product_files_changed": false
+  },
+  "old_overlay": {
+    "bytes": 16802,
+    "sha256": "2c5e4a16a39817359e8748970d41238e518e1244525e643660c6e0bd760b3288",
+    "git_blob": "92368c1e776c3b32ed2147127ea0c5d52f66df70"
+  },
+  "final_overlay": {
+    "bytes": 16807,
+    "sha256": "2c0e7d1aedec11140dd6004c4023a63e8671de973c2cd67986f6f6efb5c44469",
+    "git_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f"
+  },
+  "only_source_change": {
+    "line": 70,
+    "before": "var exact := (",
+    "after": "var exact: bool = (",
+    "logic_or_assertions_changed": false
+  },
+  "materialization": {
+    "complete_git_checkout": false,
+    "git_directory_copied": false,
+    "source_fetch_performed": false,
+    "tracked_files": 1454,
+    "missing_selected_paths": [],
+    "exact_pinned_file_inventory_sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe",
+    "physical_private_existing_import_cache_copy": true,
+    "engine_import_invoked": false,
+    "original_owned_source_also_verified_before_after": true
+  },
+  "inherited_helper": {
+    "bytes": 14782,
+    "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+    "git_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+  },
+  "parser": {
+    "executable": "/usr/local/bin/godot",
+    "version": "4.6.3.stable.official.7d41c59c4",
+    "identical_command": [
+      "/usr/local/bin/godot",
+      "--headless",
+      "--path",
+      "/home/agent/lumo-c4-small-modal-qa-2708/parser-source",
+      "--check-only",
+      "--script",
+      "res://scripts/tests/connect_four_small_result_actions_qa.gd"
+    ],
+    "red": {
+      "started_utc": "2026-11-14T12:15:38.965345+00:00",
+      "seconds": 0.315,
+      "exit_code": 1,
+      "reason": "Cannot infer the type of \"exact\" variable because the value does not have a set type",
+      "source_line": 70,
+      "log_sha256": "ef21fb7b094d60627c00e90e563958ce3b69439e2516b7ce17a26a857ff5832a"
+    },
+    "green": {
+      "started_utc": "2026-11-14T12:17:13.182451+00:00",
+      "seconds": 0.315,
+      "exit_code": 0,
+      "log_sha256": "a9912b85473f126d3f4f63ec824170c828df3473a292f866dde86cafda5b66da",
+      "log_contains_only_engine_banner": true
+    },
+    "all_tracked_source_before_after_identical": true,
+    "each_overlay_before_after_identical": true
+  },
+  "evidence": [
+    {
+      "path": "godot-parser-red/prepare.json",
+      "bytes": 1463,
+      "sha256": "7e5c234658ce91148e404b8634399cd2920fc8c938bc14431eed82930f1c1f33",
+      "git_blob": "712c365b9eefdd182b45936d36283469026842ad"
+    },
+    {
+      "path": "godot-parser-red/version.log",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "godot-parser-red/check-only.log",
+      "bytes": 447,
+      "sha256": "ef21fb7b094d60627c00e90e563958ce3b69439e2516b7ce17a26a857ff5832a",
+      "git_blob": "0e5f681dfe83713f7f7bfa7a4def3265c3163064"
+    },
+    {
+      "path": "godot-parser-red/check-only.json",
+      "bytes": 2337,
+      "sha256": "3516bace89f849cc61f771f7195879579cd8502c48f85aa6ab671b2c2260e47e",
+      "git_blob": "892b5c7d13534cc0691956d4ec05c1e5b8126002"
+    },
+    {
+      "path": "godot-parser-green/version.log",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "godot-parser-green/check-only.log",
+      "bytes": 73,
+      "sha256": "a9912b85473f126d3f4f63ec824170c828df3473a292f866dde86cafda5b66da",
+      "git_blob": "771eb42085fbde88e19dbb14c6bedb74adb015d7"
+    },
+    {
+      "path": "godot-parser-green/check-only.json",
+      "bytes": 2336,
+      "sha256": "c260cc82e89d1de349b8f401fa2c22bd201aab0939b6dd3cbaeb4ab3f50fe80d",
+      "git_blob": "0ffd6462d2ba4312a9d7c826ab4b4209a13a347d"
+    },
+    {
+      "path": "godot-parser/source-inventory.json",
+      "bytes": 289176,
+      "sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe",
+      "git_blob": "147f1db829cda3e2cf7fdbe98bc6ccb4a8cd1fd5"
+    },
+    {
+      "path": "godot-parser/prepare-parser.py",
+      "bytes": 4784,
+      "sha256": "b93e616060f2a4f16b33b10b61778a5d95b3621133a8ad2f97c54713aae381e1",
+      "git_blob": "d1abc2b3e7cfaea0b9824b3d7ff98179aa25536e"
+    },
+    {
+      "path": "godot-parser/run-parser-red.py",
+      "bytes": 4394,
+      "sha256": "c9a7c8b1db70ec8a40a688d47b7fa1c9ac23f93c16f933a6b4d8bf15d958c60c",
+      "git_blob": "6a2926370d0ba2ba714ae48db6399e99b1d2bafb"
+    },
+    {
+      "path": "godot-parser/run-parser-green.py",
+      "bytes": 4436,
+      "sha256": "72814e1a1b69f8b0ea71cbd8801f2ee58be4698c083c1d6656899d34ba64eb97",
+      "git_blob": "92462e51b9cba8d6f8012c27deca2379559e07ce"
+    }
+  ],
+  "independent_dart_source_review": {
+    "blob": "d9615ad95c2e882237fe21238a3a265e31a7f521",
+    "reviewed_dart_blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+    "status": "source-only contract review; no Dart execution by this worker"
+  },
+  "limits": [
+    "The original 92368 parser failure is preserved; it is not described as a dependency failure.",
+    "The successful cc9ef check establishes parsing only. It does not establish that either QA result-action case runs successfully.",
+    "No runtime probe, rendered-frame capture, import, Android, FPS or full native gate was executed by this worker during this static check.",
+    "The isolated source is a verified materialized copy, not a claimed complete Git checkout.",
+    "This worker changed no production source, repository ref or commit."
+  ]
+}
