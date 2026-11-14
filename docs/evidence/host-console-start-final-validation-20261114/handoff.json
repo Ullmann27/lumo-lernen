@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "pack": "/tmp/host-console-5676495b-targeted-validation-20261114",
+  "head": "5676495b331bc5a41d5ff78259f7165cf25d100a",
+  "tree": "f6f7d30eeb8ace2eb546fd2d952834d2bbd68a1f",
+  "tests": {
+    "methods": 25,
+    "passed": 25,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "actionlint": {
+    "workflows": 4,
+    "returncode": 0
+  },
+  "source_count": 27,
+  "source_and_git_state_unchanged": true,
+  "result": {
+    "path": "result.json",
+    "sha256": "23f52657cd46bf8cad5812386663f8cdb720a9befb7e051cab28f21affba65e3"
+  },
+  "scope": "Only the authorized combined local contracts. Real API37/AF_UNIX CI remains required."
+}

@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 822,
+      "sha256": "caf825a9357e84dcefc22c5c3e602283eed6d9cc9a57e43d978615df3678d0af"
+    },
+    {
+      "path": "actionlint-execution.json",
+      "bytes": 874,
+      "sha256": "5c974db9b0df2c4929baf7ba9d2b958ccf8c930ec29c0da5595d1d494094f69f"
+    },
+    {
+      "path": "actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "combined-contracts-execution.json",
+      "bytes": 859,
+      "sha256": "99e549dd15917fc6e1ba168659e07dadb7a0a3194fcca3ab0b3d82128c9e210a"
+    },
+    {
+      "path": "combined-contracts.log",
+      "bytes": 5420,
+      "sha256": "f1f664ca475e14daa77bcba0b790542a1adcb12444b45f788c024c038c722a58"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 675,
+      "sha256": "70207fb49fa431cbe8d51b1143b612b69026c84623ba506cdf8099df1fb0567a"
+    },
+    {
+      "path": "input-freezes.json",
+      "bytes": 579,
+      "sha256": "a644624bc06a1805d045aaf5864e1e5a3ee8106355edda5a157b35be72ac75d6"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2948,
+      "sha256": "23f52657cd46bf8cad5812386663f8cdb720a9befb7e051cab28f21affba65e3"
+    },
+    {
+      "path": "run_validation.py",
+      "bytes": 9958,
+      "sha256": "65327320ca3562f737bebd401214864c7583d6ddfcbbe3298f0cc88b28414c1c"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 9749,
+      "sha256": "42991d8ff2a52185c7286e3c5d2895a42126c032981935ee8fb377b6a2c680fc"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 9749,
+      "sha256": "63951981d7731e2fdf4591edfb6bb3f40da9b17315cef1c48b671b01d3b3c199"
+    }
+  ]
+}
