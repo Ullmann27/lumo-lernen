@@ -1,3 +1,71 @@
+# Activate the checked Hub, native notices and Garage connection
+
+Updated: 2026-11-14. This documentation-only activation follows exact Host
+`9f2f3690caacadbe7ced363f0e810f0cc0b5eb9b`, tree
+`4159e7ab2212aca6e3347aa5f08544bdfdb30c26`. Version remains 0.13.8+2020.
+The actual new complete C4 run must bind the activating successor, its own
+attempt and original artifacts. No complete new Android result is claimed here.
+
+## Integrated behavior and actual focused evidence
+
+The existing Flutter games hub now exposes the guarded 56dp native 3D world
+entry while retaining all 11 original portals. The exact predecessor Hub 036e
+passed six Flutter cases and real Android host compilation in run 43609106020.
+That focused result is retained with its original source identity.
+
+All three current native identity locations bind
+`2281d990fb584db6f2cf786da8fec3badc2d9585`, tree
+`d7e0128afbda641cb92e29c41a8839d901ef5b43`. All 50 historical pin values
+remain identical. One actual 1158-source invocation passed all 64 existing
+Candidate/Legacy contracts without failures or skips. The new Native Android
+export explicitly retains the three existing attribution/notice texts, removes
+six stale references to absent model files and restores the unchanged web
+bundle script executable mode. A real Godot 4.6.3 export plus separate PCK
+reader confirms all three texts byte-identical to their original Gitblobs.
+A separately bound fresh baf export contains none of these three members;
+this does not assert a retrospective inspection of a historical shipped APK.
+
+Garage input now derives a short gesture from the current observed list clip,
+workshop outline and scrollbar. Complete unambiguous interior captions and
+two current observations remain mandatory before a vehicle tap. The original
+Boru word parser, driver/cup/save/continue functions and standalone pause
+caption guard remain unchanged. The six complete relevant/neighbor suites
+ran once on 9f2f: **103 PASS, 0 failure/error/skip, exit 0**, 86.912749 seconds
+wall time. All 4545 index paths, 1677 materialized files, HEAD/tree, flags,
+raw index and Git status remained unchanged. These are source/image replays;
+they do not substitute for the actual new Android tour.
+
+Originals are retained in
+[Garage acceptance](docs/evidence/host9f2f-garage-acceptance-20261114/),
+[Native PCK comparison](docs/evidence/native2281-packaging-acceptance-20261114/),
+[64 pin contracts](docs/evidence/host1158-pin-acceptance-20261114/) and
+[Hub CI originals](docs/evidence/hub036-accepted-source-20261114/).
+
+## Required complete acceptance
+
+The C4 workflow and its 150/80-minute outer budgets remain byte-identical.
+All individual deadlines, 52 native modes / 17 rasters, Dream and Discovery
+gates, Village, signed ARM64/x86 identity, actual Android C4/main tour and
+2017-to-2020 preserved-data upgrade remain mandatory. Writer, InkSurface,
+Journal, child profiles, learning state and exact publication verifier are
+unchanged. PR485 and the protected Main branch retain their established roles.
+
+The preceding 0b7/baf run 43604903064 has actually completed Runtime, Host
+compile, 2608 Flutter cases, 877 build/preservation methods, 994 Android-QA
+methods and the complete
+Native/Dream/Discovery stages, then signed APK build and hash verification.
+Its Build job 132478533146 ended SUCCESS at 16:03:00 UTC. Its Android/update
+jobs had only just started at activation preparation. Those original results
+remain bound to 0b7/baf and do not approve this new successor.
+
+The separate publisher source remains 72143d3586109967773d6442072d486c11dc1449,
+with its actual 32 isolated tests and corrected absolute-path workflow plan.
+Activation requires the actual final successful seven-job candidate, its
+original delivery bundle ID/digest/size, current PR head and fresh full
+release/tag checks. No public APK URL is approved before public-byte verification.
+
+## Preserved preceding records
+
 # Fortsetzung: separaten Hub-Anschluss tatsächlich qualifizieren
 
 Aktueller Folge-Quellcheckpoint: `1735ef3e9010f2d28b9dbff087a03730bdc6ca8a`, Tree `7a7f92e16d2157dfe8f87b5cc26815ae06c8f000`. Dieser Branch erhält die 0b7-Quelle und ergänzt ausschließlich den bestehenden Flutter→Android→Godot-Spielwelteinstieg.

@@ -1,0 +1,240 @@
+{
+  "schema": 1,
+  "reviewer": "/root/pipeline_repair",
+  "reviewed_at": "2026-11-14 16:01:56 UTC",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_FOUND_IN_FROZEN_THREE_WAY_GARAGE_DELTA",
+  "scope": "Independent read-only review of two production paths, three associated test paths and nine published original fixture paths; source inspection only, no test imports/execution, OCR replay, new device capture, CI call for the historical diagnostic, source edit or Git mutation.",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/source-freeze.json",
+    "sha256": "c6890e5009cba9840991e914bfc77ad03413f9280f44e3b57b1ff32011048485"
+  },
+  "source_binding": {
+    "base": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "base_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+    "identical_existing_source": "1158c620b1dedba5dfeaab049948ef4cc6458bab",
+    "producer_head": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+    "producer_observer_commit": "17f836d945e6f0b610da13fad8bf15798d0cad49",
+    "root_published_checkpoint": "9f2f3690caacadbe7ced363f0e810f0cc0b5eb9b",
+    "root_published_tree": "4159e7ab2212aca6e3347aa5f08544bdfdb30c26",
+    "published_checkpoint_source": "Parent notification; this review did not independently fetch that commit."
+  },
+  "frozen_files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 78635,
+      "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+      "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "bytes": 31013,
+      "sha256": "287d12f156ec7839b3d8bb2999fca825f7e2b1775b93fcd801a3c4087578dd8f",
+      "git_blob": "b80f0d8f12fe86031a91cec39c26f9d1cfa65a94"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 22706,
+      "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9",
+      "git_blob": "eda8fe14e9a75356edcf459056b4087b432d4f94"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png",
+      "bytes": 787513,
+      "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc",
+      "git_blob": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 20831,
+      "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7",
+      "git_blob": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png",
+      "bytes": 784333,
+      "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a",
+      "git_blob": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json",
+      "bytes": 9872,
+      "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10",
+      "git_blob": "14ca066b61781ebca9657fcd30267d75c3724a6c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 19788,
+      "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60",
+      "git_blob": "bdbbb2901f426444c34544ee13ddc30ec202cc40"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png",
+      "bytes": 766810,
+      "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf",
+      "git_blob": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 20551,
+      "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc",
+      "git_blob": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png",
+      "bytes": 761351,
+      "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff",
+      "git_blob": "7785a71aca44a5dd567c6fab62251d7f0cefb887"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 31326,
+      "sha256": "cad2a5b39eeb118b3419aca07ad9bee1356d20af3af4c1bca8dde611d13a48b0",
+      "git_blob": "84469b5d3ba41c68b4d193396a444fe2192b55f1"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "bytes": 27545,
+      "sha256": "c6a88af95fab0bd5d1ac0dd41b42a985cc72051d19e803ed766ef0e793d4bec9",
+      "git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "bytes": 17208,
+      "sha256": "44c2b05f9099eaf13dd8e9811bacb946be58c58c849e76d6d1e042dd2d888206",
+      "git_blob": "ea3da4bb07f125df63ab4a88d011999beeef4827"
+    }
+  ],
+  "independent_byte_and_ast_checks": {
+    "four_existing_source_bytes_equal_0b7_and_1158": [
+      ".github/probes/modernization_android_tour.py",
+      "tools/android_qa/kart_garage_evidence.py",
+      "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "tools/android_qa/tests/test_kart_scroll_word_evidence.py"
+    ],
+    "nine_fixture_files_equal_published_producer_copy": 9,
+    "fixture_source_json_binds_all_selected_original_png_ocr_bytes": true,
+    "native_three_sources_equal_bebf_2281_and_14_name_order_exact": true,
+    "static_method_counts": {
+      "tools/android_qa/tests/test_kart_garage_evidence.py": 25,
+      "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": 24,
+      "tools/android_qa/tests/test_kart_scroll_word_evidence.py": 14,
+      "tools/android_qa/tests/test_kart_driver_word_evidence.py": 9,
+      "tools/android_qa/tests/test_native_surface_readiness.py": 22
+    },
+    "tests_executed": false,
+    "production_preservation": [
+      {
+        "path": ".github/probes/modernization_android_tour.py",
+        "unchanged": [
+          "diagnostic_logcat_context",
+          "logcat_fatal",
+          "alive",
+          "godot_alive",
+          "try_tap",
+          "labels",
+          "_atelier_roundtrip",
+          "_simplify",
+          "_screencap",
+          "_shot",
+          "verify_apk_identity",
+          "_read_garage_footer",
+          "_select_stage_driver",
+          "_stage_cup_text",
+          "_return_stage_kart_menu",
+          "_inspect_spatial_kart_menu",
+          "_previous_kart_race_id",
+          "_confirm_stage_selection",
+          "_start_actual_embedded_race",
+          "RaceSession.__init__",
+          "RaceSession.in_folder",
+          "RaceSession.read",
+          "wait_race_running",
+          "_pause_actual_race",
+          "_continue_actual_race",
+          "wait_race_hud",
+          "find_gas",
+          "drive_with_gas",
+          "log_images",
+          "main"
+        ],
+        "changed": [
+          "_stage_kart_scroll_recovery",
+          "_select_stage_kart"
+        ],
+        "added": [],
+        "removed": []
+      },
+      {
+        "continue_byte_identical_and_standalone_caption_true": true,
+        "sha256": "c55d47bce3b7f57b57d24e1fe2ca0e2dc2a43d52241c2ced10a024c4a8aa0210"
+      },
+      {
+        "path": "tools/android_qa/kart_garage_evidence.py",
+        "unchanged": [
+          "demand",
+          "require_selected_race",
+          "selected_race_readiness",
+          "require_resumed_progress",
+          "normalize",
+          "stage_cup_target_observation",
+          "stage_driver_word_observations",
+          "stage_driver_target_observation",
+          "stage_garage_word_observations"
+        ],
+        "changed": [
+          "stage_garage_scroll_observation"
+        ],
+        "added": [
+          "_observed_caption",
+          "_observed_scrollbar",
+          "_workshop_outline",
+          "stage_kart_target_observation"
+        ],
+        "removed": []
+      },
+      {
+        "whole_word_parser_byte_identical": true,
+        "sha256": "cea606fb59973e46b0c95e05f8c50cd2b8e3c4afe74f7d20392d02e6bd3dfb65"
+      }
+    ],
+    "additional_unchanged_pause_caption_tests": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/protected-originals/tools/android_qa/tests/test_kart_continue_caption.py",
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+      "static_test_methods": 9
+    }
+  },
+  "observations": [
+    "The actual list clip is derived from the current PNG's unique workshop outline, scrollbar track and thumb; exact current Karts/workshop/start captions and landscape/full-surface evidence remain required. The old tab/footer rectangle no longer defines the gesture area.",
+    "Both production files are integrated against the exact existing 0b7/1158 bytes. The whole stage_garage_word_observations function is byte-identical. Its contiguous known-name, original-TSV, confidence, bounds and ambiguity checks are retained and can guide only scrolling.",
+    "Scroll authorization requires two observations with different frame names, equal dimensions, stable clip/gesture/track/thumb and direction, stable original word evidence where used, unchanged current and previous PNG hashes, no more than five gestures, positive remaining time immediately before ADB and a strict post-input deadline check.",
+    "The new selection caller gathers all caption regions, requires a complete exact requested name strictly inside the actual clip, rejects distinct repeated target regions, resets stability after missing targets or viewport movement, uses the unchanged target_observation helper and verifies the current PNG again immediately before input.",
+    "A missing or clipped card caption may support only an observed bounded scroll. The source does not infer a target tap from scrollbar position, fleet order, partial names or word-fallback evidence.",
+    "The native 14-name order and three relevant source files are byte-bound to the preserved bebf and current 2281 copies; the two personally viewed original images corroborate different horizontal insets, a clipped caption, the narrow scrollbar and the fixed workshop area.",
+    "Unchanged main-tour functions still require a fresh real race selection/save, RUNDE/GAS, physical movement, pause/continue and subsequent save identity. _continue_actual_race remains byte-identical with standalone_caption=True.",
+    "All 24 new test methods were read, including current/previous image substitution, two scrollbars, JPEG rejection, missing anchors, changing viewport, deadlines, incomplete or duplicated names, and observation sequencing. Their empty TSV headers are explicitly synthetic for pixel-only cases; the existing 14-case Boru suite retains real TSV fixture bytes."
+  ],
+  "visual_originals_seen": [
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png",
+      "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a",
+      "finding": "Requested caption is clipped at the list's upper boundary; no complete target should be inferred."
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png",
+      "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf",
+      "finding": "Different left inset and a complete Comet card above the fixed workshop; no hard-coded touch position used by the production patch."
+    }
+  ],
+  "limitations": [
+    "No new Android gesture or current-candidate acceptance was performed by this reviewer.",
+    "The older successful diagnostic cited by the producer belongs to another host/native pair and does not establish success for 0b7, 1158 or 9f2f.",
+    "Fixture bytes were checked against the preserved published producer copies and source.json; this reviewer did not download the historical artifact ZIPs.",
+    "Pixel color/geometry recognition remains intentionally source-specific and fail-closed if the real surface changes.",
+    "The first broad diff read was tool-output-truncated and was rejected by an independent hash check. The two complete production diffs and relevant complete test/dependency texts were subsequently read separately with hash validation; no conclusion relies on the truncated text.",
+    "The current 0b7 C4 run is a separate ongoing build and is not evidence that these new source bytes have run."
+  ],
+  "tests_executed": 0,
+  "device_runs": 0,
+  "source_writes": false,
+  "remote_mutations": false
+}
