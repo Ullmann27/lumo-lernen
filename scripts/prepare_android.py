@@ -71,6 +71,11 @@ def validate_distribution(root: Path, distribution: str, side_by_side: bool):
     namespace = re.search(r'namespace\s*=\s*"([^"]+)"', gradle)
     if namespace is None or namespace.group(1) != 'dev.ullmann.lumo.lumo_lernen':
         raise ValueError('Play distribution requires the canonical Lumo application namespace')
+    validate_play_signing(root)
+
+
+def validate_play_signing(root: Path):
+    """Validate external signing inputs before an Android scaffold is created."""
     required = ('LUMO_PLAY_STORE_FILE', 'LUMO_PLAY_STORE_PASSWORD',
                 'LUMO_PLAY_KEY_ALIAS', 'LUMO_PLAY_KEY_PASSWORD')
     missing = [name for name in required if not os.environ.get(name)]
