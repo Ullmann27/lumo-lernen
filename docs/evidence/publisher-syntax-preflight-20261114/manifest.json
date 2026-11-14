@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "status": "PASS_SYNTAX_ONLY",
+  "source_commit": "bb5aa0e58355d29258392693674c5144079b9e6b",
+  "source_blob": "04247c39f61e138bcca767447b1b0bec5aeac611",
+  "source_state": "SUPERSEDED; original binding unchanged; no activation",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2715,
+      "sha256": "e84961e51e6241047eb14b07632b8e95ee53054a8bf61fb9aa99953d7ef32928",
+      "git_blob": "e8d46418fa33804945e454d1a715208625a32b2b"
+    },
+    {
+      "path": "bash/step-02.sh",
+      "bytes": 2048,
+      "sha256": "c70db1c26023d429f3c44e8e813e15e50cd375906a7b05d477f308ea1e67af1c",
+      "git_blob": "e8a801eed8c686be9087abe42ed83b5b582592d9"
+    },
+    {
+      "path": "bash/step-03.sh",
+      "bytes": 1338,
+      "sha256": "8a74c5261391ff514a46912d5bfce12710455995ada33fdd2de78f1d47ab56b7",
+      "git_blob": "10466bffc746c8ee3c1b0ec030f494de47d2dd74"
+    },
+    {
+      "path": "bash/step-06.sh",
+      "bytes": 4337,
+      "sha256": "1e0defb8c648ff92e4d439aeb9826f1a976a34142263b8ccfcff18a6f3c994ec",
+      "git_blob": "99b3f02bb011e9724d3845627966e3fe37b40a0a"
+    },
+    {
+      "path": "bash/step-07.sh",
+      "bytes": 1217,
+      "sha256": "12bc067a447e0ec41e2df199842f61c90054a378c00409a5470cf3bdf226a659",
+      "git_blob": "37174588be507654f37f455cfef46120dea0f5fb"
+    },
+    {
+      "path": "bash/step-08.sh",
+      "bytes": 745,
+      "sha256": "15735dec6e701da052b3a7e4b084ef3f1c127c7e60dfff345da54e55e41476ca",
+      "git_blob": "525d5b494c8abe76aacc69b1fd4b4bc251110bd3"
+    },
+    {
+      "path": "bash/step-09.sh",
+      "bytes": 1748,
+      "sha256": "b70758d76e49b913414c8dfec0377c25b8512ea9d5a260846afe546a0adb44fb",
+      "git_blob": "2749e877027f20a2556309841f5a4ad3993cfd03"
+    },
+    {
+      "path": "bash/step-10.sh",
+      "bytes": 636,
+      "sha256": "847959ecab4e7861816bf7b44410bd7c77b24fb2f10c975921d7e72c8add9389",
+      "git_blob": "1673a625e226e400fac5675ea2c81d4b7172ac71"
+    },
+    {
+      "path": "bash-version.txt",
+      "bytes": 308,
+      "sha256": "f21766c2171625ffe29bcbd9c8fa9bd89da3014e9ecc6ec15e477e8056e87209",
+      "git_blob": "59685567829d7e6c1d37b07ab2c9b9778f0dd22f"
+    },
+    {
+      "path": "invocation.json",
+      "bytes": 437,
+      "sha256": "76b2a262a7a8350c349fb5443d2602ee9726e53563a58d714d42d580eb429dc7",
+      "git_blob": "b09d002f375f8fe68e980c99b754736462f4f041"
+    },
+    {
+      "path": "original-commit-response.json",
+      "bytes": 1238,
+      "sha256": "3532901039417cc490e1269f804e27565f3a96abf1762fd207f916456a4dfeb4",
+      "git_blob": "f795da3d1ebab23e715a527025cadc7e97af3e6d"
+    },
+    {
+      "path": "original-publisher.yml",
+      "bytes": 16753,
+      "sha256": "78c923eda6436ebffa073c519b226e7e3f33c973b34b792429340e9277bf55ab",
+      "git_blob": "04247c39f61e138bcca767447b1b0bec5aeac611"
+    },
+    {
+      "path": "original-run.log",
+      "bytes": 6163,
+      "sha256": "bd42692bf25f9b29b6682a1601151fce54e08a3977581ac584c9e02c949045c0",
+      "git_blob": "4039ad657de29c6cdb552f0673148d7ca8b1e7dc"
+    },
+    {
+      "path": "preflight.py",
+      "bytes": 10826,
+      "sha256": "192e79ccef02cd7058114b1c5c2ce0810ac82f85c853b94d6fd033a00bf49271",
+      "git_blob": "397739807af39387f230a94372dd2499e23413b9"
+    },
+    {
+      "path": "python/heredoc-01-step-02.py",
+      "bytes": 1307,
+      "sha256": "310fbbac937d7b76130d1c21c1551a631129b62e53a8d22311b3f9a3d8170674",
+      "git_blob": "fa130d08da05d721b82bff73f207325dfa3f597f"
+    },
+    {
+      "path": "python/heredoc-02-step-03.py",
+      "bytes": 1038,
+      "sha256": "22422b25329d8370204a1b964522c9e60536d9bb724f73fb5d3398f0aae8c587",
+      "git_blob": "372c77ee709053a4932b8281f3c33817858fa9b5"
+    },
+    {
+      "path": "python/heredoc-03-step-06.py",
+      "bytes": 2828,
+      "sha256": "4958c66f651517a9e8f3b4c16545d5d0076dac830b4080a193425e810dbfd6d4",
+      "git_blob": "5889d3fe10a8a0fc813ff5739270ea6d5c15169a"
+    },
+    {
+      "path": "result.json",
+      "bytes": 7246,
+      "sha256": "e39d1682b7c2b3d45f76416f22a8a8183dc82ef217d1829fa2bdaea2e2521f03",
+      "git_blob": "dabf11969ab18b8b7b5c0e006d9fd4a284280181"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 558,
+      "sha256": "386011e719df8b78f557af7c6f91961b2be1b303c05bfc2156260aca423cb279",
+      "git_blob": "f3a99b99984ec1a415b4cee7eb4493be01644732"
+    }
+  ],
+  "workflow_commands_executed": false,
+  "publication_attempted": false
+}

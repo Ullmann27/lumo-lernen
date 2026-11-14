@@ -1,0 +1,13 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "source_commit": "bb5aa0e58355d29258392693674c5144079b9e6b",
+  "source_path": ".github/workflows/lumo-live-2020-publish.yml",
+  "source_blob": "04247c39f61e138bcca767447b1b0bec5aeac611",
+  "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/bb5aa0e58355d29258392693674c5144079b9e6b/.github/workflows/lumo-live-2020-publish.yml",
+  "source_status": "SUPERSEDED; syntax review only; no activation or rebinding",
+  "command": [
+    "python3",
+    "preflight.py"
+  ],
+  "stdout_stderr": "original-run.log"
+}

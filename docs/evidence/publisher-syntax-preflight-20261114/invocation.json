@@ -1,0 +1,13 @@
+{
+  "command": "python3 preflight.py > original-run.log 2>&1",
+  "cwd": "/workspace/scratch/909ddb52fe7b/publisher-syntax-preflight",
+  "exit_code": 0,
+  "execution": {
+    "chunk_id": "8e5301",
+    "wall_time_seconds": 0.051627591,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "wrapper_action": "Redirect only the syntax driver's stdout and stderr to original-run.log; no workflow shell block executed."
+}

@@ -1,0 +1,279 @@
+name: Publish verified LUMO 2020 live integration test APK
+
+on:
+  push:
+    branches:
+      - delivery/lumo-live-2020-20261114
+    paths:
+      - .github/workflows/lumo-live-2020-publish.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-2020-new-release-only
+  cancel-in-progress: false
+
+jobs:
+  publish-verified-test-apk:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/delivery/lumo-live-2020-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: write
+    env:
+      SOURCE_SHA: 07cac7225e2f7b6451665dfda9c38841f51c758b
+      ACCEPTANCE_RUN: '43586101225'
+      ACCEPTANCE_ATTEMPT: '1'
+      ACCEPTANCE_PR: '497'
+      VERSION_TAG: coachpreview-build-2020
+    steps:
+      - name: Check out the exact accepted source and its original verifier
+        uses: actions/checkout@v4
+        with:
+          ref: 07cac7225e2f7b6451665dfda9c38841f51c758b
+          persist-credentials: false
+
+      - name: Read the complete current acceptance and download its original bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          mkdir -p publication/metadata
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN" > publication/metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/jobs?per_page=100" > publication/metadata/jobs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/artifacts?per_page=100" > publication/metadata/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$ACCEPTANCE_PR" > publication/metadata/pull.json
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          metadata = Path('publication/metadata')
+          run = json.loads((metadata/'run.json').read_text())
+          assert run['id'] == int(os.environ['ACCEPTANCE_RUN'])
+          assert run['run_attempt'] == int(os.environ['ACCEPTANCE_ATTEMPT'])
+          assert run['head_sha'] == os.environ['SOURCE_SHA']
+          assert run['head_branch'] == 'integration/lumo-live-connections-20261114'
+          assert run['event'] == 'pull_request'
+          assert run['path'] == '.github/workflows/lumo-connect-four-2020.yml'
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          catalog = json.loads((metadata/'artifacts.json').read_text())
+          assert catalog['total_count'] == len(catalog['artifacts'])
+          matches = [a for a in catalog['artifacts'] if a['name'] == 'lumo-connect-four-2020-delivery-bundle']
+          assert len(matches) == 1
+          artifact = matches[0]
+          assert artifact['expired'] is False
+          assert artifact['workflow_run']['id'] == run['id']
+          assert artifact['workflow_run']['head_sha'] == os.environ['SOURCE_SHA']
+          assert type(artifact['id']) is int and artifact['id'] > 0
+          assert re.fullmatch(r'sha256:[a-f0-9]{64}', artifact['digest'])
+          (metadata/'bundle.json').write_text(json.dumps(artifact, indent=2) + '\n')
+          with open(os.environ['GITHUB_ENV'], 'a') as handle:
+              handle.write('BUNDLE_ARTIFACT_ID=' + str(artifact['id']) + '\n')
+          PY
+          bundle_id="$(python3 -c 'import json; print(json.load(open("publication/metadata/bundle.json"))["id"])')"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$bundle_id/zip" > publication/original-bundle.zip
+
+      - name: Verify and safely unpack every original delivery byte
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, stat, zipfile
+          from pathlib import Path, PurePosixPath
+          archive = Path('publication/original-bundle.zip')
+          artifact = json.loads(Path('publication/metadata/bundle.json').read_text())
+          assert archive.stat().st_size == artifact['size_in_bytes']
+          with archive.open('rb') as handle:
+              assert 'sha256:' + hashlib.file_digest(handle, 'sha256').hexdigest() == artifact['digest']
+          root = Path('publication/delivery')
+          root.mkdir()
+          with zipfile.ZipFile(archive) as zipped:
+              seen = set()
+              for member in zipped.infolist():
+                  path = PurePosixPath(member.filename)
+                  name = path.as_posix()
+                  assert not member.flag_bits & 1
+                  assert path.parts and not path.is_absolute() and '..' not in path.parts
+                  assert '\\' not in member.filename and name == member.filename.rstrip('/')
+                  assert name not in seen
+                  seen.add(name)
+                  kind = stat.S_IFMT(member.external_attr >> 16)
+                  assert kind in ((0, stat.S_IFDIR) if member.is_dir() else (0, stat.S_IFREG))
+              zipped.extractall(root)
+          PY
+          python3 scripts/verify_connect_four_delivery.py check-current \
+            --delivery publication/delivery --metadata publication/metadata \
+            --pull-request "$ACCEPTANCE_PR" --bundle-archive publication/original-bundle.zip \
+            --bundle-artifact-id "$BUNDLE_ARTIFACT_ID"
+
+      - name: Set up the existing APK certificate verifier Java runtime
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up the pinned Android toolchain for independent original APK verification
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+
+      - name: Reverify original ARM64 APK signature package and source before creating a release
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          git diff --exit-code HEAD --
+          mkdir -p publication/apk-verification
+          sdkmanager 'build-tools;36.0.0' 2>&1 | tee publication/apk-verification/sdkmanager.log
+          publisher_build_tools="$ANDROID_HOME/build-tools/36.0.0"
+          test -x "$publisher_build_tools/apksigner"
+          test -x "$publisher_build_tools/aapt"
+          export PATH="$publisher_build_tools:$PATH"
+          java -version 2>&1 | tee publication/apk-verification/java-version.log
+          "$publisher_build_tools/apksigner" version 2>&1 | tee publication/apk-verification/apksigner-version.log
+          "$publisher_build_tools/aapt" version 2>&1 | tee publication/apk-verification/aapt-version.log
+          cp "$publisher_build_tools/source.properties" publication/apk-verification/source.properties
+          sha256sum "$publisher_build_tools/apksigner" "$publisher_build_tools/lib/apksigner.jar" "$publisher_build_tools/aapt" > publication/apk-verification/tools.sha256
+          publisher_apk="publication/delivery/assets/Lumo-Lernen-Neu.apk"
+          "$publisher_build_tools/apksigner" verify --verbose --print-certs "$publisher_apk" 2>&1 | tee publication/apk-verification/apksigner-original.log
+          "$publisher_build_tools/aapt" dump badging "$publisher_apk" > publication/apk-verification/aapt-badging-original.txt 2> publication/apk-verification/aapt-badging.stderr.log
+          python3 scripts/verify_unified_apk.py "$publisher_apk" --abi arm64-v8a > publication/apk-verification/fresh-apk-verification.json 2> publication/apk-verification/verifier.stderr.log
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess
+          from pathlib import Path
+          root = Path('publication')
+          assets = root/'delivery/assets'
+          fresh = json.loads((root/'apk-verification/fresh-apk-verification.json').read_text())
+          original = json.loads((assets/'PUBLISH-VERIFICATION.json').read_text())
+          provenance = json.loads((assets/'BUILD-PROVENANCE.json').read_text())
+          delivery = json.loads((assets/'C4-DELIVERY-FACTS.json').read_text())
+          plan = json.loads((root/'delivery/publication-plan.json').read_text())
+          pin = json.loads(Path('config/godot-source.json').read_text())
+          source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          assert source == os.environ['SOURCE_SHA'] == delivery['host_source'] == provenance['flutter_source_commit']
+          assert provenance['tracked_source_clean'] is True
+          assert fresh == original == delivery['apks']['arm64-v8a']
+          assert fresh['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+          assert fresh['versionCode'] == 2020 and fresh['versionName'] == '0.13.8'
+          assert fresh['abis'] == ['arm64-v8a'] and fresh['minSdk'] == 24 and fresh['targetSdk'] == 36
+          assert fresh['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          assert fresh['godot']['revision'] == pin['revision'] == delivery['native_source']
+          assert all(provenance.get(key) == value for key, value in fresh.items())
+          apk = assets/'Lumo-Lernen-Neu.apk'
+          with apk.open('rb') as stream:
+              digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+          assert digest == fresh['sha256'] == plan['assets']['Lumo-Lernen-Neu.apk']['sha256']
+          assert apk.stat().st_size == fresh['bytes'] == plan['assets']['Lumo-Lernen-Neu.apk']['bytes']
+          subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], check=True)
+          paths = ('scripts/verify_unified_apk.py', 'scripts/verify_android_apk.py',
+                   'scripts/LumoApkCertificateVerifier.java', 'pubspec.yaml',
+                   'config/godot-source.json', 'config/lumo-offline-voice.json',
+                   'assets/audio/voice/lumo_free/catalog.json')
+          receipt = {
+              'schema': 1, 'status': 'VERIFIED_ORIGINAL_TEST_APK_BEFORE_PUBLICATION',
+              'host_source': source, 'host_tree': subprocess.check_output(
+                  ['git', 'rev-parse', 'HEAD^{tree}'], text=True).strip(),
+              'native_source': pin['revision'], 'acceptance_run': int(os.environ['ACCEPTANCE_RUN']),
+              'acceptance_attempt': int(os.environ['ACCEPTANCE_ATTEMPT']),
+              'pull_request': int(os.environ['ACCEPTANCE_PR']), 'apk': fresh,
+              'verifier_sources': {name: hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in paths},
+              'signing_scope': 'Existing stable LUMO test certificate; not a Google Play signing certificate',
+              'published': False, 'physical_arm64_tested': False,
+          }
+          with (root/'APK-PREPUBLISH-VERIFICATION.json').open('x') as stream:
+              stream.write(json.dumps(receipt, indent=2) + '\n')
+          PY
+
+      - name: Require a genuinely new version before creating its tag and draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/releases?per_page=100" > publication/metadata/releases.json
+          gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/$VERSION_TAG" > publication/metadata/tags.json
+          python3 scripts/verify_connect_four_delivery.py check-vacant \
+            --delivery publication/delivery --metadata publication/metadata
+          gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+            --input publication/delivery/audit/create-tag.json > publication/created-tag.json
+          python3 scripts/verify_connect_four_delivery.py check-tag \
+            --delivery publication/delivery --tag publication/created-tag.json
+          gh api --method POST "repos/$GITHUB_REPOSITORY/releases" \
+            --input publication/delivery/audit/create-release.json > publication/created-release.json
+          release_id="$(python3 -c 'import json; print(json.load(open("publication/created-release.json"))["id"])')"
+          gh api "repos/$GITHUB_REPOSITORY/releases/$release_id" > publication/empty-draft.json
+          python3 scripts/verify_connect_four_delivery.py check-release \
+            --delivery publication/delivery --tag publication/created-tag.json \
+            --created publication/created-release.json --release publication/empty-draft.json --stage empty-draft
+
+      - name: Upload the exact verified original assets without replacing files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r name; do
+            test -n "$name"
+            gh release upload "$VERSION_TAG" "publication/delivery/assets/$name" --repo "$GITHUB_REPOSITORY"
+          done < publication/delivery/audit/asset-names.txt
+          release_id="$(python3 -c 'import json; print(json.load(open("publication/created-release.json"))["id"])')"
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$VERSION_TAG" > publication/current-tag.json
+          gh api "repos/$GITHUB_REPOSITORY/releases/$release_id" > publication/uploaded-draft.json
+          python3 scripts/verify_connect_four_delivery.py check-release \
+            --delivery publication/delivery --tag publication/current-tag.json \
+            --created publication/created-release.json --release publication/uploaded-draft.json --stage uploaded-draft
+
+      - name: Recheck current acceptance and publish only the checked new draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN" > publication/metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/jobs?per_page=100" > publication/metadata/jobs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$ACCEPTANCE_RUN/artifacts?per_page=100" > publication/metadata/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$ACCEPTANCE_PR" > publication/metadata/pull.json
+          python3 scripts/verify_connect_four_delivery.py check-current \
+            --delivery publication/delivery --metadata publication/metadata \
+            --pull-request "$ACCEPTANCE_PR" --bundle-archive publication/original-bundle.zip \
+            --bundle-artifact-id "$BUNDLE_ARTIFACT_ID"
+          release_id="$(python3 -c 'import json; print(json.load(open("publication/created-release.json"))["id"])')"
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$VERSION_TAG" > publication/prepublish-tag.json
+          gh api "repos/$GITHUB_REPOSITORY/releases/$release_id" > publication/prepublish-draft.json
+          python3 scripts/verify_connect_four_delivery.py check-release \
+            --delivery publication/delivery --tag publication/prepublish-tag.json \
+            --created publication/created-release.json --release publication/prepublish-draft.json --stage uploaded-draft
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/$release_id" \
+            --input publication/delivery/audit/publish-release.json > publication/published-release.json
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$VERSION_TAG" > publication/published-tag.json
+          python3 scripts/verify_connect_four_delivery.py check-release \
+            --delivery publication/delivery --tag publication/published-tag.json \
+            --created publication/created-release.json --release publication/published-release.json --stage published
+
+      - name: Download the public APK without authentication and verify its exact bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="$(python3 -c 'import json; print(json.load(open("publication/delivery/publication-plan.json"))["download_url"])')"
+          curl --fail --location --retry 4 --retry-all-errors --retry-delay 5 --max-time 300 \
+            "$url" -o publication/public-Lumo-Lernen-Neu.apk
+          python3 scripts/verify_connect_four_delivery.py verify-public \
+            --delivery publication/delivery --tag publication/published-tag.json \
+            --created publication/created-release.json --release publication/published-release.json \
+            --apk publication/public-Lumo-Lernen-Neu.apk --receipt publication/PUBLIC-APK-RECEIPT.json
+          cat publication/PUBLIC-APK-RECEIPT.json
+
+      - name: Preserve original publication receipts and any exact failure state
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2020-live-publication-receipt
+          path: |
+            publication/metadata/
+            publication/*.json
+            publication/apk-verification/
+          if-no-files-found: error
+          retention-days: 90
