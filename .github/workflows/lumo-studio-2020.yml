@@ -219,7 +219,11 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ffmpeg
+          command -v ffmpeg
+          command -v ffprobe
+          ffmpeg -version
+          ffprobe -version
           python3 -m venv .ci-python
           .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           command -v rg

@@ -127,10 +127,12 @@ void main() {
           reason: 'A complete board is not a confirmed durable reward');
 
       app.confirmed.complete();
-      // One real frame must include the completed action's result route.
+      // Drain the real award and durable round-write queue without a frame.
+      await tester.idle();
+      expect(savedRound()['rewarded'], true);
+      // Exactly one frame after that completion must contain the result route.
       // No pumpAndSettle or extra frame hides a post-frame navigation delay.
       await tester.pump();
-      expect(savedRound()['rewarded'], true);
       expect(find.text('Du hast gewonnen!'), findsOneWidget);
       expect(find.text('Du: 4 Paare    Lumo: 0 Paare'), findsOneWidget);
       expect(app.state.stars, 2);
