@@ -1,0 +1,477 @@
+#!/usr/bin/env python3
+"""Run bound Studio tours against the immutable 4ab APK with reviewed QA readers.
+
+This is a diagnostic on an existing binary, never a build, publication or replacement
+for the original Studio workflow. Metadata comes from authenticated GitHub read calls.
+The modernization tour is unchanged. The helper and Studio reader have explicitly
+hash-pinned read-only corrections; all positive runtime gates are preserved.
+"""
+from __future__ import annotations
+
+import argparse
+from dataclasses import dataclass
+from datetime import datetime, timezone
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import re
+import stat
+import subprocess
+import sys
+import zipfile
+
+
+RETURN_FILE_HASHES = (
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv', 'e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png', '4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv', '6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png', 'bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png', '8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv', '8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png', 'c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json', '31fa110427af3528835df32174a07acb71cc7e3bd86f94fab1213752204daee0'),
+    ('tools/android_qa/tests/replay_flutter_loading_frame_ocr.py', '4c8f154a259ce22b734977ef5c2dd7257d8ed4968cf370abf8dd62a09e853d81'),
+    ('tools/android_qa/tests/test_flutter_loading_frame_rejection.py', '4cb4ba9c25293f46534ff5b90ee712f866f6f12d23ee58b3db32d39844390529'),
+)
+
+
+@dataclass(frozen=True)
+class Expected:
+    host: str = "4ab96666f954baf258422d6ed277fc297b7ddeef"
+    native: str = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    qa_basis: str = "3e08c7953b84aed6fff30e9e55665de75f79ec77"
+    basis_helper_sha256: str = "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+    approved_helper_sha256: str = "910f834e5e593d2800e67e928fdb10328dd6710cb2e669132fc9f4dc2fb7660b"
+    basis_surfaces_sha256: str = "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+    approved_return_files: tuple[tuple[str, str], ...] = RETURN_FILE_HASHES
+    original_surfaces_sha256: str = "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6"
+    approved_surfaces_sha256: str = "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+    run: int = 43530667812
+    build_job: int = 132247240154
+    artifact: int = 14089507933
+    artifact_bytes: int = 647462973
+    artifact_sha256: str = "2bc81726454a0b79e3e7ab9c0668c9359745e4d308e5af6f8b49072e7600ae7c"
+    apk_bytes: int = 325295610
+    apk_sha256: str = "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6"
+    pck_bytes: int = 66234596
+    pck_sha256: str = "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e"
+    package: str = "dev.ullmann.lumo.lumo_lernen.coachpreview"
+    certificate: str = "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"
+
+
+EXPECTED = Expected()
+OCR_FILES = frozenset({
+    ".github/probes/creative_android_probe.py",
+    "tools/android_qa/tests/test_native_caption_ocr.py",
+    "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+    "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+    "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+    "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+})
+BINDER_FILES = frozenset({
+    "scripts/recheck_studio_4ab.py",
+    "scripts/tests/test_studio_4ab_recheck.py",
+    ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+})
+SURFACES_PATH = ".github/probes/lumo_studio_surfaces_android_probe.py"
+CARDS_FILES = frozenset({
+    SURFACES_PATH,
+    "tools/android_qa/tests/test_cards_layout_readiness.py",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+})
+HELPER_PATH = ".github/probes/creative_android_probe.py"
+RETURN_FILES = frozenset(path for path, _digest in RETURN_FILE_HASHES)
+ALLOWLIST = OCR_FILES | BINDER_FILES | CARDS_FILES | RETURN_FILES
+TOURS = (
+    ".github/probes/modernization_android_tour.py",
+    SURFACES_PATH,
+)
+BUILD_STEPS = (
+    "Build unified real Android APK",
+    "Verify APK archive and collect reproducible source hashes",
+    "Upload exact candidate (no release or synthetic screenshots)",
+)
+IDENTITY_CHECKS = frozenset({
+    "sha256_matches_provenance", "sha256_matches_build_sums",
+    "flutter_source_is_this_commit", "tracked_source_clean", "godot_revision_is_pinned",
+    "signing_certificate", "version_matches_pubspec", "x86_64_native_code",
+})
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
+def read_json(path: Path) -> dict:
+    result = json.loads(path.read_text(encoding="utf-8"))
+    require(isinstance(result, dict), f"JSON object required: {path}")
+    return result
+
+
+def sha256(path: Path) -> str:
+    with path.open("rb") as stream:
+        return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def file_record(path: Path) -> dict:
+    return {"path": str(path), "bytes": path.stat().st_size, "sha256": sha256(path)}
+
+
+def write_json(path: Path, value: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(path.name + ".tmp")
+    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
+def git(root: Path, *arguments: str) -> bytes:
+    env = dict(os.environ, GIT_OPTIONAL_LOCKS="0")
+    return subprocess.check_output(
+        ["git", "--no-replace-objects", "-C", str(root), *arguments], env=env,
+        stderr=subprocess.PIPE,
+    )
+
+
+def git_tree(root: Path, revision: str = "HEAD") -> dict[str, dict]:
+    result = {}
+    for entry in git(root, "ls-tree", "-r", "-z", revision).split(b"\0"):
+        if not entry:
+            continue
+        header, name = entry.split(b"\t", 1)
+        mode, kind, blob = header.decode("ascii").split()
+        require(kind == "blob" and mode in {"100644", "100755", "120000"},
+                "Unreviewed source object or submodule")
+        result[name.decode("utf-8")] = {"mode": mode, "git_blob": blob}
+    require(bool(result), "Empty source tree")
+    return result
+
+
+def working_blob(path: Path, mode: str) -> tuple[str, int]:
+    info = path.lstat()
+    if mode == "120000":
+        require(stat.S_ISLNK(info.st_mode), f"Tracked symlink mode changed: {path}")
+        data = os.fsencode(os.readlink(path))
+        return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest(), len(data)
+    require(stat.S_ISREG(info.st_mode), f"Tracked regular file replaced: {path}")
+    require(bool(info.st_mode & 0o111) == (mode == "100755"), f"Tracked executable mode changed: {path}")
+    checksum = hashlib.sha1(b"blob " + str(info.st_size).encode() + b"\0")
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            checksum.update(chunk)
+    return checksum.hexdigest(), info.st_size
+
+
+def source_checkout(root: Path, expected_head: str, runtime_roots: tuple[Path, ...] = ()) -> tuple[dict, dict]:
+    require(bool(re.fullmatch(r"[0-9a-f]{40}", expected_head)), "A complete expected source SHA is required")
+    require(Path(git(root, "rev-parse", "--show-toplevel").decode().strip()).resolve() == root,
+            "Source argument is not the actual checkout root")
+    head = git(root, "rev-parse", "HEAD").decode().strip()
+    require(head == expected_head, "Actual source HEAD differs from the declared source")
+    require(not git(root, "status", "--porcelain", "--untracked-files=no"),
+            "Tracked checkout has staged or unstaged changes")
+    tree = git_tree(root)
+    checked = []
+    for name, entry in sorted(tree.items()):
+        path = root / name
+        # Parent symlinks must not redirect a nominal source path outside this checkout.
+        require(path.parent.resolve().is_relative_to(root), f"Source parent escapes checkout: {name}")
+        measured, size = working_blob(path, entry["mode"])
+        require(measured == entry["git_blob"], f"Actual tracked source bytes changed: {name}")
+        checked.append([name, entry["mode"], measured, size])
+    tracked_directories = {(root / name).parent for name in tree}
+    for raw in git(root, "ls-files", "--others", "-z").split(b"\0"):
+        if not raw:
+            continue
+        name = raw.decode("utf-8")
+        path = root / name
+        generated_bytecode = (path.suffix == ".pyc" and path.parent.name == "__pycache__"
+                              and path.parent.parent in tracked_directories)
+        allowed_runtime = any(path == allowed or path.is_relative_to(allowed) for allowed in runtime_roots)
+        require(generated_bytecode or allowed_runtime, f"Untracked source or undeclared runtime path: {name}")
+    report = {
+        "path": str(root), "head": head,
+        "tree": git(root, "rev-parse", "HEAD^{tree}").decode().strip(),
+        "tracked_source_clean": True, "actual_blob_and_mode_checks": len(checked),
+        "working_files_manifest_sha256": hashlib.sha256(
+            json.dumps(checked, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest(),
+        "separate_runtime_roots": [str(path) for path in runtime_roots],
+        "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode",
+    }
+    return report, tree
+
+
+def verify_sources(qa: Path, candidate: Path, expected_qa: str, runtime_roots: tuple[Path, ...],
+                   expected: Expected = EXPECTED) -> dict:
+    require(qa != candidate and not qa.is_relative_to(candidate), "QA and product checkouts must be distinct")
+    qa_report, qa_tree = source_checkout(qa, expected_qa, runtime_roots)
+    product_report, product_tree = source_checkout(candidate, expected.host)
+    require(git(qa, "merge-base", expected.qa_basis, expected_qa).decode().strip() == expected.qa_basis,
+            "QA source does not descend from the exact reviewed 3e08 basis")
+    basis_tree = git_tree(qa, expected.qa_basis)
+    changed = {name for name in qa_tree.keys() | product_tree.keys()
+               if qa_tree.get(name) != product_tree.get(name)}
+    require(changed == ALLOWLIST,
+            f"QA delta differs from the exact twenty-six reviewed paths: unexpected={sorted(changed - ALLOWLIST)}, missing={sorted(ALLOWLIST - changed)}")
+    for name in ALLOWLIST:
+        require(qa_tree.get(name, {}).get("mode") == "100644",
+                f"Allowed QA file is missing or its reviewed 100644 mode changed: {name}")
+    for name in (OCR_FILES | CARDS_FILES) - {HELPER_PATH, SURFACES_PATH}:
+        require(qa_tree[name] == basis_tree.get(name),
+                f"Previously reviewed 3e08 OCR/Cards source or fixture changed: {name}")
+    require(hashlib.sha256(git(qa, "show", f"{expected.qa_basis}:{HELPER_PATH}")).hexdigest()
+            == expected.basis_helper_sha256, "Exact 3e08 helper basis differs")
+    require(sha256(qa / HELPER_PATH) == expected.approved_helper_sha256,
+            "Helper bytes differ from the exact approved loading-frame correction")
+    approved_return = dict(expected.approved_return_files)
+    require(len(expected.approved_return_files) == len(RETURN_FILES)
+            and set(approved_return) == RETURN_FILES, "Explicit return-fixture hash roster differs")
+    for name, approved_hash in approved_return.items():
+        require(sha256(qa / name) == approved_hash,
+                f"Return replay/test/fixture differs from the exact reviewed bytes: {name}")
+    for root in (qa, candidate):
+        require(read_json(root / "config/godot-source.json").get("revision") == expected.native,
+                "Actual checkout native pin changed")
+        match = re.search(r"^version:\s*(\S+)\s*$", (root / "pubspec.yaml").read_text(), re.M)
+        require(match is not None and match[1] == "0.13.7+2019", "Actual checkout version changed")
+    require(TOURS[0] in product_tree and qa_tree[TOURS[0]] == product_tree[TOURS[0]],
+            "The original modernization tour changed")
+    require(SURFACES_PATH in product_tree and
+            hashlib.sha256(git(qa, "show", f"{expected.qa_basis}:{SURFACES_PATH}")).hexdigest()
+            == expected.basis_surfaces_sha256, "The exact 3e08 surface-reader basis differs")
+    require(sha256(candidate / SURFACES_PATH) == expected.original_surfaces_sha256,
+            "Original Studio surface-reader bytes differ from the reviewed baseline")
+    require(sha256(qa / SURFACES_PATH) == expected.approved_surfaces_sha256,
+            "Studio surface-reader bytes differ from the exact approved read-only correction")
+    return {
+        "qa": qa_report, "product": product_report,
+        "qa_basis": expected.qa_basis,
+        "tour_execution_scope": "Modernization unchanged; Studio read-only readiness and loading-frame correction exactly hash-bound",
+        "helper_binding": {"path": HELPER_PATH, "basis_sha256": expected.basis_helper_sha256,
+                           "approved_sha256": expected.approved_helper_sha256},
+        "return_fixture_binding": approved_return,
+        "surface_reader_binding": {"path": SURFACES_PATH,
+                                   "basis_sha256": expected.basis_surfaces_sha256,
+                                   "original_sha256": expected.original_surfaces_sha256,
+                                   "approved_sha256": expected.approved_surfaces_sha256},
+        "unchanged_other_git_entries": len((qa_tree.keys() | product_tree.keys()) - changed),
+        "reviewed_delta": [{"path": name, "before": product_tree.get(name), "after": qa_tree[name],
+                            "sha256": sha256(qa / name)} for name in sorted(changed)],
+        "executed_tour_files": [file_record(qa / name) for name in TOURS],
+        "helper": file_record(qa / ".github/probes/creative_android_probe.py"),
+    }
+
+
+def verify_metadata(metadata: Path, expected: Expected = EXPECTED) -> dict:
+    artifact = read_json(metadata / "artifact.json")
+    run = read_json(metadata / "run.json")
+    job = read_json(metadata / "build-job.json")
+    require(artifact.get("id") == expected.artifact and artifact.get("name") == "lumo-studio-2019-candidate"
+            and artifact.get("size_in_bytes") == expected.artifact_bytes
+            and artifact.get("digest") == "sha256:" + expected.artifact_sha256
+            and artifact.get("expired") is False, "Original artifact identity differs")
+    origin = artifact.get("workflow_run", {})
+    require(origin.get("id") == expected.run and origin.get("head_sha") == expected.host,
+            "Original artifact source or run differs")
+    require(run.get("id") == expected.run and type(run.get("run_attempt")) is int and run["run_attempt"] == 1
+            and run.get("head_sha") == expected.host
+            and run.get("repository", {}).get("full_name") == "Ullmann27/lumo-lernen"
+            and run.get("path") == ".github/workflows/lumo-studio-2019.yml",
+            "Original workflow source, identity or attempt differs")
+    # The original run failed later Android checks; only its immutable builder must be successful.
+    require(job.get("id") == expected.build_job and job.get("run_id") == expected.run
+            and type(job.get("run_attempt")) is int and job["run_attempt"] == 1 and job.get("head_sha") == expected.host
+            and job.get("name") == "verify-and-build" and job.get("status") == "completed"
+            and job.get("conclusion") == "success", "The exact original builder did not succeed")
+    for name in BUILD_STEPS:
+        matches = [step for step in job.get("steps", []) if step.get("name") == name]
+        require(len(matches) == 1 and matches[0].get("status") == "completed"
+                and matches[0].get("conclusion") == "success", f"Original build step did not succeed: {name}")
+    return {"original_run": expected.run, "original_build_job": expected.build_job,
+            "original_artifact": expected.artifact, "artifact_archive_digest_from_github_metadata": expected.artifact_sha256,
+            "original_run_conclusion": run.get("conclusion"),
+            "original_metadata_files": [file_record(metadata / name) for name in ("artifact.json", "run.json", "build-job.json")]}
+
+
+def verify_apk(apk: Path, provenance: Path, sums: Path, expected: Expected = EXPECTED) -> dict:
+    measured = sha256(apk)
+    require(apk.stat().st_size == expected.apk_bytes and measured == expected.apk_sha256,
+            "Actual APK bytes differ from the original 4ab binary")
+    proof = read_json(provenance)
+    fields = {"package": expected.package, "versionName": "0.13.7", "versionCode": 2019,
+              "flutter_source_commit": expected.host, "tracked_source_clean": True,
+              "abis": ["x86_64"], "bytes": expected.apk_bytes, "sha256": measured,
+              "signingCertificateSha256": expected.certificate}
+    require(all(type(proof.get(k)) is type(v) and proof.get(k) == v for k, v in fields.items()),
+            "Actual original provenance differs")
+    native = proof.get("godot", {})
+    require(native.get("revision") == expected.native and native.get("engine") == "4.6.3"
+            and native.get("pck_sha256") == expected.pck_sha256
+            and type(native.get("bytes")) is int and native["bytes"] == expected.pck_bytes,
+            "Native provenance differs")
+    lines = [line.split(maxsplit=1) for line in sums.read_text().splitlines() if line.strip()]
+    require(len(lines) == 1 and len(lines[0]) == 2 and lines[0][0] == measured
+            and lines[0][1].lstrip("*") == "dist/x86_64/Lumo-Lernen-Neu.apk", "Original tour checksum differs")
+    with zipfile.ZipFile(apk) as archive:
+        for name in ("assets/lumo_game.pck", "assets/lumo_game_source.json"):
+            require(archive.namelist().count(name) == 1, f"Missing or duplicated embedded asset: {name}")
+        checksum = hashlib.sha256()
+        size = 0
+        with archive.open("assets/lumo_game.pck") as stream:
+            header = stream.read(20)
+            require(len(header) == 20 and header[:4] == b"GDPC", "Embedded pack is not a Godot PCK")
+            checksum.update(header)
+            size += len(header)
+            for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                checksum.update(chunk)
+                size += len(chunk)
+        require(size == expected.pck_bytes and checksum.hexdigest() == expected.pck_sha256,
+                "Actual embedded PCK differs")
+        require(json.loads(archive.read("assets/lumo_game_source.json")) == native,
+                "Embedded native source differs from original provenance")
+    return {"host": expected.host, "native": expected.native,
+            "apk": {"path": str(apk), "bytes": apk.stat().st_size, "sha256": measured},
+            "pck_bytes": size, "pck_sha256": checksum.hexdigest(),
+            "provenance": file_record(provenance), "sums": file_record(sums),
+            "signature_scope": "Exact original signed APK bytes; certificate from original verified build provenance. No new signing claim."}
+
+
+def verify_runtime_reports(qa: Path, out: Path, api: int, expected: Expected = EXPECTED) -> dict:
+    tour = read_json(out / "tour-result.json")
+    surfaces = read_json(out / "nextgen/native-surfaces-result.json")
+    require(tour.get("status") == "PASS" and tour.get("apk_sha256") == expected.apk_sha256,
+            "Original complete tour did not pass")
+    require(surfaces.get("status") == "PASS" and isinstance(surfaces.get("learning"), dict)
+            and isinstance(surfaces.get("cards"), dict), "Studio learning and Cards did not both complete")
+    identities = [step for step in tour.get("steps", []) if step.get("step") == "apk-identity"]
+    require(len(identities) == 1 and identities[0].get("ok") is True, "Missing original runtime APK identity")
+    for identity in (identities[0], surfaces.get("apk_identity", {})):
+        expected_fields = {"apk_sha256": expected.apk_sha256, "flutter_source_commit": expected.host,
+                           "godot_revision": expected.native, "godot_pck_sha256": expected.pck_sha256,
+                           "versionCode": 2019, "versionName": "0.13.7",
+                           "signingCertificateSha256": expected.certificate}
+        require(all(identity.get(k) == v for k, v in expected_fields.items())
+                and set(identity.get("checks", {})) == IDENTITY_CHECKS
+                and all(v is True for v in identity["checks"].values()), "Runtime APK/PCK identity differs")
+    # This file is covered by the all-other-files equality check. Reuse its unchanged rules.
+    spec = importlib.util.spec_from_file_location("_studio_4ab_runtime_verifier", qa / "scripts/verify_studio_delivery.py")
+    require(spec is not None and spec.loader is not None, "Original runtime verifier unavailable")
+    verifier = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(verifier)
+    runtime = verifier.verify_android_runtime(surfaces, api)
+    verifier.verify_tour_android_runtime(tour, runtime)
+    return {"android_runtime": runtime, "tour": file_record(out / "tour-result.json"),
+            "surfaces": file_record(out / "nextgen/native-surfaces-result.json")}
+
+
+def collect_binding(args: argparse.Namespace, expected: Expected = EXPECTED) -> dict:
+    runtime_roots = (args.candidate_source, args.apk.parent.parent, args.out,
+                     args.qa_source / ".probe-venv", args.qa_source / "runner-actions/android-emulator-runner")
+    return {"sources": verify_sources(args.qa_source, args.candidate_source, args.expected_qa_source,
+                                      runtime_roots, expected),
+            "original_build": verify_metadata(args.metadata_dir, expected),
+            "binary": verify_apk(args.apk, args.provenance, args.sums, expected),
+            "expected_api": args.expected_api}
+
+
+def run_tours(args: argparse.Namespace, commands: list, runner=subprocess.run) -> None:
+    common = ["--apk", str(args.apk), "--provenance", str(args.provenance), "--sums", str(args.sums)]
+    tasks = [
+        [sys.executable, "-B", str(args.qa_source / TOURS[0]), *common, "--out", str(args.out)],
+        [sys.executable, "-B", str(args.qa_source / TOURS[1]), *common,
+         "--prior-tour", str(args.out / "tour-result.json"), "--expected-api", str(args.expected_api),
+         "--out", str(args.out / "nextgen")],
+    ]
+    for command in tasks:
+        entry = {"command": command, "cwd": str(args.candidate_source),
+                 "started_at": datetime.now(timezone.utc).isoformat()}
+        commands.append(entry)
+        completed = runner(command, cwd=args.candidate_source, check=False)
+        entry.update(returncode=completed.returncode, finished_at=datetime.now(timezone.utc).isoformat())
+        require(completed.returncode == 0, f"Bound Studio tour failed with exit {completed.returncode}: {command[2]}")
+
+
+def execute(args: argparse.Namespace) -> int:
+    target = args.out / "recheck"
+    # Reject invalid output locations before any diagnostic write can touch source.
+    declared = {
+        "candidate_source": "candidate-source", "metadata_dir": "tour/build-metadata",
+        "apk": "candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "provenance": "candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "sums": "candidate/dist/ANDROID-TOUR-SHA256SUMS.txt", "out": "tour",
+    }
+    if any(getattr(args, key) != args.qa_source / value for key, value in declared.items()):
+        print("Only the workflow's explicit, separate product/artifact/output paths are accepted", file=sys.stderr)
+        return 1
+    if (target / "result.json").exists() or (args.verify_only and (target / "preflight.json").exists()):
+        print("Original diagnostic result already exists; use a fresh output", file=sys.stderr)
+        return 1
+    report = {"status": "RUNNING", "diagnostic_only": True, "build_or_publish_performed": False,
+              "physical_fold7_performance_measured": False, "commands": [],
+              "expected_qa_source": args.expected_qa_source, "apk_source": EXPECTED.host,
+              "native_source": EXPECTED.native, "requested_api": args.expected_api,
+              "diagnostic_github_run": os.environ.get("GITHUB_RUN_ID"),
+              "diagnostic_github_attempt": os.environ.get("GITHUB_RUN_ATTEMPT")}
+    before = None
+    after = None
+    try:
+        declared_ci = os.environ.get("GITHUB_SHA")
+        require(not declared_ci or declared_ci == args.expected_qa_source, "Expected QA source differs from actual CI source")
+        before = collect_binding(args)
+        if args.verify_only:
+            write_json(target / "preflight.json", {**report, "status": "PASS", "binding": before,
+                                                   "scope": "Identity only; Android has not been tested"})
+            print(json.dumps({"status": "IDENTITY_PREFLIGHT_PASS", "report": str(target / "preflight.json")}))
+            return 0
+        preflight = read_json(target / "preflight.json")
+        require(preflight.get("status") == "PASS" and preflight.get("binding") == before,
+                "Measured preflight binding changed before emulator tour")
+        require(not (args.out / "tour-result.json").exists()
+                and not (args.out / "nextgen/native-surfaces-result.json").exists(),
+                "Old runtime reports cannot be reused")
+        write_json(target / "before.json", {"status": "PASS", "binding": before})
+        try:
+            run_tours(args, report["commands"])
+        finally:
+            # Preserve a genuine post-execution binding even when the original tour fails.
+            after = collect_binding(args)
+            write_json(target / "after.json", {"status": "PASS" if after == before else "FAIL", "binding": after})
+            require(after == before, "Sources, original metadata or binary bytes changed during the tour")
+        report["runtime_reports"] = verify_runtime_reports(args.qa_source, args.out, args.expected_api)
+        report["status"] = "PASS"
+    except Exception as error:
+        report.update(status="FAIL", error=f"{type(error).__name__}: {error}")
+        if not args.verify_only and before is not None and after is None:
+            write_json(target / "after.json", {"status": "UNVERIFIED", "error": report["error"]})
+    report["finished_at"] = datetime.now(timezone.utc).isoformat()
+    report["before_binding_verified"] = before is not None
+    report["after_binding_matches"] = after is not None and after == before
+    output = target / ("preflight.json" if args.verify_only else "result.json")
+    write_json(output, report)
+    print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
+    return 0 if report["status"] == "PASS" else 1
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    for name in ("qa-source", "candidate-source", "metadata-dir", "apk", "provenance", "sums", "out"):
+        parser.add_argument("--" + name, type=Path, required=True)
+    parser.add_argument("--expected-qa-source", required=True)
+    parser.add_argument("--expected-api", type=int, choices=(35, 37), required=True)
+    parser.add_argument("--verify-only", action="store_true")
+    args = parser.parse_args()
+    for name in ("qa_source", "candidate_source", "metadata_dir", "apk", "provenance", "sums", "out"):
+        setattr(args, name, getattr(args, name).resolve())
+    require(Path(__file__).resolve() == args.qa_source / "scripts/recheck_studio_4ab.py",
+            "The running binder must belong to the measured QA checkout")
+    return execute(args)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
