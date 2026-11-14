@@ -12,6 +12,12 @@ Alle vier Auswahlbilder wurden vom unabhängigen Android-QA-Agenten tatsächlich
 
 ## Noch laufender Gesamtnachweis
 
-Der neue C4-Gesamtlauf ist `43596913210`, Attempt 1. Die beiden Voraussetzungen sind erfolgreich, sein Job `132454178537` führt seit 12:58:06 UTC den vollständigen Flutter-/Capture-Abschnitt aus. Dieser Zwischencheckpoint enthält dafür noch keine Erfolgszahl und keinen Gesamt-PASS. Der alte 07-Lauf wird nicht als neue Abnahme angerechnet. Living-Run `43596913164` ist ebenfalls noch aktiv.
+Der neue C4-Gesamtlauf ist `43596913210`, Attempt 1. Die beiden Voraussetzungen sind erfolgreich, sein Job `132454178537` führt seit 12:58:06 UTC den vollständigen Flutter-/Capture-Abschnitt aus. Dieser Zwischencheckpoint enthält dafür noch keine Erfolgszahl und keinen Gesamt-PASS. Der alte 07-Lauf wird nicht als neue Abnahme angerechnet. Living-Run `43596913164` ist inzwischen erfolgreich abgeschlossen; die tatsächlichen Zählungen stehen im folgenden Abschnitt.
 
 Dieser Evidenzcheckpoint verändert keine Produkt-, Test- oder Workflowdatei. Die tatsächlichen finalen Flutter-Ergebnisse und Originalartefakte werden nach ihrem Abschluss ergänzt.
+
+## Neuer Living-Lauf: eigenständiger Nachweis mit ausgewiesenen Skips
+
+Run `43596913164`, Attempt 1, Job `132453271203` ist am 14.11.2026 um 13:03:03 UTC erfolgreich abgeschlossen. Das Originaljoblog bestätigt den direkten Checkout von `1e22d2455937e2640d1e44e153d290746f3afe49`. Die Core-/Routenstufe meldet in Zeile 596 **48 PASS**. Die anschließende Regression meldet in Zeile 3637 **2.425 PASS und 202 SKIP**, ohne Fehler. Die Skips werden nicht als ausgeführte Erfolge gezählt.
+
+Das Originaljoblog und die unveränderte Artefaktmetadatenantwort sind gesichert. Das Living-ZIP wurde nicht zusätzlich heruntergeladen; dessen gemeldeter Digest ist deshalb eine GitHub-Metadatenangabe und kein eigener lokaler Archivhashnachweis. Der maßgebliche C4-Lauf mit eingeschalteten Captures bleibt für die vollständige Abnahme erforderlich.
