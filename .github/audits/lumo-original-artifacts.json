@@ -1,82 +1,61 @@
 {
   "schema": 1,
-  "phase": "early",
+  "phase": "late",
   "source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
   "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
   "run_id": 43622379532,
   "run_attempt": 1,
   "archives": [
     {
-      "kind": "compile",
-      "artifact_id": 14125230288,
-      "name": "lumo-connect-four-2020-android-host-compile",
-      "bytes": 6281,
-      "sha256": "faaf5b263f94e28c7699597dd7eb8f696dc82233ba970c54c187d05fad21c778",
-      "job_id": 132530935909,
-      "job_name": "android-host-compile",
+      "kind": "native",
+      "artifact_id": 14126752152,
+      "name": "lumo-candidate-pinned-native-gameplay",
+      "bytes": 176634268,
+      "sha256": "36654c49962023cdf24a1bf9eb2bf8a6329e80f2714d96ee25bdb94433adfa63",
+      "job_id": 132532172676,
+      "job_name": "verify-and-build",
       "exports": [
         {
-          "path": "compile.log",
-          "media": "text",
+          "path": "nextgen/captures/lumo_facial_capture/teacher_scene.png",
+          "media": "png",
           "required": true
         },
         {
-          "path": "cards-authority-registry.log",
-          "media": "text",
-          "required": true
-        }
-      ]
-    },
-    {
-      "kind": "desktop",
-      "artifact_id": 14125175288,
-      "name": "lumo-connect-four-2020-desktop-runtime",
-      "bytes": 22152757,
-      "sha256": "a9c9c57d4aa08d4065ad55270204fed53674da0f83f01594fffe0c53f81b6e6f",
-      "job_id": 132530936109,
-      "job_name": "connect-four-runtime",
-      "exports": [
-        {
-          "path": "return-recovery.log",
-          "media": "text",
+          "path": "nextgen/captures/connect_four_visual_capture/c4-paused-small.png",
+          "media": "png",
           "required": true
         },
         {
-          "path": "treasure-wisps.log",
-          "media": "text",
+          "path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+          "media": "png",
+          "required": true
+        },
+        {
+          "path": "nextgen/captures/lumo_facial_capture/runtime-frames.json",
+          "media": "json",
+          "required": true
+        },
+        {
+          "path": "nextgen/captures/lumo_facial_capture/movie.json",
+          "media": "json",
+          "required": true
+        },
+        {
+          "path": "nextgen/captures/lumo_facial_capture/movie-ffprobe.json",
+          "media": "json",
+          "required": true
+        },
+        {
+          "path": "nextgen/captures/connect_four_visual_capture/visual-state.json",
+          "media": "json",
+          "required": true
+        },
+        {
+          "path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-report.json",
+          "media": "json",
           "required": true
         }
       ]
-    },
-    {
-      "kind": "learning",
-      "artifact_id": 14124159972,
-      "name": "lumo-connect-four-2020-learning-curriculum-audit",
-      "bytes": 212134,
-      "sha256": "f48f870d095b4ddbafeb20059038579060bf0672dafde2be1b5cd0742265d365",
-      "job_id": 132532172676,
-      "job_name": "verify-and-build",
-      "exports": []
-    },
-    {
-      "kind": "flutter",
-      "artifact_id": 14124469903,
-      "name": "lumo-candidate-all-flutter-tests-and-captures",
-      "bytes": 332478563,
-      "sha256": "c9a45c4a0200c5fe430d32d6c073210674d740bca9928b85df06b939f51ca5b9",
-      "job_id": 132532172676,
-      "job_name": "verify-and-build",
-      "exports": []
-    },
-    {
-      "kind": "contracts",
-      "artifact_id": 14125486284,
-      "name": "lumo-connect-four-2020-build-contracts",
-      "bytes": 26371,
-      "sha256": "b49d22f9fe98f7f3db2cdd3fff20e1d103cf8360928dd37dd06fa498d3e603f3",
-      "job_id": 132532172676,
-      "job_name": "verify-and-build",
-      "exports": []
     }
   ],
   "candidate": null
