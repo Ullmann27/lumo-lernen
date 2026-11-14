@@ -1,0 +1,25 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43625797556,
+  "run_attempt": 1,
+  "host_source": "eb59c2f6c35361e50c3d9e474a2c7a366b7a35ab",
+  "native_source": "3213d2aca377476cf4959f380701d87177cec959",
+  "android_job_id": 132564041592,
+  "artifact_id": 14129506755,
+  "artifact_sha256": "454b5758a9afc38ca563b3b07e7bac2b75c3d83906a543245beb4174ef0fc8e6",
+  "original_directory": "c4",
+  "phase": "reopen-c4 after one confirmed Zur Spieleauswahl touch",
+  "files": [
+    {
+      "path": "reopen-c4-00.xml",
+      "bytes": 29594,
+      "sha256": "655fc8ca21cd1c608a21a0d86f843245314a24946c374543374aadabfa0940db"
+    },
+    {
+      "path": "reopen-c4-00-frame.png",
+      "bytes": 513534,
+      "sha256": "d54b42812e12595d01f5b71c671b074156b3b67096a5437799f970eaf9c07888"
+    }
+  ],
+  "scope": "Unmodified original Android failure observations; replay asserts that the still-visible Flutter pause never proves the destination. It does not prove a later successful device transition."
+}

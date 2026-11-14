@@ -69,8 +69,23 @@ void main() {
     });
     await tester.binding.setSurfaceSize(const Size(412, 915));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    await tester.pumpWidget(
-        MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 7)));
+    await tester.pumpWidget(MaterialApp(
+      home: Builder(builder: (context) {
+        return Scaffold(
+          body: Center(
+            child: FilledButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) =>
+                      LumoConnectFourScreen(appState: app, seed: 7),
+                ),
+              ),
+              child: const Text('Spielauswahl'),
+            ),
+          ),
+        );
+      }),
+    ));
     Future<void> until(bool Function() condition) async {
       for (var i = 0; i < 50 && !condition(); i++) {
         await tester.pump(const Duration(milliseconds: 100));
@@ -78,6 +93,7 @@ void main() {
       expect(condition(), isTrue);
     }
 
+    await tester.tap(find.text('Spielauswahl'));
     await until(() => launches.length == 1 && state['canDrop'] == true);
     expect(launches.single['scene'], 'connect_four');
     expect(launches.single['connectFourToken'], tokens.single);
@@ -117,7 +133,27 @@ void main() {
     expect(state['roundId'], round);
     expect(state['columns'], [3]);
     returns.last.complete({'destination': 'games'});
-    await until(() => closed == 2);
+    await until(
+        () => closed == 2 && find.text('Spiel pausiert').evaluate().isNotEmpty);
+    final leave = find.byKey(const ValueKey('pause-leave-games'));
+    expect(leave.hitTestable(), findsOneWidget);
+    await tester.tap(leave);
+    await tester.pumpAndSettle(
+      const Duration(milliseconds: 100),
+      EnginePhase.sendSemanticsUpdate,
+      const Duration(seconds: 5),
+    );
+    expect(find.byType(LumoConnectFourScreen), findsNothing);
+    expect(find.text('Spielauswahl'), findsOneWidget);
+    expect(Navigator.of(tester.element(find.text('Spielauswahl'))).canPop(),
+        isFalse);
+    await tester.tap(find.text('Spielauswahl'));
+    await until(() => launches.length == 3 && state['canDrop'] == true);
+    expect(tokens[2], isNot(tokens[1]));
+    expect(state['roundId'], round);
+    expect(state['columns'], [3]);
+    returns.last.complete({'destination': 'games'});
+    await until(() => closed == 3);
     await tester.pumpWidget(const SizedBox());
     expect(tester.takeException(), isNull);
   });
