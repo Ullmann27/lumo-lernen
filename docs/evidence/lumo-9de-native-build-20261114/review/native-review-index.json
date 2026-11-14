@@ -1,0 +1,993 @@
+{
+  "schema": 1,
+  "kind": "new_review_index_of_original_native_audit_exports",
+  "original_document": false,
+  "audit": {
+    "run_id": 43627942888,
+    "run_attempt": 1,
+    "job_id": 132547925341,
+    "head": "40f473612a3355bcd2e5896845d7ec202af06aa6",
+    "tree": "1c5d78874f2d86c6d6209e365765977601c19c17",
+    "status": "ORIGINALS_CHECKED_WITH_DECLARED_SCOPE",
+    "errors": [],
+    "receipt_blob": "a6d4c77f2655dbed13333d7cff3501e93555e7dc"
+  },
+  "original_context": {
+    "phase": "late",
+    "run_id": 43622379532,
+    "run_attempt": 1,
+    "workflow_head": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "qa_source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "app_source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55"
+  },
+  "original_archive": {
+    "id": 14126752152,
+    "name": "lumo-candidate-pinned-native-gameplay",
+    "bytes": 176634268,
+    "sha256": "36654c49962023cdf24a1bf9eb2bf8a6329e80f2714d96ee25bdb94433adfa63",
+    "producer_job": 132532172676
+  },
+  "validation": {
+    "full_archive_sha256_and_all_member_crcs_match": true,
+    "original_members_unchanged": true,
+    "new_inventory_files": 4307,
+    "new_inventory_is_not_original": true,
+    "reconstructed_export_count": 25,
+    "export_hashes_rechecked_before_blob_creation": true,
+    "source_before": {
+      "host": {
+        "commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+        "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+        "tracked_source_clean": true
+      },
+      "native": {
+        "commit": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+        "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+        "tracked_source_clean": true
+      }
+    },
+    "source_after": {
+      "host": {
+        "commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+        "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+        "tracked_source_clean": true
+      },
+      "native": {
+        "commit": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+        "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+        "tracked_source_clean": true
+      }
+    }
+  },
+  "original_semantic_reader_result": {
+    "source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+    "core_modes": 52,
+    "mode_logs": [
+      {
+        "path": "learning_world_regression-headless.log",
+        "marker": "[LearningWorld] PASS",
+        "bytes": 10599,
+        "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb"
+      },
+      {
+        "path": "learning_sharing_regression-headless.log",
+        "marker": "[LearningSharing] PASS",
+        "bytes": 1482,
+        "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340"
+      },
+      {
+        "path": "learning_studio_regression-headless.log",
+        "marker": "[LearningStudio] PASS",
+        "bytes": 1801,
+        "sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b"
+      },
+      {
+        "path": "learning_host_payload_regression-headless.log",
+        "marker": "[LearningHostPayload] PASS",
+        "bytes": 561,
+        "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6"
+      },
+      {
+        "path": "puzzle_rotation_regression-headless.log",
+        "marker": "[PuzzleRotation] PASS",
+        "bytes": 571,
+        "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9"
+      },
+      {
+        "path": "puzzle_menu_lifecycle_regression-headless.log",
+        "marker": "[PuzzleMenuLifecycle] PASS",
+        "bytes": 3084,
+        "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98"
+      },
+      {
+        "path": "treasure_exploration_regression-headless.log",
+        "marker": "[TreasureExploration] PASS",
+        "bytes": 589,
+        "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e"
+      },
+      {
+        "path": "jump_nextgen_regression-headless.log",
+        "marker": "[JumpNextgen] PASS",
+        "bytes": 1997,
+        "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444"
+      },
+      {
+        "path": "jump_expeditions_regression-headless.log",
+        "marker": "[JumpExpeditions] PASS",
+        "bytes": 2781,
+        "sha256": "56ccbf964fb5a1687224d1c4d3a2d916c8b6c21cb7f2f5b27dc109ff4d0e4f43"
+      },
+      {
+        "path": "lumo_teacher_pose_regression-headless.log",
+        "marker": "[LumoTeacherPose] PASS",
+        "bytes": 589,
+        "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629"
+      },
+      {
+        "path": "lumo_studio_motion_regression-headless.log",
+        "marker": "[LumoStudioMotion] PASS",
+        "bytes": 603,
+        "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b"
+      },
+      {
+        "path": "lumo_65bone_walk_gait_regression-headless.log",
+        "marker": "[LumoGait] PASS",
+        "bytes": 572,
+        "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e"
+      },
+      {
+        "path": "lumo_original_jump_visual_regression-headless.log",
+        "marker": "[JumpOriginalLumo] PASS",
+        "bytes": 691,
+        "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43"
+      },
+      {
+        "path": "bauwelt_identity_2013_regression-headless.log",
+        "marker": "[BauweltIdentity2013] PASS",
+        "bytes": 586,
+        "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886"
+      },
+      {
+        "path": "build_frontier_regression-headless.log",
+        "marker": "[BuildFrontier] PASS",
+        "bytes": 617,
+        "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b"
+      },
+      {
+        "path": "build_transform_regression-headless.log",
+        "marker": "[BuildTransform] PASS",
+        "bytes": 565,
+        "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993"
+      },
+      {
+        "path": "build_nextgen_play_regression-headless.log",
+        "marker": "[BuildNextgen] PASS",
+        "bytes": 687,
+        "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654"
+      },
+      {
+        "path": "build_settlement_regression-headless.log",
+        "marker": "[Settlement] PASS",
+        "bytes": 537,
+        "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09"
+      },
+      {
+        "path": "build_settlement_play_regression-headless.log",
+        "marker": "[SettlementPlay] PASS",
+        "bytes": 2069,
+        "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a"
+      },
+      {
+        "path": "build_village_economy_regression-headless.log",
+        "marker": "[VillageEconomy] PASS",
+        "bytes": 628,
+        "sha256": "54d5d0caa2d8d20a57ec8e7e6a3eadddf6331f19c4b7273acf1b5588546c26fb"
+      },
+      {
+        "path": "build_village_art_regression-headless.log",
+        "marker": " checks / 0 failures",
+        "bytes": 507,
+        "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8"
+      },
+      {
+        "path": "build_village_scene_regression-headless.log",
+        "marker": "[VillageScene] PASS",
+        "bytes": 846,
+        "sha256": "496c7238579af90e13d5dd5180edbd23b0eb0d44380b3c4b2c37adb7881a0d19"
+      },
+      {
+        "path": "creative_nextgen_environment_regression-headless.log",
+        "marker": "[CreativeNextgenEnvironment] PASS",
+        "bytes": 592,
+        "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e"
+      },
+      {
+        "path": "kart_nextgen_garage_regression-headless.log",
+        "marker": "[NextGenGarage] PASS",
+        "bytes": 734,
+        "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab"
+      },
+      {
+        "path": "kart_track_pass_regression-headless.log",
+        "marker": "[KartTrackPass] PASS",
+        "bytes": 1076,
+        "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955"
+      },
+      {
+        "path": "cards_table_regression-headless.log",
+        "marker": "CARDS_TABLE_RUNTIME_PASS",
+        "bytes": 583,
+        "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab"
+      },
+      {
+        "path": "cards_safe_area_android_contract-headless.log",
+        "marker": "CARDS_ANDROID_INSETS_PASS",
+        "bytes": 553,
+        "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04"
+      },
+      {
+        "path": "cards_safe_area_regression-headless.log",
+        "marker": "CARDS_SAFE_AREA_PASS",
+        "bytes": 532,
+        "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177"
+      },
+      {
+        "path": "mobile_safe_area_regression-headless.log",
+        "marker": "MOBILE_SAFE_AREA_PASS",
+        "bytes": 8427,
+        "sha256": "fd8b49f54348de8769a27b62b0788c271f50e1b8406e4e8a112f4e3be5073cc8"
+      },
+      {
+        "path": "rhythm_tour_regression-headless.log",
+        "marker": "[RhythmTour] PASS",
+        "bytes": 582,
+        "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b"
+      },
+      {
+        "path": "rhythm_tour_play_regression-headless.log",
+        "marker": "[RhythmTourPlay] PASS",
+        "bytes": 600,
+        "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9"
+      },
+      {
+        "path": "learning_world_capture-rendered.log",
+        "marker": "[LearningCapture] PASS",
+        "bytes": 8466,
+        "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd"
+      },
+      {
+        "path": "learning_sharing_capture-rendered.log",
+        "marker": "[LearningSharingCapture] PASS",
+        "bytes": 3506,
+        "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e"
+      },
+      {
+        "path": "lumo_studio_motion_capture-rendered.log",
+        "marker": "[LumoStudioCapture] PASS",
+        "bytes": 1202,
+        "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669"
+      },
+      {
+        "path": "puzzle_rotation_regression-rendered.log",
+        "marker": "[PuzzleRotation] PASS",
+        "bytes": 1218,
+        "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871"
+      },
+      {
+        "path": "puzzle_menu_lifecycle_regression-rendered.log",
+        "marker": "[PuzzleMenuLifecycle] PASS",
+        "bytes": 3733,
+        "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c"
+      },
+      {
+        "path": "treasure_exploration_regression-rendered.log",
+        "marker": "[TreasureExploration] PASS",
+        "bytes": 1236,
+        "sha256": "d3ab6703a5a6d829268ef78107f2ae5a7a7c05be21eaf44bceb9c4c04d4adbba"
+      },
+      {
+        "path": "jump_nextgen_capture-rendered.log",
+        "marker": "[JumpNextgenCapture] PASS",
+        "bytes": 1727,
+        "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3"
+      },
+      {
+        "path": "build_nextgen_play_regression-rendered.log",
+        "marker": "[BuildNextgen] PASS",
+        "bytes": 1334,
+        "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6"
+      },
+      {
+        "path": "build_settlement_play_regression-rendered.log",
+        "marker": "[SettlementPlay] PASS",
+        "bytes": 2716,
+        "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127"
+      },
+      {
+        "path": "build_village_scene_regression-rendered.log",
+        "marker": "[VillageScene] PASS",
+        "bytes": 1493,
+        "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648"
+      },
+      {
+        "path": "creative_nextgen_environment_regression-rendered.log",
+        "marker": "[CreativeNextgenEnvironment] PASS",
+        "bytes": 1239,
+        "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e"
+      },
+      {
+        "path": "kart_nextgen_garage_regression-rendered.log",
+        "marker": "[NextGenGarage] PASS",
+        "bytes": 1383,
+        "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5"
+      },
+      {
+        "path": "cards_table_capture-rendered.log",
+        "marker": "CARDS_TABLE_RENDER_PASS",
+        "bytes": 1162,
+        "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4"
+      },
+      {
+        "path": "cards_safe_area_regression-rendered.log",
+        "marker": "CARDS_SAFE_AREA_PASS",
+        "bytes": 1179,
+        "sha256": "e4b86d0d3e105c298176539d00c4ec5e53cc78931acfbae24f0bf1eff5f3eefe"
+      },
+      {
+        "path": "mobile_safe_area_regression-rendered.log",
+        "marker": "MOBILE_SAFE_AREA_PASS",
+        "bytes": 9355,
+        "sha256": "a899c115ebf7cc6951cc3dac33f3fd215461f6b64543c0c9172ecd2c97811468"
+      },
+      {
+        "path": "rhythm_tour_play_regression-rendered.log",
+        "marker": "[RhythmTourPlay] PASS",
+        "bytes": 1247,
+        "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9"
+      },
+      {
+        "path": "kart_player_full_route_regression-rendered.log",
+        "marker": "[PlayerFullRoute] PASS",
+        "bytes": 21732,
+        "sha256": "0993c4fa88d0b9ca0b7c70d8fbc624d9f9e3969dd75c2dd967a0c4b748d439d3"
+      },
+      {
+        "path": "lumo_facial_regression-headless.log",
+        "marker": "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false",
+        "bytes": 633,
+        "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b"
+      },
+      {
+        "path": "lumo_facial_capture-rendered.log",
+        "marker": "LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true",
+        "bytes": 1845,
+        "sha256": "9a7888515576eb6ab9357da7c2db132df2dcbdd8f737e3c857f6db69415a951b"
+      },
+      {
+        "path": "connect_four_visual_capture-rendered.log",
+        "marker": "CONNECT_FOUR_VISUAL_PASS",
+        "bytes": 1176,
+        "sha256": "1cc3d59bbf0a2f7fa7680ad0d70bdcbfb1c6690cb88edf523b344f9d18afaaae"
+      },
+      {
+        "path": "treasure_title_contrast_regression-rendered.log",
+        "marker": "[TreasureTitleContrast] PASS",
+        "bytes": 3669,
+        "sha256": "e715acf96478f26498f6fef6acbb0a04fb41680ef43b154addcdade4003a04f4"
+      }
+    ],
+    "complete_runner_log": {
+      "bytes": 118561,
+      "sha256": "5a68b2c3c0c1abb603baeedab81915da3e4242725d94a106810f3ffc5502d2df"
+    },
+    "original_rosters": {
+      "renderer-images.json": {
+        "bytes": 5737,
+        "sha256": "f98bb7551d694958ac710316838ccf738e6ff9da865661c59a18f60d9203fa0b"
+      },
+      "village-images.json": {
+        "bytes": 1010,
+        "sha256": "f3c4ebe6324f8d11eaca079a905b8b0e85891c80a7ec170421881f6911a69a99"
+      },
+      "puzzle-menu-images.json": {
+        "bytes": 1488,
+        "sha256": "8730286a96a69b3d93c2dbec97c604e5b9354051a372abb6aebae21eec4b6b2d"
+      },
+      "safe-area-images.json": {
+        "bytes": 2878,
+        "sha256": "ac560b1bf0b9901225d1e6ad4af869a09bfa58d66f378e9a4bde8c2498760076"
+      },
+      "studio-2020-images.json": {
+        "bytes": 13986,
+        "sha256": "303806d2741c2223b13c756440fc0ebd0020ea25ee70d6b13ac5796b671c584a"
+      }
+    },
+    "scope": "Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim",
+    "legacy_replay_limit": "This helper replays 52 Nextgen modes and raster/movie rosters. Other Legacy/2014/TechnicalArt/Action logs are preserved as originals, not counted as additional replayed modes."
+  },
+  "review": {
+    "modes": 52,
+    "mode_results": [
+      {
+        "probe": "learning_world_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_sharing_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_studio_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_host_payload_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_rotation_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_menu_lifecycle_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "treasure_exploration_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "jump_nextgen_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "jump_expeditions_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_teacher_pose_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_studio_motion_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_65bone_walk_gait_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_original_jump_visual_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "bauwelt_identity_2013_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_frontier_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_transform_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_nextgen_play_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_settlement_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_settlement_play_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_village_economy_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_village_art_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_village_scene_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "creative_nextgen_environment_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "kart_nextgen_garage_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "kart_track_pass_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "cards_table_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "cards_safe_area_android_contract",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "cards_safe_area_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "mobile_safe_area_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "rhythm_tour_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "rhythm_tour_play_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_world_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_sharing_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_studio_motion_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_rotation_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_menu_lifecycle_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "treasure_exploration_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "jump_nextgen_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_nextgen_play_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_settlement_play_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "build_village_scene_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "creative_nextgen_environment_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "kart_nextgen_garage_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "cards_table_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "cards_safe_area_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "mobile_safe_area_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "rhythm_tour_play_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "kart_player_full_route_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_facial_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_facial_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "connect_four_visual_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "treasure_title_contrast_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      }
+    ],
+    "all_modes_pass": true,
+    "studio_images": 17,
+    "archive_verified": "FULL_SHA256_AND_ALL_MEMBER_CRCS_MATCH",
+    "original_unchanged": true,
+    "root_visual_review": false,
+    "gameplay_agent_visual_review": [
+      {
+        "key": "14126752152/nextgen/captures/lumo_facial_capture/teacher_scene.png",
+        "observation": "Original 640×640 image shows a legible Apfel word-building prompt, two empty placement slots, Ap/fel tiles, Lumo and lower lesson controls."
+      },
+      {
+        "key": "14126752152/nextgen/captures/connect_four_visual_capture/c4-paused-small.png",
+        "observation": "Original 640×360 image shows the paused C4 title, return control, pause text, Fortsetzen/Neue Runde controls, saved-turn text and seven disabled column controls; the board is obscured by the pause view."
+      },
+      {
+        "key": "14126752152/nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+        "observation": "Original 2400×1080 cutout image shows the full LUMOS STERNENSCHATZ title, legible instruction, visible 3D character/path/world and navigation, jump, joystick and action controls."
+      }
+    ],
+    "limits": [
+      "Only these three selected original PNGs were visually examined by this agent.",
+      "This desktop raster evidence does not establish Android/device frame rate, audio quality or candidate acceptance.",
+      "Existing checked_native replays 52 Nextgen modes and five raster/movie rosters; other legacy groups are preserved as original logs and not added to its semantic replay count.",
+      "Static project checker reports 117 PASS / 7 WARN / 0 FAIL; six legacy manifest GLB warnings and one executable-bit warning remain explicit."
+    ]
+  },
+  "static_original_warnings": [
+    "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+    "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+    "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+    "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+    "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+    "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+    "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)",
+    "SUMMARY: 117 PASS / 7 WARN / 0 FAIL",
+    "RESULT: PASS (7 warnings)"
+  ],
+  "files": [
+    {
+      "key": "14126752152/legacy-gameplay.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "bytes": 220574,
+      "sha256": "8e691cb0a090cf64a93d6ac9e8471c9a4a193af699981b598e9427958a67244e",
+      "git_sha1": "88fa5f937597b38f98d4fe05109e279a71841542",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen-runner.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "bytes": 118561,
+      "sha256": "5a68b2c3c0c1abb603baeedab81915da3e4242725d94a106810f3ffc5502d2df",
+      "git_sha1": "17cf9708debce5fd472af1acc06b0699d54e44c0",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/connect_four_visual_capture/c4-paused-small.png",
+      "scope": "original_archive_member",
+      "media": "png",
+      "bytes": 29411,
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "git_sha1": "7806e7f57e122d27342bbd6342325cf96b96ef55",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/connect_four_visual_capture/visual-state.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 172226,
+      "sha256": "a08efc3fc36ca97e5788346b56793dc53ec40efd65a17b45ed7a4af8b650616c",
+      "git_sha1": "c3e88f0d03ff62ab630e0dfccdf5b1701b5e0d60",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/lumo_facial_capture/movie-ffprobe.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 4564,
+      "sha256": "7546245065dd56d02b818e90f101af8a8d803fbecf0d8e6ab44aba4609fe2fd0",
+      "git_sha1": "963fcf55c93b974e45e6992761bdfee4992a6be0",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/lumo_facial_capture/movie.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 1201,
+      "sha256": "5f3245392040556a2535c91f28ba0fc32f388469941af47cf4e38f2e5c58da6b",
+      "git_sha1": "19337f98adba13aa987fe5f40b9b57de4477c804",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/lumo_facial_capture/runtime-frames.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_sha1": "471e2e633df635545f99270e1960eb5ba41ced2e",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/lumo_facial_capture/teacher_scene.png",
+      "scope": "original_archive_member",
+      "media": "png",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "git_sha1": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "scope": "original_archive_member",
+      "media": "png",
+      "bytes": 2623392,
+      "sha256": "37d2e40dcf344f35dd796ed7bd0eb4bdb2ede047d4fc3fefd1a0e5a1e96b144b",
+      "git_sha1": "b253cf059a318a4a971a7b02d3c72abe6ffc66dc",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/captures/treasure_title_contrast_regression/treasure-title-report.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 30552,
+      "sha256": "f8db3789c85a9f7e5e823ed516375f5243a89b281a25103d9ab6080ca1ea5c8c",
+      "git_sha1": "f0139d6a0372717b65560ca35d7e8a58e707f444",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/puzzle-menu-images.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 1488,
+      "sha256": "8730286a96a69b3d93c2dbec97c604e5b9354051a372abb6aebae21eec4b6b2d",
+      "git_sha1": "9808db62da25d13d3461670112a85e6494c570b2",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/renderer-images.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 5737,
+      "sha256": "f98bb7551d694958ac710316838ccf738e6ff9da865661c59a18f60d9203fa0b",
+      "git_sha1": "861ee7a143c2126c57f0bf0251eee6d26c0e3be2",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/results.tsv",
+      "scope": "original_archive_member",
+      "media": "text",
+      "bytes": 2259,
+      "sha256": "e055b2d3ac43199e50b37b824bbcc84c75dc9aa683389478e898637f7c0b16d4",
+      "git_sha1": "db0de72ce9ada78bbe039dc96745928e0b5fd30a",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/safe-area-images.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 2878,
+      "sha256": "ac560b1bf0b9901225d1e6ad4af869a09bfa58d66f378e9a4bde8c2498760076",
+      "git_sha1": "e1afb3ef7dce05369ff8981902554d020387ea90",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/studio-2020-images.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 13986,
+      "sha256": "303806d2741c2223b13c756440fc0ebd0020ea25ee70d6b13ac5796b671c584a",
+      "git_sha1": "c84348daeabfc1f4d021227cc24598ad2ffbb586",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/nextgen/village-images.json",
+      "scope": "original_archive_member",
+      "media": "json",
+      "bytes": 1010,
+      "sha256": "f3c4ebe6324f8d11eaca079a905b8b0e85891c80a7ec170421881f6911a69a99",
+      "git_sha1": "78bd8f82520b674bca00e18bf61a6f7815cc20c1",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/project.log",
+      "scope": "original_archive_member",
+      "media": "text",
+      "bytes": 6131,
+      "sha256": "2d6b03148c37199f78d2a55916dfa91b1f73a2362123270cc9e54b23622afe75",
+      "git_sha1": "6832ded5fe2577ae0c0a69bcc5d1fa658f727577",
+      "github_sha_verified": true
+    },
+    {
+      "key": "14126752152/source-sha.txt",
+      "scope": "original_archive_member",
+      "media": "text",
+      "bytes": 41,
+      "sha256": "38f77b332dab65920650d4a33f936e0d7e7f5f7a917c0ae6c1bcd17ba3767eb8",
+      "git_sha1": "5ce95ee2598fcd109ba352164c6fe1cfd19d3fa9",
+      "github_sha_verified": true
+    },
+    {
+      "key": "native-audit-original-stdout-receipt.json",
+      "scope": "original_audit_stdout_receipt",
+      "media": "json",
+      "bytes": 22681,
+      "sha256": "4038e35a4d9b0ce7c969e91265bbac25a11d8398bec10d56f6bcefd520af9c6e",
+      "git_sha1": "a6d4c77f2655dbed13333d7cff3501e93555e7dc",
+      "github_sha_verified": true
+    },
+    {
+      "key": "new-inventory/native",
+      "scope": "new_read_only_audit_inventory",
+      "media": "json",
+      "bytes": 1128068,
+      "sha256": "b066c7612bb4e04ea8d29cda3e69f9c45bdcbd738ede80e84871622bcec3ba62",
+      "git_sha1": "05948c66ec2538e030314ced71f81b9f1155aa48",
+      "github_sha_verified": true
+    },
+    {
+      "key": "provenance/api/001-audit-run.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "bytes": 12450,
+      "sha256": "6b8f5f5244a55bc5488c493143e8ed2375326e024b1f56f02b591d5595c52599",
+      "git_sha1": "7a8c2ba85356c0520bbd5a937cc5d4ef68dea382",
+      "github_sha_verified": true
+    },
+    {
+      "key": "provenance/api/002-audit-script.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "bytes": 83839,
+      "sha256": "3d1dd6eb75c918085cad8dc4d235c50418a70955ca80b8ae9033e32c05891264",
+      "git_sha1": "07b25a40a94e45a28fa832f9cb7545d736ea062b",
+      "github_sha_verified": true
+    },
+    {
+      "key": "provenance/api/003-audit-manifest.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "bytes": 3730,
+      "sha256": "2215f462003f026a715d63c82b884cc5e1ee5c2a0414aa6b985eaf83fc97a6af",
+      "git_sha1": "d35960524f92d930d9f78f5844939653b09f6f2f",
+      "github_sha_verified": true
+    },
+    {
+      "key": "provenance/api/004-original-run.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "bytes": 12996,
+      "sha256": "f4fccba7e031b23d8e4a44272605b0fb3f24c950aa476fe908497353af1feb37",
+      "git_sha1": "93b45a59403ae607d7578c74d42ede1b4a41cef3",
+      "github_sha_verified": true
+    },
+    {
+      "key": "provenance/api/005-original-jobs.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "bytes": 20748,
+      "sha256": "3df4421ccc3900ddb252a5b90896b238954fb4a1d75d4f86e0fb6ebcdc96d5ed",
+      "git_sha1": "b4f1bb2f99d4ae13de784ea5bc0752c21bed4e47",
+      "github_sha_verified": true
+    },
+    {
+      "key": "provenance/api/006-original-artifacts.json",
+      "scope": "original_github_api_response",
+      "media": "json",
+      "bytes": 8254,
+      "sha256": "e0af780987c898e70726e53fcff9be7f3d55476a2936bac1013432f0638d10ed",
+      "git_sha1": "234a16dd0181ee3348d9ef94f45e4e64ed8b6bb9",
+      "github_sha_verified": true
+    }
+  ],
+  "png_transport_wrappers": [
+    {
+      "key": "14126752152/nextgen/captures/lumo_facial_capture/teacher_scene.png.base64.txt",
+      "scope": "new_utf8_base64_transport_wrapper_of_exact_original_png",
+      "original_key": "14126752152/nextgen/captures/lumo_facial_capture/teacher_scene.png",
+      "original_bytes": 113407,
+      "original_sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "original_git_sha1": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "transport_encoding": "canonical_base64_no_whitespace",
+      "transport_bytes": 151212,
+      "transport_sha256": "e35bf01bdb599d126146df0eaa96dad4c5fc05f9ef5785f70565fc5e99cdea78",
+      "git_sha1": "741f5f79e7c6f33ea3d58684b4bb667ec50abcdf"
+    },
+    {
+      "key": "14126752152/nextgen/captures/connect_four_visual_capture/c4-paused-small.png.base64.txt",
+      "scope": "new_utf8_base64_transport_wrapper_of_exact_original_png",
+      "original_key": "14126752152/nextgen/captures/connect_four_visual_capture/c4-paused-small.png",
+      "original_bytes": 29411,
+      "original_sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "original_git_sha1": "7806e7f57e122d27342bbd6342325cf96b96ef55",
+      "transport_encoding": "canonical_base64_no_whitespace",
+      "transport_bytes": 39216,
+      "transport_sha256": "123eebcfc796a765095b27373296ede4d02a1b1511eb69a04ba1e87362527344",
+      "git_sha1": "444b8ea5d6727f789b869eb9357dd429f0bc624f"
+    },
+    {
+      "key": "14126752152/nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png.base64.txt",
+      "scope": "new_utf8_base64_transport_wrapper_of_exact_original_png",
+      "original_key": "14126752152/nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "original_bytes": 2623392,
+      "original_sha256": "37d2e40dcf344f35dd796ed7bd0eb4bdb2ede047d4fc3fefd1a0e5a1e96b144b",
+      "original_git_sha1": "b253cf059a318a4a971a7b02d3c72abe6ffc66dc",
+      "transport_encoding": "canonical_base64_no_whitespace",
+      "transport_bytes": 3497856,
+      "transport_sha256": "a47cf547090ebeee4049852ef845b465ddf1111be19b0bfbc9922978c7fe0565",
+      "git_sha1": "fb61da5be8f68d563e630f71b2393ecfdc0b62b8"
+    }
+  ],
+  "checkpoint_scope": "Only unreferenced Git blobs were written after parent authorization. No refs, commits, workflow runs, product source changes, tests or renders were created.",
+  "provenance_scope": "The preserved native archive members and API responses are original bytes. The audit receipt is the exact original emitted JSON record. The member inventory, review index and UTF-8 base64 wrappers are explicitly newly generated audit/transport data.",
+  "limits": [
+    "Only these three selected original PNGs were visually examined by this agent.",
+    "This desktop raster evidence does not establish Android/device frame rate, audio quality or candidate acceptance.",
+    "Existing checked_native replays 52 Nextgen modes and five raster/movie rosters; other legacy groups are preserved as original logs and not added to its semantic replay count.",
+    "Static project checker reports 117 PASS / 7 WARN / 0 FAIL; six legacy manifest GLB warnings and one executable-bit warning remain explicit."
+  ]
+}

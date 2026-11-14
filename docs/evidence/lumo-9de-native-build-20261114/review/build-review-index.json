@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "kind": "newly_derived_original_build_log_review_index",
+  "scope": "Original completed GitHub job log and losslessly extracted JSON payloads; this index is newly derived. No APK download or new test execution by this reader.",
+  "run_id": 43622379532,
+  "run_attempt": 1,
+  "job_id": 132532172676,
+  "host": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "host_tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "original_log": {
+    "bytes": 1817266,
+    "sha256": "9790637089174a1f89456e8f2c88556934d034d08d591a573ee472cda637e9be",
+    "source": "Decoded complete original GitHub job log fetched once after completion",
+    "run_id": 43622379532,
+    "run_attempt": 1,
+    "job_id": 132532172676,
+    "git_blob": "a2b41b82e99181182e3d4ce3f4a531deca6341a3"
+  },
+  "package_reports": [
+    {
+      "ordinal": 1,
+      "abi": "arm64-v8a",
+      "timestamp": "2026-11-14T18:40:10.1640392Z",
+      "source_lines_inclusive": [
+        14391,
+        14431
+      ],
+      "extraction": "Only GitHub timestamp prefixes removed; JSON content, indentation and LF preserved",
+      "bytes": 1779,
+      "sha256": "c347248c6a0b1df7a6de00647e44dee71221ec81a23ec1c31adede86529937f3",
+      "git_blob": "af05bac616d231e3b7d2fe9bfa7f5f22710de1e3"
+    },
+    {
+      "ordinal": 2,
+      "abi": "x86_64",
+      "timestamp": "2026-11-14T18:40:14.2056229Z",
+      "source_lines_inclusive": [
+        14432,
+        14472
+      ],
+      "extraction": "Only GitHub timestamp prefixes removed; JSON content, indentation and LF preserved",
+      "bytes": 1776,
+      "sha256": "5f928e89f341a81755564c79634420d31513af6fd95554feb378c057e7a1288f",
+      "git_blob": "d04e5abf92eaeca22425a8b2da94424a71978e89"
+    },
+    {
+      "ordinal": 3,
+      "abi": "arm64-v8a",
+      "timestamp": "2026-11-14T18:40:17.9048136Z",
+      "source_lines_inclusive": [
+        14491,
+        14531
+      ],
+      "extraction": "Only GitHub timestamp prefixes removed; JSON content, indentation and LF preserved",
+      "bytes": 1779,
+      "sha256": "c347248c6a0b1df7a6de00647e44dee71221ec81a23ec1c31adede86529937f3",
+      "git_blob": "af05bac616d231e3b7d2fe9bfa7f5f22710de1e3"
+    },
+    {
+      "ordinal": 4,
+      "abi": "x86_64",
+      "timestamp": "2026-11-14T18:40:21.3753948Z",
+      "source_lines_inclusive": [
+        14533,
+        14573
+      ],
+      "extraction": "Only GitHub timestamp prefixes removed; JSON content, indentation and LF preserved",
+      "bytes": 1776,
+      "sha256": "5f928e89f341a81755564c79634420d31513af6fd95554feb378c057e7a1288f",
+      "git_blob": "d04e5abf92eaeca22425a8b2da94424a71978e89"
+    }
+  ],
+  "paired_build_and_verification_json_payloads_byte_identical": true,
+  "original_python_summary_blocks": [
+    {
+      "line": 2512,
+      "original": "2026-11-14T17:58:24.0040728Z Ran 845 tests in 227.230s\n2026-11-14T17:58:24.0040870Z \n2026-11-14T17:58:24.0040949Z OK\n2026-11-14T17:58:24.0041043Z "
+    },
+    {
+      "line": 3888,
+      "original": "2026-11-14T17:59:50.9742063Z Ran 982 tests in 82.417s\n2026-11-14T17:59:50.9742207Z \n2026-11-14T17:59:50.9742291Z OK\n2026-11-14T17:59:51.0038577Z ##[group]Run set -euo pipefail"
+    }
+  ],
+  "artifact_metadata_scope": "Copied current GitHub API records. ZIP digests here remain API metadata until an original-archive reader hashes the bytes.",
+  "artifacts": {
+    "candidate": {
+      "id": 14126738109,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEyNjczODEwOQ==",
+      "name": "lumo-connect-four-2020-candidate",
+      "size_in_bytes": 665175289,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126738109",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126738109/zip",
+      "expired": false,
+      "digest": "sha256:d6938cbdcde85b18d0dea72f0eb682e5ff0ef4381ea3fda7853096994fdc68a9",
+      "created_at": "2026-11-14T18:40:27Z",
+      "updated_at": "2026-11-14T18:40:27Z",
+      "expires_at": "2026-12-14T18:40:21Z",
+      "workflow_run": {
+        "id": 43622379532,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-agent-execution-20261114",
+        "head_sha": "9deaa3f24561bc65caba898585c0c00f1c77162b"
+      }
+    },
+    "arm64": {
+      "id": 14126773063,
+      "node_id": "MDg6QXJ0aWZhY3QxNDEyNjc3MzA2Mw==",
+      "name": "lumo-connect-four-2020-arm64-verified",
+      "size_in_bytes": 331007022,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126773063",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126773063/zip",
+      "expired": false,
+      "digest": "sha256:ff9c4b17701db3b34a3b947c8be7fb924ef381743f7d0ff69e89adbdae8618f4",
+      "created_at": "2026-11-14T18:40:31Z",
+      "updated_at": "2026-11-14T18:40:31Z",
+      "expires_at": "2026-12-14T18:40:28Z",
+      "workflow_run": {
+        "id": 43622379532,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-agent-execution-20261114",
+        "head_sha": "9deaa3f24561bc65caba898585c0c00f1c77162b"
+      }
+    }
+  }
+}
