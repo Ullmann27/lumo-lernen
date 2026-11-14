@@ -1,0 +1,58 @@
+{
+  "action": "Remove only a fully redundant historical ZIP container; retain every extracted original byte",
+  "artifact_id": 14118379876,
+  "archive": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/original-arm64-artifact.zip",
+  "archive_bytes": 331365042,
+  "archive_sha256": "e02bf416b5adf2d081de573dc2dd04b7d50a004b1bc8b33d91982f99ebfa8c4c",
+  "all_members_crc_size_and_sha256_match_retained_files": true,
+  "retained_originals": [
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "a63201db8be20c66e2fffa07a7e50055d0d07b33b59d5541e7434df58a1392ba",
+      "zip_crc32": "cd5fcd37",
+      "unchanged_extracted_original_retained": true
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/APK-VERIFICATION.json",
+      "bytes": 1779,
+      "sha256": "1931c559c0ae16e3559a6ca0792dfea33ac2799602bf30986d9ff2536a0d5b0b",
+      "zip_crc32": "8cbbb10e",
+      "unchanged_extracted_original_retained": true
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/Lumo-Lernen-Neu.apk",
+      "bytes": 331354629,
+      "sha256": "44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd",
+      "zip_crc32": "c66c5aaf",
+      "unchanged_extracted_original_retained": true
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/BUILD-PROVENANCE.json",
+      "bytes": 7589,
+      "sha256": "18ca9abe6004df049d2f5cf66a222ca53d139b344b1aa59a66008b8900e92010",
+      "zip_crc32": "36a4dd62",
+      "unchanged_extracted_original_retained": true
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "65b166cfadfcc64160f8bf4648a87b29cefd538f08513fd6b896656fbcfba9ee",
+      "zip_crc32": "0a125013",
+      "unchanged_extracted_original_retained": true
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "c013ca7f211e5bc15f7449705ab8c325c7e41164828301f8b0f2c51174ac8f68",
+      "zip_crc32": "0d27d171",
+      "unchanged_extracted_original_retained": true
+    }
+  ],
+  "new_downloads": 0,
+  "new_device_runs": 0,
+  "checked_at_utc": "2026-11-14T21:01:19Z",
+  "before_free_bytes": 47284224,
+  "container_removed": true,
+  "after_free_bytes": 378646528
+}

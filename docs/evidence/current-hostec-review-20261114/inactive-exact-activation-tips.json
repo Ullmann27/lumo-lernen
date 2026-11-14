@@ -1,0 +1,24 @@
+{
+  "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "active": false,
+  "branches_created": false,
+  "required_before_use": "Fresh unchanged source/PR heads and all exact mandatory current acceptance jobs; publisher additionally requires complete original replay, images and fresh release vacancy.",
+  "reader": {
+    "commit": "65822ca043c548bf7ce2a9d26adcbc551a4982f7",
+    "tree": "660864f7b96bf2e19de8d6c1d5becd3fd3138749",
+    "ordered_parents": [
+      "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "99faf8deee4b43594965ed7b9e172919fe6ef6aa"
+    ],
+    "active": false
+  },
+  "publisher": {
+    "commit": "f99531b163f03fdcf6c8dba4cfb03a265af483f0",
+    "tree": "a78e7669927e796db95320d2e8d5f2999dbe2523",
+    "ordered_parents": [
+      "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "1e7835f5d84634048199a7cd8e56c2e97e4cf351"
+    ],
+    "active": false
+  }
+}
