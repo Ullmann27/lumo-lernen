@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "base_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "source_of_baseline": "Fresh GitHub file retrieval at explicit785413 commit in read-only diagnosis",
+  "changes": [
+    {
+      "path": "tools/validate_studio.sh",
+      "before": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/baseline/native/tools/validate_studio.sh",
+        "bytes": 25171,
+        "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd",
+        "git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1"
+      },
+      "after": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native/tools/validate_studio.sh",
+        "bytes": 25425,
+        "sha256": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+        "git_blob_sha": "542e22df76ae8773d3c7de064a560a977fc9a033"
+      }
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "before": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/baseline/native/tools/tests/test_nextgen_runner.py",
+        "bytes": 48638,
+        "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c",
+        "git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154"
+      },
+      "after": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native/tools/tests/test_nextgen_runner.py",
+        "bytes": 48638,
+        "sha256": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+        "git_blob_sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d"
+      }
+    }
+  ],
+  "unchanged_reference_inputs": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob_sha": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae"
+    }
+  ],
+  "probe_count": 20,
+  "changed_probe_budgets": [
+    {
+      "index": 19,
+      "before": [
+        "treasure_title_contrast_regression",
+        "[TreasureTitleContrast] PASS",
+        "rendered",
+        "600"
+      ],
+      "after": [
+        "treasure_title_contrast_regression",
+        "[TreasureTitleContrast] PASS",
+        "rendered",
+        "900"
+      ]
+    }
+  ],
+  "other_19_budgets_unchanged": true,
+  "roster_and_collector_bytes_unchanged": true,
+  "test_exact_two_replacements_only": true,
+  "engine_execution_performed": false
+}

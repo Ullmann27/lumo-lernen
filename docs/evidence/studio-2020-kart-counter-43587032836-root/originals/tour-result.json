@@ -1,0 +1,618 @@
+{
+  "status": "PASS",
+  "apk_sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe",
+  "steps": [
+    {
+      "step": "apk-identity",
+      "ok": true,
+      "apk_sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe",
+      "flutter_source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "godot_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "godot_pck_sha256": "aafe4afc0c5c38656b08b86ec382762d0af6b1ae7116b1187db4f2b04bb949a3",
+      "versionName": "0.13.8",
+      "versionCode": 2020,
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "checks": {
+        "sha256_matches_provenance": true,
+        "sha256_matches_build_sums": true,
+        "flutter_source_is_this_commit": true,
+        "tracked_source_clean": true,
+        "godot_revision_is_pinned": true,
+        "signing_certificate": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      }
+    },
+    {
+      "step": "launch",
+      "ok": true
+    },
+    {
+      "step": "onboarding",
+      "ok": true
+    },
+    {
+      "step": "navigate-start",
+      "ok": true,
+      "label": "Start"
+    },
+    {
+      "step": "atelier-roundtrip",
+      "ok": true,
+      "screen": "Real native-Android Flutter Zehnerbr\u00fccke",
+      "observed": [
+        "Hub",
+        "Worked example",
+        "Interactive ten-frame",
+        "Model check",
+        "Flutter return"
+      ],
+      "screenshots": [
+        "11_atelier_hub.png",
+        "12_atelier_beispiel.png",
+        "13_atelier_zehnerbruecke.png"
+      ]
+    },
+    {
+      "step": "navigate-lernen",
+      "ok": true,
+      "label": "Lernen",
+      "visible_labels": 50
+    },
+    {
+      "step": "navigate-spiele",
+      "ok": true,
+      "label": "Spielen"
+    },
+    {
+      "step": "open-kart",
+      "ok": true,
+      "label": "Lumo Kart. Fahre mit Lumo um die Wette! Spielen"
+    },
+    {
+      "step": "start-kart-race",
+      "ok": true,
+      "touches": [
+        {
+          "step": "premium-start",
+          "button": "START",
+          "tap": [
+            1824,
+            916
+          ]
+        },
+        {
+          "step": "preview-skip",
+          "button": "Tippen zum \u00dcberspringen",
+          "tap": [
+            1267,
+            418
+          ],
+          "input": "swipe",
+          "duration_ms": 120,
+          "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json"
+        }
+      ],
+      "expected_mode": "cup",
+      "expected_track": "sonnenhafen",
+      "garage_replaced": {
+        "changed_fraction": 0.886,
+        "mean_channel_delta": 111.45
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 634,
+            "bright_fraction": 0.916
+          },
+          {
+            "colour_bins": 537,
+            "bright_fraction": 0.976
+          },
+          {
+            "colour_bins": 1043,
+            "bright_fraction": 0.796
+          }
+        ]
+      },
+      "preview_skip": {
+        "schema": 1,
+        "status": "TOUCH_SENT",
+        "countercheck_scope": "OBSERVED_UI_TOUCH_ONLY",
+        "caption": "Tippen zum \u00dcberspringen",
+        "deadline_policy": "original race-world-ready55s",
+        "initial_remaining_seconds": 32.851609302999975,
+        "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json",
+        "initial_capture": {
+          "source": "21_lumo_kart_real_race.png",
+          "source_sha256": "126fcea663e62c6f09f1597b441a6ec1bdae74e0b98fd6cd139c4100af36e941",
+          "scope": "Context only; never a touch prerequisite"
+        },
+        "foreground_before_touch": "    topResumedActivity=ActivityRecord{abb2fab u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8}",
+        "readiness": {
+          "status": "TOUCH_SENT",
+          "label": "Tippen zum \u00dcberspringen",
+          "timeout_seconds": 32.63008108099996,
+          "exact_caption_required": true,
+          "orientation_policy": "landscape",
+          "scope": "Observed touch prerequisites; post-action assertions still required",
+          "frames": [
+            {
+              "source": "21_kart_preview_skip_touch-0.png",
+              "source_sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+              "source_bytes": 1902122,
+              "pixels": [
+                2400,
+                1080
+              ],
+              "orientation_policy": "landscape",
+              "sample_rows": [
+                130,
+                238,
+                346,
+                454,
+                562,
+                670,
+                778,
+                886
+              ],
+              "blank_edge_columns": {
+                "left": 0,
+                "right": 0
+              },
+              "blank_threshold_rgb_max": 8,
+              "blank_required_rows": 7,
+              "acceptable_for_target_sampling": true,
+              "reasons": [],
+              "scope": "Reject observed partial surface; no scene/gameplay PASS",
+              "captured_after_seconds": 2.093651,
+              "target": {
+                "surface_sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+                "pixels": [
+                  2400,
+                  1080
+                ],
+                "bounds": [
+                  1124.0,
+                  404.0,
+                  1410.0,
+                  431.0
+                ],
+                "anchor": "",
+                "reasons": [
+                  "waiting for second stable observed target bounds"
+                ],
+                "target_geometry_valid": true,
+                "stable_observed_target": false
+              }
+            },
+            {
+              "source": "21_kart_preview_skip_touch-1.png",
+              "source_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+              "source_bytes": 1944037,
+              "pixels": [
+                2400,
+                1080
+              ],
+              "orientation_policy": "landscape",
+              "sample_rows": [
+                130,
+                238,
+                346,
+                454,
+                562,
+                670,
+                778,
+                886
+              ],
+              "blank_edge_columns": {
+                "left": 0,
+                "right": 0
+              },
+              "blank_threshold_rgb_max": 8,
+              "blank_required_rows": 7,
+              "acceptable_for_target_sampling": true,
+              "reasons": [],
+              "scope": "Reject observed partial surface; no scene/gameplay PASS",
+              "captured_after_seconds": 7.830741,
+              "target": {
+                "surface_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+                "pixels": [
+                  2400,
+                  1080
+                ],
+                "bounds": [
+                  1124.0,
+                  402.0,
+                  1410.0,
+                  434.0
+                ],
+                "anchor": "",
+                "reasons": [],
+                "target_geometry_valid": true,
+                "stable_observed_target": true
+              }
+            }
+          ],
+          "final_observed_bounds": [
+            1124.0,
+            402.0,
+            1410.0,
+            434.0
+          ],
+          "touch": [
+            1267,
+            418
+          ],
+          "elapsed_seconds": 11.008732
+        },
+        "cue_witnesses": [
+          {
+            "source": "21_kart_preview_skip_touch-0.png",
+            "source_sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+            "ocr_file": "21_kart_preview_skip_touch-0-ocr.json",
+            "ocr_sha256": "bbc1ca62baa0ec569432a493f97aba88f48d471a80f0de5246114fb0c95e24a6",
+            "observed_matches": [
+              {
+                "text": "Tippen zum \u00dcberspringen",
+                "bounds": [
+                  1124.0,
+                  404.0,
+                  1410.0,
+                  431.0
+                ],
+                "variant": "contrast"
+              },
+              {
+                "text": "Tippen zum \u00dcberspringen",
+                "bounds": [
+                  1124.0,
+                  404.0,
+                  1410.0,
+                  431.0
+                ],
+                "variant": "contrast"
+              }
+            ]
+          },
+          {
+            "source": "21_kart_preview_skip_touch-1.png",
+            "source_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+            "ocr_file": "21_kart_preview_skip_touch-1-ocr.json",
+            "ocr_sha256": "e142712e766cb35541d9daf9b872fd977de3b0a0acd62c39c00319495884c0ed",
+            "observed_matches": [
+              {
+                "text": "Tippen zum Uberspringen",
+                "bounds": [
+                  1124.0,
+                  402.0,
+                  1410.0,
+                  434.0
+                ],
+                "variant": "contrast"
+              },
+              {
+                "text": "Tippen zum Uberspringen",
+                "bounds": [
+                  1124.0,
+                  402.0,
+                  1410.0,
+                  434.0
+                ],
+                "variant": "contrast"
+              }
+            ]
+          }
+        ],
+        "cue": {
+          "source": "21_kart_preview_skip_touch-1.png",
+          "source_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+          "ocr_file": "21_kart_preview_skip_touch-1-ocr.json",
+          "ocr_sha256": "e142712e766cb35541d9daf9b872fd977de3b0a0acd62c39c00319495884c0ed",
+          "observed_matches": [
+            {
+              "text": "Tippen zum Uberspringen",
+              "bounds": [
+                1124.0,
+                402.0,
+                1410.0,
+                434.0
+              ],
+              "variant": "contrast"
+            },
+            {
+              "text": "Tippen zum Uberspringen",
+              "bounds": [
+                1124.0,
+                402.0,
+                1410.0,
+                434.0
+              ],
+              "variant": "contrast"
+            }
+          ]
+        },
+        "touch": [
+          1267,
+          418
+        ],
+        "after_capture": {
+          "file": "21_kart_preview_after_touch.png",
+          "width": 2400,
+          "height": 1080,
+          "sha256": "3e146c1124f5173efe93b92fb0954bf50d2a04ed7f01d2b09a813779092570b1"
+        },
+        "elapsed_seconds": 12.396425
+      }
+    },
+    {
+      "step": "race-running",
+      "ok": true,
+      "state": {
+        "result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631",
+        "countdown": 0.0,
+        "elapsed": 1.0000000000000013,
+        "distance": 3.9689185e-06,
+        "checkpoint_index": 0
+      }
+    },
+    {
+      "step": "race-hud",
+      "ok": true,
+      "capture": "21_race_hud_2",
+      "race_state": {
+        "round": [
+          1,
+          2
+        ],
+        "place": [
+          6,
+          6
+        ]
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          0.998,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 1099,
+            "bright_fraction": 0.803
+          },
+          {
+            "colour_bins": 1124,
+            "bright_fraction": 0.857
+          },
+          {
+            "colour_bins": 1247,
+            "bright_fraction": 0.68
+          }
+        ]
+      },
+      "hud_lines": [
+        "RUNDE 1/2 PLATZ6/6 Okm/h x0"
+      ],
+      "focused_hud": null
+    },
+    {
+      "step": "race-drive",
+      "ok": true,
+      "gas_touch": [
+        2242,
+        936
+      ],
+      "hold_ms": 9000,
+      "gas_pulses": 3,
+      "world_moved": {
+        "changed_fraction": 0.728,
+        "mean_channel_delta": 66.99
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 1017,
+            "bright_fraction": 0.885
+          },
+          {
+            "colour_bins": 930,
+            "bright_fraction": 0.929
+          },
+          {
+            "colour_bins": 1165,
+            "bright_fraction": 0.768
+          }
+        ]
+      },
+      "native_progress": {
+        "result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631",
+        "distance_gain": 107.19,
+        "elapsed_gain": 5.02,
+        "checkpoint_index": 0
+      }
+    },
+    {
+      "step": "pause-menu",
+      "ok": true,
+      "frozen_while_paused": {
+        "result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631",
+        "distance": 128.42012001792318,
+        "elapsed": 6.516666666666649,
+        "checkpoint_index": 0,
+        "finished": false
+      }
+    },
+    {
+      "step": "return-from-kart",
+      "ok": true,
+      "capture": "23_zurueck_in_flutter.png",
+      "foreground_is_flutter": true
+    },
+    {
+      "step": "learning-state-after-kart",
+      "ok": true,
+      "profile": {
+        "id": "1794653597782579",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:53:17.782579"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    {
+      "step": "lernen-usable-after-kart",
+      "ok": true,
+      "labels_before": 39,
+      "labels_after": 39,
+      "kept_fraction": 1.0
+    },
+    {
+      "step": "profile-after-kart",
+      "ok": true,
+      "profile_name_visible": "LumoTest",
+      "observed_after_scrolls": 4,
+      "source": "live Android accessibility tree"
+    },
+    {
+      "step": "restart-keeps-learning-state",
+      "ok": true,
+      "profile": {
+        "id": "1794653597782579",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:53:17.782579"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    {
+      "step": "display-fold_offen",
+      "ok": true,
+      "size": "1812x2176@420"
+    },
+    {
+      "step": "display-fold_aussen",
+      "ok": true,
+      "size": "904x2316@420"
+    },
+    {
+      "step": "display-quer",
+      "ok": true,
+      "size": "2400x1080@420"
+    }
+  ],
+  "not_tested": [
+    "physical Samsung Fold",
+    "device GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race and reward (kart_complete_android_probe)"
+  ],
+  "emulator_root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.004,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "restarting adbd as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 1.314,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 1.321,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 1.363,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 1.398
+  },
+  "android_sdk": "35",
+  "installed_package": {
+    "userId": "10209",
+    "firstInstallTime": "2026-11-14 10:52:38",
+    "versionCode": "2020 minSdk=24 targetSdk=36",
+    "versionName": "0.13.8"
+  },
+  "cold_start_seconds_until_foreground": 8.3,
+  "fatal_crashes": 0
+}

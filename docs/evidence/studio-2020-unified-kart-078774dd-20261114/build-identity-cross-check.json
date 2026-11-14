@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "run_id": 43580229005,
+  "build_job_id": 132403230395,
+  "tour_job_id": 132408947901,
+  "source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "original_build_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/original-build-job.log",
+    "bytes": 1517302,
+    "sha256": "232abb547ee07b93f2c79482bfd10a5285ac09f7dddd72bc2ae9cbde701d8984"
+  },
+  "report_count": 4,
+  "build_and_postbuild_verification_identical_for_each_abi": true,
+  "x86_report": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "x86_64"
+    ],
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true,
+    "bytes": 333778826,
+    "sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "engine": "4.6.3",
+      "pck_sha256": "aafe4afc0c5c38656b08b86ec382762d0af6b1ae7116b1187db4f2b04bb949a3",
+      "bytes": 74691068
+    },
+    "offlineVoice": {
+      "profile": "lumo-free-supertonic-de-v1",
+      "preset": "F2",
+      "speakerId": 1,
+      "sampleRate": 44100,
+      "onnxruntimeVersion": "1.23.1",
+      "clipCount": 155,
+      "modelSha256": {
+        "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+        "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+        "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+        "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+        "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+        "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+        "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+      },
+      "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+      "scope": "Actual APK package validation, not audible playback acceptance"
+    }
+  },
+  "arm64_report": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "arm64-v8a"
+    ],
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true,
+    "bytes": 330624605,
+    "sha256": "faa6d0501a929559a6b6d4f721879a495bbb8d67309b26e3858af9d348d38fe1",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "engine": "4.6.3",
+      "pck_sha256": "aafe4afc0c5c38656b08b86ec382762d0af6b1ae7116b1187db4f2b04bb949a3",
+      "bytes": 74691068
+    },
+    "offlineVoice": {
+      "profile": "lumo-free-supertonic-de-v1",
+      "preset": "F2",
+      "speakerId": 1,
+      "sampleRate": 44100,
+      "onnxruntimeVersion": "1.23.1",
+      "clipCount": 155,
+      "modelSha256": {
+        "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+        "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+        "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+        "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+        "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+        "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+        "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+      },
+      "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+      "scope": "Actual APK package validation, not audible playback acceptance"
+    }
+  },
+  "actual_tour_identity": {
+    "step": "apk-identity",
+    "ok": true,
+    "apk_sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe",
+    "flutter_source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "godot_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "godot_pck_sha256": "aafe4afc0c5c38656b08b86ec382762d0af6b1ae7116b1187db4f2b04bb949a3",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "x86_and_native_identity_matches_tour": true,
+  "scope": "Independent read-only parsing of exact original CI logs and original tour report. No APK was downloaded or locally binary-verified by this agent; values are actual CI verifier observations."
+}

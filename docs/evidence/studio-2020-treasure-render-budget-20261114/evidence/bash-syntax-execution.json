@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "argv": [
+    "bash",
+    "-n",
+    "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native/tools/validate_studio.sh"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.0018786219879984856,
+  "source_sha256_before": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+  "source_sha256_after": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+  "scope": "Bash parser only; no engine execution",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

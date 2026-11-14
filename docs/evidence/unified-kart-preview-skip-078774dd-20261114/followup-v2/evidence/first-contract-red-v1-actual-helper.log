@@ -1,0 +1,27 @@
+test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span (__main__.PreviewSkipTests.test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span) ... FAIL
+test_actual_helper_observes_fade_then_two_fresh_exact_frames (__main__.PreviewSkipTests.test_actual_helper_observes_fade_then_two_fresh_exact_frames) ... ERROR
+
+======================================================================
+ERROR: test_actual_helper_observes_fade_then_two_fresh_exact_frames (__main__.PreviewSkipTests.test_actual_helper_observes_fade_then_two_fresh_exact_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 414, in test_actual_helper_observes_fade_then_two_fresh_exact_frames
+    frames = report['readiness']['frames']
+             ~~~~~~^^^^^^^^^^^^^
+KeyError: 'readiness'
+
+======================================================================
+FAIL: test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span (__main__.PreviewSkipTests.test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 401, in test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span
+    self.assertEqual(report['status'], 'TOUCH_SENT')
+AssertionError: 'CUE_NOT_OBSERVED' != 'TOUCH_SENT'
+- CUE_NOT_OBSERVED
++ TOUCH_SENT
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.110s
+
+FAILED (failures=1, errors=1)

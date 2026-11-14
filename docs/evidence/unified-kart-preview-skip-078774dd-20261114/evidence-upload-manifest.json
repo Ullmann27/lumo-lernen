@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "docs_only": true,
+  "target_prefix": "docs/evidence/unified-kart-preview-skip-078774dd-20261114",
+  "source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "file_count": 8,
+  "total_bytes": 29056,
+  "files": [
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5743,
+      "sha256": "c676d97346dd642fc409422cba50318a0d89c33fd4d4f7c1131281fe3ecedabc",
+      "git_blob_sha": "545cfed0e2ce37b5d53c2255f84da460d9da6eaa"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1201,
+      "sha256": "1919a9d6c00ffa2b3134c8e784a24bd6badad59a1e43171ad55aaa9d0f179328",
+      "git_blob_sha": "e79641f6d4158694c977bd88df1a0ca367e569f9"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/implementation-against-exact-078.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/implementation-against-exact-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7920,
+      "sha256": "f1faadac89a8348f7a7b7b679c06ff48211c13ccbdafb6ee4dea32c5ce4ae906",
+      "git_blob_sha": "c92765b4f0a104b140d7d51710b29e8bccb44a9b"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/runtime-report-contract.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/runtime-report-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2883,
+      "sha256": "00b1d769e41680c6a1c221c5c64076429991a196e2bbfcfd90c1f7bca1436299",
+      "git_blob_sha": "5e7156060dc09d475ff91a2b88eaadaec6155386"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/evidence/red-original-078.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/evidence/red-original-078.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1114,
+      "sha256": "1059d7d8454eb8fce46f1a2eec0de378e0258fa1444c0467167ebc1080344d63",
+      "git_blob_sha": "2d5ab5e66e4a747c10a5dd5751ccd0397d5de53f"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/evidence/green-contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/evidence/green-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3091,
+      "sha256": "eabcbea9ba727bfbd106dd804310c2fc938741bbc15a66ea936f453db10edea6",
+      "git_blob_sha": "ac52c5e8aa196f7cca9f96090436c41329d68046"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/evidence/execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/evidence/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5271,
+      "sha256": "c5929b5f680584df995b5183d6c243a508eac5d423add6eee1d0a8e88a3ad335",
+      "git_blob_sha": "fd55fbb41c62669469c3febffaf900f8d09effcc"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/evidence/ast-preservation.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/evidence/ast-preservation.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1833,
+      "sha256": "0bfc4534bedf2f6dad5707e6c3b60da43e89679b5794ae7dd9bf755234b9b37b",
+      "git_blob_sha": "e733ff2367195d098d5e8db943da92b63f0b4790"
+    }
+  ],
+  "excluded": "No APK/large ZIP, no product installation, no ref mutation. Root appends its original PNGs/extraction/tour result and image reviews separately."
+}

@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "host_workflow": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-device-data-scope-078774dd-20261114/workflow-at-078774dd.yml.txt",
+    "bytes": 58576,
+    "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+    "git_blob_sha": "4987a607fd3bb1531eff243500ed05cfec50ec57"
+  },
+  "native_sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": ".github/workflows/lumo-studio-2020.yml",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob_sha": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "tools/run_godot_probe.py",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c",
+      "git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "tools/tests/test_nextgen_runner.py",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/tools/validate_studio.sh",
+      "bytes": 25171,
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd",
+      "git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "tools/validate_studio.sh",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    }
+  ]
+}

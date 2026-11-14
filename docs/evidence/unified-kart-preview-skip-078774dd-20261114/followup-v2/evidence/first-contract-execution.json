@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "scope": "Actual Python control/real image_lines+native_tap/target-observation execution; raster/TSV transport and clock doubled. Not actual image/Tesseract/Android evidence.",
+  "runs": [
+    {
+      "name": "red-v1-actual-helper",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+        "PreviewSkipTests.test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span",
+        "PreviewSkipTests.test_actual_helper_observes_fade_then_two_fresh_exact_frames",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "LUMO_KART_EVIDENCE_SOURCE": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py",
+        "LUMO_KART_CREATIVE_SOURCE": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py",
+        "LUMO_KART_SURFACE_SOURCE": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/native_surface_readiness.py",
+        "LUMO_KART_TOUR_SOURCE": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py"
+      },
+      "exit_code": 1,
+      "elapsed_seconds": 0.21931594899797346,
+      "source_before": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py": "392bc0ec34f8fbc935635f98e75f66416e7f31d4e92fa388a134233592c1b6d7",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py": "0cc7396592081cb87b7e6de699e914c84297bc49f1566c56e14d1cd7676d7e58",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+        "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/native_surface_readiness.py": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+      },
+      "source_after": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py": "392bc0ec34f8fbc935635f98e75f66416e7f31d4e92fa388a134233592c1b6d7",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py": "0cc7396592081cb87b7e6de699e914c84297bc49f1566c56e14d1cd7676d7e58",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+        "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/native_surface_readiness.py": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+      },
+      "sources_unchanged": true,
+      "original_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/red-v1-actual-helper.log",
+        "bytes": 1842,
+        "sha256": "6ea418ef57400b6a73d43183a8112adbf37186e3619ddc344b1721cb40ad89c5"
+      }
+    },
+    {
+      "name": "green-v2-contracts",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "LUMO_KART_EVIDENCE_SOURCE": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py",
+        "LUMO_KART_CREATIVE_SOURCE": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py",
+        "LUMO_KART_SURFACE_SOURCE": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/native_surface_readiness.py",
+        "LUMO_KART_TOUR_SOURCE": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.8014455539960181,
+      "source_before": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py": "0cc7396592081cb87b7e6de699e914c84297bc49f1566c56e14d1cd7676d7e58",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+        "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/native_surface_readiness.py": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+      },
+      "source_after": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py": "0cc7396592081cb87b7e6de699e914c84297bc49f1566c56e14d1cd7676d7e58",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+        "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/native_surface_readiness.py": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60"
+      },
+      "sources_unchanged": true,
+      "original_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/green-v2-contracts.log",
+        "bytes": 3747,
+        "sha256": "d6b67a78947c9af96e81de43d228a4c729631a10cbea523cb6431bb09c7cfad4"
+      }
+    }
+  ]
+}

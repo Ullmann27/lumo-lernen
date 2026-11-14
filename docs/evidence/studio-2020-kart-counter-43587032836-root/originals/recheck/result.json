@@ -1,0 +1,98 @@
+{
+  "status": "PASS",
+  "diagnostic_only": true,
+  "original_failure_replaced": false,
+  "built_or_published_apk": false,
+  "qa_source": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+  "apk_source": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "started_at": "2026-11-14T10:52:02.235649+00:00",
+  "run_id": "43587032836",
+  "run_attempt": "1",
+  "command": [
+    "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv/bin/python",
+    "-B",
+    "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/modernization_android_tour.py",
+    "--apk",
+    "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+    "--provenance",
+    "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+    "--sums",
+    "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+    "--out",
+    "/home/runner/work/lumo-lernen/lumo-lernen/tour",
+    "--skip-observed-kart-preview"
+  ],
+  "cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+  "probe_returncode": 0,
+  "runtime": {
+    "tour": {
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/tour-result.json",
+      "bytes": 16848,
+      "sha256": "de0b7e9abadd7dd518ea896b96f89ed1228da13232ae05983a3cbf2416359cc2"
+    },
+    "hard_steps": [
+      "apk-identity",
+      "launch",
+      "onboarding",
+      "navigate-start",
+      "navigate-lernen",
+      "atelier-roundtrip",
+      "navigate-spiele",
+      "open-kart",
+      "start-kart-race",
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu",
+      "return-from-kart",
+      "learning-state-after-kart",
+      "lernen-usable-after-kart",
+      "profile-after-kart",
+      "restart-keeps-learning-state"
+    ],
+    "preview_skip": {
+      "status": "OBSERVED_TOUCH_VERIFIED",
+      "touch": [
+        1267,
+        418
+      ],
+      "source_frames": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/21_kart_preview_skip_touch-0.png",
+          "bytes": 1902122,
+          "sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/21_kart_preview_skip_touch-1.png",
+          "bytes": 1944037,
+          "sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095"
+        }
+      ],
+      "cue": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/21_kart_preview_skip_touch-1.png",
+        "bytes": 1944037,
+        "sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095"
+      },
+      "cue_ocr": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/21_kart_preview_skip_touch-1-ocr.json",
+        "bytes": 5915,
+        "sha256": "e142712e766cb35541d9daf9b872fd977de3b0a0acd62c39c00319495884c0ed"
+      },
+      "after_touch": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/21_kart_preview_after_touch.png",
+        "bytes": 2049226,
+        "sha256": "3e146c1124f5173efe93b92fb0954bf50d2a04ed7f01d2b09a813779092570b1"
+      },
+      "journal": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/21_kart_preview_skip.json",
+        "bytes": 6260,
+        "sha256": "ab8ab04e4eaa86e9ac65e0f41ee53e778c33343e97e6a9a2036bcd3845b55e52"
+      }
+    },
+    "android_api": 35,
+    "scope": "Exact existing APK; no physical Fold7 performance acceptance"
+  },
+  "finished_at": "2026-11-14T10:59:57.653560+00:00",
+  "before_binding_verified": true,
+  "after_binding_matches": true
+}
