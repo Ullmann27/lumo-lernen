@@ -1,0 +1,631 @@
+﻿2026-11-14T18:50:47.3519874Z Current runner version: '2.338.2'
+2026-11-14T18:50:47.3539511Z ##[group]Runner Image Provisioner
+2026-11-14T18:50:47.3540166Z Hosted Compute Agent
+2026-11-14T18:50:47.3540654Z Version: 20261103.629
+2026-11-14T18:50:47.3541114Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T18:50:47.3541718Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T18:50:47.3542290Z Worker ID: {de5ccee0-0794-4bc7-bb0e-8be471fd764f}
+2026-11-14T18:50:47.3542790Z Region: centralus
+2026-11-14T18:50:47.3543261Z Cloud: Azure
+2026-11-14T18:50:47.3543643Z ##[endgroup]
+2026-11-14T18:50:47.3544884Z ##[group]Operating System
+2026-11-14T18:50:47.3545342Z Ubuntu
+2026-11-14T18:50:47.3545723Z 24.04.5
+2026-11-14T18:50:47.3546328Z LTS
+2026-11-14T18:50:47.3546719Z ##[endgroup]
+2026-11-14T18:50:47.3547147Z ##[group]Runner Image
+2026-11-14T18:50:47.3547785Z Image: ubuntu-24.04
+2026-11-14T18:50:47.3548193Z Version: 20261111.370.1
+2026-11-14T18:50:47.3549143Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T18:50:47.3550320Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T18:50:47.3551019Z ##[endgroup]
+2026-11-14T18:50:47.3551776Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T18:50:47.3553724Z Contents: read
+2026-11-14T18:50:47.3554144Z Metadata: read
+2026-11-14T18:50:47.3554569Z ##[endgroup]
+2026-11-14T18:50:47.3556166Z Secret source: Actions
+2026-11-14T18:50:47.3556851Z Cache mode: write
+2026-11-14T18:50:47.3557756Z Prepare workflow directory
+2026-11-14T18:50:47.3853375Z Prepare all required actions
+2026-11-14T18:50:47.3891367Z Getting action download info
+2026-11-14T18:50:47.5960381Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T18:50:47.7249239Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T18:50:47.9405083Z Complete job name: verify-observer
+2026-11-14T18:50:48.0013811Z ##[group]Run actions/checkout@v4
+2026-11-14T18:50:48.0014423Z with:
+2026-11-14T18:50:48.0014885Z   ref: 1af7db2f53853709258e117f0326c15c035987d3
+2026-11-14T18:50:48.0015375Z   path: proposed
+2026-11-14T18:50:48.0015773Z   persist-credentials: false
+2026-11-14T18:50:48.0016225Z   fetch-depth: 2
+2026-11-14T18:50:48.0016678Z   sparse-checkout-cone-mode: false
+2026-11-14T18:50:48.0018202Z   sparse-checkout: /.github/qa/lumo_kart_observer_regression.py
+/.github/workflows/lumo-kart-observer-qa.yml
+/.github/probes/
+/scripts/
+/tools/android_qa/
+/tools/qa/
+/config/godot-source.json
+/pubspec.yaml
+/pubspec.lock
+
+2026-11-14T18:50:48.0019420Z   repository: Ullmann27/lumo-lernen
+2026-11-14T18:50:48.0022092Z   token: ***
+2026-11-14T18:50:48.0022500Z   ssh-strict: true
+2026-11-14T18:50:48.0022890Z   ssh-user: git
+2026-11-14T18:50:48.0023281Z   clean: true
+2026-11-14T18:50:48.0023642Z   fetch-tags: false
+2026-11-14T18:50:48.0024025Z   show-progress: true
+2026-11-14T18:50:48.0024433Z   lfs: false
+2026-11-14T18:50:48.0024883Z   submodules: false
+2026-11-14T18:50:48.0025293Z   set-safe-directory: true
+2026-11-14T18:50:48.0025727Z   allow-unsafe-pr-checkout: false
+2026-11-14T18:50:48.0026370Z env:
+2026-11-14T18:50:48.0026780Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T18:50:48.0027179Z ##[endgroup]
+2026-11-14T18:50:48.2489243Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T18:50:48.2491442Z ##[group]Getting Git version info
+2026-11-14T18:50:48.2492322Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen/proposed'
+2026-11-14T18:50:48.2493605Z [command]/usr/bin/git version
+2026-11-14T18:50:48.2569144Z git version 2.56.1
+2026-11-14T18:50:48.2582426Z ##[endgroup]
+2026-11-14T18:50:48.2593898Z Temporarily overriding HOME='/home/runner/work/_temp/5416c3b1-9854-4520-8621-bd1737857e71' before making global git config changes
+2026-11-14T18:50:48.2595460Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T18:50:48.2597895Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen/proposed
+2026-11-14T18:50:48.2637983Z ##[group]Initializing the repository
+2026-11-14T18:50:48.2640942Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen/proposed
+2026-11-14T18:50:48.2734485Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T18:50:48.2735883Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T18:50:48.2736989Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T18:50:48.2738018Z hint: call:
+2026-11-14T18:50:48.2739220Z hint:
+2026-11-14T18:50:48.2739892Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T18:50:48.2740417Z hint:
+2026-11-14T18:50:48.2741156Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T18:50:48.2742256Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T18:50:48.2743088Z hint:
+2026-11-14T18:50:48.2743627Z hint: 	git branch -m <name>
+2026-11-14T18:50:48.2744204Z hint:
+2026-11-14T18:50:48.2744889Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T18:50:48.2745985Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/proposed/.git/
+2026-11-14T18:50:48.2750739Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T18:50:48.2794733Z ##[endgroup]
+2026-11-14T18:50:48.2795354Z ##[group]Disabling automatic garbage collection
+2026-11-14T18:50:48.2796640Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T18:50:48.2821842Z ##[endgroup]
+2026-11-14T18:50:48.2822459Z ##[group]Setting up auth
+2026-11-14T18:50:48.2826103Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:50:48.2851763Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:50:48.3143877Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:50:48.3168339Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:50:48.3325275Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:50:48.3350671Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:50:48.3504645Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T18:50:48.3539829Z ##[endgroup]
+2026-11-14T18:50:48.3540943Z ##[group]Fetching the repository
+2026-11-14T18:50:48.3549645Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=2 origin 1af7db2f53853709258e117f0326c15c035987d3
+2026-11-14T18:50:48.7710726Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T18:50:48.7711666Z  * branch            1af7db2f53853709258e117f0326c15c035987d3 -> FETCH_HEAD
+2026-11-14T18:50:48.7714434Z ##[endgroup]
+2026-11-14T18:50:48.7715284Z ##[group]Determining the checkout info
+2026-11-14T18:50:48.7716898Z ##[endgroup]
+2026-11-14T18:50:48.7717921Z ##[group]Setting up sparse checkout
+2026-11-14T18:50:48.7723829Z [command]/usr/bin/git config core.sparseCheckout true
+2026-11-14T18:50:48.7754693Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-11-14T18:50:48.7771586Z .git/info/sparse-checkout
+2026-11-14T18:50:48.7783997Z ##[endgroup]
+2026-11-14T18:50:48.7784663Z ##[group]Checking out the ref
+2026-11-14T18:50:48.7787142Z [command]/usr/bin/git checkout --progress --force 1af7db2f53853709258e117f0326c15c035987d3
+2026-11-14T18:50:50.6905487Z Updating files:   0% (1/648)
+2026-11-14T18:50:50.6910357Z Updating files:   1% (7/648)
+2026-11-14T18:50:50.6912407Z Updating files:   2% (13/648)
+2026-11-14T18:50:50.6919327Z Updating files:   3% (20/648)
+2026-11-14T18:50:50.6923593Z Updating files:   4% (26/648)
+2026-11-14T18:50:50.6926733Z Updating files:   5% (33/648)
+2026-11-14T18:50:50.6931875Z Updating files:   6% (39/648)
+2026-11-14T18:50:50.6935095Z Updating files:   7% (46/648)
+2026-11-14T18:50:50.6938427Z Updating files:   8% (52/648)
+2026-11-14T18:50:50.6941657Z Updating files:   9% (59/648)
+2026-11-14T18:50:50.6946506Z Updating files:  10% (65/648)
+2026-11-14T18:50:50.6950170Z Updating files:  11% (72/648)
+2026-11-14T18:50:50.6951136Z Updating files:  12% (78/648)
+2026-11-14T18:50:50.6952605Z Updating files:  13% (85/648)
+2026-11-14T18:50:50.6953677Z Updating files:  14% (91/648)
+2026-11-14T18:50:50.6956382Z Updating files:  15% (98/648)
+2026-11-14T18:50:50.6958369Z Updating files:  16% (104/648)
+2026-11-14T18:50:50.6963782Z Updating files:  17% (111/648)
+2026-11-14T18:50:50.6965064Z Updating files:  18% (117/648)
+2026-11-14T18:50:50.6968268Z Updating files:  19% (124/648)
+2026-11-14T18:50:50.6972194Z Updating files:  20% (130/648)
+2026-11-14T18:50:50.6975290Z Updating files:  21% (137/648)
+2026-11-14T18:50:50.6977870Z Updating files:  22% (143/648)
+2026-11-14T18:50:50.6979520Z Updating files:  23% (150/648)
+2026-11-14T18:50:50.6981335Z Updating files:  24% (156/648)
+2026-11-14T18:50:50.6982692Z Updating files:  25% (162/648)
+2026-11-14T18:50:50.6987764Z Updating files:  26% (169/648)
+2026-11-14T18:50:50.6988952Z Updating files:  27% (175/648)
+2026-11-14T18:50:50.7136528Z Updating files:  28% (182/648)
+2026-11-14T18:50:50.7138861Z Updating files:  29% (188/648)
+2026-11-14T18:50:50.7142778Z Updating files:  30% (195/648)
+2026-11-14T18:50:50.7144942Z Updating files:  31% (201/648)
+2026-11-14T18:50:50.7149112Z Updating files:  32% (208/648)
+2026-11-14T18:50:50.7153799Z Updating files:  33% (214/648)
+2026-11-14T18:50:50.7155807Z Updating files:  34% (221/648)
+2026-11-14T18:50:50.7160351Z Updating files:  35% (227/648)
+2026-11-14T18:50:50.7164153Z Updating files:  36% (234/648)
+2026-11-14T18:50:50.7167178Z Updating files:  37% (240/648)
+2026-11-14T18:50:50.7170626Z Updating files:  38% (247/648)
+2026-11-14T18:50:50.7174667Z Updating files:  39% (253/648)
+2026-11-14T18:50:50.7176897Z Updating files:  40% (260/648)
+2026-11-14T18:50:50.7183200Z Updating files:  41% (266/648)
+2026-11-14T18:50:50.7188080Z Updating files:  42% (273/648)
+2026-11-14T18:50:50.7191532Z Updating files:  43% (279/648)
+2026-11-14T18:50:50.7194995Z Updating files:  44% (286/648)
+2026-11-14T18:50:50.7199532Z Updating files:  45% (292/648)
+2026-11-14T18:50:50.7204145Z Updating files:  46% (299/648)
+2026-11-14T18:50:50.7209521Z Updating files:  47% (305/648)
+2026-11-14T18:50:50.7212021Z Updating files:  48% (312/648)
+2026-11-14T18:50:50.7215314Z Updating files:  49% (318/648)
+2026-11-14T18:50:50.7264253Z Updating files:  50% (324/648)
+2026-11-14T18:50:50.7268980Z Updating files:  51% (331/648)
+2026-11-14T18:50:50.7270266Z Updating files:  52% (337/648)
+2026-11-14T18:50:50.7271308Z Updating files:  53% (344/648)
+2026-11-14T18:50:50.7272346Z Updating files:  54% (350/648)
+2026-11-14T18:50:50.7286569Z Updating files:  55% (357/648)
+2026-11-14T18:50:50.7361911Z Updating files:  56% (363/648)
+2026-11-14T18:50:50.7383710Z Updating files:  57% (370/648)
+2026-11-14T18:50:50.7449076Z Updating files:  58% (376/648)
+2026-11-14T18:50:50.7508558Z Updating files:  59% (383/648)
+2026-11-14T18:50:50.7600974Z Updating files:  60% (389/648)
+2026-11-14T18:50:50.7622836Z Updating files:  61% (396/648)
+2026-11-14T18:50:50.7633332Z Updating files:  62% (402/648)
+2026-11-14T18:50:50.7634879Z Updating files:  63% (409/648)
+2026-11-14T18:50:50.7654861Z Updating files:  64% (415/648)
+2026-11-14T18:50:50.7656387Z Updating files:  65% (422/648)
+2026-11-14T18:50:50.7680271Z Updating files:  66% (428/648)
+2026-11-14T18:50:50.7731085Z Updating files:  67% (435/648)
+2026-11-14T18:50:50.7789430Z Updating files:  68% (441/648)
+2026-11-14T18:50:50.7803638Z Updating files:  69% (448/648)
+2026-11-14T18:50:50.7867504Z Updating files:  70% (454/648)
+2026-11-14T18:50:50.7922274Z Updating files:  71% (461/648)
+2026-11-14T18:50:50.7923366Z Updating files:  71% (466/648)
+2026-11-14T18:50:50.7949222Z Updating files:  72% (467/648)
+2026-11-14T18:50:50.7951973Z Updating files:  73% (474/648)
+2026-11-14T18:50:50.8030744Z Updating files:  74% (480/648)
+2026-11-14T18:50:50.8032165Z Updating files:  75% (486/648)
+2026-11-14T18:50:50.8033555Z Updating files:  76% (493/648)
+2026-11-14T18:50:50.8034764Z Updating files:  77% (499/648)
+2026-11-14T18:50:50.8035818Z Updating files:  78% (506/648)
+2026-11-14T18:50:50.8037047Z Updating files:  79% (512/648)
+2026-11-14T18:50:50.8062275Z Updating files:  80% (519/648)
+2026-11-14T18:50:50.8063465Z Updating files:  81% (525/648)
+2026-11-14T18:50:50.8064733Z Updating files:  82% (532/648)
+2026-11-14T18:50:50.8113446Z Updating files:  83% (538/648)
+2026-11-14T18:50:50.8132724Z Updating files:  84% (545/648)
+2026-11-14T18:50:50.8136047Z Updating files:  85% (551/648)
+2026-11-14T18:50:50.8172657Z Updating files:  86% (558/648)
+2026-11-14T18:50:50.8198760Z Updating files:  87% (564/648)
+2026-11-14T18:50:50.8201766Z Updating files:  88% (571/648)
+2026-11-14T18:50:50.8205261Z Updating files:  89% (577/648)
+2026-11-14T18:50:50.8207868Z Updating files:  90% (584/648)
+2026-11-14T18:50:50.8211248Z Updating files:  91% (590/648)
+2026-11-14T18:50:50.8215752Z Updating files:  92% (597/648)
+2026-11-14T18:50:50.8219512Z Updating files:  93% (603/648)
+2026-11-14T18:50:50.8222092Z Updating files:  94% (610/648)
+2026-11-14T18:50:50.8226918Z Updating files:  95% (616/648)
+2026-11-14T18:50:50.8230505Z Updating files:  96% (623/648)
+2026-11-14T18:50:50.8233815Z Updating files:  97% (629/648)
+2026-11-14T18:50:50.8236563Z Updating files:  98% (636/648)
+2026-11-14T18:50:50.8239117Z Updating files:  99% (642/648)
+2026-11-14T18:50:50.8240240Z Updating files: 100% (648/648)
+2026-11-14T18:50:50.8241463Z Updating files: 100% (648/648), done.
+2026-11-14T18:50:50.8274907Z Note: switching to '1af7db2f53853709258e117f0326c15c035987d3'.
+2026-11-14T18:50:50.8275873Z 
+2026-11-14T18:50:50.8276636Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T18:50:50.8278503Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T18:50:50.8280244Z state without impacting any branches by switching back to a branch.
+2026-11-14T18:50:50.8281262Z 
+2026-11-14T18:50:50.8281965Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T18:50:50.8283583Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T18:50:50.8284554Z 
+2026-11-14T18:50:50.8284930Z   git switch -c <new-branch-name>
+2026-11-14T18:50:50.8285623Z 
+2026-11-14T18:50:50.8285969Z Or undo this operation with:
+2026-11-14T18:50:50.8286565Z 
+2026-11-14T18:50:50.8286876Z   git switch -
+2026-11-14T18:50:50.8287432Z 
+2026-11-14T18:50:50.8288275Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T18:50:50.8289513Z 
+2026-11-14T18:50:50.8290594Z HEAD is now at 1af7db2 qa: verify bounded Kart observation optimization against original source
+2026-11-14T18:50:50.8294175Z ##[endgroup]
+2026-11-14T18:50:50.8327586Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T18:50:50.8345691Z 1af7db2f53853709258e117f0326c15c035987d3
+2026-11-14T18:50:50.8365079Z ##[group]Removing auth
+2026-11-14T18:50:50.8366784Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:50:50.8382409Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:50:50.8543328Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:50:50.8559868Z http.https://github.com/.extraheader
+2026-11-14T18:50:50.8567307Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T18:50:50.8592899Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:50:50.8743292Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:50:50.8764171Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:50:50.8918968Z ##[endgroup]
+2026-11-14T18:50:50.9264148Z ##[group]Run actions/checkout@v4
+2026-11-14T18:50:50.9265120Z with:
+2026-11-14T18:50:50.9265989Z   ref: 9deaa3f24561bc65caba898585c0c00f1c77162b
+2026-11-14T18:50:50.9267073Z   path: baseline
+2026-11-14T18:50:50.9268058Z   persist-credentials: false
+2026-11-14T18:50:50.9268956Z   fetch-depth: 1
+2026-11-14T18:50:50.9269839Z   sparse-checkout-cone-mode: false
+2026-11-14T18:50:50.9271750Z   sparse-checkout: /.github/probes/
+/scripts/
+/tools/android_qa/
+/tools/qa/
+/config/godot-source.json
+/pubspec.yaml
+/pubspec.lock
+
+2026-11-14T18:50:50.9273999Z   repository: Ullmann27/lumo-lernen
+2026-11-14T18:50:50.9281018Z   token: ***
+2026-11-14T18:50:50.9281993Z   ssh-strict: true
+2026-11-14T18:50:50.9282714Z   ssh-user: git
+2026-11-14T18:50:50.9283436Z   clean: true
+2026-11-14T18:50:50.9284125Z   fetch-tags: false
+2026-11-14T18:50:50.9284990Z   show-progress: true
+2026-11-14T18:50:50.9285856Z   lfs: false
+2026-11-14T18:50:50.9286659Z   submodules: false
+2026-11-14T18:50:50.9287794Z   set-safe-directory: true
+2026-11-14T18:50:50.9288657Z   allow-unsafe-pr-checkout: false
+2026-11-14T18:50:50.9289586Z env:
+2026-11-14T18:50:50.9290395Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T18:50:50.9291315Z ##[endgroup]
+2026-11-14T18:50:50.9955291Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T18:50:50.9958856Z ##[group]Getting Git version info
+2026-11-14T18:50:50.9960224Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen/baseline'
+2026-11-14T18:50:50.9981784Z [command]/usr/bin/git version
+2026-11-14T18:50:51.0013761Z git version 2.56.1
+2026-11-14T18:50:51.0026534Z ##[endgroup]
+2026-11-14T18:50:51.0035800Z Temporarily overriding HOME='/home/runner/work/_temp/cd68ecaa-be42-4862-b9af-6f3dd9f1c8fc' before making global git config changes
+2026-11-14T18:50:51.0038906Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T18:50:51.0041118Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen/baseline
+2026-11-14T18:50:51.0064174Z ##[group]Initializing the repository
+2026-11-14T18:50:51.0066888Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen/baseline
+2026-11-14T18:50:51.0098949Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T18:50:51.0100996Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T18:50:51.0102572Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T18:50:51.0104145Z hint: call:
+2026-11-14T18:50:51.0104925Z hint:
+2026-11-14T18:50:51.0105784Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T18:50:51.0106778Z hint:
+2026-11-14T18:50:51.0107863Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T18:50:51.0109487Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T18:50:51.0110975Z hint:
+2026-11-14T18:50:51.0111672Z hint: 	git branch -m <name>
+2026-11-14T18:50:51.0112453Z hint:
+2026-11-14T18:50:51.0113541Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T18:50:51.0115365Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/baseline/.git/
+2026-11-14T18:50:51.0118385Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T18:50:51.0134021Z ##[endgroup]
+2026-11-14T18:50:51.0135397Z ##[group]Disabling automatic garbage collection
+2026-11-14T18:50:51.0136719Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T18:50:51.0162446Z ##[endgroup]
+2026-11-14T18:50:51.0164067Z ##[group]Setting up auth
+2026-11-14T18:50:51.0167741Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:50:51.0192881Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:50:51.0381766Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:50:51.0407577Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:50:51.0603915Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:50:51.0629497Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:50:51.0791044Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T18:50:51.0823419Z ##[endgroup]
+2026-11-14T18:50:51.0824890Z ##[group]Fetching the repository
+2026-11-14T18:50:51.0830717Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin 9deaa3f24561bc65caba898585c0c00f1c77162b
+2026-11-14T18:50:51.4115102Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T18:50:51.4116388Z  * branch            9deaa3f24561bc65caba898585c0c00f1c77162b -> FETCH_HEAD
+2026-11-14T18:50:51.4120470Z ##[endgroup]
+2026-11-14T18:50:51.4121364Z ##[group]Determining the checkout info
+2026-11-14T18:50:51.4122608Z ##[endgroup]
+2026-11-14T18:50:51.4123463Z ##[group]Setting up sparse checkout
+2026-11-14T18:50:51.4128006Z [command]/usr/bin/git config core.sparseCheckout true
+2026-11-14T18:50:51.4163515Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-11-14T18:50:51.4186743Z .git/info/sparse-checkout
+2026-11-14T18:50:51.4192582Z ##[endgroup]
+2026-11-14T18:50:51.4193186Z ##[group]Checking out the ref
+2026-11-14T18:50:51.4196398Z [command]/usr/bin/git checkout --progress --force 9deaa3f24561bc65caba898585c0c00f1c77162b
+2026-11-14T18:50:53.2380892Z Updating files:   0% (1/646)
+2026-11-14T18:50:53.2400023Z Updating files:   1% (7/646)
+2026-11-14T18:50:53.2400759Z Updating files:   2% (13/646)
+2026-11-14T18:50:53.2401252Z Updating files:   3% (20/646)
+2026-11-14T18:50:53.2401657Z Updating files:   4% (26/646)
+2026-11-14T18:50:53.2429194Z Updating files:   5% (33/646)
+2026-11-14T18:50:53.2429698Z Updating files:   6% (39/646)
+2026-11-14T18:50:53.2430219Z Updating files:   7% (46/646)
+2026-11-14T18:50:53.2430599Z Updating files:   8% (52/646)
+2026-11-14T18:50:53.2430989Z Updating files:   9% (59/646)
+2026-11-14T18:50:53.2431397Z Updating files:  10% (65/646)
+2026-11-14T18:50:53.2431787Z Updating files:  11% (72/646)
+2026-11-14T18:50:53.2432211Z Updating files:  12% (78/646)
+2026-11-14T18:50:53.2432661Z Updating files:  13% (84/646)
+2026-11-14T18:50:53.2433054Z Updating files:  14% (91/646)
+2026-11-14T18:50:53.2439337Z Updating files:  15% (97/646)
+2026-11-14T18:50:53.2439923Z Updating files:  16% (104/646)
+2026-11-14T18:50:53.2441078Z Updating files:  17% (110/646)
+2026-11-14T18:50:53.2441863Z Updating files:  18% (117/646)
+2026-11-14T18:50:53.2442554Z Updating files:  19% (123/646)
+2026-11-14T18:50:53.2445717Z Updating files:  20% (130/646)
+2026-11-14T18:50:53.2449764Z Updating files:  21% (136/646)
+2026-11-14T18:50:53.2451416Z Updating files:  22% (143/646)
+2026-11-14T18:50:53.2453126Z Updating files:  23% (149/646)
+2026-11-14T18:50:53.2454665Z Updating files:  24% (156/646)
+2026-11-14T18:50:53.2456629Z Updating files:  25% (162/646)
+2026-11-14T18:50:53.2460482Z Updating files:  26% (168/646)
+2026-11-14T18:50:53.2461877Z Updating files:  27% (175/646)
+2026-11-14T18:50:53.2602442Z Updating files:  28% (181/646)
+2026-11-14T18:50:53.2604145Z Updating files:  29% (188/646)
+2026-11-14T18:50:53.2608675Z Updating files:  30% (194/646)
+2026-11-14T18:50:53.2610831Z Updating files:  31% (201/646)
+2026-11-14T18:50:53.2615840Z Updating files:  32% (207/646)
+2026-11-14T18:50:53.2619785Z Updating files:  33% (214/646)
+2026-11-14T18:50:53.2622735Z Updating files:  34% (220/646)
+2026-11-14T18:50:53.2627302Z Updating files:  35% (227/646)
+2026-11-14T18:50:53.2631267Z Updating files:  36% (233/646)
+2026-11-14T18:50:53.2634606Z Updating files:  37% (240/646)
+2026-11-14T18:50:53.2637885Z Updating files:  38% (246/646)
+2026-11-14T18:50:53.2641942Z Updating files:  39% (252/646)
+2026-11-14T18:50:53.2644318Z Updating files:  40% (259/646)
+2026-11-14T18:50:53.2651129Z Updating files:  41% (265/646)
+2026-11-14T18:50:53.2656639Z Updating files:  42% (272/646)
+2026-11-14T18:50:53.2660226Z Updating files:  43% (278/646)
+2026-11-14T18:50:53.2663381Z Updating files:  44% (285/646)
+2026-11-14T18:50:53.2668020Z Updating files:  45% (291/646)
+2026-11-14T18:50:53.2672777Z Updating files:  46% (298/646)
+2026-11-14T18:50:53.2677921Z Updating files:  47% (304/646)
+2026-11-14T18:50:53.2681049Z Updating files:  48% (311/646)
+2026-11-14T18:50:53.2683848Z Updating files:  49% (317/646)
+2026-11-14T18:50:53.2735514Z Updating files:  50% (323/646)
+2026-11-14T18:50:53.2735945Z Updating files:  51% (330/646)
+2026-11-14T18:50:53.2738068Z Updating files:  52% (336/646)
+2026-11-14T18:50:53.2739258Z Updating files:  53% (343/646)
+2026-11-14T18:50:53.2741117Z Updating files:  54% (349/646)
+2026-11-14T18:50:53.2771905Z Updating files:  55% (356/646)
+2026-11-14T18:50:53.2833751Z Updating files:  56% (362/646)
+2026-11-14T18:50:53.2855661Z Updating files:  57% (369/646)
+2026-11-14T18:50:53.2920609Z Updating files:  58% (375/646)
+2026-11-14T18:50:53.2976023Z Updating files:  59% (382/646)
+2026-11-14T18:50:53.3068474Z Updating files:  60% (388/646)
+2026-11-14T18:50:53.3090251Z Updating files:  61% (395/646)
+2026-11-14T18:50:53.3100682Z Updating files:  62% (401/646)
+2026-11-14T18:50:53.3102994Z Updating files:  63% (407/646)
+2026-11-14T18:50:53.3122672Z Updating files:  64% (414/646)
+2026-11-14T18:50:53.3124942Z Updating files:  65% (420/646)
+2026-11-14T18:50:53.3147693Z Updating files:  66% (427/646)
+2026-11-14T18:50:53.3221380Z Updating files:  67% (433/646)
+2026-11-14T18:50:53.3257748Z Updating files:  68% (440/646)
+2026-11-14T18:50:53.3295732Z Updating files:  69% (446/646)
+2026-11-14T18:50:53.3337234Z Updating files:  70% (453/646)
+2026-11-14T18:50:53.3417863Z Updating files:  71% (459/646)
+2026-11-14T18:50:53.3418813Z Updating files:  72% (466/646)
+2026-11-14T18:50:53.3445370Z Updating files:  73% (472/646)
+2026-11-14T18:50:53.3502213Z Updating files:  74% (479/646)
+2026-11-14T18:50:53.3502608Z Updating files:  75% (485/646)
+2026-11-14T18:50:53.3503559Z Updating files:  76% (491/646)
+2026-11-14T18:50:53.3504434Z Updating files:  77% (498/646)
+2026-11-14T18:50:53.3505588Z Updating files:  78% (504/646)
+2026-11-14T18:50:53.3507564Z Updating files:  79% (511/646)
+2026-11-14T18:50:53.3533553Z Updating files:  80% (517/646)
+2026-11-14T18:50:53.3535544Z Updating files:  81% (524/646)
+2026-11-14T18:50:53.3536596Z Updating files:  82% (530/646)
+2026-11-14T18:50:53.3586335Z Updating files:  83% (537/646)
+2026-11-14T18:50:53.3605497Z Updating files:  84% (543/646)
+2026-11-14T18:50:53.3608936Z Updating files:  85% (550/646)
+2026-11-14T18:50:53.3670824Z Updating files:  86% (556/646)
+2026-11-14T18:50:53.3672156Z Updating files:  87% (563/646)
+2026-11-14T18:50:53.3675399Z Updating files:  88% (569/646)
+2026-11-14T18:50:53.3680306Z Updating files:  89% (575/646)
+2026-11-14T18:50:53.3683564Z Updating files:  90% (582/646)
+2026-11-14T18:50:53.3686171Z Updating files:  91% (588/646)
+2026-11-14T18:50:53.3690668Z Updating files:  92% (595/646)
+2026-11-14T18:50:53.3694275Z Updating files:  93% (601/646)
+2026-11-14T18:50:53.3696858Z Updating files:  94% (608/646)
+2026-11-14T18:50:53.3702246Z Updating files:  95% (614/646)
+2026-11-14T18:50:53.3705795Z Updating files:  96% (621/646)
+2026-11-14T18:50:53.3709255Z Updating files:  97% (627/646)
+2026-11-14T18:50:53.3712104Z Updating files:  98% (634/646)
+2026-11-14T18:50:53.3714731Z Updating files:  99% (640/646)
+2026-11-14T18:50:53.3715229Z Updating files: 100% (646/646)
+2026-11-14T18:50:53.3716176Z Updating files: 100% (646/646), done.
+2026-11-14T18:50:53.3748683Z Note: switching to '9deaa3f24561bc65caba898585c0c00f1c77162b'.
+2026-11-14T18:50:53.3749126Z 
+2026-11-14T18:50:53.3749487Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T18:50:53.3750441Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T18:50:53.3751046Z state without impacting any branches by switching back to a branch.
+2026-11-14T18:50:53.3751386Z 
+2026-11-14T18:50:53.3751917Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T18:50:53.3752479Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T18:50:53.3752845Z 
+2026-11-14T18:50:53.3753172Z   git switch -c <new-branch-name>
+2026-11-14T18:50:53.3753434Z 
+2026-11-14T18:50:53.3753722Z Or undo this operation with:
+2026-11-14T18:50:53.3753972Z 
+2026-11-14T18:50:53.3754220Z   git switch -
+2026-11-14T18:50:53.3754409Z 
+2026-11-14T18:50:53.3754836Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T18:50:53.3755139Z 
+2026-11-14T18:50:53.3755511Z HEAD is now at 9deaa3f Observe native exit, Flutter activity and C4 mailbox closure within the existing return deadline
+2026-11-14T18:50:53.3765439Z ##[endgroup]
+2026-11-14T18:50:53.3806932Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T18:50:53.3827948Z 9deaa3f24561bc65caba898585c0c00f1c77162b
+2026-11-14T18:50:53.3848691Z ##[group]Removing auth
+2026-11-14T18:50:53.3849452Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:50:53.3866058Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:50:53.4031380Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:50:53.4048261Z http.https://github.com/.extraheader
+2026-11-14T18:50:53.4054134Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T18:50:53.4078736Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:50:53.4233150Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:50:53.4252720Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:50:53.4406585Z ##[endgroup]
+2026-11-14T18:50:53.4517731Z ##[group]Run set -euo pipefail
+2026-11-14T18:50:53.4518186Z [36;1mset -euo pipefail[0m
+2026-11-14T18:50:53.4518507Z [36;1mpython3 -m venv "$RUNNER_TEMP/lumo-observer-python"[0m
+2026-11-14T18:50:53.4519028Z [36;1m"$RUNNER_TEMP/lumo-observer-python/bin/python" -m pip install --disable-pip-version-check --no-cache-dir Pillow==12.3.0[0m
+2026-11-14T18:50:53.4534122Z shell: /usr/bin/bash -e {0}
+2026-11-14T18:50:53.4534530Z env:
+2026-11-14T18:50:53.4534766Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T18:50:53.4535033Z ##[endgroup]
+2026-11-14T18:50:56.1571128Z Collecting Pillow==12.3.0
+2026-11-14T18:50:56.2168987Z   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-14T18:50:56.2407166Z Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-14T18:50:56.3299361Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 80.4 MB/s eta 0:00:00
+2026-11-14T18:50:56.3502236Z Installing collected packages: Pillow
+2026-11-14T18:50:56.5989172Z Successfully installed Pillow-12.3.0
+2026-11-14T18:50:56.6821214Z ##[group]Run set -euo pipefail
+2026-11-14T18:50:56.6821574Z [36;1mset -euo pipefail[0m
+2026-11-14T18:50:56.6822148Z [36;1m"$RUNNER_TEMP/lumo-observer-python/bin/python" -B proposed/.github/qa/lumo_kart_observer_regression.py \[0m
+2026-11-14T18:50:56.6822752Z [36;1m  --baseline "$GITHUB_WORKSPACE/baseline" \[0m
+2026-11-14T18:50:56.6823093Z [36;1m  --proposed "$GITHUB_WORKSPACE/proposed" \[0m
+2026-11-14T18:50:56.6823410Z [36;1m  --out "$GITHUB_WORKSPACE/observer-evidence"[0m
+2026-11-14T18:50:56.6836977Z shell: /usr/bin/bash -e {0}
+2026-11-14T18:50:56.6837309Z env:
+2026-11-14T18:50:56.6837784Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T18:50:56.6838120Z ##[endgroup]
+2026-11-14T18:51:00.2196237Z test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis) ... 
+2026-11-14T18:51:00.2198299Z   test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis) (timeout=150) ... FAIL
+2026-11-14T18:51:00.2199995Z   test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis) (timeout=5) ... ERROR
+2026-11-14T18:51:00.2200973Z 
+2026-11-14T18:51:00.2201267Z ======================================================================
+2026-11-14T18:51:00.2202349Z ERROR: test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis) (timeout=5)
+2026-11-14T18:51:00.2203386Z ----------------------------------------------------------------------
+2026-11-14T18:51:00.2203928Z Traceback (most recent call last):
+2026-11-14T18:51:00.2204781Z   File "/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py", line 472, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis
+2026-11-14T18:51:00.2205748Z     result = tour._select_stage_kart(self.out, 'comet', timeout=timeout)
+2026-11-14T18:51:00.2206263Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T18:51:00.2206950Z   File "/home/runner/work/lumo-lernen/lumo-lernen/baseline/.github/probes/modernization_android_tour.py", line 481, in _select_stage_kart
+2026-11-14T18:51:00.2208041Z     raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)
+2026-11-14T18:51:00.2208835Z TimeoutError: Current complete kart caption was not observed twice inside the list: Comet
+2026-11-14T18:51:00.2209238Z 
+2026-11-14T18:51:00.2209400Z ======================================================================
+2026-11-14T18:51:00.2210506Z FAIL: test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis) (timeout=150)
+2026-11-14T18:51:00.2211663Z ----------------------------------------------------------------------
+2026-11-14T18:51:00.2212110Z Traceback (most recent call last):
+2026-11-14T18:51:00.2213004Z   File "/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py", line 475, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis
+2026-11-14T18:51:00.2213985Z     self.assertEqual(analyses.call_count, 4)
+2026-11-14T18:51:00.2214413Z AssertionError: 6 != 4
+2026-11-14T18:51:00.2214590Z 
+2026-11-14T18:51:00.2214812Z ----------------------------------------------------------------------
+2026-11-14T18:51:00.2215245Z Ran 1 test in 2.055s
+2026-11-14T18:51:00.2215475Z 
+2026-11-14T18:51:00.2216069Z FAILED (failures=1, errors=1)
+2026-11-14T18:51:00.2288619Z [LumoKartObserverPhase] {"phase": "baseline", "status": "EXPECTED_BASELINE_REGRESSION_REPRODUCED", "android_acceptance": false, "candidate_acceptance": false, "sources_before": {"baseline": {"commit": "9deaa3f24561bc65caba898585c0c00f1c77162b", "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 76878, "sha256": "c55b46f339f7e5ff990990e45feabf53afc58357c384a6431f0370146a5e657b", "git_sha1": "e608a4681e863398d429f0967a9accd470c28670"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 26641, "sha256": "0f75cfbc5c6cab0eebb376f9af0f07aa57dbed0cf1efd40f1150b6ac0e825862", "git_sha1": "753a9ebe5dba11752abe40581114435a41b24e59"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31298, "sha256": "5eb76293c8b332012bf72484d99501c1b47b102e51dddefac30f729e7c19c6d0", "git_sha1": "834a71e5b04a0aa7e637fe1737287df95053bf17"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "proposed": {"commit": "1af7db2f53853709258e117f0326c15c035987d3", "tree": "3588fd081f5c245a48f9792ab1064e923ecbdf69", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 77078, "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc", "git_sha1": "f8c266c672632aa086b11e695fb1883a063e2123"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 34511, "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0", "git_sha1": "3da90d30a2c602e800fda9b6165e335eb039afb7"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31366, "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a", "git_sha1": "20f856522493f5fdfc41d147de70bb096a2938fa"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "execution_files": {".github/qa/lumo_kart_observer_regression.py": {"bytes": 16082, "sha256": "0a99a2c4450910a88174454d72fb12dfe49ccb04660b9aaac1a61e6c53206f12", "git_sha1": "2e0b2f13e2dc52d3eada088886e80c964380f54b"}, ".github/workflows/lumo-kart-observer-qa.yml": {"bytes": 2656, "sha256": "c93553937ad728d0521b0b4ca47c85252f8d5a8fb9561e6cf2d8c5fcafad139f", "git_sha1": "e026f2aec3e73a6a348256d758b0d44e8796700f"}}}, "test_binding": {"test_file": "/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py", "test_method": "test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis", "tour_file": "/home/runner/work/lumo-lernen/lumo-lernen/baseline/.github/probes/modernization_android_tour.py", "analyser_file": "/home/runner/work/lumo-lernen/lumo-lernen/baseline/tools/android_qa/kart_garage_evidence.py", "loader_file": "/home/runner/work/lumo-lernen/lumo-lernen/baseline/tools/android_qa/tests/test_modernization_tour_identity.py", "source_override_performed": false}, "unittest": {"tests_run": 1, "was_successful": false, "failures": [{"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=150)", "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 475, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    self.assertEqual(analyses.call_count, 4)\nAssertionError: 6 != 4\n"}], "errors": [{"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=5)", "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 472, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    result = tour._select_stage_kart(self.out, 'comet', timeout=timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/baseline/.github/probes/modernization_android_tour.py\", line 481, in _select_stage_kart\n    raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)\nTimeoutError: Current complete kart caption was not observed twice inside the list: Comet\n"}], "skipped": [], "expected_failures": [], "unexpected_successes": [], "subtest_errors": [{"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis", "subtest": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=150)", "exception_type": "AssertionError", "message": "6 != 4", "traceback": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/usr/lib/python3.12/unittest/case.py\", line 539, in subTest\n    yield\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 475, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    self.assertEqual(analyses.call_count, 4)\n  File \"/usr/lib/python3.12/unittest/case.py\", line 885, in assertEqual\n    assertion_func(first, second, msg=msg)\n  File \"/usr/lib/python3.12/unittest/case.py\", line 878, in _baseAssertEqual\n    raise self.failureException(msg)\nAssertionError: 6 != 4\n"}, {"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis", "subtest": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=5)", "exception_type": "TimeoutError", "message": "Current complete kart caption was not observed twice inside the list: Comet", "traceback": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/usr/lib/python3.12/unittest/case.py\", line 539, in subTest\n    yield\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 472, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    result = tour._select_stage_kart(self.out, 'comet', timeout=timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/baseline/.github/probes/modernization_android_tour.py\", line 481, in _select_stage_kart\n    raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)\nTimeoutError: Current complete kart caption was not observed twice inside the list: Comet\n"}]}, "sources_after": {"baseline": {"commit": "9deaa3f24561bc65caba898585c0c00f1c77162b", "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 76878, "sha256": "c55b46f339f7e5ff990990e45feabf53afc58357c384a6431f0370146a5e657b", "git_sha1": "e608a4681e863398d429f0967a9accd470c28670"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 26641, "sha256": "0f75cfbc5c6cab0eebb376f9af0f07aa57dbed0cf1efd40f1150b6ac0e825862", "git_sha1": "753a9ebe5dba11752abe40581114435a41b24e59"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31298, "sha256": "5eb76293c8b332012bf72484d99501c1b47b102e51dddefac30f729e7c19c6d0", "git_sha1": "834a71e5b04a0aa7e637fe1737287df95053bf17"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "proposed": {"commit": "1af7db2f53853709258e117f0326c15c035987d3", "tree": "3588fd081f5c245a48f9792ab1064e923ecbdf69", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 77078, "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc", "git_sha1": "f8c266c672632aa086b11e695fb1883a063e2123"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 34511, "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0", "git_sha1": "3da90d30a2c602e800fda9b6165e335eb039afb7"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31366, "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a", "git_sha1": "20f856522493f5fdfc41d147de70bb096a2938fa"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "execution_files": {".github/qa/lumo_kart_observer_regression.py": {"bytes": 16082, "sha256": "0a99a2c4450910a88174454d72fb12dfe49ccb04660b9aaac1a61e6c53206f12", "git_sha1": "2e0b2f13e2dc52d3eada088886e80c964380f54b"}, ".github/workflows/lumo-kart-observer-qa.yml": {"bytes": 2656, "sha256": "c93553937ad728d0521b0b4ca47c85252f8d5a8fb9561e6cf2d8c5fcafad139f", "git_sha1": "e026f2aec3e73a6a348256d758b0d44e8796700f"}}}, "exit_code": 1}
+2026-11-14T18:51:21.1770641Z test_actual_wide_and_compact_cup_captions_both_require_two_observed_targets (test_kart_garage_evidence.CupObservedLabelTests.test_actual_wide_and_compact_cup_captions_both_require_two_observed_targets) ... ok
+2026-11-14T18:51:21.1772035Z test_caption_change_needs_two_new_observations_even_at_identical_bounds (test_kart_garage_evidence.CupObservedLabelTests.test_caption_change_needs_two_new_observations_even_at_identical_bounds) ... ok
+2026-11-14T18:51:21.1773390Z test_landing_return_accepts_only_the_observed_caption_without_an_extra_touch (test_kart_garage_evidence.CupObservedLabelTests.test_landing_return_accepts_only_the_observed_caption_without_an_extra_touch) ... ok
+2026-11-14T18:51:21.1774766Z test_missing_wrong_or_conflicting_cup_captions_never_trigger_a_fallback_touch (test_kart_garage_evidence.CupObservedLabelTests.test_missing_wrong_or_conflicting_cup_captions_never_trigger_a_fallback_touch) ... ok
+2026-11-14T18:51:21.1775986Z test_replaced_cup_screenshot_prevents_the_touch (test_kart_garage_evidence.CupObservedLabelTests.test_replaced_cup_screenshot_prevents_the_touch) ... ok
+2026-11-14T18:51:21.1777299Z test_continue_does_not_pass_for_a_static_or_replaced_saved_race (test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_continue_does_not_pass_for_a_static_or_replaced_saved_race) ... ok
+2026-11-14T18:51:21.1778908Z test_continue_requires_touch_then_physical_drive_and_retains_original_evidence (test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_continue_requires_touch_then_physical_drive_and_retains_original_evidence) ... ok
+2026-11-14T18:51:21.1780289Z test_current_mandatory_pause_phase_requires_continue_and_a_second_real_pause (test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_current_mandatory_pause_phase_requires_continue_and_a_second_real_pause) ... ok
+2026-11-14T18:51:21.1781611Z test_previous_race_identity_comes_only_from_an_existing_read_only_save (test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_previous_race_identity_comes_only_from_an_existing_read_only_save) ... ok
+2026-11-14T18:51:21.1782947Z test_raw_session_is_read_only_and_later_selection_or_identity_changes_fail (test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_raw_session_is_read_only_and_later_selection_or_identity_changes_fail) ... ok
+2026-11-14T18:51:21.1784440Z test_selection_reports_success_only_after_the_observed_input_succeeds (test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_selection_reports_success_only_after_the_observed_input_succeeds) ... ok
+2026-11-14T18:51:21.1785494Z test_selection_wait_reads_old_and_new_snapshots_without_accepting_wrong_new_car (test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_selection_wait_reads_old_and_new_snapshots_without_accepting_wrong_new_car) ... ok
+2026-11-14T18:51:21.1786486Z test_driver_requires_current_tabs_footer_and_one_exact_left_card (test_kart_garage_evidence.DriverObservedTargetTests.test_driver_requires_current_tabs_footer_and_one_exact_left_card) ... ok
+2026-11-14T18:51:21.1787865Z test_driver_touch_refuses_screenshot_replacement_after_ocr (test_kart_garage_evidence.DriverObservedTargetTests.test_driver_touch_refuses_screenshot_replacement_after_ocr) ... ok
+2026-11-14T18:51:21.1789282Z test_logo_first_reader_reproduces_old_mistouch_but_driver_card_is_selected (test_kart_garage_evidence.DriverObservedTargetTests.test_logo_first_reader_reproduces_old_mistouch_but_driver_card_is_selected) ... ok
+2026-11-14T18:51:21.1790346Z test_missing_wrong_or_ambiguous_driver_never_sends_a_touch (test_kart_garage_evidence.DriverObservedTargetTests.test_missing_wrong_or_ambiguous_driver_never_sends_a_touch) ... ok
+2026-11-14T18:51:21.1791157Z test_moved_driver_needs_two_new_stable_bounds (test_kart_garage_evidence.DriverObservedTargetTests.test_moved_driver_needs_two_new_stable_bounds) ... ok
+2026-11-14T18:51:21.1792016Z test_ocr_variants_of_one_card_and_merged_tab_text_remain_one_observed_target (test_kart_garage_evidence.DriverObservedTargetTests.test_ocr_variants_of_one_card_and_merged_tab_text_remain_one_observed_target) ... ok
+2026-11-14T18:51:21.1792887Z test_unsettled_driver_target_times_out_without_touch (test_kart_garage_evidence.DriverObservedTargetTests.test_unsettled_driver_target_times_out_without_touch) ... ok
+2026-11-14T18:51:21.1793761Z test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot (test_kart_garage_evidence.GarageObservedScrollTests.test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot) ... ok
+2026-11-14T18:51:21.1794729Z test_current_hidden_title_layout_uses_the_observed_clip_not_only_tab_and_footer (test_kart_garage_evidence.GarageObservedScrollTests.test_current_hidden_title_layout_uses_the_observed_clip_not_only_tab_and_footer) ... ok
+2026-11-14T18:51:21.1795682Z test_missing_current_context_and_incomplete_frames_are_rejected (test_kart_garage_evidence.GarageObservedScrollTests.test_missing_current_context_and_incomplete_frames_are_rejected) ... ok
+2026-11-14T18:51:21.1796605Z test_continue_requires_same_race_and_vehicle_plus_new_distance_and_time (test_kart_garage_evidence.GarageSelectionEvidenceTests.test_continue_requires_same_race_and_vehicle_plus_new_distance_and_time) ... ok
+2026-11-14T18:51:21.1797743Z test_only_the_previous_snapshot_can_wait_before_the_first_new_identity (test_kart_garage_evidence.GarageSelectionEvidenceTests.test_only_the_previous_snapshot_can_wait_before_the_first_new_identity) ... ok
+2026-11-14T18:51:21.1798692Z test_only_the_requested_free_vehicle_in_a_new_real_race_is_accepted (test_kart_garage_evidence.GarageSelectionEvidenceTests.test_only_the_requested_free_vehicle_in_a_new_real_race_is_accepted) ... ok
+2026-11-14T18:51:21.1799629Z test_a_caption_outside_or_straddling_the_actual_clip_is_not_a_target (test_kart_garage_scroll_recovery.GarageExactTargetTests.test_a_caption_outside_or_straddling_the_actual_clip_is_not_a_target) ... ok
+2026-11-14T18:51:21.1800629Z test_actual_anchorless_and_partial_ocr_never_name_the_selected_vehicle (test_kart_garage_scroll_recovery.GarageExactTargetTests.test_actual_anchorless_and_partial_ocr_never_name_the_selected_vehicle) ... ok
+2026-11-14T18:51:21.1801617Z test_multiple_original_ocr_variants_of_one_complete_card_are_one_target (test_kart_garage_scroll_recovery.GarageExactTargetTests.test_multiple_original_ocr_variants_of_one_complete_card_are_one_target) ... ok
+2026-11-14T18:51:21.1802566Z test_prefix_suffix_and_partial_captions_do_not_authorize_a_selection (test_kart_garage_scroll_recovery.GarageExactTargetTests.test_prefix_suffix_and_partial_captions_do_not_authorize_a_selection) ... ok
+2026-11-14T18:51:21.1803512Z test_two_distinct_exact_card_regions_are_not_reduced_to_the_first_match (test_kart_garage_scroll_recovery.GarageExactTargetTests.test_two_distinct_exact_card_regions_are_not_reduced_to_the_first_match) ... ok
+2026-11-14T18:51:21.1804489Z test_actual_missing_and_partial_captions_never_become_a_vehicle_tap (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_actual_missing_and_partial_captions_never_become_a_vehicle_tap) ... ok
+2026-11-14T18:51:21.1805547Z test_ambiguous_complete_targets_fail_in_the_real_selection_caller (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_ambiguous_complete_targets_fail_in_the_real_selection_caller) ... ok
+2026-11-14T18:51:21.1806669Z test_anchorless_view_can_scroll_but_only_two_new_complete_frames_allow_the_tap (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_anchorless_view_can_scroll_but_only_two_new_complete_frames_allow_the_tap) ... ok
+2026-11-14T18:51:21.1807937Z test_capture_or_ocr_crossing_the_selection_deadline_cannot_send_a_tap (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_capture_or_ocr_crossing_the_selection_deadline_cannot_send_a_tap) ... ok
+2026-11-14T18:51:21.1808985Z test_comet_selection_reads_later_original_variants_that_contain_the_workshop (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_comet_selection_reads_later_original_variants_that_contain_the_workshop) ... ok
+2026-11-14T18:51:21.1810061Z test_current_png_replacement_after_ocr_cannot_authorize_scroll_or_tap (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_current_png_replacement_after_ocr_cannot_authorize_scroll_or_tap) ... ok
+2026-11-14T18:51:21.1811118Z test_faster_observation_does_not_allow_a_sixth_list_gesture_or_a_guessed_tap (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_faster_observation_does_not_allow_a_sixth_list_gesture_or_a_guessed_tap) ... ok
+2026-11-14T18:51:21.1812180Z test_incomplete_surfaces_keep_the_bounded_pause_without_ocr_or_input (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_incomplete_surfaces_keep_the_bounded_pause_without_ocr_or_input) ... ok
+2026-11-14T18:51:21.1813206Z test_one_old_complete_frame_and_one_new_frame_do_not_form_a_stable_target_pair (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_one_old_complete_frame_and_one_new_frame_do_not_form_a_stable_target_pair) ... ok
+2026-11-14T18:51:21.1814264Z test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis) ... ok
+2026-11-14T18:51:21.1815335Z test_png_change_after_list_analysis_still_prevents_the_real_scroll (test_kart_garage_scroll_recovery.GarageSelectionObservationTests.test_png_change_after_list_analysis_still_prevents_the_real_scroll) ... ok
+2026-11-14T18:51:21.1816340Z test_a_missing_intervening_frame_cannot_reuse_the_prior_scroll_observation (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_a_missing_intervening_frame_cannot_reuse_the_prior_scroll_observation) ... ok
+2026-11-14T18:51:21.1817537Z test_a_new_horizontal_layout_requires_its_own_second_current_observation (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_a_new_horizontal_layout_requires_its_own_second_current_observation) ... ok
+2026-11-14T18:51:21.1818605Z test_a_validated_list_from_another_current_png_cannot_authorize_recovery (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_a_validated_list_from_another_current_png_cannot_authorize_recovery) ... ok
+2026-11-14T18:51:21.1819647Z test_deadline_expiring_during_real_pixel_analysis_prevents_input (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_deadline_expiring_during_real_pixel_analysis_prevents_input) ... ok
+2026-11-14T18:51:21.1820603Z test_expired_deadline_refuses_an_otherwise_stable_real_scroll (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_expired_deadline_refuses_an_otherwise_stable_real_scroll) ... ok
+2026-11-14T18:51:21.1821609Z test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unchanged (test_kart_garage_scroll_recovery.ObservedGarageScrollBoundaryTests.test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unchanged) ... ok
+2026-11-14T18:51:21.1822684Z test_actual_current_menu_context_is_required_even_when_scroll_pixels_exist (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_actual_current_menu_context_is_required_even_when_scroll_pixels_exist) ... ok
+2026-11-14T18:51:21.1823777Z test_actual_old_drag_crosses_the_clip_even_though_tabs_and_footer_enclose_it (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_actual_old_drag_crosses_the_clip_even_though_tabs_and_footer_enclose_it) ... ok
+2026-11-14T18:51:21.1824868Z test_both_actual_anchorless_frames_produce_scroll_evidence_without_a_card_tap (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_both_actual_anchorless_frames_produce_scroll_evidence_without_a_card_tap) ... ok
+2026-11-14T18:51:21.1825876Z test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip) ... ok
+2026-11-14T18:51:21.1826831Z test_correct_dimensions_and_file_hash_do_not_make_a_jpeg_a_capture_png (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_correct_dimensions_and_file_hash_do_not_make_a_jpeg_a_capture_png) ... ok
+2026-11-14T18:51:21.1828022Z test_missing_or_foreign_surface_binding_cannot_authorize_scroll (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_missing_or_foreign_surface_binding_cannot_authorize_scroll) ... ok
+2026-11-14T18:51:21.1828971Z test_missing_or_two_current_scrollbar_tracks_do_not_authorize_a_drag (test_kart_garage_scroll_recovery.OriginalGarageViewportTests.test_missing_or_two_current_scrollbar_tracks_do_not_authorize_a_drag) ... ok
+2026-11-14T18:51:21.1829443Z 
+2026-11-14T18:51:21.1829636Z ----------------------------------------------------------------------
+2026-11-14T18:51:21.1829944Z Ran 54 tests in 20.552s
+2026-11-14T18:51:21.1830096Z 
+2026-11-14T18:51:21.1830163Z OK
+2026-11-14T18:51:21.1864909Z [LumoKartObserverPhase] {"phase": "green", "status": "ALL_54_QA_TESTS_PASS", "android_acceptance": false, "candidate_acceptance": false, "sources_before": {"baseline": {"commit": "9deaa3f24561bc65caba898585c0c00f1c77162b", "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 76878, "sha256": "c55b46f339f7e5ff990990e45feabf53afc58357c384a6431f0370146a5e657b", "git_sha1": "e608a4681e863398d429f0967a9accd470c28670"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 26641, "sha256": "0f75cfbc5c6cab0eebb376f9af0f07aa57dbed0cf1efd40f1150b6ac0e825862", "git_sha1": "753a9ebe5dba11752abe40581114435a41b24e59"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31298, "sha256": "5eb76293c8b332012bf72484d99501c1b47b102e51dddefac30f729e7c19c6d0", "git_sha1": "834a71e5b04a0aa7e637fe1737287df95053bf17"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "proposed": {"commit": "1af7db2f53853709258e117f0326c15c035987d3", "tree": "3588fd081f5c245a48f9792ab1064e923ecbdf69", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 77078, "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc", "git_sha1": "f8c266c672632aa086b11e695fb1883a063e2123"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 34511, "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0", "git_sha1": "3da90d30a2c602e800fda9b6165e335eb039afb7"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31366, "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a", "git_sha1": "20f856522493f5fdfc41d147de70bb096a2938fa"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "execution_files": {".github/qa/lumo_kart_observer_regression.py": {"bytes": 16082, "sha256": "0a99a2c4450910a88174454d72fb12dfe49ccb04660b9aaac1a61e6c53206f12", "git_sha1": "2e0b2f13e2dc52d3eada088886e80c964380f54b"}, ".github/workflows/lumo-kart-observer-qa.yml": {"bytes": 2656, "sha256": "c93553937ad728d0521b0b4ca47c85252f8d5a8fb9561e6cf2d8c5fcafad139f", "git_sha1": "e026f2aec3e73a6a348256d758b0d44e8796700f"}}}, "discovered_tests": 54, "unittest": {"tests_run": 54, "was_successful": true, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "unexpected_successes": [], "subtest_errors": []}, "sources_after": {"baseline": {"commit": "9deaa3f24561bc65caba898585c0c00f1c77162b", "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 76878, "sha256": "c55b46f339f7e5ff990990e45feabf53afc58357c384a6431f0370146a5e657b", "git_sha1": "e608a4681e863398d429f0967a9accd470c28670"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 26641, "sha256": "0f75cfbc5c6cab0eebb376f9af0f07aa57dbed0cf1efd40f1150b6ac0e825862", "git_sha1": "753a9ebe5dba11752abe40581114435a41b24e59"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31298, "sha256": "5eb76293c8b332012bf72484d99501c1b47b102e51dddefac30f729e7c19c6d0", "git_sha1": "834a71e5b04a0aa7e637fe1737287df95053bf17"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "proposed": {"commit": "1af7db2f53853709258e117f0326c15c035987d3", "tree": "3588fd081f5c245a48f9792ab1064e923ecbdf69", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 77078, "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc", "git_sha1": "f8c266c672632aa086b11e695fb1883a063e2123"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 34511, "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0", "git_sha1": "3da90d30a2c602e800fda9b6165e335eb039afb7"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31366, "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a", "git_sha1": "20f856522493f5fdfc41d147de70bb096a2938fa"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "execution_files": {".github/qa/lumo_kart_observer_regression.py": {"bytes": 16082, "sha256": "0a99a2c4450910a88174454d72fb12dfe49ccb04660b9aaac1a61e6c53206f12", "git_sha1": "2e0b2f13e2dc52d3eada088886e80c964380f54b"}, ".github/workflows/lumo-kart-observer-qa.yml": {"bytes": 2656, "sha256": "c93553937ad728d0521b0b4ca47c85252f8d5a8fb9561e6cf2d8c5fcafad139f", "git_sha1": "e026f2aec3e73a6a348256d758b0d44e8796700f"}}}, "exit_code": 0}
+2026-11-14T18:51:21.2850229Z [LumoKartObserverReceipt] {"kind": "reviewed_kart_observer_python_regression", "status": "EXPECTED_BASELINE_RED_AND_ALL_54_GREEN", "baseline_source": "9deaa3f24561bc65caba898585c0c00f1c77162b", "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55", "candidate_acceptance": false, "android_acceptance": false, "APK_or_emulator_executed": false, "product_files_changed": false, "phases": {"baseline": {"command": ["/home/runner/work/_temp/lumo-observer-python/bin/python", "-B", "/home/runner/work/lumo-lernen/lumo-lernen/proposed/.github/qa/lumo_kart_observer_regression.py", "--baseline", "/home/runner/work/lumo-lernen/lumo-lernen/baseline", "--proposed", "/home/runner/work/lumo-lernen/lumo-lernen/proposed", "--out", "/home/runner/work/lumo-lernen/lumo-lernen/observer-evidence", "--phase", "baseline"], "returncode": 1, "status": "EXPECTED_BASELINE_REGRESSION_REPRODUCED", "log": {"bytes": 23960, "sha256": "4054a06b05801a2a717e34c51ed88ad19e1eb798a5f5317886c36bf19f1432d2", "git_sha1": "e1ece6e430cd2dec998a66904c69c1e51363e38a"}, "original_phase_report": {"bytes": 25188, "sha256": "90db20103df376a3aa3d951ff36ccc17fe1e2a805457ecc60063060ea77864bc", "git_sha1": "0f228932118d2f133f6cc23ccb63cb60910fde56"}, "unittest": {"tests_run": 1, "was_successful": false, "failures": [{"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=150)", "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 475, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    self.assertEqual(analyses.call_count, 4)\nAssertionError: 6 != 4\n"}], "errors": [{"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=5)", "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 472, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    result = tour._select_stage_kart(self.out, 'comet', timeout=timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/baseline/.github/probes/modernization_android_tour.py\", line 481, in _select_stage_kart\n    raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)\nTimeoutError: Current complete kart caption was not observed twice inside the list: Comet\n"}], "skipped": [], "expected_failures": [], "unexpected_successes": [], "subtest_errors": [{"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis", "subtest": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=150)", "exception_type": "AssertionError", "message": "6 != 4", "traceback": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/usr/lib/python3.12/unittest/case.py\", line 539, in subTest\n    yield\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 475, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    self.assertEqual(analyses.call_count, 4)\n  File \"/usr/lib/python3.12/unittest/case.py\", line 885, in assertEqual\n    assertion_func(first, second, msg=msg)\n  File \"/usr/lib/python3.12/unittest/case.py\", line 878, in _baseAssertEqual\n    raise self.failureException(msg)\nAssertionError: 6 != 4\n"}, {"test": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis", "subtest": "lumo_proposed_kart_regression.GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis (timeout=5)", "exception_type": "TimeoutError", "message": "Current complete kart caption was not observed twice inside the list: Comet", "traceback": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/usr/lib/python3.12/unittest/case.py\", line 539, in subTest\n    yield\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/proposed/tools/android_qa/tests/test_kart_garage_scroll_recovery.py\", line 472, in test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis\n    result = tour._select_stage_kart(self.out, 'comet', timeout=timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/baseline/.github/probes/modernization_android_tour.py\", line 481, in _select_stage_kart\n    raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)\nTimeoutError: Current complete kart caption was not observed twice inside the list: Comet\n"}]}}, "green": {"command": ["/home/runner/work/_temp/lumo-observer-python/bin/python", "-B", "/home/runner/work/lumo-lernen/lumo-lernen/proposed/.github/qa/lumo_kart_observer_regression.py", "--baseline", "/home/runner/work/lumo-lernen/lumo-lernen/baseline", "--proposed", "/home/runner/work/lumo-lernen/lumo-lernen/proposed", "--out", "/home/runner/work/lumo-lernen/lumo-lernen/observer-evidence", "--phase", "green"], "returncode": 0, "status": "ALL_54_QA_TESTS_PASS", "log": {"bytes": 28160, "sha256": "98a400284ac701e5ec5612245be76009938b3804409e300ee2a45c164846d904", "git_sha1": "645191899db106ee6276ec75ec41e7924889a8d3"}, "original_phase_report": {"bytes": 20451, "sha256": "fd9b893de8494ab79beb3b9b3193f5655f0fefd8512e97981f4eb9adc158ae20", "git_sha1": "3b8d38fce617fd27bd98c1e9404c33f1158ac309"}, "unittest": {"tests_run": 54, "was_successful": true, "failures": [], "errors": [], "skipped": [], "expected_failures": [], "unexpected_successes": [], "subtest_errors": []}}}, "errors": [], "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]", "pillow": "12.3.0", "run_id": 43628848768, "run_attempt": 1, "sources_before": {"baseline": {"commit": "9deaa3f24561bc65caba898585c0c00f1c77162b", "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 76878, "sha256": "c55b46f339f7e5ff990990e45feabf53afc58357c384a6431f0370146a5e657b", "git_sha1": "e608a4681e863398d429f0967a9accd470c28670"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 26641, "sha256": "0f75cfbc5c6cab0eebb376f9af0f07aa57dbed0cf1efd40f1150b6ac0e825862", "git_sha1": "753a9ebe5dba11752abe40581114435a41b24e59"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31298, "sha256": "5eb76293c8b332012bf72484d99501c1b47b102e51dddefac30f729e7c19c6d0", "git_sha1": "834a71e5b04a0aa7e637fe1737287df95053bf17"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "proposed": {"commit": "1af7db2f53853709258e117f0326c15c035987d3", "tree": "3588fd081f5c245a48f9792ab1064e923ecbdf69", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 77078, "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc", "git_sha1": "f8c266c672632aa086b11e695fb1883a063e2123"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 34511, "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0", "git_sha1": "3da90d30a2c602e800fda9b6165e335eb039afb7"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31366, "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a", "git_sha1": "20f856522493f5fdfc41d147de70bb096a2938fa"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "execution_files": {".github/qa/lumo_kart_observer_regression.py": {"bytes": 16082, "sha256": "0a99a2c4450910a88174454d72fb12dfe49ccb04660b9aaac1a61e6c53206f12", "git_sha1": "2e0b2f13e2dc52d3eada088886e80c964380f54b"}, ".github/workflows/lumo-kart-observer-qa.yml": {"bytes": 2656, "sha256": "c93553937ad728d0521b0b4ca47c85252f8d5a8fb9561e6cf2d8c5fcafad139f", "git_sha1": "e026f2aec3e73a6a348256d758b0d44e8796700f"}}}, "sources_after": {"baseline": {"commit": "9deaa3f24561bc65caba898585c0c00f1c77162b", "tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 76878, "sha256": "c55b46f339f7e5ff990990e45feabf53afc58357c384a6431f0370146a5e657b", "git_sha1": "e608a4681e863398d429f0967a9accd470c28670"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 26641, "sha256": "0f75cfbc5c6cab0eebb376f9af0f07aa57dbed0cf1efd40f1150b6ac0e825862", "git_sha1": "753a9ebe5dba11752abe40581114435a41b24e59"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31298, "sha256": "5eb76293c8b332012bf72484d99501c1b47b102e51dddefac30f729e7c19c6d0", "git_sha1": "834a71e5b04a0aa7e637fe1737287df95053bf17"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "proposed": {"commit": "1af7db2f53853709258e117f0326c15c035987d3", "tree": "3588fd081f5c245a48f9792ab1064e923ecbdf69", "tracked_and_untracked_clean": true, "files": {".github/probes/modernization_android_tour.py": {"bytes": 77078, "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc", "git_sha1": "f8c266c672632aa086b11e695fb1883a063e2123"}, "tools/android_qa/tests/test_kart_garage_scroll_recovery.py": {"bytes": 34511, "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0", "git_sha1": "3da90d30a2c602e800fda9b6165e335eb039afb7"}, "tools/android_qa/tests/test_kart_garage_evidence.py": {"bytes": 31366, "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a", "git_sha1": "20f856522493f5fdfc41d147de70bb096a2938fa"}, "tools/android_qa/tests/test_modernization_tour_identity.py": {"bytes": 17607, "sha256": "656c7ede4b57fd67905389028238aeeea3bd1ca275b86da08e9c87c66fa4a939", "git_sha1": "fc5dfc4d656462c8e98821589ecc1fcda690e56f"}, "tools/android_qa/kart_garage_evidence.py": {"bytes": 24207, "sha256": "7d8c7b7a93a2db3637d241305d981d75241104e2736440f2526b8fbf67e9d6e1", "git_sha1": "3cfc55a4c2a8372c8815a50fea86494eeee2dc3b"}, "pubspec.yaml": {"bytes": 2675, "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5", "git_sha1": "7f504396071cf3af57164187a29ea74b74c62413"}, "pubspec.lock": {"bytes": 24467, "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97", "git_sha1": "7843602e3d858660dc52d95587983858803976a5"}, "config/godot-source.json": {"bytes": 145, "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf", "git_sha1": "04f2065c1efb95e5cbb47da237ae9339ca3f6582"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 22706, "sha256": "6c17f7355ae39ff0cf8386b95475d0be2a80b28a3ffaf5226157defebca1b9d9", "git_sha1": "eda8fe14e9a75356edcf459056b4087b432d4f94"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-0.png": {"bytes": 787513, "sha256": "49ce1ec00b1dfb1f05d2958579b4c39abefec9ed2942ba3ce14968f96eafd1cc", "git_sha1": "a229f80913e5657d5f4a29c568cbdaf41d4503ed"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20831, "sha256": "38d6ddece3f004037cfa4c266f21cc070ae54b99984b8e3ca0333f0cad8d8eb7", "git_sha1": "4276e76a740ca2b7c3f6600e712b3adb4c95ea5b"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/main/21_stage_select_gecko_velo-2.png": {"bytes": 784333, "sha256": "a309604a4240d59f83da951c8e1c0b33b76fe90d3d968fdbb108ffd7da77a45a", "git_sha1": "7f36ef4670b1a2b5770835ccb26bd290cde4b666"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/source.json": {"bytes": 9872, "sha256": "4ad96a8f0eb46fbd5b1849e6da1c314cf46502534b5df499ae39c02d017aec10", "git_sha1": "14ca066b61781ebca9657fcd30267d75c3724a6c"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0-ocr.json": {"bytes": 19788, "sha256": "eb990b943dc1e2521a0797e9fad7cfa7b021e3212578149bdf45df05bac8fc60", "git_sha1": "bdbbb2901f426444c34544ee13ddc30ec202cc40"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-0.png": {"bytes": 766810, "sha256": "e9ccdfe6a4138c1a878cd20f694285b42ffc60b26f68f3f0512306b46507dbaf", "git_sha1": "b849fded2f32fdcbaeb4170d9e5defbc1f26f8a6"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2-ocr.json": {"bytes": 20551, "sha256": "da8036b6a8ffe9840919f689758227627313f062ec1e96ebd148e15924a477fc", "git_sha1": "392ad9a7b10eea7363ddfbf966592641aa6f2ade"}, "tools/android_qa/tests/fixtures/kart-scroll-6f42/update/21_stage_select_gecko_velo-2.png": {"bytes": 761351, "sha256": "0d54ea43f164ab4168ba6ef465e1dc9c99972e3251d8e2e44b1b2f465c68f4ff", "git_sha1": "7785a71aca44a5dd567c6fab62251d7f0cefb887"}}}, "execution_files": {".github/qa/lumo_kart_observer_regression.py": {"bytes": 16082, "sha256": "0a99a2c4450910a88174454d72fb12dfe49ccb04660b9aaac1a61e6c53206f12", "git_sha1": "2e0b2f13e2dc52d3eada088886e80c964380f54b"}, ".github/workflows/lumo-kart-observer-qa.yml": {"bytes": 2656, "sha256": "c93553937ad728d0521b0b4ca47c85252f8d5a8fb9561e6cf2d8c5fcafad139f", "git_sha1": "e026f2aec3e73a6a348256d758b0d44e8796700f"}}}}
+2026-11-14T18:51:21.2982853Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T18:51:21.2983184Z with:
+2026-11-14T18:51:21.2983436Z   name: lumo-kart-observer-regression-43628848768-1
+2026-11-14T18:51:21.2983742Z   path: observer-evidence/
+2026-11-14T18:51:21.2984038Z   include-hidden-files: true
+2026-11-14T18:51:21.2984273Z   if-no-files-found: error
+2026-11-14T18:51:21.2984549Z   retention-days: 30
+2026-11-14T18:51:21.2984777Z   compression-level: 6
+2026-11-14T18:51:21.2984996Z   overwrite: false
+2026-11-14T18:51:21.2985210Z env:
+2026-11-14T18:51:21.2985436Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T18:51:21.2985703Z ##[endgroup]
+2026-11-14T18:51:21.4255037Z (node:2883) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T18:51:21.4256113Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T18:51:21.4301735Z With the provided path, there will be 5 files uploaded
+2026-11-14T18:51:21.4305096Z Artifact name is valid!
+2026-11-14T18:51:21.4305431Z Root directory input is valid!
+2026-11-14T18:51:21.7246257Z Beginning upload of artifact content to blob storage
+2026-11-14T18:51:21.7486054Z (node:2883) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T18:51:21.9387787Z Uploaded bytes 17690
+2026-11-14T18:51:21.9812130Z Finished uploading artifact content to blob storage!
+2026-11-14T18:51:21.9813642Z SHA256 digest of uploaded artifact zip is 8462364638b25d97a920319216d7576e9fe074d7bf7ac734c2f4111315f6b75b
+2026-11-14T18:51:21.9814842Z Finalizing artifact upload
+2026-11-14T18:51:22.3139809Z Artifact lumo-kart-observer-regression-43628848768-1.zip successfully finalized. Artifact ID 14126829767
+2026-11-14T18:51:22.3140684Z Artifact lumo-kart-observer-regression-43628848768-1 has been successfully uploaded! Final size is 17690 bytes. Artifact ID is 14126829767
+2026-11-14T18:51:22.3145109Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43628848768/artifacts/14126829767
+2026-11-14T18:51:22.3309858Z Post job cleanup.
+2026-11-14T18:51:22.3977229Z [command]/usr/bin/git version
+2026-11-14T18:51:22.4009132Z git version 2.56.1
+2026-11-14T18:51:22.4034979Z Temporarily overriding HOME='/home/runner/work/_temp/0b630b62-f07c-46ea-afe8-dca09ed44430' before making global git config changes
+2026-11-14T18:51:22.4035926Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T18:51:22.4039649Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen/baseline
+2026-11-14T18:51:22.4068227Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:51:22.4092556Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:51:22.4257005Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:51:22.4285570Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:51:22.4439308Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:51:22.4461948Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:51:22.4731220Z Post job cleanup.
+2026-11-14T18:51:22.5414967Z [command]/usr/bin/git version
+2026-11-14T18:51:22.5447606Z git version 2.56.1
+2026-11-14T18:51:22.5473779Z Temporarily overriding HOME='/home/runner/work/_temp/a7334906-7fe7-485e-a676-c62813a66007' before making global git config changes
+2026-11-14T18:51:22.5475180Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T18:51:22.5477697Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen/proposed
+2026-11-14T18:51:22.5509066Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:51:22.5535867Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:51:22.5705862Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:51:22.5731559Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:51:22.5893475Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:51:22.5918651Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:51:22.6194539Z Cleaning up orphan processes
+2026-11-14T18:51:22.6470054Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,151 @@
+{
+  "kind": "independent_review_of_original_kart_observer_codecheck",
+  "original_ci_receipt": false,
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "qa_source": "1af7db2f53853709258e117f0326c15c035987d3",
+    "qa_tree": "3588fd081f5c245a48f9792ab1064e923ecbdf69",
+    "baseline_source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "baseline_tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+    "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "branch": "qa/lumo-kart-observer-20261114",
+    "workflow": ".github/workflows/lumo-kart-observer-qa.yml",
+    "run_id": 43628848768,
+    "run_attempt": 1,
+    "job_id": 132550717683,
+    "job_conclusion": "success",
+    "started_at": "2026-11-14T18:50:46Z",
+    "completed_at": "2026-11-14T18:51:24Z",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43628848768/job/132550717683"
+  },
+  "result": {
+    "review": "No blocker in the observed exact baseline regression and all 54 current QA tests",
+    "baseline": {
+      "process_exit": 1,
+      "tests_run": 1,
+      "subtest_failure": "AssertionError: 6 != 4",
+      "subtest_failure_meaning": "Four actual current observations invoked the unchanged baseline full image analyser six times.",
+      "subtest_error": "TimeoutError: Current complete kart caption was not observed twice inside the list: Comet",
+      "actual_original_caller_path": "/home/runner/work/lumo-lernen/lumo-lernen/baseline/.github/probes/modernization_android_tour.py",
+      "elapsed_unittest_seconds": 2.055,
+      "status": "EXPECTED_BASELINE_REGRESSION_REPRODUCED"
+    },
+    "green": {
+      "process_exit": 0,
+      "tests_run": 54,
+      "independently_counted_original_ok_lines": 54,
+      "modules": {
+        "test_kart_garage_evidence": 25,
+        "test_kart_garage_scroll_recovery": 29
+      },
+      "elapsed_unittest_seconds": 20.552,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "status": "ALL_54_QA_TESTS_PASS"
+    },
+    "source_and_nine_fixture_files_unchanged_before_after": true,
+    "working_tree_tracked_and_untracked_clean": true,
+    "source_file_records_per_checkout": 17,
+    "actual_python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "actual_pillow": "12.3.0"
+  },
+  "proof": {
+    "whole_job_log_retrieved_once": true,
+    "original_child_logs_recovered_by_removing_only_GitHub_per_line_timestamps": true,
+    "each_child_log_matches_original_runner_byte_count_SHA256_and_Git_blob_SHA1": true,
+    "original_phase_report_files_reconstructed_and_matched_to_recorded_length_SHA256_and_Git_blob_SHA1": true,
+    "receipt_line_preserved_verbatim": true,
+    "all_phase_and_parent_source_snapshots_independently_compared": true
+  },
+  "artifact": {
+    "id": 14126829767,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyNjgyOTc2Nw==",
+    "name": "lumo-kart-observer-regression-43628848768-1",
+    "size_in_bytes": 17690,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126829767",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126829767/zip",
+    "expired": false,
+    "digest": "sha256:8462364638b25d97a920319216d7576e9fe074d7bf7ac734c2f4111315f6b75b",
+    "created_at": "2026-11-14T18:51:22Z",
+    "updated_at": "2026-11-14T18:51:22Z",
+    "expires_at": "2026-12-14T18:51:21Z",
+    "workflow_run": {
+      "id": 43628848768,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "qa/lumo-kart-observer-20261114",
+      "head_sha": "1af7db2f53853709258e117f0326c15c035987d3"
+    },
+    "verification_scope": "Digest and byte count agree between original upload log and fresh GitHub API. Full ZIP was not downloaded here; no independent ZIP hash or CRC claim."
+  },
+  "originals": [
+    {
+      "name": "original-job.log",
+      "bytes": 116703,
+      "sha256": "3772e950c170733885535ea839d46659dce44ea708e68fcc0dbd7584462cb638",
+      "git_sha1": "dd5cf75fbbec6fc83ce0c729dac3dbc0b8aa66bb",
+      "origin": "Complete once-retrieved original GitHub job log; timestamped original bytes"
+    },
+    {
+      "name": "original-receipt-line.log",
+      "bytes": 22893,
+      "sha256": "218c33a6a259a9a9a0df4309f5fcb2bc9f4bb62743a0aa9c0ba81415835657a3",
+      "git_sha1": "f4c131da8b9746a45b84c6736c91518ee0e63962",
+      "origin": "Exact original timestamped receipt line plus line ending"
+    },
+    {
+      "name": "baseline.log",
+      "bytes": 23960,
+      "sha256": "4054a06b05801a2a717e34c51ed88ad19e1eb798a5f5317886c36bf19f1432d2",
+      "git_sha1": "e1ece6e430cd2dec998a66904c69c1e51363e38a",
+      "origin": "Original child log, recovered from printed original bytes and independently matched to runner length/SHA256/Git blob digest"
+    },
+    {
+      "name": "green.log",
+      "bytes": 28160,
+      "sha256": "98a400284ac701e5ec5612245be76009938b3804409e300ee2a45c164846d904",
+      "git_sha1": "645191899db106ee6276ec75ec41e7924889a8d3",
+      "origin": "Original child log, recovered from printed original bytes and independently matched to runner length/SHA256/Git blob digest"
+    },
+    {
+      "name": "original-artifact-api.json",
+      "bytes": 770,
+      "sha256": "ed2489fdac0c9f702c83540db4584403febd13a20c95d40a66193ae1162982df",
+      "git_sha1": "ef5a64f7a3efb9108d82dee0527c90c71101eb36",
+      "origin": "Exact current original GitHub artifacts API response content"
+    },
+    {
+      "name": "baseline-result.json",
+      "bytes": 25188,
+      "sha256": "90db20103df376a3aa3d951ff36ccc17fe1e2a805457ecc60063060ea77864bc",
+      "git_sha1": "0f228932118d2f133f6cc23ccb63cb60910fde56",
+      "origin": "Reconstructed from original printed phase JSON and independently matched byte-for-byte by original runner file length/SHA256/Git blob digest"
+    },
+    {
+      "name": "green-result.json",
+      "bytes": 20451,
+      "sha256": "fd9b893de8494ab79beb3b9b3193f5655f0fefd8512e97981f4eb9adc158ae20",
+      "git_sha1": "3b8d38fce617fd27bd98c1e9404c33f1158ac309",
+      "origin": "Reconstructed from original printed phase JSON and independently matched byte-for-byte by original runner file length/SHA256/Git blob digest"
+    },
+    {
+      "name": "original-run-api.json",
+      "bytes": 12432,
+      "sha256": "d5c0e51127f35e445b2ab2e49a9d69a53190d9c9bc8d08c797b32f979042260e",
+      "git_sha1": "cb92ae58e4266f6878d02da38a2f340ecefcd591",
+      "origin": "Exact current original GitHub completed-run API response content"
+    }
+  ],
+  "boundaries": {
+    "android_acceptance": false,
+    "candidate_acceptance": false,
+    "APK_or_emulator_executed": false,
+    "product_files_changed": false,
+    "Main_candidate_updated": false,
+    "release_or_publisher_activated": false,
+    "scope": "Controlled Python regression on real source and preserved original pixel fixtures; no claim that current Android OCR tour or seven delivery gates have passed."
+  }
+}
