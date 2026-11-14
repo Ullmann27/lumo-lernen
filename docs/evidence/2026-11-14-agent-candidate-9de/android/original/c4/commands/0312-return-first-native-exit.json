@@ -1,0 +1,14 @@
+{
+  "command": [
+    "adb",
+    "shell",
+    "pidof",
+    "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.06778338599997369,
+  "stdout_bytes": 5,
+  "stderr_bytes": 0,
+  "stdout_sha256": "a70e435b8104e3832f1366095d264a8b71c2e4d115e3e8d28d83089682671b07",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

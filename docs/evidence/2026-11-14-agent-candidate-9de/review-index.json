@@ -1,0 +1,648 @@
+{
+  "schema": 1,
+  "kind": "new_derived_historical_candidate_evidence_index",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "source_tree": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+  "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "run_id": 43622379532,
+  "run_attempt": 1,
+  "pull_request": 493,
+  "scope": "Preserves original evidence of the historical 9de candidate. No result transfers to later sources; this checkpoint runs no product test.",
+  "results": {
+    "verify_and_build": "success",
+    "android_c4": "success",
+    "update_2020_from_2017": "failure",
+    "verify_c4_candidate": "skipped",
+    "prepare_c4_delivery": "skipped",
+    "complete_candidate_acceptance": false,
+    "publication_authorized_by_this_evidence": false
+  },
+  "archives": [
+    {
+      "name": "update",
+      "artifact_id": 14126349204,
+      "job_id": 132547863799,
+      "bytes": 64592400,
+      "sha256": "cca2c0bd0e733b750da1a0e16d2e994ee2fc58a0cb666ec7560502b41856f5b0",
+      "complete_original_zip_locally_downloaded_once": true,
+      "all_member_crcs_verified": true,
+      "original_files": 466,
+      "zip_preserved_as_CI_artifact_not_committed": true
+    },
+    {
+      "name": "android-c4",
+      "artifact_id": 14128320008,
+      "job_id": 132547863806,
+      "bytes": 150017051,
+      "sha256": "525ebcb1bfbd407b884297c708b48e94e783181cf573e4729eb75761d3fce242",
+      "complete_original_zip_locally_downloaded_once": true,
+      "all_member_crcs_verified": true,
+      "original_files": 2397,
+      "strict_C4_original_inventory_files": 1437,
+      "zip_preserved_as_CI_artifact_not_committed": true
+    }
+  ],
+  "original_build_evidence": {
+    "complete_job_log_blob": "a2b41b82e99181182e3d4ce3f4a531deca6341a3",
+    "complete_job_log_bytes": 1817266,
+    "complete_job_log_sha256": "9790637089174a1f89456e8f2c88556934d034d08d591a573ee472cda637e9be",
+    "x86_package_original_json_blob": "d04e5abf92eaeca22425a8b2da94424a71978e89",
+    "arm64_package_original_json_blob": "af05bac616d231e3b7d2fe9bfa7f5f22710de1e3",
+    "original_package_json_does_not_contain_flutter_source_commit": true,
+    "actual_source_binding": "Original MainTour apk-identity step and original update-result.candidate independently contain the actual 9de host commit; original APK package objects are not augmented.",
+    "candidate_artifact_id": 14126738109,
+    "candidate_artifact_bytes": 665175289,
+    "candidate_artifact_api_sha256": "d6938cbdcde85b18d0dea72f0eb682e5ff0ef4381ea3fda7853096994fdc68a9",
+    "current_x86_apk_sha256": "d5aec6b6bf2ce0d7acd6af374ed9873a9e8fb219fb774b37f593b451598a6901",
+    "current_native_pck_sha256": "e0f759f9f3fd712a3b1873911a077c3ab5c34487c123b1c17cd24cd6bd6cc30d",
+    "apk_redownloaded_by_this_checkpoint": false
+  },
+  "update_failure": {
+    "original_report_status": "FAIL",
+    "exact_terminal_log_line": "2026-11-14T18:51:48.0219468Z [LumoUpdate] FAIL Command '('tesseract', 'tour/ocr-work.png', 'tour/21_stage_select_gecko_velo-9-ocr-navy-latin-1x', '--psm', '11', '-l', 'eng', 'tsv')' timed out after 0.2276019669999414 seconds",
+    "target": "Gecko Velo",
+    "surface_samples": 10,
+    "complete_geometry_samples": 9,
+    "real_scrolls": 4,
+    "elapsed_seconds": 150.044856,
+    "allowed_seconds": 150,
+    "first_complete_target_frame": 8,
+    "first_target_bounds": [
+      451,
+      620,
+      658,
+      648
+    ],
+    "second_frame_capture": 9,
+    "second_frame_complete_OCR_result_exists": false,
+    "second_accepted_target_observation": false,
+    "Gecko_tap_performed": false,
+    "image_review": "Root and gameplay agent viewed original PNGs 0, 8 and 9; integration agent additionally viewed PNG 9. Full caption is visually present in 8 and 9. Partial TSV text is not a completed second target validation.",
+    "no_timeout_increase_or_new_device_run_by_this_review": true
+  },
+  "android_C4": {
+    "original_terminal_log_line": "2026-11-14T19:02:33.2921156Z [ConnectFourAndroid] {\"status\": \"PASS\", \"error\": null, \"observations\": 25, \"transitions\": 6}",
+    "main_tour_original_steps_passed": 21,
+    "strict_original_report_status": "PASS",
+    "observations": 25,
+    "transitions": 6,
+    "actual_child_drops": 2,
+    "actual_bot_responses": 2,
+    "native_returns": 2,
+    "same_round_reopened": true,
+    "actual_mailbox_retry": {
+      "exactly_one_back_touch": "c4/commands/0311-return-first-touch.json",
+      "native_PID_absent": "c4/commands/0314-return-first-native-exit.stdout",
+      "current_token_file_still_present": "c4/commands/0316-return-first-closed-mailbox.stdout",
+      "fresh_PID_and_MainActivity": [
+        "c4/commands/0317-return-first-native-exit.stdout",
+        "c4/commands/0318-return-first-return-activity.stdout"
+      ],
+      "subsequent_actual_empty_find": "c4/commands/0319-return-first-closed-mailbox.stdout",
+      "extra_back_touch": false
+    },
+    "preferences_reads": 32,
+    "all_preferences_reads_valid_XML": true,
+    "actual_XML_transient_recovery_observed": false,
+    "scope": "Actual API35 emulator C4 evidence on 9de. No physical ARM64, API37, 60FPS, audio-quality or complete-release acceptance."
+  },
+  "file_rules": {
+    "original_members": "Byte-for-byte copies of selected original archive entries; unchanged PNGs, original complete and partial OCR TSVs, original JSON reports and command receipts.",
+    "reviews": "Files under review/ and this index are newly derived read-only records, explicitly not original CI-produced reports.",
+    "empty_streams": "Empty original streams remain exactly zero bytes.",
+    "no_signed_download_urls_saved": true
+  },
+  "files": [
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "d5a0c789a8a8dd071a08f4406b58148d6151678c",
+      "bytes": 20217,
+      "sha256": "defbe8d0861db48badc35c43c9d5457c477839b4a181cbd633ae23873f84b355",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-0-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-0.png",
+      "git_blob": "9520f0dbb0b60b8e4c86c7deaf1fb28c600c9ff7",
+      "bytes": 767301,
+      "sha256": "5c96119fc6634dfbcbc5e2d68b19498bbbc7d05c02ed6e15b098f2dc05c8e8ad",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-0.png"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-1-ocr.json",
+      "git_blob": "c27cb7930d33498cb16b357a6aea4a4e4a6bcec6",
+      "bytes": 21262,
+      "sha256": "3570dad77a103455cff03b3b874b0b88b2726c69d2809ebdbdd403d598eb192c",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-1-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "affb4b3c9edf3af22d95380e815ea72f5904dfec",
+      "bytes": 21504,
+      "sha256": "edbb311000d97b07f1e128b15a1bc884812d7489fb98dbfe5e845ba19d334e96",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-2-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-3-ocr.json",
+      "git_blob": "496fe67b029f9c38c86ceffca89e962e810c24fb",
+      "bytes": 20297,
+      "sha256": "3a9c4623749a8ec528a6c0bba3d0cb2a32e2535a1493a9f898aa3fce3f422584",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-3-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-4-ocr.json",
+      "git_blob": "3fdf4a74b4d3ad3247634cc618ec0eeb05008cf9",
+      "bytes": 20207,
+      "sha256": "2beb55a3017f76e4684343e86b1dc76046fcf3dcff50d1c30f50553bf441febb",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-4-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-5-ocr.json",
+      "git_blob": "22385287a188e6216abff9d73c34b00c09b3374b",
+      "bytes": 20993,
+      "sha256": "c470749e691aa0ebf1913cf78bca19b0b82db7f2a4f6c21178a119c66c5cb556",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-5-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-6-ocr.json",
+      "git_blob": "ac44c0bb3d471fb1136d4278e151515eb9abafcb",
+      "bytes": 22245,
+      "sha256": "8b5a2b28051bd791378ed05ae2770aa5928f66a2694877d26d9bdbacb2783254",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-6-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-7-ocr.json",
+      "git_blob": "436053eec2e0b97e8e054e8a6b69a05064be84ca",
+      "bytes": 21581,
+      "sha256": "4b4d79bbf0deb6198292e08c8fcb359d798e7c927e1905870225f7fde90572a4",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-7-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-8-ocr.json",
+      "git_blob": "de4ef7404627d22c9e647c2ff6c3f0b1e85e8d85",
+      "bytes": 22814,
+      "sha256": "9433064c3831eea2c0b76916060ee01a6c9737f4f443227139ef17493946872b",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-8-ocr.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-8.png",
+      "git_blob": "93e2ddea6f5e165a05af65d82514e4dc678772f6",
+      "bytes": 773305,
+      "sha256": "21072f08bbb247bb803d63c387c700e35e2208d5d1f4c65f843f404f6db402ac",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-8.png"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-9-ocr-contrast.tsv",
+      "git_blob": "7679b60b977210df5867889ee0f74725066e0582",
+      "bytes": 6111,
+      "sha256": "6be74c5e70c57288cfaa6594f299263d5cba735114a085f0e7bc559aa2e95324",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-9-ocr-contrast.tsv"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-9-ocr-navy-latin-1x.tsv",
+      "git_blob": "377119e501f5c9ab4fb5e58ad6a495d48904bd8b",
+      "bytes": 83,
+      "sha256": "4e2c6c2dfca00003e4b505ad08bd3bc9e53a70aa34ba9f06d98d3e444af7c9e8",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-9-ocr-navy-latin-1x.tsv"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-9-ocr-navy-latin.tsv",
+      "git_blob": "26ccc9d3a5bf5dbbdf1dd4f4b93ac826e1148650",
+      "bytes": 2667,
+      "sha256": "ddf8e8aa54518ffbdcb506337ec3db59def056fa5531554e4dbc9d1d18fa85f6",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-9-ocr-navy-latin.tsv"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-9-ocr-raw.tsv",
+      "git_blob": "fa19335b09f78d763fd3bcb8ddd0cf388ef6afd2",
+      "bytes": 3980,
+      "sha256": "6c6eca518ef368e2a10e9a1d2534ecf826dafa58aac9ff732eaea80562fbdbb1",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-9-ocr-raw.tsv"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-9-ocr-white-latin.tsv",
+      "git_blob": "1a7e4853cddf42219b574cf3faf474c65165b66c",
+      "bytes": 3339,
+      "sha256": "c915d5142d962cc651827b5ff076cffd9a701ea960e390fa4f12aca88e43fdb3",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-9-ocr-white-latin.tsv"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-9-ocr-white-text.tsv",
+      "git_blob": "d967fe9a5346e972a05825db353d5025cd7df320",
+      "bytes": 3303,
+      "sha256": "d8812f3e5bcb82634d54d3db8d0145bbe540f55943120bb8c56417fd673451ab",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-9-ocr-white-text.tsv"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-9.png",
+      "git_blob": "7b6bf3dcfd95c9e1695e6422968f9d6ede66a3ca",
+      "bytes": 771225,
+      "sha256": "7899c4bfa322c9a8669e293c484f78b2bee12b375f5b09cff7c4b0785f772342",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-9.png"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "c89a44aa52907793b7ae2b34129d54974d32ce55",
+      "bytes": 38563,
+      "sha256": "bce57174742d99290b93de50069f96f3574adc5265e5b9f2312271e60ba35c06",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "21_stage_select_gecko_velo-surface-readiness.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/original/update-result.json",
+      "git_blob": "df1fadeb93ff7d3b444fe8911aa7fe1663c1ad75",
+      "bytes": 27267,
+      "sha256": "95e6c8ff0512c411a4eb4854f30ca5e2a41a56ab79d867938f29d4f8bf40f3e9",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14126349204,
+      "original_member": "update-result.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/review/archive-byte-review.json",
+      "git_blob": "89a420bc2100bcbd24ff269b871d8bee3ff6b3c2",
+      "bytes": 509447,
+      "sha256": "c8ba7677cdc5bebce186043b6b7b30460ac424374bf86e9445b0cbc0410714e2",
+      "kind": "new_derived_review_or_inventory",
+      "artifact_id": null,
+      "original_member": null
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/c4-result.json",
+      "git_blob": "3ebad8f4f6eef06cac502d443d73cbd48392a85c",
+      "bytes": 270335,
+      "sha256": "7229017713cbf85914ab20dfb74112dc7108246a9542f31d297540f2b072b67b",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/c4-result.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0311-return-first-touch.json",
+      "git_blob": "e1d3f433dcd82c54834e8b8abe278e904c729cc2",
+      "bytes": 403,
+      "sha256": "0ae65238917a61d44beb6860bcb1a14b90f508e06cda0f960e810befcb8e0036",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0311-return-first-touch.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0311-return-first-touch.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0311-return-first-touch.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0311-return-first-touch.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0311-return-first-touch.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0312-return-first-native-exit.json",
+      "git_blob": "e388c1fd349cc0b73af960887fefbf3d1cf3b026",
+      "bytes": 395,
+      "sha256": "379ea07db415118d600f62bbc0fc6e2fabdcd422023504334d706aabc6e78560",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0312-return-first-native-exit.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0312-return-first-native-exit.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0312-return-first-native-exit.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0312-return-first-native-exit.stdout",
+      "git_blob": "156b945c17799e5122d36c090c303537caec1855",
+      "bytes": 5,
+      "sha256": "a70e435b8104e3832f1366095d264a8b71c2e4d115e3e8d28d83089682671b07",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0312-return-first-native-exit.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0313-return-first-return-activity.json",
+      "git_blob": "8478e219089d213962b88f383466d97078d68c73",
+      "bytes": 376,
+      "sha256": "0bd38ef683d34af6d20649398318385cff9cedc640bcb4c8e51f6cbae3b05e2d",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0313-return-first-return-activity.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0313-return-first-return-activity.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0313-return-first-return-activity.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0313-return-first-return-activity.stdout",
+      "git_blob": "777093cca401be309e57c4351c0dc30136b4bf19",
+      "bytes": 39695,
+      "sha256": "a735027e76d0b3715b38f2e4a0a9a9436900d2a63a0f38b91c569bcf47cdfb58",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0313-return-first-return-activity.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0314-return-first-native-exit.json",
+      "git_blob": "82596e404f1bc82627cc492b068d12d9fde6cf27",
+      "bytes": 395,
+      "sha256": "c25d84421b551fd2677f551d856f06fbca50705f6de7474cf82c0fbc4a1202a5",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0314-return-first-native-exit.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0314-return-first-native-exit.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0314-return-first-native-exit.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0314-return-first-native-exit.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0314-return-first-native-exit.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0315-return-first-return-activity.json",
+      "git_blob": "25125935aa63c99a5a31fabd2057e15ed47f5f84",
+      "bytes": 376,
+      "sha256": "756b11a723ceb0722bde8938b1c9a52ccdb3504292ab4b7001502ae54a966d62",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0315-return-first-return-activity.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0315-return-first-return-activity.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0315-return-first-return-activity.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0315-return-first-return-activity.stdout",
+      "git_blob": "7827bdcb004ae4652ceebc4405f1e21283510f88",
+      "bytes": 39932,
+      "sha256": "6d6044b3ec1ad2160343e48e45468bc4a676b8228e49da905b310541ade0141b",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0315-return-first-return-activity.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0316-return-first-closed-mailbox.json",
+      "git_blob": "fe856159a8511db8c2ca38c3052f89093b2f5f5d",
+      "bytes": 512,
+      "sha256": "7f3c05c1e41e12d7d112973da2a547c6b51cce2a92bc2584f9e5e43749be51e2",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0316-return-first-closed-mailbox.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0316-return-first-closed-mailbox.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0316-return-first-closed-mailbox.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0316-return-first-closed-mailbox.stdout",
+      "git_blob": "1028cdb3817b8b3f234a6f9b64d2ff352b46a86c",
+      "bytes": 134,
+      "sha256": "9ff49fa6341893724e91d7342fd89098de89893f51b50d8fe6d3ac713948a6fb",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0316-return-first-closed-mailbox.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0317-return-first-native-exit.json",
+      "git_blob": "aabdfb6f9223e39c87d0b0294df1c095a2804caf",
+      "bytes": 394,
+      "sha256": "775a530ebb8e85c67efe0024907410dc9d87cc9a9047df2b0accdb881bccf8ca",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0317-return-first-native-exit.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0317-return-first-native-exit.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0317-return-first-native-exit.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0317-return-first-native-exit.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0317-return-first-native-exit.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0318-return-first-return-activity.json",
+      "git_blob": "c6d711f40576a00ae3dc090e50178a431643ea0a",
+      "bytes": 376,
+      "sha256": "4fffdc050405712ca6d644b93b7f21c5b7325b893674480bc8ef147891ef0f6d",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0318-return-first-return-activity.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0318-return-first-return-activity.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0318-return-first-return-activity.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0318-return-first-return-activity.stdout",
+      "git_blob": "83b28834bef91e1f02560e2577b9ac9e5619599c",
+      "bytes": 39549,
+      "sha256": "a3e9dd5fbdba9b3b128cc0dd0cb3c16f42c86a9ba441e769679c37999f2f6cd3",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0318-return-first-return-activity.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0319-return-first-closed-mailbox.json",
+      "git_blob": "e5cb38673ea2dcc924b491a3c0c0e1268a193ff7",
+      "bytes": 510,
+      "sha256": "b55635b3ef78b29e051e26cfd70cd711294a7f41dce353ce46093551cedbe4c0",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0319-return-first-closed-mailbox.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0319-return-first-closed-mailbox.stderr",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0319-return-first-closed-mailbox.stderr"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/commands/0319-return-first-closed-mailbox.stdout",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/commands/0319-return-first-closed-mailbox.stdout"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/reopened-008.png",
+      "git_blob": "c47ffc5f4ab8f7f9b1946e50e0e81dfbdaf07c66",
+      "bytes": 228120,
+      "sha256": "1a42031b231a33975dd5052404e36927f77661a50f065e5195189a4f29618d87",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/reopened-008.png"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/return-first-touch.json",
+      "git_blob": "39fb8805b763b7d15fc16d672e37e7065d4e66de",
+      "bytes": 490,
+      "sha256": "5c2453d7dcba973cfe2a04fc544ebb02973531b2509b0a9b0fa4d4444edfa7b2",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/return-first-touch.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/review/independent-review-summary.json",
+      "git_blob": "58f50a4cec38a925c213f38f2e0d2b2d75ac03ab",
+      "bytes": 12635,
+      "sha256": "c7e54cee46aec5196649a2197e4c17ee1af2ae19ed2fdcef35a5d7b485a99170",
+      "kind": "new_derived_review_or_inventory",
+      "artifact_id": null,
+      "original_member": null
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/review/strict-contract-replay.json",
+      "git_blob": "6456f044b925ee3aeb38a82080cc16da6ff49646",
+      "bytes": 4082,
+      "sha256": "f8ad778c85d8dd6a8a83985f2bf495310edcac878d91270117dd4fb6c101016d",
+      "kind": "new_derived_review_or_inventory",
+      "artifact_id": null,
+      "original_member": null
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/review/archive-byte-review.json",
+      "git_blob": "6ed137489de371306accf6b9b942c51c1fe1fc0b",
+      "bytes": 97356,
+      "sha256": "1cebab9c60bb8eb244a8bc369624557cee9ab518e3d5c39f59a1667ad662b463",
+      "kind": "new_derived_review_or_inventory",
+      "artifact_id": null,
+      "original_member": null
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/return-final-games-001-frame.png",
+      "git_blob": "607678a962281329b23134857d95d8f681444022",
+      "bytes": 1990366,
+      "sha256": "382ada494528da7e623ff3a5323c93edb2008379d5f6f354a58e9a22c60bfac1",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/return-final-games-001-frame.png"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/return-final-games-001.xml",
+      "git_blob": "2ffa4549790f737a04b4305c13996682e7d20340",
+      "bytes": 27680,
+      "sha256": "03d124595b777622824413dedbf53b7a36fa717c4902ee30ff3fff9995010c19",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/return-final-games-001.xml"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/original/c4/return-final-games-flutter-ready.json",
+      "git_blob": "33b4ddd0ad2b66684e4d2bb6930bac62a10b6518",
+      "bytes": 1739,
+      "sha256": "c9ddb66a9e430f4b334a59daddde33774302839a6aceb3584952a81a3a20d08e",
+      "kind": "unchanged_original_archive_member",
+      "artifact_id": 14128320008,
+      "original_member": "c4/return-final-games-flutter-ready.json"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/update/in-place-update-job.log",
+      "git_blob": "a5e0e7db6ed26ca0bc07e38408998d348010e500",
+      "bytes": 265519,
+      "sha256": "4a997a5f97ccf7cb55fef86fab01804929bf2a82d43b34c832836d66acb60268",
+      "job_id": 132547863799,
+      "kind": "complete_original_decoded_workflow_job_log"
+    },
+    {
+      "path": "docs/evidence/2026-11-14-agent-candidate-9de/android/android-c4-job.log",
+      "git_blob": "26d7c49e6c5626991879c5630b23985dbae67cab",
+      "bytes": 1586354,
+      "sha256": "58bc064de7a4ea11a1cf8374a2f8a2d5cda2983762dc8dfe9602ec69db9bf59e",
+      "job_id": 132547863806,
+      "kind": "complete_original_decoded_workflow_job_log"
+    }
+  ]
+}

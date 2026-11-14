@@ -1,0 +1,358 @@
+{
+  "schema": 1,
+  "kind": "new_independent_read_only_original_C4_review",
+  "original_report": false,
+  "host": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43622379532,
+  "run_attempt": 1,
+  "producer_job_id": 132547863806,
+  "artifact_id": 14128320008,
+  "zip": {
+    "zip_bytes": 150017051,
+    "zip_sha256": "525ebcb1bfbd407b884297c708b48e94e783181cf573e4729eb75761d3fce242",
+    "all_zip_member_crc_checks": true,
+    "file_count": 2397,
+    "expanded_bytes": 170551674
+  },
+  "strict_replay": {
+    "status": "PASS",
+    "versionCode": 2020,
+    "binding": {
+      "host_source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+      "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+      "run_id": 43622379532,
+      "run_attempt": 1,
+      "candidate_artifact_id": 14126738109,
+      "candidate_artifact_digest": "sha256:d6938cbdcde85b18d0dea72f0eb682e5ff0ef4381ea3fda7853096994fdc68a9"
+    },
+    "actual_child_drops": 2,
+    "actual_bot_responses": 2,
+    "same_round_reopened": true,
+    "native_returns": 2,
+    "api": 35,
+    "original_files": 1437,
+    "observations": 25,
+    "scope": "C4 candidate device test only; no release, physical ARM64, API37 or FPS acceptance"
+  },
+  "replay_receipt": {
+    "path": "/dev/shm/lumo-9de-c4-original-review/strict-contract-replay.json",
+    "bytes": 4082,
+    "sha256": "f8ad778c85d8dd6a8a83985f2bf495310edcac878d91270117dd4fb6c101016d",
+    "git_sha1": "6456f044b925ee3aeb38a82080cc16da6ff49646"
+  },
+  "original_C4_report": {
+    "path": "/dev/shm/lumo-9de-c4-original-review/extracted/c4/c4-result.json",
+    "bytes": 270335,
+    "sha256": "7229017713cbf85914ab20dfb74112dc7108246a9542f31d297540f2b072b67b",
+    "git_sha1": "3ebad8f4f6eef06cac502d443d73cbd48392a85c"
+  },
+  "original_main_report": {
+    "path": "/dev/shm/lumo-9de-c4-original-review/extracted/main/tour-result.json",
+    "bytes": 15799,
+    "sha256": "9eb5df5838639aa1e4a19152b8e4f1398ef81d792cb37df6f6bc4de33bcf3a3a",
+    "git_sha1": "e1f49411d9eb37646a5628e87984f984986aeff8"
+  },
+  "state_sequence": [
+    {
+      "id": "initial-011",
+      "native_pid": 6082,
+      "host_pid": 5731,
+      "token": "1865700acef3d2f1aa66baf87c28a7fc",
+      "roundId": "662eea8e215d89d200980daa46ddc905",
+      "columns": [],
+      "ack": 0,
+      "paused": false,
+      "recordRevision": 1,
+      "device_clock_ms": 1794682826654
+    },
+    {
+      "id": "child-first-confirmed-002",
+      "native_pid": 6082,
+      "host_pid": 5731,
+      "token": "1865700acef3d2f1aa66baf87c28a7fc",
+      "roundId": "662eea8e215d89d200980daa46ddc905",
+      "columns": [
+        3,
+        4
+      ],
+      "ack": 1,
+      "paused": false,
+      "recordRevision": 3,
+      "device_clock_ms": 1794682838992
+    },
+    {
+      "id": "child-second-confirmed-003",
+      "native_pid": 6082,
+      "host_pid": 5731,
+      "token": "1865700acef3d2f1aa66baf87c28a7fc",
+      "roundId": "662eea8e215d89d200980daa46ddc905",
+      "columns": [
+        3,
+        4,
+        2,
+        3
+      ],
+      "ack": 4,
+      "paused": false,
+      "recordRevision": 5,
+      "device_clock_ms": 1794682882468
+    },
+    {
+      "id": "return-first-second-000",
+      "native_pid": 6082,
+      "host_pid": 5731,
+      "token": "1865700acef3d2f1aa66baf87c28a7fc",
+      "roundId": "662eea8e215d89d200980daa46ddc905",
+      "columns": [
+        3,
+        4,
+        2,
+        3
+      ],
+      "ack": 5,
+      "paused": true,
+      "recordRevision": 5,
+      "device_clock_ms": 1794682899865
+    },
+    {
+      "id": "reopened-008",
+      "native_pid": 7201,
+      "host_pid": 5731,
+      "token": "2831d1cff6c17d0db75d9f1919d013fb",
+      "roundId": "662eea8e215d89d200980daa46ddc905",
+      "columns": [
+        3,
+        4,
+        2,
+        3
+      ],
+      "ack": 0,
+      "paused": false,
+      "recordRevision": 5,
+      "device_clock_ms": 1794682922456
+    }
+  ],
+  "pause_hold": {
+    "first": "pause-first-confirmed-002",
+    "second": "pause-held-000",
+    "elapsed": 4.3942200690000845
+  },
+  "returns": [
+    {
+      "before": {
+        "id": "return-first-second-000",
+        "native_pid": 6082,
+        "host_pid": 5731,
+        "token": "1865700acef3d2f1aa66baf87c28a7fc",
+        "roundId": "662eea8e215d89d200980daa46ddc905",
+        "columns": [
+          3,
+          4,
+          2,
+          3
+        ],
+        "ack": 5,
+        "paused": true,
+        "recordRevision": 5,
+        "device_clock_ms": 1794682899865
+      },
+      "touch": "return-first-touch.json",
+      "final_pid_original": "commands/0317-return-first-native-exit.stdout",
+      "final_activity_original": "commands/0318-return-first-return-activity.stdout",
+      "final_mailbox_original": "commands/0319-return-first-closed-mailbox.stdout",
+      "returned_ui_original": "return-first-returned-ui.xml",
+      "flutter_touch_original": "return-first-to-games-flutter-touch.json",
+      "games_ready_original": "return-first-games-flutter-ready.json",
+      "games_transition_observations": [
+        {
+          "ui": "return-first-games-000.xml",
+          "capture": {
+            "file": "return-first-games-000-frame.png",
+            "width": 1080,
+            "height": 2400,
+            "sha256": "8c117f04b9b7713a6ce53f673cabfad24a22be55a671f40255fe572174ef8982",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2400,
+              "content_entropy_bits": 6.364,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "density": "commands/0324-density.stdout",
+          "observed_monotonic": 1287.785313275,
+          "reason": "The previous Flutter pause is still visible"
+        },
+        {
+          "ui": "return-first-games-001.xml",
+          "capture": {
+            "file": "return-first-games-001-frame.png",
+            "width": 1080,
+            "height": 2400,
+            "sha256": "466e320d43d650182af3f0c69b79d754521a174da6ac6ef6e56e3ce07747326e",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2400,
+              "content_entropy_bits": 6.85,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "density": "commands/0325-density.stdout",
+          "observed_monotonic": 1289.783089548,
+          "target": {
+            "label": "Lumo 4 Gewinnt. Vier in einer Reihe \u00b7 gegen Lumo oder zu zweit Spielen",
+            "bounds": [
+              42,
+              1817,
+              524,
+              1993
+            ],
+            "point": [
+              283,
+              1905
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "before": {
+        "id": "return-final-second-000",
+        "native_pid": 7201,
+        "host_pid": 5731,
+        "token": "2831d1cff6c17d0db75d9f1919d013fb",
+        "roundId": "662eea8e215d89d200980daa46ddc905",
+        "columns": [
+          3,
+          4,
+          2,
+          3
+        ],
+        "ack": 1,
+        "paused": true,
+        "recordRevision": 5,
+        "device_clock_ms": 1794682940124
+      },
+      "touch": "return-final-touch.json",
+      "final_pid_original": "commands/0428-return-final-native-exit.stdout",
+      "final_activity_original": "commands/0429-return-final-return-activity.stdout",
+      "final_mailbox_original": "commands/0430-return-final-closed-mailbox.stdout",
+      "returned_ui_original": "return-final-returned-ui.xml",
+      "flutter_touch_original": "return-final-to-games-flutter-touch.json",
+      "games_ready_original": "return-final-games-flutter-ready.json",
+      "games_transition_observations": [
+        {
+          "ui": "return-final-games-000.xml",
+          "capture": {
+            "file": "return-final-games-000-frame.png",
+            "width": 1080,
+            "height": 2400,
+            "sha256": "312488c3fd748f513baf04847bc0067f221b9a5ca66cd5d0dc0769612edc1016",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2400,
+              "content_entropy_bits": 6.382,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "density": "commands/0435-density.stdout",
+          "observed_monotonic": 1327.529411665,
+          "reason": "The previous Flutter pause is still visible"
+        },
+        {
+          "ui": "return-final-games-001.xml",
+          "capture": {
+            "file": "return-final-games-001-frame.png",
+            "width": 1080,
+            "height": 2400,
+            "sha256": "382ada494528da7e623ff3a5323c93edb2008379d5f6f354a58e9a22c60bfac1",
+            "render_readiness": {
+              "width": 1080,
+              "height": 2400,
+              "content_entropy_bits": 6.851,
+              "threshold_bits": 3.0,
+              "visually_ready": true,
+              "scope": "Rendered content readiness, not an accessibility or gameplay check"
+            }
+          },
+          "density": "commands/0436-density.stdout",
+          "observed_monotonic": 1329.500661402,
+          "target": {
+            "label": "Lumo 4 Gewinnt. Vier in einer Reihe \u00b7 gegen Lumo oder zu zweit Spielen",
+            "bounds": [
+              42,
+              1817,
+              524,
+              1993
+            ],
+            "point": [
+              283,
+              1905
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "actual_mailbox_retry": {
+    "one_original_back_touch": "commands/0311-return-first-touch.stdout",
+    "first_pid_absent": "commands/0314-return-first-native-exit.stdout",
+    "observed_current_session_still_present": "commands/0316-return-first-closed-mailbox.stdout",
+    "reobserved_pid": "commands/0317-return-first-native-exit.stdout",
+    "reobserved_main_activity": "commands/0318-return-first-return-activity.stdout",
+    "later_original_empty_mailbox": "commands/0319-return-first-closed-mailbox.stdout",
+    "extra_back_input": false,
+    "original_native_token": "1865700acef3d2f1aa66baf87c28a7fc"
+  },
+  "preferences_reads": {
+    "count": 32,
+    "all_originals_returncode_zero": true,
+    "all_originals_valid_XML_map": true,
+    "actual_transient_XML_failure_observed": false
+  },
+  "gameplay_agent_visual_review": {
+    "actual_original_images": [
+      {
+        "path": "/dev/shm/lumo-9de-c4-original-review/extracted/c4/child-second-confirmed-003.png",
+        "bytes": 228104,
+        "sha256": "1bf86fb48fa7a0b95839cee3f6e5a446322a90002822059617174af34c110dbb",
+        "git_sha1": "7710060c7215d46c1c4c2dbbcf4634d175f0d16d"
+      },
+      {
+        "path": "/dev/shm/lumo-9de-c4-original-review/extracted/c4/reopened-008.png",
+        "bytes": 228120,
+        "sha256": "1a42031b231a33975dd5052404e36927f77661a50f065e5195189a4f29618d87",
+        "git_sha1": "c47ffc5f4ab8f7f9b1946e50e0e81dfbdaf07c66"
+      },
+      {
+        "path": "/dev/shm/lumo-9de-c4-original-review/extracted/c4/return-final-flutter.png",
+        "bytes": 513929,
+        "sha256": "58bfc1f9b4fb70810849769dd3273e1aa00b6113ba0dfec21dcaf9117f92ca0d",
+        "git_sha1": "2b65fa9713425ea5a80b12762582ec6045977f73"
+      },
+      {
+        "path": "/dev/shm/lumo-9de-c4-original-review/extracted/c4/return-final-games-001-frame.png",
+        "bytes": 1990366,
+        "sha256": "382ada494528da7e623ff3a5323c93edb2008379d5f6f354a58e9a22c60bfac1",
+        "git_sha1": "607678a962281329b23134857d95d8f681444022"
+      }
+    ],
+    "finding": "The two native board images show the same four discs and legible column controls. Final return shows Flutter pause, then a later original games page. Only these selected images were visually inspected."
+  },
+  "limits": [
+    "This is actual9de emulator/API35 C4 evidence, not an acceptance transfer to a later candidate.",
+    "The separate update job failed and the overall candidate/delivery gates are not passed.",
+    "No physical ARM64/API37/FPS/audio-quality or whole-asset-library claim.",
+    "No product source modification, renderer, emulator or new Android test was executed in this review.",
+    "The originalAPK binary was not downloaded/reopened; identity was compared to the exact original build report and bound source metadata."
+  ]
+}

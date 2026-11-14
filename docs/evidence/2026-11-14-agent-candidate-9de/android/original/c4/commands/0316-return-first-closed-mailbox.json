@@ -1,0 +1,20 @@
+{
+  "command": [
+    "adb",
+    "shell",
+    "find",
+    "/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/lumo_connect_four_session_v1",
+    "-maxdepth",
+    "2",
+    "-type",
+    "f",
+    "-name",
+    "state.json"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.0412325959998725,
+  "stdout_bytes": 134,
+  "stderr_bytes": 0,
+  "stdout_sha256": "9ff49fa6341893724e91d7342fd89098de89893f51b50d8fe6d3ac713948a6fb",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

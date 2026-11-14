@@ -1,0 +1,57 @@
+{
+  "label": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+  "observations": [
+    {
+      "ui": "return-final-games-000.xml",
+      "capture": {
+        "file": "return-final-games-000-frame.png",
+        "width": 1080,
+        "height": 2400,
+        "sha256": "312488c3fd748f513baf04847bc0067f221b9a5ca66cd5d0dc0769612edc1016",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2400,
+          "content_entropy_bits": 6.382,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "density": "commands/0435-density.stdout",
+      "observed_monotonic": 1327.529411665,
+      "reason": "The previous Flutter pause is still visible"
+    },
+    {
+      "ui": "return-final-games-001.xml",
+      "capture": {
+        "file": "return-final-games-001-frame.png",
+        "width": 1080,
+        "height": 2400,
+        "sha256": "382ada494528da7e623ff3a5323c93edb2008379d5f6f354a58e9a22c60bfac1",
+        "render_readiness": {
+          "width": 1080,
+          "height": 2400,
+          "content_entropy_bits": 6.851,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      "density": "commands/0436-density.stdout",
+      "observed_monotonic": 1329.500661402,
+      "target": {
+        "label": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+        "bounds": [
+          42,
+          1817,
+          524,
+          1993
+        ],
+        "point": [
+          283,
+          1905
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1613 @@
+{
+  "status": "FAIL",
+  "label": "Gecko Velo",
+  "timeout_seconds": 150,
+  "exact_caption_required": true,
+  "orientation_policy": "landscape",
+  "scope": "Current complete card touch; actual new race selection is checked separately",
+  "frames": [
+    {
+      "source": "21_stage_select_gecko_velo-0.png",
+      "source_sha256": "5c96119fc6634dfbcbc5e2d68b19498bbbc7d05c02ed6e15b098f2dc05c8e8ad",
+      "source_bytes": 767301,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 1.106966,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            418,
+            857,
+            443
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "5c96119fc6634dfbcbc5e2d68b19498bbbc7d05c02ed6e15b098f2dc05c8e8ad",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            418,
+            857,
+            443
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "5c96119fc6634dfbcbc5e2d68b19498bbbc7d05c02ed6e15b098f2dc05c8e8ad",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-1.png",
+      "source_sha256": "3d45fe022e7384c3515230a87da63e12cfae594ee7ad7c35416d63bf950736d9",
+      "source_bytes": 769235,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 16.102584,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            418,
+            857,
+            443
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "3d45fe022e7384c3515230a87da63e12cfae594ee7ad7c35416d63bf950736d9",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 1,
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            418,
+            857,
+            443
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              472.0,
+              570.0,
+              499.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "3d45fe022e7384c3515230a87da63e12cfae594ee7ad7c35416d63bf950736d9",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-2.png",
+      "source_sha256": "47575143d394789e65189db24d092eb84490d65d1b6e92ca6b874fa4634d88d0",
+      "source_bytes": 767764,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 31.713808,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            419,
+            857,
+            445
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0045662100456621,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              448.5,
+              571.0,
+              477.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "47575143d394789e65189db24d092eb84490d65d1b6e92ca6b874fa4634d88d0",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            419,
+            857,
+            445
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0045662100456621,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              448.5,
+              571.0,
+              477.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "47575143d394789e65189db24d092eb84490d65d1b6e92ca6b874fa4634d88d0",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-3.png",
+      "source_sha256": "fc461d870b15643463f4adf574b792eae427faaa3a7e5635fce7906a55ed27b5",
+      "source_bytes": 766114,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 46.455569,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            419,
+            857,
+            445
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0045662100456621,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              448.5,
+              571.0,
+              477.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "fc461d870b15643463f4adf574b792eae427faaa3a7e5635fce7906a55ed27b5",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 2,
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            419,
+            857,
+            445
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0045662100456621,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              448.5,
+              571.0,
+              477.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              449.0,
+              570.0,
+              477.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "fc461d870b15643463f4adf574b792eae427faaa3a7e5635fce7906a55ed27b5",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-4.png",
+      "source_sha256": "ef5dac831aaa7a7d96ce01c9b7de1c3ea8340885a238158b02fb76523124b925",
+      "source_bytes": 765026,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 62.578453,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            421,
+            857,
+            447
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0136986301369863,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              424.5,
+              571.0,
+              453.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "ef5dac831aaa7a7d96ce01c9b7de1c3ea8340885a238158b02fb76523124b925",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            421,
+            857,
+            447
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0136986301369863,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              424.5,
+              571.0,
+              453.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "ef5dac831aaa7a7d96ce01c9b7de1c3ea8340885a238158b02fb76523124b925",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-5.png",
+      "source_sha256": "0724199b2d1edcaf5a1ebc5f8f5246f48c12c53f530c789ecc58c7fa9ad40fc9",
+      "source_bytes": 765593,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 77.571551,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            421,
+            857,
+            447
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0136986301369863,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              424.5,
+              571.0,
+              453.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "0724199b2d1edcaf5a1ebc5f8f5246f48c12c53f530c789ecc58c7fa9ad40fc9",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 3,
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "complete current cards precede the requested kart",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            421,
+            857,
+            447
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0136986301369863,
+        "visible_cards": [
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              449.5,
+              424.5,
+              571.0,
+              453.5
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Comet",
+            "bounds": [
+              450.0,
+              425.0,
+              570.0,
+              453.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "0724199b2d1edcaf5a1ebc5f8f5246f48c12c53f530c789ecc58c7fa9ad40fc9",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-6.png",
+      "source_sha256": "38aad9c851f033f1e6e317051fbb10dc36ede4cc7dee1a94fce77380495bf7a7",
+      "source_bytes": 773951,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 93.490139,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "current scrollbar position and pinned native order; direction only",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            422,
+            857,
+            448
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0182648401826484,
+        "visible_cards": [],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "38aad9c851f033f1e6e317051fbb10dc36ede4cc7dee1a94fce77380495bf7a7",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "WAITING_FOR_SECOND_LIST_FRAME",
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "current scrollbar position and pinned native order; direction only",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            422,
+            857,
+            448
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0182648401826484,
+        "visible_cards": [],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "38aad9c851f033f1e6e317051fbb10dc36ede4cc7dee1a94fce77380495bf7a7",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-7.png",
+      "source_sha256": "3a361dced78744fbeaf2e9c8c0b8e5c461f39bb212f35408cad9890229502966",
+      "source_bytes": 774932,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "complete requested caption not observed inside the current card clip"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 109.126055,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "current scrollbar position and pinned native order; direction only",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            422,
+            857,
+            448
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0182648401826484,
+        "visible_cards": [],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "3a361dced78744fbeaf2e9c8c0b8e5c461f39bb212f35408cad9890229502966",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "missing_caption_recovery": {
+        "status": "SWIPE_SENT",
+        "swipe_number": 4,
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "current scrollbar position and pinned native order; direction only",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            422,
+            857,
+            448
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0182648401826484,
+        "visible_cards": [],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "3a361dced78744fbeaf2e9c8c0b8e5c461f39bb212f35408cad9890229502966",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-8.png",
+      "source_sha256": "21072f08bbb247bb803d63c387c700e35e2208d5d1f4c65f843f404f6db402ac",
+      "source_bytes": 773305,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 125.623525,
+      "kart_list": {
+        "gesture": [
+          512,
+          552,
+          512,
+          528
+        ],
+        "direction": "forward",
+        "direction_basis": "current scrollbar position and pinned native order; direction only",
+        "viewport_bounds": [
+          192,
+          418,
+          833,
+          663
+        ],
+        "workshop_bounds": [
+          178,
+          681,
+          858,
+          807
+        ],
+        "scrollbar": {
+          "track_bounds": [
+            847,
+            418,
+            857,
+            663
+          ],
+          "thumb_bounds": [
+            847,
+            424,
+            857,
+            450
+          ],
+          "sampled_columns": 10
+        },
+        "scroll_fraction": 0.0273972602739726,
+        "visible_cards": [
+          {
+            "text": "Gecko Velo",
+            "bounds": [
+              451.0,
+              620.0,
+              658.0,
+              648.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Gecko Velo",
+            "bounds": [
+              451.0,
+              620.0,
+              658.0,
+              648.0
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Gecko Velo",
+            "bounds": [
+              450.0,
+              620.0,
+              658.5,
+              648.0
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Gecko Velo",
+            "bounds": [
+              451.0,
+              620.0,
+              658.0,
+              648.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Gecko Velo",
+            "bounds": [
+              451.0,
+              620.0,
+              658.0,
+              648.0
+            ],
+            "variant": "white-text"
+          },
+          {
+            "text": "Gecko Velo",
+            "bounds": [
+              451.0,
+              620.0,
+              658.0,
+              648.0
+            ],
+            "variant": "white-latin"
+          },
+          {
+            "text": "Gecko Velo",
+            "bounds": [
+              451.0,
+              620.0,
+              658.0,
+              648.0
+            ],
+            "variant": "white-latin"
+          }
+        ],
+        "header_bottom": 323,
+        "footer_top": 899,
+        "source_sha256": "21072f08bbb247bb803d63c387c700e35e2208d5d1f4c65f843f404f6db402ac",
+        "scope": "Observed conservative card interior for scrolling only; exact target and actual race remain mandatory"
+      },
+      "target": {
+        "surface_sha256": "21072f08bbb247bb803d63c387c700e35e2208d5d1f4c65f843f404f6db402ac",
+        "pixels": [
+          2400,
+          1080
+        ],
+        "bounds": [
+          451.0,
+          620.0,
+          658.0,
+          648.0
+        ],
+        "anchor": "",
+        "reasons": [
+          "waiting for second stable observed target bounds"
+        ],
+        "target_geometry_valid": true,
+        "stable_observed_target": false
+      }
+    },
+    {
+      "source": "21_stage_select_gecko_velo-9.png",
+      "source_sha256": "7899c4bfa322c9a8669e293c484f78b2bee12b375f5b09cff7c4b0785f772342",
+      "source_bytes": 771225,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 141.240555
+    }
+  ],
+  "error": "Command '('tesseract', 'tour/ocr-work.png', 'tour/21_stage_select_gecko_velo-9-ocr-navy-latin-1x', '--psm', '11', '-l', 'eng', 'tsv')' timed out after 0.2276019669999414 seconds",
+  "elapsed_seconds": 150.044856
+}

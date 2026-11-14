@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "kind": "new_read_only_original_c4_contract_replay",
+  "host": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43622379532,
+  "run_attempt": 1,
+  "producer_job_id": 132547863806,
+  "artifact_id": 14128320008,
+  "zip_bytes": 150017051,
+  "zip_sha256": "525ebcb1bfbd407b884297c708b48e94e783181cf573e4729eb75761d3fce242",
+  "source_inputs": {
+    "connect_four_android_evidence.py": {
+      "bytes": 36224,
+      "sha256": "96e75b9db951ec772545ba90c4dc9fbcb1c335810fc73623db9db87e3cebc15c",
+      "git_sha1": "d577691946a3c4100c6665efcc934eab6b7fe9aa"
+    },
+    "native_surface_readiness.py": {
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_sha1": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    "original-main-run.json": {
+      "bytes": 12996,
+      "sha256": "f4fccba7e031b23d8e4a44272605b0fb3f24c950aa476fe908497353af1feb37",
+      "git_sha1": "93b45a59403ae607d7578c74d42ede1b4a41cef3"
+    },
+    "original-main-jobs.json": {
+      "bytes": 20748,
+      "sha256": "3df4421ccc3900ddb252a5b90896b238954fb4a1d75d4f86e0fb6ebcdc96d5ed",
+      "git_sha1": "b4f1bb2f99d4ae13de784ea5bc0752c21bed4e47"
+    },
+    "original-main-artifacts.json": {
+      "bytes": 8254,
+      "sha256": "e0af780987c898e70726e53fcff9be7f3d55476a2936bac1013432f0638d10ed",
+      "git_sha1": "234a16dd0181ee3348d9ef94f45e4e64ed8b6bb9"
+    },
+    "original-x86-package-report.json": {
+      "bytes": 1776,
+      "sha256": "5f928e89f341a81755564c79634420d31513af6fd95554feb378c057e7a1288f",
+      "git_sha1": "d04e5abf92eaeca22425a8b2da94424a71978e89"
+    }
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow": "13.0.0",
+  "actual_current_identity": {
+    "apk_sha256": "d5aec6b6bf2ce0d7acd6af374ed9873a9e8fb219fb774b37f593b451598a6901",
+    "flutter_source_commit": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "godot_revision": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "godot_pck_sha256": "e0f759f9f3fd712a3b1873911a077c3ab5c34487c123b1c17cd24cd6bd6cc30d",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "derived_source_expectation_is_not_original_package_field": true,
+  "original_main_report": {
+    "bytes": 15799,
+    "sha256": "9eb5df5838639aa1e4a19152b8e4f1398ef81d792cb37df6f6bc4de33bcf3a3a",
+    "git_sha1": "e1f49411d9eb37646a5628e87984f984986aeff8"
+  },
+  "original_c4_report": {
+    "bytes": 270335,
+    "sha256": "7229017713cbf85914ab20dfb74112dc7108246a9542f31d297540f2b072b67b",
+    "git_sha1": "3ebad8f4f6eef06cac502d443d73cbd48392a85c"
+  },
+  "strict_original_contract_result": {
+    "status": "PASS",
+    "versionCode": 2020,
+    "binding": {
+      "host_source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+      "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+      "run_id": 43622379532,
+      "run_attempt": 1,
+      "candidate_artifact_id": 14126738109,
+      "candidate_artifact_digest": "sha256:d6938cbdcde85b18d0dea72f0eb682e5ff0ef4381ea3fda7853096994fdc68a9"
+    },
+    "actual_child_drops": 2,
+    "actual_bot_responses": 2,
+    "same_round_reopened": true,
+    "native_returns": 2,
+    "api": 35,
+    "original_files": 1437,
+    "observations": 25,
+    "scope": "C4 candidate device test only; no release, physical ARM64, API37 or FPS acceptance"
+  },
+  "product_tests_executed": false,
+  "APK_reopened_by_this_review": false,
+  "new_device_run": false,
+  "complete_candidate_acceptance": false
+}

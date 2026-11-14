@@ -1,0 +1,19 @@
+{
+  "command": [
+    "adb",
+    "shell",
+    "input",
+    "swipe",
+    "164",
+    "241",
+    "164",
+    "241",
+    "120"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.3996354309999788,
+  "stdout_bytes": 0,
+  "stderr_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
