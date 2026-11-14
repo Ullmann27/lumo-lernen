@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/verify_originals.py", line 81, in <module>
+    assert native['failures'] == 0
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

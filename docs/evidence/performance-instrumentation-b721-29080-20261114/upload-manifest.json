@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "scope": "Docs-only bounded source audit; no new instrumentation or measurements",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/performance-instrumentation-b721-29080-20261114/review.json",
+      "path": "docs/evidence/performance-instrumentation-b721-29080-20261114/review.json",
+      "mode": "100644",
+      "bytes": 12752,
+      "sha256": "35cf5d0ecfdc78509b95a3006bce7ed8c32494f3e4072e1143df7465188ade0c",
+      "git_blob_sha": "c4d028e8cf9c3d94c8e8c663f0a9481f9549af7e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/performance-instrumentation-b721-29080-20261114/README.md",
+      "path": "docs/evidence/performance-instrumentation-b721-29080-20261114/README.md",
+      "mode": "100644",
+      "bytes": 2715,
+      "sha256": "bd2811d5383d956a63fa8637790198cf508e75cb39faefa0944b83d5cc2587ef",
+      "git_blob_sha": "3a00894befc1b7ea1ddef0815188b52b107ebf09"
+    }
+  ]
+}

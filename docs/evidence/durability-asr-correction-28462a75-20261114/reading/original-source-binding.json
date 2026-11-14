@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "source_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "method": "Full GitHub UTF-8 blob reads, verified Git blob SHA; exact local baseline copies",
+  "files": [
+    {
+      "path": "lib/app/app_state.dart",
+      "mode": "100644",
+      "git_blob_sha": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+      "bytes": 57118,
+      "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/app/app_state.dart"
+    },
+    {
+      "path": "lib/core/learning_profile_engine.dart",
+      "mode": "100644",
+      "git_blob_sha": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+      "bytes": 17450,
+      "sha256": "af40237d4f43d2cb195337aacdbd3de8abefb14094ecc31be06e1da9fe5c49be",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/learning_profile_engine.dart"
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "mode": "100644",
+      "git_blob_sha": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "bytes": 6130,
+      "sha256": "5a0a5e10ad2312596f1bd3ef9564e1d32803354a7e2a70b10dfe6da122e753be",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/lumo_speech_listener.dart"
+    },
+    {
+      "path": "lib/core/progress_repository.dart",
+      "mode": "100644",
+      "git_blob_sha": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "bytes": 13839,
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/progress_repository.dart"
+    },
+    {
+      "path": "lib/core/reading_progress_repository.dart",
+      "mode": "100644",
+      "git_blob_sha": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "bytes": 3408,
+      "sha256": "a940e16b271d04a6bf174f87b52182df8ac7c1cde7158f7daa66209b48dbd08f",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/reading_progress_repository.dart"
+    },
+    {
+      "path": "lib/core/reading_v2_pronunciation_analyzer.dart",
+      "mode": "100644",
+      "git_blob_sha": "02c9b8a31f250feb84189d65e2b86a2b15f1313c",
+      "bytes": 7580,
+      "sha256": "fc5a55ba64c3775cb9701ee36cac2e7699dd62390cbe0beb906c7a300cbd97a1",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/reading_v2_pronunciation_analyzer.dart"
+    },
+    {
+      "path": "lib/core/weakness_detection_engine.dart",
+      "mode": "100644",
+      "git_blob_sha": "d128b1ef543dc452ff82e85be9dc5a7298c1d997",
+      "bytes": 2776,
+      "sha256": "b79357f6a53fd92d6d57fb1d9cc27c2e12a56339efb53ee1602ccd1bc2f912af",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/weakness_detection_engine.dart"
+    },
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "mode": "100644",
+      "git_blob_sha": "457aed1dcc82e9c0f4462daa045b249bc735df7e",
+      "bytes": 10182,
+      "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/analysis/daily_recommendation_engine.dart"
+    },
+    {
+      "path": "lib/domain/analysis/lumo_analysis_domain.dart",
+      "mode": "100644",
+      "git_blob_sha": "92b3639c7b2950dfe173bd2f9be7d4e45ac3bb84",
+      "bytes": 4324,
+      "sha256": "09befffdc16417e41fc96f8410952b34187a9439c1b33dd263bc1a81837643be",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/analysis/lumo_analysis_domain.dart"
+    },
+    {
+      "path": "lib/domain/learning/independent_evidence.dart",
+      "mode": "100644",
+      "git_blob_sha": "6b19215fe6e410b5439467541453e2608537e041",
+      "bytes": 2855,
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/learning/independent_evidence.dart"
+    },
+    {
+      "path": "lib/domain/reading/reading_attempt_history.dart",
+      "mode": "100644",
+      "git_blob_sha": "ca1b2644821628e4b91328571731f6bbef0732cd",
+      "bytes": 8185,
+      "sha256": "b69d86e508c77532f344a828cbae770bd7f2886a39321ab18508014c67aaa009",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/reading/reading_attempt_history.dart"
+    },
+    {
+      "path": "lib/domain/reading/reading_domain.dart",
+      "mode": "100644",
+      "git_blob_sha": "6bacd091a447ea65248fa660a7ce2f7822c79a79",
+      "bytes": 29997,
+      "sha256": "af11da477d7544b2e5cad6f0057b81df834e68afb347b3c3e306f74dae0391e0",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/reading/reading_domain.dart"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_progress.dart",
+      "mode": "100644",
+      "git_blob_sha": "b48854f40a5df977635227635e88724c833e70a0",
+      "bytes": 19947,
+      "sha256": "4009a426eb6c4fc626bf184cf8e233550c7c3de44a12a0655f77b18893a5e39b",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/learning_modules/learning_module_progress.dart"
+    },
+    {
+      "path": "lib/features/reading/lumo_reading_buddy_screen.dart",
+      "mode": "100644",
+      "git_blob_sha": "deb9ba4e9af26763516e54a44d70e56d62dc9d77",
+      "bytes": 32269,
+      "sha256": "a72b123a973b9a8a056d8dc132eae4f51da73d906865ff2aaba13f2de93999a8",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/reading/lumo_reading_buddy_screen.dart"
+    },
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "mode": "100644",
+      "git_blob_sha": "33314187d201558248500457bf9179894fcfbfec",
+      "bytes": 40428,
+      "sha256": "043b8cd9315c182d3c72da1a062f4d558fa677bf04327c7e4c84beae096c0538",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/reading/reading_content.dart"
+    },
+    {
+      "path": "lib/features/settings/parent_report_card.dart",
+      "mode": "100644",
+      "git_blob_sha": "f88ef6349851f4bcbaebe3620914faa035ebdbba",
+      "bytes": 21164,
+      "sha256": "7bc9f55e4c77cd4fd35e9fa035b40a9c64d712ecb37214a4c3ab24d9a21fe568",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/settings/parent_report_card.dart"
+    },
+    {
+      "path": "test/lumo_speech_privacy_test.dart",
+      "mode": "100644",
+      "git_blob_sha": "dc94d410583ae34a373cc968cdaa8fe257471ec8",
+      "bytes": 1172,
+      "sha256": "10e6c4f01a51362cad170689aaaad5cafcdafecc3ceff409e36ef9e71c8f62d0",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/lumo_speech_privacy_test.dart"
+    },
+    {
+      "path": "test/reading_buddy_assessment_test.dart",
+      "mode": "100644",
+      "git_blob_sha": "c95a9200cd3891b4e79b91d42fc191681278c169",
+      "bytes": 9127,
+      "sha256": "5aadefce399a776e44d459669cc15c175417a24394f07af440049c9b5598e34c",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/reading_buddy_assessment_test.dart"
+    },
+    {
+      "path": "test/story_entry_navigation_test.dart",
+      "mode": "100644",
+      "git_blob_sha": "df4d21e1d553c180a5a64d61e44510e400b3938a",
+      "bytes": 14122,
+      "sha256": "3ceae21538ce7f5b586e485937849971f92f5c70cbb4fa49bec2c29289c60384",
+      "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/story_entry_navigation_test.dart"
+    }
+  ]
+}

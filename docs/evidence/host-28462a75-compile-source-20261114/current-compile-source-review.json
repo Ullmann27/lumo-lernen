@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "host_revision": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "feature_run": 43624674585,
+  "host_compile_job": 132537752431,
+  "memory_source_job": 132537752710,
+  "original_logs": {
+    "host": {
+      "bytes": 247861,
+      "sha256": "9cda556fe261800ca916dda156b63ece22b1bae1b41684c399289ffa9ddb8489",
+      "job_id": 132537752431,
+      "run_id": 43624674585,
+      "head": "28462a7547048b75fa114e6f5832248e54c94faa"
+    },
+    "memory": {
+      "job_id": 132537752710,
+      "run_id": 43624674585,
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "bytes": 34654,
+      "sha256": "19d4d9fbcbfab80c766a54a8f91960d72d532304729836f2b70ae6e412e06eda"
+    }
+  },
+  "artifacts": {
+    "host": {
+      "artifact_id": 14125213414,
+      "archive_bytes": 29633,
+      "archive_sha256": "0dbc4e9b3556d65784f07ec05d823025f071ca4ce947d5c1ef58ad9079177288",
+      "all_crc_ok": true,
+      "files": [
+        {
+          "path": "cards-authority-registry.log",
+          "bytes": 1325,
+          "sha256": "adcba97e1b80948851b69ec3e4b810c9abc54a56a74e8ec2f7a46416ae409f79",
+          "git_blob_sha": "936a4b1f4cfc024b5678bf6cbb3b7bde44e3a5ed"
+        },
+        {
+          "path": "flutter-version.txt",
+          "bytes": 321,
+          "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+          "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+        },
+        {
+          "path": "compile.log",
+          "bytes": 34386,
+          "sha256": "c233ecb56df49f32e43961d13b938bb1230eb7630cf0de8e53a18080e336146f",
+          "git_blob_sha": "5b789298657007aac6d255abd8f3321bfcd9dac3"
+        },
+        {
+          "path": "result.json",
+          "bytes": 5235,
+          "sha256": "fce1ebba9d2c6e82daa7c3645fc580063c40a141f8cf675c6cd9ec339d4e4dc7",
+          "git_blob_sha": "004dbb6c00a155359f11dbce8442eeae37f868ff"
+        },
+        {
+          "path": "source-sha.txt",
+          "bytes": 41,
+          "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+          "git_blob_sha": "53b01f5ab9eb3b8d53026fe764cc76631df9268d"
+        },
+        {
+          "path": "speech/resolved-toolchain.json",
+          "bytes": 321,
+          "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+          "git_blob_sha": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5"
+        },
+        {
+          "path": "speech/result.json",
+          "bytes": 62740,
+          "sha256": "3bf088b608df455a18855aba3b4b40ab448646f02cf97acc7672a4b11ee15d2f",
+          "git_blob_sha": "478240995d195146e5ba85792f84f3fc19abfbe0"
+        },
+        {
+          "path": "speech/test_english_lesson_speech.json",
+          "bytes": 1339,
+          "sha256": "b1dcbe885a255aec867510197d9a9517748f473592fde0891f842005feb13d0a",
+          "git_blob_sha": "17301f6fe68fe95c599c08e89ebf200250b4b0d1"
+        },
+        {
+          "path": "speech/test_english_lesson_speech.log",
+          "bytes": 2894,
+          "sha256": "a2db4741e11b5a48c4793b261cfbd30b441681342fe19d6cf65e6069b56c5b89",
+          "git_blob_sha": "da7322ca00cde514085f7954451333161bda2690"
+        },
+        {
+          "path": "speech/test_learning_english_speech_lifecycle.json",
+          "bytes": 1265,
+          "sha256": "18c8f889f9a8ca2987579458e24d536dcb7d0195cc2f7c26fd36d47c3a7ce68a",
+          "git_blob_sha": "98c9bb5244c66a6b51beb3d7db47dc64bed28006"
+        },
+        {
+          "path": "speech/test_learning_english_speech_lifecycle.log",
+          "bytes": 2709,
+          "sha256": "cf515bdf7f04f5bad8afbcf15cd61a831e562ee56db1716e219f205bdd10bbad",
+          "git_blob_sha": "941a2f68f42321d229bd8bd65cb9c2d4da4d4f4d"
+        },
+        {
+          "path": "table-native-contracts.log",
+          "bytes": 4804,
+          "sha256": "f7c9d49a261b115929bd8633c8ef48e504ebfa1b9fc103214b1c867468ac356e",
+          "git_blob_sha": "d36cbd0ac3031815b79d93236c3e835823ad79b1"
+        },
+        {
+          "path": "speech/toolchain-original.log",
+          "bytes": 493,
+          "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+          "git_blob_sha": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f"
+        }
+      ]
+    },
+    "memory": {
+      "artifact_id": 14125063257,
+      "archive_bytes": 3103,
+      "archive_sha256": "830616d729de0953920fc75271fc901affa89fc5af1e84a962ec1fe4f29031fd",
+      "all_crc_ok": true,
+      "files": [
+        {
+          "path": "HOST-SOURCE.txt",
+          "bytes": 41,
+          "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+          "git_blob_sha": "53b01f5ab9eb3b8d53026fe764cc76631df9268d"
+        },
+        {
+          "path": "dart-version.txt",
+          "bytes": 81,
+          "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+          "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b"
+        },
+        {
+          "path": "memory-round.log",
+          "bytes": 2319,
+          "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c",
+          "git_blob_sha": "0cad364c865f41f80773ef4ee4f69481b38da342"
+        },
+        {
+          "path": "memory-scheduler.log",
+          "bytes": 689,
+          "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1",
+          "git_blob_sha": "f2cf3690ef4b28288d3651930fd581e8357eecf5"
+        },
+        {
+          "path": "quiz-round.log",
+          "bytes": 1785,
+          "sha256": "7429cc464b0ce54672578ea38c427db97e5539cf358495d57b1aa2865ee08981",
+          "git_blob_sha": "de8bc090571162465efc431735bcde5f8f9ec92c"
+        }
+      ]
+    }
+  },
+  "host_compile": {
+    "status": "PASS",
+    "class_groups": 18,
+    "source_files": 15,
+    "source_before_after_identical": true,
+    "all_source_blobs_match_exact_host_tree": true,
+    "java_cases": 11,
+    "kotlin_cases": 8,
+    "failures": 0,
+    "skips": 0,
+    "table_contract_pass_markers": 28
+  },
+  "memory_source": {
+    "status": "PASS",
+    "memory": {
+      "cases": 30,
+      "checks": 1694,
+      "failures": 0,
+      "skips": 0
+    },
+    "scheduler": {
+      "cases": 7,
+      "checks": 13,
+      "failures": 0,
+      "skips": 0
+    },
+    "quiz": {
+      "cases": 28,
+      "checks": 1786,
+      "failures": 0,
+      "skips": 0
+    }
+  },
+  "limits": [
+    "These source contracts do not execute the 24 new Flutter regressions; their full-suite job is still running at this review.",
+    "Synthetic Android/ONNX boundaries; no heard English, actual ONNX inference, physical device, APK runtime or FPS claim.",
+    "These are current Feature jobs, not the still pending successor Studio jobs."
+  ]
+}

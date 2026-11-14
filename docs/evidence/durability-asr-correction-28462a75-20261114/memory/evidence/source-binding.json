@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "host_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+  "host_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "sources": [
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "bytes": 14257,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/memory/memory_round.dart"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a",
+      "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+      "bytes": 2146,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/memory/memory_flutter_adapter.dart"
+    },
+    {
+      "path": "lib/core/legacy_learning_data.dart",
+      "git_blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+      "sha256": "4a97ae4829b7f64a7f68ca61d77e97951d4cb0fef5c5b8806bf3595ac6955ea3",
+      "bytes": 13768,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/legacy_learning_data.dart"
+    },
+    {
+      "path": "pubspec.lock",
+      "git_blob": "7843602e3d858660dc52d95587983858803976a5",
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "bytes": 24467,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/pubspec.lock"
+    }
+  ],
+  "upstream": {
+    "package": "shared_preferences",
+    "version": "2.5.5",
+    "lockfile_blob": "7843602e3d858660dc52d95587983858803976a5",
+    "source_url": "https://api.github.com/repos/flutter/packages/contents/packages/shared_preferences/shared_preferences/lib/src/shared_preferences_legacy.dart?ref=shared_preferences-v2.5.5",
+    "bytes": 10990,
+    "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+    "git_blob_sha": "06d89f0010c86f640d19501c2a2a5183523b8039"
+  },
+  "scope": "Read-only source diagnosis; no execution of a failing SharedPreferences test yet."
+}

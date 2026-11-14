@@ -1,0 +1,24 @@
+{
+  "kind": "source-preparation-only",
+  "host": "b7210db3f53361987fd33592de438fd7984d991a",
+  "original_adapter": {
+    "bytes": 2146,
+    "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+    "git_blob_sha": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+  },
+  "prepared_adapter": {
+    "bytes": 2632,
+    "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+    "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+  },
+  "prepared_test": {
+    "bytes": 15378,
+    "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+    "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+  },
+  "defined_test_cases": 14,
+  "executed_test_cases": 0,
+  "flutter_dart_execution": "NOT_RUN; explicitly prohibited locally; new CI required",
+  "baseline_controller_unchanged": true,
+  "shared_keys_rule_dealer_reward_and_write_methods_changed": false
+}

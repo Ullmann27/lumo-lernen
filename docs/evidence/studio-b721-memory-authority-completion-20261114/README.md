@@ -1,0 +1,17 @@
+# Aktuelle b721-Memoryoriginale: Abschluss nach Umgebungswiederherstellung
+
+Diese additive Belegsicherung gehört zu Run 43619285124, Memoryjob 132521067548, Artefakt 14123817299. Das einmal heruntergeladene Originalarchiv misst 3.943.940 Bytes, SHA-256 ea977121218cc945f3ddb1fe09bff81109d0ecbfaa45b7c955ed849194ffcc8a. Host b7210db3f53361987fd33592de438fd7984d991a und Native 29080ef8cd1a5b385eeeec97976fbefd31280427 sind in den echten Vorher-/Nachherstempeln identisch; beide Paarprozesse endeten mit 0.
+
+Die vor dem Ausfall persönlich geöffneten 19 Bilder erhalten hier ihre vollständige eindeutige Hash-/Dimensionsbindung. Es gab dabei keine neue Sichtung, keinen zweiten Download und keine erneute Godot-/Dart-/Flutterausführung. Alle 73 Archivmitglieder wurden in dieser neuen rein lesenden Prüfung mit ihren vorhandenen extrahierten Bytes verglichen und beim Lesen CRC-geprüft. Die Hashliste führt auch die 9 nicht persönlich ausgewählten Bewegungsbilder; sie zählt diese nicht als visuell geprüft und lädt sie nicht mit diesem Paket hoch.
+
+Alle 19 ursprünglichen Rawanfragen sind bytegleich zwischen Native-Requestliste, Native-Inputjournal und Dart-Autorität. Die 57 Inputzeilen enthalten 19 passende Down/Up-Paare plus 19 emittierte Anfragen. Jede Anfrage hat die echte positive Bestätigung ihrer eigenen Sequenz und rejected=0; ihre 32 Zustandsbeobachtungen und 3 Tokens sind getrennt gebunden. Die Fortsetzung behält die unfertige Runde mit neuem Token, Pause und 550 ms Restzeit. Die abgeschlossene QA-Runde erhält genau einmal 2 Sterne / 16 XP im ausdrücklich simulierten Ledger. Die bezahlte Wiederöffnung erzeugt eine neue Runde mit unveränderten Einstellungen/Bestwerten.
+
+Originalzahlen bleiben getrennt: 30 Autoritätsfälle / 1694 Checks, 7 Schedulerfälle / 13 Checks, 7020 Native-Viewchecks, 243 Paarchecks im vor dem abschließenden Reportschreibcheck gespeicherten JSON und 244 im terminalen Originallog. Es werden keine dieser unterschiedlichen Prüfeinheiten addiert.
+
+Die ursprüngliche unterbrochene Prüfcommand hatte keinen bestätigten Exit und bleibt so dokumentiert. Beim neuen Abschlussversuch war zuerst die selbst geschriebene Feldformannahme falsch: failures/errors sind leere Listen, keine Ganzzahl 0. Dieser unveränderte erste Log und sein Exit 1 bleiben erhalten. Der zweite, streng an die tatsächlich gelesene Listenform gebundene Prüflauf ist separat als execution-schema-corrected.json mit Exit 0 gespeichert. Dies waren ausschließlich Python-Leseprüfungen vorhandener Originale, keine App-Testwiederholungen und keine Produktfehler.
+
+Das Paket umfasst genau 45 unveränderte Textoriginale, 19 vorher persönlich geöffnete PNGoriginale und 11 kleine abgeleitete Abschlussdateien, plus das Manifest selbst. Die übrigen 9 Motion-PNGs und das ZIP werden nicht hochgeladen. Die bereits separat gesicherten 11 Remote-Dokumente des ersten b721-Memoryreviews werden nicht überschrieben.
+
+## Geltungsgrenze
+
+Der tatsächliche Desktoppfad verwendet produktive Dart-Regeln/Controller/Session, Godot-ScreenTouch und echte Geometrie. Dateitransport, deterministische Uhr, verborgenes Testdeck und Rewardledger sind QA-Adapter. Der Lauf ist kein Android-Binder-/SharedPreferences-/Zwei-Kind-Migrations- oder physischer-FPS-Nachweis. Er prüft insbesondere nicht den danach gefundenen Memory-Preferences-Cachefehler und nicht dessen separat vorbereiteten Fix. Der aktuelle Haupt-Studiolauf wird aus dem grünen Einzeljob nicht insgesamt freigegeben.

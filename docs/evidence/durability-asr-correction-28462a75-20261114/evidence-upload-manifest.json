@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "product_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "explicit_files": 23,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/durability-asr-integration-28462a75-20261114/README.md",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/integration/README.md",
+      "bytes": 2554,
+      "sha256": "9c2a712073ae3141504ac54bdec20e7d2550d5e5c4c41d67f7ca7e43391323e9",
+      "git_blob_sha": "f9b2a5771e76d30539f7adb52ec40f7cf7861518",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/durability-asr-integration-28462a75-20261114/commit-proof.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/integration/commit-proof.json",
+      "bytes": 3148,
+      "sha256": "fb19b4ea5a70e147bc802004814d5bcc4bb29e47ac310889a14df345a4af50a2",
+      "git_blob_sha": "d04115a70ea3bd0cd3282c5d2af84a08f4ac250a",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/durability-asr-integration-28462a75-20261114/pull-request-506.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/integration/pull-request-506.json",
+      "bytes": 3533,
+      "sha256": "f359a58dcbf76a7d251c402ff97160e8ff80193f5f279336f8b8089ab1a69ced",
+      "git_blob_sha": "42c0eef571282d584368eaf842bab0385d9dccae",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/durability-asr-integration-28462a75-20261114/source-manifest.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/integration/source-manifest.json",
+      "bytes": 2320,
+      "sha256": "1b9108618feb8fe0bf085ee9cc9eb9f30bf72f19543fa51bb7b786879107c48f",
+      "git_blob_sha": "08ea49d57546869bf93219094185de16a85d10c5",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/implementation-against-exact-b721.patch",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/implementation-against-exact-b721.patch",
+      "bytes": 21182,
+      "sha256": "de07fb49c29da09a01eda88bc14b08895364af4d87e9ee549aeca7b41e932162",
+      "git_blob_sha": "c31373f1efd4b2141dbc5291c1ea2d9b614d89ba",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/source-upload-manifest.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/source-upload-manifest.json",
+      "bytes": 1434,
+      "sha256": "8a6e794f5bfc2d9a3ad117cfd61bc618b8350698be2c7746fc6d5c8edd7bb464",
+      "git_blob_sha": "5cbe73b0678d97bb80d809486b8b80f0fbc40438",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/README.md",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/README.md",
+      "bytes": 5808,
+      "sha256": "9c6e506eb68f0364a1d4f81d3b9e9a5ee6beec41d3fb98d7a2011852d13e266c",
+      "git_blob_sha": "28c276008b8197bb9f0f58637ef94a95a9ffb892",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/existing-test-inventory.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/existing-test-inventory.json",
+      "bytes": 6139,
+      "sha256": "966d8f6221f03f0c16c3ecee1927561f7ca43a6198f1ea0eeb890334fe3f0baa",
+      "git_blob_sha": "fcf7963a1aff5eb7f9fc8bcd83d43c16901319d0",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/initial-readonly-audit.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/initial-readonly-audit.json",
+      "bytes": 25496,
+      "sha256": "124904355181e1461785e593d39a0a0e7d3c92b6a88bf62c6accebbbc8a86e5e",
+      "git_blob_sha": "4d2380fc283debd5afea0eea6b810f4f0e51749d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/source-boundary-proof.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/source-boundary-proof.json",
+      "bytes": 701,
+      "sha256": "1fd64858afd6ad47d3ce47cca7f55d12108f0d1d6f8a78886ddf1dbfa83f8444",
+      "git_blob_sha": "5a82dbcafd70a8b1a01f6a60346eafb21e1b7dbb",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/original-source-binding.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/original-source-binding.json",
+      "bytes": 8259,
+      "sha256": "606ba6e8711a55f6c09e1593e0040f422e4232a7628f638281da53fcea4dcb6d",
+      "git_blob_sha": "3eed40300f3d45c3320c63d4e3695352c427b772",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/freeze.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/reading/freeze.json",
+      "bytes": 3085,
+      "sha256": "02767e2a592e386b43acb31f9a7d4b88faaf9e423cd6e04f5599168c949397a8",
+      "git_blob_sha": "41cfd2057f758da705f5dadca5bec2d7f43c86cf",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/confirmed-source-tree-inputs.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/confirmed-source-tree-inputs.json",
+      "bytes": 348,
+      "sha256": "ac3c978cb29bf3b5b187e9ea98d1cc6bdda1276d0015d45c7f1026c1833752d6",
+      "git_blob_sha": "a2dabd161922d6bda7ae84702f65e568fae40122",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/source-upload-manifest.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/source-upload-manifest.json",
+      "bytes": 2148,
+      "sha256": "0b42c1c81c4b15d7565f556dce1b95cb9be9d8e240c8a13a97589fb475a722dc",
+      "git_blob_sha": "ec1a966794cd00cfe26f5c129f521c0720e513b6",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/README.md",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/README.md",
+      "bytes": 5245,
+      "sha256": "aa97ef8e0f5a128e2f10574c0666562be1c57041dacea5f0b72cd5b747b881ae",
+      "git_blob_sha": "cc870a81ee6e03c7fff974dc5bb087f2d6024543",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/evidence/implementation-against-exact-b721.patch",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/evidence/implementation-against-exact-b721.patch",
+      "bytes": 1087,
+      "sha256": "ad0448d89605ca512ba4039b99f37938bc92af47229641cd35192c187769673f",
+      "git_blob_sha": "6121b7b25d0ccf4e44ad7059b2eaa51b2f9cdfb1",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/evidence/shared_preferences-2.5.5-original.dart",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/evidence/shared_preferences-2.5.5-original.dart",
+      "bytes": 10990,
+      "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+      "git_blob_sha": "06d89f0010c86f640d19501c2a2a5183523b8039",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/evidence/source-binding.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/evidence/source-binding.json",
+      "bytes": 2248,
+      "sha256": "99cda92f71e1ba1907611d2a7be1ad8a368787805f0211a0484c0bbd06c354df",
+      "git_blob_sha": "3f57417b6d13444d461799bba543c557bd107448",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/evidence/profile-and-reward-audit.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/evidence/profile-and-reward-audit.json",
+      "bytes": 11207,
+      "sha256": "fee7738ebb46567b7afd5aa8241b026de2125b5a094c9873d09836ca56bb108e",
+      "git_blob_sha": "6f1f97ae0d3c258fa5d357589b961dd020a0d049",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/evidence/final-source-upload-proof.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/evidence/final-source-upload-proof.json",
+      "bytes": 1217,
+      "sha256": "ea1748feccbdb33fc75f84ec81aa6afa3359f3c145a7636b58593c76cf14764a",
+      "git_blob_sha": "ebf58412afd189aa83dd5f7cc5deddfcf60f8745",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/evidence/preparation-verification.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/memory/evidence/preparation-verification.json",
+      "bytes": 924,
+      "sha256": "630a4b144d7ca872c9355e05b9521c91138376a358cc7677570b0809dc104efe",
+      "git_blob_sha": "ec59cda53c7025b3cf1b168581ecc9f71ec37658",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-peer-review-b721-20261114/review.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/peer/memory-review.json",
+      "bytes": 6724,
+      "sha256": "09e5e429f0aab23a15743b8522d5b52a93c20f25af5f2502f1b016c49d454764",
+      "git_blob_sha": "d60d61ae4e97bce4ae9aaa54914a58873c53b622",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-peer-review-b721-20261114/review.json",
+      "repo_path": "docs/evidence/durability-asr-correction-28462a75-20261114/peer/reading-review.json",
+      "bytes": 8621,
+      "sha256": "24ff6dd7c15cb5773ba90802d78a84d54d2f5079b9d33ccfed680457d512e58b",
+      "git_blob_sha": "dc7222b1269f97f4d0398e2db204c2d19827a8b5",
+      "mode": "100644"
+    }
+  ],
+  "scope": "Additive source integration evidence; new tests pending at creation, not executed locally."
+}

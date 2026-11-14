@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_source_review",
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14 18:05:49 UTC",
+  "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+  "host_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "verdict": "No additional concrete blocker found in the narrow ASR evidence-boundary delta and ten prepared regression cases.",
+  "source_files": [
+    {
+      "path": "qa/reading-asr-evidence-fix-b721-20261114/prepared/host/lib/domain/analysis/daily_recommendation_engine.dart",
+      "bytes": 8298,
+      "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c",
+      "git_blob_sha": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b"
+    },
+    {
+      "path": "qa/reading-asr-evidence-fix-b721-20261114/prepared/host/test/reading_asr_evidence_boundary_test.dart",
+      "bytes": 12601,
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c"
+    }
+  ],
+  "source_manifest": {
+    "path": "qa/reading-asr-evidence-fix-b721-20261114/source-upload-manifest.json",
+    "bytes": 1434,
+    "sha256": "8a6e794f5bfc2d9a3ad117cfd61bc618b8350698be2c7746fc6d5c8edd7bb464",
+    "git_blob_sha": "5cbe73b0678d97bb80d809486b8b80f0fbc40438"
+  },
+  "diff": {
+    "path": "qa/reading-asr-evidence-fix-b721-20261114/implementation-against-exact-b721.patch",
+    "bytes": 21182,
+    "sha256": "de07fb49c29da09a01eda88bc14b08895364af4d87e9ee549aeca7b41e932162",
+    "git_blob_sha": "c31373f1efd4b2141dbc5291c1ea2d9b614d89ba"
+  },
+  "original_chain": [
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "bytes": 40428,
+      "sha256": "043b8cd9315c182d3c72da1a062f4d558fa677bf04327c7e4c84beae096c0538",
+      "git_blob_sha": "33314187d201558248500457bf9179894fcfbfec"
+    },
+    {
+      "path": "lib/core/reading_progress_repository.dart",
+      "bytes": 3408,
+      "sha256": "a940e16b271d04a6bf174f87b52182df8ac7c1cde7158f7daa66209b48dbd08f",
+      "git_blob_sha": "ffd5b243633492fa5aae3b8648eb07af949a2e71"
+    },
+    {
+      "path": "lib/domain/analysis/lumo_analysis_domain.dart",
+      "bytes": 4324,
+      "sha256": "09befffdc16417e41fc96f8410952b34187a9439c1b33dd263bc1a81837643be",
+      "git_blob_sha": "92b3639c7b2950dfe173bd2f9be7d4e45ac3bb84"
+    },
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "bytes": 10182,
+      "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553",
+      "git_blob_sha": "457aed1dcc82e9c0f4462daa045b249bc735df7e"
+    },
+    {
+      "path": "lib/features/settings/parent_report_card.dart",
+      "bytes": 21164,
+      "sha256": "7bc9f55e4c77cd4fd35e9fa035b40a9c64d712ecb37214a4c3ab24d9a21fe568",
+      "git_blob_sha": "f88ef6349851f4bcbaebe3620914faa035ebdbba"
+    }
+  ],
+  "additional_type_bindings": [
+    {
+      "path": "qa/reading-asr-evidence-fix-b721-20261114/baseline/host/lib/core/progress_repository.dart",
+      "bytes": 13839,
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "git_blob_sha": "d41e9f90c9297188f8a924dfa04ce822d09126ee"
+    },
+    {
+      "path": "qa/reading-asr-evidence-fix-b721-20261114/baseline/host/lib/domain/learning/independent_evidence.dart",
+      "bytes": 2855,
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+      "git_blob_sha": "6b19215fe6e410b5439467541453e2608537e041"
+    }
+  ],
+  "original_findings": [
+    "ReadingContent persists ASR alignment, intervention counts and retained words through ReadingProgressRepository; the direct _logReadingAttempt guard already rejects negative/unclear ASR decisions from skill writes.",
+    "ReadingProgressRepository unions historical problemWords. ReadingAnalysisSummary has no assessment-provenance discriminator, so those words cannot be promoted to confirmed weaknesses by inference.",
+    "The b721 report engine places summary problemWords in reading and German weaknesses/errorPatterns and labels alignment as reading competence. ParentReportCard renders weaknesses as Förderbedarf.",
+    "ParentReportCard passes the whole loaded summary collection without childId filtering. The report engine has childName but no childId parameter. Its use of summaries.first can also describe another profile. This exact issue was sent to the owner before the final patch."
+  ],
+  "reviewed_resolution": [
+    "Both public readingSummaries parameters remain unchanged for callers. The final file contains that identifier only in those two declarations; no summary-derived parent statement, priority, word judgment or competence percentage remains.",
+    "Reading is offered as a fixed neutral practice routine. Existing confirmed weak/strong SkillRecord planning remains; ASR history no longer changes the plan, its messages or parent note.",
+    "ParentReport reading uses the existing SkillRecord subject analysis. With no reading records, weaknesses/errorPatterns are empty and the text only says the reading mode is ready.",
+    "German report retains existing Deutsch/Lesen/Rechtschreibung SkillRecords, removes the summary additions and recommends the actual weak skill when present.",
+    "Reading repository, schema, legacy JSON, child/session identifiers, listener, comprehension path, direct accepted-answer guard, UI callers and learning history are not modified."
+  ],
+  "structural_comparison": {
+    "subjectBlockByteEqual": true,
+    "publicReportSignatureEqual": true,
+    "summaryIdentifierOccurrences": 2
+  },
+  "prepared_tests": {
+    "defined_cases": 10,
+    "executed_by_reviewer": false,
+    "execution_status": "NOT_EXECUTED; actual Flutter CI is required",
+    "cases": [
+      "Four synthetic ASR observation variants, including zero, low, repeated mismatch and perfect alignment, cannot establish reading competence or alter plan/report relative to no summary.",
+      "Another profile's summary cannot describe the current child.",
+      "Accepted positive reading SkillRecords preserve strengths, success practice and original values.",
+      "Actually assessed comprehension errors still supply the real weak skill and tutoring priority.",
+      "Accompanied practice with empty IndependentEvidence does not become an assessed deficit.",
+      "Existing legacy JSON is read by the actual repository and remains byte-for-byte stored without migration or deletion.",
+      "The actual repository retains an old word after a later accepted answer; report generation neither promotes the retained word nor mutates the positive record or stored bytes."
+    ],
+    "type_review": "SkillRecord constructor, assessed/mastery/weaknessScore and IndependentEvidence constructor were read against exact b721 blobs; prepared fixtures use real supported fields and distinguish accompanied from assessed evidence.",
+    "comparison_scope": "Report/plan comparisons intentionally omit current timestamps while comparing all content and priority fields."
+  },
+  "adjacent_memory_review": {
+    "path": "qa/memory-durability-peer-review-b721-20261114/review.json",
+    "sha256": "09e5e429f0aab23a15743b8522d5b52a93c20f25af5f2502f1b016c49d454764",
+    "verdict": "No additional concrete blocker found; fourteen prepared cases, not executed.",
+    "source_files": [
+      {
+        "path": "qa/memory-durability-fix-b721-20261114/prepared/lib/features/games/memory/memory_flutter_adapter.dart",
+        "bytes": 2632,
+        "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+        "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+      },
+      {
+        "path": "qa/memory-durability-fix-b721-20261114/prepared/test/games/memory_preferences_durability_test.dart",
+        "bytes": 15378,
+        "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+        "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+      }
+    ]
+  },
+  "limitations": [
+    "No Flutter, Dart, recognizer, Android or device execution by this reviewer.",
+    "Ten ASR cases and fourteen Memory cases are prepared declarations, not executed PASS counts.",
+    "The change deliberately leaves unconfirmed historical summaries intact. It does not validate or relabel them and does not alter the existing live reading assistance.",
+    "The focused review concerns these report/planning consumers and their known sources, not a claim that every recognition-related subsystem has been audited."
+  ],
+  "review_actions": {
+    "source_edits": false,
+    "test_edits": false,
+    "test_runs": false,
+    "git_mutations": false
+  }
+}

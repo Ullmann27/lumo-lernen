@@ -1,0 +1,617 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43619285124,
+  "job_id": 132521067548,
+  "artifact_id": 14123817299,
+  "count": 75,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/HOST-SOURCE.txt",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "d2eb08849fc1e67c5546e8c94cd35c7485354cc48336de67d88beb5285d7a718",
+      "git_blob_sha": "736c55be82243a7ebe0c7a7c4c2ecb4d3e73c570",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/HOST-TREE.txt",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "22076030a35f43e84d339726d2166c686bbf16659570d530d661780bc302a085",
+      "git_blob_sha": "6bf0e396dbd900bb24b96b6a47fef3e224ad9c2b",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/NATIVE-SOURCE.txt",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "git_blob_sha": "51bde130837ae501b8aff7afefeffc1fe9b862cc",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/NATIVE-TREE.txt",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "git_blob_sha": "89867577a6119431a41ddebd6b51dde0b70054c9",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/dart-version.txt",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/godot-version.txt",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob_sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/import.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "git_blob_sha": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-authority-contract.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-authority-contract.log",
+      "bytes": 2319,
+      "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c",
+      "git_blob_sha": "0cad364c865f41f80773ef4ee4f69481b38da342",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/authority-result.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/authority-result.json",
+      "bytes": 43958,
+      "sha256": "0f8951f1650c76c80f2f441de4b148bbb0e9d5c2d1eb11d40d8004a862a69420",
+      "git_blob_sha": "0fbdda360890a18f69e0e77da7c8473bfc80cfbf",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/input.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/input.json",
+      "bytes": 44,
+      "sha256": "11a47515d57a6acedbba91f739e3e435d84b1a6cda991d944ad94f009a76e909",
+      "git_blob_sha": "c0e42178d68373eb9b7e81eb4b6a277b412105b8",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/native-result.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/native-result.json",
+      "bytes": 16487,
+      "sha256": "3d08257386c144d26946553ba5d8983240534aabe1b5d06d0d908170712991f1",
+      "git_blob_sha": "a64b394b6c9c336c1c1085d4581a0187fd992516",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/other-child.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/other-child.json",
+      "bytes": 52,
+      "sha256": "03b54b31f843366d751d73a74dbf00be5c56b1b4a272232bee9ba3c59b3471f2",
+      "git_blob_sha": "c2da25fbb3a2eed6f58f91b451213ccc58dd7089",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/paid-reopen-before-round.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/paid-reopen-before-round.json",
+      "bytes": 806,
+      "sha256": "670ffb38d2c504fbd6a39dd7e86e8d90dbcb9f7139336b7bf56c626eb8ee17ac",
+      "git_blob_sha": "1ed1bcd134376afd108e9568fc68153015ff6f10",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/private-test-control.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/private-test-control.json",
+      "bytes": 165,
+      "sha256": "f9d0cf9cfbce11cb3615ae00ad16cbcec5d1d2693e431b8f4f0bf070df076245",
+      "git_blob_sha": "17c9e3fcea8d6f026cca6eb7260e33a759f9708a",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/public-state.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/public-state.json",
+      "bytes": 1054,
+      "sha256": "c74bbbb3d50e85c22a17e0374f7c8cbb82c986f49982f5d421854570da2c932c",
+      "git_blob_sha": "6202eee019e79e29871e95c61c8ed26533256ee3",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 770,
+      "sha256": "649774f4be573fea4785c62f5d732c4421183770281132427241d8359f24d0ed",
+      "git_blob_sha": "ae2dae16f9ce79f8b25b3d11ec0a18c2b9612823",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/stats-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/stats-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 83,
+      "sha256": "cc538b5b72f794aa0bef462530c32fea0c6771dda152857c0084981c7cba82ca",
+      "git_blob_sha": "4a80fa041a091611710f2964f393af9782468696",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/step-receipt.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/step-receipt.json",
+      "bytes": 141,
+      "sha256": "fbe288a00414a65042087ab32ddd1511cc263da8cdf0def01a1d1471f5689f10",
+      "git_blob_sha": "6d466fcab35e89d94c176b6c0999ef851d51af26",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/unfinished-reopen-before-round.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/unfinished-reopen-before-round.json",
+      "bytes": 698,
+      "sha256": "df14b5cc32dd4c13645325dcdbabc8c739e56f03c9d9b9a4684c1ae64f40dcd8",
+      "git_blob_sha": "e423cdd1e9041ecaace4d219d5b7a4553d874def",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/authority/wallet.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/authority/wallet.json",
+      "bytes": 134,
+      "sha256": "63a8a17dab36a81e9073447e04f209349bf5b346945b1828c40bcb42ae4a3c34",
+      "git_blob_sha": "045e8b2f4be9acabef1c17a450059e9597999704",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/dart-authority.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/dart-authority.log",
+      "bytes": 95,
+      "sha256": "d323cd94dae4d968f732d4d6ccb716dc2030c4924056c850687df94967ff0b23",
+      "git_blob_sha": "5f4492bc7c8f2a252ff68e137e2191d4ae925436",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/godot-runtime.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/godot-runtime.log",
+      "bytes": 1163,
+      "sha256": "2542a0d5d96bcd64bfe62cda5ca2eda54bce50bd951d15253c8fa6cc29487d8f",
+      "git_blob_sha": "05069ec1d6e8d8081b80be6ddf78c86d4049cb52",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/01-memory-real-hidden.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/01-memory-real-hidden.layout.json",
+      "bytes": 7965,
+      "sha256": "d0617a41fbd08186843056c6d5a96ebf5c646c75985c1c287624a2392943d1c8",
+      "git_blob_sha": "56766d29c0cd4130c2a0c55e9270803f8a0ddc5c",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/02-memory-real-face.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/02-memory-real-face.layout.json",
+      "bytes": 7968,
+      "sha256": "0e2635a90b5124b165cc5cd603fc9248a0b0ccd2e3ba06840550d04ebfeb3610",
+      "git_blob_sha": "7313f3176c40a55dc7e0d3892a1c9e00a820b8dd",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/03-memory-real-paused.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/03-memory-real-paused.layout.json",
+      "bytes": 8045,
+      "sha256": "02b20493d7d90623d74b91331693dfb6ff02a649717f522b703b231c548df25a",
+      "git_blob_sha": "02d7cc555dd391df82cd547e660193fddc297b20",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/04-memory-real-reopened.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/04-memory-real-reopened.layout.json",
+      "bytes": 8045,
+      "sha256": "ae62d1d9a1bfd2b5e16d2ffe79d40f8ce1609f04d453290e565e6825edf03b46",
+      "git_blob_sha": "3c6a9b8f24b13bc7db0d16737c57eaa987972f77",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/05-memory-real-bot-first.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/05-memory-real-bot-first.layout.json",
+      "bytes": 8054,
+      "sha256": "22eda7112a2b3f196156567c7d61a8f4db49a4605bef54aaa3e45fc76259857c",
+      "git_blob_sha": "87ea24d8646f9248e5554240cad8cec6e7ced805",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/06-memory-real-bot-second.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/06-memory-real-bot-second.layout.json",
+      "bytes": 8057,
+      "sha256": "b22234098d64df50ba904b649c8d017d6f87fe493034dda037affc7dfc09b4c5",
+      "git_blob_sha": "a329190fa498645d0aebb467f3931dc64f43ff03",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/07-memory-real-win.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/07-memory-real-win.layout.json",
+      "bytes": 8048,
+      "sha256": "ebdd7508576fb372292536d366ddf2fbdcfdc02640ac857c2b5ba29658d31ad7",
+      "git_blob_sha": "d931a2db7e2c0d5cab9520d6a1d243809f9096f7",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.layout.json",
+      "bytes": 7967,
+      "sha256": "eebca8a5f89b5cac26fe5c349648209ef4ad271d2b850d524f8013bc95bfd0e2",
+      "git_blob_sha": "c8b8276394fa47f16c9c865a7583b306c9a32b06",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/memory-runtime-report.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/memory-runtime-report.json",
+      "bytes": 19438,
+      "sha256": "7b697e96766783075888ce3a90ada6cbfedb343d4fe1e9c54b1ee6e1d02a77b0",
+      "git_blob_sha": "67070bc7ec198032b068aa40d33899733c1c3d7f",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/pair-result.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/pair-result.json",
+      "bytes": 9530,
+      "sha256": "c9c442476647f0aca4f9b0397539cba57b65e0e4bb94810797a7210fff99420c",
+      "git_blob_sha": "c3de8a815a676a4c726dedcacc9fd76ba6cd8b66",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/source-identity.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/source-identity.json",
+      "bytes": 265,
+      "sha256": "879c44c7cedaabe24c7fb4a60f7311f78223bb784107b594fc1f37617758d87c",
+      "git_blob_sha": "b31723e0cecd29059a9a8bf5aed1b5da6faffac9",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-scheduler-contract.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-scheduler-contract.log",
+      "bytes": 689,
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1",
+      "git_blob_sha": "f2cf3690ef4b28288d3651930fd581e8357eecf5",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-compact-profi.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-compact-profi.layout.json",
+      "bytes": 17157,
+      "sha256": "ce913ad3cc70bbf498d41904aa633a990406b3b0ecf323eed1045e55855a0214",
+      "git_blob_sha": "4ae61806eac1cdb95472b825f262d6947f915f12",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-cutout-profi.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-cutout-profi.layout.json",
+      "bytes": 18260,
+      "sha256": "a82f714b97bbee2566dc9edfed4c8a8a65f8e3b30322211c3e60cae61dd4915d",
+      "git_blob_sha": "1b3ebc70ff14cfe6bd33073ec5ae3dd6ceace672",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-fold-profi.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-fold-profi.layout.json",
+      "bytes": 16884,
+      "sha256": "2535aedb83c2b670b3b1bbb9475e45c7d6e439f74821a3d8858fdbedc88828c2",
+      "git_blob_sha": "be174a011bcdfe6bcc8b7af59f2e7d24d5c406a0",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-hidden.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-hidden.layout.json",
+      "bytes": 7965,
+      "sha256": "332b41b1da144221d1a20d18583932dbff75de4cae17bf68299da4f9845c5ecf",
+      "git_blob_sha": "be3949e024373630053bde29dd37af6620aaf0eb",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-matched.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-matched.layout.json",
+      "bytes": 8044,
+      "sha256": "7f4f37da55325837c00875cb7894b73763b0b87f0383cf4a3e401ee9c18f2e23",
+      "git_blob_sha": "8fc1b9d09c43f04af8c551ebc311a4716ef3373f",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-one-flipped.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-one-flipped.layout.json",
+      "bytes": 7969,
+      "sha256": "fda8b4989dabe0b3c69b07dd980b301c3908f93665953ee6547658578ee614b0",
+      "git_blob_sha": "ff87e7b282e6596cbfc7157ba4f2b0071084036f",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-paused.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-paused.layout.json",
+      "bytes": 8040,
+      "sha256": "c133787b1790d0c6da72f5d2c79b57ced1dc908050c2ad8d2953d74ac0fb515d",
+      "git_blob_sha": "b0f4183c28596fcee774690bd1732c56748856ef",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-phone-profi.layout.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-phone-profi.layout.json",
+      "bytes": 18333,
+      "sha256": "39cfb59970d3a498df030aa4a73a61b457037521a048a9552d985385f0fdc8ab",
+      "git_blob_sha": "4e10610daddf10fe0d86f4c242f2a489a6f6b105",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-view-result.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-view-result.json",
+      "bytes": 182227,
+      "sha256": "21cc66efc8cfbacd28c8ed048145b9fdaccd90a6cf729ac918b54afb1c6931ca",
+      "git_blob_sha": "2549be19ac024a3fc38198a53472cca38f0d989b",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view.log",
+      "bytes": 1156,
+      "sha256": "f76ffcaff5633e95a2316ccc90405075f51473cf255cb73dcc10f3f1d6a163d0",
+      "git_blob_sha": "14901c9daac83e06e6da1e55eb78c8373e93dbcc",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/project-validation.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/project-validation.log",
+      "bytes": 6140,
+      "sha256": "188d0950424b0d1f9b965ecadfd28e80ac6d176122df6912851af65f9df016d9",
+      "git_blob_sha": "9340046407c29eb35faacccb11d03f91ca7885fb",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/01-memory-real-hidden.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/01-memory-real-hidden.png",
+      "bytes": 101718,
+      "sha256": "925d8730f6e8efc1fcb888f094a7df3ab01f2b9482f83ef9717279345f767af7",
+      "git_blob_sha": "2d7c4f745e9984bd3dcbaaadcf31ce015f1b703c",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/02-memory-real-face.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/02-memory-real-face.png",
+      "bytes": 137048,
+      "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b",
+      "git_blob_sha": "33105e38ea21bb1be8f531e06d5d3c9c14236426",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/03-memory-real-paused.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/03-memory-real-paused.png",
+      "bytes": 52851,
+      "sha256": "b7edc981fb904cb8b56663ef26d6a7ae343757d3a65264f8bb03cfd15a66cf68",
+      "git_blob_sha": "8c3e2f6542b9a5f2d21df7a89fa147607c16378c",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/04-memory-real-reopened.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/04-memory-real-reopened.png",
+      "bytes": 52891,
+      "sha256": "a99264d13091d49baf897fd05f99ebbf2eefabe706363a598b1d0968e682678d",
+      "git_blob_sha": "6c46c4cec21cf21f690ba253e78eca73150bb5f1",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/05-memory-real-bot-first.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/05-memory-real-bot-first.png",
+      "bytes": 128086,
+      "sha256": "a24c57107edfb85f45738c26734895631ae3ba83315480eec88218f212f25297",
+      "git_blob_sha": "6d5021a40aea322d0e5aeb1b3aced65c02908404",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/06-memory-real-bot-second.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/06-memory-real-bot-second.png",
+      "bytes": 160052,
+      "sha256": "577dea2a2d773af23a5be2a5392c5c2fd64cfb413782947cd715268098d24fce",
+      "git_blob_sha": "7a2348933df3eb832227fafb72fff00900e78ac2",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/07-memory-real-win.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/07-memory-real-win.png",
+      "bytes": 66227,
+      "sha256": "7c224189d4e1e064704a9f2c15e56accb6cb5cbd6289ebc29eb799b045a8f75b",
+      "git_blob_sha": "8df863a6d97966402c0573e6052234fffb464f59",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.png",
+      "bytes": 101633,
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9",
+      "git_blob_sha": "561f292606538800203e808143fc4b7cdf7ed704",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-hidden.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-hidden.png",
+      "bytes": 101633,
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9",
+      "git_blob_sha": "561f292606538800203e808143fc4b7cdf7ed704",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-one-flipped.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-one-flipped.png",
+      "bytes": 132499,
+      "sha256": "e4e9ae047faca1a2a21a87544bbe91ef108363fe7fd6fbfa1b615147d392ebd3",
+      "git_blob_sha": "0fc257708137a81de95e3294dcd47389c4272910",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-paused.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-paused.png",
+      "bytes": 49827,
+      "sha256": "7e2cd46bf55b6bb200b5559ed6be1d1d79219aa1e8fe30dcd738fd886dfd92a1",
+      "git_blob_sha": "891a1ff95b6d3f9d6ab780aeb2298f1d81d6c069",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-landscape-matched.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-landscape-matched.png",
+      "bytes": 153394,
+      "sha256": "ded1940f58bc4a5a0e8783ed1195a8192068d5403884d14fce611c3c58fbec54",
+      "git_blob_sha": "a4b283cabc3c3601ae6f3fd4cb59464cef2c062f",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-phone-profi.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-phone-profi.png",
+      "bytes": 380149,
+      "sha256": "a0e0590f526843971d9f76aa90eb6a826da0f1671abb5117d28a940b2cd25e90",
+      "git_blob_sha": "a493acfb5caf6f05abd7198d5d8308b29391a1fe",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-fold-profi.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-fold-profi.png",
+      "bytes": 502671,
+      "sha256": "a82093ca97217b867ebcf4a59dc18fe5e6065243ca860263fe7b164b5424af35",
+      "git_blob_sha": "5a53298a9af0fb87e393aa37d4cbcacda8ecdf06",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-compact-profi.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-compact-profi.png",
+      "bytes": 52152,
+      "sha256": "55f2c87a865a9b94231e869595fe5603cadc1b0f5a8242cad19a5ec9b7d95964",
+      "git_blob_sha": "d741661f236ab41eff505a496b17b1a509cb9d56",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-view/memory-cutout-profi.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-view/memory-cutout-profi.png",
+      "bytes": 264076,
+      "sha256": "5a2b1842c264a535549950604338ac031e0f22973e6e8dec4a7e15c2e26d911c",
+      "git_blob_sha": "641e81aeb5ed068496d5a14efa0148c1ad58ecda",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/motion-00.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/motion-00.png",
+      "bytes": 101285,
+      "sha256": "a3c31660363757456acba9a44d4bc907874a4802e560223e524e13be84a57a3a",
+      "git_blob_sha": "b58125cc28110405a0fa7cc47704bee3c8054621",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/motion-05.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/motion-05.png",
+      "bytes": 122809,
+      "sha256": "413a113112d077f24dc3b6719e37717a5d98072ba12b9339e3b746874fcb9ebd",
+      "git_blob_sha": "7e9e29bf3b98958e03a2345d0900625e54a06e78",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/originals/memory-pair/native/motion-11.png",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/originals/memory-pair/native/motion-11.png",
+      "bytes": 137003,
+      "sha256": "32976fa0acdfe5728f16117b05563ec3abf630cef5dbc91f8c6ea9b09133c154",
+      "git_blob_sha": "39730c7c7ef9c229a37799b81d0c9dab32afebc3",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/README.md",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/README.md",
+      "bytes": 3507,
+      "sha256": "3348a843a1a94bb2fca5793953e31e4c64d29d527b6db8c65e3aa8bbb218cca7",
+      "git_blob_sha": "dbb414fd0df8667a63de57bd9fd9b3a0d84e3c83",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/visual-observations-before-interruption.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/visual-observations-before-interruption.json",
+      "bytes": 6773,
+      "sha256": "a66fdb10c9489ea964ed07d02e48631e6aabcf121af75ff8ed7457b82b69a050",
+      "git_blob_sha": "c1c2daeb795882ecb9dc0027b877c8dfc3138f84",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/verify_originals-initial-field-shape.py",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/verify_originals-initial-field-shape.py",
+      "bytes": 11379,
+      "sha256": "f0f1a4fd9fd7f088a48cc80892c1b2a4b9ea39c1f5294bfd37f9529959a1573c",
+      "git_blob_sha": "f0c618e0aa096d7be3a4a3b10879ccfbaff537e4",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/verify_originals.py",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/verify_originals.py",
+      "bytes": 11455,
+      "sha256": "1939cf6373d2597ec7899542942c24d7821713151fa492777a70500ec2e51ee7",
+      "git_blob_sha": "c4da64256ce680be03ffb11b09da2778a8c4ce6e",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/execution.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/execution.json",
+      "bytes": 360,
+      "sha256": "d08eb45097a5039bf65143250bcc636674f939076cb90a5709b6abc1fd94f979",
+      "git_blob_sha": "560d1d6b45c9afe17b0dd10cf29722d50c92c43e",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/execution-schema-corrected.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/execution-schema-corrected.json",
+      "bytes": 439,
+      "sha256": "6b913e66d464806ffc5081d05b30f15de816110ad8cd625e4c0bb9065bc56db2",
+      "git_blob_sha": "4a8cdcc2497a2ab8669edf5fad7612ed416d37b8",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/original-journal-verification.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/original-journal-verification.log",
+      "bytes": 273,
+      "sha256": "810c82b31a1c15006a1d682ae0c7af763189dbb79cf1721b33884e21f10d177f",
+      "git_blob_sha": "84d6715161e2f163c5f9c38092fad5ed02d0b9b5",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/original-journal-verification-schema-corrected.log",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/original-journal-verification-schema-corrected.log",
+      "bytes": 409,
+      "sha256": "a984bab497691274e699407d95c26f3d68cfe7fac80266ed099a6ca94855088c",
+      "git_blob_sha": "890a93f8299e5d9d651c2f562fc0b941c2ec9b55",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/complete-original-member-hashes.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/complete-original-member-hashes.json",
+      "bytes": 23246,
+      "sha256": "fc6ca1d62787c090adbc9755cc6ae7d8555d403a69fe1ff84e0250ad22037c45",
+      "git_blob_sha": "5cbfa427755671c0b935ae55c806e2c82fefbeaa",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/reviewed-images-with-recovered-hashes.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/reviewed-images-with-recovered-hashes.json",
+      "bytes": 13685,
+      "sha256": "2bd5a5ec773e1186ad67b0cccfacdb3b7192d6400f8ce4b0a4a9f019b6424e76",
+      "git_blob_sha": "e82d6f63827c12fd87716beb1ae5960807a2e33a",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/recovery-completion-20261114/original-journal-verification-completed.json",
+      "path": "docs/evidence/studio-b721-memory-authority-completion-20261114/original-journal-verification-completed.json",
+      "bytes": 16018,
+      "sha256": "09830b38ab87a4b10a93d06d7095b0dac732403992091d31475e1a781597f95c",
+      "git_blob_sha": "7e205b1825f4181747b5d9d4cb6e5f80f0595ab0",
+      "encoding": "utf-8"
+    }
+  ],
+  "self_target": "docs/evidence/studio-b721-memory-authority-completion-20261114/evidence-upload-manifest.json",
+  "archive_uploaded": false,
+  "personally_reviewed_pngs": 19,
+  "new_app_tests_executed": 0,
+  "scope": "Current original desktop evidence plus additive recovery verification; no Android, physicalFPS, sharedPreferences-fix or overall Studio-release claim."
+}

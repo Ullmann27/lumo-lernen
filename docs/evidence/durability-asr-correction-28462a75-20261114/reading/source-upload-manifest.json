@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "baseline_source_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "baseline_source_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "scope": "One product analysis engine plus one new targeted regression file; no storage/schema/profile/reading-input changes",
+  "validation_status": "Static source inspection only. No local Dart or Flutter execution; real CI required.",
+  "files": [
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/prepared/host/lib/domain/analysis/daily_recommendation_engine.dart",
+      "mode": "100644",
+      "bytes": 8298,
+      "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c",
+      "git_blob_sha": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b",
+      "baseline_git_blob_sha": "457aed1dcc82e9c0f4462daa045b249bc735df7e"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/prepared/host/test/reading_asr_evidence_boundary_test.dart",
+      "mode": "100644",
+      "bytes": 12601,
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "baseline_git_blob_sha": null
+    }
+  ]
+}

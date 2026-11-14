@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "status": "FROZEN_FOR_REAL_CI",
+  "source_manifest": "source-upload-manifest.json",
+  "source_manifest_sha256": "8a6e794f5bfc2d9a3ad117cfd61bc618b8350698be2c7746fc6d5c8edd7bb464",
+  "baseline_source_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "files": [
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/prepared/host/lib/domain/analysis/daily_recommendation_engine.dart",
+      "mode": "100644",
+      "bytes": 8298,
+      "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c",
+      "git_blob_sha": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b",
+      "baseline_git_blob_sha": "457aed1dcc82e9c0f4462daa045b249bc735df7e"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/prepared/host/test/reading_asr_evidence_boundary_test.dart",
+      "mode": "100644",
+      "bytes": 12601,
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "baseline_git_blob_sha": null
+    }
+  ],
+  "static_review": "Independent B review confirms final product/test SHA256 and reports no additional concrete blocker; no tests run by B.",
+  "execution_status": "NOT_EXECUTED: local Dart/Flutter/pub get remain prohibited; 10 cases require the actual new CI. Existing 2608/0/0 belongs only to b721.",
+  "scope_limits": [
+    "Provider confidence and partial-error provenance are still absent from the string-only listener API.",
+    "Raw summaries and their retained historical words are preserved unchanged.",
+    "No summary-derived fact, including activity counts, is attributed to the current child by ParentReport.",
+    "No writing/journal/profile migration or product recognition algorithm change."
+  ],
+  "git_mutations_by_agent": "none; Root has already created the two immutable source blobs and owns integration",
+  "evidence_files": [
+    {
+      "path": "README.md",
+      "bytes": 5808,
+      "sha256": "9c6e506eb68f0364a1d4f81d3b9e9a5ee6beec41d3fb98d7a2011852d13e266c"
+    },
+    {
+      "path": "original-source-binding.json",
+      "bytes": 8259,
+      "sha256": "606ba6e8711a55f6c09e1593e0040f422e4232a7628f638281da53fcea4dcb6d"
+    },
+    {
+      "path": "initial-readonly-audit.json",
+      "bytes": 25496,
+      "sha256": "124904355181e1461785e593d39a0a0e7d3c92b6a88bf62c6accebbbc8a86e5e"
+    },
+    {
+      "path": "existing-test-inventory.json",
+      "bytes": 6139,
+      "sha256": "966d8f6221f03f0c16c3ecee1927561f7ca43a6198f1ea0eeb890334fe3f0baa"
+    },
+    {
+      "path": "implementation-against-exact-b721.patch",
+      "bytes": 21182,
+      "sha256": "de07fb49c29da09a01eda88bc14b08895364af4d87e9ee549aeca7b41e932162"
+    },
+    {
+      "path": "source-boundary-proof.json",
+      "bytes": 701,
+      "sha256": "1fd64858afd6ad47d3ce47cca7f55d12108f0d1d6f8a78886ddf1dbfa83f8444"
+    }
+  ]
+}

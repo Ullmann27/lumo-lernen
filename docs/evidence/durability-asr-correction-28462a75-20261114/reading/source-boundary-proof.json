@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "method": "Python byte/hash comparisons only; not Dart parsing or test execution",
+  "source_manifest_sha256": "8a6e794f5bfc2d9a3ad117cfd61bc618b8350698be2c7746fc6d5c8edd7bb464",
+  "baseline_files_verified": 19,
+  "public_signatures_unchanged": true,
+  "summary_references_only_two_public_parameters": true,
+  "subject_block_byte_unchanged": true,
+  "subject_block_sha256": "81c696b1286ff82dec0e937d5d332866f52e28a8acebaf896e052bc76670610c",
+  "product_files_changed": 1,
+  "new_test_files": 1,
+  "declared_new_test_cases": 10,
+  "dart_or_flutter_executed": false,
+  "pub_get_executed": false,
+  "existing_tests_changed": false,
+  "raw_storage_and_profile_writers_changed": false
+}

@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14T17:51:39Z",
+  "reviewer": "learning_worlds",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+  "host_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "scope": "Read-only GitHub source audit: uncertain/failed speech recognition must not become negative reading competence. No local calls, tests, UI or device execution, product writes or Git mutations.",
+  "conclusion": "PARTIALLY_GUARDED_CONCRETE_SECONDARY_READING_SUMMARY_GAP",
+  "strengths": [
+    "Reading Buddy's ASR output does not record learning answers; only explicit comprehension choices call saveAnswer.",
+    "Sentence-coach _logReadingAttempt rejects every not-correct or not-accepted decision. Negative ASR output does not increment SkillRecord.wrong through this gate.",
+    "True cancellation increments generation, drops text and callbacks; route/lifecycle cleanup cancels; stale result/profile guards exist.",
+    "Empty final text is not delivered; empty no-match uses a neutral message, no wrong answer. Missing local Android recognizer fails closed without cloud initialization.",
+    "An accepted later rereading clears in-memory ledger problem words; the direct competence record's wrong count remains zero."
+  ],
+  "findings": [
+    {
+      "id": "ASR-READING-SUMMARY",
+      "classification": "concrete source dataflow gap; not newly reproduced",
+      "chain": [
+        "LumoSpeechListener supplies text only, and promotes an existing partial transcript to final when provider onError fires.",
+        "ReadingContent calls ReadingMonitor without confidence or provider error provenance.",
+        "ReadingAttemptLedger judges plausibility from transcript alignment; repeated plausible mismatches become persistentProblemWords and interventionCount.",
+        "ReadingContent persists alignment/words to ReadingProgressRepository regardless of retryBecauseRecognitionWasUnclear.",
+        "ReadingProgressRepository stores shared-preference summaries with score,problemWords,interventions, but no evidence-status or confirmation field.",
+        "ParentReportCard loads the summaries and ParentReportEngine maps problemWords/interventions to weaknesses/errorPatterns; widget labels them Förderbedarf."
+      ],
+      "limit": "The direct SkillRecord negative-answer guard still works; do not describe this as all reading assessment being unsafe."
+    },
+    {
+      "id": "ASR-CORRECTION-RETENTION",
+      "classification": "concrete source union behavior; not newly reproduced",
+      "detail": "A later correct transcript clears the in-memory ledger, but updateLatest unions existing.problemWords with current.problemWords. Passing an empty corrected list cannot remove an old persisted word."
+    },
+    {
+      "id": "ASR-CONFIDENCE-LOSS",
+      "classification": "concrete transport/guard omission",
+      "detail": "Speech callbacks expose String only. Actual recognizer confidence/unknown status is not forwarded. Monitor/analyzers default confidence to1; analyzer event confidence is not a rejection gate. The label lowConfidence in V2 is text-similarity derived, not proof of a measured provider-confidence threshold."
+    }
+  ],
+  "cases": [
+    {
+      "case": "true cancel/back/background/dispose",
+      "direct_skill": "no automatic negative write",
+      "secondary_summary": "previous session summary may remain; cancellation does not itself call transcript grading",
+      "support": "source + profile-switch and pending-start regressions, no new device execution"
+    },
+    {
+      "case": "manual microphone Stop",
+      "direct_skill": "same positive-only assessment guard",
+      "secondary_summary": "stopListening finalizes nonempty accumulated text; Stop is distinct from cancel",
+      "support": "source only for partial-on-stop boundary"
+    },
+    {
+      "case": "empty/no-match",
+      "direct_skill": "empty final suppressed; neutral retry; no wrong answer",
+      "secondary_summary": "session may already have an initial zero/unmeasured summary; this audit does not claim a new observed UI outcome from that zero",
+      "support": "Buddy empty-transcript regression + source"
+    },
+    {
+      "case": "low or unknown provider confidence",
+      "direct_skill": "mismatch not negatively graded through _logReadingAttempt",
+      "secondary_summary": "confidence unavailable to grading; text heuristics can still yield durable problem words",
+      "support": "source only; no direct low-confidence provider regression in reviewed tests"
+    },
+    {
+      "case": "provider failure",
+      "direct_skill": "no transcript means no final answer; actual Android unavailable recognizer refuses initialization",
+      "secondary_summary": "failure with prior partial words sends those words as final with no error provenance; summary gap can apply",
+      "support": "unavailable-provider privacy test; partial+error path source only"
+    },
+    {
+      "case": "manual correction",
+      "direct_skill": "no editable transcript correction control found in either audited reading screen; explicit comprehension choices are a separate assessment",
+      "secondary_summary": "correct rereading clears session ledger but not the repository's union of prior problemWords",
+      "support": "source; existing mismatch-then-correct test asserts SkillRecord only, not summary/report"
+    }
+  ],
+  "existing_tests": {
+    "source_test_files": [
+      {
+        "path": "test/reading_buddy_assessment_test.dart",
+        "cases_declared": 8,
+        "scope": "24-story question binding;3ASR-no-grade variants;2explicit comprehension correct/wrong cases;profile-switch late callback;2mismatches followed by correct rereading"
+      },
+      {
+        "path": "test/lumo_speech_privacy_test.dart",
+        "relevant_cases": 1,
+        "scope": "Android unavailable local recognizer leads to zero STT plugin calls and no cloud recording"
+      },
+      {
+        "path": "test/story_entry_navigation_test.dart",
+        "relevant_case": "a pending microphone start cannot restart behind the library",
+        "scope": "delayed settings callback; no initialize/listen behind new route; skills empty"
+      }
+    ],
+    "actual_existing_run": {
+      "run_id": 43618076296,
+      "job_id": 132517423810,
+      "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+      "passed": 2608,
+      "failed": 0,
+      "skipped": 0,
+      "original_log_sha256": "4192247ed86ddb17fa3a5d558eee665acbbb4f408fcc6e199ab8e9e1699bbab7",
+      "original_log_git_blob_sha": "bf0e50d174f18f5b2f1891cf71bf8bbf4d9c212b",
+      "invocation_log_lines": [
+        801,
+        802
+      ],
+      "summary_log_line": 834,
+      "invocation": "python3 scripts/run_full_flutter_acceptance.py --output feature-evidence/full-flutter",
+      "default_runner_scope": "flutter test with no focused path; every test",
+      "per_case_machine_log_read_now": false
+    },
+    "limits": "Existing whole-suite PASS and actual test assertions are separately identified. No tests rerun; source test count is not a new execution count. The fake Speech API transmits strings, not real provider confidence/errors. These cases do not assert persisted reading summary cleanup or parent-report behavior."
+  },
+  "minimal_approach": [
+    "Keep current SkillRecord/comprehension guards unchanged.",
+    "Treat ASR-derived alignment, tentative words and recognizer failures as unassessed observation data; never map them automatically to parent weaknesses/errorPatterns. Exclude initial no-measurement zero summaries from competence interpretation.",
+    "Propagate a typed text/finality/provider-status/optional-confidence result; error or uncertain results should request retry, not finalize partial data as assessed reading. High recognizer confidence alone still does not prove a reading weakness.",
+    "If practice observations are retained, allow a corrected sentence/explicit confirmation to replace or clear its derived word set instead of union-only retention.",
+    "Add one targeted existing-fixture regression across ReadingContent→ReadingProgressRepository→ParentReportEngine for partial+provider error, unclear text and correction. This is a recommendation, not an executed test or authorized product patch."
+  ],
+  "separate_profile_boundary": {
+    "observed": "ReadingProgressRepository calls SharedPreferences.getInstance with lumo_reading_sessions_v1; summaries include childId, but ParentReportCard currently passes the full loaded list without child filtering.",
+    "scope": "Concrete read path, not inferred merely from an unsuffixed key. No new two-child/device claim; separate scoping risk can be addressed independently."
+  },
+  "citations": [
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "start_line": 33,
+      "end_line": 84,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/lumo_speech_listener.dart#L33-L84",
+      "git_blob_sha": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "sha256": "5a0a5e10ad2312596f1bd3ef9564e1d32803354a7e2a70b10dfe6da122e753be"
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "start_line": 113,
+      "end_line": 191,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/lumo_speech_listener.dart#L113-L191",
+      "git_blob_sha": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "sha256": "5a0a5e10ad2312596f1bd3ef9564e1d32803354a7e2a70b10dfe6da122e753be"
+    },
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "start_line": 193,
+      "end_line": 276,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/reading/reading_content.dart#L193-L276",
+      "git_blob_sha": "33314187d201558248500457bf9179894fcfbfec",
+      "sha256": "043b8cd9315c182d3c72da1a062f4d558fa677bf04327c7e4c84beae096c0538"
+    },
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "start_line": 367,
+      "end_line": 529,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/reading/reading_content.dart#L367-L529",
+      "git_blob_sha": "33314187d201558248500457bf9179894fcfbfec",
+      "sha256": "043b8cd9315c182d3c72da1a062f4d558fa677bf04327c7e4c84beae096c0538"
+    },
+    {
+      "path": "lib/features/reading/lumo_reading_buddy_screen.dart",
+      "start_line": 75,
+      "end_line": 189,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/reading/lumo_reading_buddy_screen.dart#L75-L189",
+      "git_blob_sha": "deb9ba4e9af26763516e54a44d70e56d62dc9d77",
+      "sha256": "a72b123a973b9a8a056d8dc132eae4f51da73d906865ff2aaba13f2de93999a8"
+    },
+    {
+      "path": "lib/core/reading_v2_pronunciation_analyzer.dart",
+      "start_line": 16,
+      "end_line": 80,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/reading_v2_pronunciation_analyzer.dart#L16-L80",
+      "git_blob_sha": "02c9b8a31f250feb84189d65e2b86a2b15f1313c",
+      "sha256": "fc5a55ba64c3775cb9701ee36cac2e7699dd62390cbe0beb906c7a300cbd97a1"
+    },
+    {
+      "path": "lib/domain/reading/reading_domain.dart",
+      "start_line": 799,
+      "end_line": 842,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/reading/reading_domain.dart#L799-L842",
+      "git_blob_sha": "6bacd091a447ea65248fa660a7ce2f7822c79a79",
+      "sha256": "af11da477d7544b2e5cad6f0057b81df834e68afb347b3c3e306f74dae0391e0"
+    },
+    {
+      "path": "lib/domain/reading/reading_attempt_history.dart",
+      "start_line": 63,
+      "end_line": 107,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/reading/reading_attempt_history.dart#L63-L107",
+      "git_blob_sha": "ca1b2644821628e4b91328571731f6bbef0732cd",
+      "sha256": "b69d86e508c77532f344a828cbae770bd7f2886a39321ab18508014c67aaa009"
+    },
+    {
+      "path": "lib/domain/reading/reading_attempt_history.dart",
+      "start_line": 149,
+      "end_line": 195,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/reading/reading_attempt_history.dart#L149-L195",
+      "git_blob_sha": "ca1b2644821628e4b91328571731f6bbef0732cd",
+      "sha256": "b69d86e508c77532f344a828cbae770bd7f2886a39321ab18508014c67aaa009"
+    },
+    {
+      "path": "lib/core/reading_progress_repository.dart",
+      "start_line": 7,
+      "end_line": 82,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/reading_progress_repository.dart#L7-L82",
+      "git_blob_sha": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "sha256": "a940e16b271d04a6bf174f87b52182df8ac7c1cde7158f7daa66209b48dbd08f"
+    },
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "start_line": 110,
+      "end_line": 176,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/analysis/daily_recommendation_engine.dart#L110-L176",
+      "git_blob_sha": "457aed1dcc82e9c0f4462daa045b249bc735df7e",
+      "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553"
+    },
+    {
+      "path": "lib/features/settings/parent_report_card.dart",
+      "start_line": 74,
+      "end_line": 87,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/settings/parent_report_card.dart#L74-L87",
+      "git_blob_sha": "f88ef6349851f4bcbaebe3620914faa035ebdbba",
+      "sha256": "7bc9f55e4c77cd4fd35e9fa035b40a9c64d712ecb37214a4c3ab24d9a21fe568"
+    },
+    {
+      "path": "lib/features/settings/parent_report_card.dart",
+      "start_line": 364,
+      "end_line": 378,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/settings/parent_report_card.dart#L364-L378",
+      "git_blob_sha": "f88ef6349851f4bcbaebe3620914faa035ebdbba",
+      "sha256": "7bc9f55e4c77cd4fd35e9fa035b40a9c64d712ecb37214a4c3ab24d9a21fe568"
+    },
+    {
+      "path": "lib/core/learning_profile_engine.dart",
+      "start_line": 348,
+      "end_line": 375,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/learning_profile_engine.dart#L348-L375",
+      "git_blob_sha": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+      "sha256": "af40237d4f43d2cb195337aacdbd3de8abefb14094ecc31be06e1da9fe5c49be"
+    },
+    {
+      "path": "lib/core/progress_repository.dart",
+      "start_line": 273,
+      "end_line": 301,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/progress_repository.dart#L273-L301",
+      "git_blob_sha": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd"
+    },
+    {
+      "path": "test/reading_buddy_assessment_test.dart",
+      "start_line": 132,
+      "end_line": 247,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/reading_buddy_assessment_test.dart#L132-L247",
+      "git_blob_sha": "c95a9200cd3891b4e79b91d42fc191681278c169",
+      "sha256": "5aadefce399a776e44d459669cc15c175417a24394f07af440049c9b5598e34c"
+    },
+    {
+      "path": "test/lumo_speech_privacy_test.dart",
+      "start_line": 7,
+      "end_line": 29,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/lumo_speech_privacy_test.dart#L7-L29",
+      "git_blob_sha": "dc94d410583ae34a373cc968cdaa8fe257471ec8",
+      "sha256": "10e6c4f01a51362cad170689aaaad5cafcdafecc3ceff409e36ef9e71c8f62d0"
+    },
+    {
+      "path": "test/story_entry_navigation_test.dart",
+      "start_line": 270,
+      "end_line": 325,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/story_entry_navigation_test.dart#L270-L325",
+      "git_blob_sha": "df4d21e1d553c180a5a64d61e44510e400b3938a",
+      "sha256": "3ceae21538ce7f5b586e485937849971f92f5c70cbb4fa49bec2c29289c60384"
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "start_line": 73,
+      "end_line": 90,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/scripts/run_full_flutter_acceptance.py#L73-L90",
+      "git_blob_sha": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2"
+    }
+  ],
+  "sources": [
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "git_blob_sha": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "mode": "100644",
+      "bytes": 6130,
+      "sha256": "5a0a5e10ad2312596f1bd3ef9564e1d32803354a7e2a70b10dfe6da122e753be",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/lumo_speech_listener.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/features/reading/reading_content.dart",
+      "git_blob_sha": "33314187d201558248500457bf9179894fcfbfec",
+      "mode": "100644",
+      "bytes": 40428,
+      "sha256": "043b8cd9315c182d3c72da1a062f4d558fa677bf04327c7e4c84beae096c0538",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/reading/reading_content.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/features/reading/lumo_reading_buddy_screen.dart",
+      "git_blob_sha": "deb9ba4e9af26763516e54a44d70e56d62dc9d77",
+      "mode": "100644",
+      "bytes": 32269,
+      "sha256": "a72b123a973b9a8a056d8dc132eae4f51da73d906865ff2aaba13f2de93999a8",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/reading/lumo_reading_buddy_screen.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/core/reading_v2_pronunciation_analyzer.dart",
+      "git_blob_sha": "02c9b8a31f250feb84189d65e2b86a2b15f1313c",
+      "mode": "100644",
+      "bytes": 7580,
+      "sha256": "fc5a55ba64c3775cb9701ee36cac2e7699dd62390cbe0beb906c7a300cbd97a1",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/reading_v2_pronunciation_analyzer.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/domain/reading/reading_domain.dart",
+      "git_blob_sha": "6bacd091a447ea65248fa660a7ce2f7822c79a79",
+      "mode": "100644",
+      "bytes": 29997,
+      "sha256": "af11da477d7544b2e5cad6f0057b81df834e68afb347b3c3e306f74dae0391e0",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/reading/reading_domain.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/domain/reading/reading_attempt_history.dart",
+      "git_blob_sha": "ca1b2644821628e4b91328571731f6bbef0732cd",
+      "mode": "100644",
+      "bytes": 8185,
+      "sha256": "b69d86e508c77532f344a828cbae770bd7f2886a39321ab18508014c67aaa009",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/reading/reading_attempt_history.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/core/reading_progress_repository.dart",
+      "git_blob_sha": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "mode": "100644",
+      "bytes": 3408,
+      "sha256": "a940e16b271d04a6bf174f87b52182df8ac7c1cde7158f7daa66209b48dbd08f",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/reading_progress_repository.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "git_blob_sha": "457aed1dcc82e9c0f4462daa045b249bc735df7e",
+      "mode": "100644",
+      "bytes": 10182,
+      "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/analysis/daily_recommendation_engine.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/features/settings/parent_report_card.dart",
+      "git_blob_sha": "f88ef6349851f4bcbaebe3620914faa035ebdbba",
+      "mode": "100644",
+      "bytes": 21164,
+      "sha256": "7bc9f55e4c77cd4fd35e9fa035b40a9c64d712ecb37214a4c3ab24d9a21fe568",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/settings/parent_report_card.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/core/learning_profile_engine.dart",
+      "git_blob_sha": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+      "mode": "100644",
+      "bytes": 17450,
+      "sha256": "af40237d4f43d2cb195337aacdbd3de8abefb14094ecc31be06e1da9fe5c49be",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/learning_profile_engine.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/core/progress_repository.dart",
+      "git_blob_sha": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "mode": "100644",
+      "bytes": 13839,
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/progress_repository.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "test/reading_buddy_assessment_test.dart",
+      "git_blob_sha": "c95a9200cd3891b4e79b91d42fc191681278c169",
+      "mode": "100644",
+      "bytes": 9127,
+      "sha256": "5aadefce399a776e44d459669cc15c175417a24394f07af440049c9b5598e34c",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/reading_buddy_assessment_test.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "test/lumo_speech_privacy_test.dart",
+      "git_blob_sha": "dc94d410583ae34a373cc968cdaa8fe257471ec8",
+      "mode": "100644",
+      "bytes": 1172,
+      "sha256": "10e6c4f01a51362cad170689aaaad5cafcdafecc3ceff409e36ef9e71c8f62d0",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/lumo_speech_privacy_test.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "test/story_entry_navigation_test.dart",
+      "git_blob_sha": "df4d21e1d553c180a5a64d61e44510e400b3938a",
+      "mode": "100644",
+      "bytes": 14122,
+      "sha256": "3ceae21538ce7f5b586e485937849971f92f5c70cbb4fa49bec2c29289c60384",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/story_entry_navigation_test.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "git_blob_sha": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "mode": "100644",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/scripts/run_full_flutter_acceptance.py",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_progress.dart",
+      "git_blob_sha": "b48854f40a5df977635227635e88724c833e70a0",
+      "mode": "100644",
+      "bytes": 19947,
+      "sha256": "4009a426eb6c4fc626bf184cf8e233550c7c3de44a12a0655f77b18893a5e39b",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/learning_modules/learning_module_progress.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "git_blob_sha": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+      "mode": "100644",
+      "bytes": 57118,
+      "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/app/app_state.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    },
+    {
+      "path": "lib/domain/analysis/lumo_analysis_domain.dart",
+      "git_blob_sha": "92b3639c7b2950dfe173bd2f9be7d4e45ac3bb84",
+      "mode": "100644",
+      "bytes": 4324,
+      "sha256": "09befffdc16417e41fc96f8410952b34187a9439c1b33dd263bc1a81837643be",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/analysis/lumo_analysis_domain.dart",
+      "read_only_full_utf8_fetched_and_gitsha_verified": true
+    }
+  ],
+  "runtime_claims": {
+    "new_tests": 0,
+    "new_device_runs": 0,
+    "local_environment_calls": 0,
+    "github_writes": 0,
+    "product_mutations": 0
+  }
+}
