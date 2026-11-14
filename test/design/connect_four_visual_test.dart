@@ -15,8 +15,10 @@ void main() {
   const channel = MethodChannel('lumo_lernen/connect_four');
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(channel,
-            (_) async => throw MissingPluginException('Flutter fallback fixture'));
+        .setMockMethodCallHandler(
+            channel,
+            (_) async =>
+                throw MissingPluginException('Flutter fallback fixture'));
   });
   tearDown(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -91,8 +93,8 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 400));
         await tester.pump();
-        final cell =
-            tester.widget<Semantics>(find.byKey(ValueKey('connect-cell-5-$column')));
+        final cell = tester
+            .widget<Semantics>(find.byKey(ValueKey('connect-cell-5-$column')));
         expect(cell.properties.label,
             endsWith(column.isEven ? ': child' : ': lumo'));
       }
@@ -116,11 +118,13 @@ void main() {
           final control =
               tester.getRect(find.byKey(ValueKey('connect-column-$column')));
           expect(control.center.dx, closeTo(cell.center.dx, 1),
-              reason: 'When all 48dp targets fit, each must align with its column.');
+              reason:
+                  'When all 48dp targets fit, each must align with its column.');
         }
       } else {
         expect(tester.getSize(columnViewport).width, lessThan(7 * 48 + 24),
-            reason: 'Scrolling is only needed when seven full touch targets do not fit.');
+            reason:
+                'Scrolling is only needed when seven full touch targets do not fit.');
       }
       final folder = Platform.environment['LUMO_CONNECT_CAPTURES'];
       if (folder != null) {

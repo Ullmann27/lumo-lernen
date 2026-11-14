@@ -165,8 +165,8 @@ void main() {
       // deadline so a stuck animation still fails this complete-game test.
       for (var frame = 0; frame < 30; frame++) {
         if (find.byType(AlertDialog).evaluate().isNotEmpty ||
-            buttons.any((f) =>
-                tester.widget<IconButton>(f).onPressed != null)) {
+            buttons
+                .any((f) => tester.widget<IconButton>(f).onPressed != null)) {
           break;
         }
         await tester.pump(const Duration(milliseconds: 100));
@@ -189,7 +189,8 @@ void main() {
     expect(
         tester
             .widget<Semantics>(find.byKey(const ValueKey('connect-cell-5-0')))
-            .properties.label,
+            .properties
+            .label,
         endsWith(': child'));
     await tester.tap(find.byTooltip('Pausieren / Zurück'));
     await tester.pump();
