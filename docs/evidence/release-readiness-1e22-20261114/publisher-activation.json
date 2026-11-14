@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "status": "PREPARED_INACTIVE",
+  "prepared": {
+    "commit": "9448c47f6a82638533b4ec1e351726a9c286629e",
+    "tree": "906628abc0c7b07ebf8628c293c188818ea3b236",
+    "parent": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "source_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "entries": [
+      {
+        "path": ".github/workflows/lumo-live-2020-publish.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "73450953d8426965fd75204ea3994eaf00fdf4f5"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/publisher-apk-precheck-1e22d245.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1c51c17c90fb178719e4fe96adf30507fd904b83"
+      }
+    ],
+    "branch_created": false,
+    "workflow_activated": false,
+    "target_branch": "delivery/lumo-live-2020-20261114",
+    "source_run": 43596913210,
+    "source_attempt": 1,
+    "acceptance_status": "PENDING_ALL_SEVEN_CURRENT_JOBS",
+    "activation_allowed": false,
+    "exact_two_added_files_verified": true,
+    "parent_and_tree_verified": true,
+    "actual_commit_original_readback_verified": true,
+    "activation_sequence": [
+      {
+        "action": "create_new_branch_only_after_all_current_gates_pass",
+        "branch": "delivery/lumo-live-2020-20261114",
+        "sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      },
+      {
+        "action": "fast_forward_existing_branch_with_exact_lease",
+        "branch": "delivery/lumo-live-2020-20261114",
+        "expected_sha": "1e22d2455937e2640d1e44e153d290746f3afe49",
+        "sha": "9448c47f6a82638533b4ec1e351726a9c286629e",
+        "force": false
+      },
+      {
+        "action": "observe_actual_push_run",
+        "required_head": "9448c47f6a82638533b4ec1e351726a9c286629e",
+        "workflow": ".github/workflows/lumo-live-2020-publish.yml"
+      }
+    ],
+    "activation_reason": "Use a real source-to-publisher existing-ref update so the added workflow path is the actual push diff; do not assume branch creation alone dispatched the push workflow. This connector already produced actual push run43596910763 when central ref advanced to1e22."
+  },
+  "actual_existing_ref_push_observed": {
+    "id": 43596910763,
+    "head": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T12:52:12Z"
+  },
+  "scope": "Activation sequence only; no delivery ref or publication run created. All seven exact current jobs and original delivery verification remain mandatory."
+}

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_utc": "2026-11-14T13:22:06Z",
+  "recorded_utc": "2026-11-14 13:38:12 UTC",
   "status": "IN_PROGRESS_NOT_A_RELEASE_APPROVAL",
   "host": {
     "repository": "Ullmann27/lumo-lernen",
@@ -26,7 +26,8 @@
     ],
     "main_job": 132454178537,
     "main_active_step": 31,
-    "native_main_started_at": "2026-11-14T13:19:58Z"
+    "native_main_started_at": "2026-11-14T13:19:58Z",
+    "observed_utc": "2026-11-14 13:36:29 UTC"
   },
   "full_flutter": {
     "passed": 2627,
@@ -41,14 +42,24 @@
     "root_independent_jsonl_count_matches": true,
     "old_generic_c4_capture_states_not_valid_board_or_win_proof": true,
     "dedicated_five_layout_tests_passed": true,
-    "dedicated_five_images_visual_review_pending": true
+    "dedicated_five_images_visual_review_pending": false,
+    "evidence_commit": "8eeaa8fb12af658354fa4be77cfafab2f2745530",
+    "original_jsonl_blob": "91663763be8b17b59c907503d417399790c8bb17",
+    "dedicated_five_images_review": "All five originals viewed: free board, seven alternating bottom-row discs and all seven column controls. Actual move proof, not a win proof. Root also viewed640x360.",
+    "dedicated_artifact": {
+      "id": 14116190611,
+      "bytes": 38336679,
+      "sha256": "94d641676e8eb11e6c7b40598960013efccc3c134fcc06fdc83381e696ad999f"
+    }
   },
   "script_suite": {
     "tests": 932,
     "failed": 0,
     "skipped": 0,
     "astra_original_log_blob": "1d3644be7848d56edb554bba85d3542dbc229ccc",
-    "build_contract_artifact_id": 14115283964
+    "build_contract_artifact_id": 14115283964,
+    "build_original_log_blob": "cfedf4c06d5f2024a47e15cd05f7ace816accf38",
+    "build_evidence_commit": "0117d370d945462ba1785aa176c2dbbae39920f5"
   },
   "local_preflight": {
     "tests": 373,
@@ -86,13 +97,33 @@
     "activation_allowed": false,
     "exact_two_added_files_verified": true,
     "parent_and_tree_verified": true,
-    "actual_commit_original_readback_verified": true
+    "actual_commit_original_readback_verified": true,
+    "activation_sequence": [
+      {
+        "action": "create_new_branch_only_after_all_current_gates_pass",
+        "branch": "delivery/lumo-live-2020-20261114",
+        "sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      },
+      {
+        "action": "fast_forward_existing_branch_with_exact_lease",
+        "branch": "delivery/lumo-live-2020-20261114",
+        "expected_sha": "1e22d2455937e2640d1e44e153d290746f3afe49",
+        "sha": "9448c47f6a82638533b4ec1e351726a9c286629e",
+        "force": false
+      },
+      {
+        "action": "observe_actual_push_run",
+        "required_head": "9448c47f6a82638533b4ec1e351726a9c286629e",
+        "workflow": ".github/workflows/lumo-live-2020-publish.yml"
+      }
+    ],
+    "activation_reason": "Use a real source-to-publisher existing-ref update so the added workflow path is the actual push diff; do not assume branch creation alone dispatched the push workflow. This connector already produced actual push run43596910763 when central ref advanced to1e22."
   },
   "required_next": [
     "Finish all seven current acceptance jobs successfully.",
     "Review exact original APK, real API35 C4 and direct Village return, data-preserving update from2017, and original delivery replay.",
     "Freshly verify source/run/attempt/open PR and tag/release vacancy.",
-    "Only then create delivery/lumo-live-2020-20261114 at9448c47f6a82638533b4ec1e351726a9c286629e; do not activate old source publisher commits.",
+    "After all gates: create delivery/lumo-live-2020-20261114 at accepted Host1e22; then fast-forward with expected_sha1e22 to prepared9448 (force=false). Observe the actual push publisher run. No source changes or old publisher commits.",
     "Inspect actual publication receipts and unauthenticated public APK bytes before returning the single .apk URL."
   ],
   "signing_scope": "Existing stable test certificate; no Play-production signing or physical-device60FPS approval.",
