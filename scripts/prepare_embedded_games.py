@@ -124,6 +124,20 @@ def prepare(root: Path):
     service.set(attr('name'), service_name)
     service.set(attr('exported'), 'false')
     service.attrib.pop(attr('process'), None)
+    c4_name = namespace + '.ConnectFourGameActivity'
+    c4 = next((a for a in app.findall('activity') if a.get(attr('name')) == c4_name), None)
+    if c4 is None:
+        c4 = ET.SubElement(app, 'activity')
+    c4.attrib.update(activity.attrib)
+    c4.set(attr('name'), c4_name)
+    c4.set(attr('screenOrientation'), 'sensor')
+    c4_service_name = namespace + '.ConnectFourAuthorityService'
+    c4_service = next((a for a in app.findall('service') if a.get(attr('name')) == c4_service_name), None)
+    if c4_service is None:
+        c4_service = ET.SubElement(app, 'service')
+    c4_service.set(attr('name'), c4_service_name)
+    c4_service.set(attr('exported'), 'false')
+    c4_service.attrib.pop(attr('process'), None)
     main_activity = next((a for a in app.findall('activity') if (a.get(attr('name')) or '').endswith('MainActivity')), None)
     if main_activity is not None:
         main_activity.set(attr('resizeableActivity'), 'true')
@@ -143,7 +157,7 @@ def prepare(root: Path):
     gradle.write_text(text)
     target = main / 'kotlin' / Path(*namespace.split('.'))
     target.mkdir(parents=True, exist_ok=True)
-    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt'):
+    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'ConnectFourBridge.kt', 'ConnectFourAuthorityService.kt', 'ConnectFourGameActivity.kt'):
         source = (root / 'tools/auto_install' / filename).read_text()
         (target / filename).write_text(re.sub(r'^package [^\n]+', f'package {namespace}', source, count=1))
     java_target = main / 'java' / Path(*namespace.split('.'))
@@ -164,6 +178,8 @@ def prepare(root: Path):
     rules = root / 'android/app/proguard-rules.pro'
     existing = rules.read_text() if rules.exists() else ''
     required_rules = (
+        ('C4 Godot methods are reflected in its isolated Activity.',
+         '-keep class ' + namespace + '.ConnectFourHostPlugin { *; }'),
         ('Godot registers the host methods through reflection.',
          '-keep class ' + namespace + '.LumoHostPlugin { *; }'),
         # Godot's native library resolves Java classes and callbacks by their

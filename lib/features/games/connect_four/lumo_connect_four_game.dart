@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
@@ -9,12 +10,22 @@ import '../../../core/lumo_voice.dart';
 import '../../../widgets/design/lumo_motion.dart';
 import '../shared/lumo_game_pause_scope.dart';
 import 'connect_four_engine.dart';
+import 'connect_four_round.dart';
+import 'connect_four_table_session.dart';
+import '../../lumo3d/lumo3d_launcher.dart';
 import 'lumo_connect_four_stage.dart';
 
 const _cyan = Color(0xFF53DDFD);
 const _gold = Color(0xFFFFD166);
 const _ink = Color(0xFF071A3D);
 const _panel = Color(0xEB0C2C58);
+const _connectBoardPadding = 10.0;
+const _connectBoardBorderWidth = 2.4;
+const _connectBoardInset = _connectBoardPadding + _connectBoardBorderWidth;
+const _connectColumnTouchSize = 48.0;
+const _connectMinimumBoardHeight = 6 * 24.0 + 2 * _connectBoardInset;
+const _connectPlayChromeHeight = 28.0 + 8.0 + _connectColumnTouchSize;
+
 
 class LumoConnectFourScreen extends StatefulWidget {
   const LumoConnectFourScreen({super.key, required this.appState, this.seed});
@@ -28,7 +39,152 @@ class LumoConnectFourScreen extends StatefulWidget {
 
 class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     with SingleTickerProviderStateMixin {
-  ConnectFourEngine _game = ConnectFourEngine();
+  final ConnectFourEngine _empty = ConnectFourEngine();
+  ConnectFourRoundController? _controller;
+  LearningProfileLease? _owner;
+  ConnectFourEngine get _game => _controller?.engine ?? _empty;
+  bool _loading = true;
+  bool _nativeOpening = false;
+  bool _nativeUnavailable = false;
+  String? _loadError;
+  ConnectFourTableSession? _nativeSession;
+
+  bool _currentOwner() =>
+      mounted &&
+      _owner != null &&
+      !widget.appState.resetting &&
+      widget.appState.canUseLearningLease(_owner!) &&
+      widget.appState.profileGeneration == _owner!.generation &&
+      widget.appState.school.cachedActiveStudentId ==
+          (_owner!.logStudentId == 'self' ? null : _owner!.studentId);
+
+  Future<void> _initializeRound() async {
+    try {
+      final owner = await widget.appState.captureLearningProfile();
+      if (!mounted) return;
+      _owner = owner;
+      if (!_currentOwner()) throw StateError('Kinderprofil hat gewechselt');
+      final controller = await ConnectFourRoundController.open(
+        studentId: owner.studentId,
+        canUseProfile: _currentOwner,
+        seed: widget.seed,
+        award: (id, stars, xp) => widget.appState.recordConnectFourResult(
+            lease: owner, resultId: id, stars: stars, xp: xp),
+      );
+      if (!_currentOwner()) {
+        controller.dispose();
+        return;
+      }
+      _controller = controller;
+      setState(() {
+        _loading = false;
+        _loadError = null;
+        _syncRound();
+      });
+      unawaited(LumoVoice.instance
+          .speak(controller.announcement, style: VoiceStyle.greeting));
+      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+        await _openNative();
+      } else if (_game.phase == ConnectPhase.playing &&
+          !_twoPlayers &&
+          _game.turn == ConnectPiece.lumo) {
+        _resumeBot();
+      }
+    } catch (_) {
+      if (mounted)
+        setState(() {
+          _loading = false;
+          _loadError =
+              'Deine gespeicherte Runde konnte nicht sicher geladen werden. '
+              'Die vorhandenen Daten bleiben erhalten.';
+        });
+    }
+  }
+
+  void _syncRound() {
+    final controller = _controller;
+    if (controller == null) return;
+    _twoPlayers = controller.round.twoPlayers;
+    _lumoLevel = controller.round.level;
+    _completedChildMoves = (_game.moves + 1) ~/ 2;
+    _message = _game.phase == ConnectPhase.draw
+        ? 'Unentschieden. Stark gespielt!'
+        : _game.phase == ConnectPhase.won
+            ? (_game.turn == ConnectPiece.child
+                ? 'Du gewinnst!'
+                : _twoPlayers
+                    ? 'Gold gewinnt!'
+                    : 'Lumo gewinnt!')
+            : _game.turn == ConnectPiece.child
+                ? 'Du bist dran!'
+                : _twoPlayers
+                    ? 'Gold ist dran!'
+                    : 'Lumo denkt nach …';
+  }
+
+  void _resumeBot() {
+    final generation = _round;
+    _busy = true;
+    _clock.schedule(const Duration(milliseconds: 540), () {
+      if (!_currentOwner() || generation != _round || _nativeOpening) return;
+      final column = _game.chooseLumoColumn(_random, level: _lumoLevel);
+      if (column != null) _place(column);
+    });
+  }
+
+  Future<void> _openNative() async {
+    if (_controller == null || !_currentOwner() || _nativeOpening || _busy)
+      return;
+    _clock.pause();
+    _clock.cancel();
+    _round++;
+    _fall.stop();
+    setState(() => _nativeOpening = true);
+    final session = ConnectFourTableSession(
+        controller: _controller!, reduceMotion: _reduced);
+    _nativeSession = session;
+    var opened = false;
+    try {
+      await session.open();
+      if (_currentOwner())
+        opened = await launchLumo3D(context,
+            scene: 'connect_four',
+            appState: widget.appState,
+            connectFourToken: session.token);
+    } catch (_) {
+      opened = false;
+    } finally {
+      await session.close();
+      _nativeSession = null;
+      if (mounted)
+        setState(() {
+          _nativeOpening = false;
+          _fallPosition = null;
+          _busy = false;
+          _syncRound();
+          if (!opened) _nativeUnavailable = true;
+        });
+    }
+    if (!_currentOwner()) {
+      if (mounted)
+        setState(() => _loadError =
+            'Das Kinderprofil hat gewechselt. Bitte zur Spielewelt zurückkehren.');
+      return;
+    }
+    // Actual native return leaves the same Dart round explicitly paused.
+    // Missing native integration falls back to the existing Flutter board.
+    if (!opened) {
+      _clock.resume();
+      if (!_twoPlayers &&
+          _game.turn == ConnectPiece.lumo &&
+          _game.phase == ConnectPhase.playing) _resumeBot();
+    } else if (!_twoPlayers &&
+        _game.turn == ConnectPiece.lumo &&
+        _game.phase == ConnectPhase.playing) {
+      _resumeBot(); // scheduled but paused until the child chooses Fortsetzen
+    }
+  }
+
   final _clock = LumoGameTurnClock();
   late final math.Random _random;
   late final AnimationController _fall;
@@ -41,7 +197,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   int? _winReplayIndex;
   int _round = 0;
   int _completedChildMoves = 0;
-  String _message = 'Vier in einer Reihe. Du fängst an!';
+  String _message = 'Deine gespeicherte Runde wird geladen …';
 
   bool get _reduced =>
       widget.appState.state.settings.reduceAnimations ||
@@ -54,14 +210,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     _random = widget.seed == null ? math.Random() : math.Random(widget.seed);
     _fall = AnimationController(vsync: this);
     _clock.addListener(_pauseChanged);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        unawaited(LumoVoice.instance.speak(
-          'Vier gewinnt! Du spielst mit Cyan, Lumo mit Gold. Du fängst an!',
-          style: VoiceStyle.greeting,
-        ));
-      }
-    });
+    unawaited(_initializeRound());
   }
 
   void _pauseChanged() {
@@ -77,6 +226,8 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   @override
   void dispose() {
     _round++;
+    unawaited(_nativeSession?.close());
+    _controller?.dispose();
     _clock.removeListener(_pauseChanged);
     _clock.dispose();
     _fall.dispose();
@@ -85,39 +236,84 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   }
 
   void _restart() {
+    unawaited(_restartRound());
+  }
+
+  Future<void> _restartRound({bool? twoPlayers}) async {
+    if (_controller == null || !_currentOwner() || _nativeOpening) return;
     _round++;
     _clock.cancel();
     _fall.stop();
-    _fall.reset();
-    unawaited(LumoVoice.instance.stop());
+    setState(() => _busy = true);
+    try {
+      await _controller!.restart(twoPlayers: twoPlayers);
+      if (!_currentOwner()) return;
+      setState(() {
+        _fall.reset();
+        _fallPosition = null;
+        _fallPiece = ConnectPiece.empty;
+        _busy = false;
+        _rewarded = false;
+        _winReplayIndex = null;
+        _syncRound();
+      });
+    } catch (_) {
+      _saveError();
+    }
+  }
+
+  void _saveError() {
+    if (!mounted) return;
+    _clock.pause();
     setState(() {
-      _game = ConnectFourEngine();
-      _fallPosition = null;
-      _fallPiece = ConnectPiece.empty;
       _busy = false;
-      _rewarded = false;
-      _completedChildMoves = 0;
-      _winReplayIndex = null;
-      _message = 'Neues Spiel. Du fängst an!';
+      _message = 'Speichern noch nicht bestätigt. Bitte erneut versuchen.';
     });
   }
 
   void _setMode(bool twoPlayers) {
-    if (_twoPlayers == twoPlayers) return;
-    _twoPlayers = twoPlayers;
-    _restart();
+    if (_twoPlayers != twoPlayers && !_busy)
+      unawaited(_restartRound(twoPlayers: twoPlayers));
+  }
+
+  Future<void> _setLevel(ConnectLumoLevel level) async {
+    if (_controller == null || !_currentOwner() || _busy) return;
+    try {
+      await _controller!.setLevel(level);
+      if (_currentOwner()) setState(_syncRound);
+    } catch (_) {
+      _saveError();
+    }
   }
 
   void _tapColumn(int column) {
-    if (_clock.value || _busy || _game.phase != ConnectPhase.playing) return;
+    if (!_currentOwner() ||
+        _nativeOpening ||
+        _clock.value ||
+        _busy ||
+        _game.phase != ConnectPhase.playing) return;
     if (!_twoPlayers && _game.turn == ConnectPiece.lumo) return;
     _place(column);
   }
 
-  void _place(int column) {
+  Future<void> _place(int column) async {
+    if (!_currentOwner() || _controller == null || _nativeOpening) return;
     final piece = _game.turn;
-    final position = _game.drop(column);
-    if (position == null) return;
+    final generation = _round;
+    setState(() => _busy = true);
+    ConnectPosition? position;
+    try {
+      position = await _controller!
+          .play(column, bot: !_twoPlayers && piece == ConnectPiece.lumo);
+    } catch (_) {
+      _saveError();
+      return;
+    }
+    if (!_currentOwner() || generation != _round) return;
+    if (position == null) {
+      setState(() => _busy = false);
+      return;
+    }
     if (piece == ConnectPiece.child) _completedChildMoves++;
     final round = _round;
     final duration = _reduced
@@ -139,8 +335,8 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     unawaited(HapticFeedback.lightImpact().catchError((_) {}));
     // The same pausable clock controls landing and the bot. An animation
     // callback from an abandoned round can never advance a new game.
-    _clock.schedule(duration, () {
-      if (!mounted || round != _round) return;
+    void land() {
+      if (!_currentOwner() || round != _round || _nativeOpening) return;
       _fall.value = 1;
       setState(() => _fallPosition = null);
       if (_game.phase != ConnectPhase.playing) {
@@ -148,7 +344,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       } else if (!_twoPlayers && _game.turn == ConnectPiece.lumo) {
         setState(() => _message = 'Lumo denkt nach …');
         _clock.schedule(const Duration(milliseconds: 540), () {
-          if (!mounted || round != _round) return;
+          if (!_currentOwner() || round != _round || _nativeOpening) return;
           final next = _game.chooseLumoColumn(_random, level: _lumoLevel);
           if (next != null) _place(next);
         });
@@ -171,7 +367,13 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
           ));
         }
       }
-    });
+    }
+
+    if (duration == Duration.zero && !_clock.value) {
+      land();
+    } else {
+      _clock.schedule(duration, land);
+    }
   }
 
   void _finish() {
@@ -184,8 +386,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         : childWon || _twoPlayers
             ? 5
             : 2;
-    widget.appState.addStars(stars);
-    widget.appState.addXp(drawn ? 20 : stars * 8);
+    // The shared controller already persisted this result exactly once.
     setState(() {
       _busy = true;
       _message = drawn
@@ -277,55 +478,95 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   }
 
   @override
-  Widget build(BuildContext context) => LumoGamePauseScope(
-        clock: _clock,
-        onRestart: _restart,
-        child: Scaffold(
-          backgroundColor: _ink,
-          body: Stack(fit: StackFit.expand, children: [
-            const LumoConnectFourRoom(),
-            SafeArea(
-              child: LayoutBuilder(builder: (context, constraints) {
-                final wide = constraints.maxWidth > constraints.maxHeight;
-                return Column(children: [
-                  _header(),
-                  if (!wide) _modes(),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: wide ? 20 : 12, vertical: 8),
-                      child: wide
-                          ? Row(children: [
-                              Expanded(flex: 3, child: _playArea()),
-                              const SizedBox(width: 20),
-                              Expanded(flex: 2, child: _companion(wide: true)),
-                            ])
-                          : Builder(builder: (context) {
-                              final companionH = math.min(
-                                  222.0,
-                                  math.max(
-                                      152.0, constraints.maxHeight * 0.24));
-                              return Column(children: [
-                                _turnLabel(),
-                                const SizedBox(height: 8),
-                                Expanded(child: _playArea()),
-                                const SizedBox(height: 6),
-                                SizedBox(
-                                  height: companionH,
-                                  child: _companion(
-                                      wide: false, height: companionH),
-                                ),
-                              ]);
-                            }),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                ]);
-              }),
-            ),
-          ]),
-        ),
+  Widget build(BuildContext context) {
+    if (_loading || _loadError != null)
+      return Scaffold(
+        backgroundColor: _ink,
+        appBar: AppBar(title: const Text('Vier gewinnt')),
+        body: Center(
+            child: _loading
+                ? const CircularProgressIndicator()
+                : Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text(_loadError!,
+                        style: const TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center))),
       );
+    return LumoGamePauseScope(
+      clock: _clock,
+      onRestart: _restart,
+      child: Scaffold(
+        backgroundColor: _ink,
+        body: Stack(fit: StackFit.expand, children: [
+          const LumoConnectFourRoom(),
+          SafeArea(
+            child: LayoutBuilder(builder: (context, constraints) {
+              final wide = constraints.maxWidth > constraints.maxHeight;
+              if (!wide) {
+                final companionH = math.min(
+                    222.0, math.max(152.0, constraints.maxHeight * 0.24));
+                return CustomScrollView(
+                  key: const ValueKey('connect-portrait-scroll'),
+                  slivers: [
+                    SliverToBoxAdapter(child: _header()),
+                    SliverToBoxAdapter(child: _modes()),
+                    SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      sliver: SliverToBoxAdapter(child: _turnLabel()),
+                    ),
+                    const SliverToBoxAdapter(child: SizedBox(height: 8)),
+                    SliverLayoutBuilder(builder: (context, viewport) {
+                      // Reserve the actual preceding header/mode/text extent,
+                      // so large text can scroll without hiding the play area.
+                      final playHeight = math.max(
+                          _connectMinimumBoardHeight + _connectPlayChromeHeight,
+                          viewport.viewportMainAxisExtent -
+                              viewport.precedingScrollExtent -
+                              companionH -
+                              22.0);
+                      return SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        sliver: SliverToBoxAdapter(
+                          child: SizedBox(
+                            height: playHeight,
+                            child: _playArea(),
+                          ),
+                        ),
+                      );
+                    }),
+                    SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
+                      sliver: SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: companionH,
+                          child: _companion(wide: false, height: companionH),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }
+              return Column(children: [
+                _header(),
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    child: Row(children: [
+                      Expanded(flex: 3, child: _playArea()),
+                      const SizedBox(width: 20),
+                      Expanded(flex: 2, child: _companion(wide: true)),
+                    ]),
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ]);
+            }),
+          ),
+        ]),
+      ),
+    );
+  }
 
   Widget _header() => Container(
         color: const Color(0xAA071A3D),
@@ -350,6 +591,17 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                     fontWeight: FontWeight.w900,
                     color: Color(0xFFFFF0C6))),
           ),
+          if (!kIsWeb &&
+              defaultTargetPlatform == TargetPlatform.android &&
+              !_nativeUnavailable)
+            IconButton(
+              key: const ValueKey('connect-open-native'),
+              tooltip: 'In 3D weiterspielen',
+              onPressed: _busy || _nativeOpening
+                  ? null
+                  : () => unawaited(_openNative()),
+              icon: const Icon(Icons.view_in_ar, color: _gold),
+            ),
           LumoPressable(
             radius: 14,
             child: IconButton(
@@ -386,7 +638,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                     ),
                     onPressed: () {
                       if (_lumoLevel == level) return;
-                      setState(() => _lumoLevel = level);
+                      unawaited(_setLevel(level));
                     },
                     child: Text(switch (level) {
                       ConnectLumoLevel.leicht => 'Leicht',
@@ -404,7 +656,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                 child: FilledButton(
                   key: ValueKey('connect-mode-${mode.$1}'),
                   style: FilledButton.styleFrom(
-                    minimumSize: Size(compact ? 104 : 116, 44),
+                    minimumSize: Size(compact ? 104 : 116, 48),
                     textStyle: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 16,
@@ -628,249 +880,246 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
 
   Widget _playArea() => LayoutBuilder(builder: (context, constraints) {
         const tableExtra = 28.0;
-        final availableHeight =
-            math.max(0.0, constraints.maxHeight - 56 - tableExtra);
-        final width = math.min(constraints.maxWidth, availableHeight * 7 / 6);
-        return Align(
-          alignment: Alignment.topCenter,
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            SizedBox(
-              width: width,
-              height: width * 6 / 7 + tableExtra,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    left: -18,
-                    right: -18,
-                    bottom: 0,
-                    height: width * 6 / 7 * 0.42 + tableExtra,
-                    child: const IgnorePointer(
-                      child: CustomPaint(
-                        painter: LumoConnectFourTablePedestal(),
-                        child: SizedBox.expand(),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: width * 6 / 7,
-                    child: _board(),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
-            SizedBox(
-              width: width,
-              child: _columnControls(
-                  maxWidth: width,
-                  protectNarrowTouchTargets:
-                      MediaQuery.sizeOf(context).width <= 360 &&
-                          MediaQuery.orientationOf(context) ==
-                              Orientation.portrait),
-            ),
-          ]),
-        );
-      });
-
-  Widget _columnControls(
-          {double maxWidth = 560, bool protectNarrowTouchTargets = false}) =>
-      Center(
-        // On an outer Fold display (or a small phone with large text), seven
-        // minimum 44dp touch targets cannot always fit side-by-side.
-        // Keep every real column control accessible by horizontal scrolling
-        // instead of compressing its hit target or overflowing the viewport.
-        child: SizedBox(
-          width: maxWidth,
+        final availableHeight = math.max(_connectMinimumBoardHeight,
+            constraints.maxHeight - _connectPlayChromeHeight);
+        final width = math.max(
+            ConnectFourEngine.columns * _connectColumnTouchSize +
+                2 * _connectBoardInset,
+            math.min(constraints.maxWidth, availableHeight * 7 / 6));
+        final boardHeight = math.min(width * 6 / 7, availableHeight);
+        final contentHeight = boardHeight + _connectPlayChromeHeight;
+        final stage = SizedBox(
+          width: math.min(constraints.maxWidth, width),
+          height: contentHeight,
           child: SingleChildScrollView(
             key: const ValueKey('connect-column-scroll'),
             scrollDirection: Axis.horizontal,
             child: SizedBox(
-              width: math.max(
-                  maxWidth,
-                  protectNarrowTouchTargets
-                      ? ConnectFourEngine.columns * 44.0 + 24.0
-                      : maxWidth),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Row(children: [
-                  for (var c = 0; c < ConnectFourEngine.columns; c++)
-                    Expanded(
-                      child: LumoPressable(
-                        enabled: !_busy && !_clock.value,
-                        radius: 12,
-                        child: IconButton(
-                          key: ValueKey('connect-column-$c'),
-                          tooltip: 'Stein in Spalte ${c + 1}',
-                          style: IconButton.styleFrom(
-                            backgroundColor: _panel,
-                            minimumSize: const Size(44, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: BorderSide(
-                                  color: _cyan.withValues(alpha: .5)),
-                            ),
+              width: width,
+              height: contentHeight,
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                SizedBox(
+                  width: width,
+                  height: boardHeight + tableExtra,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Positioned(
+                        left: -18,
+                        right: -18,
+                        bottom: 0,
+                        height: boardHeight * 0.42 + tableExtra,
+                        child: const IgnorePointer(
+                          child: CustomPaint(
+                            painter: LumoConnectFourTablePedestal(),
+                            child: SizedBox.expand(),
                           ),
-                          onPressed: !_busy &&
-                                  !_clock.value &&
-                                  _game.phase == ConnectPhase.playing &&
-                                  _game.validColumns.contains(c)
-                              ? () => _tapColumn(c)
-                              : null,
-                          icon: Icon(Icons.arrow_downward_rounded,
-                              size: 24,
-                              color: _busy
-                                  ? Colors.white24
-                                  : _game.turn == ConnectPiece.child
-                                      ? _cyan
-                                      : _gold),
                         ),
                       ),
-                    ),
-                ]),
-              ),
-            ),
-          ),
-        ),
-      );
-
-  Widget _board() => Center(
-        child: AspectRatio(
-          aspectRatio: 7 / 6,
-          child: RepaintBoundary(
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Positioned(
-                  top: 16,
-                  right: -12,
-                  bottom: -10,
-                  width: 16,
-                  child: IgnorePointer(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.horizontal(
-                            right: Radius.circular(10)),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Color(0xFF0A4A86), Color(0xFF041226)],
-                        ),
-                        border: Border.all(color: const Color(0x6648D0F0)),
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: boardHeight,
+                        child: _board(),
                       ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 12,
-                  right: -8,
-                  bottom: -14,
-                  height: 16,
-                  child: IgnorePointer(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.vertical(bottom: Radius.circular(12)),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Color(0xFF0C3A6A), Color(0xFF030A18)],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: const Color(0xE0081636),
-                    borderRadius: BorderRadius.circular(26),
-                    border:
-                        Border.all(color: const Color(0xFF8AF0FF), width: 2.4),
-                    boxShadow: const [
-                      BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
-                      BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
-                      BoxShadow(
-                          color: Color(0x90051633),
-                          blurRadius: 14,
-                          offset: Offset(0, 8)),
                     ],
                   ),
-                  child: LayoutBuilder(builder: (context, constraints) {
-                    final w = constraints.maxWidth / 7;
-                    final h = constraints.maxHeight / 6;
-                    final diameter = math.min(w, h) * .80;
-                    return GestureDetector(
-                      key: const ValueKey('connect-board-tap-area'),
-                      behavior: HitTestBehavior.opaque,
-                      onTapUp: (details) =>
-                          _tapColumn((details.localPosition.dx / w).floor()),
-                      child: Stack(clipBehavior: Clip.none, children: [
-                        for (var r = 0; r < 6; r++)
-                          for (var c = 0; c < 7; c++)
-                            Positioned(
-                              left: c * w + (w - diameter) / 2,
-                              top: r * h + (h - diameter) / 2,
-                              width: diameter,
-                              height: diameter,
-                              child: Semantics(
-                                key: ValueKey('connect-cell-$r-$c'),
-                                label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
-                                    '${_game.at(r, c).name}',
-                                child: _disc(
-                                  _fallPosition == (row: r, column: c)
-                                      ? ConnectPiece.empty
-                                      : _game.at(r, c),
-                                  winner: _game.winningLine
-                                      .contains((row: r, column: c)),
-                                  replayFocus: _winReplayIndex != null &&
-                                      _winReplayIndex! <
-                                          _game.winningLine.length &&
-                                      _game.winningLine[_winReplayIndex!] ==
-                                          (row: r, column: c),
-                                ),
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: width,
+                  height: _connectColumnTouchSize,
+                  child: _columnControls(),
+                ),
+              ]),
+            ),
+          ),
+        );
+        return Align(
+          alignment: Alignment.topCenter,
+          child: contentHeight > constraints.maxHeight
+              ? SingleChildScrollView(
+                  key: const ValueKey('connect-play-vertical-scroll'),
+                  primary: false,
+                  child: stage,
+                )
+              : stage,
+        );
+      });
+
+  Widget _columnControls() => Padding(
+        // Board cells and controls share both this inset and one scroll offset.
+        padding: const EdgeInsets.symmetric(horizontal: _connectBoardInset),
+        child: Row(children: [
+          for (var c = 0; c < ConnectFourEngine.columns; c++)
+            Expanded(
+              child: LumoPressable(
+                enabled: !_busy && !_clock.value,
+                radius: 12,
+                child: IconButton(
+                  key: ValueKey('connect-column-$c'),
+                  tooltip: 'Stein in Spalte ${c + 1}',
+                  style: IconButton.styleFrom(
+                    backgroundColor: _panel,
+                    minimumSize: const Size(
+                        _connectColumnTouchSize, _connectColumnTouchSize),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(color: _cyan.withValues(alpha: .5)),
+                    ),
+                  ),
+                  onPressed: !_busy &&
+                          !_clock.value &&
+                          _game.phase == ConnectPhase.playing &&
+                          _game.validColumns.contains(c)
+                      ? () => _tapColumn(c)
+                      : null,
+                  icon: Icon(Icons.arrow_downward_rounded,
+                      size: 24,
+                      color: _busy
+                          ? Colors.white24
+                          : _game.turn == ConnectPiece.child
+                              ? _cyan
+                              : _gold),
+                ),
+              ),
+            ),
+        ]),
+      );
+
+  Widget _board() => SizedBox.expand(
+        child: RepaintBoundary(
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Positioned(
+                top: 16,
+                right: -12,
+                bottom: -10,
+                width: 16,
+                child: IgnorePointer(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.horizontal(
+                          right: Radius.circular(10)),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0xFF0A4A86), Color(0xFF041226)],
+                      ),
+                      border: Border.all(color: const Color(0x6648D0F0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 12,
+                right: -8,
+                bottom: -14,
+                height: 16,
+                child: IgnorePointer(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(12)),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0xFF0C3A6A), Color(0xFF030A18)],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(_connectBoardPadding),
+                decoration: BoxDecoration(
+                  color: const Color(0xE0081636),
+                  borderRadius: BorderRadius.circular(26),
+                  border: Border.all(
+                      color: const Color(0xFF8AF0FF),
+                      width: _connectBoardBorderWidth),
+                  boxShadow: const [
+                    BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
+                    BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
+                    BoxShadow(
+                        color: Color(0x90051633),
+                        blurRadius: 14,
+                        offset: Offset(0, 8)),
+                  ],
+                ),
+                child: LayoutBuilder(builder: (context, constraints) {
+                  final w = constraints.maxWidth / 7;
+                  final h = constraints.maxHeight / 6;
+                  final diameter = math.min(w, h) * .80;
+                  return GestureDetector(
+                    key: const ValueKey('connect-board-tap-area'),
+                    behavior: HitTestBehavior.opaque,
+                    onTapUp: (details) =>
+                        _tapColumn((details.localPosition.dx / w).floor()),
+                    child: Stack(clipBehavior: Clip.none, children: [
+                      for (var r = 0; r < 6; r++)
+                        for (var c = 0; c < 7; c++)
+                          Positioned(
+                            left: c * w + (w - diameter) / 2,
+                            top: r * h + (h - diameter) / 2,
+                            width: diameter,
+                            height: diameter,
+                            child: Semantics(
+                              key: ValueKey('connect-cell-$r-$c'),
+                              label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
+                                  '${_game.at(r, c).name}',
+                              child: _disc(
+                                _fallPosition == (row: r, column: c)
+                                    ? ConnectPiece.empty
+                                    : _game.at(r, c),
+                                winner: _game.winningLine
+                                    .contains((row: r, column: c)),
+                                replayFocus: _winReplayIndex != null &&
+                                    _winReplayIndex! <
+                                        _game.winningLine.length &&
+                                    _game.winningLine[_winReplayIndex!] ==
+                                        (row: r, column: c),
                               ),
                             ),
-                        if (_fallPosition case final position?)
-                          AnimatedBuilder(
-                            animation: _fall,
-                            builder: (context, _) {
-                              final progress = Curves.bounceOut
-                                  .transform(_fall.value.clamp(0, 1));
-                              final top = -diameter +
-                                  (position.row * h +
-                                          (h - diameter) / 2 +
-                                          diameter) *
-                                      progress;
-                              return Positioned(
-                                left: position.column * w + (w - diameter) / 2,
-                                top: top,
-                                width: diameter,
-                                height: diameter,
-                                child: _disc(_fallPiece),
-                              );
-                            },
                           ),
-                        const Positioned.fill(
-                          child: IgnorePointer(
-                            child: CustomPaint(
-                              painter: LumoConnectFourGlassPlate(
-                                columns: ConnectFourEngine.columns,
-                                rows: ConnectFourEngine.rows,
-                                diameterFactor: .80,
-                              ),
+                      if (_fallPosition case final position?)
+                        AnimatedBuilder(
+                          animation: _fall,
+                          builder: (context, _) {
+                            final progress = Curves.bounceOut
+                                .transform(_fall.value.clamp(0, 1));
+                            final top = -diameter +
+                                (position.row * h +
+                                        (h - diameter) / 2 +
+                                        diameter) *
+                                    progress;
+                            return Positioned(
+                              left: position.column * w + (w - diameter) / 2,
+                              top: top,
+                              width: diameter,
+                              height: diameter,
+                              child: _disc(_fallPiece),
+                            );
+                          },
+                        ),
+                      const Positioned.fill(
+                        child: IgnorePointer(
+                          child: CustomPaint(
+                            painter: LumoConnectFourGlassPlate(
+                              columns: ConnectFourEngine.columns,
+                              rows: ConnectFourEngine.rows,
+                              diameterFactor: .80,
                             ),
                           ),
                         ),
-                      ]),
-                    );
-                  }),
-                ),
-              ],
-            ),
+                      ),
+                    ]),
+                  );
+                }),
+              ),
+            ],
           ),
         ),
       );

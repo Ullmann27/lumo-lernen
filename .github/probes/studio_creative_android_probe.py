@@ -145,7 +145,18 @@ def approach_treasure(before: dict, move, checkpoint, journal: Path,
         write(journal, evidence)
 
 
-def verify_candidate_metadata(run: dict, artifacts: dict, jobs: dict, expected: dict) -> dict:
+def studio_contract(version: int = 2019) -> tuple[int, str, str, str]:
+    """Version, APK name and builder workflow are one explicit contract."""
+    require(type(version) is int and version in (2019, 2020),
+            'Unsupported explicit Studio version')
+    if version == 2019:
+        return (2019, '0.13.7', 'lumo-studio-2019-candidate', '.github/workflows/lumo-studio-2019.yml')
+    return (2020, '0.13.8', 'lumo-studio-2020-candidate', '.github/workflows/lumo-studio-2020.yml')
+
+
+def verify_candidate_metadata(run: dict, artifacts: dict, jobs: dict, expected: dict,
+                              *, studio_version: int = 2019) -> dict:
+    _, _, artifact_name, workflow = studio_contract(studio_version)
     host, native, run_id = (expected.get(key) for key in ('host_source', 'native_source', 'build_run'))
     require(all(isinstance(value, str) and re.fullmatch(r'[a-f0-9]{40}', value)
                 for value in (host, native)), 'Immutable source SHAs are required')
@@ -159,9 +170,9 @@ def verify_candidate_metadata(run: dict, artifacts: dict, jobs: dict, expected: 
             'Candidate run is not the immutable requested host source')
     require(run.get('repository', {}).get('full_name') == 'Ullmann27/lumo-lernen',
             'Candidate run belongs to another repository')
-    require(run.get('path') == '.github/workflows/lumo-studio-2019.yml',
+    require(run.get('path') == workflow,
             'Candidate was not built by the current Studio workflow')
-    rows = [x for x in artifacts.get('artifacts', []) if x.get('name') == ARTIFACT]
+    rows = [x for x in artifacts.get('artifacts', []) if x.get('name') == artifact_name]
     require(len(rows) == 1, 'Exactly one real candidate artifact is required')
     artifact = rows[0]
     require(artifact.get('id') == expected['artifact_id']
@@ -195,7 +206,8 @@ def candidate_binding(args) -> dict:
                 'artifact_digest': 'sha256:' + args.artifact_digest.removeprefix('sha256:')}
     return verify_candidate_metadata(*[
         json.loads((args.metadata_dir / name).read_text())
-        for name in ('run.json', 'artifacts.json', 'jobs.json')], expected)
+        for name in ('run.json', 'artifacts.json', 'jobs.json')], expected,
+        studio_version=getattr(args, 'studio_version', 2019))
 
 
 def committed_helper(source: Path, module, relative: str) -> None:
@@ -384,7 +396,7 @@ def stick_target(image: Image.Image) -> dict:
     for group in groups:
         x0, y0, x1, y1 = group['bounds']
         w, h = x1 - x0, y1 - y0
-        if not (.80 < w / h < 1.22 and w / scale >= max(65, image.height * .13)
+        if not (.80 < w / h < 1.22 and w / scale >= max(65, min(image.size) * .13)
                 and .12 < group['area'] / (w * h) < .70):
             continue
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
@@ -420,8 +432,11 @@ def puzzle_piece_target(image: Image.Image, saved: dict) -> dict:
     require(image.width > image.height and saved.get('count') == 6
             and saved.get('motif') == 1, 'This observed-board probe requires six-piece motif1 landscape')
     groups, scale = components(image,
-        lambda r, g, b: 8 <= r <= 36 and 20 <= g <= 55 and 55 <= b <= 115
-        and b > g * 1.5,
+        # The exact803 unshaded1a2748 felt is tone-mapped to roughly
+        # 47/55/87 in the original Android frame. Retain a bounded navy hue,
+        # the unique central contour and the independently observed tray hit.
+        lambda r, g, b: 18 <= r <= 65 and 28 <= g <= 80 and 60 <= b <= 125
+        and b > g * 1.32 and b > r * 1.45,
         (.15, .27, .85, .88))
     candidates = []
     for group in groups:
@@ -656,6 +671,75 @@ class Tour:
                 time.sleep(.8)
         raise RuntimeError('Current live hub tile not available: ' + title)
 
+    def scene_entry(self, header, *, orientation='landscape'):
+        """Observe an actual stable scene before any subsequent Back input.
+
+        Boot intentionally uses the game's title above its loading artwork.
+        A title alone is therefore insufficient. Keep a bounded120s budget
+        and at most the original ten observations; never tap a guessed point.
+        """
+        tag = self.tag('scene-entry-' + self.probe.normalized(header))
+        report = {'header': header, 'status': 'OBSERVING', 'frames': [],
+                  'timeout_seconds': 120, 'maximum_observations': 10,
+                  'orientation': orientation, 'input_sent': False}
+        started = time.monotonic()
+        deadline = started + 120
+        previous = None
+        wanted = self.probe.normalized(header)
+        loading_captions = tuple(self.probe.normalized(text) for text in (
+            'Spielwelt wird vorbereitet', 'Dein Spiel wird vorbereitet',
+            'Dein nächstes Abenteuer', 'Rennwelt wird vorbereitet'))
+        try:
+            for attempt in range(10):
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                frame_tag = f'{tag}-{attempt}'
+                shot = self.probe.capture(self.out, frame_tag, timeout=min(45, remaining))
+                path = self.out / shot['file']
+                frame = self.probe.inspect_surface(path, orientation=orientation)
+                observed = {'capture': shot, 'surface': frame,
+                            'stable_observed_target': False}
+                report['frames'].append(observed)
+                if not frame['acceptable_for_target_sampling']:
+                    previous = None
+                    observed['reason'] = 'Current scene surface is not complete'
+                else:
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    lines = self.probe.image_lines(self.out, frame_tag, wanted,
+                        source_path=path, timeout=min(45, remaining))
+                    covers = [line for line in lines if any(
+                        marker in self.probe.normalized(line['text'])
+                        for marker in loading_captions)]
+                    matches = [line for line in lines
+                               if wanted in self.probe.normalized(line['text'])]
+                    observed['loading_captions'] = covers
+                    if covers or not matches:
+                        previous = None
+                        observed['reason'] = ('Actual loading cover is still visible' if covers
+                                              else 'Actual scene title is not yet observed')
+                    else:
+                        target = min(matches, key=lambda line: len(line['text']))
+                        state = self.probe.target_observation(frame, target['bounds'], previous)
+                        observed.update(target=target, target_observation=state,
+                                        stable_observed_target=state['stable_observed_target'])
+                        previous = state
+                        if state['stable_observed_target'] and time.monotonic() < deadline:
+                            report['status'] = 'READY'
+                            return report
+                remaining = deadline - time.monotonic()
+                if remaining > 0:
+                    time.sleep(min(2, remaining))
+            raise RuntimeError('Current production scene did not become fully visible and stable: ' + header)
+        except Exception as error:
+            report.update(status='FAIL', error=str(error))
+            raise
+        finally:
+            report['elapsed_seconds'] = time.monotonic() - started
+            write(self.out / (tag + '-readiness.json'), report)
+
     def enter(self, title, header):
         self.portal(title)
         for _ in range(60):
@@ -669,7 +753,7 @@ class Tour:
             raise RuntimeError('Requested game Activity never appeared: ' + title)
         require(bool(self.base.adb('shell', 'pidof', PACKAGE + ':lumo_game', check=False).strip()),
                 'Native process absent')
-        self.native(header)
+        self.scene_entry(header, orientation='responsive' if title == 'Jump & Run' else 'landscape')
         self.shot('entered-' + self.probe.normalized(title))
 
     def leave(self, label='Zur Spielewelt', already_pause=False, *, orientation='landscape'):
@@ -1022,6 +1106,11 @@ class Tour:
             committed_helper(self.args.candidate_source, self.original, '.github/probes/modernization_android_tour.py')
             os.chdir(self.args.candidate_source)
             result['apk_identity'] = self.original.verify_apk_identity(self.args.apk, self.args.provenance, self.args.sums)
+            version_code, version_name, _, _ = studio_contract(getattr(self.args, 'studio_version', 2019))
+            require(type(result['apk_identity'].get('versionCode')) is int
+                    and result['apk_identity']['versionCode'] == version_code
+                    and result['apk_identity'].get('versionName') == version_name,
+                    'APK version differs from the explicit Studio contract')
             require(result['apk_identity']['flutter_source_commit'] == host
                     and result['apk_identity']['godot_revision'] == native,
                     'Original APK verifier returned another source')
@@ -1065,7 +1154,9 @@ class Tour:
             (self.out / 'install.txt').write_text(install)
             require('Success' in install, 'Actual unchanged APK installation failed')
             result['installed'] = self.probe.package_identity(self.out, 'installed')
-            require(result['installed']['versionCode'].split()[0] == '2019', 'Installed package version mismatch')
+            require(result['installed']['versionCode'].split()[0] == str(version_code)
+                    and result['installed']['versionName'] == version_name,
+                    'Installed package version mismatch')
             self.base.launch(self.out, 'fresh-studio')
             result['onboarding'] = self.probe.onboard(self.out)
             self.profile = self.probe.prefs(self.out, 'fictional-profile')['flutter.lumo_active_profile']
@@ -1131,6 +1222,7 @@ def main():
     parser.add_argument('--sums', type=Path)
     parser.add_argument('--metadata-dir', type=Path)
     parser.add_argument('--verify-metadata-only', action='store_true')
+    parser.add_argument('--studio-version', type=int, choices=(2019, 2020), default=2019)
     parser.add_argument('--expected-source', required=True)
     parser.add_argument('--build-run', type=int, required=True)
     parser.add_argument('--artifact-id', type=int, required=True)
