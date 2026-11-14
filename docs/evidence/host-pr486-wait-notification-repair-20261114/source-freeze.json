@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T08:26:02.193440+00:00",
+  "parent_commit": "230f3a8a3460576fd63d0ae64cb870fec53ba177",
+  "observed_ci_commit": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+  "files": [
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/manifest.json",
+      "bytes": 2102,
+      "sha256": "3aa03863b7f217b2337b710059f7d3bfcf066414c9ddccc95b614d67cfdc0359",
+      "git_blob": "8761da4157a16d33b86b649b7ff3a8e365044906",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-exit.stdout",
+      "bytes": 4,
+      "sha256": "9d9b18720961e9b4689fd763b85e7b6f36160ccd3a8a1c9ddc5103bb0f66c396",
+      "git_blob": "fba7ed526e434d8e4d615d8c9eca14f252c8a0f4",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-runtime-anr-verification.json",
+      "bytes": 4733,
+      "sha256": "d6449c94d28b01148c82fb6ff313a289d3c6c08d7d5b1a00d4ac21472ae34924",
+      "git_blob": "c2b616edb135cb9f03d3019b85e3877a15b85c39",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-stop.json",
+      "bytes": 394,
+      "sha256": "c480f336398aa19308bd01e40b98112e3a0b26f1111eff530f35b039871ff79a",
+      "git_blob": "5278dfb25362d6ffb2f69c13c1c74816fa627df9",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swangle-wait.stderr",
+      "bytes": 12,
+      "sha256": "e7050295bbc75e5e00ea589ef52653993dc18120066ddc61c82f996da0ef8598",
+      "git_blob": "3f967a59acdf78450291005ce5960581f839ac15",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_wait_08e/swiftshader-events-anr.stdout",
+      "bytes": 650,
+      "sha256": "ac265ac04f75652e087f2f250db5bc2f0e7be45ed0000b2f4edee8165668b14b",
+      "git_blob": "bc2bb7332ea653890806225c08617fbbbe75b9a3",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/tests/test_android_runtime_wait_notification.py",
+      "bytes": 7513,
+      "sha256": "dcac38c995f9faaeeb2db9ec24b9d1b2a564ac6cecd6d466ff0e7425f99d3e54",
+      "git_blob": "a85f64bfbe7d374be64437dfd76709e92fffd0e3",
+      "before_sha256": null
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "bytes": 39349,
+      "sha256": "79a46ccfccc1e0a5da8af85a21a8c8bc893bdc9bf68d2def91b19b0797a45c58",
+      "git_blob": "0bb9f91493a07100935bdb88e796676ae1ee20f5",
+      "before_sha256": "3e3cde21409f1ee8e64a4124a1842df75b6a72eab0ac65576442fb5072308bf2"
+    }
+  ],
+  "test_status": "NOT_RUN_PENDING_ROOT_CHECKPOINT",
+  "planned_targeted_methods": 9,
+  "scope": "One exact observed wait notification only; GPU belongs to separate agent."
+}

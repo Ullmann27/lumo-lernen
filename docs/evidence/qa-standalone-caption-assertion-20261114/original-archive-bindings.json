@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "single-case-originals.tar.gz",
+      "bytes": 82667,
+      "sha256": "0a1c0235cc4d256c9d8c79c94ee05ce6ecd2aa8d3631bcf446642c78b1a35dea",
+      "source": "/tmp/host-32e7-garage-caption-fixture-repair-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1195,
+      "sha256": "89b4b98050b70d86baaff5ba15e570469388b1a969b22afa640e726aa439a670",
+      "source": "/tmp/host-32e7-garage-caption-fixture-repair-20261114/handoff.json"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 5444,
+      "sha256": "4328c7ac6f9a603983ff9c2f059e83d95c71b7e88ba1950c212d1affce1ee770",
+      "source": "/tmp/host-32e7-garage-caption-fixture-repair-20261114/manifest.json"
+    },
+    {
+      "path": "independent-garage-review.json",
+      "bytes": 3884,
+      "sha256": "29f67ed5f08d1dcd2e0b727ab3b3425d0098a87560cbf09069d39aeefca592f4",
+      "source": "/tmp/host-dream-and-garage-independent-review-20261114/garage-review.json"
+    },
+    {
+      "path": "original-host32-failed-job.log",
+      "bytes": 594705,
+      "sha256": "c65d4a00670432b38f0da96e3dfafde724cc1a86b859ed52937f0519ed31291c",
+      "source": "/tmp/lumo-root-recovery-0900/host32-terminal-evidence/verify-and-build-original.log"
+    },
+    {
+      "path": "original-host32-failed-job-binding.json",
+      "bytes": 254,
+      "sha256": "29f522af10cd03c44952488f531a4c52100b2bc0ea8551015f9037e286676fa8",
+      "source": "/tmp/lumo-root-recovery-0900/host32-terminal-evidence/retrieval-binding.json"
+    }
+  ]
+}

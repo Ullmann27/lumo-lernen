@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_console_start_workflow",
+    "scripts.tests.test_console_launch_originals",
+    "scripts.tests.test_console_launch_failure_diagnostics"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "TMPDIR": "/tmp"
+  },
+  "started_at_utc": "2026-11-14T07:19:36.265001+00:00",
+  "finished_at_utc": "2026-11-14T07:19:37.089844+00:00",
+  "elapsed_seconds": 0.8248530310083879,
+  "returncode": 0,
+  "error": null,
+  "raw_log": {
+    "path": "combined-contracts.log",
+    "bytes": 5420,
+    "sha256": "f1f664ca475e14daa77bcba0b790542a1adcb12444b45f788c024c038c722a58"
+  }
+}

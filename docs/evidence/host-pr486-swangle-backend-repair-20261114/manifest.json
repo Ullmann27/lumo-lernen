@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "created_at_utc": "2026-11-14T08:28:26.051569+00:00",
+  "scope": "SWANGLE GPU reporter source repair and original diagnosis; no repair tests or new runtime execution.",
+  "file_count": 41,
+  "total_bytes": 451717,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4898,
+      "sha256": "5fc67eac7e6a85a96a057091be4926f944daf5907e90fe9b42237d7f4fa1b167"
+    },
+    {
+      "path": "api/artifacts-snapshot-20261114T081159Z.json",
+      "bytes": 1510,
+      "sha256": "6cc7690b456e5e3407f5a65fc89c6903a296a37f9ea1924db9304e86ae405333"
+    },
+    {
+      "path": "api/commit.json",
+      "bytes": 1217,
+      "sha256": "11bec0ee6e30dfde972efc6d01161ed5f346975f390e2d293ad32085a4f8b2af"
+    },
+    {
+      "path": "api/jobs-snapshot-20261114T081159Z.json",
+      "bytes": 16644,
+      "sha256": "822fdf69d0d731d608c3c547fac939e5eeef3ca383285680f504995b0bc2a924"
+    },
+    {
+      "path": "api/original-zip-verification.json",
+      "bytes": 100505,
+      "sha256": "f23f763f8366084bafb09f9092a0b3cc6438c89e4056e2dea4dbe22e7e0e3fee"
+    },
+    {
+      "path": "api/run-snapshot-20261114T081159Z.json",
+      "bytes": 12981,
+      "sha256": "bf859b7ff3143ce6a9d6b7e89c24d989c34b98377fe482f7cca00ea0e224d9e0"
+    },
+    {
+      "path": "before-source/.github/workflows/lumo-console-start-7b16.yml",
+      "bytes": 14259,
+      "sha256": "eece55c8617bf5d8dbf6de69797fcc4246a643aa6a0e529a702ea87f87ef691b"
+    },
+    {
+      "path": "before-source/config/diagnostic-baselines/android37-7b16.json",
+      "bytes": 1953,
+      "sha256": "4bff2aad1a8420118be47cb0679c211c83b2b99b5526321f9b338fcb8645c32f"
+    },
+    {
+      "path": "before-source/scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 7218,
+      "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+    },
+    {
+      "path": "before-source/scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 10381,
+      "sha256": "15d0d7aa8a37aff6ff6d419135d73674a9a5ea236d03174238a14eb325adad83"
+    },
+    {
+      "path": "diagnosis.json",
+      "bytes": 2160,
+      "sha256": "ffc7ced305f13ed8bba020cb83fd507b4b5c657a54ad1f9ed05a396a3f408bd7"
+    },
+    {
+      "path": "final-source/scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 8714,
+      "sha256": "50d7c687e85ca3058a91749dd3b86eb96fdc76ac9c9758cb087d476ff2f89e7f"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/api37-swangle-08e63bd3-renderer.json.gz",
+      "bytes": 40795,
+      "sha256": "1b0889542bafcfa73f9d63e1c83253d0122c18dff45ee9c8a1e10c8f04d0e0eb"
+    },
+    {
+      "path": "final-source/scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 17494,
+      "sha256": "feb63ccda4fb641de3a648c7e1ad6db920a3403a0021bf7da431a20c7796a9ff"
+    },
+    {
+      "path": "fixture-provenance.json",
+      "bytes": 2960,
+      "sha256": "8c175b990e7ab62dc19a3b1b3e489379fb27916a43d771b2efcb1db781697f32"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2320,
+      "sha256": "a83617cb307e28a346a0913c5a2246104185ae53f7108ee4f4a78ad52c064133"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 13918,
+      "sha256": "ec4e4fb4a24253889a5aec814b791363d18009e076dba286fb37d26dc6f7c6d2"
+    },
+    {
+      "path": "original-provenance.json",
+      "bytes": 4021,
+      "sha256": "7422dd45f326336c46e9548d9a1e263130eaa8c04610bd34e5883d6c9272cdba"
+    },
+    {
+      "path": "originals/framework-start/cli22/avd-after-action/configuration/hardware-qemu.ini",
+      "bytes": 4155,
+      "sha256": "f58d879911724638f32f1099d6389ef2dbafe75a7fc96271b009f3fc53a9aaf5"
+    },
+    {
+      "path": "originals/framework-start/cli22/avd-before-boot/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "originals/framework-start/cli22/avd-guard/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "originals/framework-start/cli22/avd-guard/configuration/emu-launch-params.txt",
+      "bytes": 359,
+      "sha256": "5d9b5165961a7ef50601271281825181721b166e013bc49a68ba0c27aea98058"
+    },
+    {
+      "path": "originals/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "bytes": 4155,
+      "sha256": "f58d879911724638f32f1099d6389ef2dbafe75a7fc96271b009f3fc53a9aaf5"
+    },
+    {
+      "path": "originals/framework-start/cli22/packages-guard/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "originals/framework-start/cli22/packages-guard/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "originals/framework-start/cli22/packages-guard/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "originals/framework-start/cli22/packages-guard/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "originals/framework-start/framework-readiness.json",
+      "bytes": 34730,
+      "sha256": "b6b75dac3e7e5a46903620cd6ce10ce5f2bb1ca90d7484dcc4fea67122942e84"
+    },
+    {
+      "path": "originals/job-lines-1084-1092.log",
+      "bytes": 1064,
+      "sha256": "722f26ea646ba40359bb287e52ee984e360cc15043990c97d5bb864835e0baeb"
+    },
+    {
+      "path": "originals/job-lines-916-942.log",
+      "bytes": 2937,
+      "sha256": "6d4d4e8a9248dc47936cac11f712bb891a65af88fdfc8c74ade1753b14bbe02f"
+    },
+    {
+      "path": "originals/job-lines-981-988.log",
+      "bytes": 1452,
+      "sha256": "ce5da3a826780bec1dbec931a98151fc3753fe680a062cdbdb19fefe6d3c0950"
+    },
+    {
+      "path": "originals/original-member-binding.json",
+      "bytes": 3984,
+      "sha256": "bfa415e7510b5def0f952c5eadebc1344de28a355b9cc0aa7f53f792c8de28e9"
+    },
+    {
+      "path": "originals/renderer-comparison-binding.json",
+      "bytes": 2469,
+      "sha256": "ce5fa6343967476e8e1e7de91267dfd9118dd85827b8084b17c0391767003b9a"
+    },
+    {
+      "path": "originals/runtime-anr/device-logger/console/launch.json",
+      "bytes": 1460,
+      "sha256": "8831db9ad4b6ab6371bfa2470aca50157ade449f0aedc7be65de509516e60dd8"
+    },
+    {
+      "path": "originals/surfaceflinger-start.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "originals/surfaceflinger-start.stdout",
+      "bytes": 54076,
+      "sha256": "82cd178b21dc7d6ee92c2bc8b684b4ca450a1dc0be26e0e315047b345264dab7"
+    },
+    {
+      "path": "originals/swangle-job-132384862707.log.gz",
+      "bytes": 23723,
+      "sha256": "e5a535a28532c1c592e8e74872b376344ad020ec1af8b83cea543095ec618754"
+    },
+    {
+      "path": "primary-sources.json",
+      "bytes": 1812,
+      "sha256": "7a73db355e52c42bac622e4109a7f114ec3a42e5b74681f13a842984e3dbd9fb"
+    },
+    {
+      "path": "published-source-binding.json",
+      "bytes": 1814,
+      "sha256": "a5beee86c962c1405d7cee65e19993a171fbf05ad07524ae70f2527c73a4e44a"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 3125,
+      "sha256": "2ea77b280905bb6482ebf93a11fccdcc771fab1fda220e1b12070ab067a5e9fe"
+    },
+    {
+      "path": "static-source-review.json",
+      "bytes": 1679,
+      "sha256": "b70b01c4d57a827c29b5c897f3d5c7dd3d81b976f974a344a246cd201dc19687"
+    }
+  ]
+}

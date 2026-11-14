@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_verify_creative_parts"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/host-pr481-creative-parts-collector",
+  "started_at": "2026-11-14T04:33:34.123387+00:00",
+  "elapsed_seconds": 0.392471,
+  "exit_code": 0,
+  "log_bytes": 2367,
+  "log_sha256": "62d786b3ce99b9f5ed2fead709a92ef88cf407bdf0664ffb2d17187317f23a05",
+  "source_paths": 6,
+  "source_hashes_unchanged": true,
+  "legacy_pack_files": 16,
+  "legacy_pack_unchanged": true,
+  "scope": "Tiny explicitly synthetic exports through exact published exporter, unchanged checked memory collector and actual local verifier CLI. No downloads, actual new artifact, device, product or visual acceptance."
+}

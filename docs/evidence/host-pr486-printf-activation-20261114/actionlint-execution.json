@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    "-color",
+    ".github/workflows/lumo-console-start-7b16.yml"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+  "timeout_seconds": 120,
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "TMPDIR": "/tmp",
+    "LUMO_PRINTF_CONTRACT_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-console-230f3a8a-recovery-validation-20261114/local-shell"
+  },
+  "started_at_utc": "2026-11-14T07:50:50.995883+00:00",
+  "finished_at_utc": "2026-11-14T07:50:51.033791+00:00",
+  "elapsed_seconds": 0.037925860000541434,
+  "returncode": 0,
+  "error": null,
+  "raw_log": {
+    "path": "actionlint.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

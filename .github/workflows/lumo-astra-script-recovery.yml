@@ -13,6 +13,9 @@ permissions:
   contents: read
 jobs:
   full-app-script-regression:
+    if: >-
+      github.head_ref != 'qa/lumo-console-joystick-7b16-20261114' && github.ref_name != 'qa/lumo-console-joystick-7b16-20261114' &&
+      github.head_ref != 'qa/lumo-console-start-7b16-20261114' && github.ref_name != 'qa/lumo-console-start-7b16-20261114'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

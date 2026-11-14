@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "scope": "Local real Tesseract replay of unchanged 7b original; TSV fixtures only, not a new Android run",
+  "original_image": "0017-observe-springen.png",
+  "original_sha256": "7f1af89c0e879f0f50317a080297602bed83004355538c98285bf63172d4aac7",
+  "tesseract": "tesseract 5.5.0\n leptonica-1.84.1\n  libgif 5.2.2 : libjpeg 6b (libjpeg-turbo 2.1.5) : libpng 1.6.48 : libtiff 4.7.0 : zlib 1.3.1 : libwebp 1.5.0 : libopenjp2 2.5.3\n Found AVX512BW\n Found AVX512F\n Found AVX512VNNI\n Found AVX2\n Found AVX\n Found FMA\n Found SSE4.1\n Found OpenMP 201511\n Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.8.1 bz2lib/1.0.8 liblz4/1.10.0 libzstd/1.5.7\n Found libcurl/8.14.1 OpenSSL/3.5.7 zlib/1.3.1 brotli/1.1.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.2 libssh2/1.11.1 nghttp2/1.64.0 nghttp3/1.8.0 librtmp/2.3 OpenLDAP/2.6.10\n",
+  "files": [
+    {
+      "path": "0017-observe-springen-ocr-contrast.tsv",
+      "bytes": 9061,
+      "sha256": "ae11f39687dd95c183fb4f26aa3aa1b0fc6a54079823bf95974936dea9c59224"
+    },
+    {
+      "path": "0017-observe-springen-ocr-gold-component-0.tsv",
+      "bytes": 233,
+      "sha256": "9f79ea0c2f94dd641d0c8870b33867f1c8e300f752a2fed12c42c9eed2533aaa"
+    },
+    {
+      "path": "0017-observe-springen-ocr-gold-component-1.tsv",
+      "bytes": 262,
+      "sha256": "0dc6a09de7b15b648cd37edb741ec93e6fa163b95c17f841b4d271c01443e029"
+    },
+    {
+      "path": "0017-observe-springen-ocr-gold-component-2.tsv",
+      "bytes": 231,
+      "sha256": "952832cee45f400b97d34a75f8d5c58c96ccfb52d180a972f4b30b51c1d61fff"
+    },
+    {
+      "path": "0017-observe-springen-ocr-gold-component-3.tsv",
+      "bytes": 226,
+      "sha256": "1fc886b051fe6187448b14e2f0027193223467095c47c09e9bce3c68766b0685"
+    },
+    {
+      "path": "0017-observe-springen-ocr-gold-component-4.tsv",
+      "bytes": 260,
+      "sha256": "e3d0d9836bd74697c8462132e34044dc3838d0488781b14a3e98de7e47c15894"
+    },
+    {
+      "path": "0017-observe-springen-ocr-gold-component-5.tsv",
+      "bytes": 224,
+      "sha256": "872155999834e4c64dc208ee8b02c7c87f93a5b3ef85a90204f80a68e988eeff"
+    },
+    {
+      "path": "0017-observe-springen-ocr-navy-latin-1x.tsv",
+      "bytes": 2169,
+      "sha256": "03ce0aea17b2eca0f12bfd87a3adbaff1a5e34ed71c4ae11dd0e34526085473e"
+    },
+    {
+      "path": "0017-observe-springen-ocr-navy-latin.tsv",
+      "bytes": 2611,
+      "sha256": "7c6856a72b188b726b994aaf763d446b5c67922b80634e2d8c5d216014cf6dde"
+    },
+    {
+      "path": "0017-observe-springen-ocr-raw.tsv",
+      "bytes": 10066,
+      "sha256": "49be41a7996775a92540b305d00761b90826ce61cd601e9573fbb41073f36c39"
+    },
+    {
+      "path": "0017-observe-springen-ocr-teal-text-1x.tsv",
+      "bytes": 4634,
+      "sha256": "1dced4a27c2bd98fea667c33df3d9985adbfa3ce04e4c660d7e851d1910698be"
+    },
+    {
+      "path": "0017-observe-springen-ocr-white-latin.tsv",
+      "bytes": 5991,
+      "sha256": "9f503de6fef9f3aee4c88409eefc4ec1dea4ba35b9c3aaf781e419ff59866fa3"
+    },
+    {
+      "path": "0017-observe-springen-ocr-white-text.tsv",
+      "bytes": 5533,
+      "sha256": "c4ce7117dd363a6f194aa01e32d622efd325e5149ddea731c29897d49e4b2138"
+    }
+  ]
+}

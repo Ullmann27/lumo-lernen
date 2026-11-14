@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "head": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+    "tree": "04859a04ad84d14120109bdc1bb27684f534a5f3",
+    "workflow": ".github/workflows/lumo-console-start-7b16.yml",
+    "event": "pull_request",
+    "run_id": 43574161418,
+    "run_attempt": 1
+  },
+  "overall_conclusion": "failure",
+  "final_proofs": [
+    {
+      "path": "proofs/run.json",
+      "bytes": 12984,
+      "sha256": "987dcdc82e35749e429c3109d15ca6f73becfab1ad2f39c26770c3ae3199d8e3"
+    },
+    {
+      "path": "proofs/jobs.json",
+      "bytes": 17552,
+      "sha256": "7929ac0136177fa868decbe597f71ea9af7f125f215b0f81a6672ba52c532487"
+    },
+    {
+      "path": "proofs/artifacts.json",
+      "bytes": 2994,
+      "sha256": "a50193b8990c0cd77bdc489306900395dcc75ce38e049f3163c5866365012d1f"
+    }
+  ],
+  "job_log_index": {
+    "path": "job-log-index.json",
+    "bytes": 18212,
+    "sha256": "982d027e5a6c621a17af937f6866180ff9c16978809f9858bb977174e1498063"
+  },
+  "artifact_index": {
+    "path": "artifact-index.json",
+    "bytes": 3093,
+    "sha256": "ef8828df1a613656987f2be40250d1a82da135a5487df29d64af0d45660ebcd1"
+  },
+  "diagnostic_summary": {
+    "path": "diagnostic-summary.json",
+    "bytes": 3388,
+    "sha256": "ffe662aafa140c38d764716cfaa94ac6df1d313992cc629333c31927e5068148"
+  },
+  "original_joblogs": 4,
+  "original_artifacts_fully_verified": 4,
+  "all_zip_members_crc_and_sha256_verified": 2100,
+  "scope": "Original failed run and bounded cause diagnosis. No runtime success receipt, new test, source edit or CI retry."
+}

@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_console_start_workflow",
+    "scripts.tests.test_console_logger_printf"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+  "timeout_seconds": 180,
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "TMPDIR": "/tmp",
+    "LUMO_PRINTF_CONTRACT_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-console-230f3a8a-recovery-validation-20261114/local-shell"
+  },
+  "started_at_utc": "2026-11-14T07:50:50.830119+00:00",
+  "finished_at_utc": "2026-11-14T07:50:50.995543+00:00",
+  "elapsed_seconds": 0.1654299830115633,
+  "returncode": 0,
+  "error": null,
+  "raw_log": {
+    "path": "combined-contracts.log",
+    "bytes": 3254,
+    "sha256": "305f7923cce991c34cc5598c65ead9e457b6a60b4e8f56afb91df567e35d1b79"
+  }
+}

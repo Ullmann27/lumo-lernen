@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1901,
+      "sha256": "505f4ea6b7d226730815ddc2607a1d5f138f428edd68ca37e2b29ea435d60c50",
+      "git_blob": "f5cfd314c1c628849c7b9f9541193b9b3d65d516"
+    },
+    {
+      "path": "actionlint-result.json",
+      "bytes": 1847,
+      "sha256": "ee77a76ae8a1b64c0ccd2a3441b8ebed33b372b71a44f81ce2cc029f23da3034",
+      "git_blob": "1eebc3051f3f8a8b5c44963428ce29f0007ab903"
+    },
+    {
+      "path": "actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "before/.github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "bytes": 2329,
+      "sha256": "704c549da21e793e21a2c3cfa956677ff54cb8a07b9e67e169cf96c813a66372",
+      "git_blob": "84107edac617293584fa3a2500a610c1df19c213"
+    },
+    {
+      "path": "before/.github/workflows/lumo-astra-script-recovery.yml",
+      "bytes": 2058,
+      "sha256": "45abdc96b1df9d825f6fd506e5d2d6a77e6f773c202a017b44abfb796d8f6b06",
+      "git_blob": "7f8299a81a88c45644270df042e75093d032f9ca"
+    },
+    {
+      "path": "before/.github/workflows/lumo-console-joystick-7b16.yml",
+      "bytes": 24911,
+      "sha256": "ce286833614ab5c460e37b1b386532ea139f27ec374413bd95ccb14d7bd884b9",
+      "git_blob": "557c5a34a11d4b8deb93dffd6951c33f0165f128"
+    },
+    {
+      "path": "before/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82297,
+      "sha256": "1e630ea2dca9e5e9fddec5c78fe8843a13a3672e433c98328de3ff8e4349513b",
+      "git_blob": "779fedd9de021c9cd8bd23e445c007fc23b7fd92"
+    },
+    {
+      "path": "before/scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 20548,
+      "sha256": "0073fb00badce28bd97eeb4986b4e8457a2aa92e159044f3d6436796aace474b",
+      "git_blob": "0087ef8b7a0e361462029f942b9a0481edc785e4"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "bytes": 2455,
+      "sha256": "afef086c44dbac86954b49303b54d92dfccfd414c2a263978d2192917f24d42b",
+      "git_blob": "6be5a3536a3913fc2692413254e0fbe2ab8e8528"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-astra-script-recovery.yml",
+      "bytes": 2184,
+      "sha256": "eb8c67b636ae0d165d5f587bb202d88c066f3cc3e355a2ffb037ffaf7c29028d",
+      "git_blob": "bb521bcb404479c24c8e389d2a310437157928cb"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-console-start-7b16.yml",
+      "bytes": 13984,
+      "sha256": "3a0ce346e816f97be74035d612bc1f2d95ea4516368db1ea60aca9a839751739",
+      "git_blob": "cf77da46e4d56d2b7fdb8d808419af0567083cf4"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82423,
+      "sha256": "e2651765296f628da3579292b6e15d168e5a6501159889acdf831e10099eedb5",
+      "git_blob": "a9e48a0d0a9e1ac7eccb8a3b37c7042b215deacb"
+    },
+    {
+      "path": "final-source/scripts/tests/test_console_start_workflow.py",
+      "bytes": 11365,
+      "sha256": "03a446f00389b2f872aa7e85ddc0391ba42eb0ffba35a2a6970067f5159314b3",
+      "git_blob": "dc8f9693d366400454f6e3c27dd8905627314834"
+    },
+    {
+      "path": "final-source/scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 20995,
+      "sha256": "b9b511978b2b03731c8a2f6c1f325d3272bd2b486f563bf5290553c1768cc473",
+      "git_blob": "6227740bbb9f2665ff736d7b90f4d125ef8ab830"
+    },
+    {
+      "path": "focused-validation.json",
+      "bytes": 2928,
+      "sha256": "8e4d553d4d946d1a2bc67f5612b79ff60fcef0975c096de89e95e9985a9a5580",
+      "git_blob": "c5e5fb2f7cb45b29487f0fd0c532405404539d09"
+    },
+    {
+      "path": "focused-workflow.log",
+      "bytes": 1945,
+      "sha256": "82c9d3ac2931cb686221187fc8c9b305e555c58e37db02e83b31fce8a9c06aad",
+      "git_blob": "09bd2007370d86eb15f9057a220ec5d536c2a4bc"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 5414,
+      "sha256": "e5798f2356a4ac437a90f819b86888bd17a7e3fe2c4a3f46db71494e6b6bf292",
+      "git_blob": "8098782568d4147c5a2b94305c6a5438bdfdedae"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 2623,
+      "sha256": "5483c6c756e9531a5dde7d6586dec7204307f0b765397235b799958480dd682c",
+      "git_blob": "f07fd0bca87df165d8000eccf2f466d594acecf0"
+    },
+    {
+      "path": "qa-hookup.patch",
+      "bytes": 29430,
+      "sha256": "93e640588fccfd2b6747150ca0daa7b5a6f1b250ebc49840c5d41b9b7ede5ef5",
+      "git_blob": "864a7ac31b2ae1f6a8af4b493b3dedd8c12a7c4a"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 4508,
+      "sha256": "40ba0de9295f911b0b3316738a21235656b0e2847b82bcc9fd8c57a4dadf77ec",
+      "git_blob": "6cad45886fef1faa8859a13a0eed06d4c48dac70"
+    },
+    {
+      "path": "test-view/.github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "bytes": 2455,
+      "sha256": "afef086c44dbac86954b49303b54d92dfccfd414c2a263978d2192917f24d42b",
+      "git_blob": "6be5a3536a3913fc2692413254e0fbe2ab8e8528"
+    },
+    {
+      "path": "test-view/.github/workflows/lumo-astra-script-recovery.yml",
+      "bytes": 2184,
+      "sha256": "eb8c67b636ae0d165d5f587bb202d88c066f3cc3e355a2ffb037ffaf7c29028d",
+      "git_blob": "bb521bcb404479c24c8e389d2a310437157928cb"
+    },
+    {
+      "path": "test-view/.github/workflows/lumo-console-joystick-7b16.yml",
+      "bytes": 24911,
+      "sha256": "ce286833614ab5c460e37b1b386532ea139f27ec374413bd95ccb14d7bd884b9",
+      "git_blob": "557c5a34a11d4b8deb93dffd6951c33f0165f128"
+    },
+    {
+      "path": "test-view/.github/workflows/lumo-console-start-7b16.yml",
+      "bytes": 13984,
+      "sha256": "3a0ce346e816f97be74035d612bc1f2d95ea4516368db1ea60aca9a839751739",
+      "git_blob": "cf77da46e4d56d2b7fdb8d808419af0567083cf4"
+    },
+    {
+      "path": "test-view/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82423,
+      "sha256": "e2651765296f628da3579292b6e15d168e5a6501159889acdf831e10099eedb5",
+      "git_blob": "a9e48a0d0a9e1ac7eccb8a3b37c7042b215deacb"
+    },
+    {
+      "path": "test-view/scripts/tests/test_console_start_workflow.py",
+      "bytes": 11365,
+      "sha256": "03a446f00389b2f872aa7e85ddc0391ba42eb0ffba35a2a6970067f5159314b3",
+      "git_blob": "dc8f9693d366400454f6e3c27dd8905627314834"
+    },
+    {
+      "path": "test-view/scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 20995,
+      "sha256": "b9b511978b2b03731c8a2f6c1f325d3272bd2b486f563bf5290553c1768cc473",
+      "git_blob": "6227740bbb9f2665ff736d7b90f4d125ef8ab830"
+    }
+  ],
+  "file_count": 27,
+  "total_bytes": 474462
+}

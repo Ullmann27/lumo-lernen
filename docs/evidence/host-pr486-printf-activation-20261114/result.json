@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "execution_kind": "NEW_RECOVERY_VALIDATION",
+  "head": "230f3a8a3460576fd63d0ae64cb870fec53ba177",
+  "tree": "ea36060e04ee619bcd7a0a67aee8eba11e61bc5d",
+  "branch": "validation/lumo-console-printf-source-20261114",
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+  "input_source_count": 41,
+  "source_and_git_unchanged": true,
+  "tests": {
+    "executed": 15,
+    "passed": 15,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "skip_lines": [],
+    "execution": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "scripts.tests.test_console_start_workflow",
+        "scripts.tests.test_console_logger_printf"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+      "timeout_seconds": 180,
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "TMPDIR": "/tmp",
+        "LUMO_PRINTF_CONTRACT_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-console-230f3a8a-recovery-validation-20261114/local-shell"
+      },
+      "started_at_utc": "2026-11-14T07:50:50.830119+00:00",
+      "finished_at_utc": "2026-11-14T07:50:50.995543+00:00",
+      "elapsed_seconds": 0.1654299830115633,
+      "returncode": 0,
+      "error": null,
+      "raw_log": {
+        "path": "combined-contracts.log",
+        "bytes": 3254,
+        "sha256": "305f7923cce991c34cc5598c65ead9e457b6a60b4e8f56afb91df567e35d1b79"
+      }
+    }
+  },
+  "actionlint": {
+    "workflow_count": 1,
+    "execution": {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        "-color",
+        ".github/workflows/lumo-console-start-7b16.yml"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+      "timeout_seconds": 120,
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "TMPDIR": "/tmp",
+        "LUMO_PRINTF_CONTRACT_EVIDENCE": "/workspace/scratch/b3485b7bb989/host-console-230f3a8a-recovery-validation-20261114/local-shell"
+      },
+      "started_at_utc": "2026-11-14T07:50:50.995883+00:00",
+      "finished_at_utc": "2026-11-14T07:50:51.033791+00:00",
+      "elapsed_seconds": 0.037925860000541434,
+      "returncode": 0,
+      "error": null,
+      "raw_log": {
+        "path": "actionlint.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "empty_output": true
+  },
+  "limits": [
+    "Exactly one separately authorized recovery 9+6 invocation and actionlint1.",
+    "No 86-case rerun, device, SDK, emulator, Android, APK, renderer or release execution.",
+    "Local POSIX writer fragments are not an Android mksh or root-continuity result.",
+    "Historical execution and lost raw bytes remain separate from all new timestamps and hashes."
+  ]
+}

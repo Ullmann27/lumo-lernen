@@ -1,0 +1,530 @@
+test_real_new_diagnostic_export_binds_probe_and_preserves_all_original_bytes (scripts.tests.test_console_joystick_workflow.ConsoleJoystickExportTests.test_real_new_diagnostic_export_binds_probe_and_preserves_all_original_bytes) ... ok
+test_changed_workflow_branch_source_attempt_or_missing_job_stays_failure (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_changed_workflow_branch_source_attempt_or_missing_job_stays_failure) ... ok
+test_creative_cli_keeps_old_default_and_only_accepts_exact_creative_routes (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_creative_cli_keeps_old_default_and_only_accepts_exact_creative_routes) ... usage: python3 -m unittest [-h] --qa-source QA_SOURCE --candidate-source
+                           CANDIDATE_SOURCE --native-source NATIVE_SOURCE
+                           --candidate-metadata-dir CANDIDATE_METADATA_DIR
+                           --qa-metadata-dir QA_METADATA_DIR --apk APK
+                           --provenance PROVENANCE --sums SUMS --out OUT
+                           --expected-qa-source EXPECTED_QA_SOURCE
+                           --expected-qa-run EXPECTED_QA_RUN
+                           --expected-qa-attempt EXPECTED_QA_ATTEMPT
+                           [--qa-job-name {unchanged-apk-creative-api35,unchanged-apk-console-joystick-creative-api35}]
+python3 -m unittest: error: argument --qa-job-name: invalid choice: 'unchanged-apk-console-joystick-api37-host' (choose from unchanged-apk-creative-api35, unchanged-apk-console-joystick-creative-api35)
+ok
+test_four_exact_jobs_bind_new_workflow_without_repeating_api35_or_update (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_four_exact_jobs_bind_new_workflow_without_repeating_api35_or_update) ... ok
+test_new_creative_context_rechecks_new_route_before_inputs (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_new_creative_context_rechecks_new_route_before_inputs) ... ok
+test_old_routes_keep_exact_original_bindings (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_old_routes_keep_exact_original_bindings) ... ok
+test_exact_internal_branch_base_and_event_are_required (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_exact_internal_branch_base_and_event_are_required) ... ok
+test_four_cases_preserve_actual_hardware_and_unchanged_wrapper_calls (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_four_cases_preserve_actual_hardware_and_unchanged_wrapper_calls) ... ok
+test_full_console_discovery_and_portrait_contracts_are_mandatory (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_full_console_discovery_and_portrait_contracts_are_mandatory) ... ok
+test_old_auto_trigger_exclusions_affect_only_the_exact_new_branch (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_old_auto_trigger_exclusions_affect_only_the_exact_new_branch) ... ok
+test_prepare_runs_before_emulator_and_retains_receipt_if_launch_never_happens (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_prepare_runs_before_emulator_and_retains_receipt_if_launch_never_happens) ... ok
+test_another_apk_digest_fails_without_relabeling_qa_source (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_another_apk_digest_fails_without_relabeling_qa_source) ... ok
+test_changed_pck_bytes_fail_even_when_synthetic_outer_apk_matches (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_changed_pck_bytes_fail_even_when_synthetic_outer_apk_matches) ... ok
+test_duplicate_checksum_and_missing_pck_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_duplicate_checksum_and_missing_pck_are_rejected) ... ok
+test_duplicate_pck_and_crc_corruption_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_duplicate_pck_and_crc_corruption_are_rejected) ... ok
+test_existing_identity_verifier_uses_candidate_cwd_and_actual_pck_bytes (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_existing_identity_verifier_uses_candidate_cwd_and_actual_pck_bytes) ... ok
+test_full_preflight_keeps_qa_run_and_apk_source_separate (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate) ... ERROR
+test_wrong_provenance_source_native_abi_or_signer_is_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_wrong_provenance_source_native_abi_or_signer_is_rejected) ... ok
+test_failed_different_or_incomplete_build_is_not_accepted (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_failed_different_or_incomplete_build_is_not_accepted) ... ok
+test_failed_original_android_run_retains_exact_successful_build (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_failed_original_android_run_retains_exact_successful_build) ... ok
+test_incomplete_or_duplicate_original_collections_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_incomplete_or_duplicate_original_collections_are_rejected) ... ok
+test_original_source_attempt_tree_and_artifact_mismatches_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_original_source_attempt_tree_and_artifact_mismatches_are_rejected) ... ok
+test_pr_merge_sha_other_workflow_and_stale_qa_attempt_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_pr_merge_sha_other_workflow_and_stale_qa_attempt_are_rejected) ... ok
+test_qa_run_and_each_allowed_job_are_distinct_from_apk_source (scripts.tests.test_verify_unchanged_apk_diagnostic.MetadataContracts.test_qa_run_and_each_allowed_job_are_distinct_from_apk_source) ... ok
+test_atomic_report_never_overwrites_existing_bytes (scripts.tests.test_verify_unchanged_apk_diagnostic.OutputContracts.test_atomic_report_never_overwrites_existing_bytes) ... ok
+test_cli_failure_creates_no_report_or_bound_marker (scripts.tests.test_verify_unchanged_apk_diagnostic.OutputContracts.test_cli_failure_creates_no_report_or_bound_marker) ... ok
+test_actual_git_root_sha_tree_and_tracked_clean_are_required (scripts.tests.test_verify_unchanged_apk_diagnostic.SourceContracts.test_actual_git_root_sha_tree_and_tracked_clean_are_required) ... ok
+test_committed_helper_rejects_changed_working_bytes (scripts.tests.test_verify_unchanged_apk_diagnostic.SourceContracts.test_committed_helper_rejects_changed_working_bytes) ... ok
+test_json_duplicates_and_input_symlinks_are_rejected (scripts.tests.test_verify_unchanged_apk_diagnostic.SourceContracts.test_json_duplicates_and_input_symlinks_are_rejected) ... ok
+test_all_four_runtime_routes_stay_separate_from_creative (scripts.tests.test_unchanged_creative_diagnostic.SeparateRouteContracts.test_all_four_runtime_routes_stay_separate_from_creative) ... ok
+test_creative_job_cannot_borrow_the_runtime_workflow_or_branch (scripts.tests.test_unchanged_creative_diagnostic.SeparateRouteContracts.test_creative_job_cannot_borrow_the_runtime_workflow_or_branch) ... ok
+test_creative_route_requires_its_own_exact_workflow_branch_and_job (scripts.tests.test_unchanged_creative_diagnostic.SeparateRouteContracts.test_creative_route_requires_its_own_exact_workflow_branch_and_job) ... ok
+test_bound_diagnostic_routes_helpers_to_qa_before_any_device_call (scripts.tests.test_unchanged_creative_diagnostic.TourAdapterContracts.test_bound_diagnostic_routes_helpers_to_qa_before_any_device_call) ... ok
+test_explicit_invalid_context_cannot_fall_back_to_candidate_mode (scripts.tests.test_unchanged_creative_diagnostic.TourAdapterContracts.test_explicit_invalid_context_cannot_fall_back_to_candidate_mode) ... ok
+test_original_mode_still_uses_candidate_without_loading_a_diagnostic (scripts.tests.test_unchanged_creative_diagnostic.TourAdapterContracts.test_original_mode_still_uses_candidate_without_loading_a_diagnostic) ... ok
+test_uncommitted_diagnostic_runner_fails_before_context_or_live_imports (scripts.tests.test_unchanged_creative_diagnostic.TourAdapterContracts.test_uncommitted_diagnostic_runner_fails_before_context_or_live_imports) ... ok
+test_borrowed_runtime_job_and_modified_apk_binding_are_rejected (scripts.tests.test_unchanged_creative_diagnostic.TourContextContracts.test_borrowed_runtime_job_and_modified_apk_binding_are_rejected) ... ok
+test_changed_original_metadata_is_rejected_even_with_same_record_count (scripts.tests.test_unchanged_creative_diagnostic.TourContextContracts.test_changed_original_metadata_is_rejected_even_with_same_record_count) ... ok
+test_changed_qa_helper_or_native_scene_is_rejected_against_committed_bytes (scripts.tests.test_unchanged_creative_diagnostic.TourContextContracts.test_changed_qa_helper_or_native_scene_is_rejected_against_committed_bytes) ... ok
+test_complete_context_returns_only_the_separate_qa_head (scripts.tests.test_unchanged_creative_diagnostic.TourContextContracts.test_complete_context_returns_only_the_separate_qa_head) ... ok
+test_forged_qa_or_candidate_bindings_cannot_replace_original_metadata (scripts.tests.test_unchanged_creative_diagnostic.TourContextContracts.test_forged_qa_or_candidate_bindings_cannot_replace_original_metadata) ... ok
+test_missing_or_duplicate_helper_records_are_rejected (scripts.tests.test_unchanged_creative_diagnostic.TourContextContracts.test_missing_or_duplicate_helper_records_are_rejected) ... ok
+test_corrupted_export_copy_is_rejected_without_mutating_originals (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_corrupted_export_copy_is_rejected_without_mutating_originals) ... ok
+test_diagnostic_index_names_the_probe_source_without_claiming_an_apk_source (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_diagnostic_index_names_the_probe_source_without_claiming_an_apk_source) ... ok
+test_eight_parts_succeed_and_ninth_fails_without_published_output (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_eight_parts_succeed_and_ninth_fails_without_published_output) ... ok
+test_exact_payload_boundary_and_zero_byte_file_are_not_dropped (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_exact_payload_boundary_and_zero_byte_file_are_not_dropped) ... ok
+test_existing_output_and_inside_source_output_are_rejected (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_existing_output_and_inside_source_output_are_rejected) ... ok
+test_file_count_and_source_run_binding_are_mandatory (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_file_count_and_source_run_binding_are_mandatory) ... ok
+test_global_index_size_limit_is_enforced_on_real_long_paths (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_global_index_size_limit_is_enforced_on_real_long_paths) ... ok
+test_identical_inputs_produce_identical_parts_and_are_independent_copies (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_identical_inputs_produce_identical_parts_and_are_independent_copies) ... ok
+test_production_size_limit_cannot_be_raised_or_disabled (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_production_size_limit_cannot_be_raised_or_disabled) ... ok
+test_real_cli_roundtrip_covers_every_original_byte_and_hidden_path (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_real_cli_roundtrip_covers_every_original_byte_and_hidden_path) ... ok
+test_single_oversized_file_fails_without_partial_output_or_success_outputs (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_single_oversized_file_fails_without_partial_output_or_success_outputs) ... ok
+test_source_rewrite_addition_and_removal_during_real_copy_are_detected (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_source_rewrite_addition_and_removal_during_real_copy_are_detected) ... ok
+test_special_files_and_empty_sources_fail_closed (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_special_files_and_empty_sources_fail_closed) ... ok
+test_symlink_file_directory_root_and_output_parent_are_rejected (scripts.tests.test_creative_evidence_parts.CreativeEvidencePartsTests.test_symlink_file_directory_root_and_output_parent_are_rejected) ... ok
+test_additional_parts_follow_the_unchanged_complete_upload_in_each_workflow (scripts.tests.test_creative_evidence_parts.CreativeEvidenceWorkflowTests.test_additional_parts_follow_the_unchanged_complete_upload_in_each_workflow) ... ok
+test_exact_five_new_jobs_bind_only_the_followup_workflow_and_branch (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_exact_five_new_jobs_bind_only_the_followup_workflow_and_branch) ... ok
+test_followup_cannot_borrow_historical_or_creative_run_identity (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_followup_cannot_borrow_historical_or_creative_run_identity) ... ok
+test_missing_duplicate_wrong_named_or_wrong_attempt_job_never_binds (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_missing_duplicate_wrong_named_or_wrong_attempt_job_never_binds) ... ok
+test_original_runtime_and_creative_routes_are_unchanged (scripts.tests.test_unchanged_apk_followup.FollowupRouteContracts.test_original_runtime_and_creative_routes_are_unchanged) ... ok
+test_actual_gpu_or_unchanged_hardware_mismatch_remains_failure (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_actual_gpu_or_unchanged_hardware_mismatch_remains_failure) ... ok
+test_actual_report_requires_angle_and_swiftshader_with_effective_swangle (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_actual_report_requires_angle_and_swiftshader_with_effective_swangle) ... ok
+test_existing_host_and_swiftshader_positive_requirements_are_preserved (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_existing_host_and_swiftshader_positive_requirements_are_preserved) ... ok
+test_pure_swiftshader_unproven_swangle_or_multiple_gles_lines_cannot_pass (scripts.tests.test_runtime_followup_workflow.ActualRendererReportTests.test_pure_swiftshader_unproven_swangle_or_multiple_gles_lines_cannot_pass) ... ok
+test_actual_contract_condition_accepts_only_the_own_trusted_branch (scripts.tests.test_runtime_followup_workflow.RuntimeFollowupWorkflowTests.test_actual_contract_condition_accepts_only_the_own_trusted_branch) ... ok
+test_entire_original_workflow_is_preserved_outside_the_named_additions (scripts.tests.test_runtime_followup_workflow.RuntimeFollowupWorkflowTests.test_entire_original_workflow_is_preserved_outside_the_named_additions) ... ok
+test_five_separate_jobs_keep_same_apk_and_one_axis_renderer_configuration (scripts.tests.test_runtime_followup_workflow.RuntimeFollowupWorkflowTests.test_five_separate_jobs_keep_same_apk_and_one_axis_renderer_configuration) ... ok
+test_puzzle_keeps_already_selected_target_without_touch (scripts.tests.test_studio_creative_android_probe.MenuBoundaryContracts.test_puzzle_keeps_already_selected_target_without_touch) ... ok
+test_puzzle_missing_exact_target_fails_without_starting_or_reading_save (scripts.tests.test_studio_creative_android_probe.MenuBoundaryContracts.test_puzzle_missing_exact_target_fails_without_starting_or_reading_save) ... ok
+test_puzzle_observes_target_after_fourth_and_last_motif_touch (scripts.tests.test_studio_creative_android_probe.MenuBoundaryContracts.test_puzzle_observes_target_after_fourth_and_last_motif_touch) ... ok
+test_puzzle_selects_motif_one_from_actual_default_three (scripts.tests.test_studio_creative_android_probe.MenuBoundaryContracts.test_puzzle_selects_motif_one_from_actual_default_three) ... ok
+test_toolbar_absent_target_fails_after_final_observation_without_eighth_gesture (scripts.tests.test_studio_creative_android_probe.MenuBoundaryContracts.test_toolbar_absent_target_fails_after_final_observation_without_eighth_gesture) ... ok
+test_toolbar_already_visible_target_uses_no_scroll (scripts.tests.test_studio_creative_android_probe.MenuBoundaryContracts.test_toolbar_already_visible_target_uses_no_scroll) ... ok
+test_toolbar_observes_target_after_seventh_permitted_gesture (scripts.tests.test_studio_creative_android_probe.MenuBoundaryContracts.test_toolbar_observes_target_after_seventh_permitted_gesture) ... ok
+test_actual_candidate_identity_and_counterexamples (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_actual_candidate_identity_and_counterexamples) ... ok
+test_actual_godot463_serializer_fixture (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_actual_godot463_serializer_fixture) ... ok
+test_build_requires_one_real_addition_and_retains_existing_objects (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_build_requires_one_real_addition_and_retains_existing_objects) ... ok
+test_current_hub_semantics_rejects_old_clipped_and_ambiguous_nodes (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_current_hub_semantics_rejects_old_clipped_and_ambiguous_nodes) ... ok
+test_graphics_candidate_binds_its_explicit_workflow_and_uploaded_artifact (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_graphics_candidate_binds_its_explicit_workflow_and_uploaded_artifact) ... ok
+test_graphics_workflow_rejects_studio_or_ambiguous_current_candidate_artifacts (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_graphics_workflow_rejects_studio_or_ambiguous_current_candidate_artifacts) ... ok
+test_jump_scope_is_the_actual_sha256_scope_not_build_style_p_key (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_jump_scope_is_the_actual_sha256_scope_not_build_style_p_key) ... ok
+test_multiline_godot_variants_remain_verbatim_and_truncation_is_rejected (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_multiline_godot_variants_remain_verbatim_and_truncation_is_rejected) ... ok
+test_observed_ring_rejects_blank_sky_and_duplicate_controls (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_observed_ring_rejects_blank_sky_and_duplicate_controls) ... ok
+test_puzzle_requires_real_quarter_turn_and_original_resume_identity (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_puzzle_requires_real_quarter_turn_and_original_resume_identity) ... ok
+test_real_portal_loop_observes_after_the_tenth_permitted_downward_scroll (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_real_portal_loop_observes_after_the_tenth_permitted_downward_scroll) ... ok
+test_workflow_selection_cannot_accept_missing_unknown_or_another_pipeline (scripts.tests.test_studio_creative_android_probe.NewProbeContracts.test_workflow_selection_cannot_accept_missing_unknown_or_another_pipeline) ... ok
+test_actual_jump_ocr_selects_action_not_the_same_word_in_instructions (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_actual_jump_ocr_selects_action_not_the_same_word_in_instructions) ... ERROR
+test_actual_motif_observation_never_touches_the_short_toolbar_word (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_actual_motif_observation_never_touches_the_short_toolbar_word) ... ERROR
+test_common_return_propagates_jump_policy_without_skipping_process_exit (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_common_return_propagates_jump_policy_without_skipping_process_exit) ... ok
+test_following_companion_game_keeps_landscape_handoff_requirement (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_following_companion_game_keeps_landscape_handoff_requirement) ... ERROR
+test_full_caption_selector_rejects_fragments_unknown_titles_and_two_controls (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_full_caption_selector_rejects_fragments_unknown_titles_and_two_controls) ... ok
+test_full_caption_variants_must_identify_the_same_actual_control (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_full_caption_variants_must_identify_the_same_actual_control) ... ERROR
+test_jump_action_rejects_instruction_only_or_two_separate_lower_controls (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_jump_action_rejects_instruction_only_or_two_separate_lower_controls) ... ERROR
+test_jump_uses_portrait_policy_and_can_sample_original_action_caption (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_jump_uses_portrait_policy_and_can_sample_original_action_caption) ... ERROR
+test_original_fixture_bytes_and_failure_identity_remain_exact (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_original_fixture_bytes_and_failure_identity_remain_exact) ... ERROR
+test_actual_read_and_input_timeouts_are_clamped_to_same_remaining_budget (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_actual_read_and_input_timeouts_are_clamped_to_same_remaining_budget) ... 
+  test_actual_read_and_input_timeouts_are_clamped_to_same_remaining_budget (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_actual_read_and_input_timeouts_are_clamped_to_same_remaining_budget) (arguments=('shell', 'input', 'swipe', '100', '100', '100', '100', '120')) ... ERROR
+test_entire_requested_hold_must_fit_remaining_budget (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_entire_requested_hold_must_fit_remaining_budget) ... ERROR
+test_journal_crossing_deadline_never_dispatches_input (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_journal_crossing_deadline_never_dispatches_input) ... ERROR
+test_late_saved_arrival_never_reaches_the_question (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_late_saved_arrival_never_reaches_the_question) ... ERROR
+test_screenshot_crossing_deadline_never_dispatches_input (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_screenshot_crossing_deadline_never_dispatches_input) ... ERROR
+test_actual_slow_progress_does_not_use_six_world_units_per_wall_second (scripts.tests.test_studio_creative_runtime_repair.TreasureObservedProgress.test_actual_slow_progress_does_not_use_six_world_units_per_wall_second) ... ERROR
+test_duration_rejects_nonfinite_positions_and_fabricated_progress (scripts.tests.test_studio_creative_runtime_repair.TreasureObservedProgress.test_duration_rejects_nonfinite_positions_and_fabricated_progress) ... ok
+test_incomplete_original_position_series_cannot_claim_arrival_or_answer (scripts.tests.test_studio_creative_runtime_repair.TreasureObservedProgress.test_incomplete_original_position_series_cannot_claim_arrival_or_answer) ... ok
+test_last_permitted_synthetic_step_is_observed_before_arrival_decision (scripts.tests.test_studio_creative_runtime_repair.TreasureObservedProgress.test_last_permitted_synthetic_step_is_observed_before_arrival_decision) ... ok
+test_wrong_direction_stall_or_changed_result_identity_stops_before_another_input (scripts.tests.test_studio_creative_runtime_repair.TreasureObservedProgress.test_wrong_direction_stall_or_changed_result_identity_stops_before_another_input) ... ERROR
+test_actual_active_hud_must_stabilize_before_one_back_and_paired_pause (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_actual_active_hud_must_stabilize_before_one_back_and_paired_pause) ... ERROR
+test_already_observed_pause_is_not_toggled_and_failed_pause_never_retries_back (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_already_observed_pause_is_not_toggled_and_failed_pause_never_retries_back) ... ERROR
+test_header_walk_caption_or_incomplete_panel_cannot_fake_pause (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_header_walk_caption_or_incomplete_panel_cannot_fake_pause) ... ERROR
+test_original_blank_entry_never_sends_back (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_original_blank_entry_never_sends_back) ... ERROR
+test_changed_source_and_absent_caption_never_create_a_match (scripts.tests.test_studio_creative_7b_repair.CompleteGoldRegions.test_changed_source_and_absent_caption_never_create_a_match) ... ok
+test_deadline_after_first_match_fails_instead_of_hiding_next_region (scripts.tests.test_studio_creative_7b_repair.CompleteGoldRegions.test_deadline_after_first_match_fails_instead_of_hiding_next_region) ... ok
+test_second_equal_region_is_retained_and_same_control_gate_rejects_it (scripts.tests.test_studio_creative_7b_repair.CompleteGoldRegions.test_second_equal_region_is_retained_and_same_control_gate_rejects_it) ... ok
+test_actual_empty_board_uses_contour_and_keeps_real_tray_projection (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_actual_empty_board_uses_contour_and_keeps_real_tray_projection) ... ERROR
+test_current_jump_reads_beyond_original_instruction_word (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_current_jump_reads_beyond_original_instruction_word) ... ERROR
+test_current_original_and_local_ocr_bytes_are_bound_separately (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_current_original_and_local_ocr_bytes_are_bound_separately) ... ERROR
+test_current_qa61c_learning_uses_actual_gold_ocr_without_extending_budget (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_current_qa61c_learning_uses_actual_gold_ocr_without_extending_budget) ... ERROR
+test_ordinary_success_keeps_its_first_variant_and_never_starts_gold_fallback (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_ordinary_success_keeps_its_first_variant_and_never_starts_gold_fallback) ... ERROR
+test_puzzle_rejects_occlusion_plain_colour_and_duplicate_contours (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_puzzle_rejects_occlusion_plain_colour_and_duplicate_contours) ... ERROR
+test_absolute_and_proportional_minima_still_reject_small_rings (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_absolute_and_proportional_minima_still_reject_small_rings) ... ok
+test_blank_and_filled_circles_are_not_joystick_rings (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_blank_and_filled_circles_are_not_joystick_rings) ... ok
+test_both_unmodified_device_frames_select_only_the_original_outer_ring (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_both_unmodified_device_frames_select_only_the_original_outer_ring) ... ok
+test_elongated_or_outside_control_region_rings_are_rejected (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_elongated_or_outside_control_region_rings_are_rejected) ... ok
+test_landscape_original_contract_still_selects_the_same_ring (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_landscape_original_contract_still_selects_the_same_ring) ... ok
+test_synthetic_resampling_of_the_original_preserves_observed_coordinates (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_synthetic_resampling_of_the_original_preserves_observed_coordinates) ... ok
+test_two_valid_portrait_rings_remain_ambiguous (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_two_valid_portrait_rings_remain_ambiguous) ... ok
+
+======================================================================
+ERROR: test_full_preflight_keeps_qa_run_and_apk_source_separate (scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_verify_unchanged_apk_diagnostic.py", line 349, in test_full_preflight_keeps_qa_run_and_apk_source_separate
+    result = diagnostic.bind(args)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/verify_unchanged_apk_diagnostic.py", line 297, in bind
+    creative.committed_helper(qa, creative, '.github/probes/studio_creative_android_probe.py')
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/.github/probes/studio_creative_android_probe.py", line 234, in committed_helper
+    original = subprocess.run(['git', '-C', str(source), 'show', 'HEAD:' + relative],
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', '-C', '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view', 'show', 'HEAD:.github/probes/studio_creative_android_probe.py']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_actual_jump_ocr_selects_action_not_the_same_word_in_instructions (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_actual_jump_ocr_selects_action_not_the_same_word_in_instructions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 102, in test_actual_jump_ocr_selects_action_not_the_same_word_in_instructions
+    tour = self.tour('0014-jump-failure.png', 'local-replay/actual-original-springen-ocr.json')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 55, in tour
+    with probe.Image.open(image) as original:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/Image.py", line 3654, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0014-jump-failure.png'
+
+======================================================================
+ERROR: test_actual_motif_observation_never_touches_the_short_toolbar_word (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_actual_motif_observation_never_touches_the_short_toolbar_word)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 144, in test_actual_motif_observation_never_touches_the_short_toolbar_word
+    tour = self.tour('0100-observe-bild.png', '0100-observe-bild-ocr.json')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 55, in tour
+    with probe.Image.open(image) as original:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/Image.py", line 3654, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0100-observe-bild.png'
+
+======================================================================
+ERROR: test_following_companion_game_keeps_landscape_handoff_requirement (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_following_companion_game_keeps_landscape_handoff_requirement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 123, in test_following_companion_game_keeps_landscape_handoff_requirement
+    tour = self.tour('0014-jump-failure.png', '0011-native-haltenhoherspringen-1-ocr.json')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 55, in tour
+    with probe.Image.open(image) as original:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/Image.py", line 3654, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0014-jump-failure.png'
+
+======================================================================
+ERROR: test_full_caption_variants_must_identify_the_same_actual_control (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_full_caption_variants_must_identify_the_same_actual_control)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 171, in test_full_caption_variants_must_identify_the_same_actual_control
+    lines = json.loads((FIXTURE / '0100-observe-bild-ocr.json').read_text())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0100-observe-bild-ocr.json'
+
+======================================================================
+ERROR: test_jump_action_rejects_instruction_only_or_two_separate_lower_controls (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_jump_action_rejects_instruction_only_or_two_separate_lower_controls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 115, in test_jump_action_rejects_instruction_only_or_two_separate_lower_controls
+    rows = json.loads((FIXTURE / 'local-replay/actual-original-springen-ocr.json').read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/local-replay/actual-original-springen-ocr.json'
+
+======================================================================
+ERROR: test_jump_uses_portrait_policy_and_can_sample_original_action_caption (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_jump_uses_portrait_policy_and_can_sample_original_action_caption)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 91, in test_jump_uses_portrait_policy_and_can_sample_original_action_caption
+    tour = self.tour('0011-native-haltenhoherspringen-3.png',
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 55, in tour
+    with probe.Image.open(image) as original:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/Image.py", line 3654, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0011-native-haltenhoherspringen-3.png'
+
+======================================================================
+ERROR: test_original_fixture_bytes_and_failure_identity_remain_exact (scripts.tests.test_studio_creative_runtime_repair.ActualCreativeObservations.test_original_fixture_bytes_and_failure_identity_remain_exact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 76, in test_original_fixture_bytes_and_failure_identity_remain_exact
+    manifest = json.loads((FIXTURE / 'provenance.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/provenance.json'
+
+======================================================================
+ERROR: test_actual_read_and_input_timeouts_are_clamped_to_same_remaining_budget (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_actual_read_and_input_timeouts_are_clamped_to_same_remaining_budget) (arguments=('shell', 'input', 'swipe', '100', '100', '100', '100', '120'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 350, in test_actual_read_and_input_timeouts_are_clamped_to_same_remaining_budget
+    self.assertEqual(tour.audit_adb(*arguments, timeout=60), 'OK')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/.github/probes/studio_creative_android_probe.py", line 652, in audit_adb
+    path, shot = self.shot('before-real-input')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 289, in shot
+    'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+                             ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0014-jump-failure.png'
+
+======================================================================
+ERROR: test_entire_requested_hold_must_fit_remaining_budget (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_entire_requested_hold_must_fit_remaining_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 340, in test_entire_requested_hold_must_fit_remaining_budget
+    tour.audit_adb('shell', 'input', 'swipe', '100', '100', '100', '100', '650')
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/.github/probes/studio_creative_android_probe.py", line 652, in audit_adb
+    path, shot = self.shot('before-real-input')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 289, in shot
+    'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+                             ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0014-jump-failure.png'
+
+======================================================================
+ERROR: test_journal_crossing_deadline_never_dispatches_input (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_journal_crossing_deadline_never_dispatches_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 332, in test_journal_crossing_deadline_never_dispatches_input
+    tour.audit_adb('shell', 'input', 'swipe', '100', '100', '100', '100', '120')
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/.github/probes/studio_creative_android_probe.py", line 652, in audit_adb
+    path, shot = self.shot('before-real-input')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 289, in shot
+    'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+                             ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0014-jump-failure.png'
+
+======================================================================
+ERROR: test_late_saved_arrival_never_reaches_the_question (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_late_saved_arrival_never_reaches_the_question)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 295, in test_late_saved_arrival_never_reaches_the_question
+    initial = self.originals()[0]
+              ~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+======================================================================
+ERROR: test_screenshot_crossing_deadline_never_dispatches_input (scripts.tests.test_studio_creative_runtime_repair.TreasureDeadlineGuards.test_screenshot_crossing_deadline_never_dispatches_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 319, in test_screenshot_crossing_deadline_never_dispatches_input
+    tour.audit_adb('shell', 'input', 'swipe', '100', '100', '100', '100', '120')
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/.github/probes/studio_creative_android_probe.py", line 652, in audit_adb
+    path, shot = self.shot('before-real-input')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 289, in shot
+    'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+                             ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/0014-jump-failure.png'
+
+======================================================================
+ERROR: test_actual_slow_progress_does_not_use_six_world_units_per_wall_second (scripts.tests.test_studio_creative_runtime_repair.TreasureObservedProgress.test_actual_slow_progress_does_not_use_six_world_units_per_wall_second)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 187, in test_actual_slow_progress_does_not_use_six_world_units_per_wall_second
+    events = json.loads((FIXTURE / 'real-input-events.json').read_text())
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_d2c/real-input-events.json'
+
+======================================================================
+ERROR: test_wrong_direction_stall_or_changed_result_identity_stops_before_another_input (scripts.tests.test_studio_creative_runtime_repair.TreasureObservedProgress.test_wrong_direction_stall_or_changed_result_identity_stops_before_another_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_runtime_repair.py", line 249, in test_wrong_direction_stall_or_changed_result_identity_stops_before_another_input
+    initial = self.originals()[0]
+              ~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+======================================================================
+ERROR: test_actual_active_hud_must_stabilize_before_one_back_and_paired_pause (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_actual_active_hud_must_stabilize_before_one_back_and_paired_pause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 248, in setUp
+    self.active_lines = json.loads((FIXTURE / '0082-native-weiterbauen-9-ocr.json').read_text())
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0082-native-weiterbauen-9-ocr.json'
+
+======================================================================
+ERROR: test_already_observed_pause_is_not_toggled_and_failed_pause_never_retries_back (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_already_observed_pause_is_not_toggled_and_failed_pause_never_retries_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 248, in setUp
+    self.active_lines = json.loads((FIXTURE / '0082-native-weiterbauen-9-ocr.json').read_text())
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0082-native-weiterbauen-9-ocr.json'
+
+======================================================================
+ERROR: test_header_walk_caption_or_incomplete_panel_cannot_fake_pause (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_header_walk_caption_or_incomplete_panel_cannot_fake_pause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 248, in setUp
+    self.active_lines = json.loads((FIXTURE / '0082-native-weiterbauen-9-ocr.json').read_text())
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0082-native-weiterbauen-9-ocr.json'
+
+======================================================================
+ERROR: test_original_blank_entry_never_sends_back (scripts.tests.test_studio_creative_7b_repair.BuildEntryAndPauseBoundary.test_original_blank_entry_never_sends_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 248, in setUp
+    self.active_lines = json.loads((FIXTURE / '0082-native-weiterbauen-9-ocr.json').read_text())
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0082-native-weiterbauen-9-ocr.json'
+
+======================================================================
+ERROR: test_actual_empty_board_uses_contour_and_keeps_real_tray_projection (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_actual_empty_board_uses_contour_and_keeps_real_tray_projection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 147, in test_actual_empty_board_uses_contour_and_keeps_real_tray_projection
+    image = probe.read_image(FIXTURE / '0125-puzzle-observed-board.png')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/.github/probes/studio_creative_android_probe.py", line 53, in read_image
+    with Image.open(path) as source:
+         ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/Image.py", line 3654, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0125-puzzle-observed-board.png'
+
+======================================================================
+ERROR: test_current_jump_reads_beyond_original_instruction_word (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_current_jump_reads_beyond_original_instruction_word)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 77, in test_current_jump_reads_beyond_original_instruction_word
+    old = json.loads((FIXTURE / '0017-observe-springen-ocr.json').read_text())
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0017-observe-springen-ocr.json'
+
+======================================================================
+ERROR: test_current_original_and_local_ocr_bytes_are_bound_separately (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_current_original_and_local_ocr_bytes_are_bound_separately)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 63, in test_current_original_and_local_ocr_bytes_are_bound_separately
+    manifest = json.loads((FIXTURE / 'provenance.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/provenance.json'
+
+======================================================================
+ERROR: test_current_qa61c_learning_uses_actual_gold_ocr_without_extending_budget (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_current_qa61c_learning_uses_actual_gold_ocr_without_extending_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 125, in test_current_qa61c_learning_uses_actual_gold_ocr_without_extending_budget
+    original = json.loads((fixture / 'learning-move-1-0-ocr.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/learning-qa61c/learning-move-1-0-ocr.json'
+
+======================================================================
+ERROR: test_ordinary_success_keeps_its_first_variant_and_never_starts_gold_fallback (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_ordinary_success_keeps_its_first_variant_and_never_starts_gold_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 116, in test_ordinary_success_keeps_its_first_variant_and_never_starts_gold_fallback
+    rows = candidate.image_lines(self.out, 'ordinary', 'springen',
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ".github/probes/creative_android_probe.py", line 385, in image_lines
+    source_before = digest(source)
+                    ^^^^^^^^^^^^^^
+  File ".github/probes/creative_android_probe.py", line 54, in digest
+    with path.open('rb') as stream:
+         ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0017-observe-springen.png'
+
+======================================================================
+ERROR: test_puzzle_rejects_occlusion_plain_colour_and_duplicate_contours (scripts.tests.test_studio_creative_7b_repair.OriginalCreativeReplays.test_puzzle_rejects_occlusion_plain_colour_and_duplicate_contours)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/scripts/tests/test_studio_creative_7b_repair.py", line 165, in test_puzzle_rejects_occlusion_plain_colour_and_duplicate_contours
+    original = probe.read_image(FIXTURE / '0125-puzzle-observed-board.png')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/.github/probes/studio_creative_android_probe.py", line 53, in read_image
+    with Image.open(path) as source:
+         ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/Image.py", line 3654, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view/tools/android_qa/tests/fixtures/studio_creative_7b/0125-puzzle-observed-board.png'
+
+----------------------------------------------------------------------
+Ran 126 tests in 1.661s
+
+FAILED (errors=25)

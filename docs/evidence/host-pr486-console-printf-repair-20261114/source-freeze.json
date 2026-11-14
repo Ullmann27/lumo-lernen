@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_BEFORE_FOCUSED_GREEN",
+  "base_host": "6bf22513facf2292233e05914609089b759e0cd4",
+  "base_tree": "22fd95b71422fd0eb7f7c540a60a9826e82d1d55",
+  "parent_framework_sha256": "a9c8b2d8e7eeb0c93eb81250a308a272cfa09f035fd2659b28620bcb0095d921",
+  "prerequisites_on_older_C4": "Apply parser pack02789a57 and failure-diagnostic packfa4fed0d first; no C4 source mutation is assumed.",
+  "files": [
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 60327,
+      "sha256": "d1dcf55c0a4c64a1eb1b2ea51abdb6ce87da71e17a82716c562f2c14fd80e102"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/config.json",
+      "bytes": 415,
+      "sha256": "ce175474d4613f167f8944fe8ffb2dbd01aa606237e892afb98786b61bafb560"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/launch-stderr.stdout",
+      "bytes": 101,
+      "sha256": "3047bd80eaea315daa096465492d9030662f21452e49c19646d632e23474cabd"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/program.sh",
+      "bytes": 1738,
+      "sha256": "ff018a0a321badb4bec080ef0891d7339b709c23f764ca14b938a152c16dd0e8"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/transcript.stdout",
+      "bytes": 13278,
+      "sha256": "0fca6f277c8e541576791c2140b23a8c751d166d37b6d6c3e6372fd69c663f75"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/provenance.json",
+      "bytes": 6607,
+      "sha256": "62aac64ed51961c48c25ede56c88fe0e24c827421ed21ac0b633b07b2c0e7b9d"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/config.json",
+      "bytes": 415,
+      "sha256": "6c0625c644239a54981a3930d62db11bb28297046168c543a99c810796ba3794"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/launch-stderr.stdout",
+      "bytes": 101,
+      "sha256": "e202a930221a868910c05902f6edc8d3a9ba235d65ed625fa3afd2a9f6ef9f92"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/program.sh",
+      "bytes": 1738,
+      "sha256": "6f4108490e96bc0ceef87e59b879f578dee2edeb52a9c22b763aaf6fefcbdc6a"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/transcript.stdout",
+      "bytes": 13278,
+      "sha256": "7c9f6c3c75833d3b85673ff02974ed6d0daddb38dd1532cead8599fb61dcab65"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/config.json",
+      "bytes": 415,
+      "sha256": "395ab55b286e801ba80177d18dda86cf745e7ae238c9d66b9872511ef280fbf3"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/launch-stderr.stdout",
+      "bytes": 101,
+      "sha256": "83599ddb5e645c1a9f5090cc139cdbd00fe80373142b31d00e7a95f3696e15a3"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/program.sh",
+      "bytes": 1738,
+      "sha256": "90193fc553527eb1f7dda5739eaf1e083b633d3f6de371899c86c7d272278576"
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/transcript.stdout",
+      "bytes": 13278,
+      "sha256": "5dd9027246e35ec9c0ddcca771708000730440690e238f2db274d3ccadb4d533"
+    },
+    {
+      "path": "scripts/tests/test_console_logger_printf.py",
+      "bytes": 8962,
+      "sha256": "f5af907ad15c1578f3a7f9820202de1a5ade60ede86bf0991086ac3812dcb1a6"
+    }
+  ],
+  "only_changed_existing_definition": [
+    "device_logger_launch"
+  ],
+  "other_existing_definitions_ast_identical": 29,
+  "logger_payload_function_ast_identical": true,
+  "production_patch_sha256": "d5b5417495e314cb2c6b94f7113ce2506ac23a0d208fa6f01703a8267a67f757",
+  "local_mksh_available": false,
+  "scope": "Literal payload writer only. No TMPDIR/permissions/SELinux/cgroup or acceptance change."
+}

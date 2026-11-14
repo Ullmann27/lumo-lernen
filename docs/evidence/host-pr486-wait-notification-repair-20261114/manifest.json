@@ -1,0 +1,110 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1945,
+      "sha256": "701f1b5c51412486fea699144fba7cf434d177616d41f7e1ed38475b85f3bca3"
+    },
+    {
+      "path": "before/scripts/verify_android_runtime_anr.py",
+      "bytes": 39331,
+      "sha256": "3e3cde21409f1ee8e64a4124a1842df75b6a72eab0ac65576442fb5072308bf2"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/android37_wait_08e/manifest.json",
+      "bytes": 2102,
+      "sha256": "3aa03863b7f217b2337b710059f7d3bfcf066414c9ddccc95b614d67cfdc0359"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/android37_wait_08e/swangle-exit.stdout",
+      "bytes": 4,
+      "sha256": "9d9b18720961e9b4689fd763b85e7b6f36160ccd3a8a1c9ddc5103bb0f66c396"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/android37_wait_08e/swangle-runtime-anr-verification.json",
+      "bytes": 4733,
+      "sha256": "d6449c94d28b01148c82fb6ff313a289d3c6c08d7d5b1a00d4ac21472ae34924"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/android37_wait_08e/swangle-stop.json",
+      "bytes": 394,
+      "sha256": "c480f336398aa19308bd01e40b98112e3a0b26f1111eff530f35b039871ff79a"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/android37_wait_08e/swangle-wait.stderr",
+      "bytes": 12,
+      "sha256": "e7050295bbc75e5e00ea589ef52653993dc18120066ddc61c82f996da0ef8598"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/android37_wait_08e/swiftshader-events-anr.stdout",
+      "bytes": 650,
+      "sha256": "ac265ac04f75652e087f2f250db5bc2f0e7be45ed0000b2f4edee8165668b14b"
+    },
+    {
+      "path": "final-source/scripts/tests/test_android_runtime_wait_notification.py",
+      "bytes": 7513,
+      "sha256": "dcac38c995f9faaeeb2db9ec24b9d1b2a564ac6cecd6d466ff0e7425f99d3e54"
+    },
+    {
+      "path": "final-source/scripts/verify_android_runtime_anr.py",
+      "bytes": 39349,
+      "sha256": "79a46ccfccc1e0a5da8af85a21a8c8bc893bdc9bf68d2def91b19b0797a45c58"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 708,
+      "sha256": "e2fc29b39a3f7522ec9fc8fb72a368d292673bf623bc17f94f5b5294951d64b1"
+    },
+    {
+      "path": "original-diagnosis/artifact-object.json",
+      "bytes": 822,
+      "sha256": "7a467a5503efe420258a035565e42cf7159f2b782861beb78fcad4fecd8b26a2"
+    },
+    {
+      "path": "original-diagnosis/selected-originals/runtime-anr/device-logger/finish.json",
+      "bytes": 38435,
+      "sha256": "5786ea36ee65d054061f7b81e8e518b9fbe9768031e2b499ef1f3eea8e94fa86"
+    },
+    {
+      "path": "original-diagnosis/selected-originals/runtime-anr/device-logger/start.json",
+      "bytes": 40102,
+      "sha256": "d7c4bd21e793e4a9563c02632bb5b821b80c2fa4842b45ebc4c506ee9d08c290"
+    },
+    {
+      "path": "original-diagnosis/selected-originals/runtime-anr/runtime-end.json",
+      "bytes": 5206,
+      "sha256": "2f0a882019200f457851b6a066da9d68445fcf34376bc8b2fa6ae08d4bbbc358"
+    },
+    {
+      "path": "original-diagnosis/selected-originals/runtime-anr/runtime-start.json",
+      "bytes": 1239,
+      "sha256": "63d789cc1609e882dbb592d0199542a26519f8db250e0241041b25db7d35f3eb"
+    },
+    {
+      "path": "repair.patch",
+      "bytes": 17256,
+      "sha256": "bace0f57cb8776c1b9a7e54c78ca2505553e4439eed83a5e9abfee2dfc9136a1"
+    },
+    {
+      "path": "source-base.json",
+      "bytes": 439,
+      "sha256": "e42b628b691a24e6520b7fc851fa9b502ad11663513db1fba6beed926dc681a7"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 2733,
+      "sha256": "49fff8acdc1a1adcbbd3ac21e068fca8e94a44eb32fff951365f602cedbbd1da"
+    },
+    {
+      "path": "source-preservation.json",
+      "bytes": 460,
+      "sha256": "74500f2552561d10d818158c4adfa3e6ce2163a1629198eb3f2b89f5b13a3982"
+    },
+    {
+      "path": "unchanged-inputs.json",
+      "bytes": 916,
+      "sha256": "8a0fa05a731a13a6b33c7347e521f5619b5274f0493c195f139bc36eb3fc1c60"
+    }
+  ],
+  "source_freeze_sha256": "49fff8acdc1a1adcbbd3ac21e068fca8e94a44eb32fff951365f602cedbbd1da"
+}

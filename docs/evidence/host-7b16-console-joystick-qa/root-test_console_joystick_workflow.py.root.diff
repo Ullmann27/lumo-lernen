@@ -1,0 +1,24 @@
+--- producer/scripts/tests/test_console_joystick_workflow.py
++++ root/scripts/tests/test_console_joystick_workflow.py
+@@ -239,8 +239,7 @@
+         self.assertIn('scripts.tests.test_studio_joystick_portrait', text)
+ 
+     def test_prepare_runs_before_emulator_and_retains_receipt_if_launch_never_happens(self):
+-        for job_name, directory in (('android-diagnostic', 'tour/framework-start'),
+-                                    ('creative-android', 'creative/console-preparation')):
++        for job_name, directory in (('android-diagnostic', 'tour/framework-start'),):
+             block = job(self.text, job_name)
+             title = 'Prepare the private init-console channel before emulator launch'
+             prepare = step(block, title)
+@@ -273,6 +272,11 @@
+                                        capture_output=True, timeout=10)
+                 self.assertNotEqual(retry.returncode, 0)
+                 self.assertEqual(receipt.read_bytes(), retained.read_bytes())
++
++        creative = job(self.text, 'creative-android')
++        self.assertNotIn('android_console_transport.py prepare', creative)
++        self.assertNotIn('LUMO_ANDROID_CONSOLE_SOCKET', creative)
++        self.assertNotIn('-shell-serial', creative)
+ 
+     def test_old_auto_trigger_exclusions_affect_only_the_exact_new_branch(self):
+         for path, name in (

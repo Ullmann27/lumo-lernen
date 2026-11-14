@@ -1,0 +1,107 @@
+--- original/lumo-unchanged-apk-diagnostic.yml
++++ .github/workflows/lumo-android-runtime-7b16-followup.yml
+@@ -1,4 +1,4 @@
+-name: LUMO unchanged 7b16 APK Android diagnostic
++name: LUMO unchanged 7b16 APK Android runtime follow-up
+ on:
+   pull_request:
+     branches: [integration/lumo-connections-20261113]
+@@ -7,7 +7,7 @@
+   contents: read
+   actions: read
+ concurrency:
+-  group: lumo-unchanged-7b16-diagnostic-${{ github.head_ref || github.ref_name }}
++  group: lumo-unchanged-7b16-followup-${{ github.head_ref || github.ref_name }}
+   cancel-in-progress: false
+ env:
+   PYTHONDONTWRITEBYTECODE: '1'
+@@ -20,10 +20,10 @@
+       github.repository == 'Ullmann27/lumo-lernen' &&
+       ((github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+-      github.head_ref == 'qa/lumo-android-runtime-7b16-20261114') ||
++      github.head_ref == 'qa/lumo-android-runtime-7b16-followup-20261114') ||
+       (github.event_name == 'workflow_dispatch' &&
+-      github.ref_name == 'qa/lumo-android-runtime-7b16-20261114'))
+-    name: diagnostic-probe-contracts
++      github.ref_name == 'qa/lumo-android-runtime-7b16-followup-20261114'))
++    name: followup-diagnostic-probe-contracts
+     runs-on: ubuntu-latest
+     timeout-minutes: 12
+     steps:
+@@ -52,6 +52,11 @@
+             scripts.tests.test_android_framework_ready_android17 \
+             scripts.tests.test_android37_cli22 \
+             scripts.tests.test_verify_android_runtime_anr \
++            scripts.tests.test_android_runtime_device_logger \
++            scripts.tests.test_runtime_logcat_sections \
++            scripts.tests.test_runtime_followup_workflow \
++            tools.android_qa.tests.test_nextgen_speech_logcat_recovery \
++            tools.android_qa.tests.test_studio_speech_logcat_recovery \
+             scripts.tests.test_verify_unchanged_apk_diagnostic \
+             tools.android_qa.tests.test_kart_garage_evidence \
+             tools.android_qa.tests.test_kart_driver_word_evidence \
+@@ -63,14 +68,14 @@
+       - uses: actions/upload-artifact@v4
+         if: always()
+         with:
+-          name: lumo-7b16-diagnostic-probe-contracts
++          name: lumo-7b16-followup-diagnostic-probe-contracts
+           path: diagnostic-contracts.log
+           if-no-files-found: error
+           retention-days: 30
+ 
+   android-diagnostic:
+     needs: [probe-contracts]
+-    name: unchanged-apk-${{ matrix.case }}
++    name: unchanged-apk-followup-${{ matrix.case }}
+     strategy:
+       fail-fast: false
+       matrix:
+@@ -86,6 +91,10 @@
+           - case: api37-swiftshader
+             api: 37
+             renderer: swiftshader
++            minutes: 65
++          - case: api37-swangle
++            api: 37
++            renderer: swangle
+             minutes: 65
+           - case: update2017
+             api: 35
+@@ -161,7 +170,7 @@
+           git -C candidate-source rev-parse HEAD > tour/apk-source-sha.txt
+       - name: Bind both sources, exact build job, artifact, APK and actual embedded PCK
+         env:
+-          DIAGNOSTIC_JOB_NAME: unchanged-apk-${{ matrix.case }}
++          DIAGNOSTIC_JOB_NAME: unchanged-apk-followup-${{ matrix.case }}
+         run: |
+           set -euo pipefail
+           .probe-venv/bin/python scripts/verify_unchanged_apk_diagnostic.py \
+@@ -209,7 +218,7 @@
+           python3 scripts/prepare_android37_emulator_action.py \
+             --action-dir runner-actions/android-emulator-runner --out tour/framework-start \
+             --probe-source "$QA_SOURCE" \
+-            --workflow .github/workflows/lumo-unchanged-apk-diagnostic.yml \
++            --workflow .github/workflows/lumo-android-runtime-7b16-followup.yml \
+             --context unchanged-apk-diagnostic \
+             --apk-source "$CANDIDATE_SOURCE" --native-source "$NATIVE_SOURCE"
+           node --check runner-actions/android-emulator-runner/lib/emulator-manager.js
+@@ -254,7 +263,7 @@
+           emulator-boot-timeout: 300
+           emulator-port: 5554
+           # This GPU option is the only active emulator-configuration difference
+-          # between the two API37 jobs. The observers are identical in both.
++          # between the three API37 jobs. All use the same strict observers.
+           emulator-options: -no-window -accel on -gpu ${{ matrix.renderer }} -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+           pre-emulator-launch-script: |
+             python3 "$GITHUB_WORKSPACE/scripts/prepare_android37_cli22.py" inspect --out "$GITHUB_WORKSPACE/tour/framework-start/cli22" --phase before-boot
+@@ -272,7 +281,7 @@
+       - uses: actions/upload-artifact@v4
+         if: always()
+         with:
+-          name: lumo-7b16-diagnostic-${{ matrix.case }}
++          name: lumo-7b16-followup-diagnostic-${{ matrix.case }}
+           path: tour/
+           if-no-files-found: error
+           retention-days: 30

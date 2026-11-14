@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "qa_source": "f89b77bbc9caacfb677a8f0b7922f27fcbbd546f",
+  "qa_tree": "5c42a92ae49e73d4739cacaaf35f2102561d841a",
+  "run_id": 43556708653,
+  "run_attempt": 1,
+  "workflow_path": ".github/workflows/lumo-creative-7b16-diagnostic.yml",
+  "branch": "qa/lumo-creative-7b16-20261114",
+  "event": "pull_request",
+  "export_index_schema": 2,
+  "part_manifest_schema": 1,
+  "files": [
+    {
+      "path": "export_creative_evidence_parts.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-qa-preparation/final-source/scripts/export_creative_evidence_parts.py",
+      "bytes": 12904,
+      "sha256": "2b1dc64b75456b92a46e2017b6d28ffac11e35b6dcfbb0e20a9d32f32d7fa092",
+      "git_blob_sha1": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9"
+    },
+    {
+      "path": "checked_memory_collector.py",
+      "original_path": "/workspace/scratch/b3485b7bb989/host-creative-parts-collector/source-contract/checked_memory_collector.py",
+      "bytes": 15859,
+      "sha256": "9d7b07d27657b9c9a62c7027393419006480bc3d28848cfabe6811be21a6204e",
+      "git_blob_sha1": "7ee2efab3cf83a73cb393c54a93e0b8745c0ca39"
+    }
+  ],
+  "original_run_list": {
+    "original_path": "/workspace/scratch/b3485b7bb989/host-pr481-f89b77-creative-evidence/initial/runs.json",
+    "path": "original-initial-run-list.json",
+    "bytes": 116860,
+    "sha256": "d49b9e9ada3767c2bf286e19a54a624859079b9cef7b1919b730bc7023ef1f5d"
+  },
+  "legacy_verifier": {
+    "original_path": "/workspace/scratch/b3485b7bb989/host-creative-parts-collector/verify_creative_parts.py",
+    "bytes": 18989,
+    "sha256": "ac7868ea0a72ee39297d7242b7a140d986e158daa5c59325548c06844e262baf"
+  },
+  "scope": "Exact existing exporter blob and memory-collector snapshots plus already obtained original run metadata. No artifact or external download, no product acceptance."
+}

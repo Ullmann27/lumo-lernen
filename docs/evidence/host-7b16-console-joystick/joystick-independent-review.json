@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T05:45:21.372814+00:00",
+  "reviewer": "flutter_integration",
+  "scope": "Independent read-only source/original-byte review. No additional test, Git command, download, device input or product source edit.",
+  "result": "NO_CONCRETE_BLOCKER_FOUND",
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+  "source_before": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr481-jump-ring-repair-20261114/original-observer.py",
+    "bytes": 79049,
+    "sha256": "7e22b769aca9482efef313307c4369a6d311e4dfaeb8c7d85d072bb2df12a824",
+    "git_blob": "3a03ab1fd9ae6e9bef9dabeba2fa038e2488fcb8"
+  },
+  "source_after": {
+    "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/probes/studio_creative_android_probe.py",
+    "bytes": 79134,
+    "sha256": "a8246afe23edf8de01929af91839bc204e72a55187c84d6ed48ae3c5446541b0",
+    "git_blob": "cdd56d07f476526cf1b77c9f14a12bd10f8992d2"
+  },
+  "verified_current_files": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/probes/studio_creative_android_probe.py",
+      "bytes": 79134,
+      "sha256": "a8246afe23edf8de01929af91839bc204e72a55187c84d6ed48ae3c5446541b0",
+      "git_blob": "cdd56d07f476526cf1b77c9f14a12bd10f8992d2"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/test_studio_joystick_portrait.py",
+      "bytes": 5094,
+      "sha256": "45acc1e1a8f5a1dc7ede4d9c2efeb9201570237a73a4eb32a26ab99fdcbd1ada",
+      "git_blob": "2cbed2ad6c7bdae3222254142582cea4c793141f"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/fixtures/studio_joystick_portrait_pr481/provenance.json",
+      "bytes": 3094,
+      "sha256": "cd06addf8f2ce43c73ec2ecb65eb4e9b51164ff4f6d1526533b0d5ab53a53839",
+      "git_blob": "816c8e211c120bee24522fc8fadc6e937b6984f9"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/fixtures/studio_joystick_portrait_pr481/0019-observe-original-stick.png",
+      "bytes": 1629168,
+      "sha256": "2afbab541db859df123d1c800282d8379b4d20a2e9da85c3d4a759601ddc8b34",
+      "git_blob": "aafd1ed8240e11daeb071c13029a08d8107dc1ad"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/fixtures/studio_joystick_portrait_pr481/0020-jump-failure.png",
+      "bytes": 1625955,
+      "sha256": "37073ec19b112d4213c9e9da05e1d3c59da4766dc3f917f92ca1c0340e47a381",
+      "git_blob": "b38fbc5548c4133191a7fadaf12ea4558c3da39b"
+    }
+  ],
+  "exact_delta": {
+    "comment_added": true,
+    "only_executable_change": "max(65, image.height * .13) -> max(65, min(image.size) * .13)",
+    "entire_module_byte_equal_after_only_these_two_text_substitutions": true,
+    "only_changed_top_level_ast": "stick_target",
+    "unchanged_top_level_definitions": [
+      "Tour",
+      "bounds",
+      "build_pause_observation",
+      "build_targets",
+      "candidate_binding",
+      "committed_helper",
+      "components",
+      "config_variant_values",
+      "full_caption_choice",
+      "hub_choice",
+      "jump_action_choice",
+      "main",
+      "one_added_piece",
+      "one_quarter_turn",
+      "parse_jump_save",
+      "pieces",
+      "puzzle_board_contour",
+      "puzzle_piece_target",
+      "read_image",
+      "require",
+      "resume_equal",
+      "sha",
+      "solve",
+      "treasure_movement_duration",
+      "verify_candidate_metadata",
+      "write"
+    ]
+  },
+  "original_reproduction": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr481-jump-ring-repair-20261114/original-red-reproduction.json",
+    "bytes": 3505,
+    "sha256": "2f5d313482239fd9210a10c8c42dbfd20829bfbd2045fb0afe3b151f311ed906",
+    "git_blob": "63cc0fcc757cebd9db8738639111f35fed360ceb"
+  },
+  "fixture_provenance": {
+    "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/fixtures/studio_joystick_portrait_pr481/provenance.json",
+    "bytes": 3094,
+    "sha256": "cd06addf8f2ce43c73ec2ecb65eb4e9b51164ff4f6d1526533b0d5ab53a53839",
+    "git_blob": "816c8e211c120bee24522fc8fadc6e937b6984f9"
+  },
+  "original_frames": [
+    {
+      "fixture": {
+        "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/fixtures/studio_joystick_portrait_pr481/0019-observe-original-stick.png",
+        "bytes": 1629168,
+        "sha256": "2afbab541db859df123d1c800282d8379b4d20a2e9da85c3d4a759601ddc8b34",
+        "git_blob": "aafd1ed8240e11daeb071c13029a08d8107dc1ad"
+      },
+      "original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr481-f89b77-creative-evidence/parts/part-01/selected-originals/originals/originals/tour/0019-observe-original-stick.png",
+        "bytes": 1629168,
+        "sha256": "2afbab541db859df123d1c800282d8379b4d20a2e9da85c3d4a759601ddc8b34",
+        "git_blob": "aafd1ed8240e11daeb071c13029a08d8107dc1ad"
+      },
+      "observed_size": [
+        1080,
+        1920
+      ],
+      "root_offline_candidates": [
+        {
+          "bounds": [
+            45.0,
+            1633.5,
+            231.0,
+            1819.5
+          ],
+          "center": [
+            138.0,
+            1726.5
+          ],
+          "diameter": 186.0,
+          "ring_fraction": 1.0,
+          "occupancy": 0.25208116545265347,
+          "passes_original_height_min": false,
+          "passes_short_side_min": true
+        },
+        {
+          "bounds": [
+            115.5,
+            1705.5,
+            174.0,
+            1762.5
+          ],
+          "center": [
+            144.75,
+            1734.0
+          ],
+          "diameter": 57.75,
+          "ring_fraction": 0.8807692307692307,
+          "occupancy": 0.17543859649122806,
+          "passes_original_height_min": false,
+          "passes_short_side_min": false
+        }
+      ],
+      "old_minimum": 249.60000000000002,
+      "new_minimum": 140.4
+    },
+    {
+      "fixture": {
+        "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/fixtures/studio_joystick_portrait_pr481/0020-jump-failure.png",
+        "bytes": 1625955,
+        "sha256": "37073ec19b112d4213c9e9da05e1d3c59da4766dc3f917f92ca1c0340e47a381",
+        "git_blob": "b38fbc5548c4133191a7fadaf12ea4558c3da39b"
+      },
+      "original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr481-f89b77-creative-evidence/parts/part-01/selected-originals/originals/originals/tour/0020-jump-failure.png",
+        "bytes": 1625955,
+        "sha256": "37073ec19b112d4213c9e9da05e1d3c59da4766dc3f917f92ca1c0340e47a381",
+        "git_blob": "b38fbc5548c4133191a7fadaf12ea4558c3da39b"
+      },
+      "observed_size": [
+        1080,
+        1920
+      ],
+      "root_offline_candidates": [
+        {
+          "bounds": [
+            45.0,
+            1633.5,
+            231.0,
+            1819.5
+          ],
+          "center": [
+            138.0,
+            1726.5
+          ],
+          "diameter": 186.0,
+          "ring_fraction": 1.0,
+          "occupancy": 0.25208116545265347,
+          "passes_original_height_min": false,
+          "passes_short_side_min": true
+        },
+        {
+          "bounds": [
+            115.5,
+            1705.5,
+            174.0,
+            1762.5
+          ],
+          "center": [
+            144.75,
+            1734.0
+          ],
+          "diameter": 57.75,
+          "ring_fraction": 0.8807692307692307,
+          "occupancy": 0.17543859649122806,
+          "passes_original_height_min": false,
+          "passes_short_side_min": false
+        }
+      ],
+      "old_minimum": 249.60000000000002,
+      "new_minimum": 140.4
+    }
+  ],
+  "safety_review": {
+    "search_region": "Unchanged normalized ROI (0, 0.40, 0.43, 1). No fixed screen position introduced.",
+    "colour": "Unchanged cyan predicate r<60, b>150, g>65, b-g>15, b>2*r.",
+    "shape": "Unchanged strict 0.80 < width/height < 1.22 and 0.12 < occupancy < 0.70.",
+    "ring": "Unchanged fraction >0.76 at normalized radius 0.55..1.1.",
+    "uniqueness": "Exactly one accepted connected component remains mandatory; a second valid ring causes failure.",
+    "minima": "Absolute 65-pixel floor remains; only relative dimension changes from height to short viewport side. Original outer186 passes140.4; original inner57.75 remains below both the65 floor and140.4 proportional bound.",
+    "landscape": "For width >= height, min(image.size) equals height, so the executable threshold is exactly unchanged. Square frames are also unchanged.",
+    "current_input": "Class methods current_stick/move_stick and their surrounding screenshot/input/deadline flow are AST-identical. Every gesture still observes a fresh actual ring, requires nonzero axis and100..1800ms, and uses the measured center/diameter. No fallback or ambiguous choice introduced."
+  },
+  "existing_test_review": {
+    "source": {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/test_studio_joystick_portrait.py",
+      "bytes": 5094,
+      "sha256": "45acc1e1a8f5a1dc7ede4d9c2efeb9201570237a73a4eb32a26ab99fdcbd1ada",
+      "git_blob": "2cbed2ad6c7bdae3222254142582cea4c793141f"
+    },
+    "methods": [
+      "test_both_unmodified_device_frames_select_only_the_original_outer_ring",
+      "test_synthetic_resampling_of_the_original_preserves_observed_coordinates",
+      "test_landscape_original_contract_still_selects_the_same_ring",
+      "test_blank_and_filled_circles_are_not_joystick_rings",
+      "test_absolute_and_proportional_minima_still_reject_small_rings",
+      "test_two_valid_portrait_rings_remain_ambiguous",
+      "test_elongated_or_outside_control_region_rings_are_rejected"
+    ],
+    "coverage": "Two byte-exact Android frames, explicitly synthetic downscales, landscape, blank/filled circles, absolute/proportional minima, two-ring ambiguity, elongated/right/top-region negatives.",
+    "reported_by_root": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.598
+    },
+    "reviewer_ran_tests": false,
+    "raw_green_log_binding": "Root-reported execution; no separate green rawlog was present in this pack at review time. This review independently binds the actual test source and original fixtures, not a rerun."
+  },
+  "native_source_scope": {
+    "root_supplied_native_jump_blob": "c4bf551b3b679554c8fe2b2d1307b0439870e8fe",
+    "root_reported_identical_at": [
+      "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "27ae427"
+    ],
+    "independent_scope": "This source review did not dereference Git objects or download Native sources. No Native/Android app change is part of the reviewed delta."
+  },
+  "limits": [
+    "Original PR481 Jump remains FAIL; its recorded short video with actions:[] is only a prelude.",
+    "An offline target-location PASS is not actual joystick movement, jumping, persisted progress, new APK acceptance or60FPS.",
+    "The next source-bound device run must still exercise real input and all existing Jump checks.",
+    "The upcoming four-case workflow is outside this review and will be reviewed separately."
+  ]
+}

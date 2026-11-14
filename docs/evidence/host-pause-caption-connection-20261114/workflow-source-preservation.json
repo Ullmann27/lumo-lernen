@@ -1,0 +1,82 @@
+{
+  "scope": "Static byte/AST comparison only; no test, installation or actionlint run.",
+  "base_head": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+  "base_tree": "863c4b45bcd6a564070ca128565688bde7e1ed11",
+  "removing_only_new_pause_group_and_log_restores_complete_old_workflow": true,
+  "entire_actual_android_job_byte_equal": true,
+  "actual_android_job_sha256": "134adb16e581dd1355224355ccd9fcb3658bbfb018834edc0effcc2b5e30b4e8",
+  "existing_groups_unchanged": [
+    [
+      "console",
+      86
+    ],
+    [
+      "parser",
+      7
+    ],
+    [
+      "launch-diagnostic",
+      9
+    ],
+    [
+      "printf",
+      6
+    ],
+    [
+      "wait-notification",
+      9
+    ],
+    [
+      "diagnostic",
+      121
+    ]
+  ],
+  "new_groups": [
+    [
+      "console",
+      86
+    ],
+    [
+      "parser",
+      7
+    ],
+    [
+      "launch-diagnostic",
+      9
+    ],
+    [
+      "printf",
+      6
+    ],
+    [
+      "wait-notification",
+      9
+    ],
+    [
+      "pause-caption",
+      9
+    ],
+    [
+      "diagnostic",
+      121
+    ]
+  ],
+  "required_methods_before": 238,
+  "required_methods_after": 247,
+  "workflow_test_methods_before": 9,
+  "workflow_test_methods_after": 9,
+  "changed_existing_workflow_methods": [
+    "test_all_86_console_and_7_parser_and_9_diagnostic_cases_are_required",
+    "test_failed_observations_and_all_contract_logs_are_always_retained"
+  ],
+  "unchanged_workflow_methods": [
+    "test_exact_internal_head_base_event_and_dispatch_are_required",
+    "test_exact_three_jobs_bind_distinct_qa_source_and_route",
+    "test_new_route_rejects_old_workflow_wrong_source_attempt_and_duplicate_job",
+    "test_all_existing_routes_keep_their_exact_workflow_and_branch",
+    "test_three_renderer_job_preserves_entire_original_runtime_body",
+    "test_candidate_identity_and_binding_run_before_any_device_launch",
+    "test_broad_workflow_exclusions_only_add_this_exact_branch"
+  ],
+  "existing_dependency_install_command_unchanged": ".probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0"
+}

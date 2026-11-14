@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T09:25:01.491440+00:00",
+  "base": {
+    "commit": "7fe0b85dd3b51384efed5c94af0618951574b857",
+    "tree": "3c3232daf3c14e8819f639128ededabb5fc603ec",
+    "worktree": "/tmp/lumo-root-recovery-0900/host-qa",
+    "status_porcelain": ""
+  },
+  "sources": [
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "bytes": 8453,
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+      "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+      "before_bytes": 8194,
+      "before_sha256": "d1e4f1392f4d3e3b3312729e8a5d1e91e6a9f5d91d997640b40a900b66ba3568",
+      "before_git_blob": "3b545455d4ce98b4cb31c238aa2e38df37cbf6e1"
+    }
+  ],
+  "scope": "One test-harness file only; no production, selector, workflow or assertion changes; no tests executed before source checkpoint."
+}

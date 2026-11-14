@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "TEST_EXPECTATION_REPAIR_CHECKPOINT_NO_CI_ACTIVATION",
+  "parent": "1cc5cf4fb7da382fb9833b9d52cf53540306b405",
+  "old_test_blob": "9b1413a39e327258cb3ebc583ea7a17070a9cf34",
+  "new_test_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+  "reason": "Production already requires standalone_caption=True. The strict existing test now demands that argument, retaining every original touch, physical drive and evidence assertion.",
+  "actual_validation": "One exact failing case on Host32 original bytes reproduced once RED, then once GREEN on proposed bytes. The QA1cc5 original test bytes and production Continue function AST are identical. No execution on QA1cc5 claimed.",
+  "actual_host_failure": {
+    "run": 43583493817,
+    "job": 132414225517,
+    "tests": 938,
+    "passed": 937,
+    "failed": 1
+  },
+  "production_workflow_pins_historical_apk_unchanged": true,
+  "new_android_device_or_release_result": false
+}

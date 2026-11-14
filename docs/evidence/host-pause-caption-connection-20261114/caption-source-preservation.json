@@ -1,0 +1,96 @@
+{
+  "scope": "Read-only structural source comparison; no probe/test imported or executed.",
+  "base_head": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+  "base_tree": "863c4b45bcd6a564070ca128565688bde7e1ed11",
+  "production_files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "changed_existing_top_level_functions": [
+        "native_tap",
+        "native_text"
+      ],
+      "added_functions": [
+        "standalone_caption_target"
+      ],
+      "unchanged_existing_top_level_functions": [
+        "capture",
+        "capture_flutter_ready",
+        "device_rotation",
+        "digest",
+        "enter",
+        "flutter_return_capture",
+        "flutter_tap",
+        "gold_caption_boxes",
+        "image_lines",
+        "ime_character",
+        "leave",
+        "main",
+        "normalized",
+        "onboard",
+        "package_identity",
+        "prefs",
+        "read_component_caption",
+        "read_live_nodes",
+        "recover_launcher_dialog",
+        "saves",
+        "wallet"
+      ],
+      "whole_module_after_replacing_only_listed_functions_matches_original_ast": true,
+      "image_lines_source_bytes_unchanged": true,
+      "read_component_caption_source_bytes_unchanged": true,
+      "native_tap_existing_target_stability_hash_deadline_dispatch_and_finally_suffix_byte_equal": true
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "changed_existing_top_level_functions": [
+        "_continue_actual_race"
+      ],
+      "added_functions": [],
+      "unchanged_existing_top_level_functions": [
+        "_atelier_roundtrip",
+        "_confirm_stage_selection",
+        "_inspect_spatial_kart_menu",
+        "_pause_actual_race",
+        "_previous_kart_race_id",
+        "_read_garage_footer",
+        "_return_stage_kart_menu",
+        "_screencap",
+        "_select_stage_driver",
+        "_select_stage_kart",
+        "_shot",
+        "_simplify",
+        "_stage_cup_text",
+        "_stage_kart_scroll_recovery",
+        "_start_actual_embedded_race",
+        "alive",
+        "diagnostic_logcat_context",
+        "drive_with_gas",
+        "find_gas",
+        "godot_alive",
+        "labels",
+        "log_images",
+        "logcat_fatal",
+        "main",
+        "try_tap",
+        "verify_apk_identity",
+        "wait_race_hud",
+        "wait_race_running"
+      ],
+      "whole_module_after_replacing_only_listed_functions_matches_original_ast": true,
+      "only_continue_change_is_explicit_true_keyword": true,
+      "hud_drive_resumed_state_and_save_checks_unchanged": true
+    }
+  ],
+  "prepared_test_methods": [
+    "test_actual_two_frame_continue_targets_the_independent_caption",
+    "test_instruction_word_without_a_standalone_caption_never_taps",
+    "test_two_distinct_independent_controls_remain_ambiguous",
+    "test_duplicate_same_control_and_ocr_order_do_not_change_the_target",
+    "test_invalid_or_offscreen_matching_region_cannot_be_discarded_silently",
+    "test_original_png_change_after_ocr_still_prevents_dispatch",
+    "test_late_ocr_does_not_outlive_the_existing_touch_deadline",
+    "test_substrings_are_not_promoted_to_the_exact_continue_caption",
+    "test_existing_native_callers_keep_their_original_forwarded_contract"
+  ],
+  "tests_executed": 0
+}

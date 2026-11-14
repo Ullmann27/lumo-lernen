@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "archive": {
+    "path": "compact-evidence.tar.gz",
+    "bytes": 114486,
+    "sha256": "f63059a360e2cf231bb498e09b5a8d8bf2cb9e60f72f822d171e386dff5a086b"
+  },
+  "manifest_sha256": "42c74cba88000a2af3fb803856c8f35b20e06471332766905d27787dd443e9cd",
+  "member_count": 54,
+  "every_member_full_byte_roundtrip": true,
+  "original_sources_preserved": true
+}

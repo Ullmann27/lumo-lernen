@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "scope": "Local POSIX write fragment; same logger payload as all three original Android launch programs",
+  "cases": [
+    {
+      "case": "host",
+      "original_program": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/proposed/scripts/tests/fixtures/console_launch_pr486/host/program.sh",
+        "bytes": 1738,
+        "sha256": "ff018a0a321badb4bec080ef0891d7339b709c23f764ca14b938a152c16dd0e8"
+      },
+      "original_error": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/proposed/scripts/tests/fixtures/console_launch_pr486/host/launch-stderr.stdout",
+        "bytes": 101,
+        "sha256": "3047bd80eaea315daa096465492d9030662f21452e49c19646d632e23474cabd"
+      },
+      "original_payload": {
+        "bytes": 568,
+        "sha256": "9f167a22001036bf6fd2c9b61d18c87996f61cdf6045427435d933581f840466"
+      },
+      "written_payload": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/green/local-shell/test_each_original_payload_path_and_surrounding_launch_program_are_preserved-01/written.payload",
+        "bytes": 568,
+        "sha256": "9f167a22001036bf6fd2c9b61d18c87996f61cdf6045427435d933581f840466"
+      },
+      "byte_identical": true,
+      "execution": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/green/local-shell/test_each_original_payload_path_and_surrounding_launch_program_are_preserved-01/execution.json",
+        "bytes": 1106,
+        "sha256": "bb9701ae8ea65d61504f0b42d1a53b52bef70a81e723ed80455b6be848d7f7ef"
+      },
+      "returncode": 0,
+      "test_timeout_seconds": 5
+    },
+    {
+      "case": "swiftshader",
+      "original_program": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/proposed/scripts/tests/fixtures/console_launch_pr486/swiftshader/program.sh",
+        "bytes": 1738,
+        "sha256": "90193fc553527eb1f7dda5739eaf1e083b633d3f6de371899c86c7d272278576"
+      },
+      "original_error": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/proposed/scripts/tests/fixtures/console_launch_pr486/swiftshader/launch-stderr.stdout",
+        "bytes": 101,
+        "sha256": "83599ddb5e645c1a9f5090cc139cdbd00fe80373142b31d00e7a95f3696e15a3"
+      },
+      "original_payload": {
+        "bytes": 568,
+        "sha256": "305bc3dda45e9612a1d5aec691bada499e0bf92b378c307e137ef1cc7c3717b6"
+      },
+      "written_payload": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/green/local-shell/test_each_original_payload_path_and_surrounding_launch_program_are_preserved-02/written.payload",
+        "bytes": 568,
+        "sha256": "305bc3dda45e9612a1d5aec691bada499e0bf92b378c307e137ef1cc7c3717b6"
+      },
+      "byte_identical": true,
+      "execution": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/green/local-shell/test_each_original_payload_path_and_surrounding_launch_program_are_preserved-02/execution.json",
+        "bytes": 1113,
+        "sha256": "25cf348f07b9ece618188ec13305d99b2a371f9143f9c1d4d4cfe477450e6ed6"
+      },
+      "returncode": 0,
+      "test_timeout_seconds": 5
+    },
+    {
+      "case": "swangle",
+      "original_program": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/proposed/scripts/tests/fixtures/console_launch_pr486/swangle/program.sh",
+        "bytes": 1738,
+        "sha256": "6f4108490e96bc0ceef87e59b879f578dee2edeb52a9c22b763aaf6fefcbdc6a"
+      },
+      "original_error": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/proposed/scripts/tests/fixtures/console_launch_pr486/swangle/launch-stderr.stdout",
+        "bytes": 101,
+        "sha256": "e202a930221a868910c05902f6edc8d3a9ba235d65ed625fa3afd2a9f6ef9f92"
+      },
+      "original_payload": {
+        "bytes": 568,
+        "sha256": "85041f7c3646ed78d51a9eb97d92321e3015dd9227f8bbf0b0de5020012988c9"
+      },
+      "written_payload": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/green/local-shell/test_each_original_payload_path_and_surrounding_launch_program_are_preserved-03/written.payload",
+        "bytes": 568,
+        "sha256": "85041f7c3646ed78d51a9eb97d92321e3015dd9227f8bbf0b0de5020012988c9"
+      },
+      "byte_identical": true,
+      "execution": {
+        "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/green/local-shell/test_each_original_payload_path_and_surrounding_launch_program_are_preserved-03/execution.json",
+        "bytes": 1109,
+        "sha256": "df3b15b543b284b3e8c059c61ac6f0654419c7a8c3738fc65a522829fd2e0c12"
+      },
+      "returncode": 0,
+      "test_timeout_seconds": 5
+    }
+  ]
+}

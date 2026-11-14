@@ -1,0 +1,45 @@
+{
+  "expression": "github.head_ref != 'chatgpt/lumo-nextgen-20261113' && github.ref_name != 'chatgpt/lumo-nextgen-20261113' && github.head_ref != 'chatgpt/lumo-2018-android-acceptance-20261113' && github.ref_name != 'chatgpt/lumo-2018-android-acceptance-20261113' && github.head_ref != 'chatgpt/lumo-kart-graphics-apk-20261113' && github.ref_name != 'chatgpt/lumo-kart-graphics-apk-20261113' && github.head_ref != 'integration/lumo-connections-20261113' && github.ref_name != 'integration/lumo-connections-20261113' && github.head_ref != 'qa/lumo-android-runtime-7b16-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-20261114'",
+  "source_identity_and_version_guard_byte_identical": true,
+  "cases": [
+    {
+      "case": "current diagnostic PR",
+      "head_ref": "qa/lumo-android-runtime-7b16-20261114",
+      "ref_name": "480/merge",
+      "verify_and_build_enabled": false
+    },
+    {
+      "case": "current diagnostic dispatch",
+      "head_ref": "",
+      "ref_name": "qa/lumo-android-runtime-7b16-20261114",
+      "verify_and_build_enabled": false
+    },
+    {
+      "case": "existing integration PR",
+      "head_ref": "integration/lumo-connections-20261113",
+      "ref_name": "465/merge",
+      "verify_and_build_enabled": false
+    },
+    {
+      "case": "existing nextgen PR",
+      "head_ref": "chatgpt/lumo-nextgen-20261113",
+      "ref_name": "461/merge",
+      "verify_and_build_enabled": false
+    },
+    {
+      "case": "existing unified producer push",
+      "head_ref": "",
+      "ref_name": "chatgpt/lumo-spielewelt-stage-20261112",
+      "verify_and_build_enabled": true
+    },
+    {
+      "case": "unrelated repair PR",
+      "head_ref": "repair/unrelated-existing-flow",
+      "ref_name": "999/merge",
+      "verify_and_build_enabled": true
+    }
+  ],
+  "historical_original_run": 43551424040,
+  "historical_original_job": 132314516082,
+  "scope": "Local evaluation of exact branch predicate only. Original failed workflow remains unchanged; no new Android claim."
+}

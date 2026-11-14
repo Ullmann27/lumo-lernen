@@ -1,0 +1,9 @@
+# PR486: exakt beobachtete TERM-Waitmeldung
+
+Quelle des Fehlers ist der tatsächliche Run 43574161418 auf Host 08e63bd3 / Tree 04859a04. SWANGLE-Job 132384862707 hält den unabhängigen Console-/Session-/Loggerprozess durch adb root; die explizite TERM-Anforderung beendet den identischen Logger mit Exit 143. Die originale Datei wait.stderr enthält genau zwölf Bytes `Terminated \n` (Hex 5465726d696e61746564200a). Der bisherige Verifier akzeptiert nur leer oder die elf Bytes ohne Leerzeichen. Alle ursprünglichen Berichte bleiben unverändert FAIL.
+
+Die einzige Produktionsänderung ergänzt diese eine zusätzliche exakte Bytefolge in der bestehenden festen Liste. Es gibt keine Normalisierung oder pauschale stderr-Toleranz. Die vorhandenen Prozess-/Geburts-/Cgroup-/Inode-/Source-/Marker-/Präfix-/Zeitketten- und ANR-Bedingungen bleiben unverändert. Tatsächliches Logger-/Session-/Launch-stderr muss weiter leer sein.
+
+Neun gezielte Vertragsmethoden sind vorbereitet. Sie benutzen die bestehenden echten Python-Recorder/Verifier mit ausdrücklich synthetischem ADB-/Console-Transport. Die zwölf Bytes stammen unverändert aus dem aktuellen Originalarchiv. Zusätzlich sind die beiden tatsächlichen neuen SwiftShader-GMS-ANR-Ereignisse aus Artefakt 14106026586 als unverändertes Gegenbeispiel enthalten; sie müssen auch nach dem Nachtrag FAIL bleiben. Ein synthetischer PASS ist keine Androidfreigabe.
+
+Zum Zeitpunkt dieses Sourcefreeze wurde kein Test ausgeführt. Root veröffentlicht zuerst den geprüften Quellencheckpoint. Der alte Verifier soll mit denselben neuen gezielten Methoden den Fehler reproduzieren; danach folgt genau der freigegebene gezielte Lauf. Keine Worktree-, Git-, CI-, GPU- oder Touränderung wurde vorgenommen. Vollständige Joblogs, ZIPs und Mitgliedsindizes liegen im getrennten ursprünglichen host-pr486-08e63bd3-console-evidence-Pack; dieses Paket kopiert nur kleine unveränderte Herkunftsbelege.

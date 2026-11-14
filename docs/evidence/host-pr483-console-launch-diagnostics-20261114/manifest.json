@@ -1,0 +1,277 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T06:59:51.325541+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1947,
+      "sha256": "cd20abed26bacfe9328a27ab25c876680751b5e5c66d13caf469bad6fdc34ed6"
+    },
+    {
+      "path": "before-source/scripts/android_framework_ready.py",
+      "bytes": 51307,
+      "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f"
+    },
+    {
+      "path": "failure-diagnostics.patch",
+      "bytes": 10019,
+      "sha256": "69ffba1382873075133c7fdeb7878f2ef01aa1c93825c260ceec7023e9e2f061"
+    },
+    {
+      "path": "final-source/scripts/android_framework_ready.py",
+      "bytes": 60360,
+      "sha256": "a9c8b2d8e7eeb0c93eb81250a308a272cfa09f035fd2659b28620bcb0095d921"
+    },
+    {
+      "path": "final-source/scripts/tests/test_console_launch_failure_diagnostics.py",
+      "bytes": 10759,
+      "sha256": "dc38bd39ff52331939fc1ebaae96ac8d23593ab6fe2adb003d3efe9918f2cd0d"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2345,
+      "sha256": "ba2ed603c72392566a71e2ccd99ae1cfa9445b0ea31c141f0e1e4fd6195f884e"
+    },
+    {
+      "path": "source-after-readonly.json",
+      "bytes": 501,
+      "sha256": "39924b70cdb71e391826bdcbde33d2ed0033b738b533493d61d2760e5c6b86ea"
+    },
+    {
+      "path": "source-freeze-v1.json",
+      "bytes": 2314,
+      "sha256": "fa4fed0d92fec95a802f001a7a14f4018028f077f7821ef1191be5a2af50e592"
+    },
+    {
+      "path": "validation/original-red/original.log",
+      "bytes": 3426,
+      "sha256": "c177ec385d6e3d67ceabe348c9a1aed5d2369685d3a23d58f693cc5d7f51bd77"
+    },
+    {
+      "path": "validation/original-red/result.json",
+      "bytes": 8050,
+      "sha256": "e8183740be61e2e64b04cfdc5d8dc434ba35c583252fe4763fb8aaeb1c4365ee"
+    },
+    {
+      "path": "validation/original-red/source/scripts/android_console_transport.py",
+      "bytes": 21029,
+      "sha256": "6e7c6572f2482f232880facb2b9b28cac5cf281eb98643fcf818812700557785"
+    },
+    {
+      "path": "validation/original-red/source/scripts/android_framework_ready.py",
+      "bytes": 51307,
+      "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/host/command.stdin",
+      "bytes": 2566,
+      "sha256": "33fb61fdacce36fcaf3fccbb7ac00bf5ea7a2664dd6fb730cbaeb5bb4d003713"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/host/config.json",
+      "bytes": 415,
+      "sha256": "3f82a946ee0ddf5ddb7dddc766f01aa630aa96f0828e47fd10c6bbb2aa0a8d04"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/host/finished.json",
+      "bytes": 1448,
+      "sha256": "dce97cb77517e16e5709f5e810737d3bf68805f1b7c5b7ba54962d2508e30648"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/host/program.sh",
+      "bytes": 1738,
+      "sha256": "fcb9eb0a0b0e0953c817ad5b4396ee657faf4ec6501d4d403e0c3a485e34fdca"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/host/transcript.stdout",
+      "bytes": 14983,
+      "sha256": "354ce0ec3c01f75905249958660bf2c148d043c111d01cfc78a3c9fec69b86aa"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/provenance.json",
+      "bytes": 7183,
+      "sha256": "eda943fb85e3f6434f93d728bafb4252266f63ac1aa4a3bd7df72144dad69c24"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swangle/command.stdin",
+      "bytes": 2566,
+      "sha256": "b83c4a4e6aa7bc2e05f5c2206396f07016adfce5ebf236eeeb8fc01c90ca4159"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swangle/config.json",
+      "bytes": 415,
+      "sha256": "f0fd2f73d65baefe0a033c091ea9a12ec433fecae652e74fe7dfcc8df3c748fa"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swangle/finished.json",
+      "bytes": 1453,
+      "sha256": "677b0b4452e0f80eb5c341b174ddc90bedcb736f59d1a7e93a0c3d3045aeecb7"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swangle/program.sh",
+      "bytes": 1738,
+      "sha256": "9fca5ca8f79b7c2fa470cd931f5a18e51487f4b740df8c239b1c8906c7ceafca"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swangle/transcript.stdout",
+      "bytes": 18067,
+      "sha256": "130c776d499e5e9ae9ef7ecef8bc05acf8a81a73d1a5687b062b727c6d3f4ef3"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/command.stdin",
+      "bytes": 2566,
+      "sha256": "c982b216e0b51803646c76db440159924dbf36de4e5610f24cfc14ff17de043b"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/config.json",
+      "bytes": 415,
+      "sha256": "f333cc91c90fdee72178ed6d3bf7e053d2d871146117e448d7859db0facad7c4"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/finished.json",
+      "bytes": 1455,
+      "sha256": "7619b7520e0eb88ea95c49cdd78c1dc6e54a344410ddc23cd57e5f9d118cdce0"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/program.sh",
+      "bytes": 1738,
+      "sha256": "f76116a59d75474da2752f065c9da4f22e85e3bff2ba98b0a3e0e5c6240efdd4"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/transcript.stdout",
+      "bytes": 15687,
+      "sha256": "953001d225faec933c0cc88ea0377551de93fef527f1c6de5210d5bc333d1eff"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/test_console_launch_failure_diagnostics.py",
+      "bytes": 10759,
+      "sha256": "dc38bd39ff52331939fc1ebaae96ac8d23593ab6fe2adb003d3efe9918f2cd0d"
+    },
+    {
+      "path": "validation/original-red/source/scripts/tests/test_console_launch_originals.py",
+      "bytes": 5273,
+      "sha256": "7b1477c4be46e5ecb865b90a7d3ad02c3fd58ac0267fc6b687702208649097d8"
+    },
+    {
+      "path": "validation/repaired-green/original.log",
+      "bytes": 2142,
+      "sha256": "28f3724ea0678d7b92df90a121d786bae8a8abbcfde9f102d809e29f8c302d3d"
+    },
+    {
+      "path": "validation/repaired-green/result.json",
+      "bytes": 7958,
+      "sha256": "1beacaf39059946c1d042c78b98e1ec57ca5fd50e7a9ef2db2b8b8896e00b44d"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/android_console_transport.py",
+      "bytes": 21029,
+      "sha256": "6e7c6572f2482f232880facb2b9b28cac5cf281eb98643fcf818812700557785"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/android_framework_ready.py",
+      "bytes": 60360,
+      "sha256": "a9c8b2d8e7eeb0c93eb81250a308a272cfa09f035fd2659b28620bcb0095d921"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/host/command.stdin",
+      "bytes": 2566,
+      "sha256": "33fb61fdacce36fcaf3fccbb7ac00bf5ea7a2664dd6fb730cbaeb5bb4d003713"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/host/config.json",
+      "bytes": 415,
+      "sha256": "3f82a946ee0ddf5ddb7dddc766f01aa630aa96f0828e47fd10c6bbb2aa0a8d04"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/host/finished.json",
+      "bytes": 1448,
+      "sha256": "dce97cb77517e16e5709f5e810737d3bf68805f1b7c5b7ba54962d2508e30648"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/host/program.sh",
+      "bytes": 1738,
+      "sha256": "fcb9eb0a0b0e0953c817ad5b4396ee657faf4ec6501d4d403e0c3a485e34fdca"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/host/transcript.stdout",
+      "bytes": 14983,
+      "sha256": "354ce0ec3c01f75905249958660bf2c148d043c111d01cfc78a3c9fec69b86aa"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/provenance.json",
+      "bytes": 7183,
+      "sha256": "eda943fb85e3f6434f93d728bafb4252266f63ac1aa4a3bd7df72144dad69c24"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swangle/command.stdin",
+      "bytes": 2566,
+      "sha256": "b83c4a4e6aa7bc2e05f5c2206396f07016adfce5ebf236eeeb8fc01c90ca4159"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swangle/config.json",
+      "bytes": 415,
+      "sha256": "f0fd2f73d65baefe0a033c091ea9a12ec433fecae652e74fe7dfcc8df3c748fa"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swangle/finished.json",
+      "bytes": 1453,
+      "sha256": "677b0b4452e0f80eb5c341b174ddc90bedcb736f59d1a7e93a0c3d3045aeecb7"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swangle/program.sh",
+      "bytes": 1738,
+      "sha256": "9fca5ca8f79b7c2fa470cd931f5a18e51487f4b740df8c239b1c8906c7ceafca"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swangle/transcript.stdout",
+      "bytes": 18067,
+      "sha256": "130c776d499e5e9ae9ef7ecef8bc05acf8a81a73d1a5687b062b727c6d3f4ef3"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/command.stdin",
+      "bytes": 2566,
+      "sha256": "c982b216e0b51803646c76db440159924dbf36de4e5610f24cfc14ff17de043b"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/config.json",
+      "bytes": 415,
+      "sha256": "f333cc91c90fdee72178ed6d3bf7e053d2d871146117e448d7859db0facad7c4"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/finished.json",
+      "bytes": 1455,
+      "sha256": "7619b7520e0eb88ea95c49cdd78c1dc6e54a344410ddc23cd57e5f9d118cdce0"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/program.sh",
+      "bytes": 1738,
+      "sha256": "f76116a59d75474da2752f065c9da4f22e85e3bff2ba98b0a3e0e5c6240efdd4"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/fixtures/console_launch_pr483/swiftshader/transcript.stdout",
+      "bytes": 15687,
+      "sha256": "953001d225faec933c0cc88ea0377551de93fef527f1c6de5210d5bc333d1eff"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/test_console_launch_failure_diagnostics.py",
+      "bytes": 10759,
+      "sha256": "dc38bd39ff52331939fc1ebaae96ac8d23593ab6fe2adb003d3efe9918f2cd0d"
+    },
+    {
+      "path": "validation/repaired-green/source/scripts/tests/test_console_launch_originals.py",
+      "bytes": 5273,
+      "sha256": "7b1477c4be46e5ecb865b90a7d3ad02c3fd58ac0267fc6b687702208649097d8"
+    },
+    {
+      "path": "validation/result.json",
+      "bytes": 17660,
+      "sha256": "aaa084502d25c9bc41eee230028fee4cb5ea873e1d67c1e03c667c945204d397"
+    }
+  ],
+  "file_count": 53,
+  "total_bytes": 513443,
+  "excluded": [
+    "No signed URL files/download responses or full ZIPs were copied into this pack."
+  ],
+  "source_scope": "Only standalone scratch candidates; active repository clean and unchanged."
+}

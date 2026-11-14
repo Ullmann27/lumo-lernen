@@ -1,0 +1,208 @@
+{
+  "created_at": "2026-11-14T06:00:59.642698+00:00",
+  "excluded_directories": {
+    "test-view/": "Disposable scratch runtime copy with historical fixtures; no implementation source unique to it. The exact final source, input hashes and original fixture identities are preserved separately."
+  },
+  "files": [
+    {
+      "bytes": 6028,
+      "path": "README.md",
+      "sha256": "77927c0899e202be28b75bc00728232da25cda7553a2ce85a44349c4629c6805"
+    },
+    {
+      "bytes": 1784,
+      "path": "auto-trigger-exclusions.patch",
+      "sha256": "4fb8ac4e08b18ec1589920f1b5cbdd746b7061b32f9a2d0e92712f476930a704"
+    },
+    {
+      "bytes": 13116,
+      "path": "build_patch.py",
+      "sha256": "d02db8e1bb1c1cc23007e2d2e66aca6a94102d1522a9432fd00c291d29bc5af2"
+    },
+    {
+      "bytes": 2329,
+      "path": "final-source/.github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "sha256": "704c549da21e793e21a2c3cfa956677ff54cb8a07b9e67e169cf96c813a66372"
+    },
+    {
+      "bytes": 2058,
+      "path": "final-source/.github/workflows/lumo-astra-script-recovery.yml",
+      "sha256": "45abdc96b1df9d825f6fd506e5d2d6a77e6f773c202a017b44abfb796d8f6b06"
+    },
+    {
+      "bytes": 25687,
+      "path": "final-source/.github/workflows/lumo-console-joystick-7b16.yml",
+      "sha256": "154ac06426ec0d54c978b81d633513d16f02df86f0b636d45a9e81b95278a6f4"
+    },
+    {
+      "bytes": 82297,
+      "path": "final-source/.github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "1e630ea2dca9e5e9fddec5c78fe8843a13a3672e433c98328de3ff8e4349513b"
+    },
+    {
+      "bytes": 13043,
+      "path": "final-source/scripts/export_creative_evidence_parts.py",
+      "sha256": "1c2bf607417adfc189bd186c3e5b029f13c8f57965f90f68ad32399f76e008eb"
+    },
+    {
+      "bytes": 10223,
+      "path": "final-source/scripts/run_unchanged_creative_diagnostic.py",
+      "sha256": "d2b7c27cea0b1dc728b2b7eedf44eb835db6e44b734756e224f27f255fb7486a"
+    },
+    {
+      "bytes": 18630,
+      "path": "final-source/scripts/tests/test_console_joystick_workflow.py",
+      "sha256": "b9bc23d0681e0363dc933ad8fa5466a934fce9aed1e8479617af427ea12a92cd"
+    },
+    {
+      "bytes": 20548,
+      "path": "final-source/scripts/verify_unchanged_apk_diagnostic.py",
+      "sha256": "0073fb00badce28bd97eeb4986b4e8457a2aa92e159044f3d6436796aace474b"
+    },
+    {
+      "bytes": 2321,
+      "path": "handoff.json",
+      "sha256": "f8001ab9c6561d1085309a36e3c1cef5d00017168716f3cf2ac167407f93ee1c"
+    },
+    {
+      "bytes": 2355,
+      "path": "input-sources.json",
+      "sha256": "21e80920923b552f01416b89cfbcdb463d952f74e32bd2a28db26b5f61fc30cf"
+    },
+    {
+      "bytes": 2189,
+      "path": "inputs/.github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "sha256": "0c523700c10fc7ba63805c30251611112adf7ac963ce40e3bb9242616bf90778"
+    },
+    {
+      "bytes": 13521,
+      "path": "inputs/.github/workflows/lumo-android-runtime-7b16-followup.yml",
+      "sha256": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31"
+    },
+    {
+      "bytes": 1918,
+      "path": "inputs/.github/workflows/lumo-astra-script-recovery.yml",
+      "sha256": "19b5544720c3d03def287d1cecffcad4d8f9daa65f0b35c6aaea027c5ca6bbac"
+    },
+    {
+      "bytes": 12106,
+      "path": "inputs/.github/workflows/lumo-creative-7b16-diagnostic.yml",
+      "sha256": "66fa993e4c093bf2b054eab67cb9afcc8ab58226e08325a09cba784434838741"
+    },
+    {
+      "bytes": 12962,
+      "path": "inputs/.github/workflows/lumo-unchanged-apk-diagnostic.yml",
+      "sha256": "e186bc6ec6e3dd946d77213307ad7c3b5152e0431b820e0f4c60c399d6fe46fa"
+    },
+    {
+      "bytes": 82165,
+      "path": "inputs/.github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "d3e214c74579f251fd65bce70348dfbcba919818032049d954d713c3dd4bb1f2"
+    },
+    {
+      "bytes": 12904,
+      "path": "inputs/scripts/export_creative_evidence_parts.py",
+      "sha256": "2b1dc64b75456b92a46e2017b6d28ffac11e35b6dcfbb0e20a9d32f32d7fa092"
+    },
+    {
+      "bytes": 9941,
+      "path": "inputs/scripts/run_unchanged_creative_diagnostic.py",
+      "sha256": "9c816f83af236b9275c1d40124450361783d211fcf9f317c5a128adef9e12085"
+    },
+    {
+      "bytes": 19885,
+      "path": "inputs/scripts/verify_unchanged_apk_diagnostic.py",
+      "sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4"
+    },
+    {
+      "bytes": 13521,
+      "path": "originals/.github__workflows__lumo-android-runtime-7b16-followup.yml",
+      "sha256": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31"
+    },
+    {
+      "bytes": 12106,
+      "path": "originals/.github__workflows__lumo-creative-7b16-diagnostic.yml",
+      "sha256": "66fa993e4c093bf2b054eab67cb9afcc8ab58226e08325a09cba784434838741"
+    },
+    {
+      "bytes": 12962,
+      "path": "originals/.github__workflows__lumo-unchanged-apk-diagnostic.yml",
+      "sha256": "e186bc6ec6e3dd946d77213307ad7c3b5152e0431b820e0f4c60c399d6fe46fa"
+    },
+    {
+      "bytes": 49866,
+      "path": "qa-hookup.patch",
+      "sha256": "7c8c2bf3a1bb8f1cfd146c4057413c552e7694c91a9bb634aeccad6bd59824a1"
+    },
+    {
+      "bytes": 2786,
+      "path": "run_focused_local.py",
+      "sha256": "8de52fc6ece48396c40616237cca0b0086c0d1a28f677c82389bd004f3b95702"
+    },
+    {
+      "bytes": 4577,
+      "path": "runtime-preservation.json",
+      "sha256": "05100301560b69e3ed7dbe4addfd6fa49b739cf01ccb0635b84a71bbbb763ff0"
+    },
+    {
+      "bytes": 3732,
+      "path": "source-freeze.json",
+      "sha256": "c94f7ff6e074bb5030a2305c2056efb2f74b3a3e537ec0ee7734371da6479718"
+    },
+    {
+      "bytes": 64799,
+      "path": "test-view-source-index.json",
+      "sha256": "2b8566b89b1036abd8db2942c08bd9731ae7c6fa1f18fef60a0f53934cff769b"
+    },
+    {
+      "bytes": 1448,
+      "path": "validation/actionlint-result.json",
+      "sha256": "6fccd4d185dddb4e7e0fd10548be0a445a3e4f902d2482e9e28b41a7b474385f"
+    },
+    {
+      "bytes": 0,
+      "path": "validation/actionlint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 27543,
+      "path": "validation/final-local-contracts.log",
+      "sha256": "aeb0e7d685bc02fd3da358e2335401d513bfc7ea451d6d7b38697a95c1ba1508"
+    },
+    {
+      "bytes": 2623,
+      "path": "validation/final-local-result.json",
+      "sha256": "0e9d88d9fd1c4f64d56a7551f7d83b2a677be5e7f709906a0023b256c9c6303e"
+    },
+    {
+      "bytes": 64570,
+      "path": "validation/focused-contracts.log",
+      "sha256": "914cfd082f177e90bd662b7a4dfdf874d363fb69fc0d7edf7ca37e189d607b01"
+    },
+    {
+      "bytes": 3169,
+      "path": "validation/focused-result.json",
+      "sha256": "9a8d00b957cf71f95303f237fbe9b542dba95337ccf45252570fbd719842974c"
+    },
+    {
+      "bytes": 13338,
+      "path": "validation/mandatory-ci-discovery.json",
+      "sha256": "d5fab1ef9ca025d071f4998200773356eda5f749d637697ab555ca4c1ab4126a"
+    },
+    {
+      "bytes": 25336,
+      "path": "validation/materialized-fixtures.json",
+      "sha256": "510fd82b77495d2380ae8697acb2fe956e544f7440e445a2e57d402387dcda8b"
+    },
+    {
+      "bytes": 357,
+      "path": "validation/original-route-rejections.json",
+      "sha256": "e60d96a41257c977b5ffca3fc4d1e2a71750e89b009595f4705ae9b53f944a3a"
+    }
+  ],
+  "schema": 1,
+  "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+  "status": "FROZEN",
+  "total_bytes": 670743,
+  "tree": "5a938c9bb82e3f966babd86adb26aceb0ae5f759"
+}

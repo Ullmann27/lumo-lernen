@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "head": "5676495b331bc5a41d5ff78259f7165cf25d100a",
+  "tree": "f6f7d30eeb8ace2eb546fd2d952834d2bbd68a1f",
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+  "branch": "validation/lumo-console-start-source-20261114",
+  "source_files": 27,
+  "sources_and_git_state_unchanged": true,
+  "tests": {
+    "methods": 25,
+    "successful_methods": 25,
+    "plain_ok": true,
+    "skips": 0,
+    "skip_markers": [],
+    "failures": 0,
+    "errors": 0,
+    "execution": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "scripts.tests.test_console_start_workflow",
+        "scripts.tests.test_console_launch_originals",
+        "scripts.tests.test_console_launch_failure_diagnostics"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "TMPDIR": "/tmp"
+      },
+      "started_at_utc": "2026-11-14T07:19:36.265001+00:00",
+      "finished_at_utc": "2026-11-14T07:19:37.089844+00:00",
+      "elapsed_seconds": 0.8248530310083879,
+      "returncode": 0,
+      "error": null,
+      "raw_log": {
+        "path": "combined-contracts.log",
+        "bytes": 5420,
+        "sha256": "f1f664ca475e14daa77bcba0b790542a1adcb12444b45f788c024c038c722a58"
+      }
+    }
+  },
+  "actionlint": {
+    "workflow_count": 4,
+    "execution": {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        "-color",
+        ".github/workflows/lumo-1966-cards-route-kart-qa.yml",
+        ".github/workflows/lumo-astra-script-recovery.yml",
+        ".github/workflows/lumo-console-start-7b16.yml",
+        ".github/workflows/lumo-unified-integration-2026.yml"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16",
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "TMPDIR": "/tmp"
+      },
+      "started_at_utc": "2026-11-14T07:19:37.090072+00:00",
+      "finished_at_utc": "2026-11-14T07:19:37.122138+00:00",
+      "elapsed_seconds": 0.03207340301014483,
+      "returncode": 0,
+      "error": null,
+      "raw_log": {
+        "path": "actionlint.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "boundaries": [
+    "Exactly one authorized 9+7+9 contract run and one four-workflow actionlint invocation.",
+    "No 86-method AF_UNIX run; it remains mandatory in actual CI.",
+    "Diagnostic child processes simulate adb output. No SDK, APK, emulator, renderer, Android or console-survival acceptance.",
+    "No source edits or Git/index/ref mutation; original transcript bytes are unchanged."
+  ]
+}

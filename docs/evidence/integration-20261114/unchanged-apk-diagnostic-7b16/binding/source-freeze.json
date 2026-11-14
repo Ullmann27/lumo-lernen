@@ -1,0 +1,81 @@
+{
+  "timestamp_utc": "2026-11-14T03:11:41.086326+00:00",
+  "base_head": "cc65ea959eaf98efefdfe007df988c32e909b0c5",
+  "base_tree": "1fe2d91bab1c76fb0086aeb22695bb1e16f04105",
+  "assigned_new_paths": [
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 19033,
+      "sha256": "cf9a078532093362e3c4c3fe0442697115bbc277b3c2cff1abb7a3103f0c437c",
+      "git_blob": "ddc05ceb084ba7aaf9b3ee0ecb5977b3972343f8"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_apk_diagnostic.py",
+      "bytes": 21760,
+      "sha256": "adb095bbedb9f3b4922493648e86f389b5a042d432ab59b6e5a7d2496e7f40da",
+      "git_blob": "4716d1f8beb20bc349b3a97b347136cd7d8d6664"
+    }
+  ],
+  "original_helpers_unchanged": [
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "bytes": 67197,
+      "sha256": "fac7b66296344b39ee99d858ee47d80503ee27027d56020cafb7eb2308e2cfd9",
+      "git_blob": "1f480df59d30b041796d9ca699bec7a2062d2a74"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 69612,
+      "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba",
+      "git_blob": "4af46a7ea3478ee64798fbae1290e69444444833"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 52616,
+      "sha256": "112ddf4dad2ac5039b7203d8dcc2fa82ee91c517c6e393b5b5409211dcc50870",
+      "git_blob": "d24ed58acf25d5da221f095f056033a2b61441fc"
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8"
+    },
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "dfcacccb96d5a4b730e3df7b834aa5e78a69a0cf48122ec8242dfcb377caf7cb",
+      "git_blob": "916d839f8edbbf8362ba7709b9d5bba714eb6b1b"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775"
+    }
+  ],
+  "metadata_originals": [
+    {
+      "source": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/snapshots/20261114T023952Z/run.json",
+      "stored": "original-metadata/run.json.gz",
+      "original_bytes": 12960,
+      "original_sha256": "ad55457fbbda8f1b25e197bef8281147f385b939753c7033d10ae86a2d38737a",
+      "stored_sha256": "76a996bb294d5ae2b134924a00475981c3d2bc5a42662442c2da5c7f7c557c51"
+    },
+    {
+      "source": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/snapshots/20261114T023952Z/jobs.json",
+      "stored": "original-metadata/jobs.json.gz",
+      "original_bytes": 27227,
+      "original_sha256": "46528430c8863664a0573822088125046e10f37767e8e8751bd4d4cb359ca8f8",
+      "stored_sha256": "1e170f6b4cf56d535b6cb5ff5c5ce1d5ad7cfcd20627063d1f234cc40949319d"
+    },
+    {
+      "source": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/snapshots/20261114T023952Z/artifacts.json",
+      "stored": "original-metadata/artifacts.json.gz",
+      "original_bytes": 8199,
+      "original_sha256": "ea4bd34c6bea22d472684dcafaa2afdd34d631c3983677e6c6f21995a3f7ec65",
+      "stored_sha256": "5f58131cca2815c944e4816803a90150223664b447eab24e3043998ce51109bb"
+    }
+  ],
+  "scope": "Only two new files were written; no Git/index/ref, APK downloads, source pin, workflow or Android changes by this agent"
+}

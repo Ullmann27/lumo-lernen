@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "status": "LOCAL_WORKFLOW_CONTRACT_PASS_DEVICE_RUN_PENDING",
+  "source_freeze": {
+    "bytes": 1202,
+    "sha256": "f8305a2f383777f478a7f84bd4027eb688834bd8aecf5cbdb7576c6cfeecbe5c"
+  },
+  "patch": {
+    "bytes": 26756,
+    "sha256": "cbb3453583ba89aad81197c472eb66843513a6c800c5c9677e9ba43e27a2e2c8"
+  },
+  "wrapper_delta": {
+    "bytes": 2320,
+    "sha256": "2c04a5b51ab648a7760fb0e34be0466c830a35dd91a351b99dee3ee68fbfdfba"
+  },
+  "tests": {
+    "run": 7,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "actionlint_exit": 0,
+    "bash_syntax_exit": 0
+  },
+  "workflow_path": ".github/workflows/lumo-android-runtime-7b16-followup.yml",
+  "branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+  "jobs": [
+    "unchanged-apk-followup-api35",
+    "unchanged-apk-followup-api37-host",
+    "unchanged-apk-followup-api37-swiftshader",
+    "unchanged-apk-followup-api37-swangle",
+    "unchanged-apk-followup-update2017"
+  ],
+  "pending": [
+    "Independent workflow/renderer review",
+    "Actual new device run after Root publication"
+  ],
+  "logger_pack_manifest": "405514a50539e216e3167b79616ded2b871c332f32cbc58112a66f1c6d0dadca"
+}

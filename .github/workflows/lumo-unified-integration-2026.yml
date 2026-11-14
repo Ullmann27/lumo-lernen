@@ -62,7 +62,12 @@ jobs:
       github.head_ref != 'chatgpt/lumo-nextgen-20261113' && github.ref_name != 'chatgpt/lumo-nextgen-20261113' &&
       github.head_ref != 'chatgpt/lumo-2018-android-acceptance-20261113' && github.ref_name != 'chatgpt/lumo-2018-android-acceptance-20261113' &&
       github.head_ref != 'chatgpt/lumo-kart-graphics-apk-20261113' && github.ref_name != 'chatgpt/lumo-kart-graphics-apk-20261113' &&
-      github.head_ref != 'integration/lumo-connections-20261113' && github.ref_name != 'integration/lumo-connections-20261113'
+      github.head_ref != 'integration/lumo-connections-20261113' && github.ref_name != 'integration/lumo-connections-20261113' &&
+      github.head_ref != 'qa/lumo-android-runtime-7b16-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-20261114' &&
+      github.head_ref != 'qa/lumo-creative-7b16-20261114' && github.ref_name != 'qa/lumo-creative-7b16-20261114' &&
+      github.head_ref != 'qa/lumo-android-runtime-7b16-followup-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-followup-20261114' &&
+      github.head_ref != 'qa/lumo-console-joystick-7b16-20261114' && github.ref_name != 'qa/lumo-console-joystick-7b16-20261114' &&
+      github.head_ref != 'qa/lumo-console-start-7b16-20261114' && github.ref_name != 'qa/lumo-console-start-7b16-20261114'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     env:

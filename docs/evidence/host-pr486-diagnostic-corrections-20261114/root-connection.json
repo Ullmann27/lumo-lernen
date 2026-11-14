@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T08:34:28.407680+00:00",
+  "base": "08e63bd32917a6672ae99b66a17c3fa57c83977a",
+  "agent_source_count": 11,
+  "root_workflow_and_test_count": 2,
+  "groups_expected_in_next_actual_ci": [
+    86,
+    7,
+    9,
+    6,
+    9,
+    121
+  ],
+  "expected_total": 238,
+  "agent_packs": [
+    {
+      "kind": "wait",
+      "source_freeze_sha256": "49fff8acdc1a1adcbbd3ac21e068fca8e94a44eb32fff951365f602cedbbd1da",
+      "archive": {
+        "bytes": 45232,
+        "sha256": "22fde7c43e1a25574ab238e62a3c0c60c5b3d9fcc0f22d66e96a5cea84a55a23",
+        "members": 22,
+        "roundtrip": true
+      },
+      "independent_review_sha256": "126c98c878bac0700479f21f2202e7e5d779014791d6725767ed213f267678ae"
+    },
+    {
+      "kind": "swangle",
+      "source_freeze_sha256": "2ea77b280905bb6482ebf93a11fccdcc771fab1fda220e1b12070ab067a5e9fe",
+      "archive": {
+        "bytes": 146346,
+        "sha256": "7b46e01ae69ef6a73cdcbbf419174e8eebb9cee16b54423388b5ca5446924a0c",
+        "members": 43,
+        "roundtrip": true
+      },
+      "independent_review_sha256": "ef99cc418729b1d8a2c5273d10aea91da56586c1ddf0be98e168c9635d9dcb6b"
+    }
+  ],
+  "android_job_unchanged": true,
+  "tests_on_this_combined_source": "NOT_RUN_PENDING_SOURCE_CHECKPOINT",
+  "original_run_43574161418": "FAILURE; genuine GMS ANRs, SwiftShader shader errors and failed navigation remain blocking",
+  "limits": [
+    "One exact wait byte sequence only; all other error and continuity checks retained.",
+    "For SWANGLE on the pinned emulator, require exact original launch argv plus internal swiftshader backend plus ANGLE/SwiftShader GLES."
+  ]
+}

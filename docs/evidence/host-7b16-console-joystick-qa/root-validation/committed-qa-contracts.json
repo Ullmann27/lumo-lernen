@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "head": "5ed1016ba18e2646bb13d31b29e4c3b3bcebc9b4",
+  "tree": "d213657d83e82faa66ad9b83f8a246aa9e645fb8",
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_console_joystick_workflow",
+    "scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate"
+  ],
+  "started_at": "2026-11-14T06:13:16.397417+00:00",
+  "finished_at": "2026-11-14T06:13:16.695255+00:00",
+  "returncode": 1,
+  "log_sha256": "438c163747a7d43507fb6bcc76fd583e494e8929bb57d4c64fc84a686c2aa80d",
+  "git_status": "",
+  "scope": "Final Root workflow contracts and the real committed-helper preflight, no device run"
+}

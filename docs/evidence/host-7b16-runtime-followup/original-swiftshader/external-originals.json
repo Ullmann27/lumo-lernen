@@ -1,0 +1,331 @@
+{
+  "schema": 1,
+  "scope": "Existing immutable original bytes are referenced rather than duplicated. Artifact member hashes are cross-checked against the complete new verified inventory.",
+  "original_artifact": {
+    "id": 14096976074,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5Njk3NjA3NA==",
+    "name": "lumo-7b16-diagnostic-api37-swiftshader",
+    "size_in_bytes": 39307727,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14096976074",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14096976074/zip",
+    "expired": false,
+    "digest": "sha256:9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055",
+    "created_at": "2026-11-14T03:31:32Z",
+    "updated_at": "2026-11-14T03:31:32Z",
+    "expires_at": "2026-12-14T03:31:30Z",
+    "workflow_run": {
+      "id": 43551424080,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "qa/lumo-android-runtime-7b16-20261114",
+      "head_sha": "61c94cfb78bda8dfbe191331eca0fd0382deb151"
+    }
+  },
+  "originals": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/renderer-comparison-binding.json",
+      "bytes": 2364,
+      "sha256": "cc644c503f97bf2f53b35f580c24efe908a713fd6173e2eaac01fd80f9c3bc72",
+      "archive_member": "renderer-comparison-binding.json",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/android-emulator-version.txt",
+      "bytes": 655,
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54",
+      "archive_member": "android-emulator-version.txt",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0.png",
+      "bytes": 18822,
+      "sha256": "2d53fe68237e227fbdf00ed39ff536ab7dbe5951c748217d6a334ddec08e916b",
+      "archive_member": "21_stage_mode_cup-0.png",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr.json",
+      "bytes": 2045,
+      "sha256": "5f9881609bc2551383ec3bf66d0e2295eb88971920791d1ad539a4785021c6c7",
+      "archive_member": "21_stage_mode_cup-0-ocr.json",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-surface-readiness.json",
+      "bytes": 973,
+      "sha256": "8b7d397da5eddd9141d9bdb87214114d1f146d2396cb2d71dd2cfbf16029597a",
+      "archive_member": "21_stage_mode_cup-surface-readiness.json",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/tour-result.json",
+      "bytes": 6252,
+      "sha256": "40e3d52ec17be97d01307d674ecfb3e3e873d295546ad1596be0d792d2ca6086",
+      "archive_member": "tour-result.json",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor-finished.json",
+      "bytes": 1074,
+      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed",
+      "archive_member": "framework-start/monitor-finished.json",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/runtime-anr-verification.json",
+      "bytes": 4511,
+      "sha256": "f0ef951e04a448fc36366f06f43010054d94465a3ffcbe617074ae67b9f86f01",
+      "archive_member": "runtime-anr/runtime-anr-verification.json",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7",
+      "archive_member": "framework-start/cli22/packages-guard/emulator/source.properties",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a",
+      "archive_member": "framework-start/cli22/packages-guard/emulator/package.xml",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+      "archive_member": "framework-start/cli22/packages-guard/image/source.properties",
+      "artifact_id": 14096976074
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+      "archive_member": "framework-start/cli22/packages-guard/image/package.xml",
+      "artifact_id": 14096976074
+    }
+  ],
+  "full_job_log": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/jobs/api37-swiftshader-132314688434.log",
+    "bytes": 1112812,
+    "sha256": "d290df4c39b38a945a3b44934ce59f6fd068a4b294ea1b540b944eafba8a9671"
+  },
+  "final_job_object": {
+    "metadata": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/snapshots/20261114T035024Z/jobs.json",
+      "bytes": 23000,
+      "sha256": "9824239173587464e03dc681c2414f06b2de7774dd1d06c020138c94230b5f63"
+    },
+    "job": {
+      "id": 132314688434,
+      "run_id": 43551424080,
+      "workflow_name": "LUMO unchanged 7b16 APK Android diagnostic",
+      "head_branch": "qa/lumo-android-runtime-7b16-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43551424080",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAezpHrsg",
+      "head_sha": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132314688434",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43551424080/job/132314688434",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-14T03:24:32Z",
+      "started_at": "2026-11-14T03:24:34Z",
+      "completed_at": "2026-11-14T03:31:35Z",
+      "name": "unchanged-apk-api37-swiftshader",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T03:24:34Z",
+          "completed_at": "2026-11-14T03:24:36Z"
+        },
+        {
+          "name": "Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T03:24:36Z",
+          "completed_at": "2026-11-14T03:24:56Z"
+        },
+        {
+          "name": "Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T03:24:56Z",
+          "completed_at": "2026-11-14T03:24:57Z"
+        },
+        {
+          "name": "Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T03:24:57Z",
+          "completed_at": "2026-11-14T03:24:58Z"
+        },
+        {
+          "name": "Download the original successful build artifact without rebuilding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T03:24:58Z",
+          "completed_at": "2026-11-14T03:25:15Z"
+        },
+        {
+          "name": "Download the original 2017 baseline only for the update",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-11-14T03:25:15Z",
+          "completed_at": "2026-11-14T03:25:15Z"
+        },
+        {
+          "name": "Install the unchanged live UI reader dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T03:25:15Z",
+          "completed_at": "2026-11-14T03:25:32Z"
+        },
+        {
+          "name": "Save authentic candidate and diagnostic API metadata separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T03:25:32Z",
+          "completed_at": "2026-11-14T03:25:34Z"
+        },
+        {
+          "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T03:25:34Z",
+          "completed_at": "2026-11-14T03:25:37Z"
+        },
+        {
+          "name": "Enable the same disposable KVM emulator",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T03:25:37Z",
+          "completed_at": "2026-11-14T03:25:37Z"
+        },
+        {
+          "name": "Start the same software display for both renderer cases",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T03:25:37Z",
+          "completed_at": "2026-11-14T03:25:43Z"
+        },
+        {
+          "name": "Preserve the original tools and install the same verified official CLI22",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T03:25:43Z",
+          "completed_at": "2026-11-14T03:26:49Z"
+        },
+        {
+          "name": "Bind the actual new observer and the unchanged original APK separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T03:26:49Z",
+          "completed_at": "2026-11-14T03:26:50Z"
+        },
+        {
+          "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-11-14T03:26:50Z",
+          "completed_at": "2026-11-14T03:26:50Z"
+        },
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-11-14T03:26:50Z",
+          "completed_at": "2026-11-14T03:31:30Z"
+        },
+        {
+          "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T03:31:30Z",
+          "completed_at": "2026-11-14T03:31:30Z"
+        },
+        {
+          "name": "Close any remaining startup monitor after action cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-14T03:31:30Z",
+          "completed_at": "2026-11-14T03:31:30Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T03:31:30Z",
+          "completed_at": "2026-11-14T03:31:32Z"
+        },
+        {
+          "name": "Post Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-14T03:31:32Z",
+          "completed_at": "2026-11-14T03:31:32Z"
+        },
+        {
+          "name": "Post Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T03:31:32Z",
+          "completed_at": "2026-11-14T03:31:32Z"
+        },
+        {
+          "name": "Post Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T03:31:32Z",
+          "completed_at": "2026-11-14T03:31:33Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T03:31:33Z",
+          "completed_at": "2026-11-14T03:31:33Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132314688434",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017153,
+      "runner_name": "GitHub Actions 1000017153",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  },
+  "previous_full_inventory": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/verification.json",
+    "bytes": 134675,
+    "sha256": "82468a4c5310de7283b15637dde342237ebf1eff0fe26dd5b98b887a46a10ab0"
+  }
+}

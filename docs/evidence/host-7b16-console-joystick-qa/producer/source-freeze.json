@@ -1,0 +1,83 @@
+{
+  "created_at": "2026-11-14T06:00:59.621894+00:00",
+  "files": [
+    {
+      "before_git_blob": "e44addef225a75a7c2df31dc423a78e4611f4114",
+      "before_sha256": "0c523700c10fc7ba63805c30251611112adf7ac963ce40e3bb9242616bf90778",
+      "bytes": 2329,
+      "git_blob": "84107edac617293584fa3a2500a610c1df19c213",
+      "patch": "auto-trigger-exclusions.patch",
+      "path": ".github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "sha256": "704c549da21e793e21a2c3cfa956677ff54cb8a07b9e67e169cf96c813a66372"
+    },
+    {
+      "before_git_blob": "a8505cd4ae888cc943c73999df6d30de5f6b7110",
+      "before_sha256": "19b5544720c3d03def287d1cecffcad4d8f9daa65f0b35c6aaea027c5ca6bbac",
+      "bytes": 2058,
+      "git_blob": "7f8299a81a88c45644270df042e75093d032f9ca",
+      "patch": "auto-trigger-exclusions.patch",
+      "path": ".github/workflows/lumo-astra-script-recovery.yml",
+      "sha256": "45abdc96b1df9d825f6fd506e5d2d6a77e6f773c202a017b44abfb796d8f6b06"
+    },
+    {
+      "before_git_blob": null,
+      "before_sha256": null,
+      "bytes": 25687,
+      "git_blob": "b371146e0614e1b6f45d293b4354043352cdb5ef",
+      "patch": "qa-hookup.patch",
+      "path": ".github/workflows/lumo-console-joystick-7b16.yml",
+      "sha256": "154ac06426ec0d54c978b81d633513d16f02df86f0b636d45a9e81b95278a6f4"
+    },
+    {
+      "before_git_blob": "7fb028eda997c4576eb1d4611bbef6de751b1862",
+      "before_sha256": "d3e214c74579f251fd65bce70348dfbcba919818032049d954d713c3dd4bb1f2",
+      "bytes": 82297,
+      "git_blob": "779fedd9de021c9cd8bd23e445c007fc23b7fd92",
+      "patch": "auto-trigger-exclusions.patch",
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "1e630ea2dca9e5e9fddec5c78fe8843a13a3672e433c98328de3ff8e4349513b"
+    },
+    {
+      "before_git_blob": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9",
+      "before_sha256": "2b1dc64b75456b92a46e2017b6d28ffac11e35b6dcfbb0e20a9d32f32d7fa092",
+      "bytes": 13043,
+      "git_blob": "5a784a687890e387434ad237472b6f0037227d1e",
+      "patch": "qa-hookup.patch",
+      "path": "scripts/export_creative_evidence_parts.py",
+      "sha256": "1c2bf607417adfc189bd186c3e5b029f13c8f57965f90f68ad32399f76e008eb"
+    },
+    {
+      "before_git_blob": "a8ed9acb0f48c390538226ff5f45f5d4fa8f06a1",
+      "before_sha256": "9c816f83af236b9275c1d40124450361783d211fcf9f317c5a128adef9e12085",
+      "bytes": 10223,
+      "git_blob": "cf74c37272cdf803a2faf6a2d71da4c9cba75ec3",
+      "patch": "qa-hookup.patch",
+      "path": "scripts/run_unchanged_creative_diagnostic.py",
+      "sha256": "d2b7c27cea0b1dc728b2b7eedf44eb835db6e44b734756e224f27f255fb7486a"
+    },
+    {
+      "before_git_blob": null,
+      "before_sha256": null,
+      "bytes": 18630,
+      "git_blob": "d882bcdb3aa523e000b6a17bd9e087b365155e5d",
+      "patch": "qa-hookup.patch",
+      "path": "scripts/tests/test_console_joystick_workflow.py",
+      "sha256": "b9bc23d0681e0363dc933ad8fa5466a934fce9aed1e8479617af427ea12a92cd"
+    },
+    {
+      "before_git_blob": "11749337af0aff31d7541702890459126675fd08",
+      "before_sha256": "3747027cf3a6b4d91e8d0e8ab59fca07f63ff59b8c189373dbe098bda34d67d4",
+      "bytes": 20548,
+      "git_blob": "0087ef8b7a0e361462029f942b9a0481edc785e4",
+      "patch": "qa-hookup.patch",
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "sha256": "0073fb00badce28bd97eeb4986b4e8457a2aa92e159044f3d6436796aace474b"
+    }
+  ],
+  "published_parent": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+  "published_parent_tree": "5a938c9bb82e3f966babd86adb26aceb0ae5f759",
+  "schema": 1,
+  "source_files_count": 8,
+  "source_scope": "Scratch final-source only. Root must apply/commit/publish; no worktree/index/ref changed.",
+  "status": "FROZEN"
+}

@@ -1,0 +1,297 @@
+name: LUMO unchanged 7b16 Console start diagnostic
+on:
+  pull_request:
+    branches: [integration/lumo-connections-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-console-start-7b16-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+  QA_SOURCE: ${{ github.event.pull_request.head.sha || github.sha }}
+  SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+  CANDIDATE_SOURCE: 7b16f2f5ab16f3d913ee170aefd9807c87216260
+  NATIVE_SOURCE: 17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845
+jobs:
+  probe-contracts:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.base.ref == 'integration/lumo-connections-20261113' &&
+      github.head_ref == 'qa/lumo-console-start-7b16-20261114') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'qa/lumo-console-start-7b16-20261114'))
+    name: console-start-probe-contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ env.QA_SOURCE }}
+      - name: Read the exact upstream action for the existing adapter contracts
+        uses: actions/checkout@v4
+        with:
+          repository: ReactiveCircus/android-emulator-runner
+          ref: a421e43855164a8197daf9d8d40fe71c6996bb0d
+          path: runner-actions/android-emulator-runner
+          persist-credentials: false
+      - name: Verify repaired observations and strict diagnostic bindings
+        env:
+          LUMO_ACTION_TEST_SOURCE: ${{ github.workspace }}/runner-actions/android-emulator-runner
+          PYTHONPATH: ${{ github.workspace }}/tools/android_qa/tests
+        run: |
+          set -euo pipefail
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          bash -n scripts/run_unchanged_apk_diagnostic.sh
+          .probe-venv/bin/python -B -m unittest -v \
+            scripts.tests.test_android_console_transport \
+            scripts.tests.test_android_runtime_device_logger \
+            scripts.tests.test_runtime_logcat_sections \
+            scripts.tests.test_android_framework_ready \
+            scripts.tests.test_verify_android_runtime_anr \
+            2>&1 | tee console-contracts.log
+          grep -Eq '^Ran 86 tests in ' console-contracts.log
+          grep -Fx 'OK' console-contracts.log
+          .probe-venv/bin/python -B -m unittest -v scripts.tests.test_console_launch_originals \
+            2>&1 | tee parser-contracts.log
+          grep -Eq '^Ran 7 tests in ' parser-contracts.log
+          grep -Fx 'OK' parser-contracts.log
+          .probe-venv/bin/python -B -m unittest -v scripts.tests.test_console_launch_failure_diagnostics \
+            2>&1 | tee launch-diagnostic-contracts.log
+          grep -Eq '^Ran 9 tests in ' launch-diagnostic-contracts.log
+          grep -Fx 'OK' launch-diagnostic-contracts.log
+          .probe-venv/bin/python -B -m unittest -v scripts.tests.test_console_logger_printf \
+            2>&1 | tee printf-contracts.log
+          grep -Eq '^Ran 6 tests in ' printf-contracts.log
+          grep -Fx 'OK' printf-contracts.log
+          .probe-venv/bin/python -B -m unittest -v scripts.tests.test_android_runtime_wait_notification \
+            2>&1 | tee wait-notification-contracts.log
+          grep -Eq '^Ran 9 tests in ' wait-notification-contracts.log
+          grep -Fx 'OK' wait-notification-contracts.log
+          .probe-venv/bin/python -B -m unittest -v tools.android_qa.tests.test_kart_continue_caption \
+            2>&1 | tee pause-caption-contracts.log
+          grep -Eq '^Ran 9 tests in ' pause-caption-contracts.log
+          grep -Fx 'OK' pause-caption-contracts.log
+          .probe-venv/bin/python -B -m unittest -v \
+            scripts.tests.test_android_framework_ready_android17 \
+            scripts.tests.test_android37_cli22 \
+            scripts.tests.test_runtime_followup_workflow \
+            scripts.tests.test_unchanged_apk_followup \
+            scripts.tests.test_console_joystick_workflow \
+            scripts.tests.test_console_start_workflow \
+            tools.android_qa.tests.test_nextgen_speech_logcat_recovery \
+            tools.android_qa.tests.test_studio_speech_logcat_recovery \
+            scripts.tests.test_verify_unchanged_apk_diagnostic \
+            tools.android_qa.tests.test_kart_garage_evidence \
+            tools.android_qa.tests.test_kart_driver_word_evidence \
+            2>&1 | tee diagnostic-contracts.log
+          grep -Eq '^Ran 121 tests in ' diagnostic-contracts.log
+          grep -Fx 'OK' diagnostic-contracts.log
+          if grep -Eq '^OK \(skipped=|^FAILED.*skipped=' diagnostic-contracts.log; then
+            echo 'The diagnostic contract gate does not accept skipped tests.' >&2
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-console-start-7b16-probe-contracts
+          path: |
+            diagnostic-contracts.log
+            console-contracts.log
+            parser-contracts.log
+            launch-diagnostic-contracts.log
+            printf-contracts.log
+            wait-notification-contracts.log
+            pause-caption-contracts.log
+          if-no-files-found: error
+          retention-days: 30
+
+  android-diagnostic:
+    needs: [probe-contracts]
+    name: unchanged-apk-console-start-${{ matrix.case }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - case: api37-host
+            api: 37
+            renderer: host
+            minutes: 65
+          - case: api37-swiftshader
+            api: 37
+            renderer: swiftshader
+            minutes: 65
+          - case: api37-swangle
+            api: 37
+            renderer: swangle
+            minutes: 65
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ matrix.minutes }}
+    steps:
+      - name: Checkout the actual repaired probe source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ env.QA_SOURCE }}
+      - name: Checkout the unchanged APK source independently
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 7b16f2f5ab16f3d913ee170aefd9807c87216260
+          path: candidate-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /config/godot-source.json
+            /pubspec.yaml
+      - name: Checkout the exact upstream Android17 action
+        if: matrix.api == 37
+        uses: actions/checkout@v4
+        with:
+          repository: ReactiveCircus/android-emulator-runner
+          ref: a421e43855164a8197daf9d8d40fe71c6996bb0d
+          path: runner-actions/android-emulator-runner
+          persist-credentials: false
+      - name: Download the original successful build artifact without rebuilding
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '14093773196'
+          merge-multiple: true
+          run-id: 43540111465
+          github-token: ${{ github.token }}
+          path: candidate/dist/
+      - name: Install the unchanged live UI reader dependencies
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+      - name: Save authentic candidate and diagnostic API metadata separately
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p tour/binding-inputs/candidate tour/binding-inputs/qa
+          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43540111465' > tour/binding-inputs/candidate/run.json
+          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43540111465/jobs?per_page=100' > tour/binding-inputs/candidate/jobs.json
+          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43540111465/artifacts?per_page=100' > tour/binding-inputs/candidate/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > tour/binding-inputs/qa/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > tour/binding-inputs/qa/jobs.json
+          git rev-parse HEAD > tour/probe-source-sha.txt
+          git -C candidate-source rev-parse HEAD > tour/apk-source-sha.txt
+      - name: Bind both sources, exact build job, artifact, APK and actual embedded PCK
+        env:
+          DIAGNOSTIC_JOB_NAME: unchanged-apk-console-start-${{ matrix.case }}
+        run: |
+          set -euo pipefail
+          .probe-venv/bin/python scripts/verify_unchanged_apk_diagnostic.py \
+            --qa-source "$GITHUB_WORKSPACE" \
+            --candidate-source "$GITHUB_WORKSPACE/candidate-source" \
+            --candidate-metadata-dir "$GITHUB_WORKSPACE/tour/binding-inputs/candidate" \
+            --qa-metadata-dir "$GITHUB_WORKSPACE/tour/binding-inputs/qa" \
+            --expected-qa-source "$QA_SOURCE" \
+            --expected-qa-run "$GITHUB_RUN_ID" \
+            --expected-qa-attempt "$GITHUB_RUN_ATTEMPT" \
+            --qa-job-name "$DIAGNOSTIC_JOB_NAME" \
+            --apk "$GITHUB_WORKSPACE/candidate/dist/x86_64/Lumo-Lernen-Neu.apk" \
+            --provenance "$GITHUB_WORKSPACE/candidate/dist/x86_64/BUILD-PROVENANCE.json" \
+            --sums "$GITHUB_WORKSPACE/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt" \
+            --out "$GITHUB_WORKSPACE/tour/candidate-and-probe-binding.json"
+      - name: Enable the same disposable KVM emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start the same software display for both renderer cases
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Preserve the original tools and install the same verified official CLI22
+        if: matrix.api == 37
+        timeout-minutes: 15
+        run: python3 scripts/prepare_android37_cli22.py prepare --action-dir runner-actions/android-emulator-runner --out tour/framework-start/cli22
+      - name: Bind the actual new observer and the unchanged original APK separately
+        if: matrix.api == 37
+        run: |
+          set -euo pipefail
+          python3 scripts/prepare_android37_emulator_action.py \
+            --action-dir runner-actions/android-emulator-runner --out tour/framework-start \
+            --probe-source "$QA_SOURCE" \
+            --workflow .github/workflows/lumo-console-start-7b16.yml \
+            --context unchanged-apk-diagnostic \
+            --apk-source "$CANDIDATE_SOURCE" --native-source "$NATIVE_SOURCE"
+          node --check runner-actions/android-emulator-runner/lib/emulator-manager.js
+      - name: Prepare the private init-console channel before emulator launch
+        env:
+          LUMO_ANDROID_CONSOLE_SOCKET: ${{ runner.temp }}/lumo-serial-${{ github.run_id }}-${{ github.run_attempt }}/console.sock
+        run: |
+          set -euo pipefail
+          mkdir -p tour/framework-start
+          python3 -B scripts/android_console_transport.py prepare --socket "$LUMO_ANDROID_CONSOLE_SOCKET" > tour/framework-start/console-prepare-command.json
+          cp -- "$(dirname -- "$LUMO_ANDROID_CONSOLE_SOCKET")/prepare.json" tour/framework-start/console-prepare.json
+          printf 'LUMO_ANDROID_CONSOLE_SOCKET=%s\n' "$LUMO_ANDROID_CONSOLE_SOCKET" >> "$GITHUB_ENV"
+      - name: Run the Android17 renderer comparison with continuous ANR observation
+        if: matrix.api == 37
+        uses: ./runner-actions/android-emulator-runner
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: '37.0'
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          cores: 2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-port: 5554
+          # This GPU option is the only active emulator-configuration difference
+          # between the three API37 jobs. All use the same strict observers.
+          emulator-options: -no-window -accel on -gpu ${{ matrix.renderer }} -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none -shell-serial unix:${{ env.LUMO_ANDROID_CONSOLE_SOCKET }},server,nowait
+          pre-emulator-launch-script: |
+            python3 "$GITHUB_WORKSPACE/scripts/prepare_android37_cli22.py" inspect --out "$GITHUB_WORKSPACE/tour/framework-start/cli22" --phase before-boot
+            python3 "$GITHUB_WORKSPACE/scripts/android_framework_ready.py" start --out "$GITHUB_WORKSPACE/tour/framework-start" --serial emulator-5554 --monitor-seconds 3600
+          script: bash "$GITHUB_WORKSPACE/scripts/run_unchanged_apk_diagnostic.sh" "${{ matrix.case }}"
+      - name: Preserve generated Android17 hardware even after a failed guard or tour
+        if: always() && matrix.api == 37
+        run: |
+          if [ -f tour/framework-start/cli22/prepared.json ]; then
+            python3 scripts/prepare_android37_cli22.py inspect --out tour/framework-start/cli22 --phase after-action
+          fi
+      - name: Close any remaining startup monitor after action cleanup
+        if: always() && matrix.api == 37
+        run: python3 scripts/android_framework_ready.py stop --out tour/framework-start --serial emulator-5554 --allow-not-started
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-console-start-7b16-${{ matrix.case }}
+          path: tour/
+          if-no-files-found: error
+          retention-days: 30

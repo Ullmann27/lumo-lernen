@@ -1,0 +1,11 @@
+# Separate unchanged-APK runtime follow-up workflow
+
+This is a new workflow and separate QA branch, not a retry or source mutation of PR480/run43551424080. Only Root may publish it. It always consumes the same original Host7b16 APK/Artifact14093773196/Build43540111465 and Native17f5. No APK build or publisher is added.
+
+The five jobs are unchanged-apk-followup-api35, unchanged-apk-followup-api37-host, unchanged-apk-followup-api37-swiftshader, unchanged-apk-followup-api37-swangle and unchanged-apk-followup-update2017. Original host and SwiftShader comparisons remain. The new swangle case uses the same actual package/image/CPU/RAM/heap/time limits and checks, with only the GPU backend varied. Its runtime report requires effective hw.gpu.mode=swangle and exactly one real GLES renderer line containing both ANGLE and SwiftShader. Neither a command argument nor a SWANGLE token alone proves the renderer. No automatic backend fallback is permitted.
+
+Seven focused contracts passed with no skips, as did actionlint and bash syntax. They execute the actual workflow condition and actual embedded Python renderer-report program against explicit synthetic small files. They do not launch an emulator or claim shader/game success. The full old workflow is byte-identical after reversing exactly the documented routing, artifact-name, test-list and new-matrix additions. The original workflow file itself remains untouched.
+
+The prior logger pack and its source-freeze are unchanged. `before/scripts/run_unchanged_apk_diagnostic.sh` is exactly that logger-frozen wrapper; `swangle-only-wrapper.patch` is solely the later authorized GPU extension. The earlier88-test logger result remains bound to its own source snapshot. The new contract job invokes those same logger/speech tests again on the actual eventual CI source.
+
+Official-source observations and their exact-build limits are in primary-source-notes.json. The sibling original SwiftShader diagnosis contains real shader-link failures; this new backend is a separate proposed comparison, not a fix already shown on Android. A companion note corrects a blob-as-commit URL in the earlier logger documentation without altering any frozen original/source bytes.

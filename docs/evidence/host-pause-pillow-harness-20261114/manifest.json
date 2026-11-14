@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 551,
+      "sha256": "ddfd8ca255f0e10c843f3457e39c9ef504bc713946adb82049164cffa584e855"
+    },
+    {
+      "path": "before-source/tools/android_qa/tests/test_kart_continue_caption.py",
+      "bytes": 8194,
+      "sha256": "d1e4f1392f4d3e3b3312729e8a5d1e91e6a9f5d91d997640b40a900b66ba3568"
+    },
+    {
+      "path": "final-source/tools/android_qa/tests/test_kart_continue_caption.py",
+      "bytes": 8453,
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1301,
+      "sha256": "09f34fd776c03adfe1fa366ffdefd5c929ffffdebacaed4614c1cec7d35cce4e"
+    },
+    {
+      "path": "original-failure/handoff.json",
+      "bytes": 3313,
+      "sha256": "4d51df52db344a95c7a3937a69543caa58338e1cca0576d92d1f8d306e70b849"
+    },
+    {
+      "path": "original-failure/targeted-20.log",
+      "bytes": 6304,
+      "sha256": "019c33dd4598d7bbf9a8ca9ddd9e1fc0ffd7a38f1ae9ca03622eac696b2394de"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 2343,
+      "sha256": "29d13d08e7bc70e3599c148710d8a150034415a361d60125315c95facf4b5757"
+    },
+    {
+      "path": "repair.patch",
+      "bytes": 929,
+      "sha256": "44a75093eeb440187d2eea6aff9e5c797d6879480cb4c5d0efa7b8bd74e8a7ce"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 882,
+      "sha256": "8c875475b66a5ba7e593241d6bd64dfa0f514ca8e7a91f1e25e5ec0d3083d4aa"
+    },
+    {
+      "path": "source-observation/import-lifetime.json",
+      "bytes": 1029,
+      "sha256": "0cc24f776f30ffccce545648cded01d8a8b2bf9c7f2f2bafc226933f86a097e6"
+    },
+    {
+      "path": "source-observation/mock-dict-restoration.txt",
+      "bytes": 1195,
+      "sha256": "2a2ab5922e39f26950ba75e81ce0406f64415da83a41f1f5a95fea37779af19f"
+    }
+  ],
+  "source_count": 1,
+  "tests_executed": false
+}

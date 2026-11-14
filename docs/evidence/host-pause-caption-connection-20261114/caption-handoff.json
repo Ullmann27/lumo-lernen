@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_TESTS_NOT_RUN",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 2889,
+    "sha256": "3387f3240023ee63c4eb23c62f7d694e27e5041096c3b52a537e84d14123bc7b",
+    "git_blob": "6d6f77414867e615a9525e2ddb0793ed3bc627f7"
+  },
+  "source_count": 9,
+  "base_head": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+  "base_tree": "863c4b45bcd6a564070ca128565688bde7e1ed11",
+  "changes": [
+    "Only Continue opts into exact standalone-caption selection.",
+    "An exact word span contained by a longer same-variant OCR line is retained as negative role evidence.",
+    "All independent exact regions must identify the same physical control at pairwise IoU >= 0.6.",
+    "Original surface dimensions, two observations, PNG hashes, deadlines, touch and post-touch HUD/save checks are preserved."
+  ],
+  "original_observation": {
+    "run": 43574161418,
+    "job": 132384862551,
+    "artifact": 14106471875,
+    "archive_sha256": "e044ba0959d2099a5b2b498f1ca31d9f6ac7f9fbad4fabffb2d0d00c92dfc3f3",
+    "instruction_word_bounds": [
+      1540,
+      264,
+      1848,
+      300
+    ],
+    "standalone_button_caption_bounds": [
+      1093,
+      388,
+      1430,
+      427
+    ],
+    "actual_failed_touch": [
+      1694,
+      282
+    ],
+    "frame_files": [
+      {
+        "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+        "bytes": 857960,
+        "sha256": "472138fabf87a063f46a97e772c1118c8751d180f930a85c27fabd3c86967236",
+        "git_blob": "f4050401ac73ada62cb3517ec7204f33916517b8"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+        "bytes": 858521,
+        "sha256": "4d4d4e52bf2d5f2b536b4cf3049db6783097ea94ea90e50acf3dc25f41b1e7fd",
+        "git_blob": "7c4702094de7317487568ccdd875b874d243a0bd"
+      }
+    ],
+    "png_viewing": "Both byte-identical PNGs were actually opened before the executor interruption."
+  },
+  "validation_scope": {
+    "actual_local_test_runs": 0,
+    "prepared_methods": [
+      "test_actual_two_frame_continue_targets_the_independent_caption",
+      "test_instruction_word_without_a_standalone_caption_never_taps",
+      "test_two_distinct_independent_controls_remain_ambiguous",
+      "test_duplicate_same_control_and_ocr_order_do_not_change_the_target",
+      "test_invalid_or_offscreen_matching_region_cannot_be_discarded_silently",
+      "test_original_png_change_after_ocr_still_prevents_dispatch",
+      "test_late_ocr_does_not_outlive_the_existing_touch_deadline",
+      "test_substrings_are_not_promoted_to_the_exact_continue_caption",
+      "test_existing_native_callers_keep_their_original_forwarded_contract"
+    ],
+    "replay_uses": "Actual native_text/native_tap/Continue methods and original PNG/OCR; ADB, capture delivery, OCR delivery and time are mocked.",
+    "replay_stops": "At the unchanged mandatory HUD call; no real resume/gameplay claim.",
+    "unchanged_direct_import_modules": [
+      "kart_complete_android_probe",
+      "pr207_android_smoke",
+      "flutter_surface_readiness",
+      "rooted_emulator",
+      "native_ocr_tiles",
+      "native_surface_readiness",
+      "kart_tour_evidence",
+      "kart_garage_evidence",
+      "kart_android_race"
+    ],
+    "dependencies_note": "These module names were read from the actual before sources. Their transitive dependencies and physical paths must be checked in the subsequent checkout. Pillow remains required. No dependency copied or downloaded here."
+  },
+  "interruption_recovery": {
+    "production_and_fixture_writes": "Confirmed and retained in workspace.",
+    "interrupted_test_write": "Read-only recovery proved the file absent; restored exactly from the retained full function-store source.",
+    "test_source_sha256": "d1e4f1392f4d3e3b3312729e8a5d1e91e6a9f5d91d997640b40a900b66ba3568",
+    "lost_logs_recreated": false
+  },
+  "remaining": [
+    "Root publishes/checkpoints these exact source bytes before targeted Red/Green execution.",
+    "A future real Android tour must prove Continue/resume; these fixtures cannot prove it.",
+    "The historical full run remains FAILURE. Real GMS ANRs and pure SwiftShader shader-link failures remain independent blockers.",
+    "The two missing-wrapper reruns remain pending until Root restores the actual QA checkout."
+  ],
+  "mutations": "Only this external source/evidence pack; no worktree, index, ref, CI or device mutation."
+}

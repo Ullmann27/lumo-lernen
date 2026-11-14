@@ -1,0 +1,34 @@
+--- a/.github/workflows/lumo-1966-cards-route-kart-qa.yml
++++ b/.github/workflows/lumo-1966-cards-route-kart-qa.yml
+@@ -17,6 +17,8 @@
+   contents: read
+ jobs:
+   cards-route-and-probe:
++    if: >-
++      github.head_ref != 'qa/lumo-console-joystick-7b16-20261114' && github.ref_name != 'qa/lumo-console-joystick-7b16-20261114'
+     runs-on: ubuntu-latest
+     timeout-minutes: 22
+     steps:
+--- a/.github/workflows/lumo-astra-script-recovery.yml
++++ b/.github/workflows/lumo-astra-script-recovery.yml
+@@ -13,6 +13,8 @@
+   contents: read
+ jobs:
+   full-app-script-regression:
++    if: >-
++      github.head_ref != 'qa/lumo-console-joystick-7b16-20261114' && github.ref_name != 'qa/lumo-console-joystick-7b16-20261114'
+     runs-on: ubuntu-latest
+     timeout-minutes: 15
+     steps:
+--- a/.github/workflows/lumo-unified-integration-2026.yml
++++ b/.github/workflows/lumo-unified-integration-2026.yml
+@@ -65,7 +65,8 @@
+       github.head_ref != 'integration/lumo-connections-20261113' && github.ref_name != 'integration/lumo-connections-20261113' &&
+       github.head_ref != 'qa/lumo-android-runtime-7b16-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-20261114' &&
+       github.head_ref != 'qa/lumo-creative-7b16-20261114' && github.ref_name != 'qa/lumo-creative-7b16-20261114' &&
+-      github.head_ref != 'qa/lumo-android-runtime-7b16-followup-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-followup-20261114'
++      github.head_ref != 'qa/lumo-android-runtime-7b16-followup-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-followup-20261114' &&
++      github.head_ref != 'qa/lumo-console-joystick-7b16-20261114' && github.ref_name != 'qa/lumo-console-joystick-7b16-20261114'
+     runs-on: ubuntu-latest
+     timeout-minutes: 75
+     env:

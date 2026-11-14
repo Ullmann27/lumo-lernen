@@ -1,0 +1,28 @@
+{
+  "base_host": "6bf22513facf2292233e05914609089b759e0cd4",
+  "source_paths": [
+    "scripts/android_framework_ready.py",
+    "scripts/tests/fixtures/console_launch_pr486/host/config.json",
+    "scripts/tests/fixtures/console_launch_pr486/host/launch-stderr.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/host/program.sh",
+    "scripts/tests/fixtures/console_launch_pr486/host/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/provenance.json",
+    "scripts/tests/fixtures/console_launch_pr486/swangle/config.json",
+    "scripts/tests/fixtures/console_launch_pr486/swangle/launch-stderr.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/swangle/program.sh",
+    "scripts/tests/fixtures/console_launch_pr486/swangle/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/swiftshader/config.json",
+    "scripts/tests/fixtures/console_launch_pr486/swiftshader/launch-stderr.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/swiftshader/program.sh",
+    "scripts/tests/fixtures/console_launch_pr486/swiftshader/transcript.stdout",
+    "scripts/tests/test_console_logger_printf.py",
+    ".github/workflows/lumo-console-start-7b16.yml",
+    "scripts/tests/test_console_start_workflow.py"
+  ],
+  "device_job_body_unchanged": true,
+  "old_contract_blocks_unchanged": true,
+  "additional_required_contracts": 6,
+  "new_contract_log": "printf-contracts.log",
+  "actual_android_repair": "pending; existing three END:1 originals remain FAIL",
+  "source_pack_freeze": "73c42515a10bbd2dd40345942fd010ed75d076dc57433fa3b3ff2df94cd0bcd9"
+}

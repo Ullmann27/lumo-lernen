@@ -1,0 +1,310 @@
+{
+  "schema": 1,
+  "status": "OBSERVED_SHADER_LINK_FAILURE_NO_DEVICE_ACCEPTANCE",
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43551424080,
+  "run_attempt": 1,
+  "job_id": 132314688434,
+  "artifact_id": 14096976074,
+  "qa_source": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+  "qa_tree": "a648b206aba761fc96d0d0c95085981f6da53568",
+  "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "native_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+  "apk": {
+    "bytes": 325657350,
+    "sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20"
+  },
+  "pck": {
+    "bytes": 66595192,
+    "sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d"
+  },
+  "actual_runtime": {
+    "engine": "Godot v4.6.3.stable.official.7d41c59c4",
+    "renderer": "gl_compatibility",
+    "gles": [
+      "GLES: Google (Google Inc.), Android Emulator OpenGL ES Translator (Google SwiftShader), OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)"
+    ],
+    "emulator": "37.2.13.0/build16740729",
+    "image": "API37.0/google_apis/x86_64; package.xml revision8, source.properties revision7 retained as distinct original values",
+    "effective_hardware": {
+      "hw.cpu.ncore": "2",
+      "hw.ramSize": "4096",
+      "hw.lcd.width": "1080",
+      "hw.lcd.height": "2340",
+      "vm.heapSize": "576",
+      "hw.gpu.mode": "swiftshader"
+    }
+  },
+  "log": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-swiftshader-landing-review/memory-originals/originals/logcat.txt",
+    "bytes": 2000006,
+    "sha256": "9572cfa583f279cb8ba2d17fab64e366052652ab79736767fd5212563be9f122",
+    "line_count": 11931,
+    "archive_member": "logcat.txt",
+    "truncated_snapshot": true,
+    "first_line_incomplete": true,
+    "first_complete_timestamp": "2026-11-14T03:28:55.870Z",
+    "last_timestamp": "2026-11-14T03:31:27.453Z",
+    "producer_contract": "modernization_android_tour.py writes log[-2_000_000:] (characters); original UTF-8 file is 2,000,006 bytes. This is not continuous whole-session evidence."
+  },
+  "observed_errors": {
+    "scene_link_failures": [
+      {
+        "line": 4534,
+        "text": "11-14 03:29:47.668  5364  5384 E godot   : ERROR: SceneShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 4541,
+        "text": "11-14 03:29:47.682  5364  5384 E godot   : ERROR: SceneShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 4548,
+        "text": "11-14 03:29:47.689  5364  5384 E godot   : ERROR: SceneShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 4555,
+        "text": "11-14 03:29:47.695  5364  5384 E godot   : ERROR: SceneShaderGLES3: Program linking failed:"
+      }
+    ],
+    "canvas_link_failures": [
+      {
+        "line": 4667,
+        "text": "11-14 03:29:48.274  5364  5384 E godot   : ERROR: CanvasShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 4675,
+        "text": "11-14 03:29:48.278  5364  5384 E godot   : ERROR: CanvasShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 5042,
+        "text": "11-14 03:29:52.628  5364  5384 E godot   : ERROR: CanvasShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 5050,
+        "text": "11-14 03:29:52.631  5364  5384 E godot   : ERROR: CanvasShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 5058,
+        "text": "11-14 03:29:52.635  5364  5384 E godot   : ERROR: CanvasShaderGLES3: Program linking failed:"
+      },
+      {
+        "line": 5066,
+        "text": "11-14 03:29:52.638  5364  5384 E godot   : ERROR: CanvasShaderGLES3: Program linking failed:"
+      }
+    ],
+    "uniform_limit_errors": [
+      {
+        "line": 4535,
+        "text": "11-14 03:29:47.668  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 4542,
+        "text": "11-14 03:29:47.682  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 4549,
+        "text": "11-14 03:29:47.689  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 4556,
+        "text": "11-14 03:29:47.695  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 4668,
+        "text": "11-14 03:29:48.274  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 4676,
+        "text": "11-14 03:29:48.278  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 5043,
+        "text": "11-14 03:29:52.628  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 5051,
+        "text": "11-14 03:29:52.631  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 5059,
+        "text": "11-14 03:29:52.635  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      },
+      {
+        "line": 5067,
+        "text": "11-14 03:29:52.638  5364  5384 E godot   : Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+      }
+    ],
+    "count_scope": "Only this exact retained tail snapshot; counts do not represent discarded earlier bytes."
+  },
+  "actual_startup_timeline": [
+    {
+      "line": 3577,
+      "text": "11-14 03:29:45.954   622  1602 I ActivityTaskManager: START u0 {xflg=0x4 cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity (has extras)} with LAUNCH_MULTIPLE from uid 10234 (dev.ullmann.lumo.lumo_lernen.coachpreview) (rr=129086934) (BAL_ALLOW_VISIBLE_WINDOW) result code=0"
+    },
+    {
+      "line": 3585,
+      "text": "11-14 03:29:45.981   622   653 I ActivityManager: Start proc 5364:dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game/u0a234 for next-top-activity {dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity}"
+    },
+    {
+      "line": 3949,
+      "text": "11-14 03:29:46.585  5364  5364 V Godot   : InitEngine with params: [--main-pack, res://lumo_game.pck, --rendering-method, gl_compatibility]"
+    },
+    {
+      "line": 4048,
+      "text": "11-14 03:29:46.661  5364  5364 V Godot   : Godot native layer initialization completed: true"
+    },
+    {
+      "line": 4164,
+      "text": "11-14 03:29:47.023  5364  5384 I godot   : Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    },
+    {
+      "line": 4567,
+      "text": "11-14 03:29:47.697  5364  5384 I godot   : OpenGL API OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1) - Compatibility - Using Device: Google (Google Inc.) - Android Emulator OpenGL ES Translator (Google SwiftShader)"
+    },
+    {
+      "line": 4654,
+      "text": "11-14 03:29:48.196  5364  5384 V Godot   : OnGodotSetupCompleted"
+    },
+    {
+      "line": 4663,
+      "text": "11-14 03:29:48.213  5364  5384 V Godot   : OnGodotMainLoopStarted"
+    },
+    {
+      "line": 4664,
+      "text": "11-14 03:29:48.230  5364  5384 I godot   : [Mobile] actual Android View insets { \"insets\": [P: (0.0, 136.0), S: (0.0, 63.0)], \"view_size\": (1080.0, 2400.0), \"decor_size\": (1080.0, 2400.0), \"render_rect\": [P: (0.0, 0.0), S: (1080.0, 2400.0)], \"system_insets\": [P: (0.0, 136.0), S: (0.0, 63.0)], \"window_size\": (1080, 2400) }"
+    },
+    {
+      "line": 4819,
+      "text": "11-14 03:29:50.719  5364  5384 I godot   : [Router] loaded:kart (res://scenes/games/kart_island.tscn)"
+    },
+    {
+      "line": 4888,
+      "text": "11-14 03:29:50.872  5364  5384 I godot   : [Mobile] actual Android View insets { \"insets\": [P: (136.0, 63.0), S: (0.0, 63.0)], \"view_size\": (2400.0, 1080.0), \"decor_size\": (2400.0, 1080.0), \"render_rect\": [P: (0.0, 0.0), S: (2400.0, 1080.0)], \"system_insets\": [P: (136.0, 63.0), S: (0.0, 63.0)], \"window_size\": (2400, 1080) }"
+    },
+    {
+      "line": 4911,
+      "text": "11-14 03:29:50.902  5364  5384 I godot   : [KartViewport] landscape surface=(2400, 1080) logical=(1600.0, 720.0)"
+    },
+    {
+      "line": 5039,
+      "text": "11-14 03:29:52.452  5364  5384 I godot   : [Kart] Holographic garage ready: five modes, twelve worlds, free steering"
+    },
+    {
+      "line": 6781,
+      "text": "11-14 03:30:25.160  5364  5384 I godot   : [LumoHost] return: games"
+    }
+  ],
+  "visual_observation": {
+    "observer": "godot_integration",
+    "opened_original": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0.png",
+      "bytes": 18822,
+      "sha256": "2d53fe68237e227fbdf00ed39ff536ab7dbe5951c748217d6a334ddec08e916b"
+    },
+    "dimensions": [
+      2400,
+      1080
+    ],
+    "description": "Actual native landing image shows Android system status/navigation only, with no Kart scene or navigation controls visible.",
+    "exact_clear_pixels": 2584783,
+    "total_pixels": 2592000,
+    "clear_rgb": [
+      20,
+      15,
+      31
+    ],
+    "same_bytes_as_archive_member": "21_lumo_kart_20s.png",
+    "timing_limit": "The probe sleeps 12 then 20 seconds cumulatively; the latter name is not evidence of only20 total seconds.",
+    "interpretation": "Clear color agrees with rounded Native default clear color. This supports but does not independently prove the renderer diagnosis."
+  },
+  "reasoned_conclusion": {
+    "observed": "Both the3D scene and2D canvas shader programs fail to link in the actual SwiftShader compatibility renderer. Main loop, router, landscape/insets and garage readiness subsequently appear, while the captured surface remains blank.",
+    "inference": "The shader-link failures provide a concrete rendering fault that plausibly accounts for the blank scene/UI. Root cause inside SwiftShader or its uniform handling has not been independently proven.",
+    "not_supported": [
+      "No evidence justifies merely extending the landing wait.",
+      "No observed permanent safe-area gate or absent mainloop explains this run.",
+      "The one early orientation buffer mismatch is followed by actual correct landscape setup; it is not established as the cause.",
+      "The tour fatal-crash counter does not screen these renderer ERROR records."
+    ]
+  },
+  "separate_observation_failure": {
+    "monitor_finished": {
+      "finished_at": "2026-11-14T03:27:54.010158+00:00",
+      "stop_requested": false,
+      "budget_exhausted": false,
+      "commands": [
+        {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "wait-for-device"
+          ],
+          "started_at": "2026-11-14T03:26:55.861988+00:00",
+          "finished_at": "2026-11-14T03:27:05.186404+00:00",
+          "returncode": 0,
+          "ended_by_observer": false,
+          "stop_requested": false,
+          "stdout": "wait-for-device.stdout",
+          "stderr": "wait-for-device.stderr"
+        },
+        {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "logcat",
+            "-b",
+            "all",
+            "-v",
+            "threadtime"
+          ],
+          "started_at": "2026-11-14T03:27:05.186876+00:00",
+          "finished_at": "2026-11-14T03:27:54.009510+00:00",
+          "returncode": 255,
+          "ended_by_observer": false,
+          "stop_requested": false,
+          "stdout": "logcat-all.stdout",
+          "stderr": "logcat-all.stderr"
+        }
+      ]
+    },
+    "runtime_rejection_errors": [
+      "monitor_not_alive_through_endpoint",
+      "tour_command_failed_or_missing",
+      "monitor_ended_without_requested_stop_or_budget_exhausted",
+      "logcat_terminated_early_or_abnormally",
+      "recording_does_not_cover_full_interval"
+    ],
+    "scope": "Earlier host logcat ended rc255 at adb-root; this later2MB tail cannot repair the missing continuous interval or establish an ANR-free session."
+  },
+  "minimal_followup": {
+    "authorized_by_root": true,
+    "case": "api37-swangle",
+    "axis": "Renderer backend only: -gpu swangle, replacing neither the preserved host nor swiftshader case.",
+    "unchanged": [
+      "APK hash",
+      "PCK and Native source",
+      "API37 image descriptors/properties",
+      "emulator build",
+      "CLI22",
+      "CPU/RAM/display/effective heap",
+      "framework guard and tour deadlines",
+      "all current functional/pixel/ANR rejection gates"
+    ],
+    "expected_evidence": [
+      "Requested -gpu swangle and effective hw.gpu.mode=swangle.",
+      "An actual GLES renderer value identifying ANGLE together with SwiftShader; arguments alone are insufficient.",
+      "Preserve and fail on actual shader-link/compile errors.",
+      "Observe a real readable Kart landing and ordinary input/tour checks; a generic nonblack surface is insufficient.",
+      "The separate continuous logger repair must independently prove observation coverage."
+    ],
+    "not_a_fix_claim": "No SWANGLE execution has been performed in this review, and success is not predicted as fact.",
+    "forbidden_shortcuts": [
+      "No APK rebuild or application shader/light-limit change.",
+      "No masking shader errors or accepting the blank frame.",
+      "No timeout extension or rewriting an earlier failed result."
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "status": "FAIL_19_PASS_1_ERROR_0_SKIPS",
+  "source": "7fe0b85dd3b51384efed5c94af0618951574b857",
+  "tree": "3c3232daf3c14e8819f639128ededabb5fc603ec",
+  "source_count": 2173,
+  "source_and_git_unchanged": true,
+  "targeted": {
+    "methods": 20,
+    "passed": 19,
+    "errors": 1,
+    "failures": 0,
+    "skipped": 0,
+    "raw_log": {
+      "path": "targeted-20.log",
+      "bytes": 6304,
+      "sha256": "019c33dd4598d7bbf9a8ca9ddd9e1fc0ffd7a38f1ae9ca03622eac696b2394de"
+    },
+    "elapsed_seconds": 4.431446691000019
+  },
+  "actionlint": {
+    "files": 1,
+    "exit_code": 0,
+    "raw_log": {
+      "path": "actionlint-one.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "groups": {
+    "pause_caption": "8 PASS, first positive case ERROR at real Image.open before target selection",
+    "existing_workflow": "9 PASS",
+    "two_previous_missing_wrapper_methods": "2 PASS"
+  },
+  "error": "PIL.UnidentifiedImageError on the first original PNG in the first new positive replay. No source fixture mismatch was reported; the later reordered positive original replay passes.",
+  "source_observation": {
+    "test_module": "tools/android_qa/tests/test_kart_continue_caption.py",
+    "issue": "First PIL import occurs within patch.dict(sys.modules). The actual Python3.12 unittest.mock implementation restores the full previous dictionary on context exit, removing modules imported within the patch while probe objects remain referenced.",
+    "classification": "Concrete import-harness structure identified; the proposed correction is not yet executed or confirmed. No production selector failure is inferred.",
+    "stdlib_mock_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py",
+    "stdlib_mock_sha256": "1de18141992c6742bff27e77c0cbe46d53d6a5ab1850574a536910508823fc5c",
+    "relevant_original_lines": [
+      1897,
+      1905,
+      1912,
+      1925,
+      1929,
+      1932
+    ]
+  },
+  "environment": {
+    "created_at": "2026-11-14T09:19:41.645565+00:00",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "python_version": "Python 3.12.14",
+    "pillow_version": "13.0.0",
+    "actionlint_path": "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    "actionlint_version": "1.7.12\ninstalled by downloading from release page\nbuilt with go1.26.1 compiler for linux/amd64",
+    "base_environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "REQUIRE_ALL_TESTS": "true",
+      "GIT_OPTIONAL_LOCKS": "0",
+      "PYTHONPATH": "/tmp/lumo-root-recovery-0900/host-qa/tools/android_qa/tests"
+    },
+    "scope": "Authorized local Python contracts only. No installation, emulator, socket-case repetition, Git mutation or CI action."
+  },
+  "optional_old_source_red": "NOT RUN after the current positive-case harness error; no original Red result invented.",
+  "AF_UNIX_cases_repeated": false,
+  "tests_repeated": false,
+  "source_edits": false,
+  "Git_or_CI_mutation": false,
+  "Android_or_resume_claim": false,
+  "original_104er_scope": "This separate20-method run does not overwrite the earlier104-method FAIL or its three EPERM socket errors."
+}
