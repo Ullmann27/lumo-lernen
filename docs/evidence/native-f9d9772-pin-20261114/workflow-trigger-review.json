@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "source_host": "e53669a2e06d1832cc6844dbe1077d652551fdb8",
+  "workflow": {
+    "path": ".github/workflows/lumo-connect-four-2020.yml",
+    "bytes": 49103,
+    "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+    "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+  },
+  "event": "pull_request only; no push or dispatch trigger declared",
+  "direct_job_guard": {
+    "repository": "Ullmann27/lumo-lernen",
+    "event_name": "pull_request",
+    "head_repo_matches_repository": true,
+    "head_ref": "integration/lumo-c4-connections-20261114"
+  },
+  "jobs": [
+    {
+      "job": "connect-four-runtime",
+      "configuration_before_steps": "    if: >-\n      github.repository == 'Ullmann27/lumo-lernen' &&\n      github.event_name == 'pull_request' &&\n      github.event.pull_request.head.repo.full_name == github.repository &&\n      github.head_ref == 'integration/lumo-c4-connections-20261114'\n    runs-on: ubuntu-latest\n    timeout-minutes: 35\n    outputs:\n      native-revision: ${{ steps.pin.outputs.revision }}\n",
+      "checkout_refs": [
+        "${{ github.event.pull_request.head.sha }}",
+        "${{ steps.pin.outputs.revision }}"
+      ]
+    },
+    {
+      "job": "android-host-compile",
+      "configuration_before_steps": "    if: >-\n      github.repository == 'Ullmann27/lumo-lernen' &&\n      (github.event_name == 'pull_request' &&\n      github.event.pull_request.head.repo.full_name == github.repository &&\n      github.head_ref == 'integration/lumo-c4-connections-20261114')\n    runs-on: ubuntu-latest\n    timeout-minutes: 35\n",
+      "checkout_refs": [
+        "${{ github.event.pull_request.head.sha || github.sha }}"
+      ]
+    },
+    {
+      "job": "verify-and-build",
+      "configuration_before_steps": "    needs: [android-host-compile, connect-four-runtime]\n    if: >-\n      github.repository == 'Ullmann27/lumo-lernen' &&\n      (github.event_name == 'pull_request' &&\n      github.event.pull_request.head.repo.full_name == github.repository &&\n      github.head_ref == 'integration/lumo-c4-connections-20261114')\n    runs-on: ubuntu-latest\n    timeout-minutes: 150\n    outputs:\n      candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}\n      candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}\n    env:\n      LUMO_SPLIT_PER_ABI: '1'\n",
+      "checkout_refs": [
+        "${{ github.event.pull_request.head.sha || github.sha }}"
+      ]
+    },
+    {
+      "job": "android-c4",
+      "configuration_before_steps": "    needs: [verify-and-build, android-host-compile, connect-four-runtime]\n    runs-on: ubuntu-latest\n    timeout-minutes: 80\n    permissions:\n      contents: read\n      actions: read\n    env:\n      SOURCE_SHA: ${{ github.event.pull_request.head.sha }}\n      NATIVE_REVISION: ${{ needs.connect-four-runtime.outputs.native-revision }}\n      CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}\n      CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}\n",
+      "checkout_refs": [
+        "${{ github.event.pull_request.head.sha }}"
+      ]
+    },
+    {
+      "job": "update-2020-from-2017",
+      "configuration_before_steps": "    # Independent emulator and original baseline; the complete update remains\n    # mandatory before this test candidate receives its verification report.\n    needs: [verify-and-build]\n    permissions:\n      contents: read\n      actions: read\n    runs-on: ubuntu-latest\n    timeout-minutes: 55\n",
+      "checkout_refs": [
+        "${{ github.event.pull_request.head.sha || github.sha }}"
+      ]
+    },
+    {
+      "job": "verify-c4-candidate",
+      "configuration_before_steps": "    needs: [verify-and-build, android-host-compile, connect-four-runtime, android-c4, update-2020-from-2017]\n    runs-on: ubuntu-latest\n    timeout-minutes: 25\n    permissions:\n      contents: read\n      actions: read\n    env:\n      SOURCE_SHA: ${{ github.event.pull_request.head.sha }}\n      CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}\n      CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}\n",
+      "checkout_refs": [
+        "${{ github.event.pull_request.head.sha }}"
+      ]
+    },
+    {
+      "job": "prepare-c4-delivery",
+      "configuration_before_steps": "    needs: [verify-and-build, android-host-compile, connect-four-runtime, android-c4, update-2020-from-2017, verify-c4-candidate]\n    if: >-\n      github.repository == 'Ullmann27/lumo-lernen' &&\n      github.event_name == 'pull_request' &&\n      github.event.pull_request.head.repo.full_name == github.repository &&\n      github.head_ref == 'integration/lumo-c4-connections-20261114' &&\n      needs.verify-and-build.result == 'success' &&\n      needs.android-host-compile.result == 'success' &&\n      needs.connect-four-runtime.result == 'success' &&\n      needs.android-c4.result == 'success' &&\n      needs.update-2020-from-2017.result == 'success' &&\n      needs.verify-c4-candidate.result == 'success'\n    runs-on: ubuntu-latest\n    timeout-minutes: 35\n    outputs:\n      delivery-artifact-id: ${{ steps.upload-delivery.outputs.artifact-id }}\n      delivery-artifact-digest: ${{ steps.upload-delivery.outputs.artifact-digest }}\n    permissions:\n      contents: read\n      actions: read\n    env:\n      SOURCE_SHA: ${{ github.event.pull_request.head.sha }}\n      PR_NUMBER: ${{ github.event.pull_request.number }}\n      NATIVE_REVISION: ${{ needs.connect-four-runtime.outputs.native-revision }}\n      CANDIDATE_ARTIFACT_ID: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}\n      CANDIDATE_ARTIFACT_DIGEST: ${{ needs.verify-and-build.outputs.candidate-artifact-digest }}\n",
+      "checkout_refs": [
+        "${{ github.event.pull_request.head.sha }}",
+        "${{ needs.connect-four-runtime.outputs.native-revision }}"
+      ]
+    }
+  ],
+  "native_binding": "Initial runtime policy reads the exact current pubspec/config and exports revision; dependent Android and delivery use that output. Build/native gates read the same checked-in config; no current Native revision is literal in this workflow.",
+  "preparation_branch_does_not_match": "integration/lumo-next-candidate-1913-20261114",
+  "observed_pr": {
+    "number": 485,
+    "state": "open",
+    "draft": true,
+    "head_sha": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+    "head_ref": "integration/lumo-c4-connections-20261114",
+    "base_sha": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "base_ref": "integration/lumo-connections-20261113"
+  },
+  "observed_ancestry": {
+    "base": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+    "head": "e53669a2e06d1832cc6844dbe1077d652551fdb8",
+    "ahead": 12,
+    "behind": 0
+  },
+  "concurrency": "Existing head-ref concurrency and cancel-in-progress:true retained unchanged.",
+  "activation_owner": "Root; fresh PR/ref/ancestry readback and expected-current-head guarded fast-forward are still needed. No activation performed here.",
+  "reported_later_root_parent": "c874abe3e26ace4d0282b2e3254e8c8bcbebc9df",
+  "reported_parent_limit": "Provided by Root after these exact e536 reads; Root reports all three pin preimages unchanged. This pack does not treat an unqueried newer full tree as executed."
+}

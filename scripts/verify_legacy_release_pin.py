@@ -144,7 +144,7 @@ APPROVED = {
     # 2020: reviewed C4, facial, Treasure and Dream source with the installed
     # PCM envelope. Fresh 52-mode, Dream, Android and preserved-update gates
     # remain mandatory; this entry binds source identity only.
-    2020: "2281d990fb584db6f2cf786da8fec3badc2d9585",
+    2020: "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "actualCommand": "python3 tools/lumo_autosave.py once",
+  "cwd": "/tmp/lumo-root-recovery-1750/host",
+  "exit_code": 0,
+  "stdout": "[LUMO-CHECKPOINT] Nothing new to save on validation/host-v4-syntax-20261114.\n",
+  "checkout_head": "528a265",
+  "checkout_scope": "Clean old syntax validation checkout, not the new candidate source.",
+  "durable_candidate_checkpoint": "c874abe3e26ace4d0282b2e3254e8c8bcbebc9df",
+  "durable_candidate_tree": "53641bed0ada90ae850d7ab5e46df9e49c17edee",
+  "candidate_publication_method": "Verified leased GitHub connector commits with complete tree/commit/ref readbacks; the clean old checkout autosave is not represented as the new source checkpoint."
+}

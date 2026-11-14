@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_RUN",
+  "base_host": "e53669a2e06d1832cc6844dbe1077d652551fdb8",
+  "base_tree": "5cf2f3bc7d062d44b12c0b5370c827a07c3002c1",
+  "branch": "integration/lumo-next-candidate-1913-20261114",
+  "old_native": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "new_native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "new_native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "source_count": 3,
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "before": {
+        "bytes": 145,
+        "sha256": "468e061237ca974bd6ebe3bfb273c5f35672bc703062e9dd4800574db5d6cd04",
+        "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201"
+      },
+      "after": {
+        "bytes": 145,
+        "sha256": "d79a0dcbb52632b8a06d73a92e8070bbc368cfcb188743bc281199b0fb333e42",
+        "git_blob": "ba1d6097de66ab0b38cbe8ae2915bf36525bf264"
+      }
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 10687,
+        "sha256": "6d79fb45a8ef7ba400289dc3d94f2d062131002aa19ebb441d73db28d38a7593",
+        "git_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec"
+      },
+      "after": {
+        "bytes": 10687,
+        "sha256": "b5525232dc8649fe43687f1e5982585b98bdd1b224716e7b62e9041f1e2ff861",
+        "git_blob": "505ec1d0b4602a4b9493b279396cffb4d678217d"
+      }
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 17393,
+        "sha256": "2350a6482b4f00c92ec9d94bda91c30924a9c4496356f98c8cf93887809c2ce9",
+        "git_blob": "3b6eff95bb6e80094cca408624d49ef9191a8501"
+      },
+      "after": {
+        "bytes": 17393,
+        "sha256": "2f4160f0484834f63c2df73b04278a7850df409d0a9bf39bc582c74012f2491c",
+        "git_blob": "b3a8bd28c80dcb750f969daeb948480ac564a569"
+      }
+    }
+  ],
+  "source_preservation": {
+    "bytes": 4727,
+    "sha256": "16dbcf5d77d2881fec0377ccf6845bcc9889cabdf6ecd89ffba4972a65c48caa",
+    "git_blob": "99098c2d2f0c102262c55fc4e8642e5655d8a40a"
+  },
+  "dependency_review": {
+    "bytes": 1447,
+    "sha256": "2373263ec4e970ce432b3f32579857ba07e1321e490d918bc2ec22e07caa2091",
+    "git_blob": "6f6b607171ae3c8b44bcdcc8d4b81cebc09b2049"
+  },
+  "patch": {
+    "bytes": 1394,
+    "sha256": "419adc08070ff1a4f1ad308479628ff866ff7ff72f35f43da1a1d42a7f33d818",
+    "git_blob": "83667cc377b165df8834d8977dc5dd7137e5991b"
+  },
+  "test_roster": {
+    "bytes": 6554,
+    "sha256": "ac5c0f02d3eeda6220573f0d950df276febb7b01f16c8475965ae24afef5e4a3",
+    "git_blob": "845944cf2751310201848ee243f7be0948dad54c"
+  },
+  "execution_scope": "One exact run of the existing 24 Candidate plus 40 Legacy contracts on this immutable private proposed source view. No remote ref, CI, engine or device action."
+}
