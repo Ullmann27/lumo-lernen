@@ -527,9 +527,10 @@ jobs:
           grep -Fxq 'eng' tour/tesseract-installed-languages.txt
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
-          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_connect_four_android_probe.py
+          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_connect_four_android_probe.py .github/probes/lumo_village_android_probe.py
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_village_android_evidence.py' -v
           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
       - name: Enable accelerated disposable emulator
         run: |
@@ -585,6 +586,7 @@ jobs:
             adb shell getprop ro.build.version.release > tour/android-release.txt
             "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour/main
+            .probe-venv/bin/python .github/probes/lumo_village_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/main/tour-result.json --metadata-dir tour/metadata --expected-source "$SOURCE_SHA" --expected-native "$NATIVE_REVISION" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --out tour/village
             .probe-venv/bin/python .github/probes/lumo_connect_four_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/main/tour-result.json --metadata-dir tour/metadata --expected-source "$SOURCE_SHA" --expected-native "$NATIVE_REVISION" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --out tour/c4
       - name: Preserve complete actual main-tour and C4 Android evidence
         if: always()

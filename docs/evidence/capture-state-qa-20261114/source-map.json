@@ -1,0 +1,54 @@
+{
+  "integration_base": {
+    "commit": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22",
+    "tree": "014b2acc4cea5def174f7c51a12902c4aa2c22d6"
+  },
+  "qa_pr": 501,
+  "qa_branch": "repair/lumo-capture-state-20261114",
+  "tested_home": {
+    "head": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+    "actual_checkout": "58c32b76745325e4b8d5daeeb2049c6f700de3b2",
+    "tree": "f192095cae6db2b88668b167a0eb92bcda67fa5b",
+    "run_id": 43584516810,
+    "attempt": 1,
+    "job_id": 132416045501,
+    "home_tests_passed": 13,
+    "additional_world_tests_passed": 8,
+    "capture_count": 8
+  },
+  "tested_village": {
+    "head": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
+    "run_id": 43583899148,
+    "attempt": 1,
+    "flutter_job_id": 132414202983,
+    "kotlin_job_id": 132414202800,
+    "portal_tests_passed": 2,
+    "world_layout_tests_passed": 4,
+    "launcher_lifecycle_tests_passed": 15,
+    "capture_launch_tests_passed": 6,
+    "capture_count": 6,
+    "kotlin_result": "BUILD SUCCESSFUL"
+  },
+  "code_entries": [
+    {
+      "path": "test/design/home_1989_premium_cards_capture_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4259e169976f458135618d2a831d86f917fdb688"
+    },
+    {
+      "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "935ca225a6fa67df73f520494d61480943435595"
+    }
+  ],
+  "qa_only_entry": {
+    "path": ".github/workflows/lumo-direct-village-flutter.yml",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "a24b296011d87cb21b5e6994c6b3483f5e28210b",
+    "integrate_into_central": false
+  },
+  "central_workflow_original_blob": "ecc2ba50e6a7215e1d01eaf4510d0ae87c713b52"
+}
