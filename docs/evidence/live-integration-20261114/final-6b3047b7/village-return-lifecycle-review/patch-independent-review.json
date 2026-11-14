@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "reviewed_checkpoint": "a7e06055f70929e918d48a1397bf656c1880adb4",
+  "reviewed_tree": "1a40e5bdbb70536dc25cdac0e4ae69744f915452",
+  "source_base": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "scope": "Independent read-only review of the exact QA observer/test patch and immutable original test logs. No duplicated tests, Android run, source edit or central ref change by this reviewer.",
+  "conclusion": "No concrete blocker found in the reviewed two-file patch. A fresh separately bound real-device diagnosis is still required; this does not accept the failed original 6b Android run.",
+  "source_blobs": {
+    "probe": "3e601644198f0b8c62fdaebcf783e3f631974bb1",
+    "tests": "d21f941b2f5cff410f8e4cd7ae23fbbbf894743a"
+  },
+  "preserved_contracts": [
+    "run()/main() suffix is byte-identical, including exact build/source/native/APK identity gates.",
+    "All 34 existing test methods are AST-identical; nine additional observation/deadline/byte-preservation cases are present.",
+    "The Village verifier, capture/OCR readers, Flutter entropy helper and live accessibility reader are byte-identical.",
+    "The single real native Spiele touch and its two stable source frames are retained. The new observer issues no UI input, rotation or relaunch.",
+    "Every attempt captures a new exclusively named original in its own directory; rejected PNGs/TSVs remain. Only a validated accepted PNG is copied with exclusive creation to the established canonical filename, followed by byte-hash verification.",
+    "Exact Spielen OCR and original TSV/component/tile source replay remain mandatory. Native Spiele is never accepted as Spielen.",
+    "Same host PID, ended native process and resumed MainActivity are checked before and after image/OCR/semantics, and profile preservation remains replayed by the unchanged final verifier.",
+    "Enabled package-bound Flutter Spielewelt semantics remain required alongside current pixels. Caption alone is insufficient.",
+    "The local acceptance budget is the existing combined 30-second capture plus 60-second OCR allowance, now shared across all attempts and process/XML/hash/copy work. Each capture remains <=30s, each OCR <=60s, within the unchanged 900-second roundtrip deadline.",
+    "Clock checks occur before and after blocking observations and after the final copy/hash; a successful result at or beyond the deadline is rejected."
+  ],
+  "live_xml_limitation": {
+    "original_reader": "scripts/probes/pr207_android_ui_probe.py:live_nodes uses uiautomator2.dump_hierarchy; creative_android_probe.read_live_nodes wraps its existing retries.",
+    "timeout_parameter_available": false,
+    "review": "The unchanged reader does not accept a caller timeout. The wrapper checks before and after the call, so it cannot accept a late XML result. Actual wall-clock return can exceed the 90-second acceptance deadline while that existing call blocks. This is disclosed, not represented as cancellation of a still-running RPC."
+  },
+  "fallback_review": "image_lines records source.name, source SHA and surface. Each attempt and canonical copy use returned-flutter-frame.png as basename; the copied bytes are identical. This preserves the unchanged component/tile source-name, pixel and TSV-offset replay. New explicit tests cover both fallback paths.",
+  "original_logs": {
+    "red": {
+      "git_blob": "393e4bb46e0a4178ae15d6c249a31a69773c14b2",
+      "expected_original_failure": true,
+      "observed": "1 ERROR at original visible_return caption('Spielen')"
+    },
+    "green": {
+      "git_blob": "fbe4d6a14a297a4740c8c7a779e80ae8a2ae6f36",
+      "passed": 43,
+      "skipped": 0,
+      "failed": 0,
+      "reported_duration_seconds": 43.153
+    },
+    "validation": {
+      "git_blob": "9e1f8768aa8660b19cc4df87790bb6780d9f3a44",
+      "source_base": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "source_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "test_village_android_evidence",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/909ddb52fe7b/village-return-repair-6b/tools/android_qa/tests",
+      "elapsed_seconds": 43.738,
+      "exit_code": 0,
+      "source_sha256_before": {
+        ".github/probes/lumo_village_android_probe.py": "351d9ee6560b5dc5694f61b07c8d75b1a71d3cb4201fdbc953731891d04c1351",
+        "tools/android_qa/tests/test_village_android_evidence.py": "a8ea017f8979e16ef44f15acd1d7044d88309f2d43c9abf78fb6f8eea2979c13"
+      },
+      "source_sha256_after": {
+        ".github/probes/lumo_village_android_probe.py": "351d9ee6560b5dc5694f61b07c8d75b1a71d3cb4201fdbc953731891d04c1351",
+        "tools/android_qa/tests/test_village_android_evidence.py": "a8ea017f8979e16ef44f15acd1d7044d88309f2d43c9abf78fb6f8eea2979c13"
+      },
+      "ast_parse": "PASS",
+      "run_and_main_bytes_unchanged": true,
+      "scope": "Synthetic offline contracts with original-file fixtures; no Android/emulator result"
+    },
+    "scope": "Read immutable original logs from QA checkpoint a7e06055; no duplicate test execution."
+  },
+  "test_interpretation": "The 43 passing cases are offline synthetic clock/process/pixel/OCR fixtures exercised by QA, not real Android rendering. This reviewer independently read and counted the immutable log, and parsed/compared the exact source deltas; no new test was run.",
+  "unchanged_apk_diagnosis_requirement": "The observer revision and unchanged 6b APK/build/native provenance must be separately and explicitly bound. The production probe's unchanged run() couples git HEAD/expected_source/APK source, so a diagnosis adapter must verify both identities rather than claim its new reader SHA built the old APK.",
+  "prior_original_review_commit": "eef18c4b669c83329ead1fd3e494a2c936d15b63"
+}

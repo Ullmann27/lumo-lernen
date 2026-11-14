@@ -1,3 +1,47 @@
+# LUMO 2020 – tatsächlichen sichtbaren Dorf-Rückweg erneut abnehmen
+
+Stand: 2026-11-14 18:50:01 UTC. Der unmittelbar auf Host6b vorbereitete Korrekturstand
+`a7e06055f70929e918d48a1397bf656c1880adb4` ändert ausschließlich den Android-
+Dorfbeobachter und seine Tests. Alle Produktdateien, sämtliche Workflows und der
+Native-Pin `84789d0c2c6fb4b6ecd2897ce1951b89f958b604` bleiben bytegleich.
+
+Die ursprüngliche [Gesamtabnahme 43616038272/1](https://github.com/Ullmann27/lumo-lernen/actions/runs/43616038272)
+auf Host6b endete mit vier erfolgreichen Jobs, einem fehlgeschlagenen Androidjob
+und zwei übersprungenen Folgejobs. Der vollständige Flutterlauf bestand tatsächlich
+2.651 Fälle ohne Fehler oder Skips; Feature30 und der echte 2017→2020-Updatevertrag
+bestanden ebenfalls. Diese Ergebnisse sind keine vollständige Androidfreigabe:
+Beim Dorf-Rückweg zeigt das erhaltene Originalbild noch „LUMO DORFWELT“,
+obwohl Host-Rückkehr und Ende des Nativeprozesses bereits aufgezeichnet waren.
+Die strikte Forderung nach sichtbarem „Spielen“ hat deshalb richtig abgelehnt.
+Die nachfolgende Vier-gewinnt-Tour wurde nicht erreicht.
+
+Der Korrekturstand beobachtet innerhalb des bisherigen kombinierten 90-Sekunden-
+Budgets frische Bilder, Original-OCR und die aktuelle Flutter-Semantik.
+Jeder verworfene Versuch bleibt getrennt erhalten. Es gibt genau denselben
+einmaligen Rückkehr-Tap, keine zusätzliche App-Aktion und keine Lockerung
+der Captions, Prozess-, Quellen- oder Profilerhaltungsprüfungen.
+Der unveränderte XML-Leser hat keinen eigenen Timeoutparameter; eine verspätete
+Rückgabe wird dennoch abgelehnt. Alle 34 alten Testmethoden bleiben erhalten;
+neun gezielte Fälle kommen hinzu. Der echte Offline-Grünlog enthält 43 bestandene
+Fälle, keinen Fehler und keinen Skip in 43,153 Sekunden. Der ursprüngliche
+Rotbeleg sowie der unabhängige Review bleiben dauerhaft erhalten.
+
+Root hat beide Original-Testlogs, den unabhängigen Gegenreview und die
+vollständigen Gitbäume geprüft. Der genaue Vorlaufbeleg steht unter
+`docs/evidence/live-integration-20261114/village-return-observation-6b3047b7/root-activation-review.json`.
+Dieser Aktivierungsschritt ergänzt nur die Statusdokumente und Reviewbelege.
+Der neue exakte Hostkopf muss erneut Feature30, die vollständige Flutter-Suite,
+alle sieben Pflichtjobs, direkte Village-/C4-Androidtouren, Updateerhaltung
+und Original-Delivery-Replay bestehen. Der getrennte Diagnosepfad mit unveränderter
+6b-APK wird ausdrücklich nicht als neue Gesamtabnahme gewertet.
+
+Version bleibt der noch unveröffentlichte Testkandidat **0.13.8+2020**.
+Die früher vorbereiteten 6b-Reader-/Publisherzweige bleiben inaktiv; spätere
+Auslieferung muss an den tatsächlichen neuen Quellstand und seine neuen Originale
+gebunden werden. Main und frühere Releases bleiben unverändert.
+
+## Archiv: vorheriger Aktivierungsstand
+
 # LUMO 2020 – erneute Gesamtabnahme nach beobachtetem Testfehler
 
 Stand: 14. November 2026, 16:30 UTC. Der vorbereitete Korrekturstand
