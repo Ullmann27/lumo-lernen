@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "PARTIAL_CURRENT_ACCEPTANCE_ORIGINALS_NOT_APK_APPROVAL",
+  "captured_at": "2026-11-14 11:08:15 UTC",
+  "host_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+  "host_tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+  "native_source": "71a4c1e2304b52005950b12490d070c286c45438",
+  "run_id": 43586101225,
+  "run_attempt": 1,
+  "branch": "integration/lumo-live-connections-20261114",
+  "completed_original_logs": [
+    {
+      "job_id": 132420785280,
+      "name": "android-host-compile",
+      "path": "job-132420785280-original.log",
+      "decoded_original_text_sha256": "9d070880ca7a0f53bbb3be11f945ec882acfa81547629927d35d793edb364288",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132420785280/logs"
+    },
+    {
+      "job_id": 132420785449,
+      "name": "connect-four-runtime",
+      "path": "job-132420785449-original.log",
+      "decoded_original_text_sha256": "a5203d649dab1729a06de65e01a7e5cf886051c03bed757cbea0064821617d65",
+      "source": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132420785449/logs"
+    }
+  ],
+  "open_jobs": [
+    {
+      "id": 132421769277,
+      "name": "verify-and-build",
+      "current_step": "Require actual gameplay gates on the exact pinned native source"
+    }
+  ],
+  "artifacts_downloaded_here": false,
+  "published": false,
+  "scope": "Unmodified decoded original job-log text and original GitHub API snapshots; pending build/Android/update/delivery cannot be counted as acceptance."
+}
