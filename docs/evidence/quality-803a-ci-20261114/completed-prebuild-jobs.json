@@ -1,0 +1,44 @@
+{
+  "jobs": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "native_revision": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+      "run_id": 43578509499,
+      "run_attempt": 1,
+      "workflow_path": ".github/workflows/lumo-connect-four-2020.yml",
+      "job_id": 132397974384,
+      "job_name": "connect-four-runtime",
+      "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509499/job/132397974384",
+      "started_at": "2026-11-14T09:01:07Z",
+      "completed_at": "2026-11-14T09:03:54Z",
+      "status": "completed",
+      "conclusion": "success",
+      "log_filename": "c4-runtime-original-job-132397974384.log",
+      "log_git_blob": "b9bfb20093b02545f9b4d6b5b486f19a6a290829",
+      "log_utf8_bytes": 283809,
+      "log_utf16_code_units": 283727,
+      "log_source": "Complete decoded log returned by GitHub workflow-job logs tool; unchanged text, no filtering or truncation."
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "native_revision": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+      "run_id": 43578509499,
+      "run_attempt": 1,
+      "workflow_path": ".github/workflows/lumo-connect-four-2020.yml",
+      "job_id": 132397974013,
+      "job_name": "android-host-compile",
+      "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509499/job/132397974013",
+      "started_at": "2026-11-14T09:01:07Z",
+      "completed_at": "2026-11-14T09:05:38Z",
+      "status": "completed",
+      "conclusion": "success",
+      "log_filename": "android-host-compile-original-job-132397974013.log",
+      "log_git_blob": "33c4497488df0e7c0776d1cc925f3ba0f9368fe0",
+      "log_utf8_bytes": 243712,
+      "log_utf16_code_units": 243552,
+      "log_source": "Complete decoded log returned by GitHub workflow-job logs tool; unchanged text, no filtering or truncation."
+    }
+  ]
+}

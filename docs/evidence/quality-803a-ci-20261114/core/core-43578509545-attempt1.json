@@ -1,0 +1,216 @@
+{
+  "schema": "lumo-completed-ci-evidence-v1",
+  "repository": "Ullmann27/lumo-lernen",
+  "run": {
+    "id": 43578509545,
+    "name": "Lumo living intelligence core",
+    "event": "pull_request",
+    "path": ".github/workflows/lumo-living-intelligence-core.yml",
+    "head_branch": "work/lumo-play-quality-20261114",
+    "head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509545",
+    "created_at": "2026-11-14T09:01:04Z",
+    "updated_at": "2026-11-14T09:08:42Z",
+    "run_started_at": "2026-11-14T09:01:04Z"
+  },
+  "expected_head": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "complete_attempt_job_inventory": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 132397973529,
+        "run_id": 43578509545,
+        "workflow_name": "Lumo living intelligence core",
+        "head_branch": "work/lumo-play-quality-20261114",
+        "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43578509545",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOSNzcp88AAAAe04jAGQ",
+        "head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132397973529",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509545/job/132397973529",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-14T09:01:05Z",
+        "started_at": "2026-11-14T09:01:06Z",
+        "completed_at": "2026-11-14T09:08:41Z",
+        "name": "verify-core",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T09:01:07Z",
+            "completed_at": "2026-11-14T09:01:08Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T09:01:08Z",
+            "completed_at": "2026-11-14T09:01:29Z"
+          },
+          {
+            "name": "Run subosito/flutter-action@v2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T09:01:29Z",
+            "completed_at": "2026-11-14T09:01:51Z"
+          },
+          {
+            "name": "Record tested source and resolve locked dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T09:01:51Z",
+            "completed_at": "2026-11-14T09:01:54Z"
+          },
+          {
+            "name": "Load system emoji for existing render regressions",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T09:01:54Z",
+            "completed_at": "2026-11-14T09:02:00Z"
+          },
+          {
+            "name": "Full Flutter analysis",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T09:02:00Z",
+            "completed_at": "2026-11-14T09:02:12Z"
+          },
+          {
+            "name": "Actual scene, profile, crash-recovery and route evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-14T09:02:12Z",
+            "completed_at": "2026-11-14T09:02:32Z"
+          },
+          {
+            "name": "Complete Flutter unit, widget, navigation and storage regression",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-14T09:02:32Z",
+            "completed_at": "2026-11-14T09:08:37Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-14T09:08:37Z",
+            "completed_at": "2026-11-14T09:08:38Z"
+          },
+          {
+            "name": "Post Run subosito/flutter-action@v2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-11-14T09:08:38Z",
+            "completed_at": "2026-11-14T09:08:39Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-14T09:08:39Z",
+            "completed_at": "2026-11-14T09:08:39Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-14T09:08:39Z",
+            "completed_at": "2026-11-14T09:08:39Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132397973529",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000017617,
+        "runner_name": "GitHub Actions 1000017617",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  },
+  "raw_log": {
+    "job_id": 132397973529,
+    "git_blob": "225af4b5a1243601a04f2ec23dd8315ca9b25875",
+    "filename": "core-43578509545-attempt1-job132397973529.log",
+    "decoded_character_count": 621474,
+    "retrieved_only_after_job_completed": true
+  },
+  "observed_result": {
+    "analysis": {
+      "total_issues": 138,
+      "errors": 0,
+      "warnings": 5,
+      "infos": 133,
+      "command": "flutter analyze --no-fatal-infos --no-fatal-warnings"
+    },
+    "targeted_scene_suite": {
+      "passed": 48,
+      "displayed_duration": "00:13",
+      "summary": "All tests passed!"
+    },
+    "full_flutter_suite": {
+      "passed": 2373,
+      "skipped": 196,
+      "displayed_duration": "06:01",
+      "summary": "All tests passed!"
+    },
+    "unique_test_total_not_aggregated": true
+  },
+  "workflow_source": {
+    "path": ".github/workflows/lumo-living-intelligence-core.yml",
+    "git_blob": "89bbe8c1b936f943cc3e9ac42a44012262cbd7f7"
+  },
+  "scope": "Actual Core workflow on the exact candidate, including its executed scene and full Flutter tests. There are 196 skipped tests; this is not a claim that every capture test ran or that Android/APK acceptance passed. The targeted suite is reported separately and is not added to the full suite as a unique total.",
+  "checkout": {
+    "expected_pr_head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "api_head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "actual_checkout_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "actual_checkout_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "expected_pr_head_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "checkout_tree_identical_to_expected_head": true,
+    "actual_checkout_is_pr_head": true,
+    "original_log_blob": "225af4b5a1243601a04f2ec23dd8315ca9b25875",
+    "checkout_command": "2026-11-14T09:01:28.3583474Z [command]/usr/bin/git checkout --progress --force 803a4e960ffb804a46b6d09417731c031f00f680",
+    "git_log_command": "2026-11-14T09:01:29.3153097Z [command]/usr/bin/git log -1 --format=%H",
+    "git_log_output": "2026-11-14T09:01:29.3182415Z 803a4e960ffb804a46b6d09417731c031f00f680",
+    "independent_sha_outputs": [
+      "2026-11-14T09:01:29.3182415Z 803a4e960ffb804a46b6d09417731c031f00f680",
+      "2026-11-14T09:01:51.7815784Z 803a4e960ffb804a46b6d09417731c031f00f680"
+    ],
+    "verified_commit_object": {
+      "sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+      "parents": [
+        "7c1d1bbf10a3ea7006fa86ead5469ebb329ac555",
+        "7f254c68afab93d54929e19b7a1b1a739ace2c9e",
+        "31ea02adb9dff26fa5aea3a6e49603bba2ad963c",
+        "57c7022eae80377d4a63bc7a3479f68758e8b370"
+      ],
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/803a4e960ffb804a46b6d09417731c031f00f680"
+    },
+    "verified_expected_head_commit": {
+      "sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/803a4e960ffb804a46b6d09417731c031f00f680"
+    },
+    "explanation": "The original runner log proves direct checkout of the requested PR head."
+  }
+}

@@ -1,0 +1,246 @@
+﻿2026-11-14T09:01:07.7843632Z Current runner version: '2.338.2'
+2026-11-14T09:01:07.7880892Z ##[group]Runner Image Provisioner
+2026-11-14T09:01:07.7881450Z Hosted Compute Agent
+2026-11-14T09:01:07.7881887Z Version: 20261103.629
+2026-11-14T09:01:07.7882285Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T09:01:07.7882826Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T09:01:07.7883261Z Worker ID: {576d101c-bd73-4971-af3c-ec2f8e32f5a7}
+2026-11-14T09:01:07.7883720Z Region: centralus
+2026-11-14T09:01:07.7884107Z Cloud: Azure
+2026-11-14T09:01:07.7884449Z ##[endgroup]
+2026-11-14T09:01:07.7885258Z ##[group]Operating System
+2026-11-14T09:01:07.7885685Z Ubuntu
+2026-11-14T09:01:07.7886012Z 24.04.5
+2026-11-14T09:01:07.7886357Z LTS
+2026-11-14T09:01:07.7886693Z ##[endgroup]
+2026-11-14T09:01:07.7887240Z ##[group]Runner Image
+2026-11-14T09:01:07.7887687Z Image: ubuntu-24.04
+2026-11-14T09:01:07.7888040Z Version: 20261111.370.1
+2026-11-14T09:01:07.7888864Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T09:01:07.7889786Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T09:01:07.7890399Z ##[endgroup]
+2026-11-14T09:01:07.7891068Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T09:01:07.7892307Z Contents: read
+2026-11-14T09:01:07.7892702Z Metadata: read
+2026-11-14T09:01:07.7893089Z ##[endgroup]
+2026-11-14T09:01:07.7894709Z Secret source: Actions
+2026-11-14T09:01:07.7895324Z Cache mode: write
+2026-11-14T09:01:07.7895871Z Prepare workflow directory
+2026-11-14T09:01:07.8114768Z Prepare all required actions
+2026-11-14T09:01:07.8147943Z Getting action download info
+2026-11-14T09:01:08.0449372Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T09:01:08.1849415Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-14T09:01:08.3454197Z Complete job name: Family download gates
+2026-11-14T09:01:08.4036611Z ##[group]Run actions/checkout@v4
+2026-11-14T09:01:08.4037202Z with:
+2026-11-14T09:01:08.4037456Z   persist-credentials: false
+2026-11-14T09:01:08.4037765Z   ref: 803a4e960ffb804a46b6d09417731c031f00f680
+2026-11-14T09:01:08.4038107Z   repository: Ullmann27/lumo-lernen
+2026-11-14T09:01:08.4040402Z   token: ***
+2026-11-14T09:01:08.4040643Z   ssh-strict: true
+2026-11-14T09:01:08.4040891Z   ssh-user: git
+2026-11-14T09:01:08.4041131Z   clean: true
+2026-11-14T09:01:08.4041384Z   sparse-checkout-cone-mode: true
+2026-11-14T09:01:08.4041674Z   fetch-depth: 1
+2026-11-14T09:01:08.4041915Z   fetch-tags: false
+2026-11-14T09:01:08.4042165Z   show-progress: true
+2026-11-14T09:01:08.4042415Z   lfs: false
+2026-11-14T09:01:08.4042646Z   submodules: false
+2026-11-14T09:01:08.4042897Z   set-safe-directory: true
+2026-11-14T09:01:08.4043178Z   allow-unsafe-pr-checkout: false
+2026-11-14T09:01:08.4043531Z ##[endgroup]
+2026-11-14T09:01:08.5988861Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T09:01:08.5990012Z ##[group]Getting Git version info
+2026-11-14T09:01:08.5990429Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T09:01:08.5991031Z [command]/usr/bin/git version
+2026-11-14T09:01:08.6059470Z git version 2.56.1
+2026-11-14T09:01:08.6072551Z ##[endgroup]
+2026-11-14T09:01:08.6083044Z Temporarily overriding HOME='/home/runner/work/_temp/70e6fb2c-f0e8-4562-9373-fa6aaf1e14f5' before making global git config changes
+2026-11-14T09:01:08.6084289Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T09:01:08.6087303Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T09:01:08.6128917Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T09:01:08.6132798Z ##[group]Initializing the repository
+2026-11-14T09:01:08.6135443Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T09:01:08.6213620Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T09:01:08.6214696Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T09:01:08.6215205Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T09:01:08.6215605Z hint: call:
+2026-11-14T09:01:08.6215827Z hint:
+2026-11-14T09:01:08.6216128Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T09:01:08.6216468Z hint:
+2026-11-14T09:01:08.6216967Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T09:01:08.6217466Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T09:01:08.6217861Z hint:
+2026-11-14T09:01:08.6218090Z hint: 	git branch -m <name>
+2026-11-14T09:01:08.6218345Z hint:
+2026-11-14T09:01:08.6218713Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T09:01:08.6219479Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T09:01:08.6227641Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T09:01:08.6270242Z ##[endgroup]
+2026-11-14T09:01:08.6270686Z ##[group]Disabling automatic garbage collection
+2026-11-14T09:01:08.6272777Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T09:01:08.6300858Z ##[endgroup]
+2026-11-14T09:01:08.6301474Z ##[group]Setting up auth
+2026-11-14T09:01:08.6305948Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T09:01:08.6336659Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T09:01:08.6632875Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T09:01:08.6661752Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T09:01:08.6846233Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T09:01:08.6874369Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T09:01:08.7058937Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T09:01:08.7093839Z ##[endgroup]
+2026-11-14T09:01:08.7094580Z ##[group]Fetching the repository
+2026-11-14T09:01:08.7102551Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 803a4e960ffb804a46b6d09417731c031f00f680
+2026-11-14T09:01:27.3955231Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T09:01:27.3955906Z  * branch            803a4e960ffb804a46b6d09417731c031f00f680 -> FETCH_HEAD
+2026-11-14T09:01:27.3970579Z ##[endgroup]
+2026-11-14T09:01:27.3971132Z ##[group]Determining the checkout info
+2026-11-14T09:01:27.3971425Z ##[endgroup]
+2026-11-14T09:01:27.3971620Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T09:01:27.4020381Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T09:01:27.4045258Z ##[group]Checking out the ref
+2026-11-14T09:01:27.4047671Z [command]/usr/bin/git checkout --progress --force 803a4e960ffb804a46b6d09417731c031f00f680
+2026-11-14T09:01:28.4045008Z Note: switching to '803a4e960ffb804a46b6d09417731c031f00f680'.
+2026-11-14T09:01:28.4045475Z 
+2026-11-14T09:01:28.4045717Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T09:01:28.4046231Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T09:01:28.4046703Z state without impacting any branches by switching back to a branch.
+2026-11-14T09:01:28.4047152Z 
+2026-11-14T09:01:28.4047396Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T09:01:28.4047963Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T09:01:28.4048475Z 
+2026-11-14T09:01:28.4048620Z   git switch -c <new-branch-name>
+2026-11-14T09:01:28.4048818Z 
+2026-11-14T09:01:28.4048941Z Or undo this operation with:
+2026-11-14T09:01:28.4049154Z 
+2026-11-14T09:01:28.4049271Z   git switch -
+2026-11-14T09:01:28.4049441Z 
+2026-11-14T09:01:28.4049673Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T09:01:28.4049984Z 
+2026-11-14T09:01:28.4050256Z HEAD is now at 803a4e9 Merge reviewed image privacy repair and exact CI fixture corrections
+2026-11-14T09:01:28.4153599Z ##[endgroup]
+2026-11-14T09:01:28.4197477Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T09:01:28.4220686Z 803a4e960ffb804a46b6d09417731c031f00f680
+2026-11-14T09:01:28.4228272Z ##[group]Removing auth
+2026-11-14T09:01:28.4230578Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T09:01:28.4256061Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T09:01:28.4447995Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T09:01:28.4469160Z http.https://github.com/.extraheader
+2026-11-14T09:01:28.4473887Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T09:01:28.4500841Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T09:01:28.4684450Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T09:01:28.4708937Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T09:01:28.4889420Z ##[endgroup]
+2026-11-14T09:01:28.5163399Z ##[group]Run actions/setup-python@v5
+2026-11-14T09:01:28.5163643Z with:
+2026-11-14T09:01:28.5163803Z   python-version: 3.12
+2026-11-14T09:01:28.5163973Z   check-latest: false
+2026-11-14T09:01:28.5165742Z   token: ***
+2026-11-14T09:01:28.5165897Z   update-environment: true
+2026-11-14T09:01:28.5166070Z   allow-prereleases: false
+2026-11-14T09:01:28.5166239Z   freethreaded: false
+2026-11-14T09:01:28.5166397Z ##[endgroup]
+2026-11-14T09:01:28.6063712Z ##[group]Installed versions
+2026-11-14T09:01:28.6122852Z (node:2216) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T09:01:28.6123592Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T09:01:28.6124036Z Successfully set up CPython (3.12.16)
+2026-11-14T09:01:28.6124542Z ##[endgroup]
+2026-11-14T09:01:28.6257320Z ##[group]Run python3 -m unittest discover -s scripts/tests -p 'test_release_pipeline_gates.py' -v
+2026-11-14T09:01:28.6257933Z [36;1mpython3 -m unittest discover -s scripts/tests -p 'test_release_pipeline_gates.py' -v[0m
+2026-11-14T09:01:28.6286353Z shell: /usr/bin/bash -e {0}
+2026-11-14T09:01:28.6286543Z env:
+2026-11-14T09:01:28.6286905Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.6287210Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-14T09:01:28.6287477Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.6287725Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.6287969Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.6288214Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-14T09:01:28.6288429Z ##[endgroup]
+2026-11-14T09:01:28.7524092Z test_script_defaults_to_dry_run_and_requires_explicit_draft_flag (test_release_pipeline_gates.FamilyDraftScriptTests.test_script_defaults_to_dry_run_and_requires_explicit_draft_flag) ... ok
+2026-11-14T09:01:28.7525422Z test_current_repo_pubspec_is_already_newer_than_2004 (test_release_pipeline_gates.ReleasePipelineGateTests.test_current_repo_pubspec_is_already_newer_than_2004) ... ok
+2026-11-14T09:01:28.7526928Z test_draft_notes_warn_that_the_in_app_button_ignores_drafts (test_release_pipeline_gates.ReleasePipelineGateTests.test_draft_notes_warn_that_the_in_app_button_ignores_drafts) ... ok
+2026-11-14T09:01:28.7527950Z test_known_2004_floor_cannot_be_lowered (test_release_pipeline_gates.ReleasePipelineGateTests.test_known_2004_floor_cannot_be_lowered) ... ok
+2026-11-14T09:01:28.7529002Z test_published_family_catalog_ignores_drafts_and_wrong_assets (test_release_pipeline_gates.ReleasePipelineGateTests.test_published_family_catalog_ignores_drafts_and_wrong_assets) ... ok
+2026-11-14T09:01:28.7529741Z test_pubspec_must_be_newer_than_last_published_family_build (test_release_pipeline_gates.ReleasePipelineGateTests.test_pubspec_must_be_newer_than_last_published_family_build) ... ok
+2026-11-14T09:01:28.7534700Z test_sha256_sidecar_uses_the_apk_bytes (test_release_pipeline_gates.ReleasePipelineGateTests.test_sha256_sidecar_uses_the_apk_bytes) ... ok
+2026-11-14T09:01:28.7535857Z test_verification_rejects_wrong_package_cert_or_missing_arm64 (test_release_pipeline_gates.ReleasePipelineGateTests.test_verification_rejects_wrong_package_cert_or_missing_arm64) ... ok
+2026-11-14T09:01:28.7537157Z test_workflow_can_build_without_publishing_and_drafts_only_on_request (test_release_pipeline_gates.ReleasePipelineGateTests.test_workflow_can_build_without_publishing_and_drafts_only_on_request) ... ok
+2026-11-14T09:01:28.7537808Z 
+2026-11-14T09:01:28.7538010Z ----------------------------------------------------------------------
+2026-11-14T09:01:28.7538397Z Ran 9 tests in 0.002s
+2026-11-14T09:01:28.7538540Z 
+2026-11-14T09:01:28.7538632Z OK
+2026-11-14T09:01:28.7665482Z ##[group]Run set -euo pipefail
+2026-11-14T09:01:28.7665730Z [36;1mset -euo pipefail[0m
+2026-11-14T09:01:28.7665897Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T09:01:28.7666068Z [36;1mfrom pathlib import Path[0m
+2026-11-14T09:01:28.7666328Z [36;1mupdater = Path('lib/core/app_update_service.dart').read_text(encoding='utf-8')[0m
+2026-11-14T09:01:28.7666677Z [36;1mscript = Path('scripts/build_unified_apk.sh').read_text(encoding='utf-8')[0m
+2026-11-14T09:01:28.7667139Z [36;1massert "prefix = 'coachpreview-build-'" in updater[0m
+2026-11-14T09:01:28.7667405Z [36;1massert "const parallelName = 'Lumo-Lernen-Neu.apk'" in updater[0m
+2026-11-14T09:01:28.7667717Z [36;1massert "if (raw['draft'] != false || raw['prerelease'] != true) continue;" in updater[0m
+2026-11-14T09:01:28.7668072Z [36;1massert "'/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-Neu.apk'" in updater[0m
+2026-11-14T09:01:28.7668390Z [36;1massert '--dart-define=LUMO_SIDE_BY_SIDE=true' in script[0m
+2026-11-14T09:01:28.7668675Z [36;1mprint('Updater static channel contract: confirmed')[0m
+2026-11-14T09:01:28.7668881Z [36;1mPY[0m
+2026-11-14T09:01:28.7669114Z [36;1mgh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" > /tmp/family-releases.json[0m
+2026-11-14T09:01:28.7669412Z [36;1mpython3 scripts/release_pipeline_gates.py \[0m
+2026-11-14T09:01:28.7669654Z [36;1m  --pubspec pubspec.yaml \[0m
+2026-11-14T09:01:28.7669863Z [36;1m  --releases-json /tmp/family-releases.json \[0m
+2026-11-14T09:01:28.7670124Z [36;1m  --source-sha "$(git rev-parse HEAD)" | tee dist-gate-report.json[0m
+2026-11-14T09:01:28.7670364Z [36;1mmkdir -p dist[0m
+2026-11-14T09:01:28.7670566Z [36;1mmv dist-gate-report.json dist/FAMILY-GATE-REPORT.json[0m
+2026-11-14T09:01:28.7670786Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T09:01:28.7670945Z [36;1mimport json[0m
+2026-11-14T09:01:28.7671100Z [36;1mfrom pathlib import Path[0m
+2026-11-14T09:01:28.7671369Z [36;1mreport = json.loads(Path('dist/FAMILY-GATE-REPORT.json').read_text(encoding='utf-8'))[0m
+2026-11-14T09:01:28.7671638Z [36;1mprint([0m
+2026-11-14T09:01:28.7671836Z [36;1m    f"Declared {report['versionName']}+{report['versionCode']} "[0m
+2026-11-14T09:01:28.7672158Z [36;1m    f"can update past published family build {report['lastPublishedFamilyBuild']} "[0m
+2026-11-14T09:01:28.7672642Z [36;1m    f"as draft tag {report['tag']}."[0m
+2026-11-14T09:01:28.7672822Z [36;1m)[0m
+2026-11-14T09:01:28.7673073Z [36;1mprint('Intended next published family update remains 0.13.0+2012 after the lead bumps pubspec.')[0m
+2026-11-14T09:01:28.7673380Z [36;1mprint('No GitHub release was created.')[0m
+2026-11-14T09:01:28.7673566Z [36;1mPY[0m
+2026-11-14T09:01:28.7690662Z shell: /usr/bin/bash -e {0}
+2026-11-14T09:01:28.7690826Z env:
+2026-11-14T09:01:28.7691011Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.7691283Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-14T09:01:28.7691552Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.7691869Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.7692111Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-14T09:01:28.7692351Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-14T09:01:28.7693996Z   GH_TOKEN: ***
+2026-11-14T09:01:28.7694141Z ##[endgroup]
+2026-11-14T09:01:28.7869247Z Updater static channel contract: confirmed
+2026-11-14T09:01:29.7170394Z {
+2026-11-14T09:01:29.7170712Z   "versionName": "0.13.8",
+2026-11-14T09:01:29.7170895Z   "versionCode": 2020,
+2026-11-14T09:01:29.7171045Z   "lastPublishedFamilyBuild": 2017,
+2026-11-14T09:01:29.7171248Z   "tag": "coachpreview-build-2020",
+2026-11-14T09:01:29.7171461Z   "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+2026-11-14T09:01:29.7171783Z   "expectedCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+2026-11-14T09:01:29.7172067Z   "apkAsset": "Lumo-Lernen-Neu.apk",
+2026-11-14T09:01:29.7172881Z   "downloadUrl": "https://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2020/Lumo-Lernen-Neu.apk",
+2026-11-14T09:01:29.7174655Z   "releaseNotes": "Draft family update 0.13.8+2020 (coachpreview-build-2020).\nSource: 803a4e960ffb804a46b6d09417731c031f00f680.\n\nThis GitHub release is a DRAFT. The installed family app ignores drafts on purpose. Do not uninstall the existing app.\n\nWhen Heinz approves publication, convert this draft to a public prerelease (not Latest/stable). Required asset name remains Lumo-Lernen-Neu.apk. The in-app button then downloads:\nhttps://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2020/Lumo-Lernen-Neu.apk\n\nInstall as an update over the current family package dev.ullmann.lumo.lumo_lernen.coachpreview without uninstalling, so profiles, learning progress and wallet data stay in place. Android will refuse the update if the signing certificate is not a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702.\n"
+2026-11-14T09:01:29.7176307Z }
+2026-11-14T09:01:29.7390319Z Declared 0.13.8+2020 can update past published family build 2017 as draft tag coachpreview-build-2020.
+2026-11-14T09:01:29.7390967Z Intended next published family update remains 0.13.0+2012 after the lead bumps pubspec.
+2026-11-14T09:01:29.7391475Z No GitHub release was created.
+2026-11-14T09:01:29.7500501Z Post job cleanup.
+2026-11-14T09:01:29.8352000Z (node:2241) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T09:01:29.8352695Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T09:01:29.8534196Z Post job cleanup.
+2026-11-14T09:01:29.9100051Z [command]/usr/bin/git version
+2026-11-14T09:01:29.9130440Z git version 2.56.1
+2026-11-14T09:01:29.9152963Z Temporarily overriding HOME='/home/runner/work/_temp/a4b6eb90-c65d-4bbd-bc74-75c30fb4617c' before making global git config changes
+2026-11-14T09:01:29.9153406Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T09:01:29.9157302Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T09:01:29.9187413Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T09:01:29.9215226Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T09:01:29.9413601Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T09:01:29.9440677Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T09:01:29.9629612Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T09:01:29.9655346Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T09:01:29.9968386Z Cleaning up orphan processes
+2026-11-14T09:01:30.0260396Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

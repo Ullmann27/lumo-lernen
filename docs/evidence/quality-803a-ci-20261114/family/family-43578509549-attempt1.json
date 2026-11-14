@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "runId": 43578509549,
+  "runUrl": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509549",
+  "runAttempt": 1,
+  "headSha": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "pullRequest": 491,
+  "event": "pull_request",
+  "status": "completed",
+  "conclusion": "success",
+  "createdAt": "2026-11-14T09:01:04Z",
+  "completedAt": "2026-11-14T09:01:32Z",
+  "identityChecks": {
+    "expectedHead": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "allJobsMatchHead": true,
+    "allJobsMatchAttempt": true,
+    "totalJobs": 3,
+    "enumeratedJobs": 3,
+    "allTerminal": true
+  },
+  "workflow": {
+    "path": ".github/workflows/lumo-family-draft-release.yml",
+    "gitBlob": "d05e35bd852830775e7af0fc045c481d3a5706ab",
+    "ref": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/803a4e960ffb804a46b6d09417731c031f00f680/.github/workflows/lumo-family-draft-release.yml",
+    "buildCondition": "github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'verify-only'",
+    "uploadCondition": "github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'draft-release'"
+  },
+  "jobs": [
+    {
+      "id": 132397973754,
+      "name": "Family download gates",
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509549/job/132397973754",
+      "runAttempt": 1,
+      "headSha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-14T09:01:07Z",
+      "completedAt": "2026-11-14T09:01:32Z",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 4,
+          "name": "Run release-pipeline unit tests",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 5,
+          "name": "Check pubspec, updater contract and last published family build",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 9,
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 10,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 11,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 132398092398,
+      "name": "Build family APK without publishing",
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509549/job/132398092398",
+      "runAttempt": 1,
+      "headSha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "status": "completed",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-14T09:01:32Z",
+      "completedAt": "2026-11-14T09:01:32Z",
+      "steps": []
+    },
+    {
+      "id": 132398093700,
+      "name": "Upload draft family release",
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509549/job/132398093700",
+      "runAttempt": 1,
+      "headSha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "status": "completed",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-14T09:01:32Z",
+      "completedAt": "2026-11-14T09:01:32Z",
+      "steps": []
+    }
+  ],
+  "completedJobEvidence": {
+    "jobId": 132397973754,
+    "rawDecodedLogBlob": "2161444bda3dcfd4b432fc545677dcadf29cf10f",
+    "logCharacters": 21734,
+    "unitTests": {
+      "command": "python3 -m unittest discover -s scripts/tests -p 'test_release_pipeline_gates.py' -v",
+      "count": 9,
+      "durationSeconds": 0.002,
+      "outcome": "OK"
+    },
+    "updaterContract": "confirmed",
+    "declaredVersion": "0.13.8+2020",
+    "lastPublishedFamilyBuildObserved": 2017,
+    "intendedTag": "coachpreview-build-2020",
+    "releaseCreated": false
+  },
+  "interpretation": "Overall success covers the executed release-pipeline tests, updater static contract and family version/catalog gate only. Both build/upload jobs were intentionally skipped because this was a pull_request event.",
+  "notExecuted": [
+    "Family APK build",
+    "Full Flutter regression suite in family build job",
+    "Android/APK verification in family build job",
+    "Draft release upload",
+    "Device acceptance"
+  ],
+  "collection": "Run metadata, full explicit attempt1 jobs list (3 of3), workflow at exact head, then raw logs only from fully completed non-skipped job. No rerun, ref/product change, publication or additional build performed.",
+  "actualCheckoutEvidence": {
+    "expected_pr_head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "api_head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "actual_checkout_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "actual_checkout_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "expected_pr_head_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "checkout_tree_identical_to_expected_head": true,
+    "actual_checkout_is_pr_head": true,
+    "original_log_blob": "2161444bda3dcfd4b432fc545677dcadf29cf10f",
+    "checkout_command": "2026-11-14T09:01:27.4047671Z [command]/usr/bin/git checkout --progress --force 803a4e960ffb804a46b6d09417731c031f00f680",
+    "git_log_command": "2026-11-14T09:01:28.4197477Z [command]/usr/bin/git log -1 --format=%H",
+    "git_log_output": "2026-11-14T09:01:28.4220686Z 803a4e960ffb804a46b6d09417731c031f00f680",
+    "independent_sha_outputs": [
+      "2026-11-14T09:01:28.4220686Z 803a4e960ffb804a46b6d09417731c031f00f680"
+    ],
+    "verified_commit_object": {
+      "sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+      "parents": [
+        "7c1d1bbf10a3ea7006fa86ead5469ebb329ac555",
+        "7f254c68afab93d54929e19b7a1b1a739ace2c9e",
+        "31ea02adb9dff26fa5aea3a6e49603bba2ad963c",
+        "57c7022eae80377d4a63bc7a3479f68758e8b370"
+      ],
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/803a4e960ffb804a46b6d09417731c031f00f680"
+    },
+    "verified_expected_head_commit": {
+      "sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/803a4e960ffb804a46b6d09417731c031f00f680"
+    },
+    "explanation": "The original runner log proves direct checkout of the requested PR head."
+  }
+}
