@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "frozen_at": "2026-11-14T16:09:28.018832+00:00",
+  "source_root": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114",
+  "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "run_id": 43604903064,
+  "attempt": 1,
+  "artifact_id": 14120912172,
+  "summary": {
+    "core_modes": 52,
+    "extension_pngs": 17,
+    "dream": "5/7/2",
+    "discovery": "10/38/2",
+    "zip_members": 5872,
+    "all_pngs_decoded": 181
+  },
+  "technical_archive": {
+    "path": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/host0b7-native-baf-14120912172-technical-originals.tar.gz",
+    "bytes": 5517333,
+    "sha256": "558552138c07accecb99c6c2277232e51339de38e94b6b06cee7bad25d2ef9b6",
+    "git_blob": "0f245a1069948be8f59367c9b6f65ea3226398cf",
+    "members": 350
+  },
+  "manifest": {
+    "path": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/manifest.json",
+    "bytes": 93131,
+    "sha256": "a979a82c438b402e798ad7122d87eb7f210c9aca3393a5d33320fdc32d9d073e",
+    "git_blob": "b929969f79b85c09312c818a1fc8a3585e4124e7"
+  },
+  "report": {
+    "path": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/report.json",
+    "bytes": 3427,
+    "sha256": "a2384f3294cdce6b3234d7163e1ed643c756b2c0049ff512564c3537b301e7ca",
+    "git_blob": "fd587fa06b28d8c94fa23b112d7c24a9ab8a4b48"
+  },
+  "roundtrip": {
+    "path": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/technical-roundtrip.json",
+    "bytes": 93611,
+    "sha256": "2c036fb99c0fd51cc2e0bac68f16246900ad6d25f3ad80c4ca5fcf22bc790719",
+    "git_blob": "84a42146035fb2159123434f82a2942a863c1847"
+  },
+  "original_zip_retained": {
+    "path": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/14120912172-original.zip",
+    "bytes": 219538798,
+    "sha256": "8449c8a68c13f6b85e829301ff25a62b158e1ba09715fc29df785271ff48a310"
+  },
+  "limits": [
+    "This is new Host0b7/Nativebaf CI evidence only; Native2281 qualification remains separate.",
+    "The full Host run, candidate APK, Android tours, additional runtime-artifact Return/Wisp gates, release and publication are outside this scoped verification.",
+    "No human visual receipt, audible playback or physical-device FPS claim.",
+    "The complete ZIP, PNGs, AVI and MP4 remain unchanged outside this compact technical archive.",
+    "Full build log retains command echoes as well as actual output. The native-marker index identifies exact original line numbers; one Discovery command echo is not counted as a second executed PASS."
+  ]
+}

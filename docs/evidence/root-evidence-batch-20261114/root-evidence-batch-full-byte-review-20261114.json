@@ -1,0 +1,20 @@
+[
+  {
+    "archive": "/tmp/host0b7-completed-build-evidence-20261114/compact-originals.tar.gz",
+    "sha256": "0dd0eaf021b5e7314e530dbdc3b506b02cfeb0751af9bbe0ef6fce37b807d77e",
+    "members": 23,
+    "all_members_byte_equal": true
+  },
+  {
+    "archive": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/host0b7-native-baf-14120912172-technical-originals.tar.gz",
+    "sha256": "558552138c07accecb99c6c2277232e51339de38e94b6b06cee7bad25d2ef9b6",
+    "members": 350,
+    "all_members_byte_equal": true
+  },
+  {
+    "archive": "/tmp/host5ad-completed-stage-evidence-20261114/compact-originals.tar.gz",
+    "sha256": "ef4535f16e073601580b7741bf6748db186199700992248870949b4a0383cafc",
+    "members": 199,
+    "all_members_byte_equal": true
+  }
+]

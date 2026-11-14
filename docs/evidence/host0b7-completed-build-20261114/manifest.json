@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "scope": "All pack payloads before manifest/checksum/archive metadata",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1206,
+      "sha256": "2b35e560991d08fc6d8b5f1a26bb755df3700b20e4cfc8be5d12504a465863e0",
+      "git_blob": "e4e37a4adbdba299eb690b4b8ad0f8a38f4dc503"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 8499,
+      "sha256": "4ac687a0c8d58927579d0feca7085327c597e368a53d51ed6d725f848b8e04cc",
+      "git_blob": "fea288c1d0d01e8e2a2f21da48d2353fc146a2df"
+    },
+    {
+      "path": "originals/build/artifacts.original.json",
+      "bytes": 8243,
+      "sha256": "abc129169283bffd0b3714599644329c942596d77bf0a8022bac01f7db553032",
+      "git_blob": "fe6a65dc1f82de45c92f773acfa190124bfeaa0e"
+    },
+    {
+      "path": "originals/build/job.original.log",
+      "bytes": 1864894,
+      "sha256": "af226a4345187fb82f7d2880291db08c9d761feb6fdfe04b303029813ba042ff",
+      "git_blob": "870c48c565082a9848f58d6ba94859a03ff2a7f1"
+    },
+    {
+      "path": "originals/build/jobs.original.json",
+      "bytes": 20741,
+      "sha256": "96373946c23cee12c9b9f053ac2148e54cd8fc0e40052ec4e9220d54fee0e63f",
+      "git_blob": "407b9a37b743c3edd2961c395ab12efe355dffd9"
+    },
+    {
+      "path": "originals/build/raw-manifest.json",
+      "bytes": 902,
+      "sha256": "8b04d22c3508f064c0d861f8b518d8d7e514aa25a1b9f5208eede28e9768626d",
+      "git_blob": "e0d3faabd61401a3f9dc4e0eaf7d7b44a2a782e3"
+    },
+    {
+      "path": "originals/build/run.original.json",
+      "bytes": 13000,
+      "sha256": "77b3250d9858c808a331a6b09634f73c129ba0c1f82fbfc7619570fa973d8087",
+      "git_blob": "91265756e5b87931850611fe56ca9c7f0ffb1caf"
+    },
+    {
+      "path": "originals/initial-source-binding/artifacts.original.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "git_blob": "ccd036f15290ec2e42695f742d9edf63354be932"
+    },
+    {
+      "path": "originals/initial-source-binding/binding.json",
+      "bytes": 1553,
+      "sha256": "978de8dded151ce1c8ab6c38de08064654e2989ef0fd7accbdcbdfffbf5a162f",
+      "git_blob": "c837058ad92d4a2dd7b0818c8581bbb6844f54ce"
+    },
+    {
+      "path": "originals/initial-source-binding/diktat-test.original.dart",
+      "bytes": 21107,
+      "sha256": "e0eced5d27a8e2606816a4cc83d39edc2047f906b035f2d3e9e50c8c8fd45849",
+      "git_blob": "c1123ff353e10308d454449fe9eccf4df5ff1b64"
+    },
+    {
+      "path": "originals/initial-source-binding/godot-source.original.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+    },
+    {
+      "path": "originals/initial-source-binding/host-commit.original.json",
+      "bytes": 1229,
+      "sha256": "429a5068b306a4885b1b9d8d3900fcde285550a860fb6126a93eb9e79abf315c",
+      "git_blob": "e0b2aec407435837ca41c00914c6740551c98f52"
+    },
+    {
+      "path": "originals/initial-source-binding/jobs.original.json",
+      "bytes": 5880,
+      "sha256": "c4424342c2450f18a396d5b98b45b099d03e8d1d2c5c99d7ea4b8bb40d865f53",
+      "git_blob": "622e3f589c303047d2ae53b79fb244b0f54a9ca3"
+    },
+    {
+      "path": "originals/initial-source-binding/pr485.original.json",
+      "bytes": 17888,
+      "sha256": "b0461a440a17b3c7bb5e345fe84022460e5c18d27c0f92512a18e2a9f93f92e7",
+      "git_blob": "3c22fb771ab7453a3e715bdfc31f06665392cbc3"
+    },
+    {
+      "path": "originals/initial-source-binding/raw-manifest.json",
+      "bytes": 2231,
+      "sha256": "b01fe788056a404766987535fe320ed81e9377c8c511152a1deacf88804eb90e",
+      "git_blob": "af2016de7b2a4870856db0a6d884eba1bc166bb8"
+    },
+    {
+      "path": "originals/initial-source-binding/run-discovery.connector-structured.json",
+      "bytes": 8938,
+      "sha256": "e67e281431622fc60ef4eb6bd8f45008f1fd8e6b8898855a554b20a227b8ee07",
+      "git_blob": "e33bd7ff9588efeaff6ce8a4e950fc11cf16ac6a"
+    },
+    {
+      "path": "originals/initial-source-binding/run.original.json",
+      "bytes": 13000,
+      "sha256": "32471f2b9956ee9d5cb7a30bc5deade0b2591fc3c67db5b700ee68a1a23bfbe8",
+      "git_blob": "7001053fa520db3fe00f367fd942f64ddcc35a6d"
+    },
+    {
+      "path": "originals/initial-source-binding/workflow.original.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+      "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+    },
+    {
+      "path": "review/apk-verifier-log-slices.original.txt",
+      "bytes": 11869,
+      "sha256": "77c4876050154db562d2f9cd9438b6d8f743cbd35f8b4eaaab9d6198c37f62a2",
+      "git_blob": "67a640ecf52d5a686e01866600e718765da3427c"
+    },
+    {
+      "path": "review/raw-manifest.json",
+      "bytes": 478,
+      "sha256": "f295339b09ccc27df026d9427477d3b240713844481d3aba82cc3e0f3545d2b9",
+      "git_blob": "1bd3e4e7129108912b96b661632ac6b425bd4c28"
+    },
+    {
+      "path": "review/review.json",
+      "bytes": 18494,
+      "sha256": "aa473cdefdc09aa03cde88466b3d0c38366b807a101efed0528c459eefc78b30",
+      "git_blob": "2ca1966f4591ddc4da14e311bacdb094d6f6629e"
+    }
+  ],
+  "excluded_self": [
+    "manifest.json",
+    "SHA256SUMS",
+    "compact-originals.tar.gz",
+    "archive-verification.json"
+  ]
+}

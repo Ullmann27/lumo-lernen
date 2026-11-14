@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "repository": "Ullmann27/lumo-lernen",
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "run_id": 43604903064,
+  "attempt": 1,
+  "build_job_id": 132478533146,
+  "artifact_id": 14120912172,
+  "artifact_name": "lumo-candidate-pinned-native-gameplay",
+  "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "host_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "artifact_bytes": 219538798,
+  "artifact_sha256": "8449c8a68c13f6b85e829301ff25a62b158e1ba09715fc29df785271ff48a310",
+  "zip_members_verified": 5872,
+  "original_pngs_fully_decoded": 181,
+  "local_png_decoder": "Pillow 13.0.0",
+  "core": {
+    "modes": 52,
+    "exact_results_order": true,
+    "per_log_engine_banners": 1,
+    "per_log_matching_pass_markers": 1,
+    "unchanged_original_rosters": {
+      "studio": 24,
+      "village": 4,
+      "puzzle_menu": 6,
+      "safe_area": 7,
+      "studio_2020_extension": 17
+    },
+    "facial_movie": "Original AVI/MP4 bytes, original ffprobe output, successful original encode/decode exit codes and empty original decode/error logs were checked by the published pure verifier. No local re-encoding or additional movie run."
+  },
+  "dream": {
+    "status": "PASS",
+    "probe_modes": 5,
+    "png_count": 7,
+    "report_count": 2
+  },
+  "discovery": {
+    "status": "PASS",
+    "probe_modes": 10,
+    "png_count": 38,
+    "report_count": 2
+  },
+  "actual_ci_step_seconds": {
+    "native_gameplay": 2913,
+    "dream": 59,
+    "discovery": 913
+  },
+  "source_invariance": {
+    "ci_dream_and_discovery": "Both contain all3689 tracked entries, matching before/after bytes and index; 961 generated/untracked entries separately inventoried.",
+    "local_read_only_replay": "All3689 tracked entries, full index, readers and466 selected originals unchanged; existing961 untracked/import entries unchanged."
+  },
+  "source_local_selection_failure_preserved": "replay/original-replay-error.json",
+  "complete_build_job_log": {
+    "path": "originals/terminal-build/job.original.log",
+    "bytes": 1864894,
+    "sha256": "af226a4345187fb82f7d2880291db08c9d761feb6fdfe04b303029813ba042ff",
+    "origin": "Copied unchanged from the one central terminal download by pipeline_repair."
+  },
+  "retention": {
+    "complete_original_zip": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/14120912172-original.zip",
+    "selected_originals": "/workspace/scratch/b3485b7bb989/host0b7-native-baf-14120912172-evidence-20261114/selected-originals",
+    "selected_files": 466,
+    "selected_bytes": 128234636,
+    "actions_expiry_original_api": "2026-12-14T15:55:26Z"
+  },
+  "limits": [
+    "This is new Host0b7/Nativebaf CI evidence only; Native2281 qualification remains separate.",
+    "The full Host run, candidate APK, Android tours, additional runtime-artifact Return/Wisp gates, release and publication are outside this scoped verification.",
+    "No human visual receipt, audible playback or physical-device FPS claim.",
+    "The complete ZIP, PNGs, AVI and MP4 remain unchanged outside this compact technical archive.",
+    "Full build log retains command echoes as well as actual output. The native-marker index identifies exact original line numbers; one Discovery command echo is not counted as a second executed PASS."
+  ]
+}

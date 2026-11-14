@@ -1,0 +1,278 @@
+{
+  "receipt": {
+    "repository": "Ullmann27/lumo-lernen",
+    "branch": "integration/lumo-next-table-authorities-20261114",
+    "sha": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+    "parent": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+    "paths": 79,
+    "source_paths": 68,
+    "readback_verified": true,
+    "tree_write_422_then_exact_object_recovered": true
+  },
+  "tree_timeout": {
+    "stage": "create_tree",
+    "expected_tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+    "returned_error_code": "INVALID_ARGUMENT",
+    "http_status": 422,
+    "message": "Sorry, your request timed out. It's likely that your input was too large to process. Consider building the tree incrementally, or building the commits you need in a local clone of the repository and then pushing them to GitHub.",
+    "scope": "Observed tool error text preserved as a reconstruction; original structured response was not retained by the helper.",
+    "ref_mutation_not_reached": true
+  },
+  "actual_tree_readback": {
+    "sha": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+    "tree": [
+      {
+        "path": ".ci-results",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "13fe0fa011d3f2dfda8efcca731d1e79ad03fce2",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/13fe0fa011d3f2dfda8efcca731d1e79ad03fce2"
+      },
+      {
+        "path": ".github",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "1dd7fb732abce66c2df616524807e409813ee4b6",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/1dd7fb732abce66c2df616524807e409813ee4b6"
+      },
+      {
+        "path": ".gitignore",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "704653edb7ef376c47b6955523ee2b241b7aeee5",
+        "size": 289,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/704653edb7ef376c47b6955523ee2b241b7aeee5"
+      },
+      {
+        "path": "AGENTS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5d0b03ecefa91698a22a766589e30e8d5a037b2f",
+        "size": 6312,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/5d0b03ecefa91698a22a766589e30e8d5a037b2f"
+      },
+      {
+        "path": "CLAUDE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "59711e0837f0207f8b33fed5fb4d37df85b0a761",
+        "size": 1290,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/59711e0837f0207f8b33fed5fb4d37df85b0a761"
+      },
+      {
+        "path": "CODEX_START.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a5c142a3699a72c3bffdf8f8c346f1ab6520e78c",
+        "size": 4115,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/a5c142a3699a72c3bffdf8f8c346f1ab6520e78c"
+      },
+      {
+        "path": "CONTINUE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "14548ed5d718c5db5b4faabd18ffade953ead61c",
+        "size": 42301,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/14548ed5d718c5db5b4faabd18ffade953ead61c"
+      },
+      {
+        "path": "GPT6_WEITERARBEIT_LERNATELIER_2026-10-18.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "279a566b4a1f20233792f445629d23c86369246d",
+        "size": 12537,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/279a566b4a1f20233792f445629d23c86369246d"
+      },
+      {
+        "path": "GPT6_WEITERARBEIT_LUMO_1977.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e8624ba5313ed11bdf01e41fc2863ad0d93a38c1",
+        "size": 9169,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/e8624ba5313ed11bdf01e41fc2863ad0d93a38c1"
+      },
+      {
+        "path": "OPUS_NEXT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d5bf1a70b505b6252f87944fdb2931386b884c1b",
+        "size": 18985,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/d5bf1a70b505b6252f87944fdb2931386b884c1b"
+      },
+      {
+        "path": "PRIVACY.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "beef1032426cd2bc0af356a7a739c926cdbc3719",
+        "size": 5269,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/beef1032426cd2bc0af356a7a739c926cdbc3719"
+      },
+      {
+        "path": "README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ef5f6322febde4bea0f5df5a9b750fede17bca40",
+        "size": 1571,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/ef5f6322febde4bea0f5df5a9b750fede17bca40"
+      },
+      {
+        "path": "STATUS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3c2d009bb9941a03f8d1a4667edef0a7473a4684",
+        "size": 33668,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/3c2d009bb9941a03f8d1a4667edef0a7473a4684"
+      },
+      {
+        "path": "analysis_options.yaml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5638b506f7b85e5359d5051db0814842969a3292",
+        "size": 513,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/5638b506f7b85e5359d5051db0814842969a3292"
+      },
+      {
+        "path": "assets",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "e344fab9b20ff85379d48984a778a0ab2a392b53",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/e344fab9b20ff85379d48984a778a0ab2a392b53"
+      },
+      {
+        "path": "config",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "df1d05fa385a4b20f1400787b09cb00da784f75c",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/df1d05fa385a4b20f1400787b09cb00da784f75c"
+      },
+      {
+        "path": "docs",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "2e4e751858f9850d7f37300d69e4a2c8c94343ab",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/2e4e751858f9850d7f37300d69e4a2c8c94343ab"
+      },
+      {
+        "path": "lib",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "edc3639216b4ae6dbfe8f3a7eac372b155513b28",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/edc3639216b4ae6dbfe8f3a7eac372b155513b28"
+      },
+      {
+        "path": "pubspec.lock",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+        "size": 24469,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+      },
+      {
+        "path": "pubspec.yaml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+        "size": 2718,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+      },
+      {
+        "path": "qa",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "bf00730dd886e8dfd1d6cad679965c672a01bb01",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/bf00730dd886e8dfd1d6cad679965c672a01bb01"
+      },
+      {
+        "path": "render.yaml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4e4d2d9ef2690f1f3d49e670076e99c2b7201a24",
+        "size": 381,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/4e4d2d9ef2690f1f3d49e670076e99c2b7201a24"
+      },
+      {
+        "path": "scripts",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "1f19d5775018abcd6d614ab68c2dd0a016cd23fd",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/1f19d5775018abcd6d614ab68c2dd0a016cd23fd"
+      },
+      {
+        "path": "server",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "e43a2789752b5ba6107a0cc1263c96f21e0d9a41",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/e43a2789752b5ba6107a0cc1263c96f21e0d9a41"
+      },
+      {
+        "path": "test",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "b25482b494609c1924aba360087d9709de2c78c7",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/b25482b494609c1924aba360087d9709de2c78c7"
+      },
+      {
+        "path": "tool",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "8f809b57aec9785be1a50edf0d16acce7c9863a0",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/8f809b57aec9785be1a50edf0d16acce7c9863a0"
+      },
+      {
+        "path": "tools",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "060a33de435412d830621713133348ef461edebe",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/060a33de435412d830621713133348ef461edebe"
+      }
+    ],
+    "truncated": false
+  },
+  "actual_commit_readback": {
+    "sha": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "node_id": "C_kwDOSNzcp9oAKDNmYWMyY2ZhZjIzYjgwYTEyN2U3MTExMzBmYzZkNzY5Mjc3NmQzMTY",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T16:27:24Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T16:27:24Z"
+    },
+    "tree": {
+      "sha": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/e76ef3862a0b2c73706d425a2b92a484fda5f9f3"
+    },
+    "message": "checkpoint(host): integrate table authorities and preserve current C4 safeguards [skip ci]",
+    "parents": [
+      {
+        "sha": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/5ad005bd080ac8c17f88eefcd3d2833c49be6d48"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "actual_branch_readback": {
+    "ref": "refs/heads/integration/lumo-next-table-authorities-20261114",
+    "node_id": "REF_kwDOSNzcp9oAO3JlZnMvaGVhZHMvaW50ZWdyYXRpb24vbHVtby1uZXh0LXRhYmxlLWF1dGhvcml0aWVzLTIwMjYxMTE0",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/integration/lumo-next-table-authorities-20261114",
+    "object": {
+      "sha": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/3fac2cfaf23b80a127e711130fc6d7692776d316"
+    }
+  }
+}

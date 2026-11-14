@@ -1,0 +1,2098 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "scope": "Technical originals; large unchanged payloads separately retained",
+  "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "artifact_id": 14120912172,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2019,
+      "sha256": "03f166e3d9a1fa02ea33ada4a96f80d47de792bd31ae8ed36b510529e1beb1dc",
+      "git_blob": "db1689e7342705e225cc6f3f4a24e669af3cfbab"
+    },
+    {
+      "path": "archive-verification.json",
+      "bytes": 942,
+      "sha256": "323ae7d63ab2f8d481660839099c2a47c0d2520d36e1d4090ebd358c5842ed03",
+      "git_blob": "501b75c3a05751e21a88ae14f6ecbdf8c96a3bf8"
+    },
+    {
+      "path": "archive-verification.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "archive-verification.stdout.log",
+      "bytes": 1060,
+      "sha256": "bae3601361ab39336174122f17f1a32a92072ee22ad092453e3b560378c8ece7",
+      "git_blob": "02b48ff4938964d3518c3114636dbb81401514a8"
+    },
+    {
+      "path": "bound-reader-identities.json",
+      "bytes": 4470,
+      "sha256": "3b8f6855a73e0d55e3c44b31686a39672fa4346c70d53763dd4332e2a8083e84",
+      "git_blob": "9ed197e8235bf50381a12d2148869cc237457891"
+    },
+    {
+      "path": "bound-readers/host/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+      "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+    },
+    {
+      "path": "bound-readers/host/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+    },
+    {
+      "path": "bound-readers/host/scripts/verify_connect_four_delivery.py",
+      "bytes": 67003,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+    },
+    {
+      "path": "bound-readers/host/scripts/verify_nextgen_delivery.py",
+      "bytes": 26996,
+      "sha256": "f2f6c7254cc9b89f703015ef00f0f855dcc77d9a19d06ab921f860dee391370e",
+      "git_blob": "fd472458d3c19574bf501090d2dccbb7c5194467"
+    },
+    {
+      "path": "bound-readers/host/scripts/verify_studio_delivery.py",
+      "bytes": 66296,
+      "sha256": "3fbb6e0d505e98060474d98cdad8bd0ad60a1a3a5f9cb4c75a953ee574cca0da",
+      "git_blob": "ceeb0a5123acb229f7ff0329ee8730aff63cecb0"
+    },
+    {
+      "path": "bound-readers/native/tools/collect_discovery_connections.py",
+      "bytes": 9979,
+      "sha256": "bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83",
+      "git_blob": "1ebdec66300dfb87bf9287d194525d3c374c8aee"
+    },
+    {
+      "path": "bound-readers/native/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+    },
+    {
+      "path": "bound-readers/native/tools/validate_nextgen.sh",
+      "bytes": 9791,
+      "sha256": "fbb95e0ab5d3f60a915fdd63ff95b6e01ad3776bb67f6227df1c394b5bd64a7f",
+      "git_blob": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_discovery_connections.py",
+      "bytes": 23700,
+      "sha256": "5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf",
+      "git_blob": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_discovery_rasters.py",
+      "bytes": 11528,
+      "sha256": "55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da",
+      "git_blob": "219e691fc8aa119cc80221b3db6c77e63caf8bfe"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_puzzle_menu_rasters.py",
+      "bytes": 1191,
+      "sha256": "3afe208e8572b683d12a338d73cf261416958ec2306ae87007f9c2c6b35e4994",
+      "git_blob": "391630e0bcd394dd0e274725cf15a7474eb41e77"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_safe_area_rasters.py",
+      "bytes": 8079,
+      "sha256": "7894e44fd3bc77e3bcd98489c4d5f391b400198a62d89382a0d6adad3adf4a3b",
+      "git_blob": "34fb3c4f31e476a5f29f98abc9a2ecc0337e6863"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_studio_2020_rasters.py",
+      "bytes": 26625,
+      "sha256": "8e8f597f8cd41fe203b9a491f14b5927c85601178e6589afe326a94d7c6f80f3",
+      "git_blob": "b60c3360730f0db73f91324cbaed3a8806fd141e"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_studio_rasters.py",
+      "bytes": 1872,
+      "sha256": "eefad8134f66404aa4bd3fedee279661e3f243a1a9aa3042c69e3d181fda62dd",
+      "git_blob": "0278d71030e87e4e46dd04b855e77711b2759252"
+    },
+    {
+      "path": "bound-readers/native/tools/verify_village_rasters.py",
+      "bytes": 3905,
+      "sha256": "23834a1baaaa2f98ffc3df5b0b4e2a4b3bbf23e41f402a7f051adeae9fd230a8",
+      "git_blob": "7c9522903db13f9bd0917ef2768ddbc08e624b1d"
+    },
+    {
+      "path": "central-build-copy-binding.json",
+      "bytes": 3874,
+      "sha256": "0e661b0ebbb7e4598a186163b0666daf32f06dbfffd90e2f631bac9cb93e6b8f",
+      "git_blob": "8d4e7bd1e73f9701a5a090f9be1fd6f3cf33015c"
+    },
+    {
+      "path": "central-build-native-marker-index.json",
+      "bytes": 1551,
+      "sha256": "9d33f8fe457a1bee24a45af95e50683f28b0451ca3882403bb8db00704fea6f5",
+      "git_blob": "e99fc60f730eaf2cd0aae2eedf5d3e253bec2898"
+    },
+    {
+      "path": "download-identity.json",
+      "bytes": 747,
+      "sha256": "a7b22dc15c3abb84bbbe472531fae78d324a920fb15be6744a0af367269efc33",
+      "git_blob": "713158c90caf9969b42e1f95bc85656510922775"
+    },
+    {
+      "path": "exclusion-list.json",
+      "bytes": 3318399,
+      "sha256": "6ef07de1fec64a1716dcf9d80863406f12211eec2fb57baac08d48799b600c32",
+      "git_blob": "f0c4d0557c808966655d08678edc6a1f1d7993c2"
+    },
+    {
+      "path": "freeze_technical_pack.py",
+      "bytes": 14010,
+      "sha256": "6c5c926dbd23878a7e7d58936f27294127651984f1907550a254b22e51168db3",
+      "git_blob": "de32d55a7a3a8596769d54d2cf82d9068355862c"
+    },
+    {
+      "path": "inclusion-list.json",
+      "bytes": 111503,
+      "sha256": "817f54f02c907e28df05091f6c02ea28c8c7fc0896ec4ce4d119008ee44e308c",
+      "git_blob": "35022a0ac0f9daf856e44a446d020a325c5c139b"
+    },
+    {
+      "path": "native-replay-reader-closure.json",
+      "bytes": 2375,
+      "sha256": "183a47885b0018f35b03a40c79f5c6754e7f01b722aef69ae7dc2c5f215b9dc0",
+      "git_blob": "1298f8482ff370e5178f19ed7808da30424dc6cf"
+    },
+    {
+      "path": "native52-original-marker-index.json",
+      "bytes": 28357,
+      "sha256": "28ab357f028356dd1dc70c73bc24e91546c2b620f3c5dc4f223f78c8ea295d3b",
+      "git_blob": "40991ef8432856ac31e5b97d40be54fc24eaa662"
+    },
+    {
+      "path": "originals/artifacts.original.json",
+      "bytes": 6753,
+      "sha256": "0cf2f8556573facf2f0c9c8d4852cc1ce9c897b8dbe7ed0553da488b2b3fd86b",
+      "git_blob": "3172cf3c4624a618c8cdf81a58dcb67be77673de"
+    },
+    {
+      "path": "originals/central-raw-manifest.json",
+      "bytes": 470,
+      "sha256": "887a1392ec9dab2a1ff47b7bd30b00713595c713432765795a4fd40a7900c56d",
+      "git_blob": "f8cb232acf1f2d18c82ec7c4baaa9ba22339c877"
+    },
+    {
+      "path": "originals/host0b7-commit.raw",
+      "bytes": 347,
+      "sha256": "eb316752906066434b9af81c64ed8bf9dd349e2cd58bb9d5f01afe0762d2af83",
+      "git_blob": "1314dad6ba0c184280fedc447f0cb06a782858cb"
+    },
+    {
+      "path": "originals/run.original.json",
+      "bytes": 13000,
+      "sha256": "e891a5335f3656b795208a9173aba7e95c607df7dc5e2152168f189bb294a272",
+      "git_blob": "27f316636bf9733ddad6e829f89a31b117af67f8"
+    },
+    {
+      "path": "originals/terminal-build/artifacts.original.json",
+      "bytes": 8243,
+      "sha256": "abc129169283bffd0b3714599644329c942596d77bf0a8022bac01f7db553032",
+      "git_blob": "fe6a65dc1f82de45c92f773acfa190124bfeaa0e"
+    },
+    {
+      "path": "originals/terminal-build/job.original.log",
+      "bytes": 1864894,
+      "sha256": "af226a4345187fb82f7d2880291db08c9d761feb6fdfe04b303029813ba042ff",
+      "git_blob": "870c48c565082a9848f58d6ba94859a03ff2a7f1"
+    },
+    {
+      "path": "originals/terminal-build/jobs.original.json",
+      "bytes": 20741,
+      "sha256": "96373946c23cee12c9b9f053ac2148e54cd8fc0e40052ec4e9220d54fee0e63f",
+      "git_blob": "407b9a37b743c3edd2961c395ab12efe355dffd9"
+    },
+    {
+      "path": "originals/terminal-build/raw-manifest.json",
+      "bytes": 902,
+      "sha256": "8b04d22c3508f064c0d861f8b518d8d7e514aa25a1b9f5208eede28e9768626d",
+      "git_blob": "e0d3faabd61401a3f9dc4e0eaf7d7b44a2a782e3"
+    },
+    {
+      "path": "originals/terminal-build/run.original.json",
+      "bytes": 13000,
+      "sha256": "77b3250d9858c808a331a6b09634f73c129ba0c1f82fbfc7619570fa973d8087",
+      "git_blob": "91265756e5b87931850611fe56ca9c7f0ffb1caf"
+    },
+    {
+      "path": "png-decode-inventory.json",
+      "bytes": 52663,
+      "sha256": "4436552c55e8bb43e9b1ad0eb2a37341d2f977d86305678328db027d2bdfe578",
+      "git_blob": "819b1335bf43fda6c096fd2abd32e772cea3c2cd"
+    },
+    {
+      "path": "replay-v2.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "replay-v2.stdout.log",
+      "bytes": 1361,
+      "sha256": "2dc65368b56eaccafb8f939064a54a2a5ca70b5f7ed67c5736c6b5d6cf0fb4ae",
+      "git_blob": "a49edd29a6ee6a378f3c25930f265e664118f648"
+    },
+    {
+      "path": "replay-v2/invariance.json",
+      "bytes": 453,
+      "sha256": "042452f50635bcb115a252af263610baa4c8ce20e7a2cfe2fc63d29b88d3747d",
+      "git_blob": "e8eb19451bb5345cc5e4e036ce23279b7efcaee7"
+    },
+    {
+      "path": "replay-v2/invocation.json",
+      "bytes": 803,
+      "sha256": "619e0ccba0f12c5dd4f81085918f1256f527d05a81a1561e0d08758f9d74d2fa",
+      "git_blob": "67802608aaba37d91d42301f4819d19717688ce4"
+    },
+    {
+      "path": "replay-v2/native-delivery-recomputed.json",
+      "bytes": 87124,
+      "sha256": "f4243326a8eba5a923cdc3bc1f843ba767a56dc20c2b74568cd0a59a1d8269a8",
+      "git_blob": "31541daa1680719bfdd97cfb2f8f772eafef9521"
+    },
+    {
+      "path": "replay-v2/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "427a4b87e5a7a9e2bcab96a24e9651bed0c9396e901f326c91bc20edfe24310b",
+      "git_blob": "8b3537124c9c45c37d2b7c0480ce01f22ef5a512"
+    },
+    {
+      "path": "replay-v2/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "427a4b87e5a7a9e2bcab96a24e9651bed0c9396e901f326c91bc20edfe24310b",
+      "git_blob": "8b3537124c9c45c37d2b7c0480ce01f22ef5a512"
+    },
+    {
+      "path": "replay-v2/summary.json",
+      "bytes": 1545,
+      "sha256": "8ccf8f18dbb952570d1f9cbc7eda258e20a41ecd2cc58b1560e6383e02922cf5",
+      "git_blob": "3000620cc488792b727c49655a4204291ce76373"
+    },
+    {
+      "path": "replay.stderr.log",
+      "bytes": 461,
+      "sha256": "48886edbf299b02951322c76458b7d2cef692f12219cfd61c9ee89c5e33f29e5",
+      "git_blob": "1054cf8adc275144fac25714e2b5dd004c95a852"
+    },
+    {
+      "path": "replay.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "replay/invariance.json",
+      "bytes": 454,
+      "sha256": "5bdb041b66281c4fc7bb698451336c928461ae796a465b2e8f48b90b554db9b8",
+      "git_blob": "58a606c6e2b60fe26ebad7a97a5b3e370974bb2d"
+    },
+    {
+      "path": "replay/invocation.json",
+      "bytes": 800,
+      "sha256": "780ea556e600040f6d1c27d3d76ac40f6b8c05cacb0a27763bcd0b9f6c5fa89e",
+      "git_blob": "5c6ab9200deb16f7c3709b9dd4c2f6b324a6954d"
+    },
+    {
+      "path": "replay/original-replay-error.json",
+      "bytes": 2005,
+      "sha256": "062d9acdb3593e04233123559a665238a7c49d7ad7d0d6f043e5b2f161cabcae",
+      "git_blob": "91dedf0304e4e97398ef4aa90c9595fad2ce4afa"
+    },
+    {
+      "path": "replay/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "427a4b87e5a7a9e2bcab96a24e9651bed0c9396e901f326c91bc20edfe24310b",
+      "git_blob": "8b3537124c9c45c37d2b7c0480ce01f22ef5a512"
+    },
+    {
+      "path": "replay/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "c4bc2487140210874fffd4dcfd7b3d18360a3b98bba288d1b2bd44c51ab6018e",
+      "git_blob": "d0fe76cbcb07063450efcc5f5a79d06d37f727d9"
+    },
+    {
+      "path": "replay_bound_native.py",
+      "bytes": 5768,
+      "sha256": "98c3e798834d8e9665097530e32139b6463295282d6fa19a0bcb71457767231d",
+      "git_blob": "14104ad6ac3bcfa8747f5289f0ebfc837c1c1d4b"
+    },
+    {
+      "path": "replay_bound_native_v2.py",
+      "bytes": 5866,
+      "sha256": "d406bd99404f44c0befed0236d55ef224b5171568e0e8901ab5838223fd19949",
+      "git_blob": "c0e270a5b50d3d927ea81ddaa486a871f4c13b4e"
+    },
+    {
+      "path": "report.json",
+      "bytes": 3427,
+      "sha256": "a2384f3294cdce6b3234d7163e1ed643c756b2c0049ff512564c3537b301e7ca",
+      "git_blob": "fd587fa06b28d8c94fa23b112d7c24a9ab8a4b48"
+    },
+    {
+      "path": "selected-original-index.json",
+      "bytes": 120053,
+      "sha256": "8c9fb1dd86a3c835f6f4d848074dcb1a6ac3502233c658533e54cab1d4f50944",
+      "git_blob": "195b8ec3a4fc79a32e67d6b5f8eec5dacbfbf036"
+    },
+    {
+      "path": "selected-original-supplement.json",
+      "bytes": 510,
+      "sha256": "b3727e9669baf1d2a3bbf77f38abe82b0bbd071d973b87e457fd9305c5ca7483",
+      "git_blob": "c3ed7ff09571cffdff0f1b81bc7d93280ef3de1e"
+    },
+    {
+      "path": "selected-originals/2014/build_sandbox_tools_regression.log",
+      "bytes": 541,
+      "sha256": "b27faaf614cae03d325f41790f146c441a5a71ee1c7a025e255dd1a8a2fa810a",
+      "git_blob": "b27ea60acdbc5f9abb0d39cfd09ebf485e1b7a73"
+    },
+    {
+      "path": "selected-originals/2014/build_sandbox_ui_regression.log",
+      "bytes": 1269,
+      "sha256": "df12e6cd24264f30e4b81b215caff309e233d3e0c2cf4c42e70bfe9f65070c82",
+      "git_blob": "d594496761a4316408ef5ac9d79bf5ed674a61af"
+    },
+    {
+      "path": "selected-originals/2014/creative_touch_layout_regression.log",
+      "bytes": 1574,
+      "sha256": "943713b7b7afc8cf32c07c362a1046f0c2ee7e8776cbf1ccaf6af2b8352ce172",
+      "git_blob": "4ba2a2be2331afe02bc2284a42f7cdf82ec4b2be"
+    },
+    {
+      "path": "selected-originals/2014/jump_extras_regression.log",
+      "bytes": 726,
+      "sha256": "6d19463f0b3ab9993fe8d855b6f14107ee95998713b559990f568c08ea97083b",
+      "git_blob": "7fa1eb401b090b5d787750318310338ed217cee4"
+    },
+    {
+      "path": "selected-originals/2014/kart_full_field_regression.log",
+      "bytes": 83862,
+      "sha256": "476b33adf132a01bf8edae3540517835c2827510557ff3c0e6ae5e55c323a072",
+      "git_blob": "7f7c61906a8472ea272eefa8d194751aedb407c8"
+    },
+    {
+      "path": "selected-originals/2014/kart_garage_3d_touch_regression.log",
+      "bytes": 1451,
+      "sha256": "314be260d4ea1c547ea791c448d5e54f9cac412833714b1a969d95e3bc62f1a5",
+      "git_blob": "c9191aa8b9843524b98ba8b387c004e02b4afcfe"
+    },
+    {
+      "path": "selected-originals/2014/kart_harbor_attraction_regression.log",
+      "bytes": 1656,
+      "sha256": "00a5c14f0534e154c87619cb3ad1c4427dad6ceb531e290f2ef00e70d5dd9bd3",
+      "git_blob": "76af4dfa9432e64978941636b76fdfce06b4e9e9"
+    },
+    {
+      "path": "selected-originals/2014/kart_harbor_race_hook_regression.log",
+      "bytes": 1375,
+      "sha256": "698a79a5cd09890b222b963b9203aeb09c1983b2ebeb7e6f23bf84ae8c8afdc0",
+      "git_blob": "eff887b2fa6452e09964c0e0df2ff396a3f5ba3b"
+    },
+    {
+      "path": "selected-originals/2014/kart_loop_contact_regression.log",
+      "bytes": 674,
+      "sha256": "e61e28086e56d00d9ad94780105b6de81bd76e3a9e8091afac83e36e0659ff99",
+      "git_blob": "23aa034e4c55608a9b0865e5a5308ce80c72b499"
+    },
+    {
+      "path": "selected-originals/2014/kart_menu_depth_2013_regression.log",
+      "bytes": 1327,
+      "sha256": "50ed173af60658ebd04f9d7b03423977464fc6afb1a5439e7a74b80939266301",
+      "git_blob": "b91c6aea67209fbc4d9b90de4f282f9004895758"
+    },
+    {
+      "path": "selected-originals/2014/kart_player_full_route_regression.log",
+      "bytes": 21732,
+      "sha256": "0865094aca3ca0ae6eda5509b001078ca5d9998dc03ebde17be90fc30a2bbc35",
+      "git_blob": "6a165112258d5b576eb5147590a1c9e1e2a675cd"
+    },
+    {
+      "path": "selected-originals/2014/kart_racecraft_regression.log",
+      "bytes": 799,
+      "sha256": "b33e0dbace5e835ab8dba0eb856722aeadc612f52921380fd50cfe6cdb08e08e",
+      "git_blob": "cda028117e0b0b86f9224d04ff784d4947c896d5"
+    },
+    {
+      "path": "selected-originals/2014/kart_rival_drift_items_regression.log",
+      "bytes": 801,
+      "sha256": "10c252679249e6a2b0527afd06b80773179ec3b258e38793f4db8828ada89a46",
+      "git_blob": "39416d13f12b83b416bd12f5ba468319a952e68f"
+    },
+    {
+      "path": "selected-originals/2014/kart_rival_flight_regression.log",
+      "bytes": 1876,
+      "sha256": "4f3cfe5aaf70bcb8034db57dd2a8cfa49888a216229890c00df1f0667a4d478b",
+      "git_blob": "9262c770efd8c95bc1e343805813f4529622f694"
+    },
+    {
+      "path": "selected-originals/2014/kart_sonnenhafen_generation_regression.log",
+      "bytes": 552,
+      "sha256": "a25509ce894804614d69e35f9b898757f4b4605ac64db8d2c2a98c79658eee60",
+      "git_blob": "969af661d4414a4178223f335f008aff9ce27a18"
+    },
+    {
+      "path": "selected-originals/2014/kart_stunt_continuity_regression.log",
+      "bytes": 1736,
+      "sha256": "b1860c98a8a8a9508984a5f567b6b1b8ebdfce165cdb1918f5a68addfc41c1d6",
+      "git_blob": "62bd059a388231b9be03bca30a47873a0fc3cd94"
+    },
+    {
+      "path": "selected-originals/2014/kart_zauberwald_library_regression.log",
+      "bytes": 1320,
+      "sha256": "83bb911a70a054f7cd068868a401a911b2a16308b0cf6915c23e8e2c2e4ad50d",
+      "git_blob": "f6814ef940b3d2966dcb1a5c534d7e8278715d5e"
+    },
+    {
+      "path": "selected-originals/2014/puzzle_expansion_regression.log",
+      "bytes": 1191,
+      "sha256": "15e66dba4f57135ff127300eff8f6457f9a837ebe383a2528b3d3a32ce5075f4",
+      "git_blob": "b0f395b600d31ae84837ece90b1127c9338580a3"
+    },
+    {
+      "path": "selected-originals/2014/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1321,
+      "sha256": "b22f563d5bb74176d919e4cc2ce466b06aabce4fa9611468592b38117bccee2f",
+      "git_blob": "0893058bacc4a23741083f8fb43bf7838afc1d07"
+    },
+    {
+      "path": "selected-originals/2014/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.57.52.log",
+      "bytes": 1263,
+      "sha256": "e983bac9828f0676c14da31fca90736e35810b181178ad5f194cfdc3bd7fb3f3",
+      "git_blob": "8399d9b3e799e24af155a06bb7aae16ea9099bb0"
+    },
+    {
+      "path": "selected-originals/2014/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.58.04.log",
+      "bytes": 1568,
+      "sha256": "e67c6eb9ead2f2beb58ad3e9990a2f50c8a9414e768ac28959bcdbc406440ad2",
+      "git_blob": "58b5213f80296a71c4b25edf362aae4c6d85c3fd"
+    },
+    {
+      "path": "selected-originals/2014/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.58.06.log",
+      "bytes": 1185,
+      "sha256": "47f65c921bbb489cfe694f28d0774cf929d9f10fad196c91471c0f62a981696e",
+      "git_blob": "efd987c399d8aba04521efa0e4c98aa75f830b6f"
+    },
+    {
+      "path": "selected-originals/2014/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.58.41.log",
+      "bytes": 1445,
+      "sha256": "1743bc475697ec7687b30137211d720b6e77f534ab34e1f6cebb1289778c3229",
+      "git_blob": "0c5ec539a3f584c44c0f01bae559a53478668625"
+    },
+    {
+      "path": "selected-originals/2014/user-data/godot/app_userdata/Lumo 3D/lumo_puzzle_touch_layout_regression.json",
+      "bytes": 707,
+      "sha256": "47d92084434051efd3d25a6bbc41ba32955f353c9920b0317f618ed85a309159",
+      "git_blob": "b642b21b126855465dd9d7a19b8488a0ec35814a"
+    },
+    {
+      "path": "selected-originals/action-stage/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "selected-originals/action-stage/kart_lasso_production_regression.log",
+      "bytes": 1033,
+      "sha256": "af9d18f16e90a44c8fd2548fffea8dfc0fa2fcc50eeed870e79e131c67ec8ac2",
+      "git_blob": "67209cc162132325a8b0f2cbff0195b747f923b0"
+    },
+    {
+      "path": "selected-originals/action-stage/kart_lasso_regression.log",
+      "bytes": 562,
+      "sha256": "1d727cef9d8c4c8b13a22c5efca13914f33cc39c8513da90b8ca8fae4cecb856",
+      "git_blob": "e6ba2a413e64c56f2b1d7f265c8b9ff78568bd6d"
+    },
+    {
+      "path": "selected-originals/action-stage/kart_menu_flow_regression.log",
+      "bytes": 3675,
+      "sha256": "b2c789a4f2d251a056ece8698005830de32934d0cd4ac9869ed693154dc1c58b",
+      "git_blob": "85f2e02cec72570545b2092a5cba27ca68a800f8"
+    },
+    {
+      "path": "selected-originals/action-stage/kart_roadside_action_regression.log",
+      "bytes": 1798,
+      "sha256": "e582b58303683f6228689e133b1306e2d56bd35138051cce6c81e9ff91a9d57f",
+      "git_blob": "13ac62ee26294c5309ef5bae50bc24a83eea88b1"
+    },
+    {
+      "path": "selected-originals/action-stage/kart_spatial_menu_regression.log",
+      "bytes": 5531,
+      "sha256": "aaf37523a14f76a0212ae94898783a4bcfbe7f14a8a977f83dfbdda6f3fa4ed6",
+      "git_blob": "b5d6eeb0ced07b24e4ecb6e4ae33786a858680c5"
+    },
+    {
+      "path": "selected-originals/action-stage/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3669,
+      "sha256": "4b6464e36a96d41269d3fbc6cf491b51fa31d8bb4aee63d6509baf5f630b70da",
+      "git_blob": "0d0b50995139a1af29c983a5ccd47b8ae51efa1e"
+    },
+    {
+      "path": "selected-originals/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.59.12.log",
+      "bytes": 562,
+      "sha256": "1d727cef9d8c4c8b13a22c5efca13914f33cc39c8513da90b8ca8fae4cecb856",
+      "git_blob": "e6ba2a413e64c56f2b1d7f265c8b9ff78568bd6d"
+    },
+    {
+      "path": "selected-originals/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.59.20.log",
+      "bytes": 1033,
+      "sha256": "af9d18f16e90a44c8fd2548fffea8dfc0fa2fcc50eeed870e79e131c67ec8ac2",
+      "git_blob": "67209cc162132325a8b0f2cbff0195b747f923b0"
+    },
+    {
+      "path": "selected-originals/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T15.02.40.log",
+      "bytes": 5525,
+      "sha256": "f5a95a8103573710e5778c03085a74f1ad013b619240a8123b7783081143f165",
+      "git_blob": "dfedb4af9033ae270e0091138440f608a4c9ea9f"
+    },
+    {
+      "path": "selected-originals/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T15.02.50.log",
+      "bytes": 1792,
+      "sha256": "fb49c369492a9b947bf272f11d80d5f15183a1ea46b47515c5dbd1ea7e6782f6",
+      "git_blob": "20c352c359f308bf0d9ecc32a0ac1b2f0898af9f"
+    },
+    {
+      "path": "selected-originals/discovery-collector.log",
+      "bytes": 1350,
+      "sha256": "568177a131c00a25c9b89a47185bcd224cbee0256bf113fb028faa732745eb07",
+      "git_blob": "d25c0224fa7009a4cddbddb3c7fea138387425c2"
+    },
+    {
+      "path": "selected-originals/discovery/captures/hub/hub-original-identity.json",
+      "bytes": 2703,
+      "sha256": "12feeba1ca0437c6dca58a2ad3ca47f93d24919af96d79cce263e6a37f9c7f80",
+      "git_blob": "65dc177dc6a70225390c1d3b629240f9d49f2efd"
+    },
+    {
+      "path": "selected-originals/discovery/captures/wonder/captures.json",
+      "bytes": 10018,
+      "sha256": "0d50806be4be8f72c691659e253768ae4932cad1aa3096e7f0027efbc153f7cf",
+      "git_blob": "d34255cdd8a50b2a5a81740f3726c35de71114a3"
+    },
+    {
+      "path": "selected-originals/discovery/collection-context.json",
+      "bytes": 654,
+      "sha256": "a210e909dde10a1011dfbcc3071e782fa13cad2eaaf59c024988a0295ffaf1af",
+      "git_blob": "dab56311423514c997250553e8a3d47ea82158f2"
+    },
+    {
+      "path": "selected-originals/discovery/discovery-acceptance.json",
+      "bytes": 40369,
+      "sha256": "3f1fff1e1ae327ea1e5a21bee7622aac73bc718d581668af977d08695a82b1cb",
+      "git_blob": "8506c51c4cf42c1049afff234bc8ee60b2fe1c69"
+    },
+    {
+      "path": "selected-originals/discovery/engine-binary.json",
+      "bytes": 199,
+      "sha256": "c8dd9d8f3b9b8a2ea495d50b05ebcb34e993febb25080ab5cbafc0ba93efd39d",
+      "git_blob": "b2d5e252ba24ebafd48655da1cf9fd646b7d1d4b"
+    },
+    {
+      "path": "selected-originals/discovery/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "selected-originals/discovery/helpers/collect_discovery_connections.py",
+      "bytes": 9979,
+      "sha256": "bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83",
+      "git_blob": "1ebdec66300dfb87bf9287d194525d3c374c8aee"
+    },
+    {
+      "path": "selected-originals/discovery/helpers/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+    },
+    {
+      "path": "selected-originals/discovery/helpers/verify_discovery_connections.py",
+      "bytes": 23700,
+      "sha256": "5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf",
+      "git_blob": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc"
+    },
+    {
+      "path": "selected-originals/discovery/helpers/verify_discovery_rasters.py",
+      "bytes": 11528,
+      "sha256": "55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da",
+      "git_blob": "219e691fc8aa119cc80221b3db6c77e63caf8bfe"
+    },
+    {
+      "path": "selected-originals/discovery/helpers/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    {
+      "path": "selected-originals/discovery/invocations.json",
+      "bytes": 22795,
+      "sha256": "c317ff0cdb6619c1a272eedea567dd8caaeab54844a946409d478355295bfe50",
+      "git_blob": "6880165d8a2a1c05e961b7b52e2c6173db2cd175"
+    },
+    {
+      "path": "selected-originals/discovery/logs/01-learning_world_regression-headless.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+    },
+    {
+      "path": "selected-originals/discovery/logs/01-learning_world_regression-headless.runner.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+    },
+    {
+      "path": "selected-originals/discovery/logs/02-learning_sharing_regression-headless.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+    },
+    {
+      "path": "selected-originals/discovery/logs/02-learning_sharing_regression-headless.runner.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+    },
+    {
+      "path": "selected-originals/discovery/logs/03-learning_studio_regression-headless.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+    },
+    {
+      "path": "selected-originals/discovery/logs/03-learning_studio_regression-headless.runner.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+    },
+    {
+      "path": "selected-originals/discovery/logs/04-game_hub_magic_regression-headless.log",
+      "bytes": 1331,
+      "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+      "git_blob": "46c336c5528f770216224855309e219cfac4e17c"
+    },
+    {
+      "path": "selected-originals/discovery/logs/04-game_hub_magic_regression-headless.runner.log",
+      "bytes": 1331,
+      "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+      "git_blob": "46c336c5528f770216224855309e219cfac4e17c"
+    },
+    {
+      "path": "selected-originals/discovery/logs/05-village_host_launch_regression-headless.log",
+      "bytes": 1641,
+      "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+      "git_blob": "904bb871432b11a43b8b396b563b3765e1aa0bd5"
+    },
+    {
+      "path": "selected-originals/discovery/logs/05-village_host_launch_regression-headless.runner.log",
+      "bytes": 1641,
+      "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+      "git_blob": "904bb871432b11a43b8b396b563b3765e1aa0bd5"
+    },
+    {
+      "path": "selected-originals/discovery/logs/06-learning_wonder_details_regression-headless.log",
+      "bytes": 3912,
+      "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+      "git_blob": "3756c768b8fb5eaf06a32713fa6fe2536bc0bd98"
+    },
+    {
+      "path": "selected-originals/discovery/logs/06-learning_wonder_details_regression-headless.runner.log",
+      "bytes": 3912,
+      "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+      "git_blob": "3756c768b8fb5eaf06a32713fa6fe2536bc0bd98"
+    },
+    {
+      "path": "selected-originals/discovery/logs/07-learning_wonder_details_regression-rendered.log",
+      "bytes": 4553,
+      "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+      "git_blob": "9dd9605cdabe163b4c15f4c45e7c2820c938642f"
+    },
+    {
+      "path": "selected-originals/discovery/logs/07-learning_wonder_details_regression-rendered.runner.log",
+      "bytes": 4553,
+      "sha256": "0e149d618147faaf6db8be2cf656483a306c91d0ecf288a9fafefbc6a4de9b9b",
+      "git_blob": "9dd9605cdabe163b4c15f4c45e7c2820c938642f"
+    },
+    {
+      "path": "selected-originals/discovery/logs/08-game_hub_magic_capture-rendered.log",
+      "bytes": 1300,
+      "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+      "git_blob": "1ffd931f0011a3e18a877a3496975db1b6be362d"
+    },
+    {
+      "path": "selected-originals/discovery/logs/08-game_hub_magic_capture-rendered.runner.log",
+      "bytes": 1300,
+      "sha256": "aed3c1931aee8b507f8f4e262536b35cf2e650f019b13d5512835e9f92d9c990",
+      "git_blob": "1ffd931f0011a3e18a877a3496975db1b6be362d"
+    },
+    {
+      "path": "selected-originals/discovery/logs/09-learning_world_capture-rendered.log",
+      "bytes": 8471,
+      "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+      "git_blob": "4d69a730591612d7803b4ba697fd34440f6d2323"
+    },
+    {
+      "path": "selected-originals/discovery/logs/09-learning_world_capture-rendered.runner.log",
+      "bytes": 8471,
+      "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+      "git_blob": "4d69a730591612d7803b4ba697fd34440f6d2323"
+    },
+    {
+      "path": "selected-originals/discovery/logs/10-learning_wonder_details_capture-rendered.log",
+      "bytes": 3163,
+      "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+      "git_blob": "1b57aa17a8bd5099ec783f63dde584015a298d0e"
+    },
+    {
+      "path": "selected-originals/discovery/logs/10-learning_wonder_details_capture-rendered.runner.log",
+      "bytes": 3163,
+      "sha256": "75dbe833a9b9358b2bda4d794aaed06080cd932d957f88ec4166d257589feb9b",
+      "git_blob": "1b57aa17a8bd5099ec783f63dde584015a298d0e"
+    },
+    {
+      "path": "selected-originals/discovery/results.tsv",
+      "bytes": 444,
+      "sha256": "8caf920c92ea08a4080056a89e27e71a5193858633d443bc4978f0a06e438b12",
+      "git_blob": "483ed08ab5bb014cc016213afe6a09af3da8e989"
+    },
+    {
+      "path": "selected-originals/discovery/source-commit.raw",
+      "bytes": 322,
+      "sha256": "1c66d69aea47f32c1b45c313b09dac4268b22af79fec353c81998adb1aa50b25",
+      "git_blob": "2b95dffcbe7d9988af5c2a63f3ea7aec22a0f44b"
+    },
+    {
+      "path": "selected-originals/discovery/source-dirty-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "selected-originals/discovery/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "selected-originals/discovery/source-index-after.bin",
+      "bytes": 541956,
+      "sha256": "3d5a7732b47d1249419f980cfac45eec4baa01138938cd4a421c2f29dc2c5d9b",
+      "git_blob": "3e529853675485734e136951cdf6471c22f8761c"
+    },
+    {
+      "path": "selected-originals/discovery/source-index-before.bin",
+      "bytes": 541956,
+      "sha256": "3d5a7732b47d1249419f980cfac45eec4baa01138938cd4a421c2f29dc2c5d9b",
+      "git_blob": "3e529853675485734e136951cdf6471c22f8761c"
+    },
+    {
+      "path": "selected-originals/discovery/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "dcbae5896a6dee15a2ea1a5faa21b0322410816325ee949c39148903bf58da50",
+      "git_blob": "8deecccbbda431912f9f775d1eed3b0aaacb4893"
+    },
+    {
+      "path": "selected-originals/discovery/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "dcbae5896a6dee15a2ea1a5faa21b0322410816325ee949c39148903bf58da50",
+      "git_blob": "8deecccbbda431912f9f775d1eed3b0aaacb4893"
+    },
+    {
+      "path": "selected-originals/discovery/source-sha-after.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/discovery/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/discovery/source-tree-after.bin",
+      "bytes": 461586,
+      "sha256": "f752c28fc98c3d5aff0c5946a411b46af1170541d6977bef8a02dbd4a363eece",
+      "git_blob": "fbe8d0c7f35590e59986e0dfaf6464de07667edb"
+    },
+    {
+      "path": "selected-originals/discovery/source-tree-after.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "git_blob": "89355489a63529cc2cb058a7c5159c8644d36116"
+    },
+    {
+      "path": "selected-originals/discovery/source-tree-before.bin",
+      "bytes": 461586,
+      "sha256": "f752c28fc98c3d5aff0c5946a411b46af1170541d6977bef8a02dbd4a363eece",
+      "git_blob": "fbe8d0c7f35590e59986e0dfaf6464de07667edb"
+    },
+    {
+      "path": "selected-originals/discovery/source-tree.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "git_blob": "89355489a63529cc2cb058a7c5159c8644d36116"
+    },
+    {
+      "path": "selected-originals/discovery/state/01/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+    },
+    {
+      "path": "selected-originals/discovery/state/02/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+    },
+    {
+      "path": "selected-originals/discovery/state/03/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+    },
+    {
+      "path": "selected-originals/discovery/state/04/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1331,
+      "sha256": "6e1dc4e4250650c83ce344bf93e9d3ba2bf227925e837f6aec2ed9eb3fed9427",
+      "git_blob": "46c336c5528f770216224855309e219cfac4e17c"
+    },
+    {
+      "path": "selected-originals/discovery/state/05/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1641,
+      "sha256": "440796a5357d7f7e17c1511c3a4f3bc1b0f0e50bddd10f1e07effb708ea9987c",
+      "git_blob": "904bb871432b11a43b8b396b563b3765e1aa0bd5"
+    },
+    {
+      "path": "selected-originals/discovery/state/06/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3912,
+      "sha256": "9db3390e61fd064beb771774ff77319daad0ca2880631988ebe1d2878875ae42",
+      "git_blob": "3756c768b8fb5eaf06a32713fa6fe2536bc0bd98"
+    },
+    {
+      "path": "selected-originals/discovery/state/07/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 4547,
+      "sha256": "cf42816621792787c8a0cffc3a160a15b051c3c547ef76e5eb0d4c997eaf4b4b",
+      "git_blob": "e5d388bb034249637d05e199c2b91bef1b68c832"
+    },
+    {
+      "path": "selected-originals/discovery/state/08/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1294,
+      "sha256": "3ffbe5d9d173692f93eda62c903cfae102cca6dc4c02e22967ae9bcfacb39b4c",
+      "git_blob": "f81094c065f857c0d7ea1fab5b536f48ca8b2d73"
+    },
+    {
+      "path": "selected-originals/discovery/state/09/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 8465,
+      "sha256": "dd33a221acb036ef074322676c17f3a2c4b389c85b3aee8351169c313d58396e",
+      "git_blob": "d0eb05defb3dc1e0b596b2a4cb92ccd29b6e958c"
+    },
+    {
+      "path": "selected-originals/discovery/state/10/data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3157,
+      "sha256": "135000484db4f50751554cd88bbb94af53a697c9735e369e27f920e3ba190208",
+      "git_blob": "15473d0786571165a09e79a9490f41ad951cf650"
+    },
+    {
+      "path": "selected-originals/dream-runner.log",
+      "bytes": 5511,
+      "sha256": "626c031b13f56e394dac1733f34b3d3943161fb1a3d4e17e783e3155535d82bd",
+      "git_blob": "5e9c8e1782a07c0287f97347710fe15d050b03dc"
+    },
+    {
+      "path": "selected-originals/dream-verifier-original.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    {
+      "path": "selected-originals/dream/capture-root.txt",
+      "bytes": 66,
+      "sha256": "aa93b3c7464ff425688e15203874000632bf3f50147ea08dedae8e09f886c631",
+      "git_blob": "86b908ec2c699222728a20d3d0e8511ce360ab48"
+    },
+    {
+      "path": "selected-originals/dream/captures/learning/learning.json",
+      "bytes": 848,
+      "sha256": "e5823289442d615754eaef67c3a8f6fc13e4532c2fa0f7f8a95e9c50719dc639",
+      "git_blob": "1cf6f240d33d12f352bfd0befa9bd9e784dd123d"
+    },
+    {
+      "path": "selected-originals/dream/captures/treasure/treasure.json",
+      "bytes": 844,
+      "sha256": "98890e629aa52fffbd0de561e61e8ea9e4987b14e2400e3540f4a8f156f8b1fa",
+      "git_blob": "fc11411a2a7d60eeba360e9d9ebbd7e7332b67b7"
+    },
+    {
+      "path": "selected-originals/dream/dream-images.json",
+      "bytes": 6414,
+      "sha256": "677700b081b64fc931ff6217d20fec5d6f4d144d4eb7f80ddbe421e7329fb7a0",
+      "git_blob": "9d1b2c0a0f436d60cdc3360ecb70437cfc328eb0"
+    },
+    {
+      "path": "selected-originals/dream/dream_garden_capture-rendered.log",
+      "bytes": 1628,
+      "sha256": "31c9f73bcab9f0fbc4d1e189ac9ffabd421d7f35ecf3c34e781d5f2db201c8d0",
+      "git_blob": "16af21b4ccce0e9d98c84c53212a76737b34c4c0"
+    },
+    {
+      "path": "selected-originals/dream/dream_garden_props_regression-headless.log",
+      "bytes": 505,
+      "sha256": "bbfcbd97e786dad12bb49ebf8a088d2b7e0c6a1a834e413c018c0c8c52c5013f",
+      "git_blob": "df3496e441a6e21488595c33fc2a66510dba7801"
+    },
+    {
+      "path": "selected-originals/dream/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "selected-originals/dream/lumo_dream_ambience_capture-rendered-learning.log",
+      "bytes": 1284,
+      "sha256": "bb760e4265fbfa978562ad3f11c40e45e935cefd439568c6700b4875d38c11db",
+      "git_blob": "7b262fe5ae406a13e4ee086a38dd046d2860e691"
+    },
+    {
+      "path": "selected-originals/dream/lumo_dream_ambience_capture-rendered-treasure.log",
+      "bytes": 1284,
+      "sha256": "8e1bfaf37e62a9a3f14cad6ad852caa789a93e0067a05278774d44bc73be4c4c",
+      "git_blob": "c28444ee86ac2e1f1d2df8d05bdda6c068fc7e2a"
+    },
+    {
+      "path": "selected-originals/dream/lumo_dream_ambience_regression-headless.log",
+      "bytes": 593,
+      "sha256": "0e06fbe26cc4fab495f303f614749b1164b2ea673a17c70ee7a38f2b18600709",
+      "git_blob": "5a204508af13e9ab0106b3b59931bac4be8b20ed"
+    },
+    {
+      "path": "selected-originals/dream/results.tsv",
+      "bytes": 244,
+      "sha256": "e13332961fe89a044b7b25aff2408199425dbf9935be79ffca222f214442a169",
+      "git_blob": "03d9d027d45a2fc1610e35db1c1186bd8f39c943"
+    },
+    {
+      "path": "selected-originals/dream/source-dirty-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "selected-originals/dream/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "selected-originals/dream/source-inventory-after.json",
+      "bytes": 1914378,
+      "sha256": "dcbae5896a6dee15a2ea1a5faa21b0322410816325ee949c39148903bf58da50",
+      "git_blob": "8deecccbbda431912f9f775d1eed3b0aaacb4893"
+    },
+    {
+      "path": "selected-originals/dream/source-inventory-before.json",
+      "bytes": 1914378,
+      "sha256": "dcbae5896a6dee15a2ea1a5faa21b0322410816325ee949c39148903bf58da50",
+      "git_blob": "8deecccbbda431912f9f775d1eed3b0aaacb4893"
+    },
+    {
+      "path": "selected-originals/dream/source-sha-after.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/dream/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/dream/source-tree-after.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "git_blob": "89355489a63529cc2cb058a7c5159c8644d36116"
+    },
+    {
+      "path": "selected-originals/dream/source-tree.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "git_blob": "89355489a63529cc2cb058a7c5159c8644d36116"
+    },
+    {
+      "path": "selected-originals/dream/user-data/dream_garden_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1622,
+      "sha256": "20239c3f94e8b60897efe470907a038161fcaf1daf24842e2dc59da2f3161c3e",
+      "git_blob": "fff2e8b1c7f654dcee1c01f138126ab90bf206c8"
+    },
+    {
+      "path": "selected-originals/dream/user-data/dream_garden_props_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 505,
+      "sha256": "bbfcbd97e786dad12bb49ebf8a088d2b7e0c6a1a834e413c018c0c8c52c5013f",
+      "git_blob": "df3496e441a6e21488595c33fc2a66510dba7801"
+    },
+    {
+      "path": "selected-originals/dream/user-data/lumo_dream_ambience_capture-rendered-learning/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1278,
+      "sha256": "4448624d15af05614050e191e59b7b370bef8a5e382888aee0b577c9cae80f98",
+      "git_blob": "c7522499380ea8c5781365057e572c65f0fcf962"
+    },
+    {
+      "path": "selected-originals/dream/user-data/lumo_dream_ambience_capture-rendered-treasure/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1278,
+      "sha256": "33ce05a833197500cfdbdb043b85a50c8fed2149979eca3e01d49eba1535cc69",
+      "git_blob": "b3709c5616b23604d2fc2d0c4f9692ae1738fe79"
+    },
+    {
+      "path": "selected-originals/dream/user-data/lumo_dream_ambience_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 593,
+      "sha256": "0e06fbe26cc4fab495f303f614749b1164b2ea673a17c70ee7a38f2b18600709",
+      "git_blob": "5a204508af13e9ab0106b3b59931bac4be8b20ed"
+    },
+    {
+      "path": "selected-originals/legacy-gameplay.log",
+      "bytes": 222613,
+      "sha256": "189aa59782b69d676ece6d934936455afd16b7888514c0ad75050c7de12bd4c4",
+      "git_blob": "cb639faed625abbe9c716463d71e4820922246be"
+    },
+    {
+      "path": "selected-originals/nextgen-runner.log",
+      "bytes": 123984,
+      "sha256": "25c0dd16f79c00ce2bc131e718cf8624610f8265c555c309ef70a61a9ca4d90d",
+      "git_blob": "3de5ca58920139d2a09c2c75999c1e2d9ee91549"
+    },
+    {
+      "path": "selected-originals/nextgen/bauwelt_identity_2013_regression-headless.log",
+      "bytes": 586,
+      "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886",
+      "git_blob": "de5ae7a33ce27ca13aa7ea5bc2b6a4f0f4b0daf0"
+    },
+    {
+      "path": "selected-originals/nextgen/build_frontier_regression-headless.log",
+      "bytes": 617,
+      "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b",
+      "git_blob": "62b304c84cdec71cf36ebe3ff70aa9dd3253a351"
+    },
+    {
+      "path": "selected-originals/nextgen/build_nextgen_play_regression-headless.log",
+      "bytes": 687,
+      "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654",
+      "git_blob": "0c956e3d796ca6dd2810db4de9577c3d4b3c23e6"
+    },
+    {
+      "path": "selected-originals/nextgen/build_nextgen_play_regression-rendered.log",
+      "bytes": 1334,
+      "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6",
+      "git_blob": "ecebcfafeda02f7e6b995601aad401182117e513"
+    },
+    {
+      "path": "selected-originals/nextgen/build_settlement_play_regression-headless.log",
+      "bytes": 2069,
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a",
+      "git_blob": "83fe16fae0f5691b51308a0175fffd0deb966e18"
+    },
+    {
+      "path": "selected-originals/nextgen/build_settlement_play_regression-rendered.log",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "git_blob": "c66d375adf85f5171807c73c28140d4639d531e1"
+    },
+    {
+      "path": "selected-originals/nextgen/build_settlement_regression-headless.log",
+      "bytes": 537,
+      "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09",
+      "git_blob": "f7e7d5d85bdf778f34511d2e3429d9142742fdd7"
+    },
+    {
+      "path": "selected-originals/nextgen/build_transform_regression-headless.log",
+      "bytes": 565,
+      "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993",
+      "git_blob": "a809519d49f229db2485e4cb3cecc9c027e3d7de"
+    },
+    {
+      "path": "selected-originals/nextgen/build_village_art_regression-headless.log",
+      "bytes": 507,
+      "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8",
+      "git_blob": "a5320694e1fce243c76f850b306aa0f20c1b8582"
+    },
+    {
+      "path": "selected-originals/nextgen/build_village_economy_regression-headless.log",
+      "bytes": 628,
+      "sha256": "1381f36239164a4b77f21050c2619cb4dbcba281571419ed6cbe544db824c1bb",
+      "git_blob": "535e00e4717b2eb4d2519b92b5238e28decf3e9b"
+    },
+    {
+      "path": "selected-originals/nextgen/build_village_scene_regression-headless.log",
+      "bytes": 1618,
+      "sha256": "909f4ac47fbf7dbb8e2db379aed07ea1527d6c1d9d92e3a48078bd1bc27e732d",
+      "git_blob": "5f7e40418d0a51828319a91053dcfbe6ea516e35"
+    },
+    {
+      "path": "selected-originals/nextgen/build_village_scene_regression-rendered.log",
+      "bytes": 2265,
+      "sha256": "845b8093e74e08fa0fe052a2cd5fad24f6c62f7dd09c86c3675f02a4f02d3262",
+      "git_blob": "dcf553ae2c49ec1267ae19cdc7a80870416e8319"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/build_village_scene_regression/village-touch-targets.json",
+      "bytes": 7151,
+      "sha256": "ddd4a05543b69e117f22d60d457792f8d8a242780447301059fd9e7b361aebf5",
+      "git_blob": "14e178a7a118b4acf4fc0631a8457042f88970c4"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/cards_safe_area_regression/android35_portrait-paused.layout.json",
+      "bytes": 1277,
+      "sha256": "bab1ae65bb6279914695c447186bff186f64e4143cb3bdfac45eb523707f7a14",
+      "git_blob": "45130266f0c096c5ae6d408ba5a7e2927e7edf16"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/cards_safe_area_regression/android35_portrait-playing.layout.json",
+      "bytes": 1277,
+      "sha256": "f056de8a924855dec39afc4923bb32355ad968d15bb07ec2c60d0af3357d283f",
+      "git_blob": "b85b689da1d267bb9ce16b931d0eb75c74463a63"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/cards_safe_area_regression/cards-safe-area.json",
+      "bytes": 67394,
+      "sha256": "90888059016954ba7ff6ed2ddb916ea358e1ab0167b85c2894ebcf3fa0255c0c",
+      "git_blob": "6ed038c947f3babbc97106295d32e821910a9a55"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.layout.json",
+      "bytes": 1956,
+      "sha256": "79c13112262d162a1444f6ba0217bf291a65c0376b71131374a0e82bc3682872",
+      "git_blob": "ecabc0c09ad05c05b9a0973a91ad6dba34f23e62"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/cards_table_capture/cards-render.json",
+      "bytes": 822,
+      "sha256": "2e589cfb223c58235c7f2fa094d21b32fb1c432e81dec02f117398dafe916fac",
+      "git_blob": "ad30a9caf6f61597777b468c869bd85acefa4869"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/connect_four_visual_capture/visual-state.json",
+      "bytes": 172226,
+      "sha256": "2dcf35c2e3fa81a0589932fa287593b59e76d406cf2e998a9b0903bacb0770f5",
+      "git_blob": "df2d1652a559d994458c785ba7ddef2cfd10d7ca"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/jump_nextgen_capture/jump-nextgen-evidence.json",
+      "bytes": 4933,
+      "sha256": "a637077939cd337b3a772875ecd2783807dd265ae0f3a81cc868556e9efab55b",
+      "git_blob": "8c2de76bc9382ba488bbfd6419c6a3c5e989a5e3"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/kart_nextgen_garage_regression/capture.json",
+      "bytes": 2521,
+      "sha256": "4b1148672f44bd85775c0c26c88993306cfcd9670b85715bef35e6bcce60fad4",
+      "git_blob": "d2b16ab6d41e6535da72d7a6f58d2634fdedb65e"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/kart_player_full_route_regression/player-route.json",
+      "bytes": 78215,
+      "sha256": "b020b4ce128f9c3f0b79f1023b4bd05e542dd5529f521b27f888ccc41a5cdb51",
+      "git_blob": "35e8decbda8befb5a87ea7743a14cc03346a6ae2"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/learning_sharing_capture/manifest.json",
+      "bytes": 1385,
+      "sha256": "05b76a8216362650075cd241071a42e98a509905b2dec5a24fd2bd09cf061bbf",
+      "git_blob": "665ea6657ccc0dc249b78b25ec5caa730d8a2e66"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/lumo_facial_capture/movie-decode.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/lumo_facial_capture/movie-encode.log",
+      "bytes": 6269,
+      "sha256": "e9bbd3c960d19988aa2bf8ed7007ce9b224732c653d236147c84cc626873b5e8",
+      "git_blob": "8bc1f2c4a09a39567fbeaa1fa54d09a8c42a7dea"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/lumo_facial_capture/movie-ffprobe.json",
+      "bytes": 4564,
+      "sha256": "1d8c9c58f4c45e35270b8cd7cfc74fb380a300ce83e78d4e8576fbdb65db3795",
+      "git_blob": "d215319da97e571f66a81b5e5a64cd30c56b8639"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/lumo_facial_capture/movie.json",
+      "bytes": 1201,
+      "sha256": "924570f7b297528955a0337d9ced1b56b18dfd432560867a0b3d4ebb5193fa3d",
+      "git_blob": "77a3f72670168bf86ce152a544185b02be399abf"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/lumo_facial_capture/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "git_blob": "471e2e633df635545f99270e1960eb5ba41ced2e"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/lumo_studio_motion_capture/studio-motion-capture.json",
+      "bytes": 2206,
+      "sha256": "126a697b87ba699266a101c1fb33bf0bd2b0aee1d16d913643883700dce2f061",
+      "git_blob": "4b54f41b2c6963dfd9b4bb1a31d67bbfba77d409"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/mobile_safe_area_regression/mobile-safe-area.json",
+      "bytes": 57026,
+      "sha256": "9c3ea6887e47e0b8ff7184d34a09c09cd81f5f0d861997819617afb0bfde3ccc",
+      "git_blob": "f880409c7d9d40f9223b935ebdba3027eaa299ef"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/puzzle_menu_lifecycle_regression/puzzle-menu-lifecycle.json",
+      "bytes": 37700,
+      "sha256": "f0fd4f759aca7be0a5d3f1dbf2d5118fd0dbe9e70d0a813c7b507568020a6c11",
+      "git_blob": "db75c4e70f020230cf07a8a8b3f349a09b890915"
+    },
+    {
+      "path": "selected-originals/nextgen/captures/treasure_title_contrast_regression/treasure-title-report.json",
+      "bytes": 30551,
+      "sha256": "4132856d1c23b9e753f652d667f4a46056d53db0c8df4b317b2e844e08d507c8",
+      "git_blob": "c53e70ba0bfacacc47fda46de9ec05495f027d83"
+    },
+    {
+      "path": "selected-originals/nextgen/cards-safe-area-images.json",
+      "bytes": 767,
+      "sha256": "072ab49b42781baac70fbb72c1e1d75c7d8e3e151109d80fc5839f6bff89e6f8",
+      "git_blob": "af538474c9681b33e70952499d5e088ca6a5f613"
+    },
+    {
+      "path": "selected-originals/nextgen/cards_safe_area_android_contract-headless.log",
+      "bytes": 553,
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04",
+      "git_blob": "32d492b0d1614577e839f90915104bc3823fd816"
+    },
+    {
+      "path": "selected-originals/nextgen/cards_safe_area_regression-headless.log",
+      "bytes": 532,
+      "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177",
+      "git_blob": "89ac7c1f16d898f3d2c3d487eba20dbe3b24f768"
+    },
+    {
+      "path": "selected-originals/nextgen/cards_safe_area_regression-rendered.log",
+      "bytes": 1179,
+      "sha256": "e4b86d0d3e105c298176539d00c4ec5e53cc78931acfbae24f0bf1eff5f3eefe",
+      "git_blob": "6817c5af327f85606f855423f6e7c1baec46a3c1"
+    },
+    {
+      "path": "selected-originals/nextgen/cards_table_capture-rendered.log",
+      "bytes": 1162,
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "git_blob": "4ab838eb569b625c283fc53dd3bdd8a0e6320d11"
+    },
+    {
+      "path": "selected-originals/nextgen/cards_table_regression-headless.log",
+      "bytes": 583,
+      "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab",
+      "git_blob": "a67596289c9f6e0e9c13246d5aa9769e5e1051b7"
+    },
+    {
+      "path": "selected-originals/nextgen/connect-four-visual-images.json",
+      "bytes": 958,
+      "sha256": "0ddf1e573db15f5c584a29498e2283e69e98de063642965ddc6147105a4ec107",
+      "git_blob": "1686ebe06e61ebeda8a4d807f913a61402cb6bef"
+    },
+    {
+      "path": "selected-originals/nextgen/connect_four_visual_capture-rendered.log",
+      "bytes": 1176,
+      "sha256": "1cc3d59bbf0a2f7fa7680ad0d70bdcbfb1c6690cb88edf523b344f9d18afaaae",
+      "git_blob": "1038e9423bfa3591b7b8985869bd3193ba027425"
+    },
+    {
+      "path": "selected-originals/nextgen/creative_nextgen_environment_regression-headless.log",
+      "bytes": 592,
+      "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e",
+      "git_blob": "07dca06fcc9fcfad02598082f814dd32dbc277eb"
+    },
+    {
+      "path": "selected-originals/nextgen/creative_nextgen_environment_regression-rendered.log",
+      "bytes": 1239,
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e",
+      "git_blob": "3726d656d46389cd1cb095f14c9ea09abe84494a"
+    },
+    {
+      "path": "selected-originals/nextgen/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "selected-originals/nextgen/facial-images.json",
+      "bytes": 1782,
+      "sha256": "1eaa2b594f79daee702b819a379a2c87345b66b627be4354463c6bc349139ef4",
+      "git_blob": "8e55679a4cff0fcca407448a85a017b6d5f74951"
+    },
+    {
+      "path": "selected-originals/nextgen/jump_expeditions_regression-headless.log",
+      "bytes": 2760,
+      "sha256": "f5b49f003ab7a8245417454a5ff22351f71ae3209ea5b1882951805f5ffe92f9",
+      "git_blob": "93f0f06d6b1b2fc8255fcf8bf76de64dd0407a32"
+    },
+    {
+      "path": "selected-originals/nextgen/jump_nextgen_capture-rendered.log",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "git_blob": "54af114e9f1b69d66d1625f31c3a7e1658e02653"
+    },
+    {
+      "path": "selected-originals/nextgen/jump_nextgen_regression-headless.log",
+      "bytes": 1997,
+      "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444",
+      "git_blob": "fddee704870eeaca1da6744f2e5eea7fe0cb8612"
+    },
+    {
+      "path": "selected-originals/nextgen/kart_nextgen_garage_regression-headless.log",
+      "bytes": 734,
+      "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab",
+      "git_blob": "bad5c03b84bc7ee62f1a3f895093cbff5f09b12b"
+    },
+    {
+      "path": "selected-originals/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "git_blob": "1fe508554dde6409111b9cbfbd239f53f78141e4"
+    },
+    {
+      "path": "selected-originals/nextgen/kart_player_full_route_regression-rendered.log",
+      "bytes": 21732,
+      "sha256": "b7c636d6c2fdcec2ef94ef315066b6403b262d6e4b653bdebe3e86b0314a8b97",
+      "git_blob": "21b2e673567dbb8ca29e065d0635e2aecc4ab656"
+    },
+    {
+      "path": "selected-originals/nextgen/kart_track_pass_regression-headless.log",
+      "bytes": 1076,
+      "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955",
+      "git_blob": "7c880b4a83a1fbbd7c5db626f40d94930509e31c"
+    },
+    {
+      "path": "selected-originals/nextgen/learning_host_payload_regression-headless.log",
+      "bytes": 561,
+      "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6",
+      "git_blob": "f383abdb67a69003ff38758e0787f2b953f42ed7"
+    },
+    {
+      "path": "selected-originals/nextgen/learning_sharing_capture-rendered.log",
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "git_blob": "ef4578c3a25377b077e884eda72b71b462ed8298"
+    },
+    {
+      "path": "selected-originals/nextgen/learning_sharing_regression-headless.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+    },
+    {
+      "path": "selected-originals/nextgen/learning_studio_regression-headless.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+    },
+    {
+      "path": "selected-originals/nextgen/learning_world_capture-rendered.log",
+      "bytes": 8471,
+      "sha256": "24d306c3e3e7421db0c23d7dd0bd4c21ecbf6b15734453683dfba6444e631c54",
+      "git_blob": "4d69a730591612d7803b4ba697fd34440f6d2323"
+    },
+    {
+      "path": "selected-originals/nextgen/learning_world_regression-headless.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+    },
+    {
+      "path": "selected-originals/nextgen/lumo_65bone_walk_gait_regression-headless.log",
+      "bytes": 572,
+      "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e",
+      "git_blob": "b06c80eb963d79653f8afa5eb0586168f7e0f726"
+    },
+    {
+      "path": "selected-originals/nextgen/lumo_facial_capture-rendered.log",
+      "bytes": 1847,
+      "sha256": "adda3a2ca175f12d65dad069f16d86c57c09b9b0445f6a312df4d75b58f78cba",
+      "git_blob": "e560aff321b0ee6b7b2d6edb73872002a8d6503e"
+    },
+    {
+      "path": "selected-originals/nextgen/lumo_facial_regression-headless.log",
+      "bytes": 633,
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b",
+      "git_blob": "2374357756a7f9a2320bceb9c0533fa6b58a02b9"
+    },
+    {
+      "path": "selected-originals/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "bytes": 691,
+      "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43",
+      "git_blob": "4759604de66df40923c8d65041e1dceea0e74c92"
+    },
+    {
+      "path": "selected-originals/nextgen/lumo_studio_motion_capture-rendered.log",
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "git_blob": "4f08daeda90feb45075b2de588ac04099ab0bc39"
+    },
+    {
+      "path": "selected-originals/nextgen/lumo_studio_motion_regression-headless.log",
+      "bytes": 603,
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+      "git_blob": "d06b4aa8600722e4474cd7584db3ac81f134d1e4"
+    },
+    {
+      "path": "selected-originals/nextgen/lumo_teacher_pose_regression-headless.log",
+      "bytes": 589,
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629",
+      "git_blob": "9afe1fa0218bcaeb55c301046a7a9507c10fd10f"
+    },
+    {
+      "path": "selected-originals/nextgen/mobile-safe-area-images.json",
+      "bytes": 999,
+      "sha256": "0fc1d68bec6ebf361f9c44e55092101108c1c5768732174ffa24acd4077b1a7c",
+      "git_blob": "d62521ae623117d2941a4fd07d0cb6b4d46aa398"
+    },
+    {
+      "path": "selected-originals/nextgen/mobile_safe_area_regression-headless.log",
+      "bytes": 10230,
+      "sha256": "d2aeec1306568fae3b307608f326a934dafe40127433d5d77091d1db1cec406c",
+      "git_blob": "1183ead5c0bf44893f7f5a02dddcba8df9ce4d6a"
+    },
+    {
+      "path": "selected-originals/nextgen/mobile_safe_area_regression-rendered.log",
+      "bytes": 11441,
+      "sha256": "3fdd4ca562660f0046497ba9b40c3f7a65d06b1eb682b3ba174aeeffcf5da6ce",
+      "git_blob": "dc356394c5877c9760f9067aebc6f901373d38e4"
+    },
+    {
+      "path": "selected-originals/nextgen/puzzle-menu-images.json",
+      "bytes": 1488,
+      "sha256": "c89de3dbfe67404220fce048059f3de95aee4c3fd53a198ce008e1f41e278eb2",
+      "git_blob": "803cd0755671697c5c61ebcf97d198d2ef6e5f19"
+    },
+    {
+      "path": "selected-originals/nextgen/puzzle_menu_lifecycle_regression-headless.log",
+      "bytes": 3084,
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98",
+      "git_blob": "adb5eca8ae5da6228ce71085a84300c26471351c"
+    },
+    {
+      "path": "selected-originals/nextgen/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "git_blob": "f32e4347b8fc9ecc5f2e3555977e628e9223ca13"
+    },
+    {
+      "path": "selected-originals/nextgen/puzzle_rotation_regression-headless.log",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "git_blob": "aea567f1bad4a7577043682889e8c450fa5663d0"
+    },
+    {
+      "path": "selected-originals/nextgen/puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "git_blob": "dc08e72a340d1ac25e166d06eca8e93c5fa0b837"
+    },
+    {
+      "path": "selected-originals/nextgen/renderer-images.json",
+      "bytes": 5737,
+      "sha256": "afd509269facc5b0b5294c5952c0bf3093e730826994e95fc221da6c7a428182",
+      "git_blob": "68d32cf9466909f6f7d9c4c8e83a9fcde414d799"
+    },
+    {
+      "path": "selected-originals/nextgen/results.tsv",
+      "bytes": 2259,
+      "sha256": "e055b2d3ac43199e50b37b824bbcc84c75dc9aa683389478e898637f7c0b16d4",
+      "git_blob": "db0de72ce9ada78bbe039dc96745928e0b5fd30a"
+    },
+    {
+      "path": "selected-originals/nextgen/rhythm_tour_play_regression-headless.log",
+      "bytes": 600,
+      "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9",
+      "git_blob": "f384e4bff800f093fdc9d1506937684edf87c4fc"
+    },
+    {
+      "path": "selected-originals/nextgen/rhythm_tour_play_regression-rendered.log",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "git_blob": "e0c84933eba2d8ae0c81f0d5a8899c1356fd76c1"
+    },
+    {
+      "path": "selected-originals/nextgen/rhythm_tour_regression-headless.log",
+      "bytes": 582,
+      "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b",
+      "git_blob": "f8758688f3cccde8c297793e95b7e20078e957c1"
+    },
+    {
+      "path": "selected-originals/nextgen/safe-area-images.json",
+      "bytes": 2878,
+      "sha256": "b75a99c4426af708d5644efe4b3ab39ccae17564a316ce710edc4f0821c907a6",
+      "git_blob": "08394e5df50271c957fb21c61a2d85b5194eb70d"
+    },
+    {
+      "path": "selected-originals/nextgen/source-dirty.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "selected-originals/nextgen/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/nextgen/source-tree.txt",
+      "bytes": 41,
+      "sha256": "122d0e394011ba9f31789e878a341007551f7886c78a54bf06272be31c0ee9a6",
+      "git_blob": "89355489a63529cc2cb058a7c5159c8644d36116"
+    },
+    {
+      "path": "selected-originals/nextgen/studio-2020-images.json",
+      "bytes": 13986,
+      "sha256": "90e613fe0e89df4a17d8edc88dc97e95eb7fbd13fc02e33c4f6eeb27638d4708",
+      "git_blob": "056341c7dfd1854168442bd4cdbf72b965271888"
+    },
+    {
+      "path": "selected-originals/nextgen/treasure-title-images.json",
+      "bytes": 1282,
+      "sha256": "e3ece3df323daeabb7995742622a87dd2d36c9a56df4fb88a03a19d63a10e3ab",
+      "git_blob": "7851db84f9e0b2d542526c61e4f1484770c06030"
+    },
+    {
+      "path": "selected-originals/nextgen/treasure_exploration_regression-headless.log",
+      "bytes": 589,
+      "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e",
+      "git_blob": "c8146adee3e0045b27b144aa8cf07ca70b795f45"
+    },
+    {
+      "path": "selected-originals/nextgen/treasure_exploration_regression-rendered.log",
+      "bytes": 1236,
+      "sha256": "d3ab6703a5a6d829268ef78107f2ae5a7a7c05be21eaf44bceb9c4c04d4adbba",
+      "git_blob": "f29e0e5a8ff25a35bf41749428de181b3a07d06f"
+    },
+    {
+      "path": "selected-originals/nextgen/treasure_title_contrast_regression-rendered.log",
+      "bytes": 3669,
+      "sha256": "e715acf96478f26498f6fef6acbb0a04fb41680ef43b154addcdade4003a04f4",
+      "git_blob": "831a4bad0e10708fafdb8c278bda8b03ee872df4"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/bauwelt_identity_2013_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 586,
+      "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886",
+      "git_blob": "de5ae7a33ce27ca13aa7ea5bc2b6a4f0f4b0daf0"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_frontier_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 617,
+      "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b",
+      "git_blob": "62b304c84cdec71cf36ebe3ff70aa9dd3253a351"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_nextgen_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 687,
+      "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654",
+      "git_blob": "0c956e3d796ca6dd2810db4de9577c3d4b3c23e6"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_nextgen_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1328,
+      "sha256": "11e1f0f8ec7edccbfd6d9641b8b733a1de383eb79b1c1dc4daf9140e193ebfcf",
+      "git_blob": "7443a792dd10825435a217b354d70f5fc80c86ba"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_settlement_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2069,
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a",
+      "git_blob": "83fe16fae0f5691b51308a0175fffd0deb966e18"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_settlement_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2710,
+      "sha256": "92cd913d52a3fa3cfb89e028415035981f6e99bdaba475e2f26a4a4a0e805590",
+      "git_blob": "240ce0f1c3188bb50f8ff2a11378d7289b415860"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_settlement_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 537,
+      "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09",
+      "git_blob": "f7e7d5d85bdf778f34511d2e3429d9142742fdd7"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_transform_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 565,
+      "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993",
+      "git_blob": "a809519d49f229db2485e4cb3cecc9c027e3d7de"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_village_art_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 507,
+      "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8",
+      "git_blob": "a5320694e1fce243c76f850b306aa0f20c1b8582"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_village_economy_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 628,
+      "sha256": "1381f36239164a4b77f21050c2619cb4dbcba281571419ed6cbe544db824c1bb",
+      "git_blob": "535e00e4717b2eb4d2519b92b5238e28decf3e9b"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_village_scene_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1618,
+      "sha256": "909f4ac47fbf7dbb8e2db379aed07ea1527d6c1d9d92e3a48078bd1bc27e732d",
+      "git_blob": "5f7e40418d0a51828319a91053dcfbe6ea516e35"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/build_village_scene_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2259,
+      "sha256": "bf55e0b0907b9ad2e38200d704671f387b1acbeaf7b4e99c0c1fb25c77fd70d1",
+      "git_blob": "fc2b5f77f2de49adacb038e6b7f0e8ea9c6f8f3b"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/cards_safe_area_android_contract-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 553,
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04",
+      "git_blob": "32d492b0d1614577e839f90915104bc3823fd816"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/cards_safe_area_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 532,
+      "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177",
+      "git_blob": "89ac7c1f16d898f3d2c3d487eba20dbe3b24f768"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/cards_safe_area_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1173,
+      "sha256": "f889d197a0e01148f229cc95335906220e8f807c33e23b7982c84412110061d7",
+      "git_blob": "46267a834f693bafbe2ba7e0a5f0821c231e5c9f"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/cards_table_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1156,
+      "sha256": "d28154e12b864cf9b7d98da980bd86cb648fc0487abe9f8a07b8d9252f6386c2",
+      "git_blob": "1987f8c32b713cb5266460adf90de2d76c218092"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/cards_table_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 583,
+      "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab",
+      "git_blob": "a67596289c9f6e0e9c13246d5aa9769e5e1051b7"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/connect_four_visual_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1170,
+      "sha256": "cf0cc8ec8fdf48a5eb55630a7b15e2661297d1e31db3e791f73efd2226508e49",
+      "git_blob": "05aadf8fd80540b2c4d720b4d91206dcec155f1a"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/creative_nextgen_environment_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 592,
+      "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e",
+      "git_blob": "07dca06fcc9fcfad02598082f814dd32dbc277eb"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/creative_nextgen_environment_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1233,
+      "sha256": "4ffbe8ce4abd7e8b4612ad3b4552838951864426ca7ba7a410c0385360953fb2",
+      "git_blob": "bd28175c6dae484bee0bccd82224e2d34413d9fe"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/jump_expeditions_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2760,
+      "sha256": "f5b49f003ab7a8245417454a5ff22351f71ae3209ea5b1882951805f5ffe92f9",
+      "git_blob": "93f0f06d6b1b2fc8255fcf8bf76de64dd0407a32"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/jump_nextgen_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1721,
+      "sha256": "82514bc41e424ce87553424d14aba2727375e9e7704b38bc834718cd3f383ad3",
+      "git_blob": "d6dba35927adc0bc19b330c6357dfcb02256ef33"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/jump_nextgen_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1997,
+      "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444",
+      "git_blob": "fddee704870eeaca1da6744f2e5eea7fe0cb8612"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/kart_nextgen_garage_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 734,
+      "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab",
+      "git_blob": "bad5c03b84bc7ee62f1a3f895093cbff5f09b12b"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/kart_nextgen_garage_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1377,
+      "sha256": "d484ceb661ccbefe2256d548f25622bd03ba2fbac1ff59d8b9acc85a16097ea9",
+      "git_blob": "153f320f2bc1259459a36d7daa09b7ba50639fa8"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/kart_player_full_route_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 21726,
+      "sha256": "b326bf78ba20193239f5242c89d1b2dccf5856f28caa700c7b267b15ad13c580",
+      "git_blob": "611a9e7e9ae1cfb44aec12c7e70f80cd2ca1a073"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/kart_track_pass_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1076,
+      "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955",
+      "git_blob": "7c880b4a83a1fbbd7c5db626f40d94930509e31c"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/learning_host_payload_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 561,
+      "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6",
+      "git_blob": "f383abdb67a69003ff38758e0787f2b953f42ed7"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/learning_sharing_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3500,
+      "sha256": "b08934b581136c66c680c39a164d2f2c476d4324b5dbd965a8670189a1f7e3bb",
+      "git_blob": "12c212e06e1c745b6109620f5b8afb5c76ccdff8"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/learning_sharing_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340",
+      "git_blob": "732d54f13499cd10ebc00935e394aac578658904"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/learning_studio_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1805,
+      "sha256": "bf54a175b9ceb89caf12f2268be19f6766169138d7ae4bfc5b633e377b522343",
+      "git_blob": "30c7b738433cfa79bb22bb89dba214e5ca98e654"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/learning_world_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 8465,
+      "sha256": "dd33a221acb036ef074322676c17f3a2c4b389c85b3aee8351169c313d58396e",
+      "git_blob": "d0eb05defb3dc1e0b596b2a4cb92ccd29b6e958c"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/learning_world_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 10599,
+      "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb",
+      "git_blob": "01f4eeb866daca9984822b21a7135da890d60efb"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/lumo_65bone_walk_gait_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 572,
+      "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e",
+      "git_blob": "b06c80eb963d79653f8afa5eb0586168f7e0f726"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/lumo_facial_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1267,
+      "sha256": "33522e52a44a699361618904c984ce1117ab3cdc650e23475230a7fee505d5f1",
+      "git_blob": "8a3299ab33532ced999376f96583bd121d59ac47"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/lumo_facial_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 633,
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b",
+      "git_blob": "2374357756a7f9a2320bceb9c0533fa6b58a02b9"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/lumo_original_jump_visual_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 691,
+      "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43",
+      "git_blob": "4759604de66df40923c8d65041e1dceea0e74c92"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/lumo_studio_motion_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1196,
+      "sha256": "2bdcd3d18a853ec1befee4e03690cbb7bb01baceadb4d98983fe0a751450ba98",
+      "git_blob": "857b793f4d5a2dbbb6d0340198e0f4c0d5e72954"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/lumo_studio_motion_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 603,
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+      "git_blob": "d06b4aa8600722e4474cd7584db3ac81f134d1e4"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/lumo_teacher_pose_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 589,
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629",
+      "git_blob": "9afe1fa0218bcaeb55c301046a7a9507c10fd10f"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/mobile_safe_area_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 10230,
+      "sha256": "d2aeec1306568fae3b307608f326a934dafe40127433d5d77091d1db1cec406c",
+      "git_blob": "1183ead5c0bf44893f7f5a02dddcba8df9ce4d6a"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/mobile_safe_area_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 11435,
+      "sha256": "a3c1352b9e506af575cf51bdf0e1568497de68e8da1b229de04a89bfb5246319",
+      "git_blob": "6b2103cfcf844ede219912069e5349835bdbcec3"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_menu_lifecycle_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3084,
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98",
+      "git_blob": "adb5eca8ae5da6228ce71085a84300c26471351c"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_menu_lifecycle_regression-headless/godot/app_userdata/Lumo 3D/lumo_puzzle_puzzle_menu_lifecycle_640x360.json",
+      "bytes": 548,
+      "sha256": "11b1ff61013a5d3ae973f42bd0a3f5b23feb5a32faf39b59766cef9a6596c123",
+      "git_blob": "8c90323cb2135f442d9acf25b0ee453eda50dd76"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_menu_lifecycle_regression-headless/godot/app_userdata/Lumo 3D/lumo_puzzle_puzzle_menu_lifecycle_960x540.json",
+      "bytes": 548,
+      "sha256": "3f97ebf55020dfc715bef5c10ee136951d8372327fbbb3f731b18f25199e4215",
+      "git_blob": "67b5dc6783c750d0780157e8e83ce136f0d5fbb0"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_menu_lifecycle_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3727,
+      "sha256": "f9da89146f4ee9c2ce622a9953662894515e7544ee85e7739bddfb3b6fadf5c9",
+      "git_blob": "68cbec1bbd855db3a4d87c000471bccdefdb90a7"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_menu_lifecycle_regression-rendered/godot/app_userdata/Lumo 3D/lumo_puzzle_puzzle_menu_lifecycle_640x360.json",
+      "bytes": 562,
+      "sha256": "75521aa39cdc6ad005819cb9d3f406250d6c09ff8d533fc33d8305633a505fff",
+      "git_blob": "bfdbf345355aa98c488229cea620361adc995766"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_menu_lifecycle_regression-rendered/godot/app_userdata/Lumo 3D/lumo_puzzle_puzzle_menu_lifecycle_960x540.json",
+      "bytes": 552,
+      "sha256": "a00b51782ef7504360d25109fd4e97d8d3abe8ae55ceb9f06c2b03f16f32c44d",
+      "git_blob": "e02f8eb21f95159ba00c57566a1d6861a5f4a9b9"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_rotation_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "git_blob": "aea567f1bad4a7577043682889e8c450fa5663d0"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/puzzle_rotation_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1212,
+      "sha256": "8a1c3eb6d30f13d7f28cc509a44ca72a04f839d4c752c4bb2353ac66b7f51ecc",
+      "git_blob": "bfcbf1ea8074716afc5b46f92c837918f668f7a3"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/rhythm_tour_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 600,
+      "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9",
+      "git_blob": "f384e4bff800f093fdc9d1506937684edf87c4fc"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/rhythm_tour_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1241,
+      "sha256": "cc3936b5a0d4d79bbdce5cd750c6710d618974a57bc119440a7bfdee9e768155",
+      "git_blob": "4671457e55d0c5463a81022ea80afaaa1f6fb6f9"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/rhythm_tour_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 582,
+      "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b",
+      "git_blob": "f8758688f3cccde8c297793e95b7e20078e957c1"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/treasure_exploration_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 589,
+      "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e",
+      "git_blob": "c8146adee3e0045b27b144aa8cf07ca70b795f45"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/treasure_exploration_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1230,
+      "sha256": "9f1ca73a6e1e3115ec8825ad8cae84d5401adba4f0e4d85b5df432a2ee55e187",
+      "git_blob": "0bc8457286d20fdd4957611491d6a71db037894b"
+    },
+    {
+      "path": "selected-originals/nextgen/user-data/treasure_title_contrast_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3663,
+      "sha256": "ac8e8d17569185a67eb8f11b11cf86cd5e5ee089c15ebd8e6b55eae5fae98dbe",
+      "git_blob": "e458b2a479c3bf17b4c5a4c612494d3e4cb20d4d"
+    },
+    {
+      "path": "selected-originals/nextgen/village-images.json",
+      "bytes": 1010,
+      "sha256": "4002999a288a34418b0cdfe4a1dc5c53972d22a67081649928ae4cd5e31692bc",
+      "git_blob": "29cde0d16df180bfddbac7084c75d13c4f937b4c"
+    },
+    {
+      "path": "selected-originals/project.log",
+      "bytes": 6131,
+      "sha256": "2d6b03148c37199f78d2a55916dfa91b1f73a2362123270cc9e54b23622afe75",
+      "git_blob": "6832ded5fe2577ae0c0a69bcc5d1fa658f727577"
+    },
+    {
+      "path": "selected-originals/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/technical-art/engine.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "selected-originals/technical-art/kart_air_trick_regression.log",
+      "bytes": 496,
+      "sha256": "daf7039e71f62ed3fc00ec3f6d8663c42f83f63cb1ed6b27329ee8c0d9b2eff2",
+      "git_blob": "924424a86975e6d00c90a28e8e95a45f994a80a8"
+    },
+    {
+      "path": "selected-originals/technical-art/kart_garage_presentation_regression.log",
+      "bytes": 1502,
+      "sha256": "ba5e0cdba9674ea37191b8f44d513df91fc5c53f7cf85fd5af6716e68ae36f7a",
+      "git_blob": "0a175d9fa70ce7b90c8141031964707b0db0c08a"
+    },
+    {
+      "path": "selected-originals/technical-art/kart_harbor_race_hook_regression.log",
+      "bytes": 1383,
+      "sha256": "67dc0b1eb329385bf9ec27bf1220b1410f5556b386f695a043461ffc17feedb1",
+      "git_blob": "a450261eff56a74b3f5746ca09212b2be014d3a5"
+    },
+    {
+      "path": "selected-originals/technical-art/kart_sonnenhafen_streetfronts_regression.log",
+      "bytes": 1661,
+      "sha256": "d36e9e933970ad56bb374bfd132e0d0571a0e23e1f302e4c483fbc2abadae749",
+      "git_blob": "c8448dfca3bac975a693e37a2a36ed603594d8ac"
+    },
+    {
+      "path": "selected-originals/technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+      "bytes": 1149,
+      "sha256": "bd6d21fd57a6d22d7af0dc64baad93520df68c1b6f05e455c8134ef6c52771e6",
+      "git_blob": "a7591c587dfb1424e54887705ec7edf20fe254fe"
+    },
+    {
+      "path": "selected-originals/technical-art/lumo_attention_landing_regression.log",
+      "bytes": 1129,
+      "sha256": "5b3a48c81fa1cfbdf4b9e88d82a48c8d6647e01fe92b573617fc3cddd590fc94",
+      "git_blob": "dc9e0bec52792ac63c329df7f9576d69558153b1"
+    },
+    {
+      "path": "selected-originals/technical-art/lumo_gesture_contact_regression.log",
+      "bytes": 1235,
+      "sha256": "66981440a33c174f67b747fef9a40c6d35e238745afa176902eec1f8c4a7bff2",
+      "git_blob": "e2c56748242c7547daf133192788a41aaee18692"
+    },
+    {
+      "path": "selected-originals/technical-art/lumo_kart_tick_cadence_regression.log",
+      "bytes": 2099,
+      "sha256": "999c3f18cb45b3d42739d99ccd38c00cdf51092820fda5c2152334101faca732",
+      "git_blob": "fed36758621adb82581992b68ce6531ccd70cfd0"
+    },
+    {
+      "path": "selected-originals/technical-art/source-sha.txt",
+      "bytes": 41,
+      "sha256": "afe6d4cb819e63413a3d067ddd55bff222331703c05d5f41272b2915e2b4a3f5",
+      "git_blob": "a4af519d4609173d5bd750e256947792ee3eee80"
+    },
+    {
+      "path": "selected-originals/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 496,
+      "sha256": "daf7039e71f62ed3fc00ec3f6d8663c42f83f63cb1ed6b27329ee8c0d9b2eff2",
+      "git_blob": "924424a86975e6d00c90a28e8e95a45f994a80a8"
+    },
+    {
+      "path": "selected-originals/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.58.51.log",
+      "bytes": 1655,
+      "sha256": "863ef0d562c94139d12e49fc04b8699516110381e2c46cc6bda40f2758fa0e1e",
+      "git_blob": "f3e57de9aa4c3e97bd96c1895b614df50736369c"
+    },
+    {
+      "path": "selected-originals/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.58.55.log",
+      "bytes": 1129,
+      "sha256": "5b3a48c81fa1cfbdf4b9e88d82a48c8d6647e01fe92b573617fc3cddd590fc94",
+      "git_blob": "dc9e0bec52792ac63c329df7f9576d69558153b1"
+    },
+    {
+      "path": "selected-originals/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.58.56.log",
+      "bytes": 1235,
+      "sha256": "66981440a33c174f67b747fef9a40c6d35e238745afa176902eec1f8c4a7bff2",
+      "git_blob": "e2c56748242c7547daf133192788a41aaee18692"
+    },
+    {
+      "path": "selected-originals/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-14T14.59.12.log",
+      "bytes": 1496,
+      "sha256": "db1f8ef357639724ecad4048edf8e0a1f75f2df16967704d33791655514d462b",
+      "git_blob": "0b62ba87bc7eb7f08e36095810ede8a8e02d2d95"
+    },
+    {
+      "path": "selected-originals/technical-art/user-data/godot/app_userdata/Lumo 3D/lumo-attention-landing.json",
+      "bytes": 683,
+      "sha256": "cdba25b6e5dabc3bd38ebfde4797b7dbd02a88685bf5fad59562c716ba93ad5d",
+      "git_blob": "b98550a045f1fb872224ad854de3efa67d67528f"
+    },
+    {
+      "path": "selected-originals/technical-art/user-data/godot/app_userdata/Lumo 3D/lumo-kart-tick-cadence.json",
+      "bytes": 1834,
+      "sha256": "9ca51d7311dd293f78ed6dfe6a775bc24c785f33a692f159b3896f2c6ed2f867",
+      "git_blob": "9e24848e390e87fca1c4a30b82050ef5b0697089"
+    },
+    {
+      "path": "source-file-index.json",
+      "bytes": 156649,
+      "sha256": "9c22cefe686576382ae48e4725e20a84da140e8ac152ba2423fd08c1dda3e9b1",
+      "git_blob": "cda814a30643818def23ab6c87dc4ca9b56dea7d"
+    },
+    {
+      "path": "transport-publication-scan.json",
+      "bytes": 264,
+      "sha256": "2f358334d938bc194c1fa55100bb777b7f771f9665b7be34d7ffee8ac560e0ea",
+      "git_blob": "ac4402eca904afd540e5a46e6a0234978fbe74e5"
+    },
+    {
+      "path": "verification-executions.json",
+      "bytes": 1005,
+      "sha256": "a203116b92aff5f836e5b9491a6ee9e68af818855db4b98040291cce87c20657",
+      "git_blob": "976d9b0fcc761cc4ac70e3e2ef0f42d30ef07e0d"
+    },
+    {
+      "path": "verify_original_archive.py",
+      "bytes": 7132,
+      "sha256": "def434bae6c3775fb4821173eb232bdb37a9c1eae0c6fff5b6e4176c138b2702",
+      "git_blob": "3519e2a135083600e089d42090ec2c45c2256f7b"
+    },
+    {
+      "path": "zip-member-inventory.json",
+      "bytes": 2780658,
+      "sha256": "2edf6ed1ef3aa21655ff1c99f7b1ee17a762c9e6e3e0ccf646338c8557062783",
+      "git_blob": "b6520fb0186644a5d35b055eb522f97be47dd933"
+    }
+  ]
+}
