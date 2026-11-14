@@ -141,11 +141,10 @@ APPROVED = {
     # This approves source identity only. Fresh native renderer review, APK,
     # Android integration and preserved 2017 upgrade remain mandatory.
     2019: "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
-    # 2020: reviewed C4, original-Lumo facial and Treasure source, paired
-    # with the installed PCM envelope and acknowledged Android return retry.
-    # The independent return regression is green; fresh 52-mode native, Android
-    # and preserved-update gates remain mandatory. This binds source identity.
-    2020: "6ecc560ea16202b935c4f1d32b08b93cda358e02",
+    # 2020: combined C4 return retry, facial, Treasure, Dream and minimap source.
+    # This entry binds source identity only. Fresh 52-mode and Dream renderer
+    # gates, Android integration and preserved-update acceptance remain mandatory.
+    2020: "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

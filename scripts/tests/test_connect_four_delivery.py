@@ -522,6 +522,209 @@ class NativeSeventeenRasterTests(unittest.TestCase):
             with self.subTest(text=wrong), self.assertRaises(ValueError): delivery.checked_native_runner_log(path)
 
 
+class DreamRequiredStepTests(unittest.TestCase):
+    def test_missing_duplicate_or_skipped_dream_step_cannot_hide_in_a_successful_build(self):
+        binding, run, pull, jobs, _ = fixture()
+        build = next(row for row in jobs['jobs'] if row['name'] == 'verify-and-build')
+        original = copy.deepcopy(build['steps'])
+        step = next(row for row in original if row['name'] == delivery.DREAM_STEP)
+        variants = [
+            [row for row in original if row['name'] != delivery.DREAM_STEP],
+            original+[step],
+            [{**row, 'conclusion': 'skipped'} if row['name'] == delivery.DREAM_STEP else row
+             for row in original],
+            [{**row, 'conclusion': 'failure'} if row['name'] == delivery.DREAM_STEP else row
+             for row in original],
+        ]
+        for changed in variants:
+            build['steps'] = changed
+            with self.subTest(steps=changed), self.assertRaises(ValueError):
+                delivery.checked_jobs(run, jobs, pull, binding, 999)
+
+    def test_workflow_keeps_exact_pin_fresh_output_and_absolute_python_after_native_gate(self):
+        text = (ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
+        build = job_block(text, 'verify-and-build')
+        begin = build.index('      - name: '+delivery.DREAM_STEP+'\n')
+        end = build.index('      - uses: actions/upload-artifact@v4\n', begin)
+        step = build[begin:end]
+        self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), begin)
+        self.assertLess(end, build.index('      - name: Build unified real Android APK'))
+        self.assertIn('    timeout-minutes: 90\n', build)
+        self.assertIn('set -euo pipefail', step)
+        self.assertIn('export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"', step)
+        self.assertLess(step.index('export PATH='), step.index('cd "$native_source"'))
+        self.assertLess(step.index('cd "$native_source"'), step.index('from PIL import Image'))
+        self.assertIn('native_source="$RUNNER_TEMP/lumo-native-acceptance"', step)
+        self.assertIn('native_logs="$GITHUB_WORKSPACE/acceptance-native"', step)
+        self.assertIn('dream_logs="$native_logs/dream"', step)
+        self.assertIn('test ! -e "$dream_logs" && test ! -L "$dream_logs"', step)
+        self.assertNotIn('mkdir "$dream_logs"', step)
+        self.assertIn('rev-parse HEAD)" = "$native_revision"', step)
+        self.assertIn('LUMO_EXPECTED_NATIVE_SHA="$native_revision"', step)
+        self.assertIn('LUMO_DREAM_LOG_DIR="$dream_logs"', step)
+        self.assertIn('bash tools/validate_dream_connections.sh', step)
+        self.assertIn(delivery.DREAM_VERIFIER_SHA256, step)
+        self.assertIn(delivery.DREAM_VERIFIER_BLOB, step)
+        self.assertLess(step.index('sha256sum -c -'), step.index('validate_dream_connections.sh'))
+        self.assertIn('dream-verifier-original.py', step)
+        self.assertIn('tee "$native_logs/dream-runner.log"', step)
+        upload = build[end:build.index('      - name: Build unified real Android APK')]
+        self.assertIn('name: lumo-candidate-pinned-native-gameplay', upload)
+        self.assertIn('path: acceptance-native/', upload)
+        for forbidden in ('continue-on-error', '|| true', 'if: always()', 'git fetch', 'git checkout'):
+            self.assertNotIn(forbidden, step)
+
+
+class DreamOriginalBoundaryTests(unittest.TestCase):
+    """Host binding/copy boundaries; the Native decoder is explicitly simulated.
+
+    These tiny payloads are not renderer frames. The independently pinned Native
+    suite checks the real decoder; delivery must call that source with write=False.
+    """
+    ENGINE = '4.6.3.stable.official.7d41c59c4'
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.base = Path(self.temp.name)
+        self.logs, self.source = self.base/'originals', self.base/'source'
+        self.root = self.logs/'dream'; self.root.mkdir(parents=True)
+        (self.source/'tools').mkdir(parents=True)
+        self.helper = self.source/'tools/verify_dream_rasters.py'
+        self.helper_bytes = b'# Explicit synthetic source-binding fixture; never executed.\n'
+        self.helper.write_bytes(self.helper_bytes)
+        self.preserved = self.logs/'dream-verifier-original.py'
+        self.preserved.write_bytes(self.helper_bytes)
+        self.helper_sha = hashlib.sha256(self.helper_bytes).hexdigest()
+        self.helper_blob = hashlib.sha1(b'blob '+str(len(self.helper_bytes)).encode()+b'\0'+self.helper_bytes).hexdigest()
+        def member(relative):
+            path = self.root/relative; path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(('Explicit synthetic transport fixture: '+relative+'\n').encode())
+            return {'path': relative, **delivery.record(path)}
+        self.original = {
+            'schema': 1, 'native_source': 'b'*40, 'native_tree': 'c'*40,
+            'engine': self.ENGINE, 'physical_android_fps_measured': False,
+            'probes': [member('synthetic-'+str(i)+'.log') for i in range(5)],
+            'source_stamps': [member('source-'+name+'.txt') for name in
+                              ('sha', 'sha-after', 'tree', 'tree-after', 'dirty', 'dirty-after')],
+            'source_inventories': [member('source-inventory-'+phase+'.json') for phase in ('before', 'after')],
+            'results': member('results.tsv'),
+            'original_pngs': [member('captures/synthetic-'+str(i)+'.png') for i in range(7)],
+            'original_reports': [member('captures/synthetic-'+str(i)+'.json') for i in range(2)],
+        }
+        self.manifest = self.root/'dream-images.json'
+        self.manifest.write_text(json.dumps(self.original))
+        self.runner = self.logs/'dream-runner.log'
+        self.runner.write_text('\n'.join(delivery.DREAM_RUNNER_MARKERS)+'\n')
+
+    def check(self, *, fresh=None, committed=None, effect=None):
+        self.replay = mock.Mock(return_value=self.original if fresh is None else fresh, side_effect=effect)
+        self.loader = mock.Mock(return_value=SimpleNamespace(ENGINE=self.ENGINE, verify=self.replay))
+        with mock.patch.multiple(delivery, DREAM_VERIFIER_SHA256=self.helper_sha,
+                                 DREAM_VERIFIER_BLOB=self.helper_blob), \
+             mock.patch.object(delivery.subprocess, 'check_output',
+                               return_value=(self.helper_blob if committed is None else committed)+'\n') as git, \
+             mock.patch.object(delivery, 'native_module', self.loader):
+            result = delivery.checked_native_dream(self.logs, self.source, 'b'*40, 'c'*40)
+        git.assert_called_once_with(['git', 'rev-parse', 'b'*40+':tools/verify_dream_rasters.py'],
+                                    cwd=self.source, text=True)
+        self.loader.assert_called_once_with(self.source, 'verify_dream_rasters.py')
+        self.replay.assert_called_once_with(self.root, write=False)
+        return result
+
+    def test_real_approved_reader_identity_is_fixed_before_any_dynamic_import(self):
+        self.assertEqual(delivery.DREAM_VERIFIER_SHA256,
+                         'f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d')
+        self.assertEqual(delivery.DREAM_VERIFIER_BLOB, 'da8eed7d6383fcbc82a03596518a5fcc3b9a00c5')
+        with mock.patch.object(delivery, 'native_module') as load, self.assertRaises(ValueError):
+            delivery.checked_native_dream(self.logs, self.source, 'b'*40, 'c'*40)
+        load.assert_not_called()
+
+    def test_complete_original_binding_uses_readonly_checkout_reader_without_mutating_bytes(self):
+        before = {p.relative_to(self.base).as_posix(): p.read_bytes()
+                  for p in self.base.rglob('*') if p.is_file()}
+        result = self.check()
+        self.assertEqual((result['probe_modes'], result['png_count'], result['report_count']), (5, 7, 2))
+        self.assertEqual(result['source'], 'b'*40)
+        self.assertEqual(result['tree'], 'c'*40)
+        self.assertEqual(result['recomputed_evidence'], self.original)
+        self.assertEqual(result['verifier']['sha256'], self.helper_sha)
+        self.assertEqual(result['complete_runner_log']['sha256'], delivery.digest(self.runner))
+        self.assertEqual(before, {p.relative_to(self.base).as_posix(): p.read_bytes()
+                                 for p in self.base.rglob('*') if p.is_file()})
+
+    def test_changed_missing_or_wrong_committed_reader_is_rejected_before_import(self):
+        for path in (self.helper, self.preserved):
+            path.write_bytes(self.helper_bytes+b'changed')
+            with self.subTest(path=path), self.assertRaises(ValueError): self.check()
+            self.loader.assert_not_called()
+            path.unlink()
+            with self.subTest(missing=path), self.assertRaises(ValueError): self.check()
+            self.loader.assert_not_called()
+            path.write_bytes(self.helper_bytes)
+        with self.assertRaises(ValueError): self.check(committed='d'*40)
+        self.loader.assert_not_called()
+
+    def test_matching_but_foreign_or_reduced_manifests_cannot_authorize_the_current_pin(self):
+        changes = [{'native_source': 'd'*40}, {'native_tree': 'd'*40}, {'engine': '4.5.stable'},
+                   {'probes': self.original['probes'][:-1]},
+                   {'original_pngs': self.original['original_pngs'][:-1]},
+                   {'original_reports': self.original['original_reports'][:-1]},
+                   {'physical_android_fps_measured': True}]
+        for change in changes:
+            changed = {**self.original, **change}; self.manifest.write_text(json.dumps(changed))
+            with self.subTest(change=change), self.assertRaises(ValueError): self.check(fresh=changed)
+        self.manifest.write_text(json.dumps(self.original))
+
+    def test_fresh_decoder_difference_or_failure_is_not_overridden_by_a_stored_pass(self):
+        with self.assertRaises(ValueError): self.check(fresh={**self.original, 'changed_pairs': []})
+        with self.assertRaisesRegex(ValueError, 'actual corrupt PNG'):
+            self.check(effect=ValueError('actual corrupt PNG'))
+
+    def test_changed_missing_or_symlinked_original_is_rejected_before_replay(self):
+        path = self.root/self.original['original_pngs'][0]['path']; raw = path.read_bytes()
+        path.write_bytes(raw+b'changed')
+        with self.assertRaises(ValueError): self.check()
+        self.loader.assert_not_called()
+        path.unlink()
+        with self.assertRaises(ValueError): self.check()
+        path.symlink_to(self.preserved)
+        with self.assertRaises(ValueError): self.check()
+        path.unlink(); path.write_bytes(raw)
+
+    def test_duplicate_or_escaping_index_records_are_rejected_without_reading_other_files(self):
+        for relative in ('../escape', '/absolute', 'captures/../outside', './results.tsv'):
+            changed = copy.deepcopy(self.original)
+            changed['original_pngs'][0]['path'] = relative
+            self.manifest.write_text(json.dumps(changed))
+            with self.subTest(relative=relative), self.assertRaises(ValueError): self.check(fresh=changed)
+            self.loader.assert_not_called()
+        changed = copy.deepcopy(self.original)
+        changed['original_pngs'][0] = copy.deepcopy(changed['probes'][0])
+        self.manifest.write_text(json.dumps(changed))
+        with self.assertRaisesRegex(ValueError, 'duplicate Dream original path'): self.check(fresh=changed)
+        self.loader.assert_not_called()
+        self.manifest.write_text(json.dumps(self.original))
+
+    def test_complete_runner_requires_unique_endings_and_clean_post_pass_output(self):
+        original = self.runner.read_bytes()
+        variants = [b'', original.replace(delivery.DREAM_RUNNER_MARKERS[0].encode(), b''),
+                    original+delivery.DREAM_RUNNER_MARKERS[1].encode()+b'\n',
+                    original+b'ERROR: 2 resources still in use at exit\n',
+                    original+b'[ProbeRunner] timeout after 180s\n',
+                    original+b'[LumoDreamConnections] FAIL: rendered mode\n']
+        for raw in variants:
+            self.runner.write_bytes(raw)
+            with self.subTest(raw=raw[-80:]), self.assertRaises(ValueError): self.check()
+        self.runner.write_bytes(original)
+
+    def test_even_same_value_manifest_rewrite_by_a_decoder_is_rejected(self):
+        def mutate(*args, **kwargs):
+            self.manifest.write_bytes(self.manifest.read_bytes()+b'\n')
+            return self.original
+        with self.assertRaisesRegex(ValueError, 'changed original evidence'):
+            self.check(effect=mutate)
+
+
 class OriginalBundleTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)

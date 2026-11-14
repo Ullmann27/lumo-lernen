@@ -1,0 +1,86 @@
+Updating dfc3e0a..38c2fe8
+Updating files:  20% (1/5)Updating files:  40% (2/5)Updating files:  60% (3/5)Updating files:  80% (4/5)Updating files: 100% (5/5)Updating files: 100% (5/5), done.
+Fast-forward
+ CONTINUE.md                                        |   51 +-
+ STATUS.md                                          |   51 +-
+ config/godot-source.json                           |    2 +-
+ .../combined-workflow-delivery-review.json         |  170 +
+ .../math-exact-cumulative-20261114/EXECUTION.md    |   45 +
+ .../math-exact-cumulative-20261114/README.md       |    2 +
+ .../execution/dart-version.stderr.log              |    0
+ .../execution/dart-version.stdout.log              |    1 +
+ .../execution/execution.json                       |  454 +++
+ .../execution/host-source-binding.json             |  111 +
+ .../execution/original.stderr.log                  |    0
+ .../execution/original.stdout.log                  | 3916 ++++++++++++++++++++
+ .../execution/patched.stderr.log                   |    0
+ .../execution/patched.stdout.log                   |  195 +
+ .../execution/run_contract.py                      |  137 +
+ .../execution/summary.json                         |  153 +
+ .../quality-32e7-merge-20261114/LOCAL_EXECUTION.md |   15 +
+ .../local-execution/actionlint.log                 |    0
+ .../local-execution/actual-step-0.sh               |   11 +
+ .../local-execution/actual-step-1.sh               |    7 +
+ .../local-execution/actual-step-2.sh               |   30 +
+ .../local-execution/actual-step-3.sh               |   20 +
+ .../local-execution/combined-contracts.log         |  222 ++
+ .../local-execution/path-corrected/actionlint.log  |    0
+ .../path-corrected/actual-step-0.sh                |   11 +
+ .../path-corrected/actual-step-1.sh                |    7 +
+ .../path-corrected/actual-step-2.sh                |   30 +
+ .../path-corrected/actual-step-3.sh                |   20 +
+ .../path-corrected/combined-contracts.log          |  233 ++
+ .../local-execution/path-corrected/result.json     |  112 +
+ .../path-corrected/step-0-bash-n.log               |    0
+ .../path-corrected/step-1-bash-n.log               |    0
+ .../path-corrected/step-2-bash-n.log               |    0
+ .../path-corrected/step-3-bash-n.log               |    0
+ .../local-execution/result.json                    |  112 +
+ .../local-execution/run_check.py                   |   97 +
+ .../local-execution/run_check_path_corrected.py    |   99 +
+ .../local-execution/step-0-bash-n.log              |    0
+ .../local-execution/step-1-bash-n.log              |    0
+ .../local-execution/step-2-bash-n.log              |    0
+ .../local-execution/step-3-bash-n.log              |    0
+ .../native-minimap-binding.json                    |   28 +
+ scripts/tests/test_candidate_2011_pin.py           |    2 +-
+ scripts/verify_legacy_release_pin.py               |    2 +-
+ 44 files changed, 6341 insertions(+), 5 deletions(-)
+ create mode 100644 docs/evidence/incoming-32e-source-review-20261114/combined-workflow-delivery-review.json
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/EXECUTION.md
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/dart-version.stderr.log
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/dart-version.stdout.log
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/execution.json
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/host-source-binding.json
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/original.stderr.log
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/original.stdout.log
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/patched.stderr.log
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/patched.stdout.log
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/run_contract.py
+ create mode 100644 docs/evidence/math-exact-cumulative-20261114/execution/summary.json
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/LOCAL_EXECUTION.md
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/actionlint.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-0.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-1.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-2.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/actual-step-3.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/combined-contracts.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actionlint.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-0.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-1.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-2.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/actual-step-3.sh
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/combined-contracts.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/result.json
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-0-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-1-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-2-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/path-corrected/step-3-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/result.json
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/run_check.py
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/run_check_path_corrected.py
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/step-0-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/step-1-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/step-2-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/local-execution/step-3-bash-n.log
+ create mode 100644 docs/evidence/quality-32e7-merge-20261114/native-minimap-binding.json

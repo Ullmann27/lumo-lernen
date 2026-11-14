@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "host": "d826ce4e11879bc797f7d96c0a7e2c966e0773f7",
+  "tree": "7269a76137233bf16149e8fb89b612ba06a77668",
+  "started_at": "2026-11-14T11:12:12.299507+00:00",
+  "elapsed_seconds": 0.26475904100516345,
+  "exit_code": 0,
+  "expected_cases": 68,
+  "complete_output_confirms_68_passed": true,
+  "source_state_unchanged": true,
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "stderr": {
+    "bytes": 13215,
+    "sha256": "82abd512627d69054cb8b8c97c606cbb6dc8ee251d6c199fae608205c57e0849",
+    "git_blob": "6dd4db6bafa552147c2006fa87be199cf312b40c"
+  },
+  "scope": "One actual run: 24 candidate pin, 40 legacy pin, 3 real historical-wrapper boundary cases and the repaired one garage case; no engine or Android execution."
+}

@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2946,
+      "sha256": "e08fa48b3ac4ee95004ab350a37187e7a6cd679fa97077d88df0b75b114441b9"
+    },
+    {
+      "path": "after-source-binding.json",
+      "bytes": 295,
+      "sha256": "7bd5724814777d192a3103d372412a6f96229acfafa2af53dc1de84783ab5bd0"
+    },
+    {
+      "path": "before/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 43922,
+      "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa"
+    },
+    {
+      "path": "before/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 54097,
+      "sha256": "bd7637f769064c3cf13dd910c04b917cc90ad5c04b7b761021a5e0128f826b8a"
+    },
+    {
+      "path": "before/scripts/verify_connect_four_delivery.py",
+      "bytes": 51208,
+      "sha256": "b981836528b83c339e3e6fac16712786619905cb0159016f0a021ee447be6800"
+    },
+    {
+      "path": "before-manifest.json",
+      "bytes": 1287,
+      "sha256": "6019b9f3b6e70871c91992b31f9fb0d6489c06f54fbeacc1ce1c6f217a879e47"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 45539,
+      "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6"
+    },
+    {
+      "path": "final-source/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 66711,
+      "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b"
+    },
+    {
+      "path": "final-source/scripts/verify_connect_four_delivery.py",
+      "bytes": 56951,
+      "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82"
+    },
+    {
+      "path": "gate-contract.json",
+      "bytes": 3390,
+      "sha256": "7e2fdfeb355af314273e7c35d86ddfab968a1393151e925446dd2dc46f0e4887"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1088,
+      "sha256": "5444689b86ea3612a33c042afd25475a08aafb2518d4b33fe8026d02795005f8"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 23367,
+      "sha256": "0940b7949122174b5f4fbfc0db04594a48498f55de8025743707766457fb50d1"
+    },
+    {
+      "path": "reference/native-bd071225-jobs.original.json",
+      "bytes": 3263,
+      "sha256": "197c6c40982e494b422269defe021e2f4d1422a965965447674e66e06ff7b153"
+    },
+    {
+      "path": "reference/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 2444,
+      "sha256": "a10a751ac21164f0ef19979b75032f59b8af344651341bf7cffa12b827241a88"
+    },
+    {
+      "path": "static-source-review.json",
+      "bytes": 2025,
+      "sha256": "200f9be28e40b8adc6462f6a3ce1cb9161aca8705935c00bb8ef3baf3adc9767"
+    }
+  ],
+  "total_bytes": 378787,
+  "source_files": 3,
+  "status": "FROZEN_SOURCE_ONLY_NOT_TESTED"
+}

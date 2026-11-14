@@ -54,6 +54,13 @@ ADDITIONAL_NATIVE_LOGS = {
     'treasure_wisps': ('wisps.log', '[TreasureWisp] PASS checks=14', 14),
 }
 ADDITIONAL_ENGINE_BANNER = 'Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org'
+DREAM_STEP = 'Require actual Dream gates on the exact pinned native source'
+DREAM_VERIFIER_SHA256 = 'f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d'
+DREAM_VERIFIER_BLOB = 'da8eed7d6383fcbc82a03596518a5fcc3b9a00c5'
+DREAM_RUNNER_MARKERS = (
+    '[DreamRasterRoster] PASS 7 actual PNG files and 2 original reports',
+    '[LumoDreamConnections] PASS 5 original probes and 7 verified renderer PNGs',
+)
 REQUIRED_STEPS = {
     'connect-four-runtime': (
         'Import the exact configured native source in its own directory',
@@ -72,6 +79,7 @@ REQUIRED_STEPS = {
         'Code-level Android probe regression with verified image dependencies',
         'Require actual gameplay gates on the exact pinned native source',
         'Require acknowledged Connect Four return retry',
+        DREAM_STEP,
         'Build unified real Android APK',
         'Verify APK archive and collect reproducible source hashes',
         'Upload exact candidate (no release or synthetic screenshots)',
@@ -526,9 +534,10 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
             rosters[manifest] = record(root/manifest)
     before = checked_native_extension(root, source, revision, tree)
     rosters['studio-2020-images.json'] = before
+    dream = checked_native_dream(logs, source, revision, tree)
     return {'source': revision, 'tree': tree, 'core_modes': 52, 'mode_logs': proofs,
             'complete_runner_log': runner_record,
-            'original_rosters': rosters,
+            'original_rosters': rosters, 'dream': dream,
             'scope': 'Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim'}
 
 
@@ -547,6 +556,86 @@ def checked_native_extension(root: Path, source: Path, revision: str, tree: str)
             and len(fresh.get('movies', [])) == 1,
             'The original new 2020 face/C4/treasure raster/movie evidence differs')
     return before
+
+
+def checked_native_dream(logs: Path, source: Path, revision: str, tree: str) -> dict:
+    """Recompute Dream originals with the exact approved committed reader."""
+    helper = regular(source/'tools/verify_dream_rasters.py')
+    preserved = regular(logs/'dream-verifier-original.py')
+    helper_record, preserved_record = record(helper), record(preserved)
+    require(helper_record['sha256'] == DREAM_VERIFIER_SHA256
+            and preserved_record == helper_record,
+            'Dream reader or its preserved original differs from the approved bytes')
+    helper_bytes = helper.read_bytes()
+    blob = hashlib.sha1(b'blob '+str(len(helper_bytes)).encode()+b'\0'+helper_bytes).hexdigest()
+    committed_blob = subprocess.check_output(
+        ['git', 'rev-parse', revision+':tools/verify_dream_rasters.py'], cwd=source, text=True).strip()
+    require(blob == committed_blob == DREAM_VERIFIER_BLOB,
+            'Dream reader is not the exact approved blob in the pinned Native source')
+    root = logs/'dream'
+    require(root.is_dir() and not root.is_symlink(), 'Original Dream evidence directory required')
+    manifest = regular(root/'dream-images.json')
+    manifest_record = record(manifest)
+    original = read(manifest)
+    require(type(original) is dict, 'Original Dream manifest must be an object')
+    references = []
+    for key in ('probes', 'source_stamps', 'source_inventories', 'original_pngs', 'original_reports'):
+        require(type(original.get(key)) is list, 'Missing Dream original index: '+key)
+        references.extend(original[key])
+    references.append(original.get('results'))
+    originals = {}
+    for row in references:
+        require(type(row) is dict and type(row.get('path')) is str,
+                'Invalid Dream original file record')
+        relative = row['path']
+        name = PurePosixPath(relative)
+        require(name.parts and not name.is_absolute() and '..' not in name.parts
+                and str(name) == relative and relative not in originals,
+                'Unsafe or duplicate Dream original path')
+        path = root
+        for component in name.parts:
+            path = path/component
+            require(not path.is_symlink(), 'Symlink Dream original path')
+        expected = {'bytes': row.get('bytes'), 'sha256': row.get('sha256')}
+        require(type(expected['bytes']) is int and expected['bytes'] >= 0
+                and type(expected['sha256']) is str
+                and re.fullmatch(r'[a-f0-9]{64}', expected['sha256']) is not None
+                and record(path) == expected,
+                'Original Dream member differs from the stored index: '+relative)
+        originals[relative] = expected
+    runner = regular(logs/'dream-runner.log')
+    runner_record = record(runner)
+    runner_text = runner.read_bytes().decode('utf-8')
+    require(all(runner_text.splitlines().count(marker) == 1 for marker in DREAM_RUNNER_MARKERS)
+            and not ERROR_LINE.search(runner_text)
+            and not re.search(r'\[ProbeRunner\] (?:FAIL|timeout)|\[DreamRasterRoster\] FAIL|'
+                              r'\[LumoDreamConnections\] FAIL', runner_text),
+            'Original complete Dream runner failed or lacks its exact unique endings')
+    # Execute the hash-bound checkout source, never executable bytes supplied
+    # by the downloaded artifact. The preserved copy is evidence only.
+    verifier = native_module(source, 'verify_dream_rasters.py')
+    fresh = verifier.verify(root, write=False)
+    require(fresh == original and fresh.get('schema') == 1
+            and fresh.get('native_source') == revision and fresh.get('native_tree') == tree
+            and fresh.get('engine') == verifier.ENGINE
+            and len(fresh.get('probes', [])) == 5
+            and len(fresh.get('original_pngs', [])) == 7
+            and len(fresh.get('original_reports', [])) == 2
+            and fresh.get('physical_android_fps_measured') is False,
+            'The original five-mode/seven-image/two-report Dream replay differs from this Native pin')
+    require(record(manifest) == manifest_record and record(runner) == runner_record
+            and record(helper) == helper_record and record(preserved) == preserved_record
+            and all(record(root/path) == identity for path, identity in originals.items()),
+            'Dream replay changed original evidence or its approved reader')
+    return {'status': 'PASS', 'source': revision, 'tree': tree,
+            'probe_modes': 5, 'png_count': 7, 'report_count': 2,
+            'verifier': {'source_path': 'tools/verify_dream_rasters.py', 'git_blob': blob,
+                         **helper_record, 'preserved_path': 'dream-verifier-original.py'},
+            'original_manifest': {'path': 'dream/dream-images.json', **manifest_record},
+            'complete_runner_log': {'path': 'dream-runner.log', **runner_record},
+            'original_files': {'dream/'+path: identity for path, identity in originals.items()},
+            'recomputed_evidence': fresh,
+            'scope': 'Five additional pinned-source desktop Dream probes and seven decoded original PNGs; no human visual receipt, Android or FPS claim'}
 
 
 def checked_additional_native_logs(runtime: Path) -> dict:
@@ -678,6 +767,7 @@ def prepare(args) -> dict:
         'Original acceptance run: https://github.com/'+REPOSITORY+'/actions/runs/'+str(args.build_run)+'\n\n'
         'All current Flutter/build contracts, the current 236-family/7552-sample structural learning audit, '
         '52 native modes with 17 additional face/C4/treasure rasters and movie, '
+        'five additional Dream modes with seven original renderer PNGs and two reports, '
         'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return and 2017→2020 preservation '
         'passed and their originals were rechecked before this new version was published.\n'
         'The learning audit is not semantic or official curriculum approval. '

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T10:59:51.390Z",
+  "host": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "run": 43583493817,
+  "attempt": 1,
+  "failed_job": 132414225517,
+  "run_conclusion": "failure",
+  "original_job": {
+    "bytes": 594705,
+    "sha256": "c65d4a00670432b38f0da96e3dfafde724cc1a86b859ed52937f0519ed31291c",
+    "git_blob": "b3131ce8197ea47fa14930d0f928e1e6f3beb279"
+  },
+  "actual_full_flutter": {
+    "passed": 2581,
+    "failed": 0,
+    "skipped": 0,
+    "directory_pngs": 545,
+    "standalone_pngs": 1,
+    "total_runner_reported_pngs": 546,
+    "full_capture_archive_downloaded": false
+  },
+  "actual_build_contracts": {
+    "run": 845,
+    "passed": 845,
+    "failed": 0,
+    "errors": 0,
+    "seconds": 351.54
+  },
+  "actual_android_qa": {
+    "run": 938,
+    "passed": 937,
+    "failed": 1,
+    "errors": 0,
+    "seconds": 120.671,
+    "failed_case": "CurrentGarageProbeWiringTests.test_continue_requires_touch_then_physical_drive_and_retains_original_evidence",
+    "reason": "The strict existing kwargs assertion omitted the already implemented standalone_caption=True."
+  },
+  "original_build_contract_archive": {
+    "id": 14110555892,
+    "bytes": 26349,
+    "sha256": "3144fc7190e1b8ee46a17c26dbf0693ffa91eaf81a566bd9e44fbf23fb13f0e8",
+    "actual_local_crc_roundtrip_before_outage": true,
+    "members": [
+      "build-contracts.log"
+    ],
+    "binary_now_in_local_unavailable_environment": true
+  },
+  "local_metadata_preparation_correction": "An initial metadata assertion summed only directory PNG counts (545). It was corrected to include the original standalone trophy PNG; the original reported total remains 546. Both local scripts and the failure receipt had been retained before the environment became unavailable.",
+  "new_apk": false,
+  "android_acceptance": false,
+  "new_release": false
+}
