@@ -1,0 +1,726 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T08:06:54.552009+00:00",
+  "state": "SOURCE_FROZEN_BEFORE_ROOT_CHECKPOINT_AND_TESTS",
+  "base_host": "b394cd4f73cc4ab3d2e818aa94c0a10b26a55b9e",
+  "base_tree": "0fd0d967b76d152ebb8d72a1b534703b22ce7d7f",
+  "source_file_count": 47,
+  "files": [
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 79134,
+        "sha256": "a8246afe23edf8de01929af91839bc204e72a55187c84d6ed48ae3c5446541b0",
+        "git_blob": "cdd56d07f476526cf1b77c9f14a12bd10f8992d2"
+      },
+      "after": {
+        "bytes": 79294,
+        "sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28",
+        "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f"
+      },
+      "origin_stages": [
+        "jump-recovered"
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before": {
+        "bytes": 41022,
+        "sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3",
+        "git_blob": "53c8907aa05880198879973781a2ae05274d0792"
+      },
+      "after": {
+        "bytes": 42281,
+        "sha256": "38f558a1e3c1f40f89f84879b229f3d5400f9d4e761f5474fd621b064d5407a8",
+        "git_blob": "83546f7e1fed0ce6943128167aada51a73ee0251"
+      },
+      "origin_stages": [
+        "c4-followup"
+      ]
+    },
+    {
+      "path": ".github/workflows/lumo-learning-curriculum-audit.yml",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1262,
+        "sha256": "1000ec720946e0d454a22db77ffdb07ac46f72b1381ac7a27d5c5a69aefd28af",
+        "git_blob": "0bf54fe2224a74d383d3929afd56d8cd04169e7a"
+      },
+      "origin_stages": [
+        "curriculum-original"
+      ]
+    },
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 82516,
+        "sha256": "4144ec9a7d033f23d4dc0892fe075ec3ef4155ef11910f93846cc42f0c01b882",
+        "git_blob": "54ed4481135b5938f92c927b95ea68d256e12805"
+      },
+      "after": {
+        "bytes": 83708,
+        "sha256": "8e9bc1c05ca8d5293abb3fd694dcfb2048f3700be21c46fd829b98985ce1d400",
+        "git_blob": "fd577a04dd677bdfa41d3e61763cfc3f2cb39430"
+      },
+      "origin_stages": [
+        "curriculum-original"
+      ]
+    },
+    {
+      "path": "scripts/android_console_transport.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 20839,
+        "sha256": "d0344469bdb68cc2927ffac7f715dd52c73c6730fd7e56fd946f486f2d931cca",
+        "git_blob": "6b72da4c3c49891d70d1f6bc51339dc3efb9559f"
+      },
+      "after": {
+        "bytes": 21029,
+        "sha256": "6e7c6572f2482f232880facb2b9b28cac5cf281eb98643fcf818812700557785",
+        "git_blob": "f0160eb3ba7f344e73547293ceb736d70b88c8b8"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 51307,
+        "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f",
+        "git_blob": "54438587d4f18ed3496205fd0c043ce8c3cf332f"
+      },
+      "after": {
+        "bytes": 60327,
+        "sha256": "d1dcf55c0a4c64a1eb1b2ea51abdb6ce87da71e17a82716c562f2c14fd80e102",
+        "git_blob": "884adc1b6422f901d6c386f608d59b2a0386b19c"
+      },
+      "origin_stages": [
+        "diagnostics",
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/host/command.stdin",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 2566,
+        "sha256": "33fb61fdacce36fcaf3fccbb7ac00bf5ea7a2664dd6fb730cbaeb5bb4d003713",
+        "git_blob": "90b5408eab1ae6c3ec47b96b28e3107cd35bc697"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/host/config.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 415,
+        "sha256": "3f82a946ee0ddf5ddb7dddc766f01aa630aa96f0828e47fd10c6bbb2aa0a8d04",
+        "git_blob": "24e242240250572006132f527745e0c3a3333359"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/host/finished.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1448,
+        "sha256": "dce97cb77517e16e5709f5e810737d3bf68805f1b7c5b7ba54962d2508e30648",
+        "git_blob": "f689e020732cf1a230378b648c79783b35acada2"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/host/program.sh",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1738,
+        "sha256": "fcb9eb0a0b0e0953c817ad5b4396ee657faf4ec6501d4d403e0c3a485e34fdca",
+        "git_blob": "44a5cfa514b9c071c15acfcddce7afa5594ddb13"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/host/transcript.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 14983,
+        "sha256": "354ce0ec3c01f75905249958660bf2c148d043c111d01cfc78a3c9fec69b86aa",
+        "git_blob": "0bbd8c7964f7c66373efa5e906f469d20f4d38f9"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/provenance.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 7183,
+        "sha256": "eda943fb85e3f6434f93d728bafb4252266f63ac1aa4a3bd7df72144dad69c24",
+        "git_blob": "52ad4d6bd923041bf94cfd7c2f609648aa426e21"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swangle/command.stdin",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 2566,
+        "sha256": "b83c4a4e6aa7bc2e05f5c2206396f07016adfce5ebf236eeeb8fc01c90ca4159",
+        "git_blob": "cbd905f252f6bfa6fd53fe46def753e01a6c1465"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swangle/config.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 415,
+        "sha256": "f0fd2f73d65baefe0a033c091ea9a12ec433fecae652e74fe7dfcc8df3c748fa",
+        "git_blob": "b38630eac777fac81a80c3dae3bac7571934f593"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swangle/finished.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1453,
+        "sha256": "677b0b4452e0f80eb5c341b174ddc90bedcb736f59d1a7e93a0c3d3045aeecb7",
+        "git_blob": "f271a8406125455077e3f08db85dd0a55aaca585"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swangle/program.sh",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1738,
+        "sha256": "9fca5ca8f79b7c2fa470cd931f5a18e51487f4b740df8c239b1c8906c7ceafca",
+        "git_blob": "4196171eb90698d269a441d40911e62638e3aa8f"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swangle/transcript.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 18067,
+        "sha256": "130c776d499e5e9ae9ef7ecef8bc05acf8a81a73d1a5687b062b727c6d3f4ef3",
+        "git_blob": "0a02d2ffce90f7bf21206a5270f0f6a9c082219d"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swiftshader/command.stdin",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 2566,
+        "sha256": "c982b216e0b51803646c76db440159924dbf36de4e5610f24cfc14ff17de043b",
+        "git_blob": "167179b23d8f99d53ff592756fcff9a5a605f157"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swiftshader/config.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 415,
+        "sha256": "f333cc91c90fdee72178ed6d3bf7e053d2d871146117e448d7859db0facad7c4",
+        "git_blob": "6ee320dcabbd2dc59180a65b584d59af6436e3c7"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swiftshader/finished.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1455,
+        "sha256": "7619b7520e0eb88ea95c49cdd78c1dc6e54a344410ddc23cd57e5f9d118cdce0",
+        "git_blob": "682e57e6c7f4e0075e437ef50a46ec2add3f79dc"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swiftshader/program.sh",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1738,
+        "sha256": "f76116a59d75474da2752f065c9da4f22e85e3bff2ba98b0a3e0e5c6240efdd4",
+        "git_blob": "988e81e58063baeb8442bac369f244b31b4827ac"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr483/swiftshader/transcript.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 15687,
+        "sha256": "953001d225faec933c0cc88ea0377551de93fef527f1c6de5210d5bc333d1eff",
+        "git_blob": "a39fc52290d1efe5a67a2e38f764ed33c5b7e888"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/config.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 415,
+        "sha256": "ce175474d4613f167f8944fe8ffb2dbd01aa606237e892afb98786b61bafb560",
+        "git_blob": "e9593ef8a7ce49edee6c4b5f05734656b494f327"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/launch-stderr.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 101,
+        "sha256": "3047bd80eaea315daa096465492d9030662f21452e49c19646d632e23474cabd",
+        "git_blob": "1561ca3b7d6f06ee42dacac2a72572482a92f154"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/program.sh",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1738,
+        "sha256": "ff018a0a321badb4bec080ef0891d7339b709c23f764ca14b938a152c16dd0e8",
+        "git_blob": "c76b7558ff6d8a8d4760948bbdfb5137520832b4"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/host/transcript.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 13278,
+        "sha256": "0fca6f277c8e541576791c2140b23a8c751d166d37b6d6c3e6372fd69c663f75",
+        "git_blob": "36228218a868be753d0a8e749f6eb8e5e5039317"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/provenance.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 6607,
+        "sha256": "62aac64ed51961c48c25ede56c88fe0e24c827421ed21ac0b633b07b2c0e7b9d",
+        "git_blob": "853169445ac619ccb3c1a2319cf3b09b4b0b5d08"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/config.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 415,
+        "sha256": "6c0625c644239a54981a3930d62db11bb28297046168c543a99c810796ba3794",
+        "git_blob": "d701b18195d529c5cb660161ba0e2c45ebc6a861"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/launch-stderr.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 101,
+        "sha256": "e202a930221a868910c05902f6edc8d3a9ba235d65ed625fa3afd2a9f6ef9f92",
+        "git_blob": "b3fa2b18e52d48ef6c4d616df7f5a0d1cb4c448d"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/program.sh",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1738,
+        "sha256": "6f4108490e96bc0ceef87e59b879f578dee2edeb52a9c22b763aaf6fefcbdc6a",
+        "git_blob": "cac3eda578b3144e18df8c1d5c60ac8fd9d26bbe"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swangle/transcript.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 13278,
+        "sha256": "7c9f6c3c75833d3b85673ff02974ed6d0daddb38dd1532cead8599fb61dcab65",
+        "git_blob": "c91f715cf6a5d5bf54485b2279f2d7e7fabb1806"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/config.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 415,
+        "sha256": "395ab55b286e801ba80177d18dda86cf745e7ae238c9d66b9872511ef280fbf3",
+        "git_blob": "a44323fece516785a35d934b68d788aa6c64d215"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/launch-stderr.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 101,
+        "sha256": "83599ddb5e645c1a9f5090cc139cdbd00fe80373142b31d00e7a95f3696e15a3",
+        "git_blob": "6ffe17909cb3253ad6a872b5f07a12825dfc2e9d"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/program.sh",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1738,
+        "sha256": "90193fc553527eb1f7dda5739eaf1e083b633d3f6de371899c86c7d272278576",
+        "git_blob": "da671f79617fcb2da3673251d4254ced38703b8d"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/console_launch_pr486/swiftshader/transcript.stdout",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 13278,
+        "sha256": "5dd9027246e35ec9c0ddcca771708000730440690e238f2db274d3ccadb4d533",
+        "git_blob": "b17cb9b3fe8782421f549a1ce65965784e61110e"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_jump_decode_pr483/jump-actual-android.mp4",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1707720,
+        "sha256": "0ad7becc5b6572f74968aa99a5b6533219cb5a661b4458e13a984fb2c97236c8",
+        "git_blob": "29074b7e79d12f6b34f954f1c12bdf0bf99998ac"
+      },
+      "origin_stages": [
+        "jump-recovered"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_jump_decode_pr483/jump-recording.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 804,
+        "sha256": "b6f78c5315d47dcef2210864f4d705053700557c2160f802c4be710cadca08dd",
+        "git_blob": "5c03b9b97a2cfb1f67d5d76d8c6057ae084e1a70"
+      },
+      "origin_stages": [
+        "jump-recovered"
+      ]
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_jump_decode_pr483/provenance.json",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 1588,
+        "sha256": "9de9c8b15161aedcd4185a033a33a18fd6b51b2d01c357d934bc60190edb9683",
+        "git_blob": "35531cfbb9ca96fb238ac567c54866f2a0924988"
+      },
+      "origin_stages": [
+        "jump-recovered"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 37374,
+        "sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f",
+        "git_blob": "c969bf8ecc2d742c5056905552aacdaa0a559f29"
+      },
+      "after": {
+        "bytes": 49744,
+        "sha256": "dfeb4cd8aa0b281ee1a31f9bbe02abc82fdb56ef58242d2f5f6a377cf5a0b63e",
+        "git_blob": "5760ec96f3002a782708b13c9b2f019a26109c33"
+      },
+      "origin_stages": [
+        "c4-followup"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 14309,
+        "sha256": "113ba57248fe3a12dffb9249e9d62c60db023b7861935819a08e9b2d325fb6b0",
+        "git_blob": "269b910ec4ca84006b5b9d771a22f97fbde3571b"
+      },
+      "after": {
+        "bytes": 16787,
+        "sha256": "4e4bcc28bd1ac677178d42c16c240c5f0ee890ad520eb1322c4987814a728647",
+        "git_blob": "aaa033cdf4cc3a453f26382ae2ae94c7eed71cc5"
+      },
+      "origin_stages": [
+        "c4-followup"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_console_launch_failure_diagnostics.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 10759,
+        "sha256": "dc38bd39ff52331939fc1ebaae96ac8d23593ab6fe2adb003d3efe9918f2cd0d",
+        "git_blob": "c6f77f7de636eb49c5882f0af5de1738127c4d9e"
+      },
+      "origin_stages": [
+        "diagnostics"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_console_launch_originals.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 5273,
+        "sha256": "7b1477c4be46e5ecb865b90a7d3ad02c3fd58ac0267fc6b687702208649097d8",
+        "git_blob": "d1f95da492253dd87341f75e5434eb442a5c7144"
+      },
+      "origin_stages": [
+        "parser"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_console_logger_printf.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 8962,
+        "sha256": "f5af907ad15c1578f3a7f9820202de1a5ade60ede86bf0991086ac3812dcb1a6",
+        "git_blob": "06de5b6d9f70c7ad3a1d4e64271293f7e8bf51f7"
+      },
+      "origin_stages": [
+        "printf"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_studio_jump_decode.py",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 6309,
+        "sha256": "27623fe917ac3946ef3143d97b2358cf21336a11b9e964932d4381f936d4bccd",
+        "git_blob": "a789321a82b70c15288578d3bbae1ae2a8ce90b4"
+      },
+      "origin_stages": [
+        "jump-recovered"
+      ]
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 39637,
+        "sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8",
+        "git_blob": "7302c3e60708aa15087cb47d3513b30ca2b5029f"
+      },
+      "after": {
+        "bytes": 48994,
+        "sha256": "0c2edfb13be05be32149ec20f1885573fc0e940d7df28656d58bbd93778ab8dd",
+        "git_blob": "528e70ec56a5d990faa7ce6d10e61345870c7aee"
+      },
+      "origin_stages": [
+        "c4-followup"
+      ]
+    },
+    {
+      "path": "test/learning/learning_exact_selection_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 2309,
+        "sha256": "59f335779fcaca6c834cc4e1662140bf3453c3e92a72901fb7643b3a50e70441",
+        "git_blob": "44eed001b94046a1b674fe3505bf29df9b8c8e7b"
+      },
+      "origin_stages": [
+        "curriculum-original"
+      ]
+    },
+    {
+      "path": "tools/audit_learning_tasks_all_grades.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 4169,
+        "sha256": "9431ab50e3329998953853fb3c77bdb025456044e048a1ff435ee7a787e417bb",
+        "git_blob": "1fcc73a050480cd6bea3d74cffbb184031ca7810"
+      },
+      "origin_stages": [
+        "curriculum-original"
+      ]
+    }
+  ],
+  "patch": {
+    "bytes": 142359,
+    "sha256": "9ea03a02f30eeca5dd4d4f83f1feebc9fa9898686b67a256c30141e60f0c8c48",
+    "git_blob": "d65accd4864f8a9e64fec8b4abce124db88bc170"
+  },
+  "original_binary_or_control_byte_files_not_text_reencoded": [
+    "scripts/tests/fixtures/console_launch_pr483/host/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr483/swangle/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr483/swiftshader/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/host/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/swangle/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr486/swiftshader/transcript.stdout",
+    "scripts/tests/fixtures/studio_jump_decode_pr483/jump-actual-android.mp4"
+  ],
+  "protected_unchanged_source": [
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "b06fd116c41053ec67f8a8aeb0c85dc1b85e62eaf59e87dcc84040051555a510",
+      "git_blob": "7e6c4d3592551765836be48ea613b4ee1a905297"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "bytes": 10697,
+      "sha256": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633",
+      "git_blob": "7e610fbdf43f0c52416761d7f2327e85bdd3a24e"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "dc42d548600b5b7a797c815fb5d3caf819bfd0aecf05fd61d0adba3bc3424442",
+      "git_blob": "50e11096509c1c3e2df154485973fbeb248f1c75"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+    }
+  ],
+  "origin_bindings": {
+    "bytes": 26617,
+    "sha256": "10744d75d8bce20b6c4fc0e72cd804ca52e999b6211374cc3d64115eb21ef6df",
+    "git_blob": "e647c77f96ef0594d9618dfda654e4ece0218f3c"
+  },
+  "source_inspection": {
+    "bytes": 9839,
+    "sha256": "938736cadef399bd134f86dd4868922277d06bc83b79443dcaa3e95ad6ae368a",
+    "git_blob": "3c93468822bcbd723a386f0f18f94d488a49e6a4"
+  },
+  "native_contract": {
+    "source_freeze_sha256": "b816b4cc0d6938115278910acc4370e88a0d2d4dc652e536693d1512ed2cefb5",
+    "helper_sha256": "8e8f597f8cd41fe203b9a491f14b5927c85601178e6589afe326a94d7c6f80f3",
+    "core_modes": 52,
+    "studio_2020_images": 17,
+    "sidecars": 3,
+    "facial_movies": 1,
+    "new_cutout": "captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+    "new_cutout_dimensions": [
+      2400,
+      1080
+    ],
+    "prior_rasters": [
+      24,
+      4,
+      6,
+      7
+    ]
+  },
+  "test_execution": "NONE_ON_THIS_COMBINED_SOURCE; ROOT_CHECKPOINT_REQUIRED_FIRST",
+  "worktree_status_after": "",
+  "new_git_ci_or_device_actions": false
+}
