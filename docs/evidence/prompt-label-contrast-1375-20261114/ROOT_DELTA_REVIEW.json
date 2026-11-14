@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "kind": "root_exact_single_line_prompt_card_delta_review",
+  "source": "1375da193af0152af64f91d86577aa9768cd50db",
+  "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+  "before": {
+    "bytes": 4255,
+    "sha256": "7b0b85783355a772c1abec5886577b30d2770db04d5d40e8368f811d1e4d014a",
+    "git_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd"
+  },
+  "after": {
+    "bytes": 4255,
+    "sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70",
+    "git_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+  },
+  "exact_one_replacement": true,
+  "original_working_copy_unchanged": true,
+  "actual_changed_statement": "color: LumoColors.ink600 -> color: LumoColors.ink100",
+  "all_other_file_bytes_equal": true,
+  "new_tests_or_renderer_run": false,
+  "activated": false,
+  "scope": "Actual full-byte comparison of the isolated prepared source; not a rendered or packaged acceptance."
+}

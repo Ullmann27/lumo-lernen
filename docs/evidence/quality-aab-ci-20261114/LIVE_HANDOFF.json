@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 13:48:11 UTC",
+  "recorded_at_utc": "2026-11-14 13:51:24 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -32,15 +32,15 @@
     "created_at": "2026-11-14T13:22:40Z",
     "trigger": "pull_request from reviewed quality-branch fast-forward",
     "job_budget_minutes": 150,
-    "last_read_utc": "2026-11-14 13:48:11 UTC",
+    "last_read_utc": "2026-11-14 13:51:24 UTC",
     "main_job_id": 132461940239,
     "main_job_started_at": "2026-11-14T13:26:58Z",
     "main_job_deadline_utc": "2026-11-14T15:56:58Z",
     "active_steps": [
       {
-        "number": 22,
-        "name": "Code-level Android probe regression with verified image dependencies",
-        "started_at": "2026-11-14T13:47:25Z"
+        "number": 31,
+        "name": "Require actual gameplay gates on the exact pinned native source",
+        "started_at": "2026-11-14T13:50:10Z"
       }
     ]
   },
@@ -97,7 +97,25 @@
       "exact_topic_test_id": 603,
       "exact_topic_test_passed": true,
       "preserved_reports_zip_blob": "ff27767a8e8e857e5e2a24e7730e2945bf4d65c4",
-      "preservation_scope": "Complete original machine/summary reports, full 548-file member index and three actual Root-viewed PNGs are checkpointed; entire 332 MB Actions ZIP is locally retained and remains at its original Actions artifact, not in Git."
+      "preservation_scope": "Complete original machine/summary reports, full 548-file member index and six selected original PNGs are checkpointed; entire 332 MB Actions ZIP is locally retained and at the original Actions artifact, not in Git.",
+      "independent_opened_images": 3,
+      "total_distinct_selected_images": 6,
+      "independent_visual_review_blob": "26b02f75379e2670865a90efefa51c6a337d5372"
+    },
+    "build_contracts": {
+      "artifact": 14116845475,
+      "archive_bytes": 28103,
+      "archive_sha256": "4c413db8e808135a5e228640abda43ae6d658adcdd78271f5add029cfe8a37d9",
+      "complete_original_zip_blob": "f373e345171c16d4a0744fe3f6677c2eabd4e5ae",
+      "original_log_blob": "75c403157cb0ae7a0e9876008a7029cc2be6d721",
+      "completed_at": "2026-11-14T13:47:24Z",
+      "actual_original_tests": 911,
+      "original_seconds": 371.251,
+      "skips": 0,
+      "root_reader_exit_code": 0,
+      "pcm_assertions": 70,
+      "committed_pcm_source_files": 17,
+      "scope": "Original current CI contracts; readonly replay, synthetic JVM PCM boundary, no new tests or audible Android acceptance."
     }
   },
   "remaining": [
@@ -1098,7 +1116,11 @@
       "actual_capture": "modernization/schreibcoach_phone.png",
       "capture_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42",
       "observed": "Small hint is visibly pale on white; source color #C8DDF0 on #FFFFFF gives calculated sRGB luminance ratio 1.3947273062300911.",
-      "status": "Narrow shared-card correction being prepared separately; no current candidate change or after-render claim."
+      "status": "Root, lead, parent and child confirmed exact isolated one-line change. A separate focused existing-renderer QA workflow is being prepared; 1375 source not activated or changed.",
+      "prepared_product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
+      "source_review_blob": "9eb1fb29bf40cd5715914c12a540398ea7b362ca",
+      "proposed_color": "#28486D",
+      "proposed_srgb_ratio": 9.383400982456404
     },
     {
       "id": "writing_capture_emoji_glyph",
@@ -1108,6 +1130,13 @@
     {
       "id": "packaged_third_party_notices",
       "status": "Check actual new APK/PCK membership or consolidated notice content after package exists; source files alone do not prove package delivery."
+    },
+    {
+      "id": "reading_capture_answer_glyphs",
+      "observed_by": "touch_worker",
+      "actual_capture": "reading-passages/reading-phone.png",
+      "capture_blob": "e73bea5318499c85c6c1258507e46973403185dd",
+      "status": "Empty colored square shapes visible before two answers in the selected Linux capture; cause and Android behavior not established."
     }
   ]
 }

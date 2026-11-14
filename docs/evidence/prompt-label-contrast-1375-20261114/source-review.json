@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "kind": "isolated_prompt_card_label_contrast_source_review",
+  "base": {
+    "repository": "Ullmann27/lumo-lernen",
+    "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+    "tree": "ebaf259b92a4c7923782e195c3a932112ce81027"
+  },
+  "authorization_scope": "Prepare only the existing shared PromptCard label color correction after the completed three-image review; no live candidate activation, test or renderer run.",
+  "observed_problem": {
+    "reported_by": "Root's actual current1375 writing-coach phone original-image review",
+    "code_pair": {
+      "foreground": "LumoColors.ink600 / #C8DDF0",
+      "background": "Colors.white / #FFFFFF"
+    },
+    "limits": "This checkpoint does not add a new image observation or infer any emoji/capture-font cause."
+  },
+  "patch": {
+    "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+    "line": 90,
+    "before": {
+      "bytes": 4255,
+      "sha256": "7b0b85783355a772c1abec5886577b30d2770db04d5d40e8368f811d1e4d014a",
+      "git_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd"
+    },
+    "after": {
+      "bytes": 4255,
+      "sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70",
+      "git_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+    },
+    "change": "LumoColors.ink600 -> LumoColors.ink100",
+    "exact_single_replacement": true,
+    "changed_paths": [
+      "lib/widgets/lumo/lumo_prompt_card.dart"
+    ],
+    "diff": "diff --git a/lib/widgets/lumo/lumo_prompt_card.dart b/lib/widgets/lumo/lumo_prompt_card.dart\nindex 033fb56a..643c3bd6 100644\n--- a/lib/widgets/lumo/lumo_prompt_card.dart\n+++ b/lib/widgets/lumo/lumo_prompt_card.dart\n@@ -87,7 +87,7 @@ class LumoPromptCard extends StatelessWidget {\n                     fontFamily: 'Nunito',\n                     fontSize: 12,\n                     fontWeight: FontWeight.w800,\n-                    color: LumoColors.ink600,\n+                    color: LumoColors.ink100,\n                   ),\n                 ),\n                 const SizedBox(height: 2),\n"
+  },
+  "design_sources": [
+    {
+      "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+      "git_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd",
+      "lines": [
+        [
+          25,
+          34
+        ],
+        [
+          60,
+          62
+        ],
+        [
+          84,
+          91
+        ]
+      ],
+      "fact": "The widget has no background-override API and always uses cardWithBorder; only the small label's foreground is changed."
+    },
+    {
+      "path": "lib/widgets/lumo/lumo_design_kit.dart",
+      "git_blob": "ce4aeb98bce59d6df706f68a2f39dc75a13cda75",
+      "lines": [
+        [
+          121,
+          128
+        ]
+      ],
+      "fact": "cardWithBorder explicitly paints opaque Colors.white."
+    },
+    {
+      "path": "lib/app/app_theme.dart",
+      "git_blob": "fbca41aca3bf0f5e199175fe7285aec5a2e84db9",
+      "lines": [
+        [
+          58,
+          62
+        ]
+      ],
+      "fact": "Existing ink600 is #C8DDF0; existing ink100 is #28486D. This file remains unchanged."
+    }
+  ],
+  "production_call_sites": [
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "lines": [
+        493,
+        498
+      ],
+      "labels": [
+        "Mit dem Finger - keine Eile!"
+      ],
+      "arguments": "accent=_gradient[1], onSpeakerTap=_speakPrompt",
+      "unchanged": true,
+      "outer_context": {
+        "scaffold": "#FFFBEB",
+        "scaffold_lines": [
+          403,
+          405
+        ],
+        "entry_opacity_lines": [
+          411,
+          417
+        ]
+      }
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "git_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "lines": [
+        739,
+        749
+      ],
+      "labels": [
+        "Hör gut zu!",
+        "Stimme aus · Du kannst das Wort abschreiben."
+      ],
+      "arguments": "accent=_gradient[1], LumoIdleFox(size44), voice-dependent speaker",
+      "unchanged": true,
+      "outer_context": {
+        "scaffold": "#FFFBEB",
+        "scaffold_lines": [
+          604,
+          606
+        ],
+        "entry_opacity_lines": [
+          615,
+          620
+        ]
+      }
+    }
+  ],
+  "call_site_inventory": "Exact1375 git grep across all lib sources found two actual constructor calls; comment/example/definition matches were separated.",
+  "opacity_boundary": "Existing entry opacity affects the whole content group including its white card; it is not a dark card-background alternative. Contrast calculation below is for the opaque settled color pair.",
+  "calculation": {
+    "background": "#FFFFFF",
+    "old": {
+      "token": "LumoColors.ink600",
+      "rgb": "#C8DDF0",
+      "relative_luminance": 0.7028353358464893,
+      "ratio": 1.3947273062300911
+    },
+    "proposed": {
+      "token": "LumoColors.ink100",
+      "rgb": "#28486D",
+      "relative_luminance": 0.061899726118826603,
+      "ratio": 9.383400982456404
+    },
+    "scope": "Opaque sRGB color-pair calculation only; no rendered/device contrast measurement or accessibility certification.",
+    "formula": {
+      "srgb_linearization": "c/12.92 when c<=0.04045, otherwise ((c+0.055)/1.055)^2.4",
+      "relative_luminance_weights": [
+        0.2126,
+        0.7152,
+        0.0722
+      ],
+      "ratio": "(lighter_luminance+0.05)/(darker_luminance+0.05)"
+    }
+  },
+  "actual_source_checks": {
+    "exact_base_head": true,
+    "full_file_bytes_equal_single_replacement": true,
+    "git_diff_check": {
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "other_changed_paths": [],
+    "no_untracked_files_reported_by_independent_reviewer": true
+  },
+  "independent_review": {
+    "reviewer": "existing touch_worker",
+    "completed": true,
+    "verdict": "No static blocker in the exact one-line delta or either production call site.",
+    "new_file_git_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
+    "new_file_sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70",
+    "new_file_bytes": 4255,
+    "checks": "Full-file comparison, exact source head, complete diff, both call sites, fixed white decoration and existing outer opacity wrappers.",
+    "executed_tests": false,
+    "renderer_started": false
+  },
+  "preservation": [
+    "Global palette unchanged",
+    "Both protected writing trainer files unchanged",
+    "Journal and other features unchanged",
+    "Font/font size/weight/spacing unchanged",
+    "Title/accent/speaker/leading behavior unchanged",
+    "Only the shared small-label foreground token differs"
+  ],
+  "unperformed": [
+    "Dart or Flutter compilation/analyzer",
+    "Unit/widget/device tests",
+    "New before/after capture",
+    "Android/APK build or validation",
+    "Accessibility certification or device contrast measurement",
+    "Any live candidate ref change or CI trigger"
+  ],
+  "local_isolation": "/workspace/scratch/2708c7907f28/lumo-prompt-label-1375-2708",
+  "product_tree_entry": {
+    "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+  }
+}

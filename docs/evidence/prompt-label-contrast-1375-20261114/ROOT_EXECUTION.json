@@ -1,0 +1,7 @@
+{
+  "chunk_id": "ce1f59",
+  "wall_time_seconds": 0.014548875,
+  "exit_code": 0,
+  "original_token_count": 338,
+  "output": "{\n  \"schema\": 1,\n  \"kind\": \"root_exact_single_line_prompt_card_delta_review\",\n  \"source\": \"1375da193af0152af64f91d86577aa9768cd50db\",\n  \"path\": \"lib/widgets/lumo/lumo_prompt_card.dart\",\n  \"before\": {\n    \"bytes\": 4255,\n    \"sha256\": \"7b0b85783355a772c1abec5886577b30d2770db04d5d40e8368f811d1e4d014a\",\n    \"git_blob\": \"033fb56a1033b7659d6ca7e7386e7ae9cd1074fd\"\n  },\n  \"after\": {\n    \"bytes\": 4255,\n    \"sha256\": \"8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70\",\n    \"git_blob\": \"643c3bd6868da34550bbc9fa7761818c7b1e6afb\"\n  },\n  \"exact_one_replacement\": true,\n  \"original_working_copy_unchanged\": true,\n  \"actual_changed_statement\": \"color: LumoColors.ink600 -> color: LumoColors.ink100\",\n  \"all_other_file_bytes_equal\": true,\n  \"new_tests_or_renderer_run\": false,\n  \"activated\": false,\n  \"scope\": \"Actual full-byte comparison of the isolated prepared source; not a rendered or packaged acceptance.\"\n}\n--- original/lib/widgets/lumo/lumo_prompt_card.dart\n+++ prepared/lib/widgets/lumo/lumo_prompt_card.dart\n@@ -87,7 +87,7 @@\n                     fontFamily: 'Nunito',\n                     fontSize: 12,\n                     fontWeight: FontWeight.w800,\n-                    color: LumoColors.ink600,\n+                    color: LumoColors.ink100,\n                   ),\n                 ),\n                 const SizedBox(height: 2),\n\n"
+}

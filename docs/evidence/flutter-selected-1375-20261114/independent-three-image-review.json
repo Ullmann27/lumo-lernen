@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "kind": "completed_independent_three_original_flutter_image_review",
+  "date_utc": "2026-11-14",
+  "source": {
+    "host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+    "original_root": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/",
+    "original_index": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/ORIGINAL_INDEX.json",
+    "artifact_id": null,
+    "artifact_identity_scope": "The task supplied these current1375 originals and Root's index verification; no new artifact API lookup was performed for this small image review."
+  },
+  "performed": {
+    "reviewer": "existing touch_worker",
+    "originals_actually_opened": 3,
+    "size_sha256_and_git_blob_compared_with_original_index": true,
+    "all_three_match": true,
+    "new_download": false,
+    "new_test": false,
+    "new_renderer": false,
+    "product_change": false,
+    "new_image_view_for_this_serialization": false
+  },
+  "images": [
+    {
+      "path": "tour/phone_learn.png",
+      "local_path": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/tour/phone_learn.png",
+      "width": 412,
+      "height": 915,
+      "bytes": 388358,
+      "sha256": "e2a33abeed005654eed1167c3f3e752d7308e9a1f7b608377b5e4c73d999ab03",
+      "visually_opened": true,
+      "visible": [
+        "Question/prompt, class selector1–4, highlighted class2, learning tools, Mathematics and German are readable and separated.",
+        "Lumo does not cover these texts."
+      ],
+      "limits": [
+        "English and general-studies cards are only partly inside the captured view; reachability of their lower content is not established by this still image."
+      ]
+    },
+    {
+      "path": "reading-passages/reading-phone.png",
+      "local_path": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/reading-passages/reading-phone.png",
+      "width": 540,
+      "height": 1200,
+      "bytes": 289963,
+      "sha256": "80d434d326d1439f42522bd48ceda53a3fef3a283711c00bb52072787243a108",
+      "visually_opened": true,
+      "visible": [
+        "The comprehension question and all three answer texts are fully readable.",
+        "The top reading text begins mid-sentence in this captured view.",
+        "Before the red and green answers there are empty colored squares; no recognizable cross/check mark is visible."
+      ],
+      "limits": [
+        "The cause of the squares was not investigated; missing glyph, capture environment or intended presentation are not inferred.",
+        "The top cropped text is a capture-state observation, not a demonstrated scrolling or content-loss defect.",
+        "No Android rendering claim."
+      ]
+    },
+    {
+      "path": "cards-opponents/cards_board_phone.png",
+      "local_path": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original/cards-opponents/cards_board_phone.png",
+      "width": 618,
+      "height": 1373,
+      "bytes": 575163,
+      "sha256": "40782edc901b24c8edd1598901e4c2fe550d1435a4a22b7342c0a48e5b853adb",
+      "visually_opened": true,
+      "visible": [
+        "Header, round count, turn hint, discard pile, draw pile and Ziehen control are visible/readable.",
+        "The hand extends beyond the side of the captured view: five card fronts are distinguishable while the counter says seven."
+      ],
+      "limits": [
+        "Reachability of the remaining hand cards is not established by this one still image; no broken-scroll finding is inferred."
+      ]
+    }
+  ],
+  "root_supplied_context": {
+    "files_in_original_archive": 548,
+    "pngs": 546,
+    "reported_original_flutter_result": {
+      "tests": 2586,
+      "failures": 0,
+      "skips": 0,
+      "exit_code": 0
+    },
+    "attribution": "These archive/parser totals were supplied as already verified by Root. The child did not rerun that parser or test suite."
+  },
+  "exclusions": [
+    "No review of the other543 PNGs.",
+    "Root separately reviews writing-coach phone, journal Fold-cover and home Fold; this child did not duplicate those views.",
+    "No full546-image approval.",
+    "No touch success, scroll reachability, measured FPS, Android or APK acceptance inferred from the three still images.",
+    "No PNG upload by this reviewer; Root can preserve the existing original bytes separately."
+  ],
+  "metadata_note": "The completed child report confirms Git-blob comparisons with the original index; only its explicit SHA256/byte/dimension values are transcribed here. No unrecorded PNG Git-blob value is invented."
+}
