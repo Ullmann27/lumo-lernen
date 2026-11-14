@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "baseline_files": [
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "git_blob_sha": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3",
+      "full_utf8_blob_readback_equals_exact_commit_fetch": true
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "git_blob_sha": "2419030446ada34710594160fc7f732669d97649",
+      "full_utf8_blob_readback_equals_exact_commit_fetch": true
+    }
+  ],
+  "product": {
+    "path": "lib/core/reward_wallet_repository.dart",
+    "git_blob_sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c",
+    "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+    "modified": false
+  },
+  "failure_evidence": {
+    "run_id": 43633267932,
+    "job_id": 132564402577,
+    "original_log_sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+    "review_sha256": "9e6538d6bdfe637e3f03bc02a37b2bc1ab54de34253fb8b334bbb1e35026c7e1",
+    "failed_assertions": [
+      {
+        "path": "test/reward_wallet_queue_zone_test.dart",
+        "lines": [
+          219,
+          293
+        ],
+        "cases": 2
+      },
+      {
+        "path": "test/reward_wallet_transaction_test.dart",
+        "lines": [
+          209
+        ],
+        "cases": 2
+      }
+    ]
+  },
+  "execution_status": "NOT_RUN_LOCALLY; full Flutter CI remains required"
+}

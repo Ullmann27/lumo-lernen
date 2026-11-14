@@ -1,0 +1,169 @@
+[
+  {
+    "original_log_line": 1713,
+    "utc": "2026-11-14T19:41:02.6892852Z",
+    "step": "apk-identity",
+    "ok": true,
+    "apk_sha256": "2e1b763153d7bf46ef4ce89b7ed14e51ec38fc488339e73b25e45e920a4379d4",
+    "flutter_source_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "godot_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "godot_pck_sha256": "5f97ffec4f5af7b9d8493a16846195993b0f94541c46cd6e5356e42c981f78a6",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  {
+    "original_log_line": 1932,
+    "utc": "2026-11-14T19:41:35.9429991Z",
+    "step": "launch",
+    "ok": true
+  },
+  {
+    "original_log_line": 2148,
+    "utc": "2026-11-14T19:42:13.9298853Z",
+    "step": "onboarding",
+    "ok": true
+  },
+  {
+    "original_log_line": 2160,
+    "utc": "2026-11-14T19:42:19.4046119Z",
+    "step": "navigate-start",
+    "ok": true,
+    "label": "Start"
+  },
+  {
+    "original_log_line": 2216,
+    "utc": "2026-11-14T19:42:55.4261664Z",
+    "step": "atelier-roundtrip",
+    "ok": true,
+    "screen": "Real native-Android Flutter Zehnerbrücke",
+    "observed": [
+      "Hub",
+      "Worked example",
+      "Interactive ten-frame",
+      "Model check",
+      "Flutter return"
+    ],
+    "screenshots": [
+      "11_atelier_hub.png",
+      "12_atelier_beispiel.png",
+      "13_atelier_zehnerbruecke.png"
+    ]
+  },
+  {
+    "original_log_line": 2241,
+    "utc": "2026-11-14T19:43:00.7443085Z",
+    "step": "navigate-lernen",
+    "ok": true,
+    "label": "Lernen",
+    "visible_labels": 50
+  },
+  {
+    "original_log_line": 2251,
+    "utc": "2026-11-14T19:43:05.9003010Z",
+    "step": "navigate-spiele",
+    "ok": true,
+    "label": "Spielen"
+  },
+  {
+    "original_log_line": 2417,
+    "utc": "2026-11-14T19:43:41.8054914Z",
+    "step": "open-kart",
+    "ok": true,
+    "label": "Lumo Kart. Fahre mit Lumo um die Wette! Spielen"
+  },
+  {
+    "original_log_line": 2602,
+    "utc": "2026-11-14T19:46:38.7997256Z",
+    "step": "start-kart-race",
+    "ok": false,
+    "error": "TimeoutError: Original55s race-ready deadline expired during preview skip"
+  },
+  {
+    "original_log_line": 2618,
+    "utc": "2026-11-14T19:46:50.1334815Z",
+    "step": "return-from-kart",
+    "ok": true,
+    "capture": "23_zurueck_in_flutter.png",
+    "foreground_is_flutter": true
+  },
+  {
+    "original_log_line": 2619,
+    "utc": "2026-11-14T19:46:50.1499902Z",
+    "step": "learning-state-after-kart",
+    "ok": true,
+    "profile": {
+      "id": "1794685320516947",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-14T19:42:00.516947"
+    },
+    "learning_keys_compared": 2,
+    "learning_keys_added": []
+  },
+  {
+    "original_log_line": 2629,
+    "utc": "2026-11-14T19:46:55.2642951Z",
+    "step": "lernen-usable-after-kart",
+    "ok": true,
+    "labels_before": 39,
+    "labels_after": 39,
+    "kept_fraction": 1
+  },
+  {
+    "original_log_line": 2635,
+    "utc": "2026-11-14T19:47:05.3466067Z",
+    "step": "profile-after-kart",
+    "ok": true,
+    "profile_name_visible": "LumoTest",
+    "observed_after_scrolls": 3,
+    "source": "live Android accessibility tree"
+  },
+  {
+    "original_log_line": 2789,
+    "utc": "2026-11-14T19:47:15.4415671Z",
+    "step": "restart-keeps-learning-state",
+    "ok": true,
+    "profile": {
+      "id": "1794685320516947",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-14T19:42:00.516947"
+    },
+    "learning_keys_compared": 2,
+    "learning_keys_added": []
+  },
+  {
+    "original_log_line": 2809,
+    "utc": "2026-11-14T19:47:24.6920965Z",
+    "step": "display-fold_offen",
+    "ok": true,
+    "size": "1812x2176@420"
+  },
+  {
+    "original_log_line": 2828,
+    "utc": "2026-11-14T19:47:32.8887321Z",
+    "step": "display-fold_aussen",
+    "ok": true,
+    "size": "904x2316@420"
+  },
+  {
+    "original_log_line": 2862,
+    "utc": "2026-11-14T19:47:43.3024790Z",
+    "step": "display-quer",
+    "ok": true,
+    "size": "2400x1080@420"
+  }
+]

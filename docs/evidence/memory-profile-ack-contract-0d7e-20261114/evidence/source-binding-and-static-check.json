@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "sources_freshly_read_from_github": [
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob_sha": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304/test/games/memory_profile_storage_test.dart"
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "bytes": 16155,
+      "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+      "git_blob_sha": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304/lib/features/games/memory/memory_round.dart"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 3275,
+      "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+      "git_blob_sha": "ddbafa79864878446bc3efa064b71c81e252fc63",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304/lib/features/games/memory/memory_flutter_adapter.dart"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob_sha": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304/lib/features/games/memory/lumo_memory_game.dart"
+    }
+  ],
+  "only_changed_source": {
+    "path": "test/games/memory_profile_storage_test.dart",
+    "bytes": 13044,
+    "sha256": "9f63b7ad07c7a74a78279cf58e95c93de08d319c713575d06f6f4c83ab99f8fa",
+    "git_blob_sha": "3da940a91cf02aae13083693e8f702d1bbc55fc5"
+  },
+  "original_ci_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/original-flutter-job.log",
+    "bytes": 121892,
+    "sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+    "git_blob_sha": "eec03570b1215ea2e479fc37a6753c2e16245b0c"
+  },
+  "failure_excerpt": {
+    "original_lines_inclusive": [
+      880,
+      973
+    ],
+    "path": "evidence/original-memory-failure-excerpt.log",
+    "bytes": 10240,
+    "sha256": "88224a92d7a8e786be7fde99a28e3debe915710473f118f98ac4833606edca03",
+    "git_blob_sha": "9197dc0b263dc754b89ce9e25e33b116f7a341df"
+  },
+  "validation": {
+    "baseline_local_bytes_equal_fresh_github_content": true,
+    "inverse_two_test_block_replacements_restore_complete_baseline": true,
+    "six_original_test_names_identical": true,
+    "all_product_sources_unchanged": true,
+    "sdk_execution": "NOT_RUN",
+    "new_widget_results": "PENDING_CI"
+  }
+}

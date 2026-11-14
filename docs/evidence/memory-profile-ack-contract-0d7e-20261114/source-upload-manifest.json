@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "scope": "One test file: distinguish required same-value statistics ACK from ordered user writes and release deferred writes in the same widget-test zone.",
+  "files": [
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/prepared/host/test/games/memory_profile_storage_test.dart",
+      "bytes": 13044,
+      "sha256": "9f63b7ad07c7a74a78279cf58e95c93de08d319c713575d06f6f4c83ab99f8fa",
+      "git_blob_sha": "3da940a91cf02aae13083693e8f702d1bbc55fc5",
+      "baseline_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508",
+      "baseline_sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869"
+    }
+  ],
+  "product_sources_changed": false,
+  "sdk_execution": "NOT_RUN",
+  "ci_status": "PENDING_NEW_EXACT_HEAD_RUN"
+}

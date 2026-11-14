@@ -1,0 +1,21 @@
+{
+  "module": "test_learning_english_speech_lifecycle",
+  "test_ids": [
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_host_descriptor_owns_word_and_language",
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_late_results_after_pause_replace_and_destroy",
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_malformed_current_lesson_refused",
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_one_player_real_position_and_pcm_gap",
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_original_seventeen_lifecycle_assertions",
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_original_twenty_three_envelope_assertions",
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_parent_guards_and_old_german_signature",
+    "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_wrong_result_word_locale_identity_refused"
+  ],
+  "tests_run": 8,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "expected_failures": 0,
+  "unexpected_successes": 0,
+  "successful": true,
+  "duration_seconds": 18.24596868599997
+}

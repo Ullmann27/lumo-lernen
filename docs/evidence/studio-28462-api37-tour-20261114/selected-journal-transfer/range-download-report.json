@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "artifact_id": 14128934085,
+  "run_id": 43626348519,
+  "job_id": 132563694495,
+  "expected_archive_bytes": 65852093,
+  "published_archive_sha256": "c5dd800aae41db9b21120fddcd15dece15f8c01ade98397fa236ca7ddaad5dd1",
+  "reader_source": "/workspace/scratch/5987865ae883/qa/host-28462-flutter-acceptance-20261114/read_original_member_ranges.py",
+  "reader_source_sha256": "a5ef0080ed012f4ed77dc964f73faa425dbf76ab2074f7b159d621a6d78cc426",
+  "full_archive_locally_downloaded": false,
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "temporary_url_saved": false,
+  "members": [
+    {
+      "artifact_entry": "21_kart_preview_skip.json",
+      "bytes": 4715,
+      "sha256": "cddacff07df018b00e0335229de623e7423772f0300c670ee305d33d16176925",
+      "git_blob_sha": "40d2cd2bbfd5d1677949181cbd99afb246eda09e",
+      "crc32": "70c7e7ba",
+      "member_crc_verified": true,
+      "local_file": "originals/21_kart_preview_skip.json"
+    },
+    {
+      "artifact_entry": "21_kart_preview_skip_touch-surface-readiness.json",
+      "bytes": 3597,
+      "sha256": "d9c180bb83b98de33de1bd2fbfc2d4db33f913471ec77d0fbfee50567f1e251f",
+      "git_blob_sha": "b4bb67f664f8dc6736401e461be2c2b5141770b0",
+      "crc32": "96564536",
+      "member_crc_verified": true,
+      "local_file": "originals/21_kart_preview_skip_touch-surface-readiness.json"
+    }
+  ],
+  "entry_count": 678,
+  "central_directory_start": 65788056,
+  "status": "TWO_ORIGINAL_JOURNALS_VERIFIED",
+  "range_requests": [
+    {
+      "start": 65852071,
+      "end": 65852092,
+      "bytes": 22,
+      "status": 206,
+      "content_range": "bytes 65852071-65852092/65852093",
+      "sha256": "6294f8aed589898129a50ec89d5ae448158c98a9f8c6cf6c1ac6cc970fb9e6b5",
+      "local_file": "ranges/range-000-65852071-65852092.bin"
+    },
+    {
+      "start": 65852051,
+      "end": 65852070,
+      "bytes": 20,
+      "status": 206,
+      "content_range": "bytes 65852051-65852070/65852093",
+      "sha256": "101fe8721e9c1491c4f5941db2e647221d82e0ea54c0ec0d811ca0eaa75064e8",
+      "local_file": "ranges/range-001-65852051-65852070.bin"
+    },
+    {
+      "start": 65788056,
+      "end": 65852070,
+      "bytes": 64015,
+      "status": 206,
+      "content_range": "bytes 65788056-65852070/65852093",
+      "sha256": "ef9bd232746bc4bd1e98b8aceb85f23fc4a1ae68ba58e71cf265b23b8216b63d",
+      "local_file": "ranges/range-002-65788056-65852070.bin"
+    },
+    {
+      "start": 15546787,
+      "end": 15546816,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 15546787-15546816/65852093",
+      "sha256": "9170b5c4f3900621a8c7fe0108ea7079ee043ab90883d68971979695bb821260",
+      "local_file": "ranges/range-003-15546787-15546816.bin"
+    },
+    {
+      "start": 15546817,
+      "end": 15546841,
+      "bytes": 25,
+      "status": 206,
+      "content_range": "bytes 15546817-15546841/65852093",
+      "sha256": "e7fd43ebe5dd0b29bd3816e2bca583052c4add3f9cf3be521789d9777565c405",
+      "local_file": "ranges/range-004-15546817-15546841.bin"
+    },
+    {
+      "start": 15546842,
+      "end": 15548053,
+      "bytes": 1212,
+      "status": 206,
+      "content_range": "bytes 15546842-15548053/65852093",
+      "sha256": "80c645db5cc2a5a298a7852fb8b9b9e184b102548e3502824be9605674fca1c6",
+      "local_file": "ranges/range-005-15546842-15548053.bin"
+    },
+    {
+      "start": 22973577,
+      "end": 22973606,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 22973577-22973606/65852093",
+      "sha256": "db017b13255d831fb98a2e602847bdfa9c820cbce3f1580d5c1bf835e6a4a66b",
+      "local_file": "ranges/range-006-22973577-22973606.bin"
+    },
+    {
+      "start": 22973607,
+      "end": 22973655,
+      "bytes": 49,
+      "status": 206,
+      "content_range": "bytes 22973607-22973655/65852093",
+      "sha256": "b4a57d4ae5f5fdff491edf65e7ab610b1fae814f109f1d5b0899ce1fed2ffa3f",
+      "local_file": "ranges/range-007-22973607-22973655.bin"
+    },
+    {
+      "start": 22973656,
+      "end": 22974541,
+      "bytes": 886,
+      "status": 206,
+      "content_range": "bytes 22973656-22974541/65852093",
+      "sha256": "115e4c39e6a02f35790aefe8f08b2271562aaf17f6f0f3dfea76ace76d09813d",
+      "local_file": "ranges/range-008-22973656-22974541.bin"
+    }
+  ],
+  "transferred_bytes": 66289
+}

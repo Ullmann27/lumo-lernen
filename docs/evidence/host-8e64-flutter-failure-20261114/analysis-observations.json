@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "analyzer_counts": {
+    "error": 0,
+    "warning": 5,
+    "info": 236
+  },
+  "job_step_6": "success",
+  "warnings": [
+    {
+      "original_job_line": 492,
+      "text": "2026-11-14T19:52:12.2302421Z warning • The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto' • lib/features/live/lumo_live_pro_screen.dart:343:16 • unused_element"
+    },
+    {
+      "original_job_line": 494,
+      "text": "2026-11-14T19:52:12.2307512Z warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import"
+    },
+    {
+      "original_job_line": 523,
+      "text": "2026-11-14T19:52:12.2378320Z warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field"
+    },
+    {
+      "original_job_line": 532,
+      "text": "2026-11-14T19:52:12.2402317Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import"
+    },
+    {
+      "original_job_line": 572,
+      "text": "2026-11-14T19:52:12.2494434Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import"
+    }
+  ],
+  "policy": "Existing --no-fatal-infos --no-fatal-warnings invocation unchanged. No assertion that these warnings/infos were fixed.",
+  "runtime_failure": "The separate full-suite failure is not counted as an analyzer error."
+}

@@ -1,0 +1,88 @@
+{
+  "id": 14130045642,
+  "name": "lumo-nextgen-feature-android-host-evidence",
+  "bytes": 29618,
+  "sha256": "9d6aaa82d674589f351d06118625832723b68b27eea9fb757991444e0dd353a3",
+  "download": "complete original archive once",
+  "all_member_crc_verified": true,
+  "entries": [
+    {
+      "path": "cards-authority-registry.log",
+      "bytes": 1325,
+      "crc32": "0a1e00a7",
+      "sha256": "aaa261826ad7dd3a3dc82e56ea1cbd7c903f283578172e2134e96eb543cd93f8"
+    },
+    {
+      "path": "flutter-version.txt",
+      "bytes": 321,
+      "crc32": "ef6cb86f",
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 34386,
+      "crc32": "ad575fd2",
+      "sha256": "efcfca43ce9d611acf2eab1e012856fce29be46219fb48f74d459ca62efde0fa"
+    },
+    {
+      "path": "result.json",
+      "bytes": 5235,
+      "crc32": "42062470",
+      "sha256": "5feb10d715ab316a651342e6e9859b391e25e9cc1c79486596f85625cbb44347"
+    },
+    {
+      "path": "source-sha.txt",
+      "bytes": 41,
+      "crc32": "4c7187f0",
+      "sha256": "e4a9b32fc44d2dca93383813ee0db285ccc87eb9388f8982c90c4a7c58519847"
+    },
+    {
+      "path": "speech/resolved-toolchain.json",
+      "bytes": 321,
+      "crc32": "d6c42e44",
+      "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4"
+    },
+    {
+      "path": "speech/result.json",
+      "bytes": 62736,
+      "crc32": "d0867141",
+      "sha256": "ac73fe00d15c8c22f3f2703f8684bbfdd02a18b78b8e825e25068ee322ad2e99"
+    },
+    {
+      "path": "speech/test_english_lesson_speech.json",
+      "bytes": 1338,
+      "crc32": "93405bc4",
+      "sha256": "260a8cdb3fc8c87ef5cdc8f487695f8743ea04de844914e92c8ae2289748d6c5"
+    },
+    {
+      "path": "speech/test_english_lesson_speech.log",
+      "bytes": 2894,
+      "crc32": "a28afe49",
+      "sha256": "522e9234a954a0901144b4d54a2748fa2bf406cfee38cbf595e0ce6b85a12913"
+    },
+    {
+      "path": "speech/test_learning_english_speech_lifecycle.json",
+      "bytes": 1264,
+      "crc32": "1124a5b9",
+      "sha256": "9a4b3a178d283d32e83cfdd9d535c2ad5a5ee3fa9222124690b1d6a83c907f6d"
+    },
+    {
+      "path": "speech/test_learning_english_speech_lifecycle.log",
+      "bytes": 2709,
+      "crc32": "b9c22e28",
+      "sha256": "b0c4033fd159753d2b887bf320816814d2702a953bcbc526c887e98c55b664d4"
+    },
+    {
+      "path": "speech/toolchain-original.log",
+      "bytes": 493,
+      "crc32": "f9b981c5",
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7"
+    },
+    {
+      "path": "table-native-contracts.log",
+      "bytes": 4804,
+      "crc32": "46037d88",
+      "sha256": "4dfe33ea5d354396b51270f2d906364e554e688263e61a854e1cef3661cc1071"
+    }
+  ]
+}

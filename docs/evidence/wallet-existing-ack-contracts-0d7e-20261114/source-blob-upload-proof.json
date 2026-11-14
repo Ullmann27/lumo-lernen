@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "scope": "Two existing test files only; local runtime execution remains not performed.",
+  "files": [
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-existing-ack-contracts-0d7e-20261114/prepared/host/test/reward_wallet_queue_zone_test.dart",
+      "mode": "100644",
+      "bytes": 10841,
+      "sha256": "87c86d87ea01e6d8298d3ab48d2e5911924396b8836b2d03746b323543fb712c",
+      "git_blob_sha": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341",
+      "baseline": {
+        "commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+        "bytes": 9797,
+        "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+        "git_blob_sha": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+      },
+      "created_sha": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341",
+      "full_utf8_readback": true
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-existing-ack-contracts-0d7e-20261114/prepared/host/test/reward_wallet_transaction_test.dart",
+      "mode": "100644",
+      "bytes": 22524,
+      "sha256": "91864a9f6f5c371b230fd189df78f1d3280069b85bb4dcb6152c2ed01f1a7ac9",
+      "git_blob_sha": "a818134e16fadb009d6d00a1e61e0c5676f29b6a",
+      "baseline": {
+        "commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+        "bytes": 21962,
+        "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+        "git_blob_sha": "2419030446ada34710594160fc7f732669d97649"
+      },
+      "created_sha": "a818134e16fadb009d6d00a1e61e0c5676f29b6a",
+      "full_utf8_readback": true
+    }
+  ],
+  "tree_commit_ref_changes": false
+}

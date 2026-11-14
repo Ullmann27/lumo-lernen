@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Only current superseded Host28462/API37 failure evidence; no Android acceptance or success transfer.",
+  "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43626348519,
+  "job_id": 132563694495,
+  "artifact_id": 14128934085,
+  "whole_archive_sha256_locally_verified": false,
+  "whole_archive_crc_locally_verified": false,
+  "selected_journal_crc_verification": true,
+  "tests_run": false,
+  "product_changes": false,
+  "files": [
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/original-job.log",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1510220,
+      "sha256": "f5e5d4bc3e47d0ef57cc561f1aa3b858c1a6b79b1b7a09a85c0fb0e2f064d789",
+      "git_blob_sha": "458adb3906f57d912d4ce0adca8e495951612adf",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/jobs-terminal-original.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/jobs-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 33970,
+      "sha256": "76e27fea9701e2a8f7bbd2fc1966d11ca5418d472060bb66a78e949298e74c55",
+      "git_blob_sha": "9e2ec3d2f0f2d2cae52deac9240cafbdef990513",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/artifact-metadata-original.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/artifact-metadata-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 868,
+      "sha256": "7cdff384449f0f6b704b650436a8f0d596d61bd460354caa1d3e6763ccd5e5f6",
+      "git_blob_sha": "10c964a1888a65845cefa7a687839d05fd79561f",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/source-binding.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2564,
+      "sha256": "f77529d5767f6f13c131d22b32b2f579c77cded4a4f1ea23d8392482c1edaa7c",
+      "git_blob_sha": "094374fd6be51572f9d9eecd734ff7c57e7b7ac2",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/tour-step-observations.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/tour-step-observations.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4406,
+      "sha256": "9a1bbd5f710a797c3f191001e152f8c91940174536bf7c96af53d15a0a10a529",
+      "git_blob_sha": "6fbdcfa319a62863ea22f9cfa3dac3367a4df5c4",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/review.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8206,
+      "sha256": "57f6126f7500c2878ec34443ffcf38a574af84e27ee7081eb7acacb8c7187c7c",
+      "git_blob_sha": "3db4f55d89417f8e52d2edec5a97d9c63d0fbc69",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/README.md",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1969,
+      "sha256": "946911955fa7a5c06028e286e57a39526b143ea58835e679bf6e01850830be27",
+      "git_blob_sha": "c507d32900569993c1df89b2075c2f7db3e4e7be",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/collect-selected-journals.py",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/collect-selected-journals.py",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4570,
+      "sha256": "a48563e37b97273837411234cccac8241ef052c8d5242266cdb11abe11a064a1",
+      "git_blob_sha": "8808025f1ef3f66d7aaf59ec570d56c3cb5e6aad",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/range-download-report.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/range-download-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4315,
+      "sha256": "66282bd538f137d31d2c8505be84a8694466dfec95c754b60bdf13017976f13e",
+      "git_blob_sha": "44deb0589b9772fc868a70345241fecf957759e2",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/central-directory.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/central-directory.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 119652,
+      "sha256": "084f39774332c9de81aa9c0ac193e753c69e9a41a61fd78b1a75674966c36af3",
+      "git_blob_sha": "d5944726569231e06a3d7920398af91201f2c692",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/originals/21_kart_preview_skip.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/originals/21_kart_preview_skip.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4715,
+      "sha256": "cddacff07df018b00e0335229de623e7423772f0300c670ee305d33d16176925",
+      "git_blob_sha": "40d2cd2bbfd5d1677949181cbd99afb246eda09e",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/originals/21_kart_preview_skip_touch-surface-readiness.json",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/originals/21_kart_preview_skip_touch-surface-readiness.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3597,
+      "sha256": "d9c180bb83b98de33de1bd2fbfc2d4db33f913471ec77d0fbfee50567f1e251f",
+      "git_blob_sha": "b4bb67f664f8dc6736401e461be2c2b5141770b0",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-000-65852071-65852092.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-000-65852071-65852092.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 22,
+      "sha256": "6294f8aed589898129a50ec89d5ae448158c98a9f8c6cf6c1ac6cc970fb9e6b5",
+      "git_blob_sha": "4e48d119ef3cc6de9885693551d841b6b8467946",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-001-65852051-65852070.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-001-65852051-65852070.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 20,
+      "sha256": "101fe8721e9c1491c4f5941db2e647221d82e0ea54c0ec0d811ca0eaa75064e8",
+      "git_blob_sha": "6fd550a917831a6457fc7984c2efa69c1f2e4ccc",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-002-65788056-65852070.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-002-65788056-65852070.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 64015,
+      "sha256": "ef9bd232746bc4bd1e98b8aceb85f23fc4a1ae68ba58e71cf265b23b8216b63d",
+      "git_blob_sha": "785afe3fe193da4c94e77779dcb9c3f8f2fa7747",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-003-15546787-15546816.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-003-15546787-15546816.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 30,
+      "sha256": "9170b5c4f3900621a8c7fe0108ea7079ee043ab90883d68971979695bb821260",
+      "git_blob_sha": "0531db7ba89d5ce21e0b1fe1071fdf4be1f98200",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-004-15546817-15546841.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-004-15546817-15546841.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25,
+      "sha256": "e7fd43ebe5dd0b29bd3816e2bca583052c4add3f9cf3be521789d9777565c405",
+      "git_blob_sha": "dc21a4f34139485be45511f97e3db6be34fb9fd0",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-005-15546842-15548053.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-005-15546842-15548053.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1212,
+      "sha256": "80c645db5cc2a5a298a7852fb8b9b9e184b102548e3502824be9605674fca1c6",
+      "git_blob_sha": "4ede04a3fee6ca99be11d2bfc9b19539508c5c87",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-006-22973577-22973606.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-006-22973577-22973606.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 30,
+      "sha256": "db017b13255d831fb98a2e602847bdfa9c820cbce3f1580d5c1bf835e6a4a66b",
+      "git_blob_sha": "499a6b9709ffe40406b4a759313fda3af45ae9c7",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-007-22973607-22973655.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-007-22973607-22973655.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 49,
+      "sha256": "b4a57d4ae5f5fdff491edf65e7ab610b1fae814f109f1d5b0899ce1fed2ffa3f",
+      "git_blob_sha": "be85865c11f539116abdaa188c67546def6976b7",
+      "encoding": "base64"
+    },
+    {
+      "local_path": "qa/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-008-22973656-22974541.bin",
+      "path": "docs/evidence/studio-28462-api37-tour-20261114/selected-journal-transfer/ranges/range-008-22973656-22974541.bin",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 886,
+      "sha256": "115e4c39e6a02f35790aefe8f08b2271562aaf17f6f0f3dfea76ace76d09813d",
+      "git_blob_sha": "1f4020c214d1bac9f1a20a7cd5764dd00d455fd5",
+      "encoding": "base64"
+    }
+  ],
+  "total_bytes": 1765341
+}

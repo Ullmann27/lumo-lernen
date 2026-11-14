@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43626348519,
+  "job_id": 132563694481,
+  "status": "PASS_WITH_EXPLICIT_SCOPE",
+  "scope": "Actual 2017 learning -> install -r 2020 -> offline Kart -> restart/fold",
+  "candidate_apk": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "sha256": "2e1b763153d7bf46ef4ce89b7ed14e51ec38fc488339e73b25e45e920a4379d4",
+    "bytes": 335158818,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "abis": [
+      "x86_64"
+    ]
+  },
+  "candidate_pck_sha256": "5f97ffec4f5af7b9d8493a16846195993b0f94541c46cd6e5356e42c981f78a6",
+  "baseline_version": 2017,
+  "actual_profile_count": 1,
+  "actual_grade": 1,
+  "actual_task": {
+    "prompt": "2 + 3 = ?",
+    "answer": 5
+  },
+  "correct_answers_preserved": 1,
+  "stars_preserved": 1,
+  "xp_preserved": 5,
+  "protected_learning_keys_compared": 7,
+  "installation": {
+    "before_version": 2017,
+    "after_version": 2020,
+    "userId": "10209",
+    "firstInstallTime": "2026-11-14 19:41:11"
+  },
+  "offline": true,
+  "fatal_crashes": 0,
+  "native_tour": {
+    "start_and_hud": true,
+    "actual_gas_pulses": 3,
+    "distance_gain": 93.63,
+    "elapsed_gain": 5.02,
+    "pause": {
+      "result_id": "b8c8f5c5-1438-4c4c-aefe-458631300f83-1794685637702-165425503",
+      "distance": 114.55713666879456,
+      "elapsed": 6.833333333333314,
+      "checkpoint_index": 0,
+      "finished": false
+    },
+    "returned_to_flutter": true
+  },
+  "limits": [
+    "physical ARM64 device",
+    "GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race reward",
+    "Superseded Host28462: not acceptance of corrected Host8e64",
+    "One grade-1 profile and one successful addition only; not all subjects/grades/two-child saves/Journal",
+    "Baseline optional Deutsch and Englisch navigation searches recorded FAIL; no broad subject navigation acceptance",
+    "No PNG was downloaded or viewed in this selected-text review"
+  ],
+  "archive": {
+    "id": 14129545982,
+    "published_bytes": 112067945,
+    "published_sha256": "ec4ba2368850ea2d6da5fd03e0df4cd32a082d933ecd21418d2a185c81b58029",
+    "whole_archive_locally_verified": false,
+    "catalog_entries": 567,
+    "selected_members_verified": 11,
+    "strict_http_206_bytes_total": 122093,
+    "each_selected_member_crc_sha256_verified": true
+  }
+}

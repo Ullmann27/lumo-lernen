@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "original_log": {
+    "path": "qa/host-0d7e-flutter-acceptance-20261114/original-flutter-job.log",
+    "bytes": 121892,
+    "sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+    "downloaded_again": false
+  },
+  "original_memory_failures": [
+    {
+      "test": "Delayed old-child write cannot overwrite the newly selected child",
+      "line": 175,
+      "observed": "Expected one statistics request; observed exact seed leicht/best7 acknowledgement followed by requested profi/best7 write.",
+      "source_cause": "The test counted a new required positive same-value load acknowledgement as a user write and aborted before completing its deferred write gate."
+    },
+    {
+      "test": "Pending successive choices retain captured snapshots and final order",
+      "line": 233,
+      "observed": "No memory-diff-mittel widget found.",
+      "source_cause": "Same owner can still wait behind the previous test's uncompleted deferred statistics write. Its controller open cannot finish in that source path.",
+      "isolated_execution": "NOT_RUN"
+    },
+    {
+      "test": "Unreadable existing child stats are preserved instead of reset",
+      "line": 254,
+      "observed": "No memory-diff-leicht widget found.",
+      "source_cause": "Uses the same owner whose earlier unresolved serial tail also blocks this controller open.",
+      "isolated_execution": "NOT_RUN"
+    }
+  ],
+  "changed_file": {
+    "path": "test/games/memory_profile_storage_test.dart",
+    "bytes": 13044,
+    "sha256": "9f63b7ad07c7a74a78279cf58e95c93de08d319c713575d06f6f4c83ab99f8fa",
+    "git_blob_sha": "3da940a91cf02aae13083693e8f702d1bbc55fc5",
+    "baseline": {
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob_sha": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+    }
+  },
+  "changes": [
+    "Require one complete exact seed statistics ACK before arming the deferred user write.",
+    "Count user writes only from the explicit post-ACK checkpoint while preserving the 1-then-2 queue assertion.",
+    "Verify complete child keys, serialized payloads, best values, final order and old stored value while the user ACK is held.",
+    "Verify A's captured mutation, B's separate exact load ACK and B's own mutation in order.",
+    "Release each held gate conditionally in finally and drain idle continuations before and after widget disposal in the same test zone."
+  ],
+  "preserved": {
+    "all_six_original_test_names": true,
+    "four_other_test_blocks_byte_identical": true,
+    "all_product_files_byte_identical": true,
+    "positive_storage_ack_required": true,
+    "no_owner_queue_reset": true,
+    "no_new_timing_allowance": true,
+    "no_skips": true
+  },
+  "verification": {
+    "full_original_test_fresh_github_read": true,
+    "full_inverse_two_blocks_equal_baseline": true,
+    "original_failure_excerpt_checked": true,
+    "source_blob_create_sha_confirmed": true,
+    "full_utf8_source_readback_equal": true,
+    "local_post_upload_rehash_equal": true,
+    "independent_peer_review": "B reported no additional concrete static blocker; separate review artifact owned by B.",
+    "sdk_execution": "NOT_RUN",
+    "fresh_test_result": "PENDING_CI"
+  },
+  "limitations": [
+    "No new Flutter, Dart, Android or physical storage execution.",
+    "The explanation for later missing widgets is derived from the real assertion ordering and read source; no isolated rerun has been performed."
+  ]
+}

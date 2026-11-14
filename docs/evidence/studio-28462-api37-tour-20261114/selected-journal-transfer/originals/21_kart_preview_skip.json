@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "countercheck_scope": "NOT_ISOLATED",
+  "caption": "Tippen zum Überspringen",
+  "deadline_policy": "original race-world-ready55s",
+  "initial_remaining_seconds": 35.385653908999984,
+  "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json",
+  "initial_capture": {
+    "source": "21_lumo_kart_real_race.png",
+    "source_sha256": "e984e546149a8681ec82db50f17adc1417ffd42df6c1d3f5fd89722a8ab5fda9",
+    "scope": "Context only; never a touch prerequisite"
+  },
+  "foreground_before_touch": "    topResumedActivity=ActivityRecord{20249778 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t9}",
+  "error": "TimeoutError: Original55s race-ready deadline expired during preview skip",
+  "readiness": {
+    "status": "TOUCH_SENT",
+    "label": "Tippen zum Überspringen",
+    "timeout_seconds": 35.33968336800001,
+    "exact_caption_required": true,
+    "orientation_policy": "landscape",
+    "scope": "Observed touch prerequisites; post-action assertions still required",
+    "frames": [
+      {
+        "source": "21_kart_preview_skip_touch-0.png",
+        "source_sha256": "e984e546149a8681ec82db50f17adc1417ffd42df6c1d3f5fd89722a8ab5fda9",
+        "source_bytes": 1919261,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "orientation_policy": "landscape",
+        "sample_rows": [
+          130,
+          238,
+          346,
+          454,
+          562,
+          670,
+          778,
+          886
+        ],
+        "blank_edge_columns": {
+          "left": 0,
+          "right": 0
+        },
+        "blank_threshold_rgb_max": 8,
+        "blank_required_rows": 7,
+        "acceptable_for_target_sampling": true,
+        "reasons": [
+          "actual requested caption not observed"
+        ],
+        "scope": "Reject observed partial surface; no scene/gameplay PASS",
+        "captured_after_seconds": 1.853537
+      },
+      {
+        "source": "21_kart_preview_skip_touch-1.png",
+        "source_sha256": "b7a00a833dc6764fe544bc744fa61ee0277aaaf68b39610e8baa900a6edf39ed",
+        "source_bytes": 2284253,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "orientation_policy": "landscape",
+        "sample_rows": [
+          130,
+          238,
+          346,
+          454,
+          562,
+          670,
+          778,
+          886
+        ],
+        "blank_edge_columns": {
+          "left": 0,
+          "right": 0
+        },
+        "blank_threshold_rgb_max": 8,
+        "blank_required_rows": 7,
+        "acceptable_for_target_sampling": true,
+        "reasons": [],
+        "scope": "Reject observed partial surface; no scene/gameplay PASS",
+        "captured_after_seconds": 24.322392,
+        "target": {
+          "surface_sha256": "b7a00a833dc6764fe544bc744fa61ee0277aaaf68b39610e8baa900a6edf39ed",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "bounds": [
+            1124.0,
+            402.0,
+            1410.0,
+            433.0
+          ],
+          "anchor": "",
+          "reasons": [
+            "waiting for second stable observed target bounds"
+          ],
+          "target_geometry_valid": true,
+          "stable_observed_target": false
+        }
+      },
+      {
+        "source": "21_kart_preview_skip_touch-2.png",
+        "source_sha256": "99c3a77861ccc7beafa23891354048fe22250f91a8e615e03ec1e31a786cd114",
+        "source_bytes": 2165370,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "orientation_policy": "landscape",
+        "sample_rows": [
+          130,
+          238,
+          346,
+          454,
+          562,
+          670,
+          778,
+          886
+        ],
+        "blank_edge_columns": {
+          "left": 0,
+          "right": 0
+        },
+        "blank_threshold_rgb_max": 8,
+        "blank_required_rows": 7,
+        "acceptable_for_target_sampling": true,
+        "reasons": [],
+        "scope": "Reject observed partial surface; no scene/gameplay PASS",
+        "captured_after_seconds": 28.59089,
+        "target": {
+          "surface_sha256": "99c3a77861ccc7beafa23891354048fe22250f91a8e615e03ec1e31a786cd114",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "bounds": [
+            1124.0,
+            404.0,
+            1411.0,
+            431.0
+          ],
+          "anchor": "",
+          "reasons": [],
+          "target_geometry_valid": true,
+          "stable_observed_target": true
+        }
+      }
+    ],
+    "final_observed_bounds": [
+      1124.0,
+      404.0,
+      1411.0,
+      431.0
+    ],
+    "touch": [
+      1268,
+      418
+    ],
+    "elapsed_seconds": 35.339762
+  },
+  "elapsed_seconds": 35.38655
+}

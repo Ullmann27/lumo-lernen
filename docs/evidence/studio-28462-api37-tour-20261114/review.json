@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14 19:58:39 UTC",
+  "reviewer": "character_animation",
+  "status": "FAILURE_DIAGNOSIS_ONLY",
+  "source_binding": {
+    "schema": 1,
+    "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "run_id": 43626348519,
+    "job_id": 132563694495,
+    "scope": "Superseded storage implementation. The later Memory/Wallet/C4/OCR changes are not tested by this run.",
+    "checkout_lines": {
+      "host": 171,
+      "native": 289,
+      "apk_identity": 1713
+    },
+    "apk_identity": {
+      "original_log_line": 1713,
+      "utc": "2026-11-14T19:41:02.6892852Z",
+      "step": "apk-identity",
+      "ok": true,
+      "apk_sha256": "2e1b763153d7bf46ef4ce89b7ed14e51ec38fc488339e73b25e45e920a4379d4",
+      "flutter_source_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "godot_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "godot_pck_sha256": "5f97ffec4f5af7b9d8493a16846195993b0f94541c46cd6e5356e42c981f78a6",
+      "versionName": "0.13.8",
+      "versionCode": 2020,
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "checks": {
+        "sha256_matches_provenance": true,
+        "sha256_matches_build_sums": true,
+        "flutter_source_is_this_commit": true,
+        "tracked_source_clean": true,
+        "godot_revision_is_pinned": true,
+        "signing_certificate": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      }
+    },
+    "sources": [
+      {
+        "bytes": 53786,
+        "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+        "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+        "key": "tour",
+        "path": ".github/probes/modernization_android_tour.py",
+        "ref": "28462a7547048b75fa114e6f5832248e54c94faa",
+        "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/.github/probes/modernization_android_tour.py"
+      },
+      {
+        "bytes": 60697,
+        "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+        "git_blob_sha": "45ff0d24400ee21673c707b4b6448f914c85ee87",
+        "key": "helper",
+        "path": ".github/probes/creative_android_probe.py",
+        "ref": "28462a7547048b75fa114e6f5832248e54c94faa",
+        "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/.github/probes/creative_android_probe.py"
+      }
+    ],
+    "original_job_log": {
+      "path": "qa/studio-28462-api37-tour-20261114/original-job.log",
+      "bytes": 1510220,
+      "sha256": "f5e5d4bc3e47d0ef57cc561f1aa3b858c1a6b79b1b7a09a85c0fb0e2f064d789",
+      "git_blob_sha": "458adb3906f57d912d4ce0adca8e495951612adf"
+    }
+  },
+  "artifact": {
+    "id": 14128934085,
+    "published_size": 65852093,
+    "published_sha256": "c5dd800aae41db9b21120fddcd15dece15f8c01ade98397fa236ca7ddaad5dd1",
+    "transfer": "Exactly two original JSON members through strict HTTP206 ranges and complete member CRC verification;66,289 transferred bytes.",
+    "whole_archive_sha256_locally_verified": false,
+    "whole_archive_crc_verified": false,
+    "pngs_downloaded_or_reviewed": 0
+  },
+  "observed_result": {
+    "job_conclusion": "failure",
+    "framework_readiness_actual": "PASS after four stable samples; original log line1686",
+    "tour_ok_steps": 16,
+    "tour_failed_steps": 1,
+    "failed_step": "start-kart-race",
+    "not_reached": [
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu"
+    ],
+    "crashes": 0,
+    "alive": true,
+    "return_and_profile_learning_restart_checks": true,
+    "later_probes_started": {
+      "learning_cards_surfaces": false,
+      "connect_four": false,
+      "quiz": false,
+      "memory": false,
+      "english": false
+    },
+    "actual_last_shell_probe": "modernization_android_tour.py --skip-observed-kart-preview"
+  },
+  "precise_failure": {
+    "original_error": "TimeoutError: Original55s race-ready deadline expired during preview skip",
+    "outer_status": "FAIL",
+    "countercheck_scope": "NOT_ISOLATED",
+    "outer_initial_remaining_seconds": 35.385653908999984,
+    "outer_elapsed_seconds": 35.38655,
+    "helper_timeout_seconds": 35.33968336800001,
+    "helper_elapsed_seconds": 35.339762,
+    "helper_status": "TOUCH_SENT",
+    "touch": [
+      1268,
+      418
+    ],
+    "frames": [
+      {
+        "source": "21_kart_preview_skip_touch-0.png",
+        "source_sha256": "e984e546149a8681ec82db50f17adc1417ffd42df6c1d3f5fd89722a8ab5fda9",
+        "captured_after_seconds": 1.853537,
+        "acceptable_for_target_sampling": true,
+        "reasons": [
+          "actual requested caption not observed"
+        ]
+      },
+      {
+        "source": "21_kart_preview_skip_touch-1.png",
+        "source_sha256": "b7a00a833dc6764fe544bc744fa61ee0277aaaf68b39610e8baa900a6edf39ed",
+        "captured_after_seconds": 24.322392,
+        "acceptable_for_target_sampling": true,
+        "reasons": [],
+        "target": {
+          "surface_sha256": "b7a00a833dc6764fe544bc744fa61ee0277aaaf68b39610e8baa900a6edf39ed",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "bounds": [
+            1124,
+            402,
+            1410,
+            433
+          ],
+          "anchor": "",
+          "reasons": [
+            "waiting for second stable observed target bounds"
+          ],
+          "target_geometry_valid": true,
+          "stable_observed_target": false
+        }
+      },
+      {
+        "source": "21_kart_preview_skip_touch-2.png",
+        "source_sha256": "99c3a77861ccc7beafa23891354048fe22250f91a8e615e03ec1e31a786cd114",
+        "captured_after_seconds": 28.59089,
+        "acceptable_for_target_sampling": true,
+        "reasons": [],
+        "target": {
+          "surface_sha256": "99c3a77861ccc7beafa23891354048fe22250f91a8e615e03ec1e31a786cd114",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "bounds": [
+            1124,
+            404,
+            1411,
+            431
+          ],
+          "anchor": "",
+          "reasons": [],
+          "target_geometry_valid": true,
+          "stable_observed_target": true
+        }
+      }
+    ],
+    "first_to_second_capture_gap_seconds": 22.468855,
+    "first_to_second_gap_is_not_pure_ocr_time": true,
+    "after_capture_present": false,
+    "cue_witnesses_present": false,
+    "failed_source_statement": ".github/probes/modernization_android_tour.py:418 remaining()",
+    "control_flow_reason": "The helper has three captured frames and returns normally with TOUCH_SENT. The outer report has neither cue_witnesses nor after_capture. Among the unchanged remaining() call sites this binds the failure to the immediate post-native_tap check, before reading and recording cue witnesses. The outer catch then preserves the actual helper readiness file.",
+    "timing_reason": "The old generic reader leaves no exact caption in the first frame and the next frame arrives22.468855s later. Two later targets are valid/stable and a touch is sent, but the helper returns at its35.339683s allowance after its existing bounded post-touch wait. The outer55s world-ready deadline is exhausted and fails closed."
+  },
+  "limits": [
+    "The original journal proves guarded TOUCH_SENT, not a completed skip/running race or any gameplay PASS.",
+    "The first-to-second frame gap includes OCR, waits and capture overhead; individual OCR process times and exact ADB dispatch time were not extracted.",
+    "Current PNGs were neither downloaded nor visually inspected; no claim that a specific current frame looks faded.",
+    "The actual28462 helper is45ff0d24400ee21673c707b4b6448f914c85ee87 and still uses generic OCR variants/component/tile fallback. The reviewed specialized preview reader8b977b3d2406cdc321655f61e1f34cbd673d4aa2 was not present.",
+    "The newer reader can only be accepted through a fresh actual APK tour. This failure is not evidence of its success or failure.",
+    "No products, probes, workflows, refs or time budgets changed during this review; no test/rerun was started."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": 14129147269,
+  "name": "lumo-nextgen-memory-source-evidence",
+  "bytes": 3104,
+  "sha256": "ce5bbc78fe49acd8cbeb2713e1e86f21e1a077c5c33c085d10be981709e4f49d",
+  "download": "complete original archive once",
+  "all_member_crc_verified": true,
+  "entries": [
+    {
+      "path": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "crc32": "4c7187f0",
+      "sha256": "e4a9b32fc44d2dca93383813ee0db285ccc87eb9388f8982c90c4a7c58519847"
+    },
+    {
+      "path": "dart-version.txt",
+      "bytes": 81,
+      "crc32": "a9679d22",
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495"
+    },
+    {
+      "path": "memory-round.log",
+      "bytes": 2319,
+      "crc32": "92460123",
+      "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c"
+    },
+    {
+      "path": "memory-scheduler.log",
+      "bytes": 689,
+      "crc32": "8082ae07",
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1"
+    },
+    {
+      "path": "quiz-round.log",
+      "bytes": 1785,
+      "crc32": "ab423993",
+      "sha256": "7429cc464b0ce54672578ea38c427db97e5539cf358495d57b1aa2865ee08981"
+    }
+  ]
+}
