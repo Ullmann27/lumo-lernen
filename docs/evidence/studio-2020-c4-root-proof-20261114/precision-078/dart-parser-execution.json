@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--language-version=3.4",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-c4-rect-precision-20261114/host/test/games/connect_four_fold_controls_test.dart"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 0.04661303300235886,
+  "log_sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec",
+  "final_source_sha256": "830e42e2569e729c06319c6d7428e2fea6f174772ad99b7e78a48d97af47b610",
+  "scope": "Actual Dart formatter parse; no new Flutter execution yet."
+}

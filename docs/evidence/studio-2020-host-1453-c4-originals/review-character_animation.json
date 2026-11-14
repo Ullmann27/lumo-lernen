@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T09:22:25.846800+00:00",
+  "host_revision": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "workflow_run": 43579548170,
+  "artifact_id": 14107945718,
+  "original_archive": {
+    "bytes": 2080118,
+    "sha256": "f459f562ca26a2eafb2d8c66bfc3dd6efb7d32786367aa588f01fb8b5fe19a28",
+    "entry_count": 10,
+    "crc_verification": "Root verified all 10 original ZIP entries; this review independently rehashed the five extracted PNGs against the bound index"
+  },
+  "original_index": {
+    "path": "qa/studio-2020-host-1453-c4-originals/verified-original-extraction.json",
+    "sha256": "4d649ff544f269d9512ac651a8c851283ce16e69dc3ca2b2e7f18b03b357c75b"
+  },
+  "original_flutter_log": {
+    "path": "/tmp/lumo-1453-c4-originals/flutter.log",
+    "sha256": "e6807cd54af562f21269133da1d5b0a3048c0ae529d2b97de691e4079ebbcb7f",
+    "observed_result": "8 passed / 4 failed; all five original visual formats completed before the four additional Fold cases failed on 47.99999999999997 >= 48 global Rect size comparison"
+  },
+  "images": [
+    {
+      "artifact_entry": "captures/1200x896.png",
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/1200x896.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "e7ddd655f26b2c84c7ef2f9235c59f2cf399b547aec8ea8535006dfccbe9586d",
+      "git_blob": "0da1025ad179f83d5c5a01be072ba6dee005b9cf",
+      "bytes": 705374,
+      "dimensions_px": [
+        1200,
+        896
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image; original bytes additionally decoded and hashed",
+      "findings": [
+        "Das vollständige Brett mit sieben Spalten und sechs Reihen ist links sichtbar. Die sechs gesetzten Steine bilden zwei Paare übereinander in den mittleren Spalten und zwei weitere Steine in der untersten Reihe; drei cyanfarbene und drei goldene Steine sind erkennbar.",
+        "Die sieben Pfeilknöpfe stehen sichtbar unter den entsprechenden Brettspalten. Kopfzeile, Zurück- und Neustartsymbol sind frei sichtbar.",
+        "Der rechte Bereich zeigt die aktive Auswahl Zu zweit, den Zughinweis und den vollständigen Fuchs ohne Überschneidung mit dem Brett oder den Knöpfen. Unterhalb bleibt freier Raum.",
+        "Die Reserven sind trotz aktivem Zweispielermodus mit Du und Lumo beschriftet. Das ist eine sichtbare bestehende Textkonvention; aus diesem Bild wird keine andere Spielregel abgeleitet."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/1280x720.png",
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/1280x720.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "bb22f40bb2193e6d67aa43a5cec929eee8fd98a84c20e436ac4d191c8f1a2e12",
+      "git_blob": "008692ccb7a1ca203e16f931cd3945702dfcddd1",
+      "bytes": 635882,
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image; original bytes additionally decoded and hashed",
+      "findings": [
+        "Das große Brett links ist vollständig sichtbar; alle sieben Spalten, sechs Reihen und sechs tatsächlich dargestellten Steine sind voneinander unterscheidbar.",
+        "Die Knopfmitten liegen visuell unter den Brettspalten. Weder Kopfzeile noch die untere Pfeilreihe werden vom Fuchs verdeckt.",
+        "Der Fuchs ist rechts vollständig von den Ohren bis zu den Füßen sichtbar. Moduswahl, Zughinweis und Richtungsanleitung sind lesbar.",
+        "Zu zweit ist aktiv; die beiden Reserven heißen weiterhin Du und Lumo. Eine funktionale Fehlzuordnung ist aus dem Standbild nicht nachgewiesen."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/360x800.png",
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/360x800.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "4d8b0db20534914db8960081886236421357d13af0a2f8e09580ed0905b387f4",
+      "git_blob": "1fa5a4b0c1cf6ee1aaeb1981e6c7f130c7ca552e",
+      "bytes": 199897,
+      "dimensions_px": [
+        360,
+        800
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image; original bytes additionally decoded and hashed",
+      "findings": [
+        "Die Hochformatansicht zeigt Kopfzeile, beide Modusknöpfe und den Zughinweis lesbar über dem Brett. Alle sechs gesetzten Steine sind sichtbar.",
+        "Die erste linke Brettspalte und der erste Pfeilknopf sind am linken Rand angeschnitten. Das Bild stammt nach dem letzten ensureVisible der rechten Spalte aus der horizontal verschobenen Endansicht; der gemeinsame Beschnitt passt zum gemeinsamen Scrollinhalt. Dieses Standbild beweist nicht die tatsächliche Bedienbarkeit eines Fingerwischers.",
+        "Die übrigen Pfeile stehen sichtbar unter ihren jeweiligen Spalten. Der Fuchs ist im unteren Bereich vollständig sichtbar und verdeckt keinen Knopf.",
+        "Die Reserven Du und Lumo bleiben lesbar, während Zu zweit ausgewählt ist. Der Tischsockel reicht an den unteren Bildrand; die Figur selbst ist nicht abgeschnitten."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/640x360.png",
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/640x360.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "6f34ad2e2db979155137f6a9bb7d958aafb70079065ed61a9917e284ee057c2c",
+      "git_blob": "8ba2b893fa81c2ea6869bf5cdffadcccfa4dbeff",
+      "bytes": 150801,
+      "dimensions_px": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image; original bytes additionally decoded and hashed",
+      "findings": [
+        "Die kompakte Queransicht zeigt sieben Spalten und sechs Reihen auf einem in der Höhe komprimierten Brett. Die einzelnen Löcher und Steine bleiben rund; drei cyanfarbene und drei goldene gesetzte Steine sind klar unterscheidbar.",
+        "Alle sieben Pfeilknöpfe sind in der Aufnahme erkennbar und unter den zugehörigen Spalten angeordnet. Kopfzeile und Navigation sind lesbar.",
+        "Der Fuchs ist rechts deutlich kleiner als in den großen Formaten, aber vollständig sichtbar. Er überdeckt weder den Zughinweis noch die Knöpfe.",
+        "Die Anleitung Waagrecht, senkrecht oder diagonal ist vollständig lesbar. Die Reservetabletts werden im kompakten Layout nicht angezeigt; daraus wird kein fehlender Spielstand abgeleitet."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/740x840.png",
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/740x840.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "5990524a7235f52e3588acea53db98c8cccad1cde1bfcb43831122f5bb1d0a72",
+      "git_blob": "e3361b726aab6eb7be483caad4fab2f7a2db64a0",
+      "bytes": 390737,
+      "dimensions_px": [
+        740,
+        840
+      ],
+      "reviewed": true,
+      "review_method": "Original PNG individually opened through view_image; original bytes additionally decoded and hashed",
+      "findings": [
+        "Das vollständige Brett ist mittig angeordnet. Sieben Spalten, sechs Reihen und alle sechs gesetzten Steine sind sichtbar.",
+        "Die sieben Pfeilknöpfe sind vollständig erkennbar und visuell an den Brettspalten ausgerichtet. Der darunterliegende Fuchs bleibt vollständig sichtbar und berührt die Knopfreihe nicht.",
+        "Kopfzeile, Moduswahl und Zughinweis sind lesbar; Zu zweit ist aktiv. Im unteren Bereich sind beide Reserven frei sichtbar.",
+        "Die Beschriftungen Du und Lumo bleiben auch hier trotz aktivem Zweispielermodus bestehen. Kein zusätzlicher sichtbarer Layoutblocker erkannt."
+      ],
+      "blocking_issue": false
+    }
+  ],
+  "reviewed_images": 5,
+  "blocking_visual_issues": 0,
+  "limits": [
+    "These are current Flutter fallback framebuffers, not native Godot captures and not Android screenshots.",
+    "The pictured fox is the Flutter image-based companion; these frames do not prove native facial or body animation.",
+    "The four added Fold gesture cases failed before their gesture sequence; this image review does not convert those failures to success.",
+    "No device performance, frame rate, touch latency, physical Fold7, full Flutter-suite, APK or release approval is claimed.",
+    "The partial left edge in the 360x800 end-scroll frame is explicitly recorded; a still image alone cannot prove a successful finger swipe.",
+    "Player reserve labels Du/Lumo under active Zu zweit are retained visible text; no rule-change claim."
+  ],
+  "mutations": {
+    "source": false,
+    "images": false,
+    "uploads": false,
+    "refs": false
+  }
+}

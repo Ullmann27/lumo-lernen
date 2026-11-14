@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "parent": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "base_tree": "680de0e2d632971ff9462e9d0b262b73e9f78548",
+  "file_count": 2,
+  "product_and_workflow_unchanged": true,
+  "files": [
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-rect-precision-20261114/host/test/games/connect_four_fold_controls_test.dart",
+      "bytes": 9683,
+      "sha256": "830e42e2569e729c06319c6d7428e2fea6f174772ad99b7e78a48d97af47b610",
+      "git_blob_sha": "f33dfcebb8a635c2bba261b82bb71d3f0ce0d31d",
+      "previous_git_blob_sha": "3dfc352bb0cd000b79cf5111b10b0247f7add943",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/studio-2020-c4-ci-corrections.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-rect-precision-20261114/host/docs/studio-2020-c4-ci-corrections.md",
+      "bytes": 7678,
+      "sha256": "55e653aba59983f182a9a1fc580ef74a649f471060806d92bb8a777b76bb87c5",
+      "git_blob_sha": "0c39189e0e559587ed4c14f9b78f4711a31c0eda",
+      "previous_git_blob_sha": "198d0ecb40da1832bb8c7f0703a435cdab764286",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "scope": "Strict RenderBox-size measurement and transparent failure history; new CI execution pending."
+}

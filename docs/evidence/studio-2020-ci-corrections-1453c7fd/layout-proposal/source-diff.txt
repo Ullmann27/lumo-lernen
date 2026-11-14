@@ -1,0 +1,340 @@
+  old:18 new:18 const _cyan = Color(0xFF53DDFD);
+  old:19 new:19 const _gold = Color(0xFFFFD166);
+  old:20 new:20 const _ink = Color(0xFF071A3D);
+  old:21 new:21 const _panel = Color(0xEB0C2C58);
++ old:21 new:22 const _connectBoardPadding = 10.0;
++ old:21 new:23 const _connectBoardBorderWidth = 2.4;
++ old:21 new:24 const _connectBoardInset = _connectBoardPadding + _connectBoardBorderWidth;
++ old:21 new:25 const _connectColumnTouchSize = 48.0;
++ old:21 new:26 const _connectMinimumBoardHeight = 6 * 24.0 + 2 * _connectBoardInset;
++ old:21 new:27 const _connectPlayChromeHeight = 28.0 + 8.0 + _connectColumnTouchSize;
+  old:22 new:28 
+  old:23 new:29 class LumoConnectFourScreen extends StatefulWidget {
+  old:24 new:30   const LumoConnectFourScreen({super.key, required this.appState, this.seed});
+  old:25 new:31 
+
+  old:494 new:500           const LumoConnectFourRoom(),
+  old:495 new:501           SafeArea(
+  old:496 new:502             child: LayoutBuilder(builder: (context, constraints) {
+  old:497 new:503               final wide = constraints.maxWidth > constraints.maxHeight;
++ old:497 new:504               if (!wide) {
++ old:497 new:505                 final companionH = math.min(222.0,
++ old:497 new:506                     math.max(152.0, constraints.maxHeight * 0.24));
++ old:497 new:507                 return CustomScrollView(
++ old:497 new:508                   key: const ValueKey('connect-portrait-scroll'),
++ old:497 new:509                   slivers: [
++ old:497 new:510                     SliverToBoxAdapter(child: _header()),
++ old:497 new:511                     SliverToBoxAdapter(child: _modes()),
++ old:497 new:512                     SliverPadding(
++ old:497 new:513                       padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
++ old:497 new:514                       sliver: SliverToBoxAdapter(child: _turnLabel()),
++ old:497 new:515                     ),
++ old:497 new:516                     const SliverToBoxAdapter(child: SizedBox(height: 8)),
++ old:497 new:517                     SliverLayoutBuilder(builder: (context, viewport) {
++ old:497 new:518                       // Reserve the actual preceding header/mode/text extent,
++ old:497 new:519                       // so large text can scroll without hiding the play area.
++ old:497 new:520                       final playHeight = math.max(
++ old:497 new:521                           _connectMinimumBoardHeight +
++ old:497 new:522                               _connectPlayChromeHeight,
++ old:497 new:523                           viewport.viewportMainAxisExtent -
++ old:497 new:524                               viewport.precedingScrollExtent -
++ old:497 new:525                               companionH -
++ old:497 new:526                               22.0);
++ old:497 new:527                       return SliverPadding(
++ old:497 new:528                         padding: const EdgeInsets.symmetric(horizontal: 12),
++ old:497 new:529                         sliver: SliverToBoxAdapter(
++ old:497 new:530                           child: SizedBox(
++ old:497 new:531                             height: playHeight,
++ old:497 new:532                             child: _playArea(),
++ old:497 new:533                           ),
++ old:497 new:534                         ),
++ old:497 new:535                       );
++ old:497 new:536                     }),
++ old:497 new:537                     SliverPadding(
++ old:497 new:538                       padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
++ old:497 new:539                       sliver: SliverToBoxAdapter(
++ old:497 new:540                         child: SizedBox(
++ old:497 new:541                           height: companionH,
++ old:497 new:542                           child: _companion(wide: false, height: companionH),
++ old:497 new:543                         ),
++ old:497 new:544                       ),
++ old:497 new:545                     ),
++ old:497 new:546                   ],
++ old:497 new:547                 );
++ old:497 new:548               }
+  old:498 new:549               return Column(children: [
+  old:499 new:550                 _header(),
+- old:500 new:550                 if (!wide) _modes(),
+  old:501 new:551                 Expanded(
+  old:502 new:552                   child: Padding(
++ old:502 new:553                     padding:
++ old:502 new:554                         const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
++ old:502 new:555                     child: Row(children: [
++ old:502 new:556                       Expanded(flex: 3, child: _playArea()),
++ old:502 new:557                       const SizedBox(width: 20),
++ old:502 new:558                       Expanded(flex: 2, child: _companion(wide: true)),
++ old:502 new:559                     ]),
+- old:503 new:559                     padding: EdgeInsets.symmetric(
+- old:504 new:559                         horizontal: wide ? 20 : 12, vertical: 8),
+- old:505 new:559                     child: wide
+- old:506 new:559                         ? Row(children: [
+- old:507 new:559                             Expanded(flex: 3, child: _playArea()),
+- old:508 new:559                             const SizedBox(width: 20),
+- old:509 new:559                             Expanded(flex: 2, child: _companion(wide: true)),
+- old:510 new:559                           ])
+- old:511 new:559                         : Builder(builder: (context) {
+- old:512 new:559                             final companionH = math.min(222.0,
+- old:513 new:559                                 math.max(152.0, constraints.maxHeight * 0.24));
+- old:514 new:559                             return Column(children: [
+- old:515 new:559                               _turnLabel(),
+- old:516 new:559                               const SizedBox(height: 8),
+- old:517 new:559                               Expanded(child: _playArea()),
+- old:518 new:559                               const SizedBox(height: 6),
+- old:519 new:559                               SizedBox(
+- old:520 new:559                                 height: companionH,
+- old:521 new:559                                 child:
+- old:522 new:559                                     _companion(wide: false, height: companionH),
+- old:523 new:559                               ),
+- old:524 new:559                             ]);
+- old:525 new:559                           }),
+  old:526 new:560                   ),
+  old:527 new:561                 ),
+  old:528 new:562                 const SizedBox(height: 8),
+  old:529 new:563               ]);
+
+  old:845 new:879   }
+  old:846 new:880 
+  old:847 new:881   Widget _playArea() => LayoutBuilder(builder: (context, constraints) {
+  old:848 new:882         const tableExtra = 28.0;
++ old:848 new:883         final availableHeight = math.max(
++ old:848 new:884             _connectMinimumBoardHeight,
++ old:848 new:885             constraints.maxHeight - _connectPlayChromeHeight);
++ old:848 new:886         final width = math.max(
++ old:848 new:887             ConnectFourEngine.columns * _connectColumnTouchSize +
++ old:848 new:888                 2 * _connectBoardInset,
++ old:848 new:889             math.min(constraints.maxWidth, availableHeight * 7 / 6));
++ old:848 new:890         final boardHeight = math.min(width * 6 / 7, availableHeight);
++ old:848 new:891         final contentHeight = boardHeight + _connectPlayChromeHeight;
++ old:848 new:892         final stage = SizedBox(
++ old:848 new:893           width: math.min(constraints.maxWidth, width),
++ old:848 new:894           height: contentHeight,
++ old:848 new:895           child: SingleChildScrollView(
++ old:848 new:896             key: const ValueKey('connect-column-scroll'),
++ old:848 new:897             scrollDirection: Axis.horizontal,
++ old:848 new:898             child: SizedBox(
+- old:849 new:898         final availableHeight =
+- old:850 new:898             math.max(0.0, constraints.maxHeight - 56 - tableExtra);
+- old:851 new:898         final width = math.min(constraints.maxWidth, availableHeight * 7 / 6);
+- old:852 new:898         return Align(
+- old:853 new:898           alignment: Alignment.topCenter,
+- old:854 new:898           child: Column(mainAxisSize: MainAxisSize.min, children: [
+- old:855 new:898             SizedBox(
+  old:856 new:899               width: width,
++ old:856 new:900               height: contentHeight,
++ old:856 new:901               child: Column(mainAxisSize: MainAxisSize.min, children: [
++ old:856 new:902                 SizedBox(
++ old:856 new:903                   width: width,
++ old:856 new:904                   height: boardHeight + tableExtra,
++ old:856 new:905                   child: Stack(
++ old:856 new:906                     clipBehavior: Clip.none,
++ old:856 new:907                     children: [
++ old:856 new:908                       Positioned(
++ old:856 new:909                         left: -18,
++ old:856 new:910                         right: -18,
++ old:856 new:911                         bottom: 0,
++ old:856 new:912                         height: boardHeight * 0.42 + tableExtra,
++ old:856 new:913                         child: const IgnorePointer(
++ old:856 new:914                           child: CustomPaint(
++ old:856 new:915                             painter: LumoConnectFourTablePedestal(),
++ old:856 new:916                             child: SizedBox.expand(),
++ old:856 new:917                           ),
++ old:856 new:918                         ),
++ old:856 new:919                       ),
++ old:856 new:920                       Positioned(
++ old:856 new:921                         top: 0,
++ old:856 new:922                         left: 0,
++ old:856 new:923                         right: 0,
++ old:856 new:924                         height: boardHeight,
++ old:856 new:925                         child: _board(),
+- old:857 new:925               height: width * 6 / 7 + tableExtra,
+- old:858 new:925               child: Stack(
+- old:859 new:925                 clipBehavior: Clip.none,
+- old:860 new:925                 children: [
+- old:861 new:925                   Positioned(
+- old:862 new:925                     left: -18,
+- old:863 new:925                     right: -18,
+- old:864 new:925                     bottom: 0,
+- old:865 new:925                     height: width * 6 / 7 * 0.42 + tableExtra,
+- old:866 new:925                     child: const IgnorePointer(
+- old:867 new:925                       child: CustomPaint(
+- old:868 new:925                         painter: LumoConnectFourTablePedestal(),
+- old:869 new:925                         child: SizedBox.expand(),
+  old:870 new:926                       ),
++ old:870 new:927                     ],
+- old:871 new:927                     ),
+  old:872 new:928                   ),
++ old:872 new:929                 ),
++ old:872 new:930                 const SizedBox(height: 8),
++ old:872 new:931                 SizedBox(
++ old:872 new:932                   width: width,
++ old:872 new:933                   height: _connectColumnTouchSize,
++ old:872 new:934                   child: _columnControls(),
++ old:872 new:935                 ),
++ old:872 new:936               ]),
+- old:873 new:936                   Positioned(
+- old:874 new:936                     top: 0,
+- old:875 new:936                     left: 0,
+- old:876 new:936                     right: 0,
+- old:877 new:936                     height: width * 6 / 7,
+- old:878 new:936                     child: _board(),
+- old:879 new:936                   ),
+- old:880 new:936                 ],
+- old:881 new:936               ),
+  old:882 new:937             ),
++ old:882 new:938           ),
++ old:882 new:939         );
++ old:882 new:940         return Align(
++ old:882 new:941           alignment: Alignment.topCenter,
++ old:882 new:942           child: contentHeight > constraints.maxHeight
++ old:882 new:943               ? SingleChildScrollView(
++ old:882 new:944                   key: const ValueKey('connect-play-vertical-scroll'),
++ old:882 new:945                   child: stage,
++ old:882 new:946                 )
++ old:882 new:947               : stage,
+- old:883 new:947             const SizedBox(height: 8),
+- old:884 new:947             SizedBox(
+- old:885 new:947               width: width,
+- old:886 new:947               child: _columnControls(maxWidth: width),
+- old:887 new:947             ),
+- old:888 new:947           ]),
+  old:889 new:948         );
+  old:890 new:949       });
+  old:891 new:950 
++ old:891 new:951   Widget _columnControls() => Padding(
++ old:891 new:952         // Board cells and controls share both this inset and one scroll offset.
++ old:891 new:953         padding: const EdgeInsets.symmetric(horizontal: _connectBoardInset),
++ old:891 new:954         child: Row(children: [
++ old:891 new:955           for (var c = 0; c < ConnectFourEngine.columns; c++)
++ old:891 new:956             Expanded(
++ old:891 new:957               child: LumoPressable(
++ old:891 new:958                 enabled: !_busy && !_clock.value,
++ old:891 new:959                 radius: 12,
++ old:891 new:960                 child: IconButton(
++ old:891 new:961                   key: ValueKey('connect-column-$c'),
++ old:891 new:962                   tooltip: 'Stein in Spalte ${c + 1}',
++ old:891 new:963                   style: IconButton.styleFrom(
++ old:891 new:964                     backgroundColor: _panel,
++ old:891 new:965                     minimumSize: const Size(
++ old:891 new:966                         _connectColumnTouchSize, _connectColumnTouchSize),
++ old:891 new:967                     shape: RoundedRectangleBorder(
++ old:891 new:968                       borderRadius: BorderRadius.circular(12),
++ old:891 new:969                       side: BorderSide(color: _cyan.withValues(alpha: .5)),
+- old:892 new:969   Widget _columnControls({double maxWidth = 560}) => Center(
+- old:893 new:969         // On an outer Fold display (or a small phone with large text), seven
+- old:894 new:969         // minimum 48dp touch targets cannot always fit side-by-side.
+- old:895 new:969         // Keep every real column control accessible by horizontal scrolling
+- old:896 new:969         // instead of compressing its hit target or overflowing the viewport.
+- old:897 new:969         child: SizedBox(
+- old:898 new:969           width: maxWidth,
+- old:899 new:969           child: SingleChildScrollView(
+- old:900 new:969             key: const ValueKey('connect-column-scroll'),
+- old:901 new:969             scrollDirection: Axis.horizontal,
+- old:902 new:969             child: SizedBox(
+- old:903 new:969               width:
+- old:904 new:969                   math.max(maxWidth, ConnectFourEngine.columns * 48.0 + 24.0),
+- old:905 new:969               child: Padding(
+- old:906 new:969                 padding: const EdgeInsets.symmetric(horizontal: 12),
+- old:907 new:969                 child: Row(children: [
+- old:908 new:969                   for (var c = 0; c < ConnectFourEngine.columns; c++)
+- old:909 new:969                     Expanded(
+- old:910 new:969                       child: LumoPressable(
+- old:911 new:969                         enabled: !_busy && !_clock.value,
+- old:912 new:969                         radius: 12,
+- old:913 new:969                         child: IconButton(
+- old:914 new:969                           key: ValueKey('connect-column-$c'),
+- old:915 new:969                           tooltip: 'Stein in Spalte ${c + 1}',
+- old:916 new:969                           style: IconButton.styleFrom(
+- old:917 new:969                             backgroundColor: _panel,
+- old:918 new:969                             minimumSize: const Size(48, 48),
+- old:919 new:969                             shape: RoundedRectangleBorder(
+- old:920 new:969                               borderRadius: BorderRadius.circular(12),
+- old:921 new:969                               side: BorderSide(
+- old:922 new:969                                   color: _cyan.withValues(alpha: .5)),
+- old:923 new:969                             ),
+- old:924 new:969                           ),
+- old:925 new:969                           onPressed: !_busy &&
+- old:926 new:969                                   !_clock.value &&
+- old:927 new:969                                   _game.phase == ConnectPhase.playing &&
+- old:928 new:969                                   _game.validColumns.contains(c)
+- old:929 new:969                               ? () => _tapColumn(c)
+- old:930 new:969                               : null,
+- old:931 new:969                           icon: Icon(Icons.arrow_downward_rounded,
+- old:932 new:969                               size: 24,
+- old:933 new:969                               color: _busy
+- old:934 new:969                                   ? Colors.white24
+- old:935 new:969                                   : _game.turn == ConnectPiece.child
+- old:936 new:969                                       ? _cyan
+- old:937 new:969                                       : _gold),
+- old:938 new:969                         ),
+- old:939 new:969                       ),
+  old:940 new:970                     ),
++ old:940 new:971                   ),
++ old:940 new:972                   onPressed: !_busy &&
++ old:940 new:973                           !_clock.value &&
++ old:940 new:974                           _game.phase == ConnectPhase.playing &&
++ old:940 new:975                           _game.validColumns.contains(c)
++ old:940 new:976                       ? () => _tapColumn(c)
++ old:940 new:977                       : null,
++ old:940 new:978                   icon: Icon(Icons.arrow_downward_rounded,
++ old:940 new:979                       size: 24,
++ old:940 new:980                       color: _busy
++ old:940 new:981                           ? Colors.white24
++ old:940 new:982                           : _game.turn == ConnectPiece.child
++ old:940 new:983                               ? _cyan
++ old:940 new:984                               : _gold),
++ old:940 new:985                 ),
+- old:941 new:985                 ]),
+  old:942 new:986               ),
+  old:943 new:987             ),
++ old:943 new:988         ]),
+- old:944 new:988           ),
+- old:945 new:988         ),
+  old:946 new:989       );
+  old:947 new:990 
++ old:947 new:991   Widget _board() => SizedBox.expand(
++ old:947 new:992         child: RepaintBoundary(
+- old:948 new:992   Widget _board() => Center(
+- old:949 new:992         child: AspectRatio(
+- old:950 new:992           aspectRatio: 7 / 6,
+- old:951 new:992           child: RepaintBoundary(
+  old:952 new:993             child: Stack(
+  old:953 new:994               clipBehavior: Clip.none,
+  old:954 new:995               children: [
+  old:955 new:996                 Positioned(
+
+  old:991 new:1032                     ),
+  old:992 new:1033                   ),
+  old:993 new:1034                 ),
+  old:994 new:1035                 Container(
++ old:994 new:1036                   padding: const EdgeInsets.all(_connectBoardPadding),
+- old:995 new:1036                   padding: const EdgeInsets.all(10),
+  old:996 new:1037                   decoration: BoxDecoration(
+  old:997 new:1038                     color: const Color(0xE0081636),
+  old:998 new:1039                     borderRadius: BorderRadius.circular(26),
+  old:999 new:1040                     border:
++ old:999 new:1041                         Border.all(color: const Color(0xFF8AF0FF), width: _connectBoardBorderWidth),
+- old:1000 new:1041                         Border.all(color: const Color(0xFF8AF0FF), width: 2.4),
+  old:1001 new:1042                     boxShadow: const [
+  old:1002 new:1043                       BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
+  old:1003 new:1044                       BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
+  old:1004 new:1045                       BoxShadow(
+
+  old:1078 new:1119                   }),
+  old:1079 new:1120                 ),
+  old:1080 new:1121               ],
+  old:1081 new:1122             ),
+- old:1082 new:1122           ),
+  old:1083 new:1123         ),
+  old:1084 new:1124       );
+  old:1085 new:1125 
+  old:1086 new:1126   Widget _disc(ConnectPiece piece,

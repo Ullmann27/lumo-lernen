@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "parent": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "base_tree": "63af179a4ef7a4ab9edb35e8365c1ea059f9258a",
+  "native_unchanged": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "file_count": 6,
+  "files": [
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 58576,
+      "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+      "git_blob_sha": "4987a607fd3bb1531eff243500ed05cfec50ec57",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "91900659c06ab2d6713b8bd24d37800eb533c470",
+      "confirmed_uploaded": false
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 44247,
+      "sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+      "git_blob_sha": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+      "confirmed_uploaded": false
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/test/games/connect_four_fold_controls_test.dart",
+      "bytes": 9473,
+      "sha256": "d81c02439db9ba9394e1ddb9f62245520b2781345a83e3df6a3bc2bf081961e2",
+      "git_blob_sha": "3dfc352bb0cd000b79cf5111b10b0247f7add943",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "92956444dee338921853aea037ca32033bcd3b2e",
+      "confirmed_uploaded": false
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-b/host/test/design/connect_four_visual_test.dart",
+      "bytes": 7736,
+      "sha256": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+      "git_blob_sha": "2b6225ad3972ae801620d8363458833434358616",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "1a344ef9012cfdd7230cad2b6ebcd680151218e7",
+      "confirmed_uploaded": true
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-c/host/test/games/games_screen_flow_test.dart",
+      "bytes": 11691,
+      "sha256": "d13b42f24be5965b35e4528a20f4c9e3a7a6db56ebbc8624aea976bf0595015a",
+      "git_blob_sha": "31793fa489756398b656c63b86f7e5dcfe953006",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "92190a24410646e27d321a5f87ed06f6dbf9e005",
+      "confirmed_uploaded": true
+    },
+    {
+      "path": "docs/studio-2020-c4-ci-corrections.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/docs/studio-2020-c4-ci-corrections.md",
+      "bytes": 6080,
+      "sha256": "37dbc760b15bda4c8d0687e1639f58421010d89fcb2c8d87ed2be4a8e42156c2",
+      "git_blob_sha": "198d0ecb40da1832bb8c7f0703a435cdab764286",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": null,
+      "confirmed_uploaded": false
+    }
+  ],
+  "total_bytes": 137803,
+  "execution": "Actual Dart parser and8 workflow-contract tests only; corrected widget tests awaiting GitHub CI."
+}

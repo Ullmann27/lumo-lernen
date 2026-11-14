@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T09:16:55.548613+00:00",
+  "status": "immutable_docs_prepared_no_tests_or_refs",
+  "new_host": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "new_host_tree": "680de0e2d632971ff9462e9d0b262b73e9f78548",
+  "new_host_run": 43579548170,
+  "new_host_run_scope": "Root reported actual startup; Agent C owns builder monitoring; no Android result claimed by this package.",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "final_product_sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+  "final_product_git_blob": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+  "input_manifests": [
+    {
+      "group": "layout-geometry",
+      "source_path": "qa/connect-four-shared-layout-review-ae394-20261114/upload-manifest.json",
+      "bytes": 857,
+      "sha256": "140b1ac8a25be3ecb6206ce9415f227f6b0db3ce2fc889e89ec8cb3366e1a630",
+      "git_blob": "c8bc0d841668f68f6c7282fa3ddecb7c0a342b12",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "group": "layout-proposal",
+      "source_path": "qa/connect-four-layout-blob-review-20261114/upload-manifest.json",
+      "bytes": 1598,
+      "sha256": "fda6a1f75a89636b98d3b786ead5cc0d9c079abb0d5ad55e76f575167ef58d9a",
+      "git_blob": "e1f93fabde8a3e8a0019f3caa0b5f8b64acb4eb7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "group": "layout-final",
+      "source_path": "qa/connect-four-layout-blob-review-20261114/final-upload-manifest.json",
+      "bytes": 864,
+      "sha256": "f71f7396650e132623896657fed404a06e44342c8107917f1ad97ea3530f0537",
+      "git_blob": "1f3b317c192069b34f43fda3a93b57562cca5c2a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "group": "visual-test",
+      "source_path": "qa/connect-four-visual-test-peer-review-20261114/upload-manifest.json",
+      "bytes": 1250,
+      "sha256": "040205b93ba6a0b49bbadd94802b802cc67999237ff862e3be9b9cbdec3a2467",
+      "git_blob": "54fd985fa2e435420a1b2c0b0b121654e2cafc3c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "group": "flow-test",
+      "source_path": "qa/connect-four-flow-test-peer-review-20261114/upload-manifest.json",
+      "bytes": 432,
+      "sha256": "2fbe3f1ea5b045ce27db7e658a5a24cbf724d33bf4720010a8651f78f4fe343e",
+      "git_blob": "39b52dc8bbae9ffbf07bf2305b581f1e7fd218e1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "group": "android-ae394-closure",
+      "source_path": "qa/studio-2020-host-ae394-android-20261114/closure-upload-manifest.json",
+      "bytes": 3316,
+      "sha256": "5ac61caa717b793c1949f998d6edb691f4bf6395b35513bbfbdb621cddeb2e27",
+      "git_blob": "b5133b5edebb4479c15d3965a4c7052651febdc9",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "limits": [
+    "Layout and two test reviews are static only; no local compilation or Flutter success is claimed.",
+    "The ae394 closure remains FAILURE with Android matrix and2017-to-2020 update unexecuted.",
+    "Original input manifests retain their original targets; this aggregate records explicit relocation to new docs-only targets.",
+    "No original source, review or manifest is overwritten.",
+    "Only Git blobs may be created; Root owns all trees, commits and references."
+  ]
+}

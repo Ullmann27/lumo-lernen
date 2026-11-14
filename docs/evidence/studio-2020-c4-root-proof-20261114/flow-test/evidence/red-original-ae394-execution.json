@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "--timeout=60s",
+    "--concurrency=1",
+    "test/games/games_screen_flow_test.dart",
+    "--plain-name",
+    "Four in a row completes a full touch game and restart cancels old bot"
+  ],
+  "cwd": "/tmp/lumo-studio-ae394-agent-c",
+  "elapsed_seconds": 0.9690649539988954,
+  "exit_code": 1,
+  "error": null,
+  "log_sha256": "fa32f9b58533b55cc9636d689ffd3104801c3bdf3b421cc0518841a3237c2899",
+  "log_bytes": 172
+}

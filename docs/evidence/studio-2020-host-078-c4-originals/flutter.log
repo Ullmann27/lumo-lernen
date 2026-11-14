@@ -1,0 +1,20 @@
+00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/games/games_screen_flow_test.dart
+00:00 +0: /home/runner/work/lumo-lernen/lumo-lernen/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:03 +1: /home/runner/work/lumo-lernen/lumo-lernen/test/games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot
+00:04 +2: /home/runner/work/lumo-lernen/lumo-lernen/test/games/games_screen_flow_test.dart: Dice full touch game, saved result, restart and pause during rolling
+00:04 +3: loading /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart
+00:05 +3: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: (setUpAll)
+00:05 +3: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0
+00:07 +4: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0
+00:09 +5: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 1280.0x720.0
+00:10 +6: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 740.0x840.0
+00:11 +7: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 1200.0x896.0
+00:12 +8: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: (tearDownAll)
+00:12 +8: loading /home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_fold_controls_test.dart
+00:12 +8: /home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_fold_controls_test.dart: (setUpAll)
+00:13 +8: /home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_fold_controls_test.dart: C4 shared board swipe and real 48dp drops 320.0x740.0 text 1.0
+00:15 +9: /home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_fold_controls_test.dart: C4 shared board swipe and real 48dp drops 360.0x800.0 text 1.0
+00:15 +10: /home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_fold_controls_test.dart: C4 shared board swipe and real 48dp drops 640.0x360.0 text 1.0
+00:16 +11: /home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_fold_controls_test.dart: C4 shared board swipe and real 48dp drops 320.0x480.0 text 2.0
+00:17 +12: /home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_fold_controls_test.dart: (tearDownAll)
+00:17 +12: All tests passed!

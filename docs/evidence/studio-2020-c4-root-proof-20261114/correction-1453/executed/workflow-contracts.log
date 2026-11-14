@@ -1,0 +1,13 @@
+test_actual_main_reaches_only_blocked_device_boundary_for_selected_version (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_actual_main_reaches_only_blocked_device_boundary_for_selected_version) ... ok
+test_actual_main_rejects_wrong_generation_and_failed_prior_before_device (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_actual_main_rejects_wrong_generation_and_failed_prior_before_device) ... ok
+test_candidate_binding_forwards_selected_version_and_retains_old_default (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_candidate_binding_forwards_selected_version_and_retains_old_default) ... ok
+test_default_2019_and_explicit_2020_metadata_are_separate (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_default_2019_and_explicit_2020_metadata_are_separate) ... ok
+test_fresh_artifact_source_digest_and_builder_remain_required (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_fresh_artifact_source_digest_and_builder_remain_required) ... ok
+test_old_artifact_or_workflow_cannot_supply_new_acceptance (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_old_artifact_or_workflow_cannot_supply_new_acceptance) ... ok
+test_surface_version_name_code_and_default_are_exact (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_surface_version_name_code_and_default_are_exact) ... ok
+test_unlisted_versions_and_wrong_types_never_select_a_contract (test_studio_2020_android_contracts.Studio2020AndroidContracts.test_unlisted_versions_and_wrong_types_never_select_a_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.049s
+
+OK

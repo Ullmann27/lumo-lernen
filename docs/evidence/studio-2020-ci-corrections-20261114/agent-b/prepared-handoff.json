@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T08:59:36.129350+00:00",
+  "scope": "prepared visual test plus preserved local setup failures; no local assertion counterexample yet",
+  "original_ci_failure": {
+    "run": 43576453040,
+    "job": 132391629884,
+    "host": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "original_log_sha256": "11ac1e33b22a00241fcd131b8021f356b0c04ca29d6dbb50c343e40ec22e7df9"
+  },
+  "local_attempts": [
+    {
+      "log": "evidence/visual-original-red.log",
+      "result": "asset bundling failed before Dart tests",
+      "exit_code": 1
+    },
+    {
+      "log": "evidence/visual-original-after-assets-red.log",
+      "result": "Dart compiler exited unexpectedly before test execution; exec environment subsequently unavailable",
+      "exit_code": null,
+      "terminal_wrapper_report_persisted": false
+    }
+  ],
+  "test_blob_created": "2b6225ad3972ae801620d8363458833434358616",
+  "readback_byte_equal": true,
+  "tree_commit_ref_mutated": false,
+  "files": [
+    {
+      "path": "source-binding.json",
+      "size": 1032,
+      "sha256": "293d98189063229328e3a3a55ee98903b202b3d137a1ad46920876186cbb3927",
+      "git_blob": "8a06c8d13c11c4596bafb61c8fa1ecf4a80071e8"
+    },
+    {
+      "path": "visual-test-against-ae394.patch",
+      "size": 6814,
+      "sha256": "a1d5ae9cb10828bb2655c5b662484b1605599c4a90f70c82076dec2988cf48f8",
+      "git_blob": "3a92ba45a8bcfa397ecf73f4e706f8550a5c2ba4"
+    },
+    {
+      "path": "prepared-source-manifest.json",
+      "size": 631,
+      "sha256": "80586f9e313ef494b8769e9431c19937d85953ffff217022895e785a7236a6e9",
+      "git_blob": "9f46693f313a90574f8f30f821e0ae1cd59a7d76"
+    },
+    {
+      "path": "host/test/design/connect_four_visual_test.dart",
+      "size": 7736,
+      "sha256": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+      "git_blob": "2b6225ad3972ae801620d8363458833434358616"
+    },
+    {
+      "path": "evidence/visual-original-red.log",
+      "size": 172,
+      "sha256": "fa32f9b58533b55cc9636d689ffd3104801c3bdf3b421cc0518841a3237c2899",
+      "git_blob": "10b7f45b4a7e5b102d2133d458b7e340f7e423fa"
+    },
+    {
+      "path": "evidence/visual-original-red-execution.json",
+      "size": 984,
+      "sha256": "ba0a579350c9ddc214de062ec2cd5a95f2e91d12db149929baa73841979f1fe7",
+      "git_blob": "4073f82b989df191e47a7bb455b3815b588bc7fa"
+    },
+    {
+      "path": "evidence/visual-original-after-assets-red.log",
+      "size": 6380,
+      "sha256": "a7ef949d30c3a27c3fbd56af07b5161ac5c9804e4383575264fcd166d13058d2",
+      "git_blob": "44e1fb4f5f65491f39e82eadfbec7532409f4a97"
+    }
+  ]
+}

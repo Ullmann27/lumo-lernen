@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "tree_proof": {
+    "schema": 1,
+    "parent": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+    "base_tree": "179ac404caa8d263d0028aa9503cb514ae484d41",
+    "new_tree": "136e87a42fa6637bc0ae3555464c8f88161bd8a8",
+    "preserved_old_leaves": 6431,
+    "new_document_leaves": 101,
+    "total_leaves": 6532,
+    "total_entries": 7484,
+    "all_preserved_modes_types_and_sha": true,
+    "only_explicit_document_additions": true,
+    "groups": {
+      "kart_verbose": 30,
+      "runtime_recovery": 11,
+      "native_observation": 19,
+      "native_acceptance": 22,
+      "image_integration": 3,
+      "host_commit": 16
+    }
+  },
+  "commit": {
+    "sha": "35a38e0f6ae77ccfaf326de39e108f56b82fa62d",
+    "node_id": "C_kwDOSNzcp9oAKDM1YTM4ZTBmNmFlNzdjY2ZhZjMyNmRlMzllMTA4ZjU2YjgyZmE2MmQ",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/35a38e0f6ae77ccfaf326de39e108f56b82fa62d",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/35a38e0f6ae77ccfaf326de39e108f56b82fa62d",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T08:39:50Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T08:39:50Z"
+    },
+    "tree": {
+      "sha": "136e87a42fa6637bc0ae3555464c8f88161bd8a8",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/136e87a42fa6637bc0ae3555464c8f88161bd8a8"
+    },
+    "message": "docs(studio): preserve native 785413 acceptance and host 2020 source proof\n\nAdd 101 explicit evidence documents: current Native CI originals, complete\n49-image review bindings, independent host pin/image checks, actual local\nKart diagnostics, runtime recovery records and Host PR494 commit proof.\nPreserve all 6,431 previous evidence leaves and all product sources.\nAndroid run43576453139 remains pending in these timestamped snapshots.",
+    "parents": [
+      {
+        "sha": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/dd7a7c16a79b50596731612e5a5b70063f2bfdee"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "node_id": "REF_kwDOSNzcp9oAOXJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby00YWI5NjY2Ni1ldmlkZW5jZS0yMDI2MTExNA",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "object": {
+      "sha": "35a38e0f6ae77ccfaf326de39e108f56b82fa62d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/35a38e0f6ae77ccfaf326de39e108f56b82fa62d"
+    }
+  },
+  "tree_journal": [
+    {
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/host-pin",
+      "sha": "619959fd60e36739d9ff88e1864263801c2bd6c5",
+      "entries": 4
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-image-integration-check-20261114",
+      "sha": "a7a27a4fbfba3f27ee56d46e98172d5e7875108c",
+      "entries": 3
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-785413-observation-20261114",
+      "sha": "452271b555d881696edd9795d6298fabc5e03ae6",
+      "entries": 19
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114",
+      "sha": "f90d40320f7be3f2750fb151ac67bdebccf8c506",
+      "entries": 5
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114",
+      "sha": "df0780f450717bdf2eb27f69b44179094c72b603",
+      "entries": 19
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114",
+      "sha": "12c3682ad053a67c46f7a60b765db8cdfd23c93c",
+      "entries": 25
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114",
+      "sha": "dea387ba29f872bf409eeee25aa00071c62ac358",
+      "entries": 11
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114",
+      "sha": "b35f040a740f365850a5fb9efdc89ffa04d5b2f4",
+      "entries": 16
+    },
+    {
+      "path": "docs/evidence",
+      "sha": "2f2dc669612b8995ea02f01da77ddf4db2c43476",
+      "entries": 125
+    },
+    {
+      "path": "docs",
+      "sha": "8f0dc1b5b7fcc5b311aac191b5b18485e0bb3e16",
+      "entries": 113
+    },
+    {
+      "path": "",
+      "sha": "136e87a42fa6637bc0ae3555464c8f88161bd8a8",
+      "entries": 26
+    }
+  ],
+  "host_source": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "native_source": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "scope": "Evidence branch only; not Android approval"
+}

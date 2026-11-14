@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T09:03:02.404Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "baseline_host": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "baseline_git_blob": "1a344ef9012cfdd7230cad2b6ebcd680151218e7",
+  "proposed_git_blob": "2b6225ad3972ae801620d8363458833434358616",
+  "expected_proposed_sha256": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+  "path": "test/design/connect_four_visual_test.dart",
+  "status": "no_additional_concrete_blocker_in_read_only_scope",
+  "findings": [
+    "All five original format cases remain unchanged.",
+    "The original 1px column-center and wide mascot bounds assertions remain.",
+    "An explicit MissingPlugin fallback is installed and removed per test.",
+    "Readiness requires no pause panel and all seven actual IconButton callbacks enabled; pumping is bounded to100 iterations of20ms.",
+    "The actual two-player button is hit-tested and tapped, then actual saved mode/readiness is awaited.",
+    "Each of six actual moves requires the expected total piece count and its exact row/column/player semantics after readiness returns.",
+    "Each control is made visible and checked for hitTestable, callback, >=48dp render-box size and matching actual cell center.",
+    "Cleanup is registered before later assertions."
+  ],
+  "limits": [
+    "No test execution or compilation by this reviewer.",
+    "ensureVisible is programmatic, not a physical drag.",
+    "hitTestable checks a target point; the render-box48dp assertion does not independently prove its complete exposed clip intersection.",
+    "Root's additional real-swipe/exposed-area regression remains required.",
+    "This does not prove any native Android C4 behavior."
+  ],
+  "actual_source_files": [
+    {
+      "path": "qa/connect-four-visual-test-peer-review-20261114/baseline.dart.txt",
+      "bytes": 4091,
+      "sha256": "599ba9fc1ed1abdb3ef993d0e0e07b4c71ce2d59508ffd1482c4177bce98a79f",
+      "git_blob": "1a344ef9012cfdd7230cad2b6ebcd680151218e7",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/connect-four-visual-test-peer-review-20261114/proposed.dart.txt",
+      "bytes": 7736,
+      "sha256": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+      "git_blob": "2b6225ad3972ae801620d8363458833434358616",
+      "mode": "100644"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "path": "test/design/connect_four_visual_test.dart",
+  "mode": "100644",
+  "type": "blob",
+  "size": 7736,
+  "sha": "2b6225ad3972ae801620d8363458833434358616",
+  "sha256": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+  "baseline": {
+    "host_revision": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "sha": "1a344ef9012cfdd7230cad2b6ebcd680151218e7",
+    "sha256": "599ba9fc1ed1abdb3ef993d0e0e07b4c71ce2d59508ffd1482c4177bce98a79f"
+  },
+  "local_execution": "pending_after_environment_recovery; two earlier setup/compiler errors are not assertion counterexamples",
+  "git_readback_byte_equal": true
+}
+

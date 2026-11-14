@@ -1,0 +1,46 @@
+--- a/test/games/games_screen_flow_test.dart
++++ b/test/games/games_screen_flow_test.dart
+@@ -1,4 +1,5 @@
+ import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
+ import 'package:flutter_test/flutter_test.dart';
+ import 'package:shared_preferences/shared_preferences.dart';
+ import 'package:lumo_lernen/app/app_state.dart';
+@@ -129,11 +130,37 @@
+       (tester) async {
+     await tester.binding.setSurfaceSize(const Size(360, 780));
+     addTearDown(() => tester.binding.setSurfaceSize(null));
++    const nativeChannel = MethodChannel('lumo_lernen/connect_four');
++    final messenger =
++        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
++    var nativeOpenAttempts = 0;
++    messenger.setMockMethodCallHandler(nativeChannel, (call) async {
++      if (call.method == 'open') nativeOpenAttempts++;
++      throw MissingPluginException('Explicit Flutter fallback fixture');
++    });
++    addTearDown(() => messenger.setMockMethodCallHandler(nativeChannel, null));
+     final app = LumoAppState(walletRepository: RewardWalletRepository());
+     await app.hydrateFromWallet();
+     await tester.pumpWidget(
+         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
+     await tester.pump();
++    // Opening the persisted round and failing over from the native host are
++    // asynchronous. Wait for the real Flutter controls, not one guessed frame.
++    bool fallbackReady() =>
++        find.byType(CircularProgressIndicator).evaluate().isEmpty &&
++        find.text('Spiel pausiert').evaluate().isEmpty &&
++        List.generate(7, (c) => find.byKey(ValueKey('connect-column-$c')))
++            .every((finder) =>
++                finder.evaluate().length == 1 &&
++                tester.widget<IconButton>(finder).onPressed != null);
++    for (var frame = 0; frame < 50 && !fallbackReady(); frame++) {
++      await tester.pump(const Duration(milliseconds: 100));
++    }
++    expect(nativeOpenAttempts, 1,
++        reason: 'This flow must exercise the unavailable-native fallback.');
++    expect(fallbackReady(), isTrue,
++        reason: 'The same Flutter round must become playable within five seconds.');
++    expect(find.byKey(const ValueKey('connect-open-native')), findsNothing);
+     var turns = 0;
+     while (find.byType(AlertDialog).evaluate().isEmpty && turns < 60) {
+       final buttons = [

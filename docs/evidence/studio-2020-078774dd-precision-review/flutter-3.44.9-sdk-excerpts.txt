@@ -1,0 +1,107 @@
+Flutter 3.44.9 — read-only source excerpts
+Source: https://raw.githubusercontent.com/flutter/flutter/3.44.9/packages/flutter_test/lib/src/controller.dart
+Line-numbered excerpts; not an SDK installation or test execution.
+
+Lines 1-4
+1: // Copyright 2014 The Flutter Authors. All rights reserved.
+2: // Use of this source code is governed by a BSD-style license that can be
+3: // found in the LICENSE file.
+4: 
+
+Lines 1955-1969
+1955:   /// Returns the point at the top left of the given widget.
+1956:   ///
+1957:   /// {@macro flutter.flutter_test.WidgetController.getCenter.warnIfMissed}
+1958:   Offset getTopLeft(
+1959:     finders.FinderBase<Element> finder, {
+1960:     bool warnIfMissed = false,
+1961:     String callee = 'getTopLeft',
+1962:   }) {
+1963:     return _getElementPoint(
+1964:       finder,
+1965:       (Size size) => Offset.zero,
+1966:       warnIfMissed: warnIfMissed,
+1967:       callee: callee,
+1968:     );
+1969:   }
+
+Lines 2006-2020
+2006:   /// point is not inside the object's hit test area.
+2007:   ///
+2008:   /// {@macro flutter.flutter_test.WidgetController.getCenter.warnIfMissed}
+2009:   Offset getBottomRight(
+2010:     finders.FinderBase<Element> finder, {
+2011:     bool warnIfMissed = false,
+2012:     String callee = 'getBottomRight',
+2013:   }) {
+2014:     return _getElementPoint(
+2015:       finder,
+2016:       (Size size) => size.bottomRight(Offset.zero),
+2017:       warnIfMissed: warnIfMissed,
+2018:       callee: callee,
+2019:     );
+2020:   }
+
+Lines 2086-2131
+2086:   Offset _getElementPoint(
+2087:     finders.FinderBase<Element> finder,
+2088:     Offset Function(Size size) sizeToPoint, {
+2089:     required bool warnIfMissed,
+2090:     required String callee,
+2091:   }) {
+2092:     TestAsyncUtils.guardSync();
+2093:     final Iterable<Element> elements = finder.evaluate();
+2094:     if (elements.isEmpty) {
+2095:       throw FlutterError(
+2096:         'The finder "$finder" (used in a call to "$callee()") could not find any matching widgets.',
+2097:       );
+2098:     }
+2099:     if (elements.length > 1) {
+2100:       throw FlutterError(
+2101:         'The finder "$finder" (used in a call to "$callee()") ambiguously found multiple matching widgets. The "$callee()" method needs a single target.',
+2102:       );
+2103:     }
+2104:     final Element element = elements.single;
+2105:     final RenderObject? renderObject = element.renderObject;
+2106:     if (renderObject == null) {
+2107:       throw FlutterError(
+2108:         'The finder "$finder" (used in a call to "$callee()") found an element, but it does not have a corresponding render object. '
+2109:         'Maybe the element has not yet been rendered?',
+2110:       );
+2111:     }
+2112:     if (renderObject is! RenderBox) {
+2113:       throw FlutterError(
+2114:         'The finder "$finder" (used in a call to "$callee()") found an element whose corresponding render object is not a RenderBox (it is a ${renderObject.runtimeType}: "$renderObject"). '
+2115:         'Unfortunately "$callee()" only supports targeting widgets that correspond to RenderBox objects in the rendering.',
+2116:       );
+2117:     }
+2118:     final box = element.renderObject! as RenderBox;
+2119:     final Offset location = box.localToGlobal(sizeToPoint(box.size));
+2120:     if (warnIfMissed) {
+2121:       final FlutterView view = _viewOf(finder);
+2122:       final result = HitTestResult();
+2123:       binding.hitTestInView(result, location, view.viewId);
+2124:       final bool found = result.path.any(
+2125:         (HitTestEntry entry) => finders.isRenderObjectAncestorOfTarget(box, entry.target),
+2126:       );
+2127:       if (!found) {
+2128:         final RenderView renderView = binding.renderViews.firstWhere(
+2129:           (RenderView r) => r.flutterView == view,
+2130:         );
+2131:         final bool outOfBounds = !(Offset.zero & renderView.size).contains(location);
+
+Lines 2174-2181
+2174:   /// Returns the size of the given widget. This is only valid once
+2175:   /// the widget's render object has been laid out at least once.
+2176:   Size getSize(finders.FinderBase<Element> finder) {
+2177:     TestAsyncUtils.guardSync();
+2178:     final Element element = finder.evaluate().single;
+2179:     final box = element.renderObject! as RenderBox;
+2180:     return box.size;
+2181:   }
+
+Lines 2344-2347
+2344:   /// Returns the rect of the given widget. This is only valid once
+2345:   /// the widget's render object has been laid out at least once.
+2346:   Rect getRect(finders.FinderBase<Element> finder) =>
+2347:       Rect.fromPoints(getTopLeft(finder), getBottomRight(finder));
