@@ -380,7 +380,17 @@ def _stage_kart_scroll_recovery():
 
     def recovery(frame, lines, source, *, deadline, previous_missing_frame):
         nonlocal previous, swipes
-        current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+        try:
+            current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+        except RuntimeError as error:
+            if str(error) != 'No currently visible vehicle card in the actual left list':
+                raise
+            words = garage_evidence.stage_garage_word_observations(
+                source.parent, source.stem, lines)
+            current = garage_evidence.stage_garage_scroll_observation(
+                frame, lines, caption_words=words['captions'])
+            current['caption_source'] = 'original_tsv_word_sequences'
+            current['ocr_sources'] = words['sources']
         stable = (previous is not None and previous_missing_frame is not None and
                   previous_missing_frame.get('pixels') == frame['pixels'] and
                   max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)

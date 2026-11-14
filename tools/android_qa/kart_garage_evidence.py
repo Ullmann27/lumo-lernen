@@ -216,7 +216,92 @@ def stage_driver_target_observation(frame: dict, lines: list[dict], *,
             'scope': 'Observed landscape driver card; saved fox selection remains mandatory'}
 
 
-def stage_garage_scroll_observation(frame: dict, lines: list[dict]) -> dict:
+def stage_garage_word_observations(out: Path, tag: str, lines: list[dict]) -> dict:
+    """Recover complete known card captions from this frame's original words.
+
+    Decorative artwork may share the OCR line. Matching still requires whole,
+    consecutive words in one original TSV line, with observed word rectangles.
+    The evidence authorizes a list gesture only, never a vehicle selection.
+    """
+    captions = ('Comet', 'Gecko Velo', 'Boru Rally', 'Glider', 'Nala Comet', 'Noa Tide')
+    scales = {'contrast': 2, 'raw': 2, 'white-text': 2, 'white-latin': 2,
+              'navy-latin': 2, 'navy-latin-1x': 1, 'teal-text-1x': 1}
+    demand(Path(tag).name == tag, 'Invalid current vehicle OCR tag')
+    variants = list(dict.fromkeys(row.get('variant') for row in lines))
+    demand(variants and all(variant in scales for variant in variants),
+           'Original full-frame vehicle OCR variants are required')
+    observed, sources = [], []
+    for variant in variants:
+        source = out / f'{tag}-ocr-{variant}.tsv'
+        demand(source.is_file(), 'Original current-frame vehicle TSV is missing')
+        raw = source.read_bytes()
+        scale = scales[variant]
+        sources.append({'file': source.name, 'sha256': hashlib.sha256(raw).hexdigest(),
+                        'bytes': len(raw), 'scale': scale})
+        reader = csv.DictReader(io.StringIO(raw.decode('utf-8')), delimiter='\t',
+                                quoting=csv.QUOTE_NONE)
+        required = {'level', 'page_num', 'block_num', 'par_num', 'line_num',
+                    'word_num', 'text', 'conf', 'left', 'top', 'width', 'height'}
+        demand(required <= set(reader.fieldnames or ()), 'Invalid original vehicle TSV columns')
+        groups = {}
+        for word in reader:
+            if word['level'] == '5':
+                key = tuple(word[field] for field in ('page_num', 'block_num', 'par_num', 'line_num'))
+                groups.setdefault(key, []).append(word)
+        for key, words in groups.items():
+            matches = []
+            for caption in captions:
+                wanted = caption.casefold().split()
+                for start in range(len(words) - len(wanted) + 1):
+                    span = words[start:start + len(wanted)]
+                    actual = [unicodedata.normalize('NFKC', word['text']).strip().casefold()
+                              for word in span]
+                    if actual != wanted:
+                        continue
+                    numbers = [int(word['word_num']) for word in span]
+                    if numbers[0] < 1 or numbers != list(range(numbers[0], numbers[0] + len(span))):
+                        continue
+                    confidence = [float(word['conf']) for word in span]
+                    demand(all(math.isfinite(value) for value in confidence),
+                           'Nonfinite original vehicle OCR confidence')
+                    if any(value < 15 for value in confidence):
+                        continue
+                    boxes = []
+                    for word in span:
+                        left, top, width, height = (int(word[field]) for field in
+                                                   ('left', 'top', 'width', 'height'))
+                        demand(left >= 0 and top >= 0 and width > 0 and height > 0,
+                               'Invalid original vehicle word rectangle')
+                        boxes.append((left, top, left + width, top + height))
+                    # One TSV line alone must not join distant columns or
+                    # vertically disjoint words into a fictitious card title.
+                    if any(not (0 <= right[0] - left[2] <= max(left[3] - left[1],
+                                                              right[3] - right[1]) and
+                                max(left[1], right[1]) < min(left[3], right[3]))
+                           for left, right in zip(boxes, boxes[1:])):
+                        continue
+                    bounds = [min(box[0] for box in boxes) / scale,
+                              min(box[1] for box in boxes) / scale,
+                              max(box[2] for box in boxes) / scale,
+                              max(box[3] for box in boxes) / scale]
+                    matches.append({'start': start, 'end': start + len(span),
+                                    'text': caption, 'bounds': bounds, 'variant': variant,
+                                    'source_tsv': source.name, 'line_identity': list(key),
+                                    'word_numbers': numbers})
+            for match in matches:
+                # Comet inside the complete known Nala Comet caption is not
+                # a second card. Retain only the maximal known word sequence.
+                if any(other['start'] <= match['start'] and match['end'] <= other['end'] and
+                       (other['start'], other['end']) != (match['start'], match['end'])
+                       for other in matches):
+                    continue
+                observed.append({key: value for key, value in match.items()
+                                 if key not in ('start', 'end')})
+    return {'captions': observed, 'sources': sources}
+
+
+def stage_garage_scroll_observation(frame: dict, lines: list[dict], *,
+                                    caption_words: list[dict] | None = None) -> dict:
     """Adapt PR #456's observed list drag to the current spatial menu anchors.
 
     The title is intentionally hidden on short screens. The actual Karts tab,
@@ -233,11 +318,33 @@ def stage_garage_scroll_observation(frame: dict, lines: list[dict]) -> dict:
     demand(headers and footers, 'Actual Karts tab and menu/start footer required before list scrolling')
     header_bottom = min(row['bounds'][3] for row in headers)
     footer_top = min(row['bounds'][1] for row in footers)
-    cards = [row for row in lines if normalize(row['text']) in
+    candidates = lines if caption_words is None else caption_words
+    if caption_words is not None:
+        for row in headers + footers + candidates:
+            bounds = row.get('bounds')
+            demand(isinstance(bounds, (list, tuple)) and len(bounds) == 4 and
+                   all(isinstance(value, (int, float)) and not isinstance(value, bool) and
+                       math.isfinite(value) for value in bounds),
+                   'Invalid observed vehicle/menu bounds')
+            x0, y0, x1, y1 = bounds
+            demand(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height,
+                   'Observed vehicle/menu bounds exceed the current screenshot')
+    cards = [row for row in candidates if normalize(row['text']) in
              ('comet', 'geckovelo', 'borurally', 'glider', 'nalacomet', 'noatide') and
              0 < row['bounds'][0] < row['bounds'][2] < width * .50 and
              header_bottom < row['bounds'][1] < row['bounds'][3] < footer_top]
     demand(cards, 'No currently visible vehicle card in the actual left list')
+    if caption_words is not None:
+        for index, left in enumerate(cards):
+            x0, y0, x1, y1 = left['bounds']
+            for right in cards[index + 1:]:
+                a0, b0, a1, b1 = right['bounds']
+                overlap = max(0, min(x1, a1) - max(x0, a0)) * max(0, min(y1, b1) - max(y0, b0))
+                union = (x1 - x0) * (y1 - y0) + (a1 - a0) * (b1 - b0) - overlap
+                if normalize(left['text']) == normalize(right['text']):
+                    demand(overlap / union >= .6, 'Ambiguous repeated vehicle caption regions')
+                else:
+                    demand(overlap == 0, 'Conflicting vehicle captions in one observed region')
     card = min(cards, key=lambda row: row['bounds'][1])
     x0, y0, x1, y1 = card['bounds']
     x, start = round((x0 + x1) / 2), round((y0 + y1) / 2)
