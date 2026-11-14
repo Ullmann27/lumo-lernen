@@ -1,0 +1,82 @@
+{
+  "artifact": 14115282912,
+  "archive_sha256": "81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab",
+  "status": "PASS",
+  "passed": 2627,
+  "failed": [],
+  "skipped": [],
+  "rendered_png_count": 566,
+  "critical_actual_test_events": {
+    "d1_woerter real registry answer": [
+      {
+        "id": 3269,
+        "name": "d1_woerter real registry answer persists its exact subject and topic",
+        "testDone": {
+          "testID": 3269,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 571833
+        }
+      }
+    ],
+    "actual Diktat canvas and duplicate self-ratings": [
+      {
+        "id": 3346,
+        "name": "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+        "testDone": {
+          "testID": 3346,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 582927
+        }
+      }
+    ],
+    "two complete actual Diktat sessions": [
+      {
+        "id": 3358,
+        "name": "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+        "testDone": {
+          "testID": 3358,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 593645
+        }
+      }
+    ],
+    "all allowed cumulative math topics preserve exact selection": [
+      {
+        "id": 614,
+        "name": "all allowed cumulative math topics preserve exact selection",
+        "testDone": {
+          "testID": 614,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 98572
+        }
+      }
+    ],
+    "Four in a row delayed native refusal": [
+      {
+        "id": 166,
+        "name": "Four in a row delayed native refusal unlocks the real Flutter board",
+        "testDone": {
+          "testID": 166,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 32106
+        }
+      }
+    ]
+  },
+  "output": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified"
+}

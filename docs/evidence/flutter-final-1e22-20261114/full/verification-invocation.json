@@ -1,0 +1,10 @@
+[
+  "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "/dev/shm/lumo-final-1e22-909ddb52fe7b/verify_original_flutter_artifact.py",
+  "--archive",
+  "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/original-artifact.zip",
+  "--artifact-metadata",
+  "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/original-artifact-metadata.json",
+  "--output",
+  "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified"
+]

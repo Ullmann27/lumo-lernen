@@ -1,0 +1,253 @@
+{
+  "schema": 1,
+  "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "run": 43596913210,
+  "attempt": 1,
+  "job": 132454178537,
+  "artifact_id": 14115282912,
+  "artifact_sha256": "81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab",
+  "method": "Original PNG files opened directly with view_image; no editing or generated substitutes.",
+  "village": {
+    "images_actually_opened": [
+      {
+        "path": "village/village-fold-cover.png",
+        "bytes": 337946,
+        "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+        "width": 344,
+        "height": 882
+      },
+      {
+        "path": "village/village-fold-landscape.png",
+        "bytes": 1102593,
+        "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "path": "village/village-fold-open-large-text.png",
+        "bytes": 600959,
+        "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+        "width": 690,
+        "height": 829
+      },
+      {
+        "path": "village/village-fold-open.png",
+        "bytes": 595416,
+        "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+        "width": 690,
+        "height": 829
+      },
+      {
+        "path": "village/village-fold-wide-min.png",
+        "bytes": 555532,
+        "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+        "width": 640,
+        "height": 829
+      },
+      {
+        "path": "village/village-phone.png",
+        "bytes": 401998,
+        "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+        "width": 412,
+        "height": 915
+      }
+    ],
+    "result": "No visible title, avatar or button-overlap blocker in these six originals.",
+    "observations": [
+      "Dorfwirtschaft appears complete on one line in all six images.",
+      "640dp wide-min and 690dp enlarged text use two main columns; 690dp normal and landscape use three.",
+      "Phone and cover have legible separate two-column tiles.",
+      "Lower content can continue outside the captured scroll viewport, especially the Jump & Run card on enlarged text; no whole-hub visibility on every viewport is claimed."
+    ]
+  },
+  "legacy_c4": {
+    "images_actually_opened": [
+      {
+        "path": "games/connect_overview_fold.png",
+        "bytes": 319333,
+        "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+        "width": 1035,
+        "height": 1244
+      },
+      {
+        "path": "games/connect_overview_phone.png",
+        "bytes": 550975,
+        "sha256": "1acbe35fa11eefe64a7a98a1436b81526e2552ee2daa490c6b1264f06aff80ba",
+        "width": 618,
+        "height": 1373
+      },
+      {
+        "path": "games/connect_winglow_fold.png",
+        "bytes": 319333,
+        "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+        "width": 1035,
+        "height": 1244
+      },
+      {
+        "path": "games/connect_winglow_phone.png",
+        "bytes": 275822,
+        "sha256": "57e3f388827b727d2deae33fd0009bbdb25c3ccb89fa5a79f44cc42d984dce05",
+        "width": 618,
+        "height": 1373
+      }
+    ],
+    "all_four_unsuitable_as_board_move_or_win_proof": true,
+    "observations": [
+      "connect_overview_phone.png shows an unpaused empty board, without the six intended moves.",
+      "connect_overview_fold.png and both connect_winglow images show the pause overlay instead of the named state.",
+      "The two Fold PNGs are byte-identical (SHA256 548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466).",
+      "The original JSONL records 30 actual hit-test warnings for these four test cases; mode taps encounter a BackdropFilter and column controls are disabled."
+    ],
+    "responsible_test": {
+      "path": "test/design/flutter_games_2013_capture_test.dart",
+      "blob": "011143ab963ff702b90c136bf6f4cb5beff56eb6",
+      "overview_lines": [
+        85,
+        105
+      ],
+      "winglow_lines": [
+        157,
+        181
+      ],
+      "fixed_initialization_wait_lines": [
+        257,
+        276
+      ],
+      "missing_preconditions": "No bounded wait for a ready unpaused board, no explicit native-unavailable fixture, no asserted actual played cells or winning line before capture."
+    },
+    "code_context": {
+      "product_path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "product_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "native_pause_lines": [
+        134,
+        184
+      ],
+      "documented_behavior": "Native opening pauses before asynchronous work; failed/unavailable native opening resumes the Flutter board, while a real native return intentionally leaves it paused.",
+      "pause_scope_path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+      "pause_scope_blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e",
+      "lifecycle_lines": [
+        98,
+        125
+      ]
+    },
+    "conclusions": [
+      "The old capture fixture demonstrably fails to establish or assert its named interaction states.",
+      "These cases contain no intentional Back, pause-menu or lifecycle action.",
+      "The original artifact does not instrument the exact asynchronous branch that held the pause state; no unproven runtime cause is asserted.",
+      "No real user input-path failure is established by these legacy captures. The current dedicated tests separately assert readiness, seven actual moves and minimum target sizes."
+    ],
+    "dedicated_test": {
+      "path": "test/design/connect_four_visual_test.dart",
+      "blob": "c20c32131517b6a3336d996cd8ce8a0b44c1e132",
+      "full_suite_passed_test_ids": [
+        1256,
+        1257,
+        1258,
+        1259,
+        1260
+      ],
+      "readiness_lines": [
+        158,
+        168
+      ],
+      "actual_moves_and_targets_lines": [
+        76,
+        136
+      ],
+      "later_dedicated_pngs": "All five later dedicated original PNGs have now been opened; they show seven alternating bottom-row pieces and no pause overlay. See dedicated-c4/visual-review.json for separate artifact provenance and limits."
+    }
+  },
+  "limits": [
+    "566 PNGs were generated and hash-indexed; this is not a claim that all 566 were visually reviewed or show their named state.",
+    "The capture count remains the actual original runner count, including the four explicitly unsuitable legacy C4 captures.",
+    "No new Flutter test run, product change or central branch mutation was performed for this review.",
+    "No APK or Android acceptance is inferred."
+  ],
+  "dedicated_c4": {
+    "schema": 1,
+    "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "run": 43596913210,
+    "attempt": 1,
+    "job": 132454178537,
+    "step": 27,
+    "artifact_id": 14116190611,
+    "artifact_sha256": "94d641676e8eb11e6c7b40598960013efccc3c134fcc06fdc83381e696ad999f",
+    "source_test": "test/design/connect_four_visual_test.dart",
+    "source_test_blob": "c20c32131517b6a3336d996cd8ce8a0b44c1e132",
+    "method": "Each original PNG opened directly with view_image, without editing, rescaling or generated substitutes.",
+    "images_actually_opened": [
+      {
+        "archive_path": "1978/connect_four/1200x896.png",
+        "file": "1200x896.png",
+        "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/1200x896.png",
+        "bytes": 704939,
+        "sha256": "00096d674a7ababe8f21ac3ec7040186e9298e64e83059d9811ac33c2f8880ac",
+        "width": 1200,
+        "height": 896
+      },
+      {
+        "archive_path": "1978/connect_four/360x800.png",
+        "file": "360x800.png",
+        "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/360x800.png",
+        "bytes": 203048,
+        "sha256": "612f0702d283c089bbaf61312ae25f3c0f7f29a3d6343b6e7b63141f2ef690ab",
+        "width": 360,
+        "height": 800
+      },
+      {
+        "archive_path": "1978/connect_four/1280x720.png",
+        "file": "1280x720.png",
+        "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/1280x720.png",
+        "bytes": 634361,
+        "sha256": "0230d9bc5ef03a35d71643241e8a01ec601d926fd848e6ea14948c976f8a652a",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "archive_path": "1978/connect_four/640x360.png",
+        "file": "640x360.png",
+        "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/640x360.png",
+        "bytes": 147539,
+        "sha256": "0684430d78676c5cf342c6a6baf27f9c1cddd8609b3e6dfc572961c752671226",
+        "width": 640,
+        "height": 360
+      },
+      {
+        "archive_path": "1978/connect_four/740x840.png",
+        "file": "740x840.png",
+        "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/740x840.png",
+        "bytes": 402409,
+        "sha256": "7429f49fe114e019009d7f12b032103a49d4f6af279260132de6b8ca3d4559b1",
+        "width": 740,
+        "height": 840
+      }
+    ],
+    "all_five_visually_reviewed": true,
+    "pause_overlay_present": false,
+    "actual_board_stones_each": 7,
+    "bottom_row_each": [
+      "cyan",
+      "gold",
+      "cyan",
+      "gold",
+      "cyan",
+      "gold",
+      "cyan"
+    ],
+    "arrow_controls_each": 7,
+    "visible_status_each": "Gold ist dran!",
+    "observations": [
+      "All five images show the board and all seven alternating bottom-row pieces unobstructed by a pause dialog.",
+      "The two-player selection and all seven arrow controls are visible.",
+      "No missing piece or blocking text/control overlap was observed in these five originals."
+    ],
+    "limits": [
+      "The seven-piece pattern is non-winning; these are not claimed as win frames.",
+      "Pixel inspection does not independently measure dp; the current executed test separately asserts minimum 48dp targets and the actual cell owners.",
+      "These five PNGs originate from the later dedicated step/artifact, not from the 566-PNG full-suite count.",
+      "No new Flutter execution or product mutation was performed."
+    ]
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "actual_test_events": [
+    {
+      "id": 37,
+      "name": "routing table lists eleven unique portals and unique covers",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/spielwelt_routing_test.dart",
+      "done": {
+        "testID": 37,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 8262
+      }
+    },
+    {
+      "id": 39,
+      "name": "every visible portal opens its own target scene",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/spielwelt_routing_test.dart",
+      "done": {
+        "testID": 39,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 15061
+      }
+    },
+    {
+      "id": 76,
+      "name": "Spielewelt zeigt alle elf Spiele einschließlich Dorfwirtschaft",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/games_world_layout_test.dart",
+      "done": {
+        "testID": 76,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 17173
+      }
+    },
+    {
+      "id": 81,
+      "name": "Fold7 open portrait and tablet keep the tile hub with all eleven games",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/games_world_layout_test.dart",
+      "done": {
+        "testID": 81,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 19153
+      }
+    },
+    {
+      "id": 101,
+      "name": "village narration carries the existing local voice choice",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/build_world_voice_launch_test.dart",
+      "done": {
+        "testID": 101,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 22609
+      }
+    },
+    {
+      "id": 111,
+      "name": "Village economy has its own real native scene and unique identity",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/dorfwirtschaft_portal_test.dart",
+      "done": {
+        "testID": 111,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 23292
+      }
+    },
+    {
+      "id": 112,
+      "name": "Dorfwirtschaft tile launches true village, not Kart or the classic settlement",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/dorfwirtschaft_portal_test.dart",
+      "done": {
+        "testID": 112,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 25163
+      }
+    },
+    {
+      "id": 351,
+      "name": "all eleven game portals dispatch each accessibility and touch tap once",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/spielwelt_semantics_action_test.dart",
+      "done": {
+        "testID": 351,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 63403
+      }
+    },
+    {
+      "id": 1256,
+      "name": "Connect Four layout 360.0x800.0",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart",
+      "done": {
+        "testID": 1256,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 225300
+      }
+    },
+    {
+      "id": 1257,
+      "name": "Connect Four layout 640.0x360.0",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart",
+      "done": {
+        "testID": 1257,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 226083
+      }
+    },
+    {
+      "id": 1258,
+      "name": "Connect Four layout 1280.0x720.0",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart",
+      "done": {
+        "testID": 1258,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 226806
+      }
+    },
+    {
+      "id": 1259,
+      "name": "Connect Four layout 740.0x840.0",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart",
+      "done": {
+        "testID": 1259,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 227646
+      }
+    },
+    {
+      "id": 1260,
+      "name": "Connect Four layout 1200.0x896.0",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart",
+      "done": {
+        "testID": 1260,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 228338
+      }
+    },
+    {
+      "id": 1266,
+      "name": "Actual games hub includes a direct village fold-cover (variant: TargetPlatform.android)",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "done": {
+        "testID": 1266,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 231149
+      }
+    },
+    {
+      "id": 1267,
+      "name": "Actual games hub includes a direct village phone (variant: TargetPlatform.android)",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "done": {
+        "testID": 1267,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 232102
+      }
+    },
+    {
+      "id": 1268,
+      "name": "Actual games hub includes a direct village fold-open (variant: TargetPlatform.android)",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "done": {
+        "testID": 1268,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 233117
+      }
+    },
+    {
+      "id": 1269,
+      "name": "Actual games hub includes a direct village fold-landscape (variant: TargetPlatform.android)",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "done": {
+        "testID": 1269,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 234329
+      }
+    },
+    {
+      "id": 1270,
+      "name": "Actual games hub includes a direct village fold-wide-min (variant: TargetPlatform.android)",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "done": {
+        "testID": 1270,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 235320
+      }
+    },
+    {
+      "id": 1271,
+      "name": "Actual games hub includes a direct village fold-open-large-text (variant: TargetPlatform.android)",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "done": {
+        "testID": 1271,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 236307
+      }
+    },
+    {
+      "id": 1668,
+      "name": "the Spielwelt replaces duplicate promo panels with nine real glass portals",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/parent_games_polish_test.dart",
+      "done": {
+        "testID": 1668,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 331479
+      }
+    },
+    {
+      "id": 1692,
+      "name": "Jump & Run Spielwelt portal launches actual Godot 3D scene once",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/design/parent_games_polish_test.dart",
+      "done": {
+        "testID": 1692,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 340064
+      }
+    },
+    {
+      "id": 2526,
+      "name": "parent mission rule shows the actual stations before game portals",
+      "suite": "/home/runner/work/lumo-lernen/lumo-lernen/test/daily_mission_access_ui_test.dart",
+      "done": {
+        "testID": 2526,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 444010
+      }
+    }
+  ]
+}

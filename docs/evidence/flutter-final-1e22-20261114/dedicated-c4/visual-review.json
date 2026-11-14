@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "run": 43596913210,
+  "attempt": 1,
+  "job": 132454178537,
+  "step": 27,
+  "artifact_id": 14116190611,
+  "artifact_sha256": "94d641676e8eb11e6c7b40598960013efccc3c134fcc06fdc83381e696ad999f",
+  "source_test": "test/design/connect_four_visual_test.dart",
+  "source_test_blob": "c20c32131517b6a3336d996cd8ce8a0b44c1e132",
+  "method": "Each original PNG opened directly with view_image, without editing, rescaling or generated substitutes.",
+  "images_actually_opened": [
+    {
+      "archive_path": "1978/connect_four/1200x896.png",
+      "file": "1200x896.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/1200x896.png",
+      "bytes": 704939,
+      "sha256": "00096d674a7ababe8f21ac3ec7040186e9298e64e83059d9811ac33c2f8880ac",
+      "width": 1200,
+      "height": 896
+    },
+    {
+      "archive_path": "1978/connect_four/360x800.png",
+      "file": "360x800.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/360x800.png",
+      "bytes": 203048,
+      "sha256": "612f0702d283c089bbaf61312ae25f3c0f7f29a3d6343b6e7b63141f2ef690ab",
+      "width": 360,
+      "height": 800
+    },
+    {
+      "archive_path": "1978/connect_four/1280x720.png",
+      "file": "1280x720.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/1280x720.png",
+      "bytes": 634361,
+      "sha256": "0230d9bc5ef03a35d71643241e8a01ec601d926fd848e6ea14948c976f8a652a",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "archive_path": "1978/connect_four/640x360.png",
+      "file": "640x360.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/640x360.png",
+      "bytes": 147539,
+      "sha256": "0684430d78676c5cf342c6a6baf27f9c1cddd8609b3e6dfc572961c752671226",
+      "width": 640,
+      "height": 360
+    },
+    {
+      "archive_path": "1978/connect_four/740x840.png",
+      "file": "740x840.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/740x840.png",
+      "bytes": 402409,
+      "sha256": "7429f49fe114e019009d7f12b032103a49d4f6af279260132de6b8ca3d4559b1",
+      "width": 740,
+      "height": 840
+    }
+  ],
+  "all_five_visually_reviewed": true,
+  "pause_overlay_present": false,
+  "actual_board_stones_each": 7,
+  "bottom_row_each": [
+    "cyan",
+    "gold",
+    "cyan",
+    "gold",
+    "cyan",
+    "gold",
+    "cyan"
+  ],
+  "arrow_controls_each": 7,
+  "visible_status_each": "Gold ist dran!",
+  "observations": [
+    "All five images show the board and all seven alternating bottom-row pieces unobstructed by a pause dialog.",
+    "The two-player selection and all seven arrow controls are visible.",
+    "No missing piece or blocking text/control overlap was observed in these five originals."
+  ],
+  "limits": [
+    "The seven-piece pattern is non-winning; these are not claimed as win frames.",
+    "Pixel inspection does not independently measure dp; the current executed test separately asserts minimum 48dp targets and the actual cell owners.",
+    "These five PNGs originate from the later dedicated step/artifact, not from the 566-PNG full-suite count.",
+    "No new Flutter execution or product mutation was performed."
+  ]
+}

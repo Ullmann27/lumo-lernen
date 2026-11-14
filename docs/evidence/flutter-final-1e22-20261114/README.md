@@ -10,11 +10,23 @@ Das neue Originalarchiv `14115111878` wurde einmalig heruntergeladen. Seine 17.0
 
 Alle vier Auswahlbilder wurden vom unabhängigen Android-QA-Agenten tatsächlich geöffnet, ebenso der Cover-Start. Sein Befund: Mathe ist in allen vier Auswahlbildern vollständig lesbar; das aufgeklappte Fold zeigt das Fachraster ohne Überdeckung, große Schrift keine Titel-/Textkollision. „Belohnungen“ ist auf dem Cover-Start vollständig sichtbar. Nachfolgende Karten können an den dokumentierten Scrollrändern abgeschnitten sein; es wird keine Vollsicht aller Karten auf jedem Ausschnitt behauptet.
 
-## Noch laufender Gesamtnachweis
+## Vollständige neue Flutter-Abnahme
 
-Der neue C4-Gesamtlauf ist `43596913210`, Attempt 1. Die beiden Voraussetzungen sind erfolgreich, sein Job `132454178537` führt seit 12:58:06 UTC den vollständigen Flutter-/Capture-Abschnitt aus. Dieser Zwischencheckpoint enthält dafür noch keine Erfolgszahl und keinen Gesamt-PASS. Der alte 07-Lauf wird nicht als neue Abnahme angerechnet. Living-Run `43596913164` ist inzwischen erfolgreich abgeschlossen; die tatsächlichen Zählungen stehen im folgenden Abschnitt.
+Der C4-Gesamtlauf `43596913210`, Attempt 1, Job `132454178537` hat den vollständigen Flutter-/Capture-Abschnitt erfolgreich abgeschlossen: **2.627 PASS, 0 FAIL, 0 SKIP, 566 erzeugte PNGs**. Die unveränderte Runner-Summary, das vollständige originale `flutter-machine.jsonl`, die unabhängige Neuzählung, die tatsächlich ausgeführte Archivprüfung und ihre Rohlogs liegen unter `full/`. Die drei zuvor fehlerhaften Diktatfälle sind in den tatsächlichen `testDone`-Ereignissen erfolgreich; ebenso die exakte kumulative Mathematikauswahl und der verzögert abgelehnte native C4-Einstieg.
 
-Dieser Evidenzcheckpoint verändert keine Produkt-, Test- oder Workflowdatei. Die tatsächlichen finalen Flutter-Ergebnisse und Originalartefakte werden nach ihrem Abschluss ergänzt.
+Das einmalig geladene Originalartefakt `14115282912` enthält 363.833.462 Bytes. Sein eigener SHA256 `81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab` stimmt mit den GitHub-Metadaten überein. Alle ZIP-Mitglieds-CRCs wurden geprüft. Die 566 PNGs wurden anhand der Originaldateien nachgezählt und gehasht; dies ist keine Behauptung, dass sämtliche 566 Bilder visuell geprüft wurden oder ihren Dateinamen entsprechend den beabsichtigten Spielzustand zeigen.
+
+### Dorf: sechs tatsächlich betrachtete Originale
+
+Alle sechs neuen Dorf-PNGs wurden direkt und unbearbeitet geöffnet. „Dorfwirtschaft“ ist jeweils vollständig in einer Zeile sichtbar. Bei 640 dp sowie 690 dp mit größerer Schrift werden zwei Hauptspalten verwendet; 690 dp mit normaler Schrift und die Queransicht bleiben dreispaltig. In diesen sechs Ausschnitten wurde keine blockierende Titel-, Avatar- oder Schaltflächenüberdeckung festgestellt. Untere Karten dürfen außerhalb des dokumentierten Scrollausschnitts fortgesetzt sein. Die Originalbytes sind unter `full/village-original-pngs/` gesichert.
+
+### Vier gewinnt: alte Beleglücke und getrennte aktuelle Brettbelege
+
+Die vier älteren `games/connect_*`-Aufnahmen aus der Vollsuite sind **alle ungeeignet als Zug- oder Siegbeleg**: Die Phone-Übersicht zeigt ein leeres Brett, die drei weiteren Aufnahmen einen Pausedialog. Die beiden Fold-Bilder sind sogar bytegleich. Die ursprüngliche Testfixture wartet nur eine feste kurze Zeit und prüft die tatsächlich gespielten Felder oder eine Gewinnlinie nicht; 30 echte Missed-hit-Warnungen wurden im Original-JSONL aufgezeichnet. Originalereignisse, Zeilennummern, Quellblobs und die vier unveränderten Bilder sind gesichert. Der genaue asynchrone Auslöser des Pausezustands wurde im Ursprungslauf nicht instrumentiert; daraus wird kein unbewiesener Laufzeitfehler abgeleitet.
+
+Die anschließende dedizierte C4-Stufe 27 lief von 13:19:39 bis 13:19:47 UTC erfolgreich. Ihr eigenes Artefakt `14116190611` (`lumo-1981-real-flutter-captures`) wurde einmalig geladen: 38.336.679 Bytes, SHA256 `94d641676e8eb11e6c7b40598960013efccc3c134fcc06fdc83381e696ad999f`, sämtliche ZIP-Mitglieds-CRCs geprüft. Alle fünf daraus stammenden C4-PNGs wurden tatsächlich geöffnet. 360×800, 640×360, 1280×720, 740×840 und 1200×896 zeigen jeweils ein unpausiertes Brett mit sieben alternierenden Steinen in der unteren Reihe (vier Cyan, drei Gold), sieben Pfeilsteuerungen und „Gold ist dran!“. Diese Bilder belegen den gespielten Brettzustand, **keinen Sieg**. Der aktuelle dedizierte Test prüft die tatsächlichen sieben Züge, die Bereitschaft und die mindestens 48 dp großen Ziele. Seine Originale und separate Herkunft stehen unter `dedicated-c4/`.
+
+Der Evidenzcheckpoint verändert keine Produkt-, Test- oder Workflowdatei und führt keinen neuen Flutter-Test aus. Der übergeordnete Buildjob war beim hier gespeicherten API-Snapshot noch in Arbeit; eine APK-/Android- oder vollständige Pipeline-Abnahme wird damit nicht vorweggenommen. Das komplette terminale Joblog wird vereinbarungsgemäß ausschließlich vom Android-QA-Agenten einmalig abgerufen.
 
 ## Neuer Living-Lauf: eigenständiger Nachweis mit ausgewiesenen Skips
 
