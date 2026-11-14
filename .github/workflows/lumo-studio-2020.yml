@@ -142,6 +142,39 @@ jobs:
           include-hidden-files: true
           if-no-files-found: warn
           retention-days: 30
+      - name: Verify Connect Four touch geometry and fallback before full acceptance
+        env:
+          LUMO_CONNECT_CAPTURES: .ci-results/connect-four-regression/captures
+        run: |
+          set -euo pipefail
+          mkdir -p .ci-results/connect-four-regression
+          git rev-parse HEAD > .ci-results/connect-four-regression/HOST-SOURCE.txt
+          cp config/godot-source.json .ci-results/connect-four-regression/GODOT-SOURCE.json
+          set +e
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=1 \
+            test/games/games_screen_flow_test.dart \
+            test/design/connect_four_visual_test.dart \
+            test/games/connect_four_fold_controls_test.dart \
+            2>&1 | tee .ci-results/connect-four-regression/flutter.log
+          pipeline_status=("${PIPESTATUS[@]}")
+          test_exit=${pipeline_status[0]}
+          log_exit=${pipeline_status[1]}
+          set -e
+          printf '%s\n' "$test_exit" > .ci-results/connect-four-regression/EXIT-CODE.txt
+          printf '%s\n' "$log_exit" > .ci-results/connect-four-regression/LOG-EXIT-CODE.txt
+          if [ "$test_exit" -ne 0 ]; then
+            exit "$test_exit"
+          fi
+          exit "$log_exit"
+      - name: Preserve actual Connect Four touch regression output
+        if: always() && hashFiles('.ci-results/connect-four-regression/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-studio-2020-connect-four-regression
+          path: .ci-results/connect-four-regression/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
       - name: Full Flutter regression suite including every capture
         env:
           REQUIRE_ALL_TESTS: 'true'
