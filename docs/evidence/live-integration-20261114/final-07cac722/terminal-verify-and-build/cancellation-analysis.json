@@ -1,0 +1,137 @@
+{
+  "schema": "lumo-original-cancellation-analysis/v1",
+  "recorded_at": "2026-11-14 12:17:50 UTC",
+  "host_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+  "native_source": "71a4c1e2304b52005950b12490d070c286c45438",
+  "run_id": 43586101225,
+  "run_attempt": 1,
+  "job_id": 132421769277,
+  "original_log": {
+    "git_blob": "c246b7ddce9d1b66db659a93b0af8abec539ee0d",
+    "sha256": "fc687b374ca27e28632b11786ff26fb4eed916e4e9b0fe70d3bb72a064acbef1",
+    "path": "docs/evidence/live-integration-20261114/final-07cac722/terminal-verify-and-build/job-132421769277-original.log"
+  },
+  "observed_marker_lines": [
+    {
+      "line": 4293,
+      "text": "2026-11-14T11:03:06.8342295Z  * branch            71a4c1e2304b52005950b12490d070c286c45438 -> FETCH_HEAD"
+    },
+    {
+      "line": 4294,
+      "text": "2026-11-14T11:03:07.6885317Z HEAD is now at 71a4c1e fix: connect original Hub rig and direct Village host return"
+    },
+    {
+      "line": 10228,
+      "text": "2026-11-14T12:01:51.6046465Z [Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie"
+    },
+    {
+      "line": 10229,
+      "text": "2026-11-14T12:01:51.6153084Z [LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars"
+    },
+    {
+      "line": 10398,
+      "text": "2026-11-14T12:03:02.8314009Z [LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs"
+    },
+    {
+      "line": 10759,
+      "text": "2026-11-14T12:07:01.0716057Z [LumoHubCapture] PASS 2 original current-source rendered PNGs"
+    },
+    {
+      "line": 10761,
+      "text": "2026-11-14T12:07:01.3001490Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    },
+    {
+      "line": 10803,
+      "text": "2026-11-14T12:10:55.7407137Z [LearningWorld] move kind=syllables token=0 target=0 placed=1 complete=false"
+    },
+    {
+      "line": 10804,
+      "text": "2026-11-14T12:11:03.5742356Z ##[error]The operation was canceled."
+    }
+  ],
+  "learning_capture_progress": {
+    "original_screenshot_markers": [
+      {
+        "line": 10778,
+        "text": "2026-11-14T12:07:22.8133406Z [LearningCapture] SCREENSHOT math-start-1280x720 lit=52907 orange=25461 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+      },
+      {
+        "line": 10781,
+        "text": "2026-11-14T12:07:47.9097510Z [LearningCapture] SCREENSHOT math-ten-1280x720 lit=53158 orange=25553 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+      },
+      {
+        "line": 10785,
+        "text": "2026-11-14T12:08:21.6443528Z [LearningCapture] SCREENSHOT math-complete-1280x720 lit=53715 orange=26173 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+      },
+      {
+        "line": 10786,
+        "text": "2026-11-14T12:08:29.6231819Z [LearningCapture] SCREENSHOT math-start-412x915 lit=18777 orange=10261 fox_head_orange=969 clipped_ratio=0.0005812376487"
+      },
+      {
+        "line": 10789,
+        "text": "2026-11-14T12:08:42.5155907Z [LearningCapture] SCREENSHOT math-ten-412x915 lit=19082 orange=10441 fox_head_orange=969 clipped_ratio=0.0005812376487"
+      },
+      {
+        "line": 10793,
+        "text": "2026-11-14T12:08:59.7787901Z [LearningCapture] SCREENSHOT math-complete-412x915 lit=18428 orange=10354 fox_head_orange=870 clipped_ratio=0.00073087542634"
+      },
+      {
+        "line": 10794,
+        "text": "2026-11-14T12:09:20.5438292Z [LearningCapture] SCREENSHOT math-start-2400x1080 lit=107160 orange=24549 fox_head_orange=1253 clipped_ratio=0.00186936615814"
+      },
+      {
+        "line": 10797,
+        "text": "2026-11-14T12:09:54.4299004Z [LearningCapture] SCREENSHOT math-ten-2400x1080 lit=107386 orange=24614 fox_head_orange=1253 clipped_ratio=0.00186936615814"
+      },
+      {
+        "line": 10801,
+        "text": "2026-11-14T12:10:40.1482179Z [LearningCapture] SCREENSHOT math-complete-2400x1080 lit=107914 orange=25215 fox_head_orange=1253 clipped_ratio=0.00186936615814"
+      },
+      {
+        "line": 10802,
+        "text": "2026-11-14T12:10:55.1307973Z [LearningCapture] SCREENSHOT syllables-start lit=55049 orange=21550 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+      }
+    ],
+    "count": 10,
+    "required_complete_count": 25,
+    "complete_pass_marker_present": false,
+    "probe_started_at": "2026-11-14T12:07:01.3001490Z",
+    "cancellation_at": "2026-11-14T12:11:03.5742356Z",
+    "elapsed_seconds_approx": 242.274,
+    "configured_inner_timeout_seconds": 900
+  },
+  "source_proof": {
+    "repository": "Ullmann27/lumo-godot",
+    "commit": "71a4c1e2304b52005950b12490d070c286c45438",
+    "path": "tools/validate_discovery_connections.sh",
+    "file_sha256": "b508826d07120d5b85a65858971562a941901ee3750c951ab315ff9dbd7cc041",
+    "timeout_line": 54,
+    "original_text": "probe learning_world_capture rendered 900 '[LearningCapture] PASS captures=25' \\"
+  },
+  "configured_job_timeout_minutes": 90,
+  "explicit_provider_timeout_annotation": "UNAVAILABLE: connector does not support the check-runs endpoints; public web job page fetch returned DisabledError.",
+  "interpretation": "The original log shows successful preceding Native gates and continuing renderer progress about 242 seconds into a 900-second probe when the job was cancelled around its 90-minute overall budget. These observations support a total job-budget cancellation and do not show an inner-probe timeout. The provider's explicit cancellation annotation was not retrieved.",
+  "independent_native_review": {
+    "agent": "/root/godot_integration",
+    "same_original_blob_confirmed": true,
+    "reported_no_engine_parse_assert_leak_probe_timeout_or_nextgen_fail_markers_in_native_execution": true
+  },
+  "incomplete_acceptance": [
+    "Discovery complete 25 learning PNG proof",
+    "Final Wonder 11 PNG probe",
+    "Complete Discovery 10-probe / 38-PNG receipt",
+    "APK build and both ABI verification",
+    "Actual API35 Village/C4/main tour",
+    "In-place 2017-to-2020 update",
+    "Final candidate and delivery"
+  ],
+  "inactive_single_header_fallback": {
+    "commit": "1a85b02d64cc020baf1af3fcb3b7e15510a175a7",
+    "workflow_blob": "2770b76c4267806d131d4facc5daa078b07047d7",
+    "change": "verify-and-build job header only: timeout-minutes 90 -> 150",
+    "all_job_steps_byte_equal": true,
+    "central_activation_performed_by_this_agent": false
+  },
+  "local_runtime_execution": "NOT_RUN_EXECUTOR_UNAVAILABLE",
+  "new_native_artifact_downloaded": false
+}
