@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "kind": "original_successful_current_complete_build_job",
+  "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "host_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run_id": 43596913210,
+  "run_attempt": 1,
+  "job_id": 132454178537,
+  "status": "completed",
+  "conclusion": "success",
+  "started_at": "2026-11-14T12:56:04Z",
+  "completed_at": "2026-11-14T14:53:43Z",
+  "original_log": {
+    "file": "job-132454178537-original.log",
+    "git_blob": "511fdb28b35703da777e38f6eda83722c4ca9d17",
+    "utf8_bytes": 1937867,
+    "sha256": "03751f95954ae914925ba6247ebfb7c546bca9a382fa282a512bc7ab7aaa3ac5",
+    "lines": 15883,
+    "downloads": 1
+  },
+  "flutter_original_summary": [
+    {
+      "line": 820,
+      "text": "2026-11-14T13:09:35.1523959Z {\"status\": \"PASS\", \"passed\": 2627, \"failed\": [], \"skipped\": [], \"capture_error_files\": [], \"flutter_exit_code\": 0, \"runner_completed_successfully\": true, \"runner_errors\": [], \"scope\": [\"complete Flutter suite; capture outputs recorded below\"], \"capture_png_counts\": {\"LUMO_VILLAGE_CAPTURES\": {\"directory\": \"village\", \"pngs\": 6}, \"LUMO_1989_CARD_CAPTURES\": {\"directory\": \"home-premium\", \"pngs\": 8}, \"LUMO_NEXTGEN_CAPTURES\": {\"directory\": \"home-nextgen\", \"pngs\": 6}, \"LUMO_TUTORING_CAPTURE_DIR\": {\"directory\": \"tutoring\", \"pngs\": 6}, \"LUMO_RIG_STRESS\": {\"directory\": \"rig-stress\", \"pngs\": 27}, \"LUMO_CARDS_OPPONENT_CAPTURE\": {\"directory\": \"cards-opponents\", \"pngs\": 4}, \"LUMO_STREAM_E_CAPTURE\": {\"directory\": \"cards-memory\", \"pngs\": 8}, \"LUMO_NAVIGATION_CAPTURES\": {\"directory\": \"navigation\", \"pngs\": 26}, \"LUMO_GUIDED_CAPTURE_DIR\": {\"directory\": \"guided-learning\", \"pngs\": 170}, \"LUMO_VISUAL_CAPTURE_DIR\": {\"directory\": \"reasoning\", \"pngs\": 15}, \"LUMO_TOUR_DIR\": {\"directory\": \"tour\", \"pngs\": 62}, \"LUMO_FLUTTER_GAMES_CAPTURE\": {\"directory\": \"games\", \"pngs\": 16}, \"LUMO_LEARNING_CAPTURE_DIR\": {\"directory\": \"learning-adventure\", \"pngs\": 80}, \"LUMO_COMPANION_CAPTURE_DIR\": {\"directory\": \"companion\", \"pngs\": 6}, \"LUMO_SPATIAL_CAPTURES\": {\"directory\": \"reading\", \"pngs\": 12}, \"LUMO_CAPTURE_DIR\": {\"directory\": \"modernization\", \"pngs\": 42}, \"LUMO_CARD_FACE_EXPORT_DIR\": {\"directory\": \"card-face-exports\", \"pngs\": 56}, \"LUMO_NEXTGEN_READING_CAPTURES\": {\"directory\": \"nextgen-reading\", \"pngs\": 6}, \"LUMO_READING_CAPTURES\": {\"directory\": \"reading-passages\", \"pngs\": 3}, \"LUMO_ASSISTED_LEARNING_CAPTURES\": {\"directory\": \"assisted-learning\", \"pngs\": 2}, \"LUMO_NATIVE_PROFILE_CAPTURE_DIR\": {\"directory\": \"native-profiles\", \"pngs\": 4}}, \"capture_file_outputs\": {\"LUMO_CARDS_CUP_CAPTURE\": {\"path\": \"cards-cup/trophy.png\", \"created\": true}}, \"rendered_png_count\": 566}"
+    }
+  ],
+  "apk_original_verifications": [
+    {
+      "first_line": 15482,
+      "last_line": 15522,
+      "abi": [
+        "arm64-v8a"
+      ],
+      "bytes": 331354629,
+      "sha256": "44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd",
+      "certificate": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionName": "0.13.8",
+      "versionCode": 2020,
+      "native": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+        "engine": "4.6.3",
+        "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+        "bytes": 75403096
+      }
+    },
+    {
+      "first_line": 15523,
+      "last_line": 15563,
+      "abi": [
+        "x86_64"
+      ],
+      "bytes": 334507298,
+      "sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+      "certificate": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionName": "0.13.8",
+      "versionCode": 2020,
+      "native": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+        "engine": "4.6.3",
+        "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+        "bytes": 75403096
+      }
+    },
+    {
+      "first_line": 15582,
+      "last_line": 15622,
+      "abi": [
+        "arm64-v8a"
+      ],
+      "bytes": 331354629,
+      "sha256": "44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd",
+      "certificate": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionName": "0.13.8",
+      "versionCode": 2020,
+      "native": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+        "engine": "4.6.3",
+        "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+        "bytes": 75403096
+      }
+    },
+    {
+      "first_line": 15624,
+      "last_line": 15664,
+      "abi": [
+        "x86_64"
+      ],
+      "bytes": 334507298,
+      "sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+      "certificate": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionName": "0.13.8",
+      "versionCode": 2020,
+      "native": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+        "engine": "4.6.3",
+        "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+        "bytes": 75403096
+      }
+    }
+  ],
+  "github_error_rows": [],
+  "limitations": [
+    "Build-job success does not constitute actual Android tour/update/candidate/delivery or publication approval.",
+    "All three agents use this same once-retrieved complete original log; Native and Flutter archive evidence remain separately owned.",
+    "The four APK JSONs are original CI verifier stdout records; local original-byte verification is recorded separately."
+  ]
+}
