@@ -2,7 +2,7 @@
   "schema_version": 1,
   "host_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
   "source_tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
-  "observed_at_utc": "2026-11-14T10:56:47Z",
+  "observed_at_utc": "2026-11-14T12:18:19Z",
   "full_flutter": {
     "run_id": 43586101225,
     "run_attempt": 1,
@@ -10,14 +10,39 @@
     "step_number": 13,
     "step_name": "Full Flutter regression suite including every capture",
     "step_conclusion": "success",
+    "step_started_at": "2026-11-14T10:42:16Z",
+    "step_completed_at": "2026-11-14T10:53:06Z",
+    "step_elapsed_seconds": 650,
+    "aggregate_counts_verified_from_original_stdout": true,
+    "passed": 2625,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "original_stdout_reported_png_count": 566,
+    "capture_directory_and_single_file_sum_verified": 566,
+    "original_summary_log": {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "a54556aef3c705af6aa42aa485bb7fec40480ddf",
+      "path": "docs/evidence/live-integration-20261114/final-07cac722/terminal-verify-and-build/job-132421769277-original.log",
+      "blob": "c246b7ddce9d1b66db659a93b0af8abec539ee0d",
+      "original_utf8_bytes": 1370502,
+      "original_sha256": "fc687b374ca27e28632b11786ff26fb4eed916e4e9b0fe70d3bb72a064acbef1",
+      "sha256_provenance": "Computed and preserved by the independent Android QA agent with the original complete job log. This reviewer independently read the immutable Git blob and verified its UTF-8 length and summary line.",
+      "summary_line_number_one_based": 808,
+      "summary_timestamp": "2026-11-14T10:53:06.9680009Z",
+      "actual_host_checkout": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+      "original_log_url": "https://github.com/Ullmann27/lumo-lernen/blob/a54556aef3c705af6aa42aa485bb7fec40480ddf/docs/evidence/live-integration-20261114/final-07cac722/terminal-verify-and-build/job-132421769277-original.log"
+    },
     "artifact_id": 14109914601,
     "artifact_api_size_bytes": 363844187,
     "artifact_api_zip_sha256": "fc254d6be40cb573559bc1a378c8f6baf469a9e09241a86c56ecd86fb2798476",
-    "individual_test_counts_verified": false,
-    "original_machine_protocol_read": false,
-    "original_png_count_verified": false,
+    "individual_machine_test_events_read": false,
+    "final_07_png_bytes_read_or_visually_reviewed": false,
     "local_archive_transfer_completed_and_verified": false,
-    "limitation": "The managed local environment became unavailable during the single local download. The complete ZIP has a reusable original file reference, but no successful local completion or extraction result was returned. The active verify-and-build job log was not yet published (404)."
+    "limitation": "The environment became unavailable during the single local archive transfer. The full successful aggregate report is now independently read from original log line808; final07 machine events, ZIP integrity and PNG hashes were not locally reread. Earlier actual Home/Village originals remain separately bound to their own tested sources."
   },
   "home": {
     "run_id": 43586101113,
@@ -71,5 +96,36 @@
     "home_source": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
     "village_source": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
     "new_07_pixels_not_yet_compared": true
+  },
+  "overall_job": {
+    "conclusion": "cancelled",
+    "started_at": "2026-11-14T10:40:50Z",
+    "completed_at": "2026-11-14T12:11:26Z",
+    "elapsed_seconds": 5436,
+    "native_gameplay_step31": "success",
+    "native_live_discovery_step32": "cancelled",
+    "native_artifact_upload_step33": "success",
+    "apk_build_step34": "skipped",
+    "new_apk_verified": false,
+    "android_runtime_and_delivery_verified": false
+  },
+  "runner_source": {
+    "path": "scripts/run_full_flutter_acceptance.py",
+    "blob": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+    "complete_report_stdout_line": 157,
+    "workflow_path": ".github/workflows/lumo-connect-four-2020.yml",
+    "workflow_blob": "f585727503a73aadcec25414e60f47e44c9f29db",
+    "require_all_tests": true,
+    "test_file_filters": []
+  },
+  "diktat_scope": {
+    "source_path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+    "source_blob": "f79ef8120be1e05545836aef40a6c13a308fa248",
+    "coverage": "The unchanged three regression cases are in the unfiltered complete suite. The complete original runner report has zero failed/skipped tests; their final07 individual JSONL events have not been separately read after the environment outage.",
+    "cases": [
+      "d1_woerter real registry answer persists its exact subject and topic",
+      "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+      "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily"
+    ]
   }
 }
