@@ -1,0 +1,46 @@
+{
+  "created_at_utc": "2026-11-14T20:52:03.446509+00:00",
+  "base_host": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+  "base_tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb",
+  "reason": "Real 21-case run found five negative subcases in two existing tests reject the new earlier TimeoutError. Both RuntimeError at loop exhaustion and TimeoutError at the explicit local deadline denote required non-acceptance.",
+  "previous_actual_result": {
+    "status": "FAIL",
+    "started_utc": "2026-11-14T20:51:18.643925+00:00",
+    "finished_utc": "2026-11-14T20:51:19.367359+00:00",
+    "wall_seconds": 0.7209146169989253,
+    "actual_returncode": 1,
+    "interruption": null,
+    "original_reported_tests": 21,
+    "original_final_ok": false,
+    "source_before_after_identical": true,
+    "checkpoint": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+    "tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb",
+    "streams": {
+      "stdout.original": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr.original": {
+        "bytes": 13128,
+        "sha256": "8c76a4a6548b6d90dd906078dc6decc38df04ea4230f4f8069026f5e50834d66"
+      }
+    }
+  },
+  "changes": {
+    "source": "/tmp/root-c4-return-deadline-integration-v2-20261114/source/tools/android_qa/tests/test_connect_four_return_observation.py",
+    "target": "tools/android_qa/tests/test_connect_four_return_observation.py",
+    "mode": "100644",
+    "old_blob": "6ca069bac94d3380912ac865b6eceb0c8a4a33fb",
+    "new_blob": "9f50cf8977644345cdc30e6cbd66e20a978eaca1",
+    "bytes": 20585,
+    "sha256": "dc4115cca86fe3485076c9726daf2324143c4e6edae20672b6554362ab4c7bdb"
+  },
+  "two_changed_assertions": [
+    "test_empty_mailbox_never_substitutes_for_native_exit_or_correct_main_activity",
+    "test_each_retry_reobserves_pid_and_activity_instead_of_reusing_prior_success"
+  ],
+  "all_other_bytes_in_these_methods_preserved": true,
+  "all_other_test_and_probe_bytes_preserved": true,
+  "new_test_names": 0,
+  "tests_run": false
+}

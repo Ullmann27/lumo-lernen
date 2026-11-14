@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_v2_exception_contract_review",
+  "created_at_utc": "2026-11-14T20:53:36.635Z",
+  "reviewer": "/root/pipeline_repair",
+  "outcome": "Die zwei erweiterten Ausnahme-Erwartungen erhalten den beabsichtigten Vertrag der zwingenden Nichtannahme; kein konkreter Quellenblocker.",
+  "pack": "/tmp/root-c4-return-deadline-integration-v2-20261114",
+  "source_freeze": {
+    "bytes": 2049,
+    "sha256": "91566ea8ef448a877be89d478845e97d2298653e297e714a06212f320b9d892c",
+    "git_blob": "b162ce4c7f083f620b617b513568f34038fc54f3"
+  },
+  "baseline": {
+    "host": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+    "tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb"
+  },
+  "source": {
+    "path": "tools/android_qa/tests/test_connect_four_return_observation.py",
+    "before": {
+      "bytes": 20553,
+      "sha256": "9bbc8142ce0c945d3ba4dc5b83185c48bc0a03a3557a6c3e3757569759269d92",
+      "git_blob": "6ca069bac94d3380912ac865b6eceb0c8a4a33fb"
+    },
+    "after": {
+      "bytes": 20585,
+      "sha256": "dc4115cca86fe3485076c9726daf2324143c4e6edae20672b6554362ab4c7bdb",
+      "git_blob": "9f50cf8977644345cdc30e6cbd66e20a978eaca1"
+    },
+    "identical": false
+  },
+  "production_unchanged": {
+    "bytes": 30524,
+    "sha256": "93631ce630ac1f73a027d21f48a773cb2b3d7d18d3d7719caf8727893a9412c7",
+    "git_blob": "9a80d1092cc50123aa638d81f3d4a75897fb2c2e"
+  },
+  "original_failure": {
+    "path": "/tmp/root-c4-return-deadline-integration-20261114/actual-validation/stderr.original",
+    "bytes": 13128,
+    "sha256": "8c76a4a6548b6d90dd906078dc6decc38df04ea4230f4f8069026f5e50834d66",
+    "git_blob": "e116e5a996d0edd9b4f8e79bc3fb2ad475d81611"
+  },
+  "findings": [
+    "Der vollständige unveränderte ursprüngliche stderr-Lauf wurde gelesen: Ran 21 tests in 0.399s, FAILED(errors=5). Alle fünf Stacks enden an derselben expliziten lokalen TimeoutError-Zeile vor einer weiteren Activity-Abfrage. Es ist kein Akzeptanzdurchlauf und keine neue positive Spielbeobachtung.",
+    "Der engere produktive Restzeitgeber kann dauerhaft ungültige Rückkehrbeobachtungen bereits zwischen PID- und Activity-Abfrage mit TimeoutError abbrechen. Das bisherige RuntimeError am erschöpften äußeren Beobachtungsloop bleibt ebenfalls ein gültiger zwingender Fehlerausgang. Genau diese beiden Klassen werden in zwei negativen Tests zugelassen; Exception/BaseException oder beliebige Fehler werden nicht akzeptiert.",
+    "Das leere Mailbox-Testergebnis darf weiterhin weder einen lebenden Nativeprozess noch eine falsche, fehlende oder gemischte Activity ersetzen. Nach dem erwarteten Fehler bleiben assert_no_acceptance und die unveränderte Keine-find-Prüfung zwingend.",
+    "Beim Folgeversuch werden weiterhin frische PID/Activity statt eines zuvor gültigen Zustands verlangt. Nach dem erwarteten Fehler bleiben assert_no_acceptance sowie genau die unveränderte erste Raw-find-Antwort erforderlich; ein weiterer gültiger Return wird nicht konstruiert.",
+    "assert_no_acceptance prüft unverändert genau einen Back, keine Returnannahme, keinen Flutter-Capture/Leave-Touch/Portalwait, keine Preferences-Abnahme und keinen Returnbericht. Die produktive Probe und alle Originalfixtures sind bytegleich.",
+    "Die beiden inversen Methodenänderungen rekonstruieren die gesamte vorherige Testdatei exakt. Die anderen 21 Top-Level-/Klassenmethoden sind vollständig bytegleich. Das bereits vor V2 vorhandene Exceptiontuple im permanenten Mailbox-Negativtest bleibt unverändert."
+  ],
+  "counts": {
+    "source_files_bound": 30,
+    "changed_files": 1,
+    "changed_assertions": 2,
+    "unchanged_other_files": 29,
+    "changed_methods": 2,
+    "unchanged_other_methods": 21,
+    "new_methods": 0,
+    "tests_run_by_reviewer": 0
+  },
+  "limits": [
+    "Der frühere echte Rotlauf bleibt historisch erhalten. Die angepasste V2 muss nach Root-Checkpoint tatsächlich geprüft werden; dieser Lesebericht behauptet keinen neuen Test-PASS.",
+    "Kein Produktionscatch, keine Timeoutumwandlung, keine neue Eingabe, kein ADB-/Engine-/CI- oder Refzugriff durch den Reviewer."
+  ],
+  "review_helper_note": "Der erste eigene reine Hash-/AST-Helferlauf nahm irrtümlich genau zwei Exceptiontuples in der ganzen Datei an und stoppte daran. Die vorhandene dritte, schon in V1 unveränderte Stelle wurde direkt gelesen; der Helfer wurde auf den tatsächlichen Zwei-Methoden-Diff begrenzt. Beide Helfer-/Exitoriginale sind separat erhalten; weder Produkt noch Tests wurden dafür ausgeführt oder verändert.",
+  "evidence_files": [
+    "source-bindings.json",
+    "read_only_binding.py",
+    "review-helper-history.json"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "status": "FAIL",
+  "started_utc": "2026-11-14T20:51:18.643925+00:00",
+  "finished_utc": "2026-11-14T20:51:19.367359+00:00",
+  "wall_seconds": 0.7209146169989253,
+  "actual_returncode": 1,
+  "interruption": null,
+  "original_reported_tests": 21,
+  "original_final_ok": false,
+  "source_before_after_identical": true,
+  "checkpoint": "a5ac4cbefb2ddb548043e133efc6a385a34ec9ae",
+  "tree": "337c4ac533cc3f6c9d079e397f7d78facb2ab0bb",
+  "streams": {
+    "stdout.original": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr.original": {
+      "bytes": 13128,
+      "sha256": "8c76a4a6548b6d90dd906078dc6decc38df04ea4230f4f8069026f5e50834d66"
+    }
+  }
+}

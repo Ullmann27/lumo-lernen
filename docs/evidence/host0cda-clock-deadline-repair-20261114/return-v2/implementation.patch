@@ -1,0 +1,20 @@
+--- a/tools/android_qa/tests/test_connect_four_return_observation.py
++++ b/tools/android_qa/tests/test_connect_four_return_observation.py
+@@ -267,7 +267,7 @@
+             with self.subTest(pid=pid['stdout'], activity=activity['stdout'][-100:]):
+                 boundary = self.boundary([sample(pid=pid, activity=activity,
+                     mailbox=derived(REMAINDER, stdout=b''))])
+-                with self.assertRaises(RuntimeError):
++                with self.assertRaises((RuntimeError, TimeoutError)):
+                     boundary.value.return_to_flutter('return-final')
+                 self.assert_no_acceptance(boundary)
+                 self.assertFalse(any(item['kind'] == 'find' for item in boundary.commands))
+@@ -277,7 +277,7 @@
+                       sample(activity=NATIVE, mailbox=derived(REMAINDER, stdout=b''))):
+             with self.subTest(later=later['pid']['stdout']):
+                 boundary = self.boundary([sample(), later])
+-                with self.assertRaises(RuntimeError):
++                with self.assertRaises((RuntimeError, TimeoutError)):
+                     boundary.value.return_to_flutter('return-final')
+                 self.assert_no_acceptance(boundary)
+                 self.assertEqual([item['stdout'] for item in boundary.commands if item['kind'] == 'find'],
