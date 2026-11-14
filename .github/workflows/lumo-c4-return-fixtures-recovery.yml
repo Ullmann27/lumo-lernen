@@ -1,0 +1,50 @@
+name: Recover frozen C4 return regression evidence
+
+on:
+  push:
+    branches: [recovery/lumo-c4-return-fixtures-20261114]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: recovery-c4-return-fixtures-20261114
+  cancel-in-progress: false
+
+jobs:
+  recover-frozen-blobs:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/recovery/lumo-c4-return-fixtures-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Read the reviewed recovery source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/recovery/lumo_c4_return_fixtures.py
+            /.github/workflows/lumo-c4-return-fixtures-recovery.yml
+      - name: Recover only exact frozen Git blobs from the immutable diagnostic archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 .github/recovery/lumo_c4_return_fixtures.py --out "$GITHUB_WORKSPACE/recovery-evidence"
+      - name: Preserve recovered files and verification receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-c4-frozen-return-fixtures-recovery
+          path: recovery-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
