@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "name": "project-validation",
+      "exit_code": 0,
+      "errors": [],
+      "log_sha256": "4d7bceec7c22b3bd14c7d2462e9028abea5f6d5f5eb85570d492f9b145bc58d2"
+    },
+    {
+      "name": "import",
+      "exit_code": 0,
+      "errors": [],
+      "log_sha256": "2e382fd02dda3cfeb2acb162e6a2dfee66afe1ed4b59059f2866f37a9b25994a"
+    }
+  ],
+  "elapsed_seconds": 30.625,
+  "scope": "complete assembled source validation and Godot editor import, no render/Android/FPS claim"
+}

@@ -1,0 +1,20 @@
+{
+  "source": "cb85abed7c947af8e491f3d2b6488e443dc73c0a",
+  "run": 43607826829,
+  "artifact": 14119383233,
+  "machine_sha256": "37149720406b4ac52a03c916a07a9db7d2c87d8c00be6d3545c31c7c88d87347",
+  "actual_test_cases": 2608,
+  "actual_results": {
+    "success": 2608
+  },
+  "actual_skipped": 0,
+  "excluded_loader_setup_teardown_events": 568,
+  "terminal_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 550325
+    }
+  ],
+  "scope": "Actual original full Flutter machine; generated capture count does not claim manual screenshot review"
+}

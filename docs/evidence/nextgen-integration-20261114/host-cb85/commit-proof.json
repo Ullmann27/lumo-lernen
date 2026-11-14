@@ -1,0 +1,73 @@
+{
+  "base": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "base_tree": "59c469de6252d368470bb41b0bcef21151cec826",
+  "commit": "cb85abed7c947af8e491f3d2b6488e443dc73c0a",
+  "new_tree": "207d3a0a6fbdfbb38acfc8b7827491feda194b2d",
+  "modified": 4,
+  "unchanged": 4316,
+  "leaves": 4320,
+  "update": {
+    "success": true
+  },
+  "files": [
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-ffmpeg-discovery-50503-20261114/prepared/host/.github/workflows/lumo-studio-2020.yml",
+      "sha": "ee5180d7140ba34f51e9a07acb7afabbd3c8e6f8",
+      "sha256": "53355d456640ac6f13d7ac25e06d45129d66fcfc6b2e393c595ee9f3e43ca346",
+      "bytes": 59699,
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-ffmpeg-discovery-50503-20261114/prepared/host/.github/workflows/lumo-unified-integration-2026.yml",
+      "sha": "1c11b1370ec06f7c7c2827cc483b8dc6768bcf43",
+      "sha256": "9b56638b4a2b98bdd5fd8b462f2fb2436605873b7a09407bb951f115cfd99494",
+      "bytes": 81914,
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": ".github/workflows/lumo-astra-script-recovery.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-ffmpeg-discovery-50503-20261114/prepared/host/.github/workflows/lumo-astra-script-recovery.yml",
+      "sha": "d11c23b70003fb8787ff4efd2742ce4a050bf912",
+      "sha256": "7270a2496d187516d791b459238d2d4d2315285549f2f739ddad1313741269c6",
+      "bytes": 2035,
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "test/games/memory_result_frame_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-result-frame-50503-test-boundary-20261114/prepared/host/test/games/memory_result_frame_test.dart",
+      "sha": "15ded52fc7465206672a85ad09e287b5393e8e4a",
+      "sha256": "7212a9483853a37bc0e3cc533ae77552db4424a2fadccc8868f0d2ca7605696d",
+      "bytes": 6098,
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "full_utf8_readbacks": [
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "sha": "ee5180d7140ba34f51e9a07acb7afabbd3c8e6f8",
+      "equal": true
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "sha": "1c11b1370ec06f7c7c2827cc483b8dc6768bcf43",
+      "equal": true
+    },
+    {
+      "path": ".github/workflows/lumo-astra-script-recovery.yml",
+      "sha": "d11c23b70003fb8787ff4efd2742ce4a050bf912",
+      "equal": true
+    },
+    {
+      "path": "test/games/memory_result_frame_test.dart",
+      "sha": "15ded52fc7465206672a85ad09e287b5393e8e4a",
+      "equal": true
+    }
+  ],
+  "scope": "Three prior tool dependencies and one new-test timing boundary; no product/native-pin/old-tests modifications; new CI pending"
+}
