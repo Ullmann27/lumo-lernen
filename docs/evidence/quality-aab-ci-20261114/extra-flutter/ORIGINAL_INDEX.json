@@ -1,0 +1,337 @@
+{
+  "archive": {
+    "bytes": 38297988,
+    "sha256": "c8842754cd3fe54f2f6fe04a913d98e8646c9cbca9d4902bf6d5fca9b6027c99",
+    "git_blob": "af908446cb5f1cec7715e5805f6ad69159ff5510"
+  },
+  "zip_crc_valid": true,
+  "canonical_paths": true,
+  "file_count": 54,
+  "members": [
+    {
+      "path": "1978/connect_four/1200x896.png",
+      "bytes": 705392,
+      "sha256": "d8b196029b5d707ef5c64288b14018c946607ab94e67ce781178af8a23cde213",
+      "git_blob": "5f06819035ebb37c2ad0268230fe983b3e088da4"
+    },
+    {
+      "path": "1978/connect_four/1280x720.png",
+      "bytes": 635883,
+      "sha256": "d4c9c5bac7f965b4e119ef9abc0170194f2f9406f93d27429812430177dd50c9",
+      "git_blob": "4aced4144e4c1cad3591caa98f7a7dcaec9cd879"
+    },
+    {
+      "path": "1978/connect_four/360x800.png",
+      "bytes": 209250,
+      "sha256": "65063423ace5f5d2b96075453ca8caee55f04a5ba744d7bf884eb08d7fb42924",
+      "git_blob": "7f99cedc77615dafb2870823f99416ac07029bb1"
+    },
+    {
+      "path": "1978/connect_four/640x360.png",
+      "bytes": 150817,
+      "sha256": "185ca1d31749c663f29d41f6cfd9c37230423ab4f6d751bfcd78489a10e8fa93",
+      "git_blob": "7f2f4831a317ebf0beb494e0ad9ea798422f8c48"
+    },
+    {
+      "path": "1978/connect_four/740x840.png",
+      "bytes": 403061,
+      "sha256": "a35529bf064f27025e689ef28d766ec72c16b55bee07cfae2a0eb2621b10ad3a",
+      "git_blob": "5105734c338bc1becc6803ad5e1a98af3bdcf878"
+    },
+    {
+      "path": "1978/lessons/cover-large-text.png",
+      "bytes": 914330,
+      "sha256": "c637a210fad0c4ba15b87959aac2ee0cb5153301e6e48bc2f4669ed2cf1f0f99",
+      "git_blob": "7c87b665db8e769ce0c1c0a85810b1b7d6a8d612"
+    },
+    {
+      "path": "1978/lessons/fold-open.png",
+      "bytes": 2536675,
+      "sha256": "a39494ade718bd099b5a49a4c29893544555c9b78420687c486236a2ea094c2a",
+      "git_blob": "7ea06530d1d15da7627e9f8b8749af6c68713282"
+    },
+    {
+      "path": "1978/lessons/phone.png",
+      "bytes": 1224019,
+      "sha256": "60428f252bc51453b276f4f45f6894200577f83e745c117f241184b4915241af",
+      "git_blob": "4e670c7d27e9d95ec3b268b9c449e1dd2c82dd23"
+    },
+    {
+      "path": "1978/tour/fold_games.png",
+      "bytes": 519816,
+      "sha256": "08c1676147a9b75a1c501f9fe9d896ebf54aa9ddc22d9d5c42ee8f5ab7697564",
+      "git_blob": "899c4ca894749b4e6af50189a1b079fdf2dd9cb1"
+    },
+    {
+      "path": "1978/tour/fold_home.png",
+      "bytes": 847138,
+      "sha256": "6428026a3b4e2196b0e3793042ba9b59a30203b7bcfdaac62f750adfa1c93fc9",
+      "git_blob": "44dd00f1018bff29d997e87b29d6c82811b50296"
+    },
+    {
+      "path": "1978/tour/fold_learn.png",
+      "bytes": 463066,
+      "sha256": "ed9710a0733362139c439acf9b2e2056824143ab8a5a3ab6f632508a93969bb2",
+      "git_blob": "c11cb03b951f34a1c80b32f338e91dd1e4f0bee9"
+    },
+    {
+      "path": "1978/tour/fold_profile.png",
+      "bytes": 668928,
+      "sha256": "c73f65878b96973899a74efa121cf16a7eb39b8768a200f05415f85f1223ba34",
+      "git_blob": "fd154ae01370d23003ff3b0f70667cc298c87d97"
+    },
+    {
+      "path": "1978/tour/fold_rewards.png",
+      "bytes": 517157,
+      "sha256": "2a865ebfbf147009d172339b735a6e27e7d47ba1af9856e779897722ad46d44e",
+      "git_blob": "4efce6c0df5cc7f92904972390ec2ed3d27b6fa0"
+    },
+    {
+      "path": "1978/tour/fold_tests.png",
+      "bytes": 633186,
+      "sha256": "35bfa7348611276c827e31eb546749cf1d0e9d60382905b44d21bfd0760e5cac",
+      "git_blob": "387d68e159abfe000f22d6d33dec2ce34d9229bf"
+    },
+    {
+      "path": "1978/tour/phone_games.png",
+      "bytes": 344456,
+      "sha256": "bfc75faf54364374b9caaaf6083158383bd3e93859a28157664d018a865b9ca2",
+      "git_blob": "6addf9a18eb12c5128dddf70fdfd216c5882998c"
+    },
+    {
+      "path": "1978/tour/phone_home.png",
+      "bytes": 566778,
+      "sha256": "0b6ad8358741b09d864117bfec3d6953305e4e67cf2f91b5e6ec237145a211db",
+      "git_blob": "59743bd38605635eb039132156d4e19998e191e0"
+    },
+    {
+      "path": "1978/tour/phone_learn.png",
+      "bytes": 388358,
+      "sha256": "e2a33abeed005654eed1167c3f3e752d7308e9a1f7b608377b5e4c73d999ab03",
+      "git_blob": "642d4a4f2b24ff119199642854dd89354c1a9fe8"
+    },
+    {
+      "path": "1978/tour/phone_profile.png",
+      "bytes": 488879,
+      "sha256": "7d17c5fef873b87aef94cb896cf17b6d30fa9047ac517561010124365b5d7478",
+      "git_blob": "b6a05852b8dbd0d2c496f10305a1a7256a15fad9"
+    },
+    {
+      "path": "1978/tour/phone_rewards.png",
+      "bytes": 421569,
+      "sha256": "ba37e63d74e6a8f88f12eaeeb05db89c94cacea37ceabe950f843f5a670840fe",
+      "git_blob": "22fe050b364f29d69210840726a1e319f8c796b2"
+    },
+    {
+      "path": "1978/tour/phone_tests.png",
+      "bytes": 478481,
+      "sha256": "ae97eea3fb13751b25f24d9daf3732b47f239a21271c0767cc5fc902cd03f7e4",
+      "git_blob": "5c1df554ee1d2c00c5302576614f1b0df3ea9f78"
+    },
+    {
+      "path": "1978/tour/reference-phone_games.png",
+      "bytes": 284058,
+      "sha256": "df83dd5719878466ef8ab132326a179fedf2236c7291d9725e6df7e1bbcb30a9",
+      "git_blob": "9840605ef42b31a0d11889e8dcafea26fb906123"
+    },
+    {
+      "path": "1978/tour/reference-phone_home.png",
+      "bytes": 463001,
+      "sha256": "5e7d3004bad44f674f426113c9f3926e30031f2a6cb1247eeb837917999959f1",
+      "git_blob": "1aec9d43b38430794442d3cd439f595ecffc7517"
+    },
+    {
+      "path": "1978/tour/reference-phone_learn.png",
+      "bytes": 298656,
+      "sha256": "085d59a2b170b3f3fe3b75c50ebd617a25c29644318b9f8f36aa29183bebab82",
+      "git_blob": "6deb6f0a564d9edfb486f1569047dd96288b327f"
+    },
+    {
+      "path": "1978/tour/reference-phone_profile.png",
+      "bytes": 381162,
+      "sha256": "08a84e25a8c868f111f8c23acad980058edc3949dc82ef3237708812903823d5",
+      "git_blob": "2558f64baf86ec9afdb497ec236d1ba3326fb760"
+    },
+    {
+      "path": "1978/tour/reference-phone_rewards.png",
+      "bytes": 342499,
+      "sha256": "9d4a170289feb374d62cb80772b5533e3ff055076e4346abf8e9058ba31d4ae3",
+      "git_blob": "b721e12c147ecc0af199ada23607e2cbb781f82d"
+    },
+    {
+      "path": "1978/tour/reference-phone_tests.png",
+      "bytes": 350908,
+      "sha256": "1b1db0b8a50065bbb8b53ad50831208a3aaa8df587728230a8559ce4bd79ece4",
+      "git_blob": "0c5c9c5e74123b801701e471c880d59f7f829603"
+    },
+    {
+      "path": "1981/atelier/fold-cover-large-text-build.png",
+      "bytes": 480838,
+      "sha256": "05715ded0dffad86af06a84c533b8e196a01e2c52a2d274c939beca36b73667a",
+      "git_blob": "1381634de911b9596aa22d543f69e2cd49ed2948"
+    },
+    {
+      "path": "1981/atelier/fold-open-build.png",
+      "bytes": 556813,
+      "sha256": "aa791387cfaa7d014e0b4b767a58dfad0fb8c1a12fdb337cadfdcb543256be6d",
+      "git_blob": "447af9c493204e65c93cd95f12b2b18e4d774901"
+    },
+    {
+      "path": "1981/atelier/fold-cover-large-text-example.png",
+      "bytes": 335320,
+      "sha256": "78d425beef4b0125e1fcf202cf7afc7d6276e9edb4fa292217ad402cc124aca0",
+      "git_blob": "06a768fb3ba0bbccf652890105f3c7133105d752"
+    },
+    {
+      "path": "1981/atelier/fold-open-example.png",
+      "bytes": 284359,
+      "sha256": "88bb2f69bdd0aa4a9e10a07296b274c22f0443619e7ed1cf98f286f374196476",
+      "git_blob": "881c9e607bc951452cfe10d865399eb12d75ee86"
+    },
+    {
+      "path": "1981/atelier/phone-build.png",
+      "bytes": 454578,
+      "sha256": "750c87c3bbedd96df1f94dec9ea56477926edf087157f5c7a83d3c804248f75f",
+      "git_blob": "e95444a7272676a10099b66a5db4fac0373eace8"
+    },
+    {
+      "path": "1981/atelier/phone-example.png",
+      "bytes": 236746,
+      "sha256": "da4933688535432376524d8d9c82699292961ba2e6938e0c5c1ab081a107e317",
+      "git_blob": "c7e24c82a2f4190a81b890767c34043271b68a37"
+    },
+    {
+      "path": "1988/spatial-reading/home-fold-cover.png",
+      "bytes": 953812,
+      "sha256": "1388bb8a411b0dbde11d365ccc75b206ae1240575f76bf8803fe35d9acc40fb2",
+      "git_blob": "45e849dae7c0efeffd7564b25d17bb57a0b04723"
+    },
+    {
+      "path": "1988/spatial-reading/home-fold-open.png",
+      "bytes": 1775720,
+      "sha256": "6a597cff1e70f4f09df71b938c45ad723d3c75192c5a40c7a028790e60c8e348",
+      "git_blob": "f0236f2fe265b56e6385096fe508c7c60c1b3157"
+    },
+    {
+      "path": "1988/spatial-reading/home-phone.png",
+      "bytes": 1134577,
+      "sha256": "45c4450841acb611bd89809d2c6a6a8a0c41d323a31777139a2c0edb7165f512",
+      "git_blob": "a3f338225447dd87a5f3882c45cd46ad06e4ff50"
+    },
+    {
+      "path": "1988/spatial-reading/reading-fold-open.png",
+      "bytes": 1483640,
+      "sha256": "2621e447aaba4df9310a364d7d3628541b811d9036f334b78b026add749b27c0",
+      "git_blob": "cded7fb54d1e02dfe9345fe986c02380f7e92361"
+    },
+    {
+      "path": "1988/spatial-reading/reading-fold-cover.png",
+      "bytes": 895473,
+      "sha256": "57bfd322b76c643c4e52e96721ba31be02872e0329c6672550ad47413385ad64",
+      "git_blob": "9a0784120c8dcd419dbbe69a5fdb5d7dd09729cd"
+    },
+    {
+      "path": "1988/spatial-reading/reading-phone.png",
+      "bytes": 1094115,
+      "sha256": "8106d67ced4499cb135665f261f31800c8859e40213db7360d910686a40af6a0",
+      "git_blob": "9e5921509f9d99d5859a55e96fe3160116cb6e12"
+    },
+    {
+      "path": "1988/spatial-reading/retry-fold-cover.png",
+      "bytes": 658882,
+      "sha256": "3d86e91d39ce0a6abdadd3dd013e1cbb68457d1c843846d6d0921e37fd744db0",
+      "git_blob": "84d4f49b5993175ba18162a6b76e5654c43e4c8e"
+    },
+    {
+      "path": "1988/spatial-reading/retry-fold-open.png",
+      "bytes": 1058515,
+      "sha256": "aa933b8fc7166911ced91e7d0e5b4bceaa7b0651984e542d6724acb66a6683db",
+      "git_blob": "8f0c37c511a8573d0bb615b662cea297cfd4ea7b"
+    },
+    {
+      "path": "1988/spatial-reading/retry-phone.png",
+      "bytes": 798473,
+      "sha256": "ccc2187752e55e1e1a48f94f87dddf4e5373c8534b072ed121145788f457c65f",
+      "git_blob": "b4aff1e77502b847a1177e899aeb498befbc62ac"
+    },
+    {
+      "path": "1988/spatial-reading/subjects-fold-cover.png",
+      "bytes": 949779,
+      "sha256": "fbe67a226fc860cce7c930f6777920b58b55b81dbefb9051be0823ceba809c29",
+      "git_blob": "42e5b352af2462f743f87dd2dd340571b3c74112"
+    },
+    {
+      "path": "1988/spatial-reading/subjects-fold-open.png",
+      "bytes": 1329043,
+      "sha256": "1ac0815c98f3c2b5a52c62b47723273f5ad14eff05fde2e2891e4d5949f8268d",
+      "git_blob": "f5a87592eb9dd3da634c903eba6dc0cb6e112736"
+    },
+    {
+      "path": "1988/spatial-reading/subjects-phone.png",
+      "bytes": 1128320,
+      "sha256": "9e777c6f987d522bbbddb58a55d7922c5ea5559afa8241aeb1c4a9df5d2bf424",
+      "git_blob": "98637aab9abdeda8b074ce5daa234b0fbf51d854"
+    },
+    {
+      "path": "abc_premium_fold_cover_320x780.png",
+      "bytes": 574250,
+      "sha256": "f52d57e75d8d58703ab15a40b1b436ec5a9e051d07cc46659e0852a5f3c86173",
+      "git_blob": "466b4f1305d133969fdaf3be9f1e24f269d4bbbe"
+    },
+    {
+      "path": "abc_premium_fold_open_840x760.png",
+      "bytes": 988872,
+      "sha256": "a5b732088a82eda921d46ada800cd4b755ee3d791b986102cc1969ce89399c1b",
+      "git_blob": "cb1cb49d70e1a1e2814c9b452dd3ab228134384e"
+    },
+    {
+      "path": "abc_premium_phone_390x844.png",
+      "bytes": 694083,
+      "sha256": "e1642abd0fb68603f277d37184980cc03c63df4fbbb46f632c1b466d15d1aec7",
+      "git_blob": "d1ad069b8ecca761eeddc53a7988f9effcdee74b"
+    },
+    {
+      "path": "cards_hub_fold_cover_320x780.png",
+      "bytes": 457636,
+      "sha256": "87fb626f767ea7b71aa4a4b0e69262220371c80d2327a69bc480802e35e0210b",
+      "git_blob": "f0d7c7dbb810c8c2e849f0158fcb476abd43526b"
+    },
+    {
+      "path": "cards_hub_fold_open_840x760.png",
+      "bytes": 1371599,
+      "sha256": "40c79818311e5a94774f30d762abdd5686f71a87df5d74438a4fa8a2d3cc550a",
+      "git_blob": "49fd7e1af7a41ff8d1d4428a8cfafc672e8d8141"
+    },
+    {
+      "path": "cards_hub_landscape_840x400.png",
+      "bytes": 568845,
+      "sha256": "e23b4917655355deb852b4951fab65bfb1e79d00f2135ffc13dd4df6c523d0a2",
+      "git_blob": "35e79549a3bdff2629af2c43a0be608f4a93838b"
+    },
+    {
+      "path": "cards_hub_phone_390x844.png",
+      "bytes": 624724,
+      "sha256": "3d7c4d62d419f644af1fd19e8e34ee7efb410a4ed359c1b5aec5bd4d452f92f5",
+      "git_blob": "d3f2b6381fc2fcb982f3e29ed00f31b947854a13"
+    },
+    {
+      "path": "cross_grade_fold_cover_320x780.png",
+      "bytes": 612141,
+      "sha256": "e0161a7dde746b59e6b2cda869255e994ca2c3ac043b9b96fd4e0f4db7194015",
+      "git_blob": "367785e5c9d57a045c10c24333e9b8245ceb05e3"
+    },
+    {
+      "path": "cross_grade_fold_open_840x760.png",
+      "bytes": 1194105,
+      "sha256": "1bb46d05b0e4e348120748f41a54f6babcac516a8a799409da797a685b98ff5b",
+      "git_blob": "ed203282cd251c38cf493b089e41a74c3528194f"
+    },
+    {
+      "path": "cross_grade_phone_390x844.png",
+      "bytes": 519008,
+      "sha256": "c81576285b4556982f9d8047205d9f48b2b4fc4700412ac010e2789d5e0d03c3",
+      "git_blob": "1e840349e4e032bb09872468c602771c4861acab"
+    }
+  ],
+  "archive_code_executed": false
+}
