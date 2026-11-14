@@ -1,0 +1,320 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "before-source/lib/domain/analysis/daily_recommendation_engine.dart",
+      "bytes": 10182,
+      "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553",
+      "git_blob": "457aed1dcc82e9c0f4462daa045b249bc735df7e"
+    },
+    {
+      "path": "before-source/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2146,
+      "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+      "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+    },
+    {
+      "path": "final-source/lib/domain/analysis/daily_recommendation_engine.dart",
+      "bytes": 8298,
+      "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c",
+      "git_blob": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b"
+    },
+    {
+      "path": "final-source/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "path": "final-source/test/games/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+    },
+    {
+      "path": "final-source/test/reading_asr_evidence_boundary_test.dart",
+      "bytes": 12601,
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "git_blob": "fd5e624055383e935bfd5fab074d62cb746f396c"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 4603,
+      "sha256": "dc5820a27abd6a4ea29abbec51786f69c48053b57eadceadd4bb1e7956d073d8",
+      "git_blob": "ad92b18561d84c85ff1549cb22a4cfac775df1be"
+    },
+    {
+      "path": "inspection/binary-range-fetch-original-response.json",
+      "bytes": 317,
+      "sha256": "b83afe08ecda1f3aa0e1d7eaff9898afc3c2610b914e7537bd43a28ba1f3a3c9",
+      "git_blob": "bd3b4bfb903e607fcf35aed36e1479792733eb58"
+    },
+    {
+      "path": "inspection/finalize_source_review.py",
+      "bytes": 25256,
+      "sha256": "ef7c2f5573bb77e696ef51dadc6fededfeeafcd8d2c5889d23f8b940b36e35bd",
+      "git_blob": "3dcc5a270acfc24b2fdc85375c4c758914be3c0f"
+    },
+    {
+      "path": "inspection/initial-jsonl-read-error.json",
+      "bytes": 345,
+      "sha256": "b09d93c1c3c6cf260c346cda89df0b7b752b771cffb7a6d76e5c681f95f0de45",
+      "git_blob": "5e9409d6845dfd077f7d606e969d56842d6cbb12"
+    },
+    {
+      "path": "inspection/materialization-receipts.json",
+      "bytes": 15840,
+      "sha256": "c20bf953b331bcb5da24724cd6a718a30906b9cc2f6837ea9cbe9879a54f5818",
+      "git_blob": "e5dec5fe2b1d04015d158d96c6af0054f284e01d"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 38174,
+      "sha256": "ec0ed9677df610c1554d30d2618d08f1d05ab4c05b9415ca6a986f5d3d288750",
+      "git_blob": "7ffcd9f65e02e3fd9429f0e370ea8e64d7799dd2"
+    },
+    {
+      "path": "originals/api/commit-original.json",
+      "bytes": 45802,
+      "sha256": "c22a9fdc36c3decb4d5c1131d107d67dde2100c599a04f193e505043f6e32ca3",
+      "git_blob": "00aae99d1433ce9117ea90fad129222954a39038"
+    },
+    {
+      "path": "originals/api/e048-evidence-directory-original.json",
+      "bytes": 21063,
+      "sha256": "25f565565e0108a11bfc435e586e74095840391b56ed46a0cd3918cf7c11be75",
+      "git_blob": "47de6a3ee6305a417504b481e891faf49cca96cb"
+    },
+    {
+      "path": "originals/api/e048-git-commit-original.json",
+      "bytes": 1756,
+      "sha256": "52886fe272db41098ae484ab2f4e089540fa7aa92a625cf255eb7fe6ba41346a",
+      "git_blob": "91ee4ce721b56a4914d5cab8b5b92ad6e1379b3e"
+    },
+    {
+      "path": "originals/api/e77c-git-commit-original.json",
+      "bytes": 1803,
+      "sha256": "395db9c9ad4ae0d82f5f05c26dfcb83c1b317304d083229c1d47958479f96539",
+      "git_blob": "87e2c74389df83c5b439d596969ff8291a0c2e32"
+    },
+    {
+      "path": "originals/api/evidence-selected-tree.json",
+      "bytes": 6289,
+      "sha256": "b3f4f85dea8e566c4dc5942fb7b770dd6c67e30f05c414bc040a64d9cbdee7ca",
+      "git_blob": "d6f8141afdb3534e1f858bd7a7f88c190808ec54"
+    },
+    {
+      "path": "originals/api/producer-lib-tree.json",
+      "bytes": 139586,
+      "sha256": "734888931a884c731cbb3241d2290cacce21e1fc94701caf256da2add0bbb862",
+      "git_blob": "2743d1afcea239cb9f76dd56952cf512b47b01e4"
+    },
+    {
+      "path": "originals/api/producer-root-tree.json",
+      "bytes": 6081,
+      "sha256": "1098ec8eba78bfb101f0da9e0ca5120a222d2a8c7afc46f203df4c7415f2d095",
+      "git_blob": "0915f360d0c975a092b6aedf01a16c0b0bad78d0"
+    },
+    {
+      "path": "originals/api/producer-test-tree.json",
+      "bytes": 102321,
+      "sha256": "677a47cd1787c90dc5a166a307595c11603718ae97b0dc894320636420c3503c",
+      "git_blob": "3982c26923d4c839c67123a3d2f40751998bbef0"
+    },
+    {
+      "path": "originals/producer-dependencies/pubspec.lock",
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob": "7843602e3d858660dc52d95587983858803976a5"
+    },
+    {
+      "path": "originals/producer-dependencies/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+    },
+    {
+      "path": "originals/producer-flutter/actual-new-cases-review.json",
+      "bytes": 28309,
+      "sha256": "e19ac869dcfbf300c1eaf0d6b8ab6df22678dbd8acf52a3dca652d07e53a42d6",
+      "git_blob": "2f346faef43479ed1e320b53b26bcf1d34a3fa1e"
+    },
+    {
+      "path": "originals/producer-flutter/artifacts-original-connector.json",
+      "bytes": 2580,
+      "sha256": "f8b88aa1e6786eaeda10a0966330d39c909bbe6746baa6c76d44c81ef65eb64b",
+      "git_blob": "96b34ecc4b93bea9ef193c23d0d361b65513cc74"
+    },
+    {
+      "path": "originals/producer-flutter/central-directory.json",
+      "bytes": 146311,
+      "sha256": "f724c91b135e003b411b6c18da932558a3dd7fa8f1349aa0fa361378a27be4af",
+      "git_blob": "cff4fdd717f2452826531ad420c12c6a5fbbcd7b"
+    },
+    {
+      "path": "originals/producer-flutter/full-suite-summary-from-original-job.json",
+      "bytes": 2118,
+      "sha256": "a82be7d13b8279760ae0ca0f24a89745d197c7fa58a35e984df17f1ef2902040",
+      "git_blob": "7dd05e2fe57050f4effab0cc632fc93431288aed"
+    },
+    {
+      "path": "originals/producer-flutter/jobs-original.json",
+      "bytes": 9709,
+      "sha256": "54d29adcce0fd82b9aaa69d50ce5c33aaf0b77661524be9c1bba87d2c31df7a9",
+      "git_blob": "986f7525d17af0af0c2c96408b504a5f85a42936"
+    },
+    {
+      "path": "originals/producer-flutter/original-flutter-job.log",
+      "bytes": 122465,
+      "sha256": "6102c286ef6baa0b4ef287775f8b9162c692d17b3fb19353cc0235f79419f4f1",
+      "git_blob": "153d8277fbc1cb5e657465d2a23edfb849f2aa25"
+    },
+    {
+      "path": "originals/producer-flutter/range-download-report.json",
+      "bytes": 6614,
+      "sha256": "cd09f2dd422f0eee227b1c4369790a20ed14debaa76b6cbd12c011b5344d31d4",
+      "git_blob": "1cd98a033de2975ac06a2974eff1f675483719f4"
+    },
+    {
+      "path": "originals/producer-flutter/run-original.json",
+      "bytes": 13563,
+      "sha256": "6644c81765c6b0f3bc9676740f527367e7aab000ed9d958a242f771be63953e6",
+      "git_blob": "82301b8604732c07d913352dc007d8d348d71936"
+    },
+    {
+      "path": "originals/producer-flutter/selected/feature-evidence/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+      "git_blob": "53b01f5ab9eb3b8d53026fe764cc76631df9268d"
+    },
+    {
+      "path": "originals/producer-flutter/selected/feature-evidence/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "originals/producer-flutter/selected/feature-evidence/full-flutter/acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "a82be7d13b8279760ae0ca0f24a89745d197c7fa58a35e984df17f1ef2902040",
+      "git_blob": "7dd05e2fe57050f4effab0cc632fc93431288aed"
+    },
+    {
+      "path": "originals/producer-flutter/selected/feature-evidence/full-flutter/flutter-machine.jsonl",
+      "bytes": 1767777,
+      "sha256": "273c38c24fa7694f15f21ed9d2aba05a6f39e6be6591620f1a34b3c1977be939",
+      "git_blob": "9777bbc167dd58037b6729f579b4d9d9ff679e39"
+    },
+    {
+      "path": "originals/producer-flutter/source-binding.json",
+      "bytes": 2095,
+      "sha256": "9b66c4028a3e9bfee756d49498e698a2c4bac9e09f5c585a716873aa227546ac",
+      "git_blob": "402d5aa2f9dd465709e21448beeb23f08c49b139"
+    },
+    {
+      "path": "originals/producer-flutter/source-runner.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    },
+    {
+      "path": "originals/producer-flutter/source-workflow.yml",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "git_blob": "829b819945d980e2082f478c1ddccea9463e3fa5"
+    },
+    {
+      "path": "originals/producer-flutter/upload-manifest.json",
+      "bytes": 19675,
+      "sha256": "599ab87d0d76931639caa21e17d8a35b667ca5657a6214298733f316e3ebe909",
+      "git_blob": "8a157c0e1999cf812576bade20b2d981cd3fe46e"
+    },
+    {
+      "path": "producer-24-original-review.json",
+      "bytes": 20637,
+      "sha256": "1cacae6003e847bae0e047fbdbe93a9b006ab11dc0d00adc910b88f8548d87d7",
+      "git_blob": "dbd2469712ca650ef035db62347c827477daf852"
+    },
+    {
+      "path": "reference-source/lib/core/progress_repository.dart",
+      "bytes": 13839,
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "git_blob": "d41e9f90c9297188f8a924dfa04ce822d09126ee"
+    },
+    {
+      "path": "reference-source/lib/core/reading_progress_repository.dart",
+      "bytes": 3408,
+      "sha256": "a940e16b271d04a6bf174f87b52182df8ac7c1cde7158f7daa66209b48dbd08f",
+      "git_blob": "ffd5b243633492fa5aae3b8648eb07af949a2e71"
+    },
+    {
+      "path": "reference-source/lib/domain/analysis/lumo_analysis_domain.dart",
+      "bytes": 4324,
+      "sha256": "09befffdc16417e41fc96f8410952b34187a9439c1b33dd263bc1a81837643be",
+      "git_blob": "92b3639c7b2950dfe173bd2f9be7d4e45ac3bb84"
+    },
+    {
+      "path": "reference-source/lib/domain/games/memory_board.dart",
+      "bytes": 5469,
+      "sha256": "d4780c694fec21967a1da0e4b6efacd4f2cd87f97be6fd65ee2d85e47b27d948",
+      "git_blob": "74435a040137742c1b02163f1d5f045aa5f11395"
+    },
+    {
+      "path": "reference-source/lib/domain/learning/independent_evidence.dart",
+      "bytes": 2855,
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+      "git_blob": "6b19215fe6e410b5439467541453e2608537e041"
+    },
+    {
+      "path": "reference-source/lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "path": "reference-source/lib/features/games/memory/memory_rules.dart",
+      "bytes": 14413,
+      "sha256": "0e8ccb76df51394d732ace433b1f15f295775aca7f34fefb81d5ece8d906dc90",
+      "git_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "path": "reference-source/pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+    },
+    {
+      "path": "reference-source/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "review.json",
+      "bytes": 2695,
+      "sha256": "5dc4cd5248745b3e30baaa43c73d271bae6d1316f3fd46906739cbb5a2ab7af8",
+      "git_blob": "65076e057b3de97ef7303255d9b183e4b311373c"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 3337,
+      "sha256": "babda3083f2a8af4ff9053504f6a10c74dd816b0d75ae9f2ff3b1f3180e007ad",
+      "git_blob": "632f02a60d7b03891186d90f89d20aa23d15a273"
+    },
+    {
+      "path": "source-index.json",
+      "bytes": 2548,
+      "sha256": "86059315af63135f11a762e9e31e8abb7ca61b973c91c0f87cc39196bedfa577",
+      "git_blob": "39c519ddbc897c3cf4873f303b12b686eecf610b"
+    },
+    {
+      "path": "source-protection.json",
+      "bytes": 19409,
+      "sha256": "8e73f911d99ae8653b4180b0db274037528daa3e74c303b3fffac1d9421c6831",
+      "git_blob": "528e3003234fe05b272120bc439931a8c838ce57"
+    }
+  ],
+  "count": 52,
+  "bytes": 2759823,
+  "scope": "Complete selected source/preimage/reference/API/producer-test originals and independent review. Excludes separate source Git checkouts and any full producer ZIP."
+}

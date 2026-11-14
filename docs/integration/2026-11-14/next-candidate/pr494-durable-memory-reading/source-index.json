@@ -1,0 +1,66 @@
+{
+  "files": [
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "mode": "100644",
+      "before": {
+        "mode": "100644",
+        "bytes": 10182,
+        "sha256": "c61b38d70fa7aed9f34d1945e8715d8ab8b520c43d744ea6c0e3799788229553",
+        "git_blob": "457aed1dcc82e9c0f4462daa045b249bc735df7e"
+      },
+      "after": {
+        "bytes": 8298,
+        "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c",
+        "git_blob": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "mode": "100644",
+      "before": {
+        "mode": "100644",
+        "bytes": 2146,
+        "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+        "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+      },
+      "after": {
+        "bytes": 2632,
+        "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+        "git_blob": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 15378,
+        "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+        "git_blob": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 12601,
+        "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+        "git_blob": "fd5e624055383e935bfd5fab074d62cb746f396c"
+      },
+      "producer_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "producer_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+      "origin": "exact published producer blob; no local merge or edit"
+    }
+  ]
+}
