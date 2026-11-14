@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-14T13:22:06Z",
+  "status": "IN_PROGRESS_NOT_A_RELEASE_APPROVAL",
+  "host": {
+    "repository": "Ullmann27/lumo-lernen",
+    "head": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "branch": "integration/lumo-live-connections-20261114",
+    "pr": 497
+  },
+  "native": {
+    "repository": "Ullmann27/lumo-godot",
+    "head": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "tree": "1c2b5da7a4485cb8b911adcac2b567481cf902b5",
+    "pr": 173
+  },
+  "acceptance": {
+    "id": 43596913210,
+    "attempt": 1,
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "status": "in_progress",
+    "passed_jobs": [
+      "connect-four-runtime",
+      "android-host-compile"
+    ],
+    "main_job": 132454178537,
+    "main_active_step": 31,
+    "native_main_started_at": "2026-11-14T13:19:58Z"
+  },
+  "full_flutter": {
+    "passed": 2627,
+    "failed": 0,
+    "skipped": 0,
+    "pngs": 566,
+    "artifact_id": 14115282912,
+    "bytes": 363833462,
+    "sha256": "81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab",
+    "original_summary_sha256": "23b017d6306e582242e1b5d84097ed29b43e100b2b4b0a262fd0c515ffe260fa",
+    "original_jsonl_sha256": "5ae8d271b4357cab4f2883720e25b9257cc06f52c63b4aae211de461de9300dc",
+    "root_independent_jsonl_count_matches": true,
+    "old_generic_c4_capture_states_not_valid_board_or_win_proof": true,
+    "dedicated_five_layout_tests_passed": true,
+    "dedicated_five_images_visual_review_pending": true
+  },
+  "script_suite": {
+    "tests": 932,
+    "failed": 0,
+    "skipped": 0,
+    "astra_original_log_blob": "1d3644be7848d56edb554bba85d3542dbc229ccc",
+    "build_contract_artifact_id": 14115283964
+  },
+  "local_preflight": {
+    "tests": 373,
+    "failed": 0,
+    "skipped": 0,
+    "source": "f36579a3a7e06045eaecea7c00e497ac06930100",
+    "evidence": "76abafc20d3ffdb6ac3acd051ea36e74e32b087d",
+    "production_and_test_bytes_identical_to_current_host": true
+  },
+  "publisher": {
+    "commit": "9448c47f6a82638533b4ec1e351726a9c286629e",
+    "tree": "906628abc0c7b07ebf8628c293c188818ea3b236",
+    "parent": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "source_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "entries": [
+      {
+        "path": ".github/workflows/lumo-live-2020-publish.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "73450953d8426965fd75204ea3994eaf00fdf4f5"
+      },
+      {
+        "path": "docs/evidence/live-integration-20261114/publisher-apk-precheck-1e22d245.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1c51c17c90fb178719e4fe96adf30507fd904b83"
+      }
+    ],
+    "branch_created": false,
+    "workflow_activated": false,
+    "target_branch": "delivery/lumo-live-2020-20261114",
+    "source_run": 43596913210,
+    "source_attempt": 1,
+    "acceptance_status": "PENDING_ALL_SEVEN_CURRENT_JOBS",
+    "activation_allowed": false,
+    "exact_two_added_files_verified": true,
+    "parent_and_tree_verified": true,
+    "actual_commit_original_readback_verified": true
+  },
+  "required_next": [
+    "Finish all seven current acceptance jobs successfully.",
+    "Review exact original APK, real API35 C4 and direct Village return, data-preserving update from2017, and original delivery replay.",
+    "Freshly verify source/run/attempt/open PR and tag/release vacancy.",
+    "Only then create delivery/lumo-live-2020-20261114 at9448c47f6a82638533b4ec1e351726a9c286629e; do not activate old source publisher commits.",
+    "Inspect actual publication receipts and unauthenticated public APK bytes before returning the single .apk URL."
+  ],
+  "signing_scope": "Existing stable test certificate; no Play-production signing or physical-device60FPS approval.",
+  "existing_main_modified": false,
+  "apk_built": false,
+  "public_release_created": false
+}
