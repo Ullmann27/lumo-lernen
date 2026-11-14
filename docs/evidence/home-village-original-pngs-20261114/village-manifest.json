@@ -1,0 +1,77 @@
+{
+  "source_commit": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
+  "run_id": 43583899148,
+  "run_attempt": 1,
+  "job_id": 132414202983,
+  "artifact_id": 14109910120,
+  "archive_bytes": 3595907,
+  "archive_sha256": "710aa126aab0153bc4d4626357f7e77f2bd7edd54f4b0002de61f926b94aadcc",
+  "images": [
+    {
+      "name": "village-fold-cover.png",
+      "path": "/tmp/lumo-qa-c54-909ddb52fe7b/village/village-fold-cover.png",
+      "dimensions": [
+        344,
+        882
+      ],
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "archive_path": "village/village-fold-cover.png"
+    },
+    {
+      "name": "village-fold-landscape.png",
+      "path": "/tmp/lumo-qa-c54-909ddb52fe7b/village/village-fold-landscape.png",
+      "dimensions": [
+        1200,
+        900
+      ],
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "archive_path": "village/village-fold-landscape.png"
+    },
+    {
+      "name": "village-fold-open-large-text.png",
+      "path": "/tmp/lumo-qa-c54-909ddb52fe7b/village/village-fold-open-large-text.png",
+      "dimensions": [
+        690,
+        829
+      ],
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "archive_path": "village/village-fold-open-large-text.png"
+    },
+    {
+      "name": "village-fold-open.png",
+      "path": "/tmp/lumo-qa-c54-909ddb52fe7b/village/village-fold-open.png",
+      "dimensions": [
+        690,
+        829
+      ],
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "archive_path": "village/village-fold-open.png"
+    },
+    {
+      "name": "village-fold-wide-min.png",
+      "path": "/tmp/lumo-qa-c54-909ddb52fe7b/village/village-fold-wide-min.png",
+      "dimensions": [
+        640,
+        829
+      ],
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "archive_path": "village/village-fold-wide-min.png"
+    },
+    {
+      "name": "village-phone.png",
+      "path": "/tmp/lumo-qa-c54-909ddb52fe7b/village/village-phone.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "archive_path": "village/village-phone.png"
+    }
+  ]
+}

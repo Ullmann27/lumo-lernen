@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "scope": "Ten untouched original PNGs from executed Home/Village QA; no start-image duplication",
+  "archives": [
+    {
+      "name": "home-original-pngs.tar.gz",
+      "repository_path": "docs/evidence/home-village-original-pngs-20261114/home-original-pngs.tar.gz",
+      "archive_bytes": 5691799,
+      "sha256": "fb5dae082a1e69ac5ca2ec18dd3a0f2503e72fa1d2dbcdd135e7dca55e506c75",
+      "git_blob_sha": "74ac97492a403609b31fb38f8809330fa5b96b17",
+      "png_count": 4,
+      "source_commit": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+      "actual_checkout": "58c32b76745325e4b8d5daeeb2049c6f700de3b2",
+      "run_id": 43584516810,
+      "run_attempt": 1,
+      "job_id": 132416045501,
+      "original_artifact_id": 14109224498,
+      "original_artifact_sha256": "f7fcecd1516053b4167a0c8798a13d23f56d06ad53204fa55d779b2cd3d8d872",
+      "members": [
+        {
+          "path": "home/fold-cover-learning-cards.png",
+          "bytes": 684983,
+          "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab"
+        },
+        {
+          "path": "home/fold-open-learning-cards.png",
+          "bytes": 1804878,
+          "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8"
+        },
+        {
+          "path": "home/large-text-learning-cards.png",
+          "bytes": 2275791,
+          "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930"
+        },
+        {
+          "path": "home/manifest.json",
+          "bytes": 2013,
+          "sha256": "41020a0727fc67137ae34ccb013701254a2e550af4d07778a92cd4b52d2d56bf"
+        },
+        {
+          "path": "home/original-flutter-job.log",
+          "bytes": 76539,
+          "sha256": "9b9151f77fa75f26e7b58f4b98033444060f0bd68375354a0660ad5f82cb998b"
+        },
+        {
+          "path": "home/phone-learning-cards.png",
+          "bytes": 946745,
+          "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073"
+        },
+        {
+          "path": "home/source-map.json",
+          "bytes": 1694,
+          "sha256": "8e74e0b4bc002dfd8460caa49ca02ef1ff5bd4d6cae4e5cb82c24e9bb7c5acb2"
+        }
+      ]
+    },
+    {
+      "name": "village-original-pngs.tar.gz",
+      "repository_path": "docs/evidence/home-village-original-pngs-20261114/village-original-pngs.tar.gz",
+      "archive_bytes": 3625272,
+      "sha256": "6da7b3670b24dfbdf0cb800ce9bcbe48c9739a7025eddd20575c53c9a565688b",
+      "git_blob_sha": "2daf4ed0869ea155cf6e9980e903044e73e5a222",
+      "png_count": 6,
+      "source_commit": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
+      "actual_checkout": "c54d9aa3a4dccab6c1cf677c9857abf77df66174",
+      "run_id": 43583899148,
+      "run_attempt": 1,
+      "job_id": 132414202983,
+      "original_artifact_id": 14109910120,
+      "original_artifact_sha256": "710aa126aab0153bc4d4626357f7e77f2bd7edd54f4b0002de61f926b94aadcc",
+      "members": [
+        {
+          "path": "village/manifest.json",
+          "bytes": 2430,
+          "sha256": "d2a0c672b676c9f1aa18b72ab02dc8c90cc3a5b82ad8ff9937adad80bfe7d70f"
+        },
+        {
+          "path": "village/original-flutter-job.log",
+          "bytes": 71787,
+          "sha256": "9559ae45f3f435ef6c901ae7a2e33009fb856b5c0ef113bf3af5fa622206ee71"
+        },
+        {
+          "path": "village/original-kotlin-job.log",
+          "bytes": 77609,
+          "sha256": "0b9a120d39a3e691edb98ae6042545e6af7680e91bff2dee7aacd8b18807b683"
+        },
+        {
+          "path": "village/source-map.json",
+          "bytes": 1694,
+          "sha256": "8e74e0b4bc002dfd8460caa49ca02ef1ff5bd4d6cae4e5cb82c24e9bb7c5acb2"
+        },
+        {
+          "path": "village/village-fold-cover.png",
+          "bytes": 337946,
+          "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361"
+        },
+        {
+          "path": "village/village-fold-landscape.png",
+          "bytes": 1102593,
+          "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac"
+        },
+        {
+          "path": "village/village-fold-open-large-text.png",
+          "bytes": 600959,
+          "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18"
+        },
+        {
+          "path": "village/village-fold-open.png",
+          "bytes": 595416,
+          "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f"
+        },
+        {
+          "path": "village/village-fold-wide-min.png",
+          "bytes": 555532,
+          "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9"
+        },
+        {
+          "path": "village/village-phone.png",
+          "bytes": 401998,
+          "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7"
+        }
+      ]
+    }
+  ]
+}
