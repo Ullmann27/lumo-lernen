@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "status": "46_CONTROLLED_CONTRACTS_PASS; HISTORICAL_ANDROID_FAILURE_UNCHANGED",
+  "root": "/tmp/host5ad-village-return-observation-repair-20261114",
+  "source_freeze": {
+    "bytes": 11841,
+    "sha256": "a448c4f8655cb99672b5825e5be5b6a18e4bfa3c61d0d6330d9cd8bb47fe4096",
+    "git_blob": "96954f378abdb6a9f0e5d11482f55beca4fbe66e"
+  },
+  "production_path": "final-source/.github/probes/lumo_village_android_probe.py",
+  "production": {
+    "bytes": 17710,
+    "sha256": "09a3712108c0cbfec778c196d4845c6e67deda5729639918aa601d910652951c",
+    "git_blob": "a7a8593de39191b8acc0aa687e9eaffdd6353fc8"
+  },
+  "regression_path": "final-source/tools/android_qa/tests/test_village_flutter_return_observation.py",
+  "regression": {
+    "bytes": 16408,
+    "sha256": "c8f8f73c7df72cc770963a642e441a29c7bc83dfe6fb8db14fb009a7a8c62bec",
+    "git_blob": "38245b231b19018c6e28306c8867d928aef88449"
+  },
+  "result": {
+    "bytes": 1776,
+    "sha256": "8e2f5f528f3610d5d1679e0059b72aaffadb806cf9af971561ca4001d82df646",
+    "git_blob": "c150b57cf91f2e7dc800766647272e0773f1e3d0"
+  },
+  "independent_contract_review": {
+    "bytes": 11465,
+    "sha256": "9a5a0330d93deb576a2e158f1f5aad24208de7579de6b14dc8e35bd6c3cb6d8f",
+    "git_blob": "594ef35386ae45e24499df8e9f525f1729558cd0"
+  },
+  "pure_verifier_unchanged": true,
+  "source_ref_changes": false,
+  "original_fixture_scope": "No later successful Village return frame was recorded. Completed Android close/rotation events alone do not replace a successful pixel/UI observation.",
+  "pending_comparison": {
+    "producer497": "04a8e850d4c198e16ff758df614ce6e53eab4524 (Root is independently comparing its implementation).",
+    "canonical": "V1 retains unique accepted PNG/OCR names, consistent with the unchanged fallback-caption source-basename gate. No additional historical returned-flutter-frame.png convenience copy is created. This exporter-compatibility difference is explicitly open for Root comparison.",
+    "post_ui_process_read": "V1 retains the process observation before frame/OCR/UI; producer reportedly adds a second process observation after UI. No change or second test has been made."
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "status": "TOUCH_SENT",
+  "label": "Spiele",
+  "timeout_seconds": 120,
+  "exact_caption_required": true,
+  "orientation_policy": "responsive",
+  "scope": "Observed touch prerequisites; post-action assertions still required",
+  "frames": [
+    {
+      "source": "village-return-0.png",
+      "source_sha256": "3cfb1248d4006a6e2a68a87f1158291ea0dec6e3b15037c141178b1f3f9e394b",
+      "source_bytes": 1448014,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 7.191366,
+      "target": {
+        "surface_sha256": "3cfb1248d4006a6e2a68a87f1158291ea0dec6e3b15037c141178b1f3f9e394b",
+        "pixels": [
+          2400,
+          1080
+        ],
+        "bounds": [
+          254.0,
+          138.0,
+          364.0,
+          178.0
+        ],
+        "anchor": "",
+        "reasons": [
+          "waiting for second stable observed target bounds"
+        ],
+        "target_geometry_valid": true,
+        "stable_observed_target": false
+      }
+    },
+    {
+      "source": "village-return-1.png",
+      "source_sha256": "c61ed62673c77d9c9d64f93364a69061dd24e9ca9ecdada0c006a2faa7356181",
+      "source_bytes": 1447997,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 25.628785,
+      "target": {
+        "surface_sha256": "c61ed62673c77d9c9d64f93364a69061dd24e9ca9ecdada0c006a2faa7356181",
+        "pixels": [
+          2400,
+          1080
+        ],
+        "bounds": [
+          254.0,
+          138.0,
+          364.0,
+          178.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    }
+  ],
+  "final_observed_bounds": [
+    254.0,
+    138.0,
+    364.0,
+    178.0
+  ],
+  "touch": [
+    309,
+    158
+  ],
+  "elapsed_seconds": 40.990684
+}

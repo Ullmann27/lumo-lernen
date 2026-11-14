@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "FROZEN_READ_ONLY_REVIEW",
+  "files": [
+    {
+      "path": "review.json",
+      "bytes": 10479,
+      "sha256": "4c40240f2ee298d1b20f3938c8510ea6cb9afcc41f560727bf908908ce8cecb9",
+      "git_blob": "e9b1b78a856aeb689e3683ac2ad5eddfc24679d4"
+    },
+    {
+      "path": "inspection-path-discovery-result.json",
+      "bytes": 267,
+      "sha256": "75c438291c0f821ff0eaf9a8eb09ece0aa85c9fc4eb59d0bf6d87a2295e45e50",
+      "git_blob": "4f62f864a665470c8e67f7156e7ead269e68d0ed"
+    }
+  ]
+}

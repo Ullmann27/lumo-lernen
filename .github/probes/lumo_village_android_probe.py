@@ -9,6 +9,9 @@ import subprocess
 import sys
 import time
 import traceback
+import xml.etree.ElementTree as ET
+
+from flutter_surface_readiness import inspect_flutter_frame
 
 from lumo_connect_four_android_probe import Probe, ROOT, write
 import connect_four_android_evidence as c4
@@ -17,9 +20,15 @@ import village_android_evidence as village
 
 class VillageProbe(Probe):
     def remaining(self, maximum=45):
-        left = self.deadline-time.monotonic()
+        now = time.monotonic()
+        left = self.deadline-now
         if left <= 0:
             raise TimeoutError('The actual Village Android roundtrip exceeded 900 seconds')
+        return_deadline = getattr(self, '_flutter_return_deadline', None)
+        if return_deadline is not None:
+            if now >= return_deadline:
+                raise TimeoutError('The actual Flutter return observation deadline expired')
+            left = min(left, return_deadline-now)
         return min(left, maximum)
 
     def processes(self, tag, *, native):
@@ -80,6 +89,119 @@ class VillageProbe(Probe):
         write(self.out/'village-ready-wait-failure.json', failures)
         raise TimeoutError('No actual initialized Village scene and rendered HUD were observed')
 
+    def read_return_ui(self, tag):
+        """Bound the unchanged accessibility reader without changing app state."""
+        directory = self.out/(tag+'-live-ui')
+        directory.mkdir()
+        program = (
+            'import sys; from pathlib import Path; '
+            'sys.path.insert(0, sys.argv[1]); '
+            'import pr207_android_ui_probe as live; '
+            "live.live_nodes(Path(sys.argv[2]), 'hierarchy')"
+        )
+        command = [sys.executable, '-B', '-c', program,
+                   str(ROOT/'scripts/probes'), str(directory)]
+        started = time.monotonic()
+        timeout = self.remaining(45)
+        stdout = stderr = b''
+        returncode = None
+        error_text = None
+        try:
+            completed = subprocess.run(command, stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE, timeout=timeout, check=False)
+            stdout, stderr = completed.stdout, completed.stderr
+            returncode = completed.returncode
+        except subprocess.TimeoutExpired as error:
+            stdout, stderr = error.stdout or b'', error.stderr or b''
+            error_text = 'The unchanged accessibility reader exceeded its remaining return budget'
+            raise TimeoutError(error_text) from error
+        finally:
+            for name, data in (('stdout', stdout), ('stderr', stderr)):
+                with (directory/(name+'.original')).open('xb') as stream:
+                    stream.write(data)
+            write(directory/'invocation.json', {
+                'command': command, 'timeout_seconds': timeout,
+                'elapsed_seconds': time.monotonic()-started,
+                'returncode': returncode, 'error': error_text,
+                'stdout_sha256': c4.sha256(directory/'stdout.original'),
+                'stderr_sha256': c4.sha256(directory/'stderr.original'),
+            })
+        self.remaining()
+        c4.demand(returncode == 0, 'Actual Flutter accessibility reader failed: '+tag)
+        xml = directory/'hierarchy.xml'
+        tree = ET.fromstring(xml.read_text())
+        c4.demand(tree.tag == 'hierarchy' and any(node.get('package') == c4.PACKAGE
+                  and node.get('enabled') == 'true'
+                  and any('Spielen' == value or village.PORTAL in value for value in
+                          (node.get('text', ''), node.get('content-desc', '')))
+                  for node in tree.iter('node')), 'Actual Flutter Spielewelt did not return')
+        self.remaining()
+        return xml.relative_to(self.out).as_posix()
+
+    def observe_flutter_return(self, expected_host):
+        """Observe fresh process, pixels, OCR and UI within one existing 60 s limit."""
+        started = time.monotonic()
+        deadline = started+self.remaining(60)
+        c4.demand(getattr(self, '_flutter_return_deadline', None) is None,
+                  'A Flutter return observation is already active')
+        self._flutter_return_deadline = deadline
+        journal = {'schema': 1, 'status': 'FAIL',
+                   'timeout_seconds': deadline-started, 'attempts': [],
+                   'scope': 'Fresh observations after one visible return touch; no further input'}
+        try:
+            while time.monotonic() < deadline:
+                tag = f"returned-flutter-{len(journal['attempts']):03d}"
+                attempt = {'tag': tag, 'status': 'OBSERVING',
+                           'started_after_seconds': time.monotonic()-started}
+                journal['attempts'].append(attempt)
+                row = {}
+                ocr_started = False
+                try:
+                    row.update(self.processes(tag, native=False))
+                    host, _ = village.process(self.out, row, native=False)
+                    c4.demand(host == expected_host,
+                              'Village replaced the actual Flutter process during return')
+                    _, row['preferences'] = self.read_preferences(tag)
+                    row['frame'] = self.ui.capture(self.out, tag+'-frame',
+                                                  timeout=self.remaining(30))
+                    image = village.capture(self.out, row['frame'])
+                    readiness = inspect_flutter_frame(image)
+                    attempt['render_readiness'] = readiness
+                    c4.demand(readiness['visually_ready'],
+                              'The current Flutter return frame is not rendered')
+                    row['visible_ocr'] = tag+'-visible'
+                    ocr_started = True
+                    self.ui.image_lines(self.out, row['visible_ocr'], 'spielen',
+                        source_path=image, timeout=self.remaining(60), exact=True)
+                    village.caption(self.out, image, row['visible_ocr'], 'Spielen')
+                    row['ui'] = self.read_return_ui(tag)
+                    self.remaining()
+                    attempt.update(status='OBSERVED', observation=row)
+                    journal.update(status='OBSERVED', accepted_tag=tag)
+                    return row
+                except (ValueError, RuntimeError, ET.ParseError) as error:
+                    attempt.update(status='REJECTED', observation=row,
+                                   error=f'{type(error).__name__}: {error}')
+                finally:
+                    attempt['finished_after_seconds'] = time.monotonic()-started
+                    # Keep each attempt's derivative work image as well as all
+                    # uniquely named original PNG/TSV/XML/command outputs.
+                    work = self.out/'ocr-work.png'
+                    if ocr_started and work.exists():
+                        destination = self.out/(tag+'-ocr-work.png')
+                        if destination.exists():
+                            raise FileExistsError('Refusing to overwrite return observation')
+                        work.rename(destination)
+                time.sleep(min(.5, self.remaining(.5)))
+            raise TimeoutError('No actual visible Flutter Spielewelt within the return observation deadline')
+        except Exception as error:
+            journal['error'] = f'{type(error).__name__}: {error}'
+            raise
+        finally:
+            del self._flutter_return_deadline
+            journal['elapsed_seconds'] = time.monotonic()-started
+            write(self.out/'returned-flutter-observations.json', journal)
+
     def visible_return(self, native_pid):
         current = self.processes('village-before-return', native=True)
         c4.demand(village.process(self.out, current, native=True)[1] == native_pid,
@@ -101,18 +223,10 @@ class VillageProbe(Probe):
         finally:
             self.base.adb = old_adb
         c4.demand(len(commands) == 1, 'Village return did not use exactly one actual visible touch')
-        row = self.await_processes('returned-flutter', native=False, timeout=60)
+        expected_host, _ = village.process(self.out, current, native=True)
+        row = self.observe_flutter_return(expected_host)
         row.update(touch_journal='village-return-surface-readiness.json',
                    command_original=commands[0], native_before_return=current)
-        _, row['preferences'] = self.read_preferences('returned-flutter')
-        row['frame'] = self.ui.capture_flutter_ready(self.out, 'returned-flutter-frame', timeout=self.remaining(30))
-        image = village.capture(self.out, row['frame'])
-        row['visible_ocr'] = 'returned-flutter-visible'
-        self.ui.image_lines(self.out, row['visible_ocr'], 'spielen', source_path=image,
-                            timeout=self.remaining(60), exact=True)
-        village.caption(self.out, image, row['visible_ocr'], 'Spielen')
-        self.ui.read_live_nodes(self.out, 'returned-flutter-ui')
-        row['ui'] = 'returned-flutter-ui.xml'
         return row
 
     def run(self):

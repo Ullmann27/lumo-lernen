@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "status": "46_CONTROLLED_CONTRACTS_PASS; HISTORICAL_ANDROID_FAILURE_UNCHANGED",
+  "source_freeze": {
+    "bytes": 11841,
+    "sha256": "a448c4f8655cb99672b5825e5be5b6a18e4bfa3c61d0d6330d9cd8bb47fe4096",
+    "git_blob": "96954f378abdb6a9f0e5d11482f55beca4fbe66e"
+  },
+  "process": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "test_village_flutter_return_observation",
+      "test_village_android_evidence",
+      "-v"
+    ],
+    "cwd": "/tmp/host5ad-village-return-observation-repair-20261114/test-view",
+    "started_at": "2026-11-14T19:03:10.061250+00:00",
+    "ended_at": "2026-11-14T19:03:49.248485+00:00",
+    "elapsed_seconds": 39.187311409998074,
+    "exit_code": 0,
+    "authorized_once": true,
+    "expected_methods": 46,
+    "product_or_device_claim": false
+  },
+  "source_comparison": {
+    "same": true,
+    "file_count": 53,
+    "changed": []
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "stderr": {
+    "bytes": 9111,
+    "sha256": "ba74672b494791524a22262067ac03c48ab9576f2f23c84d255c227d0e57100b",
+    "git_blob": "6911cc7c650ed05c26ce7ca91e6fda3cafac7ef3"
+  },
+  "tests": {
+    "new": 12,
+    "unchanged_village": 34,
+    "total": 46,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "device_ocr_engine_runs": 0,
+  "red_replay_runs": 0,
+  "further_tests": "None until Root finishes the producer comparison",
+  "review": {
+    "bytes": 11465,
+    "sha256": "9a5a0330d93deb576a2e158f1f5aad24208de7579de6b14dc8e35bd6c3cb6d8f",
+    "git_blob": "594ef35386ae45e24499df8e9f525f1729558cd0"
+  }
+}

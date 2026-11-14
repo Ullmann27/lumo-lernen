@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T19:06:54.331573+00:00",
+  "scope": "Independent source and existing-original reading; no new artifact export or Android observation. Historical run stays FAILURE.",
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+    "scope": "Exact immutable source reads; no artifact export, no tests, no source ref changes",
+    "files": [
+      {
+        "path": ".github/probes/lumo_village_android_probe.py",
+        "bytes": 11541,
+        "sha256": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+        "git_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+        "api_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+      },
+      {
+        "path": ".github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 28798,
+        "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+        "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958",
+        "api_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+      },
+      {
+        "path": ".github/probes/creative_android_probe.py",
+        "bytes": 65137,
+        "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+        "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+        "api_blob": "c996a022d388632ed13965b392181aef773d9025"
+      },
+      {
+        "path": ".github/probes/flutter_surface_readiness.py",
+        "bytes": 4078,
+        "sha256": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc",
+        "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+        "api_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950"
+      },
+      {
+        "path": "scripts/probes/pr207_android_ui_probe.py",
+        "bytes": 2032,
+        "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4",
+        "git_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+        "api_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe"
+      },
+      {
+        "path": "tools/android_qa/android_ui.py",
+        "bytes": 15599,
+        "sha256": "edb5352c5045a496b77911530e0ee0c93d58914607007458f16c7cce1cb49d14",
+        "git_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771",
+        "api_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771"
+      },
+      {
+        "path": "tools/android_qa/village_android_evidence.py",
+        "bytes": 20967,
+        "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+        "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+        "api_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+      },
+      {
+        "path": "tools/android_qa/tests/test_village_android_evidence.py",
+        "bytes": 24849,
+        "sha256": "fde59828ffd27ac7ccad9d50f0678ddd3f28d34b5ff1e6e31c2e7e20718251d1",
+        "git_blob": "f515e404428edc8003f1191c77df214384f0eac7",
+        "api_blob": "f515e404428edc8003f1191c77df214384f0eac7"
+      }
+    ]
+  },
+  "actual_contract": {
+    "entry": "run() taps existing Spielen/Spiele then enters the Dorfwirtschaft portal from Flutter; expected marker.return_scene is games.",
+    "return_touch": "visible_return() sends exactly one unchanged visible Spiele touch after two stable original target observations. No Home navigation or second Spielen tap is required.",
+    "process_gate": "process() requires one host PID, absent native PID and MainActivity in all actual resumed lines; it does not require its surface already drawn.",
+    "pixel_gate": "Original visible_return() takes one entropy-ready capture and then requires original exact Spielen OCR; entropy alone is only rendered-content readiness.",
+    "ui_gate": "verify_report() requires an enabled node in the expected app package with exact Spielen text/description or the Dorfwirtschaft portal. It does not separately assert a page-heading string.",
+    "final_guards": "Same host identity, original child and learning values, fresh native games-return ACK, original inventory and absence of runtime errors remain strict."
+  },
+  "original_process_observation": {
+    "path": "/workspace/scratch/b3485b7bb989/host5ad-android-14126351458-evidence-20261114/extracted/village/commands/0070-returned-flutter-0-activity.stdout",
+    "bytes": 41963,
+    "sha256": "2cd2ac1ea71937368a3db37065378091c8ad291736d5858fd58c1bbc88de17ba",
+    "git_blob": "719f12dd08bf01b72d61c937ba868163a7652f62",
+    "lines": [
+      {
+        "line": 6,
+        "text": "    topResumedActivity=ActivityRecord{f824cb2 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+      },
+      {
+        "line": 7,
+        "text": "    * Hist  #1: ActivityRecord{ee0cd01 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t9 f} isExiting}"
+      },
+      {
+        "line": 10,
+        "text": "      app=null"
+      },
+      {
+        "line": 30,
+        "text": "      state=DESTROYED delayedResume=false finishing=true"
+      },
+      {
+        "line": 35,
+        "text": "      windows=[Window{3b5ae9f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity EXITING}]"
+      },
+      {
+        "line": 40,
+        "text": "      mVisibleRequested=false mVisible=true mClientVisible=true reportedDrawn=true reportedVisible=true"
+      },
+      {
+        "line": 41,
+        "text": "      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)"
+      },
+      {
+        "line": 43,
+        "text": "      nowVisible=true lastVisibleTime=-1m11s216ms"
+      },
+      {
+        "line": 53,
+        "text": "    * Hist  #0: ActivityRecord{f824cb2 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t9}"
+      },
+      {
+        "line": 56,
+        "text": "      app=ProcessRecord{ee433ac 6203:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}"
+      },
+      {
+        "line": 78,
+        "text": "      state=RESUMED delayedResume=false finishing=false"
+      },
+      {
+        "line": 89,
+        "text": "      mVisibleRequested=true mVisible=false mClientVisible=true reportedDrawn=false reportedVisible=false"
+      },
+      {
+        "line": 90,
+        "text": "      mNumInterestingWindows=1 mNumDrawnWindows=0 allDrawn=false lastAllDrawn=false)"
+      },
+      {
+        "line": 91,
+        "text": "      nowVisible=false lastVisibleTime=-1m35s333ms"
+      }
+    ]
+  },
+  "original_logcat": {
+    "path": "/workspace/scratch/b3485b7bb989/host5ad-android-14126351458-evidence-20261114/extracted/village/commands/0072-village-final-all-buffer-logcat.stdout",
+    "bytes": 13284062,
+    "sha256": "90099749c4ecf59546f71f645f6bfe24b6e827914020df985cc9e9a1a3cc1cf0",
+    "git_blob": "3a45d8b40075716cafe789b40a33348edab2e780",
+    "lines": [
+      {
+        "line": 90782,
+        "text": "11-14 18:29:53.331  6511  6550 I godot   : [LumoHost] return: games"
+      },
+      {
+        "line": 90783,
+        "text": "11-14 18:29:53.335   564  1857 I wm_finish_activity: [0,249613569,9,dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity,app-request]"
+      },
+      {
+        "line": 90813,
+        "text": "11-14 18:29:54.210  6511  6511 I Process : Sending signal. PID: 6511 SIG: 9"
+      },
+      {
+        "line": 90818,
+        "text": "11-14 18:29:54.220  6203  6203 I wm_on_resume_called: [260197554,dev.ullmann.lumo.lumo_lernen.MainActivity,RESUME_ACTIVITY,3]"
+      },
+      {
+        "line": 90830,
+        "text": "11-14 18:29:54.395   564  1860 I ActivityManager: Process dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game (pid 6511) has died: fg  TOP "
+      },
+      {
+        "line": 90831,
+        "text": "11-14 18:29:54.395   564  1860 I am_proc_died: [0,6511,dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game,0,2]"
+      },
+      {
+        "line": 90873,
+        "text": "11-14 18:29:54.994  6203  6203 I viewroot_draw_event: [VRI[MainActivity],reportDrawFinished seqId=0]"
+      },
+      {
+        "line": 90924,
+        "text": "11-14 18:29:55.411   564   584 V WindowManager: Finish Transition (#47): created at 11-14 18:29:53.336 collect-started=0.216ms request-sent=0.562ms started=9.32ms ready=851.282ms sent=1674.894ms finished=2064.963ms"
+      },
+      {
+        "line": 90969,
+        "text": "11-14 18:29:55.716   925   969 V WindowManagerShell: Transition requested (#48): android.os.BinderProxy@f677a6a TransitionRequestInfo { type = CHANGE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = DisplayChange { displayId = 0, startAbsBounds = null, endAbsBounds = null, startRotation = 1, endRotation = 0, physicalDisplayChanged = false }, flags = 0, debugId = 48 }"
+      },
+      {
+        "line": 91138,
+        "text": "11-14 18:29:56.040   564   584 V WindowManager: Finish Transition (#48): created at 11-14 18:29:55.468 collect-started=22.627ms request-sent=23.035ms started=259.909ms ready=259.875ms sent=396.942ms finished=566.747ms"
+      }
+    ]
+  },
+  "capture_boundary": {
+    "readiness_path": "/workspace/scratch/b3485b7bb989/host5ad-android-14126351458-evidence-20261114/extracted/village/returned-flutter-frame-render-readiness.json",
+    "bytes": 554,
+    "sha256": "b2681c41b7ce2228e2f369cfab50b88c30c1660f734275bd5fcb3bc06b1b2889",
+    "git_blob": "cd57ef1719679fd89c672b8f4b9574b5e7285c8b",
+    "original_readiness": {
+      "schema": "lumo-flutter-render-readiness",
+      "version": 1,
+      "name": "returned-flutter-frame",
+      "status": "PASS",
+      "attempts": [
+        {
+          "capture": "returned-flutter-frame-render-candidate-1.png",
+          "sha256": "129cf8adb3414b35490f40578d48013afe93742a883ca1a86cb7eafde8a00c03",
+          "width": 2400,
+          "height": 1080,
+          "content_entropy_bits": 4.924,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      ],
+      "elapsed_seconds": 1.959
+    },
+    "image_visual_observer": "Root directly viewed the exact original frame and reported LUMO DORFWELT, 2400x1080, without Spielen. This review independently binds source/process/log/reader contract; no new visual review is claimed.",
+    "inference": "The evidence distinguishes process return from visible-surface completion. The one captured return image does not establish a successful visible Flutter return.",
+    "not_established": "No later successful Village return frame was recorded. Completed Android close/rotation events alone do not replace a successful pixel/UI observation."
+  },
+  "v1_source_freeze": {
+    "bytes": 11841,
+    "sha256": "a448c4f8655cb99672b5825e5be5b6a18e4bfa3c61d0d6330d9cd8bb47fe4096",
+    "git_blob": "96954f378abdb6a9f0e5d11482f55beca4fbe66e"
+  },
+  "v1_known_followup_comparison": {
+    "producer497": "04a8e850d4c198e16ff758df614ce6e53eab4524 (Root is independently comparing its implementation).",
+    "canonical": "V1 retains unique accepted PNG/OCR names, consistent with the unchanged fallback-caption source-basename gate. No additional historical returned-flutter-frame.png convenience copy is created. This exporter-compatibility difference is explicitly open for Root comparison.",
+    "post_ui_process_read": "V1 retains the process observation before frame/OCR/UI; producer reportedly adds a second process observation after UI. No change or second test has been made."
+  }
+}

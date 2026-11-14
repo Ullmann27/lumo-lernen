@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "scope": "Independent Root byte/AST/original-receipt review; no repeated test, OCR, app or device execution.",
+  "original_failed_run": 43614047730,
+  "artifact_id": 14126351458,
+  "original_status": "FAIL remains unchanged",
+  "before_probe": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+  "after_probe": "a7a8593de39191b8acc0aa687e9eaffdd6353fc8",
+  "all_source_and_evidence_entries_verified": 51,
+  "raw_fixtures_byte_equal_to_original_artifact": 32,
+  "all_archive_members_read_back": 72,
+  "changed_existing_functions": [
+    "remaining",
+    "visible_return"
+  ],
+  "actual_contract_result": {
+    "count": 46,
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "exit_code": 0,
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "stderr": {
+      "bytes": 9111,
+      "sha256": "ba74672b494791524a22262067ac03c48ab9576f2f23c84d255c227d0e57100b",
+      "git_blob": "6911cc7c650ed05c26ce7ca91e6fda3cafac7ef3"
+    }
+  },
+  "visible_touch_and_all_pure_verifiers_preserved": true,
+  "local_deadline_seconds": 60,
+  "global_deadline_seconds": 900,
+  "producer_comparison": {
+    "pr": 497,
+    "head": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "probe": "3e601644198f0b8c62fdaebcf783e3f631974bb1",
+    "observed_common_fix": "Fresh bounded observations after the actual native process closes; strict Spielen and live UI remain required.",
+    "selected_variant": "The tested local V1 also bounds the live UI reader process within the same 60-second deadline.",
+    "canonical_export_finding": "Read-only recursive search of actual current scripts, probes and tools found no fixed returned-flutter-frame.png consumer outside the old probe. Keep unique accepted frame/OCR names; do not add a convenience copy."
+  },
+  "conclusion": "Accept this source checkpoint on an isolated candidate branch; actual Android Village roundtrip on the new candidate remains required."
+}

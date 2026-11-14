@@ -1,0 +1,40 @@
+{
+  "changed_existing_functions": [
+    "remaining",
+    "visible_return"
+  ],
+  "new_functions": [
+    "observe_flutter_return",
+    "read_return_ui"
+  ],
+  "unchanged_functions": [
+    "main",
+    "processes",
+    "await_processes",
+    "observe_village",
+    "run",
+    "observed_touch"
+  ],
+  "visible_touch_prefix_byte_equal": true,
+  "pure_verifier": {
+    "bytes": 20967,
+    "sha256": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+    "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+  },
+  "old_tests_preserved": 34,
+  "new_test_methods": [
+    "test_archived_village_entropy_does_not_establish_spielen",
+    "test_earlier_original_main_frame_and_tsv_are_only_controlled_inputs",
+    "test_controlled_archived_village_then_flutter_requires_new_observation",
+    "test_persistent_original_village_fails_with_one_touch_and_all_frames_kept",
+    "test_caption_with_disabled_wrong_package_or_malformed_ui_is_not_accepted",
+    "test_frame_arriving_exactly_at_return_deadline_cannot_reach_caption_success",
+    "test_accessibility_result_after_common_deadline_cannot_succeed",
+    "test_shrinking_global_budget_is_forwarded_to_frame_ocr_and_live_reader",
+    "test_real_original_command_uses_the_shared_return_deadline_and_keeps_output",
+    "test_accessibility_timeout_retains_partial_original_streams",
+    "test_changed_host_cannot_pass_even_with_correct_archived_flutter_inputs",
+    "test_each_rejected_frame_and_ocr_derivative_keeps_a_unique_path"
+  ],
+  "tests_executed": false
+}
