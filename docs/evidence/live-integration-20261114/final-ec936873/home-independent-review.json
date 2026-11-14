@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "source_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "run_id": 43633922088,
+  "attempt": 1,
+  "job_id": 132568119078,
+  "artifact_id": 14130021635,
+  "archive_sha256": "378b6ef4a5d81f179a9cc1454e4d662017e253d5dbfba690d3f678aeb3baa04b",
+  "reviewed_at": "2026-11-14T20:07:10.338Z",
+  "reviewer": "android_qa",
+  "method": "Independently opened the five original PNG files with view_image after independently reading file sizes and SHA-256. The large-text PNG was opened separately because the first batch's display output omitted its image. No archive download, rendering, source edits, or image transformation.",
+  "images": [
+    {
+      "path": "home-premium/fold-cover-start.png",
+      "local_path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/home-premium/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "git_blob": "9519df4252e74e6e1391a56dd823d8ba666bc5a0",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-cover-learning-cards.png",
+      "local_path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/home-premium/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "git_blob": "47aaba500deb38822027d019430dabab5a0c7f59",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/phone-learning-cards.png",
+      "local_path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/home-premium/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "git_blob": "1568527a699870f48c8598cf646dc59f5b335566",
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "home-premium/fold-open-learning-cards.png",
+      "local_path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "git_blob": "efdb7159ba2c4a6707129cfa3a5b330ea96d1515",
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "home-premium/large-text-learning-cards.png",
+      "local_path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/home-premium/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "git_blob": "827490346fdc3e8033345952fa74706070cd889d",
+      "width": 1800,
+      "height": 2400
+    }
+  ],
+  "findings": [
+    {
+      "image": "home-premium/fold-cover-start.png",
+      "observed": "Belohnungen, Lernen, Spielen, Tests and Loslernen are readable; Belohnungen fits inside its card, and the original fox is visible. The existing kart teaser deliberately displays ellipses (Lumo … / Rennabente…). Lower page content continues beyond the viewport."
+    },
+    {
+      "image": "home-premium/fold-cover-learning-cards.png",
+      "observed": "Mathe and Deutsch cards are fully visible and readable; Lesen begins below. No overlap between text and icons within these complete cards. The top section heading and lower continuation are outside this scroll viewport."
+    },
+    {
+      "image": "home-premium/phone-learning-cards.png",
+      "observed": "Mathe, Deutsch and Lesen cards are fully visible and readable; Schreiben begins below and continues past the lower viewport. No visible card-internal text/icon clipping in the complete cards."
+    },
+    {
+      "image": "home-premium/fold-open-learning-cards.png",
+      "observed": "All eleven subject cards (Mathe, Deutsch, Lesen, Schreiben, Englisch, Sachkunde, Musik, Kunst, Sport, Verkehr, Technik) and the Logik strip are visible. Titles, descriptions and progress text fit inside their cards."
+    },
+    {
+      "image": "home-premium/large-text-learning-cards.png",
+      "observed": "Mathe, Deutsch, Lesen and Schreiben are readable at the displayed larger text size and fit their cards; further subjects continue below the viewport."
+    }
+  ],
+  "result": "NO_NEW_VISUAL_BLOCKER_IN_THE_FIVE_OBSERVED_ORIGINALS",
+  "limits": [
+    "Static visible content only; not proof of every scroll path or tap target.",
+    "No new Android, native renderer, APK, update or full acceptance result is asserted here.",
+    "Existing deliberate teaser ellipses and viewport cropping are recorded, not silently treated as full text coverage."
+  ]
+}
