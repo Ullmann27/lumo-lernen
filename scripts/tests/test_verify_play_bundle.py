@@ -327,6 +327,22 @@ class RealJdkRejectionContracts(unittest.TestCase):
         self.assertIn('unsigned or ambiguously signed', result.stderr)
         self.assertEqual(result.stdout, '')
 
+    def test_actual_java_source_rejects_invalid_keystore_without_exposing_secrets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'not-a-real-key'
+            path.write_bytes(b'explicitly synthetic invalid keystore; no key generated')
+            environment = {**os.environ,
+                           'LUMO_PLAY_STORE_FILE': str(path),
+                           'LUMO_PLAY_KEY_ALIAS': 'synthetic-upload',
+                           'LUMO_PLAY_STORE_PASSWORD': 'synthetic-store-secret',
+                           'LUMO_PLAY_KEY_PASSWORD': 'synthetic-key-secret'}
+            result = self.java_call('preflight', environment=environment)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Play signing verification failed (', result.stderr)
+        self.assertNotIn('synthetic-store-secret', result.stderr)
+        self.assertNotIn('synthetic-key-secret', result.stderr)
+        self.assertEqual(result.stdout, '')
+
     def test_actual_java_source_rejects_standard_debug_alias_without_keys(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'not-a-real-key'

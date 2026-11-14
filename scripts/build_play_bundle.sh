@@ -96,8 +96,32 @@ require_clean_sources() {
   if ! git diff --quiet HEAD --; then
     fail "tracked source differs from the candidate commit"
   fi
+  if [[ -n "$(git ls-files --others --exclude-standard -- lib assets scripts tools config)" ]]; then
+    fail "untracked files in build source paths must be committed or moved out"
+  fi
 }
 require_clean_sources
+
+# Play provenance is tied to the committed pubspec version. Family-build
+# environment overrides must not silently produce another Play candidate.
+version_values="$(python3 - <<'PY'
+import os
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path('scripts').resolve()))
+from build_version import resolve_version
+try:
+    pubspec = Path('pubspec.yaml').read_text()
+    expected = resolve_version(pubspec, {})
+    requested = resolve_version(pubspec, os.environ)
+except ValueError as error:
+    raise SystemExit(f'Play build rejected: {error}') from error
+if requested != expected:
+    raise SystemExit('Play build rejected: version overrides must match committed pubspec.yaml')
+print(*expected)
+PY
+)"
+read -r lumo_version_name lumo_build_number <<< "$version_values"
 
 # This must precede Flutter, mkdir, scaffold generation, pip, pub and native/model
 # downloads. The verifier rejects missing/invalid external upload signing.
@@ -127,8 +151,6 @@ previous_bundles=("$bundle_directory"/*.aab)
 [[ "${#previous_bundles[@]}" -eq 0 ]] ||
   fail "release AAB output already exists; use a fresh dedicated checkout"
 
-version_values="$(python3 scripts/build_version.py)"
-read -r lumo_version_name lumo_build_number <<< "$version_values"
 source_commit="$(git rev-parse --short=12 HEAD)"
 work_dir=""
 created_output=0
