@@ -1,0 +1,86 @@
+{
+  "started_at": "2026-11-14T15:35:55.141215+00:00",
+  "finished_at": "2026-11-14T15:36:03.768251+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_verify_unchanged_2020_apk_diagnostic",
+    "tools.android_qa.tests.test_kart_garage_evidence",
+    "tools.android_qa.tests.test_kart_driver_word_evidence",
+    "tools.android_qa.tests.test_update_2020_preservation"
+  ],
+  "cwd": "/workspace/scratch/909ddb52fe7b/unchanged-2020-diagnostic-preparation",
+  "exit_code": 0,
+  "syntax": [
+    {
+      "job": "probe-contracts",
+      "step": 2,
+      "exit_code": 0,
+      "stderr": "",
+      "sha256": "07ea58c8cb5922e9284282177b02a62ebbd08ac8e8191adb9c09ab70ceea56ae"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 5,
+      "exit_code": 0,
+      "stderr": "",
+      "sha256": "55144ed7b551ef6c328ef481a58ce44c46eb583ac9f2dfb4c61bde7c49c4a34b"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 6,
+      "exit_code": 0,
+      "stderr": "",
+      "sha256": "6f807f7f2f641ceb2dc93fa618ae93a31945d7677a1aea97dfa166d938e96f32"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 7,
+      "exit_code": 0,
+      "stderr": "",
+      "sha256": "b3cd9e6cb5bb7f6fa4ca7fba149d95dc634ef17761ee0bb71dcd854b8aad2b43"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 8,
+      "exit_code": 0,
+      "stderr": "",
+      "sha256": "db1035151032b3e0e2b7feea814f83244ea37c3f05cd7c20b7a582f9a9aa8b97"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 9,
+      "exit_code": 0,
+      "stderr": "",
+      "sha256": "41154a01b7243515aaff49d56c1c88677151786d696ffcf2a5e0359c346e9eb3"
+    },
+    {
+      "runner": "scripts/run_unchanged_2020_apk_diagnostic.sh",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "runner_embedded_python": "PASS"
+    }
+  ],
+  "source_before": {
+    ".github/workflows/lumo-unchanged-2020-apk-diagnostic.yml": "287be6eb4f912827f87142734064bd60352c8701b3f4f527ba9295c6209caaea",
+    "scripts/run_unchanged_2020_apk_diagnostic.sh": "bda63d63ae62e1d25b50c4206b4bb9021a7f115f73c996b65e1db77bfed165fa",
+    "scripts/verify_unchanged_2020_apk_diagnostic.py": "3747c6b9848927e0046ba1fa327f5bdf4b67fee5cbc6f0b3438ff727ae376090",
+    "scripts/tests/test_verify_unchanged_2020_apk_diagnostic.py": "6d1e2615c8ca387c31b779011f170208da2aac596b0690b40118fb8d72b2e74a"
+  },
+  "source_after": {
+    ".github/workflows/lumo-unchanged-2020-apk-diagnostic.yml": "287be6eb4f912827f87142734064bd60352c8701b3f4f527ba9295c6209caaea",
+    "scripts/run_unchanged_2020_apk_diagnostic.sh": "bda63d63ae62e1d25b50c4206b4bb9021a7f115f73c996b65e1db77bfed165fa",
+    "scripts/verify_unchanged_2020_apk_diagnostic.py": "3747c6b9848927e0046ba1fa327f5bdf4b67fee5cbc6f0b3438ff727ae376090",
+    "scripts/tests/test_verify_unchanged_2020_apk_diagnostic.py": "6d1e2615c8ca387c31b779011f170208da2aac596b0690b40118fb8d72b2e74a"
+  },
+  "source_unchanged": true,
+  "log_bytes": 17268,
+  "log_sha256": "e7967042ec91cb5035c8f5b923b4515aaa256c03b90fd44b9ed4d25081f35aec",
+  "actionlint": "NOT_RUN_NOT_INSTALLED",
+  "scope": "Offline verifier/source/observation contracts only; no APK rebuild, ADB, emulator, Android acceptance or publication."
+}

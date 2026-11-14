@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "status": "PREPARED_OFFLINE_CONTRACTS_PASS",
+  "base_host": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "base_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "probe_source": "d7b5289f5b17cc6adf65fe2511971371f289cb6a",
+  "probe_tree": "3280a36d37074c2d01e02d69024faff20d045b86",
+  "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "candidate_run_id": 43596913210,
+  "candidate_attempt": 1,
+  "candidate_artifact_id": 14119280540,
+  "candidate_apk_sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+  "diagnostic_files": [
+    {
+      "path": ".github/workflows/lumo-unchanged-2020-apk-diagnostic.yml",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "bbe5664273280239fc3f2a509c21130dc4a179e2"
+    },
+    {
+      "path": "scripts/verify_unchanged_2020_apk_diagnostic.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "a42688eedc6c3941f0646358c358f0d15b84eed0"
+    },
+    {
+      "path": "scripts/run_unchanged_2020_apk_diagnostic.sh",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "2d2d7dfe49a0baff9e08a60321eed38eca0f6682"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_2020_apk_diagnostic.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "f1d383a888dc3f290bef2bfe4dea4374901d0fce"
+    }
+  ],
+  "workflow_delta": "Only two additional mandatory test module lines compared with b90addbd; original four retained.",
+  "copied_files": 75,
+  "all_probe_fixture_git_blobs_exact_before_after": true,
+  "base_to_probe_tree_changed_files": 95,
+  "non_qa_product_changes": 0,
+  "tests": {
+    "count": 101,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 12.596,
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.tests.test_verify_unchanged_2020_apk_diagnostic",
+      "tools.android_qa.tests.test_kart_garage_evidence",
+      "tools.android_qa.tests.test_kart_garage_observed_scroll",
+      "tools.android_qa.tests.test_kart_scroll_word_evidence",
+      "tools.android_qa.tests.test_kart_driver_word_evidence",
+      "tools.android_qa.tests.test_update_2020_preservation"
+    ],
+    "log_sha256": "16f7bac0c9ed203514643ebed550dd6bd82bb6f6feb3b6933c75450b9d645732",
+    "source_unchanged": true,
+    "actionlint": "NOT_RUN_NOT_INSTALLED",
+    "syntax": [
+      {
+        "job": "probe-contracts",
+        "step": 2,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "25ccd1c64c2f53f98c5029846bee622f891d9d3f1d8c91f8a57086afeec0e99f"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 5,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "55144ed7b551ef6c328ef481a58ce44c46eb583ac9f2dfb4c61bde7c49c4a34b"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 6,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "6f807f7f2f641ceb2dc93fa618ae93a31945d7677a1aea97dfa166d938e96f32"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 7,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "b3cd9e6cb5bb7f6fa4ca7fba149d95dc634ef17761ee0bb71dcd854b8aad2b43"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 8,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "db1035151032b3e0e2b7feea814f83244ea37c3f05cd7c20b7a582f9a9aa8b97"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 9,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "41154a01b7243515aaff49d56c1c88677151786d696ffcf2a5e0359c346e9eb3"
+      },
+      {
+        "runner": "scripts/run_unchanged_2020_apk_diagnostic.sh",
+        "exit_code": 0,
+        "stderr": ""
+      },
+      {
+        "runner_embedded_python": "PASS"
+      }
+    ]
+  },
+  "activation_authority": "Root explicitly authorized the QA-only trigger ref creation at 1e22 then non-forced lease update after this exact preflight; no release or central source modification.",
+  "activation_branch": "qa/lumo-android-runtime-1e22-20261114",
+  "scope": "Offline source/metadata/observation contracts. Actual unchanged-APK API35 main/update execution remains to run. No seven-job or release acceptance."
+}

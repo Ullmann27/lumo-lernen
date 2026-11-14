@@ -1,0 +1,220 @@
+{
+  "schema": 1,
+  "prepared_at": "2026-11-14T15:36:03.768251+00:00",
+  "status": "PREPARED_INACTIVE_OFFLINE_CONTRACTS_PASS",
+  "candidate": {
+    "repository": "Ullmann27/lumo-lernen",
+    "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "run_id": 43596913210,
+    "attempt": 1,
+    "build_job_id": 132454178537,
+    "original_run_conclusion": "failure",
+    "original_build_conclusion": "success",
+    "artifact_id": 14119280540,
+    "apk_sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+    "apk_bytes": 334507298,
+    "abi": "x86_64"
+  },
+  "diagnostic": {
+    "source_checkpoint": "d47b292f871ed8f91c1821c5707281f9253ce959",
+    "source_tree": "88430e66100fd598b0f911bc1fcb003b7e2a7f47",
+    "checkpoint_branch": "checkpoint/lumo-unchanged-2020-diagnostic-20261114",
+    "intended_activation_branch": "qa/lumo-android-runtime-1e22-20261114",
+    "activation_ref_created": false,
+    "workflow_run_started": false,
+    "cases": [
+      "main-api35",
+      "update2017-api35"
+    ],
+    "source_entries": [
+      {
+        "path": ".github/workflows/lumo-unchanged-2020-apk-diagnostic.yml",
+        "type": "blob",
+        "mode": "100644",
+        "sha": "b90addbdf4529a6e5f373fafc43c9a918db2d3ed"
+      },
+      {
+        "path": "scripts/verify_unchanged_2020_apk_diagnostic.py",
+        "type": "blob",
+        "mode": "100644",
+        "sha": "a42688eedc6c3941f0646358c358f0d15b84eed0"
+      },
+      {
+        "path": "scripts/run_unchanged_2020_apk_diagnostic.sh",
+        "type": "blob",
+        "mode": "100644",
+        "sha": "2d2d7dfe49a0baff9e08a60321eed38eca0f6682"
+      },
+      {
+        "path": "scripts/tests/test_verify_unchanged_2020_apk_diagnostic.py",
+        "type": "blob",
+        "mode": "100644",
+        "sha": "f1d383a888dc3f290bef2bfe4dea4374901d0fce"
+      }
+    ],
+    "source_readback_exact": true,
+    "compare_exactly_four_added_files": true,
+    "unchanged_historical_7b16_files": true
+  },
+  "validation": {
+    "offline_tests": 78,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "elapsed_seconds": 8.027,
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.tests.test_verify_unchanged_2020_apk_diagnostic",
+      "tools.android_qa.tests.test_kart_garage_evidence",
+      "tools.android_qa.tests.test_kart_driver_word_evidence",
+      "tools.android_qa.tests.test_update_2020_preservation"
+    ],
+    "initial_setup_errors": 16,
+    "initial_setup_cause": "The isolated small source copy omitted the existing 7585-byte original update_2017_2018_independent_evidence.json fixture. Its exact 1e22 bytes were copied, without changing source or expectations, before repeating the identical four-module command.",
+    "initial_failed_log_preserved": true,
+    "real_current_api_metadata_replayed": true,
+    "actual_apk_preflight_locally_executed": false,
+    "new_emulator_executed": false,
+    "source_unchanged": true,
+    "syntax": [
+      {
+        "job": "probe-contracts",
+        "step": 2,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "07ea58c8cb5922e9284282177b02a62ebbd08ac8e8191adb9c09ab70ceea56ae"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 5,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "55144ed7b551ef6c328ef481a58ce44c46eb583ac9f2dfb4c61bde7c49c4a34b"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 6,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "6f807f7f2f641ceb2dc93fa618ae93a31945d7677a1aea97dfa166d938e96f32"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 7,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "b3cd9e6cb5bb7f6fa4ca7fba149d95dc634ef17761ee0bb71dcd854b8aad2b43"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 8,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "db1035151032b3e0e2b7feea814f83244ea37c3f05cd7c20b7a582f9a9aa8b97"
+      },
+      {
+        "job": "android-diagnostic",
+        "step": 9,
+        "exit_code": 0,
+        "stderr": "",
+        "sha256": "41154a01b7243515aaff49d56c1c88677151786d696ffcf2a5e0359c346e9eb3"
+      },
+      {
+        "runner": "scripts/run_unchanged_2020_apk_diagnostic.sh",
+        "exit_code": 0,
+        "stderr": ""
+      },
+      {
+        "runner_embedded_python": "PASS"
+      }
+    ],
+    "actionlint": "NOT_RUN_NOT_INSTALLED"
+  },
+  "boundaries": [
+    "This is a diagnostic preparation, not seven-job acceptance or permission to publish.",
+    "No rebuild or change of the candidate APK. The diagnostic observer is checked out separately and its actual committed source and all helper bytes are bound before and after the tour.",
+    "The 78 local tests include synthetic APK/PCK/source/metadata fixtures and actual temporary Git repositories. They do not constitute an Android runtime pass.",
+    "The replay using the actual candidate API metadata preserves the run failure and requires the successful original build and exact artifact metadata.",
+    "Original artifact ZIP metadata is bound; this local preparation has not downloaded the complete x86 candidate ZIP or rerun a real APK preflight.",
+    "The source checkpoint intentionally does not yet contain the independently prepared Garage observer repair. Root will combine reviewed QA-only changes before activation.",
+    "A diagnostic PASS would still not replace the mandatory seven jobs and original delivery replay on the final integration source."
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/run_preflight.py",
+      "sha256": "480c3842753a74963fca34106696430f83c8f70c8b4f3b1ef8448a75bd40852d",
+      "chars": 3122
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/diagnostic-contracts-original.log",
+      "sha256": "e7967042ec91cb5035c8f5b923b4515aaa256c03b90fd44b9ed4d25081f35aec",
+      "chars": 17268
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/preflight-result.json",
+      "sha256": "694090b928ee0a65e79c1dece24b338448f5d75ecafe4179c06fe30e486d0958",
+      "chars": 3293
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/initial-incomplete-fixture-diagnostic-contracts-original.log",
+      "sha256": "6064cc9ddbc8755517109bfa70a1f3d71b3f1cedae6cf32c8c5fd0f678bb1c39",
+      "chars": 39806
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/initial-incomplete-fixture-preflight-result.json",
+      "sha256": "a23667f26c73ae76d0fac28fb120aeedd54805d47a143d0d52d66ab820f72a27",
+      "chars": 3293
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/fixture-copy.json",
+      "sha256": "b0a59bff9267e6978c690da72c8857b7a30feb655dc10ad6ade05c2a8f430aa7",
+      "chars": 365
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/actual-candidate-metadata-replay.json",
+      "sha256": "f240d564346c0b1ecbdac51ac2555b62e19751c96446782b5a647a97241bf38a",
+      "chars": 1217
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/original-metadata/candidate/run.json",
+      "sha256": "54c9b47cded1601a2e458a5de55a1c1b67d2e6fd46ee92bb953a126a64b8b54c",
+      "chars": 13650
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/original-metadata/candidate/jobs.json",
+      "sha256": "93bef86d55bf41369e10d27601634c461c183aef1d9e61dba0880b6293fc2ad8",
+      "chars": 23681
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/original-metadata/candidate/artifacts.json",
+      "sha256": "ac90ad8778db6bcfacb7e0a2c55f0f9300a7f2b0bf85ea4bf2fb557572469bdc",
+      "chars": 9764
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/original-metadata/baseline/run.json",
+      "sha256": "83816b1656d830fd4be8f11238312640376db71a0e5c6c0456674549e8f4382c",
+      "chars": 12980
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/original-metadata/baseline/jobs.json",
+      "sha256": "e77428656896a0f9bd70a213047b6e4cc95217844a90af618a94193d48e22888",
+      "chars": 25842
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/original-metadata/baseline/artifacts.json",
+      "sha256": "182ba3475a5832115f95643d1edd3b9c822d87613c98682ede12a0ef5fcbd044",
+      "chars": 6700
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/unchanged-2020-diagnostic-preparation/checkpoint-source-compare-original.json",
+      "sha256": "d28c47d258a488099d575a607f436b580465bc4c9fe840af9fcc3b1e5260fdd0",
+      "chars": 93766
+    }
+  ]
+}

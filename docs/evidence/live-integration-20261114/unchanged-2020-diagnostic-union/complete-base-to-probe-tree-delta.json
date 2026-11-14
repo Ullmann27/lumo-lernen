@@ -1,0 +1,869 @@
+[
+  {
+    "path": ".github/probes/modernization_android_tour.py",
+    "before": {
+      "sha": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+      "mode": "100644",
+      "type": "blob"
+    },
+    "after": {
+      "sha": "f20bf864576f2474b563da29d2d718557702679c",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/kart_garage_evidence.py",
+    "before": {
+      "sha": "c5103456e98baa696ec6cac8b6bb8af863d19f5b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    "after": {
+      "sha": "09da24805ad89446eacfe2593d8f0a1b34adcdf4",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+    "before": {
+      "sha": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    "after": {
+      "sha": "b727e447caf8da1e0f0619b32bc0960e918b5226",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/README-fix.md",
+    "before": null,
+    "after": {
+      "sha": "44cddcef07b3186650369049bc0ad82b49b6f691",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/README-red.md",
+    "before": null,
+    "after": {
+      "sha": "431f6e0e54e5468214d6a3f308704fe5969cc3ae",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/fix-manifest.json",
+    "before": null,
+    "after": {
+      "sha": "fa1df6a60b8f58934aa6971bd6689a04ecd154fc",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/garage-regression-first-invocation.json",
+    "before": null,
+    "after": {
+      "sha": "5e108c4f7b17c008453a24dee375af13d99cd1fe",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/garage-regression-first.log",
+    "before": null,
+    "after": {
+      "sha": "639f77d9b37d5948952c6d4722b7a960bbb50870",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union-final-invocation.json",
+    "before": null,
+    "after": {
+      "sha": "718a6507ed760f5120450d569190a63ac3a2afb5",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union-final.log",
+    "before": null,
+    "after": {
+      "sha": "d9668e033ac6ec8ff364cfe99175167b83e57ff2",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union-invocation.json",
+    "before": null,
+    "after": {
+      "sha": "0828676ef4cc57d8810bd04ca93f477dccedc24f",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/garage-union.log",
+    "before": null,
+    "after": {
+      "sha": "7826ad670774a51c850b521412028e4e1d66ac20",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/original-frame-replay.json",
+    "before": null,
+    "after": {
+      "sha": "fbfb78a48e0d97fcc7b7521ca7a88c6c1c713ecf",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/original-red-invocation.json",
+    "before": null,
+    "after": {
+      "sha": "17372f721e56241b6141dd57709528411f0479a8",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/original-red.log",
+    "before": null,
+    "after": {
+      "sha": "6a89d1b9772f92d943d9a019e5c486dcba5fb77f",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/source-binding.json",
+    "before": null,
+    "after": {
+      "sha": "51ef5fd0b915e8711629d99d4f787e113a86f473",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/source-preservation.json",
+    "before": null,
+    "after": {
+      "sha": "481e331342a28c6cd9a1f06666ed1290f5ab810e",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/union-test-summary-final.json",
+    "before": null,
+    "after": {
+      "sha": "2d2eb2b271880c64454f1f7350625786ecb37a6c",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/union-test-summary.json",
+    "before": null,
+    "after": {
+      "sha": "c302cd71710d4ccc7cf0a17ec81d83edb4aa91ab",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/word-union-final-invocation.json",
+    "before": null,
+    "after": {
+      "sha": "597541efd3606dd64ddf89165e701ae2dc0756df",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/word-union-final.log",
+    "before": null,
+    "after": {
+      "sha": "3c844df0bd4f89b9fd30bcfb5f33087ef4c5b70c",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/word-union-invocation.json",
+    "before": null,
+    "after": {
+      "sha": "b94e101fa6ee18dacd4c4d0f0a1389a6b2e91797",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "docs/evidence/garage-scroll-1e22-20261114/word-union.log",
+    "before": null,
+    "after": {
+      "sha": "7c40a561f964db1f5ba5f48057b6f8c6c10a6b87",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+    "before": null,
+    "after": {
+      "sha": "d5f03367e2fc528d8ba69bbcdf676726341955c3",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "fd0eacfc661272d329bcd9f47c8cd9f89fddfb4e",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "defeb5be752a7f6bc66ac9ce27be93ae139ff189",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+    "before": null,
+    "after": {
+      "sha": "2c5d617b14a7e8cf674d20dae38a576aaa67b178",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "b138866d2a7cb9c188e11117a0c17ab5e54cc7cf",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "d9b66536a03b995bdd9a65050333dd36dd07f1e9",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+    "before": null,
+    "after": {
+      "sha": "6a38ac5d3e26543cc83764b87459aee7f4556d26",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "08f8062acdce8d41501c2e9239e31c2b427e561f",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0.png",
+    "before": null,
+    "after": {
+      "sha": "d32146de353274bd19c4fbc458161c72755ea432",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+    "before": null,
+    "after": {
+      "sha": "ebb311ac7ae8411adeeda4cfe8e720441127b4cc",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "9fe7a102a1e98a6d8472f4741120004b6cc4f0fc",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "eabf54a7d84e24e97df8ff1a875b085215550476",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+    "before": null,
+    "after": {
+      "sha": "2c96019945a0da783ec6e6e77b1b676a97c888b0",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "4e4a6ab969afe0fc21e98ebf5146bda7068f1356",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "750e86b2bea3c5f9d44afcb02fb6e504b7df0fa5",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+    "before": null,
+    "after": {
+      "sha": "a06c0e659fd3302a467e953eca04dde9b7dc3123",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "df4aa7c0807db41cf15600f60c40df66c38f534f",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1.png",
+    "before": null,
+    "after": {
+      "sha": "d66c0813f69d486ee24d22cc537efce46eb8706f",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+    "before": null,
+    "after": {
+      "sha": "ea82fb2ff860a046d2375cbd5ed888f12ff5f912",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "32c9442578e050d8452b9bd393455bcde569f038",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "3dce4b348890112852ead40b32a8adb589690127",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+    "before": null,
+    "after": {
+      "sha": "601c290513151e3899fe3273f90d9e8de805c31c",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "f3c69497073b170463acbaf5c38cbab8b933dd88",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "a40a40c569869bf0f9b5abadc762d822c18fcedf",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+    "before": null,
+    "after": {
+      "sha": "66d7d5563d420fa3194e64929e5bcdefe5e26811",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "aac13ab0f2b2c268f360287c33538c5fa43f260b",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2.png",
+    "before": null,
+    "after": {
+      "sha": "1bf7cb619b38e551c973928bc7587d00a354baa9",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-surface-readiness.json",
+    "before": null,
+    "after": {
+      "sha": "35f223159028b79ec4090a593cd5db2adf50d3dd",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/provenance.json",
+    "before": null,
+    "after": {
+      "sha": "abc05a0ec63e96acceac3b67e9f511c2ca346bd4",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+    "before": null,
+    "after": {
+      "sha": "4871828bf143fe4eb9fb8ffb23206625d741fda3",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "cb30a214c514d618f955980b6f3bb73c8fe55d90",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "8ad3d0f7b446a2c402a8bed766aa442e83b41b04",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+    "before": null,
+    "after": {
+      "sha": "3e752405b59fbe7b04de363f7167e8298f635f91",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "0804fc79b8de1b9dbe7f72d2a93d00ca6aecc479",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "ff589ce1b3874865fee046cfa924f52076e026c1",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+    "before": null,
+    "after": {
+      "sha": "e825ddb01279ea06007cd522f8f9ef9645955549",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "9c2857b105d886f957009c76d65634e8c94d4dae",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0.png",
+    "before": null,
+    "after": {
+      "sha": "657919b1b4127a6d33bb9858317d77a73217afaf",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+    "before": null,
+    "after": {
+      "sha": "753abb1738337c1ef052054b1af1f7d0ad71f349",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "3a51b2af235fb5e3c874e4062a6c674e60166040",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "ecde6d9553db6b57f6e5479af16730c84de46a8a",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+    "before": null,
+    "after": {
+      "sha": "bc83632ef5370ac00dddad4700c6de3a46deb5aa",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "f0f406d03798ef2d2a7a7d937c0366bcfc0b9202",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "9ce398a71b0136309b0bbdd05178a697f5238600",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+    "before": null,
+    "after": {
+      "sha": "983a8fba0f1d8db61d9ffb342675f68bcb674914",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "30f2ec296f28f11083a573a713315b2504782940",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1.png",
+    "before": null,
+    "after": {
+      "sha": "5a72b00ad209355f5de24816e374e42103751f2c",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+    "before": null,
+    "after": {
+      "sha": "e873e27a4710f4f2d4303e8971a25b31152a78ab",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "2ea6ca5598e96613e4ce8f02f9a277dc01520793",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "d979c4943d291aa77cc08549d923b4b00786a54f",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+    "before": null,
+    "after": {
+      "sha": "18f6a899e95353c47ccf0b9839f41953e5c3b53b",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "d0798d35007ff5367d9464dc89225ddfabedec7a",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "fe3a29d96b6b6c63c80b4ebd13a478694ca8c45d",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+    "before": null,
+    "after": {
+      "sha": "7b8191d88c591c3a6c5004342cae4c7d17343dbc",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "59b3c937f0292a1aa4a78ec0b7c8d1ec26298c5b",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2.png",
+    "before": null,
+    "after": {
+      "sha": "eb6b3651f6e1013b82cb759781550c38b79e4493",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-surface-readiness.json",
+    "before": null,
+    "after": {
+      "sha": "18aaf388f90d20043fe9e715637aa425736c3ea3",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "c783718ec55bbb43bf35fce9567e1cb22e800015",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0.png",
+    "before": null,
+    "after": {
+      "sha": "c52ea1af7b3e177f5e187ffa287164d38ec465b9",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+    "before": null,
+    "after": {
+      "sha": "977cbeaeafc73f20e7da8ba77e03c542cfdf75f7",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "ac54992d61917291b0eb7542799ce61e15bbc2e9",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "bab0f2f4cb226f3a9aa6062e45447524c3f2994b",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+    "before": null,
+    "after": {
+      "sha": "1d62d918dfbebb35d9f9549b33400201e25d3ee6",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+    "before": null,
+    "after": {
+      "sha": "7ea4c2c1821623a84bff2443ea5987ba673ee085",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+    "before": null,
+    "after": {
+      "sha": "7416b5452293e5664ea2c8a2d1714fc81072b9fe",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+    "before": null,
+    "after": {
+      "sha": "df99f3456b8de4e939b09fd2f84dd2dbac20c2a2",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr.json",
+    "before": null,
+    "after": {
+      "sha": "c204245477c52956f864ebafccc41fd2cb445bda",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+    "before": null,
+    "after": {
+      "sha": "928e78cac6aa289fac70f4fdc318cc1e8d908436",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-surface-readiness.json",
+    "before": null,
+    "after": {
+      "sha": "58a2ee61e1936b3d6d661fce57f8fd451ea661ab",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/provenance.json",
+    "before": null,
+    "after": {
+      "sha": "9a1e0b10ed23daa546b9fe183dcbceb5234713f3",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/test_kart_garage_observed_scroll.py",
+    "before": null,
+    "after": {
+      "sha": "0efb0928d1c8575dc6134165f2f30182fcd5aa49",
+      "mode": "100644",
+      "type": "blob"
+    }
+  },
+  {
+    "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+    "before": null,
+    "after": {
+      "sha": "ced952881090f4c76e1c4229bf3669b75e31a41d",
+      "mode": "100644",
+      "type": "blob"
+    }
+  }
+]

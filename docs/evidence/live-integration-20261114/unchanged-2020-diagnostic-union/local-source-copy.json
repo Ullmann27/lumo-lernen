@@ -1,0 +1,458 @@
+{
+  "base": "d7b5289f5b17cc6adf65fe2511971371f289cb6a",
+  "copied_source_or_fixture_files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "f20bf864576f2474b563da29d2d718557702679c",
+      "bytes": 73307,
+      "sha256": "965b45ee66d0f88ac73411719ba47858bb34bb49d5ceb2b129dc370bccddf1ae"
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "git_blob": "09da24805ad89446eacfe2593d8f0a1b34adcdf4",
+      "bytes": 27185,
+      "sha256": "abb9df2ea6397a9634f0504073deb44de0d9c2b8d243eeae4b3a80142b3bdbbb"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+      "git_blob": "d5f03367e2fc528d8ba69bbcdf676726341955c3",
+      "bytes": 4628,
+      "sha256": "e1bd46c18953ebc44992f0ffd3320dea492efb379d25a891512b113a60facf78"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "fd0eacfc661272d329bcd9f47c8cd9f89fddfb4e",
+      "bytes": 3386,
+      "sha256": "b1234628331c48da59e3711ec63d21de7993865cfc2d562c216b4a72abc6bbd4"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+      "git_blob": "defeb5be752a7f6bc66ac9ce27be93ae139ff189",
+      "bytes": 3828,
+      "sha256": "16219d0a245affb4d92b3ee97f3701762333ed1f3c42cb7080efbf4cba9301e6"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+      "git_blob": "2c5d617b14a7e8cf674d20dae38a576aaa67b178",
+      "bytes": 5219,
+      "sha256": "e681d68e9e7b6036c2f621857400c0770dc3d7881d075f9965d804427cebb2dc"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "b138866d2a7cb9c188e11117a0c17ab5e54cc7cf",
+      "bytes": 5000,
+      "sha256": "dfdbec66c9c479e327bcc7f32a725b01ab28544b3401ab733b5433ce0b037aba"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+      "git_blob": "d9b66536a03b995bdd9a65050333dd36dd07f1e9",
+      "bytes": 2933,
+      "sha256": "2ba70db0ecb04946393389ca08861f074e252414b2beb31d3b45e7b76bddd950"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+      "git_blob": "6a38ac5d3e26543cc83764b87459aee7f4556d26",
+      "bytes": 2968,
+      "sha256": "4400830fcdffd836af7d07141d94bd960491bf8b60733d6fd2f85e4bac61eaed"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "08f8062acdce8d41501c2e9239e31c2b427e561f",
+      "bytes": 21121,
+      "sha256": "13ef269552bed5dff28779b596017efaf6b211fef6ac25d789bdbe3999c5d33b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0.png",
+      "git_blob": "d32146de353274bd19c4fbc458161c72755ea432",
+      "bytes": 788919,
+      "sha256": "2c5214fe0ae35668c6e547dabcf14772a6e06101e52edd5e13bf01e99c7ab290"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+      "git_blob": "ebb311ac7ae8411adeeda4cfe8e720441127b4cc",
+      "bytes": 4860,
+      "sha256": "25cc97cee82d2cac632769a6f7b9c14124d970c1aa9b2936708c9e49cb6d6ff7"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+      "git_blob": "9fe7a102a1e98a6d8472f4741120004b6cc4f0fc",
+      "bytes": 2452,
+      "sha256": "37001f717359686469a8bc922eff09fe1db44594d56e04a8f93ab254472516e1"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+      "git_blob": "eabf54a7d84e24e97df8ff1a875b085215550476",
+      "bytes": 3059,
+      "sha256": "3105a42a6d7cfc2419790c12f5205554f2c17339160eadc65119b2c0819f8268"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+      "git_blob": "2c96019945a0da783ec6e6e77b1b676a97c888b0",
+      "bytes": 4423,
+      "sha256": "c12267287b4dbbaa7b566ac68131ec64a770f93e06b1a72464f13396ba7b43c3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+      "git_blob": "4e4a6ab969afe0fc21e98ebf5146bda7068f1356",
+      "bytes": 5652,
+      "sha256": "1fee5bc6b6fe9981cc1d89520d12221cb8769c137e0a0f27a1d6ddf40019f089"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+      "git_blob": "750e86b2bea3c5f9d44afcb02fb6e504b7df0fa5",
+      "bytes": 3485,
+      "sha256": "a9e4d551122f41cb56c7945622a611c64442994f3ddcfb3b5ac41956424ffc33"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+      "git_blob": "a06c0e659fd3302a467e953eca04dde9b7dc3123",
+      "bytes": 3521,
+      "sha256": "d1a027012b0b452e5654314a05db64c4f42f0a5fb7a06571f959b993d700d8d3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr.json",
+      "git_blob": "df4aa7c0807db41cf15600f60c40df66c38f534f",
+      "bytes": 20512,
+      "sha256": "e03329c988e841bf0b119547e87f847ded67bd59ad84fd6722f9e810c57e20f9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1.png",
+      "git_blob": "d66c0813f69d486ee24d22cc537efce46eb8706f",
+      "bytes": 792428,
+      "sha256": "72b7daf2f72af853c02f32eae564aa35d1619313d33682ab5a5462eb4e0e98ec"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "ea82fb2ff860a046d2375cbd5ed888f12ff5f912",
+      "bytes": 5488,
+      "sha256": "bdab95b03e080bef08ba949a5d2d442f384b311e2db71bb7ed9c02422108133f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "32c9442578e050d8452b9bd393455bcde569f038",
+      "bytes": 2666,
+      "sha256": "9d4895b3e25c25f8c59436e8672498e19e0376134933e47a419d76cb67447513"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "3dce4b348890112852ead40b32a8adb589690127",
+      "bytes": 3671,
+      "sha256": "00cc8d631ece747ac8aff38c38dcb37d8f6e63634885cc2d06cacceacd215db7"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "601c290513151e3899fe3273f90d9e8de805c31c",
+      "bytes": 3901,
+      "sha256": "208227fa84300a4db3562b36c62e3380277bc76afc8a2db2034b5964700b64bb"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "f3c69497073b170463acbaf5c38cbab8b933dd88",
+      "bytes": 5782,
+      "sha256": "e404018db4dce416def45f5e0e34fb834c6f7ce243b2791950e5b0496386e559"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "a40a40c569869bf0f9b5abadc762d822c18fcedf",
+      "bytes": 3341,
+      "sha256": "c849d024c34b76e5fc99e595365cf30de926439c611d68b2d358583304383f26"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "66d7d5563d420fa3194e64929e5bcdefe5e26811",
+      "bytes": 3376,
+      "sha256": "2472e42b87d5fc632d7c22c9e6e365ecbc318f426b1c1c5b60076492c9c8e2b1"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "aac13ab0f2b2c268f360287c33538c5fa43f260b",
+      "bytes": 20046,
+      "sha256": "5dff830cd46daf8c3cd83d9d10629fc528adb0f41ebefc5df9b0c6885b242be0"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2.png",
+      "git_blob": "1bf7cb619b38e551c973928bc7587d00a354baa9",
+      "bytes": 784389,
+      "sha256": "33ff8013d1541f6c1d0367caba494a4f8cd29578cd2d6c783d636d75386a6549"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "35f223159028b79ec4090a593cd5db2adf50d3dd",
+      "bytes": 3833,
+      "sha256": "e72b8aab506d8809518d4784a8d4438c7965d55dcb87a3d496792c1ae9573533"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/provenance.json",
+      "git_blob": "abc05a0ec63e96acceac3b67e9f511c2ca346bd4",
+      "bytes": 16650,
+      "sha256": "150c2335d9202d8191d015cb5d389ef0f76f2478f83a128ba3dc93775381b911"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+      "git_blob": "4871828bf143fe4eb9fb8ffb23206625d741fda3",
+      "bytes": 5759,
+      "sha256": "93f5acb925446f77ed8237dd5871d2d1289e94323b635a991216123f61014bc5"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "cb30a214c514d618f955980b6f3bb73c8fe55d90",
+      "bytes": 2748,
+      "sha256": "65358e66e8be1c7e5b97303b70ce80189c2c07811cf9a298c5a0f9b613473be2"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+      "git_blob": "8ad3d0f7b446a2c402a8bed766aa442e83b41b04",
+      "bytes": 2754,
+      "sha256": "d84aace947677cdfb78f286ab1593f302a72dbd3963207120ac4b533aa27c204"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+      "git_blob": "3e752405b59fbe7b04de363f7167e8298f635f91",
+      "bytes": 3849,
+      "sha256": "1d2c438fb2d56bb52ad2251525bc67f41fe670b981bfc196c65026eba06ae837"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "0804fc79b8de1b9dbe7f72d2a93d00ca6aecc479",
+      "bytes": 6138,
+      "sha256": "73ea9ba109d701320900e20b300824c8d83273a1cce79ffa5a15f897e7ba303c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+      "git_blob": "ff589ce1b3874865fee046cfa924f52076e026c1",
+      "bytes": 3283,
+      "sha256": "126072f1a8ce19726e9a250048e983297ccf2f960925a2179bdb58ccfd7a1235"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+      "git_blob": "e825ddb01279ea06007cd522f8f9ef9645955549",
+      "bytes": 3294,
+      "sha256": "f7f6787d957834d13ba938e3dc29792bf2850273c574937af84063accf4b938b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "9c2857b105d886f957009c76d65634e8c94d4dae",
+      "bytes": 20989,
+      "sha256": "f56cebfefebedfe9ca488a48bc0bb7e27dee09ca1ad8a9ee144e5953ddb9557d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0.png",
+      "git_blob": "657919b1b4127a6d33bb9858317d77a73217afaf",
+      "bytes": 766876,
+      "sha256": "22b2311774c6fdd87c331c52eef39eb9bced9d99aab5723bf7ed4164fe42c0a4"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+      "git_blob": "753abb1738337c1ef052054b1af1f7d0ad71f349",
+      "bytes": 5438,
+      "sha256": "9e8ddd78520916a4666389a5f7c5791004d12e8a9c30f36cb73650b452c69576"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+      "git_blob": "3a51b2af235fb5e3c874e4062a6c674e60166040",
+      "bytes": 2382,
+      "sha256": "a18d4d702f945ec934e2d8e73568eda569273ec31a38b94729df8e247d8e40a3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+      "git_blob": "ecde6d9553db6b57f6e5479af16730c84de46a8a",
+      "bytes": 2190,
+      "sha256": "41a1554eff49416bd08a717765caf4bbe4a78dff4cf67fe67e125f8f302d5c5f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+      "git_blob": "bc83632ef5370ac00dddad4700c6de3a46deb5aa",
+      "bytes": 4098,
+      "sha256": "d2b97355fb5e50e207c5dcf379645d3a78ad793e38df9003f34132e9c8668fc6"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+      "git_blob": "f0f406d03798ef2d2a7a7d937c0366bcfc0b9202",
+      "bytes": 5364,
+      "sha256": "691d6ecaa8554b28668f01ebd32902a31f2217de01a5fe5247d4b9ac1fc23717"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+      "git_blob": "9ce398a71b0136309b0bbdd05178a697f5238600",
+      "bytes": 3383,
+      "sha256": "51a99d5d19a566e7165cd52ce45694fefc64bfbc9ff4d1f2c48645f7c57b8374"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+      "git_blob": "983a8fba0f1d8db61d9ffb342675f68bcb674914",
+      "bytes": 3347,
+      "sha256": "88a25fdf5dcdaebecc509918b6e1f8380bc230383b25fbf1f42c3ab78adcf2f8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr.json",
+      "git_blob": "30f2ec296f28f11083a573a713315b2504782940",
+      "bytes": 19640,
+      "sha256": "27063254a1d5afd5f3d2761c165736986226636bd1712892d6d760c963ce815d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1.png",
+      "git_blob": "5a72b00ad209355f5de24816e374e42103751f2c",
+      "bytes": 769329,
+      "sha256": "04263acffae479dbb9f2d4238fa5a641388656b45ed6742411438f6aeb59c3ca"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "e873e27a4710f4f2d4303e8971a25b31152a78ab",
+      "bytes": 6459,
+      "sha256": "a2f7cf5ce3f0386e678078ce0d0acb5effdc13a3d3747625fcb08c0b17e4493e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "2ea6ca5598e96613e4ce8f02f9a277dc01520793",
+      "bytes": 3247,
+      "sha256": "0ee3c5fb05aa214599f1a8ad24486e20535202259777269b1880628e47891ed0"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "d979c4943d291aa77cc08549d923b4b00786a54f",
+      "bytes": 2504,
+      "sha256": "f38d49916292aefe2a3d1988127ecdc3c998090366a80afea0ae081d402e808a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "18f6a899e95353c47ccf0b9839f41953e5c3b53b",
+      "bytes": 3774,
+      "sha256": "6863367eb3d2e3c9f3fde416793cc1864c9ea7556fe39b2d3dc7a24e3af8a410"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "d0798d35007ff5367d9464dc89225ddfabedec7a",
+      "bytes": 5396,
+      "sha256": "bb40d564bcb51fda10ff3c1c82a1eeb738ecbaf3669946c05e31308eb6796976"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "fe3a29d96b6b6c63c80b4ebd13a478694ca8c45d",
+      "bytes": 3460,
+      "sha256": "7313c5e15c1ed2619889a3edc47354da896d39d8ad2646cfc7c893ab960dbd58"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "7b8191d88c591c3a6c5004342cae4c7d17343dbc",
+      "bytes": 3568,
+      "sha256": "628807f5d882e060f192c9b9bee0e2f52f9e1c4317e5b44a183e2f020d4561c9"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "59b3c937f0292a1aa4a78ec0b7c8d1ec26298c5b",
+      "bytes": 20942,
+      "sha256": "a35786b91d34cc190ea4f397b2d7f6e2a330fd39a83698899a577bcf0d053c93"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2.png",
+      "git_blob": "eb6b3651f6e1013b82cb759781550c38b79e4493",
+      "bytes": 760982,
+      "sha256": "b3ce33bfffbca15d696adada0045f8edd52ff2db30c85f0b4f20fac084f3627f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "18aaf388f90d20043fe9e715637aa425736c3ea3",
+      "bytes": 3841,
+      "sha256": "1dbea82afb7e57c2ee80b34aa0fba5bb7f58c37fc9df39a109c6a9b2a58e8057"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "c783718ec55bbb43bf35fce9567e1cb22e800015",
+      "bytes": 22111,
+      "sha256": "6138480ca5d08eed03917918641dc66b85dc3cb2c835ec57b51dbb9a0574cc33"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0.png",
+      "git_blob": "c52ea1af7b3e177f5e187ffa287164d38ec465b9",
+      "bytes": 790695,
+      "sha256": "59a150123c6c06ef63c078230ca51dcf09bc6c74d6fb08b2386ce02380d4772c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "977cbeaeafc73f20e7da8ba77e03c542cfdf75f7",
+      "bytes": 5014,
+      "sha256": "50e39063fbf0b94b94e7ff6a0bc7175d89cee20f3566b69e457ff1335b9606d3"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "ac54992d61917291b0eb7542799ce61e15bbc2e9",
+      "bytes": 2502,
+      "sha256": "1b947a31e2c8ba8b42828b2c77f18bb65ca640453f3682d01b3e1c16b51407a8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "bab0f2f4cb226f3a9aa6062e45447524c3f2994b",
+      "bytes": 4156,
+      "sha256": "add2cf19c1dfaca6fc0ab11875df56dfc0559caebbd18a866f4a3c848dd5e199"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "1d62d918dfbebb35d9f9549b33400201e25d3ee6",
+      "bytes": 4794,
+      "sha256": "23af4eb6e08d9e9666633e2bec70ec641b692efa5a2a0bf870f9136d46b9409f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "7ea4c2c1821623a84bff2443ea5987ba673ee085",
+      "bytes": 6552,
+      "sha256": "751383c2c156608ac81b7fa507d5a68bc4180e614db1cfa3237b46ae070e4849"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "7416b5452293e5664ea2c8a2d1714fc81072b9fe",
+      "bytes": 2974,
+      "sha256": "a6ca440b761dda8d31dba3592496adc6e355c572b0e8d480196988f6c3bab81d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "df99f3456b8de4e939b09fd2f84dd2dbac20c2a2",
+      "bytes": 2972,
+      "sha256": "7062e17daaf890122f81a4bea7a5055ced14c4478126b5b43ae3b0d5a43b0bee"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "c204245477c52956f864ebafccc41fd2cb445bda",
+      "bytes": 21249,
+      "sha256": "926590e14d10afc157be939593ebc2fbc38b6c587cf7cd7d59453433161f26eb"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+      "git_blob": "928e78cac6aa289fac70f4fdc318cc1e8d908436",
+      "bytes": 787362,
+      "sha256": "06b0a39e612271df34b4a8522ba609234ad4890b3dda7b7de4a16d33d6ac355c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "58a2ee61e1936b3d6d661fce57f8fd451ea661ab",
+      "bytes": 3842,
+      "sha256": "8fd5ce1630d0b63e4711d7f95fd61fbcae70599da3e8e1344567703ea2b00424"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/provenance.json",
+      "git_blob": "9a1e0b10ed23daa546b9fe183dcbceb5234713f3",
+      "bytes": 3992,
+      "sha256": "04a79233773209b939dd13edd0be78cb9a03b4211f7aceba9484650a6015c7af"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "git_blob": "b727e447caf8da1e0f0619b32bc0960e918b5226",
+      "bytes": 30297,
+      "sha256": "33493dd6df5ad0c5b3ae2c52766f40007dca052ba0fad973bac3068742b98df2"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_observed_scroll.py",
+      "git_blob": "0efb0928d1c8575dc6134165f2f30182fcd5aa49",
+      "bytes": 10121,
+      "sha256": "9ac21f079f229f300b610515a3b35fe153be72505a7af5b20cdb8091c01a9c45"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "git_blob": "ced952881090f4c76e1c4229bf3669b75e31a41d",
+      "bytes": 15159,
+      "sha256": "f661323a267d62106beb18ff0c49373309f3a5faa00ef55a75eda649dea7920f"
+    }
+  ],
+  "all_git_blobs_exact": true,
+  "workflow_delta": "Exactly two added required unittest module lines; all existing four modules retained.",
+  "historical_sources_unchanged": true
+}
