@@ -9,3 +9,9 @@ The [complete independent evidence](https://github.com/Ullmann27/lumo-godot/tree
 Only the current unreleased 2020 native identity is updated. All historical identities remain unchanged; a new negative case rejects the previous 2020 source. The existing full native workflow gains a mandatory bounded execution of the original 21-check regression, with fresh separate user-data/config/cache paths, exact PASS marker and engine-error rejection. Existing project/legacy/2014/technical-art/action-stage/52-mode commands, original artifact preservation, APK, actual Android and update gates remain unchanged.
 
 Host policy/workflow contract verification is pending on this committed checkpoint. It still requires its own complete Flutter, native, APK, Android and update acceptance before delivery. The successful native overall step in the ongoing run43578509499 belongs exclusively to host803a/native0e261.
+
+## Initial host integration verification and narrow correction
+
+On committed source `1f7b5d2bbbd63690f6511432fa893e8876818eb8`, 119 targeted policy/workflow/delivery tests ran. Exactly one strict workflow-preservation comparison failed because the new command had been inserted into the historical native-step body. Actionlint and Bash syntax passed. The original failing log and result are retained in `initial-contracts/`.
+
+The correction restores that entire historical step body byte-for-byte and adds a separately named mandatory step immediately afterward. Delivery metadata now explicitly requires that new step to have succeeded. The new step binds the checked-out native SHA, rejects tracked source changes, uses separate user-data/config/cache directories, requires one exact 21-check PASS marker and rejects engine/script/parse errors. No existing preservation assertion is removed or weakened. Verification of this corrected source follows on its own committed checkpoint.

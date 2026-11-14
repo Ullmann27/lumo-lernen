@@ -64,6 +64,7 @@ REQUIRED_STEPS = {
         'Verify all build and preservation contracts',
         'Code-level Android probe regression with verified image dependencies',
         'Require actual gameplay gates on the exact pinned native source',
+        'Require acknowledged Connect Four return retry',
         'Build unified real Android APK',
         'Verify APK archive and collect reproducible source hashes',
         'Upload exact candidate (no release or synthetic screenshots)',
