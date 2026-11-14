@@ -1,0 +1,227 @@
+{
+  "schema": 1,
+  "status": "FAILED_IN_EARLY_EXISTING_FOCUS_GROUP",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "host_tree": "380c3e4b864a1b5fb9bc396541758defa5012630",
+  "parent_host_sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "run_id": 43633267932,
+  "run_attempt": 1,
+  "job_id": 132564402577,
+  "job_name": "flutter-contracts",
+  "job_status": "completed",
+  "job_conclusion": "failure",
+  "completed_at": "2026-11-14T19:41:01Z",
+  "status_source": "metadata/jobs-1941-original.json (original REST attempt-1 jobs, not console PASS strings)",
+  "analyzer": {
+    "step": 6,
+    "status": "success",
+    "errors": 0,
+    "warnings": 5,
+    "infos": 236,
+    "total": 241,
+    "reported_seconds": 17.7,
+    "previous_e2db_errors": "Both prior undefined_method errors are absent from the current original; the commit changes only the two guarded Memory casts."
+  },
+  "failed_step": {
+    "number": 7,
+    "name": "Recheck durable wallet queues across caller zones and actual Memory profiles",
+    "status": "failure",
+    "exit_code": 1,
+    "original_exit_log_line": 980,
+    "console_focus_summary": {
+      "passed": 23,
+      "failed": 7,
+      "skipped": null,
+      "original_log_line": 972,
+      "scope": "Only the three existing focus test files, expanded console reporter. This is not the complete Flutter suite or a testStart/testDone machine-stream count."
+    }
+  },
+  "failures": [
+    {
+      "file": "test/reward_wallet_queue_zone_test.dart",
+      "name": "A failed durable write releases its zone and the exact reward can retry",
+      "original_job_log_line": 650,
+      "source_assertion_line": 219,
+      "expected_writes": 2,
+      "observed_writes": 3,
+      "observed_failure": "Final write-count assertion after duplicate-result replay; extra map is identical to the already confirmed wallet.",
+      "static_cause": "The explicitly added duplicate ACK barrier performs one additional positive _persist(current). Existing earlier zone/order/balance assertions are before this failed assertion.",
+      "recommended_scope": "Test-only: preserve existing prefix/order/balance checks and assert the extra complete identical confirmation snapshot and no extra emission; no product rollback."
+    },
+    {
+      "file": "test/reward_wallet_queue_zone_test.dart",
+      "name": "An older completion cannot release a younger pending durable write",
+      "original_job_log_line": 691,
+      "source_assertion_line": 293,
+      "expected_writes": 3,
+      "observed_writes": 4,
+      "observed_failure": "Final write-count assertion after duplicate-result replay; extra map is identical to the already confirmed wallet.",
+      "static_cause": "The explicitly added duplicate ACK barrier performs one additional positive _persist(current). Existing earlier zone/order/balance assertions are before this failed assertion.",
+      "recommended_scope": "Test-only: preserve existing prefix/order/balance checks and assert the extra complete identical confirmation snapshot and no extra emission; no product rollback."
+    },
+    {
+      "file": "test/reward_wallet_transaction_test.dart",
+      "name": "Failed game write (_Outcome.falseResult) preserves concurrent learning and allows replay",
+      "original_job_log_line": 747,
+      "source_assertion_line": 209,
+      "expected_writes": 4,
+      "observed_writes": 5,
+      "observed_failure": "Final write-count assertion after duplicate-result replay; last two maps both retain stars 9, XP 25 and one race-1 ID.",
+      "static_cause": "The explicitly added duplicate ACK barrier performs one additional positive _persist(current).",
+      "recommended_scope": "Test-only: retain false/exception and concurrent-learning assertions; verify the additional identical positive confirmation without extra reward or emission."
+    },
+    {
+      "file": "test/reward_wallet_transaction_test.dart",
+      "name": "Failed game write (_Outcome.exception) preserves concurrent learning and allows replay",
+      "original_job_log_line": 808,
+      "source_assertion_line": 209,
+      "expected_writes": 4,
+      "observed_writes": 5,
+      "observed_failure": "Final write-count assertion after duplicate-result replay; last two maps both retain stars 9, XP 25 and one race-1 ID.",
+      "static_cause": "The explicitly added duplicate ACK barrier performs one additional positive _persist(current).",
+      "recommended_scope": "Test-only: retain false/exception and concurrent-learning assertions; verify the additional identical positive confirmation without extra reward or emission."
+    },
+    {
+      "file": "test/games/memory_profile_storage_test.dart",
+      "name": "Delayed old-child write cannot overwrite the newly selected child",
+      "original_job_log_line": 913,
+      "source_assertion_line": 175,
+      "observed_failure": "Expected one stats write, saw two: identical loaded leicht/best7 confirmation and then profi/best7.",
+      "recommended_scope": "Handed to the Memory owner for source/fixture diagnosis; no cause or correction inferred from the missing finder alone."
+    },
+    {
+      "file": "test/games/memory_profile_storage_test.dart",
+      "name": "Pending successive choices retain captured snapshots and final order",
+      "original_job_log_line": 941,
+      "source_assertion_line": 233,
+      "observed_failure": "No widget for memory-diff-mittel at actual tap.",
+      "recommended_scope": "Handed to the Memory owner for source/fixture diagnosis; no cause or correction inferred from the missing finder alone."
+    },
+    {
+      "file": "test/games/memory_profile_storage_test.dart",
+      "name": "Unreadable existing child stats are preserved instead of reset",
+      "original_job_log_line": 968,
+      "source_assertion_line": 254,
+      "observed_failure": "No widget for memory-diff-leicht at actual tap.",
+      "recommended_scope": "Handed to the Memory owner for source/fixture diagnosis; no cause or correction inferred from the missing finder alone."
+    }
+  ],
+  "not_executed_steps": [
+    {
+      "number": 8,
+      "name": "Run actual Dart learning and table authorities",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 9,
+      "name": "Recheck the observed Quiz UI and reward failures",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 10,
+      "name": "Recheck actual Memory UI and unchanged profile/statistics behavior",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 11,
+      "name": "Run the complete Flutter suite and every enabled capture",
+      "conclusion": "skipped"
+    },
+    {
+      "number": 12,
+      "name": "Verify tracked source remains exact",
+      "conclusion": "skipped"
+    }
+  ],
+  "new_test_scope": [
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "expected_cases": 25,
+      "status": "NOT_RUN",
+      "observed_testStart_events": null,
+      "observed_testDone_events": null
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "expected_cases": 14,
+      "status": "NOT_RUN",
+      "observed_testStart_events": null,
+      "observed_testDone_events": null
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "expected_cases": 6,
+      "status": "NOT_RUN",
+      "observed_testStart_events": null,
+      "observed_testDone_events": null
+    }
+  ],
+  "new_cases_total": 45,
+  "full_suite_summary": {
+    "passed": null,
+    "failed": null,
+    "skipped": null,
+    "reason": "Full suite step 11 skipped after focus-group failure. No machine stream or acceptance-summary exists in the complete four-file failure artifact."
+  },
+  "original_log": {
+    "path": "original-flutter-job.log",
+    "bytes": 121892,
+    "sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+    "git_blob_sha": "eec03570b1215ea2e479fc37a6753c2e16245b0c",
+    "lines": 1030,
+    "fetch_count": 1,
+    "scope": "Complete once-fetched decoded UTF-8 job log, original BOM retained."
+  },
+  "artifact": {
+    "schema": 1,
+    "run_id": 43633267932,
+    "job_id": 132564402577,
+    "head_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "artifact_id": 14128997674,
+    "archive": {
+      "bytes": 7443,
+      "sha256": "874d49ace00e066c12e45c328c57e94a8fcc58b774b7f0d7a7bb44e8d597aa92",
+      "all_file_members_fully_read_crc_validated": true
+    },
+    "entries": [
+      {
+        "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+        "bytes": 41,
+        "sha256": "27679d136ba5b6ac231d406783c56b1ad5885aebda6f3cfff113bd83d5a75376",
+        "crc32": "6bec123d",
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/HOST-SOURCE.txt"
+      },
+      {
+        "artifact_entry": "feature-evidence/flutter-version.txt",
+        "bytes": 321,
+        "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+        "crc32": "ef6cb86f",
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/flutter-version.txt"
+      },
+      {
+        "artifact_entry": "feature-evidence/flutter-analyze.log",
+        "bytes": 52328,
+        "sha256": "1a24e3e1f653318489065ff1bfde6ef6bcad33dab4727c8b9a0eca068835b7f2",
+        "crc32": "d08c0603",
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/flutter-analyze.log"
+      },
+      {
+        "artifact_entry": "feature-evidence/wallet-zone-profile-regression.log",
+        "bytes": 19279,
+        "sha256": "7da11aa3d96c7b269e72c8b77df8dc3102ee44a853f1cc20987b72af6a6ec0b9",
+        "crc32": "86907d45",
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/wallet-zone-profile-regression.log"
+      }
+    ]
+  },
+  "source_binding_file": "diagnosis-source-bindings.json",
+  "limits": [
+    "No local Flutter/Dart execution or dependency installation.",
+    "No source or workflow change, rerun, tree, commit or ref mutation.",
+    "The 45 new tests and older ASR10/Memory14 are not reported as passed by this failed run.",
+    "Previous e2db negative evidence and previous 28462 full-suite evidence remain separate and unchanged.",
+    "Analyzer success does not establish runtime durability or Android success.",
+    "No claims about other jobs beyond their saved metadata snapshot; Root owns those jobs."
+  ]
+}

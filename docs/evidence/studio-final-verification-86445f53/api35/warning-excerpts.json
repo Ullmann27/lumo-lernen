@@ -1,0 +1,82 @@
+{
+  "scope": "Original excerpts, not a claim of warning-free Android logs",
+  "original_log": {
+    "bytes": 2006518,
+    "sha256": "775f6fa0c005f37051241d7b6f7f5d5fa0aa831d9c9eedf70f5bb8074dda49cc",
+    "git_blob": "3cd3c1b589c0106fe2a31292270c3f590afe23bb"
+  },
+  "lines": [
+    {
+      "line": 190,
+      "text": "2026-11-14T04:01:58.1514811Z (node:2256) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 196,
+      "text": "2026-11-14T04:01:58.6396155Z (node:2256) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+    },
+    {
+      "line": 461,
+      "text": "2026-11-14T04:02:40.7653730Z /home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py:100: SyntaxWarning: invalid escape sequence '\\('"
+    },
+    {
+      "line": 700,
+      "text": "2026-11-14T04:03:58.7791874Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 702,
+      "text": "2026-11-14T04:03:58.7792776Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 705,
+      "text": "2026-11-14T04:03:58.7794004Z WARNING      | Could not detect GPU properly for Vulkan emulation. Please try updating your GPU Drivers."
+    },
+    {
+      "line": 713,
+      "text": "2026-11-14T04:03:58.7797730Z ERROR        | Unable to connect to adb daemon on port: 5037"
+    },
+    {
+      "line": 723,
+      "text": "2026-11-14T04:03:58.7820893Z WARNING      | Could not open libX11.so, try libX11.so.6"
+    },
+    {
+      "line": 734,
+      "text": "2026-11-14T04:03:58.7826003Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1"
+    },
+    {
+      "line": 838,
+      "text": "2026-11-14T04:03:58.9769492Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 839,
+      "text": "2026-11-14T04:03:59.0634520Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 1238,
+      "text": "2026-11-14T04:04:45.1339971Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell settings put system accelerometer_rotation 1 ' failed: 'adb: no emulators found'"
+    },
+    {
+      "line": 10480,
+      "text": "2026-11-14T04:25:14.7411316Z WARNING      | Not saving state: RAM not mapped as shared"
+    },
+    {
+      "line": 10482,
+      "text": "2026-11-14T04:25:15.3678986Z ERROR        | stop: Not implemented"
+    },
+    {
+      "line": 10483,
+      "text": "2026-11-14T04:25:15.3679406Z WARNING      | Emulator client has not yet been configured.. Call configure me first!"
+    },
+    {
+      "line": 10496,
+      "text": "2026-11-14T04:25:16.0998114Z (node:5814) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 10502,
+      "text": "2026-11-14T04:25:16.6359547Z (node:5814) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 10542,
+      "text": "2026-11-14T04:25:21.4692334Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ]
+}

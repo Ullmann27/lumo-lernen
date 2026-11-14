@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14 17:19:18 UTC",
+  "run_id": 43619285124,
+  "job_id": 132521067548,
+  "artifact_id": 14123817299,
+  "artifact_name": "lumo-studio-2020-nextgen-authority-memory",
+  "source": "Successful local standard-library download, full ZIP testzip and Pillow load output read before environment outage.",
+  "bytes": 3943940,
+  "sha256": "ea977121218cc945f3ddb1fe09bff81109d0ecbfaa45b7c955ed849194ffcc8a",
+  "all_members_crc_checked": 73,
+  "crc_failures": 0,
+  "full_png_decodes": 28,
+  "download_count": 1,
+  "signed_url_persisted": false,
+  "archive_or_png_blobs_uploaded_in_this_package": false,
+  "original_local_directory": "/workspace/scratch/5987865ae883/qa/studio-b721-memory-authority-20261114/",
+  "full_inventory_location": "verified-original-extraction.json (written before outage; not read back into Functions)",
+  "claim_limit": "This summary preserves completed checks; it does not claim the later interrupted original-results-verification.json was created."
+}

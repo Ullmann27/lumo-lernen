@@ -1,0 +1,237 @@
+test_blank_left_edge_is_rejected_without_assuming_a_right_only_failure (test_native_surface_readiness.NativeSurfaceReadinessTests.test_blank_left_edge_is_rejected_without_assuming_a_right_only_failure) ... ok
+test_capture_exhaustion_fails_without_target_read_or_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_capture_exhaustion_fails_without_target_read_or_touch) ... ERROR
+test_exact_fullrace_press_ignores_substring_before_two_current_exact_observations (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_fullrace_press_ignores_substring_before_two_current_exact_observations) ... ERROR
+test_exact_ocr_continues_to_next_actual_tsv_variant_while_default_keeps_substring (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_ocr_continues_to_next_actual_tsv_variant_while_default_keeps_substring) ... ERROR
+test_exact_ocr_reaches_tile_fallback_when_all_actual_variants_only_have_prefix (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_ocr_reaches_tile_fallback_when_all_actual_variants_only_have_prefix) ... ERROR
+test_flutter_return_waits_for_real_component_and_exact_current_frame (test_native_surface_readiness.NativeSurfaceReadinessTests.test_flutter_return_waits_for_real_component_and_exact_current_frame) ... ERROR
+test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds (test_native_surface_readiness.NativeSurfaceReadinessTests.test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds) ... ERROR
+test_incomplete_capture_retries_share_elapsed_budget_and_preserve_original_png (test_native_surface_readiness.NativeSurfaceReadinessTests.test_incomplete_capture_retries_share_elapsed_budget_and_preserve_original_png) ... ERROR
+test_invalid_or_offscreen_bounds_never_generate_a_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_invalid_or_offscreen_bounds_never_generate_a_touch) ... ok
+test_native_or_launcher_foreground_cannot_be_return_evidence (test_native_surface_readiness.NativeSurfaceReadinessTests.test_native_or_launcher_foreground_cannot_be_return_evidence) ... ERROR
+test_navy_read_keeps_original_frame_and_requires_observed_exact_word (test_native_surface_readiness.NativeSurfaceReadinessTests.test_navy_read_keeps_original_frame_and_requires_observed_exact_word) ... ERROR
+test_no_black_band_is_not_enough_to_accept_a_source_inconsistent_target (test_native_surface_readiness.NativeSurfaceReadinessTests.test_no_black_band_is_not_enough_to_accept_a_source_inconsistent_target) ... ok
+test_only_substring_captions_cannot_authorize_an_exact_fullrace_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_only_substring_captions_cannot_authorize_an_exact_fullrace_touch) ... ERROR
+test_persistently_partial_surface_times_out_without_ocr_or_any_tap (test_native_surface_readiness.NativeSurfaceReadinessTests.test_persistently_partial_surface_times_out_without_ocr_or_any_tap) ... ERROR
+test_portrait_or_blank_frame_cannot_authorize_a_landscape_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_portrait_or_blank_frame_cannot_authorize_a_landscape_touch) ... ok
+test_quoted_glyph_does_not_merge_tsv_rows (test_native_surface_readiness.NativeSurfaceReadinessTests.test_quoted_glyph_does_not_merge_tsv_rows) ... ERROR
+test_real_world_dark_regions_and_system_bars_are_not_blank_edge_bands (test_native_surface_readiness.NativeSurfaceReadinessTests.test_real_world_dark_regions_and_system_bars_are_not_blank_edge_bands) ... ok
+test_resize_or_moving_target_requires_a_new_stable_pair (test_native_surface_readiness.NativeSurfaceReadinessTests.test_resize_or_moving_target_requires_a_new_stable_pair) ... ok
+test_resumed_flutter_with_stale_pause_frame_cannot_pass_return (test_native_surface_readiness.NativeSurfaceReadinessTests.test_resumed_flutter_with_stale_pause_frame_cannot_pass_return) ... ERROR
+test_treasure_and_puzzle_observed_final_targets_require_two_stable_frames (test_native_surface_readiness.NativeSurfaceReadinessTests.test_treasure_and_puzzle_observed_final_targets_require_two_stable_frames) ... ok
+test_two_identical_original_shape_frames_remain_partial_not_settled (test_native_surface_readiness.NativeSurfaceReadinessTests.test_two_identical_original_shape_frames_remain_partial_not_settled) ... ok
+test_unscaled_navy_read_keeps_captured_pixel_bounds (test_native_surface_readiness.NativeSurfaceReadinessTests.test_unscaled_navy_read_keeps_captured_pixel_bounds) ... ERROR
+
+======================================================================
+ERROR: test_capture_exhaustion_fails_without_target_read_or_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_capture_exhaustion_fails_without_target_read_or_touch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 236, in test_capture_exhaustion_fails_without_target_read_or_touch
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_exact_fullrace_press_ignores_substring_before_two_current_exact_observations (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_fullrace_press_ignores_substring_before_two_current_exact_observations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 255, in test_exact_fullrace_press_ignores_substring_before_two_current_exact_observations
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_exact_ocr_continues_to_next_actual_tsv_variant_while_default_keeps_substring (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_ocr_continues_to_next_actual_tsv_variant_while_default_keeps_substring)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 298, in test_exact_ocr_continues_to_next_actual_tsv_variant_while_default_keeps_substring
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_exact_ocr_reaches_tile_fallback_when_all_actual_variants_only_have_prefix (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_ocr_reaches_tile_fallback_when_all_actual_variants_only_have_prefix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 320, in test_exact_ocr_reaches_tile_fallback_when_all_actual_variants_only_have_prefix
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_flutter_return_waits_for_real_component_and_exact_current_frame (test_native_surface_readiness.NativeSurfaceReadinessTests.test_flutter_return_waits_for_real_component_and_exact_current_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 111, in test_flutter_return_waits_for_real_component_and_exact_current_frame
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds (test_native_surface_readiness.NativeSurfaceReadinessTests.test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 161, in test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_incomplete_capture_retries_share_elapsed_budget_and_preserve_original_png (test_native_surface_readiness.NativeSurfaceReadinessTests.test_incomplete_capture_retries_share_elapsed_budget_and_preserve_original_png)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 218, in test_incomplete_capture_retries_share_elapsed_budget_and_preserve_original_png
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_native_or_launcher_foreground_cannot_be_return_evidence (test_native_surface_readiness.NativeSurfaceReadinessTests.test_native_or_launcher_foreground_cannot_be_return_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 137, in test_native_or_launcher_foreground_cannot_be_return_evidence
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_navy_read_keeps_original_frame_and_requires_observed_exact_word (test_native_surface_readiness.NativeSurfaceReadinessTests.test_navy_read_keeps_original_frame_and_requires_observed_exact_word)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 381, in test_navy_read_keeps_original_frame_and_requires_observed_exact_word
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_only_substring_captions_cannot_authorize_an_exact_fullrace_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_only_substring_captions_cannot_authorize_an_exact_fullrace_touch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 279, in test_only_substring_captions_cannot_authorize_an_exact_fullrace_touch
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_persistently_partial_surface_times_out_without_ocr_or_any_tap (test_native_surface_readiness.NativeSurfaceReadinessTests.test_persistently_partial_surface_times_out_without_ocr_or_any_tap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 193, in test_persistently_partial_surface_times_out_without_ocr_or_any_tap
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_quoted_glyph_does_not_merge_tsv_rows (test_native_surface_readiness.NativeSurfaceReadinessTests.test_quoted_glyph_does_not_merge_tsv_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 363, in test_quoted_glyph_does_not_merge_tsv_rows
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_resumed_flutter_with_stale_pause_frame_cannot_pass_return (test_native_surface_readiness.NativeSurfaceReadinessTests.test_resumed_flutter_with_stale_pause_frame_cannot_pass_return)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 151, in test_resumed_flutter_with_stale_pause_frame_cannot_pass_return
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+======================================================================
+ERROR: test_unscaled_navy_read_keeps_captured_pixel_bounds (test_native_surface_readiness.NativeSurfaceReadinessTests.test_unscaled_navy_read_keeps_captured_pixel_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 340, in test_unscaled_navy_read_keeps_captured_pixel_bounds
+    probe = self.load_probe()
+            ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_native_surface_readiness.py", line 107, in load_probe
+    spec.loader.exec_module(probe)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 28, in <module>
+    from flutter_surface_readiness import capture_when_ready
+ModuleNotFoundError: No module named 'flutter_surface_readiness'
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.229s
+
+FAILED (errors=14)

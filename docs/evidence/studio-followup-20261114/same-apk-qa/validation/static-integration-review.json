@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-11-14T02:25:04.149485+00:00",
+  "published_qa_basis": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "workflow": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+  "workflow_sha256": "6db11aba49cf3dc7322ce756ac245952a5b1f7cdbe54f9e952743ab08e0ef9c3",
+  "android_job_equal_except_name_and_artifact_label": true,
+  "permissions_and_concurrency_unchanged": true,
+  "pre_android_cards_contract_step": "set -euo pipefail\n.ocr-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_native_caption_ocr.py -v 2>&1 | tee ocr-regression/original-caption-replay.log\n.ocr-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_cards_layout_readiness.py -v 2>&1 | tee ocr-regression/cards-layout-readiness.log\n.ocr-venv/bin/python -B -m unittest discover -s scripts/tests -p test_studio_4ab_recheck.py -v 2>&1 | tee ocr-regression/source-binding-counterexamples.log\n",
+  "unchanged_binder_definitions": [
+    "require",
+    "read_json",
+    "sha256",
+    "file_record",
+    "write_json",
+    "git",
+    "working_blob",
+    "source_checkout",
+    "verify_metadata",
+    "verify_apk",
+    "verify_runtime_reports",
+    "collect_binding",
+    "execute",
+    "main"
+  ],
+  "changed_binder_definitions": [
+    "Expected",
+    "git_tree",
+    "verify_sources",
+    "run_tours"
+  ],
+  "bash_checks": [
+    {
+      "job": "ocr-regression",
+      "step": "Install the actual OCR language readers",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "ocr-regression",
+      "step": "Replay exact original image bytes, Cards readiness and identity counterexamples",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Verify framework guard before the Android 17 emulator",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Live UI reader",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Enable accelerated disposable emulator",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Software display",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Verify the Android 17 CLI22 source and AVD counterexamples",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Bind the Android 17 guard to separate QA and unchanged APK sources",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Preserve actual Android 17 generated hardware and disk configuration",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "job": "android-recheck",
+      "step": "Preserve Android 17 startup diagnostics even after action failure",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "actionlint": {
+    "version": "1.7.12",
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+      "-shellcheck=",
+      "-oneline",
+      ".github/workflows/lumo-studio-4ab-ocr-recheck.yml"
+    ],
+    "exit_code": 0,
+    "stdout_stderr": "",
+    "observed_prior_tool_call": true,
+    "shellcheck_executed": false
+  },
+  "no_android_execution": true,
+  "surface_reader_changed_definitions": [
+    "read_cards_layout"
+  ],
+  "surface_reader_unchanged_definitions": [
+    "wait_for",
+    "must_see",
+    "tap_flutter",
+    "native_ready",
+    "resumed_activity",
+    "capture_returned_flutter",
+    "returned_to_flutter",
+    "local_voice_permission",
+    "_speech_logcat",
+    "completed_native_speech",
+    "learning_roundtrip",
+    "CardsMailbox",
+    "cards_ready_to_draw",
+    "cards_display_density",
+    "capture_cards_faces",
+    "cards_roundtrip",
+    "main"
+  ],
+  "original_4ab_and_a446_tour_and_pixel_dependencies_equal": true
+}

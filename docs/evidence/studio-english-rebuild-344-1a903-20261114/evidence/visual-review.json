@@ -1,0 +1,203 @@
+{
+  "schema": 1,
+  "status": "10actual local rendered PNGs individually opened; no remaining blocker in reviewed scope",
+  "native_base": "34421df83566dd4773420cc2a225887956459435",
+  "source_sha256": {
+    "scripts/learning/english_object_gallery.gd": "4c6268517ae47fc9075bc4824e4aae1b2044190a1971fd8ca32b06662bf3cb55",
+    "scripts/learning/english_vocabulary.gd": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+    "scripts/learning/learning_activity.gd": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+    "scripts/learning/learning_world.gd": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e",
+    "scripts/tests/learning_english_regression.gd": "00c2a1756562db1c49fdad8ff6944b14065f204ad7e831d98cd2ea41ac31badf"
+  },
+  "report_sha256": "4b3dedb0a4b7100d387c500548c1be7b9dccc3a80346ef5197f6655e9e15c5da",
+  "images": [
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-start.png",
+      "name": "english-ball-960x540-start.png",
+      "bytes": 170576,
+      "sha256": "87f2a1fecc1c187ad1a184b9aa098108745ceeceed86464214999b009d7a5387",
+      "git_blob": "bd6c86b76856531368abf1d13d1c3584c6ce83b8",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Wort ball vollständig sichtbar; Buch, Ball und Auto unterscheidbar mit Zahlen1–3.",
+        "Original-Lumo vollständig außerhalb des Headers und der unteren Aktionen; alle sieben Aktionen sichtbar."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-hint.png",
+      "name": "english-ball-960x540-hint.png",
+      "bytes": 171401,
+      "sha256": "4a7796e4d9d4294aec0043781f376307b88c24f6aef2c5a93e1a00d1458f200a",
+      "git_blob": "0a27d730da6b616557c69de4120670191abbfbf7",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Zweiter Hinweis benennt keine Antwortschaltfläche, sondern fordert eigene Auswahl.",
+        "Heller Ring um den Ball-Podest ist sichtbar; keine falsche Umrandung der beiden anderen Gegenstände."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-complete.png",
+      "name": "english-ball-960x540-complete.png",
+      "bytes": 171007,
+      "sha256": "5a93fd3e78c22f6d386d7f6106184a52e7225d2442a076391677d3cbafaa162b",
+      "git_blob": "8aae9d586dcfa83a4b22ef43a1d2fcdab662a724",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Sichtbare Zuordnung ball = Ball und deutscher Rückkehrhinweis.",
+        "Auswahl/Hinweis inaktiv, Neu/Sprachaktion/Zur Aufgabe weiterhin sichtbar."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-book-412x915-start.png",
+      "name": "english-book-412x915-start.png",
+      "bytes": 118909,
+      "sha256": "754f945be12243e3043e3dbd9d333a1949b1eb6c6f7e41db957d2415845d3a1c",
+      "git_blob": "f66cbb23b9992b13ed111d79d99edc54ae640a56",
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Hochformat: Lineal, Stift und Buch bleiben getrennt und nummeriert; Wort book und vollständiger Auftrag lesbar.",
+        "Original-Lumo links vollständig sichtbar, zwei Reihen mit sämtlichen Aktionen innerhalb des Fensters."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-book-412x915-complete.png",
+      "name": "english-book-412x915-complete.png",
+      "bytes": 117153,
+      "sha256": "0f36483f46b731ee068652dcff086bbf489525911bb2e8bba3802c7624dfeed6",
+      "git_blob": "f1d78bccd71334ab91c669e6831723baee4aecf8",
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Sichtbare Zuordnung book = Buch mit Ring nur am Buch; Rückkehrtext bricht vollständig auf zwei Zeilen um.",
+        "Keine Gegenstandsüberlagerung; die aktiven Rückkehr-/Neustartaktionen bleiben erreichbar."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ruler-640x360-start.png",
+      "name": "english-ruler-640x360-start.png",
+      "bytes": 95991,
+      "sha256": "3e7ae87a84eb31ea6df347c9d48b435551609fc6e8efd450bce706173dc9a537",
+      "git_blob": "49cbdfb3cd470fb7c16908834a192903fa9678be",
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Vorheriger Miniaturstreifen behoben: Lineal, Apfel und Sonnenmodell erkennbar; Original-Lumo vollständig sichtbar.",
+        "Einzeilige kompakte Bedienung mit1/2/3,Hinweis,Neu,Anhören,Zur Aufgabe; Wort ruler und vollständiger Auftrag sichtbar."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-car-2400x1080-start.png",
+      "name": "english-car-2400x1080-start.png",
+      "bytes": 659508,
+      "sha256": "2b7d5ddd9114a3b1ac0630fe3dcd43995510d558c1c63978b337c3c69b628dca",
+      "git_blob": "30dde8496cd8767f5c7828ffe01e78f6f6c692ac",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Querformat mit ausdrücklich simuliertem linken136px-/unteren63px-Inset: Header und Aktionen liegen innerhalb der vorgesehenen Hülle.",
+        "Wort car; Sonnenmodell, vierrädriges Auto und markiertes Lineal unterscheidbar; Lumo frei."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-pen-1080x2400-start.png",
+      "name": "english-pen-1080x2400-start.png",
+      "bytes": 611735,
+      "sha256": "27b92f58f12de1a39cfc6cafa385687d917a5d1908cd0a616733bc2297a8820e",
+      "git_blob": "42d306080f05df467d634188bb93179f4e5136ff",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Hochformat mit ausdrücklich simuliertem oberen136px-/unteren63px-Inset: Stift, Buch und Apfel getrennt.",
+        "Wort pen und Anleitung sichtbar; sämtliche Aktionen, Kopf und Füße von Lumo frei."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-sun-960x540-start.png",
+      "name": "english-sun-960x540-start.png",
+      "bytes": 167603,
+      "sha256": "6dc958cf51ffa2cdb68d12bd4db7286a5dbba3139d4d011afbfb9e6ef1bd1250",
+      "git_blob": "ad575dd8e0c0f3dcc25879f99567a266fbd109e0",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Wort sun; Apfel, Sonnenmodell mit Strahlen und Stift klar unterscheidbar.",
+        "Alle drei Nummern, Original-Lumo und vollständige Bedienung sichtbar."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-apple-960x540-start.png",
+      "name": "english-apple-960x540-start.png",
+      "bytes": 171145,
+      "sha256": "ca5681c82c3b8f4630743e98bf694ca08805d310ca5ca4a01e1972a45b759f43",
+      "git_blob": "7738f2f3b741ecbcd696d8f072483cae62f5c0aa",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Wort apple; Ball, Lineal und rote Frucht mit Stiel/Blatt unterscheidbar.",
+        "Drei Zahlen und Original-Lumo außerhalb der HUD-Flächen; alle Aktionen sichtbar."
+      ],
+      "source": "Actual local Godot4.6.3 software renderer, native catalogue fixture and platform inset fixture; no Android screenshot claim"
+    }
+  ],
+  "limits": [
+    "No Android, physical Fold7 or60FPS acceptance.",
+    "No actual English speech or phoneme synchronization claim; existing German text/audio boundary uses test double.",
+    "Local teaching geometry and material style are deliberately simple; actual original Lumo model is reused unchanged.",
+    "The displayed Android insets are explicit layout fixtures, not measurements from a new APK.",
+    "Native catalogue fixtures were used; later original Dart-producer acceptance is separate.",
+    "These new bytes do not inherit the lost earlier630-check/10-image results."
+  ]
+}

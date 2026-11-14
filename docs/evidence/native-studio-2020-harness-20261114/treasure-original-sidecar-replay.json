@@ -1,0 +1,58 @@
+{
+  "scope": "Read-only replay of the original C renderer report through this new roster function; no engine or Android execution",
+  "harness_sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+  "original_source_manifest_sha256": "ea075b909d8325ca9bcc682d531aa9b4876d76382f1da9ae4f29db85e095d1e9",
+  "errors": [],
+  "images": [
+    {
+      "profile": "landscape",
+      "path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-landscape.png",
+      "bytes": 2754869,
+      "sha256": "9dedbb2382d6f88b20434d7b3ee5ad8d6d2f9f316bcf7ece31c0443ab42ac82e",
+      "size_px": [
+        1920,
+        1080
+      ],
+      "contrast": 14.4422647052388
+    },
+    {
+      "profile": "compact",
+      "path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-compact.png",
+      "bytes": 317999,
+      "sha256": "4b728bf98c4494a8460cae52a700d50b4d71303215c0a90588d90a9e8a1c6979",
+      "size_px": [
+        640,
+        320
+      ],
+      "contrast": 14.4422647052388
+    },
+    {
+      "profile": "portrait",
+      "path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-portrait.png",
+      "bytes": 2156680,
+      "sha256": "24a8d89cf60208fea4a028ed0203a46d369a19b4dd843146cd21d49cf82e1704",
+      "size_px": [
+        1080,
+        2400
+      ],
+      "contrast": 14.4422647052388
+    },
+    {
+      "profile": "fold",
+      "path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-fold.png",
+      "bytes": 4289044,
+      "sha256": "5092f84494226a982de99794b5fef4060fc632ab1f92e5e4c2519070f79124f0",
+      "size_px": [
+        2176,
+        1812
+      ],
+      "contrast": 14.4422647052388
+    }
+  ],
+  "sidecar": {
+    "path": "qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-report.json",
+    "bytes": 3116,
+    "sha256": "42edeca87413b05cb7b1ae4b6a717c8aebf18f3ef15d26db65a6ffe50e3b92c9"
+  },
+  "passed": true
+}

@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T10:53:04.081124+00:00",
+  "scope": "Read-only source/original-log diagnosis. No new engine, encoding, Android or test execution. No product/workflow changes.",
+  "failed_host": {
+    "revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "run": 43580228966,
+    "job": 132403166536,
+    "original_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-android-20261114/builder-original-job.log",
+      "bytes": 1146964,
+      "sha256": "c922c2df3400fa97bbaa4f00ab8e2d046d3a326a872a36ac16022bac01a3210c",
+      "git_blob_sha": "6057972c27562180eee1649df77c049f04fefbfd"
+    },
+    "workflow": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-device-data-scope-078774dd-20261114/workflow-at-078774dd.yml.txt",
+      "bytes": 58576,
+      "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+      "git_blob_sha": "4987a607fd3bb1531eff243500ed05cfec50ec57"
+    }
+  },
+  "successful_native_comparator": {
+    "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "run": 43570887024,
+    "job": 132374803908,
+    "original_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-observation-20261114/studio-132374803908-original.log",
+      "bytes": 370134,
+      "sha256": "4943ffc5da3738255342a248e73dc0005f05159ebd1e68e8e91f3ed01e18d266",
+      "git_blob_sha": "10d161082698b477ef6d8b2e0c74b1b491496e78"
+    }
+  },
+  "fresh_native_source_snapshots": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": ".github/workflows/lumo-studio-2020.yml",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob_sha": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "tools/run_godot_probe.py",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c",
+      "git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "tools/tests/test_nextgen_runner.py",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/source/native/tools/validate_studio.sh",
+      "bytes": 25171,
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd",
+      "git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "tools/validate_studio.sh",
+      "retrieval": "GitHub file at explicit commit, freshly read during this diagnosis"
+    }
+  ],
+  "findings": [
+    {
+      "id": "missing-encoder-dependency",
+      "status": "CONFIRMED",
+      "evidence": "Host Native-gate apt command only installs xvfb/libgl1-mesa-dri/libglx-mesa0. Its ffmpeg installation belongs to the separate downstream Creative job. Native785 studio job explicitly installs ffmpeg; original log confirms package 7:6.1.1-3ubuntu5. Host error at 10:34:12.765 is FileNotFoundError for ffmpeg in collect_face_movie.",
+      "smallest_repair": "Add ffmpeg to the Host verify-and-build Native-gate package installation, before invoking validate_studio.sh. Record command resolution and versions of both ffmpeg and ffprobe immediately there."
+    },
+    {
+      "id": "movie-roster-followup",
+      "status": "CONFIRMED",
+      "evidence": "Facial engine completed at10:34:12: PASS144, actual MovieMaker AVI148frames640x640. Encoder startup then fails. movie.json is only written after successful encode/decode/ffprobe and is missing when the strict roster executes at10:44:21. The missing JSON is a downstream symptom, not a separate render failure."
+    },
+    {
+      "id": "process-cleanup-boundary",
+      "status": "SOURCE_AND_LOG_SUPPORTED_WITH_LIMIT",
+      "evidence": "run_godot_probe waits for the renderer launcher to exit and checks its marker before collect_face_movie runs. The encoder Popen fails before an ffmpeg executable runs. Python unwinds the movie-encode.log context and exits; check_probe records failure and continues, as designed. C4 subsequently passes303 in a separate completed renderer process. No ffmpeg encoder or unreturned Facial renderer is evidenced as the cause of Treasure timing.",
+      "limits": "No live PID/process-group snapshot exists in the read original log. Generic final orphan cleanup has no named termination entries. This is not an absolute census proving that no unrelated OS process remained.",
+      "retained_files": "By source order the completed AVI, PNGs, runtime data and newly opened encode log remain as failed-run evidence; movie.json/ffprobe outputs and MP4 are not produced by a failed ffmpeg exec. This diagnosis did not download or inspect the185209207-byte artifact to independently measure those members."
+    },
+    {
+      "id": "treasure-deadline",
+      "status": "CONFIRMED_TIMEOUT_NOT_CONFIRMED_HANG",
+      "evidence": "Host advances through all5 profile sizes and is terminated at600s without the final3351-check marker. Successful Native785 already needed584.700295s, leaving15.299705s until the same deadline. Host reaches cutout432.873719s after its engine banner, compared with416.813039s in Native, i.e.16.060680s later. The final Host phase is truncated; no claim that it would definitely pass with more time.",
+      "source_mechanism": "Treasure loops over exactly5profiles×fresh/restored, awaits finite frame-count settling, checks actual rendered geometry and ScreenTouch input. No ffmpeg/movie files are consumed. run_godot_probe uses its timer to stop the process group, with a5s SIGKILL fallback. All control/contrast/quest assertions and five required PNGs remain relevant."
+    },
+    {
+      "id": "scoped-time-budget-interface",
+      "status": "CONFIRMED",
+      "evidence": "The600-second value is a literal fourth argument at validate_studio.sh:126. run_godot_probe.py supports --timeout, but the harness unconditionally supplies that literal. There is no existing CLI/environment override specifically for this capture.",
+      "smallest_transparent_option": "A Native follow-up changes only this treasure_title_contrast_regression/rendered budget600→900 and its two exact contract expectations; document the measured585/600 boundary. Leave the other19 budgets,5profiles/10states, all54 PNGs, real framebuffer/ScreenTouch assertions, sidecar checks and final marker unchanged. No Host-side source rewrite or monkeypatch. This proposal has not been applied or tested."
+    }
+  ],
+  "original_timeline_comparison": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-078-native-builder-failure-20261114/original-timeline-comparison.json",
+    "bytes": 3511,
+    "sha256": "a848828a5778042365260a807b9b51e66900c3366ac28810719ed161616a2a6d",
+    "git_blob_sha": "d7e1cd01dd9effca449d6d0aa14410750fa9d3d2"
+  },
+  "proposed_counterchecks": [
+    "Host dependency contract must inspect the verify-and-build Native-gate step itself; ffmpeg in the separate Creative job cannot satisfy it. Require executable ffmpeg and ffprobe before the first Studio invocation.",
+    "Run the existing narrow Native harness/roster contracts against the published785 baseline plus only the explicit one-probe budget delta; prove the other19 budgets and all roster/sidecar functions unchanged.",
+    "On the real corrected runner, require the original encode, full decode and ffprobe stages to finish and produce the hash-bound movie.json; dependency presence alone is not media acceptance.",
+    "Require the actual Treasure3351 marker, complete10 observations and5 fresh PNGs under the bounded revised budget. A timeout or incomplete report still fails. Do not infer completion from the prior five profile-size log entries."
+  ],
+  "no_claims": [
+    "No new pass for Host078 or Android2020",
+    "No device or60FPS acceptance",
+    "No demonstrated causal encoder leak",
+    "No global timeout relaxation",
+    "No product or workflow mutation"
+  ]
+}

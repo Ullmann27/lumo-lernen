@@ -1,0 +1,652 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-14T18:52:55.647506+00:00",
+  "purpose": "Read-only integrity comparison after individual visual review; no new product test or renderer run",
+  "archive": {
+    "path": "original-artifact.zip",
+    "bytes": 4562890,
+    "sha256": "4a5eac90950324658934671a6c9fc4d6a9b77b52cf7d11350c86e28e43838324",
+    "git_blob_sha": "19dbb3211063fbb766e450b03715e1b5586a5a1e"
+  },
+  "all_original_members": [
+    {
+      "path": "originals/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+      "git_blob_sha": "53b01f5ab9eb3b8d53026fe764cc76631df9268d",
+      "artifact_entry": "HOST-SOURCE.txt",
+      "crc32": "a54d4a95",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "git_blob_sha": "51bde130837ae501b8aff7afefeffc1fe9b862cc",
+      "artifact_entry": "NATIVE-SOURCE.txt",
+      "crc32": "ef9bd6f1",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "bed94a27fdd7f6d19823df3276f905a806e68e4500889e9146e8a1d847446fe9",
+      "git_blob_sha": "ab207b39c155b4dcb164db37f2bed59b2843dc8a",
+      "artifact_entry": "HOST-TREE.txt",
+      "crc32": "329babb9",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "git_blob_sha": "89867577a6119431a41ddebd6b51dde0b70054c9",
+      "artifact_entry": "NATIVE-TREE.txt",
+      "crc32": "d5f0cbc7",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "artifact_entry": "dart-version.txt",
+      "crc32": "a9679d22",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-activity.json",
+      "bytes": 16729,
+      "sha256": "b764a959c0151cfb83cbd477ec0e318c76f19821bfaeba2cf930cdc926e3cd50",
+      "git_blob_sha": "124bd66f09a19d3a7baefb4304b3ffdf39fc3cf7",
+      "artifact_entry": "english-activity.json",
+      "crc32": "b28564a4",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-authority.log",
+      "bytes": 755,
+      "sha256": "8ab8432130b9df6535b0b2f8261dd50abca61b4dfaf1ac9ca0884362a0955573",
+      "git_blob_sha": "af4b4460735d0885ce513cbd066dd64dc476f8bc",
+      "artifact_entry": "english-authority.log",
+      "crc32": "ffcadeea",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-apple-960x540-start.json",
+      "bytes": 2837,
+      "sha256": "77344938e4f09e68400ed39aa7ec1bb5bb15639c990a197cbf73e70428cb54f2",
+      "git_blob_sha": "f410c8be7d958f681746c8245ca8fc947017b89d",
+      "artifact_entry": "english-native/english-apple-960x540-start.json",
+      "crc32": "0238445f",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-apple-960x540-start.layout.json",
+      "bytes": 24244,
+      "sha256": "05ff138d410580dac299ff881868a36509e40cecfa804cd7e8bb65f07453ae05",
+      "git_blob_sha": "12329f28f669a4b508e7ea63ec2b966015c21cda",
+      "artifact_entry": "english-native/english-apple-960x540-start.layout.json",
+      "crc32": "f0001693",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-apple-960x540-start.png",
+      "bytes": 168716,
+      "sha256": "2b7cd3b18204e4892367531f98251a27c05c951c3a5d6ae1c030e8ffa932bc91",
+      "git_blob_sha": "1ccc2a764c6da1ed3f57686b9b147b434d0aed3b",
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "crc32": "2c41cc61",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-bag-960x540-start.json",
+      "bytes": 2830,
+      "sha256": "f4b33591bba60f283840bd7649aea603a1af103c26040400e40e86cba27b6f74",
+      "git_blob_sha": "0ccd07b1e8d6355d570615639c3b17c84bae25f8",
+      "artifact_entry": "english-native/english-bag-960x540-start.json",
+      "crc32": "122ad08c",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-bag-960x540-start.layout.json",
+      "bytes": 28997,
+      "sha256": "d6a36ce7488ecdd47f0057813debea23cc471f3d0eae5df252d31c8b3074117b",
+      "git_blob_sha": "777ccd9885afe92dcfa0abc04a37f9e56951686c",
+      "artifact_entry": "english-native/english-bag-960x540-start.layout.json",
+      "crc32": "1799fbfe",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-bag-960x540-start.png",
+      "bytes": 163086,
+      "sha256": "9eae62ac29680c10ef7aebdbbe6286f6532be04776871f19b58b998406576e6f",
+      "git_blob_sha": "2ca1e44e4d5a5433542234a47cc43ff08beca8ce",
+      "artifact_entry": "english-native/english-bag-960x540-start.png",
+      "crc32": "4175920d",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-complete.json",
+      "bytes": 2839,
+      "sha256": "7304999483a287b8aa99c1345418d34fbf18dda2e3af34d506a6e0fcb82ab9d0",
+      "git_blob_sha": "521c18249f54c49b32c146a977edd78b8dfa6f02",
+      "artifact_entry": "english-native/english-ball-960x540-complete.json",
+      "crc32": "10ae4f6b",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-complete.layout.json",
+      "bytes": 30840,
+      "sha256": "3f68e81eecd524386273134b0e1ad7861c64c359cf2e690154c51dad0df58722",
+      "git_blob_sha": "93b6cc6a30376a76be123500d65a580ab4938727",
+      "artifact_entry": "english-native/english-ball-960x540-complete.layout.json",
+      "crc32": "6411d592",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-complete.png",
+      "bytes": 167812,
+      "sha256": "1f61e5ccd3e847e6d81856e184216486039627ae4d322a5000881cfddcc07643",
+      "git_blob_sha": "fb1496876e9390a85d0b888072f3d9c9c2e2a87e",
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "crc32": "abdad34a",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-hint.json",
+      "bytes": 2836,
+      "sha256": "ac68ffc0cc39bbf6c1b5480c46b29115b260866fbeaff01718059da3232e8a27",
+      "git_blob_sha": "59d9da1898060850cfad4e540db91e8fcf760586",
+      "artifact_entry": "english-native/english-ball-960x540-hint.json",
+      "crc32": "ec3a07db",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-hint.layout.json",
+      "bytes": 30841,
+      "sha256": "bf104fc81f6265d5230bd4785bb880fffa9827ef0b8201e8bbcdc1f697f3a97e",
+      "git_blob_sha": "fa16aa83828d2afaf1936dd894aabe2fc294dc24",
+      "artifact_entry": "english-native/english-ball-960x540-hint.layout.json",
+      "crc32": "c7344fb8",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-hint.png",
+      "bytes": 168170,
+      "sha256": "cc19981b98c58f648b4a5c114d79582736fe16df7990287792cc3d369896cf28",
+      "git_blob_sha": "c0148f37ed84d84518772249e58ad15ee070bf88",
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "crc32": "6058b9fb",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-start.layout.json",
+      "bytes": 30047,
+      "sha256": "06870266cbe42709a39482fbf317812e72d4d9c0bf7863cf72916514d651cbdb",
+      "git_blob_sha": "df3e3d95eeca7987381cf35bd621fdc45df8848b",
+      "artifact_entry": "english-native/english-ball-960x540-start.layout.json",
+      "crc32": "cdc67669",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "1d2d5917654cf23ad68fc223e16c287a4609af19853a3bf2476e0039d99eed47",
+      "git_blob_sha": "0a298feaaea8a1a21adb5a149a94e0bbf7bafc43",
+      "artifact_entry": "english-native/english-ball-960x540-start.json",
+      "crc32": "13234040",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ball-960x540-start.png",
+      "bytes": 167287,
+      "sha256": "ac444a03534367bae4e1fecc85eed8010292f745345b7e01e94f5968df6789a1",
+      "git_blob_sha": "c02938988dc82006918a8d8b062ab28cdd07f027",
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "crc32": "9175ea23",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-book-412x915-complete.json",
+      "bytes": 2852,
+      "sha256": "62c4fc53e701af376c5e54e7d8fbec2ca37774ef149d9dfafb7a627b983502a4",
+      "git_blob_sha": "9d44453f10b5c2a052e05abc09918e4a62798fb1",
+      "artifact_entry": "english-native/english-book-412x915-complete.json",
+      "crc32": "099d6bdf",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-book-412x915-complete.layout.json",
+      "bytes": 48283,
+      "sha256": "68251eab926fd8f4c88b8ad67e644886886c9a93020efa047a093e3c1d84eeee",
+      "git_blob_sha": "e0976b493ce5f0f0874b377ebd872455ca4eae37",
+      "artifact_entry": "english-native/english-book-412x915-complete.layout.json",
+      "crc32": "27a84fd6",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-book-412x915-complete.png",
+      "bytes": 119313,
+      "sha256": "bffc19761e6032e605b3781d9bb2174dc635dce7d2a626fe895ebbef6dac6ebd",
+      "git_blob_sha": "13bb289e34f77a679d6f000e7d8bcdfadc608eee",
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "crc32": "4721a661",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-book-412x915-start.json",
+      "bytes": 2845,
+      "sha256": "34e873ec718ae35da9391e86047d6e91132fd25d73994eac9a86a6afab50680f",
+      "git_blob_sha": "f3a8a8d8dd9cf6c68210ca3d825895dfcf8d20f5",
+      "artifact_entry": "english-native/english-book-412x915-start.json",
+      "crc32": "38b2f027",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-book-412x915-start.layout.json",
+      "bytes": 47485,
+      "sha256": "79e632ffca0b30d82c23a76cf2e985c1f44b364b96128365a66255e50d48ca26",
+      "git_blob_sha": "1c2130b1d5c461242f1e5446f74ef29faa1e315a",
+      "artifact_entry": "english-native/english-book-412x915-start.layout.json",
+      "crc32": "c86392f6",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-book-412x915-start.png",
+      "bytes": 119541,
+      "sha256": "dfce357fb14f5c8dffdf16ffa040e0ba7755c70573a20200b193dbc128285d25",
+      "git_blob_sha": "e3f251c601e7ab8993e2a420ed6d0ab217040eef",
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "crc32": "bc276560",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-car-2400x1080-start.json",
+      "bytes": 3067,
+      "sha256": "cfd60575d10fca1313bb1511d0c4f2fa9b5cd2346dd5a768272d01ae14405ef2",
+      "git_blob_sha": "66262dd7ca6714f84fd6e7b57ef426255344402d",
+      "artifact_entry": "english-native/english-car-2400x1080-start.json",
+      "crc32": "5bb2c61c",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-car-2400x1080-start.layout.json",
+      "bytes": 31624,
+      "sha256": "18e39c7001f37c318ef969c5bea6f83ea031e6fc233202d512e43bc8df8679a4",
+      "git_blob_sha": "fbcf9950546bad411624bb12994d033ac23c5a0f",
+      "artifact_entry": "english-native/english-car-2400x1080-start.layout.json",
+      "crc32": "0bdbf16e",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-car-2400x1080-start.png",
+      "bytes": 698674,
+      "sha256": "f558e8eb0f25191d421d2e721374e3c86acf466f995234ca4a2283c8c7702dd4",
+      "git_blob_sha": "0dd2451f91a08161ba520cb21a2c84abdb020e13",
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "crc32": "f5988361",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-chair-640x360-start.json",
+      "bytes": 2840,
+      "sha256": "8c507cc727020c22b94e34b893e760039bbefe78f9fb5218f498d6847b45f12b",
+      "git_blob_sha": "089e619bdd5e590b4a8a172f85530dcd426f5ad8",
+      "artifact_entry": "english-native/english-chair-640x360-start.json",
+      "crc32": "0f64afda",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-chair-640x360-start.layout.json",
+      "bytes": 42458,
+      "sha256": "ad126a675ed5ff5ac3bee5cafc373b801f2577190a42076c60916af8591e6a1f",
+      "git_blob_sha": "b2ef60279be2c260fd896cfdb0bf6fb30dd480f9",
+      "artifact_entry": "english-native/english-chair-640x360-start.layout.json",
+      "crc32": "8f5bd916",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-chair-640x360-start.png",
+      "bytes": 95737,
+      "sha256": "43f47164008700620b7d33ee6c7fc37e7eb89802b767f91a819f9581b775398d",
+      "git_blob_sha": "1fb75ca62ad823f88b8fd057c7f066f85415acec",
+      "artifact_entry": "english-native/english-chair-640x360-start.png",
+      "crc32": "94b52f88",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-desk-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "d005646c7d69b34d526572c8a7e64619f9c506b6312be3b07e906542f7646ef4",
+      "git_blob_sha": "bb174bab079290dd3f900861d886168f428ad822",
+      "artifact_entry": "english-native/english-desk-960x540-start.json",
+      "crc32": "210211d5",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-desk-960x540-start.layout.json",
+      "bytes": 41631,
+      "sha256": "46d0ccb9d48fce7202bd2ea16be5eb5134e732897210f3f9917781326fc839f5",
+      "git_blob_sha": "2ca162d9b954e446e37ee0f9a7a42d98643ae730",
+      "artifact_entry": "english-native/english-desk-960x540-start.layout.json",
+      "crc32": "7fa50fff",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-desk-960x540-start.png",
+      "bytes": 163322,
+      "sha256": "160edd234a0a65315d15c8b3fe87b6315833c079f925826317e9d64402dc2491",
+      "git_blob_sha": "13eed6454a8ddbc61f1f384f8596d99440aca84a",
+      "artifact_entry": "english-native/english-desk-960x540-start.png",
+      "crc32": "ccb09eaf",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-paper-2400x1080-start.json",
+      "bytes": 3098,
+      "sha256": "c72b6c834278a748c03bdf0055c51e2519351c6b15b53daefd5650194891b57d",
+      "git_blob_sha": "9636b04f474229d72425fbf1dbff6569780dd5bb",
+      "artifact_entry": "english-native/english-paper-2400x1080-start.json",
+      "crc32": "18746af4",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-paper-2400x1080-start.layout.json",
+      "bytes": 44121,
+      "sha256": "953487bc01e561564b5cbee8e3e3b1ac8646a6bfdf3069f68d32401bdb3eb926",
+      "git_blob_sha": "b76d3e3f3ec6e849cbca12cc11cc5805fd79130f",
+      "artifact_entry": "english-native/english-paper-2400x1080-start.layout.json",
+      "crc32": "d4443578",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-paper-2400x1080-start.png",
+      "bytes": 695126,
+      "sha256": "6b5ca63fc26e4f599f1035f661352286826dbe4fa90d2a1f3b070a6f4705e3a7",
+      "git_blob_sha": "bab6a9abda0832629da231664fafc20feeb90fb2",
+      "artifact_entry": "english-native/english-paper-2400x1080-start.png",
+      "crc32": "8c16e657",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-pen-1080x2400-start.json",
+      "bytes": 2941,
+      "sha256": "4b2e7a123af03f903d67f20c01774f7a7ff9a0a18ae62ddf172f47f230ff880f",
+      "git_blob_sha": "94c885d2caaa2d73763d392a726fe7dda9da1911",
+      "artifact_entry": "english-native/english-pen-1080x2400-start.json",
+      "crc32": "16f0e19c",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-pen-1080x2400-start.layout.json",
+      "bytes": 37001,
+      "sha256": "2632649fd35dc12a24ad88f8e6655709fb0c90c82690dc5f3a3c4502e51aa68f",
+      "git_blob_sha": "7dc4b4535e52a21f54e5de0349fecb04bc93077f",
+      "artifact_entry": "english-native/english-pen-1080x2400-start.layout.json",
+      "crc32": "07b50a9e",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-pen-1080x2400-start.png",
+      "bytes": 596944,
+      "sha256": "270783d868cde686851731ee97854f7ebc870c0896cba83c58eb7382612f909d",
+      "git_blob_sha": "c0ce6c3ae0d878c6f68bd650139e78a59a4f9894",
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "crc32": "6e5244e5",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-pencil-case-1080x2400-start.json",
+      "bytes": 3134,
+      "sha256": "6e797e6f62c7e3d6b5c2f022711984313664bc054db89147d71780af1677fee8",
+      "git_blob_sha": "79b018c269e4f6248c5048579b6cc10f71777482",
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.json",
+      "crc32": "56749709",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 52492,
+      "sha256": "6df364c0ede48c7dd9889ab589608cd8e36e119d4217c0a63f0b3542829927e7",
+      "git_blob_sha": "b5c97fd292fec6b72257fc08814bfe700cdd64a6",
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.layout.json",
+      "crc32": "b21a6d3c",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-pencil-case-1080x2400-start.png",
+      "bytes": 611583,
+      "sha256": "0fb40334f333a3f143aea481bfb791e17c8405ca6b9965a7b82d3d8f69ec7565",
+      "git_blob_sha": "eea7c9345e310ac2760d95be06dbe34c74c7f2d5",
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "crc32": "8faf7fd6",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-rubber-640x360-start.json",
+      "bytes": 2844,
+      "sha256": "0884162a70c7299910a465a960bb3519791ca99b2f3c49cab1e94a61c794df7c",
+      "git_blob_sha": "c75533a88fc25373a3b4d0e8ec018bdca6a18430",
+      "artifact_entry": "english-native/english-rubber-640x360-start.json",
+      "crc32": "bbbc665b",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-rubber-640x360-start.layout.json",
+      "bytes": 36026,
+      "sha256": "6171207ed0a55b154d88bfcfaddadd478dc2391d1c9e2223134159fb2f9d2007",
+      "git_blob_sha": "8d82ba5166f0697acebe84480624ee5af20b9eb2",
+      "artifact_entry": "english-native/english-rubber-640x360-start.layout.json",
+      "crc32": "33ba44fc",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-rubber-640x360-start.png",
+      "bytes": 95377,
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "git_blob_sha": "0e1bf8dae81bc64c38c824181526e9476ec14634",
+      "artifact_entry": "english-native/english-rubber-640x360-start.png",
+      "crc32": "d38e5986",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ruler-640x360-start.json",
+      "bytes": 2840,
+      "sha256": "9c5c1ac3d883c5b5f6f772f4e6d6f301f5c3e437bda6fe9e80e51645c9218f24",
+      "git_blob_sha": "de6285b9b883b1827e5e33e0b055ced2a05d3b51",
+      "artifact_entry": "english-native/english-ruler-640x360-start.json",
+      "crc32": "6d4200fd",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ruler-640x360-start.layout.json",
+      "bytes": 50818,
+      "sha256": "c6ebec159db76a79b77d9f4ffa397da538620b3a1e00d056ca96738e7b5a816b",
+      "git_blob_sha": "f3d9a613cf3b95d1210d0039b4126b247fca6ec0",
+      "artifact_entry": "english-native/english-ruler-640x360-start.layout.json",
+      "crc32": "e737ddec",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-ruler-640x360-start.png",
+      "bytes": 95359,
+      "sha256": "e9f12bd9bdab5b6fc97aeca51f7cd5031a731c0ae2f838ac841c4ad8564ea2fd",
+      "git_blob_sha": "5ab1d9fa54bb2d532b473d47a6dba975c615b669",
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "crc32": "70069d78",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-school-bag-412x915-start.json",
+      "bytes": 2862,
+      "sha256": "f43c8a9be54fc53ea3bd559cef7510ea115165081bbb645313c61b772a1534ee",
+      "git_blob_sha": "a38c29940a879374545cd32aedc055252c7632df",
+      "artifact_entry": "english-native/english-school-bag-412x915-start.json",
+      "crc32": "b6103f3f",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-school-bag-412x915-start.layout.json",
+      "bytes": 33602,
+      "sha256": "ff89fb8277e8f94610db714489821bb932548f0dadd523b561e23673418ef4f9",
+      "git_blob_sha": "0b64f4ebb2b872b44ad0b5445cf6c02919f7f55b",
+      "artifact_entry": "english-native/english-school-bag-412x915-start.layout.json",
+      "crc32": "a173a0a3",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-school-bag-412x915-start.png",
+      "bytes": 116487,
+      "sha256": "e13ff76c40f58299489f6731cfb0207726280fb26cacf1c125873c0a1d1af0d5",
+      "git_blob_sha": "647e5827564065f21eb7d1e4781d6e2b08f6020e",
+      "artifact_entry": "english-native/english-school-bag-412x915-start.png",
+      "crc32": "c8a81c16",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-sun-960x540-start.json",
+      "bytes": 2825,
+      "sha256": "80b826cecdd567aa25a2c9b83501bf5a7ab2931211c37d34237f04773c8b8ce9",
+      "git_blob_sha": "e05283183bca4f6c6aa34212fcfb641fb6e14187",
+      "artifact_entry": "english-native/english-sun-960x540-start.json",
+      "crc32": "e52fe0df",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-sun-960x540-start.layout.json",
+      "bytes": 32993,
+      "sha256": "ac7db06727b9020013e698ed64a83ddbdb4a6a356d1d6d32a0edae03936f93cd",
+      "git_blob_sha": "4aafc0a8cf3e3525ddaf694d81c5c7bd67eee58c",
+      "artifact_entry": "english-native/english-sun-960x540-start.layout.json",
+      "crc32": "5762d426",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/english-sun-960x540-start.png",
+      "bytes": 168215,
+      "sha256": "095d213ef7dcb67d3604b058ed012f7c209f568b47e9e421dcc97812ac2defa5",
+      "git_blob_sha": "640ee518a9494f1682c98de4617ad869b5f2d0d4",
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "crc32": "5adb38b7",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-native/learning-english-report.json",
+      "bytes": 138916,
+      "sha256": "40e2f15137f4192b0beefba37bc9dff7b2852cec884b29e51f61420c8273789e",
+      "git_blob_sha": "f3245e8d94f37a025b1e20cabcc3920afa4a8f6b",
+      "artifact_entry": "english-native/learning-english-report.json",
+      "crc32": "9bd0b5b0",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/english-render.log",
+      "bytes": 6829,
+      "sha256": "626b9690076d88623358554962e34b120d3088f018532d0d129f9c3256289367",
+      "git_blob_sha": "36024b1b9713d1f98a3858a24a69fed1c91e5cbf",
+      "artifact_entry": "english-render.log",
+      "crc32": "823de94e",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob_sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "artifact_entry": "godot-version.txt",
+      "crc32": "12281f13",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "git_blob_sha": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e",
+      "artifact_entry": "import.log",
+      "crc32": "be47ea4b",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    },
+    {
+      "path": "originals/project-validation.log",
+      "bytes": 6140,
+      "sha256": "188d0950424b0d1f9b965ecadfd28e80ac6d176122df6912851af65f9df016d9",
+      "git_blob_sha": "9340046407c29eb35faacccb11d03f91ca7885fb",
+      "artifact_entry": "project-validation.log",
+      "crc32": "463ad83b",
+      "full_crc_read": true,
+      "local_original_byteequal": true
+    }
+  ],
+  "original_count": 63,
+  "all_byteequal": true,
+  "original_job_log": {
+    "path": "original-english-job.log",
+    "bytes": 310142,
+    "sha256": "019ea59ea2236c2c9fa30c456205fa575f94a09ee77a765a34073bffde2624cb",
+    "git_blob_sha": "49aba012d3ce1904469b6d6d3619fcd9d8b9e768"
+  },
+  "download_count": 1
+}

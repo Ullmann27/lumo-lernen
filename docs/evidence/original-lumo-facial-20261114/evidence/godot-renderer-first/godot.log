@@ -1,0 +1,35 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+Movie Maker mode enabled, recording movie in 640×640 @ 24 FPS...
+WARNING: Current available space on disk is low (912.0 MiB). MovieWriter will fail during movie recording if the disk runs out of available space.
+     at: begin (servers/movie_writer/movie_writer.cpp:113)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(640, 640) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+SCRIPT ERROR: Assertion failed.
+          at: LocalPlayback.prepare (res://scripts/tests/lumo_facial_capture.gd:22)
+          GDScript backtrace (most recent call first):
+              [0] prepare (res://scripts/tests/lumo_facial_capture.gd:22)
+              [1] _run (res://scripts/tests/lumo_facial_capture.gd:79)
+SCRIPT ERROR: Cannot call method 'stop' on a previously freed instance.
+          at: LocalPlayback.stopLearningSpeech (res://scripts/tests/lumo_facial_capture.gd:43)
+          GDScript backtrace (most recent call first):
+              [0] stopLearningSpeech (res://scripts/tests/lumo_facial_capture.gd:43)
+              [1] _stop_speech (res://scripts/learning/learning_world.gd:1295)
+              [2] _exit_tree (res://scripts/learning/learning_world.gd:1233)
+LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true
+--------------------------------------------------------------------------------
+Done recording movie at path: /workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/facial-runtime.avi
+147 frames at 24 FPS (movie length: 00:00:06:03), recorded in 00:00:19 (31% of real-time speed).
+CPU render time: 12.53 seconds (average: 85.23 ms/frame)
+GPU render time: 12.01 seconds (average: 81.71 ms/frame)
+Encoding time: 0.66 seconds (average: 4.52 ms/frame)
+--------------------------------------------------------------------------------

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/home/runner/work/lumo-lernen/lumo-lernen/scripts/prepare_android37_cli22.py",
+    "verify",
+    "--out",
+    "/home/runner/work/lumo-lernen/lumo-lernen/tour/framework-start/cli22",
+    "--phase",
+    "guard"
+  ],
+  "returncode": 0
+}

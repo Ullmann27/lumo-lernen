@@ -1,0 +1,36 @@
+{
+  "only_changed_definition": "StudioPuzzleMenuContractTests.test_new_workflow_preserves_all_required_jobs_and_exact_source_archive",
+  "unchanged_method_definitions": 22,
+  "same_method_names": true,
+  "existing_test_definitions": 16,
+  "old_branch_literal_search": [
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "line": 770,
+      "text": "self.assertIn('branches: [chatgpt/lumo-studio-2020-20261114]', workflow)"
+    }
+  ],
+  "unchanged_workflow_and_harnesses": [
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "sha256": "138b905645ed6c93fdd9195a14a3d63b77cdf1f53bf2b9438e2098d77332cd1a",
+      "bytes": 19875
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "sha256": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+      "bytes": 25425
+    },
+    {
+      "path": "tools/validate_nextgen.sh",
+      "sha256": "34472fbe2e552f1332418d5544e33626b9343e5894589c31951472f2e0ead5e6",
+      "bytes": 5035
+    },
+    {
+      "path": "tools/run_godot_probe.py",
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "bytes": 2934
+    }
+  ],
+  "no_product_or_workflow_edit": true
+}

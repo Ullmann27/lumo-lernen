@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/design/connect_four_visual_test.dart"
+  ],
+  "cwd": "/tmp/lumo-studio-ae394-agent-b",
+  "exit_code": 1,
+  "duration_seconds": 1.1183311000058893,
+  "source_sha256_before": {
+    "test/design/connect_four_visual_test.dart": "599ba9fc1ed1abdb3ef993d0e0e07b4c71ce2d59508ffd1482c4177bce98a79f",
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075"
+  },
+  "source_sha256_after": {
+    "test/design/connect_four_visual_test.dart": "599ba9fc1ed1abdb3ef993d0e0e07b4c71ce2d59508ffd1482c4177bce98a79f",
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075"
+  },
+  "log_sha256": "fa32f9b58533b55cc9636d689ffd3104801c3bdf3b421cc0518841a3237c2899",
+  "source_unchanged": true
+}

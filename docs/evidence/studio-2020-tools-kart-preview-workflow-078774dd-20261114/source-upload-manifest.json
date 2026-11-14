@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "revision": "v2-ffmpeg-and-observed-kart-preview-frozen",
+  "base_host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "base_tree": "3f048230ee41fe3c7f0c4dadb5147cb1f39fa61e",
+  "baseline": {
+    "bytes": 58576,
+    "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+    "git_blob": "4987a607fd3bb1531eff243500ed05cfec50ec57"
+  },
+  "preserved_v1": {
+    "bytes": 58784,
+    "sha256": "c333c4d33c37fd1f08bfce9b750f348e2ecd8fb16f3c25a6adc7543f546d30a6",
+    "git_blob": "bc1d497ab87a5211c13b0cafeb2a6e5493fe04d4"
+  },
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/host/.github/workflows/lumo-studio-2020.yml",
+      "target_path": ".github/workflows/lumo-studio-2020.yml",
+      "mode": "100644",
+      "bytes": 59128,
+      "sha256": "441ddceba899294f0c5a2c4657473251978b3be38704b31a692f39d786c377a7",
+      "git_blob": "b8e63e1841828cab1e75ef3896e47b2d4d6aa38f",
+      "github_blob_uploaded": true,
+      "full_utf8_readback_equal": true
+    }
+  ],
+  "required_external_probe_and_test_inputs": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "source_commit": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+      "local_read_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+      "read_only_input_not_in_this_source_delta": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "source_commit": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+      "local_read_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob": "ca2477afc4708385e705645613d45e3374f829f7",
+      "read_only_input_not_in_this_source_delta": true
+    }
+  ],
+  "local_unittest_or_android_execution": false,
+  "no_pin_probe_product_ref_mutation": true
+}

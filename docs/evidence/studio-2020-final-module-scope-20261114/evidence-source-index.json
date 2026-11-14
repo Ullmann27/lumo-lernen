@@ -1,0 +1,376 @@
+{
+  "schema": 1,
+  "prepared_by": "character_animation",
+  "purpose": "Docs-only consolidation of existing evidence and narrowly rebound app entrances; no new test, rendering, device run, or source mutation.",
+  "prepared_at_utc": "2026-11-14T06:29:39.484466+00:00",
+  "host_source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "host_2020_scope": "Staged assembly only, six selected library deltas matched original composition manifest.",
+  "native_source": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "native_tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+  "latest_completed_job_included": {
+    "id": 132356963309,
+    "run_id": 43565059832,
+    "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-14T06:10:54Z",
+    "completed_at": "2026-11-14T06:25:14Z",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963309"
+  },
+  "whole_pipeline_pass_claimed": false,
+  "android2020_pass_claimed": false,
+  "physical_fold7_measurement_claimed": false,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-first-composition-manifest.json",
+      "bytes": 28297,
+      "sha256": "b85e86c6d946bf9dec079b9fb6159d1ff5a096e0f614677fd70b1877b412bbe1",
+      "git_blob_sha": "65000512529a37126e24ac6edee3cdc9cef2e707",
+      "citation_key": "H20",
+      "workspace_relative_path": "qa/studio-2020-integration/host-first-composition-manifest.json",
+      "scope": "Staged host composition, not a published APK; six selected library entries rebound in staged-host-entry-deltas.json."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-composed-source-manifest.json",
+      "bytes": 12936,
+      "sha256": "bb59cd79250c7586cbcff7457fe98f69aff38f931dccaf1a1e653971e07d8555",
+      "git_blob_sha": "ee7b155eacadd8e5cd9a786639bc3122ffaf9547",
+      "citation_key": "N20",
+      "workspace_relative_path": "qa/studio-2020-integration/native-composed-source-manifest.json",
+      "scope": "26-file Native 2020 composition based on 803e, published by Root as 8be3."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-8be3-corrections-source-manifest.json",
+      "bytes": 3687,
+      "sha256": "328e7aa626825c523fc923a1a88a399ee8bb4235fdbb529c460b4bf6054a070a",
+      "git_blob_sha": "8450004a8bd45eb28d608cc4593ea997ba3936e4",
+      "citation_key": "N20",
+      "workspace_relative_path": "qa/studio-2020-integration/native-8be3-corrections-source-manifest.json",
+      "scope": "Four exact source corrections plus explanatory document; following native source acf51d3."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/app/scene_router.gd",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob_sha": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "citation_key": "N",
+      "workspace_relative_path": "qa/connect-four-native-86445-803e/native/scripts/app/scene_router.gd",
+      "scope": "Actual native scene registrations; matched composition entry. Registration alone is not proof of a Flutter portal."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-followup-evidence-20261114/status-native-acf51-run.json",
+      "bytes": 13370,
+      "sha256": "732fa1a94bf8e14060d3e71fcd473ac855816c64598dafd685746f9b595bce31",
+      "git_blob_sha": "6b0822ff198f6297f8c1b74795bba279ab2a8647",
+      "citation_key": "N20",
+      "workspace_relative_path": "qa/studio-2020-followup-evidence-20261114/status-native-acf51-run.json",
+      "scope": "Original early overall-run metadata; in_progress at its saved updated_at, not an assertion about later status."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/polls/062644-jobs-original.json",
+      "bytes": 15693,
+      "sha256": "56c94e661a6659cb5e38ea674fd0391e9a16c8f6289d2f7323e4779c6e2f28b0",
+      "git_blob_sha": "69d4ae51f93ed9902cdf56dc9cb8faf8302e2be3",
+      "citation_key": "N20",
+      "workspace_relative_path": "qa/studio-2020-native-acf51-observation-20261114/polls/062644-jobs-original.json",
+      "scope": "Actual completed studio job 132356963309 success on acf51d3, other jobs separate."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "bytes": 369464,
+      "sha256": "12af7f939bc5db2a9c03af0d207fb5f3a3b6bc5a0551d48319f6a0edcb7960e0",
+      "git_blob_sha": "db7cfeaae76417752f28d3472d7547edf60ca30d",
+      "citation_key": "N20",
+      "workspace_relative_path": "qa/studio-2020-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "scope": "Original completed Studio log; facial102/capture144/C4fixture303/Treasure137 and final53-PNG roster. No new images visually opened during this inventory."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_EXECUTION_20261113.md",
+      "bytes": 78101,
+      "sha256": "d02d1395086e084020616f9112a5cd0f3a1f946894e786fbc8f4580cc7545597",
+      "git_blob_sha": "e3b1de6b60eb9e44b42d53e0b991d231afa772ee",
+      "citation_key": "S19",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_EXECUTION_20261113.md",
+      "scope": "Historical inherited-versus-Studio scope; stale status and earlier test numbers not reused as current2020 results."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_NEXTGEN_SCOPE.md",
+      "bytes": 46893,
+      "sha256": "e259366a1ee0a75b8625ef830374439d534a8dfa44dcb794bafeab8c28030c1c",
+      "git_blob_sha": "0e2ddd6f920f073367cbb49cb6b90900523e59da",
+      "citation_key": "S19",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_NEXTGEN_SCOPE.md",
+      "scope": "Historical module inventory; later C4/facial and Android results explicitly supersede old gaps."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/NEXTGEN_AUDIT_20261113.md",
+      "bytes": 13517,
+      "sha256": "83fdcc6283f454259c15aa679e4dea1ec85abf46ce0dce25e5d594e3a0c9a15e",
+      "git_blob_sha": "872f0761434c82a5fdcb23ca22d05eba52dbc39c",
+      "citation_key": "S19",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/NEXTGEN_AUDIT_20261113.md",
+      "scope": "Earlier baseline inventory, not a new audit."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_LEARNING_HOST_20261113.md",
+      "bytes": 3318,
+      "sha256": "39790d887d0fad401fe212e3e018cee7f57223ca4b4ff0816730b6e6a8767704",
+      "git_blob_sha": "74ae72fa03c3ec10f6ccd485e730209203ac5cd9",
+      "citation_key": "L19",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_LEARNING_HOST_20261113.md",
+      "scope": "Actual division/multiplication/fraction bridge and preservation scope; historical own-source tests."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/config/studio-2019-visual-review.json",
+      "bytes": 30729,
+      "sha256": "fdd27ad3562f9c63f911bb48ba0fbf0e93494f1937ab8d953fa749486ae99198",
+      "git_blob_sha": "a4b64c86a0b78880ed41c95326b198cb7b18828a",
+      "citation_key": "R803",
+      "workspace_relative_path": "lumo-studio-final-e3d/config/studio-2019-visual-review.json",
+      "scope": "Approved32-image receipt from Native803e/run43524051371 only; not changed or relabeled for2020."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/review-chase-root.json",
+      "bytes": 11968,
+      "sha256": "225f7398874d3538b4c269e191b91c8d03bf2b9efb2ffa068c3c7835bd023271",
+      "git_blob_sha": "64a767bc13abc38a8fb9a4a4fdd628fc52c0c1c4",
+      "citation_key": "K803",
+      "workspace_relative_path": "qa/kart-theme-source-803e-20261114/review-chase-root.json",
+      "scope": "Root actually viewed eleven chase images plus Zauberwald detail; stationary local production captures only."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/review-context-detail.json",
+      "bytes": 27272,
+      "sha256": "a29dd731d0fa4589a7a14867a66990d44eb27933b297617dd7a904d5f46736da",
+      "git_blob_sha": "09907e419f9f6eeaeebc7808781917c5a90d1363",
+      "citation_key": "K803",
+      "workspace_relative_path": "qa/kart-theme-source-803e-20261114/review-context-detail.json",
+      "scope": "B actually viewed remaining21 context/detail images; no racing/Android/FPS claim."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/source-binding-production-before.json",
+      "bytes": 284386,
+      "sha256": "d5504d70c6458a0c59e9c3ac73c11cd00848ff034a4a05585cb891898cca723c",
+      "git_blob_sha": "196e75b9793188ba42389fb2dea722b78341b9e3",
+      "citation_key": "K803",
+      "workspace_relative_path": "qa/kart-theme-source-803e-20261114/source-binding-production-before.json",
+      "scope": "External content binding of1175 runtime files, not clean-checkout metadata replacement."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/final-upload-manifest.json",
+      "bytes": 26417,
+      "sha256": "0889332cb49931b79b90830ab9b4302376322eade7bc0506979d6a782433b74b",
+      "git_blob_sha": "6108eacfbc7ceff93c0ac774fc0d7985f966543f",
+      "citation_key": "K803",
+      "workspace_relative_path": "qa/kart-theme-source-803e-20261114/final-upload-manifest.json",
+      "scope": "Explicit existing33-PNG capture/evidence set; no new captures here."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api35/independent-review.json",
+      "bytes": 28443,
+      "sha256": "977b1bfd5a90d0d98d9c42f05985b94775c18422aaf550de45ef4e4fcb8f01b0",
+      "git_blob_sha": "ad86af4291deee677a3dd07a9eef63945cd287db",
+      "citation_key": "A864",
+      "workspace_relative_path": "qa/studio-final-86445f53/api35/independent-review.json",
+      "scope": "Actual Android API35 general tour on Host86445/Native803e, successful within stated scope."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api37/independent-review.json",
+      "bytes": 31568,
+      "sha256": "7311c3d1a5241a03841794b901105e675951f56639f2df05894eb7c99a8e7262",
+      "git_blob_sha": "de002b3efe758a921414f9c96d91cb94572b6350",
+      "citation_key": "A864",
+      "workspace_relative_path": "qa/studio-final-86445f53/api37/independent-review.json",
+      "scope": "Actual Android API37 general tour on Host86445/Native803e, successful within stated scope."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/creative/original-failure-log-review.json",
+      "bytes": 27185,
+      "sha256": "21502d2012097e00d1c9f2414df23fd835f80ce87618af3c524416a3edcc706e",
+      "git_blob_sha": "73884baf7545ea58cbb67b859fa5f229a064b4f4",
+      "citation_key": "A864",
+      "workspace_relative_path": "qa/studio-final-86445f53/creative/original-failure-log-review.json",
+      "scope": "Actual failed required Creative job132324330212; four terminal failures preserved."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/creative/streamed-original/failure-diagnosis-review.json",
+      "bytes": 5518,
+      "sha256": "0d97eea223626dbc57114995e2200e7b3fd4568b1d135ac0bbd168022bfc6ada",
+      "git_blob_sha": "375fc304a7344f1c944ad542d8d7e3b8afb6af1f",
+      "citation_key": "A864",
+      "workspace_relative_path": "qa/studio-final-86445f53/creative/streamed-original/failure-diagnosis-review.json",
+      "scope": "Original selective artifact diagnosis including actual earlier reached actions; no complete Creative PASS."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/README.md",
+      "bytes": 11726,
+      "sha256": "427a23db694bdd03674530a3edcf10ecd6aab5edb507de609467d6267bbeff47",
+      "git_blob_sha": "9e6bc34b576c9b92220ef35fd29e3ae54ecc5ff4",
+      "citation_key": "C20",
+      "workspace_relative_path": "qa/connect-four-native-86445-803e/README.md",
+      "scope": "New original C4 local Dart/native implementation, precise local test/render/transport limitations."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review.json",
+      "bytes": 9661,
+      "sha256": "25a926893f33ad64ff369b5cb34733840da737153e19bb68d625663f2cdd532a",
+      "git_blob_sha": "43638d3f9beff2c49001d1dfbca68e15edd740b0",
+      "citation_key": "C20",
+      "workspace_relative_path": "qa/connect-four-native-86445-803e/review.json",
+      "scope": "Bound local C4 results; Android2020 not executed by this evidence."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/source-upload-manifest.json",
+      "bytes": 15504,
+      "sha256": "ab5686602c40335fbc381ff42c1e66085f2244dcdefc27eca189a8c2bf179683",
+      "git_blob_sha": "4fbb71ea4a7eb199e0d4028617f4e21db3439120",
+      "citation_key": "C20",
+      "workspace_relative_path": "qa/connect-four-native-86445-803e/source-upload-manifest.json",
+      "scope": "Frozen25-source C4 integration package; main original rule engine retained."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/review.json",
+      "bytes": 5998,
+      "sha256": "0903847f70bbe8a78e7fd21bb6c16c1ff8c02f33d13bccca0d081763bf8cddc9",
+      "git_blob_sha": "8f6d0f3ee632c2fe802098ced7759849867f317e",
+      "citation_key": "C20",
+      "workspace_relative_path": "qa/connect-four-visual-fixture-20261114/evidence/review.json",
+      "scope": "Four actual local renderer fixture images and303checks; explicitly read-only fixture host, not real Dart/Android."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/final-visual-review.json",
+      "bytes": 17008,
+      "sha256": "487db3b197dbda4833f8b0c68f3b4bb66a870bbae55b76020ef0b628b707afaf",
+      "git_blob_sha": "338234e3933593c3c46c70669f051a189c021196",
+      "citation_key": "F20",
+      "workspace_relative_path": "qa/original-lumo-facial-studio-803e/evidence/final-visual-review.json",
+      "scope": "Actual Blender and production-teacher imagery and film reviewed; amplitude-driven closed-muzzle articulation, not phoneme visemes."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/independent-speech-source-review.json",
+      "bytes": 4074,
+      "sha256": "cd461814c55ea8ac924ba92c2789760a16f2e45a0af68e2dccb23159a150861f",
+      "git_blob_sha": "00e7c39c7f3b66a78c20b9db18c667fad3a8f033",
+      "citation_key": "F20",
+      "workspace_relative_path": "qa/original-lumo-facial-studio-803e/evidence/independent-speech-source-review.json",
+      "scope": "Independent Kotlin PCM envelope/playback/stop/mute/thread source review, no Android playback acceptance."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-freeze.json",
+      "bytes": 6334,
+      "sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+      "git_blob_sha": "d79f3bd878d865473408ca09c99083e6bfd09e45",
+      "citation_key": "F20",
+      "workspace_relative_path": "qa/original-lumo-facial-studio-803e/source-freeze.json",
+      "scope": "Frozen14-source facial package; exact original/derived ancestry remains explicit."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/README.md",
+      "bytes": 10347,
+      "sha256": "52849d4c95a79bfa179c7c6f4484e2c6ec45ae8cbf5983149ea590985cf74e30",
+      "git_blob_sha": "7d75278ab50ecf099f35c08b06a4c9cb9e693cee",
+      "citation_key": "F20",
+      "workspace_relative_path": "qa/original-lumo-facial-studio-803e/README.md",
+      "scope": "Measured original head/eye/mouth geometry and actual scoped implementation/evidence limitations."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/README.md",
+      "bytes": 4362,
+      "sha256": "5b5ee0a3a06ccf0e1fa098cca824085a69a44cf1cfe0fa5b14dd44bae3654be7",
+      "git_blob_sha": "f11adc7e3ba67e873eda579dad123038bbb958c7",
+      "citation_key": "MF",
+      "workspace_relative_path": "qa/studio-2020-facial-movie-8be3/README.md",
+      "scope": "Original CI wrong-size recording diagnosis, early capture initialization correction and actual new strict local recording."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/visual-review.json",
+      "bytes": 10613,
+      "sha256": "bb55dd3370a27acb45612e98e79665da03336cad8d6fa01f73917b0fa5a98b90",
+      "git_blob_sha": "6b2d624ee234d7919f1464ebe990ea70cd238e52",
+      "citation_key": "MF",
+      "workspace_relative_path": "qa/studio-2020-facial-movie-8be3/visual-review.json",
+      "scope": "Eight real PNGs and all148 decoded movie frames reviewed by B;640-square24fps is recording format, not device performance."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/source-upload-manifest.json",
+      "bytes": 1502,
+      "sha256": "4e5e85902a32660e67057917e4071d9e0d8ff8014adcff507da27fdc8f15f8f2",
+      "git_blob_sha": "2326f574b6e0968024e5a146caa1357214cdc80a",
+      "citation_key": "MF",
+      "workspace_relative_path": "qa/studio-2020-facial-movie-8be3/source-upload-manifest.json",
+      "scope": "Exactly two source/test corrections, unchanged production project defaults and unchanged strict roster."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/README.md",
+      "bytes": 5833,
+      "sha256": "4a1fd7763fefce1a7da578334eaade6a320384467961858de3759ac91effc7de",
+      "git_blob_sha": "c599c602ad0d1687237b4d10cfb7a15494089ace",
+      "citation_key": "DG20",
+      "workspace_relative_path": "qa/cards-german-feedback-86445-803e/README.md",
+      "scope": "Original API35/37 visible German wording defects, twelve red and64 combined green scoped tests; no new Android rendering."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/source-upload-manifest.json",
+      "bytes": 1358,
+      "sha256": "6de559f956662963de4482cf34ad15c14bd2023373ac44bece9dbfcf5b917c92",
+      "git_blob_sha": "f5ba682b2fcfb9bf6b1918beddedfc51f8101b2b",
+      "citation_key": "DG20",
+      "workspace_relative_path": "qa/cards-german-feedback-86445-803e/source-upload-manifest.json",
+      "scope": "Exactly two staged sources; message formatting and targeted test, no changed Cards rule logic."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/README-host-repair.md",
+      "bytes": 1856,
+      "sha256": "1d200d03335f1ad61ce57f3d54fb62e5f925dbd3a9cb58aebb5fa56cdfdf6535",
+      "git_blob_sha": "68311dcc0f7fe663135b020a86a1f8820921590c",
+      "citation_key": "CR20",
+      "workspace_relative_path": "qa/creative-geometry-readiness-86445/README-host-repair.md",
+      "scope": "Staged narrow Jump-ring/Puzzle-board/readiness harness fixes; original failed Android job retained."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/README-native-title.md",
+      "bytes": 1861,
+      "sha256": "8e2f29b4e490aca74d8f6b4f84865c9bcbc87792effd661aea384cd66bb51bfa",
+      "git_blob_sha": "04745888ccd377d37f7e8f17ebcf8cd1265004f7",
+      "citation_key": "CR20",
+      "workspace_relative_path": "qa/creative-geometry-readiness-86445/README-native-title.md",
+      "scope": "Existing Treasure title background only; original quest/save logic retained."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/host-repair-review.json",
+      "bytes": 2835,
+      "sha256": "9cd88b9924b5bc75ef369282c872f5d94c1d7753fceb417dcb254908ffc42043",
+      "git_blob_sha": "3d0d1f719c4dadfb40e4d5a07d8ab3a3ffba6c1a",
+      "citation_key": "CR20",
+      "workspace_relative_path": "qa/creative-geometry-readiness-86445/evidence/host-repair-review.json",
+      "scope": "Local original-image and strict readiness contracts; not a new Android pass."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/native-title-review.json",
+      "bytes": 6314,
+      "sha256": "bb2a5d7c683fb0494039666ea993dccb0ff8aec443e3f9bbb10bedb67a0b590b",
+      "git_blob_sha": "89d119655227e0ca4fe550924c158e5c9ec6c11d",
+      "citation_key": "CR20",
+      "workspace_relative_path": "qa/creative-geometry-readiness-86445/evidence/native-title-review.json",
+      "scope": "Original actually reached tree/inventory/return, precise title blocker;129headless/137rendered and1085existingdensity on their own sources."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/host-source-upload-manifest.json",
+      "bytes": 5252,
+      "sha256": "42f968237181909fd1091953b74bec201c16fa7c919df7b18e619534cecf807c",
+      "git_blob_sha": "610c54e5014f97c5d7b775b0a804eed7d4d3320c",
+      "citation_key": "CR20",
+      "workspace_relative_path": "qa/creative-geometry-readiness-86445/host-source-upload-manifest.json",
+      "scope": "Frozen host QA-only changes, not new game mechanics."
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/native-source-upload-manifest.json",
+      "bytes": 1963,
+      "sha256": "ea075b909d8325ca9bcc682d531aa9b4876d76382f1da9ae4f29db85e095d1e9",
+      "git_blob_sha": "fd2eeb8d03a725dc79ca0ed00e57bb9e20ceb4f8",
+      "citation_key": "CR20",
+      "workspace_relative_path": "qa/creative-geometry-readiness-86445/native-source-upload-manifest.json",
+      "scope": "Frozen three native title product/test/fixture files."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+PASS all existing grade/subject banks persist and replay
+PASS 50:50 clears a newly hidden selection
+PASS zero-star first mistake ends and persists without wallet mutation
+PASS existing safe spots pay only 50/200/800 after later mistake
+PASS 20 original questions award 5000 once across reopen
+PASS question/joker/selection history restores exactly
+PASS unlimited reconsideration keeps bounded history
+PASS profile is checked after in-flight save before UI install
+PASS children have separate stored rounds
+PASS write-before failure recovers without acknowledged selection
+PASS write-after failure reloads durable selection without duplicate
+PASS wallet interruption before round ACK deduplicates result ID
+PASS simultaneous commands serialize and cannot award twice
+PASS stale independent controller cannot overwrite newer round
+PASS invalid/foreign saves reject without destructive replacement
+PASS native view hides answers and explanation before reveal
+PASS duplicate/stale/foreign native intent never repeats a move
+PASS hidden/extra renderer result fields are rejected
+PASS 2500ms lease pause and stale slot permit explicit resume
+PASS pause epoch persists pause until explicit resume
+PASS native subject change is paused and starts real new bank
+PASS profile revocation closes native authority before request
+PASS accepted native open with lost reply closes the exact token
+PASS old grade round resumes while new round uses current grade
+PASS completed native round changes subject without another pause
+PASS close during controller setup cannot open or reopen a Quiz token
+PASS close during a late accepted native Open cleans only its own token
+PASS simultaneous Quiz open rejects while controller setup is pending
+[QuizRoundContract] PASS cases=28 failed=0 checks=1786 skips=0

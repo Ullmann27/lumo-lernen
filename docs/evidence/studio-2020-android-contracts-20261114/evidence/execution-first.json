@@ -1,0 +1,65 @@
+[
+  {
+    "name": "update-contracts",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_update_preservation.py",
+      "-v"
+    ],
+    "started_utc": "2026-11-14T04:52:38.510086+00:00",
+    "seconds": 0.18483557300351094,
+    "exit_code": 0,
+    "log_bytes": 11167,
+    "log_sha256": "859c8e4d8f84cf4968ec2d3b085c26eb4b94bb7ceeba3c963315b623fe93ef1f",
+    "no_android_or_app_execution": true
+  },
+  {
+    "name": "studio-version-contracts",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_studio_2020_android_contracts.py",
+      "-v"
+    ],
+    "started_utc": "2026-11-14T04:52:38.695195+00:00",
+    "seconds": 0.18023981399892364,
+    "exit_code": 0,
+    "log_bytes": 1698,
+    "log_sha256": "bafe1637b06e7733555ae57f9768d345772175829a069fd5017b4edd833ab4de",
+    "no_android_or_app_execution": true
+  },
+  {
+    "name": "existing-creative-contracts",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_studio_creative_android_probe.py",
+      "-v"
+    ],
+    "started_utc": "2026-11-14T04:52:38.875626+00:00",
+    "seconds": 0.27441618900047615,
+    "exit_code": 0,
+    "log_bytes": 1784,
+    "log_sha256": "405e1510ca208ebdb473bdb5be0a62905857ff390ae20012679a413fbd308fec",
+    "no_android_or_app_execution": true
+  }
+]

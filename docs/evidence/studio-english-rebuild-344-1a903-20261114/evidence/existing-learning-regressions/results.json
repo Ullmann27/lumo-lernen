@@ -1,0 +1,98 @@
+[
+  {
+    "name": "learning_world_regression",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/tmp/lumo-english-rebuild-344-1a903",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--script",
+      "res://scripts/tests/learning_world_regression.gd"
+    ],
+    "timeout_seconds": 420,
+    "timed_out": false,
+    "exit_code": 0,
+    "elapsed_seconds": 20.629443950999757,
+    "log_bytes": 10943,
+    "log_sha256": "93b7eab0d8d8eb0d8460ead529024b3c66357bddef7134362c1bf1a9b47197f2",
+    "required_marker": "[LearningWorld] PASS",
+    "markers": [
+      "[LearningWorld] PASS checks=5340"
+    ],
+    "errors": [],
+    "warnings": [
+      "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    ],
+    "test_source_sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+    "test_unchanged_vs_native344": true
+  },
+  {
+    "name": "learning_studio_regression",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/tmp/lumo-english-rebuild-344-1a903",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--script",
+      "res://scripts/tests/learning_studio_regression.gd"
+    ],
+    "timeout_seconds": 180,
+    "timed_out": false,
+    "exit_code": 0,
+    "elapsed_seconds": 9.125616035999883,
+    "log_bytes": 2145,
+    "log_sha256": "35b5c83cae950a4475557a8fb67af7111ab9d3acd9ec7eb1a5cd628e7d4390d6",
+    "required_marker": "[LearningStudio] PASS",
+    "markers": [
+      "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+    ],
+    "errors": [],
+    "warnings": [
+      "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    ],
+    "test_source_sha256": "db69f9b6f2b629b655534f5d11610709a15eee5d76317cc55e8a88e0c1b74c1c",
+    "test_unchanged_vs_native344": true
+  },
+  {
+    "name": "learning_sharing_regression",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/tmp/lumo-english-rebuild-344-1a903",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--script",
+      "res://scripts/tests/learning_sharing_regression.gd"
+    ],
+    "timeout_seconds": 180,
+    "timed_out": false,
+    "exit_code": 0,
+    "elapsed_seconds": 3.5383061490001637,
+    "log_bytes": 1826,
+    "log_sha256": "83ae0da406f922c632c52192b00d14d42ae7ed878f6496aa2cdbe1adec9bb31f",
+    "required_marker": "[LearningSharing] PASS",
+    "markers": [
+      "[LearningSharing] PASS checks=1811"
+    ],
+    "errors": [],
+    "warnings": [
+      "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    ],
+    "test_source_sha256": "2d829cf28cd7b9fdd1396d0dda7e9dd20d14c5285d25940943c15bccc55fa9f3",
+    "test_unchanged_vs_native344": true
+  }
+]

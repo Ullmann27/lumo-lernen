@@ -1,0 +1,75 @@
+{
+  "base_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "new_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "old_leaves": 4367,
+  "new_leaves": 4369,
+  "unchanged": 4365,
+  "changes": [
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "old": "457aed1dcc82e9c0f4462daa045b249bc735df7e",
+      "new": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "old": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a",
+      "new": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "old": null,
+      "new": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "old": null,
+      "new": "fd5e624055383e935bfd5fab074d62cb746f396c"
+    }
+  ],
+  "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "parent": "b7210db3f53361987fd33592de438fd7984d991a",
+  "branch": "chatgpt/lumo-nextgen-feature-20261114",
+  "force": false,
+  "postref_verified": true,
+  "main_updated": false,
+  "prepared_tests": 24,
+  "executed_new_tests_at_commit": 0,
+  "source_files": [
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/prepared/lib/features/games/memory/memory_flutter_adapter.dart",
+      "mode": "100644",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14",
+      "baseline_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-durability-fix-b721-20261114/prepared/test/games/memory_preferences_durability_test.dart",
+      "mode": "100644",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "baseline_blob": null
+    },
+    {
+      "path": "lib/domain/analysis/daily_recommendation_engine.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/prepared/host/lib/domain/analysis/daily_recommendation_engine.dart",
+      "mode": "100644",
+      "bytes": 8298,
+      "sha256": "e21e566b2f54b895598d6a04c329c83604f27c60e9ea2680be575fd9f320ab2c",
+      "git_blob_sha": "f0159983be551133bf9a3ce83e6c42de8b0d7a9b",
+      "baseline_blob": "457aed1dcc82e9c0f4462daa045b249bc735df7e"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/reading-asr-evidence-fix-b721-20261114/prepared/host/test/reading_asr_evidence_boundary_test.dart",
+      "mode": "100644",
+      "bytes": 12601,
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "baseline_blob": null
+    }
+  ]
+}

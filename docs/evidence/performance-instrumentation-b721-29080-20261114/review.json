@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14 17:51:17 UTC",
+  "scope": "Read-only source audit; zero device measurements, local commands, code changes or workflow/ref mutations.",
+  "identity": {
+    "host": "b7210db3f53361987fd33592de438fd7984d991a",
+    "native": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+  },
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/android_qa/fold_device_capture.py",
+      "bytes": 23101,
+      "sha256": "72ebc6fcb029b6bbae1a8d13162e61ccfb68f67d0216175268e1d5722dfbfd4c",
+      "git_blob_sha": "500c8728602593e3ff34be62cbc81d32f7cdfbe5",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/android_qa/fold_device_capture.py"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/android_qa/FOLD_DEVICE_CAPTURE.md",
+      "bytes": 8577,
+      "sha256": "5e834bd63bf86c048ca570f6d687642a7d6ab327803e5716241f4e21636826f6",
+      "git_blob_sha": "a5a356c078925e818ad571c2e22e35a556a47b5c",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/android_qa/FOLD_DEVICE_CAPTURE.md"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/android_qa/runtime_resource_evidence.py",
+      "bytes": 5371,
+      "sha256": "c2cc08ca11c0d1539c7322255de34b5b12754e24f43fcf5498e213f6ca9f84f0",
+      "git_blob_sha": "caf093f18059272d7c3a5c9ceada574747519212",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/android_qa/runtime_resource_evidence.py"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": ".github/probes/kart_complete_android_probe.py",
+      "bytes": 59785,
+      "sha256": "74f85c19dcd85e79a4c994172c4e6e971bb9755549594e29b6c277a5c789c57b",
+      "git_blob_sha": "98163d522970675f977260df84bb445e864ad9d1",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/.github/probes/kart_complete_android_probe.py"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "scripts/prepare_embedded_games.py",
+      "bytes": 11694,
+      "sha256": "e31d0aadd76633b98182a4d2093d838adf9603c46c8ad191561d045d4a0d333e",
+      "git_blob_sha": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/scripts/prepare_embedded_games.py"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "git_blob_sha": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/auto_install/LumoGameActivity.kt"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "project.godot",
+      "bytes": 1944,
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+      "git_blob_sha": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/project.godot"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/systems/performance_manager.gd",
+      "bytes": 5167,
+      "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+      "git_blob_sha": "b81a5c2202cc832cdd6c773a459bb90ab6520d53",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/systems/performance_manager.gd"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/systems/render/lumo_quality.gd",
+      "bytes": 2168,
+      "sha256": "76da4cb1e689f9c6c72f307d4887a90264a28a18e50d2facf96e00eb4f4e08c4",
+      "git_blob_sha": "9e70c75c88729ef06a7fddc5b000ec2cb3f282ad",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/systems/render/lumo_quality.gd"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/tests/kart_showcase.gd",
+      "bytes": 3705,
+      "sha256": "cd4d1a1ee91ec256093b4096a8283ebe1fc66809abaded84022c2c38e1c49c0a",
+      "git_blob_sha": "1c775d3ca6d2d9fb07dbaddbc00ec336c5d7541a",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/tests/kart_showcase.gd"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/tests/lumo_animation_cpu_benchmark.gd",
+      "bytes": 4932,
+      "sha256": "27bba9f3054e74688af8632e722f1d04e3afa381c02d19313456bae70656e7f1",
+      "git_blob_sha": "b0064946d332b34437a340e9875f64ef411385eb",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/tests/lumo_animation_cpu_benchmark.gd"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/tests/creative_objects_capture.gd",
+      "bytes": 1596,
+      "sha256": "e33dba9230839194accfcc88c1e056fa2502074d9655627bddb630a53329374a",
+      "git_blob_sha": "f69dd559e61522f1724b8a18f621db7db3bb0ec7",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/tests/creative_objects_capture.gd"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "bytes": 74256,
+      "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+      "git_blob_sha": "2684ac3cf034fdcd5c71570182396f0664979735",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/.github/workflows/lumo-studio-2020.yml"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 39906,
+      "sha256": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+      "git_blob_sha": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/.github/probes/lumo_connect_four_android_probe.py"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": ".github/probes/lumo_quiz_android_probe.py",
+      "bytes": 56820,
+      "sha256": "2e23fa11a3cb4a578c3fca5c875fb930c54bab24525946b6d80eeab0dd339e83",
+      "git_blob_sha": "8d79a567293b199c50cbe9d87d573db4d8901be3",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/.github/probes/lumo_quiz_android_probe.py"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": ".github/probes/lumo_memory_android_probe.py",
+      "bytes": 49666,
+      "sha256": "7ed28770dbe692d5e0d8d2032805fda91262de2716b5b8badab2c07cb51aeb01",
+      "git_blob_sha": "4e84bedec42e80072d6db43423058ff5c7525ad4",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/.github/probes/lumo_memory_android_probe.py"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": ".github/probes/lumo_english_objects_android_probe.py",
+      "bytes": 55089,
+      "sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+      "git_blob_sha": "ee4e1d59c43a6e27c464208e26eedc694a516df9",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/.github/probes/lumo_english_objects_android_probe.py"
+    }
+  ],
+  "findings": [
+    {
+      "area": "Physical Fold collector",
+      "status": "Implemented, not executed here",
+      "facts": [
+        "Explicit serial; installed monolithic ARM64 APK SHA256/bytes and source/PCK verification before/after; ordinary UID2000 shell.",
+        "Raw display/window/input/cpuinfo/thermalservice/battery/HWUI/SurfaceFlinger, native/host process snapshots.",
+        "Outputs capture.json, commands.jsonl, raw stdout/stderr and MANIFEST.json; successful recording may contain unavailable optional values.",
+        "Native FPS, GPU frame time and touch latency are always NOT_MEASURED/null."
+      ]
+    },
+    {
+      "area": "Process/surface binding",
+      "facts": [
+        "Main Flutter host and Godot :lumo_game are separate processes.",
+        "LumoGameActivity owns :lumo_game; ConnectFourGameActivity and TableGameActivity inherit that process setting; authority services remain main-process bound.",
+        "Optional explicit SurfaceView layer is raw-only. Package plus SurfaceView string is not an automatic authoritative Godot-versus-Flutter frame association."
+      ]
+    },
+    {
+      "area": "CPU/memory",
+      "facts": [
+        "user/system ticks, process-start ticks, RSS pages; no sampled OS HZ/page size, hence no derived CPU-percent or byte conversion.",
+        "Native meminfo PID/name binding yields PSS KiB and optional RSS KiB. Host meminfo and CPUinfo are raw.",
+        "Root-emulator capture_resources has two existing Kart complete-race snapshots; separate from non-root Fold collector."
+      ]
+    },
+    {
+      "area": "GPU/draw calls/frame time",
+      "facts": [
+        "Desktop Kart showcase uses wall-clock process-loop deltas after warm-up, excluding PNG-readback-following samples, and logs p50/p95 plus last-frame draw/object counts.",
+        "That showcase disables live physics and sets demonstration states; it is not ordinary physical APK gameplay.",
+        "Creative object capture writes draw/object/primitive counters with physical_android=false.",
+        "Animation CPU benchmark measures manual AnimationPlayer/bone updates and IK, mean/p95/max and static-memory sample; explicitly excludes GPU/full app."
+      ]
+    },
+    {
+      "area": "Temperature/adaptive quality",
+      "facts": [
+        "Thermal severity0..6 only for recognized healthy HAL without override; sensors preserved raw.",
+        "PerformanceManager selects platform default or persisted low/medium/high setting; reapplies on scene change. No frame-time/thermal-driven controller exists in these inspected quality sources.",
+        "LumoQuality explicitly states Fold7 budgets are not device-measured."
+      ]
+    },
+    {
+      "area": "Current Android workflow",
+      "facts": [
+        "C4, Quiz, Memory and English probes explicitly exclude physical Fold/FPS/thermal/touch-latency acceptance.",
+        "API35/37 emulator execution and movie encoding frame counts cannot establish physical Fold7 delivery performance.",
+        "No Fold collector invocation occurs in the inspected current Studio workflow."
+      ]
+    }
+  ],
+  "remaining": [
+    "Current final ARM64 APK installed/byte-bound on actual Fold7; actual SDK/fingerprint and exact scene/quality/device-state recorded.",
+    "Godot-versus-Flutter Surface identification and synchronized actual per-frame presentation intervals/CPU-GPU times (p50/p95/p99, deadline misses), not HWUI/media FPS substitution.",
+    "Sustained runs under observed thermal/battery/display conditions; native/host memory trends and real touch response; inner/outer/landscape transitions.",
+    "Measured tuning/verification of existing quality choices; no automatic thermal/frame-time adaptation currently demonstrated."
+  ],
+  "limitations": [
+    "Search was bounded to listed source paths; no exhaustive claim that every file in both repositories was audited.",
+    "No actual phone, no new performance results, no invented thresholds or new implementation.",
+    "Default expected-api37 is a collector default, not an observed claim about the user's Fold7; use the actual independently verified SDK."
+  ]
+}

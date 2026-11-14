@@ -1,0 +1,520 @@
+{
+  "schema": 1,
+  "scope": "Read-only visual fixture; original local two-process states are historical sources, not a new Dart, Android, bot or save test",
+  "source_directory": "qa/connect-four-native-86445-803e/runtime-final-v7",
+  "source_full_state_sha256": "10059669b5f42b1a6a519626cb686a13dc7175b7e37d7002c253bcb07be4b9eb",
+  "retained_public_fields": [
+    "schema",
+    "game",
+    "token",
+    "owner",
+    "roundId",
+    "revision",
+    "recordRevision",
+    "ack",
+    "rejected",
+    "paused",
+    "canDrop",
+    "phase",
+    "turn",
+    "twoPlayers",
+    "level",
+    "columns",
+    "board",
+    "winningLine",
+    "rewarded"
+  ],
+  "explicit_transport_defaults": {
+    "exit": false,
+    "reduceMotion": false,
+    "validColumns": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "error": null
+  },
+  "transport_notes": "No chosen board has a full column. exit=false prevents the transport from leaving a visual fixture. Flags do not advance rules or acknowledge an action. These four fields are absent from the original layout sidecars and are explicit visual transport defaults, not byte-identical original state claims.",
+  "fixture_json_sha256": "cb2b8d22d32066777698ba4af01eb139e90c2d75bf7a7c2b95ab4b757de7f6c0",
+  "fixtures": [
+    {
+      "name": "c4-empty-landscape",
+      "size": [
+        960,
+        540
+      ],
+      "source_file": "connect_four_empty.layout.json",
+      "source_sha256": "4b85b841d4981813dfcd61bc2a1232a9a665ea8be1b69f9ca192d57f2e2eb490",
+      "state": {
+        "schema": 1,
+        "game": "connect_four",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "owner": "831eb2a9e465214a7bad8cebda113466f58af638c3bef2c42b83ec7630a3cbff",
+        "roundId": "da1101f7e2966b36aa6be1581ffb0ad6",
+        "revision": 7,
+        "recordRevision": 4,
+        "ack": 3,
+        "rejected": 0,
+        "paused": false,
+        "canDrop": true,
+        "phase": "playing",
+        "turn": 1,
+        "twoPlayers": true,
+        "level": "mittel",
+        "columns": [],
+        "board": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "winningLine": [],
+        "rewarded": false,
+        "exit": false,
+        "reduceMotion": false,
+        "validColumns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "error": null
+      },
+      "occupied": []
+    },
+    {
+      "name": "c4-playing-phone",
+      "size": [
+        412,
+        915
+      ],
+      "source_file": "connect_four_phone_bot_response.layout.json",
+      "source_sha256": "b871ef7da990d3f31143a80caa9cd4739d91a0dcf0028e56734d61ddfcf56ab6",
+      "state": {
+        "schema": 1,
+        "game": "connect_four",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "owner": "831eb2a9e465214a7bad8cebda113466f58af638c3bef2c42b83ec7630a3cbff",
+        "roundId": "7de9a1d339103dc67cf28cff5e0539fd",
+        "revision": 5,
+        "recordRevision": 3,
+        "ack": 1,
+        "rejected": 0,
+        "paused": false,
+        "canDrop": true,
+        "phase": "playing",
+        "turn": 1,
+        "twoPlayers": false,
+        "level": "mittel",
+        "columns": [
+          3,
+          3
+        ],
+        "board": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "winningLine": [],
+        "rewarded": false,
+        "exit": false,
+        "reduceMotion": false,
+        "validColumns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "error": null
+      },
+      "occupied": [
+        {
+          "piece": 2,
+          "world_center": [
+            0.0,
+            1.71000003814697,
+            0.0
+          ]
+        },
+        {
+          "piece": 1,
+          "world_center": [
+            0.0,
+            0.850000023841858,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "c4-win-landscape",
+      "size": [
+        960,
+        540
+      ],
+      "source_file": "connect_four_win.layout.json",
+      "source_sha256": "f19e96174c8d970a7d10df04259d05e99e370ef1884a5eda8682da48f09d5cc8",
+      "state": {
+        "schema": 1,
+        "game": "connect_four",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "owner": "831eb2a9e465214a7bad8cebda113466f58af638c3bef2c42b83ec7630a3cbff",
+        "roundId": "da1101f7e2966b36aa6be1581ffb0ad6",
+        "revision": 24,
+        "recordRevision": 12,
+        "ack": 14,
+        "rejected": 0,
+        "paused": false,
+        "canDrop": false,
+        "phase": "won",
+        "turn": 1,
+        "twoPlayers": true,
+        "level": "mittel",
+        "columns": [
+          0,
+          6,
+          1,
+          6,
+          2,
+          5,
+          3
+        ],
+        "board": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          1,
+          1,
+          1,
+          0,
+          2,
+          2
+        ],
+        "winningLine": [
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "rewarded": true,
+        "exit": false,
+        "reduceMotion": false,
+        "validColumns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "error": null
+      },
+      "occupied": [
+        {
+          "piece": 2,
+          "world_center": [
+            2.57999992370605,
+            1.71000003814697,
+            0.0
+          ]
+        },
+        {
+          "piece": 1,
+          "world_center": [
+            -2.57999992370605,
+            0.850000023841858,
+            0.0
+          ]
+        },
+        {
+          "piece": 1,
+          "world_center": [
+            -1.72000002861023,
+            0.850000023841858,
+            0.0
+          ]
+        },
+        {
+          "piece": 1,
+          "world_center": [
+            -0.860000014305115,
+            0.850000023841858,
+            0.0
+          ]
+        },
+        {
+          "piece": 1,
+          "world_center": [
+            0.0,
+            0.850000023841858,
+            0.0
+          ]
+        },
+        {
+          "piece": 2,
+          "world_center": [
+            1.72000002861023,
+            0.850000023841858,
+            0.0
+          ]
+        },
+        {
+          "piece": 2,
+          "world_center": [
+            2.57999992370605,
+            0.850000023841858,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "c4-paused-small",
+      "size": [
+        640,
+        360
+      ],
+      "source_file": "connect_four_pause.layout.json",
+      "source_sha256": "6812f85731ce01cf4aed2b34962fa86644ebec07728268f9ff100252e58f99f7",
+      "state": {
+        "schema": 1,
+        "game": "connect_four",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "owner": "831eb2a9e465214a7bad8cebda113466f58af638c3bef2c42b83ec7630a3cbff",
+        "roundId": "da1101f7e2966b36aa6be1581ffb0ad6",
+        "revision": 16,
+        "recordRevision": 7,
+        "ack": 9,
+        "rejected": 0,
+        "paused": true,
+        "canDrop": false,
+        "phase": "playing",
+        "turn": 2,
+        "twoPlayers": true,
+        "level": "mittel",
+        "columns": [
+          0,
+          6,
+          1
+        ],
+        "board": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        "winningLine": [],
+        "rewarded": false,
+        "exit": false,
+        "reduceMotion": false,
+        "validColumns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "error": null
+      },
+      "occupied": [
+        {
+          "piece": 1,
+          "world_center": [
+            -2.57999992370605,
+            0.850000023841858,
+            0.0
+          ]
+        },
+        {
+          "piece": 1,
+          "world_center": [
+            -1.72000002861023,
+            0.850000023841858,
+            0.0
+          ]
+        },
+        {
+          "piece": 2,
+          "world_center": [
+            2.57999992370605,
+            0.850000023841858,
+            0.0
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_evidence_head": "90fd18d98520a610f7a650e1ea4dfe3142495d47",
+  "count": 4,
+  "files": [
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-b721-promotion-20261114/feature-run-final.json",
+      "target_path": "docs/evidence/studio-b721-promotion-20261114/feature-run-final.json",
+      "bytes": 15241,
+      "sha256": "d3002d8948cbb52b85c284a645cb6a20e7c5374e9a25e926eb8c6190f6a6e1d3",
+      "git_blob_sha": "406fb8b57cbd953ac3cb7ff61304226c6c90ad88",
+      "encoding": "utf-8"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-b721-promotion-20261114/feature-jobs-final.json",
+      "target_path": "docs/evidence/studio-b721-promotion-20261114/feature-jobs-final.json",
+      "bytes": 13793,
+      "sha256": "546520fb8d08488fdd6be075bf46edbbfd86b989c0793c5e6d3e75e45a534c6e",
+      "git_blob_sha": "f5592d44adcf924afcf13bb99034d1a4d5cc83fd",
+      "encoding": "utf-8"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-b721-promotion-20261114/promotion-proof.json",
+      "target_path": "docs/evidence/studio-b721-promotion-20261114/promotion-proof.json",
+      "bytes": 1075,
+      "sha256": "11d467f601281c294047a3da289f256785889b60d6ec875160a51d5c19fcd654",
+      "git_blob_sha": "53978e59d02a203b3e3b38c48ff8b098038a796c",
+      "encoding": "utf-8"
+    },
+    {
+      "source_path": "/workspace/scratch/5987865ae883/qa/native29080-evidence-combined125-20261114/commit-proof.json",
+      "target_path": "docs/evidence/native29080-evidence-combined125-20261114/commit-proof.json",
+      "bytes": 876,
+      "sha256": "f3a130a913867fcbed5802b8b9be23f21a6614cab7b1130858e91357879707eb",
+      "git_blob_sha": "d08c882cc73e0067d4072673109d9780f014b05b",
+      "encoding": "utf-8"
+    }
+  ],
+  "scope": "Actual b721 source gates and leased Studio promotion; current APK and Android outcomes are pending. Earlier 125-file evidence commit proof retained."
+}

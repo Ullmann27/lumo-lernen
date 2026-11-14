@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "prepared_utc": "2026-11-14T05:32:32.459385+00:00",
+  "status": "LOCAL_SYNTHETIC_CONTRACTS_PASS_READY_FOR_INTEGRATION",
+  "source_manifest_sha256": "234915e9085af10f742e6706bef14e798494b29225ff9cd5f5a2a68d306e600f",
+  "executions": [
+    {
+      "path": "evidence/first-contracts-execution.json",
+      "sha256": "64ec115bad9a66e13b5a7d0f41eccc859a9da53e96a7f648e48a6ca160d9cc5c",
+      "tests": 28,
+      "scope": "Historical first local parser run, supporting probe385954"
+    },
+    {
+      "path": "evidence/final-contracts-execution.json",
+      "sha256": "68a6f2c6fa414cbd7aa2ac1829fc0f1208d3ea3e1dfab07b176fa67bd92ff021",
+      "tests": 29,
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "Final local parser run, reviewed deadline probe d9c72a9f"
+    },
+    {
+      "path": "evidence/cli-help-execution.json",
+      "sha256": "a59120ab4017e61a0b09c97d0826507babdd8b0a1d58f7720b849e36cca8ad13",
+      "scope": "CLI import/help only"
+    }
+  ],
+  "test_support_manifest": "evidence/final-test-support-binding.json",
+  "test_support_manifest_sha256": "4a0f059736a26304f4fff8600cd2c5356fbe0db2654c1327466437a282cf2014",
+  "source_changes": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/host/scripts/verify_studio_connect_four_android.py",
+      "target": "scripts/verify_studio_connect_four_android.py",
+      "bytes": 34503,
+      "sha256": "b17f88f8d499e28be1663d9bcf1ada451221703174939fa60fde8bf990363e4c",
+      "git_blob_sha": "b05348751d7c3c8b74ed91dd03d0acd6f21cd4a8",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/host/scripts/tests/test_studio_connect_four_android_delivery.py",
+      "target": "scripts/tests/test_studio_connect_four_android_delivery.py",
+      "bytes": 22231,
+      "sha256": "707e4aceed63868f282775035642ad6c6341bdcf75db211b3eb24109508963f4",
+      "git_blob_sha": "36c09e7061942a8eafabcfe71c91c5989f837fe0",
+      "mode": "100644"
+    }
+  ],
+  "current_android_result": null,
+  "actual_2020_runtime_result": null,
+  "no_generated_approved_receipt": true,
+  "limits": [
+    "Synthetic tests are not Android evidence",
+    "No APK/Native source mutation or build/CI/Git action",
+    "No physical Fold7 performance measurement",
+    "Empty cells have no pixelwise emptiness acceptance; occupied discs are independently sampled",
+    "Original artifact transport/digest check is provided by the parent publisher"
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "commit": {
+    "sha": "20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+    "node_id": "C_kwDOSNzcp9oAKDIwZmJlODE4MDRkOTFlMmZjNDI3MGE4M2NmYTMwMzhlODU1N2I3MWQ",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T06:29:23Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T06:29:23Z"
+    },
+    "tree": {
+      "sha": "969d123436988626e11500ca310d241e4a2c33e0",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/969d123436988626e11500ca310d241e4a2c33e0"
+    },
+    "message": "Record Studio 2020 original renders, failures and controlled integration evidence\n\nAdd555 explicit docs-only records from the completed338-file character/game packet,161-file correction/publisher packet and56 Root integration records. Preserve all5672 prior files and modes byte-for-byte.\n\nRetain the failed8be3 CI and original logs separately from the actual local repairs. Nativeacf51d3 is a published followup with a fresh CI still incomplete at these freezes. No new Android2020, release, physical Fold7 or60fps approval is claimed.\n\nProduct source, Main and historical artifacts are unchanged by this documentation commit.",
+    "parents": [
+      {
+        "sha": "e423df58117c8f49bcd03c634e438392dc79c3ef",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/e423df58117c8f49bcd03c634e438392dc79c3ef",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/e423df58117c8f49bcd03c634e438392dc79c3ef"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "node_id": "REF_kwDOSNzcp9oAOXJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby00YWI5NjY2Ni1ldmlkZW5jZS0yMDI2MTExNA",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "object": {
+      "sha": "20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/20fbe81804d91e2fc4270a83cfa3038e8557b71d"
+    }
+  },
+  "tree_proof": {
+    "base_commit": "e423df58117c8f49bcd03c634e438392dc79c3ef",
+    "base_tree": "61d1aa197fb28072ab9405039b0d171cb4ce1aea",
+    "new_tree": "969d123436988626e11500ca310d241e4a2c33e0",
+    "unchanged_original_files": 5672,
+    "added_files": 555,
+    "total_files": 6227,
+    "total_new_bytes": 53197913,
+    "all_added_paths_under_docs": true,
+    "unexpected_changes": [],
+    "construction": "Two flattened base-tree requests returned GitHub422 timeouts; built25new independent evidence subtrees, then reconstructed only three shallow ancestors without altering any existing entry. Final full recursive tree independently verified."
+  },
+  "source_manifests": {
+    "B": "61b25094bcbe95ab9a8b2048ec6e213b69abbb971789e3acd43bdbe8d8b02e11",
+    "A": "1a611edbc6c769897abf52fe0ad0c970ee032f71a4ec7de96e60bbc254e623bd",
+    "root": "17cfddc3b332a1412fff61ec84ad86e60c4022891f5bcc52a5cbbfd765743125"
+  },
+  "failed_tree_attempts": [
+    {
+      "error": "GitHub API error 422: {\"message\":\"Sorry, your request timed out.  It's likely that your input was too large to process.  Consider building the tree incrementally, or building the commits you need in a local clone of the repository and then pushing them to GitHub.\",\"documentation_url\":\"https://docs.github.com/rest/git/trees#create-a-tree\",\"status\":\"422\"}",
+      "error_code": "INVALID_ARGUMENT",
+      "error_data": {
+        "message": "Sorry, your request timed out.  It's likely that your input was too large to process.  Consider building the tree incrementally, or building the commits you need in a local clone of the repository and then pushing them to GitHub.",
+        "documentation_url": "https://docs.github.com/rest/git/trees#create-a-tree",
+        "status": "422"
+      }
+    },
+    {
+      "error": "GitHub API error 422: {\"message\":\"Sorry, your request timed out.  It's likely that your input was too large to process.  Consider building the tree incrementally, or building the commits you need in a local clone of the repository and then pushing them to GitHub.\",\"documentation_url\":\"https://docs.github.com/rest/git/trees#create-a-tree\",\"status\":\"422\"}",
+      "error_code": "INVALID_ARGUMENT",
+      "error_data": {
+        "message": "Sorry, your request timed out.  It's likely that your input was too large to process.  Consider building the tree incrementally, or building the commits you need in a local clone of the repository and then pushing them to GitHub.",
+        "documentation_url": "https://docs.github.com/rest/git/trees#create-a-tree",
+        "status": "422"
+      }
+    }
+  ],
+  "group_trees": [
+    {
+      "group": "original-lumo-facial-20261114",
+      "sha": "5f87560b8c2c6e744f263aeb9a5bca75ae49bfc3",
+      "entries": 110
+    },
+    {
+      "group": "studio-creative-geometry-86445-20261114",
+      "sha": "21c5a07186d24813c48212f8ea76b623ac930376",
+      "entries": 93
+    },
+    {
+      "group": "studio-2020-facial-movie-fix-8be3",
+      "sha": "c5675b11fde1074155be88cd374b0371aac7aa43",
+      "entries": 61
+    },
+    {
+      "group": "studio-2020-root-integration-20261114",
+      "sha": "7a49dbcf371a9258f79b238ca632009b9f21fe97",
+      "entries": 56
+    },
+    {
+      "group": "native-studio-2020-harness-20261114",
+      "sha": "7a0d3f5466e58f3f19dd86dda8ba175dcb529001",
+      "entries": 34
+    },
+    {
+      "group": "studio-native-8be3-observation-20261114",
+      "sha": "ecda573cb99ffd6e6bffba67f21945fa74f6d996",
+      "entries": 25
+    },
+    {
+      "group": "studio-2020-new-work-20261114",
+      "sha": "a918476fed5c2cfd61a8e7499cdd70ae1fbba286",
+      "entries": 21
+    },
+    {
+      "group": "connect-four-visual-fixture-20261114",
+      "sha": "a1353861bdeaafb1285982b34406caee8d345c81",
+      "entries": 20
+    },
+    {
+      "group": "studio-2020-android-contracts-20261114",
+      "sha": "ec856995829484e01c55a80774acfd2e245c6862",
+      "entries": 19
+    },
+    {
+      "group": "studio-attention-landing-8be3-20261114",
+      "sha": "a1dcc45260e0aa83d667bb923633d735fcada2c8",
+      "entries": 17
+    },
+    {
+      "group": "studio-cards-german-feedback-20261114",
+      "sha": "a8bb34966ff87edfd65727a564e5439f49d7293c",
+      "entries": 17
+    },
+    {
+      "group": "studio-2020-followup-20261114",
+      "sha": "1860867c8ae1367482f197a6cea61f6c72e47d8e",
+      "entries": 16
+    },
+    {
+      "group": "studio-facial-import-8be3-20261114",
+      "sha": "daf7d688ca3bd4ecc561979aa9a97fd95a686572",
+      "entries": 16
+    },
+    {
+      "group": "connect-four-delivery-contract-20261114",
+      "sha": "7c68d15f31080e4fa323fe4bca7822f8ee02f4d7",
+      "entries": 11
+    },
+    {
+      "group": "connect-four-android-deadline-20261114",
+      "sha": "e9d8914d927e44eba11f493bca0fd21d624f44fc",
+      "entries": 8
+    },
+    {
+      "group": "connect-four-android-probe-20261114",
+      "sha": "292448c70fd2355b00d8201c81a7c78b874f139d",
+      "entries": 7
+    },
+    {
+      "group": "studio-artifact-originals-contract-20261114",
+      "sha": "7c074e7c5a055e5290bf69fad4cc1ff1b2d3a2e3",
+      "entries": 7
+    },
+    {
+      "group": "studio-2020-release-audit-20261114",
+      "sha": "2b98f493f6705f328394e021399c1058a4ac7e12",
+      "entries": 6
+    },
+    {
+      "group": "studio-2020-host-fixture-blobs-20261114",
+      "sha": "3453c9a939e5035cc188f02c3ea51d1eec377615",
+      "entries": 4
+    },
+    {
+      "group": "studio-facial-movie-independent-review-20261114",
+      "sha": "e092068a035e1f738fa74e40c7640d8d43ae9cc7",
+      "entries": 2
+    },
+    {
+      "group": "studio-2020-artifact-originals-independent-review-20261114",
+      "sha": "d07eb2dff08acefc7688d0dda76e6dffc411661c",
+      "entries": 1
+    },
+    {
+      "group": "studio-2020-final-host-workflow-review-20261114",
+      "sha": "92c34fe13969da2842c8b957365faf65b9f1d110",
+      "entries": 1
+    },
+    {
+      "group": "studio-2020-workflow-independent-review-20261114",
+      "sha": "7f8ed5f3cdf4ff4106eb1fddfbfb3aba9a97a1eb",
+      "entries": 1
+    },
+    {
+      "group": "studio-connect-four-android-independent-review-20261114",
+      "sha": "22112becebd8f4a7ff2a66e0467a98ba3ac199e4",
+      "entries": 1
+    },
+    {
+      "group": "studio-connect-four-root-review-20261114",
+      "sha": "3f5a4adfd3ed6c36d3d352ea124f9b0af21fdd8d",
+      "entries": 1
+    }
+  ]
+}

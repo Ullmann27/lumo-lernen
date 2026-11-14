@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "status": "ACTUAL_REMOTE_FULL_FLUTTER_SUCCESS_AND_24_NAMED_NEW_CASES_CONFIRMED",
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "run_id": 43624674585,
+  "run_attempt": 1,
+  "job": {
+    "id": 132537752822,
+    "run_id": 43624674585,
+    "workflow_name": "LUMO Nextgen feature source acceptance",
+    "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+    "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43624674585",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOSNzcp88AAAAe292c9g",
+    "head_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132537752822",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43624674585/job/132537752822",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T18:05:54Z",
+    "started_at": "2026-11-14T18:05:56Z",
+    "completed_at": "2026-11-14T18:15:59Z",
+    "name": "flutter-contracts",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T18:05:56Z",
+        "completed_at": "2026-11-14T18:05:59Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T18:05:59Z",
+        "completed_at": "2026-11-14T18:06:18Z"
+      },
+      {
+        "name": "Run subosito/flutter-action@v2",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T18:06:18Z",
+        "completed_at": "2026-11-14T18:06:34Z"
+      },
+      {
+        "name": "Capture exact source and install the existing capture font",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T18:06:34Z",
+        "completed_at": "2026-11-14T18:06:48Z"
+      },
+      {
+        "name": "Resolve locked Flutter dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T18:06:48Z",
+        "completed_at": "2026-11-14T18:06:49Z"
+      },
+      {
+        "name": "Analyze all Flutter sources",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T18:06:49Z",
+        "completed_at": "2026-11-14T18:07:03Z"
+      },
+      {
+        "name": "Recheck durable wallet queues across caller zones and actual Memory profiles",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T18:07:03Z",
+        "completed_at": "2026-11-14T18:07:14Z"
+      },
+      {
+        "name": "Run actual Dart learning and table authorities",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T18:07:14Z",
+        "completed_at": "2026-11-14T18:07:16Z"
+      },
+      {
+        "name": "Recheck the observed Quiz UI and reward failures",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T18:07:16Z",
+        "completed_at": "2026-11-14T18:07:30Z"
+      },
+      {
+        "name": "Recheck actual Memory UI and unchanged profile/statistics behavior",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-14T18:07:30Z",
+        "completed_at": "2026-11-14T18:07:42Z"
+      },
+      {
+        "name": "Run the complete Flutter suite and every enabled capture",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-14T18:07:42Z",
+        "completed_at": "2026-11-14T18:15:47Z"
+      },
+      {
+        "name": "Verify tracked source remains exact",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-14T18:15:47Z",
+        "completed_at": "2026-11-14T18:15:47Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-14T18:15:47Z",
+        "completed_at": "2026-11-14T18:15:57Z"
+      },
+      {
+        "name": "Post Run subosito/flutter-action@v2",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-11-14T18:15:57Z",
+        "completed_at": "2026-11-14T18:15:58Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 26,
+        "started_at": "2026-11-14T18:15:58Z",
+        "completed_at": "2026-11-14T18:15:58Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 27,
+        "started_at": "2026-11-14T18:15:58Z",
+        "completed_at": "2026-11-14T18:15:58Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132537752822",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000018856,
+    "runner_name": "GitHub Actions 1000018856",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "full_suite": {
+    "passed": 2632,
+    "failed": 0,
+    "skipped": 0
+  },
+  "full_suite_original_done_event": {
+    "event": {
+      "success": true,
+      "type": "done",
+      "time": 483345
+    },
+    "line": 8377
+  },
+  "actual_new_groups": [
+    {
+      "module": "ASR",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "source_path": "test/reading_asr_evidence_boundary_test.dart",
+      "source_git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c"
+    },
+    {
+      "module": "Memory",
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "source_path": "test/games/memory_preferences_durability_test.dart",
+      "source_git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+    }
+  ],
+  "case_evidence": "actual-new-cases-review.json",
+  "original_job_log": {
+    "fetched_times": 1,
+    "bytes": 122465,
+    "sha256": "6102c286ef6baa0b4ef287775f8b9162c692d17b3fb19353cc0235f79419f4f1",
+    "summary_line": 846
+  },
+  "selective_artifact": {
+    "id": 14125828378,
+    "published_archive_sha256": "29d6d2eb056010ed29b09dc82719acd29eb2d9a69d600f663b0ebbebc367b0bd",
+    "published_archive_bytes": 343185779,
+    "full_archive_hash_locally_verified": false,
+    "full_archive_crc_locally_verified": false,
+    "strict_http206_ranges_only": true,
+    "range_bytes_transferred": 238563,
+    "central_directory_entry_count": 593,
+    "selected_members": [
+      {
+        "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+        "bytes": 41,
+        "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+        "crc32": "a54d4a95",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/HOST-SOURCE.txt"
+      },
+      {
+        "artifact_entry": "feature-evidence/flutter-version.txt",
+        "bytes": 321,
+        "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+        "crc32": "ef6cb86f",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/flutter-version.txt"
+      },
+      {
+        "artifact_entry": "feature-evidence/full-flutter/acceptance-summary.json",
+        "bytes": 2118,
+        "sha256": "a82be7d13b8279760ae0ca0f24a89745d197c7fa58a35e984df17f1ef2902040",
+        "crc32": "04c41350",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/full-flutter/acceptance-summary.json"
+      },
+      {
+        "artifact_entry": "feature-evidence/full-flutter/flutter-machine.jsonl",
+        "bytes": 1767777,
+        "sha256": "273c38c24fa7694f15f21ed9d2aba05a6f39e6be6591620f1a34b3c1977be939",
+        "crc32": "54aff428",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/full-flutter/flutter-machine.jsonl"
+      }
+    ],
+    "details": "selected-artifact/range-download-report.json"
+  },
+  "analyzer": {
+    "info": 214,
+    "warning": 5,
+    "error": 0
+  },
+  "rendered_png_count_reported_by_runner": 546,
+  "these_flutter_images_personally_opened": 0,
+  "tracked_source_diff_step": "success",
+  "local_dart_flutter_pubget_commands": 0,
+  "boundaries": [
+    "ASR tests exercise retained repository observations and actual report/recommendation code; they do not measure microphone confidence or ASR accuracy.",
+    "Memory tests exercise actual adapter behavior using an explicit platform test double; they are not Android device disk-failure tests.",
+    "The full-suite total is not added to repeated focused groups.",
+    "No English model synthesis, heard audio, Android APK/physical-device or 60FPS acceptance follows from this Flutter result.",
+    "The artifact-wide published digest is metadata only; only four selected members and exact directory/range bytes were downloaded and validated."
+  ]
+}

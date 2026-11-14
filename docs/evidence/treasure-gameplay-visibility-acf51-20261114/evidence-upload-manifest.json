@@ -1,0 +1,586 @@
+{
+  "schema": 1,
+  "scope": "Explicit docs-only original blocker binding, unchanged historical failures, exact source snapshots, final real renderer and touch evidence. No source installation, CI success transfer, original archive or runtime cache.",
+  "baseline_native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "source_upload_manifest_sha256": "e218e73e7a54f2e0d64553ab9398716634aa0cb94efad4021e55ea54a4f14bb7",
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/README.md",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/README.md",
+      "mode": "100644",
+      "bytes": 7739,
+      "sha256": "23a9222e00b362a96de9de7e8b55e7aeddc4e03d8f5b595a75c2761d129b678c",
+      "git_blob_sha": "cb823f99077c82ad7cdb37b333b7697ccf7b4e86"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/source-upload-manifest.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 1517,
+      "sha256": "e218e73e7a54f2e0d64553ab9398716634aa0cb94efad4021e55ea54a4f14bb7",
+      "git_blob_sha": "6c503e3dbe56700c0d836554817bcbb518161182"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/implementation-against-acf51.patch",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/implementation-against-acf51.patch",
+      "mode": "100644",
+      "bytes": 15112,
+      "sha256": "2f916a8994b8cd13daac87a144b962d5bec38dbcfb47fcf6a407d670660044a7",
+      "git_blob_sha": "02d690c2dc0acfc58d265a8f3815cd115a110539"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/visual-review.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/visual-review.json",
+      "mode": "100644",
+      "bytes": 5482,
+      "sha256": "0648d918bbb44a98e8d9975f09fe2efa81daf79319cc8876fb26230488537897",
+      "git_blob_sha": "f92e3a8c4e82765b8e3649faa47a22089ad6c58a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/original-blocker-binding.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/original-blocker-binding.json",
+      "mode": "100644",
+      "bytes": 1723,
+      "sha256": "7e44c523f3635c1d3cc3b640f994ae9aec4b6658c83bf01eeaec2d90840c837e",
+      "git_blob_sha": "d4d250966b5498dc58e5a001b144474ea921a505"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/independent-review-reference.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/independent-review-reference.json",
+      "mode": "100644",
+      "bytes": 640,
+      "sha256": "4194f86568a773664ab4c38f1ee58e996164d235ca0de61a94781d72e31da9e6",
+      "git_blob_sha": "d1e5a784d05a12119b72bf3e7900585b93c5a5c3"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/capture-contract.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/capture-contract.json",
+      "mode": "100644",
+      "bytes": 1699,
+      "sha256": "a0f07e40740771e7bc8b98fa61a89d9daceba16fc914e717a7d5a72ab17a70b3",
+      "git_blob_sha": "20b1ada582fa695577c5d4a07c96ef7df446521e"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/actual-acf51-tree.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/actual-acf51-tree.json",
+      "mode": "100644",
+      "bytes": 806298,
+      "sha256": "371b9ec472891cedb4725fccfb98f71834e2a9c59c80fb4648de8e2a9a868581",
+      "git_blob_sha": "16bfc136f01c1dea1d5df718144d89c7ecfdbea0"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/existing-density-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/existing-density-execution.json",
+      "mode": "100644",
+      "bytes": 511,
+      "sha256": "89fc4dc79782a0fe549f7881a04d6564e720aeaa84421ef834cc04eb01c25864",
+      "git_blob_sha": "e97c013c1f8f2f962126722b7095855a1278c0d4"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/existing-density.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/existing-density.log",
+      "mode": "100644",
+      "bytes": 1239,
+      "sha256": "3455af332615c52dbca7be133eaad00b83257ff8859266841cffaa5e7128e04a",
+      "git_blob_sha": "0faa9236aaa5016eac807f0d81a97e5f6e5bf0fc"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-existing-density-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-existing-density-execution.json",
+      "mode": "100644",
+      "bytes": 707,
+      "sha256": "53da07f872028221cba6940d6b22b1568800699a4eab7eb25b5e14ee92077139",
+      "git_blob_sha": "01dae501f30b6ac4c336b980761290ec9f1ad450"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-existing-density.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-existing-density.log",
+      "mode": "100644",
+      "bytes": 1239,
+      "sha256": "3455af332615c52dbca7be133eaad00b83257ff8859266841cffaa5e7128e04a",
+      "git_blob_sha": "0faa9236aaa5016eac807f0d81a97e5f6e5bf0fc"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-green-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-green-execution.json",
+      "mode": "100644",
+      "bytes": 634,
+      "sha256": "8d36846cf2d44da5563fea55fa5cc5b47b43d829878a74e14a7641070838a8b2",
+      "git_blob_sha": "9cfc8731b4f022098003b3fcea31f24a13e6ac9d"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-green-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-green-report.json",
+      "mode": "100644",
+      "bytes": 29029,
+      "sha256": "06ad337f44987451811f3598d6ad36e7a86d815c42bace94bc05976412e08964",
+      "git_blob_sha": "db1a6fc7f4a69e1ed438fbb0dcfc1e8aa2e2c4f5"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-green.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-green.log",
+      "mode": "100644",
+      "bytes": 3366,
+      "sha256": "2f8dbddbb3bdd1f0927946fd59b29ac99e1e9f8efdb81430ae17293a8207ddbb",
+      "git_blob_sha": "22e7adfc4d12e49c6902a63eb9b007df1cbde863"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-headless-group.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-headless-group.json",
+      "mode": "100644",
+      "bytes": 2118,
+      "sha256": "2ac2535f79169220e2ebb8e54b82a13e19a40c148c99c18ede30dfd017f47139",
+      "git_blob_sha": "bfeb06615b580b8584de07c98b80bec12edd1043"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-red-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-red-execution.json",
+      "mode": "100644",
+      "bytes": 633,
+      "sha256": "cedb2a684c787575967d0450ef7a50527a040d909c12029a7d0ab46e48d6426a",
+      "git_blob_sha": "0b8b4d08855dbfcb58d34e6eed37c2785835188f"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-red-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-red-report.json",
+      "mode": "100644",
+      "bytes": 32086,
+      "sha256": "b224e4e2ea992d82f5f0ad87a2927ecfc6fab8050458284472caaa805e3d338a",
+      "git_blob_sha": "df3ebdb4f3b569f30c9d1e8284b11cc8566de3ec"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-red.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-red.log",
+      "mode": "100644",
+      "bytes": 25997,
+      "sha256": "412689e2574b527e893ff8abe5d5f7760e56a8b0213ce927537371c6e510261e",
+      "git_blob_sha": "acf99276f3e3979fed6ef1aad5138519c7b10434"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-render-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-execution.json",
+      "mode": "100644",
+      "bytes": 759,
+      "sha256": "10bf78718369b383b688c9daa78258823db1398231086e31fa6780ade0271680",
+      "git_blob_sha": "11db1fa6e9ea396b1aecc9522233327fd90625b4"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-render-launcher.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-launcher.log",
+      "mode": "100644",
+      "bytes": 332,
+      "sha256": "9eac985c5d4abb7db4a4555f98100a8546623246b675ffc69cde9b656e150a6c",
+      "git_blob_sha": "ea60c77cfd495bd34784be03db2f78ecc66ece83"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-render-v2-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-v2-execution.json",
+      "mode": "100644",
+      "bytes": 1143,
+      "sha256": "398b99176d74905125ca6d736ef48cf5b0fa4e51c65990fd71be91208dd0ab65",
+      "git_blob_sha": "dc43fa03e1a2be52dbaf6783f30b3e79b41da0e4"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-render-v2-launcher.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-v2-launcher.log",
+      "mode": "100644",
+      "bytes": 331,
+      "sha256": "fb89e65c4ad42a3d31f6da5a18cd77a705b4b2cce94cc5932745315c48da86be",
+      "git_blob_sha": "7898048775a959851702924468934a876c2846a4"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-report-summary.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-report-summary.json",
+      "mode": "100644",
+      "bytes": 6850,
+      "sha256": "d412646d57c5a978fa2e8a42e6bfa8ef3a756e26931dca8f16305ee998449ea0",
+      "git_blob_sha": "8120e3e1acf6c503f072fa79210777f3669d38ac"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/green-headless-v1-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v1-execution.json",
+      "mode": "100644",
+      "bytes": 508,
+      "sha256": "05fbaa58a8510f169a225000376be1b8eec98f330cf7713028070c45e0a889e6",
+      "git_blob_sha": "31d4dee2a007e68149661956ab06ce441c4cfe9e"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/green-headless-v1-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v1-report.json",
+      "mode": "100644",
+      "bytes": 27630,
+      "sha256": "478d86c76ade3485875f37f97dff157ab5281a70943e18ca07ec18c2ca9a1fa4",
+      "git_blob_sha": "da7f182c1c687fd1973cadaaa0d33821ee175f63"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/green-headless-v1.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v1.log",
+      "mode": "100644",
+      "bytes": 7599,
+      "sha256": "7180945d71e6c0e118a236ec52456a19b93aa0874e4d8b8ccc051b3a9613b5fa",
+      "git_blob_sha": "ba4a2320fa254c25ea7d5fcdb35b5a184a706e58"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/green-headless-v2-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v2-execution.json",
+      "mode": "100644",
+      "bytes": 508,
+      "sha256": "9a2a4753ab97556839f2088b3003dbb99645e63a16f817dd33bf7b778d529c65",
+      "git_blob_sha": "d7eee86e764bba82b5dbb208db624ae13a285e89"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/green-headless-v2-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v2-report.json",
+      "mode": "100644",
+      "bytes": 27261,
+      "sha256": "47ea1706cd22b7031fd668f8e3b986c88a4a4af2fbaef37febbd31a300028f56",
+      "git_blob_sha": "96c14392bc440fc898106a8eefc20a08cbcb5ce9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/green-headless-v2.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v2.log",
+      "mode": "100644",
+      "bytes": 3366,
+      "sha256": "fca3e86a731104737fdbed1b01623ffd7c3a3c55f75687e0bc63ab61480aabd6",
+      "git_blob_sha": "1c5938875c57f679c69e733ef457a70235d89c42"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/portrait-gap-before-treasure_world.gd.txt",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-before-treasure_world.gd.txt",
+      "mode": "100644",
+      "bytes": 26732,
+      "sha256": "36004959166262bb64e81cf33512f57f5a259e9f0072203cafdae649d47ab88f",
+      "git_blob_sha": "5a2b5df679ae1b342fe5c88d4208b1edfcb52d63"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/portrait-gap-red-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-red-execution.json",
+      "mode": "100644",
+      "bytes": 622,
+      "sha256": "44104c8cf6321e772d64a674fbb91061463654cdf73962912af77812e6020b36",
+      "git_blob_sha": "ff81f2b3b167502c8cc970cfc83a740d869b7527"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/portrait-gap-red-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-red-report.json",
+      "mode": "100644",
+      "bytes": 29317,
+      "sha256": "c7ebedfc4f4ba6a98de62c0c80349e5373b59e3d2c5173d6f8bb22b234681d98",
+      "git_blob_sha": "f05bc451f99ff294de42eb794fc1228dec42638e"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/portrait-gap-red.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-red.log",
+      "mode": "100644",
+      "bytes": 5671,
+      "sha256": "0724fd6c57f9023fde76f5edea6e917b00c48e5330401164587ffe51ec36b65a",
+      "git_blob_sha": "75433a2b6b89616a1b97d00ce7baca3f7e688b3a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/product-against-acf51.patch",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/product-against-acf51.patch",
+      "mode": "100644",
+      "bytes": 3492,
+      "sha256": "1a6df774f2c514a28eb954354f755de8d0d3d122fa9dc6d9d3bdb4e9e54f8302",
+      "git_blob_sha": "f5450b44cda2bcaf04883d14356e92c1d6280fd2"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/product-function-preservation-final.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/product-function-preservation-final.json",
+      "mode": "100644",
+      "bytes": 966,
+      "sha256": "625abd9b2e4396d48df0aa47cbec0839a86b47dbfcc049830c5538208209fdfb",
+      "git_blob_sha": "41dcb3b7ab03f489905947d59507206e98559304"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/product-function-preservation.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/product-function-preservation.json",
+      "mode": "100644",
+      "bytes": 618,
+      "sha256": "3f8c83518a6de314c4ec5520874e4214555978049fb5462139ee59c28072f747",
+      "git_blob_sha": "62499b381e86315b5518cbc11cc6bb99f16e4eba"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/red-headless-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-execution.json",
+      "mode": "100644",
+      "bytes": 634,
+      "sha256": "9d88601cd0b5c3a7122d043be021544873c6ac52660eca44866c72949805733e",
+      "git_blob_sha": "d257b54a8cd2f745c48e227df8f889d5cbd77467"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/red-headless-initial-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-initial-report.json",
+      "mode": "100644",
+      "bytes": 30316,
+      "sha256": "41f957fc19ebdea5e38913fef48ff1e972cb7c65417282d91581a71d7eebfcf0",
+      "git_blob_sha": "8e50cb422c1a5f91c1c68b61b72f57e3afe9f767"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/red-headless-v2-execution.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-v2-execution.json",
+      "mode": "100644",
+      "bytes": 508,
+      "sha256": "c76d4a3fd2fd38a1bd49366b2aa0e21526b945ef413e6928fca1adb30b3af80f",
+      "git_blob_sha": "53f2fd038a88e6f1fed1c17a20f1ca1b8aec1c7f"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/red-headless-v2-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-v2-report.json",
+      "mode": "100644",
+      "bytes": 30317,
+      "sha256": "2371c78e5829810eb7d7681c7c0580cb30b650a3f360b30713d2b9a51aa1293b",
+      "git_blob_sha": "eb13cfab8c3446b7babf253a1785d797e1085a00"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/red-headless-v2.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-v2.log",
+      "mode": "100644",
+      "bytes": 25997,
+      "sha256": "5a26bbcf6354af07751bb69e739315c50ce63af5806e0e1e70d95bcbaf4be02e",
+      "git_blob_sha": "969c100eff413d922a58e3c408524812896f6217"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/red-headless.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless.log",
+      "mode": "100644",
+      "bytes": 27923,
+      "sha256": "3482c4a41a08a76751182ecfa225ef1b28379228ede7f98e4fadd5e0cda3fc6c",
+      "git_blob_sha": "cb7e12d595500363dff1b93f37b2a233f0e511cb"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/rejected-first-render/godot.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/godot.log",
+      "mode": "100644",
+      "bytes": 3662,
+      "sha256": "81bfd261427189c95e52051c1776b99941a5fe849a0a11fdf0a8d3abc2bde879",
+      "git_blob_sha": "0b42a39ad2ee7b2aee1ec5cd1bf6fe0571cf4cd0"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/rejected-first-render/run.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/run.json",
+      "mode": "100644",
+      "bytes": 368,
+      "sha256": "361f84b9f6e4d5c4aa4f7fc89c2edf1026c7a376cb348ea97a73f6449256f336",
+      "git_blob_sha": "068244c945f4ef567bd78f84188aa1025c4ef909"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/rejected-first-render/treasure-title-portrait.png",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/treasure-title-portrait.png",
+      "mode": "100644",
+      "bytes": 2106283,
+      "sha256": "16539ab8f5979566623f52056a34f63e444c8a60076e89476b85100fda183f5e",
+      "git_blob_sha": "3bd92ed577f41e256a0f72ed912b95d3fe7f8a55"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/rejected-first-render/treasure-title-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/treasure-title-report.json",
+      "mode": "100644",
+      "bytes": 28511,
+      "sha256": "8088879598ec40f33912cd1e328db060e432ed0ca64362d349d107bcbba34281",
+      "git_blob_sha": "05367030b1ba9166933e28bf3bac491dd1813c9c"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/runtime-setup-correction.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-setup-correction.json",
+      "mode": "100644",
+      "bytes": 1120,
+      "sha256": "bbddcefdf2d0efa4d181cbe86ff03959a67918ddd47797a9172e83e7a9325ce7",
+      "git_blob_sha": "5afc51e6e0a0c2b3cbab09a890e96866c4f0413c"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/runtime-source-binding-before.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-source-binding-before.json",
+      "mode": "100644",
+      "bytes": 120226,
+      "sha256": "c576164c131f05c3560858c9aa6fe268f1afdd57f38a8f71943aa163c9b3e0f8",
+      "git_blob_sha": "1dab0ffc99a46419b0a883715805f22753bd121c"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/runtime-source-binding-complete.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-source-binding-complete.json",
+      "mode": "100644",
+      "bytes": 156272,
+      "sha256": "e342db15c618411294bd3f152efa95595dd1fd0afa75272bc208f580b62b151a",
+      "git_blob_sha": "22c0d0d5c31b2e2b2017b9a63858c4a881b3fff9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/runtime-source-binding-final.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-source-binding-final.json",
+      "mode": "100644",
+      "bytes": 156336,
+      "sha256": "7a25338590d106fd548e06bd0c14ad94d668cd13303f4cf16b79da241a993fa4",
+      "git_blob_sha": "ae09f442060634b9e498815b416df6a02d1235f8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/test-against-acf51.patch",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/test-against-acf51.patch",
+      "mode": "100644",
+      "bytes": 11138,
+      "sha256": "becc6921cf874afe3b86f07356ff7d1923fdc5491d6ab27edf8cf881e5de9ec4",
+      "git_blob_sha": "24df14bcd59db4ff99fce8b00fdb5f22d7f88bcf"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/godot.log",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/godot.log",
+      "mode": "100644",
+      "bytes": 3662,
+      "sha256": "2bb034b6ce6c294afb706cb84a3cc4efea9ea41a5aefa3e0213b619611e6b246",
+      "git_blob_sha": "0511d080c22294df9c196554bff340466dcabd6c"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/run.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/run.json",
+      "mode": "100644",
+      "bytes": 367,
+      "sha256": "b482fe2c0005915318be5c30536fa210c7c110b1ffa149d0f2594524df373cdd",
+      "git_blob_sha": "c77097700baf9894cdef44923e5d7b577b9358f9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-compact.png",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-compact.png",
+      "mode": "100644",
+      "bytes": 324217,
+      "sha256": "01fb3aa476f1c07950023cfdb2e6c8ee56af9ff902ed91a4ceab2e5812787fb9",
+      "git_blob_sha": "d2b3006e1aaad8c326249967afa2ff8f1768d6c2"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-fold.png",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-fold.png",
+      "mode": "100644",
+      "bytes": 4225356,
+      "sha256": "e2913b19defe9a740494da0aab2eb63a008adb07f7de85d6cef2d1122d04099f",
+      "git_blob_sha": "3613821ae34cf1c2c54f231ee268dbeb1e339d79"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-landscape-cutout.png",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-landscape-cutout.png",
+      "mode": "100644",
+      "bytes": 2622432,
+      "sha256": "a4ddd95b35a4253bca35863eb5f6a04b7cc24af731c2d314f774502fa769f328",
+      "git_blob_sha": "245662ba30c7f0fa73748b529080006bae24df0a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-landscape.png",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-landscape.png",
+      "mode": "100644",
+      "bytes": 2718314,
+      "sha256": "609ae9a2f31c55cac080e90ea98187bde3d8f75523e3cca768fd00ffb4a2c398",
+      "git_blob_sha": "0f2935d5c044fd18e2519e21e19f6d32eb94598a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-portrait.png",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-portrait.png",
+      "mode": "100644",
+      "bytes": 2101916,
+      "sha256": "a9dd2fb6b1d56f94d67b74e5665acc328ba70a5d20c0bd2e49e2285767c4df7f",
+      "git_blob_sha": "02088211d1da96a7d1995acbcfe1b57bac440752"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-report.json",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-report.json",
+      "mode": "100644",
+      "bytes": 30295,
+      "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02",
+      "git_blob_sha": "c4af955fda0b302aa309dbe07d66fa12a3af542a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/baseline/native/scripts/creative/treasure_world.gd",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/baseline/scripts/creative/treasure_world.gd.txt",
+      "mode": "100644",
+      "bytes": 25074,
+      "sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "git_blob_sha": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/baseline/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/baseline/scripts/tests/treasure_title_contrast_regression.gd.txt",
+      "mode": "100644",
+      "bytes": 8982,
+      "sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+      "git_blob_sha": "6e50ace998d896fd88f0006112152e490e7c64e3"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/creative/treasure_world.gd",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/patched/scripts/creative/treasure_world.gd.txt",
+      "mode": "100644",
+      "bytes": 26887,
+      "sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "git_blob_sha": "aae80484834823c8cf063df6bfb2607313f39ef7"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "target": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/patched/scripts/tests/treasure_title_contrast_regression.gd.txt",
+      "mode": "100644",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c"
+    }
+  ],
+  "file_count": 64,
+  "total_bytes": 15883848
+}

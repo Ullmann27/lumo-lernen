@@ -1,0 +1,51 @@
+{
+  "source": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+  "machine_sha256": "97556c7b8c24cfff83b461ab97db4400b6088d95c124ff0b30b2af066bbc9d58",
+  "summary": {
+    "status": "FAIL",
+    "passed": 2606,
+    "flutter_exit_code": 1,
+    "runner_completed_successfully": false,
+    "rendered_png_count": 546
+  },
+  "failures": [
+    {
+      "test": {
+        "id": 385,
+        "name": "Memory complete 12-pair game rewards once, persists, and restarts",
+        "suiteID": 375,
+        "groupIDs": [
+          379
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 174,
+        "column": 5,
+        "url": "package:flutter_test/src/widget_tester.dart",
+        "root_line": 166,
+        "root_column": 3,
+        "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/game_round_regression_test.dart"
+      },
+      "done": {
+        "testID": 385,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 49215
+      }
+    }
+  ],
+  "errors": [
+    {
+      "testID": 385,
+      "error": "Test failed. See exception logs above.\nThe test description was: Memory complete 12-pair game rewards once, persists, and restarts",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 49214
+    }
+  ]
+}

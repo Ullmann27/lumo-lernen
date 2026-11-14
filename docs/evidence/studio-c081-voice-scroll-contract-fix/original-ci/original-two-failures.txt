@@ -1,0 +1,34 @@
+2026-11-14T02:35:18.7881272Z FAIL: test_other_games_keep_the_existing_return_caption (test_android_voice_scroll.PreservedKartEntryTest.test_other_games_keep_the_existing_return_caption)
+2026-11-14T02:35:18.7882203Z ----------------------------------------------------------------------
+2026-11-14T02:35:18.7882649Z Traceback (most recent call last):
+2026-11-14T02:35:18.7883430Z   File "/home/runner/work/lumo-lernen/lumo-lernen/scripts/tests/test_android_voice_scroll.py", line 161, in test_other_games_keep_the_existing_return_caption
+2026-11-14T02:35:18.7884218Z     touch.assert_called_once_with(
+2026-11-14T02:35:18.7884718Z   File "/usr/lib/python3.12/unittest/mock.py", line 956, in assert_called_once_with
+2026-11-14T02:35:18.7885431Z     return self.assert_called_with(*args, **kwargs)
+2026-11-14T02:35:18.7885848Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T02:35:18.7886330Z   File "/usr/lib/python3.12/unittest/mock.py", line 944, in assert_called_with
+2026-11-14T02:35:18.7886855Z     raise AssertionError(_error_message()) from cause
+2026-11-14T02:35:18.7887260Z AssertionError: expected call not found.
+2026-11-14T02:35:18.7887816Z Expected: mock(PosixPath('/unit-fixture'), 'Zur Spielewelt', 'another-game-pause', tap=True)
+2026-11-14T02:35:18.7888680Z   Actual: mock(PosixPath('/unit-fixture'), 'Zur Spielewelt', 'another-game-pause', tap=True, orientation='landscape')
+2026-11-14T02:35:18.7895966Z 
+2026-11-14T02:35:18.7896308Z ======================================================================
+2026-11-14T02:35:18.7897060Z FAIL: test_voice_probe_returns_with_the_observed_exact_menu_caption (test_android_voice_scroll.PreservedKartEntryTest.test_voice_probe_returns_with_the_observed_exact_menu_caption)
+2026-11-14T02:35:18.7897743Z The real 38136812518 menu exports Zum Lernen, not Zur Spielewelt.
+2026-11-14T02:35:18.7898121Z ----------------------------------------------------------------------
+2026-11-14T02:35:18.7898440Z Traceback (most recent call last):
+2026-11-14T02:35:18.7899042Z   File "/home/runner/work/lumo-lernen/lumo-lernen/scripts/tests/test_android_voice_scroll.py", line 143, in test_voice_probe_returns_with_the_observed_exact_menu_caption
+2026-11-14T02:35:18.7899610Z     touch.assert_called_once_with(
+2026-11-14T02:35:18.7899963Z   File "/usr/lib/python3.12/unittest/mock.py", line 956, in assert_called_once_with
+2026-11-14T02:35:18.7900336Z     return self.assert_called_with(*args, **kwargs)
+2026-11-14T02:35:18.7900613Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-14T02:35:18.7900943Z   File "/usr/lib/python3.12/unittest/mock.py", line 944, in assert_called_with
+2026-11-14T02:35:18.7901304Z     raise AssertionError(_error_message()) from cause
+2026-11-14T02:35:18.7901588Z AssertionError: expected call not found.
+2026-11-14T02:35:18.7902002Z Expected: mock(PosixPath('/unit-fixture'), 'Zum Lernen', 'preserved-kart-pause', tap=True, exact=True)
+2026-11-14T02:35:18.7902612Z   Actual: mock(PosixPath('/unit-fixture'), 'Zum Lernen', 'preserved-kart-pause', tap=True, exact=True, orientation='landscape')
+2026-11-14T02:35:18.7902979Z 
+2026-11-14T02:35:18.7903125Z ----------------------------------------------------------------------
+2026-11-14T02:35:18.7903418Z Ran 445 tests in 102.529s
+2026-11-14T02:35:18.7903558Z 
+2026-11-14T02:35:18.7903645Z FAILED (failures=2)

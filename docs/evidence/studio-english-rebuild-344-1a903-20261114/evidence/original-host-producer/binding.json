@@ -1,0 +1,24 @@
+{
+  "artifact_id": 14115223622,
+  "archive_local_path": "/workspace/scratch/5987865ae883/qa/feature-bdd86-flutter-artifact/original-artifact.zip",
+  "archive_bytes": 343010045,
+  "archive_sha256": "22eebaca28f20260013060cf9d31503370b1f157c4bb075f2f94076bcae6adae",
+  "host_source": "bdd86f289a165ea5140a01607d78fcf4c31c98c6",
+  "members": [
+    {
+      "artifact_entry": "feature-evidence/english-activity.json",
+      "bytes": 3246,
+      "sha256": "4f3df3fe61f45c2b899d1e50e71ea3f4980c1d78b92547fb7ca676be0a6f198b",
+      "extracted_bytes_equal": true,
+      "zip_member_fully_read_crc": true
+    },
+    {
+      "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "dca7a724d414d798053a6725e3c2839532ab9a488e568e16c7baac0a189159fd",
+      "extracted_bytes_equal": true,
+      "zip_member_fully_read_crc": true
+    }
+  ],
+  "method": "Existing archive streamed once forSHA; exactly two selected original members read and CRCchecked, no download/extraction of full archive."
+}

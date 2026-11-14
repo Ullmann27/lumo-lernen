@@ -1,0 +1,13 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-observation-e4e5",
+    "--editor",
+    "--import",
+    "--quit"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 10.663191734000065
+}

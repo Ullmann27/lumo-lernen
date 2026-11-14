@@ -1,0 +1,67 @@
+[
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+    "findings": "Tatsächlich geöffnetes 690×829-Rendererbild: Original-Lumo ist vor der ersten Plattform sichtbar in der Luft; räumliche Inseln, Schatten, Wegsteine und erreichbare Folgeplattformen sind klar getrennt. Linker Stick und rechter Sprungknopf liegen sichtbar auseinander, HUD und Haltehinweis sind lesbar. Das Standbild belegt die gezeigte Pose und Anordnung, keine Eingabelatenz, Sprungdauer oder Geräte-FPS."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+    "findings": "Tatsächlich geöffnetes 412×915-Rendererbild: Lumo steht auf dem vorderen Inselweg mit Bodenschatten, die folgenden Plattformen bleiben im Hochkantblick sichtbar. Kopfzeilen umbrechen, ohne Pause/Spiele oder die unteren Touchflächen zu überlagern. Stick, SPRINGEN und HALTEN = HÖHER sind lesbar; das enge Sichtfeld und die sehr helle Beleuchtung bleiben gestalterische Grenzen. Keine dynamische Steuerungs- oder Leistungsfreigabe aus diesem einzelnen Bild."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+    "findings": "Tatsächlich geöffnetes 1280×720-Bauweltbild: Insel, Fluss, Steingrenzen, Haus und durchscheinende Brücken-Vorschau besitzen erkennbare Tiefe und Schatten. Der Auftrag sowie die Rückmeldung zum Versetzen und Rückgängig sind lesbar. Die beiden umfangreichen Werkzeug-/Bauteilreihen sind innerhalb des Bildes voneinander getrennt; am rechten Rand läuft die horizontale Bauteilliste weiter. Der Bildschirm ist funktional dicht und noch keine radikal vereinfachte Kinderoberfläche. Save/Undo werden durch eigene Laufzeitbelege geprüft, nicht durch das Standbild."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+    "findings": "Tatsächlich geöffnetes kompaktes 640×360-Bild: Das modale aktuelle Bauziel zeigt vollständigen Auftrag mit Zeilenumbruch sowie getrennte, vollständig sichtbare Schaltflächen Mein Bauwerk testen und Abbrechen. Der Dialog liegt über der bestehenden Welt und verdeckt erwartungsgemäß Teile des Hintergrund-HUD. Kleine dunkle Flächen an den gerundeten Dialogecken bleiben sichtbar; daraus wird keine makellose grafische Gesamtqualität abgeleitet."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+    "findings": "Tatsächlich geöffnetes 1080×2400-Bild der nach unten gescrollten Vorlagen: Brücke, Sternenturm, Garten, die drei Parzellen, Leere Insel und Abbrechen sind groß und lesbar; der Scrollbalken und der oben abgeschnittene vorangehende Listeneintrag machen den Scrollzustand sichtbar. Der Modalinhalt überlagert seine eigenen Aktionen nicht. Im Hintergrund ist die schmale Hauptüberschrift gekürzt und die Werkzeugoberfläche bleibt dicht; die Aufnahme ist eine Vorlagen-/Dialogabnahme, keine allgemeine Hochkant-HUD-Perfektionsbehauptung."
+  },
+  {
+    "module": "settlement",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+    "findings": "Tatsächlich geöffnetes 388×390-Dialogbild aus der Siedlung: Die Erklärung zum Umbau, der vorübergehend ausziehende Bewohner, die Rückerstattung und die Rückgängig-Hilfe sind vollständig sichtbar. Haus behalten und Ja, umbauen sind klar getrennte Aktionen. Das Bild enthält nur den Dialog, keine räumliche Siedlungsübersicht. Der vorhandene Text 1 Münzen hat einen Singularfehler; dieser bleibt als Sprachpolitur offen und wird nicht als fehlerfrei bewertet."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+    "findings": "Tatsächlich geöffnetes 1280×720-Garagenbild: Kart und daneben stehender Original-Lumo stehen räumlich auf dem beleuchteten Podest; Werkbank, Radhalter, Schubladen und Bodenlinien erzeugen echte Tiefenstaffelung. Auswahl, Sperrhinweis, Lack/Teile, Kart-Menü und Rennen starten sind lesbar und voneinander getrennt. Der Bildschirm zeigt den aktuellen Auswahlzustand, keine abgespielte Drehbewegung oder Reaktion. Er bleibt menülastig; kein vollständiger neuer Garagenumbau oder Konsolenqualitätsclaim."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+    "findings": "Tatsächlich geöffnetes 1080×2400-Werkstattbild: gelbes Kart mit fahrendem Lumo-Modell, Reifen, Felgen, plastische Beleuchtung und Bodenschatten sind vollständig sichtbar. Die nach unten gescrollte Auswahl zeigt Goldglanz, Felgen, Neon und den Rückerstattungsbutton vollständig; 370 freie Sterne und 16 Rückerstattungssterne sind lesbar. Die Werkstattüberschrift ist im schmalen Format bewusst elliptisch. Das Bild prüft sichtbare Dichte und Inhalt, nicht den tatsächlichen Kauf-/Refund-Vorgang oder physische Touchgröße."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+    "findings": "Tatsächlich geöffnetes 1280×720-Schatzsuchebild: begehbar wirkender Garten mit Bäumen, Blumen, Burgmauern, Schatten und Begleiter; links steht die konkrete Wahl Kristallwächter oder Mondgarten mit beiden benötigten Funden. Die neue dunkle Titelplatte hält LUMOS STERNENSCHATZ lesbar. Stick, Springen, Ansehen und Rucksack sind getrennt sichtbar. Der Entdeckungszähler umbrecht innerhalb seines Feldes; der vereinfachte Begleiter und die sehr große Hintergrundmauer bleiben erkennbare gestalterische Grenzen. Ein Standbild beweist keine ausgeführte Routenwahl."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+    "findings": "Tatsächlich geöffnetes 2176×1812-Abschlussbild: Das Schlossumfeld bleibt räumlich sichtbar; dunkle Titel-/Textplatten tragen klare weiße Schrift. Die konkrete Abschlussmeldung zeigt sieben Hinweise, drei Sterne und 54 Erfahrungspunkte. Alle drei Folgeaktionen einschließlich Zur Spielewelt sind vollständig sichtbar und getrennt. Der Entdeckungszähler hat einen Zeilenumbruch; die modal überdeckte Szene ist kein Nachweis einer vollständigen neuen Tour oder einer tatsächlich verbuchten Belohnung."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+    "findings": "Tatsächlich geöffnetes 2400×1080-Bild des seitlichen Safe-Area-Fixtures: Spiele und Pause sind von den äußersten Bildkanten eingerückt, beide großen Eingabeflächen und ihre Beschriftungen bleiben vollständig sichtbar. Lumo und die Folgeinseln liegen zwischen den Steuerbereichen. Das Status-HUD beansprucht viel obere Bildfläche, die Weltbeleuchtung ist sehr hell. Dies ist eine echte Godotaufnahme mit kontrollierten Insetbedingungen, keine Aufnahme eines physischen Fold7 und keine Latenz-/FPS-Messung."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+    "findings": "Tatsächlich geöffnetes 2400×1080-Bauwelt-Safe-Area-Bild: äußere Navigationsaktionen sind eingerückt; die horizontal scrollbaren Werkzeug- und Bauteilreihen bleiben getrennt. Die räumliche Bauwelt mit Fluss, Brücke, Häusern und Schatten ist in der Mitte sichtbar. Sehr große und zahlreiche Bedienelemente beanspruchen weiterhin einen wesentlichen Teil der Ansicht. Rechter Listenanschnitt ist ein Scrollausschnitt, keine behauptete vollständige Sichtbarkeit aller Werkzeuge; keine physische Geräteabnahme."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+    "findings": "Tatsächlich geöffnetes 2400×1080-Schatzsuche-Safe-Area-Bild: Die neue Titelplatte ist kontraststark und die seitlich eingerückten Aktionen sind sichtbar. ABNAHMEBLOCKER: Das große linke Hinweisfeld überdeckt Lumo am Start fast vollständig; unter dem Feld sind überwiegend nur seine Füße zu sehen. Die weiße Begrüßungszeile rechts verliert auf der hellen Burgmauer zudem Kontrast. Dieser aktuelle Originalbefund wurde an den zuständigen Agenten zur engen Produktkorrektur übergeben; er wird trotz erfolgreichem CI-Job nicht als vollständige visuelle Freigabe gewertet."
+  }
+]

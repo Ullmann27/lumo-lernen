@@ -1,0 +1,777 @@
+{
+  "total_count": 9,
+  "jobs": [
+    {
+      "id": 132356963309,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0Rb77Q",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132356963309",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963309",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:10:52Z",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:25:14Z",
+      "name": "studio",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:55Z",
+          "completed_at": "2026-11-14T06:10:55Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:55Z",
+          "completed_at": "2026-11-14T06:11:02Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:02Z",
+          "completed_at": "2026-11-14T06:11:28Z"
+        },
+        {
+          "name": "Import exact production source and execute Studio interactions and captures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:28Z",
+          "completed_at": "2026-11-14T06:25:06Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:25:06Z",
+          "completed_at": "2026-11-14T06:25:12Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T06:25:12Z",
+          "completed_at": "2026-11-14T06:25:13Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T06:25:13Z",
+          "completed_at": "2026-11-14T06:25:13Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132356963309",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017261,
+      "runner_name": "GitHub Actions 1000017261",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132356963350,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0Rb8Fg",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132356963350",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963350",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:10:52Z",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:39:41Z",
+      "name": "touch-workshop",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:55Z",
+          "completed_at": "2026-11-14T06:10:56Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:56Z",
+          "completed_at": "2026-11-14T06:11:06Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:06Z",
+          "completed_at": "2026-11-14T06:11:14Z"
+        },
+        {
+          "name": "Import production project and exercise real density-aware input",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:14Z",
+          "completed_at": "2026-11-14T06:39:36Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:39:36Z",
+          "completed_at": "2026-11-14T06:39:38Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T06:39:38Z",
+          "completed_at": "2026-11-14T06:39:39Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T06:39:39Z",
+          "completed_at": "2026-11-14T06:39:39Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132356963350",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017258,
+      "runner_name": "GitHub Actions 1000017258",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132356963356,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0Rb8HA",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132356963356",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963356",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:10:52Z",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:22:57Z",
+      "name": "learning-preview",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:55Z",
+          "completed_at": "2026-11-14T06:10:56Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:56Z",
+          "completed_at": "2026-11-14T06:11:06Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:06Z",
+          "completed_at": "2026-11-14T06:11:13Z"
+        },
+        {
+          "name": "Import exact production source and capture the actual learning world",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:13Z",
+          "completed_at": "2026-11-14T06:22:52Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:22:52Z",
+          "completed_at": "2026-11-14T06:22:55Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T06:22:55Z",
+          "completed_at": "2026-11-14T06:22:55Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T06:22:55Z",
+          "completed_at": "2026-11-14T06:22:55Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132356963356",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017259,
+      "runner_name": "GitHub Actions 1000017259",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132356963390,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0Rb8Pg",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132356963390",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963390",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:10:52Z",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:27:38Z",
+      "name": "touch-build",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:54Z",
+          "completed_at": "2026-11-14T06:10:55Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:55Z",
+          "completed_at": "2026-11-14T06:11:01Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:01Z",
+          "completed_at": "2026-11-14T06:11:08Z"
+        },
+        {
+          "name": "Import production project and exercise real density-aware input",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:08Z",
+          "completed_at": "2026-11-14T06:27:34Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:27:34Z",
+          "completed_at": "2026-11-14T06:27:37Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T06:27:37Z",
+          "completed_at": "2026-11-14T06:27:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T06:27:37Z",
+          "completed_at": "2026-11-14T06:27:37Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132356963390",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017260,
+      "runner_name": "GitHub Actions 1000017260",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132356963393,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0Rb8QQ",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132356963393",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963393",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:10:52Z",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:25:28Z",
+      "name": "gameplay",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:54Z",
+          "completed_at": "2026-11-14T06:10:56Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:56Z",
+          "completed_at": "2026-11-14T06:11:04Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:04Z",
+          "completed_at": "2026-11-14T06:11:21Z"
+        },
+        {
+          "name": "Import production project and validate structure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:21Z",
+          "completed_at": "2026-11-14T06:11:53Z"
+        },
+        {
+          "name": "Live full-screen menu, action ramps and lasso render evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:11:53Z",
+          "completed_at": "2026-11-14T06:17:46Z"
+        },
+        {
+          "name": "Existing gameplay regression suite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T06:17:46Z",
+          "completed_at": "2026-11-14T06:21:49Z"
+        },
+        {
+          "name": "Continuous loops, physical ramps, fair AI and living harbor",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T06:21:49Z",
+          "completed_at": "2026-11-14T06:24:56Z"
+        },
+        {
+          "name": "Integrated streetfronts, original Lumo and garage presentation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T06:24:56Z",
+          "completed_at": "2026-11-14T06:25:23Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T06:25:23Z",
+          "completed_at": "2026-11-14T06:25:27Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T06:25:27Z",
+          "completed_at": "2026-11-14T06:25:27Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-14T06:25:27Z",
+          "completed_at": "2026-11-14T06:25:27Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132356963393",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017262,
+      "runner_name": "GitHub Actions 1000017262",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132356963462,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0Rb8hg",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132356963462",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963462",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:10:52Z",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:23:38Z",
+      "name": "touch-treasure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:54Z",
+          "completed_at": "2026-11-14T06:10:56Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:56Z",
+          "completed_at": "2026-11-14T06:11:04Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:04Z",
+          "completed_at": "2026-11-14T06:11:17Z"
+        },
+        {
+          "name": "Import production project and exercise real density-aware input",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:17Z",
+          "completed_at": "2026-11-14T06:23:35Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:23:35Z",
+          "completed_at": "2026-11-14T06:23:37Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T06:23:37Z",
+          "completed_at": "2026-11-14T06:23:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T06:23:37Z",
+          "completed_at": "2026-11-14T06:23:37Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132356963462",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017263,
+      "runner_name": "GitHub Actions 1000017263",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132360620371,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0U7JUw",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132360620371",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132360620371",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:25:15Z",
+      "started_at": "2026-11-14T06:25:16Z",
+      "completed_at": "2026-11-14T06:44:18Z",
+      "name": "new-worlds",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:25:17Z",
+          "completed_at": "2026-11-14T06:25:18Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:25:18Z",
+          "completed_at": "2026-11-14T06:25:24Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:25:24Z",
+          "completed_at": "2026-11-14T06:25:37Z"
+        },
+        {
+          "name": "Import production project and validate structure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:25:37Z",
+          "completed_at": "2026-11-14T06:26:13Z"
+        },
+        {
+          "name": "Verify fail-closed collection of every independent module",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:26:13Z",
+          "completed_at": "2026-11-14T06:27:01Z"
+        },
+        {
+          "name": "Capture the original 2017 garage using its exact production source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T06:27:01Z",
+          "completed_at": "2026-11-14T06:29:12Z"
+        },
+        {
+          "name": "New learning, character and interactive production-scene gates",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T06:29:12Z",
+          "completed_at": "2026-11-14T06:44:05Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T06:44:05Z",
+          "completed_at": "2026-11-14T06:44:06Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T06:44:06Z",
+          "completed_at": "2026-11-14T06:44:16Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T06:44:16Z",
+          "completed_at": "2026-11-14T06:44:16Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-14T06:44:16Z",
+          "completed_at": "2026-11-14T06:44:16Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132360620371",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017274,
+      "runner_name": "GitHub Actions 1000017274",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132365328812,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0ZahrA",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132365328812",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132365328812",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:44:18Z",
+      "started_at": "2026-11-14T06:44:20Z",
+      "completed_at": "2026-11-14T06:44:54Z",
+      "name": "bundle-evidence",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:44:21Z",
+          "completed_at": "2026-11-14T06:44:24Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:44:24Z",
+          "completed_at": "2026-11-14T06:44:36Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:44:36Z",
+          "completed_at": "2026-11-14T06:44:40Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:44:40Z",
+          "completed_at": "2026-11-14T06:44:53Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:44:53Z",
+          "completed_at": "2026-11-14T06:44:53Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132365328812",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017300,
+      "runner_name": "GitHub Actions 1000017300",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132365478747,
+      "run_id": 43565059832,
+      "workflow_name": "LUMO Studio 2020 native acceptance",
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43565059832",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSpcSOM8AAAAe0ZjrWw",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/132365478747",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132365478747",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:44:55Z",
+      "started_at": "2026-11-14T06:44:57Z",
+      "completed_at": "2026-11-14T06:45:30Z",
+      "name": "archive-evidence",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:44:58Z",
+          "completed_at": "2026-11-14T06:44:58Z"
+        },
+        {
+          "name": "Preserve exact original native ZIP without cross-repository credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:44:58Z",
+          "completed_at": "2026-11-14T06:45:28Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:45:28Z",
+          "completed_at": "2026-11-14T06:45:28Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/132365478747",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000017302,
+      "runner_name": "GitHub Actions 1000017302",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

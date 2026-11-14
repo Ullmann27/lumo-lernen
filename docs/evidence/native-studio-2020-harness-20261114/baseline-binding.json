@@ -1,0 +1,36 @@
+{
+  "source": "Root provided exact GitHub803 bindings; these three baseline bytes and active original2019 workflow were rehashed locally before freeze",
+  "baseline": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "files": [
+    {
+      "repo": "native",
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/.github/workflows/lumo-studio-2019.yml",
+      "baseline_commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "git_blob": "a004e56f149d2496962b65fbb5daf638421f41e1",
+      "sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b",
+      "bytes": 19740,
+      "mode": "100644"
+    },
+    {
+      "repo": "native",
+      "path": "tools/validate_studio.sh",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/tools/validate_studio.sh",
+      "baseline_commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "git_blob": "97e25c3ebef6f88a65ccee615ba144fe4b64b86a",
+      "sha256": "78d1cd6df60968c9d4d767b0c27c9b240df9968a817e703cec8d77294057b587",
+      "bytes": 7230,
+      "mode": "100644"
+    },
+    {
+      "repo": "native",
+      "path": "tools/tests/test_nextgen_runner.py",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/tools/tests/test_nextgen_runner.py",
+      "baseline_commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "git_blob": "398f3ff46d9dc85f08f2824a749bc2ec9fe7780f",
+      "sha256": "58bc8cf4ddec61355bdd349612d99360b6142a3c3969ce12366e14c91c7e7560",
+      "bytes": 18235,
+      "mode": "100644"
+    }
+  ]
+}

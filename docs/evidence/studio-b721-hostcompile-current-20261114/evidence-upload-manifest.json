@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43619285124,
+  "job_id": 132521067290,
+  "count": 18,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/review.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/review.json",
+      "bytes": 1714,
+      "sha256": "8e8ab6f0c931201d12bbe357bdf49fabcdd124310588f5dc3e3d49da709a4f58",
+      "git_blob_sha": "0e55cfeded6a67ef5f2fe51b1e8f607c1b158165",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/hostcompile-original-job.log",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/hostcompile-original-job.log",
+      "bytes": 241532,
+      "sha256": "d0e6ae8c9129cb6eb3fa96f4a70632ac5762f8fd399e9083cded30e18499d027",
+      "git_blob_sha": "ab88b2f7d4606259ae064605bfe062830c014525",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/job-terminal-original.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/job-terminal-original.json",
+      "bytes": 1932,
+      "sha256": "7a128eed151b6a5218fd9167fddfc05f66c5ba2180c51d9309788a57383d287b",
+      "git_blob_sha": "a36736d81ae9c2dca8c9acdd6876fbd26236e3d6",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/artifact-metadata-original.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/artifact-metadata-original.json",
+      "bytes": 870,
+      "sha256": "1cfe4d7521c359e3060ac6760297ae86b2bbe3cf4f94f4e4da3275fff8feea7a",
+      "git_blob_sha": "28dd33c8ea24498bf1c736ebed60b3d4b26040c8",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/source-tree-binding.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/source-tree-binding.json",
+      "bytes": 1825,
+      "sha256": "648aba7cc577069cf9865888a951e1e2f3904d4e85c50bde2f9c93bb7a53618c",
+      "git_blob_sha": "66781973aa310bbd790bbd410d69fe6862bb47a0",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/original-artifact-binding.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/original-artifact-binding.json",
+      "bytes": 565,
+      "sha256": "48fe60155261f7b7093c3ef96703f93bee7aa87ff4c1c93cb98a503c73a55d2e",
+      "git_blob_sha": "55433c497d28d176bb4f0b7592c31ebe96a29b85",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/cards-authority-registry.log",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "541927a97970115e2c4f673d574121994b85b4bfe211f0fa8272b3cd57cfe8a2",
+      "git_blob_sha": "582d0958764ac15176a4867af5c701bea5f48e8b",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/compile.log",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/compile.log",
+      "bytes": 34386,
+      "sha256": "ff8a3fc76f11f3e17e794beefc458b0fd012b08c99442dc101ab49f5e9364ae8",
+      "git_blob_sha": "63ce0f35e7896c30b346eb516e8758136c347261",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/flutter-version.txt",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/result.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/result.json",
+      "bytes": 5235,
+      "sha256": "aec93cba646eebcb721714fcf7a4f94c5fce2513dabea228ae91798a827ec3e7",
+      "git_blob_sha": "e03e969bce913e43a7069d27bd8c223df734584e",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/source-sha.txt",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/source-sha.txt",
+      "bytes": 41,
+      "sha256": "d2eb08849fc1e67c5546e8c94cd35c7485354cc48336de67d88beb5285d7a718",
+      "git_blob_sha": "736c55be82243a7ebe0c7a7c4c2ecb4d3e73c570",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/speech/resolved-toolchain.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/speech/resolved-toolchain.json",
+      "bytes": 321,
+      "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+      "git_blob_sha": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/speech/result.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/speech/result.json",
+      "bytes": 62739,
+      "sha256": "44c8ee563a61fadcc678c51a63e7e19c6c26f3273a0f3a317bdbc924190acc46",
+      "git_blob_sha": "2b78269b8e90364b0f2dbe230803a0667e515083",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/speech/test_english_lesson_speech.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/speech/test_english_lesson_speech.json",
+      "bytes": 1339,
+      "sha256": "7276a667fa2f5203a48559f36cf965e4d91c510581371032b3fcce081e274264",
+      "git_blob_sha": "edd80d6195ab5029c0aed4811a633552e94840f6",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/speech/test_english_lesson_speech.log",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/speech/test_english_lesson_speech.log",
+      "bytes": 2894,
+      "sha256": "5b5f2abb8671142afbe47104c6389a2fb0a8936ef2123fd7d20e7c915975c827",
+      "git_blob_sha": "c2d1fae933b16c2381e9ce0870c216e2efd7864d",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/speech/test_learning_english_speech_lifecycle.json",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/speech/test_learning_english_speech_lifecycle.json",
+      "bytes": 1265,
+      "sha256": "58b6bdf2fc9bd5f788c73e7f8ae2d1f1f154c80971361eb049a456c75f2e947e",
+      "git_blob_sha": "8f5433440d6d55b3db6073f058e4f793e2bb88a5",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/speech/test_learning_english_speech_lifecycle.log",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/speech/test_learning_english_speech_lifecycle.log",
+      "bytes": 2709,
+      "sha256": "9226654b6c5e2166a49c81bcdaa8000af4b0f28e3c77322b56f2b854f25e1df1",
+      "git_blob_sha": "01e90b39e954d97fc5d146be7cc57ec81f242568",
+      "encoding": "utf-8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-b721-hostcompile-current-20261114/originals/speech/toolchain-original.log",
+      "path": "docs/evidence/studio-b721-hostcompile-current-20261114/originals/speech/toolchain-original.log",
+      "bytes": 493,
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+      "git_blob_sha": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f",
+      "encoding": "utf-8"
+    }
+  ],
+  "scope": "Actual Studio compile and speech originals. No APK, model inference, hearing or physical performance claim."
+}

@@ -1,0 +1,38 @@
+{
+  "reviewer": "games_worlds",
+  "mode": "independent read-only review; no tests rerun",
+  "created_utc": "2026-11-14T01:59:36.811698+00:00",
+  "baseline": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "sources": [
+    {
+      "file": ".github/probes/studio_creative_android_probe.py",
+      "sha256": "ff097e3050f52556215e547afac416340fbe401ace3528943e511e8e2b4e41b4"
+    },
+    {
+      "file": ".github/probes/creative_android_probe.py",
+      "sha256": "112ddf4dad2ac5039b7203d8dcc2fa82ee91c517c6e393b5b5409211dcc50870"
+    }
+  ],
+  "reviewed_logs": [
+    {
+      "file": "contracts-green.log",
+      "sha256": "e3b797e79f22a7d9d21e356786fd7907bf02b848fffb281888063a52037ca0e8"
+    },
+    {
+      "file": "red-original-4ab.log",
+      "sha256": "a81c8f12417aeb409a5162c11a4a73b2e79572c9bd23f7955a5db4c36113a2c6"
+    },
+    {
+      "file": "green-responsive-4ab.log",
+      "sha256": "05d0ad87301725d05e2fba77c600818a139d7fb14340e59afd1370e826ee36c8"
+    }
+  ],
+  "findings": [
+    "No additional concrete blocker found in the narrow orientation pass-through.",
+    "Only Jump requests responsive orientation at Pause, Weiterspielen, SPRINGEN and both Jump return actions; unchanged callers keep landscape.",
+    "The shared leave helper changes only its optional orientation parameter and the two native_text forwardings.",
+    "Process termination, actual foreground, fresh Flutter return, fictional profile, video recording/complete decode, separate pointer actions, original save identity and full resume comparison are retained.",
+    "The offline original-image replay and13/13 log were read, not repeated. The reviewer did not personally open the Jump images and makes no visual or Android acceptance claim."
+  ],
+  "integration_limit": "Integrator must apply only the leave seam on the separately approved OCR helper; this reviewed full helper is based on original4ab."
+}

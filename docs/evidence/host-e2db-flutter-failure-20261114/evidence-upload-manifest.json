@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "run_id": 43632642356,
+  "job_id": 132562421770,
+  "status": "FAILURE_BEFORE_TEST_EXECUTION",
+  "scope": "Fourteen small UTF-8 original/derived failure evidence files; unchanged source/API bindings. No current test PASS or new case execution. Full 4776-byte archive was checked locally; all three original members are included. No product source target.",
+  "file_count": 14,
+  "total_bytes": 274774,
+  "files": [
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/README.md",
+      "mode": "100644",
+      "bytes": 3313,
+      "sha256": "bbcd50647faf2e29f84658b1055206cd177985810e0f4c5b07939592150ebf9f",
+      "git_blob_sha": "0d8a96dd939ace250fafd6245246755178d13806"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/review.json",
+      "mode": "100644",
+      "bytes": 8157,
+      "sha256": "113d0b4f8d55a23b8794f7932e1a928cd12010cb528214e7ef56febd558430e9",
+      "git_blob_sha": "0cb6609a7271c0c3b1ff88637d5d7ab48a37adc9"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/artifact-verification.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/artifact-verification.json",
+      "mode": "100644",
+      "bytes": 1867,
+      "sha256": "e98a4dd44c6e0a95c453681121a7eb131dfb27a1ad2ae555e7071106b92d29ce",
+      "git_blob_sha": "d71e421f5ce330ab57b5266ba9d6135ad46db977"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/analyzer-diagnostics.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/analyzer-diagnostics.json",
+      "mode": "100644",
+      "bytes": 2732,
+      "sha256": "46199b049623c9d2f0be513ea620b950827003322ca56cd2528d4c519ca3a31f",
+      "git_blob_sha": "5ce091530f0ccf44b3c76f32067dbbf521746de2"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/source-bindings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/source-bindings.json",
+      "mode": "100644",
+      "bytes": 1348,
+      "sha256": "bfda5712f7a528089142b5566cbc75cf1288422a1a4642af3cc269fc532aa1ac",
+      "git_blob_sha": "4383cede1d591429adaaa5e4cfb1e9f3981bea10"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/original-flutter-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/original-flutter-job.log",
+      "mode": "100644",
+      "bytes": 91649,
+      "sha256": "049df35c0b103f01009f3190fd26498e36ea2e1014c9da53dc5784319e2fbfac",
+      "git_blob_sha": "a482bbc42818bbb2166f7bc8877e9aea1f6f06d5"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/metadata/run-initial-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/metadata/run-initial-original.json",
+      "mode": "100644",
+      "bytes": 13258,
+      "sha256": "e23871ece361d3c88bd8ba6563e67c378b3425bd8c40bf6b571c1bb46c17657c",
+      "git_blob_sha": "8aa98c1fbc4be586c63b32760c085ce31e7e8d25"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/metadata/jobs-initial-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/metadata/jobs-initial-original.json",
+      "mode": "100644",
+      "bytes": 9255,
+      "sha256": "52aee8719b2072378deabf84201ea27b8b8e6cf36af193b6213e0b1b09411955",
+      "git_blob_sha": "f3f7a336a8bd2c76451c97808b873d06901f97a2"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/metadata/flutter-terminal-job-extract.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/metadata/flutter-terminal-job-extract.json",
+      "mode": "100644",
+      "bytes": 4872,
+      "sha256": "ca608804aa9a1040c052e5bdbdf1c1bb2af4d8ed7d7c5bba97c265d35ff5cd13",
+      "git_blob_sha": "f01019cb3e7b0a6c1afb50c79e9118d0dd4545ed"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/metadata/commit-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/metadata/commit-original.json",
+      "mode": "100644",
+      "bytes": 83580,
+      "sha256": "d1902a7894762456cafead08c10cbf2576ba725bffbf070fec0b7fcba58f66f3",
+      "git_blob_sha": "da9bcc8066829f5131b37f02d7e4ec22bfe4f066"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/metadata/artifacts-after-flutter-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/metadata/artifacts-after-flutter-original.json",
+      "mode": "100644",
+      "bytes": 1507,
+      "sha256": "38789c04f8dc9f3291e823bd3610831a6636aef4a07b1036fa91ed5ce6c0e06a",
+      "git_blob_sha": "b152de60fc43f55dcd12c11a9b747322c6ead701"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/originals/feature-evidence/HOST-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/HOST-SOURCE.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "7bc92089af826898a9c74d717f0da199b43d69f0c47f7436eb32d59ad3f5889b",
+      "git_blob_sha": "0dfe1605bfc84d748e79a12408fae92f14b1c4c6"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/originals/feature-evidence/flutter-analyze.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-analyze.log",
+      "mode": "100644",
+      "bytes": 52874,
+      "sha256": "bf27b1c7883e6e9ad74108b0cb4d6a35444a265023a17d27352819336cb0c787",
+      "git_blob_sha": "59cdc7d4617197b8c393a5eed9f7e5fbdd004a87"
+    },
+    {
+      "path": "docs/evidence/host-e2db-flutter-failure-20261114/originals/feature-evidence/flutter-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-version.txt",
+      "mode": "100644",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    }
+  ]
+}

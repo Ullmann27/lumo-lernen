@@ -1,0 +1,39 @@
+{
+  "artifact_id": 14094167156,
+  "run_id": 43545886722,
+  "job_id": 132296974256,
+  "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "zip_bytes": 5392,
+  "zip_sha256": "4d10b9d78de2b758710fc98646a1df841163c6c82d47f91f831ebe233d2e49c4",
+  "crc_all_members_pass": true,
+  "members": [
+    {
+      "artifact_entry": "cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "f70128eb351789ced7b8393ce269a324b6674e5028059a97d70c5b1652d04fdc"
+    },
+    {
+      "artifact_entry": "compile.log",
+      "bytes": 33778,
+      "sha256": "b5d0ced85eb22a4147d9989a52d7d1b2951799d9eb789fabf3351e37dbc5b724"
+    },
+    {
+      "artifact_entry": "flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    {
+      "artifact_entry": "result.json",
+      "bytes": 2769,
+      "sha256": "238257a7cc1aeb796f0bda54e4bd55105c4ca5c14783772b5cc4d91838070f17"
+    },
+    {
+      "artifact_entry": "source-sha.txt",
+      "bytes": 41,
+      "sha256": "ddd6fcef95a98a889d812e94b73acd4c7ca266632201e4504901e472f9f90cc7"
+    }
+  ],
+  "job_log_bytes": 236122,
+  "job_log_sha256": "82345b53bb7c5e4b88bd751539d76aa322635761a551170caa5ff8c948b3bcfc",
+  "tool_utf8_transport_matches": true
+}

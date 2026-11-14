@@ -1,0 +1,158 @@
+{
+  "artifact_id": 14100974125,
+  "run_id": 43561885899,
+  "source": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "original_stream_bytes": 78023259,
+  "original_stream_sha256": "46db85923551b9e6508047fba6d8d096540e081b2d1ac3680e753476936f3ce1",
+  "expected_digest_matched": true,
+  "original_zip_saved": false,
+  "original_etag": "\"0x8DF421389E85E92\"",
+  "range_requests": [
+    [
+      78023237,
+      78023258,
+      22
+    ],
+    [
+      78023217,
+      78023236,
+      20
+    ],
+    [
+      77635050,
+      78023236,
+      388187
+    ],
+    [
+      16351423,
+      16351452,
+      30
+    ],
+    [
+      16351453,
+      16351497,
+      45
+    ],
+    [
+      16351498,
+      16351499,
+      2
+    ],
+    [
+      16351516,
+      16351545,
+      30
+    ],
+    [
+      16351546,
+      16351590,
+      45
+    ],
+    [
+      16351591,
+      16354177,
+      2587
+    ],
+    [
+      16354194,
+      16354223,
+      30
+    ],
+    [
+      16354224,
+      16354276,
+      53
+    ],
+    [
+      16354277,
+      16354278,
+      2
+    ],
+    [
+      16354295,
+      16354324,
+      30
+    ],
+    [
+      16354325,
+      16354371,
+      47
+    ],
+    [
+      16354372,
+      16355521,
+      1150
+    ],
+    [
+      16355538,
+      16355567,
+      30
+    ],
+    [
+      16355568,
+      16355606,
+      39
+    ],
+    [
+      16355607,
+      16356010,
+      404
+    ],
+    [
+      16941460,
+      16941489,
+      30
+    ],
+    [
+      16941490,
+      16941537,
+      48
+    ],
+    [
+      16941538,
+      16947663,
+      6126
+    ]
+  ],
+  "selected": [
+    {
+      "path": "captures/lumo_facial_capture/movie-decode.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32_verified": "00000000"
+    },
+    {
+      "path": "captures/lumo_facial_capture/movie-encode.log",
+      "bytes": 6185,
+      "sha256": "fbcb6a2fee6eb9ebe189be9fb95b92fb0cbc68e93faf876ec54a8d47a7b1e8c9",
+      "crc32_verified": "309199ea"
+    },
+    {
+      "path": "captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32_verified": "00000000"
+    },
+    {
+      "path": "captures/lumo_facial_capture/movie-ffprobe.json",
+      "bytes": 4555,
+      "sha256": "39708856ab9932c1f72ff026ab47db2e6dcce57cb293728adf378abeadfb9741",
+      "crc32_verified": "4946303a"
+    },
+    {
+      "path": "captures/lumo_facial_capture/movie.json",
+      "bytes": 733,
+      "sha256": "38ee52d3bb79b9857cad230b6fad8420edc0f3b037996c7a3de3903b4ae61bbb",
+      "crc32_verified": "f3df68e6"
+    },
+    {
+      "path": "captures/lumo_facial_capture/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "crc32_verified": "e3a20976"
+    }
+  ],
+  "selected_bytes": 94641,
+  "inventory_entries": 2432,
+  "crc_scope": "Only the selected sidecars were decompressed and CRC-checked; whole ZIP SHA256 was independently streamed."
+}

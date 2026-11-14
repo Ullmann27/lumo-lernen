@@ -1,0 +1,381 @@
+{
+  "source": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/.github/probes/creative_android_probe.py",
+  "source_sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+  "commands": [
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-contrast",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 29.91515184099262,
+      "elapsed_seconds": 0.4405876899982104,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 661\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-raw",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 29.3892173209897,
+      "elapsed_seconds": 1.260723130995757,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 709\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-text",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 26.64764691799064,
+      "elapsed_seconds": 0.40509941399795935,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 653\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 26.157723833995988,
+      "elapsed_seconds": 0.2926974739966681,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 653\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-navy-latin",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 25.78397152699472,
+      "elapsed_seconds": 0.34502533001068514,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 724\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-navy-latin-1x",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 25.336558373994194,
+      "elapsed_seconds": 0.19205108200549148,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 412\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-teal-text-1x",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 25.128313223991427,
+      "elapsed_seconds": 0.4071855520014651,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 500\nDetected 90 diacritics\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-0.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-0",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 10,
+      "elapsed_seconds": 0.09872261100099422,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-1.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-1",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 10,
+      "elapsed_seconds": 0.13721172999066766,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-2.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-2",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 10,
+      "elapsed_seconds": 0.10094191899406724,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-0.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-0",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.15584479800600093,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 980\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-1.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-1",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.1222786209982587,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 1397\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-2.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-2",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.15315091499360278,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 957\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-3.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-3",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.17542620800668374,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 933\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-4.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-4",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.14195797700085677,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 979\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-5.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-5",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.1371212310041301,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 952\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-0.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-0",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.15308998500404414,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 1017\nDetected 31 diacritics\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-1.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-1",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.12515217998588923,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 1404\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-2.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-2",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.17369148100260645,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 954\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-3.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-3",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.18179499999678228,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 932\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-4.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-4",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.18999832699773833,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 905\nDetected 55 diacritics\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-5.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-5",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "timeout": 15,
+      "elapsed_seconds": 0.15036128099018242,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 717\n"
+    }
+  ],
+  "scope": "Actual local OCR, no Android/device run"
+}

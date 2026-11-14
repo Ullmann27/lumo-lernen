@@ -1,0 +1,79 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Mobile] actual Android View insets { "view_size": (1920.0, 1080.0), "decor_size": (1920.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (1920.0, 1080.0)], "system_insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "window_size": (1920, 1080) }
+[Perf] quality_profile:medium
+[Mobile] actual Android View insets { "view_size": (1920.0, 1080.0), "decor_size": (1920.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (1920.0, 1080.0)], "system_insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "window_size": (1920, 1080) }
+SCRIPT ERROR: Parse Error: Preload file "res://scripts/characters/lumo/lumo_facial_pose.gd" does not exist.
+          at: GDScript::reload (res://scripts/characters/lumo/lumo_rigged_actor.gd:11)
+          GDScript backtrace (most recent call first):
+              [0] _case (res://scripts/tests/treasure_title_contrast_regression.gd:230)
+              [1] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/characters/lumo/lumo_kart_animation_adapter.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] _case (res://scripts/tests/treasure_title_contrast_regression.gd:230)
+              [1] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/games/kart_vehicle.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] _case (res://scripts/tests/treasure_title_contrast_regression.gd:230)
+              [1] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/creative/treasure_world.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] _case (res://scripts/tests/treasure_title_contrast_regression.gd:230)
+              [1] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+ERROR: Failed to load script "res://scripts/creative/treasure_world.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _case (res://scripts/tests/treasure_title_contrast_regression.gd:230)
+       [1] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+ERROR: [TreasureTitleContrast] landscape spawn HUD does not cover actual fox: @Label@503
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/treasure_title_contrast_regression.gd:35)
+       [1] _gameplay_view (res://scripts/tests/treasure_title_contrast_regression.gd:161)
+       [2] _case (res://scripts/tests/treasure_title_contrast_regression.gd:254)
+       [3] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+ERROR: [TreasureTitleContrast] landscape after dialog close HUD does not cover actual fox: @Label@503
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/treasure_title_contrast_regression.gd:35)
+       [1] _gameplay_view (res://scripts/tests/treasure_title_contrast_regression.gd:161)
+       [2] _case (res://scripts/tests/treasure_title_contrast_regression.gd:283)
+       [3] _tap (res://scripts/tests/treasure_title_contrast_regression.gd:100)
+       [4] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+ERROR: [TreasureTitleContrast] landscape restored HUD does not cover actual fox: @Label@1020
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/treasure_title_contrast_regression.gd:35)
+       [1] _gameplay_view (res://scripts/tests/treasure_title_contrast_regression.gd:161)
+       [2] _case (res://scripts/tests/treasure_title_contrast_regression.gd:254)
+       [3] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+ERROR: [TreasureTitleContrast] landscape after dialog close HUD does not cover actual fox: @Label@1020
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/treasure_title_contrast_regression.gd:35)
+       [1] _gameplay_view (res://scripts/tests/treasure_title_contrast_regression.gd:161)
+       [2] _case (res://scripts/tests/treasure_title_contrast_regression.gd:283)
+       [3] _tap (res://scripts/tests/treasure_title_contrast_regression.gd:100)
+       [4] _settle (res://scripts/tests/treasure_title_contrast_regression.gd:40)
+[Mobile] actual Android View insets { "view_size": (640.0, 320.0), "decor_size": (640.0, 320.0), "render_rect": [P: (0.0, 0.0), S: (640.0, 320.0)], "system_insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "window_size": (640, 320) }
+[Mobile] actual Android View insets { "view_size": (640.0, 320.0), "decor_size": (640.0, 320.0), "render_rect": [P: (0.0, 0.0), S: (640.0, 320.0)], "system_insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "window_size": (640, 320) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (2176.0, 1812.0), "decor_size": (2176.0, 1812.0), "render_rect": [P: (0.0, 0.0), S: (2176.0, 1812.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (2176, 1812) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[TreasureTitleContrast] FAIL checks=3273 failures=4

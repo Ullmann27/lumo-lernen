@@ -1,0 +1,45 @@
+{
+  "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run": 43530667812,
+  "attempt": 1,
+  "jobs": [
+    {
+      "id": 132247239767,
+      "name": "android-host-compile",
+      "status": "completed",
+      "conclusion": "success",
+      "active": []
+    },
+    {
+      "id": 132247240154,
+      "name": "verify-and-build",
+      "status": "in_progress",
+      "conclusion": null,
+      "active": [
+        "Require actual gameplay gates on the exact pinned native source"
+      ]
+    }
+  ],
+  "verified": {
+    "host_compile": {
+      "job": 132247239767,
+      "artifact": 14086444645,
+      "zip_sha256": "b8aacb680c8cc30398fc8ac78d11a438a03fb172619148c29a425a2d35304861",
+      "pass": true
+    },
+    "flutter": {
+      "artifact": 14087637888,
+      "zip_sha256": "dea2a82c895e3cc3822e4880dba28f3fb1437ec2ce8adbb60be50fda3ead2d4c",
+      "passed": 2514,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 517.401,
+      "png_entries": 546,
+      "all_manually_viewed": false
+    }
+  },
+  "android_target_jobs_not_yet_created": true,
+  "source_changes_since_4ab": false,
+  "main_modified": false
+}

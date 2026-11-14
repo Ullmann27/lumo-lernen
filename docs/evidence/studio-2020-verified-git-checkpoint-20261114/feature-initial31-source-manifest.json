@@ -1,0 +1,426 @@
+{
+  "scope": "31 exact files at eadd57; complete GitHub readback. Local-memory/native files excluded",
+  "commit": "eadd57b80a8495c20001b92f838614776371e58e",
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/app/app_state.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/app/app_state.dart",
+      "mode": "100644",
+      "bytes": 56907,
+      "sha256": "0931e2f1af20a74986444f0b6ae11440c72112521659963fd1a8c68d06ada3e4",
+      "git_blob_sha": "a75c8092e071d5ca019d06d5206dee4834f98fd4",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": {
+        "path": "lib/app/app_state.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+        "size": 54663,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+      }
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/domain/quiz/quiz_show.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/domain/quiz/quiz_show.dart",
+      "mode": "100644",
+      "bytes": 8874,
+      "sha256": "912736e2264178ac24f274651699602cd5d34bd185c2acf6eb50dbbd5464d0da",
+      "git_blob_sha": "a1246a1602c27961e5a705f523e14f409900f8db",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": {
+        "path": "lib/domain/quiz/quiz_show.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ce3fda0842c32b242b25acac51e716acdcaeae87",
+        "size": 8767,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/ce3fda0842c32b242b25acac51e716acdcaeae87"
+      }
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "bytes": 10634,
+      "sha256": "79af6bc42ee5d08004b93b543fc6b7013c646a7c18605ab6184b70ee658d1ddc",
+      "git_blob_sha": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": {
+        "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+        "size": 10316,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/b9eff2d23c35d01e6df674cad909c5c495a87bde"
+      }
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/features/lumo3d/native_table_transport.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/features/lumo3d/native_table_transport.dart",
+      "mode": "100644",
+      "bytes": 502,
+      "sha256": "dcd4826bb7903e575220537dd0b477d32d8fee810bf5523eb3c33c51df324ae1",
+      "git_blob_sha": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/features/lumo3d/native_method_table_transport.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/features/lumo3d/native_method_table_transport.dart",
+      "mode": "100644",
+      "bytes": 1677,
+      "sha256": "5edeffb1f9748d4739ac92bdb89a3683ffbfd1386caaa7a39249343e0d15eee5",
+      "git_blob_sha": "6c160054a74531b22e817bb284b7860421d2a7f1",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/features/quiz/quiz_show_content.dart",
+      "mode": "100644",
+      "bytes": 61348,
+      "sha256": "87276e61e7f2319cacfd3b044550984b1618604876e5db7ae45f8fa729e002af",
+      "git_blob_sha": "f85871afa1a8baa20fc08c30a935fcef56c7b3a8",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": {
+        "path": "lib/features/quiz/quiz_show_content.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de",
+        "size": 52217,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de"
+      }
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/features/quiz/quiz_show_round.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/features/quiz/quiz_show_round.dart",
+      "mode": "100644",
+      "bytes": 14125,
+      "sha256": "ed036809b409b44d72cfbd6be275ff64a949a8701f31891c46131034fa758676",
+      "git_blob_sha": "6606300c19972195b4cf7fcee4810835a3c5ddcc",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/features/quiz/quiz_show_repository.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/features/quiz/quiz_show_repository.dart",
+      "mode": "100644",
+      "bytes": 1371,
+      "sha256": "509973ae13ac25a0010578832b170dd52ccafd317d2f2805a194892fe78b381b",
+      "git_blob_sha": "0c2b7dc207809bbcabed4180e7423b8cd8080117",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/features/quiz/quiz_table_session.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/lib/features/quiz/quiz_table_session.dart",
+      "mode": "100644",
+      "bytes": 8060,
+      "sha256": "3c36f48119c7091d48ab510c93651526eaab791c08e2aa58e52b37a2e6743ea6",
+      "git_blob_sha": "c4105f3899d7cfb52fc0e5ec64b7b274a03a0fa4",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/auto_install/TableGameIntent.java",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/auto_install/TableGameIntent.java",
+      "mode": "100644",
+      "bytes": 3205,
+      "sha256": "6d2af8dd20002c93311f0a823ea24eec3113bac13c10857e6bc3d2b701f3c77f",
+      "git_blob_sha": "d14b09e3438164aea359d478d7af11f8c0fb5433",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/auto_install/TableGamesBridge.kt",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/auto_install/TableGamesBridge.kt",
+      "mode": "100644",
+      "bytes": 8236,
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "git_blob_sha": "4b25e208043ac9cd939e98eb955ef6a850315461",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/auto_install/TableAuthorityService.kt",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/auto_install/TableAuthorityService.kt",
+      "mode": "100644",
+      "bytes": 1945,
+      "sha256": "06a8b6323a6f76820e452b276649d262f245102d041c4b9207eaf0c2b0695ea0",
+      "git_blob_sha": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/auto_install/TableGameActivity.kt",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/auto_install/TableGameActivity.kt",
+      "mode": "100644",
+      "bytes": 6633,
+      "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+      "git_blob_sha": "74e9f7476cb192e016f5bf42421c89a30f58ee28",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/android_qa/quiz_round_contract.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/android_qa/quiz_round_contract.dart",
+      "mode": "100644",
+      "bytes": 17131,
+      "sha256": "eafe3ae7d98b972c7de2b46f9517e52abbb14f24b210ff6c35ef1cdebe583236",
+      "git_blob_sha": "80df17ac25b0a81855f0c0e88a4f37162c04db86",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/android_qa/quiz_native_authority.dart",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/android_qa/quiz_native_authority.dart",
+      "mode": "100644",
+      "bytes": 5561,
+      "sha256": "c17053575ab585f637806927c433ad7b82db3d6782321d09d6b475e8d3b65a34",
+      "git_blob_sha": "7ded270bb685306e74faa024043ec9638f0cc8d1",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/android_qa/jvm/TableGameIntentContract.java",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/android_qa/jvm/TableGameIntentContract.java",
+      "mode": "100644",
+      "bytes": 5526,
+      "sha256": "0323a6a6301c649c57f50921dba94c5dc8e45bcf55f7207d24848c930199cf84",
+      "git_blob_sha": "194fdaa97578ef6ca0d434cd9ec0066f20be6818",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-nextgen-feature-integration-20261114/prepared/host/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "mode": "100644",
+      "bytes": null,
+      "sha256": null,
+      "git_blob_sha": "f313dc0494ff76c64524f5def618f1c5306af6c3",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null,
+      "verification": "Complete UTF-8 GitHub readback after executor outage; raw SHA256 will be computed by CI",
+      "prior_git_blob_sha": "417e827a744df913627c91fd31cd2043c51874e4"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "scripts/compile_android_host.sh",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-nextgen-feature-integration-20261114/prepared/host/scripts/compile_android_host.sh",
+      "mode": "100644",
+      "bytes": 3499,
+      "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+      "git_blob_sha": "c5138523453d4e185f6af46f96e15478888075de",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": {
+        "path": "scripts/compile_android_host.sh",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "002eb5a6177d92ab2bc7d53078823283d6b48ead",
+        "size": 3354,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/002eb5a6177d92ab2bc7d53078823283d6b48ead"
+      }
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "config/studio-2020-visual-review.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-nextgen-feature-integration-20261114/prepared/host/config/studio-2020-visual-review.json",
+      "mode": "100644",
+      "bytes": 38659,
+      "sha256": "a7b27fd336ac8bdc489cbfed8a4b9fdce434a6d5f315c7052c5e787acf036e4e",
+      "git_blob_sha": "8626624dca0035447e8e86874ef39b262c36de86",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": {
+        "path": "config/studio-2020-visual-review.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2fa78d07d6fabfefb053848b678c01d46184048c",
+        "size": 38205,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/2fa78d07d6fabfefb053848b678c01d46184048c"
+      }
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "docs/NEXTGEN_FEATURE_20261114.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-nextgen-feature-integration-20261114/prepared/host/docs/NEXTGEN_FEATURE_20261114.md",
+      "mode": "100644",
+      "bytes": null,
+      "sha256": null,
+      "git_blob_sha": "b4b531b230034afa1171bf2d375d8d486c514f8b",
+      "manifest": "qa/studio-nextgen-feature-integration-20261114/root-source-manifest.json",
+      "baseline": null,
+      "verification": "Complete UTF-8 GitHub readback after executor outage; raw SHA256 will be computed by CI",
+      "prior_git_blob_sha": "a511c99dbb44aabd6dcb54067bb4ad12a3b1077b"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/tools/auto_install/MainActivity.kt",
+      "path": "tools/auto_install/MainActivity.kt",
+      "mode": "100644",
+      "bytes": 18497,
+      "sha256": "92e44f39ba00fc0cb5893ca426bbc082c8d9244a694bd0d479b534ba94a448ee",
+      "git_blob_sha": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065",
+      "manifest": "qa/studio-table-android-integration-078-20261114/source-upload-manifest.json",
+      "baseline": {
+        "path": "tools/auto_install/MainActivity.kt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ed589d9bbc5a99e7b37e606bc45cf932b5ce9257",
+        "size": 17568,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/ed589d9bbc5a99e7b37e606bc45cf932b5ce9257"
+      }
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/scripts/prepare_embedded_games.py",
+      "path": "scripts/prepare_embedded_games.py",
+      "mode": "100644",
+      "bytes": 11694,
+      "sha256": "e31d0aadd76633b98182a4d2093d838adf9603c46c8ad191561d045d4a0d333e",
+      "git_blob_sha": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b",
+      "manifest": "qa/studio-table-android-integration-078-20261114/source-upload-manifest.json",
+      "baseline": {
+        "path": "scripts/prepare_embedded_games.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a1615455b5ea6251926d5037900e025d46971c18",
+        "size": 10377,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/a1615455b5ea6251926d5037900e025d46971c18"
+      }
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/scripts/tests/test_embedded_android.py",
+      "path": "scripts/tests/test_embedded_android.py",
+      "mode": "100644",
+      "bytes": 8401,
+      "sha256": "d079eabb434afe38b1892b2ee2e25964617b084f7aa4499bc9c1a029868024ad",
+      "git_blob_sha": "4e049e6fe75a82c38d105384f37e16ad8715ee95",
+      "manifest": "qa/studio-table-android-integration-078-20261114/source-upload-manifest.json",
+      "baseline": {
+        "path": "scripts/tests/test_embedded_android.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6ad0e520940b6e576324fff7615c2cf5c400bf8f",
+        "size": 6750,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/6ad0e520940b6e576324fff7615c2cf5c400bf8f"
+      }
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-next-20261114/prepared/host/scripts/tests/test_table_games_native_contract.py",
+      "path": "scripts/tests/test_table_games_native_contract.py",
+      "mode": "100644",
+      "bytes": 15542,
+      "sha256": "a789650b477ded58f3dad9611e6ba187b04f368b488d588902958cefad1478b5",
+      "git_blob_sha": "1379b936394dba8f70137657e9f91f68b5a9bee2",
+      "manifest": "qa/studio-table-android-integration-078-20261114/source-upload-manifest.json",
+      "baseline": null
+    },
+    {
+      "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "mode": "100644",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-table-host-integration-review-20261114/prepared/host/test/quiz_native_roundtrip_lifecycle_test.dart",
+      "bytes": 14514,
+      "sha256": "3436faf0dfdc0ba386f2881c057b265b2419aacaff53892d106dac70270b57de",
+      "git_blob_sha": "92e220331786a78b21bf800e98a3d927c9b2711a",
+      "manifest": "qa/studio-table-host-integration-review-20261114/source-upload-manifest.json",
+      "baseline": null
+    },
+    {
+      "path": "test/table_games_launcher_binding_test.dart",
+      "mode": "100644",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-table-host-integration-review-20261114/prepared/host/test/table_games_launcher_binding_test.dart",
+      "bytes": 10384,
+      "sha256": "ccc6299e38586ffcc86e787a8c194b85218118e2dc637bb4dda7b57a59c16ef1",
+      "git_blob_sha": "705e90212916b784136a33088a4dbedaf7f0f8e2",
+      "manifest": "qa/studio-table-host-integration-review-20261114/source-upload-manifest.json",
+      "baseline": null
+    },
+    {
+      "path": "test/table_games_wallet_profile_test.dart",
+      "mode": "100644",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-table-host-integration-review-20261114/prepared/host/test/table_games_wallet_profile_test.dart",
+      "bytes": 10423,
+      "sha256": "cd6f2670ec7bbe31f6fedf322df72e8f09e8a9fa3878c5a7db88b3b6861fdba5",
+      "git_blob_sha": "5034e41a86ba9977251abe233be574bcaf889240",
+      "manifest": "qa/studio-table-host-integration-review-20261114/source-upload-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/patched/host/lib/domain/tutoring/native_english_vocabulary.dart",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "bytes": 2941,
+      "sha256": "66f07be4fb2d573b411f8bda97330edad46003929640bf36a0ede74c2d43102a",
+      "git_blob_sha": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+      "baseline_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "baseline_git_blob_sha": null,
+      "change": "added",
+      "manifest": "qa/studio-english-next-20261114/test-cleanup-followup/host-source-upload-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/patched/host/lib/domain/tutoring/native_learning_activity.dart",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "mode": "100644",
+      "bytes": 7587,
+      "sha256": "1c067ad052a5cabaeeadb6730d15a7618cbeafe1b5c8b83eed9af770c94035d2",
+      "git_blob_sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "baseline_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "baseline_git_blob_sha": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "change": "modified",
+      "manifest": "qa/studio-english-next-20261114/test-cleanup-followup/host-source-upload-manifest.json",
+      "baseline": {
+        "path": "lib/domain/tutoring/native_learning_activity.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+        "size": 7307,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/83463a26665cd0b58aa776c28f6dec1600552e3d"
+      }
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/test-cleanup-followup/patched/host/test/tutoring/native_english_activity_test.dart",
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "mode": "100644",
+      "bytes": 7588,
+      "sha256": "cf115557354b01a7d873654a74fa2c5e52860df1a8baf967df126d2a712a8114",
+      "git_blob_sha": "70cacfce15bdd374d582c570b49c2a865cee63d6",
+      "baseline_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "baseline_git_blob_sha": null,
+      "change": "added",
+      "manifest": "qa/studio-english-next-20261114/test-cleanup-followup/host-source-upload-manifest.json",
+      "baseline": null
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/patched/host/tool/check_native_english_activity.dart",
+      "path": "tool/check_native_english_activity.dart",
+      "mode": "100644",
+      "bytes": 9307,
+      "sha256": "b812765a787a5553cd472271a4eb4ed13b2f5b6e72d8c1721408bfbcb3c28bb8",
+      "git_blob_sha": "85a96d92e0eac2c1d9f6791820d8990d816fdc48",
+      "baseline_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "baseline_git_blob_sha": null,
+      "change": "added",
+      "manifest": "qa/studio-english-next-20261114/test-cleanup-followup/host-source-upload-manifest.json",
+      "baseline": null
+    }
+  ]
+}

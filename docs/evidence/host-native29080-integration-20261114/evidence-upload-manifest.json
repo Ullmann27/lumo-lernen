@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "host_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "files": [
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/source-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/source-manifest.json",
+      "bytes": 30559,
+      "sha256": "fbc9c8ac41441bc4ddabeff15cc9603dd8810bfc610c71a7d3aa248350e817da",
+      "git_blob": "11e5fcfb5492c12b11adf9bf86a93d0c4bad64cc",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/commit-proof.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/commit-proof.json",
+      "bytes": 875,
+      "sha256": "d41d18a85d1cb58bb07c172d5b09ed9ac764a8e4ecc814d152d4763493bb71a1",
+      "git_blob": "37936969813e520c9620626df90da2348269d040",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/reviewed-images-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/reviewed-images-upload-manifest.json",
+      "bytes": 57558,
+      "sha256": "d62f3f5c0a800a2746226fec28fb9330253700dd14d40290cfb83cdbf2dc8bad",
+      "git_blob": "07a086830d8291de73dfed2fa631cc7f53a2a01b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-memory-source-original.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-memory-source-original.log",
+      "bytes": 34441,
+      "sha256": "403d99319565bcac1934aa3efc5ecf3655f21eb9a8156f384499ca69eb10131f",
+      "git_blob": "e74f1c9b6bbbc17ba7df625f89ed89bb93a26685",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-memory-source-summary.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-memory-source-summary.json",
+      "bytes": 1054,
+      "sha256": "fe8317e181371dd3a755012a3c04aefdb16ac26750fef262f3b8766fa57d9546",
+      "git_blob": "f65da01e84c7f73abdd387eb7685f1052a3c07ef",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-pin-tests.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-pin-tests.json",
+      "bytes": 775,
+      "sha256": "97d7169bae06888334c6cfa46026ad5e46e72b55bde876bef99e485a8267bae8",
+      "git_blob": "f776def982f4a8721e1d6bcef3d2d547e1fdce83",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-pin-tests.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-pin-tests.log",
+      "bytes": 874,
+      "sha256": "84b1a08caa7c1ed64b3ffbdbb1917ba924e5d0d7cc8096004cbb5a4a2d27b633",
+      "git_blob": "121bba166cb6653106eb802565f1f034f862f019",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-jobs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-script-recovery-jobs.json",
+      "bytes": 3905,
+      "sha256": "26c0bd9f6cd3fdc12194f8781fe55dc694d369456b1fa91f33abc60da1e8f881",
+      "git_blob": "113fb76c4a46df07a29d1fb19cc1b1a92edc61fd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-original.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-script-recovery-original.log",
+      "bytes": 230069,
+      "sha256": "408c0cd5552e7255ab82fe65a8f018be55f13ac3cbdc9598ab94df16aef58509",
+      "git_blob": "385d1591950a724dd20760d0f348316028184be5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-run.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-script-recovery-run.json",
+      "bytes": 15282,
+      "sha256": "8d2e54c4b87cf860cd493248e487dce357b82a7ae07f156cf3e4acf63868e687",
+      "git_blob": "719985986e7c703927c95d5eea926c16592e921e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-summary.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-script-recovery-summary.json",
+      "bytes": 479,
+      "sha256": "e7dc5e89c856ef09f300baa90e685b770d67be98610cedf34aef4a5fc89725e1",
+      "git_blob": "c76008f2095d682ee0c6d1cd8c3e7b31ae0675ce",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/feature-jobs-observed-in-progress.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/feature-jobs-observed-in-progress.json",
+      "bytes": 12748,
+      "sha256": "e5c55ab8d913b054ae79faec1cea7aa2bbf6a9823dfaf7b2afeb3cf53a5fae97",
+      "git_blob": "ae6bf5a3c2c146a7502b53670088ca9b223218a3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/feature-runs-observed-in-progress.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/feature-runs-observed-in-progress.json",
+      "bytes": 162619,
+      "sha256": "fae9620d3bd6e7027746e84992420bdac712bec76ffb2ff476fbf27ad0c03a3d",
+      "git_blob": "c1b680bb4dbd6cb1196f8f634ac9269ee1cf58b2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/fresh-refs-before-integration.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/fresh-refs-before-integration.json",
+      "bytes": 245,
+      "sha256": "f3505cde71517640af63f668e59160d333255848a54d6d45d74e8bf9579726b8",
+      "git_blob": "dd21e5b8f5ca0581dcac9218cd51127c115e66d9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/integration-source-rehash.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/integration-source-rehash.json",
+      "bytes": 679,
+      "sha256": "8beb299190c000716a98a9895854926a577dd8bfddf43428f38e42707e875f0d",
+      "git_blob": "be77300a9b29145dc922f392178ea87ba216de4a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/receipt-source-readback.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/receipt-source-readback.json",
+      "bytes": 515,
+      "sha256": "3e68ac8b9da94361dfb65962cbc434b76d1504f0e2714ee5b2911dd9e35438a2",
+      "git_blob": "0a91e2276c48a9700dfc05103492e9817ef2aff8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/root-five-source-readbacks.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/root-five-source-readbacks.json",
+      "bytes": 1730,
+      "sha256": "db15b392c8c76c013217872a1138cb530c8a6685cf5913c645e8e8cd6e5e567c",
+      "git_blob": "714bdddbeb3aa94923c618f63dbd85919f58ddf6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/speech-workflow-boundary-proof.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/speech-workflow-boundary-proof.json",
+      "bytes": 1269,
+      "sha256": "2e40743379770ad555c82a7ae4830a7992250ca032882642a8d1fbad2af97695",
+      "git_blob": "4a0b480c2d5c1955717789b4881f20a783bd1363",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/unchanged-recorder-source-bindings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/unchanged-recorder-source-bindings.json",
+      "bytes": 805,
+      "sha256": "2a1541b7519b83f1776638bfa401bd23363559e2153331c8249abaa34e9fc505",
+      "git_blob": "658c8c4234adfcf9c101acb0476232c26794d1ee",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/image-upload/confirmed-tree-inputs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/image-upload/confirmed-tree-inputs.json",
+      "bytes": 5362,
+      "sha256": "df3c65b5fc845c722576cdbead8cbb556fef69287a1f526ff8aabe65b6507a74",
+      "git_blob": "7c4ec905429cf098b5dc965ad9655993e19e3692",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/image-upload/confirmed-blobs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/image-upload/confirmed-blobs.json",
+      "bytes": 23391,
+      "sha256": "b11e69d5c838cfba271416cf2f2dbac9d56d7f687c3b2e6194f5f1a2f3ae546d",
+      "git_blob": "a87e0d8eac163508b60caf50f96d6ca86952d359",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-native29080-integration-20261114/image-upload/completion.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/image-upload/completion.json",
+      "bytes": 1705,
+      "sha256": "1a7ffe9c65d689492c31c2736b1f380c27facfdf6f1819fdae98be176b4dc77e",
+      "git_blob": "94f9850eb12fe15c1c950fe2fb44491e6983b545",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "count": 22,
+  "bytes": 586939,
+  "scope": "Explicit integration and original current recovery/source-contract proof; current Flutter/Android compilation still pending at freeze. No source tree copy or original binary image bytes included."
+}

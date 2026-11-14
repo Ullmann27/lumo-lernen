@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "base_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "scope": "Exactly one renderer budget600 to900, two corresponding existing expectations, three rationale comments; no product/scene/probe/roster/workflow changes.",
+  "files": [
+    {
+      "path": "tools/validate_studio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native/tools/validate_studio.sh",
+      "bytes": 25425,
+      "sha256": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+      "git_blob_sha": "542e22df76ae8773d3c7de064a560a977fc9a033",
+      "previous_git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1",
+      "confirmed_uploaded_blob": "542e22df76ae8773d3c7de064a560a977fc9a033",
+      "full_readback_verified": true
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+      "git_blob_sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d",
+      "previous_git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154",
+      "confirmed_uploaded_blob": "ea34d0d0b459f478af662ede47e472111ca9ae8d",
+      "full_readback_verified": true
+    }
+  ]
+}

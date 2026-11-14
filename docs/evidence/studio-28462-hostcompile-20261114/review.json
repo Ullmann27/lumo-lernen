@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "run_id": 43626348519,
+  "job_id": 132543176935,
+  "host_revision": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "status": "PASS",
+  "artifact_id": 14126072166,
+  "class_groups": 18,
+  "source_files": 15,
+  "before_after_identical": true,
+  "source_blobs_match_exact_host_tree": true,
+  "groups": [
+    {
+      "name": "test_english_lesson_speech",
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 1.676208805999977
+    },
+    {
+      "name": "test_learning_english_speech_lifecycle",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 17.346987191999972
+    }
+  ],
+  "table_native_contracts": "Not run in this Studio job; the 28 Feature markers are not transferred.",
+  "scope": "Actual compiled Android classes and Java/Kotlin contracts with declared synthetic inference/platform boundaries. No APK runtime, model inference, heard output or physical-device claim."
+}

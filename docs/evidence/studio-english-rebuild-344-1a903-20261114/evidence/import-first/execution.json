@@ -1,0 +1,15 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--editor",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--rendering-method",
+    "gl_compatibility",
+    "--quit"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 9.126798777999966,
+  "scope": "private Native344 dependency graph import; new English sources, no gameplay PASS"
+}

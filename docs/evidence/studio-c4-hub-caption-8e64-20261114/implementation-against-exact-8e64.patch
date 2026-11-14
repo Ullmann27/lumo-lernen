@@ -1,0 +1,472 @@
+--- a/.github/probes/lumo_connect_four_android_probe.py
++++ b/.github/probes/lumo_connect_four_android_probe.py
+@@ -28,6 +28,7 @@
+ SESSION = FILES + '/lumo_connect_four_session_v1/'
+ SELF = '.github/probes/lumo_connect_four_android_probe.py'
+ PCK_PATH = 'assets/lumo_game.pck'
++C4_HUB_TITLE = 'Lumo 4 Gewinnt'
+ SOURCE_FILES = (SELF, '.github/probes/creative_android_probe.py',
+                 '.github/probes/modernization_android_tour.py',
+                 '.github/probes/lumo_studio_surfaces_android_probe.py',
+@@ -488,22 +489,39 @@
+         require(ready,'Actual Flutter game hub was not reached before its deadline')
+         for direction in (1,-1):
+             for attempt in range(11):
++                require('MainActivity' in self.surfaces.resumed_activity(),'Flutter hub activity changed before observation')
+                 tag=self.tag('actual-c4-hub');nodes=self.live.live_nodes(self.out,tag)
+                 shot=self.probe.capture(self.out,tag)
+                 from PIL import Image
+                 with Image.open(self.out/shot['file']) as im:size=im.size
+-                target=self.creative.hub_choice(nodes,'Vier gewinnt',size,48*self.density)
++                target=self.creative.hub_choice(nodes,C4_HUB_TITLE,size,48*self.density)
++                confirmed=self.live.live_nodes(self.out,tag+'-confirmed')
++                if target!=self.creative.hub_choice(confirmed,C4_HUB_TITLE,size,48*self.density):
++                    continue
++                require('MainActivity' in self.surfaces.resumed_activity(),'Flutter hub activity changed during observation')
+                 if target:
+                     r=target['bounds'];point=[round((r[0]+r[2])/2),round((r[1]+r[3])/2)]
+-                    self.events.append({'kind':'actual_hub_touch','target':target,'capture':shot,'point':point});write(self.out/'input-events.json',self.events)
++                    self.events.append({'kind':'actual_hub_touch','target':target,'capture':shot,
++                                        'confirmed_xml':tag+'-confirmed.xml','point':point})
++                    write(self.out/'input-events.json',self.events)
+                     self.adb('shell','input','tap',*[str(v) for v in point]);return
+                 if attempt==10:break
+                 rects=[self.creative.bounds(n.get('bounds','')) for n in nodes if n.get('package')==PACKAGE and n.get('scrollable')=='true']
+                 rects=[r for r in rects if r and 0<=r[0]<r[2]<=size[0] and 0<=r[1]<r[3]<=size[1]]
++                confirmed_rects=[self.creative.bounds(n.get('bounds','')) for n in confirmed if n.get('package')==PACKAGE and n.get('scrollable')=='true']
++                confirmed_rects=[r for r in confirmed_rects if r and 0<=r[0]<r[2]<=size[0] and 0<=r[1]<r[3]<=size[1]]
++                if sorted(rects)!=sorted(confirmed_rects):
++                    continue
+                 require(rects,'No actual scroll viewport for C4 hub')
+                 r=max(rects,key=lambda q:(q[2]-q[0])*(q[3]-q[1]));x=round((r[0]+r[2])/2);low=round(r[1]+.25*(r[3]-r[1]));high=round(r[1]+.75*(r[3]-r[1]))
+                 start,end=(high,low) if direction==1 else (low,high)
+-                self.adb('shell','input','swipe',str(x),str(start),str(x),str(end),'450');time.sleep(.6)
++                event={'kind':'actual_hub_scroll','capture':shot,'confirmed_xml':tag+'-confirmed.xml',
++                       'viewport_bounds':r,'start':[x,start],'end':[x,end],'duration_ms':450,
++                       'adb_completed':False}
++                self.events.append(event);write(self.out/'input-events.json',self.events)
++                self.adb('shell','input','swipe',str(x),str(start),str(x),str(end),'450')
++                event['adb_completed']=True;write(self.out/'input-events.json',self.events)
++                time.sleep(.6)
+         raise RuntimeError('Actual C4 hub tile never appeared')
+ 
+     def lease(self,token,active):
+--- a/scripts/tests/test_studio_c4_navigation.py
++++ b/scripts/tests/test_studio_c4_navigation.py
+@@ -1,9 +1,15 @@
+ """Replay original failed Android navigation observations without Android I/O."""
+ 
+ from copy import deepcopy
++import ast
+ import importlib.util
++import json
+ from pathlib import Path
++import re
++import tempfile
++from types import ModuleType, SimpleNamespace
+ import unittest
++from unittest.mock import patch
+ import xml.etree.ElementTree as ET
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+@@ -64,5 +70,180 @@
+         self.assertIsNone(self.target([]))
+ 
+ 
++def actual_hub_helper():
++    """Load the production selector without its unrelated Android dependencies."""
++    source = (ROOT / '.github/probes/studio_creative_android_probe.py').read_text()
++    definitions = [node for node in ast.parse(source).body
++                   if isinstance(node, ast.FunctionDef)
++                   and node.name in {'require', 'bounds', 'hub_choice'}]
++    if len(definitions) != 3:
++        raise AssertionError('Actual hub selector dependencies changed')
++    namespace = {'PACKAGE': MODULE.PACKAGE, 're': re}
++    exec(compile(ast.Module(body=definitions, type_ignores=[]),
++                 'actual-studio-hub-selector', 'exec'), namespace)
++    return SimpleNamespace(**{name: namespace[name]
++                              for name in ('bounds', 'hub_choice')})
++
++
++class HubTransportReplay:
++    """Only transport/size are doubled; selectors use byte-identical original XML.
++
++    This is a Python control-flow replay, not an Android run or screenshot OCR.
++    The original top viewport transitions to the actual 0006 viewport after the
++    first recorded swipe. Negative variants change only the subsequent read.
++    """
++    def __init__(self, output, *, changed_target=False, changed_viewport=False,
++                 changed_activity=False, failed_swipe=False):
++        self.top = nodes('api35-28462-hub-top.xml')
++        self.visible = nodes('api35-28462-c4-visible.xml')
++        self.changed_target = changed_target
++        self.changed_viewport = changed_viewport
++        self.changed_activity = changed_activity
++        self.failed_swipe = failed_swipe
++        self.swipes = 0
++        self.trace = []
++        self.last_nodes = ''
++        self.last_nodes_visible = False
++        self.subject = MODULE.AndroidProbe.__new__(MODULE.AndroidProbe)
++        self.subject.out = output
++        self.subject.count = 0
++        self.subject.events = []
++        self.subject.density = 2.625
++        self.subject.creative = actual_hub_helper()
++        self.subject.live = SimpleNamespace(live_nodes=self.read_nodes)
++        self.subject.probe = SimpleNamespace(capture=self.capture)
++        self.subject.surfaces = SimpleNamespace(resumed_activity=self.activity)
++        self.subject.adb = self.adb
++
++    def read_nodes(self, output, tag):
++        self.last_nodes = tag
++        self.last_nodes_visible = bool(self.swipes)
++        self.trace.append(('nodes', tag))
++        values = deepcopy(self.visible if self.swipes else self.top)
++        if 'actual-c4-hub' in tag and tag.endswith('-confirmed'):
++            for node in values:
++                if self.changed_target and node.get('content-desc', '').startswith('Lumo 4 Gewinnt. '):
++                    node['bounds'] = '[43,1072][525,1536]'
++                if self.changed_viewport and node.get('scrollable') == 'true':
++                    node['bounds'] = '[1,136][1080,1993]'
++        hierarchy = ET.Element('hierarchy')
++        for value in values:
++            ET.SubElement(hierarchy, 'node', value)
++        ET.ElementTree(hierarchy).write(output / (tag + '.xml'), encoding='utf-8')
++        return values
++
++    def capture(self, output, tag, **kwargs):
++        self.trace.append(('capture', tag))
++        return {'file': tag + '.png'}
++
++    def activity(self):
++        value = 'MainActivity'
++        if (self.changed_activity and self.last_nodes_visible
++                and 'actual-c4-hub' in self.last_nodes
++                and self.last_nodes.endswith('-confirmed')):
++            value = 'ConnectFourGameActivity'
++        self.trace.append(('activity', value))
++        return value
++
++    def adb(self, *args, **kwargs):
++        self.trace.append(('adb', args))
++        if args[:3] == ('shell', 'input', 'swipe'):
++            if self.failed_swipe:
++                raise RuntimeError('Recorded transport failure')
++            self.swipes += 1
++        return ''
++
++    def run(self):
++        class OriginalScreenSize:
++            size = (1080, 2400)
++
++            def __enter__(self):
++                return self
++
++            def __exit__(self, *args):
++                return False
++
++        pil = ModuleType('PIL')
++        pil.Image = SimpleNamespace(open=lambda _: OriginalScreenSize())
++        with patch.dict('sys.modules', {'PIL': pil}), patch.object(MODULE.time, 'sleep'):
++            self.subject.navigate()
++
++
++class CurrentC4HubNavigation(unittest.TestCase):
++    def test_original_visible_caption_resolves_only_its_current_interactive_tile(self):
++        helper = actual_hub_helper()
++        original = nodes('api35-28462-c4-visible.xml')
++        expected = {'caption': 'Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen',
++                    'bounds': [42, 1072, 524, 1536]}
++        self.assertEqual(helper.hub_choice(original, 'Lumo 4 Gewinnt', (1080, 2400), 126), expected)
++        self.assertIsNone(helper.hub_choice(original, 'Vier gewinnt', (1080, 2400), 126))
++        for change in ({'package': 'foreign.app'}, {'enabled': 'false'},
++                       {'clickable': 'false'}, {'bounds': '[42,1072][167,1536]'},
++                       {'content-desc': 'Vier gewinnt. Vier in einer Reihe Spielen'}):
++            with self.subTest(change=change):
++                values = deepcopy(original)
++                for node in values:
++                    if node.get('content-desc') == expected['caption']:
++                        node.update(change)
++                self.assertIsNone(helper.hub_choice(values, 'Lumo 4 Gewinnt', (1080, 2400), 126))
++
++    def test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap(self):
++        with tempfile.TemporaryDirectory() as directory:
++            replay = HubTransportReplay(Path(directory))
++            replay.run()
++            self.assertEqual(replay.swipes, 1)
++            events = json.loads((Path(directory) / 'input-events.json').read_text())
++            self.assertEqual([event['kind'] for event in events],
++                             ['actual_hub_scroll', 'actual_hub_touch'])
++            scroll, touch = events
++            self.assertEqual(scroll['viewport_bounds'], [0, 136, 1080, 1993])
++            self.assertEqual((scroll['start'], scroll['end'], scroll['duration_ms']),
++                             ([540, 1529], [540, 600], 450))
++            self.assertIs(scroll['adb_completed'], True)
++            self.assertEqual(touch['target']['bounds'], [42, 1072, 524, 1536])
++            self.assertEqual(touch['point'], [283, 1304])
++            self.assertTrue((Path(directory) / touch['confirmed_xml']).is_file())
++            self.assertEqual(replay.trace[-3:],
++                             [('nodes', touch['confirmed_xml'][:-4]),
++                              ('activity', 'MainActivity'),
++                              ('adb', ('shell', 'input', 'tap', '283', '1304'))])
++
++    def test_changed_tile_between_capture_and_confirmation_is_never_tapped(self):
++        with tempfile.TemporaryDirectory() as directory:
++            replay = HubTransportReplay(Path(directory), changed_target=True)
++            with self.assertRaisesRegex(RuntimeError, 'tile never appeared'):
++                replay.run()
++            self.assertEqual(replay.swipes, 1)
++            self.assertFalse(any(event['kind'] == 'actual_hub_touch'
++                                 for event in replay.subject.events))
++
++    def test_changed_foreground_after_fresh_ui_read_prevents_tap(self):
++        with tempfile.TemporaryDirectory() as directory:
++            replay = HubTransportReplay(Path(directory), changed_activity=True)
++            with self.assertRaisesRegex(RuntimeError, 'activity changed during observation'):
++                replay.run()
++            self.assertFalse(any(event['kind'] == 'actual_hub_touch'
++                                 for event in replay.subject.events))
++
++    def test_failed_swipe_keeps_attempt_unconfirmed_and_stops(self):
++        with tempfile.TemporaryDirectory() as directory:
++            replay = HubTransportReplay(Path(directory), failed_swipe=True)
++            with self.assertRaisesRegex(RuntimeError, 'Recorded transport failure'):
++                replay.run()
++            events = json.loads((Path(directory) / 'input-events.json').read_text())
++            self.assertEqual(len(events), 1)
++            self.assertEqual(events[0]['kind'], 'actual_hub_scroll')
++            self.assertIs(events[0]['adb_completed'], False)
++            self.assertEqual(replay.swipes, 0)
++
++    def test_changed_scroll_viewport_is_never_used_for_input(self):
++        with tempfile.TemporaryDirectory() as directory:
++            replay = HubTransportReplay(Path(directory), changed_viewport=True)
++            with self.assertRaisesRegex(RuntimeError, 'tile never appeared'):
++                replay.run()
++            self.assertEqual(replay.swipes, 0)
++            self.assertEqual(replay.subject.events, [])
++
++
+ if __name__ == '__main__':
+     unittest.main()
+--- /dev/null
++++ b/scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml
+@@ -0,0 +1,87 @@
++<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
++<hierarchy rotation="0">
++  <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++    <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="1" hint="" display-id="0">
++      <node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="2" hint="" display-id="0">
++        <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="1" hint="" display-id="0">
++          <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++            <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++              <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++                <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++                  <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,136][1080,1993]" drawing-order="0" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.ScrollView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="true" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,136][1080,1993]" drawing-order="0" hint="" display-id="0">
++                      <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo Spielewelt" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,157][845,299]" drawing-order="0" hint="" display-id="0" />
++                      <node index="1" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="0 Sterne" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[871,170][1038,286]" drawing-order="0" hint="" display-id="0" />
++                      <node index="2" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Dein nächstes Abenteuer" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,362][599,425]" drawing-order="0" hint="" display-id="0" />
++                      <node index="3" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Auf ins Abenteuer!" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,446][733,582]" drawing-order="0" hint="" display-id="0" />
++                      <node index="4" text="" resource-id="" class="android.widget.ImageView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo mit blauer Brille und Jacke begrüßt dich in der Spielwelt" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[754,330][1038,614]" drawing-order="0" hint="" display-id="0">
++                        <node index="0" text="" resource-id="" class="android.widget.ImageView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo mit blauer Brille und Jacke begrüßt dich in der Spielwelt" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[754,330][1038,614]" drawing-order="0" hint="" display-id="0">
++                          <node index="0" text="" resource-id="" class="android.widget.ImageView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[754,330][1038,614]" drawing-order="0" hint="" display-id="0" />
++                        </node>
++                      </node>
++                      <node index="5" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo Kart. Fahre mit Lumo um die Wette! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,640][524,1105]" drawing-order="0" hint="" display-id="0" />
++                      <node index="6" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo Cards. Sammeln. Spielen. Staunen! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[556,640][1038,1105]" drawing-order="0" hint="" display-id="0" />
++                      <node index="7" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,1136][524,1601]" drawing-order="0" hint="" display-id="0" />
++                      <node index="8" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Puzzle. Stück für Stück die Welt entdecken! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[556,1136][1038,1601]" drawing-order="0" hint="" display-id="0" />
++                      <node index="9" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Memory. Finde die Paare! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,1633][524,1993]" drawing-order="0" hint="" display-id="0" />
++                      <node index="10" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Jump &amp; Run. Spring. Laufe. Sei mutig! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[556,1633][1038,1993]" drawing-order="0" hint="" display-id="0" />
++                    </node>
++                  </node>
++                  <node index="1" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Hilfe &amp; Ideen" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[139,2031][375,2084]" drawing-order="0" hint="" display-id="0" />
++                  <node index="2" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Frag deinen Lumo" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[139,2084][412,2128]" drawing-order="0" hint="" display-id="0" />
++                  <node index="3" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo, dein Lernfuchs. Hilfe und Ideen öffnen" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[875,2004][1028,2156]" drawing-order="0" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.ImageView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo, dein Profilbild&#10;Lumo, dein Profilbild" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[875,2004][1028,2156]" drawing-order="0" hint="" display-id="0">
++                      <node index="0" text="" resource-id="" class="android.widget.ImageView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[880,2014][1022,2156]" drawing-order="0" hint="" display-id="0" />
++                    </node>
++                  </node>
++                  <node index="4" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[11,2180][891,2327]" drawing-order="0" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Start&#10;Start" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[11,2180][187,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="1" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lernen&#10;Lernen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[187,2180][363,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="2" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Spielen&#10;Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="true" visible-to-user="true" bounds="[363,2180][539,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="3" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Tests&#10;Tests" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[539,2180][715,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="4" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Profil&#10;Profil" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[715,2180][891,2327]" drawing-order="0" hint="" display-id="0" />
++                  </node>
++                  <node index="5" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Mehr&#10;Mehr" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[894,2180][1070,2327]" drawing-order="0" hint="" display-id="0" />
++                </node>
++              </node>
++            </node>
++          </node>
++        </node>
++      </node>
++    </node>
++  </node>
++  <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="0" hint="" display-id="0">
++    <node index="0" text="" resource-id="com.android.systemui:id/status_bar_launch_animation_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="1" hint="" display-id="0" />
++    <node index="1" text="" resource-id="com.android.systemui:id/container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="3" hint="" display-id="0" />
++    <node index="2" text="" resource-id="com.android.systemui:id/status_bar_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="2" hint="" display-id="0">
++      <node index="0" text="" resource-id="com.android.systemui:id/status_bar" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="1" hint="" display-id="0">
++        <node index="0" text="" resource-id="com.android.systemui:id/status_bar_contents" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[136,0][1027,136]" drawing-order="2" hint="" display-id="0">
++          <node index="0" text="" resource-id="com.android.systemui:id/status_bar_start_side_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,5][581,136]" drawing-order="1" hint="" display-id="0">
++            <node index="0" text="" resource-id="com.android.systemui:id/status_bar_start_side_content" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,5][309,136]" drawing-order="1" hint="" display-id="0">
++              <node index="0" text="" resource-id="com.android.systemui:id/status_bar_start_side_except_heads_up" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,5][309,136]" drawing-order="2" hint="" display-id="0">
++                <node index="0" text="7:58" resource-id="com.android.systemui:id/clock" class="android.widget.TextView" package="com.android.systemui" content-desc="7:58 PM" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,49][251,92]" drawing-order="2" hint="" display-id="0" />
++                <node index="1" text="" resource-id="com.android.systemui:id/notification_icon_area" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[251,5][309,136]" drawing-order="4" hint="" display-id="0">
++                  <node index="0" text="" resource-id="com.android.systemui:id/notificationIcons" class="android.view.ViewGroup" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[251,5][309,136]" drawing-order="1" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.ImageView" package="com.android.systemui" content-desc="Android System notification: " checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[251,5][309,136]" drawing-order="1" hint="" display-id="0" />
++                  </node>
++                </node>
++              </node>
++            </node>
++          </node>
++          <node index="1" text="" resource-id="com.android.systemui:id/status_bar_end_side_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[581,5][1016,136]" drawing-order="3" hint="" display-id="0">
++            <node index="0" text="" resource-id="com.android.systemui:id/status_bar_end_side_content" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[914,5][1016,136]" drawing-order="1" hint="" display-id="0">
++              <node index="0" text="" resource-id="com.android.systemui:id/system_icons" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[914,41][1016,99]" drawing-order="2" hint="" display-id="0">
++                <node index="0" text="" resource-id="com.android.systemui:id/statusIcons" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[922,41][985,99]" drawing-order="1" hint="" display-id="0">
++                  <node index="0" text="" resource-id="" class="android.widget.ImageView" package="com.android.systemui" content-desc="Airplane mode." checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[922,41][969,99]" drawing-order="18" hint="" display-id="0" />
++                </node>
++                <node index="1" text="" resource-id="com.android.systemui:id/battery" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="Battery charging, 100 percent." checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[985,53][1005,87]" drawing-order="2" hint="" display-id="0">
++                  <node index="0" text="" resource-id="" class="android.widget.ImageView" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[985,53][1005,87]" drawing-order="1" hint="" display-id="0" />
++                </node>
++              </node>
++            </node>
++          </node>
++        </node>
++      </node>
++    </node>
++  </node>
++</hierarchy>--- /dev/null
++++ b/scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml
+@@ -0,0 +1,85 @@
++<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
++<hierarchy rotation="0">
++  <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++    <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="1" hint="" display-id="0">
++      <node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="2" hint="" display-id="0">
++        <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="1" hint="" display-id="0">
++          <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++            <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++              <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++                <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,2400]" drawing-order="0" hint="" display-id="0">
++                  <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,136][1080,1993]" drawing-order="0" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.ScrollView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="true" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,136][1080,1993]" drawing-order="0" hint="" display-id="0">
++                      <node index="0" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Memory. Finde die Paare! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,136][524,423]" drawing-order="0" hint="" display-id="0" />
++                      <node index="1" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Jump &amp; Run. Spring. Laufe. Sei mutig! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[556,136][1038,423]" drawing-order="0" hint="" display-id="0" />
++                      <node index="2" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Noch mehr Abenteuer" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,483][1038,546]" drawing-order="0" hint="" display-id="0" />
++                      <node index="3" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Rhythm Party. Fühl den Beat! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,575][524,1040]" drawing-order="0" hint="" display-id="0" />
++                      <node index="4" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Schatzsuche. Rätsel. Hinweise. Schätze! Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[556,575][1038,1040]" drawing-order="0" hint="" display-id="0" />
++                      <node index="5" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,1072][524,1536]" drawing-order="0" hint="" display-id="0" />
++                      <node index="6" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Wer wird Lumo-Meister?. 20 Fragen · 3 Joker · bis 5.000 Sterne Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[556,1072][1038,1536]" drawing-order="0" hint="" display-id="0" />
++                      <node index="7" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Elternbereich" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[42,1586][374,1736]" drawing-order="0" hint="" display-id="0" />
++                      <node index="8" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Fortschritt" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[374,1586][706,1736]" drawing-order="0" hint="" display-id="0" />
++                      <node index="9" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Einstellungen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[706,1586][1038,1736]" drawing-order="0" hint="" display-id="0" />
++                      <node index="10" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Collapsed" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,1781][1080,1991]" drawing-order="0" hint="" display-id="0">
++                        <node index="0" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Zusätzliche Spielmodi&#10;Sternenpfad, Cards lokal, Würfel und Abenteuer, Collapsed" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,1781][1080,1991]" drawing-order="0" hint="" display-id="0" />
++                      </node>
++                    </node>
++                  </node>
++                  <node index="1" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Hilfe &amp; Ideen" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[139,2031][375,2084]" drawing-order="0" hint="" display-id="0" />
++                  <node index="2" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Frag deinen Lumo" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[139,2084][412,2128]" drawing-order="0" hint="" display-id="0" />
++                  <node index="3" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo, dein Lernfuchs. Hilfe und Ideen öffnen" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[875,2004][1028,2156]" drawing-order="0" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.ImageView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lumo, dein Profilbild&#10;Lumo, dein Profilbild" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[875,2004][1028,2156]" drawing-order="0" hint="" display-id="0">
++                      <node index="0" text="" resource-id="" class="android.widget.ImageView" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[880,2014][1022,2156]" drawing-order="0" hint="" display-id="0" />
++                    </node>
++                  </node>
++                  <node index="4" text="" resource-id="" class="android.view.View" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[11,2180][891,2327]" drawing-order="0" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Start&#10;Start" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[11,2180][187,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="1" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Lernen&#10;Lernen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[187,2180][363,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="2" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Spielen&#10;Spielen" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="true" visible-to-user="true" bounds="[363,2180][539,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="3" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Tests&#10;Tests" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[539,2180][715,2327]" drawing-order="0" hint="" display-id="0" />
++                    <node index="4" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Profil&#10;Profil" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[715,2180][891,2327]" drawing-order="0" hint="" display-id="0" />
++                  </node>
++                  <node index="5" text="" resource-id="" class="android.widget.Button" package="dev.ullmann.lumo.lumo_lernen.coachpreview" content-desc="Mehr&#10;Mehr" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[894,2180][1070,2327]" drawing-order="0" hint="" display-id="0" />
++                </node>
++              </node>
++            </node>
++          </node>
++        </node>
++      </node>
++    </node>
++  </node>
++  <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="0" hint="" display-id="0">
++    <node index="0" text="" resource-id="com.android.systemui:id/status_bar_launch_animation_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="1" hint="" display-id="0" />
++    <node index="1" text="" resource-id="com.android.systemui:id/container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="3" hint="" display-id="0" />
++    <node index="2" text="" resource-id="com.android.systemui:id/status_bar_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="2" hint="" display-id="0">
++      <node index="0" text="" resource-id="com.android.systemui:id/status_bar" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,136]" drawing-order="1" hint="" display-id="0">
++        <node index="0" text="" resource-id="com.android.systemui:id/status_bar_contents" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[136,0][1027,136]" drawing-order="2" hint="" display-id="0">
++          <node index="0" text="" resource-id="com.android.systemui:id/status_bar_start_side_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,5][581,136]" drawing-order="1" hint="" display-id="0">
++            <node index="0" text="" resource-id="com.android.systemui:id/status_bar_start_side_content" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,5][309,136]" drawing-order="1" hint="" display-id="0">
++              <node index="0" text="" resource-id="com.android.systemui:id/status_bar_start_side_except_heads_up" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,5][309,136]" drawing-order="2" hint="" display-id="0">
++                <node index="0" text="7:59" resource-id="com.android.systemui:id/clock" class="android.widget.TextView" package="com.android.systemui" content-desc="7:59 PM" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[147,49][251,92]" drawing-order="2" hint="" display-id="0" />
++                <node index="1" text="" resource-id="com.android.systemui:id/notification_icon_area" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[251,5][309,136]" drawing-order="4" hint="" display-id="0">
++                  <node index="0" text="" resource-id="com.android.systemui:id/notificationIcons" class="android.view.ViewGroup" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[251,5][309,136]" drawing-order="1" hint="" display-id="0">
++                    <node index="0" text="" resource-id="" class="android.widget.ImageView" package="com.android.systemui" content-desc="Android System notification: " checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[251,5][309,136]" drawing-order="1" hint="" display-id="0" />
++                  </node>
++                </node>
++              </node>
++            </node>
++          </node>
++          <node index="1" text="" resource-id="com.android.systemui:id/status_bar_end_side_container" class="android.widget.FrameLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[581,5][1016,136]" drawing-order="3" hint="" display-id="0">
++            <node index="0" text="" resource-id="com.android.systemui:id/status_bar_end_side_content" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[914,5][1016,136]" drawing-order="1" hint="" display-id="0">
++              <node index="0" text="" resource-id="com.android.systemui:id/system_icons" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[914,41][1016,99]" drawing-order="2" hint="" display-id="0">
++                <node index="0" text="" resource-id="com.android.systemui:id/statusIcons" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[922,41][985,99]" drawing-order="1" hint="" display-id="0">
++                  <node index="0" text="" resource-id="" class="android.widget.ImageView" package="com.android.systemui" content-desc="Airplane mode." checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[922,41][969,99]" drawing-order="18" hint="" display-id="0" />
++                </node>
++                <node index="1" text="" resource-id="com.android.systemui:id/battery" class="android.widget.LinearLayout" package="com.android.systemui" content-desc="Battery charging, 100 percent." checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[985,53][1005,87]" drawing-order="2" hint="" display-id="0">
++                  <node index="0" text="" resource-id="" class="android.widget.ImageView" package="com.android.systemui" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" visible-to-user="true" bounds="[985,53][1005,87]" drawing-order="1" hint="" display-id="0" />
++                </node>
++              </node>
++            </node>
++          </node>
++        </node>
++      </node>
++    </node>
++  </node>
++</hierarchy>--- /dev/null
++++ b/scripts/tests/fixtures/studio_c4_navigation/api35-28462-provenance.json
+@@ -0,0 +1,41 @@
++{
++  "schema": 1,
++  "run_id": 43626348519,
++  "job_id": 132563694518,
++  "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
++  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
++  "artifact_id": 14130101135,
++  "archive_api_bytes": 196404454,
++  "archive_api_sha256": "bfddd9c10504e2271a8b785bd3a46aef4ec76c3fab80bdd2dadea6162ea58e0b",
++  "full_archive_sha256_locally_verified": false,
++  "whole_archive_crc_verified": false,
++  "transfer": "Existing Root-owned 206 Range extraction; each complete selected XML member CRC verified",
++  "screen_pixels": [
++    1080,
++    2400
++  ],
++  "density": 2.625,
++  "scope": "Original Android XML; unit navigation transport and screen-size reads are explicitly doubled, not a new Android execution",
++  "files": [
++    {
++      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml",
++      "artifact_entry": "connect-four/0003-actual-flutter-navigation-confirmed.xml",
++      "source_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation-confirmed.xml",
++      "bytes": 25229,
++      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
++      "git_blob_sha": "0e3ea3a4002c8421176e85e36b75b710309ecdab",
++      "crc32": "c81485db",
++      "selected_member_crc_verified": true
++    },
++    {
++      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml",
++      "artifact_entry": "connect-four/0006-actual-c4-hub.xml",
++      "source_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0006-actual-c4-hub.xml",
++      "bytes": 24720,
++      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
++      "git_blob_sha": "80469d00bd6b11600840ae116b48408928a54349",
++      "crc32": "ed9876f5",
++      "selected_member_crc_verified": true
++    }
++  ]
++}

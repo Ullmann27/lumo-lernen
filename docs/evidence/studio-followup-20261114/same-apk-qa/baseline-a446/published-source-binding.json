@@ -1,0 +1,114 @@
+{
+  "commit": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "tree": "6c4c61df114317f168c27653afebac8a5d16a659",
+  "truncated": false,
+  "files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd",
+      "size": 59073,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/41d5b1b1f1600bf1547b30b3839f8b768b7b87bd"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3263e051efb35835b32df8d3df074c7db4db6a68",
+      "size": 47960,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/3263e051efb35835b32df8d3df074c7db4db6a68"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c04397ae8e99e0d02cefa341dcf4523deb464d99",
+      "size": 46556,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/c04397ae8e99e0d02cefa341dcf4523deb464d99"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3b2381f124a688c5f7f817f868fa57329d5633a",
+      "size": 13954,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/b3b2381f124a688c5f7f817f868fa57329d5633a"
+    },
+    {
+      "path": "scripts/recheck_studio_4ab.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cc8a6c4a4cc6faf6e20fab42887bc27cee451a0",
+      "size": 23050,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/7cc8a6c4a4cc6faf6e20fab42887bc27cee451a0"
+    },
+    {
+      "path": "scripts/tests/test_studio_4ab_recheck.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a65a0bc99b188ab0518344ec6a9e7ed7fc6fe856",
+      "size": 16954,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/a65a0bc99b188ab0518344ec6a9e7ed7fc6fe856"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "size": 4401,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "size": 28512,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/c1105e64bce4c13300f0fbf41e103e4f53194419"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "772eef801ef8cabc05c04dc61de9a530c5c73cc1",
+      "size": 557393,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/772eef801ef8cabc05c04dc61de9a530c5c73cc1"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49566dbbef40cc7dc17a38bb67f1dbee508c77ed",
+      "size": 556055,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/49566dbbef40cc7dc17a38bb67f1dbee508c77ed"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "816498d883f8f481c754b06817e26af449f7112f",
+      "size": 555537,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/816498d883f8f481c754b06817e26af449f7112f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c",
+      "size": 556003,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c"
+    },
+    {
+      "path": "tools/android_qa/tests/test_native_caption_ocr.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5238a7a69190233590eefb50d647bcd244ecbc3f",
+      "size": 8918,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/5238a7a69190233590eefb50d647bcd244ecbc3f"
+    }
+  ],
+  "parents": [
+    "4ab96666f954baf258422d6ed277fc297b7ddeef"
+  ]
+}

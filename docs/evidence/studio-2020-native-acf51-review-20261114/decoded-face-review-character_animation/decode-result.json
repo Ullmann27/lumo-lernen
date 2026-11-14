@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "source_mp4": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+  "source_mp4_sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+  "decoded_at_utc": "2026-11-14T06:50:36.128603+00:00",
+  "command": [
+    "ffmpeg",
+    "-nostdin",
+    "-v",
+    "error",
+    "-xerror",
+    "-i",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+    "-map",
+    "0:v:0",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "pipe:1",
+    "-map",
+    "0:a:0",
+    "-f",
+    "null",
+    "/dev/null"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.17771427599655,
+  "full_video_frames_decoded": 148,
+  "width": 640,
+  "height": 640,
+  "fps_scope": "24 fps is recording format only",
+  "audio_stream_decoded_to_null": true,
+  "audio_listening_performed": false,
+  "visual_inspection_status": "All thirteen contact sheets actually opened; all148 decoded video frames inspected at216×216 review scale. Frames15 and19 additionally opened at original640×640 size.",
+  "derived_sheet_scope": "All148 unmodified decoded frames resized only for review contact sheets; original MP4/PNGs unchanged. No generated or interpolated motion frames.",
+  "sheets": [
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-001-012.png",
+      "first_frame": 1,
+      "last_frame": 12,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 213523,
+      "sha256": "b91e675445835e6964afbb2b07478acda0b26362219c6b909a14570c43d23818"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-013-024.png",
+      "first_frame": 13,
+      "last_frame": 24,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 192181,
+      "sha256": "e3518873b86312fc6d716078eff0d5a5412b75b6a0940ce86f7f2de601a72a8d"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-025-036.png",
+      "first_frame": 25,
+      "last_frame": 36,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 586807,
+      "sha256": "c393e9d3cab494cedeba83a5909a5c064538503f6aadd2c3c27f387d92944a63"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-037-048.png",
+      "first_frame": 37,
+      "last_frame": 48,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 595145,
+      "sha256": "365bfa0671fca7c908e291b94fb0e9a3b32fca76928d1b9f20c076e77d7bfc6a"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-049-060.png",
+      "first_frame": 49,
+      "last_frame": 60,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 601600,
+      "sha256": "32a7bc34496b59e24e88122a436027290759604fff1b448c77569efc8e68205d"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-061-072.png",
+      "first_frame": 61,
+      "last_frame": 72,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 602380,
+      "sha256": "75adf0ee389392216e62e52a5efee337cee7d83f0ec65957865151d67e128544"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-073-084.png",
+      "first_frame": 73,
+      "last_frame": 84,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 572182,
+      "sha256": "d21210120fd5183c8702db3948047902db39d0a52add83d0b94993cc21bde903"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-085-096.png",
+      "first_frame": 85,
+      "last_frame": 96,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 590037,
+      "sha256": "7b81ea81393fc882b8659a1266bf3f6d734cee91894b4a6c5c3e17ef2082f267"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-097-108.png",
+      "first_frame": 97,
+      "last_frame": 108,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 588387,
+      "sha256": "fde5e0681e082d098b4fad6a53b1856cc7ea99cd12f14ad0f3699a3ed2346426"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-109-120.png",
+      "first_frame": 109,
+      "last_frame": 120,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 563626,
+      "sha256": "63d9ccdf60d5e16c4ff3dd2694b388723ff17234c4dfedb0989960644bfa2b4c"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-121-132.png",
+      "first_frame": 121,
+      "last_frame": 132,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 582743,
+      "sha256": "41546306ac4acc3d84d387f36606fd23012d80a88b787abc3fd3a1094a147152"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-133-144.png",
+      "first_frame": 133,
+      "last_frame": 144,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 584249,
+      "sha256": "cfb20a1d796ca2a4ffe77698690023dc11acf22e571e35450821db9950302428"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-145-148.png",
+      "first_frame": 145,
+      "last_frame": 148,
+      "dimensions": [
+        864,
+        714
+      ],
+      "bytes": 64066,
+      "sha256": "5dbf1304da95bd07c8721652af1598c97abd8388e222e65cb59605fa205a540f"
+    }
+  ],
+  "visual_review_completed_at_utc": "2026-11-14T06:55:41.280122+00:00",
+  "full_resolution_samples": [
+    {
+      "frame_one_based": 15,
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-frame-015.png",
+      "dimensions": [
+        640,
+        640
+      ],
+      "sha256": "12c5b12698a3216921d52f7613fba29a1002ac94e664cb19438df9ad0dd61602",
+      "opened_with_view_image": true
+    },
+    {
+      "frame_one_based": 19,
+      "file": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-frame-019.png",
+      "dimensions": [
+        640,
+        640
+      ],
+      "sha256": "ed5e900168c8d35d58a9be4776907a19de8c9bb18548285f24726ae16c3b5b52",
+      "opened_with_view_image": true
+    }
+  ]
+}

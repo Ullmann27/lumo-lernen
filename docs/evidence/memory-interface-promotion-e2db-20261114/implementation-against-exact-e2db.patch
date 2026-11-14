@@ -1,0 +1,20 @@
+--- a/lib/features/games/memory/memory_round.dart
++++ b/lib/features/games/memory/memory_round.dart
+@@ -265,7 +265,7 @@
+     _guard();
+     final confirmation = store;
+     if (confirmation is MemoryReadbackConfirmation) {
+-      await confirmation.confirmRoundReadback(value);
++      await (confirmation as MemoryReadbackConfirmation).confirmRoundReadback(value);
+       _guard();
+     }
+   }
+@@ -274,7 +274,7 @@
+     _guard();
+     final confirmation = store;
+     if (confirmation is MemoryReadbackConfirmation) {
+-      await confirmation.confirmStatsReadback(value);
++      await (confirmation as MemoryReadbackConfirmation).confirmStatsReadback(value);
+       _guard();
+     }
+   }

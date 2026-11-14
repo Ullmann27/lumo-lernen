@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "scope": "Exact path-only transfer of already confirmed immutable source blobs; no source blob uploaded again.",
+  "historical_readback_proof_sha256": "d2f42a18b3599a2dfd9cf92faadfd8df64ad689c462fd26e0bc5cd71662e9a64",
+  "current_source_manifest_sha256": "f0f0e43979fb3c99c280bf1cffb39ea3f62388f84aa3521f8adee92bee01d791",
+  "count": 10,
+  "files": [
+    {
+      "current_target": "tools/auto_install/LumoLearningSpeech.kt",
+      "historical_target": "tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 11318,
+      "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+      "git_blob": "755077c4f1385f9b09464113aeaab3a20ec8a376",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "historical_target": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 9663,
+      "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+      "git_blob": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "historical_target": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 19214,
+      "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+      "git_blob": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "historical_target": "scripts/tests/test_english_lesson_speech.py",
+      "bytes": 18072,
+      "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+      "git_blob": "93b4d63069533f160207e098ff6093c963ce3bfd",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "historical_target": "scripts/tests/test_learning_english_speech_lifecycle.py",
+      "bytes": 6350,
+      "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+      "git_blob": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "historical_target": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "historical_target": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "historical_target": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+      "bytes": 9459,
+      "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+      "git_blob": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "historical_target": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+      "bytes": 5481,
+      "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+      "git_blob": "40897dc0e2a48cb0c054f19820557ffa7fc43579",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "full-UTF8-byte-equivalent-readback-and-Git-SHA",
+      "new_upload_or_binary_readback_claimed": false
+    },
+    {
+      "current_target": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+      "historical_target": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
+      "unchanged_blob_already_confirmed": true,
+      "original_readback_scope": "local-before-after-hashes-and-create-response-git-sha; binary readback unavailable",
+      "new_upload_or_binary_readback_claimed": false
+    }
+  ],
+  "old_manifest_and_proof_unchanged": true,
+  "binary_limit": "The single original WAV has local before/after hash and create-response Git SHA verification only; no binary readback is claimed."
+}

@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14T15:03:16.396974+00:00",
+  "native": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "host": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "run": 43607369297,
+  "job": 132484813658,
+  "artifact_id": 14118662523,
+  "artifact_sha256": "d4f09cbaec3cb199b1a69635a2ab1417ad083c08a2e1f2ae3f57def9261ccbc4",
+  "method": "Each of these six actual new original PNGs was opened individually with view_image; no prior-run visual findings were reused.",
+  "images": [
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-question.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/originals/quiz-pair/native/quiz-dart-question.png",
+      "sha256": "403a353f906446acaffcda7f0f23f9689eedf1b74e1e7b95322bf4812febaf2a",
+      "bytes": 87139,
+      "size_px": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Original-Lumo links auf dem Podest mit Leuchtbogen klar erkennbar. Kopf, Ohren, Körper und Füße liegen im Bild.",
+        "Frage 1 „Womit riechen wir?“ und alle vier Antworttexte sind vollständig sichtbar. Header Zurück/Pause, Aufdecken, drei Joker und 0-Sterne-Status sind lesbar.",
+        "Ein Standbild belegt weder tatsächliche Bewegungsqualität noch Touchreaktion oder Geräteleistung."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-jokers.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/originals/quiz-pair/native/quiz-dart-jokers.png",
+      "sha256": "b0d27e583a34a663048a3aa09850ac1ea596be5642410828a724348b87f9ce50",
+      "bytes": 98303,
+      "size_px": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "A und B zeigen die tatsächlichen Publikumsanteile 5 % und 77 %. C und D zeigen nur „Ausgeblendet“, die alten Antworttexte sind nicht sichtbar.",
+        "Jokerfelder sind abgedunkelt; der Tipp wird mehrzeilig angezeigt. Lumo und Header bleiben frei.",
+        "Der rechte Inhaltsbereich besitzt einen Scrollbalken. Untere Inhalte sind nicht alle gleichzeitig im Bild; deaktivierte Eingaben werden zusätzlich aus Zustand und Requests belegt."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-selected-phone.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/originals/quiz-pair/native/quiz-dart-selected-phone.png",
+      "sha256": "2369c2877ed7750303f91433b2fa4997bd005ba05b4deb174a303f2fd98a11b0",
+      "bytes": 81333,
+      "size_px": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Portrait: Original-Lumo steht oberhalb des Fragebereichs, der Header bleibt lesbar. Antwort B „Mit der Nase · Publikum: 77 %“ ist deutlich goldfarben gewählt.",
+        "C/D zeigen ausschließlich „Ausgeblendet“. Aufdecken, Joker, vollständiger Tipp und 0-Sterne-Status liegen im Bild.",
+        "Keine Aussage über Android-Systemleisten, tatsächliche Dichte oder physische Bedienung aus diesem Desktopbild."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-revealed-small.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/originals/quiz-pair/native/quiz-dart-revealed-small.png",
+      "sha256": "78a0041ee6bd72a6c429bf167bb29c3e1dbaf55c6dba43f06f03ddf3f3ef43f5",
+      "bytes": 53434,
+      "size_px": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "640×360 nach tatsächlichem Inhaltswischen: „Nächste Frage“, „Richtig!“, Tipp und 0-Sterne-Status sind sichtbar. Lumo ist mit erhobenen Armen auf dem Podest zu sehen.",
+        "Oben ist Antwort D am Scrollrand angeschnitten; Frage und vorherige Antworten liegen oberhalb des aktuellen Ausschnitts. Der Header ist frei.",
+        "Dies belegt den aktuellen Scrollausschnitt, keine gleichzeitige Sichtbarkeit aller Antworten. Die hier erlaubte null-Erklärung erzeugt keinen sichtbaren null-Text."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-paused.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/originals/quiz-pair/native/quiz-dart-paused.png",
+      "sha256": "d5fd637b5a349177b6a188882cc4e1afe9ce5ac320d9a5e403c7c7ba9605765f",
+      "bytes": 43068,
+      "size_px": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "640×360: der aktuelle untere Pausenmenü-Ausschnitt zeigt „Alle Fächer“, „Deutsch“, „Mathe“ und „Sachunterricht“ vollständig; Lumo und Zurück bleiben sichtbar, Pause wirkt deaktiviert.",
+        "Menüüberschrift und Fortsetzen liegen oberhalb des Ausschnitts; eine vorhergehende Beschriftung ist am oberen Scrollrand nur angeschnitten sichtbar.",
+        "Keine Behauptung, dass Fortsetzen in diesem Bild sichtbar ist. Tatsächliches Fortsetzen/ACK wird separat durch die Originalrequests 19 und 66 sowie den Laufbericht belegt."
+      ]
+    },
+    {
+      "artifact_entry": "quiz-pair/native/quiz-dart-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-47ca-ci-20261114/originals/quiz-pair/native/quiz-dart-complete.png",
+      "sha256": "73ad3ee978bad862cc1b6f6aa0a3b56fdb5b06a2c62f400f78d9e5498b3d074e",
+      "bytes": 114031,
+      "size_px": [
+        1200,
+        896
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Frage 20 des Logik-Finales ist vollständig lesbar; Antwort C „Lea“ ist grün. „Richtig!“, „5000 Sterne gutgeschrieben“ und „Alle 20 Fragen geschafft!“ sind sichtbar.",
+        "Original-Lumo zeigt eine Feierpose; Leuchtbogen, neue Runde und vier Fächerbuttons liegen im Bild.",
+        "Die 5000 Sterne gehören zum deklarierten QA-Auszahlungsregister des echten Dart/Godot-Paarlaufs, nicht zu einer beobachteten Android-Wallet. Die einfache Podest-/Bogenkulisse ist kein AAA-Qualitätsnachweis."
+      ]
+    }
+  ],
+  "blocking_issues": [],
+  "scope": "Six original Linux/X11/llvmpipe renderer images from real Dart/Godot process pairing with declared QA disk transport. No Android, audio hearing, frame-rate, physical Fold or release approval."
+}

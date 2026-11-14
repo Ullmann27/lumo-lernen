@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "scope": "Read-only comparison of the exact downloaded emulator XML originals",
+  "keys_before": 15,
+  "keys_after_update": 15,
+  "unchanged_existing_after_update": 13,
+  "changed_after_update": [
+    "flutter.lumo_progress_skills::local-0aaeaeb2d966d27769078a8160a4e30b",
+    "flutter.lumo_daily_mission_v1::local-0aaeaeb2d966d27769078a8160a4e30b"
+  ],
+  "deleted_after_update": [],
+  "added_after_update": [],
+  "skill_migration": "Only independentEvidence was added to one original skill; every prior field and value remained identical",
+  "daily_mission_change": "lastSeenAt only",
+  "after_kart_original_keys_unchanged": true,
+  "after_kart_new_keys": [
+    "flutter.lumo_3d_profile_keys_v1",
+    "flutter.lumo_3d_save_salt_v1"
+  ],
+  "after_restart_change": "daily mission lastSeenAt only",
+  "package_uid_bytes_identical": true,
+  "physical_or_all_child_migration_claim": false
+}

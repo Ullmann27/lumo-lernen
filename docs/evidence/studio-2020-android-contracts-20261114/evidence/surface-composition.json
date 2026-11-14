@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "negative_source": "qa/cards-return-loading-frame-3e08/patched/.github/probes/lumo_studio_surfaces_android_probe.py",
+  "negative_source_sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34",
+  "version_patch_sha256": "c6ad2895928aa670bb5db98754c01dbd2160196b2e5693558cc4d882e36c7fef",
+  "composed_source_sha256": "b072e4b218e05e3756a902d9cb887c1a02275d708bb7a25da83fb6c9b810b415",
+  "negative_return_ocr_function_AST_unchanged": true,
+  "new_version_main_AST_matches": true,
+  "scope": "Isolated composition only; no active host file changed"
+}

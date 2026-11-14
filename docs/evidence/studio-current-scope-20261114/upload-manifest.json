@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "status": "FROZEN_DOCS_ONLY_CURRENT_SCOPE",
+  "recorded_at_utc": "2026-11-14T03:14:04.076228+00:00",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/CURRENT_SCOPE.md",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/CURRENT_SCOPE.md",
+      "mode": "100644",
+      "bytes": 23049,
+      "sha256": "a773134df742dd2842fdc33ec43502ab8ab95f70278d145e000361517fa65e6c",
+      "git_blob": "32640f17aba584a237993d2897e0d5636ab6a4be"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/scope-matrix.json",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/scope-matrix.json",
+      "mode": "100644",
+      "bytes": 31798,
+      "sha256": "d8f5495471a593c42b6d907a9a3091fcd9596aac97c69030513d7a705864c77a",
+      "git_blob": "33c685bfb346c6b04557399d8daab0cab136a6f8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/evidence-index.json",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/evidence-index.json",
+      "mode": "100644",
+      "bytes": 17310,
+      "sha256": "176d390b551c2f53804500dedfc85f61bcac02df6b22142fc742eca6e7a94ffe",
+      "git_blob": "7a9d860c4f5455335eddeccfbfa1b1d51feb9371"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/source-reference-checks.json",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/source-reference-checks.json",
+      "mode": "100644",
+      "bytes": 25075,
+      "sha256": "fd5abcdef1b68edaf2e0e019ea8e3efc0f099edff21a8ef90410e3861d52aec5",
+      "git_blob": "e9ba9f32ff3a95b1e1eb6b84f9186d933e08573b"
+    }
+  ],
+  "file_count": 4,
+  "total_bytes": 97232,
+  "contains_product_source_installation": false,
+  "contains_apk_or_large_archive": false,
+  "new_tests_or_image_copies": false,
+  "historical_documents_modified": false,
+  "additional_manifest_path": "docs/evidence/studio-current-scope-20261114/upload-manifest.json",
+  "destination_collisions_with_preserved_published_and_staged_manifests": []
+}

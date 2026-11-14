@@ -1,0 +1,1278 @@
+{
+  "checks": 3161,
+  "failures": [
+    "landscape spawn HUD does not cover actual fox: @Label@502",
+    "landscape spawn secondary message has a real backdrop",
+    "landscape after dialog close HUD does not cover actual fox: @Label@502",
+    "landscape after dialog close secondary message has a real backdrop",
+    "landscape restored HUD does not cover actual fox: @Label@1018",
+    "landscape restored secondary message has a real backdrop",
+    "landscape after dialog close HUD does not cover actual fox: @Label@1018",
+    "landscape after dialog close secondary message has a real backdrop",
+    "compact spawn HUD does not cover actual fox: @PanelContainer@1532",
+    "compact spawn secondary message has a real backdrop",
+    "Compact format removes the obstructing permanent clue panel",
+    "Compact format exposes a real full-clue button",
+    "compact after dialog close HUD does not cover actual fox: @PanelContainer@1532",
+    "compact after dialog close secondary message has a real backdrop",
+    "compact restored HUD does not cover actual fox: @PanelContainer@2048",
+    "compact restored secondary message has a real backdrop",
+    "Compact format removes the obstructing permanent clue panel",
+    "Compact format exposes a real full-clue button",
+    "compact after dialog close HUD does not cover actual fox: @PanelContainer@2048",
+    "compact after dialog close secondary message has a real backdrop",
+    "portrait spawn secondary message has a real backdrop",
+    "portrait after dialog close secondary message has a real backdrop",
+    "portrait restored secondary message has a real backdrop",
+    "portrait after dialog close secondary message has a real backdrop",
+    "fold spawn secondary message has a real backdrop",
+    "fold after dialog close secondary message has a real backdrop",
+    "fold restored secondary message has a real backdrop",
+    "fold after dialog close secondary message has a real backdrop",
+    "landscape-cutout spawn HUD does not cover actual fox: @PanelContainer@4628",
+    "landscape-cutout spawn secondary message has a real backdrop",
+    "Compact format removes the obstructing permanent clue panel",
+    "Compact format exposes a real full-clue button",
+    "landscape-cutout after dialog close HUD does not cover actual fox: @PanelContainer@4628",
+    "landscape-cutout after dialog close secondary message has a real backdrop",
+    "landscape-cutout restored HUD does not cover actual fox: @PanelContainer@5144",
+    "landscape-cutout restored secondary message has a real backdrop",
+    "Compact format removes the obstructing permanent clue panel",
+    "Compact format exposes a real full-clue button",
+    "landscape-cutout after dialog close HUD does not cover actual fox: @PanelContainer@5144",
+    "landscape-cutout after dialog close secondary message has a real backdrop"
+  ],
+  "observations": [
+    {
+      "density": 1.5,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          838.072875976562,
+          413.868957519531,
+          134.518371582031,
+          232.631408691406
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@495",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              54.0,
+              1766.0,
+              72.0
+            ]
+          },
+          {
+            "name": "@PanelContainer@500",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              150.0,
+              570.0,
+              205.5
+            ]
+          },
+          {
+            "name": "@Label@502",
+            "overlap_px": [
+              838.072875976562,
+              618.0,
+              134.518371582031,
+              28.5003662109375
+            ],
+            "rect_px": [
+              596.000061035156,
+              618.0,
+              840.0,
+              36.0
+            ]
+          },
+          {
+            "name": "@Control@503",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              136.0,
+              750.0,
+              282.000030517578,
+              282.0
+            ]
+          },
+          {
+            "name": "@Control@504",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1668.0,
+              804.0,
+              228.0,
+              228.0
+            ]
+          },
+          {
+            "name": "@Button@507",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1731.0,
+              714.0,
+              165.0,
+              72.0
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        112.0,
+        36.0,
+        0.0,
+        24.0
+      ],
+      "profile": "landscape",
+      "title_rect": [
+        262.0,
+        58.5,
+        1402.49987792969,
+        63.0
+      ],
+      "window_px": [
+        1920,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 1.5,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          838.065551757812,
+          413.83154296875,
+          134.52685546875,
+          232.654418945312
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@1011",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              54.0,
+              1766.0,
+              72.0
+            ]
+          },
+          {
+            "name": "@PanelContainer@1016",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              150.0,
+              570.0,
+              205.5
+            ]
+          },
+          {
+            "name": "@Label@1018",
+            "overlap_px": [
+              838.065551757812,
+              618.0,
+              134.52685546875,
+              28.4859619140625
+            ],
+            "rect_px": [
+              596.000061035156,
+              618.0,
+              840.0,
+              36.0
+            ]
+          },
+          {
+            "name": "@Control@1019",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              136.0,
+              750.0,
+              282.000030517578,
+              282.0
+            ]
+          },
+          {
+            "name": "@Control@1020",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1668.0,
+              804.0,
+              228.0,
+              228.0
+            ]
+          },
+          {
+            "name": "@Button@1023",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1731.0,
+              714.0,
+              165.0,
+              72.0
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        112.0,
+        36.0,
+        0.0,
+        24.0
+      ],
+      "profile": "landscape",
+      "title_rect": [
+        262.0,
+        58.5,
+        1402.49987792969,
+        63.0
+      ],
+      "window_px": [
+        1920,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 1.0,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          283.873443603516,
+          122.627838134766,
+          39.8572998046875,
+          68.9278259277344
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@1527",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              14.0,
+              12.0,
+              612.0,
+              48.0
+            ]
+          },
+          {
+            "name": "@PanelContainer@1532",
+            "overlap_px": [
+              283.873443603516,
+              122.627838134766,
+              39.8572998046875,
+              68.9278259277344
+            ],
+            "rect_px": [
+              14.0,
+              76.0,
+              339.200012207031,
+              137.0
+            ]
+          },
+          {
+            "name": "@Label@1534",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              367.200012207031,
+              76.0,
+              258.799987792969,
+              51.0
+            ]
+          },
+          {
+            "name": "@Control@1535",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              16.0,
+              182.399993896484,
+              121.600006103516,
+              121.600006103516
+            ]
+          },
+          {
+            "name": "@Control@1536",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              528.0,
+              208.0,
+              96.0,
+              96.0
+            ]
+          },
+          {
+            "name": "@Button@1539",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              514.0,
+              148.0,
+              110.0,
+              48.0
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profile": "compact",
+      "title_rect": [
+        100.0,
+        15.0,
+        370.0,
+        42.0
+      ],
+      "window_px": [
+        640,
+        320
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 1.0,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          283.871276855469,
+          122.616752624512,
+          39.8598022460938,
+          68.9346542358398
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@2043",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              14.0,
+              12.0,
+              612.0,
+              48.0
+            ]
+          },
+          {
+            "name": "@PanelContainer@2048",
+            "overlap_px": [
+              283.871276855469,
+              122.616752624512,
+              39.8598022460938,
+              68.9346542358398
+            ],
+            "rect_px": [
+              14.0,
+              76.0,
+              339.200012207031,
+              137.0
+            ]
+          },
+          {
+            "name": "@Label@2050",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              367.200012207031,
+              76.0,
+              258.799987792969,
+              51.0
+            ]
+          },
+          {
+            "name": "@Control@2051",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              16.0,
+              182.399993896484,
+              121.600006103516,
+              121.600006103516
+            ]
+          },
+          {
+            "name": "@Control@2052",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              528.0,
+              208.0,
+              96.0,
+              96.0
+            ]
+          },
+          {
+            "name": "@Button@2055",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              514.0,
+              148.0,
+              110.0,
+              48.0
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profile": "compact",
+      "title_rect": [
+        100.0,
+        15.0,
+        370.0,
+        42.0
+      ],
+      "window_px": [
+        640,
+        320
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          268.853088378906,
+          919.708801269531,
+          299.148010253906,
+          516.958679199219
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@2559",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              167.509841918945,
+              1006.42340087891,
+              126.039398193359
+            ]
+          },
+          {
+            "name": "@PanelContainer@2564",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              335.562377929688,
+              998.540161132812,
+              359.737426757812
+            ]
+          },
+          {
+            "name": "@Label@2566",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              1624.03723144531,
+              1006.42340087891,
+              63.0196952819824
+            ]
+          },
+          {
+            "name": "@Control@2567",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              42.0437965393066,
+              1884.88635253906,
+              410.399993896484,
+              410.100646972656
+            ]
+          },
+          {
+            "name": "@Control@2568",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              692.356262207031,
+              1949.63891601562,
+              345.599975585938,
+              345.347991943359
+            ]
+          },
+          {
+            "name": "@Button@2571",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              748.905151367188,
+              1792.08972167969,
+              289.051086425781,
+              126.039390563965
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "portrait",
+      "title_rect": [
+        262.773742675781,
+        183.264785766602,
+        370.510955810547,
+        91.9037246704102
+      ],
+      "window_px": [
+        1080,
+        2400
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          268.867858886719,
+          919.62158203125,
+          298.908508300781,
+          517.035034179688
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@3075",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              167.509841918945,
+              1006.42340087891,
+              126.039398193359
+            ]
+          },
+          {
+            "name": "@PanelContainer@3080",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              335.562377929688,
+              998.540161132812,
+              359.737426757812
+            ]
+          },
+          {
+            "name": "@Label@3082",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              1624.03723144531,
+              1006.42340087891,
+              63.0196952819824
+            ]
+          },
+          {
+            "name": "@Control@3083",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              42.0437965393066,
+              1884.88635253906,
+              410.399993896484,
+              410.100646972656
+            ]
+          },
+          {
+            "name": "@Control@3084",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              692.356262207031,
+              1949.63891601562,
+              345.599975585938,
+              345.347991943359
+            ]
+          },
+          {
+            "name": "@Button@3087",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              748.905151367188,
+              1792.08972167969,
+              289.051086425781,
+              126.039390563965
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "portrait",
+      "title_rect": [
+        262.773742675781,
+        183.264785766602,
+        370.510955810547,
+        91.9037246704102
+      ],
+      "window_px": [
+        1080,
+        2400
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.25,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          883.494506835938,
+          694.380126953125,
+          225.62451171875,
+          390.303833007812
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@3591",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              163.011184692383,
+              2112.99267578125,
+              108.044723510742
+            ]
+          },
+          {
+            "name": "@PanelContainer@3596",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              307.070831298828,
+              855.098205566406,
+              308.377655029297
+            ]
+          },
+          {
+            "name": "@Label@3598",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              457.927581787109,
+              1091.72802734375,
+              1260.14477539062,
+              54.0223617553711
+            ]
+          },
+          {
+            "name": "@Control@3599",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.0041351318359,
+              1289.80993652344,
+              423.048583984375,
+              423.175170898438
+            ]
+          },
+          {
+            "name": "@Control@3600",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1797.95654296875,
+              1370.84350585938,
+              342.039276123047,
+              342.141632080078
+            ]
+          },
+          {
+            "name": "@Button@3603",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1892.46740722656,
+              1235.78759765625,
+              247.528427124023,
+              108.044723510742
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "fold",
+      "title_rect": [
+        225.025848388672,
+        169.763977050781,
+        1568.43017578125,
+        94.5391311645508
+      ],
+      "window_px": [
+        2176,
+        1812
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.25,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          883.529846191406,
+          694.31103515625,
+          225.241882324219,
+          390.38134765625
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@4107",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              163.011184692383,
+              2112.99267578125,
+              108.044723510742
+            ]
+          },
+          {
+            "name": "@PanelContainer@4112",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              307.070831298828,
+              855.098205566406,
+              308.377655029297
+            ]
+          },
+          {
+            "name": "@Label@4114",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              457.927581787109,
+              1091.72802734375,
+              1260.14477539062,
+              54.0223617553711
+            ]
+          },
+          {
+            "name": "@Control@4115",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.0041351318359,
+              1289.80993652344,
+              423.048583984375,
+              423.175170898438
+            ]
+          },
+          {
+            "name": "@Control@4116",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1797.95654296875,
+              1370.84350585938,
+              342.039276123047,
+              342.141632080078
+            ]
+          },
+          {
+            "name": "@Button@4119",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1892.46740722656,
+              1235.78759765625,
+              247.528427124023,
+              108.044723510742
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "fold",
+      "title_rect": [
+        225.025848388672,
+        169.763977050781,
+        1568.43017578125,
+        94.5391311645508
+      ],
+      "window_px": [
+        2176,
+        1812
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          1078.17626953125,
+          413.869873046875,
+          134.303588867188,
+          232.641174316406
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@4623",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              172.761489868164,
+              94.532844543457,
+              2190.47705078125,
+              126.131393432617
+            ]
+          },
+          {
+            "name": "@PanelContainer@4628",
+            "overlap_px": [
+              1078.17626953125,
+              413.869873046875,
+              92.3970947265625,
+              208.838134765625
+            ],
+            "rect_px": [
+              172.761489868164,
+              262.708038330078,
+              997.811828613281,
+              360.0
+            ]
+          },
+          {
+            "name": "@Label@4630",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1207.33483886719,
+              262.708038330078,
+              1155.90368652344,
+              63.0656967163086
+            ]
+          },
+          {
+            "name": "@Control@4631",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              178.013137817383,
+              612.436218261719,
+              362.255584716797,
+              362.52001953125
+            ]
+          },
+          {
+            "name": "@Control@4632",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2071.99584960938,
+              688.756164550781,
+              285.9912109375,
+              286.199951171875
+            ]
+          },
+          {
+            "name": "@Button@4635",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2069.14672851562,
+              531.091979980469,
+              288.840270996094,
+              126.131393432617
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        136.0,
+        63.0,
+        0.0,
+        63.0
+      ],
+      "profile": "landscape-cutout",
+      "title_rect": [
+        398.582061767578,
+        102.416053771973,
+        1554.48583984375,
+        110.364967346191
+      ],
+      "window_px": [
+        2400,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          1078.14123535156,
+          413.833465576172,
+          134.540283203125,
+          232.643463134766
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@5139",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              172.761489868164,
+              94.532844543457,
+              2190.47705078125,
+              126.131393432617
+            ]
+          },
+          {
+            "name": "@PanelContainer@5144",
+            "overlap_px": [
+              1078.14123535156,
+              413.833465576172,
+              92.43212890625,
+              208.874542236328
+            ],
+            "rect_px": [
+              172.761489868164,
+              262.708038330078,
+              997.811828613281,
+              360.0
+            ]
+          },
+          {
+            "name": "@Label@5146",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1207.33483886719,
+              262.708038330078,
+              1155.90368652344,
+              63.0656967163086
+            ]
+          },
+          {
+            "name": "@Control@5147",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              178.013137817383,
+              612.436218261719,
+              362.255584716797,
+              362.52001953125
+            ]
+          },
+          {
+            "name": "@Control@5148",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2071.99584960938,
+              688.756164550781,
+              285.9912109375,
+              286.199951171875
+            ]
+          },
+          {
+            "name": "@Button@5151",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2069.14672851562,
+              531.091979980469,
+              288.840270996094,
+              126.131393432617
+            ]
+          }
+        ],
+        "secondary_white_backdrop_contrast": 0.0
+      },
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        136.0,
+        63.0,
+        0.0,
+        63.0
+      ],
+      "profile": "landscape-cutout",
+      "title_rect": [
+        398.582061767578,
+        102.416053771973,
+        1554.48583984375,
+        110.364967346191
+      ],
+      "window_px": [
+        2400,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    }
+  ],
+  "scope": "Production HUD, real ScreenTouch, declared saved-position and Android-boundary fixture; not device execution"
+}

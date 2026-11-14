@@ -1,0 +1,227 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "d0ba260dd55ec2654d25871973c696264be0f3ad",
+  "base_tree": "7c523123bd0159b1f1c24ceeb73de3368b9f2063",
+  "native_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "created_utc": "2026-11-14T07:31:31.527102+00:00",
+  "scope": "documentation only; Native CI running; Host pin and receipt not created",
+  "files": [
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/native-source-manifest.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/native-source-manifest.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-visibility-source-manifest.json",
+      "bytes": 3108,
+      "sha256": "593ee3cb2dae34f4c8c0d20a6eaec7bae3c32b2ffae7858e3c29bdd1a16a92cf",
+      "git_blob_sha": "ba47e4111da25c5d956dc67f9a7556f9cbaf016b",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/native-github-checkpoint.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/native-github-checkpoint.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-visibility-github-checkpoint.json",
+      "bytes": 6886,
+      "sha256": "3fb0d3e488ff08763cb01867c8ae6cb7d0f1c2594912e7659bf67c2a05716adf",
+      "git_blob_sha": "7958e8896557d9bab14f22f34d9f862da80dec2b",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/root-local-render-review.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/root-local-render-review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/treasure-visibility-final-local-root-review.json",
+      "bytes": 4101,
+      "sha256": "8c1673df4c314bbfa7829e7eceb0bece79b5ab2cea09c6a1d693d1154ff6af70",
+      "git_blob_sha": "c4de195a389da66299756e07cb52c9de395a97e6",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/completed-cache-cleanup.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/completed-cache-cleanup.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/completed-cache-cleanup-20261114.json",
+      "bytes": 84583,
+      "sha256": "52d9ac2188cc61cb30ef9bc85d471033d354af9f9f1245777145dc19b6ab8261",
+      "git_blob_sha": "43c965bd9bcc1f5f4bf15e00b8e5a64ca5ea54ca",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/unpublished-host-source-blobs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/unpublished-host-source-blobs.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-source-blobs-after-visibility-contract.json",
+      "bytes": 19445,
+      "sha256": "c931e6bc34f1e0cae2266cb97caa0ef8240ef29639d569d6d21040e9353fc88f",
+      "git_blob_sha": "d39a2bd85f1166224b10b706684599709d2d4d7e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-c-confirmed-tree-inputs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/agent-c-confirmed-tree-inputs.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/blob-upload/tree-elements.json",
+      "bytes": 14085,
+      "sha256": "0e5aa0787216d67acec34b291ee80d4269e5ded0440c610c6ae72ca88016ab19",
+      "git_blob_sha": "d0a1943119484d2a6d7956349453131db18d5d40",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-c-blob-upload-proof.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/agent-c-blob-upload-proof.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/blob-upload/upload-proof.json",
+      "bytes": 50633,
+      "sha256": "36d1a277be7e80b69e80652b7e66c72f972e17491a6768d6d7b61c650e1fba2c",
+      "git_blob_sha": "21db4891d71bbc8189c801db283977e90b53ab7a",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-b-confirmed-tree-inputs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/agent-b-confirmed-tree-inputs.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/treasure-visibility-followup-docs-20261114/verified-tree-entry-input.json",
+      "bytes": 9301,
+      "sha256": "8165fa362b63ab4370688748af9713dd1c42c0556b2e92f8a6264c38ee928248",
+      "git_blob_sha": "806c2c4390bb334073fd0db9be4909fb39e896eb",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-b-blob-upload-proof.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/agent-b-blob-upload-proof.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/treasure-visibility-followup-docs-20261114/blob-upload-proof.json",
+      "bytes": 1302,
+      "sha256": "960fe3795b8069621445e95baba45aa349a7c28e0974c4fca1b360ce84312c54",
+      "git_blob_sha": "2d6b837ed3a4c447a17f82f27d7b1125dc707dea",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/previous-d0ba-github-checkpoint.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/previous-d0ba-github-checkpoint.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/github-73-commit-checkpoint.json",
+      "bytes": 21794,
+      "sha256": "4741b84c26c1479c895acd583c8d1a77dad14a22707f4013f22681f47a9aa749",
+      "git_blob_sha": "85a3f156425d4e58b604e5ec6bf90e856c2ccd51",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/unpublished-host-integration-document.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/unpublished-host-integration-document.md",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/docs/studio-2020-integration.md",
+      "bytes": 10643,
+      "sha256": "50e90ba315dbe9337054535ae68d5f6f82b11c5751bcc61e0c74ed01ffed7bb9",
+      "git_blob_sha": "23dd9d3e6fc3fdb732d9973f2093444d2911128f",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/baseline/scripts/tests/test_studio_2020_delivery.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/baseline/scripts/tests/test_studio_2020_delivery.py",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/baseline/scripts/tests/test_studio_2020_delivery.py",
+      "bytes": 9305,
+      "sha256": "26a74be04ffd031bce3934896f415b0bf5d5de974d9385500865a0976cc17630",
+      "git_blob_sha": "4d696d150bdf53976782bf10dc5c31fd278140a0",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/baseline/scripts/verify_studio_delivery.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/baseline/scripts/verify_studio_delivery.py",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/baseline/scripts/verify_studio_delivery.py",
+      "bytes": 32623,
+      "sha256": "7d97aca5339d24841febd29765ec9ae0f2d391e073edead5fb9d1fe4b3a3077b",
+      "git_blob_sha": "938ff72d12751d9a7fa83a43b7f8f2703356e04a",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/baseline.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/baseline.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/baseline.json",
+      "bytes": 611,
+      "sha256": "53808c7106086f0b276ae2f5cc4ff0cf0ab322586345d8f584620d1a6ce52d1c",
+      "git_blob_sha": "6a7a235879021442288157208e0edf138d0f09fa",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/green-all-2020-contracts.log",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/green-all-2020-contracts.log",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/green-all-2020-contracts.log",
+      "bytes": 2008,
+      "sha256": "9fbe8af1a17ed43456e0ff86f57ee1a0d03df523f6722c1b84207500a9e6c3a0",
+      "git_blob_sha": "6692bcce7e7adf6600e52614e0728395c4720168",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/green-execution.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/green-execution.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/green-execution.json",
+      "bytes": 795,
+      "sha256": "3569e0ddd32544ebdf822458fec73694a54ddb2bc4537aa0a9d03c6d54d02260",
+      "git_blob_sha": "61806545e7e804eed1b65dd4ebec6cdc046591e2",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/red-execution.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/red-execution.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/red-execution.json",
+      "bytes": 447,
+      "sha256": "1ad0b9d374cce32ccfdfa65213d97d9d31469b3e54716a2f6a2a2196b31b954c",
+      "git_blob_sha": "9c57740494c29ab0f9158e9913c8a4c414569d19",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/red-original-contract.log",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/red-original-contract.log",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/red-original-contract.log",
+      "bytes": 1042,
+      "sha256": "a41c2c6931ad631e71cd6758f7a521c3530e5c39c9300d6064552614f97eb1d5",
+      "git_blob_sha": "c9899a251140c38d9c1fd6138ead4be3f100af33",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/source/scripts/tests/test_studio_2020_delivery.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/source/scripts/tests/test_studio_2020_delivery.py",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/source/scripts/tests/test_studio_2020_delivery.py",
+      "bytes": 10116,
+      "sha256": "897b02a653bc4dffb2dbf990bc86ac721b6fc6014bdb7fff23fbae286601a977",
+      "git_blob_sha": "3a3d6539d865c1e23c9a8345775b387e31c04ea5",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/source/scripts/verify_studio_delivery.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/source/scripts/verify_studio_delivery.py",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/source/scripts/verify_studio_delivery.py",
+      "bytes": 32643,
+      "sha256": "831a3aafbef39b53f7883b103b9d650eb14b49164c774fb1aae499d05174e8ae",
+      "git_blob_sha": "f4bf0481002a08bf9c88704d4ff3dd9cc9a43916",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/source-upload-manifest.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/source-upload-manifest.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/source-upload-manifest.json",
+      "bytes": 1005,
+      "sha256": "41ec14b7d5759ba0d0701561559ee46dfab6a8cef74fde7c72f9e6463804a19a",
+      "git_blob_sha": "10b683b68c0d11aa186b029c7f44b3a63b347c98",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/test_studio_2020_delivery.py.diff",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/test_studio_2020_delivery.py.diff",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/test_studio_2020_delivery.py.diff",
+      "bytes": 1251,
+      "sha256": "d99b4d94e8e9255bc55b9c93a9bd346a2cff731950233700b18534c5dd42b4ce",
+      "git_blob_sha": "60ae7207c31e2ecec8606b6741b373c6e146fe98",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/verify_studio_delivery.py.diff",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/host-treasure-visibility-contract/verify_studio_delivery.py.diff",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-treasure-visibility-contract/verify_studio_delivery.py.diff",
+      "bytes": 382,
+      "sha256": "7ab2d067a7f79a50bbc19627a6f23abbf7bf053b01f8a69b62303575cb115313",
+      "git_blob_sha": "27eb2793a648e02351256e9a1f199b1fd80dec65",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/README.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/frozen/README.md",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/README.md",
+      "bytes": 1486,
+      "sha256": "9e01a346dfc9829c08b1350f5fb97c2b780188a591d94863f524aaffb6b4267c",
+      "git_blob_sha": "cd2d190aa3457b0fee1b59dee0ee1cb925513f23",
+      "mode": "100644"
+    }
+  ]
+}

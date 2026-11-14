@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "artifact_id": 14129545982,
+  "expected_archive_bytes": 112067945,
+  "published_archive_sha256": "ec4ba2368850ea2d6da5fd03e0df4cd32a082d933ecd21418d2a185c81b58029",
+  "full_archive_downloaded": false,
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "temporary_url_saved": false,
+  "members": [],
+  "central_directory_start": 112016660,
+  "entry_count": 567,
+  "central_directory_range": {
+    "start": 112016660,
+    "end": 112067922,
+    "bytes": 51263,
+    "status": 206,
+    "content_range": "bytes 112016660-112067922/112067945",
+    "sha256": "c00a1aa2e2fc770a8e1f49a27da4cec8c13b3cc3bd01285f7f3e8b737695d461",
+    "local_file": "ranges/range-002-112016660-112067922.bin"
+  },
+  "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+  "range_requests": [
+    {
+      "start": 112067923,
+      "end": 112067944,
+      "bytes": 22,
+      "status": 206,
+      "content_range": "bytes 112067923-112067944/112067945",
+      "sha256": "1cdf092da7a9921fd8c999f71840f07a26cb6f6f862d92b7099873b568d2995e",
+      "local_file": "ranges/range-000-112067923-112067944.bin"
+    },
+    {
+      "start": 112067903,
+      "end": 112067922,
+      "bytes": 20,
+      "status": 206,
+      "content_range": "bytes 112067903-112067922/112067945",
+      "sha256": "3f0692ad5366d83c4af44949f9785e07ec6247ce8efc0d3c043a0e84fcec15a0",
+      "local_file": "ranges/range-001-112067903-112067922.bin"
+    },
+    {
+      "start": 112016660,
+      "end": 112067922,
+      "bytes": 51263,
+      "status": 206,
+      "content_range": "bytes 112016660-112067922/112067945",
+      "sha256": "c00a1aa2e2fc770a8e1f49a27da4cec8c13b3cc3bd01285f7f3e8b737695d461",
+      "local_file": "ranges/range-002-112016660-112067922.bin"
+    }
+  ],
+  "transferred_bytes": 51305
+}

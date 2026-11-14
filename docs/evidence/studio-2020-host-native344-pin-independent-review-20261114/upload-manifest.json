@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-pin-independent-review-20261114/review.json",
+      "target_path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/review.json",
+      "mode": "100644",
+      "bytes": 6288,
+      "sha256": "997b249a7ea390059032d07da303a8da5c1fee9f01052732723ca65990d018f9",
+      "git_blob": "7d2a278af65de46d57983f307ffd57074c21826e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-pin-independent-review-20261114/historical-map-comparison.json",
+      "target_path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/historical-map-comparison.json",
+      "mode": "100644",
+      "bytes": 3262,
+      "sha256": "a0201c72dcf93c7e31857c67e0e9a6c4941132f7b1abc889db5d12a4798b5f3f",
+      "git_blob": "fc3f37c2aae67e5e3c10a65c0476bd63b3acb171"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-pin-independent-review-20261114/pin-against-published-078.patch",
+      "target_path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/pin-against-published-078.patch",
+      "mode": "100644",
+      "bytes": 1428,
+      "sha256": "f0aacaa79ae0fe4b7c468e80828b8002ea36f42774897d843d46d09e8ed1aeeb",
+      "git_blob": "2b8fe2d95d59cb63ceb758703562c2c967ce4422"
+    }
+  ],
+  "file_count": 3,
+  "total_bytes": 10978,
+  "not_uploaded": true
+}

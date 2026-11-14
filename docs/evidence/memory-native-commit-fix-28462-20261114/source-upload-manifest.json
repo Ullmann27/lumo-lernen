@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "base_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "status": "SOURCE_FROZEN_EXECUTION_PENDING_CI",
+  "files": [
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/prepared/host/lib/features/games/memory/memory_round.dart",
+      "bytes": 16091,
+      "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+      "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1",
+      "create_confirmed": true,
+      "full_utf8_readback_equal": true,
+      "baseline": {
+        "git_blob_sha": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+        "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c"
+      },
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/prepared/host/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 3275,
+      "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+      "git_blob_sha": "ddbafa79864878446bc3efa064b71c81e252fc63",
+      "create_confirmed": true,
+      "full_utf8_readback_equal": true,
+      "baseline": {
+        "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14",
+        "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654"
+      },
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/prepared/host/test/games/memory_native_commit_confirmation_test.dart",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob_sha": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b",
+      "create_confirmed": true,
+      "full_utf8_readback_equal": true,
+      "baseline": null,
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "preserved_original_test": {
+    "path": "test/games/memory_preferences_durability_test.dart",
+    "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+    "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+    "modified": false
+  },
+  "joint_dependency": {
+    "owner": "learning_worlds",
+    "path": "lib/core/reward_wallet_repository.dart",
+    "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+    "purpose": "The final new Memory/AppState integration case requires the separately owned positive duplicate-result acknowledgement. Not included or modified by this package."
+  },
+  "validation": {
+    "defined_new_cases": 25,
+    "existing_cases_changed": 0,
+    "dart_executed": false,
+    "flutter_executed": false,
+    "android_executed": false,
+    "local_dependencies_installed": false,
+    "new_runtime_pass_claim": false
+  }
+}

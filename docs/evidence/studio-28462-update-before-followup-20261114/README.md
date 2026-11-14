@@ -1,0 +1,11 @@
+# Tatsächliches Update 2017 → älterer Studio2020-Kandidat
+
+Der Job 132563694481 in Run 43626348519 war erfolgreich. Er aktualisierte dieselbe x86_64-Emulatorinstallation von 0.13.5+2017 auf 0.13.8+2020, Host28462a7547048b75fa114e6f5832248e54c94faa / Native29080ef8cd1a5b385eeeec97976fbefd31280427. Das ist ausdrücklich der ältere Kandidat vor den nachfolgenden Memory-/Wallet-/C4-Korrekturen.
+
+Ein tatsächlich eingerichtetes Profil der ersten Klasse beantwortete 2 + 3 richtig. Eine richtige Antwort, ein Stern und fünf XP blieben nach dem Update, Offline-Kartstart, echter Gasbetätigung, Pause, Flutter-Rückkehr, Neustart und simulierten Displayformatwechseln erhalten. Sieben geschützte Lernschlüssel wurden verglichen. Paket-UID und erste Installation blieben gleich. Die vorliegenden Original-XMLs bestätigen den erhaltenen vorherigen Inhalt; im bestehenden Skillrecord kommt nur die bereits vorgesehene independentEvidence-Struktur hinzu. Bei der Tagesmission verändert sich lediglich lastSeenAt. Nach Kart kommen zwei neue native Profil-/Salzschlüssel hinzu, ohne die vorherigen Schlüssel zu ändern.
+
+Der gefahrene Ausschnitt protokolliert drei Gaspulse, 93,63 Distanzzuwachs und 5,02 Sekunden Zuwachs der Spielzeit. Das ist weder ein vollständiges Zweirundenrennen noch ein physischer Leistungsnachweis. Die optionalen Deutsch-/Englisch-Suchschritte im alten Baseline-Lernjourney melden FAIL; daraus wird keine erfolgreiche Fächertour gemacht. Es wurden ein Profil und eine Mathematikaufgabe geprüft, keine pauschale Migration aller Kinder, Klassen, Journale oder Spielstände.
+
+Das vollständige Originaljoblog wurde einmal gesichert. Aus Artefakt14129545982 wurden elf Textmitglieder mit strikt überprüften HTTP206-Bereichen, vollständiger jeweiliger Member-CRC und SHA256 gelesen. Zusammen mit der separaten Verzeichnisaufnahme wurden 122.093 Bytes übertragen. Das 112.067.945-Byte-Gesamtarchiv wurde nicht vollständig geladen oder lokal gehasht. Der veröffentlichte Archivdigest bleibt als fremder Metadatennachweis gekennzeichnet. Keine PNG-Sichtung wird für diesen ausgewählten Textreview behauptet.
+
+Dieser positive Einzeljob ersetzt weder den fehlgeschlagenen alten API37-Gesamtlauf noch die erneut erforderliche Abnahme des korrigierten Hosts.

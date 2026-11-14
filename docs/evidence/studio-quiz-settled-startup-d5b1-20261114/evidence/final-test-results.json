@@ -1,0 +1,98 @@
+{
+  "scope": "Actual Godot UI/input with explicit synthetic lifecycle and ACK transport; no real Dart/Android execution. Capture false.",
+  "cases": [
+    {
+      "case": "active_after_first_frame",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1930086779993871,
+      "checks": 53,
+      "failures": [],
+      "inputs": 0,
+      "requests": 0,
+      "source_before_after_equal": true,
+      "execution": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_after_first_frame/execution.json",
+      "report": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_after_first_frame/quiz-runtime-report.json",
+      "log_sha256": "a8edfd08960ef3f6152f4e45a0df170cd138093199b6a77feace2a7e81bb0e07"
+    },
+    {
+      "case": "active_before_release",
+      "exit_code": 0,
+      "elapsed_seconds": 1.379680998999902,
+      "checks": 57,
+      "failures": [],
+      "inputs": 2,
+      "requests": 0,
+      "source_before_after_equal": true,
+      "execution": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_before_release/execution.json",
+      "report": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_before_release/quiz-runtime-report.json",
+      "log_sha256": "39e5862d8454c169437f233339ab76aafbef4cff062f6c22fc569db52fc2b351"
+    },
+    {
+      "case": "active_during_search",
+      "exit_code": 0,
+      "elapsed_seconds": 1.4393286250005985,
+      "checks": 57,
+      "failures": [],
+      "inputs": 2,
+      "requests": 0,
+      "source_before_after_equal": true,
+      "execution": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_during_search/execution.json",
+      "report": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_during_search/quiz-runtime-report.json",
+      "log_sha256": "39e5862d8454c169437f233339ab76aafbef4cff062f6c22fc569db52fc2b351"
+    },
+    {
+      "case": "active_no_touch",
+      "exit_code": 0,
+      "elapsed_seconds": 1.3511191699999472,
+      "checks": 52,
+      "failures": [],
+      "inputs": 0,
+      "requests": 0,
+      "source_before_after_equal": true,
+      "execution": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_no_touch/execution.json",
+      "report": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-active_no_touch/quiz-runtime-report.json",
+      "log_sha256": "e50a3895f2eff05fbb964ae829ecf6e21fff172bbf9be38f13bf492559a411f7"
+    },
+    {
+      "case": "full_existing_fixture",
+      "exit_code": 0,
+      "elapsed_seconds": 5.5256557769998835,
+      "checks": 138,
+      "failures": [],
+      "inputs": 24,
+      "requests": 7,
+      "source_before_after_equal": true,
+      "execution": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-full_existing_fixture/execution.json",
+      "report": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-full_existing_fixture/quiz-runtime-report.json",
+      "log_sha256": "861ab407fb7917f293010f6ee8c7f11803dd35e33b014d7790a0658115e6884c"
+    },
+    {
+      "case": "paused_ack",
+      "exit_code": 0,
+      "elapsed_seconds": 1.4398931030000313,
+      "checks": 58,
+      "failures": [],
+      "inputs": 2,
+      "requests": 1,
+      "source_before_after_equal": true,
+      "execution": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-paused_ack/execution.json",
+      "report": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-paused_ack/quiz-runtime-report.json",
+      "log_sha256": "438f339ba78f63edc3bc402e54d759824e08ae7c1c7eb640ad79d2440f9cf9e9"
+    },
+    {
+      "case": "paused_no_ack",
+      "exit_code": 1,
+      "elapsed_seconds": 16.634640983999816,
+      "checks": 18,
+      "failures": [
+        "Current Quiz startup Resume has a same-round authoritative ACK"
+      ],
+      "inputs": 2,
+      "requests": 1,
+      "source_before_after_equal": true,
+      "execution": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-paused_no_ack/execution.json",
+      "report": "qa/studio-quiz-settled-startup-d5b1-20261114/evidence/final-paused_no_ack/quiz-runtime-report.json",
+      "log_sha256": "b7571a6a04eb598e16aefacf7ee58d8b4376d11e4c55a6ec53845b6bf89da341"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "label": "final-red",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/tmp/lumo-treasure-visibility-acf51/runtime",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--script",
+      "res://scripts/tests/treasure_title_contrast_regression.gd"
+    ],
+    "exit_code": 1,
+    "seconds": 17.955011903992272,
+    "product_sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+    "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+    "script_errors": 0,
+    "markers": [
+      "[TreasureTitleContrast] FAIL checks=3221 failures=40"
+    ]
+  },
+  {
+    "label": "final-green",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/tmp/lumo-treasure-visibility-acf51/runtime",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--script",
+      "res://scripts/tests/treasure_title_contrast_regression.gd"
+    ],
+    "exit_code": 0,
+    "seconds": 19.988159533997532,
+    "product_sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+    "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+    "script_errors": 0,
+    "markers": [
+      "[TreasureTitleContrast] PASS checks=3341 failures=0"
+    ]
+  },
+  {
+    "label": "final-existing-density",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/tmp/lumo-treasure-visibility-acf51/runtime",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--script",
+      "res://scripts/tests/treasure_density_regression.gd"
+    ],
+    "exit_code": 0,
+    "seconds": 30.107026318000862,
+    "product_sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+    "test_sha256": "b3be76fa9caa6da23490fb2de684397f21afac7c21b02e65a3a137c16d655f70",
+    "script_errors": 0,
+    "markers": [
+      "[TreasureDensity] PASS checks=1085 captures=0; actual dp, edge touches, scroll, rotation, unchanged quests/saves/rewards"
+    ]
+  }
+]

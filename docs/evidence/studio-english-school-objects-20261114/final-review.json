@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T14:53:57.226064+00:00",
+  "native_base": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "host_base": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "state": "Final local source freeze; actual new Dart producer and Android execution pending",
+  "git_ref_mutated": false,
+  "status": "READY_FOR_SOURCE_INTEGRATION_AND_ACTUAL_PRODUCER_CI",
+  "release_approved": false,
+  "host_integration_reported_by_root": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "source_blobs": "early-confirmed-source-blobs.json",
+  "source_manifests": [
+    "native-source-upload-manifest.json",
+    "host-product-source-upload-manifest.json",
+    "host-probe-source-upload-manifest.json"
+  ],
+  "catalogue": {
+    "total_words": 14,
+    "school_words": {
+      "book": "Buch",
+      "pen": "Kugelschreiber",
+      "bag": "Tasche",
+      "ruler": "Lineal",
+      "rubber": "Radiergummi",
+      "school bag": "Schultasche",
+      "desk": "Schreibtisch",
+      "chair": "Sessel",
+      "pencil case": "Federpennal",
+      "paper": "Papier"
+    },
+    "grade1_school_words": 10,
+    "grade2_existing_fallback_school_words": 10,
+    "other_existing_words": [
+      "ball",
+      "car",
+      "sun",
+      "apple"
+    ],
+    "pen_Stift_alias": "Retained for actual other-topic tasks; exact school meaning is Kugelschreiber",
+    "grade3_4_abstract_school_tasks": "Not asserted supported"
+  },
+  "implementation_scope": [
+    "Seven concrete procedural object meshes; original Lumo and studio retained.",
+    "Closed exact multiword descriptor extension, no fuzzy acceptance.",
+    "Compact English header vertical margin 14 to 8 dp only; full hint text, existing font and strict geometry threshold retained.",
+    "Read-only state/layout-driven atomic sidecar, profile/task/return/voice-policy boundaries unchanged."
+  ],
+  "observed_runs": {
+    "headless": {
+      "checks": 7177,
+      "failures": 0,
+      "input_events": 196,
+      "exit_code": 0,
+      "elapsed_seconds": 27.114200605,
+      "fixture": "native_catalogue_fixture"
+    },
+    "renderer": {
+      "checks": 7228,
+      "failures": 0,
+      "input_events": 196,
+      "images": 17,
+      "exit_code": 0,
+      "elapsed_seconds": 867.5382321409998,
+      "budget_seconds": 900,
+      "timed_out": false,
+      "renderer": "X11",
+      "fixture": "native_catalogue_fixture"
+    },
+    "pure_probe_validators": {
+      "executed": 28,
+      "passed": 28,
+      "skipped": 0,
+      "android_executed": false
+    },
+    "independent_geometry_and_pixel_readback": {
+      "images": 17,
+      "passed": 17,
+      "report": "evidence/final-render-validator-replay.json",
+      "scope": "Independent camera projection and original pixel detail; no semantic machine recognition or new renderer run"
+    }
+  },
+  "preserved_red_counterexample": {
+    "path": "evidence/headless-first",
+    "checks": 7177,
+    "failures": 3,
+    "exit_code": 1,
+    "cause": "First-hint geometry below existing 48 dp minimum: one ruler-case and two rubber-case objects",
+    "test_threshold_lowered": false
+  },
+  "metrics": {
+    "minimum_exposed_control_dp": 52.0,
+    "minimum_whole_object_projection_dp": 50.2452545166016,
+    "whole_object_bounds_include_plinth": true,
+    "first_hint_layouts": 14,
+    "fixture_return_cases": 14,
+    "fixture_reward_calls": 0
+  },
+  "images": "evidence/final-image-review.json",
+  "log_summary": "evidence/final-log-summary.json",
+  "source_binding": "evidence/final-runtime-source-binding.json",
+  "open_gates": [
+    "New Dart producer and Flutter test source are not locally executed; actual Host 50503 CI is required.",
+    "Native CI must read the new 14-word exported producer JSON via --task-fixtures; old seven-word producer is insufficient.",
+    "Actual Android English probe has not run.",
+    "Only existing licensed offline German explanations are bound; English pronunciation and audio listening are not verified.",
+    "No physical Fold7, 60 FPS, thermals, two-child persistence, mastery, Journal or writing-trainer runtime approval."
+  ],
+  "warnings_preserved": [
+    "Local driver cannot change VSync.",
+    "Compatibility renderer does not support screen-space AA or volumetric fog.",
+    "Existing Pillow getdata deprecation warning in pure tests."
+  ],
+  "counts_not_added_to_historical_runs": true,
+  "independent_peer_review_of_new_school_sources": "Not performed by B before this freeze; B remained on the assigned Android probe."
+}

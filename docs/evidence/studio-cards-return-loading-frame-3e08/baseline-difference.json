@@ -1,0 +1,9 @@
+{
+  "old_qa": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "patch_base": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "same_image_lines": true,
+  "different_definitions": [
+    "leave"
+  ],
+  "no_old_full_helper_overwrite": true
+}

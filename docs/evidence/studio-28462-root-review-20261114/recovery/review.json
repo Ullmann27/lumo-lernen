@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "run_id": 43626348250,
+  "job_id": 132542910348,
+  "workflow_head_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "actual_checked_out_commit": "0b5323778f68e8ff6059b8f69e7704d75c465d4b",
+  "actual_checked_out_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "candidate_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "complete_tree_identical": true,
+  "checkout_kind": "GitHub pull-request test merge; do not mislabel it as a checkout of the head commit.",
+  "result": {
+    "tests_run": 618,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 119.841,
+    "unittest_summary": "OK"
+  },
+  "original_log": {
+    "run_id": 43626348250,
+    "job_id": 132542910348,
+    "host": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "bytes": 228957,
+    "sha256": "dd0a3194720a27d7213f8037dd70b3290633a61a4fd0424ff91400f885373bd0"
+  },
+  "artifact": {
+    "artifact_id": 14126396660,
+    "bytes": 18969,
+    "sha256": "50c48be8dc7b52db530080c0a4d726510ecf4455b265bf68d91d38f019c7764d",
+    "all_crc_ok": true,
+    "files": [
+      {
+        "path": "app-script-tests.log",
+        "bytes": 121524,
+        "sha256": "04b2dd1272bf08b2a0992df24419e83bd49bdd20e48a38a1713503834f138a86",
+        "git_blob_sha": "8368fdbf9d3d697296893baf60228ec833639b10"
+      }
+    ]
+  },
+  "scope": "Original CI script tests on the exact same complete source tree as the candidate. No local Flutter/Dart execution, APK runtime or physical-device claim."
+}

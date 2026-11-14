@@ -1,0 +1,40 @@
+{
+  "scope": "Offline original-frame OCR replay; no app input or gameplay PASS",
+  "reader_execution": "Exact image_lines/normalized/digest AST; real base.command and Tesseract; no Android connection",
+  "source": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-0.png",
+  "source_sha256_before": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+  "probe": "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/.github/probes/creative_android_probe.py",
+  "probe_sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c",
+  "label": "Ein Objekt zeigen",
+  "exact": true,
+  "timeout_seconds": 120,
+  "tesseract_version": "tesseract 5.5.0",
+  "language_listing": "List of available languages in \"/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata/\" (3):\ndeu\neng\nosd\n",
+  "tessdata_prefix": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata",
+  "status": "PASS",
+  "matches": [
+    {
+      "text": "Ein Objekt zeigen",
+      "bounds": [
+        104.0,
+        2029.0,
+        467.0,
+        2071.0
+      ],
+      "variant": "gold-component-0",
+      "confidence": 95.722694
+    }
+  ],
+  "recognized_line_count": 76,
+  "variants": [
+    "contrast",
+    "gold-component-0",
+    "navy-latin",
+    "raw",
+    "teal-text-1x",
+    "white-latin",
+    "white-text"
+  ],
+  "elapsed_seconds": 4.159034,
+  "source_sha256_after": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843"
+}

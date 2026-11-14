@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "status": "PASS_CURRENT_ORIGINAL_SAVES_AND_LAYOUT_BINDING",
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43626348519,
+  "job_id": 132543177183,
+  "artifact_id": 14126945691,
+  "driver_path": "tools/android_qa/memory_native_authority.dart",
+  "driver_git_blob": "1126cbb3c26c7f4f4b48eb58910cdb30d73d1f0d",
+  "driver_sha256": "e3de35b76215e65923d7f45787f2b1351e9bc08c791741c016d8cc9ed4fecf9b",
+  "unfinished_round": {
+    "id": "b97e0fc31e50213a1ef49e08d6e2eefe",
+    "revision": 6,
+    "paused": true,
+    "phase": "resolve",
+    "remaining_ms": 550
+  },
+  "completed_round": {
+    "id": "ddf1750c5d5fce4de96900ce63b8d7bc",
+    "revision": 27,
+    "rewarded": true,
+    "kind_pairs": 4,
+    "lumo_pairs": 0
+  },
+  "final_new_round": {
+    "id": "01858e12db8dde2073c29ac2323b2ede",
+    "revision": 29,
+    "paused_on_final_return": true,
+    "moves": 0,
+    "rewarded": false
+  },
+  "stats": {
+    "difficulty": "leicht",
+    "best": {
+      "schwer": 17,
+      "leicht": 4
+    },
+    "retained": "original-field"
+  },
+  "qa_wallet": {
+    "stars": 2,
+    "xp": 16,
+    "ids": [
+      "memory:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:ddf1750c5d5fce4de96900ce63b8d7bc"
+    ]
+  },
+  "other_child_fixture_byte_equality": true,
+  "other_child_sha256": "03b54b31f843366d751d73a74dbf00be5c56b1b4a272232bee9ba3c59b3471f2",
+  "layout_to_authority_bindings": [
+    {
+      "png": "01-memory-real-hidden.png",
+      "layout_entry": "memory-pair/native/01-memory-real-hidden.layout.json",
+      "layout_sha256": "8f6a1218817b4aaf23fa19da583029496d17e2b73ca1203afab457d64680a460",
+      "matching_authority_input_ids": [
+        0,
+        1
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "a347e7b802e9d0a0c538e8532337233f",
+        "roundId": "b97e0fc31e50213a1ef49e08d6e2eefe",
+        "revision": 2,
+        "recordRevision": 1,
+        "ack": 0,
+        "rejected": 0,
+        "paused": false,
+        "phase": "select",
+        "turn": "kind",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    },
+    {
+      "png": "02-memory-real-face.png",
+      "layout_entry": "memory-pair/native/02-memory-real-face.layout.json",
+      "layout_sha256": "3f4f9bb818872fd6d3c2951f7d05026f7db41230702b2c964de31362937a416e",
+      "matching_authority_input_ids": [
+        2
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "a347e7b802e9d0a0c538e8532337233f",
+        "roundId": "b97e0fc31e50213a1ef49e08d6e2eefe",
+        "revision": 3,
+        "recordRevision": 2,
+        "ack": 1,
+        "rejected": 0,
+        "paused": false,
+        "phase": "select",
+        "turn": "kind",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    },
+    {
+      "png": "03-memory-real-paused.png",
+      "layout_entry": "memory-pair/native/03-memory-real-paused.layout.json",
+      "layout_sha256": "68d8aaa97559f24faa376e631a6bd3177748b441302f41d00ee58d3a34352e30",
+      "matching_authority_input_ids": [
+        4,
+        5
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "a347e7b802e9d0a0c538e8532337233f",
+        "roundId": "b97e0fc31e50213a1ef49e08d6e2eefe",
+        "revision": 5,
+        "recordRevision": 4,
+        "ack": 3,
+        "rejected": 0,
+        "paused": true,
+        "phase": "resolve",
+        "turn": "kind",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    },
+    {
+      "png": "04-memory-real-reopened.png",
+      "layout_entry": "memory-pair/native/04-memory-real-reopened.layout.json",
+      "layout_sha256": "651d5daa36d40c6909c3bf22bb6bc52617fb78ff3729677ae6101671e720337d",
+      "matching_authority_input_ids": [
+        9
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "1156b55646e48a976c1104a054c970ee",
+        "roundId": "b97e0fc31e50213a1ef49e08d6e2eefe",
+        "revision": 1,
+        "recordRevision": 6,
+        "ack": 0,
+        "rejected": 0,
+        "paused": true,
+        "phase": "resolve",
+        "turn": "kind",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    },
+    {
+      "png": "05-memory-real-bot-first.png",
+      "layout_entry": "memory-pair/native/05-memory-real-bot-first.layout.json",
+      "layout_sha256": "52d4069f747bbc1aa0eab5aaa7d810ad07b57b3e2d19f72ec09c7cd26375c92d",
+      "matching_authority_input_ids": [
+        12
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "1156b55646e48a976c1104a054c970ee",
+        "roundId": "b97e0fc31e50213a1ef49e08d6e2eefe",
+        "revision": 4,
+        "recordRevision": 9,
+        "ack": 1,
+        "rejected": 0,
+        "paused": false,
+        "phase": "botSecond",
+        "turn": "lumo",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    },
+    {
+      "png": "06-memory-real-bot-second.png",
+      "layout_entry": "memory-pair/native/06-memory-real-bot-second.layout.json",
+      "layout_sha256": "868d168b4de546faa3cfd83043ae32c745077da82ba63da9f19d3327b9d4b606",
+      "matching_authority_input_ids": [
+        13
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "1156b55646e48a976c1104a054c970ee",
+        "roundId": "b97e0fc31e50213a1ef49e08d6e2eefe",
+        "revision": 5,
+        "recordRevision": 10,
+        "ack": 1,
+        "rejected": 0,
+        "paused": false,
+        "phase": "resolve",
+        "turn": "lumo",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    },
+    {
+      "png": "07-memory-real-win.png",
+      "layout_entry": "memory-pair/native/07-memory-real-win.layout.json",
+      "layout_sha256": "66abc03970fbe405839e362e92f0e37e2b62d6ed70cf8e9688c5d783f388fe41",
+      "matching_authority_input_ids": [
+        28
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "1156b55646e48a976c1104a054c970ee",
+        "roundId": "ddf1750c5d5fce4de96900ce63b8d7bc",
+        "revision": 20,
+        "recordRevision": 26,
+        "ack": 11,
+        "rejected": 0,
+        "paused": false,
+        "phase": "complete",
+        "turn": "kind",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    },
+    {
+      "png": "08-memory-real-paid-reopen.png",
+      "layout_entry": "memory-pair/native/08-memory-real-paid-reopen.layout.json",
+      "layout_sha256": "298be2edeb86dd87c655a739ec907a050abd40130e4e34d7144d0bb72a8c7e8d",
+      "matching_authority_input_ids": [
+        30
+      ],
+      "identity_fields": {
+        "owner": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "token": "f8501755b479d0830902794a38dbabda",
+        "roundId": "01858e12db8dde2073c29ac2323b2ede",
+        "revision": 2,
+        "recordRevision": 28,
+        "ack": 0,
+        "rejected": 0,
+        "paused": false,
+        "phase": "select",
+        "turn": "kind",
+        "difficulty": "leicht",
+        "pack": "alle"
+      },
+      "settled": true,
+      "pending": 0,
+      "observation_source": "platform_fixture"
+    }
+  ],
+  "return_count": 3,
+  "limits": [
+    "QA file store and QA reward ledger; no Android SharedPreferences or real wallet test.",
+    "Synthetic owner and other-child sentinel; no real two-child migration.",
+    "Fixed simulation clock and desktop renderer; no physical frame-rate measurement.",
+    "No local Flutter, Dart or renderer invocation during this read-only review."
+  ]
+}

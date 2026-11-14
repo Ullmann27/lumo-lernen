@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "baseline_native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "scope": "One textual singular/plural correction, no gameplay/save changes",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/native/scripts/creative/build_settlement_world.gd",
+      "path": "scripts/creative/build_settlement_world.gd",
+      "mode": "100644",
+      "bytes": 34831,
+      "sha256": "f1c1633dfa9b35895c2c51e943fead257e9621169b0c618e3b8ce8bfbc9850a0",
+      "git_blob_sha": "a0b2b6c34d2242075f9f735adae481b7e3ecc3c5",
+      "baseline_git_blob": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c"
+    }
+  ],
+  "file_count": 1,
+  "new_tests_run": false
+}

@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "command": [
+    "python3",
+    "-B",
+    "tools/tests/test_nextgen_runner.py",
+    "StudioPuzzleMenuContractTests",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/native",
+  "started_at_utc": "2026-11-14T11:04:56.231583+00:00",
+  "timeout_seconds": 300,
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "sources_before": {
+    "tools/validate_studio.sh": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+    "tools/tests/test_nextgen_runner.py": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+    "tools/run_godot_probe.py": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+    ".github/workflows/lumo-studio-2020.yml": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13"
+  },
+  "frozen_historical_evidence_before": {
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/README.md": "83f4ec35d0c227e85addaf571a5e25c9a400f2505a2e04de81c98e400f9d2ba9",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/implementation-against-exact-785413.patch": "6f3f0a44b77e6a7240b672d21c3f58e063869500a3ae090daec66f5550b011dd",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/source-delta-binding.json": "c919122270fba21e490569068a233cf08cacde94fbaa68c95a69359493d658ed",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/source-upload-manifest.json": "80c9dc687d69d9f773e8818fd460b8107efa99008153194390335a8656450433",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/blob-upload-proof.json": "77ae5b4e8ace1ded31a55ac879d89026f1f45832381eabdfc978c3d5be28222b",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/native-handoff-tree-inputs.json": "42b4d26d77790fc4369e72406157a45c1073cf5f34f867aa1b17c5f31efee4dd",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/bash-syntax-original.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/bash-syntax-execution.json": "d889d5c6259286d91c6ca80ed17bcb867baf4483a5852a5fd7756487929730e1",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/studio-contracts-interruption-snapshot.log": "3dafd70d55164f2ddff63db7adf9f0785f4878b57d54605f8e2ad7a17fb2573e",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/interruption-status.json": "91a8bb1ebbc6f08dec77097c6910f0f6e887652b6c0e54a5718db8b1ad6a9a1b",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/original-diagnosis/diagnosis.json": "00193f8c8e24443274c0e220318ebb42c034dd5d8c94fc103ede6c096b1fa63b",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/original-diagnosis/original-timeline-comparison.json": "a848828a5778042365260a807b9b51e66900c3366ac28810719ed161616a2a6d",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/original-diagnosis/source-read-binding.json": "31b7aaf8d5df8bd37f1c6c7c2582e0fd3387e58dac91f10e2a408586e627154e"
+  },
+  "historical_interrupted_run_status": "UNCONFIRMED",
+  "scope": "New separately named execution of the 13 existing StudioPuzzleMenuContractTests only; no engine rendering or Android test.",
+  "ended_at_utc": "2026-11-14T11:05:26.439203+00:00",
+  "duration_seconds": 30.207631596000283,
+  "status": "COMPLETED",
+  "exit_code": 0,
+  "sources_after": {
+    "tools/validate_studio.sh": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+    "tools/tests/test_nextgen_runner.py": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+    "tools/run_godot_probe.py": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+    ".github/workflows/lumo-studio-2020.yml": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13"
+  },
+  "frozen_historical_evidence_after": {
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/README.md": "83f4ec35d0c227e85addaf571a5e25c9a400f2505a2e04de81c98e400f9d2ba9",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/implementation-against-exact-785413.patch": "6f3f0a44b77e6a7240b672d21c3f58e063869500a3ae090daec66f5550b011dd",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/source-delta-binding.json": "c919122270fba21e490569068a233cf08cacde94fbaa68c95a69359493d658ed",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/source-upload-manifest.json": "80c9dc687d69d9f773e8818fd460b8107efa99008153194390335a8656450433",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/blob-upload-proof.json": "77ae5b4e8ace1ded31a55ac879d89026f1f45832381eabdfc978c3d5be28222b",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/native-handoff-tree-inputs.json": "42b4d26d77790fc4369e72406157a45c1073cf5f34f867aa1b17c5f31efee4dd",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/bash-syntax-original.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/bash-syntax-execution.json": "d889d5c6259286d91c6ca80ed17bcb867baf4483a5852a5fd7756487929730e1",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/studio-contracts-interruption-snapshot.log": "3dafd70d55164f2ddff63db7adf9f0785f4878b57d54605f8e2ad7a17fb2573e",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/evidence/interruption-status.json": "91a8bb1ebbc6f08dec77097c6910f0f6e887652b6c0e54a5718db8b1ad6a9a1b",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/original-diagnosis/diagnosis.json": "00193f8c8e24443274c0e220318ebb42c034dd5d8c94fc103ede6c096b1fa63b",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/original-diagnosis/original-timeline-comparison.json": "a848828a5778042365260a807b9b51e66900c3366ac28810719ed161616a2a6d",
+    "docs/evidence/studio-2020-treasure-render-budget-20261114/original-diagnosis/source-read-binding.json": "31b7aaf8d5df8bd37f1c6c7c2582e0fd3387e58dac91f10e2a408586e627154e"
+  },
+  "log_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/evidence/recovered-studio-contracts-original.log",
+  "log_bytes": 2584,
+  "log_sha256": "cc11f39c06ddc57b42894fe7c146cd957982d275f3932b7028d803cd8cdb68ee",
+  "sources_unchanged": true,
+  "historical_evidence_unchanged": true
+}

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_english_objects_android_probe.py",
+    "-v"
+  ],
+  "cwd": "prepared/host",
+  "exit_code": 0,
+  "wall_time_seconds": 0.322656027,
+  "scope": "pure validators, no Android run"
+}

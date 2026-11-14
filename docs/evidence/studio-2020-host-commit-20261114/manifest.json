@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "host_commit": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "native_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "file_count_excluding_self": 15,
+  "total_bytes_excluding_self": 402856,
+  "files": [
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/README.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/README.md",
+      "bytes": 3110,
+      "sha256": "5cbe92144c4f8551637de2d22456a3df0bb7f6b947e6a00b57f318d63a70c1ea",
+      "git_blob_sha": "b1fe134da56e6270902f8ca9b7a5e5c4c3d1a07e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host-image-integration-tree-inputs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host-image-integration-tree-inputs.json",
+      "bytes": 1922,
+      "sha256": "10e820e280f5657bf0411d507f4a9b98c09779c9a6449ae2cdcb8ab8f267cfa4",
+      "git_blob_sha": "1d949e46ebee0ea5b2a40d3bb100003285b1929d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host-image-integration-upload-proof.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host-image-integration-upload-proof.json",
+      "bytes": 463,
+      "sha256": "c7dc1727709412da1ddfd6dd2f3990c37a2a518ea9ee810fd0e428f3d1c217a9",
+      "git_blob_sha": "3f360a646cd7578c34f94bb0fe1c38d5c27ba81a",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host2020-final-source-manifest.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host2020-final-source-manifest.json",
+      "bytes": 72800,
+      "sha256": "73a80a2378d11eed3e9f129be05c7008da99f09bc7a18954fcfe371092c769d3",
+      "git_blob_sha": "e68ff05a3aec360044babd3fe66fc2d78954a049",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host2020-final-tree-proof.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host2020-final-tree-proof.json",
+      "bytes": 490,
+      "sha256": "56695b3e3177fbac1965051a3e55e5ea15b3803ec483bbad620a2a4ab0cd07c6",
+      "git_blob_sha": "0e71aeff8f6dbeb366e0123a85b900c38ed250e2",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host2020-first-workflow-runs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host2020-first-workflow-runs.json",
+      "bytes": 240041,
+      "sha256": "2df5f5ad467689b5cca60f8641af8e007bd4ea16b0e86299b3fbe0aefb67ba5f",
+      "git_blob_sha": "c60aa1ff2cd2e70d2589eef7ef986307638acc9f",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host2020-github-commit-checkpoint.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host2020-github-commit-checkpoint.json",
+      "bytes": 14470,
+      "sha256": "14fe74dfdc106d9dd304a6c6909fa8aa6e3e3a1869a349ac969815261b3a31b5",
+      "git_blob_sha": "2ce3f80abb2f5862756aa528388de414f4fa3c9a",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host2020-new-blob-confirmations.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host2020-new-blob-confirmations.json",
+      "bytes": 748,
+      "sha256": "823ac1fe16d2ca5e5a76a16a427093442d200004ee4a10ccffe890c36ff9f2ae",
+      "git_blob_sha": "823b6a4b35b78abc08493946d4f188abe3af0cdf",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host2020-pr494-readback.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host2020-pr494-readback.json",
+      "bytes": 23710,
+      "sha256": "214ff92b7e116a5fb9821dc7b9fd24a0ffc6ace82d945b9e496363d8f7931936",
+      "git_blob_sha": "bdca09dd6dfb56cfcce4a999b012fba68b09ca34",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/host2020-precommit-ref-readbacks.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/host2020-precommit-ref-readbacks.json",
+      "bytes": 2218,
+      "sha256": "ecbce16e3ab953e6ce2e3fa49903b8a410bd29e0b482063270a4b6a338f53c64",
+      "git_blob_sha": "2a4cbfe346cf9c877d57a85614999986a8afe8b1",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/native-acceptance-tree-inputs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/native-acceptance-tree-inputs.json",
+      "bytes": 4545,
+      "sha256": "03afa30bdcb3a31f45b2fe2a871138d8b69c43cf5a5326216b806d41cf7704d5",
+      "git_blob_sha": "dbd53a226b60ea6bee771c7ff93bcabcaa2bc087",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/native-acceptance-upload-proof.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/native-acceptance-upload-proof.json",
+      "bytes": 11467,
+      "sha256": "f8dabe5d4930b237c9cdf8ed0203af4d9b8f5b28b8d0ef367d4b40aff64f8c10",
+      "git_blob_sha": "ac8620d4ca4a13996ba0b9379bb0c45325b8bebd",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/native-final-observation-tree-inputs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/native-final-observation-tree-inputs.json",
+      "bytes": 3999,
+      "sha256": "a510ab5771e49c6a1d5e7d508efe5e994dfe556688688a5da3129a384e1e58ef",
+      "git_blob_sha": "5ea47bd5c6eadadd4c83ebc2ce0b558d3a14e5a4",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/native-final-observation-upload-proof.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/native-final-observation-upload-proof.json",
+      "bytes": 13561,
+      "sha256": "ed8385e0cd3e83e96827df3109fd78d405507a443d483cdd8af2bac511561910",
+      "git_blob_sha": "aac1ebbcae7219a75cf59138c8d6388e22f4dafd",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-commit-20261114/native-pr167-after-host.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-commit-evidence-20261114/frozen/native-pr167-after-host.json",
+      "bytes": 9312,
+      "sha256": "edef2c58ed4d0c504a8b4ca8896082f3f8b26fc6dfae161b0c703b12afcf2d77",
+      "git_blob_sha": "4597403146d69d5d27e258ae851a976ae351d38d",
+      "mode": "100644"
+    }
+  ],
+  "scope": "Git source/tree/ref proof and first-run snapshots; no Android pass claim"
+}

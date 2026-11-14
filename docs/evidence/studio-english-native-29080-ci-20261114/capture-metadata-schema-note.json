@@ -1,0 +1,7 @@
+{
+  "scope": "Local evidence readback correction, not a CI or product failure.",
+  "first_readback_result": "AssertionError at capture-record equality; no report was finalized.",
+  "observed_format": "Per-capture .json contains all capture fields except png and sha256; those two fields exist in the final aggregate report.",
+  "final_binding": "All common fields compare exactly. PNG filename/hash are independently checked against actual current archive entry, bytes and aggregate report.",
+  "original_files_changed": false
+}

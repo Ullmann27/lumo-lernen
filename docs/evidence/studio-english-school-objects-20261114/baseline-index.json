@@ -1,0 +1,125 @@
+{
+  "host": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "host_tree": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "native": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "native_tree": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "files": [
+    {
+      "repository": "host",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+      "size": 2941,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/e79e6342f017dd59ebfd4bbb7adad215057e0545"
+    },
+    {
+      "repository": "host",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "size": 7587,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/f8bfc0af97806255ec8b72d89963c2831e250089"
+    },
+    {
+      "repository": "host",
+      "path": "tool/check_native_english_activity.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85a96d92e0eac2c1d9f6791820d8990d816fdc48",
+      "size": 9307,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/85a96d92e0eac2c1d9f6791820d8990d816fdc48"
+    },
+    {
+      "repository": "host",
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70cacfce15bdd374d582c570b49c2a865cee63d6",
+      "size": 7588,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/70cacfce15bdd374d582c570b49c2a865cee63d6"
+    },
+    {
+      "repository": "host",
+      "path": "lib/core/school_exercise_generator.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54ed4481135b5938f92c927b95ea68d256e12805",
+      "size": 82516,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/54ed4481135b5938f92c927b95ea68d256e12805"
+    },
+    {
+      "repository": "host",
+      "path": "lib/core/english_vocabulary_extensions.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13f29bd61dc325bd351cd98dc4bf619abf8f292f",
+      "size": 9182,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/13f29bd61dc325bd351cd98dc4bf619abf8f292f"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72",
+      "size": 61965,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/5b757694cff6e8d7d5ef00cf56f57dab8c22fa72"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/learning/english_vocabulary.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4",
+      "size": 1857,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/6819e564f2c0b42afa6e9c4b18e36bc3ead884d4"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/learning/learning_activity.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "size": 10967,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/learning/english_object_gallery.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "401864874d7dc5fc9a97e057d1a49bdf894b9e0b",
+      "size": 9213,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/401864874d7dc5fc9a97e057d1a49bdf894b9e0b"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/tests/learning_english_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64dece9ec9619c6bf527c6398feef90b9e1a5298",
+      "size": 29246,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/64dece9ec9619c6bf527c6398feef90b9e1a5298"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/app/scene_router.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09b5b8119729e0a5556a18acf9497f31962cb343",
+      "size": 4556,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/09b5b8119729e0a5556a18acf9497f31962cb343"
+    },
+    {
+      "repository": "native",
+      "path": "scripts/systems/host_bridge.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00a30115ce7669e57e8ceec1251047773f3da1f4",
+      "size": 5223,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/00a30115ce7669e57e8ceec1251047773f3da1f4"
+    }
+  ]
+}

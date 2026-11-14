@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "host_source": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "native_source": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43579548170,
+  "run_attempt": 1,
+  "conclusion": "failure",
+  "all_workflow_statuses_final": true,
+  "workflow_count": 16,
+  "workflow_conclusions": {
+    "cancelled": 3,
+    "skipped": 6,
+    "success": 5,
+    "failure": 2
+  },
+  "main_jobs": [
+    {
+      "id": 132401125864,
+      "name": "verify-and-build",
+      "conclusion": "failure"
+    },
+    {
+      "id": 132401126077,
+      "name": "android-host-compile",
+      "conclusion": "success"
+    },
+    {
+      "id": 132401631340,
+      "name": "update-2020-from-2017",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132402067246,
+      "name": "Android API ${{ matrix.api }} live application tour",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132402067272,
+      "name": "Publish visually reviewed Build 2020 ARM64 APK for direct Chrome download",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132402067466,
+      "name": "Android API 35 additional creative gameplay",
+      "conclusion": "skipped"
+    }
+  ],
+  "actual_execution_groups": [
+    {
+      "name": "Early three-file C4 gate",
+      "job_id": 132401125864,
+      "passed": 8,
+      "failed": 4,
+      "note": "Three games_screen_flow cases and all five visual cases passed. All four Fold-control cases stopped at their first global-width assertion before later swipe/drop checks."
+    },
+    {
+      "name": "Living Core complete Flutter suite",
+      "job_id": 132401125796,
+      "passed": 2355,
+      "failed": 4,
+      "skipped": 196,
+      "note": "A separate execution. Exactly the same four Fold-control failures. Its preceding48-case targeted suite passed separately."
+    }
+  ],
+  "counts_are_not_added": true,
+  "failure": {
+    "path": "test/games/connect_four_fold_controls_test.dart",
+    "line": 37,
+    "actual": 47.99999999999997,
+    "required": 48,
+    "difference": 2.842170943040401e-14,
+    "method": "WidgetTester.getRect",
+    "scope": "Strict global-coordinate rectangle subtraction, not a recorded local RenderBox measurement. No product-touch-size shortfall beyond the numerical observation is claimed."
+  },
+  "android_host_compile": {
+    "job_id": 132401126077,
+    "status": "success",
+    "actual_task": ":app:compileDebugKotlin",
+    "duration_from_original_log": "2m29s",
+    "warning_preserved": "ConnectFourGameActivity.kt78:supertype argument named savedInstanceState"
+  },
+  "full_flutter_main": "skipped after early failure",
+  "apk_built": false,
+  "android_tour_executed": false,
+  "creative_android_executed": false,
+  "update_2020_executed": false,
+  "publisher_executed": false,
+  "secondary_failed_upload": "The original-caption archive step found no output after the earlier failure skipped OCR. This is not an executed OCR assertion failure.",
+  "historical_1999": {
+    "run_id": 43579548265,
+    "conclusion": "success",
+    "observed_terminal_updated_at": "2026-11-14T09:28:55Z",
+    "not_evidence_for_current_2020_apk": true
+  },
+  "cancellations": "Three additional workflows ended cancelled; no cancellation or retry was issued by this reviewer. No reason is inferred solely from their terminal status.",
+  "c4_artifact_scope": "API artifact metadata only. Archive and PNG downloading/review belong to root. No archive download or image review was performed in this monitoring package.",
+  "local_tests_run": false,
+  "source_or_ref_mutations": false,
+  "reruns": false,
+  "followup_source": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "followup_results_not_transferred": true
+}

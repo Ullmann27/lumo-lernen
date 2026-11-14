@@ -1,0 +1,49 @@
+test_original_api35_first_frame (__main__.NativeCaptionOriginals.test_original_api35_first_frame) ... FAIL
+test_original_api35_last_frame (__main__.NativeCaptionOriginals.test_original_api35_last_frame) ... FAIL
+test_original_api37_first_frame (__main__.NativeCaptionOriginals.test_original_api37_first_frame) ... FAIL
+test_original_api37_last_frame (__main__.NativeCaptionOriginals.test_original_api37_last_frame) ... FAIL
+
+======================================================================
+FAIL: test_original_api35_first_frame (__main__.NativeCaptionOriginals.test_original_api35_first_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 83, in test_original_api35_first_frame
+    self.check_original('learning-api35-first.png')
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 74, in check_original
+    self.assertTrue(matches, 'Actual original frame did not yield the exact requested caption')
+AssertionError: [] is not true : Actual original frame did not yield the exact requested caption
+
+======================================================================
+FAIL: test_original_api35_last_frame (__main__.NativeCaptionOriginals.test_original_api35_last_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 86, in test_original_api35_last_frame
+    self.check_original('learning-api35-last.png')
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 74, in check_original
+    self.assertTrue(matches, 'Actual original frame did not yield the exact requested caption')
+AssertionError: [] is not true : Actual original frame did not yield the exact requested caption
+
+======================================================================
+FAIL: test_original_api37_first_frame (__main__.NativeCaptionOriginals.test_original_api37_first_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 89, in test_original_api37_first_frame
+    self.check_original('learning-api37-first.png')
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 74, in check_original
+    self.assertTrue(matches, 'Actual original frame did not yield the exact requested caption')
+AssertionError: [] is not true : Actual original frame did not yield the exact requested caption
+
+======================================================================
+FAIL: test_original_api37_last_frame (__main__.NativeCaptionOriginals.test_original_api37_last_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 92, in test_original_api37_last_frame
+    self.check_original('learning-api37-last.png')
+  File "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/patched/tools/android_qa/tests/test_native_caption_ocr.py", line 74, in check_original
+    self.assertTrue(matches, 'Actual original frame did not yield the exact requested caption')
+AssertionError: [] is not true : Actual original frame did not yield the exact requested caption
+
+----------------------------------------------------------------------
+Ran 4 tests in 23.834s
+
+FAILED (failures=4)

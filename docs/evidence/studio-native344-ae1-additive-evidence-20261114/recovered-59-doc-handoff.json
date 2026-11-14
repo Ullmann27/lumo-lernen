@@ -1,0 +1,963 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T12:36:24.005Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "evidence_base_commit": "946ed588e4976312bcfc67364a3bde3ffdaa55a8",
+  "scope": "Finite recovered handoff of 52 already confirmed documentation targets plus 7 completed ae1 Unified-tour documentation targets. No product paths or original PNG/archive copies.",
+  "input_group_bindings": [
+    {
+      "name": "kart-countercheck",
+      "count": 12,
+      "exact_original_list_bytes": {
+        "bytes": 2498,
+        "sha256": "b51e7c4c988eea4f7a25ecf5d7bdf5c5e64b6c65b89ff6f849e46c7c8b7a567a",
+        "git_blob_sha": "055f6703c0ab56ffaa00dc4006a96fe5f95657c4"
+      }
+    },
+    {
+      "name": "host-workflow",
+      "count": 26,
+      "exact_original_list_bytes": {
+        "bytes": 5626,
+        "sha256": "d04654d263ab1fcac4c769db0d29229b6d3ecb2055b1961f134351468fa04830",
+        "git_blob_sha": "c899f085a98a95827c71639afc74f49bfeac11f9"
+      }
+    },
+    {
+      "name": "unified-preview-integration",
+      "count": 10,
+      "exact_original_list_bytes": {
+        "bytes": 2096,
+        "sha256": "c5c479516e9c5f61f12be9aeca1b4591213f6a9f6bea6fbda006045b85ae1a28",
+        "git_blob_sha": "5c1da320787e21c77274ecf138985b7319acfa25"
+      }
+    },
+    {
+      "name": "native344-host-pin-review",
+      "count": 4,
+      "exact_original_list_bytes": {
+        "bytes": 871,
+        "sha256": "c81a888d3ee2981a8f6f925eea6d140226c887665da34e031e3b8f3b581865e5",
+        "git_blob_sha": "4f8ed3a2f3817e9e7e73f66cbb61176a73e5fadc"
+      }
+    }
+  ],
+  "total_existing_groups": 52,
+  "new_unified_docs": 7,
+  "total_targets": 59,
+  "targets": [
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1fd7ba94d701223bacf7f27ebdb3051baf34595",
+      "bytes": 1481906,
+      "sha256": "c03dfaad9502a29a92274904b20d5b5c9933137124dea8908f86486198242a32",
+      "remote_readback_at_utc": "2026-11-14T12:33:01.637Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-run-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c486bea920a8b867caff4de60763cb47290e18c",
+      "bytes": 12473,
+      "sha256": "37d5c2e9b798cc8755bed6e2dead891e94c77a545956957e26688942c0d5fe31",
+      "remote_readback_at_utc": "2026-11-14T12:33:01.658Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-jobs-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7958b4405ef518e6c5615dd38c5b733407d407e",
+      "bytes": 3467,
+      "sha256": "89f2ccebf7c9db7620ddf86e81260c34d11b96bdfca9cf4f014d25ec05660a24",
+      "remote_readback_at_utc": "2026-11-14T12:33:01.664Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-artifacts-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42c173ee590f9baa1786fa31dd2d6c3189b03c3a",
+      "bytes": 792,
+      "sha256": "cbfcc27dbad95a593feb352599a20e95869537b0b2f7ed63645a5e6345977b7f",
+      "remote_readback_at_utc": "2026-11-14T12:33:01.666Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/workflow-3f89e5f0-original.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "503c4f4350fdccf58054d2c146e96603af5726c5",
+      "bytes": 6633,
+      "sha256": "529f317a2f05d537f4206138169a76657cf9970e27fcdb45ba66b87a49b354df",
+      "remote_readback_at_utc": "2026-11-14T12:33:01.675Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/binder-3f89e5f0-original.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77",
+      "bytes": 24511,
+      "sha256": "f495aea0e3c6073bdba675ac53d5f79376583f9f293c3ebe2891c1a7737619ce",
+      "remote_readback_at_utc": "2026-11-14T12:33:01.713Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/tour-step-summary-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de6ff82847bafa03df12b4e7ba2e0ca6c900d7d5",
+      "bytes": 15606,
+      "sha256": "d1417a116ffd0cadea318a8b0b355ee681334e40fd77946a294cd9752ddb761f",
+      "remote_readback_at_utc": "2026-11-14T12:33:02.432Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/countercheck-result-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4845da53443957bd659bf4cef6218827060c7ee4",
+      "bytes": 3811,
+      "sha256": "fc84abd6a058b394a13da61bad7ce4dec289d0cf70ee5eb91ce22c72814608ac",
+      "remote_readback_at_utc": "2026-11-14T12:33:02.437Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/relevant-original-job-lines.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "faf45f69feac55cdeb276cc3c1b6170681754bb0",
+      "bytes": 5137,
+      "sha256": "174306306f332440a20bf0659138db410d678b7fb704c292a32e2d00f126c1f9",
+      "remote_readback_at_utc": "2026-11-14T12:33:02.444Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adf84749768b77becae93d52f11d3c83271ac057",
+      "bytes": 9017,
+      "sha256": "b11233216a2b61e7931f80b2c0b8fdd9390643e9005bb21700b86335835fb726",
+      "remote_readback_at_utc": "2026-11-14T12:33:02.457Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "168b0c7c4ed52c9b3122f9b2c20af5a101565f7b",
+      "bytes": 3772,
+      "sha256": "fdb90a0bf35553d4d05ff6c6098be98182a045e16f0f4fbeab51e2cd4877c9b7",
+      "remote_readback_at_utc": "2026-11-14T12:33:02.462Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70ec34a3649a5b4a01b44a31f9d72f8e86533820",
+      "bytes": 5630,
+      "sha256": "9770d85a2cc4689a03f59602791ffe57ec0f939a3a264fb041fc7b37b16bc94c",
+      "remote_readback_at_utc": "2026-11-14T12:33:02.472Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52ad6856cc6067a0961e98f211b32fdc0d563eb9",
+      "bytes": 1869,
+      "sha256": "90fd687f0994198cbf497b3fc6824815e099c8be7b02f33f61e99d4c92b729e2",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.174Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "356d396f1535f37f9923c942c25d63fb3ea699ac",
+      "bytes": 896,
+      "sha256": "3fcf4c7a7c03d93416ad670e4aeec3d7d54c88b42af936d43a2e1a2fb172f241",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.175Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/original-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22eb325d71aa624ff78d9124b0bd7041a3aa1000",
+      "bytes": 912,
+      "sha256": "2483abb72f5f439c705966739dff12158356c2a3158c23942c3c533d5c64b307",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.176Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ecadaa56b134561785f25f97434be11adb387f3",
+      "bytes": 1136,
+      "sha256": "31eb6b769b43528c90fd464278e44300f3e39da6d616e9192498692765921e08",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.178Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/yaml-and-job-order-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "addfd04c8f75dfebbb0c1decb7ebcf84ee96b122",
+      "bytes": 2047,
+      "sha256": "78f539dbb725c8ce3a7d93138e710c5e1f5550a534fbf937eabfe46aa09e590d",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.181Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f689b41e26bf40b7f6b5493e046df51a33d92f2",
+      "bytes": 95,
+      "sha256": "9d34cdaec053c6005199c08f2bac628bd8c087303faa26fd8ab58c3e22216ff5",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.182Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.644Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.644Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba0158d5f318c3c14c7829aae445f8c3a4a828a2",
+      "bytes": 1401,
+      "sha256": "753db0b8ed62c5fe7dab3630cd3628211ddfa26577e466864e9794d2c69e93cb",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.647Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c84b3aa3018d7e722cb16ec7e3e70de5df54490",
+      "bytes": 4178,
+      "sha256": "c42d2325d3cd4336e724cb80fb9646afb5e24bc290a25ff7fdf7f98d576fa484",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.657Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb24bf9386094d612c6c13aedd838c1b320b4329",
+      "bytes": 2796,
+      "sha256": "4a26d54c9e9915d3a301302d8e88cd041bef4de85eacb0b481ad5460c0a8b83b",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.662Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "967128c6c194ee49981f995519a4b3dd27aebfc4",
+      "bytes": 2310,
+      "sha256": "d8e4a06f88aa3b3a39b34041a246b538825e48cdd4d29463dcea27edc00d227e",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.665Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/confirmed-source-tree-input.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fccb7d56a82fe2e039333176f9152c33218da2b1",
+      "bytes": 146,
+      "sha256": "4c1d5a97a89f484bda2f95df3ecb0ad981617f4c6e97096d2480dbd929a4e975",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.666Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/required-probe-input-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e1c80b73c6f448eaba427eae2c08b255ae4c8e6",
+      "bytes": 1237,
+      "sha256": "be45ea7adcc7ce4142e1304c32b6ee475bd005184d09cee17d26a9afc6700854",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.174Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-ffmpeg-v1.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fde706a18765a6e4931f234722c2819d678648da",
+      "bytes": 4234,
+      "sha256": "af2a3722546e949d26399399f4c640d0879a22af4fe69bc77ccafa159bb364cf",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.182Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2f0cbf10e3843a4de4f7694f9e1c8d9da81f41d",
+      "bytes": 5280,
+      "sha256": "590ec9c16d43555565b90838d3105886eedfe28b736e11153b59ff0a3c095b6c",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.191Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/yaml-and-delta-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8655f96ac831cffe5cc4df0b89b180a90a8c8c1c",
+      "bytes": 2086,
+      "sha256": "09ca0ad932c80eb090fa74b1eea181d52fe29835bf31e586e92fcdc7137014fe",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.195Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f689b41e26bf40b7f6b5493e046df51a33d92f2",
+      "bytes": 95,
+      "sha256": "9d34cdaec053c6005199c08f2bac628bd8c087303faa26fd8ab58c3e22216ff5",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.182Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.644Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "remote_readback_at_utc": "2026-11-14T12:35:45.644Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b0a1d1002de3f1e95a4272c2f4bb825c3f9458a",
+      "bytes": 1039,
+      "sha256": "482bf7774f51f3b1b2f60e34b4825efb1ad3872c9ce4822b60f13f2301faa77b",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.197Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ebd79b14c87350d27291ed3b459b3c0265fc007",
+      "bytes": 5393,
+      "sha256": "0f09fbc19de60f5b769b6fd6dd264b808e26e34a52246589225b7ebe1778fea3",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.206Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-ffmpeg-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53dc9cc7a1953a814e72c48550e1515870630a29",
+      "bytes": 1465,
+      "sha256": "4557b32e3232e67bf36d660c801449ff8170ac3af1746c74131eea46b6ce708d",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.956Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-preview-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "357bc9aff2e2a248869476583dfc3a1ffccad2d9",
+      "bytes": 1800,
+      "sha256": "b2f6d54872b38dc949f39f667b7eb31a53a25a46ab1eeedd67332261bb1136e1",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.959Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-workflow-evidence-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5873b4a9f725d054b609d29a96ecd89d3d2ca063",
+      "bytes": 3218,
+      "sha256": "ef07ba68c385962b52085b5840a387c6026253d3df6a03c16205511321953c3d",
+      "remote_readback_at_utc": "2026-11-14T12:35:46.965Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-workflow-evidence-078774dd-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b6b3f5eda507755c93fd47a7108e6814ee6dab9",
+      "bytes": 12828,
+      "sha256": "2f2309c7314b9b555015ff4383e732a05e5a1f04f9e325c8c3a85987b88b12a2",
+      "remote_readback_at_utc": "2026-11-14T12:35:43.974Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d70472b17f7bdca83863414d0e427273ec83c2af",
+      "bytes": 3239,
+      "sha256": "d6bd16c7792f9ddc4577cef8cf1eaabf73f176e804b6122d5e38e9163af34e09",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.344Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/implementation-against-exact-078774dd.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9168017ea17b586fad29d4212c7a0d0e6ac5122",
+      "bytes": 1554,
+      "sha256": "e05123441ddc06fc1010c183a630836076f64a2188e4d0ad02fde4d12bf2f269",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.347Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffc0a00c00234d9a50974e10770ac4eaf735527d",
+      "bytes": 1409,
+      "sha256": "5e9988afb9f15261e75651eef9b4e9a8cc8c1642f1ee6bc5058afd3e8ee71f3a",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.349Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a633fce2002a5d4fcfe784dba268ba812d2878c",
+      "bytes": 1308,
+      "sha256": "91f6636f8864cb97e9a701db373b635b43b3d70819fab125d76cc5463378e3b4",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.351Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/prepare_and_validate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "193d425b9f105aea6eaf9fde23281ef08f595cf6",
+      "bytes": 6532,
+      "sha256": "5e7ee991bab8caae86b39e70246527a45117547f631d70e37f47e600a20cbfe9",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.361Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/evidence/validation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cfedcceea49b0261361379493aa9e991b1bc4df",
+      "bytes": 1951,
+      "sha256": "929aa0a4936130a74579fbe52e8bbbe250e4d8135a30e659d4db1f97895c0002",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.363Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/evidence/validation-execution-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a19afc4d6b2db31dd83ce567fac0ab4f21389c29",
+      "bytes": 2412,
+      "sha256": "5c66e1dec51e152277091c6be2c081b98983353cbc542731ec9d536028337196",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.846Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/source-blob-proof.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8d74d28285cf6874523b9a33925fab9b7b49c9f",
+      "bytes": 602,
+      "sha256": "580d459854f094636f6a720b22a33173b9ecc49633a607af9ed8aa9e50346a2c",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.847Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/confirmed-tree-inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6c8df1e50cba8344af02074e11bf08fd20e276c",
+      "bytes": 175,
+      "sha256": "14fbb788f5ee07a586dd4c0947282c08bd719db9842e95aa93d7a4c1c4ad9936",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.848Z"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d59ae7df99cfd26a05ce73d4e188a7d879f2889",
+      "bytes": 3233,
+      "sha256": "dfc590bc5ddad80a0c6b06acc3cb1061c8f33ca33bb078196f716c9ffbecabb6",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.853Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d2a278af65de46d57983f307ffd57074c21826e",
+      "bytes": 6288,
+      "sha256": "997b249a7ea390059032d07da303a8da5c1fee9f01052732723ca65990d018f9",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.864Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/historical-map-comparison.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc3f37c2aae67e5e3c10a65c0476bd63b3acb171",
+      "bytes": 3262,
+      "sha256": "a0201c72dcf93c7e31857c67e0e9a6c4941132f7b1abc889db5d12a4798b5f3f",
+      "remote_readback_at_utc": "2026-11-14T12:33:03.869Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/pin-against-published-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b8fe2d95d59cb63ceb758703562c2c967ce4422",
+      "bytes": 1428,
+      "sha256": "f0aacaa79ae0fe4b7c468e80828b8002ea36f42774897d843d46d09e8ed1aeeb",
+      "remote_readback_at_utc": "2026-11-14T12:33:04.376Z"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8641f87ee681124374329b115cc2ccb351e6ef0",
+      "bytes": 1503,
+      "sha256": "3ec32c74c3d1d1cbcdd6fc1571535ebb7b2208d40dba21bed27ced6dd8af6f5a",
+      "remote_readback_at_utc": "2026-11-14T12:33:04.378Z"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/android-tour-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "207d3edde77be0e29b3ed0022a8fd75d85ce1bfa",
+      "bytes": 1539461,
+      "sha256": "da078abf166df6f517b9cd6a0ad3da52b677285fd6b23633d0673e96ab530af3",
+      "remote_readback_at_utc": "2026-11-14T12:34:19.272Z"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/run-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b3cf8b72e52154902de59b1b421fcf568d5e203",
+      "bytes": 13459,
+      "sha256": "f912d859fd4de573de79a7d1b011329280c85352cd8410ea4a7bce44b1bf29ea",
+      "remote_readback_at_utc": "2026-11-14T12:34:20.497Z"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/jobs-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0c936d507b8ff37c48ce3e680302015d3f3a4c1",
+      "bytes": 20971,
+      "sha256": "0c6a42b2a0855f8a3541f500b74f9db163b49de527c055e7477c07e7f292cd3e",
+      "remote_readback_at_utc": "2026-11-14T12:34:21.743Z"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/artifacts-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82e897c0249a20196f61ffd6a63aebd8c4da6d76",
+      "bytes": 4435,
+      "sha256": "00c5c47258d9d38a481fd9bddf1080662ededbc27e3317cb73de268d66d9cd46",
+      "remote_readback_at_utc": "2026-11-14T12:34:22.654Z"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b3eccb094e38ece70c035d9d1b7b2d34f2218e6",
+      "bytes": 9813,
+      "sha256": "ef51be075ef921d6964577c67e305b910669975c7ab4fd98e186afa6d02790ed",
+      "remote_readback_at_utc": "2026-11-14T12:34:23.661Z"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/tour-result-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98d36761ed3900865cf28fe5e30a8c459b270d2d",
+      "bytes": 19172,
+      "sha256": "efa166799985a1966df82d98c6e1f41393394fca8a05991d871f8a64c8f8187f",
+      "remote_readback_at_utc": "2026-11-14T12:34:24.744Z"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d97fb04167480b325f14b29683562c34a882a485",
+      "bytes": 2737,
+      "sha256": "537b748202087ae70f54c3e7caa4b5f8cffeb5f898d7d6c46c622641fa68e930",
+      "remote_readback_at_utc": "2026-11-14T12:34:25.753Z"
+    }
+  ],
+  "base_tree_check": {
+    "requested_base": "946ed588e4976312bcfc67364a3bde3ffdaa55a8",
+    "raw_response": {
+      "bytes": 2212907,
+      "sha256": "cc26d4c1030af80c735892ac8ada9d8e57ea6968603da78618762d0e2fd58423",
+      "git_blob_sha": "92f9c8ebe797a605ad54a2c350cf10aea12d8ece"
+    },
+    "truncated": false,
+    "entry_count": 7792,
+    "new_target_collisions": []
+  },
+  "status": "Complete for the 59 explicitly listed targets; the wider Native344/49-image/ae1-commit/local-Android-review evidence freeze remains pending.",
+  "pending_excluded_scopes": [
+    "Native344 original nine job logs and terminal metadata already saved locally; not reconstituted from summaries.",
+    "The 49 Native344 visual-review documents and original archive index; no PNGs duplicated.",
+    "Ae1 29-file commit/source/checkpoint proofs and final pin/delivery/preview logs.",
+    "Own Android/JVM evidence12, host Flutter-source-review evidence10 and separate peer notes not yet wholly retained in readable cache.",
+    "New Memory/Quiz/English work remains a separate feature evidence group."
+  ],
+  "constraints": [
+    "All 59 targets under docs/evidence only.",
+    "All 52 prior blobs freshly fully read back and Git SHA verified; exact four original tree-input list SHA256 values match.",
+    "New Unified seven blobs created serially and fully read back.",
+    "No tree/commit/ref/PR/release mutation.",
+    "Unavailable filesystem was not accessed."
+  ],
+  "tree_inputs": [
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1fd7ba94d701223bacf7f27ebdb3051baf34595"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-run-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c486bea920a8b867caff4de60763cb47290e18c"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-jobs-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7958b4405ef518e6c5615dd38c5b733407d407e"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-artifacts-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42c173ee590f9baa1786fa31dd2d6c3189b03c3a"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/workflow-3f89e5f0-original.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "503c4f4350fdccf58054d2c146e96603af5726c5"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/binder-3f89e5f0-original.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/tour-step-summary-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de6ff82847bafa03df12b4e7ba2e0ca6c900d7d5"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/countercheck-result-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4845da53443957bd659bf4cef6218827060c7ee4"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/relevant-original-job-lines.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "faf45f69feac55cdeb276cc3c1b6170681754bb0"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adf84749768b77becae93d52f11d3c83271ac057"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "168b0c7c4ed52c9b3122f9b2c20af5a101565f7b"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70ec34a3649a5b4a01b44a31f9d72f8e86533820"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52ad6856cc6067a0961e98f211b32fdc0d563eb9"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "356d396f1535f37f9923c942c25d63fb3ea699ac"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/original-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22eb325d71aa624ff78d9124b0bd7041a3aa1000"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ecadaa56b134561785f25f97434be11adb387f3"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/yaml-and-job-order-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "addfd04c8f75dfebbb0c1decb7ebcf84ee96b122"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f689b41e26bf40b7f6b5493e046df51a33d92f2"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba0158d5f318c3c14c7829aae445f8c3a4a828a2"
+    },
+    {
+      "path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c84b3aa3018d7e722cb16ec7e3e70de5df54490"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb24bf9386094d612c6c13aedd838c1b320b4329"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "967128c6c194ee49981f995519a4b3dd27aebfc4"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/confirmed-source-tree-input.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fccb7d56a82fe2e039333176f9152c33218da2b1"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/required-probe-input-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e1c80b73c6f448eaba427eae2c08b255ae4c8e6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-ffmpeg-v1.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fde706a18765a6e4931f234722c2819d678648da"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2f0cbf10e3843a4de4f7694f9e1c8d9da81f41d"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/yaml-and-delta-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8655f96ac831cffe5cc4df0b89b180a90a8c8c1c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f689b41e26bf40b7f6b5493e046df51a33d92f2"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b0a1d1002de3f1e95a4272c2f4bb825c3f9458a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ebd79b14c87350d27291ed3b459b3c0265fc007"
+    },
+    {
+      "path": "docs/evidence/studio-078-ffmpeg-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53dc9cc7a1953a814e72c48550e1515870630a29"
+    },
+    {
+      "path": "docs/evidence/studio-078-preview-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "357bc9aff2e2a248869476583dfc3a1ffccad2d9"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-workflow-evidence-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5873b4a9f725d054b609d29a96ecd89d3d2ca063"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-workflow-evidence-078774dd-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b6b3f5eda507755c93fd47a7108e6814ee6dab9"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d70472b17f7bdca83863414d0e427273ec83c2af"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/implementation-against-exact-078774dd.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9168017ea17b586fad29d4212c7a0d0e6ac5122"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffc0a00c00234d9a50974e10770ac4eaf735527d"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a633fce2002a5d4fcfe784dba268ba812d2878c"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/prepare_and_validate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "193d425b9f105aea6eaf9fde23281ef08f595cf6"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/evidence/validation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cfedcceea49b0261361379493aa9e991b1bc4df"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/evidence/validation-execution-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a19afc4d6b2db31dd83ce567fac0ab4f21389c29"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/source-blob-proof.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8d74d28285cf6874523b9a33925fab9b7b49c9f"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-integration-20261114/confirmed-tree-inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6c8df1e50cba8344af02074e11bf08fd20e276c"
+    },
+    {
+      "path": "docs/evidence/studio-078-unified-preview-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d59ae7df99cfd26a05ce73d4e188a7d879f2889"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d2a278af65de46d57983f307ffd57074c21826e"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/historical-map-comparison.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc3f37c2aae67e5e3c10a65c0476bd63b3acb171"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/pin-against-published-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b8fe2d95d59cb63ceb758703562c2c967ce4422"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-native344-pin-independent-review-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8641f87ee681124374329b115cc2ccb351e6ef0"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/android-tour-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "207d3edde77be0e29b3ed0022a8fd75d85ce1bfa"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/run-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b3cf8b72e52154902de59b1b421fcf568d5e203"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/jobs-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0c936d507b8ff37c48ce3e680302015d3f3a4c1"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/artifacts-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82e897c0249a20196f61ffd6a63aebd8c4da6d76"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b3eccb094e38ece70c035d9d1b7b2d34f2218e6"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/tour-result-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98d36761ed3900865cf28fe5e30a8c459b270d2d"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d97fb04167480b325f14b29683562c34a882a485"
+    }
+  ]
+}

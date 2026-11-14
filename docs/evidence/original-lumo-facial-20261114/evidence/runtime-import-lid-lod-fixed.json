@@ -1,0 +1,12 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "qa/original-lumo-facial-studio-803e/runtime",
+    "--editor",
+    "--import"
+  ],
+  "exit_code": 0,
+  "seconds": 4.529287797995494
+}

@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "job_id": 132498257241,
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "current_error_occurrences": 4,
+  "scope": "Actual current job log; passing workflow does not mean zero diagnostics. No claim these four exit diagnostics are repaired.",
+  "warnings": [
+    {
+      "resource_count": 4,
+      "error": "2026-11-14T15:55:22.4286641Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+      "last_pass": "2026-11-14T15:55:22.3951403Z [KartAI] PASS: no teleport, no rubber-band, difficulty order holds",
+      "unresolved": true
+    },
+    {
+      "resource_count": 2,
+      "error": "2026-11-14T15:55:30.4337522Z ERROR: 2 resources still in use at exit (run with --verbose for details).",
+      "last_pass": "2026-11-14T15:55:30.3697523Z [GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp",
+      "unresolved": true
+    },
+    {
+      "resource_count": 4,
+      "error": "2026-11-14T15:56:02.7451373Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+      "last_pass": "2026-11-14T15:56:02.7014895Z [KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo",
+      "unresolved": true
+    },
+    {
+      "resource_count": 2,
+      "error": "2026-11-14T15:56:36.0478330Z ERROR: 2 resources still in use at exit (run with --verbose for details).",
+      "last_pass": "2026-11-14T15:56:36.0043465Z [KartFullField] PASS: continuous field two-lap drive with bounded movement",
+      "unresolved": true
+    }
+  ]
+}

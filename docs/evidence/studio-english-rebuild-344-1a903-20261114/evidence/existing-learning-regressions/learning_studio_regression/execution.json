@@ -1,0 +1,32 @@
+{
+  "name": "learning_studio_regression",
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_studio_regression.gd"
+  ],
+  "timeout_seconds": 180,
+  "timed_out": false,
+  "exit_code": 0,
+  "elapsed_seconds": 9.125616035999883,
+  "log_bytes": 2145,
+  "log_sha256": "35b5c83cae950a4475557a8fb67af7111ab9d3acd9ec7eb1a5cd628e7d4390d6",
+  "required_marker": "[LearningStudio] PASS",
+  "markers": [
+    "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+  ],
+  "errors": [],
+  "warnings": [
+    "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+    "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  ],
+  "test_source_sha256": "db69f9b6f2b629b655534f5d11610709a15eee5d76317cc55e8a88e0c1b74c1c",
+  "test_unchanged_vs_native344": true
+}

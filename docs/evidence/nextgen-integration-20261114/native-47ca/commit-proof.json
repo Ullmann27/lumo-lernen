@@ -1,0 +1,221 @@
+{
+  "base_commit": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "base_tree": "8e29d5a15a424b42f27184a763adce8b2aa71b13",
+  "new_tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+  "host_source": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "added": 4,
+  "modified": 9,
+  "unchanged": 2256,
+  "before_leaves": 2265,
+  "after_leaves": 2269,
+  "full_text_readbacks": [
+    {
+      "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+      "sha": "b8698b092e7f46bcd319f31479f75e0d5e2536e0",
+      "full_utf8_equal": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "sha": "dc8ccfd0cbb5175f3ac952abb8a4aaf519602c4b",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "docs/nextgen-english-quiz-source-20261114.md",
+      "sha": "93c6cfc756e8e62fca413dc7f256c32871baa09a",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "sha": "1bc459bc88d10f48aa918014eedbb91071cd98a7",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "sha": "fa8debed147eceea108acc98ac318ac1362cf8eb",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+      "sha": "7624036f7e342a6d5b0c3430019c98ab13f13baf",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+      "sha": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/public-state.json",
+      "sha": "0d6438f6706d875c87f82e694b22a8d0a5f96352",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+      "sha": "b1e09d14f6c1b01caf6c30b89d2e12d818146031",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "sha": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "sha": "623e76afd47d1cd96fcaebdebacac0a684f38f7b",
+      "full_utf8_equal": true
+    }
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/.github/workflows/lumo-nextgen-authority-check.yml",
+      "bytes": 9280,
+      "sha256": "1c2402dd44a8f9abe13a5d1bdb72c655ef1bcada58e96bfb7f31cbbffc90fd6f",
+      "sha": "b8698b092e7f46bcd319f31479f75e0d5e2536e0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 19875,
+      "sha256": "138b905645ed6c93fdd9195a14a3d63b77cdf1f53bf2b9438e2098d77332cd1a",
+      "sha": "dc8ccfd0cbb5175f3ac952abb8a4aaf519602c4b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/nextgen-english-quiz-source-20261114.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/docs/nextgen-english-quiz-source-20261114.md",
+      "bytes": 5710,
+      "sha256": "1da7f1c6d76bfeae73163cfb098a2c6f7c379c96998b992ec896b947ff79f992",
+      "sha": "93c6cfc756e8e62fca413dc7f256c32871baa09a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/games/quiz/quiz_studio.gd",
+      "bytes": 32524,
+      "sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+      "sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/learning/english_object_gallery.gd",
+      "bytes": 13988,
+      "sha256": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+      "sha": "1bc459bc88d10f48aa918014eedbb91071cd98a7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/learning/english_vocabulary.gd",
+      "bytes": 2849,
+      "sha256": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+      "sha": "fa8debed147eceea108acc98ac318ac1362cf8eb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/learning/learning_world.gd",
+      "bytes": 62477,
+      "sha256": "a6e03b3040c498a92c6475ab4bd5a85da07344ac901b0c368fd2f616224b2218",
+      "sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+      "bytes": 4378,
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+      "sha": "7624036f7e342a6d5b0c3430019c98ab13f13baf",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+      "bytes": 4718,
+      "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6",
+      "sha": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/public-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/public-state.json",
+      "bytes": 845,
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+      "sha": "0d6438f6706d875c87f82e694b22a8d0a5f96352",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+      "bytes": 4692,
+      "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42",
+      "sha": "b1e09d14f6c1b01caf6c30b89d2e12d818146031",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/tests/learning_english_regression.gd",
+      "bytes": 33455,
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "sha": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/prepared/native/scripts/tests/quiz_studio_runtime.gd",
+      "bytes": 40358,
+      "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948",
+      "sha": "623e76afd47d1cd96fcaebdebacac0a684f38f7b",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "local_validation": {
+    "checks": [
+      {
+        "name": "project-validation",
+        "exit_code": 0,
+        "errors": [],
+        "log_sha256": "4d7bceec7c22b3bd14c7d2462e9028abea5f6d5f5eb85570d492f9b145bc58d2"
+      },
+      {
+        "name": "import",
+        "exit_code": 0,
+        "errors": [],
+        "log_sha256": "2e382fd02dda3cfeb2acb162e6a2dfee66afe1ed4b59059f2866f37a9b25994a"
+      }
+    ],
+    "elapsed_seconds": 30.625,
+    "scope": "complete assembled source validation and Godot editor import, no render/Android/FPS claim"
+  },
+  "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "branch": "chatgpt/lumo-nextgen-feature-20261114",
+  "update_result": {
+    "success": true
+  }
+}
+

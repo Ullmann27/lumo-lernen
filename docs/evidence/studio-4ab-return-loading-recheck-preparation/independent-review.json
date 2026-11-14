@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T03:34:07.405162+00:00",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_FOUND_IN_READ_SCOPE",
+  "reviewer": "character_animation",
+  "source_bindings": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/scripts/recheck_studio_4ab.py",
+      "sha256": "1c9b44bec27103436fb30fedd0c3d83c680abfdd3991eb04117209daf27ad2f7",
+      "git_blob": "a27f6351463870ada08388b55758a1e94aa0f8d4"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/scripts/tests/test_studio_4ab_recheck.py",
+      "sha256": "662bf091f15a91198033c1de01f802fcf624307611a9e37960e1858fe8e1603c",
+      "git_blob": "afdb78e474ca884695599cdfb387af171efdd92c"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/.github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "sha256": "10f226a5e0d487dc551dd94f45bc0ae05ff19f542504cadcecb1708f2762459e",
+      "git_blob": "9e413d75d32b085a9d041a7344470c8a4208a6ff"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/.github/probes/creative_android_probe.py",
+      "sha256": "910f834e5e593d2800e67e928fdb10328dd6710cb2e669132fc9f4dc2fb7660b",
+      "git_blob": "05ba8c69fbbe92c0990e0e364d5fa70565edb640"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34",
+      "git_blob": "33f725e2114b4cedc43a65297232866311946d5d"
+    }
+  ],
+  "checked_baseline": "3e08c7953b84aed6fff30e9e55665de75f79ec77 QA branch; original APK 4ab96666f954baf258422d6ed277fc297b7ddeef / native803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "checks": [
+    "The entire Android API35/API37 job is structurally identical to the previous workflow, including source checkout, API37 CLI22/framework guard, original APK download/verification, permissions, original runtime gates, cleanup and always-upload.",
+    "The workflow only adds the ten explicit new source paths and local OCR/boundary checks to its preceding validation job; it does not introduce an APK build or publisher.",
+    "The binder requires the exact twenty-six-path tree delta, reviewed 100644 modes, a real clean QA checkout descending from 3e08 and a separate exact 4ab product checkout; all other tree entries must match.",
+    "The old OCR/Cards files remain equal to the actual 3e08 basis except for the two explicitly content-hashed readers. All ten new fixture/replay paths are also checked against explicit complete SHA256 values; their actual local bytes match those values.",
+    "The transferred image_lines AST equals the already independently reviewed 86445 repair, while the old QA branch leave AST remains unchanged. The surface reader bytes equal the previously reviewed patched source.",
+    "Only Expected and verify_sources differ among binder definitions. The metadata, signed APK size/hash, embedded PCK, provenance, private paths, original tour CWD, before/after binding, stale-report refusal, SDK37/Android17, and complete runtime result checks remain unchanged.",
+    "The actual 18-case binder log and source comparison report were read; the review performed only static parsing and byte/hash comparisons, not another test or Android run."
+  ],
+  "test_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/binder-contracts.log",
+    "sha256": "077881a44a3eca2a7a9701e52739c760ade4dcaed96aeaf1beab7408681abb84",
+    "reported_tests": 18,
+    "reported_skips": 0,
+    "reviewer_reran_tests": false
+  },
+  "publication_constraint": "The QA branch must contain only the exact twenty-six reviewed differences from 4ab. Evidence/review documentation belongs on the separate evidence branch; adding it here would correctly fail the binder.",
+  "limits": [
+    "No future emulator, APK runtime, OCR replay or publisher success is claimed.",
+    "The already failed 3e08 API37 run remains failed; a new runtime proof is still necessary.",
+    "No source, workflow, branch, APK, device state or CI run was modified by this reviewer."
+  ]
+}

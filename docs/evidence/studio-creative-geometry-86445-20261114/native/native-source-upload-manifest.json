@@ -1,0 +1,44 @@
+{
+  "kind": "isolated_source_patch_no_active_installation",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/creative/treasure_world.gd",
+      "path": "scripts/creative/treasure_world.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25074,
+      "sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "git_blob": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8",
+      "baseline_git_blob": "38da987abf4d152c1095a72ed1ac49ed30d9d381"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8982,
+      "sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+      "git_blob": "6e50ace998d896fd88f0006112152e490e7c64e3",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/tests/fixtures/treasure_title_86445.json",
+      "path": "scripts/tests/fixtures/treasure_title_86445.json",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 317,
+      "sha256": "29bcc428329e2a6106f0608a3f0a53060d3073ca4c1fdffa5fd809848977ce73",
+      "git_blob": "78afb5e77187170a345940059da450eed02530cf",
+      "baseline_git_blob": null
+    }
+  ],
+  "file_count": 3,
+  "bytes": 34373,
+  "product_scope": "Only existing Treasure title StyleBox; no game rules, world, save or input changes",
+  "android_tested_after_patch": false
+}

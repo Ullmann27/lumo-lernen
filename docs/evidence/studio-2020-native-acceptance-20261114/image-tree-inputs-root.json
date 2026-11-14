@@ -1,0 +1,248 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "archive_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+  "status": "thirteen_root_reviewed_original_png_blobs_confirmed",
+  "visual_reviewer": "root",
+  "upload_operator": "learning_worlds",
+  "independent_visual_review_by_upload_operator": false,
+  "image_count": 13,
+  "total_bytes": 17780990,
+  "tree": [
+    {
+      "path": "docs/evidence/studio-2020-reviewed/47932d51d210f1f3d31a1287e5c756dee1ce92de867598854ff408fcde610d75-jump-jump_690x829_touch_ascent.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ccc6453ee28b1609b04c6ff35ea66f6aeb3759a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/63b4814dbed8519b37118aa67b2a868568c57c4adb89d1b45401b5c50d489085-jump-jump_412x915_landed.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03931a0f11e0a0aefa848b03dd4d0c103aa6f1b5"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/ecc773a30d7e4ebed871d904f9e60cf83044e7fc5dbdf2bea64d338fa948ca20-build-02_build_moved.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec5f4aac32340496a8acc63808ac3e78d8376985"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/f8d620a21d16f61f7707be06e45de4396039a564400838488c1a99a4185716e8-build-build-dialog-640x360-current-goal.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a25fde800308c3bf2d747b3398a5d0413e1113a8"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/a7006ca3f7fe49c54c404ea8deec7f3580c8cfde3c818933ca38cbff0b802bed-build-build-dialog-1080x2400-templates-bottom.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ef7b843ecc0fb29f5fad89648afcf88b3b1b926"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc-settlement-06_settlement_relocation.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d1ac3ca603e3be8b6fbba0efbb7e8705a0ab2b6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe-garage-garage-1280x720.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64ccf185d0ab662789ba6607b9b2e2360500ea46"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b-garage-workshop-1080x2400-refund.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b81accdc6b88a1e975d61bbd01ec7fff65f6cc90"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/8d486b45c028da0ddda892594b0ddccb130eaa8eea450e5b35e52802176a1833-treasure-treasure_choose_route.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ab41ef818de3ef4a1c9792d10f3259392eb9092"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b-treasure-treasure-2176x1812-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65b7ada510c6a15e8cb17b58eaf3ce334ff99caf"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/289a354bd987a21b01116cff3e9776f63d7bba49f8f5c66cdc07758d2b78a94b-jump-jump-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c344242676e05a1ab34f0af756d82f58008e20f5"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/94d9fa2a55c224285c1763a78f26128d7e64a1403b6884c4fc77ace695fa17f4-build-build-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "083ff046bb27aaedf77ad4cc7442eec88dab36ec"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/55796a46c5f831803e36e8cf751719c452a7e97d1f5d7b3da0fef89d136de1dc-treasure-treasure-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "603f1642e0a50cd8ccbcde4c863ab6bb082b045b"
+    }
+  ],
+  "image_source_hashes_before_after": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "bytes": 605097,
+      "sha256_before": "47932d51d210f1f3d31a1287e5c756dee1ce92de867598854ff408fcde610d75",
+      "sha256_after": "47932d51d210f1f3d31a1287e5c756dee1ce92de867598854ff408fcde610d75",
+      "git_blob_before": "3ccc6453ee28b1609b04c6ff35ea66f6aeb3759a",
+      "git_blob_after": "3ccc6453ee28b1609b04c6ff35ea66f6aeb3759a",
+      "github_returned_git_sha": "3ccc6453ee28b1609b04c6ff35ea66f6aeb3759a",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "bytes": 473665,
+      "sha256_before": "63b4814dbed8519b37118aa67b2a868568c57c4adb89d1b45401b5c50d489085",
+      "sha256_after": "63b4814dbed8519b37118aa67b2a868568c57c4adb89d1b45401b5c50d489085",
+      "git_blob_before": "03931a0f11e0a0aefa848b03dd4d0c103aa6f1b5",
+      "git_blob_after": "03931a0f11e0a0aefa848b03dd4d0c103aa6f1b5",
+      "github_returned_git_sha": "03931a0f11e0a0aefa848b03dd4d0c103aa6f1b5",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "bytes": 1409252,
+      "sha256_before": "ecc773a30d7e4ebed871d904f9e60cf83044e7fc5dbdf2bea64d338fa948ca20",
+      "sha256_after": "ecc773a30d7e4ebed871d904f9e60cf83044e7fc5dbdf2bea64d338fa948ca20",
+      "git_blob_before": "ec5f4aac32340496a8acc63808ac3e78d8376985",
+      "git_blob_after": "ec5f4aac32340496a8acc63808ac3e78d8376985",
+      "github_returned_git_sha": "ec5f4aac32340496a8acc63808ac3e78d8376985",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 129711,
+      "sha256_before": "f8d620a21d16f61f7707be06e45de4396039a564400838488c1a99a4185716e8",
+      "sha256_after": "f8d620a21d16f61f7707be06e45de4396039a564400838488c1a99a4185716e8",
+      "git_blob_before": "a25fde800308c3bf2d747b3398a5d0413e1113a8",
+      "git_blob_after": "a25fde800308c3bf2d747b3398a5d0413e1113a8",
+      "github_returned_git_sha": "a25fde800308c3bf2d747b3398a5d0413e1113a8",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1283882,
+      "sha256_before": "a7006ca3f7fe49c54c404ea8deec7f3580c8cfde3c818933ca38cbff0b802bed",
+      "sha256_after": "a7006ca3f7fe49c54c404ea8deec7f3580c8cfde3c818933ca38cbff0b802bed",
+      "git_blob_before": "6ef7b843ecc0fb29f5fad89648afcf88b3b1b926",
+      "git_blob_after": "6ef7b843ecc0fb29f5fad89648afcf88b3b1b926",
+      "github_returned_git_sha": "6ef7b843ecc0fb29f5fad89648afcf88b3b1b926",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "bytes": 57203,
+      "sha256_before": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc",
+      "sha256_after": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc",
+      "git_blob_before": "4d1ac3ca603e3be8b6fbba0efbb7e8705a0ab2b6",
+      "git_blob_after": "4d1ac3ca603e3be8b6fbba0efbb7e8705a0ab2b6",
+      "github_returned_git_sha": "4d1ac3ca603e3be8b6fbba0efbb7e8705a0ab2b6",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "bytes": 436816,
+      "sha256_before": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+      "sha256_after": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+      "git_blob_before": "64ccf185d0ab662789ba6607b9b2e2360500ea46",
+      "git_blob_after": "64ccf185d0ab662789ba6607b9b2e2360500ea46",
+      "github_returned_git_sha": "64ccf185d0ab662789ba6607b9b2e2360500ea46",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "bytes": 864319,
+      "sha256_before": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "sha256_after": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "git_blob_before": "b81accdc6b88a1e975d61bbd01ec7fff65f6cc90",
+      "git_blob_after": "b81accdc6b88a1e975d61bbd01ec7fff65f6cc90",
+      "github_returned_git_sha": "b81accdc6b88a1e975d61bbd01ec7fff65f6cc90",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "bytes": 1290499,
+      "sha256_before": "8d486b45c028da0ddda892594b0ddccb130eaa8eea450e5b35e52802176a1833",
+      "sha256_after": "8d486b45c028da0ddda892594b0ddccb130eaa8eea450e5b35e52802176a1833",
+      "git_blob_before": "9ab41ef818de3ef4a1c9792d10f3259392eb9092",
+      "git_blob_after": "9ab41ef818de3ef4a1c9792d10f3259392eb9092",
+      "github_returned_git_sha": "9ab41ef818de3ef4a1c9792d10f3259392eb9092",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "bytes": 4254076,
+      "sha256_before": "9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b",
+      "sha256_after": "9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b",
+      "git_blob_before": "65b7ada510c6a15e8cb17b58eaf3ce334ff99caf",
+      "git_blob_after": "65b7ada510c6a15e8cb17b58eaf3ce334ff99caf",
+      "github_returned_git_sha": "65b7ada510c6a15e8cb17b58eaf3ce334ff99caf",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "bytes": 1856159,
+      "sha256_before": "289a354bd987a21b01116cff3e9776f63d7bba49f8f5c66cdc07758d2b78a94b",
+      "sha256_after": "289a354bd987a21b01116cff3e9776f63d7bba49f8f5c66cdc07758d2b78a94b",
+      "git_blob_before": "c344242676e05a1ab34f0af756d82f58008e20f5",
+      "git_blob_after": "c344242676e05a1ab34f0af756d82f58008e20f5",
+      "github_returned_git_sha": "c344242676e05a1ab34f0af756d82f58008e20f5",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "bytes": 2498517,
+      "sha256_before": "94d9fa2a55c224285c1763a78f26128d7e64a1403b6884c4fc77ace695fa17f4",
+      "sha256_after": "94d9fa2a55c224285c1763a78f26128d7e64a1403b6884c4fc77ace695fa17f4",
+      "git_blob_before": "083ff046bb27aaedf77ad4cc7442eec88dab36ec",
+      "git_blob_after": "083ff046bb27aaedf77ad4cc7442eec88dab36ec",
+      "github_returned_git_sha": "083ff046bb27aaedf77ad4cc7442eec88dab36ec",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "bytes": 2621794,
+      "sha256_before": "55796a46c5f831803e36e8cf751719c452a7e97d1f5d7b3da0fef89d136de1dc",
+      "sha256_after": "55796a46c5f831803e36e8cf751719c452a7e97d1f5d7b3da0fef89d136de1dc",
+      "git_blob_before": "603f1642e0a50cd8ccbcde4c863ab6bb082b045b",
+      "git_blob_after": "603f1642e0a50cd8ccbcde4c863ab6bb082b045b",
+      "github_returned_git_sha": "603f1642e0a50cd8ccbcde4c863ab6bb082b045b",
+      "unchanged": true
+    }
+  ],
+  "root_review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-root.json",
+    "bytes": 10914,
+    "sha256": "36dc552bf97e3b279c293815495ccaee9c70aea63480863991ce4863439811af",
+    "git_blob_sha": "34379584eb11ca9b2dde9086441dfe14d8313d98"
+  },
+  "root_post_view_binding": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/root-post-view-original-binding.json",
+    "bytes": 403,
+    "sha256": "beaece0c577325a33243412d31319f901224be05d8f5cfe05cff632b46ca61b7",
+    "git_blob_sha": "df4e575269a6b11a3a879fa4c5271e0e07eb6c6b"
+  },
+  "image_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-manifest-root.json",
+    "bytes": 13592,
+    "sha256": "fee80577b42af9904d474d52f340c5307a7b8155529a34a042edcbbb9d56588d",
+    "git_blob_sha": "b1339a6f790da74b8977717979a7238e278237ce"
+  },
+  "all_returned_git_blob_shas_exact": true,
+  "all_root_review_source_documents_unchanged": true,
+  "only_helper_derived_2020_paths": true,
+  "no_tree_commit_ref_receipt_pin_mutation": true
+}

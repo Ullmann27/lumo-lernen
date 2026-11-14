@@ -1,0 +1,17 @@
+setUpClass (test_english_lesson_speech.EnglishLessonSpeechJavaTest) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_english_lesson_speech.EnglishLessonSpeechJavaTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-english-word-audio-2e20-20261114/prepared/host/scripts/tests/test_english_lesson_speech.py", line 313, in setUpClass
+    raise AssertionError(result.stdout + result.stderr)
+AssertionError: error: release version 17 not supported
+Usage: javac <options> <source files>
+use --help for a list of possible options
+
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.267s
+
+FAILED (errors=1)

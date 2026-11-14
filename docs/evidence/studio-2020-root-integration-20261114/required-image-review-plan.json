@@ -1,0 +1,250 @@
+{
+  "schema": 1,
+  "status": "requirements only; no current images downloaded or approved",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "old_receipt_used_only_for_capture_paths": true,
+  "old_findings_not_reused": true,
+  "images": [
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "module": "learning",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "module": "learning",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "module": "learning",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "module": "learning",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "module": "jump",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "module": "jump",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "module": "build",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "module": "build",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "module": "build",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "module": "settlement",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "module": "garage",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "module": "garage",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "module": "cards",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "module": "cards",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "module": "rhythm",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "module": "treasure",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "module": "treasure",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "module": "cards",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "module": "cards",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "module": "cards",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "module": "jump",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "module": "build",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "module": "puzzle",
+      "review_owner": "games_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "module": "treasure",
+      "review_owner": "root"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "module": "connect_four",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "module": "connect_four",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "module": "connect_four",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "module": "connect_four",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "module": "learning",
+      "review_owner": "character_animation"
+    }
+  ]
+}

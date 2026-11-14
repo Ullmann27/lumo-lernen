@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "scope": "Current acf51 read-only log review, no new executions or visual approval",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/README.md",
+      "target": "docs/evidence/studio-native-acf51-review-20261114/log-review/README.md",
+      "bytes": 8331,
+      "sha256": "c6a9069c2ef71cc1ae0897f56bf17050f54328e04c7382840629311cfbf5eb17",
+      "git_blob_sha": "27cf0570dbdd9907e68d446397cc926d8eb1fb99",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/review.json",
+      "target": "docs/evidence/studio-native-acf51-review-20261114/log-review/review.json",
+      "bytes": 54253,
+      "sha256": "9e82e4eadabbe7bd98a79fdc241526fa8f00cfd9fe02f851ca23f270cd02818f",
+      "git_blob_sha": "a2608af1512c5da08bba6f658551a33fdc09f9cd",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_2014.sh.github.json",
+      "target": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_2014.sh.github.json",
+      "bytes": 3204,
+      "sha256": "b6cb0903b8de947fa070e01dd3de22b491bae233b80cb47e862fe0057679735d",
+      "git_blob_sha": "970efc04caccc7acfd2897a4696cb5ec4bb162dd",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_project.sh.github.json",
+      "target": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_project.sh.github.json",
+      "bytes": 5739,
+      "sha256": "b1acd726da5bb0ca5b5f5c8b615e283a9185cd8eef67f9cfc466bd5182b290a9",
+      "git_blob_sha": "02441b7a83a5c42a8f4f6357b8a29703d12dc869",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_technical_art.sh.github.json",
+      "target": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_technical_art.sh.github.json",
+      "bytes": 2770,
+      "sha256": "c4678ba5acf3ceeb0323fa061b520f97e219f937be57b290cb31532693fc03a1",
+      "git_blob_sha": "a8485b2de6452e8fcfb0619d23dc3411557ff5a0",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 74297
+}

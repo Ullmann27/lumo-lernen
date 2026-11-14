@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "fold-cover",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "fold-cover-render-candidate-1.png",
+      "sha256": "9d81faa0733e2b469d086c771b8967fa98a9fa80f0aaee739f730b7a2110dbb5",
+      "width": 904,
+      "height": 2316,
+      "content_entropy_bits": 7.01,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 1.033
+}

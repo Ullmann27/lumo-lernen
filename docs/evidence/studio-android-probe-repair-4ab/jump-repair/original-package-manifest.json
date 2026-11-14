@@ -1,0 +1,244 @@
+{
+  "status": "FROZEN_FOR_ROOT_CONTROLLED_INTEGRATION",
+  "baseline_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "baseline_git_blobs": {
+    ".github/probes/studio_creative_android_probe.py": "9095cb600e8d241efa7e2320d98b767f82e26f70",
+    ".github/probes/creative_android_probe.py": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+  },
+  "file_count": 28,
+  "total_bytes": 3510900,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched/.github/probes/studio_creative_android_probe.py",
+      "repository_path": ".github/probes/studio_creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 56331,
+      "sha256": "ff097e3050f52556215e547afac416340fbe401ace3528943e511e8e2b4e41b4",
+      "git_blob": "e2a093e2fe8ed31e08bb634841b63df6144cb7db"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched/.github/probes/creative_android_probe.py",
+      "repository_path": ".github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 52616,
+      "sha256": "112ddf4dad2ac5039b7203d8dcc2fa82ee91c517c6e393b5b5409211dcc50870",
+      "git_blob": "d24ed58acf25d5da221f095f056033a2b61441fc"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched/scripts/tests/test_studio_jump_orientation.py",
+      "repository_path": "scripts/tests/test_studio_jump_orientation.py",
+      "mode": "100644",
+      "bytes": 8108,
+      "sha256": "90c899c86a291e5e23c4570aa24d91fd08bac2fe5bb5e36268332ade53b6dbac",
+      "git_blob": "dea8f309418bad27a2f7c2a5e5b45de48eff55ce"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched/scripts/tests/fixtures/studio_creative_android/jump-portrait-first.png",
+      "repository_path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-first.png",
+      "mode": "100644",
+      "bytes": 1643589,
+      "sha256": "92bd76f2d0058f02f74b999ac89a3941bee23a80e6dd4808a653d5b7fcc4dc34",
+      "git_blob": "316dadda4944bd7784d2e456b1990bcf419c4940"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched/scripts/tests/fixtures/studio_creative_android/jump-portrait-second.png",
+      "repository_path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-second.png",
+      "mode": "100644",
+      "bytes": 1642110,
+      "sha256": "0d3d1d32e03384c951af53946850c0cdad19e1d130425f60efd56dc4fa56ee70",
+      "git_blob": "8b903610aa76bba9105cfda31be3f7121827b93f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched/scripts/tests/fixtures/studio_creative_android/jump-portrait-ocr.json",
+      "repository_path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-ocr.json",
+      "mode": "100644",
+      "bytes": 1496,
+      "sha256": "d315a1c0349ada7349e48ad3b9ce52de7366f9f448bfa2bea81839f639f8730a",
+      "git_blob": "7dde3a925b23b985995b03d0878bbc39ad5d9c29"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/REVIEW.md",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/REVIEW.md",
+      "mode": "100644",
+      "bytes": 5299,
+      "sha256": "ca984c8c8986461a2c781678dc57ddb17468dd1f601ddbf8fab40851082239c4",
+      "git_blob": "5d1d2aed522dd71f2c7ee899e6a231af1b1ef861"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/source-binding.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/source-binding.json",
+      "mode": "100644",
+      "bytes": 1397,
+      "sha256": "991c0a96a0cb786f821d0cdf05270adf69e5a3e6edecf6c75a98293ef4aac48f",
+      "git_blob": "22d599871240b37414ec59bbcce34155d2b0921f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/source-fetch.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/source-fetch.json",
+      "mode": "100644",
+      "bytes": 424,
+      "sha256": "64d76cf66b937f7363530871bacaa1fc174a063f62e58f313ef8cb2e89a853da",
+      "git_blob": "2c054fecd6e99cf4158c0b85715dfdccaac687a6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/scope-preservation.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/scope-preservation.json",
+      "mode": "100644",
+      "bytes": 1592,
+      "sha256": "cbb1365a6f81f6d0db82c2f75219bbab6835cdec3d8fa8d1c4aa9ced496cf456",
+      "git_blob": "42eed9ca33d7ad04382a011984b70125325e49e2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/jump-probe.patch",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/jump-probe.patch",
+      "mode": "100644",
+      "bytes": 5021,
+      "sha256": "beee45bfa66a748cbab2ba9065787ad836f60e5d145a1977a7f37ec98d10add3",
+      "git_blob": "c2918c6c5dc672c92a5f44c5514295ee0d7bbcf8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/leave-helper.patch",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/leave-helper.patch",
+      "mode": "100644",
+      "bytes": 982,
+      "sha256": "f4340bc68f08840a796c7a9e045ef1f88b5224ba0d7ffd88421d8aa9ddb8dc50",
+      "git_blob": "215813643891b849565c7dc06e095edc41988d9a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/replay_jump_orientation.py",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/replay_jump_orientation.py",
+      "mode": "100644",
+      "bytes": 6004,
+      "sha256": "5fedb729c164a59af4da6b3de3d6cec69bf7dd520b3da1ab19ec848025d2fc93",
+      "git_blob": "8d7049edc5614f51043d09ee19b8cd6abd18456d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/original-android-pause-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/original-android-pause-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 22741,
+      "sha256": "c80a10e1c861acbe11a696e0229c434ae627c290b6d284dcbca799720f681693",
+      "git_blob": "88112273c711dc68fbd0106741803135671e342d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/red-original-4ab.log",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/red-original-4ab.log",
+      "mode": "100644",
+      "bytes": 4483,
+      "sha256": "a81c8f12417aeb409a5162c11a4a73b2e79572c9bd23f7955a5db4c36113a2c6",
+      "git_blob": "0704a16443bd4f236795921e99ba7c886ceee3a7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/red-original-4ab-execution.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/red-original-4ab-execution.json",
+      "mode": "100644",
+      "bytes": 560,
+      "sha256": "0c790e8d14964448ec48d5e8afed2c3e3555726e6e36e0ad790fe1db55d33a25",
+      "git_blob": "9d8d786ef81c973d0aaeeee21c3b679889074c9f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/red-original-4ab/replay.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/red-original-4ab/replay.json",
+      "mode": "100644",
+      "bytes": 4483,
+      "sha256": "a81c8f12417aeb409a5162c11a4a73b2e79572c9bd23f7955a5db4c36113a2c6",
+      "git_blob": "0704a16443bd4f236795921e99ba7c886ceee3a7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/red-original-4ab/0001-native-pause-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/red-original-4ab/0001-native-pause-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 1956,
+      "sha256": "c27e000ab5b4b87f9ed7cba9034cf410d9f427b3587644e01d495722871c0f24",
+      "git_blob": "1c8cd5fa61231d71e3b3842eb564d59dbbe5abda"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab.log",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab.log",
+      "mode": "100644",
+      "bytes": 5546,
+      "sha256": "05d0ad87301725d05e2fba77c600818a139d7fb14340e59afd1370e826ee36c8",
+      "git_blob": "91878ed0099454196e52029830e73037da72ba28"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab-execution.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab-execution.json",
+      "mode": "100644",
+      "bytes": 561,
+      "sha256": "424cf96296cc6a972e06cac5c5389b90cd43a35e0c6214b446ad92b95e622eea",
+      "git_blob": "886916bb305f0b90eee069fa70738a87daa90477"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab/replay.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab/replay.json",
+      "mode": "100644",
+      "bytes": 5546,
+      "sha256": "05d0ad87301725d05e2fba77c600818a139d7fb14340e59afd1370e826ee36c8",
+      "git_blob": "91878ed0099454196e52029830e73037da72ba28"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab/0001-native-pause-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab/0001-native-pause-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2744,
+      "sha256": "3cbad26ed1df770752c30a0af2eaa77dbc0840ce3de843aead848122b8b7e782",
+      "git_blob": "7daad65e31600da24f1f1146b1c63ad6425caaae"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab/0001-native-pause-0-ocr.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab/0001-native-pause-0-ocr.json",
+      "mode": "100644",
+      "bytes": 7298,
+      "sha256": "7aa9e8952418a0ccdf5f8245ee573cfdef88bf954f1ebe98d6f0f685ff77f372",
+      "git_blob": "97e70d986234f460b8c0538c9f64de0a81fc6cc6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab/0001-native-pause-1-ocr.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab/0001-native-pause-1-ocr.json",
+      "mode": "100644",
+      "bytes": 7413,
+      "sha256": "f9829cb558abcfc452679eb512ec064ec25d8afa3189f8746727dda8aa15e5c5",
+      "git_blob": "86b80867bb2933b0d09fb980cacbc41f17284877"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab/0001-native-pause-0-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab/0001-native-pause-0-ocr-contrast.tsv",
+      "mode": "100644",
+      "bytes": 9701,
+      "sha256": "af0b9504f722c8570cb2fedbb5071f321705dfca69cf7b97815594e0490f11ff",
+      "git_blob": "4339cd6a4a548483ea59c8dd02ec5e673e9fe512"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab/0001-native-pause-1-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/green-responsive-4ab/0001-native-pause-1-ocr-contrast.tsv",
+      "mode": "100644",
+      "bytes": 9746,
+      "sha256": "fd9cf513944e090d5fb79e1b8cb41507f54d3d181ae9a544daeae3c2c24ad55b",
+      "git_blob": "721851d5b1a7cd106a374f72c1997b5753566691"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/contracts-green.log",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/contracts-green.log",
+      "mode": "100644",
+      "bytes": 2835,
+      "sha256": "e3b797e79f22a7d9d21e356786fd7907bf02b848fffb281888063a52037ca0e8",
+      "git_blob": "2b4ae834a697bbef40402b5e6d8dfe686045a175"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/contracts-green-execution.json",
+      "repository_path": "docs/evidence/studio-creative-jump-portrait-20261114/contracts-green-execution.json",
+      "mode": "100644",
+      "bytes": 318,
+      "sha256": "cedab0f45d84b0d67b80ae31315b082b1542f8414a61e0a9762cbed634d320d4",
+      "git_blob": "6f8e5052e776ed607a473d558482983207d124be"
+    }
+  ],
+  "integration_note": "Do not overwrite newer gold OCR helper with the complete 4ab-based helper. Apply only leave-helper.patch on a446f3c1 and verify the combined file. Combine Jump changes with independently owned Puzzle/Treasure patches; no active source changed here.",
+  "executed_checks": {
+    "live_original_frame_replay_before": "FAIL before OCR: two portrait frames rejected, no intended tap",
+    "live_original_frame_replay_after": "PASS first Pause prerequisite, two actual OCR targets, one offline intended tap",
+    "offline_contracts": "13/13 PASS (4 new + 9 existing)",
+    "android_rerun": "NOT_RUN",
+    "jump_video": "NOT_PRESENT_IN_ORIGINAL_ARTIFACT"
+  }
+}

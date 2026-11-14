@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Documentation only; prepared product/test source paths are excluded. Root owns integration. No new runtime PASS.",
+  "base_host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "file_count": 23,
+  "total_bytes": 209498,
+  "manifest_self_target": "docs/evidence/memory-native-commit-fix-28462-20261114/evidence-upload-manifest.json",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/README.md",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/README.md",
+      "bytes": 8511,
+      "sha256": "f8be682dc95391f460140c0d0a8cb66b792f79147e7cab1170df4e8fdb2ca6e7",
+      "git_blob_sha": "d720ac5a1e5dc7baaf3ce80e4f636f42a3751df3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-audit.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-audit.json",
+      "bytes": 7240,
+      "sha256": "3129ee3acd1ee75b1a33d0aa14e17729a58d9b6b73754fafe62c7b8f0405070c",
+      "git_blob_sha": "4b4b53f29fbc993edd70655a753f1a64941fc8d2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/source-upload-manifest.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/source-upload-manifest.json",
+      "bytes": 3132,
+      "sha256": "e73ce56e9604554711cf7bf11914a1f3d96635b805f8a3d7dd38d5f8e2f94399",
+      "git_blob_sha": "3270d9621112b51991fc35610c581bdf725aef16"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/source-blob-upload-proof.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/source-blob-upload-proof.json",
+      "bytes": 1603,
+      "sha256": "0c5ffb7d5b55b0a7accb6808c51d4e389a5cd78ad8287e8099180510b8de12f2",
+      "git_blob_sha": "71bd4aee101d8025f4bc7af3e19da43f919a4596"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/confirmed-source-tree-inputs.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/confirmed-source-tree-inputs.json",
+      "bytes": 516,
+      "sha256": "fe51ccaa8ebdb99a1008b184e9ae83d9f6254b6c3dd53ecb9f3a20d5828b47d3",
+      "git_blob_sha": "9904e3f43f07336f7306b9ba2de77d90299c0bd4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/planned-test-cases.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/planned-test-cases.json",
+      "bytes": 2467,
+      "sha256": "4c4d074406c624636611bf3be7b199c9a7911b2f84da2e6735adbfa0b2a803d6",
+      "git_blob_sha": "22f97d0e1528470cd5f9641c26fa134c4ac7e512"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/product-against-exact-28462.patch",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/product-against-exact-28462.patch",
+      "bytes": 7081,
+      "sha256": "7ad49ed62d8b7fc6bbec6eae2007f1abc7ca8ce25a025a02b582bcd6721941c0",
+      "git_blob_sha": "c5a3bbc2d821bece98b138534ffae0154e36b07f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/implementation-against-exact-28462.patch",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/implementation-against-exact-28462.patch",
+      "bytes": 37896,
+      "sha256": "2c06fe9fd4a4b283083e2060dc210329ed780836babddc23dbb1397be1575a14",
+      "git_blob_sha": "2a658be901b55b37a99e48e3e491ddd8d6ae9285"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/peer-review-reference.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/peer-review-reference.json",
+      "bytes": 479,
+      "sha256": "daa1eb869fbba8621b7b7169ce94a95dc2c14eaddb62c90c732d46f2b6f7575f",
+      "git_blob_sha": "c3c5d318651027570d9671269fc0de369ac9f344"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/verification/source-hashes-before-after.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/verification/source-hashes-before-after.json",
+      "bytes": 1468,
+      "sha256": "0a6e9f77ca45eeebe318fce3c62d6a0944558a78082a55d8650f54853f4324b2",
+      "git_blob_sha": "382601f569a78c71e7930b7e9419299f76f66faa"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/verification/validation-status.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/verification/validation-status.json",
+      "bytes": 1066,
+      "sha256": "9f75c2a92dd77405dcb7f18f333cc0eb1f5d764ec6c103451bc8fcf30494968f",
+      "git_blob_sha": "27e34d3a124fec74db0133afe9731987479deec5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/index.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/index.json",
+      "bytes": 7305,
+      "sha256": "f86f2f1590d5ca38d6273c75f6a3044cfcb1da0d8eff0cb18160c306f3483e8f",
+      "git_blob_sha": "f2b63998ff022bc7736551bd2822e809c9620207"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/tag-resolutions.json",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/tag-resolutions.json",
+      "bytes": 1661,
+      "sha256": "d3d45dcdfe89376d94689164de092279e7e3d30a2edacf48aa63bbed6f422c1e",
+      "git_blob_sha": "3687b6d22e65123e9e1b69f39b9168a8909d69c4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/pubspec.lock",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/host/pubspec.lock",
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob_sha": "7843602e3d858660dc52d95587983858803976a5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_round.dart",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob_sha": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_flutter_adapter.dart",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_preferences_durability_test.dart",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_android.pubspec.yaml",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_android.pubspec.yaml",
+      "bytes": 871,
+      "sha256": "dc1e3a3c64434412c0ddb32cca52ee94945feca76b2631ad185bf1c29da012b8",
+      "git_blob_sha": "36f60994a66478026cfc67f21f1cbf97602e678d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_android.dart",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_android.dart",
+      "bytes": 3719,
+      "sha256": "d1eb332c709003363d07d6171eada10df9c0e66cfb8b354f9c156e8388ea6d78",
+      "git_blob_sha": "48f57ee6b9d35430efad88ee6a112aac2ac8cfbf"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/LegacySharedPreferencesPlugin.kt",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/LegacySharedPreferencesPlugin.kt",
+      "bytes": 6824,
+      "sha256": "864b788b5491fc3b00f4ef1b2d8f629f1f5d24af4df13baf50d3b42d27cb9841",
+      "git_blob_sha": "bbdb3ecbadb51f6f1454e987be78285146751b89"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/SharedPreferencesPlugin.kt",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/SharedPreferencesPlugin.kt",
+      "bytes": 18965,
+      "sha256": "e637bce801bddbe3193f723be621712691265a851523e275f8fc293ea5b1cd3f",
+      "git_blob_sha": "31e9f236f4ac563c13f462a10ae5979fba77205b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_legacy.dart",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/flutter/shared_preferences_legacy.dart",
+      "bytes": 10990,
+      "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+      "git_blob_sha": "06d89f0010c86f640d19501c2a2a5183523b8039"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-native-commit-fix-28462-20261114/official-source-binding/aosp/SharedPreferencesImpl.java",
+      "path": "docs/evidence/memory-native-commit-fix-28462-20261114/official-source-binding/aosp/SharedPreferencesImpl.java",
+      "bytes": 30970,
+      "sha256": "a1daeb52d3211428131f08ae236709059b3c46ab8d050a59d09a935e5ca6f8cd",
+      "git_blob_sha": "a87187b8affb4a8e36bfc28191a575502e78604f"
+    }
+  ],
+  "peer_note_owner_package": "qa/memory-native-commit-peer-review-28462-20261114/upload-manifest.json",
+  "binary_files": 0,
+  "product_installation_targets": 0,
+  "source_blobs_previously_confirmed": 3
+}

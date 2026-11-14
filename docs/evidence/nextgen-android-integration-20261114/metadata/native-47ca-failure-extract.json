@@ -1,0 +1,19 @@
+{
+  "native_revision": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "workflow_run_id": 43607369276,
+  "job_id": 132491493451,
+  "outcome": "failure",
+  "test_cases": 16,
+  "failures": 1,
+  "failed_test": "test_new_workflow_preserves_all_required_jobs_and_exact_source_archive",
+  "failed_file": "tools/tests/test_nextgen_runner.py",
+  "failed_line": 770,
+  "expected_literal": "branches: [chatgpt/lumo-studio-2020-20261114]",
+  "actual_literal": "branches: [chatgpt/lumo-studio-2020-20261114, chatgpt/lumo-nextgen-feature-20261114]",
+  "actual_new_worlds_suites": "not reached",
+  "bundle_evidence": "skipped",
+  "archive_evidence": "skipped",
+  "original_log_bytes": 292054,
+  "original_log_sha256": "1a493721e0f2d772e107cd6ad99b92f77d9b99fd21ab065e5fdf18efac594912",
+  "interpretation": "The old branch-list equality contract rejects the explicitly enabled second development branch. This is a QA assertion failure; no claim that unexecuted new-worlds gameplay passed."
+}

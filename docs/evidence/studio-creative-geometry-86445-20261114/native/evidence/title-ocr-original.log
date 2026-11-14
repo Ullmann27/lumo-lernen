@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/replay_treasure_title_ocr.py", line 16, in <module>
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/creative_android_probe.py", line 40, in <module>
+    import pr207_android_ui_probe as live
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes/pr207_android_ui_probe.py", line 16, in <module>
+    import uiautomator2 as u2
+ModuleNotFoundError: No module named 'uiautomator2'

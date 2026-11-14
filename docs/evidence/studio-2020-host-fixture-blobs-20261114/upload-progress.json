@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-prospective-delta-audit-before-native-repairs.json",
+  "source_manifest_sha256": "7614821c6549da91d13d7c90c075feadc6837e47c546bd66b95ef0c31fbb7c00",
+  "scope": "Only four create_blob operations; no tree, commit, ref, or PR mutation",
+  "chunk_bytes": 32766,
+  "max_parallel_reads": 8,
+  "create_blob_calls_are_serial": true,
+  "files": [
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-loading.png",
+      "bytes": 1871144,
+      "sha256": "b6805765bf524301a036bb87207d3572e8f475164692bd0039420160c8f4cd38",
+      "expected_git_blob_sha": "487d90aa87a710acab7f30f95e8632fc7956cd3d",
+      "returned_git_blob_sha": "487d90aa87a710acab7f30f95e8632fc7956cd3d",
+      "verified_chunk_count": 58,
+      "status": "CREATED_AND_SHA_VERIFIED",
+      "recorded_utc": "2026-11-14T06:06:25.564Z"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-playing.png",
+      "bytes": 2480067,
+      "sha256": "cd4efedb88413e2de07755dce3bb99ed2440fe6de4fb075b5c9900a6ea44f7a1",
+      "expected_git_blob_sha": "12aa1d09a1baf74fcbdeacce551886a0d51b669b",
+      "returned_git_blob_sha": "12aa1d09a1baf74fcbdeacce551886a0d51b669b",
+      "verified_chunk_count": 76,
+      "status": "CREATED_AND_SHA_VERIFIED",
+      "recorded_utc": "2026-11-14T06:06:30.987Z"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/jump-portrait.png",
+      "bytes": 1634627,
+      "sha256": "8c95fc1433958c63b53727f36f4bc414d1caf2935544b1fb3cbc46036c735c07",
+      "expected_git_blob_sha": "7a90c4325d7299780800e37b40fa487fdda3862b",
+      "returned_git_blob_sha": "7a90c4325d7299780800e37b40fa487fdda3862b",
+      "verified_chunk_count": 50,
+      "status": "CREATED_AND_SHA_VERIFIED",
+      "recorded_utc": "2026-11-14T06:06:35.482Z"
+    },
+    {
+      "path": "scripts/tests/fixtures/creative_geometry_86445/puzzle-board.png",
+      "bytes": 1017338,
+      "sha256": "0ffb971f2ec18e8031cd58f9370a44e41c09fdda7c099456365e177253641eb3",
+      "expected_git_blob_sha": "24b9d5119aa6c439786c26ae249334407e2b9d3d",
+      "returned_git_blob_sha": "24b9d5119aa6c439786c26ae249334407e2b9d3d",
+      "verified_chunk_count": 32,
+      "status": "CREATED_AND_SHA_VERIFIED",
+      "recorded_utc": "2026-11-14T06:06:38.748Z"
+    }
+  ]
+}

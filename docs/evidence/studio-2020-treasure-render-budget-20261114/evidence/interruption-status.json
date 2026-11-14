@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-11-14T11:00:51.416642+00:00",
+  "status": "UNCONFIRMED",
+  "scope": "Snapshot of the already-started13-case process after explicit exec-server transport failure. No result inferred and no rerun.",
+  "original_log": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/evidence/studio-contracts-original.log",
+    "bytes": 1887,
+    "sha256": "3dafd70d55164f2ddff63db7adf9f0785f4878b57d54605f8e2ad7a17fb2573e",
+    "git_blob_sha": "84eb5c76391bd91bf244b6aa3c69f05e42ecbd68"
+  },
+  "immutable_interruption_snapshot": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-treasure-render-budget-785413-20261114/evidence/studio-contracts-interruption-snapshot.log",
+    "bytes": 1887,
+    "sha256": "3dafd70d55164f2ddff63db7adf9f0785f4878b57d54605f8e2ad7a17fb2573e",
+    "git_blob_sha": "84eb5c76391bd91bf244b6aa3c69f05e42ecbd68"
+  },
+  "execution_json_present": false,
+  "source_sha256": {
+    "tools/validate_studio.sh": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+    "tools/tests/test_nextgen_runner.py": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc"
+  },
+  "new_engine_or_android_runs": 0,
+  "git_tree_commit_ref_mutations": 0
+}

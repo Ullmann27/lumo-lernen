@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-script-recovery-20261114/original-job.log",
+      "path": "docs/evidence/studio-28462-root-review-20261114/recovery/original-job.log",
+      "bytes": 228957,
+      "sha256": "dd0a3194720a27d7213f8037dd70b3290633a61a4fd0424ff91400f885373bd0",
+      "git_blob_sha": "9d1a6654cbda04f522884d916e8480858beac817",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-script-recovery-20261114/artifact-binding.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/recovery/artifact-binding.json",
+      "bytes": 393,
+      "sha256": "f9c244857865c77635a16e4309d1242b07a6b7cce2da807dc2bf3abfdfafe682",
+      "git_blob_sha": "569609946a3f99b0373c9d275a0b47e557eaf194",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-script-recovery-20261114/originals/app-script-tests.log",
+      "path": "docs/evidence/studio-28462-root-review-20261114/recovery/originals/app-script-tests.log",
+      "bytes": 121524,
+      "sha256": "04b2dd1272bf08b2a0992df24419e83bd49bdd20e48a38a1713503834f138a86",
+      "git_blob_sha": "8368fdbf9d3d697296893baf60228ec833639b10",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-script-recovery-20261114/review.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/recovery/review.json",
+      "bytes": 1467,
+      "sha256": "051d68aad069d4133792d404eddc8cfe6d7c391e1083a4bae3fc13ef5fdf5312",
+      "git_blob_sha": "496ff94e4c744fbc65b3c7938bf6ef65202ff8c4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-script-recovery-20261114/checkout-commit-original.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/recovery/checkout-commit-original.json",
+      "bytes": 2877,
+      "sha256": "2117a7327b17175842f1d800ccf33fc9e92db21c3f7a44800ec617c60e70698f",
+      "git_blob_sha": "72d62e38295de947e98ce269f4ecb8459fba4093",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-script-recovery-20261114/run-original.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/recovery/run-original.json",
+      "bytes": 15128,
+      "sha256": "94610e4a2244f1103ed6b7db89bee7ead38931bc013f6af3eb8001ba0067002e",
+      "git_blob_sha": "cd53f1d018d15f9bf953e947e4a22211cdcd641b",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-script-recovery-20261114/jobs-original.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/recovery/jobs-original.json",
+      "bytes": 3901,
+      "sha256": "9b53a0f3971785a8387c8de29e75ba967b2e90689c701badf6e563e25b4fee96",
+      "git_blob_sha": "8498f03bb865d1729bc879daf7dc906e09545770",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/capabilities-28462-29080-20261114/FAEHIGKEITEN.md",
+      "path": "docs/evidence/studio-28462-root-review-20261114/capabilities/FAEHIGKEITEN.md",
+      "bytes": 4864,
+      "sha256": "51ebbe984c87df28d4b29d044673be771c220f64b3fbe173b44ff6614df63879",
+      "git_blob_sha": "7cda8f4c546b6ab882237d7ac0e27be715d2e841",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/capabilities-28462-29080-20261114/tool-versions.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/capabilities/tool-versions.json",
+      "bytes": 775,
+      "sha256": "ad3b34c3be76fdfcbeea4e0ad9cf48bd722445d262636ccdaaf3aa5beeb798ed",
+      "git_blob_sha": "5dd909155d0cdee309bcf1176d580aabf98670e9",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-root-review-20261114/english-ball-single-crosscheck.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/english-ball-single-crosscheck.json",
+      "bytes": 914,
+      "sha256": "f815434c108cfa5b59ec2f0f95da9681d4a25822cd8f8054d67b5f22119fa112",
+      "git_blob_sha": "5a3538abbfccfaeb756b46048519b5e69839e874",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-root-review-20261114/previous-123-evidence-commit-proof.json",
+      "path": "docs/evidence/studio-28462-root-review-20261114/previous-123-evidence-commit-proof.json",
+      "bytes": 414,
+      "sha256": "2e75cfe1aa02e5026c1c8a7f931297cfdf266385eb5ef95b1dcb5bc964373352",
+      "git_blob_sha": "32a128d03925befedbc8fc584896b4bdc79db5ee",
+      "mode": "100644"
+    }
+  ],
+  "count": 11,
+  "scope": "Actual script evidence on a test merge with the identical candidate tree; current capability checks and one corrected single-image review. No APK or device acceptance."
+}

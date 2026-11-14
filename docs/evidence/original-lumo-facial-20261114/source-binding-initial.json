@@ -1,0 +1,79 @@
+{
+  "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "files": [
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "bytes": 5156596,
+      "git_blob": "53cb01bfbd23a2962da5428a08b8aee313d5e152",
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5"
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "bytes": 196296,
+      "git_blob": "10b38ae0590626db40b24080e8a55edcb47ecf2b",
+      "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18"
+    },
+    {
+      "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+      "bytes": 1640,
+      "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+      "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 10090,
+      "git_blob": "dea775d2f26877c858bb79079a01b3b464e4d88f",
+      "sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "bytes": 4228,
+      "git_blob": "5d3a1ae763e84cb09276cafe9ba5f9541bf49447",
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "bytes": 2736,
+      "git_blob": "0f5f8f508cf6cfb6f67c8178a25e5522580a5e85",
+      "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "bytes": 5002,
+      "git_blob": "f2085dc82b9840077e631f586a4f4fb5159d7c08",
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "bytes": 2902,
+      "git_blob": "2b0c2f5b379535cbc4e54c9c1badca72c0f1bc19",
+      "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 45147,
+      "git_blob": "5ab38de47eaf8aa960423faae4fb11430f4136f4",
+      "sha256": "715e0940904ea0e4fda789a7738b89896a9c86a6cecca015834e4abc30716d95"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "bytes": 9286,
+      "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe",
+      "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a"
+    },
+    {
+      "path": "scripts/tests/lumo_teacher_pose_regression.gd",
+      "bytes": 7262,
+      "git_blob": "e04b3bd36cdaaa34ce07dd599e86bb24c5908575",
+      "sha256": "70258ad79e59dd1c7b34323bef0bc602541ab27db6202555dd80bfc5d42584b8"
+    },
+    {
+      "path": "project.godot",
+      "bytes": 1944,
+      "git_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280"
+    }
+  ],
+  "original_source_overwritten": false
+}

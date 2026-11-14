@@ -1,0 +1,606 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "parent": "20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+  "scope": "documents only: actual successful acf51 CI and blocked visual review; no Hostpin or APK approval",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/README.md",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/README.md",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/README.md",
+      "mode": "100644",
+      "bytes": 3798,
+      "sha256": "d8152caadb1ca5f321ba8aca504f9df32baa9f4533e4f6a04f03b3abf7dd9cf8",
+      "git_blob_sha": "e4584dd7ae5a99110da6a100c6f7c306b7ff160b"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/review.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/review.json",
+      "mode": "100644",
+      "bytes": 4131,
+      "sha256": "afd7a8731ea09515d50c7cec52ea4af1ef5cea26e7da4640d24631bb13c5431e",
+      "git_blob_sha": "72bd42203c96c14eda36f83502a45a1dc961a245"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/source-workflow-binding.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/source-workflow-binding.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/source-workflow-binding.json",
+      "mode": "100644",
+      "bytes": 396,
+      "sha256": "ec1663c660b90d0fb4cda28b47c8ad8373dd3ad8a70738cef36208645f698f9c",
+      "git_blob_sha": "e31a43169413c6bf98cbe6a21625d36d24e4e5ee"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/expected-job-contract.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/expected-job-contract.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/expected-job-contract.json",
+      "mode": "100644",
+      "bytes": 1803,
+      "sha256": "f03826ff774e58893349b9bde2fb5c54dcbfae4d55b8cac048ed43aa72516905",
+      "git_blob_sha": "3df68322e879e395d50320a3f769253760d081e6"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/workflow-at-acf51.yml",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/workflow-at-acf51.yml",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/workflow-at-acf51.yml",
+      "mode": "100644",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/final-run-original.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-run-original.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-run-original.json",
+      "mode": "100644",
+      "bytes": 13373,
+      "sha256": "ff0df79b15b8412b646777b68fe53de6763de924ae0ef0ac85788661c8d0f8e1",
+      "git_blob_sha": "57bde1cb00261d446277d4fa9adccfbf08d39ecb"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/final-jobs-original.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-jobs-original.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-jobs-original.json",
+      "mode": "100644",
+      "bytes": 19902,
+      "sha256": "8ba78136fe0a6b4a964436d036e6c948087e65d64589d6f86f5b9bea64ea7cc3",
+      "git_blob_sha": "373a1de415f67d76b217ecbabbad8f26f632457f"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/final-artifacts-original.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-artifacts-original.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-artifacts-original.json",
+      "mode": "100644",
+      "bytes": 5880,
+      "sha256": "b2655da4f50191ed41da98d034aba9d23a2aecc46ae1f843db3449282fe8300c",
+      "git_blob_sha": "54f93ba7ea0c9cf42d24c9f122cab5e8a27619b8"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/final-artifact-selected.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-artifact-selected.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-artifact-selected.json",
+      "mode": "100644",
+      "bytes": 815,
+      "sha256": "40c46c6e51bf149dd81fb6589d9e06e34684b81061766a598faf8b8052f4ecc0",
+      "git_blob_sha": "7d40de01c62bc14b9c2b49bb168f8bffdc08e4a4"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/final-release-original.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-release-original.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-release-original.json",
+      "mode": "100644",
+      "bytes": 7922,
+      "sha256": "129b5a50108efcba4c4e5f26316466278603cea5f03745e9b9fdf955748d17b2",
+      "git_blob_sha": "fea9c7b3e62f40e89d468f9afc78375ed71aa814"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/final-release-ref-original.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-release-ref-original.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-release-ref-original.json",
+      "mode": "100644",
+      "bytes": 567,
+      "sha256": "a5d45e339eb5b22221bcaf94f13b979b7abc19e895923778d4e85a6345afcd1c",
+      "git_blob_sha": "1b5aa76302d748cfe33194f375452d0fcd2b194b"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/final-commit-workflows-original.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-commit-workflows-original.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-commit-workflows-original.json",
+      "mode": "100644",
+      "bytes": 93859,
+      "sha256": "46594ca4468f0b72c06d55d137c0756f534147b3394d871889390a697e91fdae",
+      "git_blob_sha": "8b3063c504629ee0735f7aa1ded7494e6cdcdb46"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/archive-original-job.log",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/archive-original-job.log",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/archive-original-job.log",
+      "mode": "100644",
+      "bytes": 9649,
+      "sha256": "199d9a687bba847f29aeb2ae6107af67dba119629cd589b888d2b17ca23ee504",
+      "git_blob_sha": "3cb63b6f732ed9ed802f2a68d922325306f76edc"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "mode": "100644",
+      "bytes": 369464,
+      "sha256": "12af7f939bc5db2a9c03af0d207fb5f3a3b6bc5a0551d48319f6a0edcb7960e0",
+      "git_blob_sha": "db7cfeaae76417752f28d3472d7547edf60ca30d"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "mode": "100644",
+      "bytes": 528847,
+      "sha256": "1202bb4bdf2aedca7cb71efb6d65db1e029959cbf947c7be8b03e228105d6563",
+      "git_blob_sha": "2c8228fee5f621a1f361469df357f0ec7254f4b3"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-observation-20261114/additional-workflows/stage2-success-jobs-original.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/additional-workflows/stage2-success-jobs-original.json",
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/additional-workflows/stage2-success-jobs-original.json",
+      "mode": "100644",
+      "bytes": 6084,
+      "sha256": "f743df2e7c699d780e64c8f2e4c5a7e4f9ba79dffe21fea4049e607521094cff",
+      "git_blob_sha": "226302b28b8483ad9b93e1a96b45bad221c92e83"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/native-observation.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/evidence-upload-manifest.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/native-observation.json",
+      "mode": "100644",
+      "bytes": 7218,
+      "sha256": "c936ed6f02f4bf77927372a24adc484eb4636541d49f0b5f69edfbd58bf17430",
+      "git_blob_sha": "a97c7da3c0f2bf81363c70eb0ba7012f5c83a35c"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/selection-games_worlds.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/selection-games_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/selection-games_worlds.json",
+      "mode": "100644",
+      "bytes": 6679,
+      "sha256": "445e46222ff9ae414c3ccdf1d303499a2de80dece0b41b6d1272a7a8ee233eef",
+      "git_blob_sha": "d09bbad6eacb57feeb17834b4349ee4ec797d132"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/review-games_worlds.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/review-games_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/review-games_worlds.json",
+      "mode": "100644",
+      "bytes": 18583,
+      "sha256": "5668e040bf05882b959c4de9967bfc8c70d4909349e97fbe2656480f5f639f0e",
+      "git_blob_sha": "bbc9712971b8520c440751784852a1b73b8a8cf4"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/games-review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/games-worlds-review-upload-manifest.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/games-review.json",
+      "mode": "100644",
+      "bytes": 759,
+      "sha256": "658cccb36e7d2aa63e4b3c0be58791cd5821187e7508c3f2f70c497b6b731346",
+      "git_blob_sha": "03ad386ca033c3db4ecc19c5bc892809a7f3b39a"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-review-20261114/log-review/README.md",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/README.md",
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/README.md",
+      "mode": "100644",
+      "bytes": 8331,
+      "sha256": "c6a9069c2ef71cc1ae0897f56bf17050f54328e04c7382840629311cfbf5eb17",
+      "git_blob_sha": "27cf0570dbdd9907e68d446397cc926d8eb1fb99"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-review-20261114/log-review/review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/review.json",
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/review.json",
+      "mode": "100644",
+      "bytes": 54253,
+      "sha256": "9e82e4eadabbe7bd98a79fdc241526fa8f00cfd9fe02f851ca23f270cd02818f",
+      "git_blob_sha": "a2608af1512c5da08bba6f658551a33fdc09f9cd"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_2014.sh.github.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_2014.sh.github.json",
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_2014.sh.github.json",
+      "mode": "100644",
+      "bytes": 3204,
+      "sha256": "b6cb0903b8de947fa070e01dd3de22b491bae233b80cb47e862fe0057679735d",
+      "git_blob_sha": "970efc04caccc7acfd2897a4696cb5ec4bb162dd"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_project.sh.github.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_project.sh.github.json",
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_project.sh.github.json",
+      "mode": "100644",
+      "bytes": 5739,
+      "sha256": "b1acd726da5bb0ca5b5f5c8b615e283a9185cd8eef67f9cfc466bd5182b290a9",
+      "git_blob_sha": "02441b7a83a5c42a8f4f6357b8a29703d12dc869"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_technical_art.sh.github.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_technical_art.sh.github.json",
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_technical_art.sh.github.json",
+      "mode": "100644",
+      "bytes": 2770,
+      "sha256": "c4678ba5acf3ceeb0323fa061b520f97e219f937be57b290cb31532693fc03a1",
+      "git_blob_sha": "a8485b2de6452e8fcfb0619d23dc3411557ff5a0"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/log-review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/upload-manifest.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/log-review.json",
+      "mode": "100644",
+      "bytes": 2393,
+      "sha256": "3a10fe57fbd7c8ab21182562f1e018a930ea278904279b8d883b69ef7453ae8b",
+      "git_blob_sha": "cbde4222bda7cfd6f8933a1c0315635c97038a9c"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-selected-byte-check.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/learning-worlds-selected-byte-check.json",
+      "path": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-selected-byte-check.json",
+      "mode": "100644",
+      "bytes": 6126,
+      "sha256": "1263e4dd1b419106f761ed519cec9e9149ca9e47ca27c9069841bd3a2d853dd6",
+      "git_blob_sha": "3833df2f431b3a8dbd6388a06756e6a37cbfa51a"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/selection-learning_worlds.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/selection-learning_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/selection-learning_worlds.json",
+      "mode": "100644",
+      "bytes": 4619,
+      "sha256": "9efaa494b4f14c198f6293ddf6e8089c19bdd6eac0e85b7915a05d43ae2afd8e",
+      "git_blob_sha": "55229a9052230773ceebb9ab266c092bf42eb1f3"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-image-review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/learning-worlds-image-review.json",
+      "path": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-image-review.json",
+      "mode": "100644",
+      "bytes": 14806,
+      "sha256": "e33e43a7efb66ab5223d65bcffc8d9cd1f7d5780e342be4777a33cd796de24ae",
+      "git_blob_sha": "d42ec60fa1a3c977c8d66820781505085b889da3"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/learning-review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/learning-worlds-image-review-upload-manifest.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/learning-review.json",
+      "mode": "100644",
+      "bytes": 1559,
+      "sha256": "d87c555f4d3c5e6816b704e89b0ec57daf5fe882336c7459f24b9d044268c59c",
+      "git_blob_sha": "f8d385bd35cc2eeee098cb2a05cf157a2dc856ef"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/selection-character_animation.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/selection-character_animation.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/selection-character_animation.json",
+      "mode": "100644",
+      "bytes": 5422,
+      "sha256": "c6448513856d377722d6313a91f3358ff64414a5b3df43116d5e086ddd7a4af5",
+      "git_blob_sha": "43deb9c483273776ff451b1cd1dcfc0afabca93c"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/review-character_animation.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/review-character_animation.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/review-character_animation.json",
+      "mode": "100644",
+      "bytes": 26372,
+      "sha256": "39141d394bee9fa34de20516348f9e06aeaa780eaf629f9758a194b280499dcb",
+      "git_blob_sha": "f92404f3127bcf822e5a43e06e6fe55616218d80"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/decode-result.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/decode-result.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/decode-result.json",
+      "mode": "100644",
+      "bytes": 6999,
+      "sha256": "4b8d14320037a665af36a9b7a779fb9015a3a7b21a42d9032a24bce9ce8d43b3",
+      "git_blob_sha": "ffaf4f3ae2b0e674ac6f619c78053fac76657902"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-decode-stderr.log",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-decode-stderr.log",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-decode-stderr.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-001-012.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-001-012.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-001-012.png",
+      "mode": "100644",
+      "bytes": 213523,
+      "sha256": "b91e675445835e6964afbb2b07478acda0b26362219c6b909a14570c43d23818",
+      "git_blob_sha": "a6f0be7995e4f5deb8f8955abfc06090ed2f579b"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-013-024.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-013-024.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-013-024.png",
+      "mode": "100644",
+      "bytes": 192181,
+      "sha256": "e3518873b86312fc6d716078eff0d5a5412b75b6a0940ce86f7f2de601a72a8d",
+      "git_blob_sha": "10abe8b9c992618cbf1b97b4a6df7865840580b8"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-025-036.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-025-036.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-025-036.png",
+      "mode": "100644",
+      "bytes": 586807,
+      "sha256": "c393e9d3cab494cedeba83a5909a5c064538503f6aadd2c3c27f387d92944a63",
+      "git_blob_sha": "b47c2a38b263ae81c3c4f57ab318114645b124d9"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-037-048.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-037-048.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-037-048.png",
+      "mode": "100644",
+      "bytes": 595145,
+      "sha256": "365bfa0671fca7c908e291b94fb0e9a3b32fca76928d1b9f20c076e77d7bfc6a",
+      "git_blob_sha": "2319ff39825caac190bec96079eba100d19b792c"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-049-060.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-049-060.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-049-060.png",
+      "mode": "100644",
+      "bytes": 601600,
+      "sha256": "32a7bc34496b59e24e88122a436027290759604fff1b448c77569efc8e68205d",
+      "git_blob_sha": "dda192e1c3b713cc13a526609e710eaf972046df"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-061-072.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-061-072.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-061-072.png",
+      "mode": "100644",
+      "bytes": 602380,
+      "sha256": "75adf0ee389392216e62e52a5efee337cee7d83f0ec65957865151d67e128544",
+      "git_blob_sha": "f072f45a57544f72af348c18b530281f41d69e24"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-073-084.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-073-084.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-073-084.png",
+      "mode": "100644",
+      "bytes": 572182,
+      "sha256": "d21210120fd5183c8702db3948047902db39d0a52add83d0b94993cc21bde903",
+      "git_blob_sha": "05cc4fe135c10a528be657b9693fe6164f648bbc"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-085-096.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-085-096.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-085-096.png",
+      "mode": "100644",
+      "bytes": 590037,
+      "sha256": "7b81ea81393fc882b8659a1266bf3f6d734cee91894b4a6c5c3e17ef2082f267",
+      "git_blob_sha": "7c7e98b793f3d2fc6dd2bdc506e06c9fec6c0f92"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-097-108.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-097-108.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-097-108.png",
+      "mode": "100644",
+      "bytes": 588387,
+      "sha256": "fde5e0681e082d098b4fad6a53b1856cc7ea99cd12f14ad0f3699a3ed2346426",
+      "git_blob_sha": "e0cb8c044af8a381527d650521638ff8d5f3598a"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-109-120.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-109-120.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-109-120.png",
+      "mode": "100644",
+      "bytes": 563626,
+      "sha256": "63d9ccdf60d5e16c4ff3dd2694b388723ff17234c4dfedb0989960644bfa2b4c",
+      "git_blob_sha": "b77f373317c0d8291e99a3c48585933f1ea6edbc"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-121-132.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-121-132.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-121-132.png",
+      "mode": "100644",
+      "bytes": 582743,
+      "sha256": "41546306ac4acc3d84d387f36606fd23012d80a88b787abc3fd3a1094a147152",
+      "git_blob_sha": "1d03894ff802cbf67d447977bfb405f9e0ffafec"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-133-144.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-133-144.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-133-144.png",
+      "mode": "100644",
+      "bytes": 584249,
+      "sha256": "cfb20a1d796ca2a4ffe77698690023dc11acf22e571e35450821db9950302428",
+      "git_blob_sha": "bfc4029aa33ce40e0eb10cd421f847ee1524732d"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-145-148.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-145-148.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-145-148.png",
+      "mode": "100644",
+      "bytes": 64066,
+      "sha256": "5dbf1304da95bd07c8721652af1598c97abd8388e222e65cb59605fa205a540f",
+      "git_blob_sha": "46d9cad74f090b0fe9a543af9f8bad3090247cf4"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-015.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-frame-015.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-015.png",
+      "mode": "100644",
+      "bytes": 266542,
+      "sha256": "12c5b12698a3216921d52f7613fba29a1002ac94e664cb19438df9ad0dd61602",
+      "git_blob_sha": "e3aedbda4f0e6d8f429641bca4496271e2277e95"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-019.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-frame-019.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-019.png",
+      "mode": "100644",
+      "bytes": 266917,
+      "sha256": "ed5e900168c8d35d58a9be4776907a19de8c9bb18548285f24726ae16c3b5b52",
+      "git_blob_sha": "876b6426688950f04f25a2016102871730dbe145"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/character-review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/character-animation-review-upload-manifest.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/character-review.json",
+      "mode": "100644",
+      "bytes": 9556,
+      "sha256": "05d82d43c0d9ac6a260f8d01d0741b27ed2e70c621d54324f648219372364c75",
+      "git_blob_sha": "6daf2931bd327d8501c6ea11a715e6a9de921b12"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/native-run.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/native-run.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-run.json",
+      "mode": "100644",
+      "bytes": 14919,
+      "sha256": "36968671b314c746e074eb34bf07e7b82938bb13657cdfec4b433fd8b00282e9",
+      "git_blob_sha": "f9b2bf0994555c0101241adb0a10e40e56f4b14a"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/native-jobs.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/native-jobs.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-jobs.json",
+      "mode": "100644",
+      "bytes": 27718,
+      "sha256": "37ff6240ab8e890d4c14d30e2205ad643c3c2f807c45d7a3d7fef128b08f91de",
+      "git_blob_sha": "596e0e9f2d92980930a012e5e07147db89281786"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/native-artifact.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/native-artifact.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-artifact.json",
+      "mode": "100644",
+      "bytes": 815,
+      "sha256": "40c46c6e51bf149dd81fb6589d9e06e34684b81061766a598faf8b8052f4ecc0",
+      "git_blob_sha": "7d40de01c62bc14b9c2b49bb168f8bffdc08e4a4"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/native-artifacts.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/native-artifacts.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-artifacts.json",
+      "mode": "100644",
+      "bytes": 7197,
+      "sha256": "9c2d050b2aa4fde7becd02eabd4b8781cde76cbea214b86a6e6cd885142e0db0",
+      "git_blob_sha": "a17019bbfd5450cf640a6037029e5de0539ed804"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/native-release.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/native-release.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-release.json",
+      "mode": "100644",
+      "bytes": 9081,
+      "sha256": "175497cb610056b59bbc496f1d110fc2c9c5ef83c77bbd356b6a24103bbb877e",
+      "git_blob_sha": "10dc8e977c4fc63b004a3b2d92173e4dd9c25f61"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/required-image-review-plan.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/required-image-review-plan.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/required-image-review-plan.json",
+      "mode": "100644",
+      "bytes": 9128,
+      "sha256": "8acb74cfa4bd5c0572fb692ead980b70090dbf37afbad9a3438d24cff958c181",
+      "git_blob_sha": "4140b3042d5b224403a40fbf21ba9c9f6edd463b"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/verified-original-extraction.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/verified-original-extraction.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/verified-original-extraction.json",
+      "mode": "100644",
+      "bytes": 29784,
+      "sha256": "faff9fcf4c6974fa4ab1229e5b870ba3358519d6dfa29568fdceead9a9813608",
+      "git_blob_sha": "489fb650c26e57d2997d73b8d195ca4a9c6b9ab8"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/extraction-first-setup-failure.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/extraction-first-setup-failure.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/extraction-first-setup-failure.json",
+      "mode": "100644",
+      "bytes": 451,
+      "sha256": "453ae7e39740e700fdc9587fca66bf261946efafd7596896589b638b44a94f86",
+      "git_blob_sha": "bbb4e9d3f8334ce065afb2d896d17d51d0f7af73"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/selection-root.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/selection-root.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/selection-root.json",
+      "mode": "100644",
+      "bytes": 8782,
+      "sha256": "28465a6ded9eab20a5b2cfa13020f86eb613c4d08f5dfa91f7ddb98361412193",
+      "git_blob_sha": "d48e3b9c34c5b4710c9ef06a82a81551da50a6fe"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/root-visual-review.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/root-visual-review.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/root-visual-review.json",
+      "mode": "100644",
+      "bytes": 14776,
+      "sha256": "c157d12e9218ea087da90d713809788719ff328a1c78effa9a3ea2635117774c",
+      "git_blob_sha": "0c46137f9b4e7cb42820f27b31b04dc08ba27c95"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/blocked-originals/treasure-landscape-cutout-original.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/blocked-originals/treasure-landscape-cutout-original.png",
+      "mode": "100644",
+      "bytes": 2660787,
+      "sha256": "4990f7b0c4e364b1a4894d4598391dc459da61efe2624c2bbf03b556b4142818",
+      "git_blob_sha": "5d956ff6e3def794654c45a67bf2ec2cac2ae7a9"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/blocked-originals/treasure-compact-original.png",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/blocked-originals/treasure-compact-original.png",
+      "mode": "100644",
+      "bytes": 317873,
+      "sha256": "e28aaa78f26bcb99d7fcb2aa3f31eaf320be6fa5eb1da981199b2e9e126bd5f4",
+      "git_blob_sha": "a2826e3259450d9eb230cc54d877f135686eb98c"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/previous-555-github-checkpoint.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/github-555-commit-checkpoint.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/previous-555-github-checkpoint.json",
+      "mode": "100644",
+      "bytes": 8917,
+      "sha256": "84be3ffcacf2297681c9911b92a38612b5aa3c0f174965191f1478d212a6f94a",
+      "git_blob_sha": "82dd03ebf388a4c540cc6ddd77be9609df09cb82"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/module-scope-verified-tree-input.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/verified-tree-entry-input.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/module-scope-verified-tree-input.json",
+      "mode": "100644",
+      "bytes": 1209,
+      "sha256": "f7b793e4af397f30fe4b91ee00e0a7a36e4946ddf88aa6e7ef014146c3571d17",
+      "git_blob_sha": "e461fc1fe03ab8ae6bc2c6c075029ff45818dece"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/module-scope-blob-upload-proof.json",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/blob-upload-proof.json",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/module-scope-blob-upload-proof.json",
+      "mode": "100644",
+      "bytes": 5957,
+      "sha256": "3fbc2019ee37c270b1e9f6e8a94d1fb2de9c34351791844ad71b53a79b14ae41",
+      "git_blob_sha": "33102556983a802f65e60a9beda9dc886ec7ac31"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/frozen/docs/evidence/studio-2020-acf51-review-root-20261114/README.md",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-acf51-review-evidence-20261114/README.md",
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/README.md",
+      "mode": "100644",
+      "bytes": 4207,
+      "sha256": "3d3b4defd98a15f4d539e35a2037143098b59d2f06dd002eaec9868f4191569c",
+      "git_blob_sha": "f582218c703c8217a0553882e2b9de4dd7642827"
+    }
+  ],
+  "file_count": 66,
+  "bytes": 11263636,
+  "additional_preuploaded_module_scope_files": 6
+}

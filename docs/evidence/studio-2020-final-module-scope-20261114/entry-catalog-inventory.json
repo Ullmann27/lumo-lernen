@@ -1,0 +1,214 @@
+{
+  "scope": "Parsed source route/catalog inventory, not an executed app tour",
+  "main_portals": [
+    {
+      "identity": "memory",
+      "title": "Memory",
+      "semanticTitle": "Memory",
+      "target": "LumoMemoryScreen",
+      "targetDescription": "Flutter Memory-Spiel",
+      "native_direct": false
+    },
+    {
+      "identity": "cards",
+      "title": "Cards",
+      "semanticTitle": "Lumo Cards",
+      "target": "LumoCardsShowcaseScreen",
+      "targetDescription": "Flutter Lumo Cards (nie Sternenpfad)",
+      "native_direct": false
+    },
+    {
+      "identity": "puzzle",
+      "title": "Puzzle",
+      "semanticTitle": "Puzzle",
+      "target": "puzzle",
+      "targetDescription": "Godot Puzzle-Atelier (launch3D scene=puzzle)",
+      "native_direct": true
+    },
+    {
+      "identity": "jumpRun",
+      "title": "Jump & Run",
+      "semanticTitle": "Jump & Run",
+      "target": "jump",
+      "targetDescription": "Godot Wolkeninseln (launch3D scene=jump)",
+      "native_direct": true
+    },
+    {
+      "identity": "rhythm",
+      "title": "Rhythm",
+      "semanticTitle": "Rhythm Party",
+      "target": "rhythm",
+      "targetDescription": "Godot Rhythm Party (launch3D scene=rhythm)",
+      "native_direct": true
+    },
+    {
+      "identity": "treasure",
+      "title": "Schatzsuche",
+      "semanticTitle": "Schatzsuche",
+      "target": "treasure",
+      "targetDescription": "Godot Schatzsuche (launch3D scene=treasure)",
+      "native_direct": true
+    },
+    {
+      "identity": "build",
+      "title": "Bauwelt",
+      "semanticTitle": "Bauwelt",
+      "target": "build",
+      "targetDescription": "Godot Bauwelt (launch3D scene=build)",
+      "native_direct": true
+    },
+    {
+      "identity": "kart",
+      "title": "Lumo Kart",
+      "semanticTitle": "Lumo Kart",
+      "target": "kart",
+      "targetDescription": "Godot Lumo Kart (launch3D scene=kart)",
+      "native_direct": true
+    },
+    {
+      "identity": "connectFour",
+      "title": "4 Gewinnt",
+      "semanticTitle": "Lumo 4 Gewinnt",
+      "target": "LumoConnectFourScreen",
+      "targetDescription": "Flutter 4 Gewinnt",
+      "native_direct": false
+    },
+    {
+      "identity": "quizShow",
+      "title": "Quizshow",
+      "semanticTitle": "Wer wird Lumo-Meister?",
+      "target": "QuizShowContent",
+      "targetDescription": "Flutter Wer wird Lumo-Meister?",
+      "native_direct": false
+    }
+  ],
+  "registered_academy_topics": [
+    {
+      "topic_id": "m1_plus10",
+      "widget": "PlusBis10Screen"
+    },
+    {
+      "topic_id": "m1_minus10",
+      "widget": "MinusBis10Screen"
+    },
+    {
+      "topic_id": "m1_zahlen10",
+      "widget": "ZahlenBis10Screen"
+    },
+    {
+      "topic_id": "m1_formen",
+      "widget": "FormenScreen"
+    },
+    {
+      "topic_id": "s1_tiere",
+      "widget": "TiereScreen"
+    },
+    {
+      "topic_id": "s1_farben",
+      "widget": "FarbenScreen"
+    },
+    {
+      "topic_id": "m2_uhr",
+      "widget": "UhrLernenScreen"
+    },
+    {
+      "topic_id": "m2_geld",
+      "widget": "GeldScreen"
+    },
+    {
+      "topic_id": "m2_zahlen100",
+      "widget": "ZahlenBis100Screen"
+    },
+    {
+      "topic_id": "d2_artikel",
+      "widget": "ArtikelLernenScreen"
+    },
+    {
+      "topic_id": "d2_mehrzahl",
+      "widget": "MehrzahlScreen"
+    },
+    {
+      "topic_id": "s2_jahreszeiten",
+      "widget": "JahreszeitenScreen"
+    },
+    {
+      "topic_id": "s2_wetter",
+      "widget": "WetterScreen"
+    },
+    {
+      "topic_id": "s2_verkehr",
+      "widget": "VerkehrScreen"
+    },
+    {
+      "topic_id": "d3_wortarten",
+      "widget": "WortartenScreen"
+    },
+    {
+      "topic_id": "d3_zeitformen",
+      "widget": "ZeitformenScreen"
+    },
+    {
+      "topic_id": "d1_woerter",
+      "widget": "WortDiktatScreen"
+    },
+    {
+      "topic_id": "m2_einmaleins",
+      "widget": "EinmaleinsScreen"
+    },
+    {
+      "topic_id": "m3_einmaleins_voll",
+      "widget": "EinmaleinsScreen"
+    },
+    {
+      "topic_id": "m4_bruch",
+      "widget": "BruchrechnenScreen"
+    }
+  ],
+  "learning_lab_topics": [
+    {
+      "id": "bridge",
+      "title": "Die Zehnerbrücke",
+      "subject": "Mathematik",
+      "unit": "Plus bis 20",
+      "minimum_grade": 1
+    },
+    {
+      "id": "words",
+      "title": "Die Wortwerkstatt",
+      "subject": "Deutsch",
+      "unit": "Silben",
+      "minimum_grade": 1
+    },
+    {
+      "id": "english",
+      "title": "Lumos kleine English-Welt",
+      "subject": "Englisch",
+      "unit": "Alltagswörter",
+      "minimum_grade": 2
+    },
+    {
+      "id": "nature",
+      "title": "Der Weg des Wassers",
+      "subject": "Sachunterricht",
+      "unit": "Pflanzen",
+      "minimum_grade": 1
+    },
+    {
+      "id": "fractions",
+      "title": "Das Bruchatelier",
+      "subject": "Mathematik",
+      "unit": "Brüche",
+      "minimum_grade": 4
+    }
+  ],
+  "extra_level_types": [
+    "starsPath",
+    "numberHouse",
+    "numberPath",
+    "wordForest",
+    "mixedQuiz",
+    "colorBoxes",
+    "letterFill"
+  ],
+  "c4_2020_change": "Same LumoConnectFourScreen route; Android native scene connect_four is opened by the staged widget after creating its owned session; existing Flutter board is fallback."
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+    "original": "qa/studio-final-4ab96666/api35/selected-originals/nextgen/learning-move-1-0.png",
+    "bytes": 557393,
+    "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+    "byte_equal_to_original_archive": true,
+    "original_artifact_id": 14090824265,
+    "original_zip_sha256": "a8ef0dbf1fa44ec6bde2fdd4107067a8b842f4dd17651808bffa65bd8aaa5b7e"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+    "original": "qa/studio-final-4ab96666/api35/selected-originals/nextgen/learning-move-1-7.png",
+    "bytes": 556055,
+    "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+    "byte_equal_to_original_archive": true,
+    "original_artifact_id": 14090824265,
+    "original_zip_sha256": "a8ef0dbf1fa44ec6bde2fdd4107067a8b842f4dd17651808bffa65bd8aaa5b7e"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+    "original": "qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-0.png",
+    "bytes": 555537,
+    "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+    "byte_equal_to_original_archive": true,
+    "original_artifact_id": 14090694722,
+    "original_zip_sha256": "b5b6e08f0cfb1776556b2ae9a7f533698ccff6f32204b91d352ee16f04443549"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+    "original": "qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-6.png",
+    "bytes": 556003,
+    "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+    "byte_equal_to_original_archive": true,
+    "original_artifact_id": 14090694722,
+    "original_zip_sha256": "b5b6e08f0cfb1776556b2ae9a7f533698ccff6f32204b91d352ee16f04443549"
+  }
+]

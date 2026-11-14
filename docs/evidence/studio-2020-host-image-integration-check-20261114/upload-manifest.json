@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "scope": "Two new docs only, no upload performed by this integration check.",
+  "files": [
+    {
+      "path": "docs/evidence/studio-2020-host-image-integration-check-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-image-integration-check-20261114/review.json",
+      "bytes": 42484,
+      "sha256": "199a495e0434c823a0fbe6bcfcf78aa3d10ccd6e89290c1b33c75a8a50043e49",
+      "git_blob_sha": "85be71d660157515bf5943f86e11d5ebb214c3f7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-image-integration-check-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-image-integration-check-20261114/README.md",
+      "bytes": 2114,
+      "sha256": "e4275d20c01acdb1170826312ba09284a4e62c01a3cb0e11c2a830c535e263a4",
+      "git_blob_sha": "47b4832e9147698212595bc985a0117043550db6",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 2,
+  "total_bytes": 44598
+}

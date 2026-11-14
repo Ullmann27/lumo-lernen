@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14 20:30:18 UTC",
+  "status": "READ_ONLY_REVIEW_NO_ADDITIONAL_CONCRETE_BLOCKER",
+  "base_commit": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "source_manifest": {
+    "path": "qa/studio-c4-hub-caption-8e64-20261114/source-upload-manifest.json",
+    "bytes": 2792,
+    "sha256": "6ed6e4dbea0fbaa6c845b4636918dd1246fa9ba1c5076f6a710a140366efde6a",
+    "git_blob_sha": "bef41af08f05dac297652c061fa8014dfcd2ca6d"
+  },
+  "sources": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 41289,
+      "sha256": "514451ce71c0e870ab2d708d6a88c031838d5b0541f9392fb2eee2ab747ca11b",
+      "git_blob_sha": "325d2058bb23e1b27dfb866cdfe4d9b59041bc15",
+      "baseline_blob": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e"
+    },
+    {
+      "path": "scripts/tests/test_studio_c4_navigation.py",
+      "bytes": 11957,
+      "sha256": "fe30aeef4a26d3cf7b624c084b92c40e87362ea85439679efdd4002f356c1286",
+      "git_blob_sha": "559adba1623955d37f1deb53d4d2eb13601abb40",
+      "baseline_blob": "73f7b88fc567dbeb3b3cc72ad3832d7a60219012"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml",
+      "bytes": 25229,
+      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+      "git_blob_sha": "0e3ea3a4002c8421176e85e36b75b710309ecdab",
+      "baseline_blob": null
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "git_blob_sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "baseline_blob": null
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-provenance.json",
+      "bytes": 1934,
+      "sha256": "6aeae2eb7c790ec6f6971838235052b1f3e006757acc6f708b6d0bf167fffa14",
+      "git_blob_sha": "bcad1302a7f8a3c6a28e33d5fdf133712dc6781a",
+      "baseline_blob": null
+    }
+  ],
+  "original_failure_binding": {
+    "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "run_id": 43626348519,
+    "job_id": 132563694518,
+    "artifact_id": 14130101135,
+    "archive_api_bytes": 196404454,
+    "archive_api_sha256": "bfddd9c10504e2271a8b785bd3a46aef4ec76c3fab80bdd2dadea6162ea58e0b",
+    "whole_archive_sha256_verified_by_reviewer": false,
+    "whole_archive_crc_verified_by_reviewer": false,
+    "original_xml_comparisons": [
+      {
+        "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml",
+        "artifact_entry": "connect-four/0003-actual-flutter-navigation-confirmed.xml",
+        "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+        "bytes": 25229,
+        "crc32": "c81485db",
+        "exact_original_equal": true,
+        "observed_c4_nodes": []
+      },
+      {
+        "path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml",
+        "artifact_entry": "connect-four/0006-actual-c4-hub.xml",
+        "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+        "bytes": 24720,
+        "crc32": "ed9876f5",
+        "exact_original_equal": true,
+        "observed_c4_nodes": [
+          {
+            "index": "5",
+            "text": "",
+            "resource-id": "",
+            "class": "android.widget.Button",
+            "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+            "content-desc": "Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen",
+            "checkable": "false",
+            "checked": "false",
+            "clickable": "true",
+            "enabled": "true",
+            "focusable": "true",
+            "focused": "false",
+            "scrollable": "false",
+            "long-clickable": "false",
+            "password": "false",
+            "selected": "false",
+            "visible-to-user": "true",
+            "bounds": "[42,1072][524,1536]",
+            "drawing-order": "0",
+            "hint": "",
+            "display-id": "0"
+          }
+        ]
+      }
+    ],
+    "images_opened_by_reviewer": 0
+  },
+  "source_verification": {
+    "fresh_pinned_remote_baselines_match_local": [
+      ".github/probes/lumo_connect_four_android_probe.py",
+      "scripts/tests/test_studio_c4_navigation.py",
+      ".github/probes/studio_creative_android_probe.py"
+    ],
+    "actual_hub_selector_sha256": "2bf513aa1486e54a3da1e512ba66ab87c0fc4510705dfcbb92d36bd5f34d0de8",
+    "actual_hub_selector_git_blob_sha": "f83ef1b958f25d188042d18605b888bddf7605c6",
+    "changed_definitions": [
+      "AndroidProbe.navigate"
+    ],
+    "other_definitions_byte_identical": 37,
+    "inverse_full_probe_byte_equal": true,
+    "initial_30s_phase_byte_equal": true,
+    "old_test_definitions_byte_equal": [
+      "nodes",
+      "CurrentFlutterNavigation.target",
+      "CurrentFlutterNavigation.test_both_original_paused_cards_pages_require_their_visible_exit",
+      "CurrentFlutterNavigation.test_both_actual_failure_pages_require_showcase_back_instead_of_hidden_tabs",
+      "CurrentFlutterNavigation.test_original_home_and_hub_are_distinct_current_routes",
+      "CurrentFlutterNavigation.test_hidden_disabled_foreign_and_undersized_back_controls_cannot_pass",
+      "CurrentFlutterNavigation.test_ambiguous_target_and_unknown_page_are_rejected"
+    ],
+    "defined_test_methods": 11
+  },
+  "findings": [
+    {
+      "area": "Actual caption",
+      "finding": "The current original XML contains exactly one enabled clickable application Button with the caption 'Lumo 4 Gewinnt. Vier in einer Reihe · gegen Lumo oder zu zweit Spielen' and bounds [42,1072,524,1536]. The unchanged helper requires the supplied exact title prefix plus '. ' and the status suffix ' Spielen'. The previous 'Vier gewinnt' title cannot select this node.",
+      "blocking_issue": false
+    },
+    {
+      "area": "Fresh observation before input",
+      "finding": "Each search attempt checks MainActivity, reads XML, captures the real screen, then reads XML again. Both actual selector results must match. Before the eventual tap/scroll, MainActivity is checked again. A changed target consumes an existing finite attempt and performs no input.",
+      "blocking_issue": false
+    },
+    {
+      "area": "Scroll evidence",
+      "finding": "When no tile is selected, both filtered scroll-viewport lists must match. The actual viewport still supplies the same gesture coordinates. The journal starts adb_completed=false, and only changes to true after the existing checked ADB call returns. A failed call propagates and leaves the attempted gesture unconfirmed.",
+      "blocking_issue": false
+    },
+    {
+      "area": "Unchanged gameplay and binding gates",
+      "finding": "The independent full-text inverse confirms that only the title constant and AndroidProbe.navigate change. APK/PCK/source binding, actual native process and foreground, state/layout/pixel checks, saves, ACKs, pause/home/return/profile gates are outside the changed definition and byte-identical.",
+      "blocking_issue": false
+    },
+    {
+      "area": "Meaningful regression scope",
+      "finding": "Six added cases use the actual production hub selector with the two byte-identical original XML fixtures. They cover the prior wrong title, successful scroll-to-visible selection, changed target, changed foreground, failed swipe, and changed viewport. Transport and image-size calls are explicitly doubled; no synthetic screenshot is claimed as Android or OCR evidence.",
+      "blocking_issue": false
+    }
+  ],
+  "unchanged_limits": {
+    "initial_navigation_seconds": 30,
+    "directions": [
+      1,
+      -1
+    ],
+    "attempts_per_direction": 11,
+    "swipe_duration_ms": 450,
+    "post_swipe_sleep_seconds": 0.6,
+    "minimum_target_dp": 48,
+    "no_configured_timeout_increase": true,
+    "search_boundary": "The existing subsequent tile search is bounded by two directions and eleven attempts, not by the preceding 30-second deadline. Additional validation reads retain those iteration and command bounds; this review does not claim a new global 30-second limit."
+  },
+  "existing_executions_read_only": {
+    "execution_record_path": "qa/studio-c4-hub-caption-8e64-20261114/evidence/execution-final.json",
+    "execution_record_sha256": "0d762f584cfc3506d75eb3f8774594efcec41aaf6b476b7844998d1b007d97e0",
+    "boundary": "Pure Python with original XML fixtures, actual production selectors; ADB/capture transport and image-size reader are doubled. No Android, OCR, Dart or Flutter execution.",
+    "red": {
+      "path": "qa/studio-c4-hub-caption-8e64-20261114/evidence/red-original-final.log",
+      "sha256": "c7e042650152b476f8124d7e6d925d70280cd4e4c8cf4c4a3e1c83c9e90ac6f2",
+      "test_count": 1,
+      "errors": 1,
+      "unittest_seconds": 0.42,
+      "process_seconds": 1.2677536320006766,
+      "exit_code": 1,
+      "error": "Actual C4 hub tile never appeared"
+    },
+    "green": {
+      "path": "qa/studio-c4-hub-caption-8e64-20261114/evidence/green-final-navigation.log",
+      "sha256": "2890a5ad9344ba44c5c0ffb66b34ba73ccef2c1731b4ca13489cc275f3510041",
+      "test_count": 11,
+      "failures": 0,
+      "skips": 0,
+      "unittest_seconds": 1.464,
+      "process_seconds": 2.400405424999917,
+      "exit_code": 0
+    },
+    "initial_test_double_failure": "The Activity test double initially changed Activity one observation too early; the guard correctly rejected before observation. The double now changes only after a fresh visible-tile read; production bytes are unchanged.",
+    "new_execution_by_reviewer": false
+  },
+  "limits": {
+    "tests_repeated": false,
+    "android_execution": false,
+    "ocr_execution": false,
+    "new_images_reviewed": false,
+    "product_changes": false,
+    "probe_or_test_changes_by_reviewer": false,
+    "refs_trees_commits_pr_mutated": false,
+    "original_logs_or_artifacts_redownloaded": false,
+    "new_android_acceptance": false
+  }
+}

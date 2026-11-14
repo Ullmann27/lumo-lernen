@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "parent": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "base_tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+  "scope": "five existing files plus one new document; local correction verified, new integrated CI still required",
+  "files": [
+    {
+      "path": "scripts/creative/treasure_world.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/creative/treasure_world.gd",
+      "bytes": 26887,
+      "sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "git_blob_sha": "aae80484834823c8cf063df6bfb2607313f39ef7",
+      "mode": "100644",
+      "baseline_blob": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8"
+    },
+    {
+      "path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c",
+      "mode": "100644",
+      "baseline_blob": "6e50ace998d896fd88f0006112152e490e7c64e3"
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/native/scripts/creative/build_settlement_world.gd",
+      "bytes": 34831,
+      "sha256": "f1c1633dfa9b35895c2c51e943fead257e9621169b0c618e3b8ce8bfbc9850a0",
+      "git_blob_sha": "a0b2b6c34d2242075f9f735adae481b7e3ecc3c5",
+      "mode": "100644",
+      "baseline_blob": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c"
+    },
+    {
+      "path": "docs/studio-2020-visibility-corrections.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native-visibility/docs/studio-2020-visibility-corrections.md",
+      "bytes": 5778,
+      "sha256": "d805bb0cd1b1ec9360672f0446e3747ed88c0b4d9363d1d2c892484c14fbc786",
+      "git_blob_sha": "2c55747e7fe45dec183b7de6170d020f630462ca",
+      "mode": "100644",
+      "baseline_blob": null
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/validate_studio.sh",
+      "bytes": 25171,
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd",
+      "git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1",
+      "mode": "100644",
+      "baseline_blob": "3b41626b54845e70e3ac9046e5120f7aa0eb7907"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c",
+      "git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154",
+      "mode": "100644",
+      "baseline_blob": "603c13b63d6ba64bbcef036f1505c370ec9a8963"
+    }
+  ]
+}

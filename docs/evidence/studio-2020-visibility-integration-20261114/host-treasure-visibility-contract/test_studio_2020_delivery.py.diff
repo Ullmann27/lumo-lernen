@@ -1,0 +1,23 @@
+--- before/scripts/tests/test_studio_2020_delivery.py
++++ after/scripts/tests/test_studio_2020_delivery.py
+@@ -155,6 +155,20 @@
+                 delivery.verify_visual_review(*args, studio_version=2020)
+             args[index][key] = original
+ 
++    def test_treasure_cutout_visibility_cannot_reuse_only_four_title_views(self):
++        args = self.review_fixture()
++        probe = delivery.TREASURE_TITLE_CAPTURE_PROBE
++        cutout = probe + '/treasure-title-landscape-cutout.png'
++        args[1]['images'] = [item for item in args[1]['images']
++                             if item['artifact_entry'] != cutout]
++        retained = {item['artifact_entry'] for item in args[1]['images']
++                    if item['artifact_entry'].startswith(probe + '/')}
++        self.assertEqual(retained, {
++            probe + '/treasure-title-' + name + '.png'
++            for name in ('landscape', 'compact', 'portrait', 'fold')})
++        with self.assertRaisesRegex(ValueError, 'C4 and facial'):
++            delivery.verify_visual_review(*args, studio_version=2020)
++
+     def test_new_capture_cannot_satisfy_the_legacy_review(self):
+         entry = delivery.C4_CAPTURE_PROBE + '/c4-win-landscape.png'
+         with self.assertRaises(ValueError):

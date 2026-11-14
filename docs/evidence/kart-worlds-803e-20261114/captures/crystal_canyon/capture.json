@@ -1,0 +1,325 @@
+{
+	"accepted_sites": [
+		{
+			"distance": 26.4324810791016,
+			"position": [
+				29.0138263702393,
+				-2.0,
+				92.9569320678711
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 64.1931683349609,
+			"position": [
+				73.715705871582,
+				-2.0,
+				104.026069641113
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 101.95385559082,
+			"position": [
+				81.27587890625,
+				-2.0,
+				60.7677688598633
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 139.71454284668,
+			"position": [
+				114.449462890625,
+				-2.0,
+				31.5045986175537
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 177.475230102539,
+			"position": [
+				96.4914016723633,
+				-2.0,
+				-9.6020975112915
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 215.235917358398,
+			"position": [
+				128.816223144531,
+				-2.0,
+				-46.1374473571777
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 252.996604614258,
+			"position": [
+				91.7528305053711,
+				-2.0,
+				-75.1477661132812
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 290.757291870117,
+			"position": [
+				85.3249816894531,
+				-2.0,
+				-118.583137512207
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 366.278666381836,
+			"position": [
+				3.17383146286011,
+				-2.0,
+				-123.841918945312
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 404.039353637695,
+			"position": [
+				-30.132625579834,
+				-2.0,
+				-91.8043670654297
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 441.800040893555,
+			"position": [
+				-72.4524765014648,
+				-2.0,
+				-108.501594543457
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 479.560728149414,
+			"position": [
+				-85.552978515625,
+				-2.0,
+				-66.9892578125
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 517.321415405273,
+			"position": [
+				-118.866004943848,
+				-2.0,
+				-38.703971862793
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 555.082102661133,
+			"position": [
+				-98.5410766601562,
+				-2.0,
+				1.26306760311127
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 592.842789916992,
+			"position": [
+				-127.631782531738,
+				-2.0,
+				39.9408416748047
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 630.603477172852,
+			"position": [
+				-89.5321273803711,
+				-2.0,
+				67.1215057373047
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 668.364164428711,
+			"position": [
+				-83.2118530273438,
+				-2.0,
+				110.812438964844
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 706.12485168457,
+			"position": [
+				-38.4243240356445,
+				-2.0,
+				104.278717041016
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 743.88553894043,
+			"position": [
+				-1.69002795219421,
+				-2.0,
+				128.180633544922
+			],
+			"radius": 1.8
+		}
+	],
+	"actual_detail": "full",
+	"actual_lightweight": false,
+	"capture_kind": "stationary production scene inspection; no driven race",
+	"capture_root": "/tmp/lumo-theme-capture.4qvis0y3",
+	"graphics_profile": "high",
+	"isolation_check": "single-use marker, exact XDG paths, user:// containment and no existing kart state checked before scene load",
+	"process_frozen": true,
+	"reduced_motion": true,
+	"reference_detail_count": 274,
+	"reference_detail_theme": "crystal_canyon",
+	"requested_detail": "full",
+	"seed": 1923,
+	"selected_site_index": 0,
+	"source": {
+		"clean_tracked_source": false,
+		"engine": "4.6.3-stable (official)",
+		"physical_android_device": false,
+		"renderer": "gl_compatibility",
+		"source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+		"tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+		"visual_acceptance": "Manual reference review required; render success is not art approval"
+	},
+	"status": "captured",
+	"track_id": "crystal_canyon",
+	"track_length": 755.213745117188,
+	"user_data_path": "/tmp/lumo-theme-capture.4qvis0y3/userdata/godot/app_userdata/Lumo 3D/",
+	"viewport": [
+		1280,
+		720
+	],
+	"views": [
+		{
+			"camera_basis_x": [
+				0.17120897769928,
+				0.0,
+				0.98523473739624
+			],
+			"camera_basis_y": [
+				0.197586059570312,
+				0.979684054851532,
+				-0.0343354791402817
+			],
+			"camera_basis_z": [
+				-0.965218782424927,
+				0.200547203421593,
+				0.167730703949928
+			],
+			"camera_position": [
+				16.9168720245361,
+				11.0520172119141,
+				112.548637390137
+			],
+			"camera_source": "production _update_camera; stationary player placed 12 m before accepted site",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "01_chase",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/crystal_canyon/01_chase.png",
+			"player_distance": 14.4324810791016,
+			"player_position": [
+				21.2026424407959,
+				8.53201675415039,
+				111.80387878418
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.977956116199493,
+				0.0,
+				0.208810612559319
+			],
+			"camera_basis_y": [
+				0.123666897416115,
+				0.805758476257324,
+				-0.579188942909241
+			],
+			"camera_basis_z": [
+				-0.168250918388367,
+				0.592244327068329,
+				0.787996411323547
+			],
+			"camera_position": [
+				25.1398086547852,
+				13.636568069458,
+				111.100738525391
+			],
+			"camera_source": "manual road-context pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "02_context",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/crystal_canyon/02_context.png",
+			"player_distance": 14.4324810791016,
+			"player_position": [
+				21.2026424407959,
+				8.53201675415039,
+				111.80387878418
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.972584784030914,
+				0.0,
+				-0.232548609375954
+			],
+			"camera_basis_y": [
+				-0.058615155518055,
+				0.967712759971619,
+				-0.245145335793495
+			],
+			"camera_basis_z": [
+				0.225040256977081,
+				0.252055495977402,
+				0.941182732582092
+			],
+			"camera_position": [
+				31.5137233734131,
+				2.30000019073486,
+				103.412216186523
+			],
+			"camera_source": "manual road-facing detail pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "03_detail",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/crystal_canyon/03_detail.png",
+			"player_distance": 14.4324810791016,
+			"player_position": [
+				21.2026424407959,
+				8.53201675415039,
+				111.80387878418
+			]
+		}
+	],
+	"visual_review": "pending original-reference review",
+	"xdg_cache_home": "/tmp/lumo-theme-capture.4qvis0y3/cache",
+	"xdg_config_home": "/tmp/lumo-theme-capture.4qvis0y3/config",
+	"xdg_data_home": "/tmp/lumo-theme-capture.4qvis0y3/userdata"
+}

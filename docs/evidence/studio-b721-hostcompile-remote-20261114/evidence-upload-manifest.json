@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43619285124,
+  "job_id": 132521067290,
+  "files": [
+    {
+      "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/review.json",
+      "bytes": 1714,
+      "sha256": "8e8ab6f0c931201d12bbe357bdf49fabcdd124310588f5dc3e3d49da709a4f58",
+      "git_blob_sha": "0e55cfeded6a67ef5f2fe51b1e8f607c1b158165",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/hostcompile-original-job.log",
+      "bytes": 241532,
+      "sha256": "d0e6ae8c9129cb6eb3fa96f4a70632ac5762f8fd399e9083cded30e18499d027",
+      "git_blob_sha": "ab88b2f7d4606259ae064605bfe062830c014525",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/job-terminal-original.json",
+      "bytes": 1932,
+      "sha256": "7a128eed151b6a5218fd9167fddfc05f66c5ba2180c51d9309788a57383d287b",
+      "git_blob_sha": "a36736d81ae9c2dca8c9acdd6876fbd26236e3d6",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/artifact-metadata-original.json",
+      "bytes": 870,
+      "sha256": "1cfe4d7521c359e3060ac6760297ae86b2bbe3cf4f94f4e4da3275fff8feea7a",
+      "git_blob_sha": "28dd33c8ea24498bf1c736ebed60b3d4b26040c8",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/original-artifact-binding.json",
+      "bytes": 565,
+      "sha256": "48fe60155261f7b7093c3ef96703f93bee7aa87ff4c1c93cb98a503c73a55d2e",
+      "git_blob_sha": "55433c497d28d176bb4f0b7592c31ebe96a29b85",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/source-tree-binding.json",
+      "bytes": 1911,
+      "sha256": "c59b6aa5999df57a2cbd6947fe40c248ba3d94696f6e6db6306864e6737d1415",
+      "git_blob_sha": "2c72b951d1df1fb0fc7d4e123a766fa2f4182115",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-b721-acceptance44-evidence-20261114/commit-proof.json",
+      "bytes": 794,
+      "sha256": "39d6b44bbc0de2a43962de9c4056b5cc7e1171fcc878dfb5f7d412b687cdb29a",
+      "git_blob_sha": "46139462814995704f77b830fa1bc03ec04b9933",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/README.md",
+      "bytes": 1780,
+      "sha256": "59823111d513e779325a211e07fbd46806c88747f854e711cf252bef3469f3cc",
+      "git_blob_sha": "36aa06dd239ddc1c236fa4b8e5248b1aaa81278b",
+      "encoding": "utf-8"
+    }
+  ],
+  "count": 8,
+  "scope": "Reduced remote evidence reconstructed solely from retained, verified tool originals and review values after local environment outage; original 12 archive payload files are not included.",
+  "hash_integrity": {
+    "known_vectors": 3,
+    "current_original_compared_to_previous_python_sha256": true,
+    "original_bytes": 241532,
+    "original_sha256": "d0e6ae8c9129cb6eb3fa96f4a70632ac5762f8fd399e9083cded30e18499d027",
+    "five_prior_git_blob_vectors_matched": true
+  }
+}

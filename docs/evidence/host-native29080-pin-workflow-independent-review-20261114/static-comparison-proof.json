@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "read_at_utc": "2026-11-14T16:39:32.335961+00:00",
+  "baseline_host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "baseline_tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "published_baseline": {
+        "path": "config/godot-source.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "52e9940c0a9803f089d3fbca0a90804bdd20cfac",
+        "size": 145,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/52e9940c0a9803f089d3fbca0a90804bdd20cfac"
+      },
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/baseline/host/config/godot-source.json",
+        "bytes": 145,
+        "sha256": "20521c9254c7b1f498ae470c8ae1e73f4223d44aaf5800f7281f4b1ab922b7cf",
+        "git_blob": "52e9940c0a9803f089d3fbca0a90804bdd20cfac"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/config/godot-source.json",
+        "bytes": 145,
+        "sha256": "1eebdb508ada42b93519ca8e30c9ea2ac75de47afcf869fbbebe33c7826a40a8",
+        "git_blob": "942eb5395127c775f4355721f4c04b974e02df48"
+      }
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "published_baseline": {
+        "path": "scripts/verify_legacy_release_pin.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "41de47f88741f7949535d311d1fd4ba66607888f",
+        "size": 10697,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/41de47f88741f7949535d311d1fd4ba66607888f"
+      },
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/baseline/host/scripts/verify_legacy_release_pin.py",
+        "bytes": 10697,
+        "sha256": "8d134c6be35875567bcf429d70ec1f8f50b16357940806c21b5c59678fde048e",
+        "git_blob": "41de47f88741f7949535d311d1fd4ba66607888f"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/scripts/verify_legacy_release_pin.py",
+        "bytes": 10708,
+        "sha256": "e76cc4d3bca1072eacad7b3f1da6f86cdb2461636f6cce30365c7461d02c0f68",
+        "git_blob": "0118449f0946468dd41cfe2afdc19e12a17e3c30"
+      }
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "published_baseline": {
+        "path": "scripts/tests/test_candidate_2011_pin.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "42732298903b794adb458d60664ae89e6b09f24d",
+        "size": 19946,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/42732298903b794adb458d60664ae89e6b09f24d"
+      },
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-pin-workflow-independent-review-20261114/baseline/host/scripts/tests/test_candidate_2011_pin.py",
+        "bytes": 19946,
+        "sha256": "965a15746ddf16ddbfa20f759d32c745b818e56281259df22c3940294aebb8d5",
+        "git_blob": "42732298903b794adb458d60664ae89e6b09f24d"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/scripts/tests/test_candidate_2011_pin.py",
+        "bytes": 20217,
+        "sha256": "7bcb7b74f734f43c724caf0c58b6dbd271d3dbe2aa7cfa02b2cd498d697b149d",
+        "git_blob": "b2c4abbdb26b5831663ed042d0fba6aabbb57cfb"
+      }
+    }
+  ],
+  "config_change_only_revision": true,
+  "approved_policy_entries": 51,
+  "historical_policy_entries_unchanged": 50,
+  "historical_policy_sha256": "8e30ba078ed723765449a46f8b6bbd5cb786c2bb641dfa9395e5fb19f309ae00",
+  "old_2020": "34421df83566dd4773420cc2a225887956459435",
+  "new_2020": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "all_non_map_policy_ast_unchanged": true,
+  "verify_and_main_exact_bytes_unchanged": true,
+  "test_methods_total_unchanged": 26,
+  "changed_test_methods": [
+    "test_2020_accepts_its_exact_source_and_preserves_all_historical_pins"
+  ],
+  "explicit_rejected_prior_candidates": [
+    "34421df83566dd4773420cc2a225887956459435",
+    "47ca642aad9290c9ba274b08e7dadfc953854d4f"
+  ],
+  "workflows": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/baseline/host/.github/workflows/lumo-nextgen-feature-contracts.yml",
+        "bytes": 7458,
+        "sha256": "e0cad577d7e2fe37674ebe6b05935611e82c19200646e5f8df1310674fa0bf8f",
+        "git_blob": "5ea2906e200a8a513e2a941da165b9450f3b5ea8"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/.github/workflows/lumo-nextgen-feature-contracts.yml",
+        "bytes": 7651,
+        "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+        "git_blob": "829b819945d980e2082f478c1ddccea9463e3fa5"
+      },
+      "baseline_gitblob_matches_published2e20": true,
+      "exact_inverse_removal_yields_all_original_bytes": true,
+      "all_previous_yaml_values_unchanged": true,
+      "added_step_index_zero_based": 5,
+      "immediate_predecessor": "bash scripts/compile_android_host.sh",
+      "command": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech",
+      "mandatory_after_compile": true,
+      "job_timeout_minutes_unchanged": 35,
+      "upload_if_always": true,
+      "artifact_name": "lumo-nextgen-feature-android-host-evidence",
+      "artifact_path": "host-compile-evidence/",
+      "publisher": null
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "baseline": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/baseline/host/.github/workflows/lumo-studio-2020.yml",
+        "bytes": 74063,
+        "sha256": "0caabde427205969d2cc70a258e554463d189edffd7f2e43c90b1cd4bca0ed2c",
+        "git_blob": "7111ad168903f5bc97808f74bd7944392d7325da"
+      },
+      "candidate": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/prepared/host/.github/workflows/lumo-studio-2020.yml",
+        "bytes": 74256,
+        "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+        "git_blob": "2684ac3cf034fdcd5c71570182396f0664979735"
+      },
+      "baseline_gitblob_matches_published2e20": true,
+      "exact_inverse_removal_yields_all_original_bytes": true,
+      "all_previous_yaml_values_unchanged": true,
+      "added_step_index_zero_based": 5,
+      "immediate_predecessor": "bash scripts/compile_android_host.sh",
+      "command": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech",
+      "mandatory_after_compile": true,
+      "job_timeout_minutes_unchanged": 35,
+      "upload_if_always": true,
+      "artifact_name": "lumo-studio-2020-android-host-compile",
+      "artifact_path": "host-compile-evidence/",
+      "publisher": {
+        "needs": [
+          "verify-and-build",
+          "android-host-compile",
+          "android-tour",
+          "update-2020-from-2017",
+          "creative-android",
+          "nextgen-authorities"
+        ],
+        "host_compile_success_required": true,
+        "entire_existing_publisher_structure_unchanged": true
+      }
+    }
+  ],
+  "tests_executed_by_reviewer": 0,
+  "read_existing_test_evidence": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-pin-tests.json",
+      "bytes": 775,
+      "sha256": "97d7169bae06888334c6cfa46026ad5e46e72b55bde876bef99e485a8267bae8",
+      "git_blob": "f776def982f4a8721e1d6bcef3d2d547e1fdce83"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/evidence/current-pin-tests.log",
+      "bytes": 874,
+      "sha256": "84b1a08caa7c1ed64b3ffbdbb1917ba924e5d0d7cc8096004cbb5a4a2d27b633",
+      "git_blob": "121bba166cb6653106eb802565f1f034f862f019"
+    }
+  ],
+  "actual_existing_test_results": {
+    "cases": 4,
+    "unittest_seconds": 0.012,
+    "wrapper_seconds": 0.198,
+    "exit_code": 0,
+    "new_test_repetition": false
+  }
+}

@@ -1,0 +1,654 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Documents and original evidence only; no product installation, source ref, receipt or pin change",
+  "source_identity": {
+    "native": {
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274"
+    },
+    "host": {
+      "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+    }
+  },
+  "artifact_id": 14119281510,
+  "artifact_sha256": "e72064bcc6b796b6949c6a6b823fadb1bb8a2e23f6c05be6419ee4c2e60dcb76",
+  "excluded_original_archive": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/original-artifact.zip",
+  "personally_reviewed_png_count": 15,
+  "decoded_png_count": 28,
+  "files": [
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/README.md",
+      "bytes": 2994,
+      "sha256": "037dae1869cd36380d43c3fcf1f0a2493ccceb10ef1ac4e9d264326f43e1e70c",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "d3f1e240c4602184526388eb60a22e210883f000"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/review.json",
+      "bytes": 15239,
+      "sha256": "e1e68dc7c77779281c30294bede576f82113ba68d1e5678d2cdcfc18f0a3e592",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "6cede4b503529776c9ef9101c7070b47d55dcc86"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/original-results-verification.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/original-results-verification.json",
+      "bytes": 12426,
+      "sha256": "2e67634ec6e1a20c25bc7fc5c52a461c3035ad79965e97591622b274d0b8940d",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "842c1c0adc87889ce668076bbaf82a1e2124145a"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/verified-original-extraction.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/verified-original-extraction.json",
+      "bytes": 15097,
+      "sha256": "b09a991bcdae75967245cdbc11b90bfa50d93f33602f6f88aec34e11de1484e6",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "29af19592a20d1da92fa19bab1fc069687561249"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/run-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/run-original.json",
+      "bytes": 14959,
+      "sha256": "e80b9a6d75239cae5ad2ae0618f4291f535268d6f0661097fce0b2f2f695242e",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "a4e22119da3cce3693c008e4795d2fa96813f2ed"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/jobs-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/jobs-original.json",
+      "bytes": 10569,
+      "sha256": "6edf48e37fd1ac7becc3da94ee2ea98e59f6d947abe60f665c20350bc9efa10f",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "975c547dca2037a366f5ffcf27bc05e24cf37ffb"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/artifacts-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/artifacts-original.json",
+      "bytes": 2596,
+      "sha256": "7b2023197462ac25579cfe5ef51c659ca0c36f6aaf32722d5852c56999b16087",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "cfb5c7da0e64e261e2fc72e7cb75c6741795bbd2"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/runs-discovery-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/runs-discovery-original.json",
+      "bytes": 114676,
+      "sha256": "2aa7452d9b2792b9d739918a2c0779f3cac0a2c86fac1ce0e0f3fab3b400072a",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "9d9ddf0748d57d69bd8d559e4168420002214cb2"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/original-job.log",
+      "bytes": 308932,
+      "sha256": "45c8521b5c1a470d30c26a4e173e0bca028f942ed5aa9a60731b45da2a731f8b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "f968cfad669cdae8e0a8281b6df4584850e1b456"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/source-originals/memory_table_runtime.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/source-originals/memory_table_runtime.gd",
+      "bytes": 14860,
+      "sha256": "d911b1ce4bb19b83aa919827f4484281898c4eb4ee8621d8c7e5869345c2c775",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "f4fc0d96b5b67e91969dac610bdc5c550f590640"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/HOST-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "49031b96beda83b0bec23c48d3f807dc063a143e12b3509ddf3ca0265587fa4c",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "6891f842b08fd74985c5604fce020c965bcd8278"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/NATIVE-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "820181c17cda08fee4d82f5f6507177e001e729fa719ab6a9153960de24666ce",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "30f37954f387ee0eca66a6c366486fa2b97653a9"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/HOST-TREE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "719000255e57b9b48526e32fe4a0552d89ebae2094f638d8f2686912edb12d56",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "27aea33ace12c0023fe2a198420836a192ef1850"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/NATIVE-TREE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "7de1fb8b462a697335fff70d3b22c4ed02ce0f543a882a9ab4607aa66b1e0277",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "a8c0933af085cd8764780bf3a41722d8be10d956"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/godot-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/dart-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/import.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-authority-contract.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-authority-contract.log",
+      "bytes": 2319,
+      "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "0cad364c865f41f80773ef4ee4f69481b38da342"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/authority-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/authority-result.json",
+      "bytes": 43958,
+      "sha256": "54d258495c393f5883f8c5d05a3ef6a03250e17b3b15e0d8d75e9d1757a81486",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "7a95389f394ecfbebd0ec84458f3402b8485469c"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/input.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/input.json",
+      "bytes": 44,
+      "sha256": "11a47515d57a6acedbba91f739e3e435d84b1a6cda991d944ad94f009a76e909",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "c0e42178d68373eb9b7e81eb4b6a277b412105b8"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/native-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/native-result.json",
+      "bytes": 16487,
+      "sha256": "6513b8490062fb81c6bab99d2341166ff26f1406aa5d4abb8c5a5f8181ed4f80",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "46f053ee7e47356cc91e54bc086b485e8affb54d"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/other-child.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/other-child.json",
+      "bytes": 52,
+      "sha256": "03b54b31f843366d751d73a74dbf00be5c56b1b4a272232bee9ba3c59b3471f2",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "c2da25fbb3a2eed6f58f91b451213ccc58dd7089"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/paid-reopen-before-round.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/paid-reopen-before-round.json",
+      "bytes": 806,
+      "sha256": "a5ebe72eb299f636031d93720f9ffdba38482bccc9289b917a4cb518bc1b8479",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "955cd302a22cb61db2e3b10876c33ac604b64149"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/private-test-control.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/private-test-control.json",
+      "bytes": 165,
+      "sha256": "deb52df913e3605d21678240123a401ec946e333100c109f947f8100fe992a8b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "58f9ad043a83d99fbc8b18e98dc474d2b4b3a231"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/public-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/public-state.json",
+      "bytes": 1054,
+      "sha256": "cae5ec991519a93a258b208ffe7caf508c0df92246e779fe82caf9776dd94c37",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "b61f4010d1d7f5fca7fa3766392fd0904494df6b"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/stats-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/stats-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 83,
+      "sha256": "cc538b5b72f794aa0bef462530c32fea0c6771dda152857c0084981c7cba82ca",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "4a80fa041a091611710f2964f393af9782468696"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 770,
+      "sha256": "b1faff56f84eb76ab6e8b52801a515eb97d3f02d84d01262e21cb5ca8316fc9b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "f16d843a0dcff4d93e14f43e7dc2651a95594cf5"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/step-receipt.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/step-receipt.json",
+      "bytes": 141,
+      "sha256": "bdd5899510b7abcb44cfcd54061affefc3e11cc4655e96136d197fa85685bd20",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "9d8478178d5b5ca4488757f5f1b0f4fbab5c5471"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/unfinished-reopen-before-round.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/unfinished-reopen-before-round.json",
+      "bytes": 698,
+      "sha256": "cc7f252210b077169f46b14cb6d29cd9b64787171f80b857ecb72a91f77f7d45",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "f5fc8426a412a47fcd821393961edf6fe5ae1bda"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/wallet.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/authority/wallet.json",
+      "bytes": 134,
+      "sha256": "14ddc3f5096f0305607cd7cecca229993b12dfa7c03c08e6ddbc4b0b34ffe506",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "3ae78d09a64ffa602e7cb8447e5f6e190dc9ed10"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/dart-authority.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/dart-authority.log",
+      "bytes": 95,
+      "sha256": "d323cd94dae4d968f732d4d6ccb716dc2030c4924056c850687df94967ff0b23",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "5f4492bc7c8f2a252ff68e137e2191d4ae925436"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/godot-runtime.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/godot-runtime.log",
+      "bytes": 1163,
+      "sha256": "2542a0d5d96bcd64bfe62cda5ca2eda54bce50bd951d15253c8fa6cc29487d8f",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "05069ec1d6e8d8081b80be6ddf78c86d4049cb52"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/01-memory-real-hidden.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/01-memory-real-hidden.layout.json",
+      "bytes": 7965,
+      "sha256": "a34d0862d5e26ab0ba54794ed0b4cd190dc8000f9e7e5aca5b018c7684d6326c",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "9ae47cefe78c63769a7ef1e83c64e214b0259789"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/02-memory-real-face.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/02-memory-real-face.layout.json",
+      "bytes": 7968,
+      "sha256": "f0123f02a5ba4b3aa88f190c1cc540d0af3a8acf88d984cd1fdc4bb5c1eb8066",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "5163259f656b44be3406876e6a37a97ff0392b73"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/03-memory-real-paused.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/03-memory-real-paused.layout.json",
+      "bytes": 8045,
+      "sha256": "c19c3980e4e1259da3b73bac906d79cbd8de6b3c01b83c11ebcb2992a14e39bb",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "1329aa2f4a9c5335f642f9eb075d8ff5f6a02535"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/04-memory-real-reopened.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/04-memory-real-reopened.layout.json",
+      "bytes": 8045,
+      "sha256": "13fe548f250ad630ff94e5a82012f0d14ee8d0f1ae1fcf39abef4cb8f6af1dab",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "d5d16df4e677953f64d861d14c57717f1ef40e2c"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/05-memory-real-bot-first.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/05-memory-real-bot-first.layout.json",
+      "bytes": 8054,
+      "sha256": "0e25c79269245c3d1e09fd90e2ee19fb2e9d19445a19ae1758f41183f7a6dff7",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "64f6bdde0a3bff406d6916d62beb5f7708b2c5d8"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/06-memory-real-bot-second.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/06-memory-real-bot-second.layout.json",
+      "bytes": 8057,
+      "sha256": "366784f84c07414cb843cd3b1778c969f87e870d4c9026bc3c43b7745c95220b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "67e43773ac7c84decd0e74269fb3e882dfee4e09"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/07-memory-real-win.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/07-memory-real-win.layout.json",
+      "bytes": 8048,
+      "sha256": "c5174f400e73f203262554a5d188dc36cacb1803d3360909117f3dcc66814c93",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "ffa4c4cf306a4c157c6f1236c647d5e40f16d234"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.layout.json",
+      "bytes": 7967,
+      "sha256": "91d39fdccbbd8bff697aa751d5eca6409d5d2d2991c18273bc6b9c651e77d487",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "7899fa43aef33c46429946fa36ed844118038c98"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/memory-runtime-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/memory-runtime-report.json",
+      "bytes": 19438,
+      "sha256": "af049b84e9592279b2d48fbbb2925fd2688cc47471c45a8419602b75d71d41bd",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "367f830c9e7b280dff66189267f86e9103551079"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/pair-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/pair-result.json",
+      "bytes": 9524,
+      "sha256": "87528c0cdecea65d53b7047887cd5ea85da0aafb51131a73afb08bc2b4fa3ca7",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "f95cdc36b9091830eb8c3dc3314739d49cd82b8c"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/source-identity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/source-identity.json",
+      "bytes": 265,
+      "sha256": "8d6ec21c2d8ac57fa956c1b48b7b233d05b9f756f717668cac46fca026288984",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "168e50c92b289d6417722a40b5c81cee63184b3c"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-scheduler-contract.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-scheduler-contract.log",
+      "bytes": 689,
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "f2cf3690ef4b28288d3651930fd581e8357eecf5"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-compact-profi.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-compact-profi.layout.json",
+      "bytes": 17157,
+      "sha256": "c8ad9060e18e5865b3716854815af8fda4ed7423969e2fde23ff9204efbc589c",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "1e845cdbd10b67da19567a6873dc5f7149b75543"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-cutout-profi.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-cutout-profi.layout.json",
+      "bytes": 18260,
+      "sha256": "ca5000bd74db9850113776a27b523d72b412e64ca668b9033631938768be5d0b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "5c652925fda55ee5db088f417ac88ead4252625d"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-fold-profi.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-fold-profi.layout.json",
+      "bytes": 16884,
+      "sha256": "72bea0a1db8a26bfd1e51e9471873044a6160144fad0cfed1f45d2cf80900e6b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "290631b5cc32c9c5b852f087c9d5161a2b47ba5d"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-hidden.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-hidden.layout.json",
+      "bytes": 7965,
+      "sha256": "a88b6b13f71a4b24d7b6c6243ab7b93bc8508d1e4989940e6bc10c61e4d629d5",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "0b98673e822801696bbfcf3ba15e11b7b7465ff3"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-matched.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-matched.layout.json",
+      "bytes": 8044,
+      "sha256": "dc65ac98277695f42b76c78704f6232464df5ac40fead62b43048a224766582a",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "d58ebea817ee00a6c849bb8454fba49523f48ec4"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-one-flipped.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-one-flipped.layout.json",
+      "bytes": 7969,
+      "sha256": "f9b515861ebe7183f1787a73ee2b7a28e5e0349f81836c955e1decc7e61f0548",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "c3d1f69dcf7effd73ba4e59f3c3411b5274b3d50"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-paused.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-landscape-paused.layout.json",
+      "bytes": 8040,
+      "sha256": "898db8f381036edb6b15a13b7602506d84dfb93fde2a6a26fac3c3ba09657678",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "93ec2f9f8fb5d9cf9414a783271b2ed976284086"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-phone-profi.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-phone-profi.layout.json",
+      "bytes": 18333,
+      "sha256": "31217d9f8d30e173f2346fbb0916962f03650b9e7c9f2c922e99a65019cd9f6c",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "b7995dc783c28a6afa6c477a5b8300991c170205"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-view-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-view-result.json",
+      "bytes": 182227,
+      "sha256": "af0796ecb1710d0748647f3c84495af939733573f6da950fdbba80161c68d238",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "0d5180743ca439feb93bbe97f431e2395e1fe7e6"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view.log",
+      "bytes": 1156,
+      "sha256": "f76ffcaff5633e95a2316ccc90405075f51473cf255cb73dcc10f3f1d6a163d0",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "14901c9daac83e06e6da1e55eb78c8373e93dbcc"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/project-validation.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/project-validation.log",
+      "bytes": 6138,
+      "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "681ee33a4718c6a87f5131d5fc8ef03bb5a78f61"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/01-memory-real-hidden.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/01-memory-real-hidden.png",
+      "bytes": 101718,
+      "sha256": "925d8730f6e8efc1fcb888f094a7df3ab01f2b9482f83ef9717279345f767af7",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "2d7c4f745e9984bd3dcbaaadcf31ce015f1b703c"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/02-memory-real-face.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/02-memory-real-face.png",
+      "bytes": 137048,
+      "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "33105e38ea21bb1be8f531e06d5d3c9c14236426"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/03-memory-real-paused.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/03-memory-real-paused.png",
+      "bytes": 52851,
+      "sha256": "b7edc981fb904cb8b56663ef26d6a7ae343757d3a65264f8bb03cfd15a66cf68",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "8c3e2f6542b9a5f2d21df7a89fa147607c16378c"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/04-memory-real-reopened.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/04-memory-real-reopened.png",
+      "bytes": 52891,
+      "sha256": "a99264d13091d49baf897fd05f99ebbf2eefabe706363a598b1d0968e682678d",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "6c46c4cec21cf21f690ba253e78eca73150bb5f1"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/05-memory-real-bot-first.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/05-memory-real-bot-first.png",
+      "bytes": 128086,
+      "sha256": "a24c57107edfb85f45738c26734895631ae3ba83315480eec88218f212f25297",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "6d5021a40aea322d0e5aeb1b3aced65c02908404"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/06-memory-real-bot-second.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/06-memory-real-bot-second.png",
+      "bytes": 160052,
+      "sha256": "577dea2a2d773af23a5be2a5392c5c2fd64cfb413782947cd715268098d24fce",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "7a2348933df3eb832227fafb72fff00900e78ac2"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/07-memory-real-win.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/07-memory-real-win.png",
+      "bytes": 66227,
+      "sha256": "7c224189d4e1e064704a9f2c15e56accb6cb5cbd6289ebc29eb799b045a8f75b",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "8df863a6d97966402c0573e6052234fffb464f59"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/08-memory-real-paid-reopen.png",
+      "bytes": 101633,
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "561f292606538800203e808143fc4b7cdf7ed704"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-phone-profi.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-phone-profi.png",
+      "bytes": 380149,
+      "sha256": "a0e0590f526843971d9f76aa90eb6a826da0f1671abb5117d28a940b2cd25e90",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "a493acfb5caf6f05abd7198d5d8308b29391a1fe"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-fold-profi.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-fold-profi.png",
+      "bytes": 502671,
+      "sha256": "a82093ca97217b867ebcf4a59dc18fe5e6065243ca860263fe7b164b5424af35",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "5a53298a9af0fb87e393aa37d4cbcacda8ecdf06"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-compact-profi.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-compact-profi.png",
+      "bytes": 52152,
+      "sha256": "55f2c87a865a9b94231e869595fe5603cadc1b0f5a8242cad19a5ec9b7d95964",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "d741661f236ab41eff505a496b17b1a509cb9d56"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-cutout-profi.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-view/memory-cutout-profi.png",
+      "bytes": 264076,
+      "sha256": "5a2b1842c264a535549950604338ac031e0f22973e6e8dec4a7e15c2e26d911c",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "641e81aeb5ed068496d5a14efa0148c1ad58ecda"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-00.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-00.png",
+      "bytes": 101285,
+      "sha256": "a3c31660363757456acba9a44d4bc907874a4802e560223e524e13be84a57a3a",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "b58125cc28110405a0fa7cc47704bee3c8054621"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-04.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-04.png",
+      "bytes": 107350,
+      "sha256": "8b8003ad00ce1ef9c90195ccc683fc9686c1b044c60c14532767f8e3d1a3f81d",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "1d3981efaa383e342a5616f0f36ab9581038cc85"
+    },
+    {
+      "path": "docs/evidence/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-11.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-native-47ca-ci-20261114/originals/memory-pair/native/motion-11.png",
+      "bytes": 137003,
+      "sha256": "32976fa0acdfe5728f16117b05563ec3abf630cef5dbc91f8c6ea9b09133c154",
+      "mode": "100644",
+      "type": "blob",
+      "expected_git_blob": "39730c7c7ef9c229a37799b81d0c9dab32afebc3"
+    }
+  ],
+  "file_count": 70,
+  "total_bytes": 3477515
+}

@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "reviewer": "learning_worlds",
+  "reviewed_at_utc": "2026-11-14T11:20:21.299954+00:00",
+  "status": "PIN_DELTA_TECHNICALLY_CONSISTENT_NATIVE_ACCEPTANCE_STILL_PENDING",
+  "scope": "Read-only full-text, byte/hash, literal AST-map and existing execution-log review of exactly three prepared pin files; no tests rerun.",
+  "baseline_host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "baseline_tree": "3f048230ee41fe3c7f0c4dadb5147cb1f39fa61e",
+  "baseline_binding": "All three baseline byte/Gitblob identities and the unchanged receipt matched the previously retrieved complete exact Host078 Git tree.",
+  "target_native": "34421df83566dd4773420cc2a225887956459435",
+  "target_native_run": 43588220125,
+  "native_run_acceptance": "Pending per Root task; no status or approval inferred from the pin contracts.",
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "baseline": {
+        "bytes": 145,
+        "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+        "git_blob": "fa2d703726599e61feadd58cebef0514fd4d049e"
+      },
+      "prepared": {
+        "bytes": 145,
+        "sha256": "20521c9254c7b1f498ae470c8ae1e73f4223d44aaf5800f7281f4b1ab922b7cf",
+        "git_blob": "52e9940c0a9803f089d3fbca0a90804bdd20cfac"
+      },
+      "full_text_reviewed": true,
+      "inverse_one_sha_replacement_reconstructs_baseline": true
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "baseline": {
+        "bytes": 10697,
+        "sha256": "b92ac1213095251f87dcb86b6b8bbedf4b4ac7a115fe3225ade7656ea4c15818",
+        "git_blob": "9650925af529def1b6ab2f2591d1eacac3db4653"
+      },
+      "prepared": {
+        "bytes": 10697,
+        "sha256": "8d134c6be35875567bcf429d70ec1f8f50b16357940806c21b5c59678fde048e",
+        "git_blob": "41de47f88741f7949535d311d1fd4ba66607888f"
+      },
+      "full_text_reviewed": true,
+      "inverse_one_sha_replacement_reconstructs_baseline": true
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "baseline": {
+        "bytes": 19946,
+        "sha256": "4a6b91f1097d828afb0fa75138bf56117379cdccfcfb0e9656a7be43daf2e4cd",
+        "git_blob": "b0fb033aa2b371ff2f64acd5183a52fadace2982"
+      },
+      "prepared": {
+        "bytes": 19946,
+        "sha256": "965a15746ddf16ddbfa20f759d32c745b818e56281259df22c3940294aebb8d5",
+        "git_blob": "42732298903b794adb458d60664ae89e6b09f24d"
+      },
+      "full_text_reviewed": true,
+      "inverse_one_sha_replacement_reconstructs_baseline": true
+    }
+  ],
+  "static_findings": {
+    "exact_text_changes": 3,
+    "one_native_sha_replacement_per_file": true,
+    "historical_pin_count_unchanged": 50,
+    "historical_map_canonical_sha256": "8e30ba078ed723765449a46f8b6bbd5cb786c2bb641dfa9395e5fb19f309ae00",
+    "no_duplicate_map_keys": true,
+    "approved_key_set_unchanged": true,
+    "verify_function_ast_unchanged": true,
+    "all_test_and_helper_function_asts_unchanged": true,
+    "config_repository_unchanged": "https://github.com/Ullmann27/lumo-godot.git",
+    "config_engine_unchanged": "4.6.3",
+    "preserved_guards": [
+      "Exactly one release build number",
+      "Known explicit build entry only; no range or default allowance",
+      "Exact three config keys",
+      "Exact repository origin",
+      "Exact engine version",
+      "Full exact expected revision equality"
+    ],
+    "source_references": {
+      "config_revision": "config/godot-source.json:3",
+      "policy_mapping": "scripts/verify_legacy_release_pin.py:147",
+      "policy_guards": "scripts/verify_legacy_release_pin.py:150-169",
+      "test_constant": "scripts/tests/test_candidate_2011_pin.py:26",
+      "2020_history_and_invalid_source_contract": "scripts/tests/test_candidate_2011_pin.py:301-332",
+      "2020_update_wrapper_contract": "scripts/tests/test_candidate_2011_pin.py:334-348"
+    }
+  },
+  "existing_root_execution": {
+    "log": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared-pin-contracts-original.log",
+      "bytes": 4393,
+      "sha256": "c4661f2f37206d190d4b488bc01b17cddf25dce326f811b69ab1e68c94c16016",
+      "git_blob": "d2a5015655a63d307a593a80790e180e8c4c2b98"
+    },
+    "execution_record": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared-pin-contracts-execution.json",
+      "bytes": 1246,
+      "sha256": "2c65326fed1a3609d673bff3485857e62ee69602b11aef78d9f94bf58062d44d",
+      "git_blob": "dcba8693006a345e615d7ffe4d5da19f8fd0ba3b"
+    },
+    "observed_test_count": 26,
+    "observed_ok_count": 26,
+    "observed_skip_count": 0,
+    "unittest_reported_seconds": 0.012,
+    "process_duration_seconds": 0.08373477899294812,
+    "exit_code": 0,
+    "source_before_after_match_reviewed_prepared_bytes": true,
+    "executed_by_this_reviewer": false
+  },
+  "unchanged_receipt": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/config/studio-2020-visual-review.json",
+    "bytes": 43034,
+    "sha256": "12ffaba3dac821f480aaeb3a9392f2f6fbfdf669535d6b6351026ec22fef70b7",
+    "git_blob": "c48adf68a2a28570a1156be13824c5772d74a51c",
+    "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "native_workflow_run_id": 43570887024,
+    "native_artifact_id": 14105224381,
+    "native_artifact_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+    "image_count": 49,
+    "baseline_bytes_equal": true,
+    "valid_for_prepared_344_revision": false
+  },
+  "temporal_documentation_caveat": {
+    "path": "scripts/verify_legacy_release_pin.py",
+    "lines": [
+      144,
+      145,
+      146
+    ],
+    "text": "The unchanged comment says the exact Native source passed nine Studio jobs and the current 49-image review. This is established for the old785 receipt, not yet for344.",
+    "required_boundary": "Do not treat the prepared mapping or this review as Native acceptance; commit/use only after actual344 source-bound CI and current receipt are established."
+  },
+  "no_additional_pin_logic_blocker": true,
+  "no_native_android_apk_visual_or_release_approval": true,
+  "no_source_test_or_ref_mutation": true
+}

@@ -1,0 +1,63 @@
+{
+  "status": "READY_FOR_ROOT_INTEGRATION_SMALL_GERMAN_ADDRESS_FIX",
+  "host_base": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "changed_file": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+  "source_before": {
+    "bytes": 17154,
+    "sha256": "e0d590a021309f708a2e645b947fff54bf5eb398aaf8ca2865337b93b43caed0",
+    "git_blob_sha1": "6b6b22504cc0ff431cf03d4f3496b296282d24b4",
+    "mode": "100644"
+  },
+  "source_after": {
+    "bytes": 17240,
+    "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245",
+    "git_blob_sha1": "52beeb4f154045e54cf8f6a8e35a3bcb7255eda3",
+    "mode": "100644"
+  },
+  "scope": "Nur grammatische Flexion der vorhandenen exakten Du-Anrede in der neuen Startmeldung; kein Ausbau der Spielmechanik.",
+  "actual_callers": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "solo_player1Name": "Du",
+      "local_player1Name": "Spieler 1"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_screen.dart",
+      "default_player1Name": "Du"
+    }
+  ],
+  "implementation": "Lokale openingMessage in _startNewGame: exakt Du wird zu Du fängst an.; jeder andere unverändert übergebene Name bleibt Name fängt an. Die beiden sichtbaren Starttexte und die Pass-and-Play-Begrüßung verwenden dieselbe Meldung. Die bestehende Bot-Begrüßung war bereits korrekt.",
+  "localization_review": {
+    "read": "lib/l10n/app_de.arb:voiceWelcomePass/voiceWelcomeBot",
+    "changed": false,
+    "reason": "Der aktive Controller verwendet an diesen Stellen direkte deutsche Strings. Der vorhandene ARB-Namenplatzhalter ist für die Namensansprache korrekt; dieser Patch führt keine neue Lokalisierungsschnittstelle ein."
+  },
+  "preserved": [
+    "Alle Karten-/Bot-/Timerregeln und sonstigen Methoden.",
+    "Namen werden nicht normalisiert, getrimmt oder umbenannt.",
+    "Alle anderen Sprachdateien.",
+    "Bestehendes Saveformat, Profile und Wiederaufnahme; keine Migration gespeicherter alter Aktionsmeldungen."
+  ],
+  "tests": {
+    "existing_lifecycle": 5,
+    "existing_persistence": 7,
+    "passed": 12,
+    "skipped": 0,
+    "hidden_loader_entries_not_counted": 2,
+    "exit_code": 0,
+    "command_elapsed_seconds": 11.539758020007866
+  },
+  "initial_environment_failure": {
+    "log": "setup-missing-package-graph.log",
+    "tests_executed": 0,
+    "cause": "Der isolierten --no-pub-Umgebung fehlte package_graph.json. Nur die bestehende Cachedatei wurde bytegleich in die isolierte Umgebung kopiert; der anschließende Testlauf bestand."
+  },
+  "limits": [
+    "Keine neuen Tests für die reine Textkorrektur angelegt.",
+    "Keine neue Android-/Rendereraufnahme oder APK erzeugt.",
+    "Kein Root-Checkout oder Gitref verändert."
+  ],
+  "diff": "controller-against-4ab.patch",
+  "full_log": "existing-tests.log",
+  "structured_results": "existing-tests.jsonl"
+}

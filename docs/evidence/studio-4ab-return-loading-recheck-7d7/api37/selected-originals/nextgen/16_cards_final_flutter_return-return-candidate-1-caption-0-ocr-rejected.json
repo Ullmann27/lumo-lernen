@@ -1,0 +1,33 @@
+{
+  "status": "REJECTED_FRAME",
+  "source": "16_cards_final_flutter_return-return-candidate-1.png",
+  "source_sha256": "19c8a7cdf819674b3b10ad42cbd832b7c38c1ded592494aa7ab71a8776ef8700",
+  "surface": [
+    1080,
+    2400
+  ],
+  "variant": "contrast",
+  "observed_captions": [
+    {
+      "text": "Die Spielwelt wird geöffnet",
+      "bounds": [
+        182.0,
+        2048.0,
+        900.0,
+        2098.0
+      ],
+      "variant": "contrast"
+    },
+    {
+      "text": "Die Spielwelt wird geöffnet",
+      "bounds": [
+        182.0,
+        2048.0,
+        900.0,
+        2098.0
+      ],
+      "variant": "contrast"
+    }
+  ],
+  "scope": "Negative current-frame evidence only; no input or positive acceptance"
+}

@@ -1,0 +1,61 @@
+{
+  "scope": "Unpublished 2020 host composition; exact current library deltas verified against Root composition manifest. No Android2020 run claimed.",
+  "manifest_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-first-composition-manifest.json",
+  "manifest_sha256": "b85e86c6d946bf9dec079b9fb6159d1ff5a096e0f614677fd70b1877b412bbe1",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/app/app_state.dart",
+      "path": "lib/app/app_state.dart",
+      "owner": "C4 production",
+      "bytes": 54663,
+      "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+      "git_blob_sha": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/features/games/connect_four/connect_four_round.dart",
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "owner": "C4 production",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+      "git_blob_sha": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/features/games/connect_four/connect_four_table_session.dart",
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "owner": "C4 production",
+      "bytes": 9737,
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+      "git_blob_sha": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "owner": "C4 production",
+      "bytes": 42692,
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+      "git_blob_sha": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "path": "lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "owner": "Cards German feedback",
+      "bytes": 18821,
+      "sha256": "ef94f30fd339e46da6fb58a39989dfacdb0f2a8f5d881314f40afdfcf5503d13",
+      "git_blob_sha": "067a16c3e6061120fe8b58c1e3585d2982964be7",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/features/lumo3d/lumo3d_launcher.dart",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "owner": "C4 production",
+      "bytes": 10316,
+      "sha256": "a385e88006fba6a4f6126e0eceb57dc2185ebf0c34149746d369ae0c790ea732",
+      "git_blob_sha": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+      "mode": "100644"
+    }
+  ]
+}

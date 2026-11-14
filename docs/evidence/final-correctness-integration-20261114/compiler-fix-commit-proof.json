@@ -1,0 +1,23 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "chatgpt/lumo-nextgen-feature-20261114",
+  "parent": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "tree": "380c3e4b864a1b5fb9bc396541758defa5012630",
+  "changed_paths": [
+    "lib/features/games/memory/memory_round.dart"
+  ],
+  "changed_lines": 2,
+  "leaves": 4372,
+  "unchanged_previous_leaves": 4371,
+  "deletions": 0,
+  "added": 0,
+  "full_utf8_readback": true,
+  "full_inverse_byte_match": true,
+  "expected_old": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "force": false,
+  "postref": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "observed_at_utc": "2026-11-14 19:39:23 UTC",
+  "studio_unchanged": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "main_mutated": false
+}

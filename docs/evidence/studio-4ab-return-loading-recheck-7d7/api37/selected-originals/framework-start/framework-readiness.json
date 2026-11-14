@@ -1,0 +1,971 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "reason": "required_framework_services_observed_stable",
+  "elapsed_seconds": 14.717270508000013,
+  "budget_seconds": 120.0,
+  "required_stable_seconds": 10.0,
+  "required_minimum_samples": 3,
+  "consecutive_ready_samples": 4,
+  "stable_observed_seconds": 11.813967040000023,
+  "samples": [
+    {
+      "observed_at": "2026-11-14T03:46:01.869743+00:00",
+      "ready": true,
+      "errors": [],
+      "pid": "622",
+      "start_count": "1",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: found",
+        "settings": "Service settings: found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: found"
+      },
+      "settings_boot_count": "1",
+      "package_android": "package:/system/framework/framework-res.apk",
+      "window_size": "Physical size: 1080x2340",
+      "command_records": {
+        "properties": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop"
+          ],
+          "started_at": "2026-11-14T03:45:59.702629+00:00",
+          "finished_at": "2026-11-14T03:45:59.770928+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0004-properties.stdout",
+          "stderr_file": "commands/0004-properties.stderr"
+        },
+        "pid-before": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:45:59.771123+00:00",
+          "finished_at": "2026-11-14T03:46:00.324215+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0005-pid-before.stdout",
+          "stderr_file": "commands/0005-pid-before.stderr"
+        },
+        "service-input": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "input"
+          ],
+          "started_at": "2026-11-14T03:46:00.324455+00:00",
+          "finished_at": "2026-11-14T03:46:00.354537+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0006-service-input.stdout",
+          "stderr_file": "commands/0006-service-input.stderr"
+        },
+        "service-settings": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "settings"
+          ],
+          "started_at": "2026-11-14T03:46:00.354720+00:00",
+          "finished_at": "2026-11-14T03:46:00.419057+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0007-service-settings.stdout",
+          "stderr_file": "commands/0007-service-settings.stderr"
+        },
+        "service-activity": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "activity"
+          ],
+          "started_at": "2026-11-14T03:46:00.419273+00:00",
+          "finished_at": "2026-11-14T03:46:00.467720+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0008-service-activity.stdout",
+          "stderr_file": "commands/0008-service-activity.stderr"
+        },
+        "service-package": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "package"
+          ],
+          "started_at": "2026-11-14T03:46:00.467973+00:00",
+          "finished_at": "2026-11-14T03:46:00.679360+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0009-service-package.stdout",
+          "stderr_file": "commands/0009-service-package.stderr"
+        },
+        "service-window": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "window"
+          ],
+          "started_at": "2026-11-14T03:46:00.679598+00:00",
+          "finished_at": "2026-11-14T03:46:00.833803+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0010-service-window.stdout",
+          "stderr_file": "commands/0010-service-window.stderr"
+        },
+        "settings-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "settings",
+            "get",
+            "global",
+            "boot_count"
+          ],
+          "started_at": "2026-11-14T03:46:00.834025+00:00",
+          "finished_at": "2026-11-14T03:46:01.145887+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0011-settings-read.stdout",
+          "stderr_file": "commands/0011-settings-read.stderr"
+        },
+        "package-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "cmd",
+            "package",
+            "path",
+            "android"
+          ],
+          "started_at": "2026-11-14T03:46:01.146111+00:00",
+          "finished_at": "2026-11-14T03:46:01.539517+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0012-package-read.stdout",
+          "stderr_file": "commands/0012-package-read.stderr"
+        },
+        "window-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "wm",
+            "size"
+          ],
+          "started_at": "2026-11-14T03:46:01.539681+00:00",
+          "finished_at": "2026-11-14T03:46:01.581375+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0013-window-read.stdout",
+          "stderr_file": "commands/0013-window-read.stderr"
+        },
+        "pid-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:46:01.581572+00:00",
+          "finished_at": "2026-11-14T03:46:01.700839+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0014-pid-after.stdout",
+          "stderr_file": "commands/0014-pid-after.stderr"
+        },
+        "count-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop",
+            "sys.system_server.start_count"
+          ],
+          "started_at": "2026-11-14T03:46:01.702008+00:00",
+          "finished_at": "2026-11-14T03:46:01.868766+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0015-count-after.stdout",
+          "stderr_file": "commands/0015-count-after.stderr"
+        }
+      }
+    },
+    {
+      "observed_at": "2026-11-14T03:46:06.124146+00:00",
+      "ready": true,
+      "errors": [],
+      "pid": "622",
+      "start_count": "1",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: found",
+        "settings": "Service settings: found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: found"
+      },
+      "settings_boot_count": "1",
+      "package_android": "package:/system/framework/framework-res.apk",
+      "window_size": "Physical size: 1080x2340",
+      "command_records": {
+        "properties": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop"
+          ],
+          "started_at": "2026-11-14T03:46:03.871973+00:00",
+          "finished_at": "2026-11-14T03:46:03.934259+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0016-properties.stdout",
+          "stderr_file": "commands/0016-properties.stderr"
+        },
+        "pid-before": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:46:03.934460+00:00",
+          "finished_at": "2026-11-14T03:46:04.160275+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0017-pid-before.stdout",
+          "stderr_file": "commands/0017-pid-before.stderr"
+        },
+        "service-input": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "input"
+          ],
+          "started_at": "2026-11-14T03:46:04.160452+00:00",
+          "finished_at": "2026-11-14T03:46:04.616361+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0018-service-input.stdout",
+          "stderr_file": "commands/0018-service-input.stderr"
+        },
+        "service-settings": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "settings"
+          ],
+          "started_at": "2026-11-14T03:46:04.616595+00:00",
+          "finished_at": "2026-11-14T03:46:04.671811+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0019-service-settings.stdout",
+          "stderr_file": "commands/0019-service-settings.stderr"
+        },
+        "service-activity": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "activity"
+          ],
+          "started_at": "2026-11-14T03:46:04.672028+00:00",
+          "finished_at": "2026-11-14T03:46:04.736187+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0020-service-activity.stdout",
+          "stderr_file": "commands/0020-service-activity.stderr"
+        },
+        "service-package": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "package"
+          ],
+          "started_at": "2026-11-14T03:46:04.736390+00:00",
+          "finished_at": "2026-11-14T03:46:05.066542+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0021-service-package.stdout",
+          "stderr_file": "commands/0021-service-package.stderr"
+        },
+        "service-window": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "window"
+          ],
+          "started_at": "2026-11-14T03:46:05.066795+00:00",
+          "finished_at": "2026-11-14T03:46:05.146012+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0022-service-window.stdout",
+          "stderr_file": "commands/0022-service-window.stderr"
+        },
+        "settings-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "settings",
+            "get",
+            "global",
+            "boot_count"
+          ],
+          "started_at": "2026-11-14T03:46:05.146248+00:00",
+          "finished_at": "2026-11-14T03:46:05.224420+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0023-settings-read.stdout",
+          "stderr_file": "commands/0023-settings-read.stderr"
+        },
+        "package-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "cmd",
+            "package",
+            "path",
+            "android"
+          ],
+          "started_at": "2026-11-14T03:46:05.224644+00:00",
+          "finished_at": "2026-11-14T03:46:05.373949+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0024-package-read.stdout",
+          "stderr_file": "commands/0024-package-read.stderr"
+        },
+        "window-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "wm",
+            "size"
+          ],
+          "started_at": "2026-11-14T03:46:05.374180+00:00",
+          "finished_at": "2026-11-14T03:46:05.506084+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0025-window-read.stdout",
+          "stderr_file": "commands/0025-window-read.stderr"
+        },
+        "pid-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:46:05.506279+00:00",
+          "finished_at": "2026-11-14T03:46:05.590867+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0026-pid-after.stdout",
+          "stderr_file": "commands/0026-pid-after.stderr"
+        },
+        "count-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop",
+            "sys.system_server.start_count"
+          ],
+          "started_at": "2026-11-14T03:46:05.591095+00:00",
+          "finished_at": "2026-11-14T03:46:06.123603+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0027-count-after.stdout",
+          "stderr_file": "commands/0027-count-after.stderr"
+        }
+      }
+    },
+    {
+      "observed_at": "2026-11-14T03:46:10.073281+00:00",
+      "ready": true,
+      "errors": [],
+      "pid": "622",
+      "start_count": "1",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: found",
+        "settings": "Service settings: found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: found"
+      },
+      "settings_boot_count": "1",
+      "package_android": "package:/system/framework/framework-res.apk",
+      "window_size": "Physical size: 1080x2340",
+      "command_records": {
+        "properties": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop"
+          ],
+          "started_at": "2026-11-14T03:46:08.124975+00:00",
+          "finished_at": "2026-11-14T03:46:08.575869+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0028-properties.stdout",
+          "stderr_file": "commands/0028-properties.stderr"
+        },
+        "pid-before": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:46:08.576137+00:00",
+          "finished_at": "2026-11-14T03:46:08.747226+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0029-pid-before.stdout",
+          "stderr_file": "commands/0029-pid-before.stderr"
+        },
+        "service-input": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "input"
+          ],
+          "started_at": "2026-11-14T03:46:08.747446+00:00",
+          "finished_at": "2026-11-14T03:46:08.854812+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0030-service-input.stdout",
+          "stderr_file": "commands/0030-service-input.stderr"
+        },
+        "service-settings": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "settings"
+          ],
+          "started_at": "2026-11-14T03:46:08.855080+00:00",
+          "finished_at": "2026-11-14T03:46:08.993039+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0031-service-settings.stdout",
+          "stderr_file": "commands/0031-service-settings.stderr"
+        },
+        "service-activity": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "activity"
+          ],
+          "started_at": "2026-11-14T03:46:08.993223+00:00",
+          "finished_at": "2026-11-14T03:46:09.084328+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0032-service-activity.stdout",
+          "stderr_file": "commands/0032-service-activity.stderr"
+        },
+        "service-package": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "package"
+          ],
+          "started_at": "2026-11-14T03:46:09.084519+00:00",
+          "finished_at": "2026-11-14T03:46:09.145857+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0033-service-package.stdout",
+          "stderr_file": "commands/0033-service-package.stderr"
+        },
+        "service-window": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "window"
+          ],
+          "started_at": "2026-11-14T03:46:09.146081+00:00",
+          "finished_at": "2026-11-14T03:46:09.271864+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0034-service-window.stdout",
+          "stderr_file": "commands/0034-service-window.stderr"
+        },
+        "settings-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "settings",
+            "get",
+            "global",
+            "boot_count"
+          ],
+          "started_at": "2026-11-14T03:46:09.272127+00:00",
+          "finished_at": "2026-11-14T03:46:09.347869+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0035-settings-read.stdout",
+          "stderr_file": "commands/0035-settings-read.stderr"
+        },
+        "package-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "cmd",
+            "package",
+            "path",
+            "android"
+          ],
+          "started_at": "2026-11-14T03:46:09.348091+00:00",
+          "finished_at": "2026-11-14T03:46:09.475257+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0036-package-read.stdout",
+          "stderr_file": "commands/0036-package-read.stderr"
+        },
+        "window-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "wm",
+            "size"
+          ],
+          "started_at": "2026-11-14T03:46:09.475457+00:00",
+          "finished_at": "2026-11-14T03:46:09.842153+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0037-window-read.stdout",
+          "stderr_file": "commands/0037-window-read.stderr"
+        },
+        "pid-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:46:09.842362+00:00",
+          "finished_at": "2026-11-14T03:46:09.983821+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0038-pid-after.stdout",
+          "stderr_file": "commands/0038-pid-after.stderr"
+        },
+        "count-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop",
+            "sys.system_server.start_count"
+          ],
+          "started_at": "2026-11-14T03:46:09.984084+00:00",
+          "finished_at": "2026-11-14T03:46:10.072775+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0039-count-after.stdout",
+          "stderr_file": "commands/0039-count-after.stderr"
+        }
+      }
+    },
+    {
+      "observed_at": "2026-11-14T03:46:13.683706+00:00",
+      "ready": true,
+      "errors": [],
+      "pid": "622",
+      "start_count": "1",
+      "android_runtime": {
+        "sdk": "37",
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys"
+      },
+      "services": {
+        "input": "Service input: found",
+        "settings": "Service settings: found",
+        "activity": "Service activity: found",
+        "package": "Service package: found",
+        "window": "Service window: found"
+      },
+      "settings_boot_count": "1",
+      "package_android": "package:/system/framework/framework-res.apk",
+      "window_size": "Physical size: 1080x2340",
+      "command_records": {
+        "properties": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop"
+          ],
+          "started_at": "2026-11-14T03:46:12.073471+00:00",
+          "finished_at": "2026-11-14T03:46:12.126347+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0040-properties.stdout",
+          "stderr_file": "commands/0040-properties.stderr"
+        },
+        "pid-before": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:46:12.126626+00:00",
+          "finished_at": "2026-11-14T03:46:12.189495+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0041-pid-before.stdout",
+          "stderr_file": "commands/0041-pid-before.stderr"
+        },
+        "service-input": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "input"
+          ],
+          "started_at": "2026-11-14T03:46:12.189747+00:00",
+          "finished_at": "2026-11-14T03:46:12.502982+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0042-service-input.stdout",
+          "stderr_file": "commands/0042-service-input.stderr"
+        },
+        "service-settings": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "settings"
+          ],
+          "started_at": "2026-11-14T03:46:12.503347+00:00",
+          "finished_at": "2026-11-14T03:46:12.580472+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0043-service-settings.stdout",
+          "stderr_file": "commands/0043-service-settings.stderr"
+        },
+        "service-activity": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "activity"
+          ],
+          "started_at": "2026-11-14T03:46:12.580705+00:00",
+          "finished_at": "2026-11-14T03:46:12.660108+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0044-service-activity.stdout",
+          "stderr_file": "commands/0044-service-activity.stderr"
+        },
+        "service-package": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "package"
+          ],
+          "started_at": "2026-11-14T03:46:12.660332+00:00",
+          "finished_at": "2026-11-14T03:46:12.684029+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0045-service-package.stdout",
+          "stderr_file": "commands/0045-service-package.stderr"
+        },
+        "service-window": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "service",
+            "check",
+            "window"
+          ],
+          "started_at": "2026-11-14T03:46:12.684294+00:00",
+          "finished_at": "2026-11-14T03:46:12.822369+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0046-service-window.stdout",
+          "stderr_file": "commands/0046-service-window.stderr"
+        },
+        "settings-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "settings",
+            "get",
+            "global",
+            "boot_count"
+          ],
+          "started_at": "2026-11-14T03:46:12.822614+00:00",
+          "finished_at": "2026-11-14T03:46:12.894264+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0047-settings-read.stdout",
+          "stderr_file": "commands/0047-settings-read.stderr"
+        },
+        "package-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "cmd",
+            "package",
+            "path",
+            "android"
+          ],
+          "started_at": "2026-11-14T03:46:12.894610+00:00",
+          "finished_at": "2026-11-14T03:46:13.183866+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0048-package-read.stdout",
+          "stderr_file": "commands/0048-package-read.stderr"
+        },
+        "window-read": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "wm",
+            "size"
+          ],
+          "started_at": "2026-11-14T03:46:13.184160+00:00",
+          "finished_at": "2026-11-14T03:46:13.512982+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0049-window-read.stdout",
+          "stderr_file": "commands/0049-window-read.stderr"
+        },
+        "pid-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "pidof",
+            "system_server"
+          ],
+          "started_at": "2026-11-14T03:46:13.513192+00:00",
+          "finished_at": "2026-11-14T03:46:13.633040+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0050-pid-after.stdout",
+          "stderr_file": "commands/0050-pid-after.stderr"
+        },
+        "count-after": {
+          "command": [
+            "/usr/local/lib/android/sdk/platform-tools/adb",
+            "-s",
+            "emulator-5554",
+            "shell",
+            "getprop",
+            "sys.system_server.start_count"
+          ],
+          "started_at": "2026-11-14T03:46:13.633285+00:00",
+          "finished_at": "2026-11-14T03:46:13.683208+00:00",
+          "returncode": 0,
+          "timed_out": false,
+          "stdout_file": "commands/0051-count-after.stdout",
+          "stderr_file": "commands/0051-count-after.stderr"
+        }
+      }
+    }
+  ],
+  "observed_start_count_greater_than_one": false,
+  "scope": "Sampled pre-app framework readiness only; raw startup logs must distinguish any early race from a system-server failure. This is not an app test or physical-device performance measurement.",
+  "framework_poll_budget_seconds": 119.26390335899998,
+  "resource_observation": {
+    "scope": "Single actual read-only /data, memory and mount observation, including unsuccessful command records; no partition changes",
+    "command_records": {
+      "data-filesystem": {
+        "command": [
+          "/usr/local/lib/android/sdk/platform-tools/adb",
+          "-s",
+          "emulator-5554",
+          "shell",
+          "df",
+          "-k",
+          "/data"
+        ],
+        "started_at": "2026-11-14T03:45:58.966720+00:00",
+        "finished_at": "2026-11-14T03:45:59.138418+00:00",
+        "returncode": 0,
+        "timed_out": false,
+        "stdout_file": "commands/0001-data-filesystem.stdout",
+        "stderr_file": "commands/0001-data-filesystem.stderr"
+      },
+      "memory-info": {
+        "command": [
+          "/usr/local/lib/android/sdk/platform-tools/adb",
+          "-s",
+          "emulator-5554",
+          "shell",
+          "cat",
+          "/proc/meminfo"
+        ],
+        "started_at": "2026-11-14T03:45:59.138678+00:00",
+        "finished_at": "2026-11-14T03:45:59.278185+00:00",
+        "returncode": 0,
+        "timed_out": false,
+        "stdout_file": "commands/0002-memory-info.stdout",
+        "stderr_file": "commands/0002-memory-info.stderr"
+      },
+      "mounted-filesystems": {
+        "command": [
+          "/usr/local/lib/android/sdk/platform-tools/adb",
+          "-s",
+          "emulator-5554",
+          "shell",
+          "cat",
+          "/proc/mounts"
+        ],
+        "started_at": "2026-11-14T03:45:59.278410+00:00",
+        "finished_at": "2026-11-14T03:45:59.384857+00:00",
+        "returncode": 0,
+        "timed_out": false,
+        "stdout_file": "commands/0003-mounted-filesystems.stdout",
+        "stderr_file": "commands/0003-mounted-filesystems.stderr"
+      }
+    }
+  },
+  "cli22_proof": "/home/runner/work/lumo-lernen/lumo-lernen/tour/framework-start/cli22",
+  "serial": "emulator-5554",
+  "adb": "/usr/local/lib/android/sdk/platform-tools/adb",
+  "finished_at": "2026-11-14T03:46:13.683883+00:00",
+  "monitor_alive_at_finish": true
+}

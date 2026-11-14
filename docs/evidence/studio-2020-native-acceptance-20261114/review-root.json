@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "status": "reviewed_no_new_blocker_in_selected_current_originals",
+  "reviewed_by": "root; thirteen current original PNGs actually opened",
+  "reviewed_at": "2026-11-14T08:20:06Z",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "archive_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+  "extraction_manifest_sha256": "8549474e622f91c320d87e4134045ae76cd82ec6090773ec9e265b98f2c652ef",
+  "scope": "Native renderer originals only; no physical device, Android, latency, 60FPS or full AAA acceptance",
+  "images": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "sha256": "47932d51d210f1f3d31a1287e5c756dee1ce92de867598854ff408fcde610d75",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Lumo ist in der Aufstiegsaufnahme vollständig vor der ersten räumlichen Insel sichtbar; Körper, Beine und Schwanz sind klar getrennt dargestellt. Weitere Plattformen, Kristalle, Sterne und Bäume bilden eine erkennbare Tiefenstaffelung. Bewegungsstick und großer Sprungknopf liegen unten getrennt; Spiele/Pause und die mehrzeiligen Ziele sind lesbar. Der hohe Informationsblock bleibt gestalterisch dicht. Das Einzelbild belegt keine Eingabelatenz oder Sprungzuverlässigkeit."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "sha256": "63b4814dbed8519b37118aa67b2a868568c57c4adb89d1b45401b5c50d489085",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Im schmalen Hochformat steht Lumo sichtbar auf dem Steinpfad der ersten Insel; die nächsten Plattformen und Sammelobjekte bleiben erkennbar. Der Zähler bricht nachvollziehbar auf zwei Zeilen um, alle eingeblendeten Ziele bleiben lesbar. Linker Stick und rechter Sprungknopf sind vollständig im Bild und überdecken sich nicht. Der obere HUD-Bereich beansprucht viel Höhe; eine physische Landungs- oder 60-FPS-Abnahme wird aus dem Standbild nicht abgeleitet."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "sha256": "ecc773a30d7e4ebed871d904f9e60cf83044e7fc5dbdf2bea64d338fa948ca20",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die Bauansicht zeigt echte Inselgeometrie, Fluss, Wege, Gebäude und eine transparent markierte Brücke. Die Rückmeldung „Brücke versetzt. Rückgängig stellt den vorherigen Platz wieder her.“ ist lesbar; die Aufnahme zeigt den benannten Zustand, ersetzt aber keinen Bewegungs-/Save-Test. Objektaktionen, Bauauftrag und Zoom sind sichtbar. Die beiden Werkzeugleisten bleiben sehr dicht, und die horizontale Bauteilliste setzt sich am rechten Rand nur teilweise sichtbar fort."
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "sha256": "f8d620a21d16f61f7707be06e45de4396039a564400838488c1a99a4185716e8",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Der kleine Querformatdialog „Aktuelles Bauziel“ stellt Titel, vollständige zweizeilige Aufgabe sowie „Mein Bauwerk testen“ und „Abbrechen“ innerhalb des sichtbaren Fensters dar. Der Dialog überlagert wie vorgesehen die darunterliegenden Bauwerkzeuge; deren teilweise Ausschnitte sind keine zusätzlichen vollständig sichtbaren Schaltflächen. Große freie Dialoghöhe bleibt vorhanden; die Außenkanten wirken gestalterisch schlicht."
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "sha256": "a7006ca3f7fe49c54c404ea8deec7f3580c8cfde3c818933ca38cbff0b802bed",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die Hochkantaufnahme zeigt den nach unten gescrollten Vorlagendialog mit lesbaren Optionen Brücke, Sternenturm, Garten, Garten-/Hafen-/Insel-Parzelle, Leere Insel und vollständigem Abbrechen. Starter-Haus ist am oberen Scrollrand nur teilweise sichtbar; es wird nicht als vollständig dargestellt gewertet. Der Hintergrundtitel ist durch das schmale Layout verkürzt und Werkzeug-/Materialleisten sind horizontal angeschnitten. Das aktive Dialogende ist zugänglich sichtbar; die Darstellung bleibt insgesamt dicht."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "sha256": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Der kleine Siedlungsdialog ist vollständig sichtbar. Die Rückgabe lautet jetzt korrekt „4 Holz, 3 Stein, 1 Münze“; die zuvor beanstandete Singularform ist in diesem aktuellen CI-Original tatsächlich korrigiert. Erklärung zum vorübergehenden Auszug und Rückgängigmachen sowie beide Entscheidungen Haus behalten/Ja, umbauen sind lesbar und vollständig im Rahmen. Das Bild zeigt eine Bestätigung, keinen eigenständigen Wirtschaftssimulationsnachweis."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die aktuelle Neuausführung zeigt die vorhandene räumliche Werkstatt mit plastischem Kart, beleuchtetem Drehpodest, Werkzeugschrank und vollständig sichtbarem Original-Lumo daneben. Comet ist markiert, weitere Fahrzeuge und ihre Sperrhinweise sind erkennbar. Rundum ansehen, Lack/Teile/Effekte, Rückkehr und Rennen starten sind sichtbar. Die Fahrzeugliste ist scrollbar und zeigt untere Einträge nur teilweise. Das Standbild beweist keine Drehgeste oder neue Fahrphysik; diese Garage wird nicht als neuer 2020-Grundumbau ausgegeben."
+    },
+    {
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die hohe Werkstattaufnahme zeigt ein plastisches goldfarbenes Kart mit Lumo auf einem beleuchteten Podest. Tuning 4 von 20, fünf Eigenschaftsbalken, Farb-/Felgen-/Neon-Auswahl und der vollständige Rückholbutton für 16 Sterne sind sichtbar; die Sternzahl 370 ist ein dargestellter Fixturezustand, keine Aussage über Nutzerguthaben. Der Kopfzeilentitel ist erkennbar mit Ellipse gekürzt. Die Aufnahme zeigt den erreichten Scrollabschnitt und ersetzt keinen Kauf-/Rückerstattungstest."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "8d486b45c028da0ddda892594b0ddccb130eaa8eea450e5b35e52802176a1833",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die Routenaufnahme zeigt Lumo vollständig frei in der 3D-Burg-/Gartenumgebung. Die Aufgabe benennt Kristallwächter oder Mondgarten und erklärt, dass beide Funde fürs Schloss benötigt werden. Hinweiszähler und vollständiger Text sind lesbar, obwohl der Entdeckungszähler über die Zeile umbricht. Der Fundhinweis besitzt jetzt eine dunkle, gut abgesetzte Fläche zwischen den seitlichen Bedienelementen. Das Bild belegt den erreichten Auswahlzustand, nicht beide bereits gespielten Lösungswege."
+    },
+    {
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "sha256": "9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Im Foldformat sind Abschlussüberschrift, Text mit drei Sternen/54 Erfahrungspunkten und alle drei Entscheidungen vollständig im zentralen Dialog sichtbar. Hinter dem Dialog bleiben Burg, Wegweiser, Bediengrafiken und der lesbare Fundhinweis erkennbar. Der Hinweiszähler ist weiterhin umgebrochen; die Figur ist durch den Abschlussdialog nicht als frei sichtbar zu bewerten. Das ist ein pausierter Abschlusszustand und kein neuer Gameplay-Avatarblocker. Tatsächliche Belohnungsverbuchung oder Speicherung werden nicht aus dem Screenshot allein abgeleitet."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "sha256": "289a354bd987a21b01116cff3e9776f63d7bba49f8f5c66cdc07758d2b78a94b",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "In der breiten Cutout-Simulation sind Spiele, Pause, Stick und Sprungknopf mit sichtbaren Randabständen vollständig dargestellt. Lumo steht frei auf der vorderen Insel; die nächsten Plattformen bleiben erkennbar. Die mehrzeiligen Status- und Zieltexte sind in dieser Aufnahme lesbar, liegen aber über der räumlichen Szene und beanspruchen einen großen Teil der oberen Bildhälfte. Das ist eine native Layoutsimulation, keine Messung eines physischen Fold7."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "sha256": "94d9fa2a55c224285c1763a78f26128d7e64a1403b6884c4fc77ace695fa17f4",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die breite Bauweltansicht zeigt die vorhandene bebaute Insel mit Fluss, Brücke, Häusern und weiteren Bauteilen als räumliche Geometrie. Spiele, Pause, Laufmodus, Werkzeug- und Materialauswahl sind im sichtbaren Ausschnitt lesbar. Beide horizontalen Listen setzen sich rechts angeschnitten fort; die große Bedienoberfläche und der Text zur Kamerageste liegen über der Welt und begrenzen den freien Arbeitsraum. Kein vollständiger Bauteilkatalog oder tatsächlicher Fingergestennachweis wird aus diesem einen Ausschnitt behauptet."
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "sha256": "55796a46c5f831803e36e8cf751719c452a7e97d1f5d7b3da0fef89d136de1dc",
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die zuvor beanstandete breite Treasure-Cutoutansicht zeigt Lumo jetzt vollständig frei auf dem Weg. Der große dauerhafte Aufgabenkasten ist durch den sichtbaren Hinweisbutton ersetzt; die allgemeine Erkundungsmeldung steht kontraststark in einer separaten dunklen Zeile. Figur, Stick, Sprung- und Ansehen-Aktion überdecken sich in diesem Original nicht. Titel, Rucksack und Pause sind innerhalb der dargestellten sicheren Ränder lesbar. Der beobachtete Avatar-/Hinweiskontrastblocker des acf51-Vorgängers ist in dieser neuen Aufnahme beseitigt; Android-/Geräteverhalten bleibt gesondert zu prüfen."
+    }
+  ]
+}
+

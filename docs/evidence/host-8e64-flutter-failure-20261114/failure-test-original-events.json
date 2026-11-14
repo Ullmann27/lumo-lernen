@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "host_sha": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "run_id": 43634307306,
+  "job_id": 132567623144,
+  "artifact_id": 14129347799,
+  "original_member": "feature-evidence/full-flutter/flutter-machine.jsonl",
+  "original_member_bytes": 1790959,
+  "original_member_sha256": "a54cec8154dd7090740e0ef1c469bc9ae17b0ceb7884d01860b4f73de76adf21",
+  "original_member_crc_verified": true,
+  "test_id": 56,
+  "suite_id": 27,
+  "suite": [
+    {
+      "line": 56,
+      "event": {
+        "suite": {
+          "id": 27,
+          "platform": "vm",
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_bot_save_retry_test.dart"
+        },
+        "type": "suite",
+        "time": 6011
+      }
+    }
+  ],
+  "events": [
+    {
+      "line": 115,
+      "event": {
+        "test": {
+          "id": 56,
+          "name": "Lifecycle pause during reward retry defers the settled result",
+          "suiteID": 27,
+          "groupIDs": [
+            30
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 174,
+          "column": 5,
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "root_line": 243,
+          "root_column": 3,
+          "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_bot_save_retry_test.dart"
+        },
+        "type": "testStart",
+        "time": 9604
+      }
+    },
+    {
+      "line": 123,
+      "event": {
+        "testID": 56,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: true\n  Actual: <false>\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_bot_save_retry_test.dart:261:5)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/connect_four_bot_save_retry_test.dart line 261\nThe test description was:\n  Lifecycle pause during reward retry defers the settled result\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 10635
+      }
+    },
+    {
+      "line": 124,
+      "event": {
+        "testID": 56,
+        "error": "Test failed. See exception logs above.\nThe test description was: Lifecycle pause during reward retry defers the settled result",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 10637
+      }
+    },
+    {
+      "line": 125,
+      "event": {
+        "testID": 56,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 10637
+      }
+    }
+  ],
+  "scope": "Exact selected events from the once-retrieved complete machine member; no product change or inferred pass."
+}

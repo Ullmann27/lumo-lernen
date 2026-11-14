@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "reviewed_host": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "reviewed_native": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "files": [
+    {
+      "path": ".github/probes/lumo_memory_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/.github/probes/lumo_memory_android_probe.py",
+      "bytes": 48815,
+      "sha256": "b9738543bac6c113d45b3cce7659708e26bf92bcc913dce788f19fc6ff41509a",
+      "git_blob_sha": "3b1491defd488d7f5080785a8c635a47b924b627",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b1491defd488d7f5080785a8c635a47b924b627",
+      "full_utf8_readback_equal": true,
+      "after_upload": {
+        "bytes": 48815,
+        "sha256": "b9738543bac6c113d45b3cce7659708e26bf92bcc913dce788f19fc6ff41509a",
+        "git_blob_sha": "3b1491defd488d7f5080785a8c635a47b924b627"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_memory_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/test_memory_android_probe.py",
+      "bytes": 15899,
+      "sha256": "47776820e7930552503f101a28c6efaedc719f4f1bbc9d82435b642db8cb9b13",
+      "git_blob_sha": "ace4c8afb8e54f79121f8c7324e67f0ad885f4cf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ace4c8afb8e54f79121f8c7324e67f0ad885f4cf",
+      "full_utf8_readback_equal": true,
+      "after_upload": {
+        "bytes": 15899,
+        "sha256": "47776820e7930552503f101a28c6efaedc719f4f1bbc9d82435b642db8cb9b13",
+        "git_blob_sha": "ace4c8afb8e54f79121f8c7324e67f0ad885f4cf"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/fixtures/memory_android/README.md",
+      "bytes": 1344,
+      "sha256": "add7d901e8bc222b129a0f2f6bcf8d5b55733212fc3e6910eb095c9fd0fa1b45",
+      "git_blob_sha": "f6f25af85d8f6fad7d5054260f2bc4f720c04da6",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6f25af85d8f6fad7d5054260f2bc4f720c04da6",
+      "full_utf8_readback_equal": true,
+      "after_upload": {
+        "bytes": 1344,
+        "sha256": "add7d901e8bc222b129a0f2f6bcf8d5b55733212fc3e6910eb095c9fd0fa1b45",
+        "git_blob_sha": "f6f25af85d8f6fad7d5054260f2bc4f720c04da6"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-face.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/fixtures/memory_android/layout-face.json",
+      "bytes": 7968,
+      "sha256": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+      "git_blob_sha": "e19cb837ccd3993e5525728cb2e5bdc8a8bc9b7a",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e19cb837ccd3993e5525728cb2e5bdc8a8bc9b7a",
+      "full_utf8_readback_equal": true,
+      "after_upload": {
+        "bytes": 7968,
+        "sha256": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+        "git_blob_sha": "e19cb837ccd3993e5525728cb2e5bdc8a8bc9b7a"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-hidden.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/fixtures/memory_android/layout-hidden.json",
+      "bytes": 7965,
+      "sha256": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+      "git_blob_sha": "603e9c704ab4405fc9352741e0998efdfb583755",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "603e9c704ab4405fc9352741e0998efdfb583755",
+      "full_utf8_readback_equal": true,
+      "after_upload": {
+        "bytes": 7965,
+        "sha256": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+        "git_blob_sha": "603e9c704ab4405fc9352741e0998efdfb583755"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/public-states.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/fixtures/memory_android/public-states.json",
+      "bytes": 7551,
+      "sha256": "7b60a5e26c71f137217a3c180d25025a1eac7aa7bd10a96bfb5654d52ea546b6",
+      "git_blob_sha": "7ce5d33f487b9d99607f0c1aaeff1f0b3367913c",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ce5d33f487b9d99607f0c1aaeff1f0b3367913c",
+      "full_utf8_readback_equal": true,
+      "after_upload": {
+        "bytes": 7551,
+        "sha256": "7b60a5e26c71f137217a3c180d25025a1eac7aa7bd10a96bfb5654d52ea546b6",
+        "git_blob_sha": "7ce5d33f487b9d99607f0c1aaeff1f0b3367913c"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/saved-paused.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/fixtures/memory_android/saved-paused.json",
+      "bytes": 698,
+      "sha256": "a3e37dba067f76daa1d4104f51ef6d98cccee04fbd6421fbc0cdd60905d095d6",
+      "git_blob_sha": "dc84852768ae863204844b3d0988c561856ab810",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc84852768ae863204844b3d0988c561856ab810",
+      "full_utf8_readback_equal": true,
+      "after_upload": {
+        "bytes": 698,
+        "sha256": "a3e37dba067f76daa1d4104f51ef6d98cccee04fbd6421fbc0cdd60905d095d6",
+        "git_blob_sha": "dc84852768ae863204844b3d0988c561856ab810"
+      }
+    }
+  ],
+  "validation": {
+    "pure_contracts": 24,
+    "failures": 0,
+    "skips": 0,
+    "actual_original_pixel_replay": "PASS",
+    "android_execution": "NOT_RUN",
+    "independent_review": "PENDING"
+  },
+  "runtime_cli": "standard C4 CLI arguments; no extra native sparse paths"
+}

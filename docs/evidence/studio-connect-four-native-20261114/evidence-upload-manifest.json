@@ -1,0 +1,1156 @@
+{
+  "kind": "docs_only_evidence_no_source_installation",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "status": "LOCAL_VALIDATED_ANDROID_PENDING",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/README.md",
+      "path": "docs/evidence/studio-connect-four-native-20261114/README.md",
+      "bytes": 11726,
+      "sha256": "427a23db694bdd03674530a3edcf10ecd6aab5edb507de609467d6267bbeff47",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/actual-dependency-binding.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/actual-dependency-binding.json",
+      "bytes": 204304,
+      "sha256": "99ad55eb0586a5418b7bf422d1efe5a12e506492f87d844ef01c76802d030124",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/actual-dependency-final-binding.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/actual-dependency-final-binding.json",
+      "bytes": 318788,
+      "sha256": "51633b27b7de9c94d20f59972778b2e62e4f364991bf443a0aaa4cd2116c1171",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/encode_runtime_capture.py",
+      "path": "docs/evidence/studio-connect-four-native-20261114/encode_runtime_capture.py",
+      "bytes": 3656,
+      "sha256": "364ba877dae617fde9243638eeea4fc49ae6527a5e2d40bf219844e8f5697d04",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/independent-kotlin-review.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/independent-kotlin-review.json",
+      "bytes": 9939,
+      "sha256": "04cbee27062070ec5b032b0e923e65e6f85369c32704e461576aa4889c65f0e1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/independent-session-slot-closure-review.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/independent-session-slot-closure-review.json",
+      "bytes": 1895,
+      "sha256": "2a54e9301d5470a4eddd0231e8e349fdd275fc78450dd368096d26562f1bed5f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/analyze-first-recorded.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/analyze-first-recorded.log",
+      "bytes": 96,
+      "sha256": "aa3a88f121849dc640a9424c6b9fc805bb0d89c3367a99c106b6c57e82bd0b97",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-analyze-final.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-analyze-final.log",
+      "bytes": 264,
+      "sha256": "92b2b561108b0cd0f7b4801ba44aea55a9d741d957d462ad083d3e77839e05b2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-format-final.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-format-final.log",
+      "bytes": 596,
+      "sha256": "cda57ca2e61c9797aaf4eee95f4eba48212ad2e5d65fa8df0f5475e6d5f8a39a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-integration-fifth.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-integration-fifth.log",
+      "bytes": 77305,
+      "sha256": "61539062b2a636f2ac124b047c3aab6e125b14f2b50a28ff8003a15bc2995187",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-integration-first.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-integration-first.log",
+      "bytes": 507,
+      "sha256": "f32cfc549984f849ed696efead1edfe82eaae1737a27f72167a7f3bc05f5f85a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-integration-fourth.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-integration-fourth.log",
+      "bytes": 77676,
+      "sha256": "38e19a8febf8dbc571dcfa935c99cd2a7005c6b0ac6665c7044fb3c558f59023",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-integration-second.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-integration-second.log",
+      "bytes": 172,
+      "sha256": "fa32f9b58533b55cc9636d689ffd3104801c3bdf3b421cc0518841a3237c2899",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-integration-seventh.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-integration-seventh.log",
+      "bytes": 10681,
+      "sha256": "373bf2a9d97f80bbccc6d38b1d9542a5f1f521ab45e78f97488f42de814157d6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-integration-sixth.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-integration-sixth.log",
+      "bytes": 10681,
+      "sha256": "2197e72fd88ae5f1a7d703f86dde3be5ecf8734fc455fbe27c60a9f60964d4c6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/dart-integration-third.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/dart-integration-third.log",
+      "bytes": 64722,
+      "sha256": "fdbc8a21c3c65856401b7d43a8da9443a16274b0d42a5e6635731b3630e05387",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-integration-current.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-integration-current.log",
+      "bytes": 10548,
+      "sha256": "f4b83322ca7c4309a381afd9a5b1d131bcb057b93fc48225c4d386e31358d8fb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-integration-final-sequential.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-integration-final-sequential.log",
+      "bytes": 10204,
+      "sha256": "df56962d8fe58f722687df9abebd5aa0cd9e9c31e8153355135c1d642111eb77",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-integration-final.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-integration-final.log",
+      "bytes": 9875,
+      "sha256": "7aad069731f22930bb4eedaf147f3dc2a703fddaaef482355391e671d10c7fe6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-integration-v10.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-integration-v10.log",
+      "bytes": 9491,
+      "sha256": "51bdf580cd3cc03a6ee5c331647a4ef4b142c6e37c9fcfc32afa498512234008",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-integration-v9.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-integration-v9.log",
+      "bytes": 11480,
+      "sha256": "cc9e92cdbdbb1c9c47f46f30c574b3c9f6242fddc0ee55929f5c334529ac6fd5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-reward-diagnostic.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-reward-diagnostic.log",
+      "bytes": 3739,
+      "sha256": "e5b1896823c9d0f1b8a9ff03563494e085b77daf47be17e21c4a781dd8e1825b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-reward-single-current.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-reward-single-current.log",
+      "bytes": 1120,
+      "sha256": "79adcd2d9744210a64b9c2a19893af97559a82927262978bff7c77a451e9e28b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-route-fold-isolated.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-route-fold-isolated.log",
+      "bytes": 730,
+      "sha256": "bba4ee51b8bcb102bda15145d53946773a151b3a6f7052ab75286d2a8fd94dc8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-touch-diagnostic-v2.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-touch-diagnostic-v2.log",
+      "bytes": 16423,
+      "sha256": "40275a4ba6f2c2de9a25722fc14335563b90122009339d496cc3dee751185aa5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-touch-diagnostic-v3.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-touch-diagnostic-v3.log",
+      "bytes": 16506,
+      "sha256": "3160e6c0d87de35abb8ab5327206807d1b2b74a0627b51b93e04ab9fdd66cd86",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-touch-diagnostic-v4.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-touch-diagnostic-v4.log",
+      "bytes": 16610,
+      "sha256": "f48bbd50a4475735b504b17cf7f044f941cdd476cdfd45023e88400d63e65cad",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/flutter-touch-diagnostic.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/flutter-touch-diagnostic.log",
+      "bytes": 16401,
+      "sha256": "bcc426c0c20abc8be06cf24e88f2b3fb0961a6f9a3fc3d8b0505f55e54a68596",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/kotlin-and-generator-integration.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/kotlin-and-generator-integration.log",
+      "bytes": 4512,
+      "sha256": "17381bd5e7fc3ec7bbaf8c650634cdf86ba018dd3b07c4a4f6da828549e78ffb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/kotlin-contract-final.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/kotlin-contract-final.log",
+      "bytes": 1923,
+      "sha256": "d188be51d28e9551ed82491a4e118d0b3daec32e3314cada2ee412b7958e3784",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/kotlin-contract-first.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/kotlin-contract-first.log",
+      "bytes": 3119,
+      "sha256": "d977ca15e51c119d906afa3ce230627b94b94c6432639b8643700b4581e73f09",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/native-import-first.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/native-import-first.log",
+      "bytes": 3249,
+      "sha256": "29f52052d253092e5c4bf12d04a92d866a2885ba9514994cb59c363341b5ceb6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/native-parse-second.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/native-parse-second.log",
+      "bytes": 157,
+      "sha256": "3f7960f41ee3f09e77a802774de56a5eab3353d11cc205da58d1a08c143e7c04",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-final-v6.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-final-v6.log",
+      "bytes": 354,
+      "sha256": "0012c1a9b5476835b11d591bc79b1bd2b2fbb440195ab9c1f9823c76691cf6e9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-final-v7.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-final-v7.log",
+      "bytes": 354,
+      "sha256": "da55a701af16005f06b09e0a2b005d49470c736262e8df76428a8c89f8060a47",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-headless-v1.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-headless-v1.log",
+      "bytes": 226,
+      "sha256": "8ea79d8fd74f79906f87732015f9f2049cc6607311a63c937d9e56d5a115a162",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-headless-v2.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-headless-v2.log",
+      "bytes": 878,
+      "sha256": "5d82d3fbb7e2fdff2e306a92119b281dcaa82fe52f0c7bc5ec33b6a6bcc6b7f1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-headless-v3.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-headless-v3.log",
+      "bytes": 1078,
+      "sha256": "32c518a5e9a4f8354da2d2bb9b782aa04abeb00ac01888695fb7fa69b64b8512",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-headless-v4.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-headless-v4.log",
+      "bytes": 354,
+      "sha256": "97e6d4757db8dc0e298ce31bef0a73266469104b3c6e4772f08eaadb156fdb87",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-menu-red-v5.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-menu-red-v5.log",
+      "bytes": 354,
+      "sha256": "b3d20f00e511538adb22ff2e626a7570687c5fb28cccca08d811fd4de74e4864",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-render-v1.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-render-v1.log",
+      "bytes": 354,
+      "sha256": "e3e1161afcc292275adac3ffe3915ca3813791f26f2d88c7a88d166f5cd9a527",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-render-v2.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-render-v2.log",
+      "bytes": 326,
+      "sha256": "f31442a08632698ec324bfb7361dbc910dbb9473d9a863897c85e3531546f9aa",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-render-v3.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-render-v3.log",
+      "bytes": 354,
+      "sha256": "9fa67564e8f5adf8a97cf387cea38171d9d105affd9fccf137d61a3f0bf7ea8e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-dart-render-v4.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-dart-render-v4.log",
+      "bytes": 354,
+      "sha256": "3fc5a8a6fa4b3d50d44a8b51d193e1b1f650ae39ca06076a9b5a04ac8b28b2f7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-native-headless-v1.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-native-headless-v1.log",
+      "bytes": 434,
+      "sha256": "62c4c0e62d44a307db11cc28683a7c8c7e5adde00e9e7403a5be4692f6b444c1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-native-headless-v1b.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-native-headless-v1b.log",
+      "bytes": 927,
+      "sha256": "da24fa1465cdb7595d12ff8910eadf262232ba44177d707e9e20ba28d538bc25",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-native-headless-v1c.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-native-headless-v1c.log",
+      "bytes": 13500,
+      "sha256": "9e7a2b2c45418f96b99b5051e90e2c2ee7ea421e9047b1a251c5a8b311bdfe62",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-native-headless-v2.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-native-headless-v2.log",
+      "bytes": 561158,
+      "sha256": "ed441ddddfb9c1b90438d45ae540906b031e96fce5a8b54740b56f5fb4897fd2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-native-headless-v3.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-native-headless-v3.log",
+      "bytes": 12787,
+      "sha256": "35331753f18c9331330c42b703523a52610fe952d061d1cb707e3159bb20df8b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/logs/runtime-native-headless-v4.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/logs/runtime-native-headless-v4.log",
+      "bytes": 1808,
+      "sha256": "428cf70303a37d1bf7abc91ca26fdf75d37eea06062f8a5a2f0a98d78b7f7123",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/host-lib_app_app_state.dart.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/host-lib_app_app_state.dart.patch",
+      "bytes": 1791,
+      "sha256": "b69ef4fce05128ca82f86d049084b19ece3cdd8ea762c0fb255986663688c072",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/host-lib_features_games_connect_four_lumo_connect_four_game.dart.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/host-lib_features_games_connect_four_lumo_connect_four_game.dart.patch",
+      "bytes": 20074,
+      "sha256": "4e1af90268b8df65bc44a17d804ac5464be5cda1c276b0057af23037cded07e3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/host-lib_features_lumo3d_lumo3d_launcher.dart.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/host-lib_features_lumo3d_lumo3d_launcher.dart.patch",
+      "bytes": 1110,
+      "sha256": "3af0b84438ba9991d2edd0c88d5ba2267dea82d3940bac816b1f364c96a1c657",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/host-scripts_prepare_embedded_games.py.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/host-scripts_prepare_embedded_games.py.patch",
+      "bytes": 2432,
+      "sha256": "d5f51cd8bfc04f07d5cc4bb1f80db9539264e34cdf3cd68cdae82d4f03a4f640",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/host-tools_auto_install_MainActivity.kt.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/host-tools_auto_install_MainActivity.kt.patch",
+      "bytes": 3027,
+      "sha256": "e83ff6c3f6f17221205159765a908c57799756e73ef6db40708177b9a75bd707",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/native-scripts_app_app_boot.gd.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/native-scripts_app_app_boot.gd.patch",
+      "bytes": 817,
+      "sha256": "b478ee283531e2205f8d949c1ce83f6da993ccd96372401fa3e6c921151d2224",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/native-scripts_app_scene_router.gd.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/native-scripts_app_scene_router.gd.patch",
+      "bytes": 418,
+      "sha256": "04c830912e1739de22845759fc10139f10663c7f3f585dbc294064ea658bb6f9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/patches/native-scripts_systems_host_bridge.gd.patch",
+      "path": "docs/evidence/studio-connect-four-native-20261114/patches/native-scripts_systems_host_bridge.gd.patch",
+      "bytes": 620,
+      "sha256": "adb4ba033f155e035f50e1785965a9a14f3554a945c2eff0afd0af02d2166ba2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/published-dependency-index.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/published-dependency-index.json",
+      "bytes": 66536,
+      "sha256": "8b9a8f48702598f0ef702b5a13f4d594a0004cdddc71b3dc49e03e11dde9e884",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/published-source-excerpt.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/published-source-excerpt.json",
+      "bytes": 9627,
+      "sha256": "4b30e194642f3c2356ae94851eadbfc9560908f20a76f4bd6575bb3533196c14",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/GodotHost.java",
+      "path": "docs/evidence/studio-connect-four-native-20261114/review-upstream/GodotHost.java",
+      "bytes": 6338,
+      "sha256": "437cd367f70a419500e4281024f7e4ca45f8d6b6821944ee5fdf365c47a9f94f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/GodotHost.java.source.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/review-upstream/GodotHost.java.source.json",
+      "bytes": 353,
+      "sha256": "25176b7150be612a8a22b20596d7e0837d55f04a2c18130fc443a04d3f8d1fa7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/GodotPlugin.java",
+      "path": "docs/evidence/studio-connect-four-native-20261114/review-upstream/GodotPlugin.java",
+      "bytes": 15948,
+      "sha256": "5234c631643504aec3c1729693777b45d9a43696251504a483979eadeb3e2c1b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/GodotPlugin.java.source.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/review-upstream/GodotPlugin.java.source.json",
+      "bytes": 364,
+      "sha256": "d8745d21453c4b474d3ad1cfc80502754e0192dd7af0e1306cf3485f8fb00e3c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/UsedByGodot.java",
+      "path": "docs/evidence/studio-connect-four-native-20261114/review-upstream/UsedByGodot.java",
+      "bytes": 2709,
+      "sha256": "75665364c8a0c012174a75c1c33334dea6aed94a56dfb6632be9096da2106e12",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/UsedByGodot.java.source.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/review-upstream/UsedByGodot.java.source.json",
+      "bytes": 363,
+      "sha256": "3399cd99fe4817c1e7796dd240c615baa2eb42e18fabf93a85567e0e1cad4875",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/review.json",
+      "bytes": 9661,
+      "sha256": "25a926893f33ad64ff369b5cb34733840da737153e19bb68d625663f2cdd532a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/run_local_c4.py",
+      "path": "docs/evidence/studio-connect-four-native-20261114/run_local_c4.py",
+      "bytes": 2923,
+      "sha256": "391cda83f083bd731751ba94e0c32e2abbb29b96df21591cd550989534be07c6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/connect_four_small_landscape.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/connect_four_small_landscape.layout.json",
+      "bytes": 19745,
+      "sha256": "6c20d38c183a2d4bef19fd483f3066bf264fc77e5b35067aaf7494ce4a0dc79a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/connect_four_small_landscape.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/connect_four_small_landscape.png",
+      "bytes": 22335,
+      "sha256": "c6fafcea1323f407d10ed5d866a99e5ee4e08f3ada744c8b63f524abd14177cf",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/dart-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/dart-result.json",
+      "bytes": 19144,
+      "sha256": "405df7b6a189af20bc6bb190880f39715d43d0882f2455f3346616a49c50316a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/native-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/native-result.json",
+      "bytes": 77654,
+      "sha256": "04ee0a22597b4a1f95d30ea9b86098b3b5784976fae49bf04a17f91d12d5b6c1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/renderer-launcher.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/renderer-launcher.log",
+      "bytes": 406,
+      "sha256": "155e878e71ed3e47eb44b24fe1209c53e8d22f27832a0567462eab6a5a79d5e0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/source-after.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/source-after.json",
+      "bytes": 1205,
+      "sha256": "7a081f5dc21a85f5ba54b17745267192445f87d086791cb53fe8e580bb45912e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/source-before.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/source-before.json",
+      "bytes": 1250,
+      "sha256": "88ef6d0db9de34a085673e834637b8ec57a93b94419d4a02f60d04cf823bf8ec",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/source/native/scripts/tests/connect_four_runtime_regression.gd",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/source/native/scripts/tests/connect_four_runtime_regression.gd",
+      "bytes": 14487,
+      "sha256": "00511058606fd1183d404a114d6588ea0f8bb34490677a05f921fbbf57fe1ade",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6/two-process-run.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v6/two-process-run.json",
+      "bytes": 1179,
+      "sha256": "0db4196f70beb162c2a370b75bbbab792b43c585702b479ca5dad4423c90f91c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/closed.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/closed.json",
+      "bytes": 44,
+      "sha256": "922b529a830f497aae1e84cb1e1b60f62dea9e64f9d168e45037d94d3ac414b9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect-four-runtime.mp4",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect-four-runtime.mp4",
+      "bytes": 277082,
+      "sha256": "fd3673da73dcb9adbbb1a677051022bbef864a422d3e97d1b70b5c5606364d43",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect-four-runtime.mp4.encode.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect-four-runtime.mp4.encode.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_empty.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_empty.layout.json",
+      "bytes": 19571,
+      "sha256": "4b85b841d4981813dfcd61bc2a1232a9a665ea8be1b69f9ca192d57f2e2eb490",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_empty.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_empty.png",
+      "bytes": 83439,
+      "sha256": "155b8aff298a362f50866805be50596d91a70ff24baec8b50e20584844486bf6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_fold_landscape.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_fold_landscape.layout.json",
+      "bytes": 20948,
+      "sha256": "b900f52c15ce02ba87d54505e4e5b092e38946945c52d961d72db85beb9d2ed3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_fold_landscape.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_fold_landscape.png",
+      "bytes": 124751,
+      "sha256": "9cf3622180a4bae097e68ab227d927b67c2b91285d2c9b7b2fc6a02d6f708e00",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_pause.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_pause.layout.json",
+      "bytes": 19584,
+      "sha256": "6812f85731ce01cf4aed2b34962fa86644ebec07728268f9ff100252e58f99f7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_pause.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_pause.png",
+      "bytes": 47667,
+      "sha256": "539cbb2504e6659c889fa7b12cad98b7a481ca930469ce8c03154b4a11582a08",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_phone_bot_response.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_phone_bot_response.layout.json",
+      "bytes": 20993,
+      "sha256": "b871ef7da990d3f31143a80caa9cd4739d91a0dcf0028e56734d61ddfcf56ab6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_phone_bot_response.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_phone_bot_response.png",
+      "bytes": 240961,
+      "sha256": "ed70f08ef80e17a1fddd0307acc61c519f9676db748285ff1bb82c082a4689d5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_phone_playing.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_phone_playing.layout.json",
+      "bytes": 20990,
+      "sha256": "6bc6ec736379fae23fa641543704017a3514036c66de2d2c5e2badd436d867ff",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_phone_playing.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_phone_playing.png",
+      "bytes": 235959,
+      "sha256": "e9de525286c1c8e8a746bcd52035b1520719cc96947a9f940eb65b5e7d9604d2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_phone_portrait.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_phone_portrait.layout.json",
+      "bytes": 21034,
+      "sha256": "365fe0ca900a1851f28e4386228c4be0819f4271353cc533d68e29811bcf7540",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_phone_portrait.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_phone_portrait.png",
+      "bytes": 170864,
+      "sha256": "45f41265f7d9e838cc7126caca96d431d58874405299dbc46baadad8ba74be9e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_small_landscape.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_small_landscape.layout.json",
+      "bytes": 19741,
+      "sha256": "ca7e76627abd15bdaafa1390201a461c39fdfd8236c62177ec5e8dc3e258917a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_small_landscape.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_small_landscape.png",
+      "bytes": 23044,
+      "sha256": "2f7f4cda46d7d88b99bae3df558af0e79a4e9de3b898e67aec541381efc6ca5c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_small_portrait.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_small_portrait.layout.json",
+      "bytes": 19743,
+      "sha256": "e60c7b14fe5a78ba347f543ef912dafa0d5c1241806fecd206ffd01ab2bfe3d9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_small_portrait.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_small_portrait.png",
+      "bytes": 35865,
+      "sha256": "1533a8f67b00fc1d11deeef8359371b66c2b735c72572c18990f3b1826fa2f3b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_win.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_win.layout.json",
+      "bytes": 19618,
+      "sha256": "f19e96174c8d970a7d10df04259d05e99e370ef1884a5eda8682da48f09d5cc8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_win.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/connect_four_win.png",
+      "bytes": 85166,
+      "sha256": "abc6a8a19b9cd450e1be7c3ca78440f67bbe730d9138205bf4330387727c8d0d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/dart-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/dart-result.json",
+      "bytes": 20387,
+      "sha256": "991bf96aae996899cee0abb0a254316f6024825451da1fd0e1e843c418ced8f7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/decode-verification.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/decode-verification.json",
+      "bytes": 2880,
+      "sha256": "dcbfbed780f5ab04833130944d51c513077de0d271f9955c6fd0cfacdb9c9b08",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/decoded/frame-00000.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/decoded/frame-00000.png",
+      "bytes": 138370,
+      "sha256": "064ef7d25675509c60ea938240ec49a601d9c7c7b0f69eb5a53a596e1a444c26",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/decoded/frame-00017.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/decoded/frame-00017.png",
+      "bytes": 139789,
+      "sha256": "cbf9639ff208e0f05004448996c8f8c3e2cb8f1f39e3f53927bc306533264d02",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/decoded/frame-00124.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/decoded/frame-00124.png",
+      "bytes": 138034,
+      "sha256": "962fd4b2e87804ca461378d1e315a313bd26ce4d45d2694fb4115bb5dfad8759",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/decoded/frame-00205.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/decoded/frame-00205.png",
+      "bytes": 140806,
+      "sha256": "df2ae535509cd397008d6f3a7e09c187bda9e6b4df59ebd6318bf9595425572a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/decoded/frame-00247.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/decoded/frame-00247.png",
+      "bytes": 142280,
+      "sha256": "86d30bb5c3370ff0ce4cdd32daaf2352f71370cbe52c30eaef98fa522f0b2bf2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/done.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/done.json",
+      "bytes": 17,
+      "sha256": "baf7c3be410aa877bd98a1776555e86da13a23212e363e0e87e2040768f24710",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/frame-manifest.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/frame-manifest.json",
+      "bytes": 64563,
+      "sha256": "8e9f512c4e09fdf509a1ff7235327564fc3effe90573455ccf69a823a791da6a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/input.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/input.json",
+      "bytes": 221,
+      "sha256": "c3c6eb5d3b08d880be45b4a57cf4056bfa7c1d01bfada6d0185dcb344d05dbc4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/native-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/native-result.json",
+      "bytes": 72853,
+      "sha256": "b3f319efd120568fbb7b4f9f95759717bc2f7cd7fda592d74ec2c10d99d5f07f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/renderer-launcher.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/renderer-launcher.log",
+      "bytes": 406,
+      "sha256": "9670054c997ef5bb9da8480826d7ce2fdacb6c84518aea295809b8d612fa5e91",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/runtime-lossless.mkv",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/runtime-lossless.mkv",
+      "bytes": 14919129,
+      "sha256": "ff0a15be47ec2330f3971e582f95736f02e9193e44db3bbcb2b4e7f1ce9a802d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/runtime-lossless.mkv.encode.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/runtime-lossless.mkv.encode.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/session.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/session.json",
+      "bytes": 164,
+      "sha256": "e714fe6d25f94271eb88b933004f90dac98d565123e11af4c8ff9e686fda5cc2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/source-after.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/source-after.json",
+      "bytes": 1205,
+      "sha256": "973ba7f4a1f8b81ba3cf7a5234e3c3e3f946b17f07aec0e7c90b74d488a455b4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/source-before.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/source-before.json",
+      "bytes": 1250,
+      "sha256": "103ff682ab7ce3e84d23b1bb6c734ef9e111d0470a7d995c2541760462b01723",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/state.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/state.json",
+      "bytes": 594,
+      "sha256": "10059669b5f42b1a6a519626cb686a13dc7175b7e37d7002c253bcb07be4b9eb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/two-process-run.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/two-process-run.json",
+      "bytes": 1178,
+      "sha256": "e3c418c6829f48d30fe9dc72840fff5666234b55ce77fa73dd09a7bb712db4eb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/connect_four_small_landscape.layout.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/connect_four_small_landscape.layout.json",
+      "bytes": 19740,
+      "sha256": "d065c189661af81f868e4c2a6c5cd32b311848bd1bbf12ff9bbeba98a8b1e62a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/connect_four_small_landscape.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/connect_four_small_landscape.png",
+      "bytes": 25140,
+      "sha256": "451564f16fb680f7d435b53d1e8ffa686a11275ddeac6b22d20c62e4d2cfbbd2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/dart-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/dart-result.json",
+      "bytes": 20386,
+      "sha256": "f3f930435420b7960a6e08fa0fdf83ec017cbe5f91ee8abbccae85f787df1d4b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/native-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/native-result.json",
+      "bytes": 78024,
+      "sha256": "69fc3ef4772d6ae4c2db79f784de88420116be4d40a826e1e5545f2f9aad1a3a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/renderer-launcher.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/renderer-launcher.log",
+      "bytes": 406,
+      "sha256": "ac4ff4a6f77b372ab3fb5bb8cccc275f3f0cf412957077d5dc11929ffb76c404",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/source-after.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/source-after.json",
+      "bytes": 1205,
+      "sha256": "eff1ef380f85a466ff969e752e90f00b5031db1d71fe3f99b57507874b6d5758",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/source-before.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/source-before.json",
+      "bytes": 1250,
+      "sha256": "17cbb1928269836a63ed8ea378929e0ddf916d4b544ad917d2dd8b63843d6a9e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/source/native/scripts/games/connect_four/connect_four_table.gd",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/source/native/scripts/games/connect_four/connect_four_table.gd",
+      "bytes": 29835,
+      "sha256": "6a0ef7cdbf806e0a3050cf3da931f416fd149f366883e108e7f84daf074081ef",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/source/native/scripts/tests/connect_four_runtime_regression.gd",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/source/native/scripts/tests/connect_four_runtime_regression.gd",
+      "bytes": 14487,
+      "sha256": "00511058606fd1183d404a114d6588ea0f8bb34490677a05f921fbbf57fe1ade",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-menu-red-v5/two-process-run.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-menu-red-v5/two-process-run.json",
+      "bytes": 1184,
+      "sha256": "9eafd88813631bdd6138d7600501afd1e19fc40935a19a9fb4005bd9eea05e23",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-render-v1/connect_four_empty.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-render-v1/connect_four_empty.png",
+      "bytes": 105253,
+      "sha256": "96bc6e5242fa0549af6c79a0731b973630a684b37df706f6d3832da0fbfd5ec4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-render-v1/connect_four_phone_portrait.png",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-render-v1/connect_four_phone_portrait.png",
+      "bytes": 173511,
+      "sha256": "b9930dacb04762800c25b48bc30309ed9bba8182be1a9e085d550a17518fff44",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-render-v1/dart-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-render-v1/dart-result.json",
+      "bytes": 17301,
+      "sha256": "5ed6e0a1e1c8d7c8b108a3ff6e24fc9f983ec794682879a7017426b8ad86d954",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-render-v1/native-result.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-render-v1/native-result.json",
+      "bytes": 67416,
+      "sha256": "5f471c11e265fe050e751708c13f2878756d945d352e2795e024149425fa3de8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-render-v1/source-binding.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime-render-v1/source-binding.json",
+      "bytes": 1103,
+      "sha256": "d5dd734e67daaa8a9ae497c9165779302429a41d5d623e03268de445b4d6ac06",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/project.godot",
+      "path": "docs/evidence/studio-connect-four-native-20261114/runtime/project.godot",
+      "bytes": 499,
+      "sha256": "cd2f3e39a1602fb7bcfe9eba83087e9ab6bae40136809f9a3ab11ee5e5a9a3e9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/session-consume-review-binding.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/session-consume-review-binding.json",
+      "bytes": 864,
+      "sha256": "1cd460ba34e7d20e2a006d7c4dbcb1decc7bf42c216dcb6f4f640944014af777",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/source-binding.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/source-binding.json",
+      "bytes": 12853,
+      "sha256": "643bdd5c6ffdeab0b02ef87e055f5077bc6a8caf0ecac39669ce0d6d645eb360",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/source-upload-manifest.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/source-upload-manifest.json",
+      "bytes": 15504,
+      "sha256": "ab5686602c40335fbc381ff42c1e66085f2244dcdefc27eca189a8c2bf179683",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/xorg-final-v6/godot.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/xorg-final-v6/godot.log",
+      "bytes": 4044,
+      "sha256": "012297929a2ac70a8528df9179d0026330d75e4159a5b6323edc08ddee2d2fa9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/xorg-final-v6/run.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/xorg-final-v6/run.json",
+      "bytes": 458,
+      "sha256": "b319e77a0f3f4dc1e9a3c952763d7e1663bd9393fcd20a042d382c3d120c3eeb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/xorg-final-v7/godot.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/xorg-final-v7/godot.log",
+      "bytes": 1888,
+      "sha256": "8cb411152205de38aa50a72b061adccc49f44ed1ccb0520275268053c8290272",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/xorg-final-v7/run.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/xorg-final-v7/run.json",
+      "bytes": 458,
+      "sha256": "be0c84bf74659da913e18f48276a48e681b08b71554ebb266c0f5c1868729242",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/xorg-menu-red-v5/godot.log",
+      "path": "docs/evidence/studio-connect-four-native-20261114/xorg-menu-red-v5/godot.log",
+      "bytes": 3083,
+      "sha256": "7babbe524b9e19fbeefad209912a5ab0bffcfee62a9f49f50958078b361cd6b2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/xorg-menu-red-v5/run.json",
+      "path": "docs/evidence/studio-connect-four-native-20261114/xorg-menu-red-v5/run.json",
+      "bytes": 458,
+      "sha256": "4d20d26b456155cfbb2960afc97f0d1a31c189c9151faca6ef79eab7911eb39f",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 142,
+  "bytes": 19714751,
+  "excluded": [
+    ".godot/import caches",
+    "host/build",
+    "raw frames directory (RGB hashes and complete lossless encode retained)",
+    "authentication files",
+    "APK",
+    "repository copies"
+  ],
+  "contains_final_runtime_pngs": 9,
+  "contains_final_decoded_pngs": 5
+}

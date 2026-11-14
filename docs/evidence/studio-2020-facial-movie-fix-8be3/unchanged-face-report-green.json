@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "report": [
+    {
+      "path": "green-capture/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+    },
+    {
+      "path": "green-capture/facial-runtime.mp4",
+      "bytes": 1178093,
+      "sha256": "498f3670e0148ffdd0bd581147b5d312c0dac82d3cd4e3b4fab58747c87765d0",
+      "proof": {
+        "path": "green-capture/movie.json",
+        "bytes": 732,
+        "sha256": "52346e80e627480af4616a1b5b05fa30335e0e382b6c920eb1d0ae11f07173c6"
+      }
+    }
+  ],
+  "harness_sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+  "predicate_and_all_face_report_checks_unchanged": true
+}

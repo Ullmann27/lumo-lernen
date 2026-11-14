@@ -1,0 +1,8 @@
+{
+  "stage": "after completed byte-exact download, before archive validation",
+  "exception": "ModuleNotFoundError: No module named release_pipeline_gates",
+  "cause": "assembled/host is an explicit delta tree; baseline helper exists in the prepared test-host tree",
+  "retry": "reuse exact downloaded archive; load byte-identical new delivery code from complete prepared test-host/scripts",
+  "product_source_changes": false,
+  "redownload": false
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "qa/studio-2020-integration/root/native/tools/tests",
+    "-p",
+    "test_nextgen_runner.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 20.458924348000437,
+  "log_sha256": "67f1228e155f864065a0735b5929c309c49d90bea726a41bc5384a624801727c"
+}

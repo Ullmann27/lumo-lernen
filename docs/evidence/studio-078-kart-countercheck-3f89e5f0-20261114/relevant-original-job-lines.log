@@ -1,0 +1,44 @@
+2026-11-14T10:49:06.6737739Z HEAD is now at 3f89e5f Countercheck the unchanged 078 APK with a genuinely observed Kart preview touch
+2026-11-14T10:49:22.8144388Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T10:50:09.3329659Z test_existing55s_deadline_is_not_restarted_after_slow_race_capture (test_kart_preview_skip.PreviewSkipTests.test_existing55s_deadline_is_not_restarted_after_slow_race_capture) ... ok
+2026-11-14T10:50:09.6216755Z test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch (test_kart_preview_skip.PreviewSkipTests.test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch) ... ok
+2026-11-14T10:50:10.0687259Z Ran 23 tests in 1.084s
+2026-11-14T10:50:10.4026244Z test_passing_tour_without_observed_intro_touch_is_not_isolated (test_studio_078_kart_recheck.RuntimeGateTests.test_passing_tour_without_observed_intro_touch_is_not_isolated) ... ok
+2026-11-14T10:50:10.4068601Z Ran 24 tests in 0.275s
+2026-11-14T10:56:55.1111776Z [TourEvidence] {"step": "race-running", "ok": true, "state": {"result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631", "countdown": 0.0, "elapsed": 1.0000000000000013, "distance": 3.9689185e-06, "checkpoint_index": 0}}
+2026-11-14T10:56:59.9900734Z [AndroidCapture] 21_race_hud_0.png
+2026-11-14T10:57:05.8679749Z [AndroidCapture] 21_race_hud_1.png
+2026-11-14T10:57:13.2664973Z [AndroidCapture] 21_race_hud_2.png
+2026-11-14T10:57:14.9107475Z [TourEvidence] {"step": "race-hud", "ok": true, "capture": "21_race_hud_2", "race_state": {"round": [1, 2], "place": [6, 6]}, "rendered_frame": {"size": [2400, 1080], "visible_fractions": [1.0, 0.998, 1.0], "detail": [{"colour_bins": 1099, "bright_fraction": 0.803}, {"colour_bins": 1124, "bright_fraction": 0.857}, {"colour_bins": 1247, "bright_fraction": 0.68}]}, "hud_lines": ["RUNDE 1/2 PLATZ6/6 Okm/h x0"], "focused_hud": null}
+2026-11-14T10:57:18.7257773Z [AndroidCapture] 21_race_before_gas.png
+2026-11-14T10:57:24.8528290Z [AndroidCapture] 21_race_driving_mid_0.png
+2026-11-14T10:57:30.9371251Z [AndroidCapture] 21_race_driving_late_0.png
+2026-11-14T10:57:37.7815639Z [AndroidCapture] 21_race_driving_mid_1.png
+2026-11-14T10:57:43.6878461Z [AndroidCapture] 21_race_driving_late_1.png
+2026-11-14T10:57:50.6380412Z [AndroidCapture] 21_race_driving_mid_2.png
+2026-11-14T10:57:56.3281022Z [AndroidCapture] 21_race_driving_late_2.png
+2026-11-14T10:57:56.9659336Z [TourEvidence] {"step": "race-drive", "ok": true, "gas_touch": [2242, 936], "hold_ms": 9000, "gas_pulses": 3, "world_moved": {"changed_fraction": 0.728, "mean_channel_delta": 66.99}, "rendered_frame": {"size": [2400, 1080], "visible_fractions": [1.0, 1.0, 1.0], "detail": [{"colour_bins": 1017, "bright_fraction": 0.885}, {"colour_bins": 930, "bright_fraction": 0.929}, {"colour_bins": 1165, "bright_fraction": 0.768}]}, "native_progress": {"result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631", "distance_gain": 107.19, "elapsed_gain": 5.02, "checkpoint_index": 0}}
+2026-11-14T10:59:49.3344235Z   "status": "PASS",
+2026-11-14T10:59:49.3362311Z       "step": "start-kart-race",
+2026-11-14T10:59:49.3377521Z         "status": "TOUCH_SENT",
+2026-11-14T10:59:49.3377741Z         "countercheck_scope": "OBSERVED_UI_TOUCH_ONLY",
+2026-11-14T10:59:49.3378607Z         "deadline_policy": "original race-world-ready55s",
+2026-11-14T10:59:49.3379738Z           "source": "21_lumo_kart_real_race.png",
+2026-11-14T10:59:49.3381942Z           "status": "TOUCH_SENT",
+2026-11-14T10:59:49.3434240Z       "step": "race-running",
+2026-11-14T10:59:49.3437066Z       "step": "race-hud",
+2026-11-14T10:59:49.3437541Z       "capture": "21_race_hud_2",
+2026-11-14T10:59:49.3437829Z       "race_state": {
+2026-11-14T10:59:49.3445379Z       "step": "race-drive",
+2026-11-14T10:59:50.2295048Z [TourImage] 21_lumo_kart_real_race png_sha256=126fcea663e62c6f09f1597b441a6ec1bdae74e0b98fd6cd139c4100af36e941 png_size=2400x1080 jpeg_size=960x432 parts=19
+2026-11-14T10:59:50.3274557Z [TourImage] 21_race_hud png_sha256=fe1ddcf7ca35ea45c40ab9c917f72310d3ce2a15e24920152b7ee43e741450d4 png_size=2400x1080 jpeg_size=960x432 parts=27
+2026-11-14T10:59:57.6542011Z   "status": "PASS",
+2026-11-14T10:59:57.6557274Z       "start-kart-race",
+2026-11-14T10:59:57.6557520Z       "race-running",
+2026-11-14T10:59:57.6557757Z       "race-hud",
+2026-11-14T10:59:57.6557985Z       "race-drive",
+2026-11-14T10:59:57.6693641Z INFO         | Wait for emulator (pid 3669) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+2026-11-14T10:59:59.1916013Z   name: lumo-studio-078-kart-countercheck-43587032836-1
+2026-11-14T10:59:59.3360470Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T11:00:02.6304297Z Artifact lumo-studio-078-kart-countercheck-43587032836-1.zip successfully finalized. Artifact ID 14110986739
+2026-11-14T11:00:02.6305069Z Artifact lumo-studio-078-kart-countercheck-43587032836-1 has been successfully uploaded! Final size is 71743019 bytes. Artifact ID is 14110986739

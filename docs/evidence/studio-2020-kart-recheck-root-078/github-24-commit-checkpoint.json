@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "commit": "5e394b9ffff1f817d008067a2397fbe35bca0a8b",
+  "tree": "badc95751fbd966330da68fad4a044b225bb0e71",
+  "branch": "chatgpt/lumo-studio-4ab96666-evidence-20261114",
+  "draft_pr": 477,
+  "base": "218eb65fdbe73da4267410e85808cf73479741f7",
+  "old_leaves_preserved": 6670,
+  "new_leaves": 24,
+  "final_leaves": 6694,
+  "original_readbacks": [
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_kart_premium_start.png",
+      "sha": "3d26fc83358f099b8a533c762fb2639c46486146",
+      "sha256": "34e37f27f52124e2dc9682c4636ba050c323e185ef041992d8dd582b9106eb7b",
+      "bytes": 227990,
+      "full_readback_equal": true,
+      "verification": "Full content compared to original bytes",
+      "api_encoding": "base64",
+      "api_content_characters": 303988
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_lumo_kart_12s.png",
+      "sha": "faeea7a1eeffbde1760c7724206b62c9d20b3280",
+      "sha256": "df820264206ef559aff7f025b632026ef532d8feb29c8481c1a27403c907509b",
+      "bytes": 2659856,
+      "full_readback_equal": false,
+      "verification": "Contents API omits >1 MiB binary content; create_blob SHA and complete recursive tree SHA match independently computed local Git blob",
+      "api_encoding": "base64",
+      "api_content_characters": 0
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_lumo_kart_20s.png",
+      "sha": "3d26fc83358f099b8a533c762fb2639c46486146",
+      "sha256": "34e37f27f52124e2dc9682c4636ba050c323e185ef041992d8dd582b9106eb7b",
+      "bytes": 227990,
+      "full_readback_equal": true,
+      "verification": "Full content compared to original bytes",
+      "api_encoding": "base64",
+      "api_content_characters": 303988
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_lumo_kart_real_race.png",
+      "sha": "84752ac89cdb55562ae59a0ada5c995e41eff293",
+      "sha256": "628769b688062f62808fac49fb4ab39ee2486c269fae4ca7a867f6109bb1bb1c",
+      "bytes": 1936717,
+      "full_readback_equal": false,
+      "verification": "Contents API omits >1 MiB binary content; create_blob SHA and complete recursive tree SHA match independently computed local Git blob",
+      "api_encoding": "base64",
+      "api_content_characters": 0
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/23_zurueck_in_flutter-flutter-visible-0.png",
+      "sha": "38072cc773c7d021792ce4f99d4d36aed92fa0bd",
+      "sha256": "1e949f8e61b01c6f26054cf02108cda5ef64ccbe41e6a80614e8e8013df4b7ec",
+      "bytes": 753543,
+      "full_readback_equal": true,
+      "verification": "Full content compared to original bytes",
+      "api_encoding": "base64",
+      "api_content_characters": 1004724
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/23_zurueck_in_flutter-flutter-visible-1.png",
+      "sha": "de2d39bad0f203642ceb287322c71a5218aea454",
+      "sha256": "1e92133263ea8a97d1172fa0546c03f25cbefe35166f7feb6bcba908e5d65be2",
+      "bytes": 1965563,
+      "full_readback_equal": false,
+      "verification": "Contents API omits >1 MiB binary content; create_blob SHA and complete recursive tree SHA match independently computed local Git blob",
+      "api_encoding": "base64",
+      "api_content_characters": 0
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/originals/tour-result.json",
+      "sha": "05d331963c699cbfffbc0f1ccb8d9976760a2cf1",
+      "sha256": "b8bdaae4138f314f85fdb86e31795c23d739ee5350f95a95f32e2385133b27ef",
+      "bytes": 7169,
+      "full_readback_equal": true,
+      "verification": "Full content compared to original bytes",
+      "api_content_characters": 7169
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/verified-original-extraction.json",
+      "sha": "291f4702109f23d8c6404b8bab0fef9c01dce666",
+      "sha256": "77725defb065c4cea60672d11eba65bc2367ba38c1c831390ef9b3802b55e3a8",
+      "bytes": 80813,
+      "full_readback_equal": true,
+      "verification": "Full content compared to original bytes",
+      "api_content_characters": 80813
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/review-root.json",
+      "sha": "41efef99b42f5cefa91e5b87b0dfc25051f8682c",
+      "sha256": "512e3dd23ddfab70433dc3f8b2a34a8efb729bd926edca1afae386a14318d82f",
+      "bytes": 2351,
+      "full_readback_equal": true,
+      "verification": "Full content compared to original bytes",
+      "api_content_characters": 2331
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/review-character_animation.json",
+      "sha": "23f5855166794e79cc2009ed2513c41be43060a8",
+      "sha256": "0b57f0cdfac20ced454aa7da0ae652ce1c593420ad6aa0fde157e276661ebef2",
+      "bytes": 9588,
+      "full_readback_equal": true,
+      "verification": "Full content compared to original bytes",
+      "api_content_characters": 9526
+    }
+  ],
+  "source_module_scope_six_docs": "Previously full content checked by root; exact blob roster preserved",
+  "data_scope_eight_docs": "Previously full content checked by learning_worlds; confirmed-tree-inputs and blob-upload-completion retained",
+  "main_refs": {
+    "host": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+    "native": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+  },
+  "targets": [
+    {
+      "path": "docs/evidence/studio-2020-module-scope-078774dd-20261114/MODUL_ABNAHMEMATRIX_078774DD_785413.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9cb216ee27f47cf605a935bb698f6b32e8e9408"
+    },
+    {
+      "path": "docs/evidence/studio-2020-module-scope-078774dd-20261114/entry-source-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a0d4dc8b4106c3c523320986b11d1f99167e329"
+    },
+    {
+      "path": "docs/evidence/studio-2020-module-scope-078774dd-20261114/scope-bindings.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "516a105744d524a525b36f4be87f28254e7cd329"
+    },
+    {
+      "path": "docs/evidence/studio-2020-post-218e-readbacks/github-9-commit-checkpoint.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1133828d31cddd9f40260b659af6e08181aa723"
+    },
+    {
+      "path": "docs/evidence/studio-2020-post-218e-readbacks/github-readback-proof.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65b2ce1da4bb26c8d0a93816dd7b9ef3673d5b2b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-post-218e-readbacks/temporary-archive-cleanup.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df2c80b6ab4c23a9177f62a7cbdf766c4d98fa5a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc4865346976a85f5522dfb2d2fdbf9d59520384"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bce390f16bba5155fb33078c4ef10468eae9f122"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a37c7269f4814598e24cade61b5faccfbbf9c8a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/native-speech-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "585589ca792a1c7d3a046a03d5eaef96b549995c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/post-read-source-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9242a74af097c3dcaf9f4781765bb6d8c74f2eb0"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/workflow-at-078774dd.yml.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4987a607fd3bb1531eff243500ed05cfec50ec57"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/native-host_bridge.gd.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dab96a1b918dc754568c0eda14cdda05175c89fb"
+    },
+    {
+      "path": "docs/evidence/studio-2020-device-data-scope-078774dd-20261114/native-lumo_facial_capture.gd.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55304d9eb68ecc2f335bb66288446945c84d27cd"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_kart_premium_start.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d26fc83358f099b8a533c762fb2639c46486146"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_lumo_kart_12s.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "faeea7a1eeffbde1760c7724206b62c9d20b3280"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_lumo_kart_20s.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d26fc83358f099b8a533c762fb2639c46486146"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/21_lumo_kart_real_race.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84752ac89cdb55562ae59a0ada5c995e41eff293"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/23_zurueck_in_flutter-flutter-visible-0.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38072cc773c7d021792ce4f99d4d36aed92fa0bd"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/captures/23_zurueck_in_flutter-flutter-visible-1.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de2d39bad0f203642ceb287322c71a5218aea454"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/originals/tour-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05d331963c699cbfffbc0f1ccb8d9976760a2cf1"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/verified-original-extraction.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "291f4702109f23d8c6404b8bab0fef9c01dce666"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/review-root.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41efef99b42f5cefa91e5b87b0dfc25051f8682c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-078-failure-originals/review-character_animation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23f5855166794e79cc2009ed2513c41be43060a8"
+    }
+  ],
+  "ref_readback_exact": true
+}

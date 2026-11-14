@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T10:50:47.387037+00:00",
+  "status": "BUILDER_FAILURE_ANDROID_UPDATE_NOT_EXECUTED",
+  "source": {
+    "host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "run": 43580228966,
+    "attempt": 1
+  },
+  "authoritative_run_status": {
+    "status": "completed",
+    "conclusion": "failure",
+    "metadata": "run-terminal-original.json"
+  },
+  "builder": {
+    "job_id": 132403166536,
+    "conclusion": "failure",
+    "completed_at": "2026-11-14T10:44:40Z",
+    "failed_step": 32,
+    "failed_step_name": "Require actual gameplay gates on the exact pinned native source",
+    "step_started_at": "2026-11-14T09:39:49Z",
+    "step_completed_at": "2026-11-14T10:44:21Z",
+    "step_exit_code": 1
+  },
+  "original_log": {
+    "path": "builder-original-job.log",
+    "bytes": 1146964,
+    "sha256": "c922c2df3400fa97bbaa4f00ab8e2d046d3a326a872a36ac16022bac01a3210c",
+    "git_blob": "6057972c27562180eee1649df77c049f04fefbfd",
+    "decoded_text_lines": 9154,
+    "github_fetch_count": 1,
+    "complete_decoded_tool_payload_written": true,
+    "utf8_bom_preserved": true
+  },
+  "first_failed_subgate": {
+    "name": "lumo_facial_capture/rendered",
+    "time": "2026-11-14T10:34:12.7657319Z",
+    "exception": "FileNotFoundError: [Errno 2] No such file or directory: ffmpeg",
+    "traceback_lines": [
+      9011,
+      9021
+    ],
+    "prior_actual_capture_marker_line": 9003,
+    "prior_movie_summary_lines": [
+      9005,
+      9010
+    ],
+    "interpretation": "Godot reported capture completion and 148 AVI frames; the following external ffmpeg executable launch failed. This is not a claim that the movie conversion or full facial gate passed.",
+    "source_dependency_observation": {
+      "host_workflow_blob": "4987a607fd3bb1531eff243500ed05cfec50ec57",
+      "workflow_lines": [
+        316,
+        317
+      ],
+      "native_step_installs": [
+        "xvfb",
+        "libgl1-mesa-dri",
+        "libglx-mesa0"
+      ],
+      "ffmpeg_install_only_in_separate_creative_job_line": 741,
+      "original_execution_lines": [
+        3277,
+        3278
+      ]
+    }
+  },
+  "separate_second_failed_subgate": {
+    "name": "treasure_title_contrast_regression/rendered",
+    "start_line": 9040,
+    "start_time": "2026-11-14T10:34:21.6141410Z",
+    "timeout_line": 9066,
+    "timeout_time": "2026-11-14T10:44:21.6074060Z",
+    "timeout_seconds": 600,
+    "required_completion_marker_observed": false,
+    "progress_observed": "Window/inset updates through all five formats, last 2400x1080 cutout update at 10:41:34; this does not prove completion of either fresh/resume case.",
+    "product_or_runner_root_cause": "Unresolved by this original-log review; no budget change or product defect inferred."
+  },
+  "consequential_roster_failure": {
+    "lines": [
+      9068,
+      9077
+    ],
+    "missing_file": "acceptance-native/studio/captures/lumo_facial_capture/movie.json",
+    "aggregate_failure_line": 9078,
+    "aggregate_failed_names": [
+      "lumo_facial_capture/rendered",
+      "treasure_title_contrast_regression/rendered",
+      "renderer-roster"
+    ],
+    "final_exit_line": 9079
+  },
+  "other_observed_limits": {
+    "earlier_resource_shutdown_errors": [
+      {
+        "probe": "KartAI",
+        "resources": 4,
+        "warning_line": 6686,
+        "error_line": 6688
+      },
+      {
+        "probe": "KartRacecraft",
+        "resources": 4,
+        "warning_line": 6768,
+        "error_line": 6770
+      },
+      {
+        "probe": "KartRivalDrift",
+        "resources": 4,
+        "warning_line": 6786,
+        "error_line": 6788
+      },
+      {
+        "probe": "KartFullField",
+        "resources": 2,
+        "warning_line": 7097,
+        "error_line": 7099
+      }
+    ],
+    "resource_interpretation": "Each follows that probe's PASS marker and execution continues; actual ownership/harmlessness is not established. They are retained and not presented as the cause of the later named aggregate gate failures.",
+    "renderer": "Linux llvmpipe software rendering, not Android hardware or physical-device FPS",
+    "c4_visual_marker": {
+      "line": 9039,
+      "checks": 303,
+      "captures": 4,
+      "fixture": true,
+      "not_actual_dart_godot_gate": true
+    }
+  },
+  "downstream": {
+    "actual_dart_godot_runtime_step_33": "skipped",
+    "apk_build_step_35": "skipped",
+    "apk_verification_step_36": "skipped",
+    "candidate_upload_steps_37_38": "skipped",
+    "android_matrix_job": {
+      "id": 132422690098,
+      "name": "Android API ${{ matrix.api }} live application tour",
+      "conclusion": "skipped",
+      "expanded_api_instances_executed": false
+    },
+    "creative_job": {
+      "id": 132422689875,
+      "conclusion": "skipped"
+    },
+    "update_job": {
+      "id": 132422690152,
+      "conclusion": "skipped"
+    },
+    "publisher_job": {
+      "id": 132422690057,
+      "conclusion": "skipped"
+    },
+    "host_compile_job": {
+      "id": 132403166681,
+      "conclusion": "success"
+    }
+  },
+  "artifact_metadata": {
+    "path": "artifacts-terminal-original.json",
+    "bytes": 5938,
+    "sha256": "8fbc209c0ae5e5aeb6cedd733bc1304f8453c69465a00c71fb51da3ba9fae8ea",
+    "git_blob": "80ce26bf0750fecf92927b31a85dec5dc1f7b614",
+    "complete_list": true,
+    "artifact_count": 8,
+    "candidate_apk_artifact_present": false,
+    "partial_native_artifact": {
+      "id": 14110219450,
+      "bytes": 185209207,
+      "sha256": "fba4d8250529757669c165bd2e15a705ee24bea07522a53ce24d123b5e9ccc46"
+    },
+    "downloaded_by_this_review": false
+  },
+  "limits": [
+    "No APK was built in this run.",
+    "No API35/API37, C4 Android or 2017-to-2020 update run was executed.",
+    "No prior Android result is transferred.",
+    "No tests, reruns, source edits, dependency changes or Git refs changed by this review.",
+    "Detailed independent host/native dependency and cleanup review is separately owned by agent B."
+  ]
+}

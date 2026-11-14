@@ -1,0 +1,32 @@
+{
+  "name": "existing-native-ocr-tiles",
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_native_ocr_tiles.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "environment_overrides": {
+    "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_THREAD_LIMIT": "1",
+    "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+  },
+  "started_utc": "2026-11-14T02:08:13.366675+00:00",
+  "elapsed_seconds": 0.26456447699456476,
+  "exit_code": 0,
+  "exception": null,
+  "test_count": 10,
+  "unittest_seconds": 0.076,
+  "skip_count": 0,
+  "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/existing-native-ocr-tiles-corrected.log",
+  "log_bytes": 2117,
+  "log_sha256": "7965cc9a928d38777bae106117577c41929416a186da11134351401ec2bfb22c"
+}

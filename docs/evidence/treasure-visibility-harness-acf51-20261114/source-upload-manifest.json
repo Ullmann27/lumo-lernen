@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "base_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "scope": "Exactly two isolated harness/test source edits. No workflow, game, Host, pin, receipt or Git mutation.",
+  "files": [
+    {
+      "path": "tools/validate_studio.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/validate_studio.sh",
+      "bytes": 25171,
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd",
+      "git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "3b41626b54845e70e3ac9046e5120f7aa0eb7907"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c",
+      "git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963"
+    }
+  ]
+}

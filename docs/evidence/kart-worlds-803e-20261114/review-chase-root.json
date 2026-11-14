@@ -1,0 +1,214 @@
+{
+  "reviewer": "/root",
+  "reviewed_at_utc": "2026-11-14T00:43:23.595943+00:00",
+  "native_commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "native_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "status": "OBSERVED_EXISTING_PRODUCTION_WORLD_GEOMETRY_WITH_QUALITY_LIMITS",
+  "reviewed_count": 12,
+  "images": [
+    {
+      "path": "captures/zauberwald/01_chase.png",
+      "sha256": "c1b314ce2b3a5ab58d782c423ad9ea72ae380c5fd315f68b27b27ba02037f208",
+      "bytes": 887643,
+      "opened_individually": true,
+      "observation_de": "Die Fahrkamera zeigt die räumlich gebogene Straße, Leitplanken, große Bäume, Pilze und Wasser. Lumo und Kart sind vor der Fahrbahn sichtbar; HUD und getrennte Aktionstasten sind in dieser stationären Aufnahme lesbar."
+    },
+    {
+      "path": "captures/bergwelt/01_chase.png",
+      "sha256": "4a163d1a1dd9d354b5dd54d505a69ce5630984a2c287941284b4c1deab0b58cc",
+      "bytes": 931938,
+      "opened_individually": true,
+      "observation_de": "Erhöhte Fahrbahn, räumliche Inseln/Felsen, Wasserfall und Kristalle erzeugen mehrere Tiefenebenen. Lumo-Kart und Straße bleiben unterscheidbar; keine Fahrt oder Kameranachführung aus diesem Still ableitbar."
+    },
+    {
+      "path": "captures/holo_city/01_chase.png",
+      "sha256": "8e2afae2317986c50e6030b0a557a0600d1683c8d10970c1d168fb90a042b2f4",
+      "bytes": 971311,
+      "opened_individually": true,
+      "observation_de": "Dichte blaue 3D-Gebäude, beleuchtete Straßenbegrenzungen und Kurve sind sichtbar. Das Bild belegt die vorhandene Stadtgeometrie; ein Neon-Eindruck allein belegt keine neue Grafikimplementierung."
+    },
+    {
+      "path": "captures/crystal_canyon/01_chase.png",
+      "sha256": "e52da40b64a9228a8ea3d9756f90d63a26136689d06aaed0515b9e36de65fd82",
+      "bytes": 918792,
+      "opened_individually": true,
+      "observation_de": "Große cyanfarbene und violette Kristalle sowie Felsflächen stehen räumlich neben der Straße. Fahrbahn und Kart bleiben klar getrennt. Material- oder mobile Beleuchtungsqualität kann aus einem Software-GL-Bild nur begrenzt beurteilt werden."
+    },
+    {
+      "path": "captures/jungle_temple/01_chase.png",
+      "sha256": "ad88ab92e03a760cafb08d2e93aa45f105014e969fc7e7ee935f70d880740fc7",
+      "bytes": 987109,
+      "opened_individually": true,
+      "observation_de": "Bäume, Tempel-/Ruinenformen und Gelände sind neben der gebogenen Strecke vorhanden. Der sichtbare Ausschnitt enthält räumliche Objekte; Verhalten außerhalb dieses Ausschnitts wurde hier nicht geprüft."
+    },
+    {
+      "path": "captures/candy_cloud/01_chase.png",
+      "sha256": "c118874a306379c0c0731027f4242d727885b3786d7468c1bb811b8f34bbc7c2",
+      "bytes": 842986,
+      "opened_individually": true,
+      "observation_de": "Rosa Türme/Schlossformen, torusförmige Süßigkeiten und Wolken sind sichtbar. Der dunklere Kartvordergrund ist noch erkennbar; der Blick belegt keine neue Streckenmechanik."
+    },
+    {
+      "path": "captures/volcano_night/01_chase.png",
+      "sha256": "b4ebc2af9e0c4eaa87415e0aedb2a639aa450d215c6a131cf815a631d7c57d3e",
+      "bytes": 823872,
+      "opened_individually": true,
+      "observation_de": "Dunkle Fahrbahn mit orangefarbenen Tor-/Lavaformen und Bergen. Emissive Ränder und Bedienelemente bleiben klar. Die starken Helligkeitskontraste verdienen eine spätere Geräteprüfung; das Still zeigt keine zeitliche Effektanimation."
+    },
+    {
+      "path": "captures/winter_sprint/01_chase.png",
+      "sha256": "e371d7dbbbab76261b71e457a7bd9bfd1bf2eeb55d42ff83e807464f5ab004f3",
+      "bytes": 905317,
+      "opened_individually": true,
+      "observation_de": "Blaue Straße, schneebedeckte kegelförmige Bäume und weiße Hügel bilden eine erkennbare Winterwelt. Sehr helle Schneeflächen verlieren in diesem Software-GL-Bild stellenweise Oberflächendifferenzierung. Kart, HUD und Aktionen bleiben klar sichtbar."
+    },
+    {
+      "path": "captures/galaxy_ringway/01_chase.png",
+      "sha256": "0be20e58b76a747402daad6cd04822ac91c4fd9cf7f89751fb03fbd741b9f226",
+      "bytes": 841145,
+      "opened_individually": true,
+      "observation_de": "Räumliche Ringplaneten, Sterne und eine auf Stützen verlaufende Strecke sind sichtbar. Der Hintergrund und die Flächen bleiben geometrisch einfach. Kart, Kurve und Aktionstasten sind lesbar; kein Fahr- oder 60-FPS-Nachweis."
+    },
+    {
+      "path": "captures/desert_drift/01_chase.png",
+      "sha256": "3cb64cc8bca59fdce9786c1e8bd6832343ad613fb53422ad8ed29306e65f4848",
+      "bytes": 1006114,
+      "opened_individually": true,
+      "observation_de": "Sandfarbene Hügel, hohe prismatische Gebäude und die gebogene Straße sind sichtbar. Die Kulisse wirkt im geprüften Startausschnitt noch stark aus Grundkörpern zusammengesetzt; die Aufnahme ist Bestandsbefund, keine abgeschlossene Art-Überarbeitung."
+    },
+    {
+      "path": "captures/learning_lab/01_chase.png",
+      "sha256": "6149614d8ce4ff5d19ae1e2425bbb55f5105e89896441aa5d0a287e3df13cc88",
+      "bytes": 1055885,
+      "opened_individually": true,
+      "observation_de": "Blaue Labor-/Turmgebäude mit räumlichen Kugelmodellen stehen neben der Fahrbahn. Original-Lumo, Kart und Steuerung sind sichtbar. Der Ausschnitt zeigt eher eine geometrische Laborstadt als bereits ein ausgearbeitetes interaktives Lernexperiment."
+    },
+    {
+      "path": "captures/zauberwald/03_detail.png",
+      "sha256": "0eb03dd23fb6a7ce081e7f64a233b053a44b25b1da87e4043e6b71eced216b62",
+      "bytes": 575541,
+      "opened_individually": true,
+      "observation_de": "Nahansicht der vorhandenen Baum-/Wurzelkonstruktion und ergänzender Pilz-/Holz-/Laternenformen. Die Detailgeometrie ist tatsächlich gerendert; dies ist eine manuell gesetzte Detailkamera mit eingefrorener Szene, keine gefahrene Runde."
+    }
+  ],
+  "log_review": [
+    {
+      "path": "bergwelt.log",
+      "sha256": "818290dba5f0dfd711b3a7391e272a8f8b3dba6262f07845ddbccc7a39fff2d3",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "candy_cloud.log",
+      "sha256": "e8757ae38a7cbd5365b6fae63a3ea21f54dd01ed6044dc0b5e25ca355b0930fe",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "crystal_canyon.log",
+      "sha256": "c1efbef801f537cafe71543733675b3d0f931384bbbc5bb999ff3652f61af332",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "desert_drift.log",
+      "sha256": "67c059ff1dc3dd38962d7f27c98c6fd1b7699d63cad73c5785d76f085ad63b5f",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "galaxy_ringway.log",
+      "sha256": "b1b76b23fa44f214afbe0825dc8fab5fd1a1c6eddffb9ab1411a56a5e32509c3",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "holo_city.log",
+      "sha256": "a3ca21f28c0ff49ca47394f2de3dc7cd84be430b6717aa1ca5552b2b6970ee84",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "jungle_temple.log",
+      "sha256": "fcfb6a33fabb96c0bef562eed80f96ca2d786bbafabbc13156638a8224a01822",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "learning_lab.log",
+      "sha256": "c483a7ea298937631f67bf8e70c4546f7b7a867bde5d43f18f7271f81255e473",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "volcano_night.log",
+      "sha256": "06a30806e2f97078152f5258542ac1f280332b3f5289688c89ebfc6a3e9f673b",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "winter_sprint.log",
+      "sha256": "d3a6229ee8c80099181a688a6832f0022e84b133cdb4cb6940e5ee0e218d41c0",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "path": "zauberwald.log",
+      "sha256": "9574522e8dbba5b9b7df2d78095612c43a1145645e2793ad5b918c7663e16c8a",
+      "errors": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    }
+  ],
+  "limits": [
+    "Stationary 1280x720 production scene with process/physics frozen and reduced_motion=true. No driven race.",
+    "Software GL compatibility renderer on Linux; not physical Android and not a native mobile performance measurement.",
+    "V-Sync changes unsupported; screen-space AA and volumetric fog requested by scene but unavailable in this compatibility renderer. All original warnings retained.",
+    "1175 published runtime/asset/scene/capture files match Native803 before and after. Original capture stamp truthfully retains older local Git HEAD and dirty=true; this was not a clean803checkout.",
+    "These are existing environments, not newly implemented tracks, and they do not establish full AAA art acceptance.",
+    "Only the12 explicitly listed images were personally opened by /root; the additional21 images are assigned for separate actual review."
+  ]
+}

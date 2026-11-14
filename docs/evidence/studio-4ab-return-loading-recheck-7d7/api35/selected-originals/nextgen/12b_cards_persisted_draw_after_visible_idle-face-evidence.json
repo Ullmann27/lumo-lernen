@@ -1,0 +1,2316 @@
+{
+  "status": "PASS",
+  "stage": "12b_cards_persisted_draw_after_visible_idle",
+  "frames": [
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-01-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-02-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-03-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-04-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-05-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-06-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-07-before-layout.json"
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "VISIBLE_FRONT_ARTWORK",
+      "layout_before": {
+        "layout": {
+          "ack": 2,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "wind-99",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-2",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-79",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-1",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 3,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 7,
+          "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 128424,
+          "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12b_cards_persisted_draw_after_visible_idle-face-check-08-before-layout.json",
+        "source_sha256": "65c40fd8066da8eac936f73e76c77e973d055c8fcb146ac4b6ca36bd598c64ad"
+      },
+      "source": "12b_cards_persisted_draw_after_visible_idle-face-check-08.png",
+      "source_sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+      "public_after": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "layout_after": {
+        "layout": {
+          "ack": 2,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "wind-99",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-2",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-79",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-1",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 3,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 7,
+          "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 128424,
+          "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12b_cards_persisted_draw_after_visible_idle-face-check-08-after-layout.json",
+        "source_sha256": "65c40fd8066da8eac936f73e76c77e973d055c8fcb146ac4b6ca36bd598c64ad"
+      },
+      "observations": {
+        "source_sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+        "pause": {
+          "text": "Pause",
+          "bounds": [
+            896.0,
+            214.0,
+            1025.0,
+            248.0
+          ],
+          "variant": "contrast"
+        },
+        "page": {
+          "text": "1/4",
+          "bounds": [
+            508.0,
+            2053.0,
+            575.0,
+            2087.0
+          ],
+          "variant": "contrast"
+        }
+      },
+      "pixels": {
+        "source": "12b_cards_persisted_draw_after_visible_idle-face-check-08.png",
+        "source_sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "revision": 7,
+        "page": "1/4",
+        "faces": [
+          {
+            "card_id": "num-2",
+            "quad": [
+              [
+                40.79796876332972,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1971.3573554952166
+              ],
+              [
+                40.79796876332972,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9494673752153551,
+            "luminance_p95_minus_p05": 96
+          },
+          {
+            "card_id": "num-79",
+            "quad": [
+              [
+                373.42305101742465,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1971.3573554952166
+              ],
+              [
+                373.42305101742465,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82080,
+            "colored_fraction": 0.6418859649122807,
+            "luminance_p95_minus_p05": 95
+          },
+          {
+            "card_id": "num-1",
+            "quad": [
+              [
+                706.0481332715195,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1971.3573554952166
+              ],
+              [
+                706.0481332715195,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9645725655771518,
+            "luminance_p95_minus_p05": 96
+          },
+          {
+            "card_id": "wind-99",
+            "quad": [
+              [
+                581.2395030333607,
+                1114.463159188243
+              ],
+              [
+                748.2091982416016,
+                1114.463159188243
+              ],
+              [
+                763.9861794547594,
+                1246.988624585146
+              ],
+              [
+                584.3644123557737,
+                1246.988624585146
+              ]
+            ],
+            "interior_pixels": 12096,
+            "colored_fraction": 0.9107142857142857,
+            "luminance_p95_minus_p05": 174
+          }
+        ],
+        "scope": "Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim",
+        "layout_binding": {
+          "layout_sha256": "65c40fd8066da8eac936f73e76c77e973d055c8fcb146ac4b6ca36bd598c64ad",
+          "layout_sequence": 3,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      }
+    },
+    {
+      "revision": 7,
+      "public_before": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "VISIBLE_FRONT_ARTWORK",
+      "layout_before": {
+        "layout": {
+          "ack": 2,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "wind-99",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-2",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-79",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-1",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 3,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 7,
+          "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 128424,
+          "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12b_cards_persisted_draw_after_visible_idle-face-check-09-before-layout.json",
+        "source_sha256": "65c40fd8066da8eac936f73e76c77e973d055c8fcb146ac4b6ca36bd598c64ad"
+      },
+      "source": "12b_cards_persisted_draw_after_visible_idle-face-check-09.png",
+      "source_sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+      "public_after": {
+        "protocol": 1,
+        "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+        "revision": 7,
+        "ack": 2,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 10,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-79",
+            "color": "green",
+            "type": "number",
+            "number": 1,
+            "playable": true
+          },
+          {
+            "id": "num-1",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-62",
+            "color": "blue",
+            "type": "number",
+            "number": 5,
+            "playable": false
+          },
+          {
+            "id": "num-84",
+            "color": "green",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          },
+          {
+            "id": "num-17",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-18",
+            "color": "orange",
+            "type": "number",
+            "number": 9,
+            "playable": false
+          },
+          {
+            "id": "wild-108",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-7",
+            "color": "orange",
+            "type": "number",
+            "number": 4,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "wind-99",
+          "color": "green",
+          "type": "whirlwind",
+          "number": null
+        },
+        "selectedColor": "green",
+        "drawCount": 94,
+        "canDraw": true,
+        "message": "Wirbelwind! Du zieht 1 Karte.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "layout_after": {
+        "layout": {
+          "ack": 2,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "wind-99",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-2",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-79",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-1",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 3,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 7,
+          "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 128424,
+          "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12b_cards_persisted_draw_after_visible_idle-face-check-09-after-layout.json",
+        "source_sha256": "65c40fd8066da8eac936f73e76c77e973d055c8fcb146ac4b6ca36bd598c64ad"
+      },
+      "observations": {
+        "source_sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+        "pause": {
+          "text": "Pause",
+          "bounds": [
+            896.0,
+            214.0,
+            1025.0,
+            248.0
+          ],
+          "variant": "contrast"
+        },
+        "page": {
+          "text": "1/4",
+          "bounds": [
+            508.0,
+            2053.0,
+            575.0,
+            2087.0
+          ],
+          "variant": "contrast"
+        }
+      },
+      "pixels": {
+        "source": "12b_cards_persisted_draw_after_visible_idle-face-check-09.png",
+        "source_sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "revision": 7,
+        "page": "1/4",
+        "faces": [
+          {
+            "card_id": "num-2",
+            "quad": [
+              [
+                40.79796876332972,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1971.3573554952166
+              ],
+              [
+                40.79796876332972,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9494673752153551,
+            "luminance_p95_minus_p05": 96
+          },
+          {
+            "card_id": "num-79",
+            "quad": [
+              [
+                373.42305101742465,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1971.3573554952166
+              ],
+              [
+                373.42305101742465,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82080,
+            "colored_fraction": 0.6418859649122807,
+            "luminance_p95_minus_p05": 95
+          },
+          {
+            "card_id": "num-1",
+            "quad": [
+              [
+                706.0481332715195,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1971.3573554952166
+              ],
+              [
+                706.0481332715195,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9645725655771518,
+            "luminance_p95_minus_p05": 96
+          },
+          {
+            "card_id": "wind-99",
+            "quad": [
+              [
+                581.2395030333607,
+                1114.463159188243
+              ],
+              [
+                748.2091982416016,
+                1114.463159188243
+              ],
+              [
+                763.9861794547594,
+                1246.988624585146
+              ],
+              [
+                584.3644123557737,
+                1246.988624585146
+              ]
+            ],
+            "interior_pixels": 12096,
+            "colored_fraction": 0.9107142857142857,
+            "luminance_p95_minus_p05": 174
+          }
+        ],
+        "scope": "Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim",
+        "layout_binding": {
+          "layout_sha256": "65c40fd8066da8eac936f73e76c77e973d055c8fcb146ac4b6ca36bd598c64ad",
+          "layout_sequence": 3,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      }
+    }
+  ],
+  "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+  "consecutive_same_revision_frames": 2,
+  "revision": 7,
+  "page": "1/4",
+  "layout_sequence": 3,
+  "layout_sha256": "65c40fd8066da8eac936f73e76c77e973d055c8fcb146ac4b6ca36bd598c64ad",
+  "token": "9d73501f9d70f2f9f1993b6ae4faa3e5",
+  "roundId": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+  "viewer": 0,
+  "source": "12b_cards_persisted_draw_after_visible_idle.png",
+  "source_sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+  "elapsed_seconds": 14.713664
+}

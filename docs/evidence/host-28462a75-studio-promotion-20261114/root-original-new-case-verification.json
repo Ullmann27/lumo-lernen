@@ -1,0 +1,16 @@
+{
+  "root_original_line_comparison": true,
+  "host": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "new_cases": {
+    "ASR": 10,
+    "Memory": 14
+  },
+  "full_suite": {
+    "passed": 2632,
+    "failed": 0,
+    "skipped": 0
+  },
+  "machine_sha256": "273c38c24fa7694f15f21ed9d2aba05a6f39e6be6591620f1a34b3c1977be939",
+  "review_sha256": "e19ac869dcfbf300c1eaf0d6b8ab6df22678dbd8acf52a3dca652d07e53a42d6",
+  "scope": "Original result verification only; no new test execution."
+}

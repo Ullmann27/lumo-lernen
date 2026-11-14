@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "base_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "base_tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+  "scope": "One existing runner workflow-contract test; no product or workflow changes.",
+  "files": [
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/prepared/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 49768,
+      "sha256": "848a5b772bc6176d9f1e19f41878a32abc99eac0aa4a983b0335a3840a9d0232",
+      "git_blob": "799a068b20f446e14f6bafe42cffb186fc3e8189",
+      "mode": "100644",
+      "base_git_blob": "ea34d0d0b459f478af662ede47e472111ca9ae8d"
+    }
+  ]
+}

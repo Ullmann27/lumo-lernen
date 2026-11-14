@@ -1,0 +1,47 @@
+{
+  "host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "truncated": false,
+  "entries": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ea2906e200a8a513e2a941da165b9450f3b5ea8",
+      "size": 7458,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/5ea2906e200a8a513e2a941da165b9450f3b5ea8"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7111ad168903f5bc97808f74bd7944392d7325da",
+      "size": 74063,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/7111ad168903f5bc97808f74bd7944392d7325da"
+    },
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52e9940c0a9803f089d3fbca0a90804bdd20cfac",
+      "size": 145,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/52e9940c0a9803f089d3fbca0a90804bdd20cfac"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42732298903b794adb458d60664ae89e6b09f24d",
+      "size": 19946,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/42732298903b794adb458d60664ae89e6b09f24d"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41de47f88741f7949535d311d1fd4ba66607888f",
+      "size": 10697,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/41de47f88741f7949535d311d1fd4ba66607888f"
+    }
+  ]
+}

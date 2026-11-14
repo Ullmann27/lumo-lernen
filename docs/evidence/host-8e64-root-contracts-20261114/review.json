@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "host_commit": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "run_id": 43634307306,
+  "terminal_jobs": {
+    "android_host_compile": 132567622947,
+    "memory_source_contracts": 132567623201
+  },
+  "result": "These two jobs passed; Flutter and overall Studio acceptance are separate",
+  "original_logs_fetched_once": true,
+  "artifacts_fully_downloaded_once": [
+    14130045642,
+    14129147269
+  ],
+  "all_archive_crcs_verified": true,
+  "compiled_class_groups": 18,
+  "speech_cases": {
+    "java": 11,
+    "kotlin": 8,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "boundary": "synthetic inference/Android boundaries; no actual model synthesis or heard output"
+  },
+  "table_native_unique_markers": [
+    "authority memory",
+    "bind-timeout memory",
+    "closed-mailbox memory",
+    "invalid-intents memory",
+    "mailbox memory",
+    "owner-and-revision memory",
+    "pause-stale memory",
+    "pending-terminal memory",
+    "plugin-isolation memory",
+    "publish-write-failure memory",
+    "render-stall memory",
+    "return-durable memory",
+    "return-write-failure memory",
+    "stop-resume memory",
+    "authority quiz",
+    "bind-timeout quiz",
+    "closed-mailbox quiz",
+    "invalid-intents quiz",
+    "mailbox quiz",
+    "owner-and-revision quiz",
+    "pause-stale quiz",
+    "pending-terminal quiz",
+    "plugin-isolation quiz",
+    "publish-write-failure quiz",
+    "render-stall quiz",
+    "return-durable quiz",
+    "return-write-failure quiz",
+    "stop-resume quiz"
+  ],
+  "memory": {
+    "status": "PASS",
+    "cases": 30,
+    "passed": 30,
+    "failed": [],
+    "checks": 1694,
+    "skipped": 0,
+    "scope": "Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim."
+  },
+  "scheduler": {
+    "status": "PASS",
+    "cases": 7,
+    "passed": 7,
+    "failed": [],
+    "checks": 13,
+    "skipped": 0,
+    "scope": "Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim."
+  },
+  "quiz": {
+    "cases": 28,
+    "checks": 1786,
+    "failed": 0,
+    "skips": 0
+  },
+  "limits": [
+    "No APK creation is established by these two jobs",
+    "No Android on-device persistence or physical Fold7 performance claim",
+    "Counts from overlapping suites are not summed"
+  ]
+}

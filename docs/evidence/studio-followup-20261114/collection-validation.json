@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-11-14T02:32:38.556877+00:00",
+  "status": "DOCS_ONLY_COLLECTION_HASHES_AND_COLLISIONS_PASS",
+  "base_evidence_commit": "372b9532ba73597be0d3893eae88a6ec1c18db11",
+  "base_evidence_tree": "6adba72b9a9947f14689e0a02f07d91d1df020ec",
+  "base_blobs": 4682,
+  "collision_inputs": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/published-evidence-tree-4c4bc518.json",
+      "entries": 4495,
+      "bytes": 789220,
+      "sha256": "e45407fb56fa9c155668250c7c0967f9ff9e02ba242c334a94f3e0090b57bcce",
+      "git_blob_sha1": "299660e27f65759721fdaaf4601135d1b81af767"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-docs/upload-manifest.json",
+      "entries_plus_its_manifest": 187,
+      "bytes": 144846,
+      "sha256": "a0c4c49a6e6447a6098c4987da09d83e847aa92dd41f81a2cf8a7a7c251e013d",
+      "git_blob_sha1": "1dc9648c23270061c5714bfe840e20ab6f221e53"
+    }
+  ],
+  "existing_path_collisions": [],
+  "file_directory_prefix_collisions": [],
+  "all_input_package_bytes_sha_and_gitblobs_verified": true,
+  "input_package_manifests": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/evidence-upload-manifest.json",
+      "bytes": 50359,
+      "sha256": "2af46f40d4afd1261044331bfcc8315574543511debf7d7e70b36a3179ae3661",
+      "git_blob_sha1": "2a1895be8e9be45aac4b44a64a4b9cf05607e162"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/upload-manifest.json",
+      "bytes": 7450,
+      "sha256": "2cbf31e48473613ac1805bb8cad71e9a3618b3f4baf8e86705a7728918266000",
+      "git_blob_sha1": "d06e59b68a5e180434b61ad01a8ce11edc42f8bf"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/evidence-upload-manifest.json",
+      "bytes": 7593,
+      "sha256": "3b66ca92bbd37f10abd8fb37051f8bfd88e150e120cf21f84829a2ffc4f9088d",
+      "git_blob_sha1": "232889ffd8826c2eaa92056ee98fe44ccc8a8921"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/upload-manifest.json",
+      "bytes": 9037,
+      "sha256": "c8be656de70c022fea5abde1cb7619a82ba72e9c70eb2a570773e4fa8a93274d",
+      "git_blob_sha1": "d53e267886971194f1da958f8730f7acf4e0e619"
+    }
+  ],
+  "package_counts_before_collection_docs": {
+    "cards-readiness": 81,
+    "german-controller": 16,
+    "same-apk-qa": 19,
+    "publication-guards": 21,
+    "integrated-source-checkpoint": 7,
+    "public-archive": 27
+  },
+  "package_bytes_before_collection_docs": {
+    "cards-readiness": 10859030,
+    "german-controller": 169152,
+    "same-apk-qa": 170212,
+    "publication-guards": 515057,
+    "integrated-source-checkpoint": 33104,
+    "public-archive": 1893811
+  },
+  "deduplicated_already_included_source_manifest_references": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/source-upload-manifest.json",
+      "repo_path": "docs/evidence/studio-followup-20261114/cards-readiness/local-fix/source-upload-manifest.json",
+      "reason": "Already included unchanged by the frozen package manifest"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/source-manifest.json",
+      "repo_path": "docs/evidence/studio-followup-20261114/german-controller/source-manifest.json",
+      "reason": "Already included unchanged by the frozen package manifest"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/source-upload-manifest.json",
+      "repo_path": "docs/evidence/studio-followup-20261114/same-apk-qa/source-upload-manifest.json",
+      "reason": "Already included unchanged by the frozen package manifest"
+    }
+  ],
+  "excluded_product_installations": [
+    {
+      "package": "german-controller",
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/patched/lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "original_target": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "reason": "Product source installation is outside this docs-only archive"
+    }
+  ],
+  "new_android_pass_claimed": false,
+  "git_mutations": false,
+  "image_copies": false,
+  "source_files_changed": false,
+  "large_original_archives_included": false
+}

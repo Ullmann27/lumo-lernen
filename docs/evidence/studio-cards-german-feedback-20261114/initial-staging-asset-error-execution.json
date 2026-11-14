@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "test/games/cards_german_feedback_test.dart"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host",
+  "environment_delta": {
+    "LUMO_CARDS_MESSAGE_EVIDENCE": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/red-observations.json"
+  },
+  "exit_code": 1,
+  "elapsed_seconds": 1.3541419069952099,
+  "baseline_source_sha256": "b7fac3db86b229aaf75e1a3cace448c16dffe8146715ba292f67539b23496b35"
+}

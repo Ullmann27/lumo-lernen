@@ -1,0 +1,21 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-red/captures"
+  ],
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "exit_code": 1,
+  "elapsed_seconds": 12.376693349000107,
+  "log_bytes": 6299,
+  "log_sha256": "99216bc94b7fb15a2452674bf3616fddb4a55c6466fe37acb5cab8af5f51fbee",
+  "scope": "New measured minimum-visible-geometry contract on previous renderer source; no active source edits during run"
+}

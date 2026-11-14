@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "fold-landscape",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "fold-landscape-render-candidate-1.png",
+      "sha256": "7af9aa5fd473b5d39939195a0e8c9ac20378a14f334a347d64eea9a762880457",
+      "width": 2400,
+      "height": 1080,
+      "content_entropy_bits": 6.503,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 4.06
+}

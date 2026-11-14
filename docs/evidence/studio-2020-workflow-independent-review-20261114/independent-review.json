@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "created_utc": "2026-11-14T05:31:37.399267+00:00",
+  "status": "DRAFT_CONNECTION_READ_ONLY_REVIEW_NO_ADDITIONAL_CONCRETE_BLOCKER;KNOWN_C4_PUBLISHER_INTEGRATION_PENDING",
+  "workflow": {
+    "path": "qa/studio-2020-integration/root/host/.github/workflows/lumo-studio-2020.yml",
+    "bytes": 52790,
+    "sha256": "4a975ce4275b261d9d2ce6c9151809bc0d4eb1a7791f16ca71157f2247f1ad1d"
+  },
+  "scope": "Exact staged2020 workflow connection only. Does not approve unpublished pins, an uncreated visual receipt, a new runtime result or incomplete Publisher validation.",
+  "checks": [
+    {
+      "area": "Trigger and source",
+      "finding": "Only the new exact2020 head branch in this repository, with its own concurrency group. The stacked PR base is chatgpt/lumo-studio-20261113. Checkout uses the actual PR headSHA; manual runs of the exact branch can test but cannot enter the PR-only Publisher."
+    },
+    {
+      "area": "Build and all existing gates",
+      "finding": "Exact build2020, official repository, full nativeSHA and engine4.6.3 are required. Existing fullFlutter, Python/Androidcontracts, fonts, native gameplay/technical-art/action/Nextgen/Studio gates remain before APK packaging. The actual C4Dart/Godot runner executes from the same Host and exact full Nativecheckout after those gates."
+    },
+    {
+      "area": "Real API35/37 C4",
+      "finding": "Both Android variants run normaltour, Learning/Cards surfaces and the new C4probe in sequence on the same candidate APK. C4gets actual clean candidate-source, immutable nativecheckout, original provenance/sums, prior tour, expectedAPI and explicit emulator5554; its output remains inside the corresponding always-uploaded tour archive."
+    },
+    {
+      "area": "API37 guard",
+      "finding": "The exact a421e438 upstream action is preserved as the local action basis, with officialCLI22 preparation and actual generatedAVD inspection. The strict framework guard is bound to the actual new candidate source and this2020 workflow. The generic existing preparator accepts an actual in-checkout .github/workflows path; it does not require the historical2019 filename. GPU/image/SDK37.0 and lifecycle startup evidence remain, without a timeout relaxation."
+    },
+    {
+      "area": "Upgrade",
+      "finding": "A separate emulator downloads exact historical2017 artifact13948686178 from run43220602252 and uses the new explicit2017-to2020 wrapper on the same current candidate. Existing baseline and candidate hashes/identity/data checks remain; this is not2019-to2020 evidence."
+    },
+    {
+      "area": "Creative",
+      "finding": "Exact build artifact ID/digest and original live metadata are passed to the new2020-version-aware Creative probe; current source/native checkout and installed APK provenance remain explicit. The geometry/readiness delta and version delta remain separate owned sources composed by Root."
+    },
+    {
+      "area": "Publication",
+      "finding": "Publisher requires Build, Hostcompile, bothmatrix APIjobs, update and Creative success. It independently fetches the reviewed Native artifact/run/jobs and a separate studio-2020-evidence release archive, requires approved2020 receipt, rechecks actual ARM64bytes and runs versioned delivery/creative verifiers. It does not reuse the2019tag. Existing2020release must already bind the exact same source; public APKbytes are then independently downloaded and hashed."
+    }
+  ],
+  "known_pending_not_new_findings": [
+    "The new C4Publisher validator from AgentA is intentionally not connected in this exact draft yet. Root identified this dependency before review. A later completed workflow must hard-require both API35/37 C4 reports and independent immutable evidence validation; this draft review does not waive it.",
+    "The final2020 NativeSHA, approved source-bound visual receipt and actual newAPK execution do not exist as acceptance evidence in this review. The existing2019 candidate and historical evidence remain separate."
+  ],
+  "independent_references": [
+    {
+      "path": "qa/connect-four-android-independent-review-20261114/independent-review.json",
+      "sha256": "71e95b14fc0df92116a844510a16dfaa248050218a865b71da08a73dec828e56"
+    },
+    {
+      "path": "qa/connect-four-root-review-20261114/runner-closure-independent-review.json",
+      "sha256": "89b15a8a9c10394ba590af81ac1c787fdfb3f4967cf3347e8d48e4e28b6ebf50"
+    },
+    {
+      "path": "qa/studio-2020-android-contracts-review-20261114/independent-review.json",
+      "sha256": "361981d27a66af71bc18eb501d50b6a4428874bb71732af7d483ad96dbb9d172"
+    }
+  ],
+  "tests_executed_by_reviewer": [],
+  "workflow_run_started_by_reviewer": false,
+  "sources_changed_by_reviewer": [],
+  "whole_candidate_approved": false
+}

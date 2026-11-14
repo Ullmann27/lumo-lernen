@@ -1,0 +1,78 @@
+{
+  "scope": "Auszug relevanter Original-Joblogwarnungen; kein Anspruch auf fehlerfreies vollständiges Android-Logcat.",
+  "original_job_log": {
+    "bytes": 2069025,
+    "sha256": "769cd5b9ba8bcd48057323a6decc9c1db617b2e1cd0b4ed1973b317d6ef5afa7",
+    "git_blob": "235b4a91029a1a0bb3ebd7fc5a36d388a4298a70"
+  },
+  "lines": [
+    {
+      "line": 1148,
+      "text": "2026-11-14T03:42:39.1343712Z (node:2660) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 1150,
+      "text": "2026-11-14T03:42:39.1532002Z (node:2660) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 1156,
+      "text": "2026-11-14T03:42:39.7742323Z (node:2660) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+    },
+    {
+      "line": 1424,
+      "text": "2026-11-14T03:43:06.0227372Z /home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py:100: SyntaxWarning: invalid escape sequence '\\('"
+    },
+    {
+      "line": 1654,
+      "text": "2026-11-14T03:44:29.3085401Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 1656,
+      "text": "2026-11-14T03:44:29.3089083Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 1659,
+      "text": "2026-11-14T03:44:29.3091447Z WARNING      | Could not detect GPU properly for Vulkan emulation. Please try updating your GPU Drivers."
+    },
+    {
+      "line": 1667,
+      "text": "2026-11-14T03:44:29.3097407Z ERROR        | Unable to connect to adb daemon on port: 5037"
+    },
+    {
+      "line": 1677,
+      "text": "2026-11-14T03:44:29.3117717Z WARNING      | Could not open libX11.so, try libX11.so.6"
+    },
+    {
+      "line": 1688,
+      "text": "2026-11-14T03:44:29.3129477Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1"
+    },
+    {
+      "line": 1793,
+      "text": "2026-11-14T03:44:29.6791587Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 1794,
+      "text": "2026-11-14T03:44:29.7705694Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 12119,
+      "text": "2026-11-14T04:09:48.2386550Z ERROR        | stop: Not implemented"
+    },
+    {
+      "line": 12120,
+      "text": "2026-11-14T04:09:48.2387477Z WARNING      | Emulator client has not yet been configured.. Call configure me first!"
+    },
+    {
+      "line": 12133,
+      "text": "2026-11-14T04:09:48.7793994Z (node:6609) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 12139,
+      "text": "2026-11-14T04:09:49.5285531Z (node:6609) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 12191,
+      "text": "2026-11-14T04:09:55.5542038Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/github-script@v7, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ]
+}

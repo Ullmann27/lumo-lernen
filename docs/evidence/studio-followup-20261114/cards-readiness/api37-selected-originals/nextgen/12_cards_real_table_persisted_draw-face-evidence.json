@@ -1,0 +1,111 @@
+{
+  "status": "FAIL",
+  "stage": "12_cards_real_table_persisted_draw",
+  "frames": [
+    {
+      "revision": 5,
+      "public_before": {
+        "protocol": 1,
+        "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-27",
+            "color": "purple",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-11",
+            "color": "orange",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-95",
+            "color": "green",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-65",
+            "color": "blue",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-37",
+            "color": "purple",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-44",
+            "color": "purple",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-96",
+          "color": "green",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "green",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt green 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "CHECKING"
+    }
+  ],
+  "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+  "error": "Expecting value: line 1 column 1 (char 0)",
+  "elapsed_seconds": 0.123735
+}

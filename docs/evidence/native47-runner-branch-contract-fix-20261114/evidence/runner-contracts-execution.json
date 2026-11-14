@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/tests",
+    "-p",
+    "test_nextgen_runner.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/prepared/native",
+  "started_utc": "2026-11-14T15:41:07.170784+00:00",
+  "finished_utc": "2026-11-14T15:43:36.343837+00:00",
+  "duration_seconds": 149.17325845400046,
+  "exit_code": 0,
+  "source_sha256_before": "848a5b772bc6176d9f1e19f41878a32abc99eac0aa4a983b0335a3840a9d0232",
+  "source_sha256_after": "848a5b772bc6176d9f1e19f41878a32abc99eac0aa4a983b0335a3840a9d0232",
+  "scope": "Existing 16 Python orchestration/workflow contracts with synthetic native/PNG fixtures; no Godot renderer, Flutter, Android or CI execution."
+}

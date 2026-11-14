@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "b7210db3f53361987fd33592de438fd7984d991a",
+  "native_source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run_id": 43619285124,
+  "run_attempt": 1,
+  "job_id": 132521067410,
+  "scope": "UTF8 terminal log/metadata only; zero downloaded/CRC-checked/personally-reviewed images",
+  "file_count": 7,
+  "total_bytes": 442278,
+  "entries": [
+    {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "name": "README.md",
+      "bytes": 3428,
+      "sha256": "695fc0e5450e8d38cf2cc67c3c09b74dc80cf2ca1378b23216a71a02ba02dce7",
+      "git_blob_sha": "8e97117c8389f8d6d941ec360866b84241c3d7a8"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "name": "review.json",
+      "bytes": 12422,
+      "sha256": "3feaba5d2ba3c189045f158d570531bcf6d681c52440f1a191d7b555ba06086f",
+      "git_blob_sha": "1625ac0837957fd26f791e63dd2577cb5960d079"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/original-english-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "name": "original-english-job.log",
+      "bytes": 309324,
+      "sha256": "ae34ccf08491afbb212a35edce3489331f2df9b95811d1b4b9e4280ff956e079",
+      "git_blob_sha": "d68bd68bfb9a8a0c0afda90f1376c5feb3d1d80c"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/run-at-english-completion-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "name": "run-at-english-completion-original.json",
+      "bytes": 13675,
+      "sha256": "09c013ac5c19c8fecf4f37b4fae76a89b419b553072e34b6611896f0299d842d",
+      "git_blob_sha": "14d3e6744b608e2849d4817aec0cd92d5f089a45"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/jobs-at-english-completion-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "name": "jobs-at-english-completion-original.json",
+      "bytes": 24709,
+      "sha256": "2b2495b1d2eba8c62ed58a01de2b0802e02be04a186617991e8db76d16540d46",
+      "git_blob_sha": "db56aa5aea1eeffad1c33606c55d6db08795789b"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/artifacts-at-english-completion-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "name": "artifacts-at-english-completion-original.json",
+      "bytes": 4464,
+      "sha256": "6556420e20ee26d44ba67166126819d934ba2c366616e4111c947c25ba3fb6fc",
+      "git_blob_sha": "31a8b0a4fa55aa3a9a93778ff8ffe4de9f249d10"
+    },
+    {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/workflow-at-b721.yml",
+      "mode": "100644",
+      "type": "blob",
+      "name": "workflow-at-b721.yml",
+      "bytes": 74256,
+      "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+      "git_blob_sha": "2684ac3cf034fdcd5c71570182396f0664979735"
+    }
+  ],
+  "manifest_target": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/upload-manifest.json"
+}

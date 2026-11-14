@@ -1,0 +1,70 @@
+{
+  "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+  "scope": "Read-only comparison of seven original execution snapshots; no new engine run. Full before/after snapshots included. Five intermediate originals remain locally preserved and hash-bound here.",
+  "checkpoints": [
+    {
+      "file": "source-before-execution.json",
+      "bytes": 291904,
+      "sha256": "0787c6cd1e76e56500f2b1d2393279f9072bc7f86d09bf756fede4ba799b4168",
+      "git_blob_sha": "245efe1f94d9ebce4546e41247a3a13d736f2dc5",
+      "time_utc": "2026-11-14T07:40:53.122506+00:00",
+      "matched_versioned_paths": 1186,
+      "changed_paths": []
+    },
+    {
+      "file": "source-after-private-import.json",
+      "bytes": 291908,
+      "sha256": "d1b646cb3be3e98d2c264dbfea3b1388a936dfa60025820f56dac2603cbebc7a",
+      "git_blob_sha": "166d6d752d05b490ed21d9ae2455481091bcd2c0",
+      "time_utc": "2026-11-14T07:40:58.772049+00:00",
+      "matched_versioned_paths": 1186,
+      "changed_paths": []
+    },
+    {
+      "file": "source-after-kart_ai_behavior_regression.json",
+      "bytes": 291921,
+      "sha256": "f6c183843523fadc1ae485b5192d2e81bcc7db52b1af89f430c9440f0f12cd5a",
+      "git_blob_sha": "14c77b740281b760868c76cdd357beec05382130",
+      "time_utc": "2026-11-14T07:41:02.999491+00:00",
+      "matched_versioned_paths": 1186,
+      "changed_paths": []
+    },
+    {
+      "file": "source-after-kart_racecraft_regression.json",
+      "bytes": 291919,
+      "sha256": "2ef4133f66faf6db7327afd034ee4a1eab93712fb96bd45d4666e02c86fe9f63",
+      "git_blob_sha": "41751a098262c9eef797a014523f4a4d35a60c3b",
+      "time_utc": "2026-11-14T07:41:06.257166+00:00",
+      "matched_versioned_paths": 1186,
+      "changed_paths": []
+    },
+    {
+      "file": "source-after-kart_full_field_regression.json",
+      "bytes": 291920,
+      "sha256": "d66639bc88e72417f950e7570b2e1701bf42612151ff894a97f1f6fdd6be24b2",
+      "git_blob_sha": "bb05391200de63e3777b7274fe5b58d26bf40242",
+      "time_utc": "2026-11-14T07:41:39.108231+00:00",
+      "matched_versioned_paths": 1186,
+      "changed_paths": []
+    },
+    {
+      "file": "source-after-kart_harbor_race_hook_regression.json",
+      "bytes": 291926,
+      "sha256": "4740ea202341efbf6db0a683a762d671f912cf5598ef4e2526fec347baad6603",
+      "git_blob_sha": "12924f1a71e97c4a619ed300bd0ccd78cc99a1e7",
+      "time_utc": "2026-11-14T07:41:45.647218+00:00",
+      "matched_versioned_paths": 1186,
+      "changed_paths": []
+    },
+    {
+      "file": "source-after-execution.json",
+      "bytes": 291903,
+      "sha256": "023f552d62cf7365c07381596824e6ec5f91cd9c7d3b5e0ef806c3fb885849d6",
+      "git_blob_sha": "39a0f1a9a0fb33ca0b4d489c60538840fd33785e",
+      "time_utc": "2026-11-14T07:41:45.759357+00:00",
+      "matched_versioned_paths": 1186,
+      "changed_paths": []
+    }
+  ]
+}

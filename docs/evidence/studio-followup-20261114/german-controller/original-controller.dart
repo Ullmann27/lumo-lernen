@@ -1,0 +1,506 @@
+// ════════════════════════════════════════════════════════════════════════
+// LUMO CARDS — Game Controller
+// ════════════════════════════════════════════════════════════════════════
+// Duenner ChangeNotifier-Wrapper um die immutable Regel-Engine. Haelt den
+// aktuellen GameState, leitet alle Aktionen an LumoCardsRules weiter und
+// notifiziert die UI.
+//
+// Modi:
+//  - vsBot=true (default): Kind spielt gegen Lumo. Lumo's Zug wird
+//    automatisch ausgefuehrt nach kurzer Denkpause.
+//  - vsBot=false: 2 Menschen am Tablet (Pass-and-Play wie urspruenglich).
+// ════════════════════════════════════════════════════════════════════════
+
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
+
+import '../../../core/lumo_sound.dart';
+import '../../../core/lumo_voice.dart';
+import 'learning_question_repository.dart';
+import 'lumo_cards_deck.dart';
+import 'lumo_cards_bot_policy.dart';
+import 'lumo_cards_models.dart';
+import 'lumo_cards_session.dart';
+import 'lumo_cards_rules.dart';
+import '../shared/lumo_game_pause_scope.dart';
+
+class LumoCardsGameController extends ChangeNotifier {
+  LumoCardsGameController({
+    required String player1Name,
+    required String player2Name,
+    this.vsBot = true,
+    this.enableVoice = true,
+    this.grade = 1,
+    LumoCardsDifficulty difficulty = LumoCardsDifficulty.clever,
+    LumoCardsStyle style = LumoCardsStyle.planner,
+    int? seed,
+  })  : _difficulty = difficulty,
+        _style = style,
+        _rng = seed == null ? Random() : Random(seed),
+        _player1Name = player1Name,
+        _player2Name = player2Name {
+    _startNewGame();
+  }
+
+  final Random _rng;
+  final String _player1Name;
+  final String _player2Name;
+
+  /// Wenn true: Spieler 2 wird vom Bot (Lumo) gespielt.
+  final bool vsBot;
+
+  /// Sprachausgabe an/aus.
+  final bool enableVoice;
+  final int grade;
+  LumoCardsDifficulty _difficulty;
+  LumoCardsStyle _style;
+  LumoCardsDifficulty get difficulty => _difficulty;
+  LumoCardsStyle get style => _style;
+
+  /// Apply to the next bot decision without redealing or changing the board.
+  void configureOpponent({
+    required LumoCardsDifficulty difficulty,
+    required LumoCardsStyle style,
+  }) {
+    if (_disposed || !vsBot) return;
+    _difficulty = difficulty;
+    _style = style;
+    notifyListeners();
+  }
+
+  static const int _initialHandSize = 7;
+
+  late LumoCardsGameState _state;
+  late String _roundId;
+  String get roundId => _roundId;
+
+  LumoCardsRound snapshot({
+    bool callRewarded = false,
+    int rewardedLearningStars = 0,
+    bool callRewardSettled = false,
+  }) => LumoCardsRound(
+    id: _roundId,
+    state: _state,
+    grade: grade,
+    vsBot: vsBot,
+    difficulty: _difficulty,
+    style: _style,
+    callRewarded: callRewarded,
+    rewardedLearningStars: rewardedLearningStars,
+    callRewardSettled: callRewardSettled,
+  );
+
+  /// Restoring never auto-plays behind a loading screen or on Android resume.
+  void restoreRound(LumoCardsRound round) {
+    if (_disposed || round.grade != grade || round.vsBot != vsBot) return;
+    turnClock.cancel();
+    turnClock.pause();
+    _roundId = round.id;
+    _state = round.state;
+    _difficulty = round.difficulty;
+    _style = round.style;
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
+  LumoCardsGameState get state => _state;
+
+  /// Bot-Timer (cancelled on dispose).
+  final turnClock = LumoGameTurnClock();
+  DateTime _lastSpeakAt = DateTime(2000);
+
+  // Ignore delayed callbacks after the owning route has been removed.
+  bool _disposed = false;
+
+  @override
+  void dispose() {
+    _disposed = true;
+    turnClock.dispose();
+    super.dispose();
+  }
+
+  /// Startet eine neue Runde mit frischem Deck.
+  void _startNewGame() {
+    _roundId = LumoCardsRound.newId();
+    final deck = LumoCardsDeck.buildDeck(rng: _rng);
+    // 7 Karten pro Spieler.
+    final (hand1, rest1) = LumoCardsDeck.draw(deck, _initialHandSize);
+    final (hand2, rest2) = LumoCardsDeck.draw(rest1, _initialHandSize);
+    // Erste Karte fuer Discard: keine Wild-Karte als Start, sonst muesste
+    // Spieler 1 sofort eine Farbe waehlen. Wir suchen die erste Nicht-
+    // Wild-Karte im Rest.
+    var drawPile = rest2;
+    LumoCard topCard;
+    while (true) {
+      final (drawn, restAfter) = LumoCardsDeck.draw(drawPile, 1);
+      if (drawn.isEmpty) {
+        // Notfall (sollte nie passieren): nimm trotzdem eine Wild-Karte.
+        topCard = LumoCard(
+          id: 'fallback',
+          color: LumoCardColor.orange,
+          type: LumoCardType.number,
+          number: 1,
+        );
+        break;
+      }
+      drawPile = restAfter;
+      if (!drawn.first.isWild) {
+        topCard = drawn.first;
+        break;
+      }
+      // Wild-Karte zurueck nach unten in den Stapel mischen.
+      drawPile = [...drawPile, drawn.first];
+    }
+
+    _state = LumoCardsGameState(
+      players: [
+        LumoPlayer(id: 'p1', name: _player1Name, hand: hand1),
+        LumoPlayer(
+            id: 'p2',
+            name: _player2Name,
+            hand: hand2,
+            kind: vsBot ? LumoPlayerKind.bot : LumoPlayerKind.human),
+      ],
+      currentPlayerIndex: 0,
+      drawPile: drawPile,
+      discardPile: [topCard],
+      selectedColor: topCard.color,
+      phase: GamePhase.playing,
+      lastActionMessage: vsBot
+          ? '$_player1Name fängt an. Lege eine passende Karte!'
+          : '$_player1Name fängt an. Lege eine passende Karte oder ziehe eine.',
+    );
+    _speak(vsBot
+        ? 'Willkommen bei Lumo Cards! Du fängst an.'
+        : 'Willkommen bei Lumo Cards! $_player1Name fängt an.');
+  }
+
+  /// Karte spielen (wenn moeglich).
+  void playCard(LumoCard card) {
+    if (_disposed ||
+        turnClock.value ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
+    final wasPlayer1 = _state.currentPlayerIndex == 0;
+    final next = LumoCardsRules.applyPlay(
+      state: _state,
+      card: card,
+      rng: _rng,
+      questionPicker: (rng) =>
+          LearningQuestionRepository.instance.randomForGrade(grade, rng),
+    );
+    if (identical(next, _state)) {
+      return;
+    }
+    _state = next;
+    _speakForLastAction(playedByPlayer1: wasPlayer1, card: card);
+    _playSfxForPlay(card, next);
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
+  /// Karte ziehen.
+  void drawCard({bool autoPlay = false}) {
+    if (_disposed ||
+        turnClock.value ||
+        _state.phase != GamePhase.playing ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
+    final wasPlayer1 = _state.currentPlayerIndex == 0;
+    final next = LumoCardsRules.applyDraw(
+      state: _state,
+      rng: _rng,
+      playIfPossible: autoPlay,
+      questionPicker: (rng) =>
+          LearningQuestionRepository.instance.randomForGrade(grade, rng),
+    );
+    _state = next;
+    _speak(wasPlayer1 ? 'Du ziehst eine Karte.' : 'Lumo zieht eine Karte.');
+    LumoSound.instance.play(SoundEffect.cardDraw);
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
+  /// Tier 3 Audio 2026-05-23: spielt den passenden SFX nachdem eine Karte
+  /// gelegt wurde. Bei +2/+4 ueberlagert sich der Karten-Whoosh mit dem
+  /// Storm-Effekt. Bei Spiel-Ende kommt zusaetzlich win/lose.
+  void _playSfxForPlay(LumoCard card, LumoCardsGameState next) {
+    switch (card.type) {
+      case LumoCardType.starRain:
+        LumoSound.instance.play(SoundEffect.plus2);
+        break;
+      case LumoCardType.superRain:
+        LumoSound.instance.play(SoundEffect.plus4);
+        break;
+      case LumoCardType.number:
+      case LumoCardType.lumoJump:
+      case LumoCardType.colorMagic:
+      case LumoCardType.whirlwind:
+      case LumoCardType.thinkPause:
+        LumoSound.instance.play(SoundEffect.cardPlay);
+        break;
+    }
+    if (next.phase == GamePhase.gameOver) {
+      LumoSound.instance.play(
+        next.winnerIndex == 0 ? SoundEffect.win : SoundEffect.lose,
+      );
+    }
+  }
+
+  /// Nach Farbzauber: Farbe waehlen.
+  void selectColor(LumoCardColor color) {
+    if (_disposed ||
+        turnClock.value ||
+        _state.phase != GamePhase.chooseColor ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
+    final next = LumoCardsRules.applyColorChoice(
+      state: _state,
+      chosen: color,
+    );
+    _state = next;
+    _speak('Neue Farbe: ${_colorName(color)}.');
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
+  /// Lernfrage beantworten.
+  void answerLearningQuestion(int chosenIndex) {
+    if (_disposed ||
+        turnClock.value ||
+        _state.phase != GamePhase.learningQuestion ||
+        (vsBot && _state.currentPlayerIndex != 0)) {
+      return;
+    }
+    final answeringIndex = _state.currentPlayerIndex;
+    final oldStars = _state.players[answeringIndex].stars;
+    final next = LumoCardsRules.applyLearningAnswer(
+      state: _state,
+      chosenIndex: chosenIndex,
+    );
+    if (identical(next, _state)) {
+      return;
+    }
+    final correct = next.players[answeringIndex].stars > oldStars;
+    _state = next;
+    _speak(correct
+        ? 'Richtig! Plus einen Stern.'
+        : 'Nicht ganz. Schau nochmal beim naechsten Mal.');
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
+  /// 'Bereit'-Button im Pass-and-Play-Overlay.
+  void confirmHandover() {
+    if (_disposed || turnClock.value) return;
+    final next = LumoCardsRules.confirmHandover(_state);
+    if (identical(next, _state)) {
+      return;
+    }
+    _state = next;
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
+  /// Nochmal spielen.
+  void restart() {
+    if (_disposed) return;
+    turnClock.cancel();
+    _startNewGame();
+    notifyListeners();
+  }
+
+  // ──────────────────────────────────────────────────────────────────
+  // BOT-LOGIK
+  // ──────────────────────────────────────────────────────────────────
+
+  /// Wenn vsBot UND Lumo dran ist UND wir nicht in einer Wahl-Phase
+  /// stecken: nach kurzer Denkpause Lumo's Zug ausfuehren.
+  void _maybeRunBotTurn() {
+    if (_disposed || !vsBot) return;
+    final s = _state;
+    if (s.phase == GamePhase.gameOver) return;
+    // Heinz Fix 2026-05-22: Im Solo-Modus haengt das Spiel, wenn nach
+    // Lumo's Zug die phase auf passDevice wechselt und DU (Index 0) dran
+    // bist. Das Pass-Overlay wird im Solo-Modus nicht angezeigt (man gibt
+    // ja kein Tablet weiter) - also gab es nichts zu tippen, der Action-
+    // Button erschien nicht (er braucht phase==playing). Loesung: fuer den
+    // Menschen automatisch uebernehmen -> playing, damit dein
+    // "Karte ziehen"-Button erscheint und du immer weiterspielen kannst.
+    if (s.phase == GamePhase.passDevice && s.currentPlayerIndex == 0) {
+      _state = LumoCardsRules.confirmHandover(s);
+      notifyListeners();
+      return;
+    }
+    if (s.currentPlayerIndex != 1) return; // Lumo ist Spieler 2
+    // Im Solo-Modus: kein Pass-Overlay - direkt zu Lumo's Zug.
+    if (s.phase == GamePhase.passDevice) {
+      // Auto-handover.
+      _state = LumoCardsRules.confirmHandover(s);
+      notifyListeners();
+      _scheduleBotMove();
+      return;
+    }
+    if (s.phase == GamePhase.playing ||
+        s.phase == GamePhase.chooseColor ||
+        s.phase == GamePhase.learningQuestion) {
+      _scheduleBotMove();
+    }
+    // chooseColor und learningQuestion macht der Bot direkt im _doBotMove.
+  }
+
+  void _scheduleBotMove() {
+    if (_disposed) return;
+    // Denkpause wird beim Android-Hintergrundwechsel angehalten.
+    turnClock.schedule(
+      Duration(milliseconds: 900 + _rng.nextInt(700)),
+      _doBotMove,
+    );
+  }
+
+  void _doBotMove() {
+    if (_disposed || turnClock.value) return;
+    final s = _state;
+    if (s.phase == GamePhase.gameOver) return;
+    if (s.currentPlayerIndex != 1) return;
+
+    // Phase chooseColor: Lumo waehlt eine Farbe (die haeufigste in
+    // seiner Hand, oder zufaellig wenn Hand leer/gemischt).
+    if (s.phase == GamePhase.chooseColor) {
+      final color = _pickBotColor(s);
+      _state = LumoCardsRules.applyColorChoice(state: s, chosen: color);
+      _speak('Lumo waehlt ${_colorName(color)}.');
+      notifyListeners();
+      _maybeRunBotTurn();
+      return;
+    }
+
+    // Phase learningQuestion: Lumo antwortet (richtig zu 60%).
+    if (s.phase == GamePhase.learningQuestion) {
+      final q = s.pendingLearningQuestion;
+      if (q == null) return;
+      final lumoCorrect = _rng.nextDouble() <
+          LumoCardsBotPolicy.answerProbability(grade);
+      final chosen = lumoCorrect
+          ? q.correctIndex
+          : (q.correctIndex + 1 + _rng.nextInt(q.options.length - 1)) %
+              q.options.length;
+      _state = LumoCardsRules.applyLearningAnswer(
+        state: s,
+        chosenIndex: chosen,
+      );
+      _speak(lumoCorrect ? 'Lumo weiss die Antwort!' : 'Lumo hat sich vertan.');
+      notifyListeners();
+      _maybeRunBotTurn();
+      return;
+    }
+
+    // Phase playing: beste spielbare Karte waehlen, sonst ziehen.
+    final topCard = s.topCard;
+    if (topCard == null) return;
+    final best = _chooseBestPlay(s, topCard);
+    if (best != null) {
+      _state = LumoCardsRules.applyPlay(
+        state: s,
+        card: best,
+        rng: _rng,
+        questionPicker: (rng) =>
+            LearningQuestionRepository.instance.randomForGrade(grade, rng),
+      );
+      _speakForLastAction(playedByPlayer1: false, card: best);
+      _playSfxForPlay(best, _state);
+      notifyListeners();
+      _maybeRunBotTurn();
+    } else {
+      _state = LumoCardsRules.applyDraw(
+        state: s,
+        rng: _rng,
+        playIfPossible: true,
+        questionPicker: (rng) =>
+            LearningQuestionRepository.instance.randomForGrade(grade, rng),
+      );
+      _speak('Lumo zieht eine Karte.');
+      LumoSound.instance.play(SoundEffect.cardDraw);
+      notifyListeners();
+      _maybeRunBotTurn();
+    }
+  }
+
+  /// Lumo sees only its own hand and public opponent card count.
+  /// Playing strength is independent of the school year used for questions.
+  LumoCard? _chooseBestPlay(LumoCardsGameState s, LumoCard topCard) =>
+      LumoCardsBotPolicy.select(
+        ownHand: s.currentPlayer.hand,
+        topCard: topCard,
+        selectedColor: s.selectedColor,
+        opponentCardCount: s.otherPlayer.hand.length,
+        difficulty: _difficulty,
+        style: _style,
+        grade: grade,
+        rng: _rng,
+      );
+
+  LumoCardColor _pickBotColor(LumoCardsGameState s) =>
+      LumoCardsBotPolicy.selectColor(
+        ownHand: s.currentPlayer.hand,
+        rng: _rng,
+      );
+
+  // ──────────────────────────────────────────────────────────────────
+  // VOICE-KOMMENTARE
+  // ──────────────────────────────────────────────────────────────────
+
+  void _speak(String text) {
+    if (_disposed || !enableVoice) return;
+    // Drossel: max 1 Spruch pro 1500ms, sonst wird zu viel geredet.
+    final now = DateTime.now();
+    if (now.difference(_lastSpeakAt).inMilliseconds < 1500) return;
+    _lastSpeakAt = now;
+    try {
+      LumoVoice.instance.speak(text);
+    } catch (_) {}
+  }
+
+  void _speakForLastAction(
+      {required bool playedByPlayer1, required LumoCard card}) {
+    final who = playedByPlayer1 ? 'Du' : 'Lumo';
+    final color = _colorName(card.color);
+    switch (card.type) {
+      case LumoCardType.number:
+        _speak(playedByPlayer1
+            ? 'Sehr gut! $color ${card.number}.'
+            : '$who legt $color ${card.number}.');
+        break;
+      case LumoCardType.lumoJump:
+        _speak('Lumo-Sprung! Aussetzen.');
+        break;
+      case LumoCardType.starRain:
+        _speak(playedByPlayer1
+            ? 'Sternenregen! Lumo zieht zwei.'
+            : 'Sternenregen! Du ziehst zwei Karten.');
+        break;
+      case LumoCardType.colorMagic:
+        _speak('Farbzauber! Neue Farbe waehlen.');
+        break;
+      case LumoCardType.superRain:
+        _speak(playedByPlayer1
+            ? 'Super-Sternenregen! Lumo zieht vier.'
+            : 'Super-Sternenregen! Du ziehst vier Karten.');
+        break;
+      case LumoCardType.whirlwind:
+        _speak(playedByPlayer1
+            ? 'Wirbelwind! Lumo zieht eine.'
+            : 'Wirbelwind! Du ziehst eine Karte.');
+        break;
+      case LumoCardType.thinkPause:
+        _speak('Denkpause! Eine Frage von mir.');
+        break;
+    }
+  }
+
+  String _colorName(LumoCardColor c) => c.displayName;
+}

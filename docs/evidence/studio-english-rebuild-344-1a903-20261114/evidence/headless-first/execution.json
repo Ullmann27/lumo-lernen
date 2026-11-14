@@ -1,0 +1,21 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/headless-first/captures"
+  ],
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "exit_code": 1,
+  "elapsed_seconds": 13.255761076999988,
+  "log_bytes": 5171,
+  "log_sha256": "dbf3a7641ad321717657b0589f262bca4189280294a90753342ec7e79fcdb736",
+  "scope": "New English implementation; native catalogue and explicit platform/JNI fixtures; no Android or previous-run transfer"
+}

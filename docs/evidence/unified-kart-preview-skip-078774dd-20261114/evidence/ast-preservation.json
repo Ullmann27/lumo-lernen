@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "original_probe": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/baseline/.github/probes/modernization_android_tour.py",
+    "bytes": 46556,
+    "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+    "git_blob_sha": "c04397ae8e99e0d02cefa341dcf4523deb464d99"
+  },
+  "new_probe": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py",
+    "bytes": 52372,
+    "sha256": "392bc0ec34f8fbc935635f98e75f66416e7f31d4e92fa388a134233592c1b6d7",
+    "git_blob_sha": "c407f582a4f72beb8068461ed2003d0443530385"
+  },
+  "changed_existing_definitions": [
+    "_start_actual_embedded_race",
+    "wait_race_running",
+    "main"
+  ],
+  "new_definitions": [
+    "_skip_observed_kart_preview"
+  ],
+  "unchanged_existing_definitions": [
+    "logcat_fatal",
+    "alive",
+    "godot_alive",
+    "try_tap",
+    "labels",
+    "_atelier_roundtrip",
+    "_simplify",
+    "_screencap",
+    "_shot",
+    "verify_apk_identity",
+    "_read_garage_footer",
+    "_inspect_spatial_kart_menu",
+    "RaceSession",
+    "wait_race_hud",
+    "find_gas",
+    "drive_with_gas",
+    "log_images"
+  ],
+  "unchanged_count": 17,
+  "main_change": "Only opt-in parser argument and call argument; exact078 AST after their removal verified by executed contract.",
+  "wait_change": "Only terminal diagnostic after original150s failure; exact078 AST after its removal verified by executed contract.",
+  "existing_55s_start_deadline": "Absolute deadline is passed into new helper and checked after OCR, old native_tap and capture; not restarted.",
+  "runtime_limit": "No new Android run or physical-device/FPS evidence.19 Python contracts use doubled transport and clock boundaries."
+}

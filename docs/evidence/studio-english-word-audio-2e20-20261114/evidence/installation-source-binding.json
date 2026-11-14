@@ -1,0 +1,31 @@
+{
+  "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "path": "scripts/prepare_android.py",
+  "git_blob": "83d6421d0fe26848962c8a2433b0b78182596261",
+  "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f",
+  "bindings": [
+    {
+      "line": 130,
+      "text": "        ('LumoOfflineSpeechEngine.java', 'java'),",
+      "context": "    target.write_text(re.sub(r'^package [^\\n]+', f'package {namespace}', template, count=1))\n    for filename, language in (\n        ('LumoOfflineSpeechEngine.java', 'java'),\n        ('LumoOfflineSpeechBridge.kt', 'kotlin'),\n        ('LumoLearningSpeech.kt', 'kotlin'),\n        ('LumoSpeechEnvelope.kt', 'kotlin'),"
+    },
+    {
+      "line": 131,
+      "text": "        ('LumoOfflineSpeechBridge.kt', 'kotlin'),",
+      "context": "    for filename, language in (\n        ('LumoOfflineSpeechEngine.java', 'java'),\n        ('LumoOfflineSpeechBridge.kt', 'kotlin'),\n        ('LumoLearningSpeech.kt', 'kotlin'),\n        ('LumoSpeechEnvelope.kt', 'kotlin'),\n    ):"
+    },
+    {
+      "line": 132,
+      "text": "        ('LumoLearningSpeech.kt', 'kotlin'),",
+      "context": "        ('LumoOfflineSpeechEngine.java', 'java'),\n        ('LumoOfflineSpeechBridge.kt', 'kotlin'),\n        ('LumoLearningSpeech.kt', 'kotlin'),\n        ('LumoSpeechEnvelope.kt', 'kotlin'),\n    ):\n        source = root / 'tools/auto_install' / filename"
+    },
+    {
+      "line": 133,
+      "text": "        ('LumoSpeechEnvelope.kt', 'kotlin'),",
+      "context": "        ('LumoOfflineSpeechBridge.kt', 'kotlin'),\n        ('LumoLearningSpeech.kt', 'kotlin'),\n        ('LumoSpeechEnvelope.kt', 'kotlin'),\n    ):\n        source = root / 'tools/auto_install' / filename\n        if source.is_file():"
+    }
+  ],
+  "new_runtime_files": [],
+  "installation_change_required": false,
+  "statement": "The three modified product templates already appear in the existing Kotlin/Java installation loops. The new PCM helper is inside the existing Java engine class."
+}

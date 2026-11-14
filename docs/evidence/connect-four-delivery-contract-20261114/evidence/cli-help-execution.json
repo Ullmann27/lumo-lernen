@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "scripts/verify_studio_connect_four_android.py",
+    "--help"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/host",
+  "exit_code": 0,
+  "elapsed_seconds": 0.1444940939982189,
+  "log_sha256": "f201c02ef399e093587cacb09494bc0b99f4929ba1177f38839d1d7e938df1ab",
+  "no_android_or_runtime_invoked": true
+}

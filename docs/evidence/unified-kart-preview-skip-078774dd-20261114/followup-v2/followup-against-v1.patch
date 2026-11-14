@@ -1,0 +1,94 @@
+--- /workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py
++++ /workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py
+@@ -379,6 +379,9 @@
+     The caller's existing 55-second world-ready deadline includes this entire
+     observation, the unchanged two-frame touch guard and the after-capture.
+     A naturally absent cue authorizes no touch and does not isolate the issue.
++    The initial world frame may still be fading in. It is retained only as
++    context; the existing touch helper observes fresh frames within this same
++    deadline and supplies both actual OCR witnesses for the real touch.
+     """
+     started = time.monotonic()
+     caption = 'Tippen zum Überspringen'
+@@ -394,21 +397,13 @@
+             raise TimeoutError('Original55s race-ready deadline expired during preview skip')
+         return value
+ 
++    readiness_path = out / (touch_tag + '-surface-readiness.json')
++    report['readiness_file'] = readiness_path.name
+     try:
+-        budget = remaining()
+-        source_hash = probe.digest(source)
+-        lines = probe.image_lines(out, '21_kart_preview_cue', caption,
+-                                  source_path=source, timeout=budget, exact=True)
+         remaining()
+-        if probe.digest(source) != source_hash:
+-            raise RuntimeError('Preview cue screenshot changed during observation')
+-        matches = [line for line in lines
+-                   if probe.normalized(line['text']) == probe.normalized(caption)]
+-        report['cue'] = {'source': source.name, 'source_sha256': source_hash,
+-                         'observed_matches': matches}
+-        if not matches:
+-            report['status'] = 'CUE_NOT_OBSERVED'
+-            return report
++        report['initial_capture'] = {'source': source.name,
++                                     'source_sha256': probe.digest(source),
++                                     'scope': 'Context only; never a touch prerequisite'}
+         if not godot_alive():
+             raise RuntimeError('Godot quit before the observed preview touch')
+         foreground = base.foreground()
+@@ -421,17 +416,38 @@
+         probe.native_tap(out, caption, touch_tag, timeout=remaining(), exact=True,
+                          orientation='landscape')
+         remaining()
+-        readiness_path = out / (touch_tag + '-surface-readiness.json')
+         readiness = json.loads(readiness_path.read_text())
+-        observed = [frame for frame in readiness.get('frames', []) if frame.get('target')]
++        report['readiness'] = readiness
++        observed = readiness.get('frames', [])[-2:]
+         if (readiness.get('status') != 'TOUCH_SENT'
+                 or readiness.get('exact_caption_required') is not True
+                 or readiness.get('orientation_policy') != 'landscape'
+                 or len(observed) < 2
++                or any(frame.get('acceptable_for_target_sampling') is not True
++                       or frame.get('target', {}).get('target_geometry_valid') is not True
++                       for frame in observed)
+                 or observed[-1]['target'].get('stable_observed_target') is not True):
+             raise RuntimeError('Preview touch lacks the existing two-frame readiness proof')
+-        report['readiness_file'] = readiness_path.name
+-        report['readiness'] = readiness
++        witnesses = []
++        for frame in observed:
++            name = frame.get('source', '')
++            if not name or Path(name).name != name or Path(name).suffix != '.png':
++                raise RuntimeError('Preview touch witness has no local original PNG')
++            witness = out / name
++            if probe.digest(witness) != frame['source_sha256']:
++                raise RuntimeError('Preview touch witness changed after the guarded input')
++            ocr_path = out / (witness.stem + '-ocr.json')
++            rows = json.loads(ocr_path.read_text())
++            matches = [row for row in rows
++                       if probe.normalized(row['text']) == probe.normalized(caption)
++                       and row.get('bounds') == frame['target']['bounds']]
++            if not matches:
++                raise RuntimeError('Preview touch lacks its exact observed OCR words and bounds')
++            witnesses.append({'source': name, 'source_sha256': frame['source_sha256'],
++                              'ocr_file': ocr_path.name, 'ocr_sha256': probe.digest(ocr_path),
++                              'observed_matches': matches})
++        report['cue_witnesses'] = witnesses
++        report['cue'] = witnesses[-1]
+         report['touch'] = readiness['touch']
+         report['after_capture'] = probe.capture(
+             out, '21_kart_preview_after_touch', timeout=remaining())
+@@ -441,6 +457,11 @@
+         return report
+     except Exception as error:
+         report.update(status='FAIL', error=f'{type(error).__name__}: {error}')
++        if 'readiness' not in report and readiness_path.exists():
++            try:
++                report['readiness'] = json.loads(readiness_path.read_text())
++            except (OSError, ValueError) as observation_error:
++                report['readiness_error'] = str(observation_error)
+         raise
+     finally:
+         report['elapsed_seconds'] = round(time.monotonic() - started, 6)

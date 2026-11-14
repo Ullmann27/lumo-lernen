@@ -1,0 +1,222 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "evidence_base_commit": "0dcfd51761480886c94e5b36b9f27f620e28b703",
+  "evidence_base_tree": "984fc38cdf2d270f4f697e179736c4cd10a68eef",
+  "original_tree_truncated": false,
+  "existing_blob_leaves": 7993,
+  "planned_docs_targets": 29,
+  "all_targets_new": true,
+  "all_targets_under_docs": true,
+  "product_blobs_not_uploaded_again": true,
+  "no_tree_commit_ref_or_pr_write": true,
+  "input_documents": [
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/README.md",
+      "bytes": 3700,
+      "sha256": "92baea7ca11dd392f34e55909132d937a70e49298455091474678eab2057273c",
+      "git_blob": "442edf0e3014418b450faee78a0fe3ccf357496e",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/source-upload-manifest.json",
+      "bytes": 5849,
+      "sha256": "465eb8e570ef8ca79ef862a635ac526188ccc4eef875573e59deef998198efab",
+      "git_blob": "822157b7de1151fa77dee4bfa9a9fcd79885d2c0",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/confirmed-source-blobs.json",
+      "bytes": 6349,
+      "sha256": "d2f42a18b3599a2dfd9cf92faadfd8df64ad689c462fd26e0bc5cd71662e9a64",
+      "git_blob": "b7cf9cb76135b5b1a71c8ec9a0a66c4134628a41",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/confirmed-source-tree-inputs.json",
+      "bytes": 1807,
+      "sha256": "4384bdd72f93b9270c609902a3f178e0dc2f84392c326bb78ea738fc56fe14cd",
+      "git_blob": "163373d2245353384c708edbffabcbf49a2aa344",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/baseline-source-binding.json",
+      "bytes": 1777,
+      "sha256": "04575e2887ca2e9250aa5cbedb0606f72b02c9e940116e1e56bcff52b26cd46f",
+      "git_blob": "eff6957409db41b533f83e9435d722ecbdb71c1b",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/evidence/source-boundary-proof.json",
+      "bytes": 368,
+      "sha256": "bb0487a4a51ae476ddc037ffdf286dfdfe14b115f899b1cf05ee03e64e064450",
+      "git_blob": "2b8711d33499d5fc5cf37620b26ec71dfc9a1791",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/evidence/installation-source-binding.json",
+      "bytes": 2016,
+      "sha256": "b8b3bb881b5011cb574152cf62548f3b4eb7aaac5c98499eef232e062a2eceb0",
+      "git_blob": "3851f5bc64eaa0892b4b2142064867d209b6b337",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/evidence/implementation-against-exact-2e20.patch",
+      "bytes": 13664,
+      "sha256": "a09fc0a9afec7b016bee72d7019c3bdf090537d625cd2e139071c8689d5a37e3",
+      "git_blob": "698b36530a4c6951119bae731d18b8b349be6a10",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/evidence/java-contracts-first/execution.json",
+      "bytes": 703,
+      "sha256": "f440b2743b89c6f1e3d7938e555e7b8826856863537d1e43fc1a4d11eafb3013",
+      "git_blob": "2fc23683290feff72f1704489ebad9e2fa8a0c22",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/evidence/java-contracts-first/original.log",
+      "bytes": 804,
+      "sha256": "b2a130373d6847251d03f19617e0d31da5b395e724bc97d6de859ef11a52a1ab",
+      "git_blob": "f30cb9d65ce40f499a3149789889d4f3c005e40e",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/evidence/java-contracts-second/execution.json",
+      "bytes": 783,
+      "sha256": "0e4e2169b08ebc8996ae1b5ffbe84ee48373539b903e318175800b9f9d0b3080",
+      "git_blob": "74da133b24dc2e31d2c28722149c7417ac1a24aa",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/evidence/java-contracts-second/original.log",
+      "bytes": 2983,
+      "sha256": "0ebc55e4fa5e5d698edc8ceccac2b62e8aba894655c134f8ba6df3eda9cab245",
+      "git_blob": "6693da5ae3ba665f761f82ace1ad5ffd9719763d",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/path-separated-v2/README.md",
+      "bytes": 1767,
+      "sha256": "5b479fe2fff1b21fd16b327179647d2d90d3abfe79b21d8ea9a097d2c975e47a",
+      "git_blob": "7afda2c0e8a246cffe4c5b22de287255391cc5f8",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/path-separated-v2/source-upload-manifest.json",
+      "bytes": 6843,
+      "sha256": "f0f0e43979fb3c99c280bf1cffb39ea3f62388f84aa3521f8adee92bee01d791",
+      "git_blob": "3e6c7391fa05578205f9fd6ea213b77aaa596cb1",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/path-separated-v2/path-only-proof.json",
+      "bytes": 1873,
+      "sha256": "d3dd45760e9adc5b34b6fb8c708d165f365a4e21c63fb6fb1b66b12c0c2f8f5b",
+      "git_blob": "5b5fee2d39557eb6077f9adbadd74ae822cac832",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-2e20-20261114/path-separated-v2/confirmed-source-tree-inputs.json",
+      "bytes": 1829,
+      "sha256": "11cbee5ca2ff7db237606c7b4e27b08aa0d53c7550bd8b0677715048015692b5",
+      "git_blob": "a8abdd91a1dd9db5ff4e58c6b07ad13c2a1db2b4",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-peer-review-20261114/review.json",
+      "bytes": 7280,
+      "sha256": "48182d9beb47f09ae65c494a8960b8534df8b2df17ad2fe31e27e5e120828db2",
+      "git_blob": "deb75eaa83f9e8bed9531a5739996a4f7bf5c5e6",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/studio-english-word-audio-peer-review-20261114/upload-manifest.json",
+      "bytes": 535,
+      "sha256": "e92667f42e6892760477a758465111ed1383616a0ac0126e2344215e1c4fbd0b",
+      "git_blob": "73f3c6d7b434180efdd079a57bd6232fa6087d4c",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/review.json",
+      "bytes": 17580,
+      "sha256": "3ce8f348a799853c4efc15b78fe18b207a346b47be83985e865bed63e2f771f1",
+      "git_blob": "6a1d75c473ef3929ef3ce32b9a4540172c43d9da",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/README.md",
+      "bytes": 2840,
+      "sha256": "22a1b84ff6cd7f96efd08ee0b3e776b5d2234c4e99ecb8fdbc6cbc39403dde05",
+      "git_blob": "5dea2e903ec8165eb33a16ac7bc9ea67211d8706",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/static-comparison-proof.json",
+      "bytes": 8366,
+      "sha256": "2d6d4e039db60e91a1a6bc8aa16f7d22386b80bc229489974b8f8617b18937ac",
+      "git_blob": "6f6c5bf5aff44025564ff84c05e490831a17637c",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/reviewed-diff-against-published2e20.patch",
+      "bytes": 3644,
+      "sha256": "f00d9f4e9d0a4c5cfd2c634f88b4a4840cb1f0fd2006c4d34832b32f7f8a0bdb",
+      "git_blob": "f8594edc9ebd460b72c8e9528a5c6fbf9beaad56",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/published-baseline-tree-entries.json",
+      "bytes": 1699,
+      "sha256": "aa2e3f4839a7271d2676572d3a2d6c71985cc4dc1102f5a5e86246307eeba577",
+      "git_blob": "f49dd017f66cdb5604415c92294d551109a3bb38",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/reference-compile-android-host.sh",
+      "bytes": 3499,
+      "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+      "git_blob": "c5138523453d4e185f6af46f96e15478888075de",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    },
+    {
+      "path": "docs/evidence/host-native29080-pin-workflow-independent-review-20261114/evidence-upload-manifest.json",
+      "bytes": 2976,
+      "sha256": "455740168c7fcb753a63887c9105bc11c1595396ccc72e4298e0fafbe2e4e244",
+      "git_blob": "ead1fe126a9bad03adefaaec395b2bd004c7474d",
+      "existing_target": false,
+      "blob_already_in_base_tree": false
+    }
+  ],
+  "additional_document_targets": [
+    "docs/evidence/studio-english-audio-and-pin-evidence-20261114/README.md",
+    "docs/evidence/studio-english-audio-and-pin-evidence-20261114/upload-preflight.json",
+    "docs/evidence/studio-english-audio-and-pin-evidence-20261114/upload-manifest.json",
+    "docs/evidence/studio-english-audio-and-pin-evidence-20261114/path-separated-readback-binding.json"
+  ],
+  "verification_policy": "Rehash local bytes; serial create_blob only where needed; verify returned Git SHA; full UTF-8 readback equals original bytes for every text. Preserve failed initial setup and pending Kotlin/Android boundaries."
+}

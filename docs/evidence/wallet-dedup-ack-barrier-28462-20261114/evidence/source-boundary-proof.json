@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kind": "STATIC_FULL_BYTE_BOUNDARY_PROOF",
+  "host_baseline": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "baseline_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5",
+  "baseline_sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+  "prepared_sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+  "prepared_test_sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+  "original_duplicate_guards": 3,
+  "changed_duplicate_guards": 3,
+  "inverse_replacement_restores_complete_original_utf8": true,
+  "inverse_sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+  "modified_methods": [
+    "awardGameResult",
+    "awardQuizResult",
+    "awardLumoCardsResult"
+  ],
+  "unchanged_whole_file_outside_exact_replacements": true,
+  "unchanged_contracts": [
+    "_loadFromDisk load/fallback semantics",
+    "_transaction queue and zone handling",
+    "_commit persistence-before-snapshot/emit order",
+    "_persist Boolean validation and storage key",
+    "RewardWallet JSON fields, defaults, formulae and result IDs",
+    "All nonduplicate reward paths"
+  ],
+  "new_test_absent_in_exact_baseline_tree": true,
+  "validation_limit": "No Dart parser, analyzer, formatter, Flutter process or test execution was invoked. This proves the exact textual scope, not compilation or runtime success."
+}

@@ -1,0 +1,47 @@
+{
+  "status": "LOCAL_CONTRACTS_PASS_READY_FOR_INDEPENDENT_REVIEW",
+  "timestamp": "2026-11-14T02:25:55.854724+00:00",
+  "source_manifest_sha256": "3bcb3962ac85e77dd1ef241995a34672d45fc847e552154660ffd6ce09523c14",
+  "source_manifest_bytes": 10081,
+  "source_scope": {
+    "qa_basis": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+    "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "paths": 16,
+    "changed_vs_qa_basis": 10,
+    "new_build_or_release": false
+  },
+  "local_tests": [
+    {
+      "raw_log": "validation/binder.log",
+      "tests": 18,
+      "failures": 0,
+      "skips": 0,
+      "seconds_from_unittest": 1.103,
+      "scope": "17 original identity contracts retained/adapted plus one committed tampered-surface counterexample"
+    },
+    {
+      "raw_log": "validation/cards-readiness.log",
+      "tests": 6,
+      "failures": 0,
+      "skips": 0,
+      "seconds_from_unittest": 1.064,
+      "scope": "Approved read-only reader contracts; original pixels and layout fixtures with synthetic transport/clock"
+    }
+  ],
+  "static_validation": "validation/static-integration-review.json",
+  "unchanged_gates": [
+    "Exact original artifact/run/builder metadata",
+    "All actual tracked file bytes/modes before and after",
+    "Actual APK and embedded PCK before and after",
+    "Original modernization tour and identity verifier",
+    "Studio session/revision/two stable frames/geometry/pixel/lifecycle gates in approved byte-pinned reader",
+    "API35 and API37 SDK/release gates and existing Android17 CLI22/framework guard"
+  ],
+  "limits": [
+    "No Android execution in this local work",
+    "No new APK or c081 product proof",
+    "The two tours are not both byte-identical: the full Studio surface reader is pinned to an explicitly reviewed read-only correction",
+    "Evidence files must be published separately from the strict 16-path diagnostic source branch"
+  ]
+}

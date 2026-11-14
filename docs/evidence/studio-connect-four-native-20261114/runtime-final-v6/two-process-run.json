@@ -1,0 +1,38 @@
+{
+  "scope": "Local software renderer + production Dart controller; file IPC and test preferences; not Android",
+  "dart_command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "test/games/connect_four_runtime_bridge.dart"
+  ],
+  "renderer_command": [
+    "python",
+    "/workspace/scratch/5987865ae883/lumo-godot/tools/run_local_renderer.py",
+    "--display",
+    "95",
+    "--output",
+    "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/xorg-final-v6",
+    "--project",
+    "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime",
+    "--timeout",
+    "1200",
+    "--",
+    "--fixed-fps",
+    "24",
+    "--resolution",
+    "960x540",
+    "--script",
+    "res://scripts/tests/connect_four_runtime_regression.gd",
+    "--",
+    "--capture"
+  ],
+  "environment": {
+    "LUMO_C4_RUNTIME_DIR": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v6"
+  },
+  "dart_cwd": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host",
+  "renderer_exit": 1,
+  "dart_exit": 0,
+  "elapsed_seconds": 50.320204364994424,
+  "all_source_unchanged": true
+}

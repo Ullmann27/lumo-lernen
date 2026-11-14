@@ -1,0 +1,367 @@
+{
+  "artifact": 14098080750,
+  "zip_sha256": "a152ab2847d7b84b666566e63989b317e0d9ad15f289ac4267bb61492d231a6a",
+  "files": [
+    {
+      "member": "framework-start/cli22/prepared.json",
+      "bytes": 48082,
+      "sha256": "e819b388613e024669513a66a36070c9302375c1ccd2bef25787ed24a713c04f",
+      "crc32": "71f76005"
+    },
+    {
+      "member": "framework-start/cli22/verified-guard.json",
+      "bytes": 37839,
+      "sha256": "64b91bb9539a97cd39b0aac9714d4db43a915b44c503730d4ab3d91691ef415b",
+      "crc32": "973b7a7f"
+    },
+    {
+      "member": "framework-start/framework-readiness.json",
+      "bytes": 32975,
+      "sha256": "5dae54d367b7503963ad204c0a94b6140c8edcc2a80c23b619cdfeab75701c42",
+      "crc32": "cf2d0b71"
+    },
+    {
+      "member": "nextgen/04_learning_native_thirteen.png",
+      "bytes": 582812,
+      "sha256": "d91c69edfcfbb7b3b12fb51d0aff2851575f94a2dd0e847fbe1555895b29b7e5",
+      "crc32": "3b2768ef"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "bytes": 2623,
+      "sha256": "2795e978ce5f8ab37fd24414eed287449230c2397c3163b7fe52065b0797af96",
+      "crc32": "7124f5e1"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1507922,
+      "sha256": "65e5df60e8d623ac66543eaf7bdc74ed5e9dc9cc1eb649a0d4f2fd2c4e0a4865",
+      "crc32": "0d61342a"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 33371,
+      "sha256": "857f68b9bc684337dc02edeb187fea01020c8c24ca64aba553360f8727492bc0",
+      "crc32": "9f816670"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 961309,
+      "sha256": "2feb406c2af12c6d194359adc72da901e450fb7ee2baf9f4deb0818a4228525a",
+      "crc32": "f2e1ca6a"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "bytes": 41780,
+      "sha256": "d1be8c0c3cfc5a7cc6e0e447df562e968483cfb1cad80366d65e8bdcc9a64027",
+      "crc32": "441b7649"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw.png",
+      "bytes": 947219,
+      "sha256": "e183b3b75c1feea436cf0ce4c1828b4c34ee7deb52bf113a486895b824bbb30b",
+      "crc32": "7c867492"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-evidence.json",
+      "bytes": 33986,
+      "sha256": "d683363b737c658e8c9114bd1485f8ca4bafe4879e6d691e20bda7bc6f3930cf",
+      "crc32": "32865ad0"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-evidence.json",
+      "bytes": 51458,
+      "sha256": "1c9b6cc225c9e5c7254ddf2261ddd8793090528e7abfacdc8ec220a245efd4cb",
+      "crc32": "2205a4c7"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 938075,
+      "sha256": "84b4621dbdd8fc558e48bf001c3a43a3c850b566ae298c3b77c49f39e4d07c3e",
+      "crc32": "91a7ac76"
+    },
+    {
+      "member": "nextgen/13_cards_native_pause.png",
+      "bytes": 824654,
+      "sha256": "3b15f540f460aaba19e56f21293c9b15e1f4b76789c029b3f44b43f306b5ca7a",
+      "crc32": "c5018170"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "bytes": 2542,
+      "sha256": "64f8143075bdbbeda0c026456afa28f85bd723c32a63917a8a3368dd656d9a29",
+      "crc32": "1a3b1063"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round.png",
+      "bytes": 527402,
+      "sha256": "9f2949aabb1a629dd818471bc8b583a1afdc6c558db270c6f036ff970c25f4d8",
+      "crc32": "62597f32"
+    },
+    {
+      "member": "nextgen/15_cards_reopened_same_round.png",
+      "bytes": 938975,
+      "sha256": "bb158af3652a7ee8b6497253de168b36d5c613f1ddb60c960e5a2c57993e3e87",
+      "crc32": "a3af3ccd"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 6071,
+      "sha256": "ff3a04c38fb109f9c2a3ebf7a7bc65ca50f53288f700e447abc53efa518f02a2",
+      "crc32": "262100fa"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-1-caption-0-ocr-rejected.json",
+      "bytes": 715,
+      "sha256": "7457581ae25f470f903ab812466f11e36d89ac2c2ef8819ee689ff38dab16bf0",
+      "crc32": "c1dd9524"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-1-caption-0-ocr.json",
+      "bytes": 4610,
+      "sha256": "52cce78a1d47e1f050feb60346d7aec551b646fd87f8b63e0bec5a70f531001a",
+      "crc32": "69e38cd3"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-1.png",
+      "bytes": 2673373,
+      "sha256": "19c8a7cdf819674b3b10ad42cbd832b7c38c1ded592494aa7ab71a8776ef8700",
+      "crc32": "0864a584"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "bytes": 2579,
+      "sha256": "59b4bdda53878b673f1d638b8cdcddf9e87dcf1623e48b8d0a8b355c48f22048",
+      "crc32": "232473f8"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return.png",
+      "bytes": 527528,
+      "sha256": "4cdb040484eaa0d64f284496c83f9e88cf9f7ad2ed8478bba2d867b932126518",
+      "crc32": "d377279c"
+    },
+    {
+      "member": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "crc32": "17c22e63"
+    },
+    {
+      "member": "nextgen/cards-after-native-preferences.xml",
+      "bytes": 5978,
+      "sha256": "a1624b2a169244c223997a6c8cd47253dbb32ee076ffec7fde60264ca663a16b",
+      "crc32": "cfe15575"
+    },
+    {
+      "member": "nextgen/cards-before-native-preferences.xml",
+      "bytes": 5980,
+      "sha256": "01b5f622cca7dfa06145d04cd71c05a654a589b8fd22d28eaebdd1a4ae58b43e",
+      "crc32": "af43ca77"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-001.json",
+      "bytes": 629,
+      "sha256": "a18d68eeea573f649c9818340279ca6aa01cbce9af588a7ebda2bbee6bac52a1",
+      "crc32": "b2887592"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-001.txt",
+      "bytes": 80,
+      "sha256": "745bde3461220fbf2575593360bfd23269605f8999cd3a55859e7974632b9b84",
+      "crc32": "9e548a21"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-020.json",
+      "bytes": 629,
+      "sha256": "f7cea7c04d687beaf2b3118f1e7fea5b4a9ec7f59549c108d5f223b5edd0312d",
+      "crc32": "a9cad546"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-020.txt",
+      "bytes": 80,
+      "sha256": "7891b6c734be7924a7035b33f62c89b7b664639ac9a3ab74774d77c45374e457",
+      "crc32": "77c845d8"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-034.json",
+      "bytes": 628,
+      "sha256": "94001c33214cd97089e5846fb60614f5542b55ec710ce2de4ca38b6922d5f641",
+      "crc32": "7653cddc"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-034.txt",
+      "bytes": 80,
+      "sha256": "abe841a45ebc4dcd576d7e1c385369e6107d23824a30fe00e5b849b53983718b",
+      "crc32": "b984f42b"
+    },
+    {
+      "member": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "sha256": "cd77921f717a58ac51a365ba4f8291380fb7635322e9c2ed05544dd4335f7362",
+      "crc32": "093a6075"
+    },
+    {
+      "member": "nextgen/cards-mailbox-021-request.json",
+      "bytes": 103,
+      "sha256": "82b2866b4c6f655b688626b1cc5342d7a11dab8e35679289a9f707722e78f22e",
+      "crc32": "c77e1975"
+    },
+    {
+      "member": "nextgen/cards-native-back-surface-readiness.json",
+      "bytes": 2750,
+      "sha256": "d7a55916685da3e3094eb049712ffae4419650ee2ed972bcf9752ea5a65a6491",
+      "crc32": "a2d9a794"
+    },
+    {
+      "member": "nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2758,
+      "sha256": "f97ed91e016dc19b749a856689d282e39fb52c6438dacc58e4cb7a8eef559194",
+      "crc32": "78140812"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "fdcc87bdb15f393f800402e11172c9dcb4e0b128a714929425f24db09e9cb208",
+      "crc32": "d245f5c1"
+    },
+    {
+      "member": "nextgen/cards-native-pause-surface-readiness.json",
+      "bytes": 2755,
+      "sha256": "6cfd4e40f470249886533900bf59748e35024ed558eb42879ba43d306e2e360a",
+      "crc32": "4771508c"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-surface-readiness.json",
+      "bytes": 2753,
+      "sha256": "be838e0304ed0be7c9aaa67015fcf7dc64037f8dad889e34a616d30fade39594",
+      "crc32": "73d0570c"
+    },
+    {
+      "member": "nextgen/cards-save-001-preferences.xml",
+      "bytes": 5978,
+      "sha256": "a1624b2a169244c223997a6c8cd47253dbb32ee076ffec7fde60264ca663a16b",
+      "crc32": "cfe15575"
+    },
+    {
+      "member": "nextgen/cards-save-005-preferences.xml",
+      "bytes": 5980,
+      "sha256": "01b5f622cca7dfa06145d04cd71c05a654a589b8fd22d28eaebdd1a4ae58b43e",
+      "crc32": "af43ca77"
+    },
+    {
+      "member": "nextgen/cards-save-015-preferences.xml",
+      "bytes": 5980,
+      "sha256": "244c0f7f64987ba522d27ec04a9325cb6bafa7f6c7699fb0120b325f9527da8d",
+      "crc32": "6a052bb2"
+    },
+    {
+      "member": "nextgen/cards-save-020-preferences.xml",
+      "bytes": 5980,
+      "sha256": "244c0f7f64987ba522d27ec04a9325cb6bafa7f6c7699fb0120b325f9527da8d",
+      "crc32": "6a052bb2"
+    },
+    {
+      "member": "nextgen/cards-save-034-preferences.xml",
+      "bytes": 5978,
+      "sha256": "a1624b2a169244c223997a6c8cd47253dbb32ee076ffec7fde60264ca663a16b",
+      "crc32": "cfe15575"
+    },
+    {
+      "member": "nextgen/cards-save-035-preferences.xml",
+      "bytes": 5978,
+      "sha256": "a1624b2a169244c223997a6c8cd47253dbb32ee076ffec7fde60264ca663a16b",
+      "crc32": "cfe15575"
+    },
+    {
+      "member": "nextgen/cards-save-036-preferences.xml",
+      "bytes": 5978,
+      "sha256": "a1624b2a169244c223997a6c8cd47253dbb32ee076ffec7fde60264ca663a16b",
+      "crc32": "cfe15575"
+    },
+    {
+      "member": "nextgen/learning-after-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "0b52253c4fc8a4de3026a6374f346beb35acef5e3a29a3552cd1b17b7ee4eecf",
+      "crc32": "84956d91"
+    },
+    {
+      "member": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "0b52253c4fc8a4de3026a6374f346beb35acef5e3a29a3552cd1b17b7ee4eecf",
+      "crc32": "84956d91"
+    },
+    {
+      "member": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "91e2344bb5bae23cc178c3ab90f52eb5aed7f6a0aea9fd42efd985193aac79fc",
+      "crc32": "df332f0c"
+    },
+    {
+      "member": "nextgen/learning-move-2-surface-readiness.json",
+      "bytes": 3559,
+      "sha256": "b3b2f3e55ffc67862990b973824f53aa3d35299b7b4ea723e36e1e55964341a0",
+      "crc32": "b05619a4"
+    },
+    {
+      "member": "nextgen/learning-move-3-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "24053c97c704b02c5a254b1e3f3359f65ff7712d80b73a020a6b53c481c03369",
+      "crc32": "655180c9"
+    },
+    {
+      "member": "nextgen/learning-move-4-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "229be21b928bf2d1e4f6c227f4a0de6e3e4f6a9b2e4a459d3d57cf603a17c03c",
+      "crc32": "c58b2700"
+    },
+    {
+      "member": "nextgen/learning-move-5-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "dab2cc38d436f94e8a52cfa138ccd295454ce5d2fd39134ad91ea01a9694ad11",
+      "crc32": "0ab901e9"
+    },
+    {
+      "member": "nextgen/learning-movement-logcat.txt",
+      "bytes": 2603,
+      "sha256": "b9a1786d02aa23410eea266ab875770af25003ed662127c3b510e20114b64928",
+      "crc32": "769a4bf1"
+    },
+    {
+      "member": "nextgen/learning-speech-logcat.txt",
+      "bytes": 2726,
+      "sha256": "9ab1cbe25e3a21dc46d475de0948211acd7306d447d292bd23ebcbd1b07a67bf",
+      "crc32": "c0383269"
+    },
+    {
+      "member": "nextgen/native-surfaces-result.json",
+      "bytes": 204840,
+      "sha256": "c237b150cd1f09694084abbb92873d83a3f7e7900c1c462d591b14b9d78af6f7",
+      "crc32": "973ebf97"
+    },
+    {
+      "member": "recheck/after.json",
+      "bytes": 16655,
+      "sha256": "a232fbc4fdd64b39d7ab627587662675ff32956ebde19a835ae545ef62f32e79",
+      "crc32": "62a803e7"
+    },
+    {
+      "member": "recheck/before.json",
+      "bytes": 16655,
+      "sha256": "a232fbc4fdd64b39d7ab627587662675ff32956ebde19a835ae545ef62f32e79",
+      "crc32": "62a803e7"
+    },
+    {
+      "member": "recheck/result.json",
+      "bytes": 3127,
+      "sha256": "b22704882fae8df557dc0d4f2ed0698299f5986df5ba424029e6674ed035c0c8",
+      "crc32": "e683832d"
+    },
+    {
+      "member": "tour-result.json",
+      "bytes": 9771,
+      "sha256": "bc524ca740a4396c3c5009160893b98445efdbe38433ae6fec887870fb9ef269",
+      "crc32": "9a82e246"
+    }
+  ],
+  "total_bytes": 11075970
+}

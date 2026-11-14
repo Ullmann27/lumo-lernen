@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "artifact_id": 14125828378,
+  "expected_archive_bytes": 343185779,
+  "published_archive_sha256": "29d6d2eb056010ed29b09dc82719acd29eb2d9a69d600f663b0ebbebc367b0bd",
+  "full_archive_downloaded": false,
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "temporary_url_saved": false,
+  "members": [
+    {
+      "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+      "crc32": "a54d4a95",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/feature-evidence/HOST-SOURCE.txt"
+    },
+    {
+      "artifact_entry": "feature-evidence/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "crc32": "ef6cb86f",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/feature-evidence/flutter-version.txt"
+    },
+    {
+      "artifact_entry": "feature-evidence/full-flutter/acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "a82be7d13b8279760ae0ca0f24a89745d197c7fa58a35e984df17f1ef2902040",
+      "crc32": "04c41350",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/feature-evidence/full-flutter/acceptance-summary.json"
+    },
+    {
+      "artifact_entry": "feature-evidence/full-flutter/flutter-machine.jsonl",
+      "bytes": 1767777,
+      "sha256": "273c38c24fa7694f15f21ed9d2aba05a6f39e6be6591620f1a34b3c1977be939",
+      "crc32": "54aff428",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/feature-evidence/full-flutter/flutter-machine.jsonl"
+    }
+  ],
+  "central_directory_start": 343116042,
+  "entry_count": 593,
+  "central_directory_range": {
+    "start": 343116042,
+    "end": 343185756,
+    "bytes": 69715,
+    "status": 206,
+    "content_range": "bytes 343116042-343185756/343185779",
+    "sha256": "c26ba93d406970aba1169180c5d7a9857621ed669b68419a0f673005b0c55d37",
+    "local_file": "ranges/range-002-343116042-343185756.bin"
+  },
+  "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+  "range_requests": [
+    {
+      "start": 343185757,
+      "end": 343185778,
+      "bytes": 22,
+      "status": 206,
+      "content_range": "bytes 343185757-343185778/343185779",
+      "sha256": "ae941377459526d8f106801161b2694e72f017f2dfeccc2b1214f2a14646b9b0",
+      "local_file": "ranges/range-000-343185757-343185778.bin"
+    },
+    {
+      "start": 343185737,
+      "end": 343185756,
+      "bytes": 20,
+      "status": 206,
+      "content_range": "bytes 343185737-343185756/343185779",
+      "sha256": "cefc1e9db808d373890c303f30dc36b96947e6a9128eabd487a8b11c7cb3ba57",
+      "local_file": "ranges/range-001-343185737-343185756.bin"
+    },
+    {
+      "start": 343116042,
+      "end": 343185756,
+      "bytes": 69715,
+      "status": 206,
+      "content_range": "bytes 343116042-343185756/343185779",
+      "sha256": "c26ba93d406970aba1169180c5d7a9857621ed669b68419a0f673005b0c55d37",
+      "local_file": "ranges/range-002-343116042-343185756.bin"
+    },
+    {
+      "start": 2162,
+      "end": 2191,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 2162-2191/343185779",
+      "sha256": "d1e343c5d3c35da1ad0e5962cc2c5bcae02dd7c3e252c8592e9a16751a9dd85d",
+      "local_file": "ranges/range-003-2162-2191.bin"
+    },
+    {
+      "start": 2192,
+      "end": 2223,
+      "bytes": 32,
+      "status": 206,
+      "content_range": "bytes 2192-2223/343185779",
+      "sha256": "6ec00b3da9c0b026e6289a7b96e3549b3de3c16983772cf6c6430c8aee7f33c3",
+      "local_file": "ranges/range-004-2192-2223.bin"
+    },
+    {
+      "start": 2224,
+      "end": 2264,
+      "bytes": 41,
+      "status": 206,
+      "content_range": "bytes 2224-2264/343185779",
+      "sha256": "639ccea46a287dc42655bf238fc42ba06725bd270f843d9a0812d34433abc964",
+      "local_file": "ranges/range-005-2224-2264.bin"
+    },
+    {
+      "start": 6090,
+      "end": 6119,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 6090-6119/343185779",
+      "sha256": "9cb867126e3c57d17d8334ac8afe01cf5cd28c7a885125bb1ae7b5859704e664",
+      "local_file": "ranges/range-006-6090-6119.bin"
+    },
+    {
+      "start": 6120,
+      "end": 6155,
+      "bytes": 36,
+      "status": 206,
+      "content_range": "bytes 6120-6155/343185779",
+      "sha256": "6e08e80b29fa0ee115ecb4c3966acd4f9eb930149de2d2d9ea026b42d36833fd",
+      "local_file": "ranges/range-007-6120-6155.bin"
+    },
+    {
+      "start": 6156,
+      "end": 6374,
+      "bytes": 219,
+      "status": 206,
+      "content_range": "bytes 6156-6374/343185779",
+      "sha256": "50cd1ce0aabe182c109632ee4854c5cc23942c5ee26d0d972b553a1e5a5d0a4d",
+      "local_file": "ranges/range-008-6156-6374.bin"
+    },
+    {
+      "start": 6391,
+      "end": 6420,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 6391-6420/343185779",
+      "sha256": "c5e8e0e95c4e4d7b8e2c749b1d42f6ce4cc4570350096ce001fc811c5d5d32e8",
+      "local_file": "ranges/range-009-6391-6420.bin"
+    },
+    {
+      "start": 6421,
+      "end": 6473,
+      "bytes": 53,
+      "status": 206,
+      "content_range": "bytes 6421-6473/343185779",
+      "sha256": "781d8776207ac024c71241384febe92b0f71841ab933c348b4c9499dd08d0c3b",
+      "local_file": "ranges/range-010-6421-6473.bin"
+    },
+    {
+      "start": 6474,
+      "end": 7134,
+      "bytes": 661,
+      "status": 206,
+      "content_range": "bytes 6474-7134/343185779",
+      "sha256": "e566a56b849d37b54e4691fd459c3437fc43c98aa8ba7c7da017492a9fa18358",
+      "local_file": "ranges/range-011-6474-7134.bin"
+    },
+    {
+      "start": 12181651,
+      "end": 12181680,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 12181651-12181680/343185779",
+      "sha256": "7c7ef0207750ecfc46d1f6790a4e4859f0b6bdd8ef2f58aeb31efbd4074621a2",
+      "local_file": "ranges/range-012-12181651-12181680.bin"
+    },
+    {
+      "start": 12181681,
+      "end": 12181731,
+      "bytes": 51,
+      "status": 206,
+      "content_range": "bytes 12181681-12181731/343185779",
+      "sha256": "fcb026e132ee2ed4b6e8ca05f1d34df1b560f67f94c9e35c4036f8dc71f26f75",
+      "local_file": "ranges/range-013-12181681-12181731.bin"
+    },
+    {
+      "start": 12181732,
+      "end": 12349324,
+      "bytes": 167593,
+      "status": 206,
+      "content_range": "bytes 12181732-12349324/343185779",
+      "sha256": "0f01cc30c8ef83c5553246031aa1eaa54e28cb010cf501bb833bb41eeb627c2e",
+      "local_file": "ranges/range-014-12181732-12349324.bin"
+    }
+  ],
+  "transferred_bytes": 238563
+}

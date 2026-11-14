@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_VALIDATION_AND_INDEPENDENT_REVIEW",
+  "scope": "Docs-only evidence; never add to the strictly bound QA diagnostic branch. Existing source fixtures and prior OCR evidence are referenced by their exact source manifest and not copied again here.",
+  "qa_basis": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "file_count": 16,
+  "total_bytes": 233852,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/README.md",
+      "bytes": 3313,
+      "sha256": "2cb9bd50a764866690d1bf006b4fbec8e1c9ee4b5b666fe92ba9b527e8894616",
+      "git_blob": "07f37f3096f4734f38e3533e1c3ec2038060b73a",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/README.md"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/review.json",
+      "bytes": 8486,
+      "sha256": "d8ab519c847fd5bb5d9cbf70db4b2435e805c2c4641c7e5777958d8d3864b020",
+      "git_blob": "294376bd433d5ab53ac0ccbc463ced0c33234c0d",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/review.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/source-upload-manifest.json",
+      "bytes": 18361,
+      "sha256": "f72a04bbcd5a30bec3344c9f5dc813db8a0a2fa84204647338ce22eeac1f62d5",
+      "git_blob": "1cc3c282e292787f166753c9990b3c65b1cbe993",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/source-upload-manifest.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline-binding.json",
+      "bytes": 4096,
+      "sha256": "519abdcbc07bde787e4b1fd42f8d318229e63c5edd9b3c695bf3cab6925ff9cc",
+      "git_blob": "63de135a0f546b026dfaad63be0628f4bce3c76f",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/baseline-binding.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/implementation-against-3e08.patch",
+      "bytes": 20438,
+      "sha256": "12ff75b90f35e848473e3609158407cddaf72fa8d10387da353090300600de20",
+      "git_blob": "f6b6a2cce59fd8f69f4d7914690ea9b090141086",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/implementation-against-3e08.patch"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/new-return-paths.json",
+      "bytes": 893,
+      "sha256": "18b34202223e9ef0e2619fadb141e5830d849a9bdf2e69577d87054d17f18552",
+      "git_blob": "04655939e6da53c5c2e88a32412cc0c4b0ae0a27",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/new-return-paths.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/binder-contracts.log",
+      "bytes": 5333,
+      "sha256": "077881a44a3eca2a7a9701e52739c760ade4dcaed96aeaf1beab7408681abb84",
+      "git_blob": "b64885e08ea5455a9e421feffa9e7ee4c140dc11",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/binder-contracts.log"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/binder-contracts-execution.json",
+      "bytes": 441,
+      "sha256": "a183d9437464a1d62d88aadf3a69d2bb3e37b7f9fc33d1981b097fc1f603f5b0",
+      "git_blob": "ff88adef9bfdaaf1006aaa085023cbc4b42d3a15",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/binder-contracts-execution.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/actionlint.log"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/workflow-source-comparison.json",
+      "bytes": 2165,
+      "sha256": "2377731e5531b6360f04167ff1362253dc10af02f85b30294f25ae72b7ccc1a0",
+      "git_blob": "69cfbf2a5307435617888e3c9bf1b7e150742e71",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/workflow-source-comparison.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/.github/probes/creative_android_probe.py",
+      "bytes": 59073,
+      "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c",
+      "git_blob": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/baseline/.github/probes/creative_android_probe.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48183,
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/baseline/.github/probes/lumo_studio_surfaces_android_probe.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/.github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "bytes": 14774,
+      "sha256": "6db11aba49cf3dc7322ce756ac245952a5b1f7cdbe54f9e952743ab08e0ef9c3",
+      "git_blob": "9c54d46545429d02f1f8105ae1b87088855dee3d",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/baseline/.github/workflows/lumo-studio-4ab-ocr-recheck.yml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/scripts/recheck_studio_4ab.py",
+      "bytes": 25518,
+      "sha256": "667edf06c082d3d48302b7aab6a2e1d3aac92a4581d2fbf62624504208fe9e5b",
+      "git_blob": "33ed5d0fc71a3282bb3fb7de6bdf2ff3c2cbc6b2",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/baseline/scripts/recheck_studio_4ab.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/scripts/tests/test_studio_4ab_recheck.py",
+      "bytes": 18540,
+      "sha256": "467c8554fffa95773423eed0705968929025b324b007f4a558f725515cf17848",
+      "git_blob": "e836e7c25a7d68f4d47ff19a15de982f7e241fdb",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/baseline/scripts/tests/test_studio_4ab_recheck.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/independent-review.json",
+      "bytes": 4238,
+      "sha256": "61dc56002ffd7f254c99853d7da91110950850e9172366b7271921aad5af0f42",
+      "git_blob": "45bf26df5acace8e5e52ef80b383f36c03536dfc",
+      "mode": "100644",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-preparation/independent-review.json"
+    }
+  ]
+}

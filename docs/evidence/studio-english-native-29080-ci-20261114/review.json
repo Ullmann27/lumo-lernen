@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T16:02:24.263651+00:00",
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "run_id": 43611803404,
+  "run_attempt": 1,
+  "job_id": 132498257372,
+  "job_conclusion": "success",
+  "job_completed_at": "2026-11-14T15:54:23Z",
+  "artifact": {
+    "id": 14120777154,
+    "name": "lumo-nextgen-actual-authority-evidence-english",
+    "bytes": 4557751,
+    "sha256": "e21f46588a7d711cb76314951255d8ea016b473f1029ddf7300a587e7dd146e7",
+    "members": 63,
+    "all_crc_checked": true
+  },
+  "result": "PASS within current English authority/desktop-renderer scope; no Android/release/FPS/English-pronunciation approval",
+  "actual_dart": {
+    "cases": 10,
+    "checks": 2955,
+    "failures": 0,
+    "words": 14,
+    "school_objects_per_grade": {
+      "1": 10,
+      "2": 10
+    },
+    "producer_sha256": "481152ce8ed6a196731b54ec911dc119fc6a534d84bf3aef3c0768b6ef7459e5",
+    "boundary": "actual Dart production contracts; synthetic child; no Android or reward claim"
+  },
+  "native": {
+    "checks": 7633,
+    "failures": 0,
+    "cases": 14,
+    "captures": 17,
+    "input_events": 196,
+    "fixture_kind": "actual_dart_producer_report",
+    "renderer": "X11",
+    "scope": "actual production Godot scene; explicit platform/JNI/audio fixtures; no Android/FPS/mastery claim",
+    "cases_returned_once_to_test_host": true,
+    "case_reward_counts": [
+      0
+    ],
+    "minimum_exposed_control_side_dp": 52.0,
+    "minimum_full_object_projection_side_dp": 62.2657775878906,
+    "projection_limit": "Full object projection includes its pedestal; this is not an assertion that each decorative mesh is 48 dp.",
+    "audio_listened": false,
+    "english_pronunciation_verified": false,
+    "geometry_statistics_scope": "The 17 PNG-bound captured layouts; separate hint_layouts are not pooled into these minima."
+  },
+  "current_images_actually_opened": 17,
+  "visual_blockers": 0,
+  "warnings": [
+    {
+      "artifact_entry": "english-render.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+      "context_after": [
+        "     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)",
+        "OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)"
+      ]
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "context_after": [
+        "     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ]
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer.",
+      "context_after": [
+        "     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)",
+        "[EventBus] online - signals registered"
+      ]
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 51,
+      "text": "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+      "context_after": [
+        "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+        "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder"
+      ]
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 52,
+      "text": "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+      "context_after": [
+        "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+        "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder"
+      ]
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 53,
+      "text": "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+      "context_after": [
+        "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+        "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder"
+      ]
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 54,
+      "text": "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+      "context_after": [
+        "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+        "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder"
+      ]
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 55,
+      "text": "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+      "context_after": [
+        "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+        "[PASS] asset-pack: present: assets/generated/lumo3d_assets"
+      ]
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 56,
+      "text": "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+      "context_after": [
+        "[PASS] asset-pack: present: assets/generated/lumo3d_assets",
+        "[PASS] asset-pack-manifest: valid JSON, 175 assets in counts"
+      ]
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 115,
+      "text": "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)",
+      "context_after": [
+        "[PASS] tool: tools/build_android.sh",
+        "[PASS] tool: tools/setup_android_keystore.sh"
+      ]
+    },
+    {
+      "local_original": "english-original-job.log",
+      "line": 3322,
+      "text": "2026-11-14T15:54:22.1394936Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ],
+  "source_clean_step": {
+    "name": "Verify both tracked source trees remain unchanged",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 14,
+    "started_at": "2026-11-14T15:54:18Z",
+    "completed_at": "2026-11-14T15:54:20Z"
+  },
+  "limits": [
+    "Real production Dart descriptors and actual production Godot scene ran; platform, JNI and audio remain explicitly declared test doubles.",
+    "No real Android APK install, touch, parent-gate execution, Flutter roundtrip, multi-child migration, journal or writing-trainer storage preservation is established by this evidence.",
+    "No English pronunciation or audio listening, microphone recording, phoneme synchronization, physical-device performance or 60-FPS measurement is claimed.",
+    "Counts belong only to this current run and are not added to historical local/47ca runs or the separate full-native acceptance workflow."
+  ],
+  "original_hashes": {
+    "english-original-job.log": "c83c8274be2314cc8e53a92f2c8756d8d0b3ea7f809acaa7c96200bb8595e5dd",
+    "jobs-final-original.json": "59edebc4dd5a3f718b0da8a44c4275e407dd66e41dfe519d5c1fb17ad867cfa6",
+    "run-final-original.json": "8430d01367c81ef3ffb50069f2d355a06a290417f0668c4e9bd3ae9388465272",
+    "artifacts-final-original.json": "28a81fa26e30303ee0b999c0dbaf727d5b3c08721537bc5bb5bc17e428141700",
+    "original-artifact-inventory.json": "3f7d07fff1c026dbfcdbd16b63799f51978d5cf122f666272351aa0c8d601f52"
+  },
+  "all_sources_rehashed_after_image_review": true,
+  "all_pngs_rehashed_after_viewing": true,
+  "project_validation": {
+    "pass": 117,
+    "warnings": 7,
+    "fail": 0,
+    "artifact_entry": "project-validation.log",
+    "summary_line": 128
+  }
+}

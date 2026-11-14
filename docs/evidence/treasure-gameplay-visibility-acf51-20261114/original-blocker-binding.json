@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "native_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "artifact_id": 14103142984,
+  "archive_bytes": 225382332,
+  "archive_sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+  "images": [
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "module": "treasure",
+      "review_owner": "root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "bytes": 2660787,
+      "sha256": "4990f7b0c4e364b1a4894d4598391dc459da61efe2624c2bbf03b556b4142818",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "personally_opened_by_games_worlds": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "bytes": 317873,
+      "sha256": "e28aaa78f26bcb99d7fcb2aa3f31eaf320be6fa5eb1da981199b2e9e126bd5f4",
+      "dimensions": [
+        640,
+        320
+      ],
+      "personally_opened_by_games_worlds": true
+    }
+  ],
+  "scope": "Both unchanged original screenshots actually opened. Original ZIP full SHA/CRC was verified by root; this review separately rehashed the two selected image files. Existing original images are retained in the prior evidence package, not duplicated here."
+}

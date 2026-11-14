@@ -1,0 +1,12 @@
+[
+  {
+    "path": "scripts/compile_android_host.sh",
+    "baseline_git_blob": "58eb1fe98d31155aceda49721092122b85fd4e6b",
+    "baseline_sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4"
+  },
+  {
+    "path": "scripts/tests/test_prepare_android.py",
+    "baseline_git_blob": "d8576e0edef2af24d9465ab28664d0bff7a5cb7d",
+    "baseline_sha256": "5362b51a1e4985cde746c7711b7a6839271cc7698bbf430e8324127c42f14899"
+  }
+]

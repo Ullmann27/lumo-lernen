@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "reviewed_at_utc": "2026-11-14T02:20:53.618201+00:00",
+  "status": "NO_ADDITIONAL_BLOCKER_IN_NARROW_READER_FIX",
+  "qa_basis": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "product_source_unchanged": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source_unchanged": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "source_manifest": {
+    "path": "source-upload-manifest.json",
+    "sha256": "ff16947c97f211d83201c118b73b99d72d5675b2edc099fc22f7095b50e3108e",
+    "files": 7,
+    "all_bytes_sha256_gitblob_values_independently_matched": true
+  },
+  "reader": {
+    "path": "patched/.github/probes/lumo_studio_surfaces_android_probe.py",
+    "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+    "only_changed_definition": "read_cards_layout",
+    "other_top_level_definitions_independently_ast_equal": 17
+  },
+  "test": {
+    "path": "patched/tools/android_qa/tests/test_cards_layout_readiness.py",
+    "sha256": "e4e1617794a3026a947d135e0883f82664f220a6c430ce0721e611f7b0bd1dc0",
+    "definitions_read": 6,
+    "tests_rerun_by_reviewer": false
+  },
+  "original_failure_binding": {
+    "missing_reply_bytes": 113,
+    "missing_reply_sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+    "reply_content": "cat: /data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/cards_layout_v1.json: No such file or directory",
+    "api35_zip_member_independently_byte_compared": true,
+    "api37_zip_member_independently_byte_compared": true,
+    "all_four_api35_fixture_files_independently_byte_equal_to_original_zip_members": true,
+    "zip_paths": [
+      "qa/android-ocr-recheck-4ab/android-results/api35-original.zip",
+      "qa/android-ocr-recheck-4ab/android-results/api37-original.zip"
+    ]
+  },
+  "findings": [
+    "Die originale adb-Antwort wird vor Größenkontrolle und JSON-Verarbeitung unverändert in der Diagnose-Datei gespeichert. Der neue Handler fängt ausschließlich JSONDecodeError und verkettet den Originalfehler als Ursache.",
+    "RuntimeError führt im bestehenden capture_cards_faces-Loop zu REJECTED, setzt previous/previous_layout zurück und beobachtet innerhalb derselben bestehenden Frist erneut. Es wird weder ein Layout noch ein Bild oder Erfolgszustand erzeugt.",
+    "Der unveränderte Standard bleibt 60 Sekunden; tatsächliche Reads sind weiterhin durch die Restfrist und höchstens vier Sekunden begrenzt. Vor erfolgreicher Rückgabe wird die Gesamtfrist erneut geprüft.",
+    "Zwei vollständige aufeinanderfolgende Frames derselben öffentlichen Revision und derselben gebundenen Layoutdatei bleiben nötig. Ein fehlender Zwischenread verwirft die zuvor erreichte Stabilität.",
+    "Private Session, token/roundId/viewer, playing/current/canDraw/unpaused, vollständige Viewportfläche, unabhängige Layout-/Quadprojektion, exaktes Pause-/Seitensignal, unveränderte Vorher-/Nachherzustände und reale Pixelvalidierung sind unverändert.",
+    "Die sechs Testdefinitionen verwenden synthetischen Transport und Uhr, aber originale historische Pixel/Layout/Public-State/OCR und die echten Layout-/Pixelvalidatoren. Dauerhaft fehlende Datei, fremde Session, Übergröße und alte Revision bleiben negative Fälle."
+  ],
+  "read_original_execution_logs": [
+    {
+      "path": "red-original-a446.log",
+      "sha256": "54a6fcc5d0b49076dfd807ee64e2ac76023ced8814ccfe98517d929883e36d0b",
+      "observed_result": "2 Tests, 2 originale JSONDecodeError"
+    },
+    {
+      "path": "green-six-contracts.log",
+      "sha256": "03b69e7f5d52ea58c878f8cfa06b786159bcbb40e203e874a47991a50d109ccf",
+      "observed_result": "6/6 PASS, 0 Skip, 1.078 s"
+    }
+  ],
+  "scope_limits": [
+    "Kein neuer Androidlauf oder neuer Draw-PASS durch diese Review.",
+    "Vorhandene positive Replaybilder stammen vor dem Draw; synthetische Transportfolgen werden nicht als Androidaktion gewertet.",
+    "Keine zusätzliche Testreihe, keine produktive Quelländerung, keine Git-/CI-Mutation durch den Reviewer."
+  ],
+  "recommendation": "Den engen Readerfix mit diesen unveränderten Gates integrieren und anschließend den tatsächlich neuen Androidnachweis abwarten."
+}

@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "frozen_at_utc": "2026-11-14T18:24:04.798121+00:00",
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "run_id": 43624674585,
+  "job_id": 132537752822,
+  "review_sha256": "e176b0415850cda5937d43808b49ec10ae4b96b1cab5cae712c597367440227e",
+  "named_cases_review_sha256": "e19ac869dcfbf300c1eaf0d6b8ab6df22678dbd8acf52a3dca652d07e53a42d6",
+  "full_suite_passed": 2632,
+  "full_suite_failed": 0,
+  "full_suite_skipped": 0,
+  "named_new_asr_cases": 10,
+  "named_new_memory_cases": 14,
+  "original_log_fetches": 1,
+  "whole_artifact_downloaded": false,
+  "only_four_selected_original_members_verified": true,
+  "local_dart_flutter_execution": false
+}

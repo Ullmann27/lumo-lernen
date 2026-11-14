@@ -1,0 +1,348 @@
+{
+  "manifest_sha256": "a2b9f8cb57c57c5b67588719a6e3b7b004ca568cd11805c5bab5a0e9310b324e",
+  "uploaded": [
+    {
+      "path": "docs/evidence/studio-c081-host-compile/artifact-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6508ec22ec226515c65b23360fa14329a62d5f5c"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/completed-job-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c654bb94037ad04a8b6e2fe671409ca25f3ebfd4"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/original-artifact.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5dee2f147587b488a0ff9583017fa9320e03d0a0"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/original-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24084531344fb6ec67c4b175d917ccfc1ffb26c6"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6777ba308d3ced83917488355481e37a727f60a"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/originals/cards-authority-registry.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f5eaaf05c7330ce8bd5642a4ad11e2542beb143"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/originals/compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50584ba25d25b5d02f1fd24411d02b181cfce8a3"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/originals/flutter-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/originals/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38cb384c74352052c13d58a8f34e04c4ee236ac1"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/originals/source-sha.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1196f0815ac3abe8e57a3a679333568ae229208f"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c56ac14cc32fe441e7e104f5401af914f371ab1"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/tool-log-transfer-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f01e953c3cdf0733e995d69ddb2ee6fffa3b61a0"
+    },
+    {
+      "path": "docs/evidence/studio-c081-host-compile/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abf98c1a92ef596328a39ffa6f36e8696ddfb972"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c8a51a27110243014651d11af4775f9806d9343"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d377cee88da237025fd5bb57b6555451bf3f36a8"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/lumo_free_voice_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c207e73d0c865a60067acb21e124762a4235ae32"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bcd965a4f1ab5036fd511c8bedbb86ead8f0e43d"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c84d54123aff466f30d044b2175041bd37242f9"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a08e7a400aecb4ed65ba56e7e9d84aea46fe0fb"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/patch-against-exact-c081.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "962f4c39f3973e551de85ab26f9213bcba4321a5"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "191eab35839b6aca1c105bd4af3cc77ff3818328"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d3013ff6d2c0c40f6f06caeb9894268b98fe552"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/root-local-integration.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8539448c97e25e909adb981f81bbe1adfc9c06f9"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f9e54351762dab2007d552c7050ac8e7a7b5e50"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b684c86d75bff581d6b52926cf97629be1fa5a7"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7ce01e9b516845313d2801fd890caa5a5635e2f"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/source-transfer-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35ea4a4b308601ff2edbb1abb8748ce8917721eb"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/completed-jobs-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29b657a7a2837a495984acf67544e5fd2fdb3d11"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/run-completed-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1aebb0f40a238e7890cb749ad89b9f3f25dacd2d"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/unified-completed-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "daef37f48c78b1a5b90cbd76db3610f1fd3fedb2"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/full-flutter-original-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcc9e6584f3ba0514eba6ac403a784f05c1763dc"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-two-failures.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee442de8ad81610cb257db2848f7b9515c7c3311"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f2b34ee9fd7f86847efa52850fed482fad4f207"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afbb7c3fbd02f1e076783bde3cfba08d90175095"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-android-probe-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa481793fc438149060e11202b24418731f55746"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e62f15d74ac0fc74d21caf8901b43fdbad1be023"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e99d7f22c3ffbb24b13aa1128ee664a2d87b152"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6ffa8cb5a1b857c1ccbf11f9b9eeb487bbeacee"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/android-group-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "624d8a7af617bef996d26379ed0878d7711c6fb0"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/android-tesseract-languages.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f805e3dd00e5783143aa652ad1c11ee37614cbb"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/existing-toolchain-readonly.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5852a4392f4f261bb3e57687ad9bbc303dd84640"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "914338c6db45b78c39852a9dc67678932cba9b5c"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/root-harness-first-attempt-error.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c15e2855fbc410d1b023732d063003e774627b38"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/source-manifest-readback.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4b86e5f9b78d5234a31713bf80b837456c140ad"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-checkpoint.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91d592b16eda19027afc9777e8201a62015d9561"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-created-commit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fed5296e713096830cae9476499794501accb4e0"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-created-tree.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4efdff7dab972a8498e47dfde25c194ae08dc03f"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-tree-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae68239acd80e88b9c950f2293141d5d9509cb07"
+    },
+    {
+      "path": "docs/evidence/studio-c081-voice-scroll-contract-fix/new-studio-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac4b322b9d27760ece5778908358227ecb1d3366"
+    },
+    {
+      "path": "docs/evidence/native803-duplicate-check-20261114/current-public-stream.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f2d5765062fef1ce6afdaaff060abb9a5eda2b2"
+    },
+    {
+      "path": "docs/evidence/native803-duplicate-check-20261114/current-release-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2177b9b4bd7938a657f6e4f6fcf04028bff2d0d3"
+    },
+    {
+      "path": "docs/evidence/native803-duplicate-check-20261114/independent-local-copy-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d81d86e0947c9004e2bef1815d8bd005cf4a1c6"
+    },
+    {
+      "path": "docs/evidence/native803-duplicate-check-20261114/retained-evidence-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ad99f87d3dc553c82723cbf9a59fa4c936a2c56"
+    },
+    {
+      "path": "docs/evidence/native803-duplicate-check-20261114/root-local-duplicate-cleanup.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a34dcbc112d97c6e53593c6ba763407484ca42d4"
+    },
+    {
+      "path": "docs/evidence/studio-86445-contract-followup-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22a8bab2a18783db9f14139d1c07f0866fafb1ba"
+    },
+    {
+      "path": "docs/evidence/studio-86445-contract-followup-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c7f16c4db2c7a57607353dc47f0f0c8f6411a76"
+    }
+  ],
+  "total": 57
+}

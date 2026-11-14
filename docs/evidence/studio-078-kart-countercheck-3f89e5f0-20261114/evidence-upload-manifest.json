@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "docs_only": true,
+  "target_prefix": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114",
+  "run_id": 43587032836,
+  "qa_source": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+  "apk_source": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_source": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "file_count": 11,
+  "total_bytes": 1567125,
+  "files": [
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1481906,
+      "sha256": "c03dfaad9502a29a92274904b20d5b5c9933137124dea8908f86486198242a32",
+      "git_blob_sha": "e1fd7ba94d701223bacf7f27ebdb3051baf34595"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-run-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/final-run-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 12473,
+      "sha256": "37d5c2e9b798cc8755bed6e2dead891e94c77a545956957e26688942c0d5fe31",
+      "git_blob_sha": "3c486bea920a8b867caff4de60763cb47290e18c"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-jobs-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/final-jobs-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3467,
+      "sha256": "89f2ccebf7c9db7620ddf86e81260c34d11b96bdfca9cf4f014d25ec05660a24",
+      "git_blob_sha": "c7958b4405ef518e6c5615dd38c5b733407d407e"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/final-artifacts-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/final-artifacts-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 792,
+      "sha256": "cbfcc27dbad95a593feb352599a20e95869537b0b2f7ed63645a5e6345977b7f",
+      "git_blob_sha": "42c173ee590f9baa1786fa31dd2d6c3189b03c3a"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/workflow-3f89e5f0-original.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/workflow-3f89e5f0-original.yml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 6633,
+      "sha256": "529f317a2f05d537f4206138169a76657cf9970e27fcdb45ba66b87a49b354df",
+      "git_blob_sha": "503c4f4350fdccf58054d2c146e96603af5726c5"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/binder-3f89e5f0-original.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/binder-3f89e5f0-original.py",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 24511,
+      "sha256": "f495aea0e3c6073bdba675ac53d5f79376583f9f293c3ebe2891c1a7737619ce",
+      "git_blob_sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/tour-step-summary-from-original-job.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/tour-step-summary-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 15606,
+      "sha256": "d1417a116ffd0cadea318a8b0b355ee681334e40fd77946a294cd9752ddb761f",
+      "git_blob_sha": "de6ff82847bafa03df12b4e7ba2e0ca6c900d7d5"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/countercheck-result-from-original-job.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/countercheck-result-from-original-job.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3811,
+      "sha256": "fc84abd6a058b394a13da61bad7ce4dec289d0cf70ee5eb91ce22c72814608ac",
+      "git_blob_sha": "4845da53443957bd659bf4cef6218827060c7ee4"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/relevant-original-job-lines.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/relevant-original-job-lines.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5137,
+      "sha256": "174306306f332440a20bf0659138db410d678b7fb704c292a32e2d00f126c1f9",
+      "git_blob_sha": "faf45f69feac55cdeb276cc3c1b6170681754bb0"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9017,
+      "sha256": "b11233216a2b61e7931f80b2c0b8fdd9390643e9005bb21700b86335835fb726",
+      "git_blob_sha": "adf84749768b77becae93d52f11d3c83271ac057"
+    },
+    {
+      "path": "docs/evidence/studio-078-kart-countercheck-3f89e5f0-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-kart-recheck-3f89e5f0-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3772,
+      "sha256": "fdb90a0bf35553d4d05ff6c6098be98182a045e16f0f4fbeab51e2cd4877c9b7",
+      "git_blob_sha": "168b0c7c4ed52c9b3122f9b2c20af5a101565f7b"
+    }
+  ],
+  "excluded": "No duplicate APK/ZIP/PNG download; Root owns actual archive/image verification. No product/source/ref mutation."
+}

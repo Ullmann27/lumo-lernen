@@ -1,0 +1,112 @@
+{
+  "kind": "isolated_source_patch_no_active_installation",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/.github/probes/studio_creative_android_probe.py",
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 68442,
+      "sha256": "d18afe3b68113f9932ba17819dfcc2f0dfd0dd5047b84070ebd03d84d02b10d9",
+      "git_blob": "d4b833585cbd0a49cabef4e3bf80cf1e78417248",
+      "baseline_git_blob": "605852d86107bf5cded7d6ef6690e2d102967fd3"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/test_creative_geometry_readiness.py",
+      "path": "scripts/tests/test_creative_geometry_readiness.py",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10636,
+      "sha256": "3635e484f4aedb3ab70283deb382749a61631757c65539f79adf1e8db42f0764",
+      "git_blob": "ace0a51805217347bcb3ec62fbf2c838b9faa4a6",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/fixtures/creative_geometry_86445/build-loading-ocr.json",
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-loading-ocr.json",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 22464,
+      "sha256": "1869325650b5e41f21aa48e5275c937a655fd6e1fff6169ea1d211c15a460b66",
+      "git_blob": "64de9e3d315c8509c086a043e6c479fcf946ebbc",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/fixtures/creative_geometry_86445/build-loading.png",
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-loading.png",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1871144,
+      "sha256": "b6805765bf524301a036bb87207d3572e8f475164692bd0039420160c8f4cd38",
+      "git_blob": "487d90aa87a710acab7f30f95e8632fc7956cd3d",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/fixtures/creative_geometry_86445/build-playing.png",
+      "path": "scripts/tests/fixtures/creative_geometry_86445/build-playing.png",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2480067,
+      "sha256": "cd4efedb88413e2de07755dce3bb99ed2440fe6de4fb075b5c9900a6ea44f7a1",
+      "git_blob": "12aa1d09a1baf74fcbdeacce551886a0d51b669b",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/fixtures/creative_geometry_86445/jump-portrait.png",
+      "path": "scripts/tests/fixtures/creative_geometry_86445/jump-portrait.png",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1634627,
+      "sha256": "8c95fc1433958c63b53727f36f4bc414d1caf2935544b1fb3cbc46036c735c07",
+      "git_blob": "7a90c4325d7299780800e37b40fa487fdda3862b",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/fixtures/creative_geometry_86445/origin.json",
+      "path": "scripts/tests/fixtures/creative_geometry_86445/origin.json",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1642,
+      "sha256": "aeae2b24735af8d5c69649b50c809848467903286d3b8e533a987c5106e1dafd",
+      "git_blob": "a66290d7c8c3d3d7ca68a539caf15ec38d459ea6",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/fixtures/creative_geometry_86445/puzzle-board.png",
+      "path": "scripts/tests/fixtures/creative_geometry_86445/puzzle-board.png",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1017338,
+      "sha256": "0ffb971f2ec18e8031cd58f9370a44e41c09fdda7c099456365e177253641eb3",
+      "git_blob": "24b9d5119aa6c439786c26ae249334407e2b9d3d",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/fixtures/creative_geometry_86445/puzzle-save.json",
+      "path": "scripts/tests/fixtures/creative_geometry_86445/puzzle-save.json",
+      "repository": "Ullmann27/lumo-lernen",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 950,
+      "sha256": "29a335c9ee631fb25fb0dbd55b4889daa0a2755d8f7c7ac7a308ecd1d43c28d0",
+      "git_blob": "7294c1d0dab06b2ec85e493bf010701c43f5626e",
+      "baseline_git_blob": null
+    }
+  ],
+  "file_count": 9,
+  "bytes": 7107310,
+  "versions_unchanged": true,
+  "tests_new": 11,
+  "tests_existing": 9,
+  "android_tested_after_patch": false
+}

@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "artifact_id": 14130101135,
+  "expected_archive_bytes": 196404454,
+  "published_archive_sha256": "bfddd9c10504e2271a8b785bd3a46aef4ec76c3fab80bdd2dadea6162ea58e0b",
+  "full_archive_downloaded": false,
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "temporary_url_saved": false,
+  "members": [
+    {
+      "artifact_entry": "connect-four/0006-actual-c4-hub.png",
+      "bytes": 1786323,
+      "sha256": "62fd8514be063af465444c4b42651d23d42f7ee82c4dc87d2cfc35cbd4677dec",
+      "crc32": "f59123e6",
+      "crc_verified_by_full_member_read": true,
+      "local_file": "originals/connect-four/0006-actual-c4-hub.png"
+    }
+  ],
+  "central_directory_start": 196273090,
+  "entry_count": 1429,
+  "central_directory_range": {
+    "start": 196273090,
+    "end": 196404431,
+    "bytes": 131342,
+    "status": 206,
+    "content_range": "bytes 196273090-196404431/196404454",
+    "sha256": "4b7bf1e722e3acf8b592e1905ed0c5ffd3ce4693bc52f883b74ed1a9bbc04284",
+    "local_file": "ranges/range-002-196273090-196404431.bin"
+  },
+  "status": "SELECTED_ORIGINAL_MEMBERS_VERIFIED",
+  "range_requests": [
+    {
+      "start": 196404432,
+      "end": 196404453,
+      "bytes": 22,
+      "status": 206,
+      "content_range": "bytes 196404432-196404453/196404454",
+      "sha256": "b91d5dca46ab9a1aa60b0aea9a1ed01df194c5245c33feb69557312d53b3dca4",
+      "local_file": "ranges/range-000-196404432-196404453.bin"
+    },
+    {
+      "start": 196404412,
+      "end": 196404431,
+      "bytes": 20,
+      "status": 206,
+      "content_range": "bytes 196404412-196404431/196404454",
+      "sha256": "15da238d72b3ea3dfae214e3ec6d71fdcb0c3339be76c6b92a09ddf14d8037c8",
+      "local_file": "ranges/range-001-196404412-196404431.bin"
+    },
+    {
+      "start": 196273090,
+      "end": 196404431,
+      "bytes": 131342,
+      "status": 206,
+      "content_range": "bytes 196273090-196404431/196404454",
+      "sha256": "4b7bf1e722e3acf8b592e1905ed0c5ffd3ce4693bc52f883b74ed1a9bbc04284",
+      "local_file": "ranges/range-002-196273090-196404431.bin"
+    },
+    {
+      "start": 94954425,
+      "end": 94954454,
+      "bytes": 30,
+      "status": 206,
+      "content_range": "bytes 94954425-94954454/196404454",
+      "sha256": "3aae17fe869c2091100f78fada258234eefd830a40f239cc2555d98d81412ea5",
+      "local_file": "ranges/range-003-94954425-94954454.bin"
+    },
+    {
+      "start": 94954455,
+      "end": 94954489,
+      "bytes": 35,
+      "status": 206,
+      "content_range": "bytes 94954455-94954489/196404454",
+      "sha256": "a791270a75e895607d1d4aebf88831f5b1836afb54795773fdaba71d40309db5",
+      "local_file": "ranges/range-004-94954455-94954489.bin"
+    },
+    {
+      "start": 94954490,
+      "end": 96739917,
+      "bytes": 1785428,
+      "status": 206,
+      "content_range": "bytes 94954490-96739917/196404454",
+      "sha256": "c6b5daab5d79a0b26a33c455134ff98cb9aab99a11418207254f325d9952ea93",
+      "local_file": "ranges/range-005-94954490-96739917.bin"
+    }
+  ],
+  "transferred_bytes": 1916877
+}

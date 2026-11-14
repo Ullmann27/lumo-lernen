@@ -1,0 +1,246 @@
+{
+  "native_base": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "runtime_project": "explicit isolated QA configuration; no claim that local worktree is clean803e",
+  "files": [
+    {
+      "path": "scripts/systems/event_bus.gd",
+      "kind": "exact_803e",
+      "sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340",
+      "git_blob": "b754dae939c4837288b8baa6862c68e75e670c20"
+    },
+    {
+      "path": "scripts/systems/settings_store.gd",
+      "kind": "exact_803e",
+      "sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82",
+      "git_blob": "930181998c72b62004ec43c66e8b1c674f6eb193"
+    },
+    {
+      "path": "scripts/systems/performance_manager.gd",
+      "kind": "exact_803e",
+      "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+      "git_blob": "b81a5c2202cc832cdd6c773a459bb90ab6520d53"
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "kind": "exact_803e",
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "kind": "exact_803e",
+      "sha256": "11abed8d8bb15a048ff3934b958c5aa39c1de233146f8bc9b47c8be0854099bc",
+      "git_blob": "7d0c4e67ace04af02f91738368648380d573bcd3"
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "kind": "exact_803e",
+      "sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+      "git_blob": "9cfea6e6d7f0ab5322a1e0d0b140a7109f9a6307"
+    },
+    {
+      "path": "scripts/systems/asset_loader.gd",
+      "kind": "exact_803e",
+      "sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436",
+      "git_blob": "5436978a86ea21c70ee3affed30eec1219d6a571"
+    },
+    {
+      "path": "scripts/systems/audio_manager.gd",
+      "kind": "exact_803e",
+      "sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0",
+      "git_blob": "36462f609a2a27d02a91fc12177f1c441054911a"
+    },
+    {
+      "path": "scripts/systems/progress_store.gd",
+      "kind": "exact_803e",
+      "sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811",
+      "git_blob": "c197f75e913373bcc74f36cde9ac8b58cd56e275"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "kind": "staged_delta",
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+    },
+    {
+      "path": "scripts/learning/learning_atelier.gd",
+      "kind": "exact_803e",
+      "sha256": "6696a9f5604bf71efa5eb6d64fe5b6ff4ca85f76cee8553586dec8743ad7022b",
+      "git_blob": "c14873748bd8ff42cc7f00bd1c39653626de4664"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "kind": "exact_803e",
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "git_blob": "53cb01bfbd23a2962da5428a08b8aee313d5e152"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb.import",
+      "kind": "exact_803e",
+      "sha256": "fc146ea239d84439eba0c6c31810d9da031d10daf6e2302b7395dc3826deab2a",
+      "git_blob": "6c334b3039ef0847f278d42e8c32b6cf8386809f"
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "kind": "exact_803e",
+      "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+      "git_blob": "10b38ae0590626db40b24080e8a55edcb47ecf2b"
+    },
+    {
+      "path": "assets/learning/studio/learning_studio.glb",
+      "kind": "exact_803e",
+      "sha256": "e5b33abceaba8df76b6475efc04454aac3db353a1b40005267d2986be718a034",
+      "git_blob": "1f133149d426691330b193e0ce563d899a3c0622"
+    },
+    {
+      "path": "assets/learning/studio/studio_leaf_motion.gdshader",
+      "kind": "exact_803e",
+      "sha256": "92e405a96eb23e5da0f12bf229e6e9227d2cc4c9b28f2aaf080f51e7ab63c410",
+      "git_blob": "61df8690c84dbbd6c75453d68235c5f804a0e693"
+    },
+    {
+      "path": "assets/creative/models/lumo_lantern.glb",
+      "kind": "exact_803e",
+      "sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3",
+      "git_blob": "38d75ea1b5ec21a360098f282b02081f2974e453"
+    },
+    {
+      "path": "assets/audio/voice/words/apfel.wav",
+      "kind": "exact_803e",
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+    },
+    {
+      "path": "assets/manifests/assets.json",
+      "kind": "exact_803e",
+      "sha256": "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185",
+      "git_blob": "d1d8130bf5652aae3d23f651011a4872e19c10c9"
+    },
+    {
+      "path": "scripts/tests/lumo_teacher_pose_regression.gd",
+      "kind": "staged_delta",
+      "sha256": "51b32d1cb3d3684334bb5445626cacc5b20d87471f9e0f8325f07514f23f1a26",
+      "git_blob": "bc534776d2f9295369e5e2de90abb8a2f3a46268"
+    },
+    {
+      "path": "scripts/tests/lumo_studio_motion_regression.gd",
+      "kind": "staged_delta",
+      "sha256": "f6451145eec7729f35b3aab70d9fe69ad970e171288c156de3e484213984253e",
+      "git_blob": "2a3e40da3a48e68d587f635658f9db645e70e4e7"
+    },
+    {
+      "path": "scripts/tests/lumo_rigged_animation_capture.gd",
+      "kind": "staged_delta",
+      "sha256": "03ce996e765947e20c32cea4b683e70b25ec07e20f8d8c844a0cb0af038df151",
+      "git_blob": "f821f2b7bfa5d15c9dc1a23b0f171caf31264926"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "kind": "staged_delta",
+      "sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "git_blob": "3b65ce3c2d8e63efe4c2251261b047be37e383a0"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "kind": "staged_delta",
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad"
+    },
+    {
+      "path": "scripts/tests/lumo_facial_regression.gd",
+      "kind": "staged_delta",
+      "sha256": "dc98c2521543d5b28238f37ed064b0ccd105378d124e44bbefd668c1b16cc03e",
+      "git_blob": "9834e1c8cbef59f86f8ec1840895357cb429b624"
+    },
+    {
+      "path": "scripts/tests/learning_world_regression.gd",
+      "kind": "staged_delta",
+      "sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+      "git_blob": "93a903efb43a2bdef97121434fc7e89e60cab6ac"
+    },
+    {
+      "path": "scripts/tests/lumo_facial_capture.gd",
+      "kind": "staged_delta",
+      "sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "git_blob": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "kind": "staged_delta",
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob": "e4b6a6081a922a137f68491de66f51e096528510"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "kind": "staged_delta",
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob": "91b8a8cd25f21dab84b77f178aa82d06673b54f9"
+    },
+    {
+      "path": "scenes/learning/learning_world.tscn",
+      "kind": "exact_803e",
+      "sha256": "9f9d43a306a500da06ae3a4625695e3f6cf348b275d8d515a8bfcdc3097c846e",
+      "git_blob": "05f835f6c87c528b64b38054c2c41adc8cbef078"
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "kind": "exact_803e",
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "git_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "kind": "exact_803e",
+      "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+      "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe"
+    },
+    {
+      "path": "scripts/games/visual/kart_harbor_cinema.gd",
+      "kind": "exact_803e",
+      "sha256": "bc180fa343ad690680d52c8223e1ceca105457bf8db8db6e487060098511eb90",
+      "git_blob": "5a409d72db69d93b861576aaa2eb53052eb88e1d"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "kind": "exact_803e",
+      "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+      "git_blob": "2b0c2f5b379535cbc4e54c9c1badca72c0f1bc19"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "kind": "exact_803e",
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "git_blob": "f2085dc82b9840077e631f586a4f4fb5159d7c08"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "kind": "exact_803e",
+      "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+      "git_blob": "0f5f8f508cf6cfb6f67c8178a25e5522580a5e85"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "kind": "exact_803e",
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "git_blob": "5d3a1ae763e84cb09276cafe9ba5f9541bf49447"
+    },
+    {
+      "path": "scripts/games/visual/kart_cinema_materials.gd",
+      "kind": "exact_803e",
+      "sha256": "69fc8def6197e5173104f015d82daf7a6b7c8574e0e6b158ae3e2a083ba0df15",
+      "git_blob": "9b10945c42d91086739c49b4b64ce272b7828043"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_high.gdshader",
+      "kind": "exact_803e",
+      "sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4",
+      "git_blob": "c72e2d6d510c5b2c32b323d173b7798196c56cc7"
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_mobile.gdshader",
+      "kind": "exact_803e",
+      "sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536",
+      "git_blob": "0107cdef09f8106c86f38c8483a0037750e2981b"
+    }
+  ]
+}

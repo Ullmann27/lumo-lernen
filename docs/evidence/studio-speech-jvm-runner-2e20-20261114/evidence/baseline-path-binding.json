@@ -1,0 +1,16 @@
+{
+  "baseline_host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "tree_response_sha": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "truncated": false,
+  "checked_paths": [
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "existing_entries": []
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "existing_entries": []
+    }
+  ],
+  "source": "Previously retrieved complete exact GitHub tree in this session; no fresh remote fetch claimed"
+}

@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "artifact": {
+    "id": 14108161604,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEwODE2MTYwNA==",
+    "name": "lumo-studio-2020-connect-four-regression",
+    "size_in_bytes": 2703376,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108161604",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14108161604/zip",
+    "expired": false,
+    "digest": "sha256:486db99ad34a051e16bb9d24d99574b9dcecfe992f45b1c54cfc257c1cea8e93",
+    "created_at": "2026-11-14T09:24:22Z",
+    "updated_at": "2026-11-14T09:24:22Z",
+    "expires_at": "2026-12-14T09:24:21Z",
+    "workflow_run": {
+      "id": 43580228966,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "head_sha": "078774ddaf64808addaa4c6406f6a3c85b1f239a"
+    }
+  },
+  "archive": {
+    "path": "/tmp/lumo-078-c4-original-evidence.zip",
+    "bytes": 2703376,
+    "sha256": "486db99ad34a051e16bb9d24d99574b9dcecfe992f45b1c54cfc257c1cea8e93",
+    "crc_all_entries_pass": true
+  },
+  "host_sha": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "files": [
+    {
+      "archive_member": "EXIT-CODE.txt",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/EXIT-CODE.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob_sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    {
+      "archive_member": "HOST-SOURCE.txt",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "e5d3cd2a5e441d794c05ed2cfc0cf7cf0c3c60d467a0a29bc29eec7651d40011",
+      "git_blob_sha": "fa1f6db31c69568ba55176c6a3bdd884b497313a"
+    },
+    {
+      "archive_member": "GODOT-SOURCE.json",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+      "git_blob_sha": "fa2d703726599e61feadd58cebef0514fd4d049e"
+    },
+    {
+      "archive_member": "LOG-EXIT-CODE.txt",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/LOG-EXIT-CODE.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob_sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    {
+      "archive_member": "captures/1200x896.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/1200x896.png",
+      "bytes": 705374,
+      "sha256": "e7ddd655f26b2c84c7ef2f9235c59f2cf399b547aec8ea8535006dfccbe9586d",
+      "git_blob_sha": "0da1025ad179f83d5c5a01be072ba6dee005b9cf",
+      "size": [
+        1200,
+        896
+      ]
+    },
+    {
+      "archive_member": "captures/1280x720.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/1280x720.png",
+      "bytes": 635882,
+      "sha256": "bb22f40bb2193e6d67aa43a5cec929eee8fd98a84c20e436ac4d191c8f1a2e12",
+      "git_blob_sha": "008692ccb7a1ca203e16f931cd3945702dfcddd1",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "archive_member": "captures/360x800.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/360x800.png",
+      "bytes": 199897,
+      "sha256": "4d8b0db20534914db8960081886236421357d13af0a2f8e09580ed0905b387f4",
+      "git_blob_sha": "1fa5a4b0c1cf6ee1aaeb1981e6c7f130c7ca552e",
+      "size": [
+        360,
+        800
+      ]
+    },
+    {
+      "archive_member": "captures/640x360.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/640x360.png",
+      "bytes": 150801,
+      "sha256": "6f34ad2e2db979155137f6a9bb7d958aafb70079065ed61a9917e284ee057c2c",
+      "git_blob_sha": "8ba2b893fa81c2ea6869bf5cdffadcccfa4dbeff",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "archive_member": "captures/740x840.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/740x840.png",
+      "bytes": 390737,
+      "sha256": "5990524a7235f52e3588acea53db98c8cccad1cde1bfcb43831122f5bb1d0a72",
+      "git_blob_sha": "e3361b726aab6eb7be483caad4fab2f7a2db64a0",
+      "size": [
+        740,
+        840
+      ]
+    },
+    {
+      "archive_member": "captures/fold-320x480-text2.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-320x480-text2.0.png",
+      "bytes": 115813,
+      "sha256": "6e0437716ce4cdeb3a526ec3fc373dd868b4494dc170318b6d0b9e39b49c09e0",
+      "git_blob_sha": "d5fef799c1e00bba28f7d7a59e41094fa2cf60c0",
+      "size": [
+        320,
+        480
+      ]
+    },
+    {
+      "archive_member": "captures/fold-320x740-text1.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-320x740-text1.0.png",
+      "bytes": 167247,
+      "sha256": "1f5ccb663263474ae30e5d648f6ef700e3624e99ed7b5518b55b0601a9f9f57d",
+      "git_blob_sha": "d34dcf301ec08133cefc79b28631104ba7e5027a",
+      "size": [
+        320,
+        740
+      ]
+    },
+    {
+      "archive_member": "captures/fold-360x800-text1.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-360x800-text1.0.png",
+      "bytes": 192707,
+      "sha256": "60086a100648139977d072ade46bebc5e20b363f7661d5a0bafa4616d2f981e7",
+      "git_blob_sha": "e0614745838f8a65c8376bda1780bc41d090f30b",
+      "size": [
+        360,
+        800
+      ]
+    },
+    {
+      "archive_member": "captures/fold-640x360-text1.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-640x360-text1.0.png",
+      "bytes": 147998,
+      "sha256": "5fb0d423a3ee6ad230d960dc79a153f9c10a6be1cf906e61a3ede7accfc6aa10",
+      "git_blob_sha": "53022131c5dd529698193b5a47d034c9258ac999",
+      "size": [
+        640,
+        360
+      ]
+    },
+    {
+      "archive_member": "flutter.log",
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/flutter.log",
+      "bytes": 2561,
+      "sha256": "3c9eab378ab1747cee5b0fcc1c76c812301da74f5843ebb6a64419c1cd8a21b5",
+      "git_blob_sha": "0b71e18585d809d77403399e3b3941f40d091d5a"
+    }
+  ],
+  "scope": "Original CI Flutter fallback/widget screenshots; no Android or Native render/performance claim."
+}

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "source_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "scope": "Test-only correction of four existing cases; no runtime test execution. Full original helper/store/product code outside the three replacement regions remains identical.",
+  "files": [
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "exact_replacement_regions": 2,
+      "inverse_replacement_restores_entire_baseline_bytes": true,
+      "test_declarations_unchanged": true
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "exact_replacement_regions": 1,
+      "inverse_replacement_restores_entire_baseline_bytes": true,
+      "test_declarations_unchanged": true
+    }
+  ],
+  "product_source_unchanged": true,
+  "new_wallet_14_unchanged": true,
+  "no_local_dart_or_flutter_execution": true
+}

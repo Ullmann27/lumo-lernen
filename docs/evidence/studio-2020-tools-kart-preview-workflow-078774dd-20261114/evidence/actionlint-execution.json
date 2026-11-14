@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/host/.github/workflows/lumo-studio-2020.yml"
+  ],
+  "started_at": "2026-11-14T11:09:25.900946+00:00",
+  "elapsed_seconds": 0.009897879004711285,
+  "exit_code": 0,
+  "version": "1.7.12\ninstalled by downloading from release page\nbuilt with go1.26.1 compiler for linux/amd64",
+  "workflow": {
+    "bytes": 59128,
+    "sha256": "441ddceba899294f0c5a2c4657473251978b3be38704b31a692f39d786c377a7",
+    "git_blob": "b8e63e1841828cab1e75ef3896e47b2d4d6aa38f"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "runtime_or_unittest_execution": false
+}

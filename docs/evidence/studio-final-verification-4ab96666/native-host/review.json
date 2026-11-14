@@ -1,0 +1,84 @@
+{
+  "observed_at_utc": "2026-11-14T00:56:18.958068+00:00",
+  "status": "PASS_SOURCE_BOUND_NATIVE_REQUIRED_STEP",
+  "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "run_id": 43530667812,
+  "job_id": 132247240154,
+  "step_finished_at": "2026-11-14T00:49:52Z",
+  "artifact_id": 14090026570,
+  "archive_bytes": 157198504,
+  "archive_sha256": "452061825ace93484d7699c27e858c66ca225c3f893b329e35cb1d92f9d4804c",
+  "crc_members": 5329,
+  "all_zip_crc_valid": true,
+  "source_stamps": [
+    {
+      "path": "source-sha.txt",
+      "value": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    },
+    {
+      "path": "technical-art/source-sha.txt",
+      "value": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    },
+    {
+      "path": "nextgen/source-sha.txt",
+      "value": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    },
+    {
+      "path": "studio/source-sha.txt",
+      "value": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    },
+    {
+      "path": "action-stage/source-sha.txt",
+      "value": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    }
+  ],
+  "empty_dirty_stamps": [
+    "nextgen/source-dirty.txt",
+    "studio/source-dirty.txt"
+  ],
+  "tables": {
+    "nextgen": {
+      "gates": 25,
+      "pass": 25,
+      "fail": 0,
+      "modes": {
+        "headless": 16,
+        "rendered": 9
+      }
+    },
+    "studio": {
+      "gates": 16,
+      "pass": 16,
+      "fail": 0,
+      "modes": {
+        "headless": 9,
+        "rendered": 7
+      }
+    }
+  },
+  "project_validation": {
+    "pass": 117,
+    "warn": 7,
+    "fail": 0,
+    "warning_lines": [
+      "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)"
+    ]
+  },
+  "retained_error_formatted_exit_resource_lines": 4,
+  "limits": [
+    "Counts are gate rows, not an additive unique unit-test total. Headless/rendered variants may exercise the same implementation.",
+    "Four original resource-still-in-use-at-exit lines across three logs remain preserved. This does not claim leak-free operation or physical-device memory stability.",
+    "This host-native artifact is source-bound and CRC checked. Its PNGs have not all been manually reviewed; the separate accepted Native803 visual archive and additional33Kart images have their own actual reviews.",
+    "APK build and Android/API35/API37/update/creative/publisher results remain separate, still pending at this report time.",
+    "Original CharacterTests for the separate primitive character do not prove facial animation of the65bone original GLB.",
+    "The project validator reports six missing legacy AssetLoader models with existing fallbacks and one missing executable bit on a web helper. These original warnings are retained; the separate Original-Lumo animated GLB is not one of those absent legacy paths."
+  ]
+}

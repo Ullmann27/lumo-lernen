@@ -1,0 +1,33 @@
+{
+  "started_at_utc": "2026-11-14T13:02:23.399418+00:00",
+  "completed_at_utc": "2026-11-14T13:02:28.326125+00:00",
+  "elapsed_seconds": 4.926707550000174,
+  "exit_code": 0,
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-quiz-native-recovery-20261114",
+    "--script",
+    "res://scripts/tests/quiz_studio_runtime.gd",
+    "--",
+    "--fixture"
+  ],
+  "environment": {
+    "LUMO_CAPTURE_DIR": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/evidence/final-headless"
+  },
+  "source_before": {
+    "scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+    "scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+    "scripts/tests/quiz_studio_runtime.gd": "22d0d8a4357b63453d35f5befaaae2c4ba0fea19b95bd54bf025a9a00a6ac36c"
+  },
+  "source_after": {
+    "scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+    "scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+    "scripts/tests/quiz_studio_runtime.gd": "22d0d8a4357b63453d35f5befaaae2c4ba0fea19b95bd54bf025a9a00a6ac36c"
+  },
+  "source_unchanged": true,
+  "strict_engine_error": false,
+  "log_sha256": "b7398d9e781936e6f3ea0290e8a01ffec41a861e5ca53b988dc16c4513638385",
+  "scope": "Actual Godot-only UI/transport fixture; production Dart process pending"
+}

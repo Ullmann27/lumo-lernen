@@ -1,0 +1,20 @@
+{
+  "local_tesseract": "tesseract 5.5.0",
+  "ci_tesseract_package": "5.3.4-1build5",
+  "language_listing": "List of available languages in \"/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata/\" (3):\ndeu\neng\nosd\n",
+  "models": [
+    {
+      "name": "deu.traineddata",
+      "path": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata/deu.traineddata",
+      "bytes": 1525436,
+      "sha256": "19d219bbb6672c869d20a9636c6816a81eb9a71796cb93ebe0cb1530e2cdb22d"
+    },
+    {
+      "name": "eng.traineddata",
+      "path": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata/eng.traineddata",
+      "bytes": 4113088,
+      "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+    }
+  ],
+  "prior_experiment_limit": "Earlier local runs without TESSDATA_PREFIX emitted missing-deu diagnostics and used available English. They remain saved but are not language-identical CI reproductions. All final red/green replays use this explicitly verified existing model directory."
+}

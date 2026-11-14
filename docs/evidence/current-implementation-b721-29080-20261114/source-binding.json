@@ -1,0 +1,1579 @@
+{
+  "schema": 1,
+  "document_kind": "bounded_current_implementation_supplement",
+  "language": "de",
+  "observation_utc": "2026-11-14T17:34:30Z",
+  "author": "learning_worlds",
+  "report": {
+    "name": "IMPLEMENTIERUNGSSTAND_B721_29080.md",
+    "bytes": 15360,
+    "sha256": "19ca34da9088744c0d417f8ba85fbbaeae4a2e0be38b3258e898e6c9e865d4f7",
+    "git_blob_sha": "c50336b300e8df712b29a2a6f7727e3fa0b96edb",
+    "body_word_count_whitespace": 1371,
+    "word_count_excludes_reference_definitions": true
+  },
+  "identity": {
+    "host": {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "tree": "c65558a13e4dd2950eda7a685583e5484d9b9959"
+    },
+    "native": {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    },
+    "evidence": {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "tree": "dcf5bd0be5e7d433a189462255c4571a07098fa5",
+      "blob_leaves": 8197
+    }
+  },
+  "method": {
+    "local_environment": "unavailable; no filesystem, shell, image or rendering calls performed for this report",
+    "readable_capabilities": [
+      "GitHub read APIs",
+      "remote CI metadata",
+      "agent collaboration",
+      "immutable Git blob create/readback"
+    ],
+    "product_sources_changed": false,
+    "tests_or_synthesis_executed": false,
+    "new_image_views": 0,
+    "git_tree_commit_ref_changes": false,
+    "local_utf8_files_created": false
+  },
+  "fresh_full_utf8_sources": [
+    {
+      "key": "old-matrix",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+      "bytes": 23706,
+      "sha256": "84806e7250b95abfca0c610d1cb1a75bce80f9a5f0f0f919946c62bf8683620f",
+      "git_blob_sha": "47b3582e139681b7c6df4734b4d83a7fa5ae7308",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "old-matrix-binding",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/current-master-module-report-20261114/module-matrix-source-binding.json",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/current-master-module-report-20261114/module-matrix-source-binding.json",
+      "bytes": 28659,
+      "sha256": "c86bd72578089279bf4804b6dd8644ea59b52a29be546135da456d3eda1df5dc",
+      "git_blob_sha": "1fdeb99329f28096eaada7e8081f7be4656676d9",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "vocabulary",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+      "git_blob_sha": "4469849b204f91fab3e645604e11922e29cb594c",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "learning-activity",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 7587,
+      "sha256": "1c067ad052a5cabaeeadb6730d15a7618cbeafe1b5c8b83eed9af770c94035d2",
+      "git_blob_sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "facial-attribution",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/assets/characters/lumo_facial/ATTRIBUTION.md",
+      "bytes": 2626,
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "git_blob_sha": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "speech",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 11318,
+      "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+      "git_blob_sha": "755077c4f1385f9b09464113aeaab3a20ec8a376",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "speech-engine",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 19214,
+      "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+      "git_blob_sha": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "speech-review",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/review.json",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-host-b721-speech-ci-20261114/review.json",
+      "bytes": 18266,
+      "sha256": "8106dab9b52cf8acebec6f260c1a62f711ea07b628dbbe0f91c2aa583629fd65",
+      "git_blob_sha": "47f7222de314f389f8084ea6979a2264e86a2e7b",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "receipt",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "config/studio-2020-visual-review.json",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/config/studio-2020-visual-review.json",
+      "bytes": 53587,
+      "sha256": "5222d8dc02993b9ce3dca7388e7a6b5c176a5fc1869f9f5cb6c953e0a1f31076",
+      "git_blob_sha": "f830ad2a124fbe4dad8adb94dd0eb47719f31856",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "portals",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/spielwelt/spielwelt_routes.dart",
+      "bytes": 6340,
+      "sha256": "086df3ad460485fe309c53ada07743b83880f6e79bd140159ed9dd92e67ca64c",
+      "git_blob_sha": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "kart-catalog",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/games/kart_catalog.gd",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/games/kart_catalog.gd",
+      "bytes": 3638,
+      "sha256": "dd76d5c6b70d9c8d7e6d4625a20285e2538b945c093a0161eee52eb515f2113d",
+      "git_blob_sha": "e0da716a0a6ed91cf01bf4f65c8b4e6376219a7f",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "kart-expansion",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/games/kart_expansion_tracks.gd",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/games/kart_expansion_tracks.gd",
+      "bytes": 5845,
+      "sha256": "e67e5e2428b80c2982290d9b532c0ff3eb6ceacb53bc4e0b1380e371a16b54b4",
+      "git_blob_sha": "ce5e5bf1da9ba47f444e7156cb539abf9d41802d",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "recovery-summary",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-summary.json",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-summary.json",
+      "bytes": 479,
+      "sha256": "e7dc5e89c856ef09f300baa90e685b770d67be98610cedf34aef4a5fc89725e1",
+      "git_blob_sha": "c76008f2095d682ee0c6d1cd8c3e7b31ae0675ce",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "current-quiz-review",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/review.json",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-host-b721-quiz-ci-20261114/review.json",
+      "bytes": 7625,
+      "sha256": "b7ea7a09d332a14de44311c589e65ce06b0fd30568c7918d2392ff17cb6ec9bb",
+      "git_blob_sha": "999fe9018542528ba8b0d0f9efa9537635629eae",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "current-memory-readme",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-b721-memory-authority-20261114/README.md",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-b721-memory-authority-20261114/README.md",
+      "bytes": 4096,
+      "sha256": "dd392a17797f8849411f7ba7fe7962caa874bf5acc743594fae823396949cd3a",
+      "git_blob_sha": "19511eb0eb17db3f2b4a0efa8d77c999fd318f4f",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "current-flutter-review",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/review.json",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/host-b721-flutter-acceptance-20261114/review.json",
+      "bytes": 8098,
+      "sha256": "2d36412606cbd5ac713d523630f968fc55178c0ec99614d17554125456212d31",
+      "git_blob_sha": "5072013c6979230ee1ec07e309b138fca3755358",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    },
+    {
+      "key": "current-english-review",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+      "bytes": 12422,
+      "sha256": "3feaba5d2ba3c189045f158d570531bcf6d681c52440f1a191d7b555ba06086f",
+      "git_blob_sha": "1625ac0837957fd26f791e63dd2577cb5960d079",
+      "git_mode": "100644",
+      "full_utf8_source_read": true,
+      "actual_tree_match": true
+    }
+  ],
+  "original_job_metadata": [
+    {
+      "key": "native-full-jobs",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43611803408/attempts/1/jobs?per_page=100",
+      "bytes": 19938,
+      "sha256": "e719eb94a6060cc8346f01b038baf4d1ad4c048ee2a32700acb549a6df5182c1",
+      "git_blob_sha": "abc639253d2be8aaea6ffdc02db2d6f51861da7e",
+      "full_original_utf8_in_functions_store": true,
+      "jobs": [
+        {
+          "id": 132498257241,
+          "name": "gameplay",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T15:44:40Z",
+          "completed_at": "2026-11-14T15:59:55Z"
+        },
+        {
+          "id": 132498257435,
+          "name": "learning-preview",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T15:44:40Z",
+          "completed_at": "2026-11-14T15:54:19Z"
+        },
+        {
+          "id": 132498257475,
+          "name": "touch-workshop",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T15:44:40Z",
+          "completed_at": "2026-11-14T16:07:38Z"
+        },
+        {
+          "id": 132498257483,
+          "name": "touch-build",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T15:44:40Z",
+          "completed_at": "2026-11-14T16:01:38Z"
+        },
+        {
+          "id": 132498257493,
+          "name": "touch-treasure",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T15:44:40Z",
+          "completed_at": "2026-11-14T16:00:53Z"
+        },
+        {
+          "id": 132498257499,
+          "name": "studio",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T15:44:40Z",
+          "completed_at": "2026-11-14T16:03:32Z"
+        },
+        {
+          "id": 132503450540,
+          "name": "new-worlds",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T16:03:33Z",
+          "completed_at": "2026-11-14T16:22:11Z"
+        },
+        {
+          "id": 132508701385,
+          "name": "bundle-evidence",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T16:22:13Z",
+          "completed_at": "2026-11-14T16:22:35Z"
+        },
+        {
+          "id": 132508814681,
+          "name": "archive-evidence",
+          "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T16:22:38Z",
+          "completed_at": "2026-11-14T16:23:17Z"
+        }
+      ]
+    },
+    {
+      "key": "feature-terminal-jobs",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43618076296/attempts/1/jobs?per_page=100",
+      "bytes": 9709,
+      "sha256": "b07569c23933375b00452b900f112639828a8dd3afea81abf72e164b3df225f6",
+      "git_blob_sha": "3abb4270df2f37864849ed39b73cab896383b2a4",
+      "full_original_utf8_in_functions_store": true,
+      "jobs": [
+        {
+          "id": 132517423515,
+          "name": "android-host-compile",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T16:53:38Z",
+          "completed_at": "2026-11-14T17:00:08Z"
+        },
+        {
+          "id": 132517423810,
+          "name": "flutter-contracts",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T16:53:38Z",
+          "completed_at": "2026-11-14T17:04:52Z"
+        },
+        {
+          "id": 132517423829,
+          "name": "memory-source-contracts",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T16:53:38Z",
+          "completed_at": "2026-11-14T16:54:17Z"
+        }
+      ]
+    },
+    {
+      "key": "recovery-jobs",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43618078329/attempts/1/jobs?per_page=100",
+      "bytes": 2775,
+      "sha256": "06e1ef9b527943a11761632bcbe34e86fc165449097d0b912a2286406e528f6b",
+      "git_blob_sha": "fcfee98fa0cc5e6197924c1f71f35f7724102ea6",
+      "full_original_utf8_in_functions_store": true,
+      "jobs": [
+        {
+          "id": 132517429410,
+          "name": "full-app-script-regression",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T16:53:40Z",
+          "completed_at": "2026-11-14T16:57:04Z"
+        }
+      ]
+    },
+    {
+      "key": "studio-jobs-at-freeze",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43619285124/attempts/1/jobs?per_page=100",
+      "bytes": 25526,
+      "sha256": "4d2137282d393a7d079579decdeaa1448c76cf88996f7dfc08557e75513d1579",
+      "git_blob_sha": "aca320ddf38273f771820577d0770b251b236c62",
+      "full_original_utf8_in_functions_store": true,
+      "jobs": [
+        {
+          "id": 132521067290,
+          "name": "android-host-compile",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T17:06:38Z",
+          "completed_at": "2026-11-14T17:11:26Z"
+        },
+        {
+          "id": 132521067410,
+          "name": "Nextgen english actual authority",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T17:06:38Z",
+          "completed_at": "2026-11-14T17:16:23Z"
+        },
+        {
+          "id": 132521067471,
+          "name": "verify-and-build",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "in_progress",
+          "conclusion": null,
+          "started_at": "2026-11-14T17:06:38Z",
+          "completed_at": null
+        },
+        {
+          "id": 132521067495,
+          "name": "Nextgen quiz actual authority",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T17:06:38Z",
+          "completed_at": "2026-11-14T17:09:07Z"
+        },
+        {
+          "id": 132521067548,
+          "name": "Nextgen memory actual authority",
+          "head_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-14T17:06:38Z",
+          "completed_at": "2026-11-14T17:10:53Z"
+        }
+      ]
+    }
+  ],
+  "inherited_inventory": {
+    "source_document_git_blob_sha": "47b3582e139681b7c6df4734b4d83a7fa5ae7308",
+    "source_binding_git_blob_sha": "1fdeb99329f28096eaada7e8081f7be4656676d9",
+    "scope": "Existing functionality and historical Studio changes only; prior CI status/counts not transferred",
+    "current_selected_source_comparisons": [
+      {
+        "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "lib/features/games/games_content.dart",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "4469849b204f91fab3e645604e11922e29cb594c",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "4469849b204f91fab3e645604e11922e29cb594c",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "lib/domain/tutoring/native_learning_activity.dart",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "lib/features/games/memory/lumo_memory_game.dart",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "lib/features/quiz/quiz_show_content.dart",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "98d7d59c6053785eddb3db48b2673a41e2b8c407",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "98d7d59c6053785eddb3db48b2673a41e2b8c407",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "docs/STUDIO_NEXTGEN_SCOPE.md",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "0e2ddd6f920f073367cbb49cb6b90900523e59da",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "0e2ddd6f920f073367cbb49cb6b90900523e59da",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "docs/NEXTGEN_FEATURE_20261114.md",
+        "repository": "Ullmann27/lumo-lernen",
+        "prior_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+        "prior_git_blob_sha": "5a4a111a19a7877a57eb9535fd47ea7f2fdd2888",
+        "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+        "current_git_blob_sha": "5a4a111a19a7877a57eb9535fd47ea7f2fdd2888",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "53cb01bfbd23a2962da5428a08b8aee313d5e152",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "53cb01bfbd23a2962da5428a08b8aee313d5e152",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/app/scene_router.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "09b5b8119729e0a5556a18acf9497f31962cb343",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "09b5b8119729e0a5556a18acf9497f31962cb343",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "91b8a8cd25f21dab84b77f178aa82d06673b54f9",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "91b8a8cd25f21dab84b77f178aa82d06673b54f9",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "f2085dc82b9840077e631f586a4f4fb5159d7c08",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "f2085dc82b9840077e631f586a4f4fb5159d7c08",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "e4b6a6081a922a137f68491de66f51e096528510",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "e4b6a6081a922a137f68491de66f51e096528510",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/games/kart_catalog.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "e0da716a0a6ed91cf01bf4f65c8b4e6376219a7f",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "e0da716a0a6ed91cf01bf4f65c8b4e6376219a7f",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/games/kart_expansion_tracks.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "ce5e5bf1da9ba47f444e7156cb539abf9d41802d",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "ce5e5bf1da9ba47f444e7156cb539abf9d41802d",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/games/kart_tracks.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "92e91f78c9afcf958b98e8b3ddcdb245ea031441",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "92e91f78c9afcf958b98e8b3ddcdb245ea031441",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/games/memory/memory_table.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "9c998e33aee127453a67d25a6e020638472b8387",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "9c998e33aee127453a67d25a6e020638472b8387",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/games/quiz/quiz_studio.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/learning/learning_activity.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/learning/learning_world.gd",
+        "repository": "Ullmann27/lumo-godot",
+        "prior_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+        "prior_git_blob_sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+        "current_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+        "current_git_blob_sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+        "mode": "100644",
+        "identical": true
+      }
+    ],
+    "all_23_selected_git_blobs_identical": true,
+    "binary_assets_read_now": false
+  },
+  "unchanged_writing_journal_reading_prefixes": [
+    {
+      "prefix": "lib/features/writing/",
+      "baseline_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "file_count": 6,
+      "all_blobs_and_modes_identical": true,
+      "entries": [
+        {
+          "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+          "sha": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+          "mode": "100644",
+          "size": 28091
+        },
+        {
+          "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+          "sha": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+          "mode": "100644",
+          "size": 38878
+        },
+        {
+          "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+          "sha": "123c13786584c3f9c487ae1b71317841d2995420",
+          "mode": "100644",
+          "size": 2434
+        },
+        {
+          "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+          "sha": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+          "mode": "100644",
+          "size": 39576
+        },
+        {
+          "path": "lib/features/writing/writing_engine.dart",
+          "sha": "a6df9ce87657681d776d5f46ff10a63acf74b6ba",
+          "mode": "100644",
+          "size": 57931
+        },
+        {
+          "path": "lib/features/writing/writing_feature_flags.dart",
+          "sha": "41000a96041c2fd4e43ed228666f66650e629719",
+          "mode": "100644",
+          "size": 1534
+        }
+      ]
+    },
+    {
+      "prefix": "lib/features/journal/",
+      "baseline_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "file_count": 2,
+      "all_blobs_and_modes_identical": true,
+      "entries": [
+        {
+          "path": "lib/features/journal/journal_repository.dart",
+          "sha": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+          "mode": "100644",
+          "size": 3696
+        },
+        {
+          "path": "lib/features/journal/lumo_journal_screen.dart",
+          "sha": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+          "mode": "100644",
+          "size": 33174
+        }
+      ]
+    },
+    {
+      "prefix": "lib/features/reading/",
+      "baseline_commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "current_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "file_count": 7,
+      "all_blobs_and_modes_identical": true,
+      "entries": [
+        {
+          "path": "lib/features/reading/lumo_reading_buddy_screen.dart",
+          "sha": "deb9ba4e9af26763516e54a44d70e56d62dc9d77",
+          "mode": "100644",
+          "size": 32269
+        },
+        {
+          "path": "lib/features/reading/reading_comprehension.dart",
+          "sha": "c7553332e20f7e9f606445083d034ed7d118f8b2",
+          "mode": "100644",
+          "size": 6163
+        },
+        {
+          "path": "lib/features/reading/reading_content.dart",
+          "sha": "33314187d201558248500457bf9179894fcfbfec",
+          "mode": "100644",
+          "size": 40428
+        },
+        {
+          "path": "lib/features/reading/reading_text_library.dart",
+          "sha": "f5ee5c8c48ecc2bc7baa2bede31ec514e00d558f",
+          "mode": "100644",
+          "size": 10500
+        },
+        {
+          "path": "lib/features/reading/voice_reading_evaluator.dart",
+          "sha": "06ff0ea6f5201dd18f668971006594f92de39bad",
+          "mode": "100644",
+          "size": 5429
+        },
+        {
+          "path": "lib/features/reading/widgets/reading_active_sentence_view.dart",
+          "sha": "738b0aecbde2b7319c83a8ed022a0c1835db3e40",
+          "mode": "100644",
+          "size": 1215
+        },
+        {
+          "path": "lib/features/reading/widgets/reading_syllable_chip.dart",
+          "sha": "ee779e3dcfede8e4b654cea0f9502d47593f71a2",
+          "mode": "100644",
+          "size": 1754
+        }
+      ]
+    }
+  ],
+  "existing_current_visual_receipt": {
+    "receipt_git_blob_sha": "f830ad2a124fbe4dad8adb94dd0eb47719f31856",
+    "receipt_sha256": "5222d8dc02993b9ce3dca7388e7a6b5c176a5fc1869f9f5cb6c953e0a1f31076",
+    "native_workflow_run_id": 43611803408,
+    "native_artifact_id": 14121618349,
+    "native_artifact_sha256": "f9d84c3d4f80f27fe134ab5e4cb040b811262d6d6c6a032433bc5f644ed886fc",
+    "accepted_scope": "49 current original renderer images personally reviewed: Root13, learning_worlds9, character_animation12, games_worlds15; all49 distinct PNG hashes, all5085 archive CRCs and five clean source stamps verified. Current Native29080 run43611803408 has all9 jobs SUCCESS. The separate English/Quiz/Memory authority originals in run43611803404 were also reviewed (17/6/15 images), explicitly actual Host50503; these are separate evidence, not included in this combined archive or a final Host speech playback claim. This receipt accepts the documented native visual scope only. Desktop Godot4.6.3/X11/Compatibility/llvmpipe captures are not Android screenshots or physical Fold7 performance. Current movie strictly decodes148 frames at24 recording fps; Root viewed16 selected frames, did not listen to audio and does not claim phoneme lip sync. Remaining observations include partially covered Cards fox head in wide format, no fox in the narrow C4 view, scrolled/ellipsized compact labels, Puzzle text 1 Tipps, simple scenery and visible facial seams/facets. Current gameplay original logs four unresolved resource-at-exit diagnostics: KartAI4, GarageTargets2, KartRivalDrift4, KartFullField2. Workflow success does not mean zero diagnostics. The evidence release is public and SHA-bound, but GitHub reports immutable=false. This is neither an AAA-completion approval nor APK, child-data migration, English audio hearing or60FPS approval; current Android/update/Creative and publisher gates remain mandatory.",
+    "prior_personally_reviewed_team_count": 49,
+    "personally_reviewed_by_this_report": 0,
+    "current_host_tree_presence": 49,
+    "files": [
+      {
+        "path": "docs/evidence/studio-2020-reviewed/55089d40b1c3f7b7e7ff77066006fbba85df74d367744dae2bd454eb2d5d2377-cards-cards-table-1280x720.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+        "module": "cards",
+        "sha256_from_existing_receipt": "55089d40b1c3f7b7e7ff77066006fbba85df74d367744dae2bd454eb2d5d2377",
+        "git_blob_sha": "7de6847d7ee4af098810d6214957c97c8d2f22d1",
+        "bytes": 568103,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/86a462dbb002106e96dd943c546755e080a720db072944f32c0fb5bba9543e18-cards-cards-table-412x915.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+        "module": "cards",
+        "sha256_from_existing_receipt": "86a462dbb002106e96dd943c546755e080a720db072944f32c0fb5bba9543e18",
+        "git_blob_sha": "0c39bbd562a7f89d7f03fbf2dba59ca167b46d2b",
+        "bytes": 289390,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b-treasure-treasure-2176x1812-complete.png",
+        "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b",
+        "git_blob_sha": "65b7ada510c6a15e8cb17b58eaf3ce334ff99caf",
+        "bytes": 4254076,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/ae53121f34679850bd86163c6a1f3245accd8369710cd5815efd7a6c12145a8d-cards-android35_portrait-playing.png",
+        "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+        "module": "cards",
+        "sha256_from_existing_receipt": "ae53121f34679850bd86163c6a1f3245accd8369710cd5815efd7a6c12145a8d",
+        "git_blob_sha": "af10b0a63a693d4096eef2614feec42c1ba33e0a",
+        "bytes": 1272865,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/bc1a5465f83736f8c0db00a7188075a02503f6d33eecaf58e2ece62d813e1a45-cards-android35_portrait-paused.png",
+        "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+        "module": "cards",
+        "sha256_from_existing_receipt": "bc1a5465f83736f8c0db00a7188075a02503f6d33eecaf58e2ece62d813e1a45",
+        "git_blob_sha": "63b97a082c335a66f44707415175c22353495158",
+        "bytes": 1141701,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/e97b23764222326565d07e46023869467c2333861c4f9e19223a9b6eaf4fb93b-cards-landscape_cutout_fixture-playing.png",
+        "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+        "module": "cards",
+        "sha256_from_existing_receipt": "e97b23764222326565d07e46023869467c2333861c4f9e19223a9b6eaf4fb93b",
+        "git_blob_sha": "fd58805253ac462cfceabd430c1a6dc7b3d1218b",
+        "bytes": 1002653,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/bb4b6d491fb5d81c96732c92e6165103953ec5e83a002d2888314ec6108768b9-treasure-treasure-landscape-cutout.png",
+        "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "bb4b6d491fb5d81c96732c92e6165103953ec5e83a002d2888314ec6108768b9",
+        "git_blob_sha": "0d893c8567694f23499aef6b28b1d6ee4a441ad4",
+        "bytes": 2622765,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195-connect_four-c4-paused-small.png",
+        "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+        "module": "connect_four",
+        "sha256_from_existing_receipt": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+        "git_blob_sha": "7806e7f57e122d27342bbd6342325cf96b96ef55",
+        "bytes": 29411,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/6b1c76e597737636fc344b4eef3fe2c2cad0ff1d591b61fbd9eb3de64ff72279-treasure-treasure-title-fold.png",
+        "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "6b1c76e597737636fc344b4eef3fe2c2cad0ff1d591b61fbd9eb3de64ff72279",
+        "git_blob_sha": "d61d73d761b6984b57c0ca0dc4d08a6ad5f28bd1",
+        "bytes": 4225051,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/bccfcf79f4938d448e01756ff37761f6b15afe2ec6b1288b714b35a5d3779073-connect_four-c4-empty-landscape.png",
+        "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+        "module": "connect_four",
+        "sha256_from_existing_receipt": "bccfcf79f4938d448e01756ff37761f6b15afe2ec6b1288b714b35a5d3779073",
+        "git_blob_sha": "ea6eabb0cd0940066ebf0751c7c023191f4a5341",
+        "bytes": 82090,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/f76a72a732a6a08c659db5e4e4a3737b9ac4c7064ca40de8f816935b1693515c-connect_four-c4-win-landscape.png",
+        "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+        "module": "connect_four",
+        "sha256_from_existing_receipt": "f76a72a732a6a08c659db5e4e4a3737b9ac4c7064ca40de8f816935b1693515c",
+        "git_blob_sha": "b0b174357c1d8eedad26498e8f910b6bfad3ad66",
+        "bytes": 83862,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c-connect_four-c4-playing-phone.png",
+        "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+        "module": "connect_four",
+        "sha256_from_existing_receipt": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+        "git_blob_sha": "93f1122761f944ff0ec85829d666dea0fc491cc0",
+        "bytes": 67672,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/5358811004c350bd8c0e4362ed2546fb0bf259d9a9a9c9469f0bfd87f5c87f77-treasure-treasure-title-landscape-cutout.png",
+        "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "5358811004c350bd8c0e4362ed2546fb0bf259d9a9a9c9469f0bfd87f5c87f77",
+        "git_blob_sha": "e787bdb4b779687ae532507b86bd75aef2a00d4f",
+        "bytes": 2623163,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3-learning-sharing-complete-1280x720.png",
+        "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+        "git_blob_sha": "eaddeb0eff8e91211cefadfb6d0307e1461bfe3a",
+        "bytes": 249517,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709-learning-sharing-first-round-412x915.png",
+        "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+        "git_blob_sha": "b234b00e4d75d1051412c9c3a350f112a5772de2",
+        "bytes": 111652,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075-learning-bridge_hundred-complete-2400x1080.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+        "git_blob_sha": "696f4e7dd2e1e2e7136d9306c2c8acb37284c3b5",
+        "bytes": 723941,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45-learning-bridge_hundred-complete-412x915.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+        "git_blob_sha": "4164e34b8d8d768e4a0f672fa8ae3e104e3c593a",
+        "bytes": 135401,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe-garage-garage-1280x720.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+        "module": "garage",
+        "sha256_from_existing_receipt": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+        "git_blob_sha": "64ccf185d0ab662789ba6607b9b2e2360500ea46",
+        "bytes": 436816,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b-garage-workshop-1080x2400-refund.png",
+        "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+        "module": "garage",
+        "sha256_from_existing_receipt": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+        "git_blob_sha": "b81accdc6b88a1e975d61bbd01ec7fff65f6cc90",
+        "bytes": 864319,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/a08282b78b4619f339234eb819e920b5e8a162148b7fae4ef5800c1e212fe64c-treasure-treasure-title-landscape.png",
+        "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "a08282b78b4619f339234eb819e920b5e8a162148b7fae4ef5800c1e212fe64c",
+        "git_blob_sha": "2d2b179c4e62fb509a1610a47edb491794471b5d",
+        "bytes": 2718169,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/d50db1c35fc74fc5c995dc7505ee617a1a4ec31d3a1346457920e1111927fbd7-treasure-treasure-title-portrait.png",
+        "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "d50db1c35fc74fc5c995dc7505ee617a1a4ec31d3a1346457920e1111927fbd7",
+        "git_blob_sha": "26cd10ab5d863cf8029fd819fa20e7707da97974",
+        "bytes": 2101615,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/21b4712aad8d0e07e2795509b389ddfee4114a26088d0e7ce8f3159ecf943027-treasure-treasure-title-compact.png",
+        "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "21b4712aad8d0e07e2795509b389ddfee4114a26088d0e7ce8f3159ecf943027",
+        "git_blob_sha": "9be6cc02a87f47be365ad49c05040d16f8356bfb",
+        "bytes": 323978,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/fca50c2cbf0a0bfe6ca3f2a62b22ad389cd880b9fd1bb13662a7df6ec3ff1c57-jump-jump_690x829_touch_ascent.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+        "module": "jump",
+        "sha256_from_existing_receipt": "fca50c2cbf0a0bfe6ca3f2a62b22ad389cd880b9fd1bb13662a7df6ec3ff1c57",
+        "git_blob_sha": "b6640daef5a1c728b0a387e282ccb665df8a58dd",
+        "bytes": 605103,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/2561fbf0953953cce91dcf43fae6274ac25a5517475245eedf8cdfddeae19f24-jump-jump_412x915_landed.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+        "module": "jump",
+        "sha256_from_existing_receipt": "2561fbf0953953cce91dcf43fae6274ac25a5517475245eedf8cdfddeae19f24",
+        "git_blob_sha": "98b86563bb0e1305fec15cab3d147267885bac7a",
+        "bytes": 473783,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/6f0f0c7eab4d16b4d294821a66022c85fc58c8434c56a2bb7832e491284ed80a-rhythm-02_rhythm_slide.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+        "module": "rhythm",
+        "sha256_from_existing_receipt": "6f0f0c7eab4d16b4d294821a66022c85fc58c8434c56a2bb7832e491284ed80a",
+        "git_blob_sha": "1cb6a46ebeeb719bcacb0c2d02f316623175db2e",
+        "bytes": 655541,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/ca5c0e21ad762bc58c0c2c0e6e9079c4e1998e1f69f2e1244197975444578555-jump-jump-landscape-cutout.png",
+        "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+        "module": "jump",
+        "sha256_from_existing_receipt": "ca5c0e21ad762bc58c0c2c0e6e9079c4e1998e1f69f2e1244197975444578555",
+        "git_blob_sha": "26400d53984c57affc90012fbb2839575b3287fe",
+        "bytes": 1856392,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55-learning-teacher_scene.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+        "git_blob_sha": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+        "bytes": 113407,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163-learning-gaze_left.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+        "git_blob_sha": "67e626fd8edf3af3bf3c4955fd905047d9897e7c",
+        "bytes": 295200,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703-learning-neutral.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+        "git_blob_sha": "8645e70de9f6badf6e4c260eaf02957c6e4ad147",
+        "bytes": 283007,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1-learning-muted.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+        "git_blob_sha": "87810252dcc1e0e627c267320a43e2cc8346f277",
+        "bytes": 303002,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973-learning-blink.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+        "git_blob_sha": "22808f200b3258d7ec2f25d3bac6ad3302742b0e",
+        "bytes": 301312,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52-learning-stopped.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+        "git_blob_sha": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b",
+        "bytes": 299811,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554-learning-blink_intermediate.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+        "git_blob_sha": "1f7ca9f42343c3653990403225db5529808207da",
+        "bytes": 302531,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9-learning-audio_jaw.png",
+        "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+        "module": "learning",
+        "sha256_from_existing_receipt": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+        "git_blob_sha": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8",
+        "bytes": 306464,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/0abe31a9da071d3a58ec841204fb9297c11a4cfae5a252c92eb13ddca086d5ca-build-02_build_moved.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+        "module": "build",
+        "sha256_from_existing_receipt": "0abe31a9da071d3a58ec841204fb9297c11a4cfae5a252c92eb13ddca086d5ca",
+        "git_blob_sha": "2b016e786ff466e071f06a43c63460fff64051fb",
+        "bytes": 1409012,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/3cecaad0266b7aadfe894f0736e51dddd9cc5fc0ca59ac16e1c61bd61a11121a-build-build-dialog-640x360-current-goal.png",
+        "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+        "module": "build",
+        "sha256_from_existing_receipt": "3cecaad0266b7aadfe894f0736e51dddd9cc5fc0ca59ac16e1c61bd61a11121a",
+        "git_blob_sha": "4bbe8bcdd603036b132cf16728391130553e9c87",
+        "bytes": 129694,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/aa2cc71d6070dad41ece420119b669099a03a0b8578bc62bab6055d326850332-build-build-dialog-1080x2400-templates-bottom.png",
+        "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+        "module": "build",
+        "sha256_from_existing_receipt": "aa2cc71d6070dad41ece420119b669099a03a0b8578bc62bab6055d326850332",
+        "git_blob_sha": "55aa98f3eb99cc2d73b65865dac84620421fa2d3",
+        "bytes": 1284317,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc-settlement-06_settlement_relocation.png",
+        "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+        "module": "settlement",
+        "sha256_from_existing_receipt": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc",
+        "git_blob_sha": "4d1ac3ca603e3be8b6fbba0efbb7e8705a0ab2b6",
+        "bytes": 57203,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/67e8ca45d30825868e9b703b5b450ea210d43eaaca9d31acb6853776cbb3b829-puzzle-puzzle_rotation_640x360.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "67e8ca45d30825868e9b703b5b450ea210d43eaaca9d31acb6853776cbb3b829",
+        "git_blob_sha": "6bdf7fda13e917527f7b11ded8f4a691c7532adc",
+        "bytes": 113800,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9-puzzle-puzzle_rotation_placed.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+        "git_blob_sha": "8412a3a4c796c45d4c8cc117a50debce1e49dcc0",
+        "bytes": 509560,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/0df2ae372487275460ff9cd987c17e98ab4115da8a39c7f870329ded536a309d-treasure-treasure_choose_route.png",
+        "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+        "module": "treasure",
+        "sha256_from_existing_receipt": "0df2ae372487275460ff9cd987c17e98ab4115da8a39c7f870329ded536a309d",
+        "git_blob_sha": "f393197c6d2c2cb11a9f497440aa43e5950043bb",
+        "bytes": 1290384,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb-puzzle-960x540-rotation-menu.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+        "git_blob_sha": "675a26db62e43f6a38631708a5dddd4cfe3aaa0d",
+        "bytes": 151982,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f-puzzle-960x540-rotation-play.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+        "git_blob_sha": "a1645831925d262c2aa9d276d525a286ce80cadd",
+        "bytes": 300994,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/96ff13eb4370bef6964f8e428dc76f8abbaef13df60c826ba79f4624b7e0b2de-puzzle-960x540-classic-play.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "96ff13eb4370bef6964f8e428dc76f8abbaef13df60c826ba79f4624b7e0b2de",
+        "git_blob_sha": "46b1bb9744952359881eb890535412f3f2c218b4",
+        "bytes": 302119,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec-puzzle-640x360-rotation-menu.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+        "git_blob_sha": "0b81b9e1303e4bbe15dc70e3f95ac893f5e58f8c",
+        "bytes": 72841,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/932f5b2023b9311eebe53405a174bccf9b5c6ab700395037bb350df498c17fb4-puzzle-640x360-rotation-play.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "932f5b2023b9311eebe53405a174bccf9b5c6ab700395037bb350df498c17fb4",
+        "git_blob_sha": "d56d3fe327960d92a5af1066b1d3e9aceb437e49",
+        "bytes": 109731,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/265de3d2eecaeb019e5708c91183ff0d545187a44bf3ba37e0d66307b620f275-puzzle-640x360-classic-play.png",
+        "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "265de3d2eecaeb019e5708c91183ff0d545187a44bf3ba37e0d66307b620f275",
+        "git_blob_sha": "a559c6fa1f84266ab2673ca7875cfb57d3b608ae",
+        "bytes": 109561,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/04c77e2634b3f35924c623c26f5b540c1dce3f724f65f39bd75cae826393f2d5-build-build-landscape-cutout.png",
+        "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+        "module": "build",
+        "sha256_from_existing_receipt": "04c77e2634b3f35924c623c26f5b540c1dce3f724f65f39bd75cae826393f2d5",
+        "git_blob_sha": "4fe717e36575ae007ee84a3ecc4867b97e6d8189",
+        "bytes": 2497261,
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-reviewed/6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719-puzzle-puzzle-landscape-cutout.png",
+        "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+        "module": "puzzle",
+        "sha256_from_existing_receipt": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719",
+        "git_blob_sha": "b471abf6bb881f6b55eedbd582fb8c33ca988bf5",
+        "bytes": 479283,
+        "mode": "100644"
+      }
+    ]
+  },
+  "current_english_limit": {
+    "run_id": 43619285124,
+    "job_id": 132521067410,
+    "status": "completed",
+    "conclusion": "success",
+    "actual_dart_cases": 10,
+    "actual_dart_checks": 2955,
+    "reported_native_checks": 7691,
+    "reported_images": 17,
+    "new_images_personally_seen": 0,
+    "current_archive_downloaded": false,
+    "current_archive_crc_verified": false,
+    "source_stamps_independently_read": false,
+    "not_transferred_historical_checks": 7633
+  },
+  "speech_limit": {
+    "implementation": "Validated current English task word(en),250ms zero PCM,unchanged German explanation(de); same F2,one player,existing parent/license/offline/lifecycle/mute/stop gates",
+    "java_cases": 11,
+    "java_assertions": 103,
+    "kotlin_cases": 8,
+    "all_skips": 0,
+    "actual_onnx_inference": false,
+    "audio_heard": false,
+    "physical_android_audio_playback_verified": false,
+    "phoneme_lip_sync_claimed": false,
+    "product_byte_binding": "Fresh b721 adapter/engine; actual CI report exact b721"
+  },
+  "independent_bounded_inventory_review": {
+    "reviewer": "games_worlds",
+    "communication": "Current peer report in team messages; no separate peer artifact is asserted",
+    "full_utf8_and_gitblob_readback_confirmed_for": [
+      "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "lib/features/games/games_content.dart",
+      "scripts/games/kart_catalog.gd",
+      "scripts/games/kart_expansion_tracks.gd"
+    ],
+    "portal_count": 10,
+    "kart_tracks": {
+      "base": 4,
+      "expansion": 8,
+      "total_distinct": 12
+    },
+    "clarifications": [
+      "holo_city current display name is exactly Holo City",
+      "primary adventure action opens native jump; separate additional Flame2D entry is distinct",
+      "repeated Cards/C4/Jump entries are not new main games",
+      "Siedlung/Story/Cosmos nested navigation inherited from previously bound inventory; not newly followed in peer check"
+    ]
+  },
+  "link_validation": [
+    {
+      "url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43611803408",
+      "kind": "run",
+      "found": true,
+      "bound_via": "saved exact metadata or source tree"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43618076296",
+      "kind": "run",
+      "found": true,
+      "bound_via": "saved exact metadata or source tree"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43618078329",
+      "kind": "run",
+      "found": true,
+      "bound_via": "saved exact metadata or source tree"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43619285124",
+      "kind": "run",
+      "found": true,
+      "bound_via": "saved exact metadata or source tree"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/commit/b7210db3f53361987fd33592de438fd7984d991a",
+      "kind": "commit",
+      "found": true,
+      "bound_via": "saved exact metadata or source tree"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-godot/commit/29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "kind": "commit",
+      "found": true,
+      "bound_via": "saved exact metadata or source tree"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/tree/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence",
+      "kind": "tree",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence",
+      "found": true,
+      "mode": "040000",
+      "type": "tree",
+      "git_blob_or_tree_sha": "2b1381822eadf395780230cbb27ca98acce7ac8f"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+      "kind": "blob",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/current-master-module-report-20261114/MODULMATRIX_2e20_29080.md",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "47b3582e139681b7c6df4734b4d83a7fa5ae7308"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/config/studio-2020-visual-review.json",
+      "kind": "blob",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "config/studio-2020-visual-review.json",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "f830ad2a124fbe4dad8adb94dd0eb47719f31856"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/host-b721-flutter-acceptance-20261114/review.json",
+      "kind": "blob",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/review.json",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "5072013c6979230ee1ec07e309b138fca3755358"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-summary.json",
+      "kind": "blob",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/host-native29080-integration-20261114/evidence/current-script-recovery-summary.json",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "c76008f2095d682ee0c6d1cd8c3e7b31ae0675ce"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-host-b721-speech-ci-20261114/review.json",
+      "kind": "blob",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-host-b721-speech-ci-20261114/review.json",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "47f7222de314f389f8084ea6979a2264e86a2e7b"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+      "kind": "blob",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "1625ac0837957fd26f791e63dd2577cb5960d079"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/spielwelt/spielwelt_routes.dart",
+      "kind": "blob",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-b721-memory-authority-20261114/README.md",
+      "kind": "blob",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-b721-memory-authority-20261114/README.md",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "19511eb0eb17db3f2b4a0efa8d77c999fd318f4f"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-host-b721-quiz-ci-20261114/review.json",
+      "kind": "blob",
+      "commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/review.json",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "999fe9018542528ba8b0d0f9efa9537635629eae"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/games_content.dart",
+      "kind": "blob",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "lib/features/games/games_content.dart",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/tutoring/native_english_vocabulary.dart",
+      "kind": "blob",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "4469849b204f91fab3e645604e11922e29cb594c"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/domain/tutoring/native_learning_activity.dart",
+      "kind": "blob",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "f8bfc0af97806255ec8b72d89963c2831e250089"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/auto_install/LumoLearningSpeech.kt",
+      "kind": "blob",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "755077c4f1385f9b09464113aeaab3a20ec8a376"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/auto_install/LumoOfflineSpeechEngine.java",
+      "kind": "blob",
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/games/kart_catalog.gd",
+      "kind": "blob",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/games/kart_catalog.gd",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "e0da716a0a6ed91cf01bf4f65c8b4e6376219a7f"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/scripts/games/kart_expansion_tracks.gd",
+      "kind": "blob",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "scripts/games/kart_expansion_tracks.gd",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "ce5e5bf1da9ba47f444e7156cb539abf9d41802d"
+    },
+    {
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/29080ef8cd1a5b385eeeec97976fbefd31280427/assets/characters/lumo_facial/ATTRIBUTION.md",
+      "kind": "blob",
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "found": true,
+      "mode": "100644",
+      "type": "blob",
+      "git_blob_or_tree_sha": "50f43591977dc46683fe8c547bbba2fa6e73f216"
+    }
+  ],
+  "boundaries": [
+    "No new overall Studio/APK/Android/update/publisher success claimed.",
+    "No complete two-child, journal or native old-save migration inferred from file equality or one-child fixtures.",
+    "No physical Fold7 FPS,thermal,energy,touch latency result.",
+    "49 already reviewed native images are separate from current17 unviewed English images.",
+    "Historic Blender/Godot use remains historical; current local rendering unavailable.",
+    "All citations use exact published commit paths verified in actual trees; no guessed local-to-public mapping."
+  ]
+}

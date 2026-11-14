@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "local_path": "source/workflow-at-28462.yml",
+      "bytes": 7651,
+      "git_blob_sha": "829b819945d980e2082f478c1ddccea9463e3fa5",
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/.github/workflows/lumo-nextgen-feature-contracts.yml"
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "local_path": "source/run_full_flutter_acceptance.py",
+      "bytes": 6483,
+      "git_blob_sha": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/scripts/run_full_flutter_acceptance.py"
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "local_path": "source/reading_asr_evidence_boundary_test.dart",
+      "bytes": 12601,
+      "git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/reading_asr_evidence_boundary_test.dart"
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "local_path": "source/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/test/games/memory_preferences_durability_test.dart"
+    }
+  ],
+  "method": "Complete UTF-8 content fetched at the exact published commit; local Git blob hash equals response SHA.",
+  "local_dart_flutter_execution": false
+}

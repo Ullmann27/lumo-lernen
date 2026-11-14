@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_studio_4ab_recheck.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab",
+  "started_at": "2026-11-14T03:29:21.270252+00:00",
+  "returncode": 0,
+  "elapsed_seconds": 1.2288768860016717,
+  "scope": "Adapted synthetic identity counterexamples; no Android run"
+}

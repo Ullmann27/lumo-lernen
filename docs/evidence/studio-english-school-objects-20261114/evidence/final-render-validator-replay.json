@@ -1,0 +1,1063 @@
+{
+  "schema": 1,
+  "scope": "Read-only replay of 17 actual local Godot renderer PNGs and product sidecars. Platform fixture accepted explicitly; no Android evidence. Independent projection uses recorded camera matrices and mesh corners. Pixel detail does not establish semantic image recognition. No new renderer/ADB execution.",
+  "probe_sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+  "images": [
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-apple-960x540-start.layout.json",
+      "layout_sha256": "265f6ba622de63b073fb2b98bb3f1935bf7363fc4f5486da608499d8787173bd",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-apple-960x540-start.png",
+      "png_sha256": "ca5681c82c3b8f4630743e98bf694ca08805d310ca5ca4a01e1972a45b759f43",
+      "size": [
+        960,
+        540
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "ball",
+          "box": [
+            384,
+            242,
+            466,
+            357
+          ],
+          "stddev": [
+            84.67419477033596,
+            52.311905104583765,
+            46.0168752198161
+          ],
+          "colour_bins": 138,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ruler",
+          "box": [
+            530,
+            298,
+            646,
+            341
+          ],
+          "stddev": [
+            47.83882700090949,
+            38.471148940407865,
+            37.47008453160191
+          ],
+          "colour_bins": 54,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "apple",
+          "box": [
+            712,
+            254,
+            789,
+            350
+          ],
+          "stddev": [
+            52.76619437435291,
+            68.08030691413042,
+            53.255673860735676
+          ],
+          "colour_bins": 108,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-bag-960x540-start.layout.json",
+      "layout_sha256": "33a4e019ce84867ed9b644311b60dd5e73ee6bc0093597231ce1dc478219bfa9",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-bag-960x540-start.png",
+      "png_sha256": "60cc3040acc3f6083b142b0abb3447aa0cfabf6eb2025174c358f5035a5ce726",
+      "size": [
+        960,
+        540
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "school bag",
+          "box": [
+            386,
+            245,
+            465,
+            341
+          ],
+          "stddev": [
+            77.29644927424074,
+            33.255484362861715,
+            40.12786693629079
+          ],
+          "colour_bins": 59,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "bag",
+          "box": [
+            546,
+            239,
+            630,
+            343
+          ],
+          "stddev": [
+            64.47914799610105,
+            34.34516109668045,
+            16.051939707656132
+          ],
+          "colour_bins": 63,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "pencil case",
+          "box": [
+            693,
+            277,
+            808,
+            347
+          ],
+          "stddev": [
+            61.30421401635416,
+            76.51983260712814,
+            63.328514920142126
+          ],
+          "colour_bins": 156,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-complete.layout.json",
+      "layout_sha256": "fe1f4153c88b22f0a19c7fa237909ed91977843ff0897bc655554d922b80430d",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-complete.png",
+      "png_sha256": "5a93fd3e78c22f6d386d7f6106184a52e7225d2442a076391677d3cbafaa162b",
+      "size": [
+        960,
+        540
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "book",
+          "box": [
+            376,
+            268,
+            474,
+            369
+          ],
+          "stddev": [
+            54.70194854425482,
+            68.86337172313506,
+            45.33711869163126
+          ],
+          "colour_bins": 112,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ball",
+          "box": [
+            547,
+            242,
+            629,
+            357
+          ],
+          "stddev": [
+            84.50137756366925,
+            52.14729158613601,
+            45.71100836017146
+          ],
+          "colour_bins": 144,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            697,
+            267,
+            805,
+            353
+          ],
+          "stddev": [
+            78.02001974549096,
+            52.16858641677507,
+            42.496768605652754
+          ],
+          "colour_bins": 116,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-hint.layout.json",
+      "layout_sha256": "4f98d1a12a3ed800b5b113b2619b036b7c7bf9dd9a43e6d8c7d0ffec7a90f1c1",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-hint.png",
+      "png_sha256": "4a7796e4d9d4294aec0043781f376307b88c24f6aef2c5a93e1a00d1458f200a",
+      "size": [
+        960,
+        540
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "book",
+          "box": [
+            376,
+            268,
+            474,
+            369
+          ],
+          "stddev": [
+            54.70194854425482,
+            68.86337172313506,
+            45.33711869163126
+          ],
+          "colour_bins": 112,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ball",
+          "box": [
+            547,
+            242,
+            629,
+            357
+          ],
+          "stddev": [
+            84.50137756366925,
+            52.14729158613601,
+            45.71100836017146
+          ],
+          "colour_bins": 144,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            697,
+            267,
+            805,
+            353
+          ],
+          "stddev": [
+            78.02001974549096,
+            52.16858641677507,
+            42.496768605652754
+          ],
+          "colour_bins": 116,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-start.layout.json",
+      "layout_sha256": "46a9c4d4f7cc310fd992a9374f98eb973de20b3d93af9573c0845890b61cf6f4",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ball-960x540-start.png",
+      "png_sha256": "87f2a1fecc1c187ad1a184b9aa098108745ceeceed86464214999b009d7a5387",
+      "size": [
+        960,
+        540
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "book",
+          "box": [
+            376,
+            268,
+            474,
+            369
+          ],
+          "stddev": [
+            54.70194854425482,
+            68.86337172313506,
+            45.33711869163126
+          ],
+          "colour_bins": 112,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ball",
+          "box": [
+            547,
+            242,
+            629,
+            357
+          ],
+          "stddev": [
+            84.2863631081265,
+            52.21368646945409,
+            45.91335277134104
+          ],
+          "colour_bins": 141,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            697,
+            267,
+            805,
+            353
+          ],
+          "stddev": [
+            78.02001974549096,
+            52.16858641677507,
+            42.496768605652754
+          ],
+          "colour_bins": 116,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-complete.layout.json",
+      "layout_sha256": "0a8d9582c30f3dce379dd21123bf68a236982ce36064876639ff5ae622a3f3fc",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-complete.png",
+      "png_sha256": "0f36483f46b731ee068652dcff086bbf489525911bb2e8bba3802c7624dfeed6",
+      "size": [
+        412,
+        915
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "ruler",
+          "box": [
+            259,
+            265,
+            373,
+            308
+          ],
+          "stddev": [
+            49.225709252955035,
+            40.47077506510514,
+            38.56857347742357
+          ],
+          "colour_bins": 57,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "pen",
+          "box": [
+            279,
+            377,
+            350,
+            458
+          ],
+          "stddev": [
+            99.98894617388211,
+            70.12642035783016,
+            45.94033544696633
+          ],
+          "colour_bins": 113,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "book",
+          "box": [
+            267,
+            539,
+            364,
+            638
+          ],
+          "stddev": [
+            52.31729942727483,
+            69.44029998318581,
+            45.825395063585084
+          ],
+          "colour_bins": 114,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-start.layout.json",
+      "layout_sha256": "76b6e9cc04bb9150425f0adaa6c893988e964b91ddaddc64b4b02e9d67365f49",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-book-412x915-start.png",
+      "png_sha256": "754f945be12243e3043e3dbd9d333a1949b1eb6c6f7e41db957d2415845d3a1c",
+      "size": [
+        412,
+        915
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "ruler",
+          "box": [
+            261,
+            264,
+            376,
+            307
+          ],
+          "stddev": [
+            47.883499628076116,
+            39.43504669115959,
+            38.074719092799484
+          ],
+          "colour_bins": 51,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "pen",
+          "box": [
+            282,
+            377,
+            353,
+            458
+          ],
+          "stddev": [
+            100.05570306521861,
+            70.13275831290979,
+            45.9014967561872
+          ],
+          "colour_bins": 111,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "book",
+          "box": [
+            269,
+            540,
+            367,
+            640
+          ],
+          "stddev": [
+            54.28099512209803,
+            69.05206511840022,
+            45.52132095210429
+          ],
+          "colour_bins": 110,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-car-2400x1080-start.layout.json",
+      "layout_sha256": "f304ac79f17ec2cafc0b95306856eb5b3fc03aa996b1f737639d6cfd52a1fac4",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-car-2400x1080-start.png",
+      "png_sha256": "8ff4eeb359d2cd78541ea436567b4122aca6edeb0a33a10fe6a53ef48afb517c",
+      "size": [
+        2400,
+        1080
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "sun",
+          "box": [
+            1092,
+            474,
+            1265,
+            614
+          ],
+          "stddev": [
+            82.04926429975541,
+            57.670253833926715,
+            41.470507211497974
+          ],
+          "colour_bins": 80,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            1357,
+            519,
+            1533,
+            657
+          ],
+          "stddev": [
+            80.82641798903494,
+            49.78175113846115,
+            41.97536985764753
+          ],
+          "colour_bins": 123,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ruler",
+          "box": [
+            1614,
+            569,
+            1803,
+            639
+          ],
+          "stddev": [
+            48.47774729176709,
+            39.48202617243493,
+            37.49147633908599
+          ],
+          "colour_bins": 56,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-chair-640x360-start.layout.json",
+      "layout_sha256": "aef95c2ac5d6b02218279391196e61363f1e542874cf12939ff3de670129d818",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-chair-640x360-start.png",
+      "png_sha256": "33633677c2ee9a109ab0f5d36ff92700c3973854fd333e48fbb590517b933a0e",
+      "size": [
+        640,
+        360
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "desk",
+          "box": [
+            261,
+            169,
+            321,
+            228
+          ],
+          "stddev": [
+            63.666162744237674,
+            47.208089663651286,
+            39.47581090457119
+          ],
+          "colour_bins": 47,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "chair",
+          "box": [
+            357,
+            164,
+            397,
+            227
+          ],
+          "stddev": [
+            63.56214266940365,
+            42.485782128184795,
+            36.19486498729796
+          ],
+          "colour_bins": 65,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "school bag",
+          "box": [
+            442,
+            172,
+            484,
+            223
+          ],
+          "stddev": [
+            77.90844881155687,
+            32.126559946045575,
+            41.29755659449261
+          ],
+          "colour_bins": 60,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-desk-960x540-start.layout.json",
+      "layout_sha256": "2827d229207e655338d760b8ae4aca5ba9113174f17c82c390c4d435a12d5bd0",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-desk-960x540-start.png",
+      "png_sha256": "9ce6f5d02687c5595dfbf3eb3a7efe6286841a10b31db7dd0be1f2fa1a73660f",
+      "size": [
+        960,
+        540
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "desk",
+          "box": [
+            369,
+            241,
+            481,
+            351
+          ],
+          "stddev": [
+            59.88523705338218,
+            46.02209663089475,
+            39.47006257359803
+          ],
+          "colour_bins": 64,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "chair",
+          "box": [
+            550,
+            231,
+            626,
+            349
+          ],
+          "stddev": [
+            63.467198524642676,
+            42.751544352355495,
+            37.27015387366016
+          ],
+          "colour_bins": 76,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "bag",
+          "box": [
+            708,
+            239,
+            792,
+            343
+          ],
+          "stddev": [
+            43.86863604996597,
+            32.34238645953168,
+            15.23882727392294
+          ],
+          "colour_bins": 62,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-paper-2400x1080-start.layout.json",
+      "layout_sha256": "2ade85ec92556981cbb6c96354b9f35210c487e70b7bfb529c2d73d96eea4951",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-paper-2400x1080-start.png",
+      "png_sha256": "1864997d8ec21c9cfeb6f9bda6c42ea02dcb2746e9ae7d2c9581f1ac95a828d0",
+      "size": [
+        2400,
+        1080
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "paper",
+          "box": [
+            1091,
+            531,
+            1267,
+            686
+          ],
+          "stddev": [
+            62.390617613716536,
+            50.970195409273686,
+            45.621432812867276
+          ],
+          "colour_bins": 112,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "book",
+          "box": [
+            1363,
+            520,
+            1523,
+            684
+          ],
+          "stddev": [
+            54.70812096983373,
+            69.27666350880851,
+            45.641470403017514
+          ],
+          "colour_bins": 125,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "rubber",
+          "box": [
+            1627,
+            549,
+            1790,
+            647
+          ],
+          "stddev": [
+            91.65599767289727,
+            58.43920550645341,
+            39.41294518706469
+          ],
+          "colour_bins": 97,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pen-1080x2400-start.layout.json",
+      "layout_sha256": "11c45fb83d171b87d19fec35e88e254f1e178755fbf714c6ec702dc291d16782",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pen-1080x2400-start.png",
+      "png_sha256": "27b92f58f12de1a39cfc6cafa385687d917a5d1908cd0a616733bc2297a8820e",
+      "size": [
+        1080,
+        2400
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "pen",
+          "box": [
+            739,
+            606,
+            924,
+            817
+          ],
+          "stddev": [
+            89.18403874368113,
+            64.5867809113378,
+            48.59321971122517
+          ],
+          "colour_bins": 151,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "book",
+          "box": [
+            707,
+            1033,
+            962,
+            1295
+          ],
+          "stddev": [
+            54.51662299368084,
+            69.52757145080813,
+            45.66547367531056
+          ],
+          "colour_bins": 131,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "apple",
+          "box": [
+            735,
+            1408,
+            935,
+            1657
+          ],
+          "stddev": [
+            70.60841339756539,
+            66.58386503686192,
+            53.16102154680067
+          ],
+          "colour_bins": 123,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.layout.json",
+      "layout_sha256": "950b2d4451d1a8d7dcaba10f87b1ba09cd5a9cb6f2182622db42ce439f362770",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-pencil-case-1080x2400-start.png",
+      "png_sha256": "13886f5506eb1abcd0a72fb3da356a91676403a3b9af946993e699567e255597",
+      "size": [
+        1080,
+        2400
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "pencil case",
+          "box": [
+            686,
+            681,
+            984,
+            864
+          ],
+          "stddev": [
+            53.78756473823189,
+            75.88014217599734,
+            63.76245849820366
+          ],
+          "colour_bins": 173,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "rubber",
+          "box": [
+            705,
+            1064,
+            965,
+            1220
+          ],
+          "stddev": [
+            93.80877240038458,
+            59.50897406371094,
+            38.65254604445071
+          ],
+          "colour_bins": 94,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "pen",
+          "box": [
+            739,
+            1393,
+            924,
+            1604
+          ],
+          "stddev": [
+            100.70565792242539,
+            70.49647773511089,
+            46.146060705756426
+          ],
+          "colour_bins": 131,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-rubber-640x360-start.layout.json",
+      "layout_sha256": "61918bd811c6c88fc31a672d1509c32e11a302e0edc9c57be8fd82985e649a91",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-rubber-640x360-start.png",
+      "png_sha256": "8e835351c88930b15b29815d6f4fc898b63fedc3039e3effffdb0b2c4f4c96f7",
+      "size": [
+        640,
+        360
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "rubber",
+          "box": [
+            264,
+            193,
+            318,
+            225
+          ],
+          "stddev": [
+            90.31534996879702,
+            57.70199686468829,
+            38.70324987118045
+          ],
+          "colour_bins": 62,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "paper",
+          "box": [
+            348,
+            187,
+            406,
+            238
+          ],
+          "stddev": [
+            63.09077670901191,
+            51.948898858551246,
+            46.49786918403148
+          ],
+          "colour_bins": 75,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "book",
+          "box": [
+            436,
+            184,
+            489,
+            237
+          ],
+          "stddev": [
+            48.87965600798225,
+            69.40348021509955,
+            45.73284087888651
+          ],
+          "colour_bins": 93,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ruler-640x360-start.layout.json",
+      "layout_sha256": "16c5605b93b6aa8be2e8d9be1d6e2ffd964831d50cf6c91f8603b7dae3868cc1",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-ruler-640x360-start.png",
+      "png_sha256": "700ce0c26366d9080738a7eb799adaac9d84e59ba4da399a7214ea609502ec2b",
+      "size": [
+        640,
+        360
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "ruler",
+          "box": [
+            260,
+            200,
+            322,
+            223
+          ],
+          "stddev": [
+            42.212569679074356,
+            34.444369369161315,
+            37.278091588614835
+          ],
+          "colour_bins": 43,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "apple",
+          "box": [
+            356,
+            176,
+            398,
+            227
+          ],
+          "stddev": [
+            71.64630823048535,
+            66.76299185936497,
+            53.279083980546424
+          ],
+          "colour_bins": 79,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "sun",
+          "box": [
+            434,
+            169,
+            491,
+            215
+          ],
+          "stddev": [
+            64.66734148165455,
+            57.410580104514615,
+            46.41176789809026
+          ],
+          "colour_bins": 79,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-school-bag-412x915-start.layout.json",
+      "layout_sha256": "240d845053a90b0ea6852a2b206c10b6a701594e5de2608a7954d4063d5b9915",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-school-bag-412x915-start.png",
+      "png_sha256": "ceacf072e6418bd442bb1a9c725bbb1f7007d96ab21191fe603d0858013bad7a",
+      "size": [
+        412,
+        915
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "bag",
+          "box": [
+            277,
+            206,
+            360,
+            311
+          ],
+          "stddev": [
+            37.99000227800931,
+            28.894225160369455,
+            13.99414619682307
+          ],
+          "colour_bins": 64,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "pencil case",
+          "box": [
+            261,
+            381,
+            376,
+            451
+          ],
+          "stddev": [
+            72.23554304309987,
+            75.90800496598483,
+            61.805778455949316
+          ],
+          "colour_bins": 134,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "school bag",
+          "box": [
+            279,
+            516,
+            358,
+            611
+          ],
+          "stddev": [
+            78.55507490999295,
+            34.33223669774525,
+            40.5631898618129
+          ],
+          "colour_bins": 52,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    },
+    {
+      "layout": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-sun-960x540-start.layout.json",
+      "layout_sha256": "d07e0e5b36d8d641024cb572b3f66639aa406458253713e2b426acfc76dcd94c",
+      "png": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/evidence/render-first-captures/english-sun-960x540-start.png",
+      "png_sha256": "6dc958cf51ffa2cdb68d12bd4db7286a5dbba3139d4d011afbfb9e6ef1bd1250",
+      "size": [
+        960,
+        540
+      ],
+      "status": "PASS",
+      "objects": [
+        {
+          "word": "apple",
+          "box": [
+            387,
+            254,
+            464,
+            350
+          ],
+          "stddev": [
+            70.71638936392033,
+            66.87326248870984,
+            53.35532902897062
+          ],
+          "colour_bins": 103,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "sun",
+          "box": [
+            534,
+            240,
+            641,
+            326
+          ],
+          "stddev": [
+            81.98242271400095,
+            57.72670376000385,
+            41.61049502633892
+          ],
+          "colour_bins": 70,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "pen",
+          "box": [
+            713,
+            248,
+            785,
+            330
+          ],
+          "stddev": [
+            90.24530936328898,
+            67.31633419607137,
+            51.38524163347041
+          ],
+          "colour_bins": 118,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "source": "platform_fixture"
+    }
+  ],
+  "elapsed_seconds": 1.2219224739983474,
+  "status": "PASS"
+}

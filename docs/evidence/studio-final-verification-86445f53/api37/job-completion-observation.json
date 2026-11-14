@@ -1,0 +1,180 @@
+{
+  "id": 132324330238,
+  "run_id": 43549076631,
+  "workflow_name": "LUMO Studio 2019 Android candidate",
+  "head_branch": "chatgpt/lumo-studio-20261113",
+  "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43549076631",
+  "run_attempt": 1,
+  "node_id": "CR_kwDOSNzcp88AAAAezyUK_g",
+  "head_sha": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132324330238",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43549076631/job/132324330238",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-11-14T04:01:31Z",
+  "started_at": "2026-11-14T04:01:32Z",
+  "completed_at": "2026-11-14T04:24:42Z",
+  "name": "Android API 37 live application tour",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-14T04:01:33Z",
+      "completed_at": "2026-11-14T04:01:35Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-14T04:01:35Z",
+      "completed_at": "2026-11-14T04:01:57Z"
+    },
+    {
+      "name": "Checkout exact upstream action only for Android 17",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-14T04:01:57Z",
+      "completed_at": "2026-11-14T04:01:57Z"
+    },
+    {
+      "name": "Verify framework guard before the Android 17 emulator",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-14T04:01:57Z",
+      "completed_at": "2026-11-14T04:02:00Z"
+    },
+    {
+      "name": "Run actions/download-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-14T04:02:00Z",
+      "completed_at": "2026-11-14T04:02:07Z"
+    },
+    {
+      "name": "Live UI reader",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-14T04:02:07Z",
+      "completed_at": "2026-11-14T04:02:58Z"
+    },
+    {
+      "name": "Enable accelerated disposable emulator",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-14T04:02:58Z",
+      "completed_at": "2026-11-14T04:02:58Z"
+    },
+    {
+      "name": "Software display",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-11-14T04:02:58Z",
+      "completed_at": "2026-11-14T04:03:02Z"
+    },
+    {
+      "name": "Verify the Android 17 CLI22 source and AVD counterexamples",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-14T04:03:02Z",
+      "completed_at": "2026-11-14T04:03:02Z"
+    },
+    {
+      "name": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-14T04:03:02Z",
+      "completed_at": "2026-11-14T04:04:06Z"
+    },
+    {
+      "name": "Bind the Android 17 guard to this actual new Studio APK source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-11-14T04:04:06Z",
+      "completed_at": "2026-11-14T04:04:06Z"
+    },
+    {
+      "name": "Install and tour the exact APK",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 12,
+      "started_at": "2026-11-14T04:04:06Z",
+      "completed_at": "2026-11-14T04:04:06Z"
+    },
+    {
+      "name": "Install and tour the exact APK after Android 17 framework readiness",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-14T04:04:06Z",
+      "completed_at": "2026-11-14T04:24:34Z"
+    },
+    {
+      "name": "Preserve actual Android 17 generated hardware and disk configuration",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-11-14T04:24:34Z",
+      "completed_at": "2026-11-14T04:24:34Z"
+    },
+    {
+      "name": "Preserve Android 17 startup diagnostics even after action failure",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-11-14T04:24:34Z",
+      "completed_at": "2026-11-14T04:24:34Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 16,
+      "started_at": "2026-11-14T04:24:34Z",
+      "completed_at": "2026-11-14T04:24:40Z"
+    },
+    {
+      "name": "Post Checkout exact upstream action only for Android 17",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 31,
+      "started_at": "2026-11-14T04:24:40Z",
+      "completed_at": "2026-11-14T04:24:40Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 32,
+      "started_at": "2026-11-14T04:24:40Z",
+      "completed_at": "2026-11-14T04:24:40Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 33,
+      "started_at": "2026-11-14T04:24:40Z",
+      "completed_at": "2026-11-14T04:24:40Z"
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132324330238",
+  "labels": [
+    "ubuntu-latest"
+  ],
+  "runner_id": 1000017187,
+  "runner_name": "GitHub Actions 1000017187",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}

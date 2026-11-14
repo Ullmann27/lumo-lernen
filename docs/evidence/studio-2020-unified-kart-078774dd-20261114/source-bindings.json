@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "observed_at": "2026-11-14T10:11:34.214900+00:00",
+  "scope": "Read-only exact-revision GitHub source snapshots. No product files changed.",
+  "sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/engine/main/main.cpp",
+      "bytes": 206150,
+      "sha256": "a286542613447670ac3a8b409ae8af0a2dea3bb63b9a8829dfb4d4a3f7879c6a",
+      "git_blob_sha1": "7dc15057ad96bfa86b16ba99621ef1289e074656",
+      "kind": "engine",
+      "repository": "godotengine/godot",
+      "revision": "4.6.3-stable",
+      "repository_path": "main/main.cpp",
+      "retrieved_from": "https://raw.githubusercontent.com/godotengine/godot/4.6.3-stable/main/main.cpp"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/engine/main/main_timer_sync.cpp",
+      "bytes": 19036,
+      "sha256": "207e51669e989566b9a7a5bf8bfa7b7c9ab1c1fa55ef2c6d986d7de3aa7d8f94",
+      "git_blob_sha1": "ed6786cd528dd19187f6e8bf1f076065e16cffeb",
+      "kind": "engine",
+      "repository": "godotengine/godot",
+      "revision": "4.6.3-stable",
+      "repository_path": "main/main_timer_sync.cpp",
+      "retrieved_from": "https://raw.githubusercontent.com/godotengine/godot/4.6.3-stable/main/main_timer_sync.cpp"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/.github/probes/modernization_android_tour.py",
+      "bytes": 46556,
+      "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+      "git_blob_sha1": "c04397ae8e99e0d02cefa341dcf4523deb464d99",
+      "kind": "host",
+      "repository": "Ullmann27/lumo-lernen",
+      "revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "repository_path": ".github/probes/modernization_android_tour.py",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-lernen/078774ddaf64808addaa4c6406f6a3c85b1f239a/.github/probes/modernization_android_tour.py"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py",
+      "bytes": 9299,
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "git_blob_sha1": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "kind": "host",
+      "repository": "Ullmann27/lumo-lernen",
+      "revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "repository_path": "tools/android_qa/kart_tour_evidence.py",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-lernen/078774ddaf64808addaa4c6406f6a3c85b1f239a/tools/android_qa/kart_tour_evidence.py"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "git_blob_sha1": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+      "kind": "host",
+      "repository": "Ullmann27/lumo-lernen",
+      "revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "repository_path": "tools/auto_install/LumoGameActivity.kt",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-lernen/078774ddaf64808addaa4c6406f6a3c85b1f239a/tools/auto_install/LumoGameActivity.kt"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/native/project.godot",
+      "bytes": 1944,
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+      "git_blob_sha1": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+      "kind": "native",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "project.godot",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-godot/785413d395292a243eaa0a0748671eb15d3f80ff/project.godot"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/native/scripts/app/scene_router.gd",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob_sha1": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "kind": "native",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "scripts/app/scene_router.gd",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-godot/785413d395292a243eaa0a0748671eb15d3f80ff/scripts/app/scene_router.gd"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/native/scripts/games/kart_island.gd",
+      "bytes": 169697,
+      "sha256": "11cc762f98c7520d31d15bae16fc3dfcd2e6cde82bc2746fd71043dad379c37c",
+      "git_blob_sha1": "8319609143cc6de2b2f618a4c262cf1903fd290c",
+      "kind": "native",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "scripts/games/kart_island.gd",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-godot/785413d395292a243eaa0a0748671eb15d3f80ff/scripts/games/kart_island.gd"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/native/scripts/systems/host_bridge.gd",
+      "bytes": 5193,
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "git_blob_sha1": "dab96a1b918dc754568c0eda14cdda05175c89fb",
+      "kind": "native",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "scripts/systems/host_bridge.gd",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-godot/785413d395292a243eaa0a0748671eb15d3f80ff/scripts/systems/host_bridge.gd"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/native/scripts/systems/performance_manager.gd",
+      "bytes": 5167,
+      "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+      "git_blob_sha1": "b81a5c2202cc832cdd6c773a459bb90ab6520d53",
+      "kind": "native",
+      "repository": "Ullmann27/lumo-godot",
+      "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "repository_path": "scripts/systems/performance_manager.gd",
+      "retrieved_from": "https://raw.githubusercontent.com/Ullmann27/lumo-godot/785413d395292a243eaa0a0748671eb15d3f80ff/scripts/systems/performance_manager.gd"
+    }
+  ]
+}

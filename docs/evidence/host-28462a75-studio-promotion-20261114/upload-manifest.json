@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-28462a75-studio-promotion-20261114/promotion-proof.json",
+      "path": "docs/evidence/host-28462a75-studio-promotion-20261114/promotion-proof.json",
+      "bytes": 2116,
+      "sha256": "6bec3cff3b0d3c2de4f287958909a952d80f366692e24e3720cb74e64ec80941",
+      "git_blob_sha": "a663767e47ba2a91d27c38aa637bb17811026621",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-28462a75-studio-promotion-20261114/feature-run-original.json",
+      "path": "docs/evidence/host-28462a75-studio-promotion-20261114/feature-run-original.json",
+      "bytes": 15109,
+      "sha256": "c720702f8aab4bc52f609c61c7a9a19688122a2ad1fc8c6481f294f4730d9adc",
+      "git_blob_sha": "d2d3940a9e4567dbe8f6beaf07aef5a8c469065e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-28462a75-studio-promotion-20261114/feature-jobs-original.json",
+      "path": "docs/evidence/host-28462a75-studio-promotion-20261114/feature-jobs-original.json",
+      "bytes": 13793,
+      "sha256": "1382be7da6fd61ded63330812089a1e8c611344f5ab04e5424ac26c7787ebcad",
+      "git_blob_sha": "36cb1da1f8166793fd9da0c3fecbf6ea4b165eef",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-28462a75-studio-promotion-20261114/old-studio-cancelled-original.json",
+      "path": "docs/evidence/host-28462a75-studio-promotion-20261114/old-studio-cancelled-original.json",
+      "bytes": 15226,
+      "sha256": "82f2fb48aaeb3262a5d41b5847475d50c4cac78d6e70bb298f7560a8655a1122",
+      "git_blob_sha": "ee42b4db0ef70564ed67bf81f055c8170a227134",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-28462a75-studio-promotion-20261114/root-original-new-case-verification.json",
+      "path": "docs/evidence/host-28462a75-studio-promotion-20261114/root-original-new-case-verification.json",
+      "bytes": 476,
+      "sha256": "e89572047dd3fd8284f6b1f931e2612aa0b29729b0d34dc18f017c879368be2b",
+      "git_blob_sha": "176561cbd2edfecd0722bea51e68bc8b132a9ffe",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-28462a75-studio-promotion-20261114/previous-evidence-184-commit-proof.json",
+      "path": "docs/evidence/host-28462a75-studio-promotion-20261114/previous-evidence-184-commit-proof.json",
+      "bytes": 627,
+      "sha256": "95d04cf208be09417b2cb438ef57eaa913a4157fa7f200bcb0560da5f6f83f49",
+      "git_blob_sha": "8a0b5b8ce1e12ebef001bf4b6f304e101e288e2f",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-28462a75-studio-promotion-20261114/README.md",
+      "path": "docs/evidence/host-28462a75-studio-promotion-20261114/README.md",
+      "bytes": 2189,
+      "sha256": "dd72c76569a2e8aff4128f63428993b38d42c476d3601811caffaa8c047d82c4",
+      "git_blob_sha": "0f417b7a86e0de9fc35a899bf723a24822602062",
+      "mode": "100644"
+    }
+  ],
+  "count": 7,
+  "host": "28462a7547048b75fa114e6f5832248e54c94faa"
+}

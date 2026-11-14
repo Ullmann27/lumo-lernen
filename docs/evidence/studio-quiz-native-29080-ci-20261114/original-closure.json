@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14T15:55:26.152206+00:00",
+  "result": "QUIZ_JOB_SUCCESS_ORIGINALS_AND_SIX_IMAGES_VERIFIED",
+  "native": {
+    "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+  },
+  "host": {
+    "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+    "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+  },
+  "run_id": 43611803404,
+  "job_id": 132498257149,
+  "artifact": {
+    "id": 14120796271,
+    "bytes": 502448,
+    "sha256": "1eb1db04b4226df164c58b0166e0524797f96ec1b82054593e7e5001f60ae0fd",
+    "all35members_crc_valid": true
+  },
+  "original_job_log": {
+    "path": "qa/studio-quiz-native-29080-ci-20261114/original-job.log",
+    "bytes": 300792,
+    "sha256": "afc82e7f365fc4b48fb27d13424118f037e60c4091eccaf8edcd36e05df10137",
+    "git_blob_sha": "fe2c562450726b8edd3686065377531eaade02fb"
+  },
+  "original_extraction": {
+    "path": "qa/studio-quiz-native-29080-ci-20261114/verified-original-extraction.json",
+    "bytes": 15804,
+    "sha256": "fd9731618e9cc69aac796df0b853535c2965bdd42870440ff1783770e0d8d62c",
+    "git_blob_sha": "4f64be711de6becbf7ee42f86bbd04c83ef9d844"
+  },
+  "source_before_after_equal": true,
+  "native9sourcehashes_before_after_equal": true,
+  "raw_native_requests_equal_dart_observed_requests": true,
+  "actual_dart_contract": {
+    "cases": 28,
+    "checks": 1786,
+    "failures": 0,
+    "skips": 0
+  },
+  "actual_pair": {
+    "checks": 381,
+    "input_entries": 404,
+    "input_kinds": {
+      "screen_touch": 188,
+      "screen_drag": 216
+    },
+    "request_counts": {
+      "joker": 3,
+      "select": 20,
+      "reveal": 20,
+      "next": 19,
+      "pause": 2,
+      "resume": 2,
+      "exit": 1
+    },
+    "requests": 67,
+    "durable_action_counts": {
+      "joker": 3,
+      "select": 20,
+      "reveal": 20,
+      "next": 19
+    },
+    "questions": 20,
+    "persisted_revision": 64,
+    "rewarded": true,
+    "qa_ledger_stars": 5000,
+    "qa_unique_ids": 1,
+    "process_exit_codes": {
+      "DartAuthority": 0,
+      "GodotQuiz": 0
+    },
+    "elapsed_seconds": 52.382,
+    "captures": 6,
+    "all25_reported_evidence_hashes_rechecked": true
+  },
+  "visual_review": {
+    "path": "qa/studio-quiz-native-29080-ci-20261114/visual-review.json",
+    "bytes": 9582,
+    "sha256": "6aad4621122a44b60c1e6a03aeab5610826ac13fb507a9b64267d05dce335e06",
+    "git_blob_sha": "1f04d6f9a05237fd1e129585385b6af1b8cb42b3"
+  },
+  "limits": [
+    "The six PNGs were each actually opened from the new29080 archive; no47ca finding was carried forward as an observation.",
+    "Actual production Dart/Godot processes use explicit QA disk transport and award ledger. Android Binder/APK, physical device performance and full release acceptance remain untested here.",
+    "Software llvmpipe/gl_compatibility renderer and Dummy audio; audio_listened=false. No movie/audio or frame-rate performance claim.",
+    "The compact revealed and paused images show deliberate scroll excerpts, not all controls simultaneously."
+  ],
+  "diagnostics": [
+    {
+      "file": "quiz-pair/godot-runtime.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "file": "quiz-pair/godot-runtime.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "file": "quiz-pair/godot-runtime.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    }
+  ],
+  "new_test_runs_by_reviewer": 0
+}

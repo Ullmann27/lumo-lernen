@@ -1,0 +1,11 @@
+Working directory: /workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure
+Python: 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
+Platform: Linux-6.18.57-x86_64-with-glibc2.41
+
+Original4ab red (exit1):
+python -m unittest -v scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure > logs/controller-red-original4ab.log 2>&1
+
+Final integration (exit0):
+python -W error::ResourceWarning -m unittest -v scripts.tests.test_studio_treasure_movement scripts.tests.test_studio_creative_android_probe > logs/controller-and-existing-green.log 2>&1
+
+No Android/Godot process, build, push or CI run was started.

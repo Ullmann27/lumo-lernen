@@ -1,0 +1,36 @@
+{
+  "source_commit": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "command": [
+    "timeout",
+    "240s",
+    "/usr/local/bin/godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-facial-import-8be3-20261114/project",
+    "--editor",
+    "--import",
+    "--quit"
+  ],
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "started_utc": "2026-11-14T05:49:09.929730+00:00",
+  "elapsed_seconds": 3.554991829005303,
+  "exit_code": 0,
+  "import_cache_initially_absent": true,
+  "old_owned_cache_preserved_at": "/tmp/lumo-facial-import-8be3-20261114/first-import-cache",
+  "canonical_import_before_sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+  "canonical_import_after_sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+  "canonical_import_byte_identical": true,
+  "project_unchanged": true,
+  "glb_unchanged": true,
+  "source_before": {
+    "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+    "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15"
+  },
+  "source_after": {
+    "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+    "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15"
+  },
+  "frozen_originals_unchanged": true,
+  "original_log_sha256": "b874ae3f03c433d0c6432ca84973f7a27f79f620d8f01248f970eeb08b387580",
+  "actual_import_marker_present": true
+}

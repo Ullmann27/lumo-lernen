@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "scope": "Actual Python contract executions with synthetic transport/clock boundaries; no Android, OCR process or Flutter run.",
+  "runs": [
+    {
+      "name": "red-original-078",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+        "PreviewSkipTests.test_opt_in_skips_actual_observed_cue_before_reporting_start",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "LUMO_KART_TOUR_SOURCE": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/baseline/.github/probes/modernization_android_tour.py",
+        "LUMO_KART_EVIDENCE_SOURCE": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py"
+      },
+      "exit_code": 1,
+      "elapsed_seconds": 0.12715521600330248,
+      "source_before": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/baseline/.github/probes/modernization_android_tour.py": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py": "8215511a99c1bdaf1f68192b4f6a83b2655e7a0f23bb8ea173a19c621a37f39f",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca"
+      },
+      "source_after": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/baseline/.github/probes/modernization_android_tour.py": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py": "8215511a99c1bdaf1f68192b4f6a83b2655e7a0f23bb8ea173a19c621a37f39f",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca"
+      },
+      "sources_unchanged": true,
+      "original_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/evidence/red-original-078.log",
+        "bytes": 1114,
+        "sha256": "1059d7d8454eb8fce46f1a2eec0de378e0258fa1444c0467167ebc1080344d63"
+      }
+    },
+    {
+      "name": "green-contracts",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "LUMO_KART_TOUR_SOURCE": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py",
+        "LUMO_KART_EVIDENCE_SOURCE": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.40632233300129883,
+      "source_before": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py": "392bc0ec34f8fbc935635f98e75f66416e7f31d4e92fa388a134233592c1b6d7",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py": "8215511a99c1bdaf1f68192b4f6a83b2655e7a0f23bb8ea173a19c621a37f39f",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca"
+      },
+      "source_after": {
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py": "392bc0ec34f8fbc935635f98e75f66416e7f31d4e92fa388a134233592c1b6d7",
+        "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py": "8215511a99c1bdaf1f68192b4f6a83b2655e7a0f23bb8ea173a19c621a37f39f",
+        "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca"
+      },
+      "sources_unchanged": true,
+      "original_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/evidence/green-contracts.log",
+        "bytes": 3091,
+        "sha256": "eabcbea9ba727bfbd106dd804310c2fc938741bbc15a66ea936f453db10edea6"
+      }
+    }
+  ]
+}

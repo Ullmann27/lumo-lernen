@@ -1,0 +1,94 @@
+{
+  "native_success": {
+    "log_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-observation-20261114/studio-132374803908-original.log",
+    "log_sha256": "4943ffc5da3738255342a248e73dc0005f05159ebd1e68e8e91f3ed01e18d266",
+    "engine_banner": "2026-11-14T07:38:31.3540866Z",
+    "terminal": "2026-11-14T07:48:16.0543816Z",
+    "engine_banner_to_terminal_seconds": 584.700295,
+    "first_profile_to_terminal_seconds": 584.171049,
+    "phases": [
+      {
+        "profile": "landscape",
+        "start": "2026-11-14T07:38:31.8833327Z",
+        "end": "2026-11-14T07:40:29.6640469Z",
+        "elapsed_seconds": 117.780714,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "compact",
+        "start": "2026-11-14T07:40:29.6640469Z",
+        "end": "2026-11-14T07:41:11.6074170Z",
+        "elapsed_seconds": 41.943371,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "portrait",
+        "start": "2026-11-14T07:41:11.6074170Z",
+        "end": "2026-11-14T07:42:48.1525298Z",
+        "elapsed_seconds": 96.545112,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "fold",
+        "start": "2026-11-14T07:42:48.1525298Z",
+        "end": "2026-11-14T07:45:28.1671260Z",
+        "elapsed_seconds": 160.014597,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "landscape-cutout",
+        "start": "2026-11-14T07:45:28.1671260Z",
+        "end": "2026-11-14T07:48:16.0543816Z",
+        "elapsed_seconds": 167.887255,
+        "terminal_truncated": false
+      }
+    ],
+    "notes": "Observable first-size-change intervals; each aggregates fresh and restored cases, setup and input. Not per-state exact execution times; terminal host interval is truncated."
+  },
+  "host_failure": {
+    "log_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-android-20261114/builder-original-job.log",
+    "log_sha256": "c922c2df3400fa97bbaa4f00ab8e2d046d3a326a872a36ac16022bac01a3210c",
+    "engine_banner": "2026-11-14T10:34:21.6141410Z",
+    "terminal": "2026-11-14T10:44:21.6074060Z",
+    "engine_banner_to_terminal_seconds": 599.993265,
+    "first_profile_to_terminal_seconds": 599.463852,
+    "phases": [
+      {
+        "profile": "landscape",
+        "start": "2026-11-14T10:34:22.1435547Z",
+        "end": "2026-11-14T10:36:22.1897534Z",
+        "elapsed_seconds": 120.046199,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "compact",
+        "start": "2026-11-14T10:36:22.1897534Z",
+        "end": "2026-11-14T10:37:06.5589045Z",
+        "elapsed_seconds": 44.369151,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "portrait",
+        "start": "2026-11-14T10:37:06.5589045Z",
+        "end": "2026-11-14T10:38:48.0887350Z",
+        "elapsed_seconds": 101.529831,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "fold",
+        "start": "2026-11-14T10:38:48.0887350Z",
+        "end": "2026-11-14T10:41:34.4878603Z",
+        "elapsed_seconds": 166.399125,
+        "terminal_truncated": false
+      },
+      {
+        "profile": "landscape-cutout",
+        "start": "2026-11-14T10:41:34.4878603Z",
+        "end": "2026-11-14T10:44:21.6074060Z",
+        "elapsed_seconds": 167.119546,
+        "terminal_truncated": true
+      }
+    ],
+    "notes": "Observable first-size-change intervals; each aggregates fresh and restored cases, setup and input. Not per-state exact execution times; terminal host interval is truncated."
+  }
+}

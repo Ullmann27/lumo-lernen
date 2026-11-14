@@ -1,0 +1,1327 @@
+{
+  "checks": 3351,
+  "failures": [],
+  "observations": [
+    {
+      "density": 1.5,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          838.877685546875,
+          413.779266357422,
+          128.020263671875,
+          233.223724365234
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@495",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              54.0,
+              1766.0,
+              72.0
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@PanelContainer@500",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              150.0,
+              570.0,
+              205.5
+            ],
+            "role": "clue"
+          },
+          {
+            "name": "@Label@503",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              623.000061035156,
+              960.0,
+              840.0,
+              72.0
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@504",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              136.0,
+              750.0,
+              282.000030517578,
+              282.0
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@505",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1668.0,
+              804.0,
+              228.0,
+              228.0
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@508",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1731.0,
+              714.0,
+              165.0,
+              72.0
+            ],
+            "role": "jump"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        112.0,
+        36.0,
+        0.0,
+        24.0
+      ],
+      "profile": "landscape",
+      "title_rect": [
+        262.0,
+        58.5,
+        1402.49987792969,
+        63.0
+      ],
+      "window_px": [
+        1920,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 1.5,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          838.877685546875,
+          413.779235839844,
+          128.020263671875,
+          233.223754882812
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@1012",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              54.0,
+              1766.0,
+              72.0
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@PanelContainer@1017",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              133.0,
+              150.0,
+              570.0,
+              205.5
+            ],
+            "role": "clue"
+          },
+          {
+            "name": "@Label@1020",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              623.000061035156,
+              960.0,
+              840.0,
+              72.0
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@1021",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              136.0,
+              750.0,
+              282.000030517578,
+              282.0
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@1022",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1668.0,
+              804.0,
+              228.0,
+              228.0
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@1025",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1731.0,
+              714.0,
+              165.0,
+              72.0
+            ],
+            "role": "jump"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "image": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-landscape.png",
+      "image_px": [
+        1920,
+        1080
+      ],
+      "image_sha256": "609ae9a2f31c55cac080e90ea98187bde3d8f75523e3cca768fd00ffb4a2c398",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        112.0,
+        36.0,
+        0.0,
+        24.0
+      ],
+      "profile": "landscape",
+      "title_rect": [
+        262.0,
+        58.5,
+        1402.49987792969,
+        63.0
+      ],
+      "window_px": [
+        1920,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 1.0,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          284.136444091797,
+          122.601379394531,
+          37.7430725097656,
+          69.1177978515625
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@1529",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              14.0,
+              12.0,
+              612.0,
+              48.0
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@Label@1537",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              136.0,
+              68.0,
+              490.0,
+              48.0
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@1538",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              16.0,
+              182.399993896484,
+              121.600006103516,
+              121.600006103516
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@1539",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              528.0,
+              208.0,
+              96.0,
+              96.0
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@1542",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              514.0,
+              148.0,
+              110.0,
+              48.0
+            ],
+            "role": "jump"
+          },
+          {
+            "name": "@Button@1536",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              14.0,
+              68.0,
+              110.0,
+              48.0
+            ],
+            "role": "hint"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profile": "compact",
+      "title_rect": [
+        100.0,
+        15.0,
+        370.0,
+        42.0
+      ],
+      "window_px": [
+        640,
+        320
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 1.0,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          284.1611328125,
+          122.601753234863,
+          37.5545043945312,
+          69.1319046020508
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@2049",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              14.0,
+              12.0,
+              612.0,
+              48.0
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@Label@2057",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              136.0,
+              68.0,
+              490.0,
+              48.0
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@2058",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              16.0,
+              182.399993896484,
+              121.600006103516,
+              121.600006103516
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@2059",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              528.0,
+              208.0,
+              96.0,
+              96.0
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@2062",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              514.0,
+              148.0,
+              110.0,
+              48.0
+            ],
+            "role": "jump"
+          },
+          {
+            "name": "@Button@2056",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              14.0,
+              68.0,
+              110.0,
+              48.0
+            ],
+            "role": "hint"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "image": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-compact.png",
+      "image_px": [
+        640,
+        320
+      ],
+      "image_sha256": "01fb3aa476f1c07950023cfdb2e6c8ee56af9ff902ed91a4ceab2e5812787fb9",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profile": "compact",
+      "title_rect": [
+        100.0,
+        15.0,
+        370.0,
+        42.0
+      ],
+      "window_px": [
+        640,
+        320
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          270.642761230469,
+          919.509521484375,
+          284.697204589844,
+          518.275024414062
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@2569",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              167.509841918945,
+              1006.42340087891,
+              126.039398193359
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@PanelContainer@2574",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              335.562377929688,
+              998.540161132812,
+              359.737426757812
+            ],
+            "role": "clue"
+          },
+          {
+            "name": "@Label@2577",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              1584.64990234375,
+              1006.42340087891,
+              175.929977416992
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@2578",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              42.0437965393066,
+              1884.88635253906,
+              410.399993896484,
+              410.100646972656
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@2579",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              692.356262207031,
+              1949.63891601562,
+              345.599975585938,
+              345.347991943359
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@2582",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              748.905151367188,
+              1792.08972167969,
+              289.051086425781,
+              126.039390563965
+            ],
+            "role": "jump"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "portrait",
+      "title_rect": [
+        262.773742675781,
+        183.264785766602,
+        370.510955810547,
+        91.9037246704102
+      ],
+      "window_px": [
+        1080,
+        2400
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          270.642761230469,
+          919.509399414062,
+          284.697265625,
+          518.275024414062
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@3086",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              167.509841918945,
+              1006.42340087891,
+              126.039398193359
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@PanelContainer@3091",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              335.562377929688,
+              998.540161132812,
+              359.737426757812
+            ],
+            "role": "clue"
+          },
+          {
+            "name": "@Label@3094",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.7883224487305,
+              1584.64990234375,
+              1006.42340087891,
+              175.929977416992
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@3095",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              42.0437965393066,
+              1884.88635253906,
+              410.399993896484,
+              410.100646972656
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@3096",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              692.356262207031,
+              1949.63891601562,
+              345.599975585938,
+              345.347991943359
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@3099",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              748.905151367188,
+              1792.08972167969,
+              289.051086425781,
+              126.039390563965
+            ],
+            "role": "jump"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "image": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-portrait.png",
+      "image_px": [
+        1080,
+        2400
+      ],
+      "image_sha256": "a9dd2fb6b1d56f94d67b74e5665acc328ba70a5d20c0bd2e49e2285767c4df7f",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "portrait",
+      "title_rect": [
+        262.773742675781,
+        183.264785766602,
+        370.510955810547,
+        91.9037246704102
+      ],
+      "window_px": [
+        1080,
+        2400
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.25,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          884.844360351562,
+          694.229736328125,
+          214.725341796875,
+          391.297607421875
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@3603",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              163.011184692383,
+              2112.99267578125,
+              108.044723510742
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@PanelContainer@3608",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              307.070831298828,
+              855.098205566406,
+              308.377655029297
+            ],
+            "role": "clue"
+          },
+          {
+            "name": "@Label@3611",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              498.432250976562,
+              1604.9404296875,
+              1260.14477539062,
+              108.044723510742
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@3612",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.0041351318359,
+              1289.80993652344,
+              423.048583984375,
+              423.175170898438
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@3613",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1797.95654296875,
+              1370.84350585938,
+              342.039276123047,
+              342.141632080078
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@3616",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1892.46740722656,
+              1235.78759765625,
+              247.528427124023,
+              108.044723510742
+            ],
+            "role": "jump"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "fold",
+      "title_rect": [
+        225.025848388672,
+        169.763977050781,
+        1568.43017578125,
+        94.5391311645508
+      ],
+      "window_px": [
+        2176,
+        1812
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.25,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          884.844360351562,
+          694.229553222656,
+          214.725341796875,
+          391.297790527344
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@4120",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              163.011184692383,
+              2112.99267578125,
+              108.044723510742
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@PanelContainer@4125",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              31.5036182403564,
+              307.070831298828,
+              855.098205566406,
+              308.377655029297
+            ],
+            "role": "clue"
+          },
+          {
+            "name": "@Label@4128",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              498.432250976562,
+              1604.9404296875,
+              1260.14477539062,
+              108.044723510742
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@4129",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              36.0041351318359,
+              1289.80993652344,
+              423.048583984375,
+              423.175170898438
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@4130",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1797.95654296875,
+              1370.84350585938,
+              342.039276123047,
+              342.141632080078
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@4133",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              1892.46740722656,
+              1235.78759765625,
+              247.528427124023,
+              108.044723510742
+            ],
+            "role": "jump"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "image": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-fold.png",
+      "image_px": [
+        2176,
+        1812
+      ],
+      "image_sha256": "e2913b19defe9a740494da0aab2eb63a008adb07f7de85d6cef2d1122d04099f",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "fold",
+      "title_rect": [
+        225.025848388672,
+        169.763977050781,
+        1568.43017578125,
+        94.5391311645508
+      ],
+      "window_px": [
+        2176,
+        1812
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          1078.96606445312,
+          413.779296875,
+          127.926879882812,
+          233.223754882812
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@4637",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              172.761489868164,
+              94.532844543457,
+              2190.47705078125,
+              126.131393432617
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@Label@4645",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              493.111602783203,
+              241.686126708984,
+              1870.126953125,
+              126.131408691406
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@4646",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              178.013137817383,
+              612.436218261719,
+              362.255584716797,
+              362.52001953125
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@4647",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2071.99584960938,
+              688.756164550781,
+              285.9912109375,
+              286.199951171875
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@4650",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2069.14672851562,
+              531.091979980469,
+              288.840270996094,
+              126.131393432617
+            ],
+            "role": "jump"
+          },
+          {
+            "name": "@Button@4644",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              172.761489868164,
+              241.686126708984,
+              288.840270996094,
+              126.131408691406
+            ],
+            "role": "hint"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "image": "/tmp/lumo-treasure-visibility-acf51/final-render-v2-captures/treasure-title-landscape-cutout.png",
+      "image_px": [
+        2400,
+        1080
+      ],
+      "image_sha256": "a4ddd95b35a4253bca35863eb5f6a04b7cc24af731c2d314f774502fa769f328",
+      "initial_state_fixture": "production fresh start",
+      "insets_fixture": [
+        136.0,
+        63.0,
+        0.0,
+        63.0
+      ],
+      "profile": "landscape-cutout",
+      "title_rect": [
+        398.582061767578,
+        102.416053771973,
+        1554.48583984375,
+        110.364967346191
+      ],
+      "window_px": [
+        2400,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "gameplay_view": {
+        "avatar_rect_px": [
+          1078.96606445312,
+          413.779205322266,
+          127.926879882812,
+          233.223785400391
+        ],
+        "hud_rects": [
+          {
+            "name": "@HBoxContainer@5157",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              172.761489868164,
+              94.532844543457,
+              2190.47705078125,
+              126.131393432617
+            ],
+            "role": "header"
+          },
+          {
+            "name": "@Label@5165",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              493.111602783203,
+              241.686126708984,
+              1870.126953125,
+              126.131408691406
+            ],
+            "role": "toast"
+          },
+          {
+            "name": "@Control@5166",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              178.013137817383,
+              612.436218261719,
+              362.255584716797,
+              362.52001953125
+            ],
+            "role": "joystick"
+          },
+          {
+            "name": "@Control@5167",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2071.99584960938,
+              688.756164550781,
+              285.9912109375,
+              286.199951171875
+            ],
+            "role": "action"
+          },
+          {
+            "name": "@Button@5170",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              2069.14672851562,
+              531.091979980469,
+              288.840270996094,
+              126.131393432617
+            ],
+            "role": "jump"
+          },
+          {
+            "name": "@Button@5164",
+            "overlap_px": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rect_px": [
+              172.761489868164,
+              241.686126708984,
+              288.840270996094,
+              126.131408691406
+            ],
+            "role": "hint"
+          }
+        ],
+        "secondary_white_backdrop_contrast": 14.4422647052388
+      },
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        136.0,
+        63.0,
+        0.0,
+        63.0
+      ],
+      "profile": "landscape-cutout",
+      "title_rect": [
+        398.582061767578,
+        102.416053771973,
+        1554.48583984375,
+        110.364967346191
+      ],
+      "window_px": [
+        2400,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    }
+  ],
+  "scope": "Production HUD, real ScreenTouch, declared saved-position and Android-boundary fixture; not device execution"
+}

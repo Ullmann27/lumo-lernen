@@ -1,0 +1,86 @@
+{
+  "observed_at": "2026-11-14T03:00:52.341925+00:00",
+  "scope": "Read-only discovery of already installed tooling; no installation, download, source edits, or test execution by this review.",
+  "original_local_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts.log",
+    "sha256": "594cf001c58078a63436d5023e7bf166c95b60a4daaf5630144e6f724c1c83d6",
+    "relevant_original_lines": [
+      "test_init_script_runs_and_orders_the_mirror_first (test_gradle_central_mirror.GradleCentralMirrorTests.test_init_script_runs_and_orders_the_mirror_first) ... skipped 'Gradle is not installed'",
+      "    missing_toolchain('Use the existing validated Gradle installation or LUMO_KOTLIN_LIB_DIR; this test downloads nothing')",
+      "RuntimeError: Use the existing validated Gradle installation or LUMO_KOTLIN_LIB_DIR; this test downloads nothing",
+      "    raise RuntimeError('Set LUMO_KOTLIN_LIB_DIR or use the verified Gradle installation on PATH')",
+      "RuntimeError: Set LUMO_KOTLIN_LIB_DIR or use the verified Gradle installation on PATH",
+      "Ran 425 tests in 55.291s",
+      "FAILED (errors=2, skipped=1)"
+    ]
+  },
+  "tooling": [
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/bin/gradle",
+      "exists": true,
+      "size_bytes": 8700,
+      "executable": true
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib/kotlin-compiler-embeddable-2.2.0.jar",
+      "exists": true,
+      "size_bytes": 56255947,
+      "executable": false
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib/kotlin-stdlib-2.2.0.jar",
+      "exists": true,
+      "size_bytes": 1750373,
+      "executable": false
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib/kotlin-script-runtime-2.2.0.jar",
+      "exists": true,
+      "size_bytes": 44759,
+      "executable": false
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib/kotlin-reflect-2.2.0.jar",
+      "exists": true,
+      "size_bytes": 3298629,
+      "executable": false
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib/kotlin-daemon-embeddable-2.2.0.jar",
+      "exists": true,
+      "size_bytes": 345722,
+      "executable": false
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib/kotlinx-coroutines-core-jvm-1.10.2.jar",
+      "exists": true,
+      "size_bytes": 1479317,
+      "executable": false
+    }
+  ],
+  "review_process_environment": {
+    "gradle_on_path": null,
+    "java_on_path": "/usr/bin/java",
+    "GRADLE_HOME": null,
+    "LUMO_KOTLIN_LIB_DIR": null
+  },
+  "existing_environment_for_parent_execution": {
+    "GRADLE_HOME": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0",
+    "LUMO_KOTLIN_LIB_DIR": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib",
+    "PATH_prefix": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/bin",
+    "REQUIRE_ALL_TESTS": "true"
+  },
+  "historical_configuration_references": [
+    "qa/host-cards-safe-area-318/full-python-groups/review.json",
+    "qa/host-cards-safe-area-318/full-python-groups/run_group.py"
+  ],
+  "historical_results_reused_as_current_results": false,
+  "exact_skip_test": "test_gradle_central_mirror.GradleCentralMirrorTests.test_init_script_runs_and_orders_the_mirror_first",
+  "exact_skip_reason": "Gradle is not installed",
+  "setup_errors": [
+    "test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.setUpClass",
+    "test_game_return_contract.GameReturnStoreTest.setUpClass"
+  ],
+  "new_test_result_claimed": false,
+  "parent_status": "Parent reported starting its own complete group with the discovered existing toolchain; this note does not report that run result."
+}

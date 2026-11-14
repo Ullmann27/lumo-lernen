@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "prepared_file": "qa/studio-2020-integration/root/host/scripts/tests/test_candidate_2011_pin.py",
+  "sha256": "7dff7b45a74445a62e8c1c54b3e322de5b57237db1b3c9f15ce382273b32d9a6",
+  "changed_methods": [
+    "test_current_candidate_identity_exceeds_existing_2008_and_reserved_2010",
+    "test_all_existing_native_identities_are_unchanged",
+    "test_unreserved_and_private_checkpoint_versions_stay_closed"
+  ],
+  "added_methods": [
+    "test_2020_accepts_its_exact_source_and_preserves_all_historical_pins",
+    "test_2020_update_wrapper_requires_the_current_exact_source"
+  ],
+  "unchanged_historical_methods": 23,
+  "policy_and_pubspec_not_changed": true,
+  "native_pin_not_approved": true,
+  "pending_native_run": 43565059832,
+  "source": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "test_execution": "not yet run; prepared until actual native approval, no policy mock"
+}

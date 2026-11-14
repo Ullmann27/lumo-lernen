@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "completed_at_utc": "2026-11-14T16:52:14.857402+00:00",
+  "status": "complete_immutable_image_blobs_only",
+  "repository": "Ullmann27/lumo-lernen",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "source_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/reviewed-images-upload-manifest.json",
+    "bytes": 57558,
+    "sha256": "d62f3f5c0a800a2746226fec28fb9330253700dd14d40290cfb83cdbf2dc8bad",
+    "git_blob": "07a086830d8291de73dfed2fa631cc7f53a2a01b"
+  },
+  "new_images_confirmed": 21,
+  "bytes": 25617391,
+  "existing_images_skipped": 28,
+  "skipped_targets_uploaded": 0,
+  "all_before_after_hashes_unchanged": true,
+  "base64_chunk_limit": 32766,
+  "parallel_read_limit": 8,
+  "serial_create_blob": true,
+  "all_create_response_git_shas_exact": true,
+  "binary_utf8_readback_performed": false,
+  "new_visual_reviews_claimed": false,
+  "receipt_uploaded_or_changed": false,
+  "receipt_owned_by_root": "f830ad2a124fbe4dad8adb94dd0eb47719f31856",
+  "confirmed_tree_inputs": {
+    "path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/image-upload/confirmed-tree-inputs.json",
+    "bytes": 5362,
+    "sha256": "df3c65b5fc845c722576cdbead8cbb556fef69287a1f526ff8aabe65b6507a74",
+    "git_blob": "7c4ec905429cf098b5dc965ad9655993e19e3692"
+  },
+  "proof": {
+    "path": "/workspace/scratch/5987865ae883/qa/host-native29080-integration-20261114/image-upload/confirmed-blobs.json",
+    "bytes": 23391,
+    "sha256": "b11e69d5c838cfba271416cf2f2dbac9d56d7f687c3b2e6194f5f1a2f3ae546d",
+    "git_blob": "a87e0d8eac163508b60caf50f96d6ca86952d359"
+  },
+  "no_tree_commit_ref_or_pr_mutation": true
+}

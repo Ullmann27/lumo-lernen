@@ -1,0 +1,6 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart
+00:00 +0: local two-player win rewards once and replay preserves wallet
+C4REWARD lumo_reward_wallet_v1=Instance of 'Future<SharedPreferences>';lumo_learning_local_student_id_v1=Instance of 'Future<SharedPreferences>';lumo.connect_four.round.v1.19570d041628617b707241bd35c43804ba8cee7ffb95c900a8bddde29636d715=Instance of 'Future<SharedPreferences>' state=5 error=null
+C4SAVE lumo_reward_wallet_v1 {"stars":5,"xp":40,"level":1,"streak":0,"totalEarnedStars":5,"lastDailyKey":"","gameResultIds":["c4:19570d041628617b707241bd35c43804ba8cee7ffb95c900a8bddde29636d715:5f819b08a82d36b45e8559d40f73b7d5"],"lumoCardsWinStreak":0}
+C4SAVE lumo.connect_four.round.v1.19570d041628617b707241bd35c43804ba8cee7ffb95c900a8bddde29636d715 {"schema":1,"owner":"19570d041628617b707241bd35c43804ba8cee7ffb95c900a8bddde29636d715","id":"5f819b08a82d36b45e8559d40f73b7d5","seed":1873421775,"revision":10,"twoPlayers":true,"level":"mittel","columns":[0,6,1,6,2,5,3],"rewarded":true}
+00:01 +1: All tests passed!

@@ -1,0 +1,52 @@
+{
+  "scope": "Final Python orchestration boundaries only; no Gradle/Kotlin production execution",
+  "trigger_for_this_final_run": "Concrete Studio same-repository pull_request checks out head.sha, not synthetic merge GITHUB_SHA; add two identity boundaries",
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_speech_jvm_runner.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/prepared/host",
+  "started_utc": "2026-11-14T16:40:07.564556+00:00",
+  "completed_utc": "2026-11-14T16:40:08.361441+00:00",
+  "duration_seconds": 0.7968866359988169,
+  "exit_code": 0,
+  "source_before": [
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob_sha": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "git_blob_sha": "4358a2540c65c19701b39d582465089672f884e5"
+    }
+  ],
+  "source_after": [
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob_sha": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "git_blob_sha": "4358a2540c65c19701b39d582465089672f884e5"
+    }
+  ],
+  "source_unchanged": true,
+  "log": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-final.log",
+  "log_sha256": "e617bada26916a8ffb0325762f8b5f69d5d8cb7afb5ce06f9b45526e9a27ab33"
+}

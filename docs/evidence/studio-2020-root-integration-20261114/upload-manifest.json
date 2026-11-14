@@ -1,0 +1,507 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "expected_parent": "e423df58117c8f49bcd03c634e438392dc79c3ef",
+  "base_tree": "61d1aa197fb28072ab9405039b0d171cb4ce1aea",
+  "scope": "Docs-only frozen Root integration evidence; current Native followup CI still incomplete and Host2020 not yet published",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/android-generator-baseline-binding.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/android-generator-baseline-binding.json",
+      "mode": "100644",
+      "bytes": 439,
+      "sha256": "ae19ba7eb4efe90db7d68548444218f29795383d7a8faef1ace8c2403e56b515",
+      "git_blob_sha": "b121a3668f30ec451a0476fae17e4e39e5241eff",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/android-generator-baseline-binding.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/attention-and-import-root-review.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/attention-and-import-root-review.json",
+      "mode": "100644",
+      "bytes": 1441,
+      "sha256": "5cb41b6995c4c66e48e88d8b4a8e6d22adee12f638cc39e4c4043e4ffea1990b",
+      "git_blob_sha": "af1eb638aadcf922a9b4af940544035e11e8fdf6",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/attention-and-import-root-review.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/candidate2020-pin-test-preparation.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/candidate2020-pin-test-preparation.json",
+      "mode": "100644",
+      "bytes": 893,
+      "sha256": "d7a7ca922b459175c5d3befddec608868cc7db9db917bf781ff4b841c791a7e2",
+      "git_blob_sha": "0647147df92ba76275fa6ad5fa8f68734c9d4a52",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/candidate2020-pin-test-preparation.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-android-and-runtime-contracts-execution.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-android-and-runtime-contracts-execution.json",
+      "mode": "100644",
+      "bytes": 2427,
+      "sha256": "04fab5881b0d4312f9663e18dc8c9217a31c8428715877d594963f2877463f3a",
+      "git_blob_sha": "2371e3a498cea2510571e0a80251e576d2a0ff67",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-android-and-runtime-contracts-execution.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-final-test_creative_geometry_readiness.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-final-test_creative_geometry_readiness.py.log",
+      "mode": "100644",
+      "bytes": 1997,
+      "sha256": "b7c284f6e8be799af04d82ab3d477c6b4e0ad68abfdbaa7ac65842edf1d7be1c",
+      "git_blob_sha": "b3a2326096a6d4342936c0fda9f95f8ea084fda7",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-final-test_creative_geometry_readiness.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-final-test_studio_2020_android_contracts.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-final-test_studio_2020_android_contracts.py.log",
+      "mode": "100644",
+      "bytes": 1698,
+      "sha256": "886ba7b8025732014f1ecd8d398f5ab45d3aea228c630d62f6399cda39c5db6b",
+      "git_blob_sha": "8cef7ba50ae988fcc165d9b1e33a72b430231b6a",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-final-test_studio_2020_android_contracts.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-final-test_studio_creative_android_probe.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-final-test_studio_creative_android_probe.py.log",
+      "mode": "100644",
+      "bytes": 1784,
+      "sha256": "5a936b517700b5d28d05edd4d60bb4ff7071e45ad5dbb28fd668f3b29a777846",
+      "git_blob_sha": "1958e3ace0ebece19a82f4e21d6ea047909df1b9",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-final-test_studio_creative_android_probe.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-test_connect_four_android_probe.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-test_connect_four_android_probe.py.log",
+      "mode": "100644",
+      "bytes": 4794,
+      "sha256": "54c1bf3e8e3fef38813a519ccc3ec73a0fd55dff2118c96bb8a38b05a8565d26",
+      "git_blob_sha": "5add62abbf271cdc700dbd04389541ba6dd55d7b",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-test_connect_four_android_probe.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-test_connect_four_runtime_gate.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-test_connect_four_runtime_gate.py.log",
+      "mode": "100644",
+      "bytes": 3413,
+      "sha256": "c88742c22065da674d1327b581065b865d85cf167f33c34366e2d7b1a62f8ca0",
+      "git_blob_sha": "f94cd4ef59a2f6fc62654f9174fbcd0ee33515d1",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-test_connect_four_runtime_gate.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-test_flutter_loading_frameall.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-test_flutter_loading_frameall.py.log",
+      "mode": "100644",
+      "bytes": 1124,
+      "sha256": "c845c768e2cc60348fca2bccba139bbed6e506fbe1197c4615490e41b862654f",
+      "git_blob_sha": "06eee041c55d29cad0bb36477906c7cca2ece771",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-test_flutter_loading_frameall.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-test_studio_2020_android_contracts.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-test_studio_2020_android_contracts.py.log",
+      "mode": "100644",
+      "bytes": 1698,
+      "sha256": "db3a72803b197c3e35a68ab73acb3151ba4878d0ee0e6463e75e0130e590d47a",
+      "git_blob_sha": "c941b953c3369f0a081807ac27d1851c30d8ae89",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-test_studio_2020_android_contracts.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/composed-test_update_preservation.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/composed-test_update_preservation.py.log",
+      "mode": "100644",
+      "bytes": 11167,
+      "sha256": "eedbd654e25a63976707be8d8ec0720eac6a32f9cf32d80f29e2b7a74ecbe3fb",
+      "git_blob_sha": "ed652919226698ca254a61989504122d98a5aa79",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/composed-test_update_preservation.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/creative-composed-final-contracts-execution.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/creative-composed-final-contracts-execution.json",
+      "mode": "100644",
+      "bytes": 1481,
+      "sha256": "b5e732855fc82a8afac34dab1f3cb32c1f62c3cc94204d819359df5efd7027ce",
+      "git_blob_sha": "acbace68aa58951963821429a9ebf4990368e36e",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/creative-composed-final-contracts-execution.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/creative-composition-ast-proof.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/creative-composition-ast-proof.json",
+      "mode": "100644",
+      "bytes": 1304,
+      "sha256": "c7f2c59cbf1b6095859b4d97486da38cdd695cf53c7f848a23787751a13212cb",
+      "git_blob_sha": "7c2e6d91a3998b87128cc3bc2b6e978c28ced606",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/creative-composition-ast-proof.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/creative-composition.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/creative-composition.log",
+      "mode": "100644",
+      "bytes": 238,
+      "sha256": "b7d1de2a0a3139cf265ca516fc2bd908f3e375a715f6ae7eb04da0ce316d96ad",
+      "git_blob_sha": "5a4c47a9d883c46d17cd102a7dc476d345d030a5",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/creative-composition.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/delivery-contracts-first-execution.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/delivery-contracts-first-execution.json",
+      "mode": "100644",
+      "bytes": 351,
+      "sha256": "c492b7284fd6a0d8ee231f77f432dd715ca0b9e561e618ce58da085060c165a2",
+      "git_blob_sha": "3fe46718dcfcf5eaf75cbf55457a98e60e921a01",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/delivery-contracts-first-execution.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/delivery-contracts-first.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/delivery-contracts-first.log",
+      "mode": "100644",
+      "bytes": 10941,
+      "sha256": "9d66fd608d4fc423ec8b16d53f091bf3aea4a114f88a27a6e9947cad1a55a013",
+      "git_blob_sha": "9ff4544cbbbea2697de6d1102067c9e3c939fe24",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/delivery-contracts-first.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/delivery-required-treasure-contracts-execution.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/delivery-required-treasure-contracts-execution.json",
+      "mode": "100644",
+      "bytes": 370,
+      "sha256": "3bd513b7544f2ce9341fa6e64616bbdc0e4f44f18a68433877738bb8adef5841",
+      "git_blob_sha": "8effc71a3d95e1e3644a9161879cfd540db04d35",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/delivery-required-treasure-contracts-execution.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/delivery-required-treasure-contracts.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/delivery-required-treasure-contracts.log",
+      "mode": "100644",
+      "bytes": 1815,
+      "sha256": "86d9440f9779f7a8400b8d3f242bb6265d50c55b11452cf137ead9183a695ac3",
+      "git_blob_sha": "28114bbfb0686cfd37738bc2e4320a6c30a9aec5",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/delivery-required-treasure-contracts.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/facial-movie-correction-root-visual-review.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/facial-movie-correction-root-visual-review.json",
+      "mode": "100644",
+      "bytes": 1427,
+      "sha256": "232a3d4410796f3451b5bb26e5d889e2c6b4a663db7e764b4ecfb763ab66bfa1",
+      "git_blob_sha": "e0117dd25fb4840dc484e94c11bb945ed15f0700",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/facial-movie-correction-root-visual-review.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/facial-owned-cache-cleanup.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/facial-owned-cache-cleanup.json",
+      "mode": "100644",
+      "bytes": 166089,
+      "sha256": "24d97db14abf6e6e44b6ef9412ce48e1337919988293ee21f3cb25b6d952fa95",
+      "git_blob_sha": "9a2b83307e5fb08d39cff619ca4c05b9da494a0b",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/facial-owned-cache-cleanup.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/facial-root-visual-review.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/facial-root-visual-review.json",
+      "mode": "100644",
+      "bytes": 2080,
+      "sha256": "32a82b69e53c3a73fcb3a748e3daa08cd1112a5e6fa4b6b99759927f63425dc1",
+      "git_blob_sha": "e4ed32b366cec02ec55926d3a9040cb9bf4861c1",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/facial-root-visual-review.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/integrated-c4-publisher-and-originals-contracts.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/integrated-c4-publisher-and-originals-contracts.json",
+      "mode": "100644",
+      "bytes": 1640,
+      "sha256": "4c6ec73824e9b2cafc3f96f01f4e5e734b3fe91bbf5cd15b122c32eba1adc1a8",
+      "git_blob_sha": "044c3cd214abec78077930fcd21d50cd3986b34b",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/integrated-c4-publisher-and-originals-contracts.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/integrated-test_connect_four_android_probe.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/integrated-test_connect_four_android_probe.py.log",
+      "mode": "100644",
+      "bytes": 5204,
+      "sha256": "868779604f48f59c99fdef434c9eb96ed5676f3ac2afdfa9588d83b7e7e7dfc8",
+      "git_blob_sha": "d88aac002bc27649d0008b183311ca4dcbd10285",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/integrated-test_connect_four_android_probe.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/integrated-test_studio_artifact_originals.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/integrated-test_studio_artifact_originals.py.log",
+      "mode": "100644",
+      "bytes": 4313,
+      "sha256": "2fd183bc6d59a6106fea0da8903cbefdaaf612633d6335d50bd66b8978bf887c",
+      "git_blob_sha": "08314b1b6ff07e647134c39f29dffa7eef6bb84a",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/integrated-test_studio_artifact_originals.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/integrated-test_studio_connect_four_android_delivery.py.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/integrated-test_studio_connect_four_android_delivery.py.log",
+      "mode": "100644",
+      "bytes": 5907,
+      "sha256": "907c0db3c3d7d84dc73b450e74943362263700682ac5c6f37fa86f26635ff18f",
+      "git_blob_sha": "7ae44a35db8bc933f53edbe0e2772a4becf049be",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/integrated-test_studio_connect_four_android_delivery.py.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/native-8be3-terminal-ci-original-metadata.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/native-8be3-terminal-ci-original-metadata.json",
+      "mode": "100644",
+      "bytes": 39213,
+      "sha256": "702da5bb1d6bc04ef76ed8eda7815c4224124dec374b0d5661d35061f69e2065",
+      "git_blob_sha": "c3173a93b19ababb7228ec29f2d06ad72c9a2e2a",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native-8be3-terminal-ci-original-metadata.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/native2020-actionlint-final.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/native2020-actionlint-final.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-actionlint-final.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/native2020-actionlint.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/native2020-actionlint.json",
+      "mode": "100644",
+      "bytes": 322,
+      "sha256": "b3f10bd0f692c0e2781c26bf0cb32c2231832cd0e12057a202fd55c2c4151d25",
+      "git_blob_sha": "06b13ffade4cb58ee12734d9e5eadd5e8141a422",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-actionlint.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/native2020-actionlint.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/native2020-actionlint.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-actionlint.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/native2020-bash-syntax-final.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/native2020-bash-syntax-final.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-bash-syntax-final.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/native2020-contracts-first.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/native2020-contracts-first.json",
+      "mode": "100644",
+      "bytes": 340,
+      "sha256": "ae5f82307062eafca16d15a88b9bae7afbb88bbd50909671660ec6d48beb11fe",
+      "git_blob_sha": "97c9defa4e154c13b345522416329c0983fe227e",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-contracts-first.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/native2020-contracts-first.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/native2020-contracts-first.log",
+      "mode": "100644",
+      "bytes": 2411,
+      "sha256": "67f1228e155f864065a0735b5929c309c49d90bea726a41bc5384a624801727c",
+      "git_blob_sha": "f14ab47ce668c02b1ca0ee75a8e3a276110e8a54",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-contracts-first.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/old-flutter-test-kernel-cleanup-before.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/old-flutter-test-kernel-cleanup-before.json",
+      "mode": "100644",
+      "bytes": 6132,
+      "sha256": "ad0981f9644dbdf3abde5eb7ddc2de93e2cfd7ad219f764cb1568dd1151c510a",
+      "git_blob_sha": "66eddb7d538f6450a11c30d658dd26dbddcd8f8e",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/old-flutter-test-kernel-cleanup-before.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/old-flutter-test-kernel-cleanup-result.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/old-flutter-test-kernel-cleanup-result.json",
+      "mode": "100644",
+      "bytes": 6206,
+      "sha256": "78ae782ba07cbcbfc650c5313d8719abedcadfd40787cc1ada832d5b5600bb40",
+      "git_blob_sha": "f41eae62b6b0032552d99fcf3fc2d7c3417fa2e8",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/old-flutter-test-kernel-cleanup-result.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/prepare-android-source-binding.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/prepare-android-source-binding.json",
+      "mode": "100644",
+      "bytes": 449,
+      "sha256": "08ebe95f4e09b947e424190b32457293b2d0683768327d641e80afc404e08d4d",
+      "git_blob_sha": "a3caac62b9f9d5488f0d4b38250651c5e8aabf73",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/prepare-android-source-binding.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/speech-envelope-installer-contracts-execution.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/speech-envelope-installer-contracts-execution.json",
+      "mode": "100644",
+      "bytes": 364,
+      "sha256": "f79845688badcb4470c49752d4b0d02ae3da44553bc260574a3bfdb9e8e67aa3",
+      "git_blob_sha": "817d1bc00cae1016f36d84ce6318b80ab461b0c5",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/speech-envelope-installer-contracts-execution.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/speech-envelope-installer-contracts.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/speech-envelope-installer-contracts.log",
+      "mode": "100644",
+      "bytes": 2730,
+      "sha256": "867cda582800730e02881ad1e64fe17f9f0824bc1a15b3973daf021cf18638eb",
+      "git_blob_sha": "090e32ff536568479f0385dce829d14c53b89524",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/speech-envelope-installer-contracts.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/surface-composition-ast-proof.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/surface-composition-ast-proof.json",
+      "mode": "100644",
+      "bytes": 900,
+      "sha256": "d57fecdf86bf8258a962f30fdee6d52d4021bfbe8776e662dc36eb36b1c8ad42",
+      "git_blob_sha": "b37f70fc3acf05c5a9f1482b6e79bbbdb3d99c6d",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/surface-composition-ast-proof.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/surface-composition.log",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/surface-composition.log",
+      "mode": "100644",
+      "bytes": 193,
+      "sha256": "9f58c6e44f25e778a023d51f99e79d1e6418d090010e2b6bcb88203c4caf1529",
+      "git_blob_sha": "e0a1ab5c29845f753ddf3cb0ae072d6df6c9cb78",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/surface-composition.log"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/temporary-archive-relocation.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/temporary-archive-relocation.json",
+      "mode": "100644",
+      "bytes": 768,
+      "sha256": "2b2938b9493a97f9fa824dc54ac48d536f2ea6ad6a555fd656e82d10abb51043",
+      "git_blob_sha": "f008e598b8886e06bc6750694eff64c8d1647615",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/temporary-archive-relocation.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/integration/treasure-root-visual-review.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/integration/treasure-root-visual-review.json",
+      "mode": "100644",
+      "bytes": 595,
+      "sha256": "c38fb5f74a405d2dead69e4de84c29fdec346b047a5e0d94a90f8366bd228ecd",
+      "git_blob_sha": "d75342c6c120118312e26dd848818f6e16555622",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/treasure-root-visual-review.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/native-composed-source-manifest.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/native-composed-source-manifest.json",
+      "mode": "100644",
+      "bytes": 12936,
+      "sha256": "bb59cd79250c7586cbcff7457fe98f69aff38f931dccaf1a1e653971e07d8555",
+      "git_blob_sha": "ee7b155eacadd8e5cd9a786639bc3122ffaf9547",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-composed-source-manifest.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/native-github-checkpoint.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/native-github-checkpoint.json",
+      "mode": "100644",
+      "bytes": 3461,
+      "sha256": "23eddae58118c48949c694d6d0576b490f7dd22cda79b43e0036dc6b9df3248c",
+      "git_blob_sha": "f8e5ca3e4714a8465b1887ddbc13ef712f54721b",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-github-checkpoint.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/native-8be3-corrections-source-manifest.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/native-8be3-corrections-source-manifest.json",
+      "mode": "100644",
+      "bytes": 3687,
+      "sha256": "328e7aa626825c523fc923a1a88a399ee8bb4235fdbb529c460b4bf6054a070a",
+      "git_blob_sha": "8450004a8bd45eb28d608cc4593ea997ba3936e4",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-8be3-corrections-source-manifest.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/native-8be3-corrections-github-checkpoint.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/native-8be3-corrections-github-checkpoint.json",
+      "mode": "100644",
+      "bytes": 4144,
+      "sha256": "49d954ca29f312aca416d9c4592fe2f03ee574a72fe7245c44002cab55422e15",
+      "git_blob_sha": "dc408acee183d00e1379b519d7d6f0158b619963",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-8be3-corrections-github-checkpoint.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/host-prospective-delta-audit-before-native-repairs.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/host-prospective-delta-audit-before-native-repairs.json",
+      "mode": "100644",
+      "bytes": 32671,
+      "sha256": "7614821c6549da91d13d7c90c075feadc6837e47c546bd66b95ef0c31fbb7c00",
+      "git_blob_sha": "045bfc7d7284fbd7d7e045f33e6661ae17db25c9",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-prospective-delta-audit-before-native-repairs.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/host-source-blob-preparation-complete68.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/host-source-blob-preparation-complete68.json",
+      "mode": "100644",
+      "bytes": 19728,
+      "sha256": "e3320304001a5b011d6f0937bbc0994442f2aec22ad222ed3c26c33227aff36f",
+      "git_blob_sha": "70d96d8448437c141ea52bb775f8d547cb74802a",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/host-source-blob-preparation-complete68.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/previous338-upload/blob-upload-completion.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/previous338-upload/blob-upload-completion.json",
+      "mode": "100644",
+      "bytes": 222125,
+      "sha256": "840d9601755146c5ce5ac6994a1040a974f2a9c09611f42c8fe3a2a1a692fb50",
+      "git_blob_sha": "ac12ad1289dcdd234e75a500f90b5b54c19b8de7",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-new-work-evidence-20261114/blob-upload-completion.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/previous338-upload/verified-tree-entry-input.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/previous338-upload/verified-tree-entry-input.json",
+      "mode": "100644",
+      "bytes": 75495,
+      "sha256": "fffddc95fb0a679807a854deb5965a65cd4c33063bfbd6f42ac71243ce1a9f6e",
+      "git_blob_sha": "6dde2ccfe85b92a4f1db34c4d8f0cc673f812926",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-new-work-evidence-20261114/verified-tree-entry-input.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/required-image-review-plan.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/required-image-review-plan.json",
+      "mode": "100644",
+      "bytes": 9128,
+      "sha256": "8acb74cfa4bd5c0572fb692ead980b70090dbf37afbad9a3438d24cff958c181",
+      "git_blob_sha": "4140b3042d5b224403a40fbf21ba9c9f6edd463b",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/required-image-review-plan.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/prepared-source/test_candidate_2011_pin.py",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/prepared-source/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "bytes": 19814,
+      "sha256": "7dff7b45a74445a62e8c1c54b3e322de5b57237db1b3c9f15ce382273b32d9a6",
+      "git_blob_sha": "cecdbdfd6189a390a36486fa962ab1a16fedac66",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/scripts/tests/test_candidate_2011_pin.py"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/README.md",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/README.md",
+      "mode": "100644",
+      "bytes": 3891,
+      "sha256": "380bd2c3e79734c38e4a718ed9ab4103f762e5900235a0393be77e9c8fd6be07",
+      "git_blob_sha": "8359f87aec92e39c0a8d7ba681bc2ab0cc7e32b9",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/README.md"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/native-acf51-initial-workflows-original.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/native-acf51-initial-workflows-original.json",
+      "mode": "100644",
+      "bytes": 111612,
+      "sha256": "11f70ba4bb9e8471e6c4ef1015d7e963cc5b3391513bfef941bf99d6c223d7ca",
+      "git_blob_sha": "9c1535e1c77c65fb74f9a77ae456b7b1464e4c13",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/native-acf51-initial-workflows-original.json"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/frozen/native-acf51-total-source-delta.json",
+      "target": "docs/evidence/studio-2020-root-integration-20261114/native-acf51-total-source-delta.json",
+      "mode": "100644",
+      "bytes": 1481,
+      "sha256": "483fb3aa5febdb27b1ff48789ea4eafacf6b4ebbde8102043fd5be526786bb9a",
+      "git_blob_sha": "e19a49575f4c18aa7c8c3d77df5ce8a2d3b67008",
+      "original_source": "/workspace/scratch/5987865ae883/qa/studio-2020-root-evidence-20261114/native-acf51-total-source-delta.json"
+    }
+  ],
+  "total_bytes": 816831,
+  "files_already_bound_in338_packet_excluded": 21,
+  "all_manifest_sources_are_frozen_copies": true
+}

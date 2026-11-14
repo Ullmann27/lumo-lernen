@@ -1,0 +1,660 @@
+{
+  "scope": "Exact078 image_lines algorithm with available LOCAL Tesseract5.5.0 eng-only; deu+eng requests explicitly changed to eng. Not exact CI5.3.4/deu+eng and not Android execution.",
+  "original_sha256": "628769b688062f62808fac49fb4ab39ee2486c269fae4ca7a867f6109bb1bb1c",
+  "timeout_seconds": 25,
+  "status": "READ",
+  "matches": [],
+  "observed_lines": 194,
+  "elapsed_seconds": 8.269243009010097,
+  "calls": [
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-contrast",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-contrast",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.44812640399322845,
+      "stderr": "Estimating resolution as 756\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-raw",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-raw",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 1.0794768999912776,
+      "stderr": "Estimating resolution as 719\nDetected 59 diacritics\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-text",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-text",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.4903926940023666,
+      "stderr": "Estimating resolution as 688\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.4340319390030345,
+      "stderr": "Estimating resolution as 688\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-navy-latin",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-navy-latin",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.19191914499970153,
+      "stderr": "Estimating resolution as 435\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-navy-latin-1x",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-navy-latin-1x",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.11306938801135402,
+      "stderr": "Estimating resolution as 503\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-teal-text-1x",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/ocr-work.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-teal-text-1x",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.15248988999519497,
+      "stderr": "Estimating resolution as 699\nDetected 111 diacritics\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-0.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-0",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-0.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-0",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.05656742298742756,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-1.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-1",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-1.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-1",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.06700684600218665,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-2.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-2",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-2.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-2",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.055307640999672,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-3.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-3",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-3.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-3",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.0601002530020196,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-4.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-4",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-4.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-4",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.06150690199865494,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-5.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-5",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-5.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-5",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.06234209399553947,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-6.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-6",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-6.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-6",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.05603908699413296,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-7.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-7",
+        "--psm",
+        "6",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-7.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-gold-component-7",
+        "--psm",
+        "6",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.062249666996649466,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-0.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-0",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-0.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-0",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.1748133630026132,
+      "stderr": "Estimating resolution as 1357\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-1.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-1",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-1.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-1",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.14579572199727409,
+      "stderr": "Estimating resolution as 1528\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-2.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-2",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-2.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-2",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.24406276700028684,
+      "stderr": "Estimating resolution as 1079\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-3.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-3",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-3.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-3",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.29619380200165324,
+      "stderr": "Estimating resolution as 350\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-4.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-4",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-4.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-4",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.16569637299107853,
+      "stderr": ""
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-5.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-5",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-5.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-tile-5",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.239722457001335,
+      "stderr": "Estimating resolution as 682\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-0.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-0",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-0.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-0",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.16675311799917836,
+      "stderr": "Estimating resolution as 1580\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-1.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-1",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-1.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-1",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.14036406300147064,
+      "stderr": "Estimating resolution as 1204\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-2.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-2",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-2.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-2",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.28855067999393214,
+      "stderr": "Estimating resolution as 558\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-3.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-3",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-3.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-3",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.2779343679867452,
+      "stderr": "Estimating resolution as 463\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-4.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-4",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-4.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-4",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.22048769300454296,
+      "stderr": "Estimating resolution as 1841\nDetected 43 diacritics\n"
+    },
+    {
+      "original_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-5.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-5",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "actual_command": [
+        "tesseract",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-5.png",
+        "/tmp/lumo078-exact-reader-eng-diagnostic/original-preview-ocr-white-latin-dim-tile-5",
+        "--psm",
+        "11",
+        "-l",
+        "eng",
+        "tsv"
+      ],
+      "elapsed": 0.21135316201252863,
+      "stderr": "Estimating resolution as 681\nDetected 10 diacritics\n"
+    }
+  ],
+  "source_unchanged": true
+}

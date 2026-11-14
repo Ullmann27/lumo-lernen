@@ -1,0 +1,121 @@
+{
+  "origin": "actual successive viewport frames",
+  "media_fps": 24,
+  "duration_seconds": 10.333333333333334,
+  "device_fps_not_measured": true,
+  "commands": [
+    {
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "warning",
+        "-y",
+        "-framerate",
+        "24",
+        "-i",
+        "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/frames/%05d.png",
+        "-fps_mode",
+        "passthrough",
+        "-threads",
+        "2",
+        "-c:v",
+        "ffv1",
+        "-level",
+        "3",
+        "-coder",
+        "1",
+        "-context",
+        "1",
+        "-pix_fmt",
+        "bgr0",
+        "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/runtime-lossless.mkv"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "warning",
+        "-y",
+        "-framerate",
+        "24",
+        "-i",
+        "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/frames/%05d.png",
+        "-fps_mode",
+        "passthrough",
+        "-threads",
+        "2",
+        "-c:v",
+        "libx264",
+        "-crf",
+        "18",
+        "-preset",
+        "veryfast",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect-four-runtime.mp4"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "files": [
+    {
+      "file": "runtime-lossless.mkv",
+      "sha256": "ff0a15be47ec2330f3971e582f95736f02e9193e44db3bbcb2b4e7f1ce9a802d",
+      "bytes": 14919129,
+      "decoded_frames": 248,
+      "decode_exit": 0,
+      "stderr": "",
+      "lossless_exact_rgb": true,
+      "mismatches": [],
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/runtime-lossless.mkv",
+        "-f",
+        "rawvideo",
+        "-pix_fmt",
+        "rgb24",
+        "-"
+      ]
+    },
+    {
+      "file": "connect-four-runtime.mp4",
+      "sha256": "fd3673da73dcb9adbbb1a677051022bbef864a422d3e97d1b70b5c5606364d43",
+      "bytes": 277082,
+      "decoded_frames": 248,
+      "decode_exit": 0,
+      "stderr": "",
+      "lossless_exact_rgb": false,
+      "mismatches": [],
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime-final-v7/connect-four-runtime.mp4",
+        "-f",
+        "rawvideo",
+        "-pix_fmt",
+        "rgb24",
+        "-"
+      ]
+    }
+  ],
+  "representative_decoded_frames": [
+    0,
+    17,
+    124,
+    205,
+    247
+  ]
+}

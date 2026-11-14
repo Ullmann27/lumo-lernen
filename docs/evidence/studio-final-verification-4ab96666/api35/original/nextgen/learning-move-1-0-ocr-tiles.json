@@ -1,0 +1,199 @@
+{
+  "status": "READ",
+  "scope": "Independent OCR; no gameplay or visibility PASS",
+  "source": "learning-move-1-0.png",
+  "source_sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+  "surface": [
+    1080,
+    2400
+  ],
+  "wanted": "einobjektzeigen",
+  "tile_scale": 3,
+  "confidence_minimum": 15,
+  "timeout_seconds": 45,
+  "tiles": [
+    {
+      "index": 0,
+      "bounds": [
+        0,
+        0,
+        440,
+        1280
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-tile-0.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-tile-0.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1464",
+      "elapsed_seconds": 0.33281,
+      "matches": []
+    },
+    {
+      "index": 1,
+      "bounds": [
+        0,
+        1120,
+        440,
+        2400
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-tile-1.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-tile-1.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1170",
+      "elapsed_seconds": 0.234759,
+      "matches": []
+    },
+    {
+      "index": 2,
+      "bounds": [
+        280,
+        0,
+        800,
+        1280
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-tile-2.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-tile-2.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1361",
+      "elapsed_seconds": 0.309634,
+      "matches": []
+    },
+    {
+      "index": 3,
+      "bounds": [
+        280,
+        1120,
+        800,
+        2400
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-tile-3.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-tile-3.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1168",
+      "elapsed_seconds": 0.282477,
+      "matches": []
+    },
+    {
+      "index": 4,
+      "bounds": [
+        640,
+        0,
+        1080,
+        1280
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-tile-4.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-tile-4.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1394",
+      "elapsed_seconds": 0.37029,
+      "matches": []
+    },
+    {
+      "index": 5,
+      "bounds": [
+        640,
+        1120,
+        1080,
+        2400
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-tile-5.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-tile-5.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1063",
+      "elapsed_seconds": 0.364428,
+      "matches": []
+    },
+    {
+      "index": 0,
+      "bounds": [
+        0,
+        0,
+        440,
+        1280
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-dim-tile-0.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-dim-tile-0.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1502\nImage too small to scale!! (1x36 vs min width of 3)\nLine cannot be recognized!!",
+      "elapsed_seconds": 0.339163,
+      "matches": []
+    },
+    {
+      "index": 1,
+      "bounds": [
+        0,
+        1120,
+        440,
+        2400
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-dim-tile-1.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-dim-tile-1.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1207\nImage too small to scale!! (2x36 vs min width of 3)\nLine cannot be recognized!!",
+      "elapsed_seconds": 0.251627,
+      "matches": []
+    },
+    {
+      "index": 2,
+      "bounds": [
+        280,
+        0,
+        800,
+        1280
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-dim-tile-2.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-dim-tile-2.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1398",
+      "elapsed_seconds": 0.299472,
+      "matches": []
+    },
+    {
+      "index": 3,
+      "bounds": [
+        280,
+        1120,
+        800,
+        2400
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-dim-tile-3.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-dim-tile-3.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1202",
+      "elapsed_seconds": 0.316992,
+      "matches": []
+    },
+    {
+      "index": 4,
+      "bounds": [
+        640,
+        0,
+        1080,
+        1280
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-dim-tile-4.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-dim-tile-4.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1398\nImage too small to scale!! (1x36 vs min width of 3)\nLine cannot be recognized!!",
+      "elapsed_seconds": 0.287875,
+      "matches": []
+    },
+    {
+      "index": 5,
+      "bounds": [
+        640,
+        1120,
+        1080,
+        2400
+      ],
+      "image": "learning-move-1-0-ocr-white-latin-dim-tile-5.png",
+      "tsv": "learning-move-1-0-ocr-white-latin-dim-tile-5.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1098",
+      "elapsed_seconds": 0.228862,
+      "matches": []
+    }
+  ],
+  "matches": [],
+  "matched": false,
+  "elapsed_seconds": 4.827496
+}

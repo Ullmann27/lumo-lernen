@@ -1,0 +1,96 @@
+{
+  "source_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+  "derived_sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+  "source_binary_prefix_equal": true,
+  "original_skin_equal": true,
+  "original_animation_metadata_equal": true,
+  "original_bones": 65,
+  "original_clips": [
+    "agree_nod",
+    "celebrate",
+    "greeting_wave",
+    "idle",
+    "kart_jump",
+    "kart_seated",
+    "kart_steer_left",
+    "kart_steer_right",
+    "point_portal"
+  ],
+  "original_body_vertex_count": 21659,
+  "authoring_lid_part_count": 6,
+  "runtime_lid_mesh_count": 1,
+  "runtime_lid_surface_count": 2,
+  "new_lid_vertices": 2368,
+  "new_lid_triangles": 4320,
+  "body_shapes": [
+    "LookLeft",
+    "LookRight",
+    "LookUp",
+    "LookDown",
+    "JawArticulation"
+  ],
+  "lid_shapes": [
+    "BlinkLeftQuarter",
+    "BlinkLeftHalf",
+    "BlinkLeftThreeQuarter",
+    "BlinkLeftClose",
+    "BlinkRightQuarter",
+    "BlinkRightHalf",
+    "BlinkRightThreeQuarter",
+    "BlinkRightClose"
+  ],
+  "measured_contour_control": {
+    "Left": {
+      "source_mask_columns": [
+        502,
+        736
+      ],
+      "top_y_range": [
+        1.3348412996777659,
+        1.4125656999641962
+      ],
+      "bottom_y_range": [
+        1.295796515097267,
+        1.3524567669172933
+      ],
+      "head_joint_index": 6,
+      "lid_gap_m": 0.0004,
+      "surface_offset_range_m": [
+        0.0012,
+        0.0028
+      ],
+      "crease_curve": "degree-4 least-squares smoothing of the measured contour-derived seam"
+    },
+    "Right": {
+      "source_mask_columns": [
+        55,
+        288
+      ],
+      "top_y_range": [
+        1.3334091478696743,
+        1.4122792696025779
+      ],
+      "bottom_y_range": [
+        1.2955701754385966,
+        1.3530654314357322
+      ],
+      "head_joint_index": 6,
+      "lid_gap_m": 0.0004,
+      "surface_offset_range_m": [
+        0.0012,
+        0.0028
+      ],
+      "crease_curve": "degree-4 least-squares smoothing of the measured contour-derived seam"
+    }
+  },
+  "blender": "4.3.2",
+  "renderer": "Cycles CPU",
+  "samples": 48,
+  "denoising": false,
+  "limitations": [
+    "Original eye paint remains on original continuous surface; gaze uses restrained surface morphs, not an invented independent eyeball.",
+    "Jaw articulation deforms the existing closed muzzle; there is no anatomical mouth cavity and no phoneme/viseme claim.",
+    "Additional physical eyelids are new artist-authored geometry fitted to measured original contours."
+  ],
+  "source_unchanged": true
+}

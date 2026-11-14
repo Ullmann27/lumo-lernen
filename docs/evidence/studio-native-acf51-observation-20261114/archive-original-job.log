@@ -1,0 +1,116 @@
+﻿2026-11-14T06:44:58.1463421Z Current runner version: '2.338.2'
+2026-11-14T06:44:58.1489241Z ##[group]Runner Image Provisioner
+2026-11-14T06:44:58.1490654Z Hosted Compute Agent
+2026-11-14T06:44:58.1491287Z Version: 20261103.629
+2026-11-14T06:44:58.1491985Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T06:44:58.1492754Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T06:44:58.1493499Z Worker ID: {78617b1d-11b2-4ca2-914a-117a92855987}
+2026-11-14T06:44:58.1494251Z Region: westus
+2026-11-14T06:44:58.1494804Z Cloud: Azure
+2026-11-14T06:44:58.1495335Z ##[endgroup]
+2026-11-14T06:44:58.1496977Z ##[group]Operating System
+2026-11-14T06:44:58.1497679Z Ubuntu
+2026-11-14T06:44:58.1498297Z 24.04.5
+2026-11-14T06:44:58.1498830Z LTS
+2026-11-14T06:44:58.1499346Z ##[endgroup]
+2026-11-14T06:44:58.1500262Z ##[group]Runner Image
+2026-11-14T06:44:58.1500917Z Image: ubuntu-24.04
+2026-11-14T06:44:58.1501540Z Version: 20261111.370.1
+2026-11-14T06:44:58.1502854Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T06:44:58.1504564Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T06:44:58.1505590Z ##[endgroup]
+2026-11-14T06:44:58.1506858Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T06:44:58.1508848Z Actions: read
+2026-11-14T06:44:58.1510310Z Contents: write
+2026-11-14T06:44:58.1511050Z Metadata: read
+2026-11-14T06:44:58.1511611Z ##[endgroup]
+2026-11-14T06:44:58.1514242Z Secret source: Actions
+2026-11-14T06:44:58.1515195Z Cache mode: write
+2026-11-14T06:44:58.1516192Z Prepare workflow directory
+2026-11-14T06:44:58.2064131Z Prepare all required actions
+2026-11-14T06:44:58.2129302Z Complete job name: archive-evidence
+2026-11-14T06:44:58.3097556Z ##[group]Run set -euo pipefail
+2026-11-14T06:44:58.3098520Z [36;1mset -euo pipefail[0m
+2026-11-14T06:44:58.3100229Z [36;1mgh api "repos/Ullmann27/lumo-godot/actions/runs/$RUN_ID/artifacts?per_page=100" > artifacts.json[0m
+2026-11-14T06:44:58.3101392Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T06:44:58.3102053Z [36;1mimport json, os, re[0m
+2026-11-14T06:44:58.3102850Z [36;1mfrom pathlib import Path[0m
+2026-11-14T06:44:58.3103738Z [36;1martifacts = json.loads(Path('artifacts.json').read_text())['artifacts'][0m
+2026-11-14T06:44:58.3105009Z [36;1mmatches = [item for item in artifacts if item['name'] == 'lumo-studio-2020-native-evidence'][0m
+2026-11-14T06:44:58.3106225Z [36;1massert len(matches) == 1, 'Missing or ambiguous current native artifact'[0m
+2026-11-14T06:44:58.3107143Z [36;1martifact = matches[0][0m
+2026-11-14T06:44:58.3107856Z [36;1massert artifact['expired'] is False[0m
+2026-11-14T06:44:58.3108953Z [36;1massert artifact['workflow_run']['head_sha'] == os.environ['SOURCE_SHA'][0m
+2026-11-14T06:44:58.3110277Z [36;1massert artifact['workflow_run']['id'] == int(os.environ['RUN_ID'])[0m
+2026-11-14T06:44:58.3111353Z [36;1massert type(artifact['id']) is int and artifact['id'] > 0[0m
+2026-11-14T06:44:58.3112372Z [36;1massert re.fullmatch(r'sha256:[a-f0-9]{64}', artifact['digest'])[0m
+2026-11-14T06:44:58.3113362Z [36;1mPath('artifact-id.txt').write_text(str(artifact['id']))[0m
+2026-11-14T06:44:58.3114428Z [36;1mPath('native-artifact.json').write_text(json.dumps(artifact, indent=2) + '\n')[0m
+2026-11-14T06:44:58.3115763Z [36;1mPath('native-evidence.zip.sha256').write_text(artifact['digest'][7:] + '  native-evidence.zip\n')[0m
+2026-11-14T06:44:58.3116833Z [36;1mPY[0m
+2026-11-14T06:44:58.3117455Z [36;1martifact_id="$(cat artifact-id.txt)"[0m
+2026-11-14T06:44:58.3118550Z [36;1mgh api "repos/Ullmann27/lumo-godot/actions/artifacts/$artifact_id/zip" > native-evidence.zip[0m
+2026-11-14T06:44:58.3120072Z [36;1msha256sum -c native-evidence.zip.sha256[0m
+2026-11-14T06:44:58.3121363Z [36;1mtag="studio-2020-evidence-$SOURCE_SHA-$artifact_id"[0m
+2026-11-14T06:44:58.3122512Z [36;1mgh api "repos/Ullmann27/lumo-godot/git/matching-refs/tags/$tag" > refs.json[0m
+2026-11-14T06:44:58.3123777Z [36;1mgh api --paginate --slurp 'repos/Ullmann27/lumo-godot/releases?per_page=100' > releases.json[0m
+2026-11-14T06:44:58.3125074Z [36;1mpython3 - "$tag" <<'PY'[0m
+2026-11-14T06:44:58.3125888Z [36;1mimport json, os, sys[0m
+2026-11-14T06:44:58.3126527Z [36;1mfrom pathlib import Path[0m
+2026-11-14T06:44:58.3127242Z [36;1mtag = sys.argv[1][0m
+2026-11-14T06:44:58.3128213Z [36;1mrefs = [item for item in json.loads(Path('refs.json').read_text()) if item['ref'] == 'refs/tags/' + tag][0m
+2026-11-14T06:44:58.3130036Z [36;1mreleases = [item for page in json.loads(Path('releases.json').read_text()) for item in page if item['tag_name'] == tag][0m
+2026-11-14T06:44:58.3131289Z [36;1mif refs or releases:[0m
+2026-11-14T06:44:58.3132243Z [36;1m    assert len(refs) == len(releases) == 1, 'Incomplete archive identity already exists; preserve it'[0m
+2026-11-14T06:44:58.3133675Z [36;1m    assert refs[0]['object']['type'] == 'commit' and refs[0]['object']['sha'] == os.environ['SOURCE_SHA'][0m
+2026-11-14T06:44:58.3134883Z [36;1m    assert releases[0]['draft'] is False and releases[0]['prerelease'] is True[0m
+2026-11-14T06:44:58.3136135Z [36;1m    assets = [item for item in releases[0]['assets'] if item['name'] == 'native-evidence.zip'][0m
+2026-11-14T06:44:58.3137304Z [36;1m    assert len(assets) == 1 and assets[0]['state'] == 'uploaded'[0m
+2026-11-14T06:44:58.3138287Z [36;1m    Path('archive-mode.txt').write_text('verify-existing')[0m
+2026-11-14T06:44:58.3139116Z [36;1melse:[0m
+2026-11-14T06:44:58.3139986Z [36;1m    Path('archive-mode.txt').write_text('create')[0m
+2026-11-14T06:44:58.3140797Z [36;1mPY[0m
+2026-11-14T06:44:58.3141454Z [36;1mif [ "$(cat archive-mode.txt)" = create ]; then[0m
+2026-11-14T06:44:58.3142222Z [36;1m  python3 - <<'PY'[0m
+2026-11-14T06:44:58.3143052Z [36;1mimport os[0m
+2026-11-14T06:44:58.3143667Z [36;1mfrom pathlib import Path[0m
+2026-11-14T06:44:58.3144442Z [36;1mPath('archive-notes.md').write_text([0m
+2026-11-14T06:44:58.3145603Z [36;1m    'Original native CI evidence archive. This contains test logs and renderer captures, not an APK.\n\n'[0m
+2026-11-14T06:44:58.3146825Z [36;1m    'Source: `' + os.environ['SOURCE_SHA'] + '`\n\n'[0m
+2026-11-14T06:44:58.3147950Z [36;1m    'Workflow: https://github.com/Ullmann27/lumo-godot/actions/runs/' + os.environ['RUN_ID'] + '\n\n'[0m
+2026-11-14T06:44:58.3149257Z [36;1m    'The ZIP bytes and SHA-256 are identical to the GitHub Actions artifact. '[0m
+2026-11-14T06:44:58.3150769Z [36;1m    'Preserving them here allows the separate Flutter repository to verify the original evidence '[0m
+2026-11-14T06:44:58.3152322Z [36;1m    'without granting its workflow a cross-repository access token. Visual review and Android acceptance remain separate.\n')[0m
+2026-11-14T06:44:58.3153536Z [36;1mPY[0m
+2026-11-14T06:44:58.3154489Z [36;1m  gh release create "$tag" native-evidence.zip native-evidence.zip.sha256 native-artifact.json \[0m
+2026-11-14T06:44:58.3155679Z [36;1m    --repo Ullmann27/lumo-godot --target "$SOURCE_SHA" \[0m
+2026-11-14T06:44:58.3156746Z [36;1m    --title "Studio native evidence $SOURCE_SHA" --notes-file archive-notes.md \[0m
+2026-11-14T06:44:58.3157685Z [36;1m    --prerelease --latest=false[0m
+2026-11-14T06:44:58.3158406Z [36;1mfi[0m
+2026-11-14T06:44:58.3158994Z [36;1mcurl --fail --location --retry 3 \[0m
+2026-11-14T06:44:58.3160492Z [36;1m  "https://github.com/Ullmann27/lumo-godot/releases/download/$tag/native-evidence.zip" \[0m
+2026-11-14T06:44:58.3161660Z [36;1m  --output public-native-evidence.zip[0m
+2026-11-14T06:44:58.3162565Z [36;1mcmp native-evidence.zip public-native-evidence.zip[0m
+2026-11-14T06:44:58.3415272Z shell: /usr/bin/bash -e {0}
+2026-11-14T06:44:58.3416258Z env:
+2026-11-14T06:44:58.3421053Z   GH_TOKEN: ***
+2026-11-14T06:44:58.3421786Z   SOURCE_SHA: acf51d3bd2997c4b731e9a48e1791e05e756a132
+2026-11-14T06:44:58.3422734Z   RUN_ID: 43565059832
+2026-11-14T06:44:58.3423343Z ##[endgroup]
+2026-11-14T06:45:08.8911433Z native-evidence.zip: OK
+2026-11-14T06:45:21.6605302Z https://github.com/Ullmann27/lumo-godot/releases/tag/studio-2020-evidence-acf51d3bd2997c4b731e9a48e1791e05e756a132-14103142984
+2026-11-14T06:45:21.6708698Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-11-14T06:45:21.6710254Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-11-14T06:45:21.6710991Z 
+2026-11-14T06:45:21.8765175Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T06:45:21.8766391Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T06:45:22.3330906Z 
+2026-11-14T06:45:23.3501531Z   3  214M    3 8224k    0     0  12.1M      0  0:00:17 --:--:--  0:00:17 12.1M
+2026-11-14T06:45:24.3318212Z  14  214M   14 32.0M    0     0  19.0M      0  0:00:11  0:00:01  0:00:10 23.6M
+2026-11-14T06:45:25.3320597Z  31  214M   31 67.7M    0     0  25.4M      0  0:00:08  0:00:02  0:00:06 29.8M
+2026-11-14T06:45:26.3318493Z  47  214M   47  101M    0     0  27.7M      0  0:00:07  0:00:03  0:00:04 31.1M
+2026-11-14T06:45:27.3894446Z  59  214M   59  128M    0     0  27.5M      0  0:00:07  0:00:04  0:00:03 30.1M
+2026-11-14T06:45:28.3316664Z  79  214M   79  170M    0     0  29.7M      0  0:00:07  0:00:05  0:00:02 32.0M
+2026-11-14T06:45:28.7882521Z  94  214M   94  203M    0     0  30.4M      0  0:00:07  0:00:06  0:00:01 34.3M
+2026-11-14T06:45:28.7883827Z 100  214M  100  214M    0     0  30.1M      0  0:00:07  0:00:07 --:--:-- 33.0M
+2026-11-14T06:45:28.9175966Z Cleaning up orphan processes

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_unchanged": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "scope": "Exactly two QA-only files. No product/source APK changes; no ref/commit mutation.",
+  "files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 52372,
+      "sha256": "392bc0ec34f8fbc935635f98e75f66416e7f31d4e92fa388a134233592c1b6d7",
+      "git_blob_sha": "c407f582a4f72beb8068461ed2003d0443530385"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 18969,
+      "sha256": "8215511a99c1bdaf1f68192b4f6a83b2655e7a0f23bb8ea173a19c621a37f39f",
+      "git_blob_sha": "ac84bff191fc00efa85ca665e70746ee2d32f007"
+    }
+  ]
+}

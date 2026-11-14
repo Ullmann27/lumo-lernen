@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T15:44:55.762605+00:00",
+  "native_baseline": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "scope": "Independent read-only review of the single changed existing Python workflow contract against the published Native47 workflow; no source changes or test repetition.",
+  "result": "NO_ADDITIONAL_CONCRETE_BLOCKER_FOUND",
+  "bindings": [
+    {
+      "source_path": "qa/native-nextgen-completion-integration-20261114/assembled-native/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 19875,
+      "sha256": "138b905645ed6c93fdd9195a14a3d63b77cdf1f53bf2b9438e2098d77332cd1a",
+      "git_blob_sha": "dc8ccfd0cbb5175f3ac952abb8a4aaf519602c4b"
+    },
+    {
+      "source_path": "qa/native-nextgen-completion-integration-20261114/assembled-native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+      "git_blob_sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d"
+    },
+    {
+      "source_path": "qa/native47-runner-branch-contract-fix-20261114/prepared/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 49768,
+      "sha256": "848a5b772bc6176d9f1e19f41878a32abc99eac0aa4a983b0335a3840a9d0232",
+      "git_blob_sha": "799a068b20f446e14f6bafe42cffb186fc3e8189"
+    },
+    {
+      "source_path": "qa/native47-runner-branch-contract-fix-20261114/prepared/native/tools/validate_studio.sh",
+      "bytes": 25425,
+      "sha256": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+      "git_blob_sha": "542e22df76ae8773d3c7de064a560a977fc9a033"
+    },
+    {
+      "source_path": "qa/native47-runner-branch-contract-fix-20261114/evidence/implementation-against-exact-47ca.patch",
+      "bytes": 1848,
+      "sha256": "fad2292b1807bf07626f73add1d773c56c02f8d32482f9b49b6e8cc67f232f70",
+      "git_blob_sha": "35af7f4252502b5feff431f77b73ecc111b07ba0"
+    },
+    {
+      "source_path": "qa/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-original.log",
+      "bytes": 3252,
+      "sha256": "709c0fc50a465c9e074d8d8e73b4322f75f4a332ee661698144cd302931788bd",
+      "git_blob_sha": "c871dbafea84419951389600d6710873e15294c7"
+    },
+    {
+      "source_path": "qa/native47-runner-branch-contract-fix-20261114/evidence/runner-contracts-execution.json",
+      "bytes": 848,
+      "sha256": "c4faecfe06d057316a6b20383a746d629ffaf98a106314192b3b9755cd346924",
+      "git_blob_sha": "a99ae8b7a4c12f2adde77e44c22f0282b73c0dea"
+    }
+  ],
+  "findings": [
+    "The original failure was the obsolete single-branch literal at line770. The workflow actually permits exactly the Studio2020 and nextgen-feature branches.",
+    "The final test uses assertCountEqual over one branch list, preserving multiplicity and rejecting missing, duplicate, extra, main or unknown branch entries.",
+    "The complete archive condition still requires Ullmann27/lumo-godot AND either exact allowed branch. SOURCE_SHA and RUN_ID environment bindings and artifact workflow_run comparisons are explicitly checked.",
+    "All bytes outside the one existing test method remain identical to the baseline. The workflow and Studio harness also remain byte-identical.",
+    "All prior job, archive, 54-PNG roster, sidecar, movie and timeout assertions are retained.",
+    "Read the actual original log: 16 tests in148.878seconds, OK; execution metadata Exit0 and source hashes unchanged. Reviewer did not execute these tests."
+  ],
+  "boundaries": [
+    "The failed full Run43607369276 remains failed; this local contract result does not approve a Native bundle, APK or Android execution.",
+    "workflow_dispatch remains available. Archive publication is limited by the exact repository/branch condition and all prerequisite jobs.",
+    "No current image review or new renderer execution was performed by this review."
+  ]
+}

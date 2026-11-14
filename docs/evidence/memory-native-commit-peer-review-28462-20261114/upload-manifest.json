@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "scope": "Independent complete read of the two Memory product files, their exact baseline diff, and the new 25-case test source. No Dart/Flutter execution, Android disk-failure experiment, or runtime acceptance.",
+  "files": [
+    {
+      "path": "qa/memory-native-commit-peer-review-28462-20261114/final-review.json",
+      "target": "docs/evidence/memory-native-commit-peer-review-28462-20261114/final-review.json",
+      "bytes": 6263,
+      "sha256": "46d0b063584e0c6c842a7dbbf73e35a7cfa56b57f811ff9616ad14da8ca4c7fa",
+      "git_blob_sha": "e6c8171c0e9fd89e7ff149549d4724d2724db3d2"
+    }
+  ]
+}

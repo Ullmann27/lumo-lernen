@@ -1,0 +1,253 @@
+{
+	"accepted_sites": [
+		{
+			"distance": 16.5472348022461,
+			"position": [
+				15.712272644043,
+				4.57985687255859,
+				52.8738479614258
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 40.1861416625977,
+			"position": [
+				45.8671684265137,
+				5.67787885665894,
+				73.2153854370117
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 134.741769104004,
+			"position": [
+				90.6774139404297,
+				16.9934902191162,
+				-16.8821449279785
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 158.380675964355,
+			"position": [
+				59.6800804138184,
+				18.6273746490479,
+				-35.809757232666
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 182.019582824707,
+			"position": [
+				60.7621688842773,
+				19.2807788848877,
+				-69.0430450439453
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 252.936303405762,
+			"position": [
+				-14.6306476593018,
+				14.3660640716553,
+				-48.9012451171875
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 276.575210266113,
+			"position": [
+				-41.0759735107422,
+				11.9948558807373,
+				-73.3633651733398
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 323.853023986816,
+			"position": [
+				-80.9203643798828,
+				10.5503435134888,
+				-34.0093307495117
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 347.491930847168,
+			"position": [
+				-61.1376800537109,
+				11.9237365722656,
+				-5.87543392181396
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 442.047558288574,
+			"position": [
+				-24.4459590911865,
+				6.53898191452026,
+				54.6749038696289
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 465.686465148926,
+			"position": [
+				-6.22152137756348,
+				4.90971899032593,
+				82.2797088623047
+			],
+			"radius": 1.8
+		}
+	],
+	"actual_detail": "full",
+	"actual_lightweight": false,
+	"capture_kind": "stationary production scene inspection; no driven race",
+	"capture_root": "/tmp/lumo-theme-capture.tc3rp42m",
+	"graphics_profile": "high",
+	"isolation_check": "single-use marker, exact XDG paths, user:// containment and no existing kart state checked before scene load",
+	"process_frozen": true,
+	"reduced_motion": true,
+	"reference_detail_count": 225,
+	"reference_detail_theme": "bergwelt",
+	"requested_detail": "full",
+	"seed": 1923,
+	"selected_site_index": 0,
+	"source": {
+		"clean_tracked_source": false,
+		"engine": "4.6.3-stable (official)",
+		"physical_android_device": false,
+		"renderer": "gl_compatibility",
+		"source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+		"tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+		"visual_acceptance": "Manual reference review required; render success is not art approval"
+	},
+	"status": "captured",
+	"track_id": "bergwelt",
+	"track_length": 472.778137207031,
+	"user_data_path": "/tmp/lumo-theme-capture.tc3rp42m/userdata/godot/app_userdata/Lumo 3D/",
+	"viewport": [
+		1280,
+		720
+	],
+	"views": [
+		{
+			"camera_basis_x": [
+				0.0171221029013395,
+				0.0,
+				0.999853432178497
+			],
+			"camera_basis_y": [
+				0.200517654418945,
+				0.979684054851532,
+				-0.00343378726392984
+			],
+			"camera_basis_z": [
+				-0.979540467262268,
+				0.200547054409981,
+				0.0167742520570755
+			],
+			"camera_position": [
+				1.67323303222656,
+				8.01414012908936,
+				70.5715713500977
+			],
+			"camera_source": "production _update_camera; stationary player placed 12 m before accepted site",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "01_chase",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/bergwelt/01_chase.png",
+			"player_distance": 4.54723480224609,
+			"player_position": [
+				6.02259540557861,
+				5.49414014816284,
+				70.4970932006836
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.950957894325256,
+				0.0,
+				0.309320449829102
+			],
+			"camera_basis_y": [
+				0.0623473152518272,
+				0.979475736618042,
+				-0.191677182912827
+			],
+			"camera_basis_z": [
+				-0.302971869707108,
+				0.201562240719795,
+				0.93144017457962
+			],
+			"camera_position": [
+				10.0191802978516,
+				10.367377281189,
+				70.3763809204102
+			],
+			"camera_source": "manual road-context pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "02_context",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/bergwelt/02_context.png",
+			"player_distance": 4.54723480224609,
+			"player_position": [
+				6.02259540557861,
+				5.49414014816284,
+				70.4970932006836
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.990978240966797,
+				0.0,
+				-0.134022742509842
+			],
+			"camera_basis_y": [
+				-0.0337811708450317,
+				0.967712759971619,
+				-0.249781519174576
+			],
+			"camera_basis_z": [
+				0.129695534706116,
+				0.252055525779724,
+				0.958982348442078
+			],
+			"camera_position": [
+				17.1530170440674,
+				8.87985706329346,
+				63.5268630981445
+			],
+			"camera_source": "manual road-facing detail pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "03_detail",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/bergwelt/03_detail.png",
+			"player_distance": 4.54723480224609,
+			"player_position": [
+				6.02259540557861,
+				5.49414014816284,
+				70.4970932006836
+			]
+		}
+	],
+	"visual_review": "pending original-reference review",
+	"xdg_cache_home": "/tmp/lumo-theme-capture.tc3rp42m/cache",
+	"xdg_config_home": "/tmp/lumo-theme-capture.tc3rp42m/config",
+	"xdg_data_home": "/tmp/lumo-theme-capture.tc3rp42m/userdata"
+}

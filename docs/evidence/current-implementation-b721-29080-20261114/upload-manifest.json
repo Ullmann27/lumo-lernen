@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "package": "current-implementation-b721-29080-20261114",
+  "snapshot_utc": "2026-11-14T17:34:30Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_evidence_commit": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+  "base_evidence_tree": "dcf5bd0be5e7d433a189462255c4571a07098fa5",
+  "source_host": "b7210db3f53361987fd33592de438fd7984d991a",
+  "source_native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "scope": "New docs-only bounded implementation report and full source binding. No source,tree,commit,ref,image or binary mutation; no new tests or visual review.",
+  "storage": "Exact authored UTF8 texts in Functions memory; immutable Git blobs with complete UTF8 readback; no local file creation while executor unavailable.",
+  "report_word_count": 1371,
+  "entries": [
+    {
+      "path": "docs/evidence/current-implementation-b721-29080-20261114/IMPLEMENTIERUNGSSTAND_B721_29080.md",
+      "source_store_key": "hostb721:implementation:report",
+      "bytes": 15360,
+      "sha256": "19ca34da9088744c0d417f8ba85fbbaeae4a2e0be38b3258e898e6c9e865d4f7",
+      "git_blob_sha": "c50336b300e8df712b29a2a6f7727e3fa0b96edb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/current-implementation-b721-29080-20261114/source-binding.json",
+      "source_store_key": "hostb721:implementation:source-binding",
+      "bytes": 76150,
+      "sha256": "864fdead3844d49d59a20f80c5ec5c5660f08cdb64acd4b5878131fd56539406",
+      "git_blob_sha": "8ffcb6772f1d061e26a23ccd633d0488652c99fa",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "entry_count_excluding_manifest": 2,
+  "total_bytes_excluding_manifest": 91510,
+  "self": {
+    "path": "docs/evidence/current-implementation-b721-29080-20261114/upload-manifest.json",
+    "mode": "100644",
+    "type": "blob",
+    "included_as_separate_third_confirmed_tree_entry": true
+  },
+  "status": "DOCUMENTARY_SNAPSHOT_ONLY_APK_ANDROID_AND_CURRENT_ENGLISH_VISUAL_REVIEW_OPEN"
+}

@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-14T06:01:05.038616+00:00",
+  "repository": "Ullmann27/lumo-godot",
+  "source": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "run_id": 43561885899,
+  "attempt": 1,
+  "run_conclusion": "failure",
+  "jobs": [
+    {
+      "id": 132347187467,
+      "name": "learning-preview",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T05:38:06Z"
+    },
+    {
+      "id": 132347187626,
+      "name": "touch-treasure",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T05:43:13Z"
+    },
+    {
+      "id": 132347187633,
+      "name": "touch-workshop",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T05:53:08Z"
+    },
+    {
+      "id": 132347187642,
+      "name": "touch-build",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T05:47:33Z"
+    },
+    {
+      "id": 132347187651,
+      "name": "studio",
+      "status": "completed",
+      "conclusion": "failure",
+      "completed_at": "2026-11-14T05:49:28Z"
+    },
+    {
+      "id": 132347187683,
+      "name": "gameplay",
+      "status": "completed",
+      "conclusion": "failure",
+      "completed_at": "2026-11-14T05:45:05Z"
+    },
+    {
+      "id": 132351755638,
+      "name": "new-worlds",
+      "status": "completed",
+      "conclusion": "skipped",
+      "completed_at": "2026-11-14T05:49:29Z"
+    },
+    {
+      "id": 132352628571,
+      "name": "bundle-evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "completed_at": "2026-11-14T05:53:08Z"
+    },
+    {
+      "id": 132352629414,
+      "name": "archive-evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "completed_at": "2026-11-14T05:53:08Z"
+    }
+  ],
+  "other_commit_workflows": [
+    {
+      "id": 43561889431,
+      "name": "Verify committed Kart vehicle geometry",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43561889541,
+      "name": "Lumo Kart and Bauwelt integration QA",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43561889477,
+      "name": "Lumo native lifecycle and Bauwelt play proof",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43561889508,
+      "name": "Lumo original 65-bone grounded walk gait QA",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43561889507,
+      "name": "Sonnenhafen 2027 stunt integration",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43561889426,
+      "name": "Verify Lumo Kart Stage 2",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "archive_publication": "not reached; bundle and archive jobs skipped",
+  "downloaded_full_archives": [],
+  "selected_original_sidecar_transfer": "studio-failure/sidecar-transfer.json",
+  "new_source_mutations": false,
+  "reruns_requested": false,
+  "overall_acceptance": false,
+  "known_failure_files": [
+    "gameplay-failure/original-job.log",
+    "studio-failure/original-job.log",
+    "additional-workflows/stage2-failure/original-job.log"
+  ],
+  "independent_local_followups": [
+    "qa/attention-landing-8be3-contract-fix-20261114/source-upload-manifest.json",
+    "qa/studio-2020-facial-import-8be3/canonical-source-upload-manifest.json"
+  ],
+  "movie_correction": "separate agent investigation, not folded into this failed source claim"
+}

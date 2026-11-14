@@ -1,0 +1,251 @@
+{
+  "base_tree": "7c523123bd0159b1f1c24ceeb73de3368b9f2063",
+  "tree": [
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc21d4f9cee0651f6bddc60b3ee75e0f3fc1d26b"
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b967979e920b2588976cdb260f4975159a95a445"
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/patch-against-acf51.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e42ca7f58d66205346380d751f40edece45d05ac"
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "703d57ab274ff559d458694e76feb5a84faa15cc"
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd66c09366a9070caa4ddfbc628311b933f839b5"
+    },
+    {
+      "path": "docs/evidence/treasure-gameplay-visibility-20261114/independent-render-closure.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6a69955b2fc1b29e614cf948fce8d2f6b811622"
+    },
+    {
+      "path": "docs/evidence/treasure-gameplay-visibility-20261114/independent-review-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f17e0c254e2470e9586aa598b61f30f9caacb37"
+    },
+    {
+      "path": "docs/evidence/treasure-gameplay-visibility-20261114/independent-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d122af2076ddd23607c4fd63c263b0d1f3d5b59"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ebb75544f2354e0942cb82b2f763ff7ae31ce57"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fce58407a9aae15709eb929cd6bc660488be5258"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/.github/workflows/lumo-studio-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/run_godot_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/validate_nextgen.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf5e8e129fa8c3d7872fb92d21046c1ef7f87e9e"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/validate_studio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b41626b54845e70e3ac9046e5120f7aa0eb7907"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a54409dc37515bae5c04c44adb1a47bef1b49676"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-extended.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77c2f999b7bcae511a035fcb53a2242cec0faa5c"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-original-acf51.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23154a3d699cb9ef14f501346e5dd482733448b0"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff2eab655892cd2a90bacd7fe86fb21bb4819fe1"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/baseline-rejects-new-five-frame-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14cf061c1157894e333a6bdeb7e46243993c6a7d"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/baseline-rejects-new-five-frame-contract.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23154a3d699cb9ef14f501346e5dd482733448b0"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/c-final-source-report-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ea137104a2895fd3ee7d6a5845cb3335604f5a3"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-before-final-check-bound-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e00c334378441299eeca692abb4a3e3ce3ec6b79"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-before-final-check-bound.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35d620cd497de08696fe19c9fdb439ba6c6b6336"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-final-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c52e9e8951772775ba815702a729ae144a761849"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-final.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9eabf45bdc2a440f76cd923f72833c913da9a3bd"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/extended.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77c2f999b7bcae511a035fcb53a2242cec0faa5c"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/mixed-fixture-roster.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40a4b39652e67e18009896e2b4900eb105420a38"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/original-acf51.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23154a3d699cb9ef14f501346e5dd482733448b0"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31157a6fcb496c6eb0f97068d6a559e13243d743"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/implementation-against-acf51.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a066947266707b57bf1e7538f7fb3c4b407c3a9"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/mixed-fixture-final-roster.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40a4b39652e67e18009896e2b4900eb105420a38"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/original-final-treasure-title-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4af955fda0b302aa309dbe07d66fa12a3af542a"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/shell-syntax.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "500e57c8b79f5fdb41b3c6619ba258ed76e5ec30"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/source-preservation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e549a6a582950d8efb4ffd3b34cc4ed710fcdd33"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/independent-review-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c6aa9df3df0aa278e2e4e3b384867e64696cf8f"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5992c0685652a7057bee41eca2e29bb03e22cc3f"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/replay_actual_treasure.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "194b57aeb03eb1bcd1ac1dad7d783a25947f844b"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc1991ac763b9526847e430db95e6fa3515d9a8b"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/unchanged-test-dependencies.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0637d6fde8df5cc2b1a1192b55707345a1a25ac9"
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-followup-20261114/aggregate-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4233fdd5e5e3bd27a02f7bbcf024d6c00369d8e"
+    }
+  ]
+}

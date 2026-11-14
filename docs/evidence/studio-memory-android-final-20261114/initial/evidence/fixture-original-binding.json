@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "source_artifact": {
+    "artifact_id": 14117292610,
+    "artifact_sha256": "4b812683569e29cb00e5f019ed4ebd579459decf8db4f658c46a1355bd677505",
+    "native": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+    "host": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+    "source_entry": "memory-pair/authority/authority-result.json",
+    "source_sha256": "6e6b92301a8afff3ee349b5b667c9f0f766a663e158e83f19a8694a5db4b79ed",
+    "scope": "Derived selection of exact state objects from actual local IPC CI; not Android",
+    "additional_state_indices": {
+      "paused": 7,
+      "bot": 12
+    }
+  },
+  "exact_copies": [
+    {
+      "fixture": "layout-hidden.json",
+      "artifact_entry": "memory-pair/native/01-memory-real-hidden.layout.json",
+      "sha256": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+      "bytes": 7965,
+      "byte_equal": true
+    },
+    {
+      "fixture": "layout-face.json",
+      "artifact_entry": "memory-pair/native/02-memory-real-face.layout.json",
+      "sha256": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+      "bytes": 7968,
+      "byte_equal": true
+    },
+    {
+      "fixture": "saved-paused.json",
+      "artifact_entry": "memory-pair/authority/unfinished-reopen-before-round.json",
+      "sha256": "a3e37dba067f76daa1d4104f51ef6d98cccee04fbd6421fbc0cdd60905d095d6",
+      "bytes": 698,
+      "byte_equal": true
+    }
+  ],
+  "exact_state_value_selection": true,
+  "scope": "Desktop/local IPC original only; not an Android fixture or a new runtime result"
+}

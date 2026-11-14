@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "docs_only": true,
+  "target_prefix": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2",
+  "source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "file_count": 15,
+  "total_bytes": 92785,
+  "files": [
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5042,
+      "sha256": "6864cdb80120aeda4634c3ce9f2e58e4d5b9cda6c806555317aded627f8c6aa3",
+      "git_blob_sha": "f2380672f96e78400b6fd67ba6b40bd3b8265264"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1383,
+      "sha256": "594ab441d142643c34bd272617f2ff6bfe5f11dfbc50f3b65f141899f31471fe",
+      "git_blob_sha": "10a7fce5dbf908e4d5bd1073dac72fc980fa402d"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/implementation-against-exact-078.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/implementation-against-exact-078.patch",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9539,
+      "sha256": "6f45dbc4264bde2449d23f35347abfee62c24eeafc9499c59baa0b3ea1e37b8f",
+      "git_blob_sha": "2640a1735aa594e54b837aec03d3ece0e6b86fe2"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/followup-against-v1.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/followup-against-v1.patch",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5435,
+      "sha256": "4dadf294248e20d8972ed815bb1f800fab47f7a0a8ed0c4a0d2f8e2b86b1d62e",
+      "git_blob_sha": "ede83db17dc06fc356418f15198f5d668ada8c4a"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/runtime-report-contract.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/runtime-report-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3335,
+      "sha256": "49e64cbd9d84a454b47615f45994d47d7e8c256edbd50cc8964fc05d7f83d1aa",
+      "git_blob_sha": "f9099beb4142e7a57f5d7084a95a08b5561d9ae9"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/ast-preservation.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/ast-preservation.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1861,
+      "sha256": "59c042cea0c457b0bb17994f8904c991cc373c29f37c6eba681aa5d82b4b7b1f",
+      "git_blob_sha": "c93bc3e56000fe0ff7b9470fef0221eb4708d108"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7700,
+      "sha256": "116a453c010e7125f0eed5b8dbe45bc0f48115500aac39e7171433ea0990f496",
+      "git_blob_sha": "d278af085b76d1bf5064db5970d398f4f9122d08"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/red-v1-actual-helper.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/red-v1-actual-helper.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1869,
+      "sha256": "936a4fc4322b01a8963bd33895711609eb3b4e67043ad8069338f8afe7084ceb",
+      "git_blob_sha": "cbaf1b9ca5b4ce559e503fcacb11a6dee2ba304c"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/green-v2-contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/green-v2-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3747,
+      "sha256": "5b0f69369a1469abe91480df53185ada14a260ea99c93acedf060612b46e7b7e",
+      "git_blob_sha": "842beb79564f20d3565cab5339da3f4df867f8a8"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/initial-loader-red-v1-actual-helper.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/initial-loader-red-v1-actual-helper.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2973,
+      "sha256": "f0b08d331d485cf42eae31e8bae3dfc6c117db6fdeff838983768fae0a2d0302",
+      "git_blob_sha": "784ace2b028221569103eb51d456981d50c16e7f"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/initial-loader-green-v2-contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/initial-loader-green-v2-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 28909,
+      "sha256": "a28f4730102a28d3b60cf6c97e87d916630be7de0954367ad84fc853f451667e",
+      "git_blob_sha": "2dc92d0a238cceafb511148a9bb4b64d1f7c14dd"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/initial-loader-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/initial-loader-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7703,
+      "sha256": "5d9bb942b44fcb0e7f2baa8c5b287f7c86d1fadec09c1fa0daaec983362b302a",
+      "git_blob_sha": "053092f4dfb731978c674540b4675ee309b2a32c"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/first-contract-red-v1-actual-helper.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/first-contract-red-v1-actual-helper.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1842,
+      "sha256": "6ea418ef57400b6a73d43183a8112adbf37186e3619ddc344b1721cb40ad89c5",
+      "git_blob_sha": "a2da37d011b3ca128a8c0fde117a227c73ac8f4e"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/first-contract-green-v2-contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/first-contract-green-v2-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3747,
+      "sha256": "d6b67a78947c9af96e81de43d228a4c729631a10cbea523cb6431bb09c7cfad4",
+      "git_blob_sha": "e94755b82e9dfba47543b79691392e21aec93b36"
+    },
+    {
+      "path": "docs/evidence/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/first-contract-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/first-contract-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7700,
+      "sha256": "f3ec5a93b708a021b38c1f357d49c370681b63eb8cc6d8440948880b25f60eab",
+      "git_blob_sha": "ad7ad57fb271f7d4791914c1b90e61127f4dc51c"
+    }
+  ],
+  "scope": "Corrected fresh-witness QA followup; preserves all historical setup/contract failures; no new Android/OCR pixel pass."
+}

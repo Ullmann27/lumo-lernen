@@ -1,0 +1,5 @@
+{
+  "path": "../treasure-red-headless/godot.log",
+  "classification": "INVALID_QA_RUN_NOT_PRODUCT_RED_NOT_PASS",
+  "reason": "New test accessed missing internal solved_clues property rather than public to_data(); four SCRIPTERRORs despite misleading zero-check marker. Original log retained. Fixed only newtest and added profile/check-count guard before meaningful red/green."
+}

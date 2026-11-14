@@ -1,0 +1,36 @@
+{
+  "messages": [
+    {
+      "file": "memory-view.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "file": "memory-view.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "file": "memory-view.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "file": "memory-pair/godot-runtime.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    }
+  ],
+  "engine_errors": 0,
+  "warning_lines": 6
+}

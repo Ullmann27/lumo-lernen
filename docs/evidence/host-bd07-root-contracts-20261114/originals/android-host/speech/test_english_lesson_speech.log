@@ -1,0 +1,28 @@
+test_cancel_after_join_before_return (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_after_join_before_return) ... ok
+test_cancel_before_first_inference (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_before_first_inference) ... ok
+test_cancel_before_join (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_before_join) ... ok
+test_cancel_between_inferences (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_between_inferences) ... ok
+test_english_word_tags_and_input_bound (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_english_word_tags_and_input_bound) ... ok
+test_existing_german_engine_contract (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_existing_german_engine_contract) ... ok
+test_interrupted_worker_never_starts_inference (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_interrupted_worker_never_starts_inference) ... ok
+test_join_preserves_pcm_and_exact_gap (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_join_preserves_pcm_and_exact_gap) ... ok
+test_language_order_identity_and_no_result_cache (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_language_order_identity_and_no_result_cache) ... ok
+test_malformed_wave_formats_refused (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_malformed_wave_formats_refused) ... ok
+test_total_envelope_duration_bound (test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_total_envelope_duration_bound) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.478s
+
+OK
+Compiled complete production Java source bytes SHA256=6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc
+ENGLISH_LESSON_JAVA_PASS scenario=after-join checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=before checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=before-join checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=between checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=tags checks=26 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+PASS local voice Java guards: 11
+ENGLISH_LESSON_JAVA_PASS scenario=thread checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=join checks=8 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=sequence checks=7 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=malformed checks=32 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim
+ENGLISH_LESSON_JAVA_PASS scenario=bounds checks=4 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim

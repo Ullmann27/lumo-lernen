@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T09:03:02.404Z",
+  "review_kind": "read_only_full_source_comparison_no_execution",
+  "repository": "Ullmann27/lumo-lernen",
+  "baseline_host": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "baseline_git_blob": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+  "proposed_git_blob": "6b587b94f9f094b5785f08afff348f399ace4523",
+  "status": "geometry_consistent_narrow_primary_scroll_recommendation_no_compilation_or_runtime_claim",
+  "inspected_change_scope": [
+    "six layout constants",
+    "portrait CustomScrollView/SliverLayoutBuilder and equivalent wide branch",
+    "one shared horizontal play content",
+    "equal inset and fixed 48dp controls",
+    "tight board instead of AspectRatio, constants for original padding/border"
+  ],
+  "findings": [
+    {
+      "id": "common_geometry",
+      "severity": "confirmed_source_property",
+      "lines": "881-989",
+      "text": "One horizontal viewport wraps both board and controls. Both share width and 12.4dp inset; minimum outer width360.8 yields seven columns >=48dp. No independent control scroll remains."
+    },
+    {
+      "id": "bounded_height",
+      "severity": "confirmed_source_property",
+      "lines": "881-947",
+      "text": "Board uses max(168.8,playHeight-84) as height budget, min(width*6/7,budget) as actual height. The stage has explicit finite width/height. Wide overflow wraps that stage in a vertical scroll; no unbounded Expanded is introduced."
+    },
+    {
+      "id": "portrait_sliver",
+      "severity": "confirmed_source_property",
+      "lines": "504-547",
+      "text": "Actual finite preceding slivers determine precedingScrollExtent. The companion reservation includes its exact6+16dp vertical padding. playHeight>=252.8 guarantees positive board height and means the inner vertical fallback is not needed in this portrait path. Header and modes scroll with the outer viewport."
+    },
+    {
+      "id": "round_cells",
+      "severity": "confirmed_source_property",
+      "lines": "991-1124",
+      "text": "SizedBox.expand now receives the explicit board height. Existing row/column placement, circular min(w,h) diameter and GestureDetector column mapping are unchanged; pedestal uses actual boardHeight."
+    },
+    {
+      "id": "primary_controller",
+      "severity": "narrow_recommendation_no_reproduced_failure",
+      "lines": "754 and943",
+      "text": "The new short-wide vertical fallback and existing companion vertical scroller are siblings with primary=null. Flutter3.44.9 may auto-inherit the same route PrimaryScrollController on Android/iOS. Set primary:false on the new inner fallback so it stays independently owned. No runtime assertion or failed gesture has been executed or claimed."
+    },
+    {
+      "id": "shadow_clipping",
+      "severity": "known_render_boundary_not_input_blocker",
+      "lines": "895-898,909-910,996-1034",
+      "text": "When horizontal content overflows, SingleChildScrollView hardEdge clips the full stage. Existing pedestal +/-18dp overhang, outer glow and decorative right side beyond board width can be clipped. Core cells and buttons remain within shared content and are scroll-exposable. Do not disable clipping to expose hidden offscreen inputs."
+    }
+  ],
+  "framework_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/flutter/flutter/3.44.9/packages/flutter/lib/src/widgets/single_child_scroll_view.dart",
+      "sections": [
+        "253-259 effectivePrimary",
+        "298-302 descendant PrimaryScrollController.none",
+        "455-459 cross-axis constraints",
+        "529-565 clipping",
+        "592-601 hit-test paint offset"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/flutter/flutter/3.44.9/packages/flutter/lib/src/rendering/sliver.dart",
+      "sections": [
+        "333-356 precedingScrollExtent"
+      ]
+    }
+  ],
+  "limits": [
+    "No Dart analyzer/compiler/formatter, Flutter test, rendering or Android execution.",
+    "No Git tree, commit, branch, source file, pin or receipt mutation.",
+    "Visual shadow boundary is source-derived; no new screenshot was produced.",
+    "Existing Flutter visual test does not substitute for Root's explicit swipe/clipped-target regression."
+  ],
+  "actual_source_files": [
+    {
+      "path": "qa/connect-four-layout-blob-review-20261114/baseline.dart.txt",
+      "bytes": 42692,
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+      "git_blob": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/connect-four-layout-blob-review-20261114/proposed.dart.txt",
+      "bytes": 44491,
+      "sha256": "e87ed2d4a8c80739acdae34136686defc08e6473b99d6fde77293936f65b9135",
+      "git_blob": "6b587b94f9f094b5785f08afff348f399ace4523",
+      "mode": "100644"
+    }
+  ],
+  "byte_identical_sections": {
+    "controller_native_rules_persistence": true,
+    "header_modes_turn_companion_tray": true,
+    "disc_rendering": true
+  }
+}

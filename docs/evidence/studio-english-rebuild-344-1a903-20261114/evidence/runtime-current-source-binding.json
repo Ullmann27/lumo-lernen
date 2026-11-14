@@ -1,0 +1,55 @@
+{
+  "base_native": "34421df83566dd4773420cc2a225887956459435",
+  "scope": "partial runtime dependency graph; no full-checkout claim; original project only has private main-scene override",
+  "baseline_count": 40,
+  "expected_runtime_changes": [
+    {
+      "path": "project.godot",
+      "baseline_sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+      "current_sha256": "5ff1d3609c38cc67e53a1c64e7ff0accc7a02f290f99b2aeb5d549079fcaf7f0"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "baseline_sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+      "current_sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "baseline_sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "current_sha256": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e"
+    }
+  ],
+  "current_owned_files": [
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "bytes": 7670,
+      "sha256": "4c6268517ae47fc9075bc4824e4aae1b2044190a1971fd8ca32b06662bf3cb55",
+      "git_blob": "44e9031dd31c86197b90ac004558ba50f01a2d7a"
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "bytes": 1857,
+      "sha256": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+      "git_blob": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob": "245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 53802,
+      "sha256": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e",
+      "git_blob": "1e8b528797b2c89f9833a1f0d5d6d98a9950948c"
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "bytes": 25074,
+      "sha256": "00c2a1756562db1c49fdad8ff6944b14065f204ad7e831d98cd2ea41ac31badf",
+      "git_blob": "c91720bbeb41b08bc46316a485e94356e2d50c66"
+    }
+  ],
+  "note": "Private main scene and two owned production files are the only differences among the40baselinefiles; two new utilities and new regression are additive. The observed helper stdout Android wording is inherited, test observation is explicitly platform_fixture."
+}

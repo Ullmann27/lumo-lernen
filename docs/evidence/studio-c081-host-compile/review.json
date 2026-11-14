@@ -1,0 +1,268 @@
+{
+  "status": "PASS_ACTUAL_ANDROID_HOST_COMPILATION_ONLY",
+  "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "run_id": 43545886722,
+  "job_id": 132296974256,
+  "artifact_id": 14094167156,
+  "actual_checkout_evidence": [
+    "2026-11-14T02:22:22.8100551Z HEAD is now at c081cfa fix: synchronize Studio Android probes with actual scene state",
+    "2026-11-14T02:22:22.8271122Z c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111"
+  ],
+  "actual_source_stamp": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/source-sha.txt",
+    "bytes": 41,
+    "sha256": "ddd6fcef95a98a889d812e94b73acd4c7ca266632201e4504901e472f9f90cc7"
+  },
+  "actual_compile_result": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/result.json",
+    "bytes": 2769,
+    "sha256": "238257a7cc1aeb796f0bda54e4bd55105c4ca5c14783772b5cc4d91838070f17"
+  },
+  "actual_build_tasks": [
+    ":app:compileDebugKotlin",
+    ":app:compileDebugJavaWithJavac"
+  ],
+  "build_success_line": "BUILD SUCCESSFUL in 3m 14s",
+  "build_task_summary": "107 actionable tasks: 102 executed, 5 up-to-date",
+  "cards_authority_tests": {
+    "passed": 6,
+    "elapsed_seconds": 1.441,
+    "source": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "f70128eb351789ced7b8393ce269a324b6674e5028059a97d70c5b1652d04fdc"
+    }
+  },
+  "classes_recorded_by_current_ci": {
+    "MainActivity": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/MainActivity.class",
+        "bytes": 25349,
+        "sha256": "b36d00d5b44541113fc87d6daa59243386246c7e8ead488f0f042c9c30926eb0"
+      }
+    ],
+    "LumoGameActivity": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoGameActivity.class",
+        "bytes": 15416,
+        "sha256": "337b5b66b83a3531bb22af6c0cadc167c454e0d6e645195543037d2cfb92072e"
+      }
+    ],
+    "LumoHostPlugin": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoHostPlugin.class",
+        "bytes": 4594,
+        "sha256": "4c189b04c5a68b667a016df1197854fae2a7d16b447c54065b217994cdb5d9b4"
+      }
+    ],
+    "CardsTableBridge": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsTableBridge.class",
+        "bytes": 20859,
+        "sha256": "434667a7937f5ce3957f6aa3ce5bd9db3ece3c69a10262746fa628e19d3792fa"
+      }
+    ],
+    "CardsAuthorityService": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.class",
+        "bytes": 2674,
+        "sha256": "f9fbd8919270c109d3e52fbe61d2f6fae00f95392a637ebb7eb1799007c74b1d"
+      }
+    ],
+    "CardsAuthorityRegistry": [
+      {
+        "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/CardsAuthorityRegistry.class",
+        "bytes": 1797,
+        "sha256": "4f6a6545b1fd26f90b563be7c75628f8223b63edb3be646208a43eff39991b35"
+      }
+    ],
+    "LumoLearningSpeech": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.class",
+        "bytes": 11487,
+        "sha256": "6292cefa55e33b540a0c05a24bf085f94c4d6607d7e73390e1ab892d7438b534"
+      }
+    ],
+    "LumoOfflineSpeechBridge": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechBridge.class",
+        "bytes": 19017,
+        "sha256": "205454042f42b167261e16b9dffd63f8095d752aad0bf7b49feccd8ae840408b"
+      }
+    ],
+    "LumoOfflineSpeechEngine": [
+      {
+        "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechEngine.class",
+        "bytes": 17178,
+        "sha256": "c9944e14323d807932a1fb3b1cbfa6ac05a2df46f8b88b7ea493755e0a6be5af"
+      }
+    ]
+  },
+  "class_binaries_downloaded_or_independently_rehashed": false,
+  "toolchain": {
+    "flutter": "3.44.9",
+    "dart": "3.12.2",
+    "gradle": "9.1.0",
+    "godot_aar": "org.godotengine:godot:4.6.3.stable",
+    "onnxruntime_android": "1.23.1"
+  },
+  "compiler_error_lines": [],
+  "warning_lines_count": 33,
+  "warning_lines": [
+    {
+      "line": 18,
+      "text": "WARNING: Unsupported Kotlin plugin version."
+    },
+    {
+      "line": 32,
+      "text": "WARNING: The option setting 'android.builtInKotlin=false' is deprecated."
+    },
+    {
+      "line": 35,
+      "text": "WARNING: The option setting 'android.newDsl=false' is deprecated."
+    },
+    {
+      "line": 38,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:7:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+    },
+    {
+      "line": 40,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:49:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+    },
+    {
+      "line": 42,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:70:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+    },
+    {
+      "line": 44,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:98:5: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+    },
+    {
+      "line": 46,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:109:34: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension."
+    },
+    {
+      "line": 55,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 62,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 69,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35/android/build.gradle.kts:26:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+    },
+    {
+      "line": 71,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 78,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 85,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 92,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+25/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+    },
+    {
+      "line": 94,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 101,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 108,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 115,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/build.gradle.kts:40:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+    },
+    {
+      "line": 117,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 124,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 131,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.33/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension."
+    },
+    {
+      "line": 133,
+      "text": "w: ⚠️ Deprecated 'org.jetbrains.kotlin.android' plugin usage"
+    },
+    {
+      "line": 238,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/AudioplayersPlugin.kt:72:30 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java."
+    },
+    {
+      "line": 239,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/player/WrappedPlayer.kt:172:22 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java."
+    },
+    {
+      "line": 291,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:381:23 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'."
+    },
+    {
+      "line": 292,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:386:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'."
+    },
+    {
+      "line": 293,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:390:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'."
+    },
+    {
+      "line": 294,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:575:45 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java."
+    },
+    {
+      "line": 300,
+      "text": "w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/SharedPreferencesPlugin.kt:450:52 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'."
+    },
+    {
+      "line": 309,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:156:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'."
+    },
+    {
+      "line": 310,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:157:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'."
+    },
+    {
+      "line": 311,
+      "text": "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:259:97 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'."
+    }
+  ],
+  "warning_summary_de": [
+    "Gradle Kotlin-DSL meldet eingebettetes Kotlin 2.2.0 gegenüber angefordertem 2.2.20.",
+    "Android builtInKotlin=false, newDsl=false, bisherige DSL-Erweiterungen und org.jetbrains.kotlin.android werden als veraltet gemeldet.",
+    "Abhängigkeiten melden veraltete APIs bzw. unnötige Nullprüfungen; im Appcode sind drei unnötige !!-Ausdrücke in LumoLearningSpeech/MainActivity geloggt.",
+    "Der verwendete Build ist erfolgreich; das Log weist zusätzlich auf eine künftige Inkompatibilität veralteter Gradle-Funktionen mit Gradle 10 hin."
+  ],
+  "original_binding": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/original-binding.json",
+    "bytes": 1263,
+    "sha256": "c7dbff4409fbe32a8a395bfc29393fda15987cad7baca0fb0bf0e049770bc3c8"
+  },
+  "job_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/original-job.log",
+    "bytes": 236122,
+    "sha256": "82345b53bb7c5e4b88bd751539d76aa322635761a551170caa5ff8c948b3bcfc"
+  },
+  "limits": [
+    "No APK build/installation/runtime claim from this host-only compilation.",
+    "No completed full Studio acceptance claimed.",
+    "Full Flutter artifact 14093704195 is 333,583,244 bytes and was not downloaded.",
+    "No physical Android/Fold7/FPS measurement."
+  ],
+  "read_only_reviewer": true
+}

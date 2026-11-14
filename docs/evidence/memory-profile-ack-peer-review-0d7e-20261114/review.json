@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14 19:51:39 UTC",
+  "scope": "Read-only review of the two changed Memory profile-test blocks and the original three CI failures.",
+  "base_commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "verdict": "No additional concrete static blocker found; the source-level explanation and targeted cleanup require confirmation by the next actual CI run.",
+  "sources": [
+    {
+      "path": "qa/memory-profile-ack-contract-0d7e-20261114/baseline/host/test/games/memory_profile_storage_test.dart",
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob_sha": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+    },
+    {
+      "path": "qa/memory-profile-ack-contract-0d7e-20261114/prepared/host/test/games/memory_profile_storage_test.dart",
+      "bytes": 13044,
+      "sha256": "9f63b7ad07c7a74a78279cf58e95c93de08d319c713575d06f6f4c83ab99f8fa",
+      "git_blob_sha": "3da940a91cf02aae13083693e8f702d1bbc55fc5"
+    },
+    {
+      "path": "qa/memory-profile-ack-contract-0d7e-20261114/implementation-against-exact-0d7e.patch",
+      "bytes": 7325,
+      "sha256": "fb02309c9e1e5edaae426df0d2a632ec1d5da349c7c486ce7aee7f8ec2254cf8",
+      "git_blob_sha": "bbe7aa9b07d7e21ec56d2554be61792de8276ee4"
+    }
+  ],
+  "independent_binding": {
+    "hunks": 2,
+    "full_baseline_inverse_equal": true,
+    "fresh_remote_baseline_equal": true,
+    "original_log": {
+      "bytes": 121892,
+      "sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+      "excerpt_exact_original_lines_880_973": true
+    }
+  },
+  "original_failure_excerpt": {
+    "path": "qa/memory-profile-ack-contract-0d7e-20261114/evidence/original-memory-failure-excerpt.log",
+    "bytes": 10240,
+    "sha256": "88224a92d7a8e786be7fde99a28e3debe915710473f118f98ac4833606edca03",
+    "git_blob_sha": "9197dc0b263dc754b89ce9e25e33b116f7a341df"
+  },
+  "findings": [
+    "The actual first assertion expected one write but the original journal contains the identical initial stats acknowledgement followed by the changed user payload.",
+    "In the original test that assertion precedes gate.complete(). If it throws, the held owner write can remain unresolved in the old test zone. The subsequent original failures cannot find A's difficulty controls; the intervening identity test uses the other owner.",
+    "The new initial assertion requires exactly the complete original seed key/value. Only then is the user-write checkpoint taken; it does not discard an unexplained prefix.",
+    "The user sequence still requires exactly one pending write and exactly two ordered choices after acknowledgement, with full keys and JSON payloads; disk contents must remain the seed while held.",
+    "The child-switch case additionally binds the entire A user write, B same-value load acknowledgement, B user write sequence, preserving A/B final states and the unowned legacy bytes.",
+    "Both held gates are conditionally completed in finally, followed by idle, widget teardown, idle in the same WidgetTester zone. This avoids deliberately stranding the real serial queue when an assertion fails.",
+    "The six test names, helper implementations and remaining four test cases are unchanged; inverse replacement reconstructs the entire freshly fetched 0d7e baseline."
+  ],
+  "limits": {
+    "tests_executed_by_reviewer": 0,
+    "local_sdk_or_flutter_invocations": 0,
+    "product_changes": 0,
+    "new_ci_pass_claim": false,
+    "inferred_async_cause_not_a_fresh_execution_result": true
+  }
+}

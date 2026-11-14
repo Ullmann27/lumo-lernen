@@ -1,0 +1,276 @@
+{
+  "base": "cb85abed7c947af8e491f3d2b6488e443dc73c0a",
+  "base_tree": "207d3a0a6fbdfbb38acfc8b7827491feda194b2d",
+  "commit": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+  "added": 17,
+  "modified": 1,
+  "unchanged": 4319,
+  "leaves": 4337,
+  "files": [
+    {
+      "path": ".github/probes/lumo_memory_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/.github/probes/lumo_memory_android_probe.py",
+      "bytes": 49666,
+      "sha256": "7ed28770dbe692d5e0d8d2032805fda91262de2716b5b8badab2c07cb51aeb01",
+      "sha": "4e84bedec42e80072d6db43423058ff5c7525ad4",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_quiz_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/.github/probes/lumo_quiz_android_probe.py",
+      "bytes": 56820,
+      "sha256": "2e23fa11a3cb4a578c3fca5c875fb930c54bab24525946b6d80eeab0dd339e83",
+      "sha": "8d79a567293b199c50cbe9d87d573db4d8901be3",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 74063,
+      "sha256": "0caabde427205969d2cc70a258e554463d189edffd7f2e43c90b1cd4bca0ed2c",
+      "sha": "7111ad168903f5bc97808f74bd7944392d7325da",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/NEXTGEN_ANDROID_INTEGRATION_20261114.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/docs/NEXTGEN_ANDROID_INTEGRATION_20261114.md",
+      "bytes": 4061,
+      "sha256": "f2384278008c5f2766ed1b92e9cc90a67656929c891d300e2e76ca8e6fcccfee",
+      "sha": "6ff1ddc0b2d90c4cbe2604f85e1b32787dcd8c34",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/memory_android/README.md",
+      "bytes": 1344,
+      "sha256": "add7d901e8bc222b129a0f2f6bcf8d5b55733212fc3e6910eb095c9fd0fa1b45",
+      "sha": "f6f25af85d8f6fad7d5054260f2bc4f720c04da6",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-face.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/memory_android/layout-face.json",
+      "bytes": 7968,
+      "sha256": "be99db932904d356d89feb0ef0a6b33759b0ef18c89fd88cf7c2bca69fac1e2b",
+      "sha": "e19cb837ccd3993e5525728cb2e5bdc8a8bc9b7a",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-hidden.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/memory_android/layout-hidden.json",
+      "bytes": 7965,
+      "sha256": "653dfbb1d6fda80316f1fa2e880a3706dd3c64a952ba9ace671169faa0ad7073",
+      "sha": "603e9c704ab4405fc9352741e0998efdfb583755",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/public-states.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/memory_android/public-states.json",
+      "bytes": 7551,
+      "sha256": "7b60a5e26c71f137217a3c180d25025a1eac7aa7bd10a96bfb5654d52ea546b6",
+      "sha": "7ce5d33f487b9d99607f0c1aaeff1f0b3367913c",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/saved-paused.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/memory_android/saved-paused.json",
+      "bytes": 698,
+      "sha256": "a3e37dba067f76daa1d4104f51ef6d98cccee04fbd6421fbc0cdd60905d095d6",
+      "sha": "dc84852768ae863204844b3d0988c561856ab810",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-durable-round.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-durable-round.json",
+      "bytes": 4378,
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+      "sha": "7624036f7e342a6d5b0c3430019c98ab13f13baf",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-public-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-public-state.json",
+      "bytes": 845,
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+      "sha": "0d6438f6706d875c87f82e694b22a8d0a5f96352",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/provenance.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/quiz_native_layout/provenance.json",
+      "bytes": 2504,
+      "sha256": "e67199d5fe2ecbd443b6c42a0265fa9673b1476be3372521aa376b043ac615e2",
+      "sha": "e489800971843ad30c71eefdb64fb1b0306c2da6",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-paused-portrait.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-paused-portrait.layout.json",
+      "bytes": 4601,
+      "sha256": "c6623c62e4f5aa267dc2f611a3f30ddcb5bfaad20c2b645bcb0b2e990651fafd",
+      "sha": "dd5451092403f703409550852e615d4d93e7eceb",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-cutout.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-cutout.layout.json",
+      "bytes": 5752,
+      "sha256": "df8084e06e263a9f6af572a30842fc41bc2a4a6d2077cfe2be18e85511717abc",
+      "sha": "45a197e42c276d4eb7260b041d6687a62ff9d5dd",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-landscape.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-landscape.layout.json",
+      "bytes": 4450,
+      "sha256": "d4ccd7c0d8cf2059b884c1683dd1d0df27f18f832420196800a861d3a0604ed0",
+      "sha": "13974d28777e29dc8b9b76d8f97ddf9750145e5f",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-selected-phone.layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/fixtures/quiz_native_layout/quiz-selected-phone.layout.json",
+      "bytes": 4433,
+      "sha256": "8023ddaefc2c337e40c6ebf36bc719e75ed3da1578837ea052a5c0a8cd9f745e",
+      "sha": "6ea5200a487001f48ab18c55f3f899fed9da9f0a",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_memory_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/test_memory_android_probe.py",
+      "bytes": 16780,
+      "sha256": "f869d05d1e93f81de083ff8582163945eab288ae27b2797aab8e8c4fdd88b397",
+      "sha": "b9c247134d8027f03369f0d43b10732488fef30b",
+      "type": "blob",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_quiz_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/nextgen-android-integration-20261114/prepared/host/tools/android_qa/tests/test_quiz_android_probe.py",
+      "bytes": 27696,
+      "sha256": "5f21aba7e0e18183040cfad9fd4cbec61c30d90e65d9da6bae0c5da8aea737fb",
+      "sha": "491d81a46597caa2701dcca719e55fa1fe779e12",
+      "type": "blob",
+      "mode": "100644"
+    }
+  ],
+  "full_utf8_readbacks": [
+    {
+      "path": ".github/probes/lumo_memory_android_probe.py",
+      "sha": "4e84bedec42e80072d6db43423058ff5c7525ad4",
+      "full_utf8_equal": true
+    },
+    {
+      "path": ".github/probes/lumo_quiz_android_probe.py",
+      "sha": "8d79a567293b199c50cbe9d87d573db4d8901be3",
+      "full_utf8_equal": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "sha": "7111ad168903f5bc97808f74bd7944392d7325da",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "docs/NEXTGEN_ANDROID_INTEGRATION_20261114.md",
+      "sha": "6ff1ddc0b2d90c4cbe2604f85e1b32787dcd8c34",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/README.md",
+      "sha": "f6f25af85d8f6fad7d5054260f2bc4f720c04da6",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-face.json",
+      "sha": "e19cb837ccd3993e5525728cb2e5bdc8a8bc9b7a",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/layout-hidden.json",
+      "sha": "603e9c704ab4405fc9352741e0998efdfb583755",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/public-states.json",
+      "sha": "7ce5d33f487b9d99607f0c1aaeff1f0b3367913c",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/memory_android/saved-paused.json",
+      "sha": "dc84852768ae863204844b3d0988c561856ab810",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-durable-round.json",
+      "sha": "7624036f7e342a6d5b0c3430019c98ab13f13baf",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/original-9f2e-public-state.json",
+      "sha": "0d6438f6706d875c87f82e694b22a8d0a5f96352",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/provenance.json",
+      "sha": "e489800971843ad30c71eefdb64fb1b0306c2da6",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-paused-portrait.layout.json",
+      "sha": "dd5451092403f703409550852e615d4d93e7eceb",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-cutout.layout.json",
+      "sha": "45a197e42c276d4eb7260b041d6687a62ff9d5dd",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-question-landscape.layout.json",
+      "sha": "13974d28777e29dc8b9b76d8f97ddf9750145e5f",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/quiz_native_layout/quiz-selected-phone.layout.json",
+      "sha": "6ea5200a487001f48ab18c55f3f899fed9da9f0a",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_memory_android_probe.py",
+      "sha": "b9c247134d8027f03369f0d43b10732488fef30b",
+      "full_utf8_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_quiz_android_probe.py",
+      "sha": "491d81a46597caa2701dcca719e55fa1fe779e12",
+      "full_utf8_equal": true
+    }
+  ],
+  "update": {
+    "success": true
+  },
+  "validation": {
+    "english_local_cases": 28,
+    "quiz_local_cases": 30,
+    "memory_local_cases": 25,
+    "workflow_shell_blocks": 70,
+    "android_executed": false
+  }
+}

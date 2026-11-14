@@ -1,0 +1,39 @@
+{
+  "baseline_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "sources": [
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "git_blob": "9095cb600e8d241efa7e2320d98b767f82e26f70",
+      "encoding": "utf-8",
+      "source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+      "bytes": 55952,
+      "sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+      "local_source_equal": true
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1",
+      "encoding": "utf-8",
+      "source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "local_source_equal": true
+    }
+  ],
+  "fixture_artifact_id": 14092241868,
+  "fixture_zip_sha256": "bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40",
+  "fixtures": [
+    {
+      "file": "jump-portrait-first.png",
+      "artifact_entry": "tour/0012-native-pause-0.png",
+      "bytes": 1643589,
+      "sha256": "92bd76f2d0058f02f74b999ac89a3941bee23a80e6dd4808a653d5b7fcc4dc34"
+    },
+    {
+      "file": "jump-portrait-second.png",
+      "artifact_entry": "tour/0012-native-pause-1.png",
+      "bytes": 1642110,
+      "sha256": "0d3d1d32e03384c951af53946850c0cdad19e1d130425f60efd56dc4fa56ee70"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "original_zip": "original-artifact.zip",
+  "artifact_id": 14091419071,
+  "bytes": 2613,
+  "sha256": "54b7887130b9868e70132439c6604b59b233111cc7e4818a90fce3340b842687",
+  "crc_test": "PASS",
+  "files": [
+    {
+      "path": "original-artifact/original-caption-replay.log",
+      "zip_member": "original-caption-replay.log",
+      "bytes": 2036,
+      "sha256": "3d5d2c628accd453833d169057200cb5876b243605bae1358c390fd3177931f8",
+      "zip_crc32": "02966527",
+      "byte_equal_to_zip": true
+    },
+    {
+      "path": "original-artifact/tesseract-languages.txt",
+      "zip_member": "tesseract-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+      "zip_crc32": "d3854710",
+      "byte_equal_to_zip": true
+    },
+    {
+      "path": "original-artifact/source-binding-counterexamples.log",
+      "zip_member": "source-binding-counterexamples.log",
+      "bytes": 5150,
+      "sha256": "5fa6aebf8bd6d1ceaac8550d500da5d5ee7b56d57ca0eddbd6ccb293e3074123",
+      "zip_crc32": "0c3e0fdf",
+      "byte_equal_to_zip": true
+    },
+    {
+      "path": "original-artifact/tesseract-version.txt",
+      "zip_member": "tesseract-version.txt",
+      "bytes": 551,
+      "sha256": "b0244d9f75aa00508fdb60e44c34390b452fbce9c0773fae505aed6fc1fb51bf",
+      "zip_crc32": "aa17a1a9",
+      "byte_equal_to_zip": true
+    }
+  ]
+}

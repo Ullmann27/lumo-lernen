@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "expected_captions": [
+    "Spiel pausiert"
+  ],
+  "frames": [
+    {
+      "status": "REJECTED",
+      "source": "14_cards_same_flutter_round-return-candidate-1.png",
+      "source_sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.955,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "error": "Flutter caption is not visible in the captured pixels: Spiel pausiert"
+    },
+    {
+      "status": "CHECKING"
+    }
+  ],
+  "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+  "error": "TimeoutExpired: Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 0.7764820609997969 seconds",
+  "elapsed_seconds": 30.00421
+}

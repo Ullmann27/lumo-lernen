@@ -1,0 +1,27 @@
+{
+  "source": "Native344, new independently rebuilt Quiz presenter",
+  "files": [
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 30754,
+      "sha256": "b2ca47c196a218c5ff54d7f645e5b19875a725b9e773578048d05fed68e22202",
+      "git_blob_sha": "0569bb0ab1cd079e0bce50321f9b34d362bb1549",
+      "sha": "0569bb0ab1cd079e0bce50321f9b34d362bb1549",
+      "readback_exact": true,
+      "stage": "first_compilable_checkpoint; QA pending"
+    },
+    {
+      "path": "scenes/games/quiz_studio.tscn",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 193,
+      "sha256": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+      "git_blob_sha": "7b674ff774f5cd05120472949dffc1b5c37cea8a",
+      "sha": "7b674ff774f5cd05120472949dffc1b5c37cea8a",
+      "readback_exact": true,
+      "stage": "first_compilable_checkpoint; QA pending"
+    }
+  ]
+}

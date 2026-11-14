@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "original_workflow_sha256": "43c795cc9aff8b4c7479e559ff5e5bf48213dc79232b1528b406152de3b3bf7a",
+  "new_workflow_sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+  "added_steps": 2,
+  "all_prior_workflow_fields_and_steps_semantically_identical": true,
+  "full_flutter_gate_retained": true,
+  "android_update_creative_publisher_gates_retained": true,
+  "budgets_and_permissions_unchanged": true,
+  "both_pipeline_statuses_captured_before_other_commands": true,
+  "flutter_failure_priority_and_log_failure_retained": true,
+  "new_run_step_bash_syntax_exit_code": 0,
+  "scope": "YAML preservation and bash syntax only; new Flutter tests still require actual CI execution."
+}

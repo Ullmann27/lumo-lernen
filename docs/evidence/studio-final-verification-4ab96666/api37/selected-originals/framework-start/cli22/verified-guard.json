@@ -1,0 +1,984 @@
+{
+  "avd_name": "test",
+  "avd_home": "/home/runner/.android/avd",
+  "avd_directory": "/home/runner/.android/avd/test.avd",
+  "pointer_sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd",
+  "pointer": {
+    "avd.ini.encoding": "UTF-8",
+    "path": "/home/runner/.android/avd/test.avd",
+    "target": "android-37.0"
+  },
+  "configuration": {
+    "PlayStore.enabled": "no",
+    "abi.type": "x86_64",
+    "avd.id": "<build>",
+    "avd.ini.encoding": "UTF-8",
+    "avd.name": "<build>",
+    "disk.cachePartition": "yes",
+    "disk.cachePartition.size": "66MB",
+    "disk.dataPartition.path": "<temp>",
+    "disk.dataPartition.size": "10G",
+    "disk.systemPartition.size": "0",
+    "disk.vendorPartition.size": "0",
+    "environment.height": "0",
+    "environment.width": "0",
+    "fastboot.forceChosenSnapshotBoot": "no",
+    "fastboot.forceColdBoot": "no",
+    "fastboot.forceFastBoot": "yes",
+    "firstboot.bootFromDownloadableSnapshot": "yes",
+    "firstboot.bootFromLocalSnapshot": "yes",
+    "firstboot.saveToLocalSnapshot": "yes",
+    "hw.accelerometer": "yes",
+    "hw.accelerometer_uncalibrated": "yes",
+    "hw.arc": "false",
+    "hw.audioInput": "yes",
+    "hw.audioOutput": "yes",
+    "hw.battery": "yes",
+    "hw.camera.back": "emulated",
+    "hw.camera.back.orientation": "90",
+    "hw.camera.front": "none",
+    "hw.camera.front.orientation": "90",
+    "hw.cpu.arch": "x86_64",
+    "hw.cpu.ncore": "2",
+    "hw.dPad": "no",
+    "hw.device.hash2": "MD5:12ab7fcb681cafc1697d019f385bf3b9",
+    "hw.device.manufacturer": "Google",
+    "hw.device.name": "pixel_5",
+    "hw.display1.density": "0",
+    "hw.display1.flag": "0",
+    "hw.display1.height": "0",
+    "hw.display1.width": "0",
+    "hw.display1.xOffset": "-1",
+    "hw.display1.yOffset": "-1",
+    "hw.display2.density": "0",
+    "hw.display2.flag": "0",
+    "hw.display2.height": "0",
+    "hw.display2.width": "0",
+    "hw.display2.xOffset": "-1",
+    "hw.display2.yOffset": "-1",
+    "hw.display3.density": "0",
+    "hw.display3.flag": "0",
+    "hw.display3.height": "0",
+    "hw.display3.width": "0",
+    "hw.display3.xOffset": "-1",
+    "hw.display3.yOffset": "-1",
+    "hw.displayRegion.0.1.height": "0",
+    "hw.displayRegion.0.1.width": "0",
+    "hw.displayRegion.0.1.xOffset": "-1",
+    "hw.displayRegion.0.1.yOffset": "-1",
+    "hw.displayRegion.0.2.height": "0",
+    "hw.displayRegion.0.2.width": "0",
+    "hw.displayRegion.0.2.xOffset": "-1",
+    "hw.displayRegion.0.2.yOffset": "-1",
+    "hw.displayRegion.0.3.height": "0",
+    "hw.displayRegion.0.3.width": "0",
+    "hw.displayRegion.0.3.xOffset": "-1",
+    "hw.displayRegion.0.3.yOffset": "-1",
+    "hw.gltransport": "pipe",
+    "hw.gltransport.asg.dataRingSize": "32768",
+    "hw.gltransport.asg.writeBufferSize": "1048576",
+    "hw.gltransport.asg.writeStepSize": "4096",
+    "hw.gltransport.drawFlushInterval": "800",
+    "hw.gps": "yes",
+    "hw.gpu.enabled": "no",
+    "hw.gpu.mode": "auto",
+    "hw.gsmModem": "yes",
+    "hw.gyroscope": "yes",
+    "hw.hotplug_multi_display": "no",
+    "hw.initialOrientation": "portrait",
+    "hw.keyboard": "no",
+    "hw.keyboard.charmap": "qwerty2",
+    "hw.keyboard.lid": "yes",
+    "hw.lcd.backlight": "yes",
+    "hw.lcd.circular": "false",
+    "hw.lcd.density": "440",
+    "hw.lcd.depth": "32",
+    "hw.lcd.height": "2340",
+    "hw.lcd.transparent": "false",
+    "hw.lcd.vsync": "60",
+    "hw.lcd.width": "1080",
+    "hw.mainKeys": "no",
+    "hw.multi_display_window": "no",
+    "hw.ramSize": "4096M",
+    "hw.rotaryInput": "no",
+    "hw.screen": "multi-touch",
+    "hw.sdCard": "yes",
+    "hw.sensor.hinge": "no",
+    "hw.sensor.hinge.count": "0",
+    "hw.sensor.hinge.fold_to_displayRegion.0.1_at_posture": "1",
+    "hw.sensor.hinge.resizable.config": "1",
+    "hw.sensor.hinge.sub_type": "0",
+    "hw.sensor.hinge.type": "0",
+    "hw.sensor.roll": "no",
+    "hw.sensor.roll.count": "0",
+    "hw.sensor.roll.resize_to_displayRegion.0.1_at_posture": "6",
+    "hw.sensor.roll.resize_to_displayRegion.0.2_at_posture": "6",
+    "hw.sensor.roll.resize_to_displayRegion.0.3_at_posture": "6",
+    "hw.sensors.gyroscope_uncalibrated": "yes",
+    "hw.sensors.heading": "no",
+    "hw.sensors.heart_rate": "no",
+    "hw.sensors.humidity": "yes",
+    "hw.sensors.light": "yes",
+    "hw.sensors.magnetic_field": "yes",
+    "hw.sensors.magnetic_field_uncalibrated": "yes",
+    "hw.sensors.orientation": "yes",
+    "hw.sensors.pressure": "yes",
+    "hw.sensors.proximity": "yes",
+    "hw.sensors.rgbclight": "no",
+    "hw.sensors.temperature": "yes",
+    "hw.sensors.wrist_tilt": "no",
+    "hw.touchpad0": "no",
+    "hw.touchpad0.height": "400",
+    "hw.touchpad0.width": "600",
+    "hw.trackBall": "no",
+    "hw.useext4": "yes",
+    "image.sysdir.1": "system-images/android-37.0/google_apis/x86_64/",
+    "kernel.newDeviceNaming": "autodetect",
+    "kernel.supportsYaffs2": "autodetect",
+    "runtime.network.latency": "none",
+    "runtime.network.speed": "full",
+    "sdcard.size": "512 MB",
+    "showDeviceFrame": "yes",
+    "tag.display": "Google APIs",
+    "tag.displaynames": "Google APIs",
+    "tag.id": "google_apis",
+    "tag.ids": "google_apis",
+    "target": "android-37.0",
+    "test.delayAdbTillBootComplete": "0",
+    "test.monitorAdb": "0",
+    "test.quitAfterBootTimeOut": "-1",
+    "userdata.useQcow2": "no",
+    "vm.heapSize": "256M",
+    "hw.heapSize": "512M"
+  },
+  "files": [
+    {
+      "path": "cache.img",
+      "bytes": 69206016,
+      "allocated_bytes": 5332992
+    },
+    {
+      "path": "cache.img.qcow2",
+      "bytes": 196616,
+      "allocated_bytes": 200704
+    },
+    {
+      "path": "config.ini",
+      "bytes": 3620,
+      "allocated_bytes": 4096,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe",
+      "copied": "configuration/config.ini"
+    },
+    {
+      "path": "emu-launch-params.txt",
+      "bytes": 260,
+      "allocated_bytes": 4096,
+      "sha256": "0eddf9b90736438f8c963b8c9bf746955ffdf6317cc33c015c512fb912ab6f83",
+      "copied": "configuration/emu-launch-params.txt"
+    },
+    {
+      "path": "encryptionkey.img",
+      "bytes": 18874368,
+      "allocated_bytes": 18874368
+    },
+    {
+      "path": "encryptionkey.img.qcow2",
+      "bytes": 7274496,
+      "allocated_bytes": 7213056
+    },
+    {
+      "path": "hardware-qemu.ini",
+      "bytes": 4148,
+      "allocated_bytes": 8192,
+      "sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a",
+      "copied": "configuration/hardware-qemu.ini"
+    },
+    {
+      "path": "hardware-qemu.ini.lock",
+      "bytes": 5,
+      "allocated_bytes": 4096
+    },
+    {
+      "path": "initrd",
+      "bytes": 1924364,
+      "allocated_bytes": 1925120
+    },
+    {
+      "path": "modem_simulator/etc/modem_simulator/files/numeric_operator.xml",
+      "bytes": 297,
+      "allocated_bytes": 4096,
+      "sha256": "c2557e604beea20b67642cdbb14ae7b792f804e4476b3f6cf47035690234f436",
+      "copied": "configuration/modem_simulator/etc/modem_simulator/files/numeric_operator.xml"
+    },
+    {
+      "path": "modem_simulator/iccprofile_for_carrierapitests.xml",
+      "bytes": 16537,
+      "allocated_bytes": 20480,
+      "sha256": "dc4b5f5344f084fc44f89250bbcf2b12e452eb98c104e4ef3ec115366eb6ce32",
+      "copied": "configuration/modem_simulator/iccprofile_for_carrierapitests.xml"
+    },
+    {
+      "path": "modem_simulator/iccprofile_for_sim0.xml",
+      "bytes": 14722,
+      "allocated_bytes": 16384,
+      "sha256": "7a70da249fedced82e5954c0144941849f93a5ef5a0b20a50a832c9c77e1c0b3",
+      "copied": "configuration/modem_simulator/iccprofile_for_sim0.xml"
+    },
+    {
+      "path": "modem_simulator/iccprofile_for_sim_tel_alaska.xml",
+      "bytes": 14474,
+      "allocated_bytes": 16384,
+      "sha256": "462cc26ddaa9d6c470a2d9415771c80e323b526b1863f099accb298955b14db3",
+      "copied": "configuration/modem_simulator/iccprofile_for_sim_tel_alaska.xml"
+    },
+    {
+      "path": "multiinstance.lock",
+      "bytes": 0,
+      "allocated_bytes": 0
+    },
+    {
+      "path": "netsim.ini",
+      "bytes": 38,
+      "allocated_bytes": 4096,
+      "sha256": "c8fd846ec31ee1d607fc06f150e841e8c5287eb803ab0b2abf23abff6f39a080",
+      "copied": "configuration/netsim.ini"
+    },
+    {
+      "path": "qemu-version.txt",
+      "bytes": 1,
+      "allocated_bytes": 4096,
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+      "copied": "configuration/qemu-version.txt"
+    },
+    {
+      "path": "read-snapshot.txt",
+      "bytes": 0,
+      "allocated_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copied": "configuration/read-snapshot.txt"
+    },
+    {
+      "path": "userdata-qemu.img",
+      "bytes": 10158080,
+      "allocated_bytes": 10158080
+    },
+    {
+      "path": "userdata-qemu.img.qcow2",
+      "bytes": 1094909952,
+      "allocated_bytes": 1094852608
+    },
+    {
+      "path": "version_num.cache",
+      "bytes": 9,
+      "allocated_bytes": 4096
+    }
+  ],
+  "scope": "Configuration bytes copied verbatim; unmodified AVD disk files remain on the runner, with apparent and allocated sizes recorded. No AVD disk image is uploaded.",
+  "packages": {
+    "platform": {
+      "path": "/usr/local/lib/android/sdk/platforms/android-37.0",
+      "properties": {
+        "Pkg.Desc": "Android SDK Platform 17",
+        "Pkg.UserSrc": "false",
+        "Platform.Version": "17",
+        "Platform.CodeName": "",
+        "Pkg.Revision": "2",
+        "AndroidVersion.ApiLevel": "37.0",
+        "AndroidVersion.CodeName": "",
+        "AndroidVersion.ExtensionLevel": "22",
+        "AndroidVersion.IsBaseSdk": "true",
+        "AndroidVersion.PreviewSdkInt": "0",
+        "AndroidVersion.BetaVersion": "",
+        "Layoutlib.Api": "15",
+        "Layoutlib.Revision": "1",
+        "Platform.MinToolsRev": "22"
+      },
+      "files": {
+        "source.properties": {
+          "path": "/usr/local/lib/android/sdk/platforms/android-37.0/source.properties",
+          "bytes": 343,
+          "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+        },
+        "package.xml": {
+          "path": "/usr/local/lib/android/sdk/platforms/android-37.0/package.xml",
+          "bytes": 18468,
+          "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+        }
+      },
+      "installed_package": {
+        "path": "platforms;android-37.0",
+        "revision": {
+          "major": 2,
+          "minor": 0,
+          "micro": 0,
+          "preview": 0
+        }
+      }
+    },
+    "image": {
+      "path": "/usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64",
+      "properties": {
+        "Pkg.Desc": "System Image x86_64 with Google APIs.",
+        "Pkg.Revision": "7",
+        "Pkg.Dependencies": "emulator#37.2.11",
+        "AndroidVersion.ApiLevel": "37.0",
+        "AndroidVersion.ExtensionLevel": "22",
+        "AndroidVersion.IsBaseSdk": "true",
+        "SystemImage.Abi": "x86_64",
+        "SystemImage.TagId": "google_apis",
+        "SystemImage.TagDisplay": "Google APIs",
+        "SystemImage.GpuSupport": "true",
+        "Addon.VendorId": "google",
+        "Addon.VendorDisplay": "Google Inc."
+      },
+      "files": {
+        "source.properties": {
+          "path": "/usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/source.properties",
+          "bytes": 359,
+          "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+        },
+        "package.xml": {
+          "path": "/usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/package.xml",
+          "bytes": 18753,
+          "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+        }
+      },
+      "installed_package": {
+        "path": "system-images;android-37.0;google_apis;x86_64",
+        "revision": {
+          "major": 8,
+          "minor": 0,
+          "micro": 0,
+          "preview": 0
+        }
+      }
+    },
+    "emulator": {
+      "path": "/usr/local/lib/android/sdk/emulator",
+      "properties": {
+        "Pkg.UserSrc": "false",
+        "Pkg.Revision": "37.2.13",
+        "Pkg.Path": "emulator",
+        "Pkg.Desc": "Android Emulator",
+        "Pkg.BuildId": "16740729"
+      },
+      "files": {
+        "source.properties": {
+          "path": "/usr/local/lib/android/sdk/emulator/source.properties",
+          "bytes": 103,
+          "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+        },
+        "package.xml": {
+          "path": "/usr/local/lib/android/sdk/emulator/package.xml",
+          "bytes": 18320,
+          "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+        }
+      },
+      "installed_package": {
+        "path": "emulator",
+        "revision": {
+          "major": 37,
+          "minor": 2,
+          "micro": 13,
+          "preview": 0
+        }
+      }
+    },
+    "platform-tools": {
+      "path": "/usr/local/lib/android/sdk/platform-tools",
+      "properties": {
+        "Pkg.UserSrc": "false",
+        "Pkg.Revision": "37.0.1"
+      },
+      "files": {
+        "source.properties": {
+          "path": "/usr/local/lib/android/sdk/platform-tools/source.properties",
+          "bytes": 38,
+          "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+        },
+        "package.xml": {
+          "path": "/usr/local/lib/android/sdk/platform-tools/package.xml",
+          "bytes": 18335,
+          "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+        }
+      },
+      "installed_package": {
+        "path": "platform-tools",
+        "revision": {
+          "major": 37,
+          "minor": 0,
+          "micro": 1,
+          "preview": 0
+        }
+      }
+    }
+  },
+  "status": "ACTUAL_CLI22_AVD_BINDING_VERIFIED",
+  "actual_tools_files": {
+    "NOTICE.txt": {
+      "bytes": 101506,
+      "sha256": "2fe905b4ac6e8bd16cad0d1843ea9a7c6b3d3001f9ab2eac948cb5818710e0f1"
+    },
+    "bin/android": {
+      "bytes": 5065056,
+      "sha256": "24ff3bac5db16e5bcc5fd2a54dc58041fd06db373389cd6442dedb004fe092be"
+    },
+    "bin/apkanalyzer": {
+      "bytes": 5767,
+      "sha256": "c3912376ada67603a09a45701397b8d1ccec2ea138122b8aaae9dc57b47064b0"
+    },
+    "bin/avdmanager": {
+      "bytes": 5760,
+      "sha256": "2bf31bb017c0e11413c5c679674b4fe5dcce6c0cd61d9f381fd6f8cb414efa57"
+    },
+    "bin/d8": {
+      "bytes": 5661,
+      "sha256": "0c2618ffd054c2a931cf54a76958b341de690d2132389a86d081095554b7b160"
+    },
+    "bin/lint": {
+      "bytes": 5726,
+      "sha256": "fbf068158e321a636775bbe77b62439f694e9ca901ca6fb051a39bce94d44120"
+    },
+    "bin/profgen": {
+      "bytes": 5699,
+      "sha256": "afb2681c396a184f023a76e19a5fd516266972c6d1fb52377ea084882fe21fbc"
+    },
+    "bin/r8": {
+      "bytes": 5661,
+      "sha256": "0ae979fb32bfcdb68147c085be18f50ee7b040d9a7f3947ac27a754dff76dec6"
+    },
+    "bin/resourceshrinker": {
+      "bytes": 5754,
+      "sha256": "4e799ed3a2c68855f02495d55bc9ce4e37d302f43ac89cc0896709ffa52b6ee7"
+    },
+    "bin/retrace": {
+      "bytes": 5699,
+      "sha256": "3f5de6c1e37483171cfbc3178fe3b3acee9c769dea38b664082898d44935cc56"
+    },
+    "bin/screenshot2": {
+      "bytes": 5755,
+      "sha256": "8ef5598b1fdc61cc2a0e3043b58330af32e7b063c573b5c6a3d4559895fee040"
+    },
+    "bin/sdkmanager": {
+      "bytes": 5767,
+      "sha256": "491de5bc4fe332d879e304e4d2acdf9901f5de7872be57ac1ccfb94489f5e846"
+    },
+    "lib/README": {
+      "bytes": 202,
+      "sha256": "c955f7bf69ebfc3c5458338a604888ad86c86027c46221de8cc2fa375de70778"
+    },
+    "lib/analytics-library/protos/src/main/proto/proto.jar": {
+      "bytes": 11281355,
+      "sha256": "e9e3f5021b8ec64169b2e9a49232bbe8b2a23e2dcf31223f982163216b32d30f"
+    },
+    "lib/analytics-library/shared/tools.analytics-shared.jar": {
+      "bytes": 137309,
+      "sha256": "172a037b11dae0f2cb6b5c47a001c901afcf3631c637526f545e4517b973b68b"
+    },
+    "lib/analytics-library/tracker/tools.analytics-tracker.jar": {
+      "bytes": 67774,
+      "sha256": "f083e82627981dbe1312b5e805e9470d26b4ff56d09ae8fddcce8f862d2e807a"
+    },
+    "lib/annotations/annotations.jar": {
+      "bytes": 10677,
+      "sha256": "32e90226ae4c7b59ed61b06689ae8356bab080cd79f6569455fd92925439a339"
+    },
+    "lib/apkanalyzer-classpath.jar": {
+      "bytes": 4329,
+      "sha256": "a41766a6bf679feae9d8c65cfead8ba7573bd7762feedd808715a72a808328b2"
+    },
+    "lib/apkparser/analyzer/analyzer.jar": {
+      "bytes": 133732,
+      "sha256": "de1ee2dbdccde33ecae525086ec07f7930aae283c5a1b73181ebf6122321147d"
+    },
+    "lib/apkparser/cli/analyzer-cli.jar": {
+      "bytes": 68801,
+      "sha256": "85485359aae49fc75bc55cac220a1797a4dd70b7abaafd555ca7de5bd46ecf7e"
+    },
+    "lib/apkparser/tools.binary-resources.jar": {
+      "bytes": 118019,
+      "sha256": "76b4136c3c5afb65c636d5afa590451f94ea00dc013a6cd6c0c9fd6395a50382"
+    },
+    "lib/avdmanager-classpath.jar": {
+      "bytes": 4349,
+      "sha256": "467a4c82315ec7fb4c79d46424d507c8b45802533ba8984598ce543ed11e93a3"
+    },
+    "lib/build-system/aapt2-proto/aapt2-proto.jar": {
+      "bytes": 749051,
+      "sha256": "8bac9ddddfc9fec64152f3116acb2e1a3fe0cd60aae68a57f5b284bae038d380"
+    },
+    "lib/build-system/builder-model/builder-model.jar": {
+      "bytes": 146255,
+      "sha256": "faff278915ba31c5d4629b4832e113f4f6548c24d4d604f8cd8176ef4336eb83"
+    },
+    "lib/build-system/manifest-merger/tools.manifest-merger.jar": {
+      "bytes": 278428,
+      "sha256": "c91c928569b6f3afd49f5a6abcc36609a2e90de544aa13aa3094aa133b63affd"
+    },
+    "lib/build-system/shrinker/libshrinker.jar": {
+      "bytes": 150097,
+      "sha256": "63e6b758387520ebb75cfa9c5d5594efff62bfc70d4b5be9fe327fc121243f99"
+    },
+    "lib/common/tools.common.jar": {
+      "bytes": 596633,
+      "sha256": "78d1da4e4c7705ce0dc9023701eef681610ff2755923c183fc6371903686cf3d"
+    },
+    "lib/d8-classpath.jar": {
+      "bytes": 283,
+      "sha256": "353228b20ad6199d15e70c9e79b4d17d443721d1a9e28bb6ab6484766d36178c"
+    },
+    "lib/ddmlib/tools.ddmlib.jar": {
+      "bytes": 683126,
+      "sha256": "8bc8edf0637a9b520febf83b10b57f3120de5f5f3295cb232c90464f65d44318"
+    },
+    "lib/device_validator/tools.dvlib.jar": {
+      "bytes": 74883,
+      "sha256": "52e27f1364cdb5d4f531f52e4eec5ae48da040daa9417d4f06ddf6a1799a065e"
+    },
+    "lib/external/archive-patcher/explainer.jar": {
+      "bytes": 12156,
+      "sha256": "297bc50d4f61f8bc09caa91f8ee143cfdf18aa3f4208d716f5a53afd79a0f9bd"
+    },
+    "lib/external/archive-patcher/generator.jar": {
+      "bytes": 84159,
+      "sha256": "e6e14814df390b4d714db66bf84dafbaa1951d643e0ae91aa8c6ab368c3967c5"
+    },
+    "lib/external/archive-patcher/shared.jar": {
+      "bytes": 28234,
+      "sha256": "391caef69ac366ddc46c1c77ec7f41fcfda8ba27cdb0678ed17ca34abe949665"
+    },
+    "lib/external/com/android/tools/smali/smali-baksmali/3.0.9/smali-baksmali-3.0.9.jar": {
+      "bytes": 132972,
+      "sha256": "e7d0166945565a87f3997d1aea8779202dbb6cb0585a39ee20bab8a2f5ba87f6"
+    },
+    "lib/external/com/android/tools/smali/smali-dexlib2/3.0.9/smali-dexlib2-3.0.9.jar": {
+      "bytes": 1194123,
+      "sha256": "8b547506f62f91d74b70f4beb4989b99e1ff61fc50b2525e9796ca35f0a351dc"
+    },
+    "lib/external/com/android/tools/smali/smali-util/3.0.9/smali-util-3.0.9.jar": {
+      "bytes": 33331,
+      "sha256": "4673762894ba4156081fc5c642f74d6e78aef8b1a9c7702d691e3171d8cc1153"
+    },
+    "lib/external/com/beust/jcommander/1.78/jcommander-1.78.jar": {
+      "bytes": 83782,
+      "sha256": "7891debb84b5f83e9bd57593ebece3399abbe0fd938cf306b3534c57913b9615"
+    },
+    "lib/external/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar": {
+      "bytes": 19936,
+      "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+    },
+    "lib/external/com/google/code/gson/gson/2.11.0/gson-2.11.0.jar": {
+      "bytes": 298435,
+      "sha256": "57928d6e5a6edeb2abd3770a8f95ba44dce45f3b23b7a9dc2b309c581552a78b"
+    },
+    "lib/external/com/google/errorprone/error_prone_annotations/2.36.0/error_prone_annotations-2.36.0.jar": {
+      "bytes": 19401,
+      "sha256": "77440e270b0bc9a249903c5a076c36a722c4886ca4f42675f2903a1c53ed61a5"
+    },
+    "lib/external/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.jar": {
+      "bytes": 4740,
+      "sha256": "8a8f81cf9b359e3f6dfa691a1e776985c061ef2f223c9b2c80753e1b458e8064"
+    },
+    "lib/external/com/google/guava/guava/33.4.0-jre/guava-33.4.0-jre.jar": {
+      "bytes": 3080298,
+      "sha256": "b918c98a7e44dbe94ebd9fe3e40cddaadb5a93e6a78eb6008b42df237241e538"
+    },
+    "lib/external/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar": {
+      "bytes": 2199,
+      "sha256": "b372a037d4230aa57fbeffdef30fd6123f9c0c2db85d0aced00c91b974f33f99"
+    },
+    "lib/external/com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0.jar": {
+      "bytes": 12467,
+      "sha256": "88241573467ddca44ffd4d74aa04c2bbfd11bf7c17e0c342c94c9de7a70a7c64"
+    },
+    "lib/external/com/google/jimfs/jimfs/1.1/jimfs-1.1.jar": {
+      "bytes": 206691,
+      "sha256": "c4828e28d7c0a930af9387510b3bada7daa5c04d7c25a75c7b8b081f1c257ddd"
+    },
+    "lib/external/com/google/protobuf/protobuf-java/3.25.5/protobuf-java-3.25.5.jar": {
+      "bytes": 1875414,
+      "sha256": "8540247fad9e06baefa8fb45eb313802d019f485f14300e0f9d6b556ed88e753"
+    },
+    "lib/external/com/sun/istack/istack-commons-runtime/3.0.8/istack-commons-runtime-3.0.8.jar": {
+      "bytes": 27156,
+      "sha256": "4ffabb06be454a05e4398e20c77fa2b6308d4b88dfbef7ca30a76b5b7d5505ef"
+    },
+    "lib/external/com/sun/xml/fastinfoset/FastInfoset/1.2.16/FastInfoset-1.2.16.jar": {
+      "bytes": 317195,
+      "sha256": "056f3a1e144409f21ed16afc26805f58e9a21f3fce1543c42d400719d250c511"
+    },
+    "lib/external/commons-codec/commons-codec/1.17.1/commons-codec-1.17.1.jar": {
+      "bytes": 372687,
+      "sha256": "f9f6cb103f2ddc3c99a9d80ada2ae7bf0685111fd6bffccb72033d1da4e6ff23"
+    },
+    "lib/external/commons-io/commons-io/2.16.1/commons-io-2.16.1.jar": {
+      "bytes": 508826,
+      "sha256": "f41f7baacd716896447ace9758621f62c1c6b0a91d89acee488da26fc477c84f"
+    },
+    "lib/external/commons-logging/commons-logging/1.2/commons-logging-1.2.jar": {
+      "bytes": 61829,
+      "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636"
+    },
+    "lib/external/jakarta/activation/jakarta.activation-api/1.2.1/jakarta.activation-api-1.2.1.jar": {
+      "bytes": 44399,
+      "sha256": "8b0a0f52fa8b05c5431921a063ed866efaa41dadf2e3a7ee3e1961f2b0d9645b"
+    },
+    "lib/external/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar": {
+      "bytes": 115498,
+      "sha256": "69156304079bdeed9fc0ae3b39389f19b3cc4ba4443bc80508995394ead742ea"
+    },
+    "lib/external/javax/inject/javax.inject/1/javax.inject-1.jar": {
+      "bytes": 2497,
+      "sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+    },
+    "lib/external/lint-psi/intellij-core/intellij-core-mvn.jar": {
+      "bytes": 33910203,
+      "sha256": "4ec6a9163036699a296c8ae5a838c774eaa5b91fdc8f97cecbdf8f6d3ce14155"
+    },
+    "lib/external/lint-psi/kotlin-compiler/kotlin-compiler-mvn.jar": {
+      "bytes": 52710921,
+      "sha256": "f7605ecd8e5157f1df689951e0f200ff7ccb0b1443e8c4ab35a595cb1ccdc886"
+    },
+    "lib/external/lint-psi/uast/uast.jar": {
+      "bytes": 1943155,
+      "sha256": "708e340ad13c5cd1837d6a0ceb9f3dba9eed9f12d702fac97a26b46aa594cc8d"
+    },
+    "lib/external/net/java/dev/jna/jna/5.14.0/jna-5.14.0.jar": {
+      "bytes": 1878533,
+      "sha256": "34ed1e1f27fa896bca50dbc4e99cf3732967cec387a7a0d5e3486c09673fe8c6"
+    },
+    "lib/external/net/java/dev/jna/jna-platform/5.6.0/jna-platform-5.6.0.jar": {
+      "bytes": 2735878,
+      "sha256": "9ecea8bf2b1b39963939d18b70464eef60c508fed8820f9dcaba0c35518eabf7"
+    },
+    "lib/external/net/sf/jopt-simple/jopt-simple/4.9/jopt-simple-4.9.jar": {
+      "bytes": 66469,
+      "sha256": "26c5856e954b5f864db76f13b86919b59c6eecf9fd930b96baa8884626baf2f5"
+    },
+    "lib/external/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.jar": {
+      "bytes": 43858,
+      "sha256": "f264dd9f79a1fde10ce5ecc53221eff24be4c9331c830b7d52f2f08a7b633de2"
+    },
+    "lib/external/org/apache/commons/commons-compress/1.27.1/commons-compress-1.27.1.jar": {
+      "bytes": 1087319,
+      "sha256": "293d80f54b536b74095dcd7ea3cf0a29bbfc3402519281332495f4420d370d16"
+    },
+    "lib/external/org/apache/commons/commons-lang3/3.16.0/commons-lang3-3.16.0.jar": {
+      "bytes": 674238,
+      "sha256": "08709dd74d602b705ce4017d26544210056a4ba583d5b20c09373406fe7a00f8"
+    },
+    "lib/external/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar": {
+      "bytes": 785639,
+      "sha256": "c8bc7e1c51a6d4ce72f40d2ebbabf1c4b68bfe76e732104b04381b493478e9d6"
+    },
+    "lib/external/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar": {
+      "bytes": 327891,
+      "sha256": "6c9b3dd142a09dc468e23ad39aad6f75a0f2b85125104469f026e52a474e464f"
+    },
+    "lib/external/org/apache/httpcomponents/httpmime/4.5.6/httpmime-4.5.6.jar": {
+      "bytes": 41794,
+      "sha256": "0b2b1102c18d3c7e05a77214b9b7501a6f6056174ae5604e0e256776eda7553e"
+    },
+    "lib/external/org/bouncycastle/bcpkix-jdk18on/1.79/bcpkix-jdk18on-1.79.jar": {
+      "bytes": 1134345,
+      "sha256": "3639a24ddf9ba4b7eba0659b44770e91eba816421888e571f285aadefe532cd6"
+    },
+    "lib/external/org/bouncycastle/bcprov-jdk18on/1.79/bcprov-jdk18on-1.79.jar": {
+      "bytes": 8575537,
+      "sha256": "0d81ecc3124536b539bce9aa3fe9621b7f84c9cee371b635a5b31c78b79ab1da"
+    },
+    "lib/external/org/bouncycastle/bcutil-jdk18on/1.79/bcutil-jdk18on-1.79.jar": {
+      "bytes": 705999,
+      "sha256": "c70b88ada58938cbc2f005d40329054078bcfa1149e6ffc03e9242eb6ab21836"
+    },
+    "lib/external/org/checkerframework/checker-qual/3.43.0/checker-qual-3.43.0.jar": {
+      "bytes": 231525,
+      "sha256": "3fbc2e98f05854c3df16df9abaa955b91b15b3ecac33623208ed6424640ef0f6"
+    },
+    "lib/external/org/glassfish/jaxb/jaxb-runtime/2.3.2/jaxb-runtime-2.3.2.jar": {
+      "bytes": 1013367,
+      "sha256": "e6e0a1e89fb6ff786279e6a0082d5cef52dc2ebe67053d041800737652b4fd1b"
+    },
+    "lib/external/org/glassfish/jaxb/txw2/2.3.2/txw2-2.3.2.jar": {
+      "bytes": 72080,
+      "sha256": "4a6a9f483388d461b81aa9a28c685b8b74c0597993bf1884b04eddbca95f48fe"
+    },
+    "lib/external/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar": {
+      "bytes": 29371,
+      "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+    },
+    "lib/external/org/jetbrains/kotlin/kotlin-reflect/2.2.10/kotlin-reflect-2.2.10.jar": {
+      "bytes": 3298629,
+      "sha256": "c48db4f8cd1bfd67f72d59255065fb41bfda43ca2942dac4d9deb897aa126ba4"
+    },
+    "lib/external/org/jetbrains/kotlin/kotlin-stdlib/2.2.10/kotlin-stdlib-2.2.10.jar": {
+      "bytes": 1750374,
+      "sha256": "9c67cc79efd6b9215b49d2a4308f5f3433537376c7c88e89bdd6729bd096e61a"
+    },
+    "lib/external/org/jetbrains/kotlin/kotlin-stdlib-common/1.6.21/kotlin-stdlib-common-1.6.21.jar": {
+      "bytes": 200631,
+      "sha256": "183bec59cd9f3a14957b190e8c879cf1194bd1f106b0a7b6e1cbb8790d242363"
+    },
+    "lib/external/org/jetbrains/kotlin/kotlin-stdlib-jdk7/2.2.10/kotlin-stdlib-jdk7-2.2.10.jar": {
+      "bytes": 945,
+      "sha256": "cf95eccc6cc784dff479dee0b8834f3584b93292cc5d91972e82f5d7b9e13e3b"
+    },
+    "lib/external/org/jetbrains/kotlin/kotlin-stdlib-jdk8/2.2.10/kotlin-stdlib-jdk8-2.2.10.jar": {
+      "bytes": 951,
+      "sha256": "8974bfdd08b1d81843fe8d11f0729ab6e5b3c1f88d671ebe0c006358129ce149"
+    },
+    "lib/external/org/jetbrains/kotlinx/kotlinx-cli-jvm/0.3.1/kotlinx-cli-jvm-0.3.1.jar": {
+      "bytes": 82399,
+      "sha256": "6c4182fbb93b8ff2399e9449d76f920eca54196c837c806a0f5c8f9adf445a35"
+    },
+    "lib/external/org/jetbrains/kotlinx/kotlinx-coroutines-core/1.9.0/kotlinx-coroutines-core-1.9.0.jar": {
+      "bytes": 136423,
+      "sha256": "7089c33c145865020760d3dbca5e4634133cc3dd7feb926e830f6de6ede28ac6"
+    },
+    "lib/external/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.10.2/kotlinx-coroutines-core-jvm-1.10.2.jar": {
+      "bytes": 1479317,
+      "sha256": "5ca175b38df331fd64155b35cd8cae1251fa9ee369709b36d42e0a288ccce3fd"
+    },
+    "lib/external/org/jvnet/staxex/stax-ex/1.8.1/stax-ex-1.8.1.jar": {
+      "bytes": 38099,
+      "sha256": "20522549056e9e50aa35ef0b445a2e47a53d06be0b0a9467d704e2483ffb049a"
+    },
+    "lib/external/org/ow2/asm/asm/9.9/asm-9.9.jar": {
+      "bytes": 126122,
+      "sha256": "03d99a74ad1ee5c71334ef67437f4ef4fe3488caa7c96d8645abc73c8e2017d4"
+    },
+    "lib/external/org/ow2/asm/asm-analysis/9.9/asm-analysis-9.9.jar": {
+      "bytes": 35149,
+      "sha256": "6a15d28e8bd29ba4fd5bca4baf9b50e8fba2d7b51fbf78cfa0c875a7214c678b"
+    },
+    "lib/external/org/ow2/asm/asm-commons/9.9/asm-commons-9.9.jar": {
+      "bytes": 74348,
+      "sha256": "db2f6f26150bbe7c126606b4a1151836bcc22a1e05a423b3585698bece995ff8"
+    },
+    "lib/external/org/ow2/asm/asm-tree/9.9/asm-tree-9.9.jar": {
+      "bytes": 51947,
+      "sha256": "42178f3775c9c63f9e5e1446747d29b4eca4d91bd6e75e5c43cfa372a47d38c6"
+    },
+    "lib/layoutlib-api/tools.layoutlib-api.jar": {
+      "bytes": 123063,
+      "sha256": "124f04eba80033e5080748a05797003a81c906deb5b76663abc289d009943e82"
+    },
+    "lib/lint/cli/cli.jar": {
+      "bytes": 1093464,
+      "sha256": "178c00adc88b769a6fc555725907efcd4defa318726e888b9fcc49be6eeadf5f"
+    },
+    "lib/lint/lint-checks-proto.jar": {
+      "bytes": 186635,
+      "sha256": "43951d8d287f27b3c1242139179899af5c564e862b760353d558e4f73a881e03"
+    },
+    "lib/lint/tools.lint-api.jar": {
+      "bytes": 1506059,
+      "sha256": "dd3c0c1f12e04c8b61854119d0f29558b96b581b71685318d7808fc83b0ea6b7"
+    },
+    "lib/lint/tools.lint-checks.jar": {
+      "bytes": 7776107,
+      "sha256": "1e794f3d8536b3ab4e445dc4eec2a760d229473e49b01f49d9d248963569571d"
+    },
+    "lib/lint/tools.lint-model.jar": {
+      "bytes": 175258,
+      "sha256": "dba7719ec2ba9f7e800147dd21fb57be65e0ef315a37356f6878d81222e82fc6"
+    },
+    "lib/lint-classpath.jar": {
+      "bytes": 4300,
+      "sha256": "08cb0059a75ba93a0e9c385ac2b470c6778d5bdcbdd777800e8e8ebd7047ab20"
+    },
+    "lib/misc/screenshot2/libscreenshot2lib.jar": {
+      "bytes": 11505,
+      "sha256": "bb476b6cda2d2a77d0e37491c5851f0de57ddb515483fffaf3923418c008cec5"
+    },
+    "lib/profgen/profgen/libprofgen.jar": {
+      "bytes": 220449,
+      "sha256": "3813781fffcfbc04b4f354b14b0ea91c833bd8b8380f23987723ec02c4105130"
+    },
+    "lib/profgen/profgen-cli/libprofgen-cli-lib.jar": {
+      "bytes": 29821,
+      "sha256": "d8bab03629824bb1244aa0cfa3cb77afa968912db388e244fe886e0a26b2d6e8"
+    },
+    "lib/profgen-classpath.jar": {
+      "bytes": 889,
+      "sha256": "c0909636ad00fdb7b22993c8c5afe4de3440176a6577f3147a56dab162622cb0"
+    },
+    "lib/r8-classpath.jar": {
+      "bytes": 283,
+      "sha256": "353228b20ad6199d15e70c9e79b4d17d443721d1a9e28bb6ab6484766d36178c"
+    },
+    "lib/r8.jar": {
+      "bytes": 20959065,
+      "sha256": "e4f2d1af4adb39f0f67b4a501a08a93354c2b4f3a116ee4d0813cc87f2db7e51"
+    },
+    "lib/repository/libgeneric-1.lib.jar": {
+      "bytes": 3532,
+      "sha256": "e76332aabd36cde830b6299c72fbb42dc863d4322ef1ec8d90391e76acebba24"
+    },
+    "lib/repository/libgeneric-2.lib.jar": {
+      "bytes": 3531,
+      "sha256": "7db6f57a45c1d7eb5a91bb82520c47d240181d9ddb6f71a9819585c60b1c0678"
+    },
+    "lib/repository/librepo-common-1.lib.jar": {
+      "bytes": 22427,
+      "sha256": "48a24a27498394f558a1d443ae508cc982b944dac2299ff06ac9fb2a30d9bfd4"
+    },
+    "lib/repository/librepo-common-2.lib.jar": {
+      "bytes": 23506,
+      "sha256": "113767fd10b5024029136924f580113276fd05114bc51b2fce0b5609c686de74"
+    },
+    "lib/repository/librepo-sites-common-1.lib.jar": {
+      "bytes": 5340,
+      "sha256": "deb84bcef72a6903493b2b31245af00ab86883a5fd8c866ed9272d58d2bfef84"
+    },
+    "lib/repository/repository-core.jar": {
+      "bytes": 193559,
+      "sha256": "daa77d571a856ec28d47f20a1f26453f71f2681a18ec6d37fd84241c85a016ad"
+    },
+    "lib/repository/tools.repository.jar": {
+      "bytes": 267452,
+      "sha256": "b9470bb01fbd8fcad4847e1d10967b20fa93255361c0d2b2103fc6dcff13b177"
+    },
+    "lib/resourceshrinker-classpath.jar": {
+      "bytes": 3692,
+      "sha256": "28ed858a1402c1790ef589a0c53692d5fa33bcfdbe7658225f190f99b407bffa"
+    },
+    "lib/retrace-classpath.jar": {
+      "bytes": 283,
+      "sha256": "353228b20ad6199d15e70c9e79b4d17d443721d1a9e28bb6ab6484766d36178c"
+    },
+    "lib/screenshot2-classpath.jar": {
+      "bytes": 1582,
+      "sha256": "d135e5fcc3ee8bc038d817fb5f59dbbf805810c70c3fc94ce7c9a008284a017a"
+    },
+    "lib/sdk-common/tools.sdk-common.jar": {
+      "bytes": 1752311,
+      "sha256": "7d34308241071e482f47ccb7c5ba53e83858366905061979ae4ed4623c6dcdd6"
+    },
+    "lib/sdklib/libavdmanager_lib.jar": {
+      "bytes": 28431,
+      "sha256": "826d55125f3ca2e484198ce4e7666417c2892ecf3652232bdb6ef5bb457ead90"
+    },
+    "lib/sdklib/libsdk-addon-1.lib.jar": {
+      "bytes": 7348,
+      "sha256": "b3bf8a26adc2a5104fec02a3c5a3190417c83b1b4a6bbf0e8ddc49e9bc72f189"
+    },
+    "lib/sdklib/libsdk-addon-2.lib.jar": {
+      "bytes": 7348,
+      "sha256": "cf72186fdebc1eddb43f2a0f83f172bc6ef8f95d57afbbcc69853853fe8619f2"
+    },
+    "lib/sdklib/libsdk-addon-3.lib.jar": {
+      "bytes": 7353,
+      "sha256": "4de775ffbf0d98c8379588f508fb5140c48afeafc0a7aa9f494e69308dde5cda"
+    },
+    "lib/sdklib/libsdk-addon-4.lib.jar": {
+      "bytes": 7354,
+      "sha256": "efb14a5b4e1e584589bfdf76e8aba0aab79290fbe1d60b6038876533f9eb8250"
+    },
+    "lib/sdklib/libsdk-common-1.lib.jar": {
+      "bytes": 5640,
+      "sha256": "06d458f7e0cfe1e407e13c79f480e8266f5db8f13f57abcdccb2902c7ce3ce27"
+    },
+    "lib/sdklib/libsdk-common-2.lib.jar": {
+      "bytes": 5640,
+      "sha256": "5c176c79c3411f6e564d7ea8ff3cd54e10ad400a5cb233d0093622e1fcf24a3d"
+    },
+    "lib/sdklib/libsdk-common-3.lib.jar": {
+      "bytes": 5871,
+      "sha256": "148d5666752154c49bc716c788dd11fb0f534fe4f742888c74f5f431068090ae"
+    },
+    "lib/sdklib/libsdk-common-4.lib.jar": {
+      "bytes": 6063,
+      "sha256": "af65d9512ea1c1310010eac91b9467e331a4f5c2b44ad1d42cc3704d8d318213"
+    },
+    "lib/sdklib/libsdk-repository-1.lib.jar": {
+      "bytes": 5635,
+      "sha256": "b70a9eb57a3ba200e3d0bb24b91272b47d0b9974247316f4a0a9e671ed834933"
+    },
+    "lib/sdklib/libsdk-repository-2.lib.jar": {
+      "bytes": 5632,
+      "sha256": "c3469334fa484c38833b29668b6ef5e8cf422ec9ac2b8c8b4be9a69f1c539f9c"
+    },
+    "lib/sdklib/libsdk-repository-3.lib.jar": {
+      "bytes": 5637,
+      "sha256": "2c256e308ef60c38f13d0fb286f161d06220cab7ff6ba5952247ac67691968c1"
+    },
+    "lib/sdklib/libsdk-repository-4.lib.jar": {
+      "bytes": 5637,
+      "sha256": "872126b2ddc1b2fd5ba95765aa01c7ba1cf9d15a14aa41abe324f1f7291bafda"
+    },
+    "lib/sdklib/libsdk-sites-list-1.lib.jar": {
+      "bytes": 4853,
+      "sha256": "34fa25d9e628a5bd6a800ad143a96fa18cea561346976f0c4e011251522284fb"
+    },
+    "lib/sdklib/libsdk-sites-list-2.lib.jar": {
+      "bytes": 5899,
+      "sha256": "01f2f65156bed28a8091c7b9ffbf57d7deaa54eeeda52f6a04fd3814cd486828"
+    },
+    "lib/sdklib/libsdk-sites-list-3.lib.jar": {
+      "bytes": 4286,
+      "sha256": "0fa2d2584f86f38d69130c14cf87d6bd68a20558cbfac918e67b4999bac0a4d6"
+    },
+    "lib/sdklib/libsdk-sites-list-4.lib.jar": {
+      "bytes": 4283,
+      "sha256": "cf41ec85f2877e4e711add2a5a817cbb462e249db8112a6a3d91911a3ab63d5e"
+    },
+    "lib/sdklib/libsdk-sites-list-5.lib.jar": {
+      "bytes": 4286,
+      "sha256": "61a3cc8aa52ed5eccb66b7cb1c1f226e6b3b346a0df503b123200f494cd1af03"
+    },
+    "lib/sdklib/libsdk-sites-list-6.lib.jar": {
+      "bytes": 4285,
+      "sha256": "988c939995bb5e43dbb436323646ba76bb599152b55a98b7e19b2424af803d60"
+    },
+    "lib/sdklib/libsdk-sites-list-7.lib.jar": {
+      "bytes": 4286,
+      "sha256": "04b12135fbdcd0edd936b1ad22118b4339842214c4449c2a15431bc98df72318"
+    },
+    "lib/sdklib/libsdk-sysimg-1.lib.jar": {
+      "bytes": 4232,
+      "sha256": "15bb6ff466787cbda219ca2a7be8ac826844ff536015e3db0ee965ca079876bf"
+    },
+    "lib/sdklib/libsdk-sysimg-2.lib.jar": {
+      "bytes": 4338,
+      "sha256": "c22043be640bf24084c4f4a5a4651b2a2ad9be9211511265c699f1d21e9e7906"
+    },
+    "lib/sdklib/libsdk-sysimg-3.lib.jar": {
+      "bytes": 4339,
+      "sha256": "31090fc16913b3646aeb170a4894c7f0c07f28dd00cb72b065eae186108c22ee"
+    },
+    "lib/sdklib/libsdk-sysimg-4.lib.jar": {
+      "bytes": 4511,
+      "sha256": "810db757a10fa19da5edee85b55924e576a40efff8a95d58c9f4a6e4cf1d0206"
+    },
+    "lib/sdklib/libsdk-sysimg-5.lib.jar": {
+      "bytes": 4511,
+      "sha256": "b89b475edc3c4161293037d1ea2ab4e86dfbe0f26ff80c1704ab28dcbe9ba756"
+    },
+    "lib/sdklib/libsdkmanager_lib.jar": {
+      "bytes": 42238,
+      "sha256": "48777d4d027742bea80733af45269e9e245c41bda85a076fce334edb83e40a25"
+    },
+    "lib/sdklib/sdklib.core.jar": {
+      "bytes": 1741049,
+      "sha256": "bc6fd958eb46574cb2c9671c52b419f07f5b26557ee71bdaf26f774f156d1110"
+    },
+    "lib/sdklib/tools.sdklib.jar": {
+      "bytes": 1918064,
+      "sha256": "4433ca379db0a9f7bd0a5d5b931b0ac671747b10791706dc0d42a348dacbb782"
+    },
+    "lib/sdkmanager-classpath.jar": {
+      "bytes": 4349,
+      "sha256": "1b1a69a81ba8203582691023b18361b589897c74ae99618ee79e51af09cae889"
+    },
+    "lib/zipflinger/zipflinger.jar": {
+      "bytes": 67026,
+      "sha256": "0a1984d14cc8070f734ddcc5a947f122dfee364cdbe18595afb691aa803890e0"
+    },
+    "source.properties": {
+      "bytes": 86,
+      "sha256": "166bcdfe54f73296b09e5e6aa6d96b9a752b78b418c56e9f3f3a13c15fac74e5"
+    }
+  },
+  "official_tools_sha256": "4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583"
+}

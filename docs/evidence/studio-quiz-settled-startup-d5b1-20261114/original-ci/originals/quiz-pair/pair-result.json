@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "success": false,
+  "scope": "Real production Dart bank/controller/session and Godot input with an explicit QA disk transport and award ledger. No Android/device performance claim.",
+  "capture_requested": true,
+  "source_before": {
+    "native": {
+      "commit": "d5b1ed3749e332e996fa21a41d88325fad266553",
+      "tree": "37c4848f72cf3132b3a04cd456f89d2a2f6bbe77"
+    },
+    "host": {
+      "commit": "ddc9d89ef1bb6fc37315fd4aff0da166ce213b67",
+      "tree": "f0769c8fa5ae29aaf4ba8abad5866b4d41a13f4f"
+    }
+  },
+  "versions": {
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "dart": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\""
+  },
+  "commands": {
+    "dart": [
+      "dart",
+      "/home/runner/work/lumo-godot/lumo-godot/host-source/tools/android_qa/quiz_native_authority.dart",
+      "/home/runner/work/lumo-godot/lumo-godot/authority-evidence/quiz-pair/authority"
+    ],
+    "godot": [
+      "godot",
+      "--path",
+      "/home/runner/work/lumo-godot/lumo-godot/native-source",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://scripts/tests/quiz_studio_runtime.gd",
+      "--",
+      "--capture"
+    ]
+  },
+  "error": "RuntimeError: Godot emitted a script or engine error",
+  "elapsed_wall_seconds": 21.799,
+  "process_exit_codes": {
+    "DartAuthority": -15,
+    "GodotQuiz": -15
+  },
+  "evidence": [
+    {
+      "path": "authority/lifecycle.json",
+      "bytes": 52,
+      "sha256": "8b687b32eafcee34fd57e727502f072ce041983635f3eee8697c5af94fc181bc"
+    },
+    {
+      "path": "authority/native-result.json",
+      "bytes": 90,
+      "sha256": "5c5f039f2c514665e39d903d1dfd23ca55faeda13ed44b5a01cbd34cd255e3ed"
+    },
+    {
+      "path": "authority/private-test-control.json",
+      "bytes": 134,
+      "sha256": "a278b582c27f9fddf7e238ce725f7404c375a87468bf68112ea9fabaf74887af"
+    },
+    {
+      "path": "authority/public-state.json",
+      "bytes": 754,
+      "sha256": "70858519a5e0af146b73f58a2930f8a3aedc3b0368aa1c7b41297cb7100846e7"
+    },
+    {
+      "path": "authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 4212,
+      "sha256": "0c75a2c52bc76725d30cbc8a5dfef4fdca94f73a4bc95d8be506d0d5cdaff253"
+    },
+    {
+      "path": "dart-authority.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "godot-runtime.log",
+      "bytes": 1558,
+      "sha256": "715106cfb15e85a0a711af022164390ec702ee67e8867105f55aa55f63a1b189"
+    },
+    {
+      "path": "native/quiz-runtime-report.json",
+      "bytes": 13137,
+      "sha256": "e520e96a2da63e0954a1fa46c2ae0664ca5eeaa3cac6772950696eb88e15a9a1"
+    },
+    {
+      "path": "source-identity.json",
+      "bytes": 265,
+      "sha256": "6f0e7591524c1012de56cc068faadbd8693951f721c339ed91dd0294df3e9cfd"
+    }
+  ]
+}

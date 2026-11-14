@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 327.97147889200005,
+  "display": 147,
+  "project": "/tmp/lumo-english-observation-e4e5",
+  "godot_arguments": [
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--capture",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures",
+    "--task-fixtures=/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-activity.json"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

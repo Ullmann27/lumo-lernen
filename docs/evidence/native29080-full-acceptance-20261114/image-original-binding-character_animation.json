@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14T16:46:38.929318+00:00",
+  "reviewer": "character_animation",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "workflow_run_id": 43611803408,
+  "artifact_id": 14121618349,
+  "archive_integrity_from_root_record": {
+    "artifact_id": 14121618349,
+    "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "bytes": 227270408,
+    "sha256": "f9d84c3d4f80f27fe134ab5e4cb040b811262d6d6c6a032433bc5f644ed886fc",
+    "zip_members": 5085,
+    "all_crc_pass": true,
+    "selected_extracted": 243,
+    "assignment_images": 49
+  },
+  "own_verification": "Twelve individually opened extracted PNG originals and runtime-frames.json compared byte-for-byte to current original ZIP members after review; PNG hashes equal the actual earlier preflight output",
+  "full_archive_crc_repeated_by_this_reviewer": false,
+  "images": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "bytes": 605103,
+      "sha256": "fca50c2cbf0a0bfe6ca3f2a62b22ad389cd880b9fd1bb13662a7df6ec3ff1c57",
+      "git_blob": "b6640daef5a1c728b0a387e282ccb665df8a58dd",
+      "size_px": [
+        690,
+        829
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "bytes": 473783,
+      "sha256": "2561fbf0953953cce91dcf43fae6274ac25a5517475245eedf8cdfddeae19f24",
+      "git_blob": "98b86563bb0e1305fec15cab3d147267885bac7a",
+      "size_px": [
+        412,
+        915
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655541,
+      "sha256": "6f0f0c7eab4d16b4d294821a66022c85fc58c8434c56a2bb7832e491284ed80a",
+      "git_blob": "1cb6a46ebeeb719bcacb0c2d02f316623175db2e",
+      "size_px": [
+        1280,
+        720
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "bytes": 1856392,
+      "sha256": "ca5c0e21ad762bc58c0c2c0e6e9079c4e1998e1f69f2e1244197975444578555",
+      "git_blob": "26400d53984c57affc90012fbb2839575b3287fe",
+      "size_px": [
+        2400,
+        1080
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "git_blob": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "git_blob": "67e626fd8edf3af3bf3c4955fd905047d9897e7c",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "git_blob": "8645e70de9f6badf6e4c260eaf02957c6e4ad147",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/muted.png",
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "git_blob": "87810252dcc1e0e627c267320a43e2cc8346f277",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink.png",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "git_blob": "22808f200b3258d7ec2f25d3bac6ad3302742b0e",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "git_blob": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "git_blob": "1f7ca9f42343c3653990403225db5529808207da",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "git_blob": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8",
+      "size_px": [
+        640,
+        640
+      ],
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    }
+  ],
+  "source_evidence": [
+    {
+      "path": "assignment-character_animation.json",
+      "bytes": 4011,
+      "sha256": "89460b149ee3db7242b361e10fc03c76ef10c24d7482b03b9efe826638951ade",
+      "git_blob": "9aa8c5248fe99888afb8046d8b9aaf507e2824dc"
+    },
+    {
+      "path": "archive-integrity.json",
+      "bytes": 301,
+      "sha256": "08021c8647731b6c9af893cc0b72e85d3feff887a6e777c277730a134aba9687",
+      "git_blob": "1c07e32383544183d6d9c36e9d9c5236c07f50b5"
+    },
+    {
+      "path": "artifact.json",
+      "bytes": 770,
+      "sha256": "8c13b7fb2a172697ff15e0bf8fa317a693c6f91c2934cdb7640c13e42697b5dc",
+      "git_blob": "ee673305e38d98810f2d477a3ae2ee94062256d7"
+    },
+    {
+      "path": "run.json",
+      "bytes": 14659,
+      "sha256": "f4bef2ab190c020244c06b548874a5d9ec3ddec3469f729de85fa8077d6d45aa",
+      "git_blob": "f2785f4f40563442b942983ac49b0dfaea14f73c"
+    },
+    {
+      "path": "jobs.json",
+      "bytes": 27754,
+      "sha256": "ed1d55649efa03ff910d5c3c1bad58c38deaa04d1422ab87e984f3f5673bf155",
+      "git_blob": "e8ba73953af83079ee131e21b9cea64040326dd9"
+    },
+    {
+      "path": "capture-source-verification.json",
+      "bytes": 1317,
+      "sha256": "95410d13fb18ba04b09524602f0a5819c62b6801b6887fd8c06dbe1df093f82d",
+      "git_blob": "b8eb9a4f0f3018f522930f0568fdb34996010e6a"
+    }
+  ]
+}

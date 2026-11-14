@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "New docs-only source-bound static evidence. No runtime PASS; 14 test cases prepared but not executed. Product/test blobs transferred separately.",
+  "host_baseline": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "source_manifest_sha256": "cc62850fe02af6fc4f3551568eb6dfa0f329e6000e9019ea6558a3f4c27f0cf5",
+  "entry_count": 11,
+  "total_bytes": 31348,
+  "files": [
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/README.md",
+      "mode": "100644",
+      "bytes": 5142,
+      "sha256": "22aad390a61ed91937cecac0d64141cd3a109ee5d8a987b0571548645be8179b",
+      "git_blob_sha": "32b20f50c242512f79a8a88caea8c368034a5039"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 1618,
+      "sha256": "cc62850fe02af6fc4f3551568eb6dfa0f329e6000e9019ea6558a3f4c27f0cf5",
+      "git_blob_sha": "5d132b983acca8a91f086463a529c41e22ea8746"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/confirmed-source-tree-inputs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/confirmed-source-tree-inputs.json",
+      "mode": "100644",
+      "bytes": 330,
+      "sha256": "d7810e43632c796af2e5aead5939ddfbaa0d7491768211388d6c91512fe78c6c",
+      "git_blob_sha": "b6a987f6ad4b9d127e96b66a7dc5effd680e2252"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/source-blob-upload-proof.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/source-blob-upload-proof.json",
+      "mode": "100644",
+      "bytes": 1355,
+      "sha256": "756bc4d71ddf549b787739435b51abe8dc9d1641ba0ab3235bd32df517b0d46a",
+      "git_blob_sha": "69dc88bda88700e4c4def3c6d302b2797c8995b4"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/source-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/evidence/source-binding.json",
+      "mode": "100644",
+      "bytes": 5492,
+      "sha256": "71e9b9e0dcbe80c84e3f8d2d5c49dd7d1b0c36380aeb6eec1edb16d3b56efecc",
+      "git_blob_sha": "3a2c7ab701ecd3e5b229f1408068167882ccf242"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/source-boundary-proof.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/evidence/source-boundary-proof.json",
+      "mode": "100644",
+      "bytes": 1401,
+      "sha256": "959eb5e0ec5e49323601e31dd3619fde3f4799b7347429de19633abf537cbbe0",
+      "git_blob_sha": "59c161239506c582bcce74b0fb8c5ab31f38325e"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/prepared-test-inventory.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/evidence/prepared-test-inventory.json",
+      "mode": "100644",
+      "bytes": 5094,
+      "sha256": "23e67e5814845939c5e8f730e48e170f3eec97708cb41b27b7f7efc9ad6373b2",
+      "git_blob_sha": "7964386c71ae051a2146afd77ef5e50454bbca84"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/static-dataflow-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/evidence/static-dataflow-review.json",
+      "mode": "100644",
+      "bytes": 4129,
+      "sha256": "60c4c0a58596da1e92ee69050dd74a3b876a65a9f2108620f27a50cfb40d9e13",
+      "git_blob_sha": "25457490b0883765e0f4b70d1cc6c6ba0039581d"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/product-against-exact-28462.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/evidence/product-against-exact-28462.patch",
+      "mode": "100644",
+      "bytes": 1576,
+      "sha256": "4c524bb72380dc11eb3f483724d85d15f3c7db1799758f7b70533d17414d5da0",
+      "git_blob_sha": "0ec626c058c1d10bdbc58becb9020b134efc24b4"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/independent-peer-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/evidence/independent-peer-review.json",
+      "mode": "100644",
+      "bytes": 4493,
+      "sha256": "1e10c907d37ef2ee7e8604762cc6618699aad9829ead94d4d829015f9ed74a1e",
+      "git_blob_sha": "85b1b66c218ce1f9bfac15ac63409303e64e0332"
+    },
+    {
+      "path": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/local-post-upload-hashes.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/wallet-dedup-ack-barrier-28462-20261114/evidence/local-post-upload-hashes.json",
+      "mode": "100644",
+      "bytes": 718,
+      "sha256": "24eac822165dd8f258d431efba4cf3b22cfee90103fe56a7bbd0a254bed3f0d8",
+      "git_blob_sha": "c7110f8961dad2a17b47f32c621463ad2c4a2940"
+    }
+  ]
+}

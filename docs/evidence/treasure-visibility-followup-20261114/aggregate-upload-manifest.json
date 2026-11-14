@@ -1,0 +1,539 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_head": "d0ba260dd55ec2654d25871973c696264be0f3ad",
+  "base_tree": "7c523123bd0159b1f1c24ceeb73de3368b9f2063",
+  "branch": "chatgpt/lumo-studio-4ab96666-evidence-20261114",
+  "scope": "Explicit docs-only follow-up evidence. No product source installation, APK, renderer image duplication, cache, Tree/Commit/Ref/PR mutation. C separate64+1 evidence package excluded.",
+  "original_manifests": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json",
+      "bytes": 14466,
+      "sha256": "3d8272698ecdd865776ec584e77f7f969a1c14ddcdaa40094b6e6573acbe1af6",
+      "git_blob_sha": "a54409dc37515bae5c04c44adb1a47bef1b49676",
+      "entries": 29,
+      "original_manifest_target": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/evidence-upload-manifest.json",
+      "bytes": 1826,
+      "sha256": "b4bb82354f7430952c0528330f5c49769b75cf9f6190d011bf6e1198442fc12a",
+      "git_blob_sha": "b967979e920b2588976cdb260f4975159a95a445",
+      "entries": 4,
+      "original_manifest_target": "docs/evidence/settlement-currency-language-acf51-20261114/evidence-upload-manifest.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-independent-review-20261114/upload-manifest.json",
+      "bytes": 1022,
+      "sha256": "b8cc1049bcd7c9e8326a9d12a167137457018842edf7372ec15978925dd8f1e2",
+      "git_blob_sha": "9f17e0c254e2470e9586aa598b61f30f9caacb37",
+      "entries": 2,
+      "original_manifest_target": "docs/evidence/treasure-gameplay-visibility-20261114/independent-review-upload-manifest.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-independent-review-20261114/upload-manifest.json",
+      "bytes": 708,
+      "sha256": "808da20f92b0bd320127fc98bf88ced09af3a645d9e404f189ccfaea8f9b060b",
+      "git_blob_sha": "1c6aa9df3df0aa278e2e4e3b384867e64696cf8f",
+      "entries": 1,
+      "original_manifest_target": "docs/evidence/treasure-visibility-harness-acf51-20261114/independent-review-upload-manifest.json"
+    }
+  ],
+  "deduplications": [
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/source-upload-manifest.json",
+      "reason": "Identical explicit source manifest already part of original evidence list"
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/source-upload-manifest.json",
+      "reason": "Identical explicit source manifest already part of original evidence list"
+    }
+  ],
+  "file_count": 40,
+  "total_bytes": 278973,
+  "aggregate_manifest_target": "docs/evidence/treasure-visibility-followup-20261114/aggregate-upload-manifest.json",
+  "files": [
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/README.md",
+      "bytes": 2060,
+      "sha256": "c3ddcd3741f7c55eb2be26d3999d3edf58d10f7395575b4587b11f606411a0f8",
+      "git_blob_sha": "bc21d4f9cee0651f6bddc60b3ee75e0f3fc1d26b",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "settlement-currency-language-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/evidence-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/evidence-upload-manifest.json",
+      "bytes": 1826,
+      "sha256": "b4bb82354f7430952c0528330f5c49769b75cf9f6190d011bf6e1198442fc12a",
+      "git_blob_sha": "b967979e920b2588976cdb260f4975159a95a445",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "settlement-currency-language-acf51-20261114/evidence-upload-manifest.json (original inert manifest)"
+      ]
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/patch-against-acf51.diff",
+      "local_path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/patch-against-acf51.diff",
+      "bytes": 521,
+      "sha256": "695f7dd4920f46b5a53dc1e39d2d30fec45ee81faa5119da2e8dce84ecac457e",
+      "git_blob_sha": "e42ca7f58d66205346380d751f40edece45d05ac",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "settlement-currency-language-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/source-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/source-binding.json",
+      "bytes": 2731,
+      "sha256": "d9d4f994f1296b1a4d1bff03671dcf0b21de5a88b115f60688307152aa270288",
+      "git_blob_sha": "703d57ab274ff559d458694e76feb5a84faa15cc",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "settlement-currency-language-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/source-upload-manifest.json",
+      "bytes": 751,
+      "sha256": "5c14f61504781d4dbc45fefea077fb865f752b038bd73c65f8310e1350f18c7a",
+      "git_blob_sha": "dd66c09366a9070caa4ddfbc628311b933f839b5",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "settlement-currency-language-acf51-20261114/evidence-upload-manifest.json",
+        "settlement-currency-language-acf51-20261114/source-upload-manifest.json (explicit original inert source manifest)"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-gameplay-visibility-20261114/independent-render-closure.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-independent-review-20261114/independent-render-closure.json",
+      "bytes": 9365,
+      "sha256": "fe281ffdf249fe9782ae0c7c29fe0b55c453780f26e1dbbba04bd2e49fad11b9",
+      "git_blob_sha": "f6a69955b2fc1b29e614cf948fce8d2f6b811622",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-gameplay-visibility-independent-review-20261114/upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-gameplay-visibility-20261114/independent-review-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-independent-review-20261114/upload-manifest.json",
+      "bytes": 1022,
+      "sha256": "b8cc1049bcd7c9e8326a9d12a167137457018842edf7372ec15978925dd8f1e2",
+      "git_blob_sha": "9f17e0c254e2470e9586aa598b61f30f9caacb37",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-gameplay-visibility-independent-review-20261114/upload-manifest.json (original inert manifest)"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-gameplay-visibility-20261114/independent-source-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-independent-review-20261114/independent-source-review.json",
+      "bytes": 10906,
+      "sha256": "7b7c75d1f167dad57c267e2c6304e5b59d0c77d58e831554372252975fc9b2b3",
+      "git_blob_sha": "1d122af2076ddd23607c4fd63c263b0d1f3d5b59",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-gameplay-visibility-independent-review-20261114/upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/README.md",
+      "bytes": 5450,
+      "sha256": "5ff95b75ab75b2af1d8c591deca5fc27b6dedbbbac88afc3bec15d5d149d9c85",
+      "git_blob_sha": "1ebb75544f2354e0942cb82b2f763ff7ae31ce57",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/baseline-binding.json",
+      "bytes": 967,
+      "sha256": "607a1605491004d68708b086895b2533d17be130cbcb64b7fd8ed75bf1a2bd89",
+      "git_blob_sha": "fce58407a9aae15709eb929cd6bc660488be5258",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/.github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/baseline/native/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/run_godot_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/baseline/native/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob_sha": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/tests/test_nextgen_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/baseline/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 40545,
+      "sha256": "9e0252a70d1b9d961696eef1bd90499a2f111c63df51515cf815e46aa21778ca",
+      "git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/validate_nextgen.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/baseline/native/tools/validate_nextgen.sh",
+      "bytes": 5035,
+      "sha256": "34472fbe2e552f1332418d5544e33626b9343e5894589c31951472f2e0ead5e6",
+      "git_blob_sha": "bf5e8e129fa8c3d7872fb92d21046c1ef7f87e9e",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/baseline/native/tools/validate_studio.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/baseline/native/tools/validate_studio.sh",
+      "bytes": 22674,
+      "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+      "git_blob_sha": "3b41626b54845e70e3ac9046e5120f7aa0eb7907",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json",
+      "bytes": 14466,
+      "sha256": "3d8272698ecdd865776ec584e77f7f969a1c14ddcdaa40094b6e6573acbe1af6",
+      "git_blob_sha": "a54409dc37515bae5c04c44adb1a47bef1b49676",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json (original inert manifest)"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-extended.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-extended.log",
+      "bytes": 46,
+      "sha256": "557aeec832a0229e337e97fcc4b59b7c00de56d1cfa3a27674147c635c3bc8ae",
+      "git_blob_sha": "77c2f999b7bcae511a035fcb53a2242cec0faa5c",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-original-acf51.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-original-acf51.log",
+      "bytes": 136,
+      "sha256": "1d4f1d747c81dea73591747ea823669a6642489c6edfbd326ec35759e1bd7a04",
+      "git_blob_sha": "23154a3d699cb9ef14f501346e5dd482733448b0",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-replay.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/actual-sidecar-replay.json",
+      "bytes": 5370,
+      "sha256": "8954f2299ab49dbba6da31397663dc783b7cf6d307af965a465fd6e7ad4fd9b6",
+      "git_blob_sha": "ff2eab655892cd2a90bacd7fe86fb21bb4819fe1",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/baseline-rejects-new-five-frame-contract.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/baseline-rejects-new-five-frame-contract.json",
+      "bytes": 460,
+      "sha256": "b47dfdfa0aba92d9e9dd14e891cafcb3bb265096ae937dff1ef2538ecf587f1c",
+      "git_blob_sha": "14cf061c1157894e333a6bdeb7e46243993c6a7d",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/baseline-rejects-new-five-frame-contract.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/baseline-rejects-new-five-frame-contract.log",
+      "bytes": 136,
+      "sha256": "1d4f1d747c81dea73591747ea823669a6642489c6edfbd326ec35759e1bd7a04",
+      "git_blob_sha": "23154a3d699cb9ef14f501346e5dd482733448b0",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/c-final-source-report-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/c-final-source-report-binding.json",
+      "bytes": 2277,
+      "sha256": "e0c5736f8a587bf7d8e64d391ebc1b7afbec82d8a20ac7f56fe133ee18fde014",
+      "git_blob_sha": "1ea137104a2895fd3ee7d6a5845cb3335604f5a3",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-before-final-check-bound-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/contracts-before-final-check-bound-execution.json",
+      "bytes": 541,
+      "sha256": "3ef8edd3c46ac52b51b6e92190b91a0b0a5e5f2fdfcb94e278d60c8d52279960",
+      "git_blob_sha": "e00c334378441299eeca692abb4a3e3ce3ec6b79",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-before-final-check-bound.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/contracts-before-final-check-bound.log",
+      "bytes": 3251,
+      "sha256": "3fb8ea3c18408544b8f0f52adaf6c6b1bf0200dc7cd888ffd2c76cf605f82412",
+      "git_blob_sha": "35d620cd497de08696fe19c9fdb439ba6c6b6336",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-final-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/contracts-final-execution.json",
+      "bytes": 970,
+      "sha256": "dcf7c1d3ba45458966c126c0d0322d41de9d6fae11cdb69842d9c3d3238e9782",
+      "git_blob_sha": "c52e9e8951772775ba815702a729ae144a761849",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/contracts-final.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/contracts-final.log",
+      "bytes": 3251,
+      "sha256": "c704daae7b9f5074664f01caede380400a08271614fe30f3c7b803d88feaf648",
+      "git_blob_sha": "9eabf45bdc2a440f76cd923f72833c913da9a3bd",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/extended.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/final-replay/extended.log",
+      "bytes": 46,
+      "sha256": "557aeec832a0229e337e97fcc4b59b7c00de56d1cfa3a27674147c635c3bc8ae",
+      "git_blob_sha": "77c2f999b7bcae511a035fcb53a2242cec0faa5c",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/mixed-fixture-roster.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/final-replay/mixed-fixture-roster.json",
+      "bytes": 20286,
+      "sha256": "dd3efece6e3eeae9f481a482c3439dbf3eba6890c1bb12949f2cb37941123061",
+      "git_blob_sha": "40a4b39652e67e18009896e2b4900eb105420a38",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/original-acf51.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/final-replay/original-acf51.log",
+      "bytes": 136,
+      "sha256": "1d4f1d747c81dea73591747ea823669a6642489c6edfbd326ec35759e1bd7a04",
+      "git_blob_sha": "23154a3d699cb9ef14f501346e5dd482733448b0",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/final-replay/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/final-replay/result.json",
+      "bytes": 5791,
+      "sha256": "c0f1707717a0a8424c0296fff6d83d5c130c9b41376cb1fa1b04dc68c30c779a",
+      "git_blob_sha": "31157a6fcb496c6eb0f97068d6a559e13243d743",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/implementation-against-acf51.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/implementation-against-acf51.patch",
+      "bytes": 19794,
+      "sha256": "a5f2e1e367b212e50d94af84a0c51aba96618572dcfa9c9c70c17f02142b8b00",
+      "git_blob_sha": "9a066947266707b57bf1e7538f7fb3c4b407c3a9",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/mixed-fixture-final-roster.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/mixed-fixture-final-roster.json",
+      "bytes": 20286,
+      "sha256": "dd3efece6e3eeae9f481a482c3439dbf3eba6890c1bb12949f2cb37941123061",
+      "git_blob_sha": "40a4b39652e67e18009896e2b4900eb105420a38",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/original-final-treasure-title-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/original-final-treasure-title-report.json",
+      "bytes": 30295,
+      "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02",
+      "git_blob_sha": "c4af955fda0b302aa309dbe07d66fa12a3af542a",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/shell-syntax.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/shell-syntax.log",
+      "bytes": 12,
+      "sha256": "bde294368bfed77c2cddf8cec271d398aee9cdbab3b26e1059281bd33adb0120",
+      "git_blob_sha": "500e57c8b79f5fdb41b3c6619ba258ed76e5ec30",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/evidence/source-preservation.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/evidence/source-preservation.json",
+      "bytes": 3287,
+      "sha256": "0c5c67a6e0b07004208f3da0246eb271b2906fda25328a0834ea3ca572d17427",
+      "git_blob_sha": "e549a6a582950d8efb4ffd3b34cc4ed710fcdd33",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/independent-review-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-independent-review-20261114/upload-manifest.json",
+      "bytes": 708,
+      "sha256": "808da20f92b0bd320127fc98bf88ced09af3a645d9e404f189ccfaea8f9b060b",
+      "git_blob_sha": "1c6aa9df3df0aa278e2e4e3b384867e64696cf8f",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-independent-review-20261114/upload-manifest.json (original inert manifest)"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/independent-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-independent-review-20261114/independent-review.json",
+      "bytes": 14024,
+      "sha256": "8549e8612a9bcc10743977cedc3ce0a93da197d70d4940bde9ebb1d5e9ddb15b",
+      "git_blob_sha": "5992c0685652a7057bee41eca2e29bb03e22cc3f",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-independent-review-20261114/upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/replay_actual_treasure.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/replay_actual_treasure.py",
+      "bytes": 4589,
+      "sha256": "81a7c3ada23c1c39b9211885a6d5390afef6067b098708b69883fea1725d97c5",
+      "git_blob_sha": "194b57aeb03eb1bcd1ac1dad7d783a25947f844b",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/source-upload-manifest.json",
+      "bytes": 1233,
+      "sha256": "8b3031348204a7cd5e9f94a3e0dd945306209e695955c9806cb3b79e95a07f06",
+      "git_blob_sha": "bc1991ac763b9526847e430db95e6fa3515d9a8b",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json",
+        "treasure-visibility-harness-acf51-20261114/source-upload-manifest.json (explicit original inert source manifest)"
+      ]
+    },
+    {
+      "path": "docs/evidence/treasure-visibility-harness-acf51-20261114/unchanged-test-dependencies.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/unchanged-test-dependencies.json",
+      "bytes": 1023,
+      "sha256": "3090146a8629c717d566d73563d8d569d6571835c6d3e3b85d0c9428a184b35e",
+      "git_blob_sha": "0637d6fde8df5cc2b1a1192b55707345a1a25ac9",
+      "mode": "100644",
+      "type": "blob",
+      "origins": [
+        "treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json"
+      ]
+    }
+  ]
+}

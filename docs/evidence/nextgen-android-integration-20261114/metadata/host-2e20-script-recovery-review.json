@@ -1,0 +1,15 @@
+{
+  "host_revision": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "workflow_run_id": 43610026651,
+  "job_id": 132492843780,
+  "status": "completed",
+  "conclusion": "success",
+  "test_cases": 599,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 105.38,
+  "scope": "Full scripts/tests discovery in actual GitHub job; separate from Flutter2608 and local83 probe validator cases.",
+  "original_log_sha256": "b429d17b2f7ce9f864e3e6839e58998d0d19535fe6d0c69537ed10526e2682e1",
+  "original_log_bytes": 224581
+}

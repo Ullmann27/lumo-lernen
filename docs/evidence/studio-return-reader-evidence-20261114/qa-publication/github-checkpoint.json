@@ -1,0 +1,16 @@
+{
+  "status": "PUBLISHED_QA_SOURCE_NEW_ANDROID_RESULT_PENDING",
+  "commit": "7d7b703f18100b82ce59591ce48fe2d90852ec5e",
+  "parent": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "tree": "9254883a0723c7ad1544b01949e9db5c1175fd97",
+  "branch": "chatgpt/lumo-studio-4ab-ocr-recheck-20261114",
+  "pr": 478,
+  "product_apk": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "exact_allowed_paths": 26,
+  "changed_vs_previous_qa": 15,
+  "unchanged_product_blobs": 4111,
+  "source_manifest_sha256": "f72a04bbcd5a30bec3344c9f5dc813db8a0a2fa84204647338ce22eeac1f62d5",
+  "main_changed": false,
+  "active_studio_candidate_changed": false
+}

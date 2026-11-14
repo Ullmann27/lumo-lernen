@@ -1,0 +1,239 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/memory-source-original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/memory-source-original-job.log",
+      "bytes": 35129,
+      "sha256": "fc87bef04fc246425c370d96a63003d87fac7ee376d382a07e096d156c10da24",
+      "sha": "64fefdf35c9d01aa8ce90b02e55cba51cf82342c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/memory-source-original-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/memory-source-original-binding.json",
+      "bytes": 453,
+      "sha256": "18b7b6e87b312a4d3151ed539431b7b1ab07f8416750ab44553284076970ec19",
+      "sha": "33e4164c94c6dba3561060dbcaaeab4b408ca270",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/android-host-original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/android-host-original-job.log",
+      "bytes": 246914,
+      "sha256": "82c44435c5483da141ab37584943923726d36fddc34f5bfc8b09d7acbb99c407",
+      "sha": "133c490dc2f671e88ec95830ced833aa8c36a49e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/android-host-original-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/android-host-original-binding.json",
+      "bytes": 453,
+      "sha256": "e7638ee0b92778337c9c7d74d18b5e7cef7292a68f1fec7065ac0f3dcbe105f4",
+      "sha": "58a21240c341eb4e13c1efecdae753d95228499f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/android-host-artifact-integrity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/android-host-artifact-integrity.json",
+      "bytes": 5168,
+      "sha256": "1af8afb832ee28370d05210567f14c6dfe66b243a751a760afd5ccb43cc849d5",
+      "sha": "f28feca721da90807500cba6c09a2500c07c1aeb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/memory-source-artifact-integrity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/memory-source-artifact-integrity.json",
+      "bytes": 2069,
+      "sha256": "acb65114e81646b9d905005ead6f0bf1c3a48226d59c9ca02768018e34891521",
+      "sha": "f5ca24d6e11ed1f3aba6802693c1b423d5c0e974",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/review.json",
+      "bytes": 11599,
+      "sha256": "54755de891bd8e1928148cdf252cda98432bc7b36aee915e885b427f3689e746",
+      "sha": "411b53c2c11ce5d4ef4bdb837ce96920f08b923a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/README.md",
+      "bytes": 1509,
+      "sha256": "7ca3c59f04ec839a2382411a16922010881506640d3c1c837f2cb136c340d3c2",
+      "sha": "7d64611ecdb05c430cc907ec590f109e0a269ddb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/cards-authority-registry.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "92bd39b440fe9701f967df6851ce91927eac319885bd3e98bb827aa24d95c270",
+      "sha": "b5bd62f3418c311da3d49c7f1583842524efa8fb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/compile.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/compile.log",
+      "bytes": 34385,
+      "sha256": "0ed506fe41957e6062fc5c217b66735c9249bc8a6e506d0fb7aa976031376cd2",
+      "sha": "3614bc6cce08012487c01f99a6b6790d1eb01b1b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/result.json",
+      "bytes": 5235,
+      "sha256": "47befadcdac615858a5195690c6e5e3434d7a2eacfbfcbd8c50efe80bb64b1b7",
+      "sha": "8de4085eae32b64833f878f7174f4033d9b6f9a9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/flutter-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/source-sha.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/source-sha.txt",
+      "bytes": 41,
+      "sha256": "02112b4b7c092612f84c0a34650b2b3530b07a4f8771b26096883aa2f5d348a7",
+      "sha": "32d6cd8c88f18eca321a712f921809844b6b29e9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/speech/resolved-toolchain.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/resolved-toolchain.json",
+      "bytes": 321,
+      "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+      "sha": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/speech/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/result.json",
+      "bytes": 62733,
+      "sha256": "8f39e5d2a45ae3a10696d47bbfefc1bda3574fbdc6f5bf5fe329ec57ef0469f2",
+      "sha": "c6f958070234c8197aec1487614423c99227e938",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/speech/test_english_lesson_speech.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_english_lesson_speech.json",
+      "bytes": 1339,
+      "sha256": "d97337bea61f7943a880f3ddea16d17efcaa1947eba941292482b5d6f9729c50",
+      "sha": "068f8fe63efb0f8ad60a203b656c1c7b77ce34ca",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/speech/test_english_lesson_speech.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_english_lesson_speech.log",
+      "bytes": 2894,
+      "sha256": "18c0fd83b87d9cca56eeb36f443a2c77b2eb94109bb8be457b280e7a073c18a3",
+      "sha": "01464f3ee44f86824b63d44ff912832e82756317",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/speech/test_learning_english_speech_lifecycle.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_learning_english_speech_lifecycle.json",
+      "bytes": 1265,
+      "sha256": "56d92cb42586b1c161986db3b9acadfb56721cd6dd73f15d0b48716ba26f0e2a",
+      "sha": "1306fb455832688e7c8e31a560f1397e93656968",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/speech/test_learning_english_speech_lifecycle.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_learning_english_speech_lifecycle.log",
+      "bytes": 2709,
+      "sha256": "0b47929914f33e86f8a2d8adbddcf9af89d140de02d857e13b5d3ece30a3ab37",
+      "sha": "0c689ddefd62b4606f6fb65994eab88c3551af55",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/speech/toolchain-original.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/toolchain-original.log",
+      "bytes": 493,
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+      "sha": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/android-host/table-native-contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/table-native-contracts.log",
+      "bytes": 4804,
+      "sha256": "c13c2ef865ebea13209bebae163dd709df5c211e8f2fc88d8226fa48e69fca45",
+      "sha": "b9e236331a332221e67939095404c96910442776",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/memory-source/HOST-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "02112b4b7c092612f84c0a34650b2b3530b07a4f8771b26096883aa2f5d348a7",
+      "sha": "32d6cd8c88f18eca321a712f921809844b6b29e9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/memory-source/dart-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/memory-source/memory-round.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/memory-round.log",
+      "bytes": 2319,
+      "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c",
+      "sha": "0cad364c865f41f80773ef4ee4f69481b38da342",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/memory-source/memory-scheduler.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/memory-scheduler.log",
+      "bytes": 689,
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1",
+      "sha": "f2cf3690ef4b28288d3651930fd581e8357eecf5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-bd07-root-contracts-20261114/originals/memory-source/quiz-round.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/quiz-round.log",
+      "bytes": 1785,
+      "sha256": "7429cc464b0ce54672578ea38c427db97e5539cf358495d57b1aa2865ee08981",
+      "sha": "de8bc090571162465efc431735bcde5f8f9ec92c",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ]
+}

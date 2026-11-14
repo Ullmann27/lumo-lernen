@@ -1,0 +1,22 @@
+{
+  "baseline_sha256": "a8929947827cc83f1b490b5ab37bd6647ef73e8e1fa878bfcca54947744d954e",
+  "patched_sha256": "8df756dee8e5daee17a88a8899d6189aba8acd8b9148ca3cd0c5e606fdd1d0cd",
+  "changed_existing_functions": [
+    "_swipe_to",
+    "_tap",
+    "_run"
+  ],
+  "added_functions": [
+    "_input_guard",
+    "_cancel_pointer",
+    "_swipe_checked",
+    "_tap_checked",
+    "_startup_layout_current",
+    "_startup_authority"
+  ],
+  "all_other_original_function_bodies_identical": true,
+  "comparison": "Exact complete top-level function source, excluding blank separator lines and newly added top-level enum",
+  "fixture_contracts_identical": true,
+  "authority_contracts_identical": true,
+  "product_files_changed": []
+}

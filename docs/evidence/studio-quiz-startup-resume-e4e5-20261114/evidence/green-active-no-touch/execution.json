@@ -1,0 +1,33 @@
+{
+  "started_at_utc": "2026-11-14T13:36:07.719984+00:00",
+  "completed_at_utc": "2026-11-14T13:36:08.611673+00:00",
+  "elapsed_seconds": 0.9172853039999609,
+  "exit_code": 0,
+  "timed_out": false,
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-quiz-startup-resume-e4e5",
+    "--script",
+    "res://scripts/tests/quiz_startup_original_state_replay.gd",
+    "--",
+    "--fixture"
+  ],
+  "case": "active_no_touch",
+  "source_before": {
+    "/tmp/lumo-quiz-startup-resume-e4e5/scripts/tests/quiz_studio_runtime.gd": "a8929947827cc83f1b490b5ab37bd6647ef73e8e1fa878bfcca54947744d954e",
+    "/tmp/lumo-quiz-startup-resume-e4e5/scripts/tests/quiz_startup_original_state_replay.gd": "47591aeb1757833953a98eac8311babd0dff5f8e8e9c2d3e750479424f033501",
+    "/tmp/lumo-quiz-startup-resume-e4e5/scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+    "/tmp/lumo-quiz-startup-resume-e4e5/scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+    "/tmp/lumo-quiz-startup-resume-e4e5/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524"
+  },
+  "source_after": {
+    "/tmp/lumo-quiz-startup-resume-e4e5/scripts/tests/quiz_studio_runtime.gd": "a8929947827cc83f1b490b5ab37bd6647ef73e8e1fa878bfcca54947744d954e",
+    "/tmp/lumo-quiz-startup-resume-e4e5/scripts/tests/quiz_startup_original_state_replay.gd": "47591aeb1757833953a98eac8311babd0dff5f8e8e9c2d3e750479424f033501",
+    "/tmp/lumo-quiz-startup-resume-e4e5/scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+    "/tmp/lumo-quiz-startup-resume-e4e5/scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+    "/tmp/lumo-quiz-startup-resume-e4e5/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524"
+  },
+  "scope": "Actual Godot startup/UI replay with declared synthetic ACK transport; no Dart/Android acceptance"
+}

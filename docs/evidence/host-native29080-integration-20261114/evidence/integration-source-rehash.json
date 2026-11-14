@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "sources": [
+    {
+      "owner": "A",
+      "manifest": "qa/studio-english-word-audio-2e20-20261114/path-separated-v2/source-upload-manifest.json",
+      "manifest_sha256": "f0f0e43979fb3c99c280bf1cffb39ea3f62388f84aa3521f8adee92bee01d791",
+      "files": 10,
+      "all_local_bytes_and_git_blobs_equal": true
+    },
+    {
+      "owner": "B",
+      "manifest": "qa/studio-speech-jvm-runner-2e20-20261114/source-upload-manifest.json",
+      "manifest_sha256": "4098b21b665e286ada77cfcc6ebe0a1668ed521c56bd3b226d5fbed6c546de5e",
+      "files": 2,
+      "all_local_bytes_and_git_blobs_equal": true
+    }
+  ],
+  "no_new_local_flutter_or_kotlin_execution": true
+}

@@ -1,0 +1,28 @@
+{
+  "checked_after_tests_utc": "2026-11-14T02:17:54.997411+00:00",
+  "shared_dependencies_rechecked": 444,
+  "unexpected_changes": [],
+  "active_root_controller_still_exact_original_4ab": true,
+  "isolated_executed_controller": {
+    "bytes": 17240,
+    "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245",
+    "git_blob_sha1": "52beeb4f154045e54cf8f6a8e35a3bcb7255eda3",
+    "mode": "100644"
+  },
+  "prepared_controller": {
+    "bytes": 17240,
+    "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245",
+    "git_blob_sha1": "52beeb4f154045e54cf8f6a8e35a3bcb7255eda3",
+    "mode": "100644"
+  },
+  "prior_187_docs_manifest_unchanged": true,
+  "tests": {
+    "existing_lifecycle": 5,
+    "existing_persistence": 7,
+    "passed": 12,
+    "skipped": 0,
+    "hidden_loader_entries_not_counted": 2,
+    "exit_code": 0,
+    "command_elapsed_seconds": 11.539758020007866
+  }
+}

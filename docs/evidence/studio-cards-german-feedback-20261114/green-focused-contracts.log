@@ -1,0 +1,67 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart
+00:00 +0: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: API35 original number message uses the existing German card name
+00:00 +1: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: API37 original whirlwind message addresses the child correctly
+00:00 +2: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Number messages distinguish Du from named human and bot for all colors
+00:00 +3: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Draw message uses second person only for the actual display pronoun
+00:00 +4: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Rain and super rain conjugate the actual recipient without changing draw counts
+00:00 +5: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Whirlwind also names human and bot recipients in third person
+00:00 +6: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Wild prompt and chosen color use proper German without changing enum IDs
+00:00 +7: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Winning feedback conjugates Du and named winners correctly
+00:00 +8: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Learning prompt uses dich and preserves the actual question
+00:00 +9: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Correct answer feedback agrees in both verbs and keeps exactly one star
+00:00 +10: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Native public view forwards corrected messages while machine color stays green
+00:00 +11: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: Saved rounds never serialize presentation messages
+00:00 +12: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart: (tearDownAll)
+00:00 +12: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: isPlayable gleiche Farbe -> spielbar
+00:00 +13: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: isPlayable gleiche Zahl andere Farbe -> spielbar
+00:00 +14: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: isPlayable falsche Farbe und Zahl -> NICHT spielbar
+00:00 +15: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: isPlayable colorMagic (Wild) -> immer spielbar
+00:00 +16: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: isPlayable Spezialkarte auf gleichen Spezialtyp andere Farbe -> spielbar
+00:00 +17: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: isPlayable selectedColor nach Farbzauber zaehlt, nicht topCard.color
+00:00 +18: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - normale Zahlenkarte legt Karte ab und wechselt Zug ueber passDevice
+00:00 +19: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - normale Zahlenkarte unspielbare Karte wird abgelehnt - State bleibt
+00:00 +20: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Lumo-Sprung -> aktueller Spieler bleibt dran
+00:00 +21: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Sternenregen -> Gegner zieht 2 Karten und Zug wechselt
+00:00 +22: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Farbzauber -> phase = chooseColor, Zug nicht gewechselt
+00:00 +23: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten applyColorChoice -> selectedColor uebernommen und Zug wechselt
+00:00 +24: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Wirbelwind -> Gegner zieht 1, Zug wechselt
+00:00 +25: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Super-Sternenregen -> Gegner zieht 4 + Farbwahl
+00:00 +26: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Super-Sternenregen ist immer spielbar (wie Wild)
+00:00 +27: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Denkpause -> phase = learningQuestion mit Frage
+00:00 +28: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Lernfrage richtig -> +1 Stern, Spieler darf weiter
+00:00 +29: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: applyPlay - Spezialkarten Lernfrage falsch -> kein Stern, Zug wechselt
+00:00 +30: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: Sieg Letzte Karte abgelegt -> gameOver mit winner
+00:00 +31: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: Draw applyDraw fuegt Karte zur Hand und wechselt Zug
+00:00 +32: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: Handover confirmHandover -> phase = playing
+00:00 +33: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 3-Spieler-Regeln Skip ueberspringt naechsten Spieler (0 -> 2)
+00:00 +34: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 3-Spieler-Regeln Reverse flippt Richtung (0 -> 2, direction wird -1)
+00:00 +35: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 3-Spieler-Regeln Reverse zweimal -> Richtung wieder 1
+00:00 +36: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 3-Spieler-Regeln +2 Opfer zieht 2 UND ueberspringt seinen Zug
+00:00 +37: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 3-Spieler-Regeln +4 Opfer zieht 4 + chooseColor + steps=2 nach Farbwahl
+00:00 +38: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 3-Spieler-Regeln Wild (colorMagic) ohne Skip nach Farbwahl
+00:00 +39: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 4-Spieler-Regeln Skip ueberspringt naechsten Spieler (0 -> 2)
+00:00 +40: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 4-Spieler-Regeln Reverse flippt Richtung (0 -> 3, direction=-1)
+00:00 +41: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 4-Spieler-Regeln +2 in 4P: Opfer (idx 1) zieht 2, idx 2 ist dran
+00:00 +42: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 4-Spieler-Regeln +4 in 4P: Opfer (idx 1) zieht 4, idx 2 nach Farbwahl
+00:00 +43: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_rules_test.dart: 4-Spieler-Regeln Skip mit direction=-1 ab idx 0: -> idx 2 (mod 4 backwards)
+00:00 +44: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Public renderer view never contains hidden hands, deck order or answer
+00:00 +45: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Native draw is saved then acknowledged once; duplicate cannot draw twice
+00:00 +46: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Stale revision, wrong nonce and foreign card IDs cannot change the round
+00:00 +47: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Storage rejection holds acknowledgement and retries without reapplying action
+00:00 +48: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Native background, expired heartbeat and profile invalidation stop authority
+00:00 +49: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Revoked parent daily-mission gate closes native authority without a move
+00:00 +50: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Missed Android pause remains sticky after Dart is scheduled again
+00:00 +51: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Twelve complete rounds through the native protocol preserve all 112 cards and every phase
+00:01 +52: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_table_session_test.dart: Twelve complete rounds through the native protocol preserve all 112 cards and every phase
+00:01 +53: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_persistence_test.dart: Complete real round survives every phase, deck order and pending question
+00:01 +54: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for orange
+00:01 +55: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for orange
+00:01 +56: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for orange
+00:01 +57: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for orange
+00:01 +58: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_persistence_test.dart: Restored bot waits for explicit resume and keeps strategy and deck
+00:01 +59: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_persistence_test.dart: Restored bot waits for explicit resume and keeps strategy and deck
+00:01 +60: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/lumo_cards_persistence_test.dart: Restored bot waits for explicit resume and keeps strategy and deck
+00:01 +61: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for green
+00:01 +62: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for green
+00:01 +63: /workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_color_consistency_test.dart: Discard, picker and real PNG agree for green
+00:01 +64: All tests passed!

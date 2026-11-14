@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "read_only": true,
+  "images": [
+    {
+      "api": "api35",
+      "personally_opened": true,
+      "visible_caption": "Lumo legt green 2.",
+      "png_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "png_sha256": "9574b8f97b51fd2380e2b267a195ce5867df32c37a332cdcea0763324eeb5aa1",
+      "png_bytes": 942753,
+      "archive_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api35/original-artifact.zip",
+      "archive_member": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "original_member_equals_png": true,
+      "metadata": {
+        "id": 14098716649,
+        "name": "lumo-studio-2019-android-tour",
+        "size_in_bytes": 144083942,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14098716649",
+        "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14098716649/zip",
+        "expired": false,
+        "created_at": "2026-11-14T04:25:21Z",
+        "expires_at": "2026-12-14T04:25:16Z",
+        "updated_at": "2026-11-14T04:25:21Z",
+        "digest": "sha256:ab761b9f7999f07d66aaba30f2eaf3e2629c351a52780709fa63daabcddc1d56",
+        "workflow_run": {
+          "id": 43549076631,
+          "repository_id": 1222433959,
+          "head_repository_id": 1222433959,
+          "head_branch": "chatgpt/lumo-studio-20261113",
+          "head_sha": "86445f53af5d573549fc8cf03405261611f3cb7e"
+        }
+      },
+      "independent_review_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api35/independent-review.json"
+    },
+    {
+      "api": "api37",
+      "personally_opened": true,
+      "visible_caption": "Wirbelwind! Du zieht 1 Karte.",
+      "png_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api37/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "png_sha256": "3f8bfa78adae6d24dc294d3764b6ece28aa52bf9a33208c40765e33182d50ecc",
+      "png_bytes": 1144565,
+      "archive_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api37/original-artifact.zip",
+      "archive_member": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "original_member_equals_png": true,
+      "metadata": {
+        "id": 14098388010,
+        "name": "lumo-studio-2019-android-17-tour",
+        "size_in_bytes": 152336704,
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14098388010",
+        "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14098388010/zip",
+        "expired": false,
+        "created_at": "2026-11-14T04:24:40Z",
+        "expires_at": "2026-12-14T04:24:34Z",
+        "updated_at": "2026-11-14T04:24:40Z",
+        "digest": "sha256:28ff3622d4d72bfcab975e54b4c23d52585761e004e1635b888b45dd948e1e8f",
+        "workflow_run": {
+          "id": 43549076631,
+          "repository_id": 1222433959,
+          "head_repository_id": 1222433959,
+          "head_branch": "chatgpt/lumo-studio-20261113",
+          "head_sha": "86445f53af5d573549fc8cf03405261611f3cb7e"
+        }
+      },
+      "independent_review_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/api37/independent-review.json"
+    }
+  ]
+}

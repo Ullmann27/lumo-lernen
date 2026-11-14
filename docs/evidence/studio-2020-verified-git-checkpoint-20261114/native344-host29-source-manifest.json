@@ -1,0 +1,238 @@
+{
+  "base": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native": "34421df83566dd4773420cc2a225887956459435",
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "20521c9254c7b1f498ae470c8ae1e73f4223d44aaf5800f7281f4b1ab922b7cf",
+      "git_blob_sha": "52e9940c0a9803f089d3fbca0a90804bdd20cfac",
+      "binary": false
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/scripts/verify_legacy_release_pin.py",
+      "bytes": 10697,
+      "sha256": "8d134c6be35875567bcf429d70ec1f8f50b16357940806c21b5c59678fde048e",
+      "git_blob_sha": "41de47f88741f7949535d311d1fd4ba66607888f",
+      "binary": false
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 19946,
+      "sha256": "965a15746ddf16ddbfa20f759d32c745b818e56281259df22c3940294aebb8d5",
+      "git_blob_sha": "42732298903b794adb458d60664ae89e6b09f24d",
+      "binary": false
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 59128,
+      "sha256": "441ddceba899294f0c5a2c4657473251978b3be38704b31a692f39d786c377a7",
+      "git_blob_sha": "b8e63e1841828cab1e75ef3896e47b2d4d6aa38f",
+      "binary": false
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 81587,
+      "sha256": "fd1eae6b16d6fb9ef1971b35cebb549bb83f9cdecbd424ac710280e70d2ae41e",
+      "git_blob_sha": "bea1a0e7ee59565c34aff3e453ad0154d2d3bc18",
+      "binary": false
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+      "binary": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7",
+      "binary": false
+    },
+    {
+      "path": "config/studio-2020-visual-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/config/studio-2020-visual-review.json",
+      "bytes": 38205,
+      "sha256": "6a855e6fef970c978456ffbc62895cb64c8713163a89e2a3dfcd1940441469c9",
+      "git_blob_sha": "2fa78d07d6fabfefb053848b678c01d46184048c",
+      "binary": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/8da9cc55027f888f9db5075fe4810fd446b28fc035888dab9cfd74ffc0a055d4-jump-jump_690x829_touch_ascent.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/8da9cc55027f888f9db5075fe4810fd446b28fc035888dab9cfd74ffc0a055d4-jump-jump_690x829_touch_ascent.png",
+      "bytes": 605031,
+      "sha256": "8da9cc55027f888f9db5075fe4810fd446b28fc035888dab9cfd74ffc0a055d4",
+      "git_blob_sha": "62600255d9e2ed165cd8e1fa23c2003c30b2c9a5",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/66e4e16e173fb180f9127fafa0e29466195b90709efe9d42ee66746a5d690b18-jump-jump_412x915_landed.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/66e4e16e173fb180f9127fafa0e29466195b90709efe9d42ee66746a5d690b18-jump-jump_412x915_landed.png",
+      "bytes": 473626,
+      "sha256": "66e4e16e173fb180f9127fafa0e29466195b90709efe9d42ee66746a5d690b18",
+      "git_blob_sha": "c57d2955c28a6dda305cb8a147c9ff1f6480d1f0",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/26c3702b7c9c764378661915bda205f1f211b65100e327ad3ea526590f3c3b57-build-02_build_moved.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/26c3702b7c9c764378661915bda205f1f211b65100e327ad3ea526590f3c3b57-build-02_build_moved.png",
+      "bytes": 1409143,
+      "sha256": "26c3702b7c9c764378661915bda205f1f211b65100e327ad3ea526590f3c3b57",
+      "git_blob_sha": "b6637930801fac7ba21e22e68c1d883df55ef990",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/d44a236bc61cf28d51c961203580f3c5049aa50268e61b70bd46c43918db8663-build-build-dialog-640x360-current-goal.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/d44a236bc61cf28d51c961203580f3c5049aa50268e61b70bd46c43918db8663-build-build-dialog-640x360-current-goal.png",
+      "bytes": 129596,
+      "sha256": "d44a236bc61cf28d51c961203580f3c5049aa50268e61b70bd46c43918db8663",
+      "git_blob_sha": "c5c8a5c583d6aaebfa715e619b5f098a4f2d4173",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/638605d81d2b504c43421410fc6f35843839a623f7f02121c37c6a2455be6b42-build-build-dialog-1080x2400-templates-bottom.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/638605d81d2b504c43421410fc6f35843839a623f7f02121c37c6a2455be6b42-build-build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1283277,
+      "sha256": "638605d81d2b504c43421410fc6f35843839a623f7f02121c37c6a2455be6b42",
+      "git_blob_sha": "655dbdbae2cdc1f4bd10b3356df6e0ff64fc6da6",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/30aee0fa68e6323089a7ca550b8672ba8b0df1439d137b3d55215ae2e0cf081b-rhythm-02_rhythm_slide.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/30aee0fa68e6323089a7ca550b8672ba8b0df1439d137b3d55215ae2e0cf081b-rhythm-02_rhythm_slide.png",
+      "bytes": 655522,
+      "sha256": "30aee0fa68e6323089a7ca550b8672ba8b0df1439d137b3d55215ae2e0cf081b",
+      "git_blob_sha": "124aff0150592932acc1fb17c1f0555de3630504",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/f087e71492fd4c6fd023c8ad9ed6e9075bb46525e3532bd21ca22174f9f7f32d-puzzle-puzzle_rotation_640x360.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/f087e71492fd4c6fd023c8ad9ed6e9075bb46525e3532bd21ca22174f9f7f32d-puzzle-puzzle_rotation_640x360.png",
+      "bytes": 113829,
+      "sha256": "f087e71492fd4c6fd023c8ad9ed6e9075bb46525e3532bd21ca22174f9f7f32d",
+      "git_blob_sha": "5e006b6a255947d1cf99b9d0ea1c7d2e1d639bdb",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/14907217b357ebf6794e78c9e8140150bf90f8d8078bf1f63a4419bfbade5d31-treasure-treasure_choose_route.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/14907217b357ebf6794e78c9e8140150bf90f8d8078bf1f63a4419bfbade5d31-treasure-treasure_choose_route.png",
+      "bytes": 1290377,
+      "sha256": "14907217b357ebf6794e78c9e8140150bf90f8d8078bf1f63a4419bfbade5d31",
+      "git_blob_sha": "b7afd9fc8868be578af928cc0a5901e709541499",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/7dc674e87f01364bd5421f12f2e6011e7ebf735a4a99cb6b8c59abcec56790d5-puzzle-960x540-classic-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/7dc674e87f01364bd5421f12f2e6011e7ebf735a4a99cb6b8c59abcec56790d5-puzzle-960x540-classic-play.png",
+      "bytes": 301960,
+      "sha256": "7dc674e87f01364bd5421f12f2e6011e7ebf735a4a99cb6b8c59abcec56790d5",
+      "git_blob_sha": "f29cb2fac5c74d1ad9b88bf0ecfda2be8c6bfd28",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/e6b09b17bbd2d19e0d0a39e47763bb89bad05570816e3f2d786034870ab0072a-puzzle-640x360-rotation-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/e6b09b17bbd2d19e0d0a39e47763bb89bad05570816e3f2d786034870ab0072a-puzzle-640x360-rotation-play.png",
+      "bytes": 109890,
+      "sha256": "e6b09b17bbd2d19e0d0a39e47763bb89bad05570816e3f2d786034870ab0072a",
+      "git_blob_sha": "7850e5b39064024b2c2e525fbd61de94f2e6d946",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/b8502cd81315e2dab31d4b534d0dc3613d15a57de28f74cc5839e3688185b9f1-puzzle-640x360-classic-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/b8502cd81315e2dab31d4b534d0dc3613d15a57de28f74cc5839e3688185b9f1-puzzle-640x360-classic-play.png",
+      "bytes": 109551,
+      "sha256": "b8502cd81315e2dab31d4b534d0dc3613d15a57de28f74cc5839e3688185b9f1",
+      "git_blob_sha": "0bc9e8c6cd1b17e82ed8088083d93217ff529a89",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/fb2b11c9ef1ae0527ab653f2d0c8b84a76a74129719d0b537231202ae3a0b413-jump-jump-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/fb2b11c9ef1ae0527ab653f2d0c8b84a76a74129719d0b537231202ae3a0b413-jump-jump-landscape-cutout.png",
+      "bytes": 1858316,
+      "sha256": "fb2b11c9ef1ae0527ab653f2d0c8b84a76a74129719d0b537231202ae3a0b413",
+      "git_blob_sha": "c59361a1db2bd2a7bfe9aaf67e2ac1a8ba115eff",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/21971819dbbbffe8d83ea90cc779e13660ee4ab42d46393133ed56ec1ce34e86-build-build-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/21971819dbbbffe8d83ea90cc779e13660ee4ab42d46393133ed56ec1ce34e86-build-build-landscape-cutout.png",
+      "bytes": 2497728,
+      "sha256": "21971819dbbbffe8d83ea90cc779e13660ee4ab42d46393133ed56ec1ce34e86",
+      "git_blob_sha": "0ef79f21d0d949ee46608e7f2c9bd34eb2154667",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/697318b42dace46cb56c02a46de5d75afef839fa4caa048906803044be1fe9e7-treasure-treasure-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/697318b42dace46cb56c02a46de5d75afef839fa4caa048906803044be1fe9e7-treasure-treasure-landscape-cutout.png",
+      "bytes": 2621964,
+      "sha256": "697318b42dace46cb56c02a46de5d75afef839fa4caa048906803044be1fe9e7",
+      "git_blob_sha": "8a04f20877c6c5454e4b124cd38caa0309c82ff5",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/760231452af49eaa368efd656bcb2ea7d5cf92f353648e0e2ea4852ba705c4fa-treasure-treasure-title-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/760231452af49eaa368efd656bcb2ea7d5cf92f353648e0e2ea4852ba705c4fa-treasure-treasure-title-landscape.png",
+      "bytes": 2718195,
+      "sha256": "760231452af49eaa368efd656bcb2ea7d5cf92f353648e0e2ea4852ba705c4fa",
+      "git_blob_sha": "bbfb017ba571eee1eb0418e21b553337422c82e7",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/9739bdd0c21d97420fab8bb6f85346887e0c65fe56f88cf8cf30eff2bd503c85-treasure-treasure-title-portrait.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/9739bdd0c21d97420fab8bb6f85346887e0c65fe56f88cf8cf30eff2bd503c85-treasure-treasure-title-portrait.png",
+      "bytes": 2101701,
+      "sha256": "9739bdd0c21d97420fab8bb6f85346887e0c65fe56f88cf8cf30eff2bd503c85",
+      "git_blob_sha": "813b717403088a2a24bebdaf371d09b56b595901",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/9d9960265e35a6211db88d581c730c5bb7d08dd6c27d409940e4158c0da9255a-treasure-treasure-title-fold.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/9d9960265e35a6211db88d581c730c5bb7d08dd6c27d409940e4158c0da9255a-treasure-treasure-title-fold.png",
+      "bytes": 4224934,
+      "sha256": "9d9960265e35a6211db88d581c730c5bb7d08dd6c27d409940e4158c0da9255a",
+      "git_blob_sha": "5379cd0a67c7ff4bb086d93dea3fbdbe3569e229",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/f6155c68b055821a70f97651c7d9e3988ec13ad725740d95e1bee371e4ba7ed7-connect_four-c4-empty-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/f6155c68b055821a70f97651c7d9e3988ec13ad725740d95e1bee371e4ba7ed7-connect_four-c4-empty-landscape.png",
+      "bytes": 82020,
+      "sha256": "f6155c68b055821a70f97651c7d9e3988ec13ad725740d95e1bee371e4ba7ed7",
+      "git_blob_sha": "ca0cbc5d4a6da0368386545b84f366ca9b2247f4",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/f9b9b02a6cb84ef5929c8d57ba34b6aea1b2edb296bd934c562f409872a5dcbf-connect_four-c4-win-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/f9b9b02a6cb84ef5929c8d57ba34b6aea1b2edb296bd934c562f409872a5dcbf-connect_four-c4-win-landscape.png",
+      "bytes": 83824,
+      "sha256": "f9b9b02a6cb84ef5929c8d57ba34b6aea1b2edb296bd934c562f409872a5dcbf",
+      "git_blob_sha": "9b353be7b714fe828f585655fc9beb6ee06b2cd0",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/083b595eb8845ec33696709b317099317f056df5361b85759260bc487ee1587b-treasure-treasure-title-compact.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/083b595eb8845ec33696709b317099317f056df5361b85759260bc487ee1587b-treasure-treasure-title-compact.png",
+      "bytes": 324040,
+      "sha256": "083b595eb8845ec33696709b317099317f056df5361b85759260bc487ee1587b",
+      "git_blob_sha": "e228f662376d09a70c41af052f96dcb6123f465c",
+      "binary": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/d945acd14d87fd41343e5d70b4449a437249efd049849276a04456ceb0db8b03-treasure-treasure-title-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-native344-integration-20261114/prepared/docs/evidence/studio-2020-reviewed/d945acd14d87fd41343e5d70b4449a437249efd049849276a04456ceb0db8b03-treasure-treasure-title-landscape-cutout.png",
+      "bytes": 2622689,
+      "sha256": "d945acd14d87fd41343e5d70b4449a437249efd049849276a04456ceb0db8b03",
+      "git_blob_sha": "6c56f917ec6f5291d065450bf7e47f1386d7e0d7",
+      "binary": true
+    }
+  ]
+}

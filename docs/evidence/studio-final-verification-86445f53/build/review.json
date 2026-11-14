@@ -1,0 +1,145 @@
+{
+  "status": "BUILDER_SUCCESS_ANDROID_RUNTIME_GATES_STILL_PENDING",
+  "run": 43549076631,
+  "attempt": 1,
+  "job": 132307097663,
+  "requested_head": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "actual_checkout_original_lines": [
+    "2026-11-14T02:58:00.6163094Z HEAD is now at 86445f5 test: preserve explicit landscape argument in native leave contracts",
+    "2026-11-14T02:58:00.6336695Z 86445f53af5d573549fc8cf03405261611f3cb7e",
+    "2026-11-14T02:58:00.7422134Z 86445f53af5d573549fc8cf03405261611f3cb7e",
+    "2026-11-14T03:11:51.6584988Z HEAD is now at 803e7a6 Update orchestration fixtures for 16 Studio gates and 37 renderer frames",
+    "2026-11-14T03:55:19.2910439Z HEAD is now at 803e7a6 Update orchestration fixtures for 16 Studio gates and 37 renderer frames"
+  ],
+  "original_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/build/original-job.log",
+    "bytes": 1585604,
+    "sha256": "4524a28f72ebcf31d90f4b55f3706fc714cdd1c918704e6531ba1846687a4f7e"
+  },
+  "flutter": {
+    "status": "PASS",
+    "passed": 2514,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "scope": [
+      "complete Flutter suite; capture outputs recorded below"
+    ],
+    "capture_png_counts": {
+      "LUMO_TUTORING_CAPTURE_DIR": {
+        "directory": "tutoring",
+        "pngs": 6
+      },
+      "LUMO_RIG_STRESS": {
+        "directory": "rig-stress",
+        "pngs": 27
+      },
+      "LUMO_CARDS_OPPONENT_CAPTURE": {
+        "directory": "cards-opponents",
+        "pngs": 4
+      },
+      "LUMO_STREAM_E_CAPTURE": {
+        "directory": "cards-memory",
+        "pngs": 8
+      },
+      "LUMO_NAVIGATION_CAPTURES": {
+        "directory": "navigation",
+        "pngs": 26
+      },
+      "LUMO_GUIDED_CAPTURE_DIR": {
+        "directory": "guided-learning",
+        "pngs": 170
+      },
+      "LUMO_VISUAL_CAPTURE_DIR": {
+        "directory": "reasoning",
+        "pngs": 15
+      },
+      "LUMO_TOUR_DIR": {
+        "directory": "tour",
+        "pngs": 62
+      },
+      "LUMO_FLUTTER_GAMES_CAPTURE": {
+        "directory": "games",
+        "pngs": 16
+      },
+      "LUMO_LEARNING_CAPTURE_DIR": {
+        "directory": "learning-adventure",
+        "pngs": 80
+      },
+      "LUMO_COMPANION_CAPTURE_DIR": {
+        "directory": "companion",
+        "pngs": 6
+      },
+      "LUMO_SPATIAL_CAPTURES": {
+        "directory": "reading",
+        "pngs": 12
+      },
+      "LUMO_CAPTURE_DIR": {
+        "directory": "modernization",
+        "pngs": 42
+      },
+      "LUMO_CARD_FACE_EXPORT_DIR": {
+        "directory": "card-face-exports",
+        "pngs": 56
+      },
+      "LUMO_NEXTGEN_READING_CAPTURES": {
+        "directory": "nextgen-reading",
+        "pngs": 6
+      },
+      "LUMO_READING_CAPTURES": {
+        "directory": "reading-passages",
+        "pngs": 3
+      },
+      "LUMO_ASSISTED_LEARNING_CAPTURES": {
+        "directory": "assisted-learning",
+        "pngs": 2
+      },
+      "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+        "directory": "native-profiles",
+        "pngs": 4
+      }
+    },
+    "capture_file_outputs": {
+      "LUMO_CARDS_CUP_CAPTURE": {
+        "path": "cards-cup/trophy.png",
+        "created": true
+      }
+    },
+    "rendered_png_count": 546
+  },
+  "python_groups": [
+    {
+      "tests": 445,
+      "seconds": 97.357,
+      "result": "OK",
+      "skip": 0
+    },
+    {
+      "tests": 819,
+      "seconds": 47.493,
+      "result": "OK",
+      "skip": 0
+    }
+  ],
+  "native_gate": {
+    "started": "2026-11-14T03:11:44Z",
+    "completed": "2026-11-14T03:54:32Z",
+    "seconds": 2568,
+    "final_marker": "2026-11-14T03:54:32.2190065Z [LumoStudio] PASS: source-bound learning, character, puzzle, exploration and Cards safe-area evidence",
+    "studio_rasters": 37,
+    "cards_safe_area": "671 checks, 5 profiles, 3 fixture images",
+    "mobile_safe_area": "124 checks, 15 controls, 4 platform-boundary fixture images"
+  },
+  "apk_reports_file": "apk-verification-reports-from-original-job.json",
+  "nonfatal_original_diagnostics_file": "nonfatal-original-diagnostics.json",
+  "limits": [
+    "No large Flutter/candidate APK artifact downloaded by this reviewer.",
+    "Flutter capture counts and native markers are CI log results, not a new personal review of all images.",
+    "Three Kart probes print resource-in-use errors at process exit despite the successful aggregate gate; they are preserved, not described as a clean engine log.",
+    "No API35/API37, upgrade, creative-gameplay or physical Fold7 performance acceptance follows from this build result."
+  ]
+}

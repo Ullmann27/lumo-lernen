@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "checked_at": "2026-11-14T11:09:25.895230+00:00",
+  "base_host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "baseline": {
+    "bytes": 58576,
+    "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+    "git_blob": "4987a607fd3bb1531eff243500ed05cfec50ec57"
+  },
+  "preserved_ffmpeg_v1": {
+    "bytes": 58784,
+    "sha256": "c333c4d33c37fd1f08bfce9b750f348e2ecd8fb16f3c25a6adc7543f546d30a6",
+    "git_blob": "bc1d497ab87a5211c13b0cafeb2a6e5493fe04d4"
+  },
+  "patched": {
+    "bytes": 59128,
+    "sha256": "441ddceba899294f0c5a2c4657473251978b3be38704b31a692f39d786c377a7",
+    "git_blob": "b8e63e1841828cab1e75ef3896e47b2d4d6aa38f"
+  },
+  "parser": {
+    "name": "PyYAML",
+    "version": "6.0.3",
+    "loader": "BaseLoader",
+    "scope": "YAML syntax/composed structure; not GitHub runtime or Python-contract execution"
+  },
+  "yaml_parse": "PASS",
+  "entire_v1_restored_by_exact_inverse": true,
+  "all_other_composed_nodes_equal": true,
+  "new_mandatory_contract_step_index": 2,
+  "test_existence_guard": true,
+  "test_command": "python3 -B -m unittest discover -s tools/android_qa/tests -p test_kart_preview_skip.py -v",
+  "test_suite_executed_here": false,
+  "contract_source_to_be_integrated_unchanged": {
+    "commit": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+    "probe_blob": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+    "test_blob": "ca2477afc4708385e705645613d45e3374f829f7"
+  },
+  "two_real_android_calls": [
+    {
+      "job": "android-tour",
+      "step_index": 12,
+      "name": "Install and tour the exact APK",
+      "if": "matrix.api == 35",
+      "uses": "reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d"
+    },
+    {
+      "job": "android-tour",
+      "step_index": 13,
+      "name": "Install and tour the exact APK after Android 17 framework readiness",
+      "if": "matrix.api == 37",
+      "uses": "./runner-actions/android-emulator-runner"
+    }
+  ],
+  "all_original_jobs_budgets_permissions_needs_and_other_calls_preserved": true,
+  "no_pin_probe_product_or_ref_change": true
+}

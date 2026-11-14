@@ -1,0 +1,28 @@
+{
+  "artifact_id": 14119383233,
+  "head": "cb85abed7c947af8e491f3d2b6488e443dc73c0a",
+  "run_id": 43607826829,
+  "bytes": 343190362,
+  "sha256": "8d7fcc672f72e6a3bee98a714764faa1ce56433e243fe56556c6fb07bccc9027",
+  "all_zip_crc_valid": true,
+  "zip_members": 593,
+  "extracted": [
+    {
+      "path": "feature-evidence/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "888fcd31cba71206fcd3a16169b6dc048bc47782c5f65f49e7f45904ce74703c"
+    },
+    {
+      "path": "feature-evidence/full-flutter/acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "1db3e59aedddef20ade739c31b63a6e19cd1554482c52d7a19538b9e9c5fb60e"
+    },
+    {
+      "path": "feature-evidence/full-flutter/flutter-machine.jsonl",
+      "bytes": 1756197,
+      "sha256": "37149720406b4ac52a03c916a07a9db7d2c87d8c00be6d3545c31c7c88d87347"
+    }
+  ],
+  "elapsed_seconds": 10.881,
+  "scope": "original archive verified; no blanket screenshot review"
+}

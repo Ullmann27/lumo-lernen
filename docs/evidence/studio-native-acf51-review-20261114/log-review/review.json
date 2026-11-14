@@ -1,0 +1,1580 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T06:49:39.983787+00:00",
+  "scope": "Read-only current acf51 job-log and stored metadata review; no test, renderer, image review or Git mutation performed.",
+  "native_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "run_attempt": 1,
+  "job_status_source": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/polls/064334-jobs-original.json",
+    "bytes": 16343,
+    "sha256": "e4726ae7a6222515568b4aa18923997a6b922c52bc737234a5a1176d34a64fc2"
+  },
+  "run_identity_source": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/initial/run-original.json",
+    "bytes": 13370,
+    "sha256": "732fa1a94bf8e14060d3e71fcd473ac855816c64598dafd685746f9b595bce31"
+  },
+  "workflow_binding": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/source-workflow-binding.json",
+    "bytes": 396,
+    "sha256": "ec1663c660b90d0fb4cda28b47c8ad8373dd3ad8a70738cef36208645f698f9c"
+  },
+  "jobs": {
+    "studio": {
+      "id": 132356963309,
+      "name": "studio",
+      "run_id": 43565059832,
+      "run_attempt": 1,
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:25:14Z",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963309",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:55Z",
+          "completed_at": "2026-11-14T06:10:55Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:55Z",
+          "completed_at": "2026-11-14T06:11:02Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:02Z",
+          "completed_at": "2026-11-14T06:11:28Z"
+        },
+        {
+          "name": "Import exact production source and execute Studio interactions and captures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:28Z",
+          "completed_at": "2026-11-14T06:25:06Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:25:06Z",
+          "completed_at": "2026-11-14T06:25:12Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T06:25:12Z",
+          "completed_at": "2026-11-14T06:25:13Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T06:25:13Z",
+          "completed_at": "2026-11-14T06:25:13Z"
+        }
+      ]
+    },
+    "gameplay": {
+      "id": 132356963393,
+      "name": "gameplay",
+      "run_id": 43565059832,
+      "run_attempt": 1,
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T06:10:54Z",
+      "completed_at": "2026-11-14T06:25:28Z",
+      "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43565059832/job/132356963393",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T06:10:54Z",
+          "completed_at": "2026-11-14T06:10:56Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T06:10:56Z",
+          "completed_at": "2026-11-14T06:11:04Z"
+        },
+        {
+          "name": "Install exact verified Godot engine and software renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T06:11:04Z",
+          "completed_at": "2026-11-14T06:11:21Z"
+        },
+        {
+          "name": "Import production project and validate structure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T06:11:21Z",
+          "completed_at": "2026-11-14T06:11:53Z"
+        },
+        {
+          "name": "Live full-screen menu, action ramps and lasso render evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T06:11:53Z",
+          "completed_at": "2026-11-14T06:17:46Z"
+        },
+        {
+          "name": "Existing gameplay regression suite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T06:17:46Z",
+          "completed_at": "2026-11-14T06:21:49Z"
+        },
+        {
+          "name": "Continuous loops, physical ramps, fair AI and living harbor",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T06:21:49Z",
+          "completed_at": "2026-11-14T06:24:56Z"
+        },
+        {
+          "name": "Integrated streetfronts, original Lumo and garage presentation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T06:24:56Z",
+          "completed_at": "2026-11-14T06:25:23Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T06:25:23Z",
+          "completed_at": "2026-11-14T06:25:27Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T06:25:27Z",
+          "completed_at": "2026-11-14T06:25:27Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-14T06:25:27Z",
+          "completed_at": "2026-11-14T06:25:27Z"
+        }
+      ]
+    }
+  },
+  "logs": {
+    "studio": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "bytes": 369464,
+      "sha256": "12af7f939bc5db2a9c03af0d207fb5f3a3b6bc5a0551d48319f6a0edcb7960e0"
+    },
+    "gameplay": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "bytes": 528847,
+      "sha256": "1202bb4bdf2aedca7cb71efb6d65db1e029959cbf947c7be8b03e228105d6563"
+    }
+  },
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "renderer": "Mesa 25.2.8-0ubuntu0.24.04.4 / llvmpipe LLVM20.1.2 / OpenGL Compatibility on Linux",
+  "studio": {
+    "reported_gates": [
+      {
+        "gate": "LearningSharing",
+        "scope": "headless",
+        "metrics": {
+          "checks": 1811
+        },
+        "line": 3224,
+        "reported": "[LearningSharing] PASS checks=1811"
+      },
+      {
+        "gate": "LearningStudio",
+        "scope": "headless",
+        "metrics": {
+          "checks": 183
+        },
+        "line": 3252,
+        "reported": "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+      },
+      {
+        "gate": "LumoStudioMotion",
+        "scope": "headless",
+        "metrics": {
+          "checks": 1047
+        },
+        "line": 3263,
+        "reported": "[LumoStudioMotion] PASS checks=1047 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+      },
+      {
+        "gate": "PuzzleRotation",
+        "scope": "headless",
+        "metrics": {
+          "checks": 4558
+        },
+        "line": 3274,
+        "reported": "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      },
+      {
+        "gate": "PuzzleMenuLifecycle",
+        "scope": "headless",
+        "metrics": {
+          "checks": 720
+        },
+        "line": 3343,
+        "reported": "[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+      },
+      {
+        "gate": "TreasureExploration",
+        "scope": "headless",
+        "metrics": {
+          "checks": 87
+        },
+        "line": 3354,
+        "reported": "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      },
+      {
+        "gate": "CardsAndroidInsets",
+        "scope": "public Java API boundary fixture",
+        "metrics": {
+          "checks": 20,
+          "failures": 0
+        },
+        "line": 3364,
+        "reported": "CARDS_ANDROID_INSETS_PASS checks=20 failures=0 scope=public_api_boundary_not_device"
+      },
+      {
+        "gate": "CardsSafeArea",
+        "scope": "headless fixture",
+        "metrics": {
+          "checks": 662,
+          "failures": 0,
+          "profiles": 5,
+          "images": 0
+        },
+        "line": 3376,
+        "reported": "CARDS_SAFE_AREA_PASS checks=662 failures=0 profiles=5 images=0"
+      },
+      {
+        "gate": "MobileSafeArea",
+        "scope": "headless platform fixture",
+        "metrics": {
+          "checks": 112,
+          "failures": 0,
+          "controls": 15,
+          "images": 0
+        },
+        "line": 3420,
+        "reported": "MOBILE_SAFE_AREA_PASS checks=112 failures=0 controls=15 images=0 scope=platform_boundary_fixture"
+      },
+      {
+        "gate": "LearningSharingCapture",
+        "scope": "renderer",
+        "metrics": {
+          "captures": 6
+        },
+        "line": 3468,
+        "reported": "[LearningSharingCapture] PASS captures=6"
+      },
+      {
+        "gate": "LumoStudioCapture",
+        "scope": "renderer",
+        "metrics": {
+          "renderer_frames": 8
+        },
+        "line": 3486,
+        "reported": "[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips"
+      },
+      {
+        "gate": "PuzzleRotation",
+        "scope": "renderer",
+        "metrics": {
+          "checks": 4565
+        },
+        "line": 3504,
+        "reported": "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      },
+      {
+        "gate": "PuzzleMenuLifecycle",
+        "scope": "renderer",
+        "metrics": {
+          "checks": 732
+        },
+        "line": 3580,
+        "reported": "[PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required"
+      },
+      {
+        "gate": "TreasureExploration",
+        "scope": "renderer",
+        "metrics": {
+          "checks": 90
+        },
+        "line": 3598,
+        "reported": "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      },
+      {
+        "gate": "CardsSafeArea",
+        "scope": "renderer platform fixture",
+        "metrics": {
+          "checks": 671,
+          "failures": 0,
+          "profiles": 5,
+          "images": 3
+        },
+        "line": 3616,
+        "reported": "CARDS_SAFE_AREA_PASS checks=671 failures=0 profiles=5 images=3"
+      },
+      {
+        "gate": "MobileSafeArea",
+        "scope": "renderer platform fixture",
+        "metrics": {
+          "checks": 124,
+          "failures": 0,
+          "controls": 15,
+          "images": 4
+        },
+        "line": 3668,
+        "reported": "MOBILE_SAFE_AREA_PASS checks=124 failures=0 controls=15 images=4 scope=platform_boundary_fixture"
+      },
+      {
+        "gate": "LumoFacial",
+        "scope": "headless",
+        "metrics": {
+          "checks": 102,
+          "original_bones": 65,
+          "original_clips": 9,
+          "phoneme_lipsync": false
+        },
+        "line": 3680,
+        "reported": "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false"
+      },
+      {
+        "gate": "LumoFacialCapture",
+        "scope": "renderer/movie capture",
+        "metrics": {
+          "declared_capture_frames": 144,
+          "recording_fps": 24,
+          "not_device_fps": true
+        },
+        "line": 3699,
+        "reported": "LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true"
+      },
+      {
+        "gate": "ConnectFourVisual",
+        "scope": "renderer visual-state fixture",
+        "metrics": {
+          "checks": 303,
+          "captures": 4,
+          "fixture": true
+        },
+        "line": 3724,
+        "reported": "CONNECT_FOUR_VISUAL_PASS checks=303 captures=4 fixture=true"
+      },
+      {
+        "gate": "TreasureTitleContrast",
+        "scope": "renderer platform fixture",
+        "metrics": {
+          "checks": 137,
+          "failures": 0
+        },
+        "line": 3749,
+        "reported": "[TreasureTitleContrast] PASS checks=137 failures=0"
+      }
+    ],
+    "gate_count": 20,
+    "roster": {
+      "line": 3750,
+      "text": "[StudioRasterRoster] PASS 53 actual PNG files",
+      "original": "2026-11-14T06:25:06.9534873Z [StudioRasterRoster] PASS 53 actual PNG files"
+    },
+    "overall": {
+      "line": 3751,
+      "text": "[LumoStudio] PASS: source-bound learning, character, puzzle, exploration, safe-area, actual facial movie, C4 visual fixture and Treasure title evidence",
+      "original": "2026-11-14T06:25:06.9588996Z [LumoStudio] PASS: source-bound learning, character, puzzle, exploration, safe-area, actual facial movie, C4 visual fixture and Treasure title evidence"
+    },
+    "movie_writer": {
+      "dimensions": [
+        640,
+        640
+      ],
+      "written_frames": 148,
+      "recording_fps": 24,
+      "cpu_ms_per_frame": 128.79,
+      "gpu_ms_per_frame": 125.18,
+      "encoding_ms_per_frame": 4.72,
+      "scope": "Software-renderer MovieMaker timing, not Android/Fold7 performance",
+      "lines": [
+        3690,
+        3702,
+        3703,
+        3704,
+        3705
+      ]
+    }
+  },
+  "gameplay": {
+    "structure": {
+      "pass": 117,
+      "warn": 7,
+      "fail": 0,
+      "line": 307
+    },
+    "numeric_gate_summaries": [
+      {
+        "gate": "KartLasso",
+        "count": 34,
+        "unit": "assertions",
+        "observations": [
+          {
+            "line": 2768,
+            "reported": "[KartLasso] PASS: 34 assertions; 70 m/s sweeps, counterplay, bounded hold, equal rival rules"
+          }
+        ]
+      },
+      {
+        "gate": "KartLassoProduction",
+        "count": 26,
+        "unit": "assertions",
+        "observations": [
+          {
+            "line": 2787,
+            "reported": "[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild"
+          }
+        ]
+      },
+      {
+        "gate": "SpatialMenu",
+        "count": 594,
+        "unit": "checks; 5/5 cases",
+        "observations": [
+          {
+            "line": 2848,
+            "reported": "[SpatialMenu] PASS 594 checks; 5/5 cases; renderer=X11"
+          }
+        ]
+      },
+      {
+        "gate": "RoadsideAction",
+        "count": 183,
+        "unit": "assertions",
+        "observations": [
+          {
+            "line": 2874,
+            "reported": "[RoadsideAction] PASS: 183 assertions; two new drivable ramps at 20.5/48/70 m/s, visible fair encounter plans"
+          }
+        ]
+      },
+      {
+        "gate": "GarageTargets",
+        "count": 255,
+        "unit": "visible controls, >=48x48dp",
+        "observations": [
+          {
+            "line": 3848,
+            "reported": "[GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp"
+          }
+        ]
+      },
+      {
+        "gate": "CompactKartSelection",
+        "count": 355,
+        "unit": "checks; 6/6 cases",
+        "observations": [
+          {
+            "line": 3872,
+            "reported": "[CompactKartSelection] PASS 355 checks; 6/6 cases; renderer=headless"
+          }
+        ]
+      },
+      {
+        "gate": "ZauberwaldLibrary",
+        "count": 601,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4430,
+            "reported": "[ZauberwaldLibrary] PASS checks=601"
+          }
+        ]
+      },
+      {
+        "gate": "JumpExtras",
+        "count": 12,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4447,
+            "reported": "[JumpExtras] PASS 12 checks: live platforms, pause, bounce and star resume"
+          }
+        ]
+      },
+      {
+        "gate": "CreativeTouchLayout",
+        "count": 300,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4499,
+            "reported": "[CreativeTouchLayout] PASS 300 checks: transformed dp, portrait, Fold and density"
+          }
+        ]
+      },
+      {
+        "gate": "PuzzleExpansion",
+        "count": 1103,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4517,
+            "reported": "[PuzzleExpansion] PASS 1103 checks: all motifs/counts, saves and two played rounds"
+          }
+        ]
+      },
+      {
+        "gate": "Garage3DTouch",
+        "count": 27,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4536,
+            "reported": "[Garage3DTouch] PASS 27 checks: native input, legacy ray, pointer ownership"
+          }
+        ]
+      },
+      {
+        "gate": "MenuDepth",
+        "count": 41,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4556,
+            "reported": "[MenuDepth] PASS: 41 checks"
+          }
+        ]
+      },
+      {
+        "gate": "LumoKartTickCadence",
+        "count": 1196,
+        "unit": "checks; failures=0",
+        "observations": [
+          {
+            "line": 4646,
+            "reported": "[LumoKartTickCadence] checks=1196 failures=0"
+          },
+          {
+            "line": 4647,
+            "reported": "[LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration"
+          }
+        ]
+      },
+      {
+        "gate": "LumoGestureContact",
+        "count": 200,
+        "unit": "checks; failures=0",
+        "observations": [
+          {
+            "line": 4662,
+            "reported": "[LumoGestureContact] PASS checks=200 failures=0"
+          }
+        ]
+      },
+      {
+        "gate": "GaragePresentation",
+        "count": 66,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4684,
+            "reported": "[GaragePresentation] PASS 66 checks"
+          }
+        ]
+      },
+      {
+        "gate": "AirTrick",
+        "count": 20,
+        "unit": "checks",
+        "observations": [
+          {
+            "line": 4694,
+            "reported": "[AirTrick] PASS: 20 checks"
+          }
+        ]
+      },
+      {
+        "gate": "LumoAttentionLanding",
+        "count": 1846,
+        "unit": "checks; failures=0",
+        "observations": [
+          {
+            "line": 4628,
+            "reported": "[LumoAttentionLanding] {\"android_test\":false,\"checks\":1846,\"display\":\"headless\",\"facial_model_verified\":true,\"failures\":0,\"fps_measured\":false,\"godot\":\"4.6.3-stable (official)\",\"landing_peak\":0.573351026912431,\"model_load_kind\":\"imported_packed_scene\",\"model_path\":\"res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb\",\"model_sha256\":\"e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524\",\"original_model_path\":\"res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb\",\"original_model_sha256\":\"3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5\",\"original_model_unchanged\":true,\"worst_hand_contact_mm\":1.14512140862644}"
+          }
+        ]
+      }
+    ],
+    "other_reported_groups": [
+      {
+        "group": "KartMenuFlow",
+        "observations": [
+          {
+            "line": 2909,
+            "reported": "[KartMenuFlow] PASS: direct selected Cup start inside compact Android safe insets"
+          },
+          {
+            "line": 2910,
+            "reported": "[KartMenuFlow] PASS: five direct sections; 1280x720,800x480,640x320; safe controls >=44px"
+          }
+        ]
+      },
+      {
+        "group": "LumoActionStage",
+        "observations": [
+          {
+            "line": 2911,
+            "reported": "[LumoActionStage] PASS: native touch navigation, real 3D stage and physical roadside action; logs /home/runner/work/lumo-godot/lumo-godot/acceptance-evidence/action-stage"
+          }
+        ]
+      },
+      {
+        "group": "KartTests",
+        "observations": [
+          {
+            "line": 3060,
+            "reported": "[KartTests] PASS: 8000 shared Jump questions; no Kart learning state; free steering; real full race; brake/drift; pause; save/resume; one award"
+          }
+        ]
+      },
+      {
+        "group": "HostBridgeTests",
+        "observations": [
+          {
+            "line": 3170,
+            "reported": "[HostBridgeTests] PASS: actual JNI integer ACK, strict rejection, reward dedup/backup, return"
+          },
+          {
+            "line": 3213,
+            "reported": "[HostBridgeTests] PASS: native options, lifecycle save/pause, Back, resume identity, reward retry/once, games/learn return, fresh restart"
+          },
+          {
+            "line": 3223,
+            "reported": "[HostBridgeTests] PASS: jump native reward, question pause, save/resume identity, Back to games"
+          }
+        ]
+      },
+      {
+        "group": "JumpTests",
+        "observations": [
+          {
+            "line": 3270,
+            "reported": "[JumpTests] PASS: full twelve-island adventure, collisions, jump, three learning stops, save/resume"
+          }
+        ]
+      },
+      {
+        "group": "LumoGait",
+        "observations": [
+          {
+            "line": 3289,
+            "reported": "[LumoGait] PASS walk/run foot planting, idle settle, teleport, airborne"
+          }
+        ]
+      },
+      {
+        "group": "LumoRenderKit",
+        "observations": [
+          {
+            "line": 3317,
+            "reported": "[LumoRenderKit] PASS one tier, Kart far unchanged, creative preset identical, Wolkeninseln tiers"
+          }
+        ]
+      },
+      {
+        "group": "LumoEnvironmentApply",
+        "observations": [
+          {
+            "line": 3327,
+            "reported": "[LumoEnvironmentApply] PASS creative_night/wolkeninseln/bauwelt_day/puzzle_atelier/rhythm_party/treasure_day"
+          }
+        ]
+      },
+      {
+        "group": "CreativePresets",
+        "observations": [
+          {
+            "line": 3340,
+            "reported": "[CreativePresets] PASS describe/configure/apply, bauwelt_day/puzzle_atelier/rhythm_party/treasure_day, MultiMesh batches"
+          }
+        ]
+      },
+      {
+        "group": "KartRaceBridge",
+        "observations": [
+          {
+            "line": 3371,
+            "reported": "[KartRaceBridge] PASS: no learning data, stable pause/return/resume ID, one reward, solved int, failed ACK keeps save, star cup without tasks, legacy learning-cup save finishes"
+          }
+        ]
+      },
+      {
+        "group": "KartSplit",
+        "observations": [
+          {
+            "line": 3444,
+            "reported": "[KartSplit] PASS: Wolkenweg raised 2.20 m while main lane stayed at 0.00 m"
+          }
+        ]
+      },
+      {
+        "group": "KartPhysics",
+        "observations": [
+          {
+            "line": 3446,
+            "reported": "[KartPhysics] PASS: rail walls on every course at full turbo, sliding contact, blue/orange drift tiers, wrong-way warning, reverse line and jump-ahead give no lap, GAS/BREMSE pedals with reverse, on-screen pad, forward-facing boost chevrons, and a physical Wolkenweg split route"
+          }
+        ]
+      },
+      {
+        "group": "KartJump",
+        "observations": [
+          {
+            "line": 3464,
+            "reported": "[KartJump] PASS: take-off, flight, landing turbo, cloud rescue past the gap, ordered checkpoints across the jump, rival arc, no ramp elsewhere"
+          }
+        ]
+      },
+      {
+        "group": "KartTouchTests",
+        "observations": [
+          {
+            "line": 3477,
+            "reported": "[KartTouchTests] PASS: real two-finger GUI, window Back countdown/race pause, touch resume, simultaneous steering+BREMSE, release outside, no learning panel, scaled safe areas"
+          }
+        ]
+      },
+      {
+        "group": "KartLandingFit",
+        "observations": [
+          {
+            "line": 3492,
+            "reported": "[KartLandingFit] PASS: all five choices readable above START on 4 Android sizes"
+          }
+        ]
+      },
+      {
+        "group": "LumoCharacterTests",
+        "observations": [
+          {
+            "line": 3520,
+            "reported": "[LumoCharacterTests] PASS: attached torso, proportionate visemes, expressions, live idle"
+          }
+        ]
+      },
+      {
+        "group": "KartWorldTests",
+        "observations": [
+          {
+            "line": 3538,
+            "reported": "[KartWorldTests] PASS: colours, spatial culling batches, transforms, background shadows"
+          }
+        ]
+      },
+      {
+        "group": "KartPauseLayoutTests",
+        "observations": [
+          {
+            "line": 3776,
+            "reported": "[KartPauseLayoutTests] PASS: actual compact/Fold matrix, safe-area controls, pause/results layout and touch navigation"
+          }
+        ]
+      },
+      {
+        "group": "KartVehicle",
+        "observations": [
+          {
+            "line": 3795,
+            "reported": "[KartVehicle] Geometry/colours, shadows, animations, effects, LOD and hysteresis passed"
+          }
+        ]
+      },
+      {
+        "group": "KartAI",
+        "observations": [
+          {
+            "line": 3817,
+            "reported": "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+          }
+        ]
+      },
+      {
+        "group": "LoopContact",
+        "observations": [
+          {
+            "line": 3884,
+            "reported": "[LoopContact] PASS: uniform physical travel, inversion and continuous road joins"
+          }
+        ]
+      },
+      {
+        "group": "KartRacecraft",
+        "observations": [
+          {
+            "line": 3906,
+            "reported": "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+          }
+        ]
+      },
+      {
+        "group": "KartRivalDrift",
+        "observations": [
+          {
+            "line": 3924,
+            "reported": "[KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+          }
+        ]
+      },
+      {
+        "group": "KartFullField",
+        "observations": [
+          {
+            "line": 4231,
+            "reported": "[KartFullField] PASS: continuous field two-lap drive with bounded movement"
+          }
+        ]
+      },
+      {
+        "group": "SonnenhafenGeneration",
+        "observations": [
+          {
+            "line": 4246,
+            "reported": "[SonnenhafenGeneration] PASS: LOW/HIGH scenery, clear road, other tracks untouched"
+          }
+        ]
+      },
+      {
+        "group": "StuntContinuity",
+        "observations": [
+          {
+            "line": 4271,
+            "reported": "[StuntContinuity] PASS: continuous player contact and real AI loop traversal"
+          }
+        ]
+      },
+      {
+        "group": "PlayerFullRoute",
+        "observations": [
+          {
+            "line": 4339,
+            "reported": "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+          }
+        ]
+      },
+      {
+        "group": "RivalFlight",
+        "observations": [
+          {
+            "line": 4361,
+            "reported": "[RivalFlight] sonnenhafen: automatic AI approach, take-off and landing PASS"
+          },
+          {
+            "line": 4363,
+            "reported": "[RivalFlight] bergwelt: automatic AI approach, take-off and landing PASS"
+          },
+          {
+            "line": 4365,
+            "reported": "[RivalFlight] ramp reprojection cannot skip the take-off lip PASS"
+          },
+          {
+            "line": 4366,
+            "reported": "[RivalFlight] PASS: launch-speed physics, real misses, safe snapshots and automatic ramps"
+          }
+        ]
+      },
+      {
+        "group": "HarborAttraction",
+        "observations": [
+          {
+            "line": 4388,
+            "reported": "[HarborAttraction] PASS: LOW/HIGH placement, upright travel, pass-by, rearm, pause, reduced motion, distance culling"
+          }
+        ]
+      },
+      {
+        "group": "HarborRaceHook",
+        "observations": [
+          {
+            "line": 4408,
+            "reported": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+          },
+          {
+            "line": 4617,
+            "reported": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+          }
+        ]
+      },
+      {
+        "group": "BauweltSandboxTools",
+        "observations": [
+          {
+            "line": 4457,
+            "reported": "[BauweltSandboxTools] PASS larger world, atomic fill/copy/mirror, undo and save"
+          }
+        ]
+      },
+      {
+        "group": "BauweltSandboxUI",
+        "observations": [
+          {
+            "line": 4477,
+            "reported": "[BauweltSandboxUI] PASS 48dp tools, point workflow and atomic undo"
+          }
+        ]
+      },
+      {
+        "group": "Lumo2014",
+        "observations": [
+          {
+            "line": 4557,
+            "reported": "[Lumo2014] PASS: continuous kart contact, fair AI, physical ramps and integrated game worlds; logs /home/runner/work/lumo-godot/lumo-godot/acceptance-evidence"
+          }
+        ]
+      },
+      {
+        "group": "StreetfrontsWorld",
+        "observations": [
+          {
+            "line": 4577,
+            "reported": "[StreetfrontsWorld] PASS: integrated opaque kit, hard geometry budget, complete road clearance"
+          }
+        ]
+      },
+      {
+        "group": "Streetfronts",
+        "observations": [
+          {
+            "line": 4597,
+            "reported": "[Streetfronts] PASS: opaque materials, actual geometry budgets, spatial cells, optional GL motion"
+          }
+        ]
+      },
+      {
+        "group": "LumoTechnicalArt",
+        "observations": [
+          {
+            "line": 4696,
+            "reported": "[LumoTechnicalArt] PASS: geometry, live reactions, original rig, camera and touch targets; logs /home/runner/work/lumo-godot/lumo-godot/acceptance-evidence/technical-art"
+          }
+        ]
+      }
+    ],
+    "attention_current_report": {
+      "android_test": false,
+      "checks": 1846,
+      "display": "headless",
+      "facial_model_verified": true,
+      "failures": 0,
+      "fps_measured": false,
+      "godot": "4.6.3-stable (official)",
+      "landing_peak": 0.573351026912431,
+      "model_load_kind": "imported_packed_scene",
+      "model_path": "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "model_sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "original_model_path": "res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "original_model_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "original_model_unchanged": true,
+      "worst_hand_contact_mm": 1.14512140862644
+    },
+    "attention_line": 4628,
+    "counting_rule": "No aggregate check total. A marker, subcase, repeated invocation, and global console summary are not added as independent test counts; 8000 shared questions is content count, 44px is a legacy assertion threshold, neither proves 48dp physical-device input."
+  },
+  "warnings_and_errors": {
+    "studio": [
+      {
+        "message": "cannot connect to daemon at tcp:5037: Connection refused",
+        "occurrences": 1,
+        "lines": [
+          3201
+        ]
+      },
+      {
+        "message": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "occurrences": 10,
+        "lines": [
+          3422,
+          3470,
+          3488,
+          3506,
+          3582,
+          3600,
+          3618,
+          3682,
+          3708,
+          3726
+        ]
+      },
+      {
+        "message": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "occurrences": 10,
+        "lines": [
+          3426,
+          3474,
+          3492,
+          3510,
+          3586,
+          3604,
+          3622,
+          3686,
+          3712,
+          3730
+        ]
+      },
+      {
+        "message": "WARNING: Volumetric fog is only available when using the Forward+ renderer.",
+        "occurrences": 10,
+        "lines": [
+          3428,
+          3476,
+          3494,
+          3512,
+          3588,
+          3606,
+          3624,
+          3688,
+          3714,
+          3732
+        ]
+      },
+      {
+        "message": "(node:<pid>) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+        "occurrences": 1,
+        "lines": [
+          3765
+        ]
+      },
+      {
+        "message": "(node:<pid>) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.",
+        "occurrences": 1,
+        "lines": [
+          3771
+        ]
+      },
+      {
+        "message": "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/",
+        "occurrences": 1,
+        "lines": [
+          3800
+        ]
+      }
+    ],
+    "gameplay": [
+      {
+        "message": "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+        "occurrences": 1,
+        "lines": [
+          230
+        ]
+      },
+      {
+        "message": "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+        "occurrences": 1,
+        "lines": [
+          231
+        ]
+      },
+      {
+        "message": "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+        "occurrences": 1,
+        "lines": [
+          232
+        ]
+      },
+      {
+        "message": "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+        "occurrences": 1,
+        "lines": [
+          233
+        ]
+      },
+      {
+        "message": "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+        "occurrences": 1,
+        "lines": [
+          234
+        ]
+      },
+      {
+        "message": "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+        "occurrences": 1,
+        "lines": [
+          235
+        ]
+      },
+      {
+        "message": "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)",
+        "occurrences": 1,
+        "lines": [
+          294
+        ]
+      },
+      {
+        "message": "cannot connect to daemon at tcp:5037: Connection refused",
+        "occurrences": 2,
+        "lines": [
+          2751,
+          3044
+        ]
+      },
+      {
+        "message": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "occurrences": 19,
+        "lines": [
+          2789,
+          2850,
+          2876,
+          3522,
+          3562,
+          4248,
+          4273,
+          4341,
+          4368,
+          4390,
+          4412,
+          4460,
+          4479,
+          4501,
+          4519,
+          4538,
+          4579,
+          4599,
+          4664
+        ]
+      },
+      {
+        "message": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "occurrences": 19,
+        "lines": [
+          2793,
+          2854,
+          2880,
+          3526,
+          3588,
+          4252,
+          4277,
+          4345,
+          4372,
+          4394,
+          4416,
+          4464,
+          4483,
+          4505,
+          4523,
+          4542,
+          4583,
+          4603,
+          4668
+        ]
+      },
+      {
+        "message": "WARNING: Volumetric fog is only available when using the Forward+ renderer.",
+        "occurrences": 19,
+        "lines": [
+          2795,
+          2856,
+          2882,
+          3528,
+          3591,
+          4254,
+          4279,
+          4347,
+          4374,
+          4396,
+          4418,
+          4466,
+          4485,
+          4507,
+          4525,
+          4544,
+          4585,
+          4605,
+          4670
+        ]
+      },
+      {
+        "message": "WARNING: [LumoHost] reward not saved; retry on return: integer-pending",
+        "occurrences": 14,
+        "lines": [
+          3071,
+          3077,
+          3085,
+          3091,
+          3099,
+          3105,
+          3113,
+          3119,
+          3127,
+          3133,
+          3141,
+          3147,
+          3155,
+          3161
+        ]
+      },
+      {
+        "message": "WARNING: [LumoHost] reward not saved; retry on return: retry-test",
+        "occurrences": 1,
+        "lines": [
+          3172
+        ]
+      },
+      {
+        "message": "WARNING: [LumoHost] reward not saved; retry on return: host-test-<id>",
+        "occurrences": 4,
+        "lines": [
+          3183,
+          3190,
+          3196,
+          3202
+        ]
+      },
+      {
+        "message": "Failed loading custom cursor: crossed_circle",
+        "occurrences": 1,
+        "lines": [
+          3565
+        ]
+      },
+      {
+        "message": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+        "occurrences": 4,
+        "lines": [
+          3818,
+          3907,
+          4232,
+          4409
+        ]
+      },
+      {
+        "message": "ERROR: 4 resources still in use at exit (run with --verbose for details).",
+        "occurrences": 2,
+        "lines": [
+          3820,
+          3909
+        ]
+      },
+      {
+        "message": "ERROR: 2 resources still in use at exit (run with --verbose for details).",
+        "occurrences": 1,
+        "lines": [
+          4234
+        ]
+      },
+      {
+        "message": "(node:<pid>) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.",
+        "occurrences": 1,
+        "lines": [
+          4717
+        ]
+      },
+      {
+        "message": "(node:<pid>) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.",
+        "occurrences": 1,
+        "lines": [
+          4725
+        ]
+      },
+      {
+        "message": "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/",
+        "occurrences": 1,
+        "lines": [
+          4750
+        ]
+      }
+    ]
+  },
+  "teardown_cases": [
+    {
+      "test": "KartAI",
+      "script": "scripts/tests/kart_ai_behavior_regression.gd",
+      "harness": "tools/validate_project.sh",
+      "harness_invocation_line": 75,
+      "github_step": 6,
+      "reported_resources_in_use": 4,
+      "objectdb_leak_warning": true,
+      "log_line_range": [
+        3817,
+        3822
+      ],
+      "context": [
+        {
+          "line": 3817,
+          "text": "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds",
+          "original": "2026-11-14T06:21:16.4664275Z [KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+        },
+        {
+          "line": 3818,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:16.5591284Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3819,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:21:16.5591741Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 3820,
+          "text": "ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:16.5593844Z ERROR: 4 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3821,
+          "text": "at: clear (core/io/resource.cpp:810)",
+          "original": "2026-11-14T06:21:16.5594230Z    at: clear (core/io/resource.cpp:810)"
+        },
+        {
+          "line": 3822,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:21:16.6054624Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        }
+      ],
+      "numerical_exit_code_printed_in_log": false,
+      "effective_process_exit_code": 0,
+      "exit_code_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "acceptance_limit": "Existing source checker excludes the literal resources still in use at exit text from its ERROR filter. ObjectDB warning is not a SCRIPT/Parse/ERROR match. This explains acceptance, not harmlessness or a newly diagnosed product defect."
+    },
+    {
+      "test": "KartRacecraft",
+      "script": "scripts/tests/kart_racecraft_regression.gd",
+      "harness": "tools/validate_2014.sh",
+      "harness_invocation_line": 39,
+      "github_step": 7,
+      "reported_resources_in_use": 4,
+      "objectdb_leak_warning": true,
+      "log_line_range": [
+        3905,
+        3911
+      ],
+      "context": [
+        {
+          "line": 3905,
+          "text": "[KartRacecraft] production cone clearance 1.785m; travelled 111.83m",
+          "original": "2026-11-14T06:21:52.4916378Z [KartRacecraft] production cone clearance 1.785m; travelled 111.83m"
+        },
+        {
+          "line": 3906,
+          "text": "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake",
+          "original": "2026-11-14T06:21:52.5012874Z [KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+        },
+        {
+          "line": 3907,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:52.5399848Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3908,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:21:52.5400214Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 3909,
+          "text": "ERROR: 4 resources still in use at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:21:52.5402112Z ERROR: 4 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 3910,
+          "text": "at: clear (core/io/resource.cpp:810)",
+          "original": "2026-11-14T06:21:52.5402512Z    at: clear (core/io/resource.cpp:810)"
+        },
+        {
+          "line": 3911,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:21:52.5851975Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        }
+      ],
+      "numerical_exit_code_printed_in_log": false,
+      "effective_process_exit_code": 0,
+      "exit_code_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "acceptance_limit": "Existing source checker excludes the literal resources still in use at exit text from its ERROR filter. ObjectDB warning is not a SCRIPT/Parse/ERROR match. This explains acceptance, not harmlessness or a newly diagnosed product defect."
+    },
+    {
+      "test": "KartFullField",
+      "script": "scripts/tests/kart_full_field_regression.gd",
+      "harness": "tools/validate_2014.sh",
+      "harness_invocation_line": 41,
+      "github_step": 7,
+      "reported_resources_in_use": 2,
+      "objectdb_leak_warning": true,
+      "log_line_range": [
+        4231,
+        4236
+      ],
+      "context": [
+        {
+          "line": 4231,
+          "text": "[KartFullField] PASS: continuous field two-lap drive with bounded movement",
+          "original": "2026-11-14T06:22:28.0217968Z [KartFullField] PASS: continuous field two-lap drive with bounded movement"
+        },
+        {
+          "line": 4232,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:22:28.0950097Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 4233,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:22:28.0950473Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 4234,
+          "text": "ERROR: 2 resources still in use at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:22:28.0953574Z ERROR: 2 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 4235,
+          "text": "at: clear (core/io/resource.cpp:810)",
+          "original": "2026-11-14T06:22:28.0954077Z    at: clear (core/io/resource.cpp:810)"
+        },
+        {
+          "line": 4236,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:22:28.1417088Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        }
+      ],
+      "numerical_exit_code_printed_in_log": false,
+      "effective_process_exit_code": 0,
+      "exit_code_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "acceptance_limit": "Existing source checker excludes the literal resources still in use at exit text from its ERROR filter. ObjectDB warning is not a SCRIPT/Parse/ERROR match. This explains acceptance, not harmlessness or a newly diagnosed product defect."
+    },
+    {
+      "test": "HarborRaceHook",
+      "script": "scripts/tests/kart_harbor_race_hook_regression.gd",
+      "harness": "tools/validate_2014.sh",
+      "harness_invocation_line": 47,
+      "github_step": 7,
+      "reported_resources_in_use": null,
+      "objectdb_leak_warning": true,
+      "log_line_range": [
+        4407,
+        4412
+      ],
+      "context": [
+        {
+          "line": 4407,
+          "text": "[Kart] race_world_ready: sonnenhafen mode=race",
+          "original": "2026-11-14T06:23:52.4944611Z [Kart] race_world_ready: sonnenhafen mode=race"
+        },
+        {
+          "line": 4408,
+          "text": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish",
+          "original": "2026-11-14T06:23:52.6510265Z [HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+        },
+        {
+          "line": 4409,
+          "text": "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+          "original": "2026-11-14T06:23:52.7225941Z WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+        },
+        {
+          "line": 4410,
+          "text": "at: cleanup (core/object/object.cpp:2663)",
+          "original": "2026-11-14T06:23:52.7226399Z    at: cleanup (core/object/object.cpp:2663)"
+        },
+        {
+          "line": 4411,
+          "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+          "original": "2026-11-14T06:23:52.7920394Z Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+        },
+        {
+          "line": 4412,
+          "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+          "original": "2026-11-14T06:23:52.9168433Z WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        }
+      ],
+      "numerical_exit_code_printed_in_log": false,
+      "effective_process_exit_code": 0,
+      "exit_code_evidence": "Inferred, not an explicit numeric console field: exact acf51 harness uses set -euo pipefail and an unmasked timeout/Godot | tee pipeline; the next named probe executes and the recorded GitHub step completes successfully.",
+      "acceptance_limit": "Existing source checker excludes the literal resources still in use at exit text from its ERROR filter. ObjectDB warning is not a SCRIPT/Parse/ERROR match. This explains acceptance, not harmlessness or a newly diagnosed product defect."
+    }
+  ],
+  "exact_harness_sources": [
+    {
+      "path": "tools/validate_2014.sh",
+      "ref": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "git_blob": "4fb01fdc83cf91ea09af56365c3ec325ebe999bc",
+      "sha256": "1dcb83e7ced02d374e67c23293559cf62f2803e96d598added7a3501ad51f215",
+      "bytes": 2738,
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/acf51d3bd2997c4b731e9a48e1791e05e756a132/tools/validate_2014.sh",
+      "saved_response": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_2014.sh.github.json",
+        "bytes": 3204,
+        "sha256": "b6cb0903b8de947fa070e01dd3de22b491bae233b80cb47e862fe0057679735d"
+      }
+    },
+    {
+      "path": "tools/validate_project.sh",
+      "ref": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "git_blob": "c518204f1e64410052a8fb31956f786cceb091a9",
+      "sha256": "89c337c38384639e3f626788835e28f1b7819ec0a683cd5460c24fc620088953",
+      "bytes": 5195,
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/acf51d3bd2997c4b731e9a48e1791e05e756a132/tools/validate_project.sh",
+      "saved_response": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_project.sh.github.json",
+        "bytes": 5739,
+        "sha256": "b1acd726da5bb0ca5b5f5c8b615e283a9185cd8eef67f9cfc466bd5182b290a9"
+      }
+    },
+    {
+      "path": "tools/validate_technical_art.sh",
+      "ref": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "git_blob": "f3e102c31215e5b9b9bff973ef2c4129d3c5112d",
+      "sha256": "16a6ff18fdc8ea3193753795b103b751d13356553b5d0fca2209ec41c456fdff",
+      "bytes": 2275,
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/acf51d3bd2997c4b731e9a48e1791e05e756a132/tools/validate_technical_art.sh",
+      "saved_response": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/log-review/exact-sources/validate_technical_art.sh.github.json",
+        "bytes": 2770,
+        "sha256": "c4678ba5acf3ceeb0323fa061b520f97e219f937be57b290cb31532693fc03a1"
+      }
+    }
+  ],
+  "limits": [
+    "Both job successes are grounded in completed/success GitHub metadata, not only PASS strings.",
+    "Gameplay contains three genuine ERROR resource-teardown lines and four ObjectDB warnings; no log-error-free claim.",
+    "No new SCRIPT ERROR or Parse Error line was observed; echoed grep patterns are commands, not runtime error output.",
+    "The public Java boundary, safe-area and C4 visual-state cases are desktop fixtures, despite some production log messages saying actual Android View insets.",
+    "53 PNGs is the accepted current Studio roster, not a personal inspection of all images. The eight assigned fresh images are not yet opened in this log review.",
+    "No final original archive integrity, Android2020, C4 Dart authority, physical Fold7 FPS/temperature/touch latency, or full native workflow approval is inferred from these two logs.",
+    "Warning occurrences and four teardown processes are kept separate; 4,4,2 resources are not summed into a unique leaked-resource count."
+  ],
+  "source_mutations": 0,
+  "tests_executed": 0,
+  "images_opened": 0
+}

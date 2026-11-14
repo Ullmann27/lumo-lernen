@@ -1,0 +1,346 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T07:49:29.918398+00:00",
+  "status": "LOCAL_FOUR_PROBES_PASSED_CI_TEARDOWN_NOT_REPRODUCED_OPEN",
+  "source": {
+    "repository": "Ullmann27/lumo-godot",
+    "commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+    "url": "https://github.com/Ullmann27/lumo-godot/commit/785413d395292a243eaa0a0748671eb15d3f80ff"
+  },
+  "scope": "Exactly four existing unchanged probes with verbose diagnostics. No additional tests, product fix or Git reference mutation. Private source graph, not a complete checkout.",
+  "engine": {
+    "version": "4.6.3.stable.official.7d41c59c4",
+    "binary": {
+      "path": "/opt/godot/4.6.3/Godot_v4.6.3-stable_linux.x86_64",
+      "bytes": 138981968,
+      "sha256": "f64d4ed19fc9df9440321653fcc80df8c6e365ba7b6de0a29e2cfa9fa71bfeb3"
+    },
+    "launcher": {
+      "path": "/workspace/scratch/5987865ae883/lumo-godot/tools/run_local_renderer.py",
+      "bytes": 5308,
+      "sha256": "d7169f0353071159e64a74d76e6e35718117402a597dfcc05c8f99ed7f275247"
+    }
+  },
+  "preparation": {
+    "command": [
+      "/usr/local/bin/godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+    "started_utc": "2026-11-14T07:40:53.688182+00:00",
+    "finished_utc": "2026-11-14T07:40:58.663555+00:00",
+    "elapsed_seconds": 4.975397135989624,
+    "exit_code": 0,
+    "timed_out": false,
+    "deadline_seconds": 120,
+    "original_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/private-import.log",
+      "bytes": 2073,
+      "sha256": "193a7ada806d3995d0a1beb499e3ae38ae9082ba79b1a129456cbe5bc5d24de4"
+    }
+  },
+  "probes": [
+    {
+      "probe": "kart_ai_behavior_regression",
+      "raw_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_ai_behavior_regression.log",
+        "bytes": 15058,
+        "sha256": "7ee71916cfb02ab640bcb918f27dd210122e2016a29703bc92d7aa582b08e7db",
+        "git_blob_sha": "951bab348cb1a09ab2499dd23a44bda70d2a80eb"
+      },
+      "raw_line_count": 191,
+      "mode": "headless",
+      "exit_code": 0,
+      "timed_out": false,
+      "engine_budget_seconds": 180,
+      "outer_wrapper_budget_seconds": null,
+      "elapsed_seconds": 4.111418796994258,
+      "elapsed_scope": "Godot process wall time",
+      "required_marker": "[KartAI] PASS",
+      "marker_line": 188,
+      "diagnostic_counts": {
+        "objectdb": 0,
+        "resource_count": 0,
+        "resource_detail": 0,
+        "leaked_instance": 0,
+        "error": 0,
+        "warning": 0
+      },
+      "misc2_mapping_messages": 4,
+      "diagnostic_evidence": [
+        {
+          "line": 5,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 7,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 9,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 11,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 188,
+          "text": "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds",
+          "following": []
+        }
+      ]
+    },
+    {
+      "probe": "kart_racecraft_regression",
+      "raw_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_racecraft_regression.log",
+        "bytes": 14575,
+        "sha256": "46721d2d54923521a960853e9346f7175f29f9e3b3342421377a2b368e5bcf0e",
+        "git_blob_sha": "816f800f768e958ac4ec472766be369812416169"
+      },
+      "raw_line_count": 184,
+      "mode": "headless",
+      "exit_code": 0,
+      "timed_out": false,
+      "engine_budget_seconds": 240,
+      "outer_wrapper_budget_seconds": null,
+      "elapsed_seconds": 3.141392135003116,
+      "elapsed_scope": "Godot process wall time",
+      "required_marker": "[KartRacecraft] PASS",
+      "marker_line": 181,
+      "diagnostic_counts": {
+        "objectdb": 0,
+        "resource_count": 0,
+        "resource_detail": 0,
+        "leaked_instance": 0,
+        "error": 0,
+        "warning": 0
+      },
+      "misc2_mapping_messages": 4,
+      "diagnostic_evidence": [
+        {
+          "line": 5,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 7,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 9,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 11,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 181,
+          "text": "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake",
+          "following": []
+        }
+      ]
+    },
+    {
+      "probe": "kart_full_field_regression",
+      "raw_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_full_field_regression.log",
+        "bytes": 107415,
+        "sha256": "999ac4990d812e12fed101cb6123159b13f775eae8c7edee4918ec5b98d6d570",
+        "git_blob_sha": "d20c022a96ff961bb0120679b48ed53f7b722807"
+      },
+      "raw_line_count": 598,
+      "mode": "headless",
+      "exit_code": 0,
+      "timed_out": false,
+      "engine_budget_seconds": 240,
+      "outer_wrapper_budget_seconds": null,
+      "elapsed_seconds": 32.73098484899674,
+      "elapsed_scope": "Godot process wall time",
+      "required_marker": "[KartFullField] PASS",
+      "marker_line": 595,
+      "diagnostic_counts": {
+        "objectdb": 0,
+        "resource_count": 0,
+        "resource_detail": 0,
+        "leaked_instance": 0,
+        "error": 0,
+        "warning": 0
+      },
+      "misc2_mapping_messages": 4,
+      "diagnostic_evidence": [
+        {
+          "line": 5,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 7,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 9,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 11,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 595,
+          "text": "[KartFullField] PASS: continuous field two-lap drive with bounded movement",
+          "following": []
+        }
+      ]
+    },
+    {
+      "probe": "kart_harbor_race_hook_regression",
+      "raw_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_harbor_race_hook_regression.log",
+        "bytes": 16957,
+        "sha256": "ff473824e5d768099244bfe3aa791c5ba523f129358b4f354df29bc17e13885e",
+        "git_blob_sha": "121deee107c7b854c4a49a557441fbcdbd930e31"
+      },
+      "raw_line_count": 217,
+      "mode": "rendered",
+      "exit_code": 0,
+      "timed_out": false,
+      "engine_budget_seconds": 240,
+      "outer_wrapper_budget_seconds": 252,
+      "elapsed_seconds": 6.4184060510015115,
+      "elapsed_scope": "Entire renderer wrapper including Xorg lifecycle",
+      "required_marker": "[HarborRaceHook] PASS",
+      "marker_line": 213,
+      "diagnostic_counts": {
+        "objectdb": 0,
+        "resource_count": 0,
+        "resource_detail": 0,
+        "leaked_instance": 0,
+        "error": 0,
+        "warning": 3
+      },
+      "misc2_mapping_messages": 4,
+      "diagnostic_evidence": [
+        {
+          "line": 5,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 7,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 9,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 11,
+          "text": "Unrecognized output string \"misc2\" in mapping:",
+          "following": []
+        },
+        {
+          "line": 24,
+          "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+          "following": [
+            "     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)",
+            "XcursorGetTheme could not get cursor theme"
+          ]
+        },
+        {
+          "line": 26,
+          "text": "XcursorGetTheme could not get cursor theme",
+          "following": []
+        },
+        {
+          "line": 50,
+          "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+          "following": [
+            "     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)",
+            "Loading resource: res://scenes/default_env.tres"
+          ]
+        },
+        {
+          "line": 53,
+          "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer.",
+          "following": [
+            "     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)",
+            "Loading resource: res://scripts/systems/event_bus.gd"
+          ]
+        },
+        {
+          "line": 213,
+          "text": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish",
+          "following": []
+        }
+      ]
+    }
+  ],
+  "source_identity": {
+    "tracked_paths": 1186,
+    "all_exact_before_and_after": true,
+    "all_seven_snapshots_equal": true,
+    "import_source_md5_matches": 457,
+    "launcher_git_blob": "7fa41c18b853bd156b5365270132c35887b49c77",
+    "full_checkpoint_summary": "source-checkpoints-summary.json",
+    "full_before": "source-before-execution.json",
+    "full_after": "source-after-execution.json",
+    "expected_tree": "expected-source-tree.json",
+    "private_setup": "private-runtime-scope.json",
+    "generated_cache_source_records": "runtime-before.json",
+    "verbose_loaded_resources": "loaded-resources.json"
+  },
+  "teardown_finding": {
+    "historical_source": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "historical_source_run": 43565059832,
+    "historical_gameplay_job": 132356963393,
+    "historical_resource_counts_by_probe": {
+      "kart_ai_behavior_regression": 4,
+      "kart_racecraft_regression": 4,
+      "kart_full_field_regression": 2,
+      "kart_harbor_race_hook_regression": null
+    },
+    "historical_objectdb_warning_processes": 4,
+    "reproduced_local_resource_or_objectdb_diagnostics": false,
+    "identified_resource_classes": [],
+    "identified_resource_paths": [],
+    "identified_owner": null,
+    "classification": "Unresolved CI process-exit diagnostics. Local reproduction did not emit the details needed to identify a class, resource path or owner.",
+    "does_not_prove": [
+      "CI diagnostics harmless",
+      "Leak fixed",
+      "No leak under CI or Android",
+      "A particular static cache, AudioStream, test fixture or product subsystem caused the messages"
+    ],
+    "historical_review": "../kart-teardown-readonly-acf51-785413-20261114/review.json",
+    "current_ci_note": "Root/C separately reported renewed unnamed shutdown diagnostics in actual785413 CI. This local report does not supersede or reinterpret that original.",
+    "recommended_gate": "Retain original functional exit/marker gates and unresolved teardown qualification. A recurring actual CI invocation needs its own verbose class/path output before ownership or a fix can be accepted. No additional local test series or product fix is proposed here."
+  },
+  "limitations": [
+    "Three probes headless; Harbor isolated software Xorg/Compatibility and Dummy audio. No Android, physical-device, sustained-memory, hardware-audio or FPS measurement.",
+    "Generated caches reused with checked source stamps and normal import; not original GitHub runner image or clean checkout/cache.",
+    "Fresh private QA data differs from sequential shared CI environment. These differences are not claimed to explain historical warnings.",
+    "Harbor emitted three renderer warnings plus cursor-theme message; all four logs emitted four misc2 mapping messages. Logs are not universally warning-free.",
+    "Harbor engine budget240s; enclosing launcher252s for Xorg setup/cleanup. Actual outer duration6.418s.",
+    "After environment recovery /tmp runtime was absent. Preserved source snapshots/raw logs were rehashed; no runtime reconstruction or extra execution. Generated binary cache hashes not claimed.",
+    "Previous CI logs and read-only diagnosis remain unchanged. Local PASS does not supersede historical or current CI diagnostics."
+  ]
+}

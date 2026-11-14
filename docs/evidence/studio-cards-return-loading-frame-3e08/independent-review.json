@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T03:24:20.174487+00:00",
+  "reviewer": "character_animation",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_FOUND_IN_READ_SCOPE",
+  "baseline_commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "source_bindings": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/.github/probes/creative_android_probe.py",
+      "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+      "git_blob": "45ff0d24400ee21673c707b4b6448f914c85ee87"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34",
+      "git_blob": "33f725e2114b4cedc43a65297232866311946d5d"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/tools/android_qa/tests/test_flutter_loading_frame_rejection.py",
+      "sha256": "4cb4ba9c25293f46534ff5b90ee712f866f6f12d23ee58b3db32d39844390529",
+      "git_blob": "20fe9e8d8640fe9aa41695b9dd10b4b4a38a23ce"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+      "sha256": "4c8f154a259ce22b734977ef5c2dd7257d8ed4968cf370abf8dd62a09e853d81",
+      "git_blob": "ce969e7a1236b8ed601b598ce13810a088f91f60"
+    }
+  ],
+  "fixture_bindings": [
+    {
+      "fixture": "android37-loading.png",
+      "sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf",
+      "archive": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/original-artifact.zip",
+      "original_member": "nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "byte_equal": true
+    },
+    {
+      "fixture": "android37-eventual-pause.png",
+      "sha256": "8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71",
+      "archive": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/original-artifact.zip",
+      "original_member": "nextgen/99_nextgen_failure.png",
+      "byte_equal": true
+    },
+    {
+      "fixture": "android35-first-return-pause.png",
+      "sha256": "bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9",
+      "archive": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/original-artifact.zip",
+      "original_member": "nextgen/14_cards_same_flutter_round.png",
+      "byte_equal": true
+    },
+    {
+      "fixture": "android35-final-return-pause.png",
+      "sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880",
+      "archive": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/original-artifact.zip",
+      "original_member": "nextgen/16_cards_final_flutter_return.png",
+      "byte_equal": true
+    },
+    {
+      "fixture": "android37-loading-contrast.tsv",
+      "sha256": "8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56",
+      "archive": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/original-artifact.zip",
+      "original_member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "byte_equal": true
+    },
+    {
+      "fixture": "android35-first-return-pause-contrast.tsv",
+      "sha256": "6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e",
+      "archive": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/original-artifact.zip",
+      "original_member": "nextgen/14_cards_same_flutter_round-return-candidate-3-caption-0-ocr-contrast.tsv",
+      "byte_equal": true
+    },
+    {
+      "fixture": "android35-final-return-pause-contrast.tsv",
+      "sha256": "e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78",
+      "archive": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/original-artifact.zip",
+      "original_member": "nextgen/16_cards_final_flutter_return-return-candidate-2-caption-0-ocr-contrast.tsv",
+      "byte_equal": true
+    }
+  ],
+  "actual_logs_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-real-ocr.log",
+      "sha256": "0f28e0eda9eaf3be12e7f4dceba86090d16af4620e455da3bda06433c987cd9a",
+      "read": true,
+      "rerun_by_reviewer": false
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-real-ocr.log",
+      "sha256": "e9cd0d0d6974023a59f5bc2de9548d133c688b7a7332e08ea7796ac8a75b8149",
+      "read": true,
+      "rerun_by_reviewer": false
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-return-contracts.log",
+      "sha256": "12aee508ee59e136579d90c594bb49673a0e335228fb53d718732ef7c15096b8",
+      "read": true,
+      "rerun_by_reviewer": false
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/existing-return-contracts.log",
+      "sha256": "dba0809139586d2a60d0d269982c953035835eedf21f24f6cc8273a70ec9af77",
+      "read": true,
+      "rerun_by_reviewer": false
+    }
+  ],
+  "checks": [
+    "The helper baseline is the exact current 11405ef5 source, preserving the existing leave orientation forwarding. Only image_lines differs among helper top-level definitions.",
+    "The surface baseline is the exact 5d802f47 source, preserving the strict Cards layout readiness repair. Only capture_returned_flutter differs; its sole change is the explicit negative-caption opt-in.",
+    "Default reject_captions is empty. Existing positive caption matching, all fallback readers and other callers remain semantically unchanged without opt-in.",
+    "Negative detection consumes existing OCR word rows with the existing confidence floor and uses complete normalized observed word sequences with valid in-image bounds. It does not fabricate a caption or search a presumed button region.",
+    "The negative decision precedes the positive break, preserves actual OCR JSON plus a source-hash-bound REJECTED_FRAME sidecar, then raises RuntimeError, which the existing frame guard treats as a rejection and resets its consecutive count.",
+    "The original 30-second deadline, maximum 12 observations, two-consecutive-complete-frame requirement, original PNG capture, exact expected captions, positive bounds, readiness and process/activity checks remain unchanged.",
+    "All seven fixtures were independently compared byte-for-byte with their actual original ZIP members. The two API37 PNGs had already been individually viewed in the separately bound image review; this review does not claim additional API35 viewing.",
+    "The same six real-OCR replay cases show two assertion failures before and six passes after. The six adverse-row/sequence contracts and all six existing return guards show PASS in their actual logs. No tests or OCR commands were executed again by this reviewer."
+  ],
+  "limits": [
+    "Local original-image OCR replay and synthetic scheduler contracts are not a new Android execution.",
+    "The original 3e08 API37 run remains FAILURE. The later exception image is not relabeled as either of two accepted frames.",
+    "A future same-APK run must still independently obtain two complete fresh Flutter frames before its unchanged deadline.",
+    "No source, workflow, APK, save, input, timeout or CI-run mutation was performed by this review."
+  ]
+}

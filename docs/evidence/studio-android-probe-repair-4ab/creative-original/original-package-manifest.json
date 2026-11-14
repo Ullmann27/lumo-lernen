@@ -1,0 +1,606 @@
+{
+  "status": "FROZEN_ORIGINAL_FAILED_CREATIVE_REVIEW",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43530667812,
+  "job_id": 132269951369,
+  "artifact_id": 14092241868,
+  "original_zip_sha256": "bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40",
+  "original_zip_bytes": 526570745,
+  "original_zip_in_git_upload": false,
+  "archive_note": "The single full local original remains unchanged; a separate source-bound archive workflow handles durable public storage. No successful archival run is claimed by this manifest.",
+  "file_count": 66,
+  "total_bytes": 28281846,
+  "original_entries_verified_byte_equal": 54,
+  "selected_original_pngs": 15,
+  "gameplay_result": "FAIL overall; only Build original contract passed",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0008-hub-before-choice.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0008-hub-before-choice.png",
+      "mode": "100644",
+      "bytes": 1523699,
+      "sha256": "735b7ecc4b350236dddab5736fc7f5490b6aa720a5473159b73e178a02f04199",
+      "git_blob": "15ef082538216a1247e46f657506ca65189f946f",
+      "original_artifact_entry": "tour/0008-hub-before-choice.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0011-entered-jumprun.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0011-entered-jumprun.png",
+      "mode": "100644",
+      "bytes": 1643088,
+      "sha256": "59e4235a6fe2cd45d2ec194842b15611d14566147cf4d95451fd08b120b24f3e",
+      "git_blob": "71947227e18bfcb869943af98de7cb20e8edab60",
+      "original_artifact_entry": "tour/0011-entered-jumprun.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0012-native-pause-0.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0012-native-pause-0.png",
+      "mode": "100644",
+      "bytes": 1643589,
+      "sha256": "92bd76f2d0058f02f74b999ac89a3941bee23a80e6dd4808a653d5b7fcc4dc34",
+      "git_blob": "316dadda4944bd7784d2e456b1990bcf419c4940",
+      "original_artifact_entry": "tour/0012-native-pause-0.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0012-native-pause-27.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0012-native-pause-27.png",
+      "mode": "100644",
+      "bytes": 1650214,
+      "sha256": "d44c798c56b8ecc1bf841a69da7c6cd18df681b2528139b127453a0e495cb773",
+      "git_blob": "bdbb0c0907325e6e62069007e3e21e7bc901cd14",
+      "original_artifact_entry": "tour/0012-native-pause-27.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0013-jump-failure.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0013-jump-failure.png",
+      "mode": "100644",
+      "bytes": 1649497,
+      "sha256": "39dae9b855a7c87a6a6b10c1ca6eb01fda6f8df97c94a0d26c1291280645cfdd",
+      "git_blob": "d67368ee1f074b6ab06e9dd51740e41241a784bd",
+      "original_artifact_entry": "tour/0013-jump-failure.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0023-entered-bauwelt.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0023-entered-bauwelt.png",
+      "mode": "100644",
+      "bytes": 2491440,
+      "sha256": "2a49bc40adc2795eab47c68cb20d1b0369a9ebacb1c2f85e66a6cafa19ea4928",
+      "git_blob": "7bb63f5d39dbee345de9a08dbc120a9167cc36c8",
+      "original_artifact_entry": "tour/0023-entered-bauwelt.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0049-build-redone.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0049-build-redone.png",
+      "mode": "100644",
+      "bytes": 2486568,
+      "sha256": "3ccc600eb3486296e0656b829bf0cdd93cf77086953b2ea283ce80052e23d3b7",
+      "git_blob": "aaa6ba965aa17a955f94e65c3f62656ac2d32881",
+      "original_artifact_entry": "tour/0049-build-redone.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0072-entered-bauwelt.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0072-entered-bauwelt.png",
+      "mode": "100644",
+      "bytes": 2498858,
+      "sha256": "6059dc0ab19fddff4671e24841b9d671c599017c54cf9b41e244a0b9704b0e5d",
+      "git_blob": "ecdd093f472dbb749b23afaa749c8848413790eb",
+      "original_artifact_entry": "tour/0072-entered-bauwelt.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0081-flutter-return-flutter-visible-0.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0081-flutter-return-flutter-visible-0.png",
+      "mode": "100644",
+      "bytes": 1522001,
+      "sha256": "b8a72db44f95a21cc8720b9880e74cd9ff8f057d4cb368c8308a2c799a134728",
+      "git_blob": "25f5688cb86083ba0a140a2663a07be3402e9088",
+      "original_artifact_entry": "tour/0081-flutter-return-flutter-visible-0.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0088-entered-puzzle.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0088-entered-puzzle.png",
+      "mode": "100644",
+      "bytes": 510328,
+      "sha256": "3dec318a991d37f591cb9ea91ba686b1f5ed1f9d63ff8661e24f0d53f6923c11",
+      "git_blob": "28dc67e76b3a0a4985c5d830c0785cea5bb0fff3",
+      "original_artifact_entry": "tour/0088-entered-puzzle.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0100-native-modusbilderpuzzle-0.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0100-native-modusbilderpuzzle-0.png",
+      "mode": "100644",
+      "bytes": 509107,
+      "sha256": "2534e6920bae17d8864b337705e088f2f41a937af96da135cb63e1b314c77fa7",
+      "git_blob": "96a0d85c466fe977420f864969e53251f77c2ac9",
+      "original_artifact_entry": "tour/0100-native-modusbilderpuzzle-0.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0112-puzzle-failure.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0112-puzzle-failure.png",
+      "mode": "100644",
+      "bytes": 1020830,
+      "sha256": "03c1dfbc09fb544f91398dd6af782747da275aa9fbeb48a8e8229d532d987ed5",
+      "git_blob": "3e4ee4375f915769fe8b4db7ba29ffc1287e70e5",
+      "original_artifact_entry": "tour/0112-puzzle-failure.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0121-entered-schatzsuche.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0121-entered-schatzsuche.png",
+      "mode": "100644",
+      "bytes": 2333440,
+      "sha256": "1e259ea994c2e30ae5924f62c5a90e46ee7d4d6d70a3b2859e117dc946b092dc",
+      "git_blob": "43d12851388d6bdacc621c91dae69a02ae534f7c",
+      "original_artifact_entry": "tour/0121-entered-schatzsuche.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0192-observe-original-stick.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0192-observe-original-stick.png",
+      "mode": "100644",
+      "bytes": 2709944,
+      "sha256": "e6656d3840b817b719ef72d4c0319aa1acc76cafd7484b59a063f718fb313f52",
+      "git_blob": "061036dadda8cb9aa53ba3cf3273fa8f3ecb8923",
+      "original_artifact_entry": "tour/0192-observe-original-stick.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0198-treasure-failure.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0198-treasure-failure.png",
+      "mode": "100644",
+      "bytes": 2729533,
+      "sha256": "506b7506b00d76e951c7fadefbd6c3302ad0286d048666f4fb1faae6a6f903df",
+      "git_blob": "d58073d036993233ba5441c74d80a34c8e6b9338",
+      "original_artifact_entry": "tour/0198-treasure-failure.png"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/creative-result.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/creative-result.json",
+      "mode": "100644",
+      "bytes": 10777,
+      "sha256": "f0f2a9a5039af6f3624a59be2c14cb27fa15b93554f6dd7a26ccaf68ed8ccafd",
+      "git_blob": "6aaabcfeea272459f395bdd54f1cc1877a47df6e",
+      "original_artifact_entry": "tour/creative-result.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/real-input-events.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/real-input-events.json",
+      "mode": "100644",
+      "bytes": 67418,
+      "sha256": "cae3ad44ad68e76871b3630386926edee94c97a77ab589bd39260d62844cbbe8",
+      "git_blob": "737cd03e0b20b401a090e3054240eac657ae9480",
+      "original_artifact_entry": "tour/real-input-events.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/actual-source-files.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/actual-source-files.json",
+      "mode": "100644",
+      "bytes": 1992,
+      "sha256": "6223d5aaeda7d1169f1e749578ff56bdbc96128935c981bdaf981bd2b3782f2f",
+      "git_blob": "00f15d13b37e54736dfb762eab093750138a0456",
+      "original_artifact_entry": "tour/actual-source-files.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/native-engine-errors.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/native-engine-errors.json",
+      "mode": "100644",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "git_blob": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "original_artifact_entry": "tour/native-engine-errors.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0012-native-pause-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0012-native-pause-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 22741,
+      "sha256": "c80a10e1c861acbe11a696e0229c434ae627c290b6d284dcbca799720f681693",
+      "git_blob": "88112273c711dc68fbd0106741803135671e342d",
+      "original_artifact_entry": "tour/0012-native-pause-surface-readiness.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0098-native-bild-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0098-native-bild-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2736,
+      "sha256": "1eca3061c7ae12770497b13461b5c8fdfc00c0cd236703a1563aeb0d57efdfe2",
+      "git_blob": "e31678805d9351790dd2f64071067fe5a57c8e62",
+      "original_artifact_entry": "tour/0098-native-bild-surface-readiness.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/apk-source-sha.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/apk-source-sha.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "0f4e8311ee4ca9d34f72cdcd76bc27da8d1f073ef24abff0466e401fcf141a93",
+      "git_blob": "81517c18acd83b98355ceb9bb882f2496a04bcd6",
+      "original_artifact_entry": "apk-source-sha.txt"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/native-source-sha.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/native-source-sha.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "cf7b2ee3e631a5d4f65d887b4f8cc6a7e6c055a1803ef9708ccf21da8e7e3043",
+      "git_blob": "11e53496922ca969e368698fac4736f3509ca5d9",
+      "original_artifact_entry": "native-source-sha.txt"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/probe-source-sha.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/probe-source-sha.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "0f4e8311ee4ca9d34f72cdcd76bc27da8d1f073ef24abff0466e401fcf141a93",
+      "git_blob": "81517c18acd83b98355ceb9bb882f2496a04bcd6",
+      "original_artifact_entry": "probe-source-sha.txt"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/candidate-artifact-binding.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/candidate-artifact-binding.json",
+      "mode": "100644",
+      "bytes": 1122,
+      "sha256": "e8d917602e7ccd2adddd5b5b96a7ad4a88aa6721d25cb439e0e92545b31bcda0",
+      "git_blob": "810e8b722a9940e7e5159e4c4d4d43236d87599b",
+      "original_artifact_entry": "candidate-artifact-binding.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/local-contracts.log",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/local-contracts.log",
+      "mode": "100644",
+      "bytes": 1784,
+      "sha256": "9844d713b4177d24d26a770252c98b6f4cbab401fc1b9980733062d625d32841",
+      "git_blob": "2a0b929179c605e2c123676c89d5efb1d8cb78c8",
+      "original_artifact_entry": "local-contracts.log"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0025-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0025-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "mode": "100644",
+      "bytes": 22594,
+      "sha256": "f1ab3e45534415c20fdd10f50ec7ffd7cad235620fc7af28f96ad8f5fdc56afd",
+      "git_blob": "35143ed4ea5011592527323b052e4cc6a16113df",
+      "original_artifact_entry": "tour/0025-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0032-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0032-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "mode": "100644",
+      "bytes": 22706,
+      "sha256": "e4ed0ea18ed03501116cd1b4193e28a5570a353b518e16277be5893992e34429",
+      "git_blob": "a17112b1752a6cb2372304a07997b950b6b684df",
+      "original_artifact_entry": "tour/0032-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0039-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0039-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "mode": "100644",
+      "bytes": 22594,
+      "sha256": "c966c837171ddcb90e8855a68996a00b52b8b1e9fc6ecd6e5662d377b3d39b82",
+      "git_blob": "2313a3ec0682e7843f6724976b2a1d378301cee3",
+      "original_artifact_entry": "tour/0039-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0046-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0046-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "mode": "100644",
+      "bytes": 22706,
+      "sha256": "e4ed0ea18ed03501116cd1b4193e28a5570a353b518e16277be5893992e34429",
+      "git_blob": "a17112b1752a6cb2372304a07997b950b6b684df",
+      "original_artifact_entry": "tour/0046-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0066-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0066-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "mode": "100644",
+      "bytes": 22720,
+      "sha256": "b8b587df869926f25d69317cf3f33632741729ff62a00c22d0afd16350b5257e",
+      "git_blob": "4e82f28d2406dd91ad4201716ad7e6c5bfcf5c14",
+      "original_artifact_entry": "tour/0066-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0074-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0074-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json",
+      "mode": "100644",
+      "bytes": 22720,
+      "sha256": "b8b587df869926f25d69317cf3f33632741729ff62a00c22d0afd16350b5257e",
+      "git_blob": "4e82f28d2406dd91ad4201716ad7e6c5bfcf5c14",
+      "original_artifact_entry": "tour/0074-build-save-lumo_build_p_ec4e20ad83902c8997a69ed0b4402863_1.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0123-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0123-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 276,
+      "sha256": "e2d6a4ef4dc12c67594a2feef2b35d5e8c1c0850edc3a107b17acfef0ad0f188",
+      "git_blob": "d80a72ff7e01f49bb5a9ed1ef5aed2282c9afc97",
+      "original_artifact_entry": "tour/0123-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0129-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0129-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 304,
+      "sha256": "bb778b9a97cefa10486ff1e1b2c1778104cd55f2a725c89af4191d7336e97c0d",
+      "git_blob": "4002deccf685497afbf240fbaa7a9c3bbbe22aa5",
+      "original_artifact_entry": "tour/0129-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0135-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0135-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 302,
+      "sha256": "015748700cae1adfaac05a328ef1a8126d4d94ff450504beceeeeab196bcfd08",
+      "git_blob": "7bfa10f941827ccd918a55045668301d990a4145",
+      "original_artifact_entry": "tour/0135-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0141-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0141-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 302,
+      "sha256": "8ffb90682acfb6c73040d49dba809ed6d3dc0a935e681a47f4b8bcc9a1374f70",
+      "git_blob": "300396e84f42026372cd2b6eca2de8358dffe3b5",
+      "original_artifact_entry": "tour/0141-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0147-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0147-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 303,
+      "sha256": "209d313dfe5bb8f1bf25906e2d5c5dd0fae7fb6e08d801cb30f6d610619eb78b",
+      "git_blob": "74b044344f1901308bbe65bc996511924148699c",
+      "original_artifact_entry": "tour/0147-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0153-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0153-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 303,
+      "sha256": "3e10fde9a1deb43b9b506f02ea41fe0bf0237d743e57c9a54562ee502b4645b4",
+      "git_blob": "2c8d5d2bf02ce525faac502cc7774b401cd2e7e8",
+      "original_artifact_entry": "tour/0153-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0159-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0159-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 303,
+      "sha256": "19e0136b1fe9a68daa7b3e2e2e6ac09cdb93478374ba1219e6b8156045d56a03",
+      "git_blob": "202a51ba17cfd9fea95716859e6002ecc72f6ccf",
+      "original_artifact_entry": "tour/0159-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0165-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0165-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 302,
+      "sha256": "b280d83d64626eaa663cf330921bdc32a7c13d5e32ea8534f18dc83ab4496835",
+      "git_blob": "4bfa31f13ce575795fabb5fb920fcae8f83bac4d",
+      "original_artifact_entry": "tour/0165-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0171-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0171-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 304,
+      "sha256": "3c2905af0fa88452fbfdeb119fbec80b73cc20bfe8f23ba3256d4be0db9abd96",
+      "git_blob": "a29f2f727dea9b832ad1533aaa3bf9d3458d2de9",
+      "original_artifact_entry": "tour/0171-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0177-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0177-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 303,
+      "sha256": "a6c5b2fe87041077047e6b4444cd74a16e458769c9f5cf4c649f9c2ba28424b6",
+      "git_blob": "e1305e4529497ada49fa9f30c19c0f4aaebfc40d",
+      "original_artifact_entry": "tour/0177-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0183-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0183-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 305,
+      "sha256": "78993ee0eca06d2a6035780dc7e66cbc85944c023106b75699eecd0bebc202a2",
+      "git_blob": "324f48d208da76a6c3f08ff635be057caa3beecb",
+      "original_artifact_entry": "tour/0183-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0189-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0189-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 305,
+      "sha256": "c944a255566e02a09572ba309b6ae82051a9b8bde3f02eb8025f764c6d2f7486",
+      "git_blob": "263c3f026e56adbd4b3df74b60fea9d9dbdb6b60",
+      "original_artifact_entry": "tour/0189-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0195-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0195-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 303,
+      "sha256": "462f2d8d4c438e8827994324ad654c716b7033fa98041b7841f844c52ac0b810",
+      "git_blob": "8388ebb87ce51f8bbf471d1ae8425170e5a9f3a4",
+      "original_artifact_entry": "tour/0195-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0109-puzzle-save-lumo_puzzle_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0109-puzzle-save-lumo_puzzle_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "mode": "100644",
+      "bytes": 950,
+      "sha256": "3ed1a56a9aed65fb88a14d4b76b706948724bbfb99d2483fafd032c78b9961aa",
+      "git_blob": "28e1b087d3aebd086dcdb065f36203a5e310ec04",
+      "original_artifact_entry": "tour/0109-puzzle-save-lumo_puzzle_p_ec4e20ad83902c8997a69ed0b4402863.json"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0018-build-wallet-before-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0018-build-wallet-before-preferences.xml",
+      "mode": "100644",
+      "bytes": 2011,
+      "sha256": "04573ad94a98e627efceb636c195367aec2d446c1193bdcfb1cfd14b973414e9",
+      "git_blob": "55e4d9ab1a3fc8ed2390eb9eda28773fd7bc45a9",
+      "original_artifact_entry": "tour/0018-build-wallet-before-preferences.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0067-build-wallet-after-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0067-build-wallet-after-preferences.xml",
+      "mode": "100644",
+      "bytes": 2160,
+      "sha256": "e6f5c6aa14a243bc5ff90fcc8761879f9bd412bf29e1fe63bb4dba0c0b5241aa",
+      "git_blob": "d826e8a7b076afb0c622e8891e8b62bf4d18d47c",
+      "original_artifact_entry": "tour/0067-build-wallet-after-preferences.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0083-build-replay-wallet-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0083-build-replay-wallet-preferences.xml",
+      "mode": "100644",
+      "bytes": 2160,
+      "sha256": "e6f5c6aa14a243bc5ff90fcc8761879f9bd412bf29e1fe63bb4dba0c0b5241aa",
+      "git_blob": "d826e8a7b076afb0c622e8891e8b62bf4d18d47c",
+      "original_artifact_entry": "tour/0083-build-replay-wallet-preferences.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0007-hub-jumprun.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0007-hub-jumprun.xml",
+      "mode": "100644",
+      "bytes": 33888,
+      "sha256": "8c8278f45d6970e31acc9d26e046a9023092c524377b5614e3694f91eec60f1f",
+      "git_blob": "e71443746c0d958c7038dbe3193a37a968bd49b7",
+      "original_artifact_entry": "tour/0007-hub-jumprun.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0019-hub-bauwelt.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0019-hub-bauwelt.xml",
+      "mode": "100644",
+      "bytes": 33889,
+      "sha256": "e6aa271f84e418d945e9374f714db5decf892284219fd86739ec23748015d90a",
+      "git_blob": "c548d4606f2e345ff3c5e35258d0703d79d5d32e",
+      "original_artifact_entry": "tour/0019-hub-bauwelt.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0068-hub-bauwelt.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0068-hub-bauwelt.xml",
+      "mode": "100644",
+      "bytes": 33889,
+      "sha256": "910c8dfbda46f45381bc0484bf2995170fe9808843ad9565622b8960119d8181",
+      "git_blob": "50f12a36ae7227a3dc654195763ecfa8109f5d0d",
+      "original_artifact_entry": "tour/0068-hub-bauwelt.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0084-hub-puzzle.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0084-hub-puzzle.xml",
+      "mode": "100644",
+      "bytes": 33889,
+      "sha256": "404ba2675e785099af0828049e160ff44a575d0e61de84c93085bf8163acd83e",
+      "git_blob": "db0e0c503063878d9fed11fed11d8b90ef8ee31d",
+      "original_artifact_entry": "tour/0084-hub-puzzle.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-originals/tour/0117-hub-schatzsuche.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/originals/tour/0117-hub-schatzsuche.xml",
+      "mode": "100644",
+      "bytes": 33889,
+      "sha256": "6c281da7acd04957babd938a066ffd00a768586c9beda2c2fae9e6fa4d041177",
+      "git_blob": "8b458f7e03bbb79c57d4608a82f44dc94db00bfd",
+      "original_artifact_entry": "tour/0117-hub-schatzsuche.xml"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/creative-original-review.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/creative-original-review.json",
+      "mode": "100644",
+      "bytes": 22550,
+      "sha256": "b9c5a9f2f5bba9587996f46d20d7b95edb21d05461547551287c9b928dc92605",
+      "git_blob": "a2487933da9fb84e46a40f33f95cd7307cbd5b2f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/CREATIVE_ORIGINAL_REVIEW.md",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/CREATIVE_ORIGINAL_REVIEW.md",
+      "mode": "100644",
+      "bytes": 6656,
+      "sha256": "3ca3aea701830f4e20bf96ea178804f82fc0a1a41216796d5a8564ea2e665f9d",
+      "git_blob": "2c3ddfcd11fe86a1d1f6710858dd49e4bc387b40"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/puzzle-failure-independent-review.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/puzzle-failure-independent-review.json",
+      "mode": "100644",
+      "bytes": 5960,
+      "sha256": "cc90b0e4ef6ce91289f3b9345b9577dedf502f878fbca520fe847650558988f3",
+      "git_blob": "9ca33ecf962748b2f158af6a669977bbe8afe581"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/original-job.log",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/original-job.log",
+      "mode": "100644",
+      "bytes": 373392,
+      "sha256": "09a018143fc8ad5d346644a6d20ab9f498367a6d3e1a971e88a7cad0ed2b4ea1",
+      "git_blob": "509c89f120371326b478d33d577edb2a9b22f796"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/jobs-completed-original.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/jobs-completed-original.json",
+      "mode": "100644",
+      "bytes": 21129,
+      "sha256": "2fb1da8b0a54ada9bd4dd929e6e4e072f1ea0e4fa45100c84f03977e8ee29815",
+      "git_blob": "d478ce0acb4a9edcd70ed293ea9b48bdfbd38f71"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/artifacts-completed-original.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/artifacts-completed-original.json",
+      "mode": "100644",
+      "bytes": 865,
+      "sha256": "1c20592d0539b0d5b457f0738bc1808d2f6ffa8998d08c22ae35949f3b3b114d",
+      "git_blob": "ab47b43909948986ff35ce14005c0d4445be04c4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/original-artifact-inventory.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/original-artifact-inventory.json",
+      "mode": "100644",
+      "bytes": 280099,
+      "sha256": "6f6abe3671390ee3b590244d48eb45223e15fc1354a15895a57e4fcfb3340a1a",
+      "git_blob": "0a4ccf620a874479e782fcaf2941680633fdcb2f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-image-binding.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/selected-image-binding.json",
+      "mode": "100644",
+      "bytes": 3439,
+      "sha256": "1ff0d5b10f08e10d591877ce1f207a959de9e67fe24888b32e4dec20b2191bb0",
+      "git_blob": "fac171d7ae75358afb13e5578f3f131c2fcaf45d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/selected-text-binding.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/selected-text-binding.json",
+      "mode": "100644",
+      "bytes": 199489,
+      "sha256": "e237c6c30fcab13ad9f6bbc9807fd9e4c874c11963f9f90ca7a5d52b229d23a5",
+      "git_blob": "48940ce11ed02736dbad0b24d5c479e237136b4b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/evidence/review.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/treasure-independent/review.json",
+      "mode": "100644",
+      "bytes": 3631,
+      "sha256": "fb8f0e46c12a728869b5a50c02058a48cc086290222f0d6c55b6a9c0961f4b9d",
+      "git_blob": "0178044e539ce003b9ce4cf7e3dd5506157bff5c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/evidence/original-observations.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/treasure-independent/original-observations.json",
+      "mode": "100644",
+      "bytes": 15387,
+      "sha256": "3ea8cb905b5e40243908494b5254c68e8c996722c62eafb017261871508d0530",
+      "git_blob": "dfd3619fe30be230eade5b17f26fc66620dd450d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/evidence/original-runtime-lines.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/creative/treasure-independent/original-runtime-lines.json",
+      "mode": "100644",
+      "bytes": 1737,
+      "sha256": "ab0ed9867cf662adb8ca11af03a3dd4d329f7681717643580fe2aaae9be43c2a",
+      "git_blob": "d1b571304567112ca584109b86e2046973444feb"
+    }
+  ],
+  "limits": [
+    "No APK copy, no full shader-cache extraction, no historical failure relabelled.",
+    "Only explicitly attributed original images were visually reviewed; the inventory is not an all-images visual acceptance.",
+    "New isolated QA patches and future Android runs are separate from these original files."
+  ]
+}

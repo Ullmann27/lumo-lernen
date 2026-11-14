@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--language-version=3.4",
+    "--output=none",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/test/games/connect_four_fold_controls_test.dart",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-b/host/test/design/connect_four_visual_test.dart",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-c/host/test/games/games_screen_flow_test.dart"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 0.06035230099223554,
+  "log_sha256": "690ecb258e5e9c7bdae8de0f930ea878c04fc4f88afc46ae7ce948d1f05c4154",
+  "source_hashes": {
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/lib/features/games/connect_four/lumo_connect_four_game.dart": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/test/games/connect_four_fold_controls_test.dart": "f93f5caba51f4c4a09b60420b89e779f2286e5087f37bfa56daf060b7920048a",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-b/host/test/design/connect_four_visual_test.dart": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-c/host/test/games/games_screen_flow_test.dart": "d13b42f24be5965b35e4528a20f4c9e3a7a6db56ebbc8624aea976bf0595015a"
+  },
+  "sources_unchanged": true,
+  "scope": "Dart formatter parsed source; no type checking, Flutter widget test or Android execution claimed."
+}

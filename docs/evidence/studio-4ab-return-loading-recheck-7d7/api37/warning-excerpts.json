@@ -1,0 +1,102 @@
+{
+  "scope": "Auszug relevanter Original-Joblogwarnungen; kein Anspruch auf fehlerfreies vollständiges Android-Logcat.",
+  "original_job_log": {
+    "bytes": 2126511,
+    "sha256": "befb3ff9997acef0752e8ca9b3e45798ca5d6bcbad029a251c1f5599d71e0787",
+    "git_blob": "79ee31a87158d4d2750d631248f8ea1d12aeddb9"
+  },
+  "lines": [
+    {
+      "line": 1248,
+      "text": "2026-11-14T03:42:41.6501052Z (node:2653) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 1250,
+      "text": "2026-11-14T03:42:41.6655682Z (node:2653) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 1256,
+      "text": "2026-11-14T03:42:42.4392124Z (node:2653) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+    },
+    {
+      "line": 1524,
+      "text": "2026-11-14T03:43:08.9011824Z /home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py:100: SyntaxWarning: invalid escape sequence '\\('"
+    },
+    {
+      "line": 1779,
+      "text": "2026-11-14T03:45:08.8650393Z Error: Could not load devices from /usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/devices.xml"
+    },
+    {
+      "line": 1780,
+      "text": "2026-11-14T03:45:08.8651804Z Error: /usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/devices.xml"
+    },
+    {
+      "line": 1810,
+      "text": "2026-11-14T03:45:09.4890888Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 1819,
+      "text": "2026-11-14T03:45:09.4895464Z USER_WARNING | Suggested minimum system RAM to run avd 'test' is 16384 MiB (available: 15983 MiB)."
+    },
+    {
+      "line": 1820,
+      "text": "2026-11-14T03:45:09.4896505Z WARNING      | Feature QuickbootFileBacked is disabled due to stability issues, if you really want that, the environment variable ANDROID_EMU_FORCE_QUICKBOOT_FILE_BACKED need to set to 1"
+    },
+    {
+      "line": 1830,
+      "text": "2026-11-14T03:45:10.3041238Z ERROR        | Failed to create Vulkan instance. Error VK_ERROR_INCOMPATIBLE_DRIVER."
+    },
+    {
+      "line": 1831,
+      "text": "2026-11-14T03:45:10.3042265Z ERROR        | Failed to initialize global Vulkan emulation requested. Try updating your GPU drivers, using software rendering or disabling Vulkan feature support."
+    },
+    {
+      "line": 1832,
+      "text": "2026-11-14T03:45:10.3043307Z WARNING      | Emulator will try disabling Vulkan support, this is an unsupported path."
+    },
+    {
+      "line": 1834,
+      "text": "2026-11-14T03:45:10.3044322Z WARNING      | Could not open libX11.so, try libX11.so.6"
+    },
+    {
+      "line": 1837,
+      "text": "2026-11-14T03:45:10.3045576Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1"
+    },
+    {
+      "line": 1896,
+      "text": "2026-11-14T03:45:10.8037748Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 1939,
+      "text": "2026-11-14T03:45:11.8566440Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 1940,
+      "text": "2026-11-14T03:45:11.9512421Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 11491,
+      "text": "2026-11-14T04:06:45.7321799Z ERROR        | stop: Not implemented"
+    },
+    {
+      "line": 11492,
+      "text": "2026-11-14T04:06:45.7324284Z WARNING      | Emulator client has not yet been configured.. Call configure me first!"
+    },
+    {
+      "line": 11494,
+      "text": "2026-11-14T04:06:45.8413751Z WARNING      | Netsim Wifi dns:///localhost:34111 is gone due to Stream removed (CANCELLED)"
+    },
+    {
+      "line": 11523,
+      "text": "2026-11-14T04:06:46.8446519Z (node:6904) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 11529,
+      "text": "2026-11-14T04:06:47.4158089Z (node:6904) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 11592,
+      "text": "2026-11-14T04:06:52.7993472Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/github-script@v7, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14 19:32:38 UTC",
+  "status": "NO_ADDITIONAL_STATIC_BLOCKER_FOUND_EXECUTION_PENDING",
+  "host_baseline": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "scope": "Read-only review of Root's final C4 bot-save and terminal-reward retry UI changes and six prepared widget cases.",
+  "sources": [
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "role": "fresh exact28462 baseline",
+      "bytes": 44247,
+      "sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+      "git_blob_sha": "4a68c5b8d4634a6830c7f6122c574734c42a0270"
+    },
+    {
+      "path": "qa/c4-bot-retry-28462-20261114/prepared/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 45973,
+      "sha256": "1a968ed55fa15d47124158b70fb50f88e77aae60661ce38ef916cb0e4e50bba0",
+      "git_blob_sha": "7e0dfc297090d5d3e558367107a28ff5986de786"
+    },
+    {
+      "path": "qa/c4-bot-retry-28462-20261114/prepared/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob_sha": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    }
+  ],
+  "dependencies_read": [
+    {
+      "path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+      "bytes": 12273,
+      "sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+      "git_blob_sha": "9ffc5f25494bb03c64a68cd704d5069aae41013e",
+      "scope": "Clock schedule/pause/resume/cancel and actual pause-panel actions."
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+      "git_blob_sha": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "scope": "Production play/save/settleReward and owner/generation transitions."
+    }
+  ],
+  "exact_inverse": {
+    "matched": true,
+    "scopes": [
+      "_place catch block",
+      "new _retryFinishedRound method"
+    ],
+    "other_product_bytes": "byte-identical to freshly read exact28462 source"
+  },
+  "original_concrete_risk_closed": {
+    "intermediate_product_sha256": "614d17c37d1b170d9c82a4dd1ae8de7cc6c5310e7ea771d17960d7f8992dfcd3",
+    "finding": "After awaiting a reward retry the intermediate method called _finish directly even if Home/Pause arrived during the await. A drawn result could open immediately; a winning result could start its presentation while paused.",
+    "final_change": "The successful completion schedules a zero-delay callback through the existing paused clock. The callback revalidates current owner, round generation and native-opening state before _finish.",
+    "new_regression": "Lifecycle pause during reward retry defers the settled result"
+  },
+  "findings": [
+    "An uncommitted bot move is re-armed only for the still-current owner and UI round generation, while the round is playing, Lumo is next and local two-player mode is off.",
+    "_saveError pauses the clock first. Re-arming stores one pending action; there is no automatic retry until Fortsetzen resumes the clock. Restart/dispose cancel the old pending action and the callback checks generation/owner.",
+    "For an already committed terminal board the retry calls only the controller's existing settleReward; no column is dropped. Further failure pauses and stores another explicit retry.",
+    "The successful terminal reward path now delegates display to the same clock and checks identity again in the callback. A lifecycle pause during the write therefore preserves the pending display without repeating the confirmed reward.",
+    "The six prepared cases use the production widget/controller/AppState/learning storage, an explicit MissingPlugin fallback, real taps and a controlled platform write. They cover first bot retry, repeated failure, restart cancellation, local Gold, saved seven-piece win, and lifecycle pause during a held reward acknowledgement.",
+    "The held-wallet case releases a real pending backend response after AppLifecycleState.inactive, expects the five-star state with no result dialog, then requires another explicit Fortsetzen for the dialog. Board counts stay four child/three Lumo pieces."
+  ],
+  "tests": {
+    "declared_cases": 6,
+    "reviewer_executions": 0,
+    "actual_flutter_result": "PENDING",
+    "local_dart_or_flutter_calls_performed": false
+  },
+  "limits": [
+    "This static review does not establish compilation, a passed Flutter case, Android behavior or a rendered result.",
+    "The C4 fixture rejects writes before backend persistence. The separate Memory/native-optimistic-cache and Wallet-acknowledgement cases cover a different boundary; their claims are not transferred here.",
+    "Rules, persistence repository, queue, native session, other widget geometry and workflow gates were not changed by this patch or reviewer."
+  ]
+}

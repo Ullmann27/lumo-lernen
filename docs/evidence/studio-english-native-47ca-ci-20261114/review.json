@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T15:16:56.693250+00:00",
+  "status": "CURRENT_ENGLISH_AUTHORITY_AND17_DESKTOP_RENDER_IMAGES_PASS_WITH_DECLARED_LIMITS",
+  "run_id": 43607369297,
+  "attempt": 1,
+  "job_id": 132484813521,
+  "job_status": "completed",
+  "job_conclusion": "success",
+  "job_started": "2026-11-14T14:55:23Z",
+  "job_completed": "2026-11-14T15:05:18Z",
+  "host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "native_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "artifact_id": 14118967950,
+  "artifact_bytes": 4575912,
+  "artifact_sha256": "661661bcfeeae342357466f7468e36801a0eea581ab5566264ccd529064a559a",
+  "archive_entries_fully_crc_read": 63,
+  "actual_dart_cases": 10,
+  "actual_dart_assertions": 2955,
+  "actual_dart_failures": 0,
+  "actual_dart_words": [
+    "pen",
+    "bag",
+    "school bag",
+    "pencil case",
+    "book",
+    "chair",
+    "paper",
+    "ruler",
+    "rubber",
+    "desk",
+    "ball",
+    "car",
+    "sun",
+    "apple"
+  ],
+  "school_examples_by_grade": {
+    "1": 10,
+    "2": 10
+  },
+  "native_checks": 7649,
+  "native_failures": [],
+  "native_cases": 14,
+  "actual_Godot_ScreenTouch_events": 196,
+  "personally_opened_fresh_original_pngs": 17,
+  "all_cases_return_count": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "all_cases_reward_count": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "renderer": "X11",
+  "fixture_kind": "actual_dart_producer_report",
+  "platform_observation": "platform_fixture",
+  "actual_producer_sha256": "e38d551679a26e23bc3fc048a49e3d3387b5c6af60ccafc2958c8077a36318ae",
+  "smallest_exposed_control_side_dp_from_original_capture_and_hint_records": 52.0,
+  "smallest_full_object_projection_side_dp_including_plinth": 50.2452545166016,
+  "runtime_versions": {
+    "godot-version.txt": "4.6.3.stable.official.7d41c59c4",
+    "dart-version.txt": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\""
+  },
+  "new_test_runs_in_this_review": 0,
+  "limits": [
+    "Actual Dart producer is executed, but native host/audio/JNI calls and platform insets in this renderer are explicit fixtures. No Android or physical device execution.",
+    "Fourteen bounded words and the ten concrete Schulsachen entries for school grades1/2; no abstract grade3/4 English coverage.",
+    "German explanation path only. audio_listened=false and english_pronunciation_verified=false; no audible or phoneme synchronization result.",
+    "17 static original images and196 Godot touch events do not measure60FPS, GPU thermals, battery, device touch latency or animation smoothness.",
+    "Geometry minimum includes the complete object-plus-plinth projection, not a48dp promise for every recognizable mesh detail.",
+    "The14 returns and zero rewards are read from the declared native test boundary; no actual Android learning/save/multi-child migration approval.",
+    "Three actual authority jobs are successful; other full native legacy jobs and any later Host/APK approval remain separate.",
+    "Original project-validation warnings and renderer compatibility warnings are retained in diagnostics.json and not classified as harmless or erased."
+  ],
+  "bindings": {
+    "source_and_artifact": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/source-and-artifact-binding.json",
+      "bytes": 4521,
+      "sha256": "68717c4aa2d7c0d02cc574af065039aa888e6df3071b6ac069aa3bfdd4c8d5f2",
+      "git_blob_sha": "8c6511f594e1d8b1a0dd24846a3666b8d2c043f3"
+    },
+    "image_review": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/image-review.json",
+      "bytes": 29492,
+      "sha256": "87f42173eea7d512359dc3cae97cca329627992abc931f18672d3e884b0ca6de",
+      "git_blob_sha": "ad409529a4d0283f694cf857b0bf02acfa509d9a"
+    },
+    "diagnostics": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/diagnostics.json",
+      "bytes": 3394,
+      "sha256": "ec79ea08fd0f76d9a48c3c104bd54b5ad9e8b1ad38cb9683ae4134db1a760306",
+      "git_blob_sha": "f09c50804a657fb50ad1e4991d80d84b471e2197"
+    }
+  }
+}

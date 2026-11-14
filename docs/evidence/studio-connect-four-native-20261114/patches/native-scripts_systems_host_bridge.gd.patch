@@ -1,0 +1,11 @@
+--- a/scripts/systems/host_bridge.gd
++++ b/scripts/systems/host_bridge.gd
+@@ -37,7 +37,7 @@
+ 	options["grade"] = clampi(int(raw.get("grade", 1)), 1, 4)
+ 	options["stars"] = maxi(0, int(raw.get("stars", 0)))
+ 	options["scene"] = str(raw.get("game", raw.get("scene", "kart")))
+-	if options["scene"] not in ["kart", "jump", "puzzle", "build", "rhythm", "treasure", "learning", "cards", "games", "home"]:
++	if options["scene"] not in ["kart", "jump", "puzzle", "build", "rhythm", "treasure", "learning", "cards", "connect_four", "games", "home"]:
+ 		options["scene"] = "kart"
+ 	if (
+ 		str(raw.get("subject", "Mathematik"))

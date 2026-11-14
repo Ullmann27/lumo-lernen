@@ -1,0 +1,1436 @@
+{
+  "schema": 1,
+  "started_utc": "2026-11-14T20:59:55.868156+00:00",
+  "status": "PASS",
+  "groups": {
+    "test_english_lesson_speech": {
+      "execution": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "/tmp/lumo-speech-jvm-runner-hjz7khpi/run_contract.py",
+          "test_english_lesson_speech",
+          "/home/runner/work/lumo-lernen/lumo-lernen",
+          "/home/runner/work/lumo-lernen/lumo-lernen/host-compile-evidence/speech/test_english_lesson_speech.json"
+        ],
+        "started_utc": "2026-11-14T21:00:12.906955+00:00",
+        "completed_utc": "2026-11-14T21:00:14.476743+00:00",
+        "duration_seconds": 1.569806189000019,
+        "exit_code": 0,
+        "timed_out": false,
+        "log": "/home/runner/work/lumo-lernen/lumo-lernen/host-compile-evidence/speech/test_english_lesson_speech.log",
+        "log_binding": {
+          "bytes": 2894,
+          "sha256": "18c0fd83b87d9cca56eeb36f443a2c77b2eb94109bb8be457b280e7a073c18a3",
+          "git_blob_sha": "01464f3ee44f86824b63d44ff912832e82756317"
+        }
+      },
+      "result": {
+        "module": "test_english_lesson_speech",
+        "test_ids": [
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_after_join_before_return",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_before_first_inference",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_before_join",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_between_inferences",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_english_word_tags_and_input_bound",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_existing_german_engine_contract",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_interrupted_worker_never_starts_inference",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_join_preserves_pcm_and_exact_gap",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_language_order_identity_and_no_result_cache",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_malformed_wave_formats_refused",
+          "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_total_envelope_duration_bound"
+        ],
+        "tests_run": 11,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "successful": true,
+        "duration_seconds": 1.4783147549999853
+      }
+    },
+    "test_learning_english_speech_lifecycle": {
+      "execution": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "/tmp/lumo-speech-jvm-runner-hjz7khpi/run_contract.py",
+          "test_learning_english_speech_lifecycle",
+          "/home/runner/work/lumo-lernen/lumo-lernen",
+          "/home/runner/work/lumo-lernen/lumo-lernen/host-compile-evidence/speech/test_learning_english_speech_lifecycle.json"
+        ],
+        "started_utc": "2026-11-14T21:00:14.477060+00:00",
+        "completed_utc": "2026-11-14T21:00:29.720724+00:00",
+        "duration_seconds": 15.243682068999988,
+        "exit_code": 0,
+        "timed_out": false,
+        "log": "/home/runner/work/lumo-lernen/lumo-lernen/host-compile-evidence/speech/test_learning_english_speech_lifecycle.log",
+        "log_binding": {
+          "bytes": 2709,
+          "sha256": "0b47929914f33e86f8a2d8adbddcf9af89d140de02d857e13b5d3ece30a3ab37",
+          "git_blob_sha": "0c689ddefd62b4606f6fb65994eab88c3551af55"
+        }
+      },
+      "result": {
+        "module": "test_learning_english_speech_lifecycle",
+        "test_ids": [
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_host_descriptor_owns_word_and_language",
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_late_results_after_pause_replace_and_destroy",
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_malformed_current_lesson_refused",
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_one_player_real_position_and_pcm_gap",
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_original_seventeen_lifecycle_assertions",
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_original_twenty_three_envelope_assertions",
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_parent_guards_and_old_german_signature",
+          "test_learning_english_speech_lifecycle.EnglishLearningSpeechLifecycleTest.test_wrong_result_word_locale_identity_refused"
+        ],
+        "tests_run": 8,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "successful": true,
+        "duration_seconds": 15.185795756000005
+      }
+    }
+  },
+  "scope": "Production Java/Kotlin contracts with explicit synthetic ONNX/Android boundaries; no inference, heard audio, APK or device claim",
+  "source_before": {
+    "head": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+    "ci_source": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+    "files": [
+      {
+        "path": "scripts/run_speech_jvm_contracts.py",
+        "bytes": 19493,
+        "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+        "git_blob_sha": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+      },
+      {
+        "path": "scripts/compile_android_host.sh",
+        "bytes": 3499,
+        "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+        "git_blob_sha": "c5138523453d4e185f6af46f96e15478888075de"
+      },
+      {
+        "path": "scripts/gradle/lumo-maven-central-mirror.init.gradle",
+        "bytes": 3574,
+        "sha256": "c2e916a873e72ec168419f50bda024184c692d16c5c1d0406af50e5813685ac6",
+        "git_blob_sha": "2bc1e7655536e92a8d7ff2cccbc8026f932ea208"
+      },
+      {
+        "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+        "bytes": 18072,
+        "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+        "git_blob_sha": "93b4d63069533f160207e098ff6093c963ce3bfd"
+      },
+      {
+        "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+        "bytes": 6350,
+        "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+        "git_blob_sha": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a"
+      },
+      {
+        "path": "scripts/voice/LumoOfflineSpeechEngineProbe.java",
+        "bytes": 5482,
+        "sha256": "34e29837463ee55953c6f518c1ee02137bc2fbacf3d37dbce72517ec0c42e516",
+        "git_blob_sha": "e16b0a53e240bf4fffb536f0b698ea42560c8437"
+      },
+      {
+        "path": "tools/auto_install/LumoLearningSpeech.kt",
+        "bytes": 11318,
+        "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+        "git_blob_sha": "755077c4f1385f9b09464113aeaab3a20ec8a376"
+      },
+      {
+        "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+        "bytes": 9663,
+        "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+        "git_blob_sha": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+      },
+      {
+        "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+        "bytes": 19214,
+        "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+        "git_blob_sha": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+      },
+      {
+        "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+        "bytes": 4697,
+        "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+        "git_blob_sha": "5721274734e111e96d55762d86b3d3e830fc26e8"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+        "bytes": 4342,
+        "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+        "git_blob_sha": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+        "bytes": 4381,
+        "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+        "git_blob_sha": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+        "bytes": 9459,
+        "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+        "git_blob_sha": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+        "bytes": 5481,
+        "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+        "git_blob_sha": "40897dc0e2a48cb0c054f19820557ffa7fc43579"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+        "bytes": 40970,
+        "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+        "git_blob_sha": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+      }
+    ]
+  },
+  "actual_android_compile": {
+    "path": "host-compile-evidence/result.json",
+    "bytes": 5235,
+    "sha256": "47befadcdac615858a5195690c6e5e3434d7a2eacfbfcbd8c50efe80bb64b1b7",
+    "git_blob_sha": "8de4085eae32b64833f878f7174f4033d9b6f9a9"
+  },
+  "existing_distribution": {
+    "home": "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0",
+    "executable": "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0/bin/gradle",
+    "version": "9.1.0",
+    "distribution_url": "https://services.gradle.org/distributions/gradle-9.1.0-all.zip",
+    "wrapper_properties": {
+      "bytes": 202,
+      "sha256": "3221993eac1057198d652b7437105e2953ca4850d415eb0eb2b9625874fd059e",
+      "git_blob_sha": "2d428bfb1672c0f71fc4c7d8cf87582085618e77"
+    },
+    "libraries": {
+      "directory": "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0/lib",
+      "compiler": "kotlin-compiler-embeddable-2.2.0.jar",
+      "stdlib": "kotlin-stdlib-2.2.0.jar",
+      "jars": [
+        {
+          "name": "annotations-24.0.1.jar",
+          "bytes": 30651,
+          "sha256": "61666dbce7e42e6c85b43c04fcfb8293a21dcb55b3c80e869270ce42c01a6b35",
+          "git_blob_sha": "a4198f71157246d976850fc8949e3e41e429fcef"
+        },
+        {
+          "name": "ant-1.10.15.jar",
+          "bytes": 2304360,
+          "sha256": "763acda4a69588c9ea8817a952851ff0c2fc4bffa1d081c2565dc407f29d5794",
+          "git_blob_sha": "e06c352d8907b3469a6740287b608576e5e119c3"
+        },
+        {
+          "name": "ant-antlr-1.10.15.jar",
+          "bytes": 12273,
+          "sha256": "619e361609d446fe6ab67d1d45b8656e68644cbd7c45bbed5c2c8816408d8dd5",
+          "git_blob_sha": "6d52ae3915fc5d963b02b4c7813b5546c7414e0c"
+        },
+        {
+          "name": "ant-launcher-1.10.15.jar",
+          "bytes": 18870,
+          "sha256": "5c8551990307a032336d98ddaed549a39a689f07d4d4c6b950601bf22b3d6a1b",
+          "git_blob_sha": "62c3e471471eca153644df75db6d5c15f841f70b"
+        },
+        {
+          "name": "antlr4-runtime-4.7.2.jar",
+          "bytes": 337904,
+          "sha256": "4c518b87d4bdff8b44cd8cbc1af816e944b62a3fe5b80b781501cf1f4759bbc4",
+          "git_blob_sha": "7a27e1b200771dd5b1501f0405c99c8aea6d8a27"
+        },
+        {
+          "name": "asm-9.8.jar",
+          "bytes": 126113,
+          "sha256": "876eab6a83daecad5ca67eb9fcabb063c97b5aeb8cf1fca7a989ecde17522051",
+          "git_blob_sha": "4f0c86e08bd020033f15100627779e84506e9908"
+        },
+        {
+          "name": "asm-commons-9.8.jar",
+          "bytes": 73498,
+          "sha256": "3301a1c1cb4c59fcc5292648dac1d7c5aed4c0f067dfbe88873b8cdfe77404f4",
+          "git_blob_sha": "d6e478071139b5459e422fa9f53c6be8341e2245"
+        },
+        {
+          "name": "asm-tree-9.8.jar",
+          "bytes": 51934,
+          "sha256": "14b7880cb7c85eed101e2710432fc3ffb83275532a6a894dc4c4095d49ad59f1",
+          "git_blob_sha": "83d38631d6efb81208e96adb8e9c141753ced8f2"
+        },
+        {
+          "name": "commons-codec-1.18.0.jar",
+          "bytes": 373045,
+          "sha256": "ba005f304cef92a3dede24a38ad5ac9b8afccf0d8f75839d6c1338634cf7f6e4",
+          "git_blob_sha": "9cb58515be983a2c2e731de287674a7ad92af94b"
+        },
+        {
+          "name": "commons-compress-1.26.1.jar",
+          "bytes": 1079377,
+          "sha256": "27bb5d40f37c3bb7205b4a0540247df057715e9f6cbbd97d626ab8b50318bb04",
+          "git_blob_sha": "9a99788705565f3638da1bb7b0c27b44d18fce63"
+        },
+        {
+          "name": "commons-io-2.15.1.jar",
+          "bytes": 501218,
+          "sha256": "a58af12ee1b68cfd2ebb0c27caef164f084381a00ec81a48cc275fd7ea54e154",
+          "git_blob_sha": "d53be1f140014dfd53099c57517f60bd7583aeaf"
+        },
+        {
+          "name": "commons-lang3-3.17.0.jar",
+          "bytes": 673587,
+          "sha256": "6ee731df5c8e5a2976a1ca023b6bb320ea8d3539fbe64c8a1d5cb765127c33b4",
+          "git_blob_sha": "f6486b4d7039f22ccf160c8d24ebac26f05bf0de"
+        },
+        {
+          "name": "error_prone_annotations-2.36.0.jar",
+          "bytes": 19401,
+          "sha256": "77440e270b0bc9a249903c5a076c36a722c4886ca4f42675f2903a1c53ed61a5",
+          "git_blob_sha": "740268b581ec4d3f4326f3f61bf8a53df0f8b99f"
+        },
+        {
+          "name": "failureaccess-1.0.3.jar",
+          "bytes": 10763,
+          "sha256": "cbfc3906b19b8f55dd7cfd6dfe0aa4532e834250d7f080bd8d211a3e246b59cb",
+          "git_blob_sha": "2834ba1777ff7eab44346adce22e1c1c7736b8c1"
+        },
+        {
+          "name": "fastutil-8.5.2-min.jar",
+          "bytes": 1947492,
+          "sha256": "1f74261eacecf4da0f454ceb05ed85131395e959aea1a62e65db4b46bd69d524",
+          "git_blob_sha": "44d3a91fb5b8915e7a44fb86cc618caad2ec4e5f"
+        },
+        {
+          "name": "gradle-api-metadata-9.1.0.jar",
+          "bytes": 858,
+          "sha256": "7191e5f6ac19d1e33f4397fcfee69448688caae4e346d44aca9d5b7f83d3003e",
+          "git_blob_sha": "d41f1baac385cd2d423d5e895dd17b8511cdc8e1"
+        },
+        {
+          "name": "gradle-base-asm-9.1.0.jar",
+          "bytes": 15674,
+          "sha256": "7992f4e2f3efc95909c00f440e4e79b2bf6bfe9e63e4e79be7cf21ea660aa557",
+          "git_blob_sha": "304114c8cb46a20594edc7577cbacd6c4e04a54d"
+        },
+        {
+          "name": "gradle-base-diagnostics-9.1.0.jar",
+          "bytes": 109155,
+          "sha256": "2181e127e4829e22ebbedf8f67163f3e44fb53fc2af86f8a87d0613ae78bf6d2",
+          "git_blob_sha": "136bab8a90089155d9b37c55a73bd24e5988ccd6"
+        },
+        {
+          "name": "gradle-base-services-9.1.0.jar",
+          "bytes": 276922,
+          "sha256": "6a096fb26743dc7c5b4a46f97ab821b135396b5425c32b5f2d169d9975e7cc93",
+          "git_blob_sha": "f3703e1c4f6436bfaf609a57202bd473e51f1ad1"
+        },
+        {
+          "name": "gradle-base-services-groovy-9.1.0.jar",
+          "bytes": 29477,
+          "sha256": "9dd70c8dd86021a20d0e7c79e4893ca6d44c38222d3fd02218b337251438bb46",
+          "git_blob_sha": "8b87128b9165a2cf0c36cb99536f56f6c9fdce7f"
+        },
+        {
+          "name": "gradle-build-cache-9.1.0.jar",
+          "bytes": 64478,
+          "sha256": "bdb8591d04dabb86709b33fbb09d9deacdddff0f89c4ce9ef0bcea71566e8faa",
+          "git_blob_sha": "1b1ae222dad06f973d66c457eaf4f240680ba266"
+        },
+        {
+          "name": "gradle-build-cache-base-9.1.0.jar",
+          "bytes": 7449,
+          "sha256": "10e4dc1215a642cd29698dcbec94dfb45f48ffa7c91bd5e775216ecc8688f049",
+          "git_blob_sha": "c696cb52163300876b7b9c6f50ed14209e8ed0f1"
+        },
+        {
+          "name": "gradle-build-cache-local-9.1.0.jar",
+          "bytes": 7462,
+          "sha256": "5e1e32d8c41bdf0a7439d246bfc008e9894376c9c988b2796275f8aac14f5bcf",
+          "git_blob_sha": "7917d9f809615f15b995d75be78c2ae6355513db"
+        },
+        {
+          "name": "gradle-build-cache-packaging-9.1.0.jar",
+          "bytes": 23563,
+          "sha256": "4c018ecc0053f50e79912abcf2948a78194fea90593580dee2c5bdc2a6bf48ae",
+          "git_blob_sha": "aff157d153a176b04e9d22c388194362b4322156"
+        },
+        {
+          "name": "gradle-build-cache-spi-9.1.0.jar",
+          "bytes": 3220,
+          "sha256": "c049d8993000d7633fbd6d517e914efeed8c05f80f51e58e9246fb039f754b99",
+          "git_blob_sha": "e23ca36c645364e7c7e219c95d1502c7ce00c052"
+        },
+        {
+          "name": "gradle-build-configuration-9.1.0.jar",
+          "bytes": 20212,
+          "sha256": "6d1eb7b1ba08585e0f53ea5691a5f65292c7ac28b683d0c6399d6cdcf5bfd890",
+          "git_blob_sha": "c13e3d6ccaf678c15cc7d5f979c7cd1cd07a13b3"
+        },
+        {
+          "name": "gradle-build-events-9.1.0.jar",
+          "bytes": 81649,
+          "sha256": "7114097c7100b3a5417094ed15e3a3466e311b3a9da9c3f0f50d2bea179929cb",
+          "git_blob_sha": "d212b0fea0ca1b47bae346fe7e6876b056ae6a9c"
+        },
+        {
+          "name": "gradle-build-init-specs-9.1.0.jar",
+          "bytes": 5741,
+          "sha256": "6cc5aa0a1402d693586cc91684c0c052bd8d658c46683a55aa3286791a7bea1d",
+          "git_blob_sha": "6ceb16045f82cd00c2ffcef6d9e19687857455e3"
+        },
+        {
+          "name": "gradle-build-init-specs-api-9.1.0.jar",
+          "bytes": 3740,
+          "sha256": "157684d9b200eead27569302754cf0cbcac3812d3701ab21697ea1dabdacd39b",
+          "git_blob_sha": "ef964b320560bc265048bd49f580f683afb13c51"
+        },
+        {
+          "name": "gradle-build-operations-9.1.0.jar",
+          "bytes": 48714,
+          "sha256": "91fcec4cb489b08db9ed11b4c909ea74a6e51d2b607ef0d17d6d86ba2eff684c",
+          "git_blob_sha": "95af9e7b52a15d438a7b7664e4fc9c305abb0f32"
+        },
+        {
+          "name": "gradle-build-operations-trace-9.1.0.jar",
+          "bytes": 31831,
+          "sha256": "9dab35e1b70e2df47add1e66dec94e5e33acadb4544bd3beed86ba618898b554",
+          "git_blob_sha": "ab415a2aa2eb1f90bceca9fe289e3395a3ffec55"
+        },
+        {
+          "name": "gradle-build-option-9.1.0.jar",
+          "bytes": 33955,
+          "sha256": "56b3dcdd9a08f8b5e4b0dfc5541e8b79bf42b661bc753d3ecdede6593949a069",
+          "git_blob_sha": "760d745a85f9c124c4a95438fb393f261e17544c"
+        },
+        {
+          "name": "gradle-build-process-services-9.1.0.jar",
+          "bytes": 29216,
+          "sha256": "cbd7aee1907708adf80247158bec093c73c7ffcfb978ebc136e526241d4fe51f",
+          "git_blob_sha": "72c16679d33706c59aa681c9fc0e3334f66cd028"
+        },
+        {
+          "name": "gradle-build-state-9.1.0.jar",
+          "bytes": 21944,
+          "sha256": "dcf4783e57f127d7d966528d6518822e0990c7b9bd96a4bd2697b2298eee4a5c",
+          "git_blob_sha": "4e19c555cd8911d6e81e7d84ce2655573323a8bd"
+        },
+        {
+          "name": "gradle-classloaders-9.1.0.jar",
+          "bytes": 82972,
+          "sha256": "fe2bcba3b30cbe2477d7fb4124391b8dc1a85a9076c9a29410cad5536676e19a",
+          "git_blob_sha": "58e824698fac72ea6c1ca6d46678a31f4606f063"
+        },
+        {
+          "name": "gradle-cli-9.1.0.jar",
+          "bytes": 28433,
+          "sha256": "cdd26fa6299cf3626d67e53ad4f0d736d89c885224f318c9d8192be6ec616185",
+          "git_blob_sha": "c214053da81cbc71dceb5b72338a7a68ebbf16d0"
+        },
+        {
+          "name": "gradle-client-services-9.1.0.jar",
+          "bytes": 114491,
+          "sha256": "27485b6d2557352dbeec7d0c5233116eda4adb33b210f2509b129698b5a1bdef",
+          "git_blob_sha": "051688acff9c07695fb22f3e03200089b8312432"
+        },
+        {
+          "name": "gradle-concurrent-9.1.0.jar",
+          "bytes": 25507,
+          "sha256": "468ba3a59affd6dd9ef99c22959a634f50ab34d6c77964f68418093e0d325807",
+          "git_blob_sha": "115b63469245543c35db787d71e5b59ee69d5c0b"
+        },
+        {
+          "name": "gradle-configuration-problems-base-9.1.0.jar",
+          "bytes": 167103,
+          "sha256": "39cef98c328ea9ded26360ebfbcbdfd698ccd59700c5bdeb50372ab3d4deda36",
+          "git_blob_sha": "dcb3d3d18f9a4077233f867b1360f8269bdc9130"
+        },
+        {
+          "name": "gradle-core-9.1.0.jar",
+          "bytes": 3068269,
+          "sha256": "f771a3bb64df6edda37f6b70af3a9169ae364d7788fc6fca7b20b6cba042c330",
+          "git_blob_sha": "91b133cfbe2225269eed9d45a4809e5f0d1e323c"
+        },
+        {
+          "name": "gradle-core-api-9.1.0.jar",
+          "bytes": 508779,
+          "sha256": "ff3ca2cec231170be92a7650befd721ba9e6644fb65e22ad66e5aa0598b74960",
+          "git_blob_sha": "4199022e1c25f9b79d5a2ee945ba7f5d090d1ca4"
+        },
+        {
+          "name": "gradle-core-kotlin-extensions-9.1.0.jar",
+          "bytes": 15621,
+          "sha256": "d4612cdd9c1656036a11b0e2998db845346b2c40b19eb0d7d1458d0dc8494143",
+          "git_blob_sha": "25d0cb8aa94170e34a43fea2e561b402af0c5b19"
+        },
+        {
+          "name": "gradle-daemon-main-9.1.0.jar",
+          "bytes": 1948,
+          "sha256": "05d3301730674a8e22f78f158dd77583e06ab32dcaa0a5e41ae85b778fca1302",
+          "git_blob_sha": "d9129bf7b9d8812fee9c673ff9bba50a3fbab470"
+        },
+        {
+          "name": "gradle-daemon-protocol-9.1.0.jar",
+          "bytes": 99434,
+          "sha256": "6d39c09fe0c975345dbc6ac2140c2ccb28f543929fc1b3b3803bc131e4d45b49",
+          "git_blob_sha": "3b15dcf7dceddae0c1b0cbfee1d389525592c098"
+        },
+        {
+          "name": "gradle-daemon-server-9.1.0.jar",
+          "bytes": 7333,
+          "sha256": "adc389f5cdbfeaae45593ed42a6e1154ef752aea309e2b15ad7a1c40a871d5ae",
+          "git_blob_sha": "59ccbfd24a11c69fac328e5420c32bb98970644b"
+        },
+        {
+          "name": "gradle-daemon-services-9.1.0.jar",
+          "bytes": 35452,
+          "sha256": "08859c8a89c7ad18669fd5fd5382ed0f4393dc95ecbdff80a6d4ea90442185d8",
+          "git_blob_sha": "703359286be106cd4747465a6a93cc4c6f68d5ee"
+        },
+        {
+          "name": "gradle-declarative-dsl-api-9.1.0.jar",
+          "bytes": 5491,
+          "sha256": "ccb693bf6df117a60f4571ea184e0f58c9fe731cc395c13d195ed9f065967a23",
+          "git_blob_sha": "cd364e0115fc6aceee2f74af92b6049f6399fd88"
+        },
+        {
+          "name": "gradle-declarative-dsl-core-9.1.0.jar",
+          "bytes": 1519882,
+          "sha256": "61e0023e2248c1495de8228f7a88e44ab93c375221806280bb4d1b7284b73ede",
+          "git_blob_sha": "89484c93c0186abb42f5522d169c68b7499f5881"
+        },
+        {
+          "name": "gradle-declarative-dsl-evaluator-9.1.0.jar",
+          "bytes": 143479,
+          "sha256": "05196e75d90bfc30d14620b80c33d72abeceece1ac132d57677262edff0592c6",
+          "git_blob_sha": "399853c0954a78867a80100835ee7790b080bf52"
+        },
+        {
+          "name": "gradle-declarative-dsl-internal-utils-9.1.0.jar",
+          "bytes": 21764,
+          "sha256": "a4c7bf780b309d5330d8d703b41a9eed81d8ee68d5065fe34e32bad6f25620fb",
+          "git_blob_sha": "dbebc5817dcfdd1c4f7dae6d51881c51cd4973a2"
+        },
+        {
+          "name": "gradle-declarative-dsl-provider-9.1.0.jar",
+          "bytes": 285616,
+          "sha256": "a47f985f04e87495f26c83b9f3a9207b11903f47be4331c3d00b01778a2b629a",
+          "git_blob_sha": "a3744ef473d70580ab3b4bfb542f49b76fee7119"
+        },
+        {
+          "name": "gradle-declarative-dsl-tooling-models-9.1.0.jar",
+          "bytes": 82341,
+          "sha256": "2b4200867d84497938c88684cbfe5932eed13353dbd3b6cd140b92e5c71bf4e9",
+          "git_blob_sha": "0de37d769645afe4d1fbf86ce7d28f96012b3fe6"
+        },
+        {
+          "name": "gradle-enterprise-logging-9.1.0.jar",
+          "bytes": 5117,
+          "sha256": "d1a416734045318319f78049a90c4adbfe3d848eab3b028ec1779f66db19c9e2",
+          "git_blob_sha": "1ab60f9778c58e75b7a6439f9800e46356f29345"
+        },
+        {
+          "name": "gradle-enterprise-operations-9.1.0.jar",
+          "bytes": 109943,
+          "sha256": "c059d48c7cc88ad8ce5bbf3db3ffa7a6efe7840e2e1f59bfb93dbe11431874ec",
+          "git_blob_sha": "b72240501fadb75eca7f8bd74e16f0c2160d1df5"
+        },
+        {
+          "name": "gradle-enterprise-workers-9.1.0.jar",
+          "bytes": 4738,
+          "sha256": "fbdc08e96867198cf31cde752e80796125a475b2c7b8089ace33f065f9dc4129",
+          "git_blob_sha": "9df0f644fc7656e03351dc5d3f858f40f331bfb3"
+        },
+        {
+          "name": "gradle-execution-9.1.0.jar",
+          "bytes": 414409,
+          "sha256": "78c3333d2f33013d297e24ac8c5fcc6c0fc61c9fa2dcc8b5cf5b1a304f65bdc5",
+          "git_blob_sha": "5d8318b40a13d6414fd4e403e3bf7ef0dd697ffa"
+        },
+        {
+          "name": "gradle-file-collections-9.1.0.jar",
+          "bytes": 203207,
+          "sha256": "034864f8a60f7dc579ae3a87d03625c348d020b5452a61d87bc2440d36c12b2f",
+          "git_blob_sha": "47df03851de8267acc66be6d595f87aebcd6c5e1"
+        },
+        {
+          "name": "gradle-file-operations-9.1.0.jar",
+          "bytes": 168366,
+          "sha256": "91564b0580623a5ea2eb425f4052052bea4b04112900a336e8279261c76d7257",
+          "git_blob_sha": "b176de08b3b4368268b46444014bcc190491fedc"
+        },
+        {
+          "name": "gradle-file-temp-9.1.0.jar",
+          "bytes": 5510,
+          "sha256": "6d6dc5e971a85974057cc58c44563232f0a7c3cb64f68c2cb776fd95a0b908fb",
+          "git_blob_sha": "f6d2b8a6af59833927192d25f241ee2211c9ec5a"
+        },
+        {
+          "name": "gradle-file-watching-9.1.0.jar",
+          "bytes": 110398,
+          "sha256": "23e125c46591ad88c64629c569182ca5603557865840a9b8e30c2e6a23785f76",
+          "git_blob_sha": "b1f99cdf90a067129ba580320a6c4430194aa810"
+        },
+        {
+          "name": "gradle-fileevents-0.2.8.jar",
+          "bytes": 1429694,
+          "sha256": "3c3bf574fb524f083d5f402e0765cf10022e1b5b8909668ef8cac55f10dd1fef",
+          "git_blob_sha": "7bccc478be9873490cc753b64b3a39a09dc5e410"
+        },
+        {
+          "name": "gradle-files-9.1.0.jar",
+          "bytes": 83602,
+          "sha256": "ece9ce3f470745144768a430b900b272f656bf09b231875d25b05dd442422ba0",
+          "git_blob_sha": "8eddbcee5560568650a7eb35868860f4395b45ac"
+        },
+        {
+          "name": "gradle-functional-9.1.0.jar",
+          "bytes": 50505,
+          "sha256": "0180e956224f70ca6e1de3f0a072d1c316100d929ce43b3abddd9bf2c137b88a",
+          "git_blob_sha": "0937aeb53a146a2d55ba83b85010c984568ac0c1"
+        },
+        {
+          "name": "gradle-gradle-cli-9.1.0.jar",
+          "bytes": 37919,
+          "sha256": "13db052df73aa8e18babdb941916f0d1bc932162006657b7a20321b8960066c8",
+          "git_blob_sha": "9bb27a65fca41099c5fb30d8091ed8efb10dd1c9"
+        },
+        {
+          "name": "gradle-gradle-cli-main-9.1.0.jar",
+          "bytes": 1970,
+          "sha256": "3529706ea8a3c02993aeae139d45836847acf8c220ec4eac763cca657f415bf6",
+          "git_blob_sha": "aac53554b02ad1b9a7f6df0d91a7805ae6bc0e62"
+        },
+        {
+          "name": "gradle-groovy-loader-9.1.0.jar",
+          "bytes": 9364,
+          "sha256": "6a2eaf0b6a2409227877186537d1462d61b258775dc3abe90153e3984c84bd90",
+          "git_blob_sha": "ac5e76d3387dfd7658489cc463d44053becda67f"
+        },
+        {
+          "name": "gradle-hashing-9.1.0.jar",
+          "bytes": 25378,
+          "sha256": "faa2ebca79d4e8c5c167c40f78d397eb437d5cbddcb49a2db00a64f020517b47",
+          "git_blob_sha": "b679b63e92873c388c54b540cf742031c44d83f9"
+        },
+        {
+          "name": "gradle-input-tracking-9.1.0.jar",
+          "bytes": 23794,
+          "sha256": "71f66531b65c08066dd168817505cab141c985bb7f80e0730afcd5e0f3e2be61",
+          "git_blob_sha": "6242f124ea19eb6ac54bdc4672a8baee9967648f"
+        },
+        {
+          "name": "gradle-installation-beacon-9.1.0.jar",
+          "bytes": 1418,
+          "sha256": "ccec7fd62ec297982872f404de48058a7a0254ce00a5b764f8c8bab012696ee0",
+          "git_blob_sha": "194ad0aae88716446b29778229aff7020df2cf09"
+        },
+        {
+          "name": "gradle-instrumentation-agent-services-9.1.0.jar",
+          "bytes": 8525,
+          "sha256": "d3fc3b9a95cf6cc8e00046186e2a2c1d3846940731b9a3505422feebefddae77",
+          "git_blob_sha": "b5ed996e777888f08b5372b9866f3872aa502d8c"
+        },
+        {
+          "name": "gradle-instrumentation-reporting-9.1.0.jar",
+          "bytes": 12218,
+          "sha256": "2d43c527140e37f897fd3f510f84b26b974190aba1fa3202d78f2698da26a668",
+          "git_blob_sha": "5c2014f9739335575b6670a82abc753a92bd389a"
+        },
+        {
+          "name": "gradle-internal-instrumentation-api-9.1.0.jar",
+          "bytes": 61494,
+          "sha256": "859a0c5d7fa06c611a5442a6e3c077cb36d1eb48fe076588ecf671011b28bea7",
+          "git_blob_sha": "e5ace00c0ea9e387ade7734c120dec35af556513"
+        },
+        {
+          "name": "gradle-io-9.1.0.jar",
+          "bytes": 17704,
+          "sha256": "39413ff39c765dca4c4a615f75ecd26b15a3a9c13c7a91fc385edab1cdc049bb",
+          "git_blob_sha": "d340aa4d421d3efe35118854f7ca694ff6f701b1"
+        },
+        {
+          "name": "gradle-java-api-extractor-9.1.0.jar",
+          "bytes": 34776,
+          "sha256": "ededf190950c51302ded4006a8ff871f65d69cdbb8e447e3257836c9706eb8e9",
+          "git_blob_sha": "d073e2887277891dfecbb04c34f2e956d9641209"
+        },
+        {
+          "name": "gradle-jvm-services-9.1.0.jar",
+          "bytes": 118740,
+          "sha256": "46ca7aa8b4882155ab8a2a21bdcf3a006ceb85bfbc555b7ec89e939ba0dc9305",
+          "git_blob_sha": "44a317287d89eab25c9dd8bad4fa949e75ca4699"
+        },
+        {
+          "name": "gradle-kotlin-dsl-9.1.0.jar",
+          "bytes": 2338183,
+          "sha256": "ffc4de5f927b068f62481fec6bf5727bd0bdc59f6e9064aafd7140d2f47376f7",
+          "git_blob_sha": "d7f6e244c96f7160160ebd0f5f41644c8fba37f7"
+        },
+        {
+          "name": "gradle-kotlin-dsl-extensions-9.1.0.jar",
+          "bytes": 153024,
+          "sha256": "bb3ad7a4f150f25d37f2589053d86c871787d4ed13d8150f08e55c8b839e11e4",
+          "git_blob_sha": "85c6726340a08c8de2b1c8c151895e052f27690c"
+        },
+        {
+          "name": "gradle-kotlin-dsl-shared-runtime-9.1.0.jar",
+          "bytes": 108561,
+          "sha256": "cf2b41df8c66f7e9dcdf744a2ea35ecd6908cd00254b95d092b9d6340355dc3a",
+          "git_blob_sha": "4a1c56b31d8371d7782b59b248f118f3cf23575d"
+        },
+        {
+          "name": "gradle-kotlin-dsl-tooling-models-9.1.0.jar",
+          "bytes": 3983,
+          "sha256": "5391c6447f2159922b8ae4606d6f379546d1162881d0a7b63ef27d719a0e7913",
+          "git_blob_sha": "13488cd1937a6c457a6c35a2850dae409c4e2273"
+        },
+        {
+          "name": "gradle-launcher-9.1.0.jar",
+          "bytes": 327918,
+          "sha256": "45c2a5c2393f48677b9013b04556af1efff0cced81c205d19438f826a0586a06",
+          "git_blob_sha": "cb1cdd2ca2f1ae726be3eb5511f9da2cc710aae6"
+        },
+        {
+          "name": "gradle-logging-9.1.0.jar",
+          "bytes": 353955,
+          "sha256": "835424a47ce508416f729504d7c6074f2e7499316ca8d3b2909ac45fb03a8437",
+          "git_blob_sha": "a6e7c316bfcd2228f52622cf7a709136a2bfab84"
+        },
+        {
+          "name": "gradle-logging-api-9.1.0.jar",
+          "bytes": 7681,
+          "sha256": "eed289a442e70c91b6e932a6347607a1e5a5016864a4b3aba12d097746d81980",
+          "git_blob_sha": "761c4478c978f9a410a6ff5471480b10d65b5a99"
+        },
+        {
+          "name": "gradle-messaging-9.1.0.jar",
+          "bytes": 155709,
+          "sha256": "4e0de6d2bc0057d2118a843643652232451747d301c082dafde26d639b046d82",
+          "git_blob_sha": "b1dbfa70ef5020621ce006aa819d8921e7107b5b"
+        },
+        {
+          "name": "gradle-model-core-9.1.0.jar",
+          "bytes": 1339812,
+          "sha256": "07172d8804cca12b73dc27406ae7a130bcf5c9abdd3711027e349007e4ed18b6",
+          "git_blob_sha": "994fd800b47b12fa13291267f6441c53f0ec7be6"
+        },
+        {
+          "name": "gradle-model-groovy-9.1.0.jar",
+          "bytes": 34479,
+          "sha256": "88e89ca2de4e4dc2109dc20ba4b347af176b661f3a36ca2cf249c2f9a89a85fc",
+          "git_blob_sha": "d2a0e0ab811446f3016cb309e6c3bbd848b220e5"
+        },
+        {
+          "name": "gradle-model-reflect-9.1.0.jar",
+          "bytes": 96537,
+          "sha256": "4e9dc7518f7c022a9bc144f31427408b530af34d739fde2fcbdae155881ec7a8",
+          "git_blob_sha": "871d12561b2db859130825a32982bc8fdb09b03a"
+        },
+        {
+          "name": "gradle-native-9.1.0.jar",
+          "bytes": 85519,
+          "sha256": "1e16ffbbc1ab9fd88f1bb579afd3f0506b20e41f1770663b0db74c9342a90e25",
+          "git_blob_sha": "0f6d86606e31a00b362d097ca001744c54b87dc3"
+        },
+        {
+          "name": "gradle-normalization-java-9.1.0.jar",
+          "bytes": 64384,
+          "sha256": "70c9108300ea4a6506186a41e234ef4737e6d47ad14adfdfec66462b15507b11",
+          "git_blob_sha": "af86d42a5d7343659242f281e5301f3efb627bb1"
+        },
+        {
+          "name": "gradle-persistent-cache-9.1.0.jar",
+          "bytes": 262029,
+          "sha256": "c39effd52ffb76c8ffeb8d01c7bf1fc0915e6f60a4f41324c900a2f9c0377f6e",
+          "git_blob_sha": "4f641409925ec4184cca8eca17791d81ede21138"
+        },
+        {
+          "name": "gradle-problems-9.1.0.jar",
+          "bytes": 66819,
+          "sha256": "fd192250ed75d28675332731b17624601b804f49ec9ba7c1ea2576f0d340a7bc",
+          "git_blob_sha": "01be5540bc9e7557ca7b040cc4f9d99f5b37e5dc"
+        },
+        {
+          "name": "gradle-problems-api-9.1.0.jar",
+          "bytes": 113211,
+          "sha256": "76db89e864f42be54d4302ad9dd22572326fba6bbb14768cd3b6c387cfd6ee70",
+          "git_blob_sha": "7972ead01e07b83a9d09e4e04c94af61672cabde"
+        },
+        {
+          "name": "gradle-problems-rendering-9.1.0.jar",
+          "bytes": 4149,
+          "sha256": "da60c65235cc5fded0175315f41e52a26b9115ff733e08124ffc925ac6383461",
+          "git_blob_sha": "11f19ea54a0ebf30a465dcaf1c8bc6769ed2f8cb"
+        },
+        {
+          "name": "gradle-process-memory-services-9.1.0.jar",
+          "bytes": 34985,
+          "sha256": "208894ed81af6e710fd2e436a39c60d0dcceee2395e676effca1561ebd64e541",
+          "git_blob_sha": "8913132bcc25a6dcc812f1fcb4bb4f9619c37816"
+        },
+        {
+          "name": "gradle-process-services-9.1.0.jar",
+          "bytes": 7298,
+          "sha256": "eab0f611e478256ea90a9f47d3bef64d2bb81821d93dcaf287a04bd041fe932d",
+          "git_blob_sha": "d22439e3de6bc5fb5209894ec9813b0b094883b7"
+        },
+        {
+          "name": "gradle-report-rendering-9.1.0.jar",
+          "bytes": 19947,
+          "sha256": "e20e141181876231ca79e446ac26884bfafe2bb1a1fd2002d8238d7e111ba1ec",
+          "git_blob_sha": "585b6bd09023bc37f9eea988dec89ef4a401c406"
+        },
+        {
+          "name": "gradle-request-handler-worker-9.1.0.jar",
+          "bytes": 14695,
+          "sha256": "fe839b6a605dc25e12e896e185e3c1c24c4d11bb46b3840292954e998b6dd081",
+          "git_blob_sha": "055bd9d2f2a25424edfd7ffb36560f0240275194"
+        },
+        {
+          "name": "gradle-resources-9.1.0.jar",
+          "bytes": 88298,
+          "sha256": "243522dbef9c5167fe19b0e8154f8c8a644155f4e236fc74a78611bf0a7b2da1",
+          "git_blob_sha": "8d7c976b21b0c3c3f27ec410ceb01443d488f38b"
+        },
+        {
+          "name": "gradle-resources-http-9.1.0.jar",
+          "bytes": 77808,
+          "sha256": "afa13f0d37fb621ede18d43de188da9c4db540752474533fd73915ac12e33b7d",
+          "git_blob_sha": "1715bbc4df5086fba8780b75e9a2365b645e3a1c"
+        },
+        {
+          "name": "gradle-runtime-api-info-9.1.0.jar",
+          "bytes": 32052,
+          "sha256": "6459208ec707060a62cc396a67a2c25a86452c6c5a1eed26d66f4a3d7ce1e5a4",
+          "git_blob_sha": "a2f24ac2620cfad0175fbfff8d2fb04ce49af20e"
+        },
+        {
+          "name": "gradle-scoped-persistent-cache-9.1.0.jar",
+          "bytes": 8629,
+          "sha256": "d1333b2c6c1f80607bf653a64d7b6ef5a4a7f0f405b9bb2dbfe89b8e83ff12a5",
+          "git_blob_sha": "9f17f310a935222ad7623c4d7b7b10d95544217f"
+        },
+        {
+          "name": "gradle-serialization-9.1.0.jar",
+          "bytes": 140371,
+          "sha256": "253ab0b80b43899936d3a78729cf57570521c8fe3770e6d53108d18565d64b38",
+          "git_blob_sha": "22ace16ca17f49878d4f797bce88da9f1c1053e5"
+        },
+        {
+          "name": "gradle-service-lookup-9.1.0.jar",
+          "bytes": 4600,
+          "sha256": "85f02f66dbf597382c3a350115e6dbb60c1e60fcebafebd217c31b5d3837e2b5",
+          "git_blob_sha": "858c9de897bbf66486ee6cab3e67f9c427a3173b"
+        },
+        {
+          "name": "gradle-service-provider-9.1.0.jar",
+          "bytes": 7121,
+          "sha256": "450d1036ffedb139b23658d8a93bf6c8cbca19c81153d38166cc21c91c259b7e",
+          "git_blob_sha": "6ce0d8300b041b78b97f1772550a8c6f3ce0387c"
+        },
+        {
+          "name": "gradle-service-registry-builder-9.1.0.jar",
+          "bytes": 3216,
+          "sha256": "0c6c6323e9225a4268d18a0d6388e567b31719a7857fb39863302b339e1e254a",
+          "git_blob_sha": "93fb82b480710aab27ce05b8fbb99306faa7d978"
+        },
+        {
+          "name": "gradle-service-registry-impl-9.1.0.jar",
+          "bytes": 69105,
+          "sha256": "cedc09007b7b5a6450ae514b64ead89d76bfed9dc76df4503c030731adc5da33",
+          "git_blob_sha": "8e8e2754bda69fbae1c8a94e4b0f4d2dbe82b231"
+        },
+        {
+          "name": "gradle-snapshots-9.1.0.jar",
+          "bytes": 193644,
+          "sha256": "24ac2887fafd0534c503c402b307e5ea6bd23dd91b9dbadfda5cc92694eb7b6f",
+          "git_blob_sha": "47aaa969989c4d0be153b9c98c7cb18a60283f0b"
+        },
+        {
+          "name": "gradle-stdlib-java-extensions-9.1.0.jar",
+          "bytes": 52653,
+          "sha256": "c9a08269e1b002677ec9707289f013d228e625bacdc8308dbe2ceb08d22a5496",
+          "git_blob_sha": "43031187d4db1980d9d29411d61d041b26904b9f"
+        },
+        {
+          "name": "gradle-stdlib-kotlin-extensions-9.1.0.jar",
+          "bytes": 15297,
+          "sha256": "a63521d2116166b1478e508ff9e259e7e5839e46cac9d5340f81b9e3facde79d",
+          "git_blob_sha": "cb26ee8f44ae8667ccd9863aa2cb43c222f32627"
+        },
+        {
+          "name": "gradle-time-9.1.0.jar",
+          "bytes": 14527,
+          "sha256": "8a1b9f4f70e520bf75fc9abb5db391aaf3d070242e42a2acdb359ce7658978ec",
+          "git_blob_sha": "0298a0211360630ee99fc854dcf2ccc2bd09fd24"
+        },
+        {
+          "name": "gradle-toolchains-jvm-shared-9.1.0.jar",
+          "bytes": 55530,
+          "sha256": "3e5373cad99b2740f8e299e913076914b317c35b4e4dcbb1ef2f1a28f6390ed1",
+          "git_blob_sha": "319ab042e834d857f5374489bc9005e09ddac6a4"
+        },
+        {
+          "name": "gradle-tooling-api-9.1.0.jar",
+          "bytes": 525963,
+          "sha256": "089c01c4a6aae60bf527dd8040d1be70cc46af13c41465c3cbd40b2576d80757",
+          "git_blob_sha": "a447dbe5806d4216ea8dd24bcb142091146e9bc7"
+        },
+        {
+          "name": "gradle-tooling-api-provider-9.1.0.jar",
+          "bytes": 7700,
+          "sha256": "93e4b05c766e7ff8f2210003a4b85076eac037a79ce2003363bbf951766496b2",
+          "git_blob_sha": "977d87f48d0047df3528096dc8c3a072d37809a2"
+        },
+        {
+          "name": "gradle-versioned-cache-9.1.0.jar",
+          "bytes": 13202,
+          "sha256": "71b7153d7440b9ee40b9ff00fcbdf41a3ad53d0e9e13c36dae2a41ad9fc61d9c",
+          "git_blob_sha": "a15da2b74e6584571c7f1be2dc2bf1660af5bfaf"
+        },
+        {
+          "name": "gradle-worker-main-9.1.0.jar",
+          "bytes": 32776,
+          "sha256": "e13c49177fb327702a99dd31741f171b07dbd7f3d21e0930b290af1b052d2724",
+          "git_blob_sha": "8346b76ba187424a53fc97300cdc93a9b0b00ca0"
+        },
+        {
+          "name": "gradle-wrapper-shared-9.1.0.jar",
+          "bytes": 35201,
+          "sha256": "8d03da468fd4b4000c4211038d7cbfbf3f32d64d7f185f706b12596ceae261a4",
+          "git_blob_sha": "781332f8bc39029232344267ae0629688196eaee"
+        },
+        {
+          "name": "groovy-4.0.28.jar",
+          "bytes": 7712577,
+          "sha256": "d77164a44ab994837e61eecead64721bdb1794fa2bc6704ac6fe70cd32ef9dd3",
+          "git_blob_sha": "dcc9573aa1e5e4b394a7fbd3ec49bcb0a12ed40f"
+        },
+        {
+          "name": "groovy-ant-4.0.28.jar",
+          "bytes": 72053,
+          "sha256": "cb2ce5da6c10b6e3d66a6b0beb6a90819ccb4e535f43c484ef8b97d6370f03ee",
+          "git_blob_sha": "7b0828987a85e8617c397a2bfba089ae9c0178fc"
+        },
+        {
+          "name": "groovy-astbuilder-4.0.28.jar",
+          "bytes": 5908,
+          "sha256": "5d032c25103fa2f93e3bcfe53e2fb2e696f314039b6423c38ba2fc24f851601d",
+          "git_blob_sha": "433153d615ee03f71e402dddd85fa23679ebccfc"
+        },
+        {
+          "name": "groovy-datetime-4.0.28.jar",
+          "bytes": 15816,
+          "sha256": "44102534b10fdea98570c4657084f084b8ea988b4cde188140f00fc06b25dcd7",
+          "git_blob_sha": "ca89956ac57c9bc11fe198d120168ae387b0bfe2"
+        },
+        {
+          "name": "groovy-dateutil-4.0.28.jar",
+          "bytes": 7982,
+          "sha256": "ed61455aabbc702c742507b8efda187c2f875bf11030cf6521f00ac4ab40d3e1",
+          "git_blob_sha": "40573cd503e69fb50db86c6db621e3446272c2b2"
+        },
+        {
+          "name": "groovy-docgenerator-4.0.28.jar",
+          "bytes": 115244,
+          "sha256": "3ae9bb283b80563565e57ca94ceb5523b2005a8d2d6281fc4f3490cadbbf8665",
+          "git_blob_sha": "d7191ff6261cd582bcbf2aca316dad63069798f2"
+        },
+        {
+          "name": "groovy-groovydoc-4.0.28.jar",
+          "bytes": 147662,
+          "sha256": "b8a048b29c56526338bfe6e83863c12503828367c0a96e8e9a1d3a9d40f644df",
+          "git_blob_sha": "340a02a4e18b367698d87eeb677d16e2d40e6683"
+        },
+        {
+          "name": "groovy-json-4.0.28.jar",
+          "bytes": 131788,
+          "sha256": "edec45c85ff811f9a9baacdf5b020e34593a0055ac63c92fbf1233c3b2cc9cc6",
+          "git_blob_sha": "3c3c100aeac92e9845b86d08246ce77d1903a1ab"
+        },
+        {
+          "name": "groovy-nio-4.0.28.jar",
+          "bytes": 16243,
+          "sha256": "e121484bf9c4c70eb49a80cbf1a177c91dcf059f18488b27b742c628501c02f5",
+          "git_blob_sha": "0072c12465af9181e4edf56b839fbb52a1b9c4f0"
+        },
+        {
+          "name": "groovy-templates-4.0.28.jar",
+          "bytes": 93718,
+          "sha256": "5a6a1ce206405255e4275ebb3af5fcbe724c4d13b0de98f3823a444412c90d97",
+          "git_blob_sha": "7d1b51ce3d3f14212107a53203d34403bef49a22"
+        },
+        {
+          "name": "groovy-xml-4.0.28.jar",
+          "bytes": 216161,
+          "sha256": "68d230a8a1f7a171eb60ce1e5fb005a41940f27b8b421bf55fdbe3a5c2888ea0",
+          "git_blob_sha": "92afabd1439ee90d9b5278f38934ebae98b9f558"
+        },
+        {
+          "name": "gson-2.13.1.jar",
+          "bytes": 286972,
+          "sha256": "94855942d4992f112946d3de1c334e709237b8126d8130bf07807c018a4a2120",
+          "git_blob_sha": "159b930f92772a90e833578783cd15b9698e6d3b"
+        },
+        {
+          "name": "guava-33.4.6-jre.jar",
+          "bytes": 3024894,
+          "sha256": "958a035b74ff6c7d0cdff9c384524b645eb618f7117b60e1ee915f9cffd0e716",
+          "git_blob_sha": "5e74385f2a04a58732cce1320df56cbd7218dacd"
+        },
+        {
+          "name": "httpclient-4.5.14.jar",
+          "bytes": 785639,
+          "sha256": "c8bc7e1c51a6d4ce72f40d2ebbabf1c4b68bfe76e732104b04381b493478e9d6",
+          "git_blob_sha": "2bb7c07363c9a44ea63fe96c827a34e296b8188c"
+        },
+        {
+          "name": "httpcore-4.4.14.jar",
+          "bytes": 328436,
+          "sha256": "f956209e450cb1d0c51776dfbd23e53e9dd8db9a1298ed62b70bf0944ba63b28",
+          "git_blob_sha": "349db181c33c3e43667145a90a963bd857e8ab29"
+        },
+        {
+          "name": "jackson-annotations-2.16.1.jar",
+          "bytes": 78480,
+          "sha256": "a4730771e6a495dd3793a42cdb8ce6bddb96c77e15f40c98fd8d9a7ae09e7286",
+          "git_blob_sha": "b9c48e69ccd2e112a55b8a5bccdc8e26bb93c2a4"
+        },
+        {
+          "name": "jackson-core-2.16.1.jar",
+          "bytes": 578125,
+          "sha256": "f5f8ef90609e64fec82eb908e497dc7d81b2eb983fe509b870292a193cde4dfb",
+          "git_blob_sha": "a8ff5e3cc74ea4a4f4d898de78e4427cb472855b"
+        },
+        {
+          "name": "jackson-databind-2.16.1.jar",
+          "bytes": 1637611,
+          "sha256": "baf8a8ebee8f45ef68cdd5e2dd3923b3e296c0937b96ec0b4806aa3a31bccd1d",
+          "git_blob_sha": "5171b7a422b5f56ba6d600606869e202df1b74b2"
+        },
+        {
+          "name": "jackson-datatype-jdk8-2.16.1.jar",
+          "bytes": 36119,
+          "sha256": "a9aa5c80f8dda77ad8f03500a5c021abf720acd60aae4e293a9e8c2885d6dc2b",
+          "git_blob_sha": "e39940173a76eb33d0a041594981f3d697356fe6"
+        },
+        {
+          "name": "jackson-datatype-jsr310-2.16.1.jar",
+          "bytes": 128295,
+          "sha256": "6281970682a8da3ddbac54bb203c9badf1c26f507f3ecaa48ef10318579bc9ad",
+          "git_blob_sha": "d34b0ef14f23582eeda54492bc6d17ddd909a170"
+        },
+        {
+          "name": "jansi-1.18.jar",
+          "bytes": 287352,
+          "sha256": "109e64fc65767c7a1a3bd654709d76f107b0a3b39db32cbf11139e13a6f5229b",
+          "git_blob_sha": "a7be6dbd80bc5975580ea6a9aee84387c11d0b49"
+        },
+        {
+          "name": "javaparser-core-3.27.0.jar",
+          "bytes": 1442091,
+          "sha256": "11b0deeaeb29f2496e1704c8c6f7593f14901f7253a671b81bdaa531bead779f",
+          "git_blob_sha": "6f0b55035345e93954a95dd116141392cca480e8"
+        },
+        {
+          "name": "javax.inject-1.jar",
+          "bytes": 2497,
+          "sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff",
+          "git_blob_sha": "b2a9d0bf7bd463a6361898b36f010edd05c0cf6e"
+        },
+        {
+          "name": "jcifs-1.3.17.jar",
+          "bytes": 402249,
+          "sha256": "12603c9dfe7a3d16b2d7f1df8bf5b0168728b15be441382cb1a2b209fde0c553",
+          "git_blob_sha": "3f27e29fec6f1660670aa124dc6738bd10d78bca"
+        },
+        {
+          "name": "jcl-over-slf4j-2.0.17.jar",
+          "bytes": 18423,
+          "sha256": "affd06771589ebfe454bb11315a4f466ecaa135b95f3e7939534cf1d2fd7064c",
+          "git_blob_sha": "ff7468292e2d21919203147c792b9eb13c5589d6"
+        },
+        {
+          "name": "jsoup-1.15.3.jar",
+          "bytes": 438018,
+          "sha256": "e20a5e78b1372f2a4e620832db4442d5077e5cbde280b24c666a3770844999bc",
+          "git_blob_sha": "5506d7f608c9630fe6b7b36043b3898fd492ba9b"
+        },
+        {
+          "name": "jspecify-1.0.0-no-module-annotation.jar",
+          "bytes": 3813,
+          "sha256": "c66081ace5e23ebd554d73bfaa905494d794c7b5d5777c183a515fbaf0606c39",
+          "git_blob_sha": "68846415236d0ddeeaab5484a8b1222c6cdd225b"
+        },
+        {
+          "name": "jsr305-3.0.2.jar",
+          "bytes": 19936,
+          "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7",
+          "git_blob_sha": "59222d9ca5e5654f5dcf6680783d0e265baa848f"
+        },
+        {
+          "name": "jul-to-slf4j-2.0.17.jar",
+          "bytes": 6349,
+          "sha256": "a7afcd23b9cfd1475e55c94f943b808c5922035e7e2c2a5c65a487a4106bc538",
+          "git_blob_sha": "66c0a7b5461d01ce474e1384d5ddb171ca6c481c"
+        },
+        {
+          "name": "kotlin-assignment-compiler-plugin-embeddable-2.2.0.jar",
+          "bytes": 50976,
+          "sha256": "71ac3c750b0ee451facdd49822740b2888b97fcaf3316aee3b17d3a4c4ef52ba",
+          "git_blob_sha": "f279c62cba650cfe61a3f9a319529404c71cda8b"
+        },
+        {
+          "name": "kotlin-build-tools-impl-2.2.0.jar",
+          "bytes": 57925,
+          "sha256": "4a87f3c0272f17285d60e98643ec219f53e9b5ad5a23f3bc4c543a8644f86f17",
+          "git_blob_sha": "1c38b279f71f3e2c4a46a798e1ba95d7da12edc5"
+        },
+        {
+          "name": "kotlin-compiler-embeddable-2.2.0.jar",
+          "bytes": 56255947,
+          "sha256": "b2f743ea5ba12f69e0f35e5d8d46069d74c8e2861087548a7e0e14a784bc4cf1",
+          "git_blob_sha": "f4434c462ea9d56afaf1739bc62e11a9b70844e2"
+        },
+        {
+          "name": "kotlin-daemon-embeddable-2.2.0.jar",
+          "bytes": 345722,
+          "sha256": "a26cc8e2d8619197cc4d115bea7766e9aa8e0f1e7876ea044ee1b9f305654601",
+          "git_blob_sha": "463733787eb2386cc79b8a08a267925af190042d"
+        },
+        {
+          "name": "kotlin-reflect-2.2.0.jar",
+          "bytes": 3298629,
+          "sha256": "230d91c2e410e3cfca3a4dc73d255455f62ff52aac091a33397a6e30bde91bf7",
+          "git_blob_sha": "8e1c23e428d6f7490eb3bc9f2ab32a0f8648f909"
+        },
+        {
+          "name": "kotlin-sam-with-receiver-compiler-plugin-2.2.0.jar",
+          "bytes": 18517,
+          "sha256": "75623f2d557812415e59ecfe67359545d8066894a53227c7e4883b318fb25239",
+          "git_blob_sha": "31d19a1495e223e55bd065fd3189f457930ab4fd"
+        },
+        {
+          "name": "kotlin-script-runtime-2.2.0.jar",
+          "bytes": 44759,
+          "sha256": "4ed97fd1e0c9bb1d0948ed5e63cc91456313a59518295b92b2c1514aef556150",
+          "git_blob_sha": "04d58c72fbd5822474ee9b676cfc9cbe15b9e329"
+        },
+        {
+          "name": "kotlin-scripting-common-2.2.0.jar",
+          "bytes": 198345,
+          "sha256": "7c9ac8499fa91b201ea7836537c625dd52a82549e57e6b3f175cc0c79e9ab604",
+          "git_blob_sha": "1ed64a08a453f90082d3c0603e8c6b0819979398"
+        },
+        {
+          "name": "kotlin-scripting-compiler-embeddable-2.2.0.jar",
+          "bytes": 586453,
+          "sha256": "92c7d6ec7c5f05d8ac01c37e747ac677d892e99bac0de5e516683b8f3640772b",
+          "git_blob_sha": "a11430bfff214bebbc897d48050de1f63012d2d8"
+        },
+        {
+          "name": "kotlin-scripting-compiler-impl-embeddable-2.2.0.jar",
+          "bytes": 229734,
+          "sha256": "1d26cbddaeeb6ffd458085396ecea0b080fc228fe006dcf8303da57711f33745",
+          "git_blob_sha": "856ef1bf271c7baf40228c746283b8a64bda492d"
+        },
+        {
+          "name": "kotlin-scripting-jvm-2.2.0.jar",
+          "bytes": 149277,
+          "sha256": "60a8c742d61f44f2311fbdc8a86b767d171ba09d97be72d6ba450d37f7e3fdbf",
+          "git_blob_sha": "bc75084d4420255ed87c6a7ee4b98ba0abf62da0"
+        },
+        {
+          "name": "kotlin-scripting-jvm-host-2.2.0.jar",
+          "bytes": 83663,
+          "sha256": "9e9f89b7e68a2bcb82003bd9bac5fefe705267b0bf730bd5131299ed7c0a9d93",
+          "git_blob_sha": "cc3279b99a2b661a5397bc545b8cd522c260e113"
+        },
+        {
+          "name": "kotlin-stdlib-2.2.0.jar",
+          "bytes": 1750373,
+          "sha256": "65d12d85a3b865c160db9147851712a64b10dadd68b22eea22a95bf8a8670dca",
+          "git_blob_sha": "f047fbd7f6bac5d2b83c17528c1ad1ea823105a2"
+        },
+        {
+          "name": "kotlinx-coroutines-core-jvm-1.10.2.jar",
+          "bytes": 1479317,
+          "sha256": "5ca175b38df331fd64155b35cd8cae1251fa9ee369709b36d42e0a288ccce3fd",
+          "git_blob_sha": "ac83bfa25e3be7c8a9c5ee2a0646874e9c0af638"
+        },
+        {
+          "name": "kotlinx-serialization-core-jvm-1.9.0.jar",
+          "bytes": 399128,
+          "sha256": "1f0afa172110e45a7231ef1b44ae8fd84c1ebaff96f3fc3ad68ef8c48120b59c",
+          "git_blob_sha": "469c08f4cf613def57d623b302f727dcf8898fbe"
+        },
+        {
+          "name": "kotlinx-serialization-json-jvm-1.9.0.jar",
+          "bytes": 278414,
+          "sha256": "d94cc34cae39246a1af74fda63f9c4812ce12216ef641d5fa3bbbb539a6922d8",
+          "git_blob_sha": "e6c83e00345d955997bb580c4e5224a0014d22fc"
+        },
+        {
+          "name": "kryo-2.24.0.jar",
+          "bytes": 339283,
+          "sha256": "7e56b32c635058f9aa2820f88919ab702d029cbcd15285da9992e36cc0ae52f2",
+          "git_blob_sha": "4d1818006729753caf3bbab00615eee4484a4f8d"
+        },
+        {
+          "name": "log4j-over-slf4j-2.0.17.jar",
+          "bytes": 26532,
+          "sha256": "cbf30eaf95357ab7babf9be123da9cc702f0fe83b23392b7a62589d60b5862d1",
+          "git_blob_sha": "b49e620f59def2163125f991766c8591c1aa5c24"
+        },
+        {
+          "name": "minlog-1.2.jar",
+          "bytes": 4965,
+          "sha256": "a678cb1aa8f5d03d901c992c75741841d98a9bc3d55dad02e84d65315c4e60f2",
+          "git_blob_sha": "3d174a68c3c96f032af08b7c204cf57ec090b5d2"
+        },
+        {
+          "name": "native-platform-0.22-milestone-28.jar",
+          "bytes": 124668,
+          "sha256": "ff4947814569376692b867e8905ddf8ba83a62929553aedc4f8e846e3be19a74",
+          "git_blob_sha": "d3cad14412d6d157ad1cd679991df9ae57ffb57f"
+        },
+        {
+          "name": "native-platform-freebsd-amd64-libcpp-0.22-milestone-28.jar",
+          "bytes": 19750,
+          "sha256": "88c670d679d37551bc7e799c854348aec3c0098ff52badbb9e3c246c4a023f56",
+          "git_blob_sha": "55b2117ddf0cfeb9dcc0f62d2d60373e5d318137"
+        },
+        {
+          "name": "native-platform-linux-aarch64-0.22-milestone-28.jar",
+          "bytes": 11768,
+          "sha256": "8d984ab5612b95aa9d24ead48039742a318ef21a488e2d4eadc0478a0f27dc4f",
+          "git_blob_sha": "10239fe5578349c98eb4da2b6cd68acfed55530d"
+        },
+        {
+          "name": "native-platform-linux-aarch64-ncurses5-0.22-milestone-28.jar",
+          "bytes": 8397,
+          "sha256": "a5a8908eb46d33708dfb052cc65ab9426624f88fb012faee3a5e1f3f42d3cd07",
+          "git_blob_sha": "253852ca80294fdc825a551d8cf3499a9b359a55"
+        },
+        {
+          "name": "native-platform-linux-aarch64-ncurses6-0.22-milestone-28.jar",
+          "bytes": 9069,
+          "sha256": "1ff2ee4b58a77916d3faec4204eaee795358ba342e5638d4c80c89298698e85f",
+          "git_blob_sha": "029d3259bdc42e520a02fdb1b5bc8b44f8cc2a82"
+        },
+        {
+          "name": "native-platform-linux-amd64-0.22-milestone-28.jar",
+          "bytes": 11250,
+          "sha256": "340c82470fcd12dff02c8a7cae0cf80dcbce447b1b6f9c3a8fd2df74a080b1ed",
+          "git_blob_sha": "e66911d30cb960508b659a732c7c151e1f9f81c3"
+        },
+        {
+          "name": "native-platform-linux-amd64-ncurses5-0.22-milestone-28.jar",
+          "bytes": 8228,
+          "sha256": "6816b0bf9170f27a802682c9c8342c9abcfdac3cce0e6143cdbb04a2254cd6b7",
+          "git_blob_sha": "671b49a5da5620af4222dfb0264c25755e8e5216"
+        },
+        {
+          "name": "native-platform-linux-amd64-ncurses6-0.22-milestone-28.jar",
+          "bytes": 7950,
+          "sha256": "49c7b6a93ba9a14482fada6e891e5d09a46411bb372235b8c8686182fe762061",
+          "git_blob_sha": "80a805c8b56c9273d489bd571b17216af3eb206f"
+        },
+        {
+          "name": "native-platform-osx-aarch64-0.22-milestone-28.jar",
+          "bytes": 14261,
+          "sha256": "7cb8f8246c50a07f52e40b698f0a229271237e0bc59a4184e6b5ccc65d9f0847",
+          "git_blob_sha": "4ebade709fb4581fcfd64446aa14bdc1678fc3aa"
+        },
+        {
+          "name": "native-platform-osx-amd64-0.22-milestone-28.jar",
+          "bytes": 12867,
+          "sha256": "61ab872b419deae8cdf37d1a0d5f6916b170ada1226129741fceb3ebd56b950f",
+          "git_blob_sha": "9fd1a0c490e8f5ef47a57b702ff32ad052d0162b"
+        },
+        {
+          "name": "native-platform-windows-amd64-0.22-milestone-28.jar",
+          "bytes": 71157,
+          "sha256": "18803842185961617abf2a2f52da063daae6b440437b441d605a0002336963d0",
+          "git_blob_sha": "ad55b61b1562dcd77333f8c41909c408c5f02d8f"
+        },
+        {
+          "name": "native-platform-windows-amd64-min-0.22-milestone-28.jar",
+          "bytes": 70274,
+          "sha256": "b2758b8593cb0f4b6d41edb89cdcbbacd4754f2f6469f3c66c43beee1a11cf22",
+          "git_blob_sha": "879a3c6ee2e6e0bf6761380aae8f965af2c7e3a2"
+        },
+        {
+          "name": "native-platform-windows-i386-0.22-milestone-28.jar",
+          "bytes": 62992,
+          "sha256": "81721cfed8ffe07be279adf876f1e3c86dfe9428a59e5fe7a713f8ccc7120a09",
+          "git_blob_sha": "d48d4b75d406adf6e3d5f535b75481e69a0a588b"
+        },
+        {
+          "name": "native-platform-windows-i386-min-0.22-milestone-28.jar",
+          "bytes": 62076,
+          "sha256": "0f32b0012ebe1f52de052d2988773755f0c053248c7fd23cd88a93d63a69ecd4",
+          "git_blob_sha": "ecd2f46286cfa69c04e36e016fa8776d9e583df6"
+        },
+        {
+          "name": "objenesis-2.6.jar",
+          "bytes": 55684,
+          "sha256": "5e168368fbc250af3c79aa5fef0c3467a2d64e5a7bd74005f25d8399aeb0708d",
+          "git_blob_sha": "b4b29d563bac5e749fdbedee9b6a5b8de3d45ed4"
+        },
+        {
+          "name": "qdox-1.12.1.jar",
+          "bytes": 179818,
+          "sha256": "21fba22f830e9268f07cf4ab2d99e8181abbdcb0cb91ee0228eb3cb918dcdd1d",
+          "git_blob_sha": "092fc51c1ed89c0f6879f29920e63577e6aa00a2"
+        },
+        {
+          "name": "slf4j-api-2.0.17.jar",
+          "bytes": 69908,
+          "sha256": "7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832",
+          "git_blob_sha": "26b1545546fd72ed0668ed539bc8aecb6ee4f112"
+        },
+        {
+          "name": "tomlj-1.0.0.jar",
+          "bytes": 157156,
+          "sha256": "32697c7567b2921c473678a820b13fc64700aa87bb14576eeb48d0ed5847cfd4",
+          "git_blob_sha": "56322a7ec7efc6664af1b89699321e83715535c5"
+        }
+      ]
+    }
+  },
+  "toolchain_execution": {
+    "command": [
+      "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0/bin/gradle",
+      "--offline",
+      "--no-daemon",
+      "--no-configuration-cache",
+      "--console=plain",
+      "-Ptarget-platform=android-arm64,android-x64",
+      "-q",
+      "-p",
+      "/home/runner/work/lumo-lernen/lumo-lernen/android",
+      "-I",
+      "/tmp/lumo-speech-jvm-runner-hjz7khpi/toolchain.init.gradle",
+      "lumoSpeechJvmToolchain"
+    ],
+    "started_utc": "2026-11-14T20:59:56.627221+00:00",
+    "completed_utc": "2026-11-14T21:00:12.906431+00:00",
+    "duration_seconds": 16.279229649,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "/home/runner/work/lumo-lernen/lumo-lernen/host-compile-evidence/speech/toolchain-original.log",
+    "log_binding": {
+      "bytes": 493,
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+      "git_blob_sha": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f"
+    }
+  },
+  "resolved_toolchain": {
+    "gradle_home": "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0",
+    "gradle_version": "9.1.0",
+    "kotlin_lib_dir": "/home/runner/.gradle/wrapper/dists/gradle-9.1.0-all/7wzd0jkjit61aq2p43wpjgij9/gradle-9.1.0/lib",
+    "java_home": "/usr/lib/jvm/temurin-17-jdk-amd64",
+    "java_version": "17.0.21"
+  },
+  "source_after": {
+    "head": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+    "ci_source": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+    "files": [
+      {
+        "path": "scripts/run_speech_jvm_contracts.py",
+        "bytes": 19493,
+        "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+        "git_blob_sha": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+      },
+      {
+        "path": "scripts/compile_android_host.sh",
+        "bytes": 3499,
+        "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+        "git_blob_sha": "c5138523453d4e185f6af46f96e15478888075de"
+      },
+      {
+        "path": "scripts/gradle/lumo-maven-central-mirror.init.gradle",
+        "bytes": 3574,
+        "sha256": "c2e916a873e72ec168419f50bda024184c692d16c5c1d0406af50e5813685ac6",
+        "git_blob_sha": "2bc1e7655536e92a8d7ff2cccbc8026f932ea208"
+      },
+      {
+        "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+        "bytes": 18072,
+        "sha256": "96326b009847dfe0b4979dd80d247d6d343c97ed3778e0e1e5394df2590e9a81",
+        "git_blob_sha": "93b4d63069533f160207e098ff6093c963ce3bfd"
+      },
+      {
+        "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+        "bytes": 6350,
+        "sha256": "f2f49ce0928b18058beefa9539c776da4379c6470073976831388d7e993b3e89",
+        "git_blob_sha": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a"
+      },
+      {
+        "path": "scripts/voice/LumoOfflineSpeechEngineProbe.java",
+        "bytes": 5482,
+        "sha256": "34e29837463ee55953c6f518c1ee02137bc2fbacf3d37dbce72517ec0c42e516",
+        "git_blob_sha": "e16b0a53e240bf4fffb536f0b698ea42560c8437"
+      },
+      {
+        "path": "tools/auto_install/LumoLearningSpeech.kt",
+        "bytes": 11318,
+        "sha256": "2102205e2976e074c9d0d0fca71448671edd82a5d74a8e2974a6ba9408ca525f",
+        "git_blob_sha": "755077c4f1385f9b09464113aeaab3a20ec8a376"
+      },
+      {
+        "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+        "bytes": 9663,
+        "sha256": "3e2ab56fe6c75cdfd04ef032dc20d07f38b1e8fc8f925a7753893482c623270c",
+        "git_blob_sha": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c"
+      },
+      {
+        "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+        "bytes": 19214,
+        "sha256": "6a8383795979c7bea9f89c44b5419a417edce249c92a93db63e896ce8a303ddc",
+        "git_blob_sha": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd"
+      },
+      {
+        "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+        "bytes": 4697,
+        "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+        "git_blob_sha": "5721274734e111e96d55762d86b3d3e830fc26e8"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt",
+        "bytes": 4342,
+        "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+        "git_blob_sha": "fc50fad0bb37d59880a1ca6fd675ce523d314292"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt",
+        "bytes": 4381,
+        "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+        "git_blob_sha": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt",
+        "bytes": 9459,
+        "sha256": "78375595ea5456a6106933bc1f5463242b836e72f4a0c989ca275a9f1c9a1bd5",
+        "git_blob_sha": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/platform_fixture.py",
+        "bytes": 5481,
+        "sha256": "99203bbf7a00f908af1f0df57b97156894668f3b615f58ff56264a4dcbf1fa4d",
+        "git_blob_sha": "40897dc0e2a48cb0c054f19820557ffa7fc43579"
+      },
+      {
+        "path": "scripts/tests/fixtures/learning_english_speech/apfel-original.wav",
+        "bytes": 40970,
+        "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+        "git_blob_sha": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+      }
+    ]
+  },
+  "completed_utc": "2026-11-14T21:00:30.750644+00:00"
+}

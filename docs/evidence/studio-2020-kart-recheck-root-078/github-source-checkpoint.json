@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "source_commit": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+  "tree": "1a4e6e56197f67fddab6b9a37f128ce4c96b2639",
+  "branch": "chatgpt/lumo-studio-078-kart-recheck-20261114",
+  "original_apk_source": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_source": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "original_apk_sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe",
+  "actual_run": 43587032836,
+  "attempt": 1,
+  "publication": "Isolated QA branch only; no Main or Host2020 branch mutation",
+  "tree_proof": {
+    "base": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "tree": "1a4e6e56197f67fddab6b9a37f128ce4c96b2639",
+    "unchanged_other_leaves": 4239,
+    "changed_existing_qa": 1,
+    "new_qa": 4,
+    "final_leaves": 4244,
+    "inputs": [
+      {
+        "path": ".github/probes/modernization_android_tour.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+      },
+      {
+        "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ca2477afc4708385e705645613d45e3374f829f7"
+      },
+      {
+        "path": "scripts/recheck_studio_078_kart.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77"
+      },
+      {
+        "path": "scripts/tests/test_studio_078_kart_recheck.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b1130cfce0731b9aa5c3e80531aa9c4eddf675cb"
+      },
+      {
+        "path": ".github/workflows/lumo-studio-078-kart-recheck.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "503c4f4350fdccf58054d2c146e96603af5726c5"
+      }
+    ]
+  },
+  "full_source_readbacks": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "bytes": 53786,
+      "full_readback_equal": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca2477afc4708385e705645613d45e3374f829f7",
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "bytes": 26899,
+      "full_readback_equal": true
+    },
+    {
+      "path": "scripts/recheck_studio_078_kart.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77",
+      "sha256": "f495aea0e3c6073bdba675ac53d5f79376583f9f293c3ebe2891c1a7737619ce",
+      "bytes": 24511,
+      "full_readback_equal": true
+    },
+    {
+      "path": "scripts/tests/test_studio_078_kart_recheck.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1130cfce0731b9aa5c3e80531aa9c4eddf675cb",
+      "sha256": "8dba66a1f1408912a154ec5e05705adb131833b37e17a15ecace1f68ec5fd1c9",
+      "bytes": 17326,
+      "full_readback_equal": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-078-kart-recheck.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "503c4f4350fdccf58054d2c146e96603af5726c5",
+      "sha256": "529f317a2f05d537f4206138169a76657cf9970e27fcdb45ba66b87a49b354df",
+      "bytes": 6633,
+      "full_readback_equal": true
+    }
+  ],
+  "independently_reviewed_manifest": "1042540ea5c764782da577e822fa80d590004199bdab0dd2a321ae85a2d5cae4",
+  "tests": {
+    "root_binder": {
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 0.186,
+      "scope": "actual local Python contracts, not an Android result"
+    },
+    "probe": {
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "AgentC actual final Python contracts; original log separately preserved"
+    },
+    "paired_journal": {
+      "status": "PASS",
+      "source": "qa/kart-intro-recheck-independent-review-078-20261114/paired-journal-contract.json",
+      "scope": "AgentB actual paired helper transport -> root verifier, not Android"
+    }
+  },
+  "android_result": "In progress at the time this checkpoint was written; no PASS claimed"
+}

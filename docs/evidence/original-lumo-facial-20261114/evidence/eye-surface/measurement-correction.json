@@ -1,0 +1,35 @@
+{
+  "original_measurement_sha256": "cc1a63f523405de72adb08a14a9b3b6b4137d9471cbaf7e9357670c0c5d4920b",
+  "correction": "The initial z_range included the -0.5 background sentinel inside a hole-filled paint mask. That number is not model anatomy. These ranges include only rasterized original triangle samples. The separately preserved authoring sampling grid fills invalid raster pixels by nearest valid sampled pixel, not an invented eyeball surface.",
+  "surfaces": {
+    "left": {
+      "mask_pixels": 41360,
+      "valid_original_triangle_pixels": 41347,
+      "background_pixels_excluded": 13,
+      "valid_z_range_m": [
+        0.22433389723300934,
+        0.29450929164886475
+      ],
+      "authoring_grid_z_range_m": [
+        0.22433389723300934,
+        0.29450929164886475
+      ]
+    },
+    "right": {
+      "mask_pixels": 41012,
+      "valid_original_triangle_pixels": 41009,
+      "background_pixels_excluded": 3,
+      "valid_z_range_m": [
+        0.22480235993862152,
+        0.2842566668987274
+      ],
+      "authoring_grid_z_range_m": [
+        0.22480235993862152,
+        0.2842566668987274
+      ]
+    }
+  },
+  "filled_pixel_count": 96,
+  "projected_surface_sha256": "abd3b00a39c0b402722cc7325cd726606d33d9111e1409408eed381facea9b38",
+  "sampling_surface_sha256": "da8d78d6edd191220fa6ebbd90d37c5972eda8172c4c9f47646e7cbb1598a8d3"
+}

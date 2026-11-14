@@ -1,0 +1,33 @@
+{
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "original": {
+    "path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/baseline/.github/probes/lumo_studio_surfaces_android_probe.py",
+    "bytes": 47960,
+    "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+    "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68"
+  },
+  "patched": {
+    "path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/.github/probes/lumo_studio_surfaces_android_probe.py",
+    "bytes": 48183,
+    "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+    "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad"
+  },
+  "test": {
+    "path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/tools/android_qa/tests/test_cards_layout_readiness.py",
+    "bytes": 9037,
+    "sha256": "e4e1617794a3026a947d135e0883f82664f220a6c430ce0721e611f7b0bd1dc0",
+    "git_blob": "9d2b4a75bc3353dd579f261c1c99229af30c07c1"
+  },
+  "changed_definitions": [
+    "read_cards_layout"
+  ],
+  "all_other_top_level_definitions_ast_unchanged": 17,
+  "active_worktree_mutated": false,
+  "default_capture_deadline_seconds": 60,
+  "required_consecutive_complete_frames": 2,
+  "deadline_session_revision_layout_pixels_gates_unchanged": true,
+  "initial_test_import_failure_preserved": "initial-test-import-error.log",
+  "initial_test_import_failure_cause": "The fixture loader initially omitted tools/android_qa on sys.path; fixed only in the new test, not in production/QA reader logic."
+}

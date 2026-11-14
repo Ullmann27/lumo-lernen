@@ -1,0 +1,152 @@
+{
+  "native_revision": "34421df83566dd4773420cc2a225887956459435",
+  "source": "/workspace/scratch/5987865ae883/qa/restored-native344",
+  "runtime": "/tmp/lumo-quiz-native-recovery-20261114",
+  "scope": "Exact original dependency bytes; isolated QA project has only the production MobileRuntime and HostBridge autoloads, no router or app boot.",
+  "files": [
+    {
+      "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+      "bytes": 1640,
+      "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+      "git_blob_sha": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "bytes": 5156596,
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "git_blob_sha": "53cb01bfbd23a2962da5428a08b8aee313d5e152"
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb.import",
+      "bytes": 1098,
+      "sha256": "fc146ea239d84439eba0c6c31810d9da031d10daf6e2302b7395dc3826deab2a",
+      "git_blob_sha": "6c334b3039ef0847f278d42e8c32b6cf8386809f"
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "bytes": 196296,
+      "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+      "git_blob_sha": "10b38ae0590626db40b24080e8a55edcb47ecf2b"
+    },
+    {
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "bytes": 2626,
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "git_blob_sha": "50f43591977dc46683fe8c547bbba2fa6e73f216"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "bytes": 8408740,
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "bytes": 1341,
+      "sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+      "git_blob_sha": "0fc3016ba886172aaf2575db2984e81b5567455c"
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "bytes": 5708,
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "git_blob_sha": "9658440b3effad06358fe7cfe62f04a95ccbe279"
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob_sha": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_animation_state.gd",
+      "bytes": 1113,
+      "sha256": "95d1fa3ca5f8282354247a00b4f7f319ecc91de385258d5525b570351adebb07",
+      "git_blob_sha": "b7263670066ae008a067b2912ed8f4bfd33dc2d1"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_behavior_controller.gd",
+      "bytes": 10608,
+      "sha256": "68d19e420c50096cf9abc78a7ecb7c37e5f90478c6fd43112784ffab617512cc",
+      "git_blob_sha": "b8ef1a5b4d3f8212a7fc3988c63075f2ba060521"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "bytes": 2902,
+      "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+      "git_blob_sha": "2b0c2f5b379535cbc4e54c9c1badca72c0f1bc19"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_character_controller.gd",
+      "bytes": 3472,
+      "sha256": "dc0f19f223cf1e08fcc966c9e5ff5b896200163de14e0810906d579130af8403",
+      "git_blob_sha": "0e7a6bc3b5c63408ad13c4b35edd62425ccf99b8"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_eye_system.gd",
+      "bytes": 4428,
+      "sha256": "b40ca73c016968052415a282428eec517a1da2041621c663ce14cc6f7f14980c",
+      "git_blob_sha": "cd9a80d1e11590e964227e341e2b17f5255db272"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "bytes": 6120,
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob_sha": "91b8a8cd25f21dab84b77f178aa82d06673b54f9"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_gait.gd",
+      "bytes": 8642,
+      "sha256": "2eadf6b481c3fbd13fe2166cb4b71d974b2d4ea50b3c4d321bf7dcc1b96f335c",
+      "git_blob_sha": "f9ff787590d8be9590a95eaa8285c0ac804d84f3"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_kart_animation_adapter.gd",
+      "bytes": 13808,
+      "sha256": "afe2bc4f6b3a1753d64e536878754fcfa52d0c5758cf6adfdccdaa38ea779edc",
+      "git_blob_sha": "8431a588aeedfa6e0cc46a4d363b51c8f53cd992"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_mouth_system.gd",
+      "bytes": 3450,
+      "sha256": "1a2d14d4aa631548c4fbd084475c1f2f67ad702895f19dec3f3f3310c3f02cf8",
+      "git_blob_sha": "af0675a3e987745cb3136e9aceed997f203524be"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "bytes": 5002,
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "git_blob_sha": "f2085dc82b9840077e631f586a4f4fb5159d7c08"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_reference_board.gd",
+      "bytes": 2104,
+      "sha256": "7b5150a26bd28ff51952883e4e4a82c1393670229a110aa72de349b26b06a233",
+      "git_blob_sha": "9bb54e33cf5ff4b1e873f7302d9c9b6201149413"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob_sha": "e4b6a6081a922a137f68491de66f51e096528510"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "bytes": 4228,
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "git_blob_sha": "5d3a1ae763e84cb09276cafe9ba5f9541bf49447"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "bytes": 2736,
+      "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+      "git_blob_sha": "0f5f8f508cf6cfb6f67c8178a25e5522580a5e85"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "bytes": 5193,
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "git_blob_sha": "dab96a1b918dc754568c0eda14cdda05175c89fb"
+    }
+  ]
+}

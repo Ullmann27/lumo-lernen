@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T07:13:57.223169+00:00",
+  "reviewer": "learning_worlds",
+  "status": "NO_ADDITIONAL_SOURCE_BLOCKER_FINAL_RENDERER_EVIDENCE_PENDING",
+  "native_baseline": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "baseline_tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+  "baseline_bindings": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/baseline/native/scripts/creative/treasure_world.gd",
+      "bytes": 25074,
+      "sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "git_blob_sha1": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/baseline/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 8982,
+      "sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+      "git_blob_sha1": "6e50ace998d896fd88f0006112152e490e7c64e3"
+    }
+  ],
+  "reviewed_sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/creative/treasure_world.gd",
+      "bytes": 26887,
+      "sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "git_blob_sha1": "aae80484834823c8cf063df6bfb2607313f39ef7"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha1": "73939c37e38bdbaca77220f79227e3dcde26e59c"
+    }
+  ],
+  "diff": {
+    "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/product-against-acf51.patch",
+    "bytes": 3492,
+    "sha256": "1a6df774f2c514a28eb954354f755de8d0d3d122fa9dc6d9d3bdb4e9e54f8302",
+    "git_blob_sha1": "f5450b44cda2bcaf04883d14356e92c1d6280fd2"
+  },
+  "reviewed_host_tour": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/studio_creative_android_probe.py",
+    "bytes": 69712,
+    "sha256": "5b2aad1a5fe0a9bac1e52f891c836393a9ca41492da110d50fcd59d98d4fc2e0",
+    "git_blob_sha1": "4747ac3d62fddcf7ec3b12f96ca01ff3a93830b5"
+  },
+  "function_comparison": {
+    "method": "Function blocks compared as source text with trailing separator whitespace removed, not a claim of GDScript AST parsing.",
+    "changed_existing": [
+      "_ui",
+      "_layout"
+    ],
+    "added": [
+      "_show_clue"
+    ],
+    "unchanged": [
+      "_ready",
+      "_exit_tree",
+      "_landscape",
+      "_branch_trails",
+      "_layout_modal",
+      "_physics_process",
+      "_unhandled_input",
+      "_jump",
+      "_update",
+      "_open_modal",
+      "_close_modal",
+      "_interact",
+      "_answer",
+      "_save",
+      "_inventory",
+      "_pause_menu",
+      "_win",
+      "_new_adventure",
+      "_notification",
+      "_leave",
+      "_terrain_material",
+      "_terrain_mesh"
+    ]
+  },
+  "findings": [
+    {
+      "area": "Hinweis und Spielzustand",
+      "result": "Der neue Hinweisbutton ist nur im bereits verwendeten kurzen Querformat aktiv. _show_clue weist paused ab und übergibt clue_label.text vollständig an den bestehenden Modalaufbau. Kein Aufruf von _answer, reward oder einer neuen Speicherfunktion."
+    },
+    {
+      "area": "Pause und Rückkehr",
+      "result": "Unveränderte _open_modal/_close_modal pausieren die Physik und deaktivieren beziehungsweise reaktivieren den Stick. _pause_menu, _notification, _leave sowie die Savefunktion sind textgleich zur acf51-Baseline."
+    },
+    {
+      "area": "Dialog und Touch",
+      "result": "Der bestehende begrenzte ScrollContainer und seine 48-dp-Buttons bleiben erhalten. Der Test nutzt tatsächliche ScreenTouch-Ereignisse am durch alle Clip-Vorfahren geschnittenen Buttonrechteck, prüft den vollständigen Hinweis, verhindert den Ersatz des offenen Dialogs und schließt mit Weiter erkunden. Eine neue Swipe-Ausführung im Hinweisdialog wird nicht behauptet; die konkreten Hinweistexte passen in den geprüften Fällen."
+    },
+    {
+      "area": "HUD und Darstellung",
+      "result": "Kurze Querformate ersetzen das verdeckende Dauerfeld durch 110×48 logische dp Hinweis. Hohe Formate behalten den Text. Der Toast erhält den dunklen Hintergrund, breite Formate den freien unteren Raum zwischen den Bedienelementen; schmale hohe Formate binden die Unterkante an die tatsächliche Stick-/Springenoberkante minus 12 dp. Deferred Minimumsize-Reflow verwendet den bestehenden frühen Tree-Guard."
+    },
+    {
+      "area": "Geometrieprüfung",
+      "result": "Die neue Regression projiziert die acht AABB-Ecken jedes tatsächlichen sichtbaren Fox-Meshes durch die Produktionskamera. Das konservative Gesamt-Rechteck muss im Fenster liegen und darf keines der sichtbaren HUD-Rechtecke schneiden. Zusätzliche Toast-/Touch-Schnittprüfungen erkennen den später visuell gefundenen Portraitfehler. Keine feste erwartete Figurposition als Ersatz für echte Projektion."
+    },
+    {
+      "area": "Bestand und Profilumfang",
+      "result": "Die ursprünglichen vier Captureprofile bleiben erhalten; 2400×1080 mit expliziter Cutout-/Dichtefixture kommt dazu. Frischer Start und der unveränderte Originalspeicherstand werden jeweils geprüft. Titel, Kontrast, Inventar, Pause, Questidentität und ursprüngliche Capturebedingungen werden beibehalten."
+    },
+    {
+      "area": "Android-Tour-Anschluss",
+      "result": "Der gelesene Host-Treasurepfad verlangt Titel, ANSEHEN, Frage/Antwort, Rucksack, Weiter erkunden und Pause/Save/Reopen/Return. Er verlangt keinen dauerhaft sichtbaren clue_label. Diese Produktfunktionen und Texte bleiben erhalten. Daraus folgt keine bereits ausgeführte Androidabnahme des neuen Deltas."
+    }
+  ],
+  "actual_local_logs_read_not_rerun": [
+    {
+      "name": "final-red",
+      "execution": {
+        "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-red-execution.json",
+        "bytes": 633,
+        "sha256": "cedb2a684c787575967d0450ef7a50527a040d909c12029a7d0ab46e48d6426a",
+        "git_blob_sha1": "0b8b4d08855dbfcb58d34e6eed37c2785835188f"
+      },
+      "original_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-red.log",
+        "bytes": 25997,
+        "sha256": "412689e2574b527e893ff8abe5d5f7760e56a8b0213ce927537371c6e510261e",
+        "git_blob_sha1": "acf99276f3e3979fed6ef1aad5138519c7b10434"
+      },
+      "recorded_exit_code": 1,
+      "recorded_seconds": 17.955011903992272,
+      "product_sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "actual_summary_lines": [
+        "[TreasureTitleContrast] FAIL checks=3221 failures=40"
+      ],
+      "script_error_lines": 0,
+      "reviewer_reran_test": false
+    },
+    {
+      "name": "portrait-gap-red",
+      "execution": {
+        "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/portrait-gap-red-execution.json",
+        "bytes": 622,
+        "sha256": "44104c8cf6321e772d64a674fbb91061463654cdf73962912af77812e6020b36",
+        "git_blob_sha1": "ff81f2b3b167502c8cc970cfc83a740d869b7527"
+      },
+      "original_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/portrait-gap-red.log",
+        "bytes": 5671,
+        "sha256": "0724fd6c57f9023fde76f5edea6e917b00c48e5330401164587ffe51ec36b65a",
+        "git_blob_sha1": "75433a2b6b89616a1b97d00ce7baca3f7e688b3a"
+      },
+      "recorded_exit_code": 1,
+      "recorded_seconds": 19.81116366799688,
+      "product_sha256": "36004959166262bb64e81cf33512f57f5a259e9f0072203cafdae649d47ab88f",
+      "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "actual_summary_lines": [
+        "[TreasureTitleContrast] FAIL checks=3341 failures=4"
+      ],
+      "script_error_lines": 0,
+      "reviewer_reran_test": false
+    },
+    {
+      "name": "final-green",
+      "execution": {
+        "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-green-execution.json",
+        "bytes": 634,
+        "sha256": "8d36846cf2d44da5563fea55fa5cc5b47b43d829878a74e14a7641070838a8b2",
+        "git_blob_sha1": "9cfc8731b4f022098003b3fcea31f24a13e6ac9d"
+      },
+      "original_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/final-green.log",
+        "bytes": 3366,
+        "sha256": "2f8dbddbb3bdd1f0927946fd59b29ac99e1e9f8efdb81430ae17293a8207ddbb",
+        "git_blob_sha1": "22e7adfc4d12e49c6902a63eb9b007df1cbde863"
+      },
+      "recorded_exit_code": 0,
+      "recorded_seconds": 19.988159533997532,
+      "product_sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "actual_summary_lines": [
+        "[TreasureTitleContrast] PASS checks=3341 failures=0"
+      ],
+      "script_error_lines": 0,
+      "reviewer_reran_test": false
+    }
+  ],
+  "preserved_prior_attempts": {
+    "setup_correction": {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/evidence/runtime-setup-correction.json",
+      "bytes": 1120,
+      "sha256": "bbddcefdf2d0efa4d181cbe86ff03959a67918ddd47797a9172e83e7a9325ce7",
+      "git_blob_sha1": "5afc51e6e0a0c2b3cbab09a890e96866c4f0413c"
+    },
+    "note": "Die ersten red-headless/green-headless-v1-Protokolle enthalten die fehlende Facial-Abhängigkeit und bleiben erhalten; sie werden nicht als saubere Endbelege ausgegeben. 3600/b66 war ein späterer grüner Zwischenstand, dessen Rendererportrait anschließend verworfen wurde. Alle endgültigen Aussagen oben sind an e68fc854/ea6087ef gebunden."
+  },
+  "renderer_status": "Der finale Renderer mit den e68fc854/ea6087ef-Quellen ist bei Erstellung dieser Quellenreview noch nicht von diesem Reviewer abgeschlossen ausgewertet. Die alten 3600-Bilder werden nicht übertragen.",
+  "limits": [
+    "Keine eigene Testausführung, keine Quelle geändert, keine Gitrefmutation.",
+    "Quellenreview und Lesen vorhandener Original-Rot-/Grünprotokolle; keine allgemeine Formalverifikation.",
+    "Keine Behauptung über alle laufenden Bewegungs-/Questzustände außerhalb der konkreten Testfälle.",
+    "Keine neue Android-, Touchlatenz-, FPS-, Temperatur- oder physische Fold7-Abnahme.",
+    "Die historische acf51-Bildprüfung bleibt wegen der Figurverdeckung blockiert; diese Note überschreibt sie nicht.",
+    "Eine zukünftige Änderung der zwei geprüften Quelldigests benötigt erneute Quellenzuordnung."
+  ]
+}

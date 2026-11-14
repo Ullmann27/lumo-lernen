@@ -1,0 +1,386 @@
+[
+  {
+    "line_1based": 5596,
+    "original": "2026-11-14T03:12:28.1183950Z [KartTests] PASS: 8000 shared Jump questions; no Kart learning state; free steering; real full race; brake/drift; pause; save/resume; one award"
+  },
+  {
+    "line_1based": 5706,
+    "original": "2026-11-14T03:12:28.4183768Z [HostBridgeTests] PASS: actual JNI integer ACK, strict rejection, reward dedup/backup, return"
+  },
+  {
+    "line_1based": 5749,
+    "original": "2026-11-14T03:12:33.5437264Z [HostBridgeTests] PASS: native options, lifecycle save/pause, Back, resume identity, reward retry/once, games/learn return, fresh restart"
+  },
+  {
+    "line_1based": 5759,
+    "original": "2026-11-14T03:12:33.7960468Z [HostBridgeTests] PASS: jump native reward, question pause, save/resume identity, Back to games"
+  },
+  {
+    "line_1based": 5806,
+    "original": "2026-11-14T03:12:39.5796288Z [JumpTests] PASS: full twelve-island adventure, collisions, jump, three learning stops, save/resume"
+  },
+  {
+    "line_1based": 5825,
+    "original": "2026-11-14T03:12:48.4748212Z [LumoGait] PASS walk/run foot planting, idle settle, teleport, airborne"
+  },
+  {
+    "line_1based": 5853,
+    "original": "2026-11-14T03:12:49.1095972Z [LumoRenderKit] PASS one tier, Kart far unchanged, creative preset identical, Wolkeninseln tiers"
+  },
+  {
+    "line_1based": 5863,
+    "original": "2026-11-14T03:12:49.3806919Z [LumoEnvironmentApply] PASS creative_night/wolkeninseln/bauwelt_day/puzzle_atelier/rhythm_party/treasure_day"
+  },
+  {
+    "line_1based": 5876,
+    "original": "2026-11-14T03:12:50.1390059Z [CreativePresets] PASS describe/configure/apply, bauwelt_day/puzzle_atelier/rhythm_party/treasure_day, MultiMesh batches"
+  },
+  {
+    "line_1based": 5907,
+    "original": "2026-11-14T03:13:02.6497621Z [KartRaceBridge] PASS: no learning data, stable pause/return/resume ID, one reward, solved int, failed ACK keeps save, star cup without tasks, legacy learning-cup save finishes"
+  },
+  {
+    "line_1based": 5980,
+    "original": "2026-11-14T03:13:26.3136408Z [KartSplit] PASS: Wolkenweg raised 2.20 m while main lane stayed at 0.00 m"
+  },
+  {
+    "line_1based": 5982,
+    "original": "2026-11-14T03:13:27.6482581Z [KartPhysics] PASS: rail walls on every course at full turbo, sliding contact, blue/orange drift tiers, wrong-way warning, reverse line and jump-ahead give no lap, GAS/BREMSE pedals with reverse, on-screen pad, forward-facing boost chevrons, and a physical Wolkenweg split route"
+  },
+  {
+    "line_1based": 6000,
+    "original": "2026-11-14T03:13:32.3527094Z [KartJump] PASS: take-off, flight, landing turbo, cloud rescue past the gap, ordered checkpoints across the jump, rival arc, no ramp elsewhere"
+  },
+  {
+    "line_1based": 6013,
+    "original": "2026-11-14T03:13:37.5087402Z [KartTouchTests] PASS: real two-finger GUI, window Back countdown/race pause, touch resume, simultaneous steering+BREMSE, release outside, no learning panel, scaled safe areas"
+  },
+  {
+    "line_1based": 6028,
+    "original": "2026-11-14T03:13:38.9553675Z [KartLandingFit] PASS: all five choices readable above START on 4 Android sizes"
+  },
+  {
+    "line_1based": 6056,
+    "original": "2026-11-14T03:13:39.7414171Z [LumoCharacterTests] PASS: attached torso, proportionate visemes, expressions, live idle"
+  },
+  {
+    "line_1based": 6074,
+    "original": "2026-11-14T03:13:46.2767529Z [KartWorldTests] PASS: colours, spatial culling batches, transforms, background shadows"
+  },
+  {
+    "line_1based": 6312,
+    "original": "2026-11-14T03:15:52.0761810Z [KartPauseLayoutTests] PASS: actual compact/Fold matrix, safe-area controls, pause/results layout and touch navigation"
+  },
+  {
+    "line_1based": 6353,
+    "original": "2026-11-14T03:16:00.2865851Z [KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+  },
+  {
+    "line_1based": 6384,
+    "original": "2026-11-14T03:16:08.0531945Z [GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp"
+  },
+  {
+    "line_1based": 6408,
+    "original": "2026-11-14T03:16:32.9335360Z [CompactKartSelection] PASS 355 checks; 6/6 cases; renderer=headless"
+  },
+  {
+    "line_1based": 6413,
+    "original": "2026-11-14T03:16:33.2127777Z [LoopContact] PASS: uniform physical travel, inversion and continuous road joins"
+  },
+  {
+    "line_1based": 6435,
+    "original": "2026-11-14T03:16:36.4701257Z [KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+  },
+  {
+    "line_1based": 6453,
+    "original": "2026-11-14T03:16:39.7178993Z [KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+  },
+  {
+    "line_1based": 6764,
+    "original": "2026-11-14T03:17:12.2070529Z [KartFullField] PASS: continuous field two-lap drive with bounded movement"
+  },
+  {
+    "line_1based": 6775,
+    "original": "2026-11-14T03:17:16.0234638Z [SonnenhafenGeneration] PASS: LOW/HIGH scenery, clear road, other tracks untouched"
+  },
+  {
+    "line_1based": 6800,
+    "original": "2026-11-14T03:17:39.7082628Z [StuntContinuity] PASS: continuous player contact and real AI loop traversal"
+  },
+  {
+    "line_1based": 6868,
+    "original": "2026-11-14T03:18:22.4196372Z [PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+  },
+  {
+    "line_1based": 6895,
+    "original": "2026-11-14T03:18:35.3154281Z [RivalFlight] PASS: launch-speed physics, real misses, safe snapshots and automatic ramps"
+  },
+  {
+    "line_1based": 6917,
+    "original": "2026-11-14T03:18:39.2879383Z [HarborAttraction] PASS: LOW/HIGH placement, upright travel, pass-by, rearm, pause, reduced motion, distance culling"
+  },
+  {
+    "line_1based": 6937,
+    "original": "2026-11-14T03:18:42.9033872Z [HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+  },
+  {
+    "line_1based": 6957,
+    "original": "2026-11-14T03:18:44.2245231Z [ZauberwaldLibrary] PASS checks=601"
+  },
+  {
+    "line_1based": 6974,
+    "original": "2026-11-14T03:18:47.0452844Z [JumpExtras] PASS 12 checks: live platforms, pause, bounce and star resume"
+  },
+  {
+    "line_1based": 6984,
+    "original": "2026-11-14T03:18:47.3002154Z [BauweltSandboxTools] PASS larger world, atomic fill/copy/mirror, undo and save"
+  },
+  {
+    "line_1based": 7004,
+    "original": "2026-11-14T03:18:55.9305444Z [BauweltSandboxUI] PASS 48dp tools, point workflow and atomic undo"
+  },
+  {
+    "line_1based": 7026,
+    "original": "2026-11-14T03:19:08.3932867Z [CreativeTouchLayout] PASS 300 checks: transformed dp, portrait, Fold and density"
+  },
+  {
+    "line_1based": 7044,
+    "original": "2026-11-14T03:19:09.9883512Z [PuzzleExpansion] PASS 1103 checks: all motifs/counts, saves and two played rounds"
+  },
+  {
+    "line_1based": 7063,
+    "original": "2026-11-14T03:19:45.8299062Z [Garage3DTouch] PASS 27 checks: native input, legacy ray, pointer ownership"
+  },
+  {
+    "line_1based": 7083,
+    "original": "2026-11-14T03:19:50.3878067Z [MenuDepth] PASS: 41 checks"
+  },
+  {
+    "line_1based": 7084,
+    "original": "2026-11-14T03:19:50.6000290Z [Lumo2014] PASS: continuous kart contact, fair AI, physical ramps and integrated game worlds; logs /home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/2014"
+  },
+  {
+    "line_1based": 7097,
+    "original": "2026-11-14T03:19:55.3225108Z [StreetfrontsWorld] PASS: integrated opaque kit, hard geometry budget, complete road clearance"
+  },
+  {
+    "line_1based": 7117,
+    "original": "2026-11-14T03:19:56.0758568Z [Streetfronts] PASS: opaque materials, actual geometry budgets, spatial cells, optional GL motion"
+  },
+  {
+    "line_1based": 7137,
+    "original": "2026-11-14T03:19:59.7109756Z [HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+  },
+  {
+    "line_1based": 7167,
+    "original": "2026-11-14T03:20:01.1408892Z [LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration"
+  },
+  {
+    "line_1based": 7182,
+    "original": "2026-11-14T03:20:01.6095550Z [LumoGestureContact] PASS checks=200 failures=0"
+  },
+  {
+    "line_1based": 7204,
+    "original": "2026-11-14T03:20:18.5331364Z [GaragePresentation] PASS 66 checks"
+  },
+  {
+    "line_1based": 7214,
+    "original": "2026-11-14T03:20:18.9256147Z [AirTrick] PASS: 20 checks"
+  },
+  {
+    "line_1based": 7216,
+    "original": "2026-11-14T03:20:19.0107340Z [LumoTechnicalArt] PASS: geometry, live reactions, original rig, camera and touch targets; logs /home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/technical-art"
+  },
+  {
+    "line_1based": 7226,
+    "original": "2026-11-14T03:20:19.2051625Z [KartLasso] PASS: 34 assertions; 70 m/s sweeps, counterplay, bounded hold, equal rival rules"
+  },
+  {
+    "line_1based": 7245,
+    "original": "2026-11-14T03:20:27.0443246Z [KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild"
+  },
+  {
+    "line_1based": 7306,
+    "original": "2026-11-14T03:24:31.9167858Z [SpatialMenu] PASS 594 checks; 5/5 cases; renderer=X11"
+  },
+  {
+    "line_1based": 7332,
+    "original": "2026-11-14T03:24:42.2117249Z [RoadsideAction] PASS: 183 assertions; two new drivable ramps at 20.5/48/70 m/s, visible fair encounter plans"
+  },
+  {
+    "line_1based": 7367,
+    "original": "2026-11-14T03:27:32.6448123Z [KartMenuFlow] PASS: direct selected Cup start inside compact Android safe insets"
+  },
+  {
+    "line_1based": 7368,
+    "original": "2026-11-14T03:27:32.6448851Z [KartMenuFlow] PASS: five direct sections; 1280x720,800x480,640x320; safe controls >=44px"
+  },
+  {
+    "line_1based": 7369,
+    "original": "2026-11-14T03:27:34.5833265Z [LumoActionStage] PASS: native touch navigation, real 3D stage and physical roadside action; logs /home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/action-stage"
+  },
+  {
+    "line_1based": 7505,
+    "original": "2026-11-14T03:27:54.7159250Z [LearningWorld] PASS checks=5340"
+  },
+  {
+    "line_1based": 7559,
+    "original": "2026-11-14T03:28:07.0909693Z [JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves"
+  },
+  {
+    "line_1based": 7664,
+    "original": "2026-11-14T03:28:20.5524490Z [JumpExpeditions] PASS 29 checks: three physical courses, four stages, real menu selection and preserved progress"
+  },
+  {
+    "line_1based": 7675,
+    "original": "2026-11-14T03:28:20.8555752Z [LumoTeacherPose] PASS 34 checks: original gestures, bounded split gaze, owner exclusivity, pause and honest voice seam"
+  },
+  {
+    "line_1based": 7686,
+    "original": "2026-11-14T03:28:21.2196417Z [LumoGait] PASS: real 65-bone alternating thigh/foot/toe/arm movement, pause, calm mode, neutral reset"
+  },
+  {
+    "line_1based": 7702,
+    "original": "2026-11-14T03:28:23.6432218Z [JumpOriginalLumo] PASS: original 65-bone GLB visible, grounded, moving, paused and resumed"
+  },
+  {
+    "line_1based": 7712,
+    "original": "2026-11-14T03:28:23.9600457Z [BuildTransform] PASS checks=38: identity, rotation, support graph, atomic history and v1 saves"
+  },
+  {
+    "line_1based": 7725,
+    "original": "2026-11-14T03:28:29.8575297Z [BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+  },
+  {
+    "line_1based": 7728,
+    "original": "2026-11-14T03:28:30.1493308Z [Settlement] PASS 194 checks; mirrored complete AI campaign 22 days"
+  },
+  {
+    "line_1based": 7762,
+    "original": "2026-11-14T03:30:43.2138266Z [SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+  },
+  {
+    "line_1based": 7773,
+    "original": "2026-11-14T03:30:43.6159700Z [CreativeNextgenEnvironment] PASS checks=35: original textures, bounded cloud batch, preserved quality and no added lights"
+  },
+  {
+    "line_1based": 7787,
+    "original": "2026-11-14T03:30:53.2567398Z [NextGenGarage] PASS 93 checks; captures=0"
+  },
+  {
+    "line_1based": 7807,
+    "original": "2026-11-14T03:31:04.2135657Z [KartTrackPass] PASS 104 checks"
+  },
+  {
+    "line_1based": 7829,
+    "original": "2026-11-14T03:31:05.9053227Z [RhythmTour] PASS checks=2118: distinct fair charts, three difficulties, non-perfect campaign and additive saves"
+  },
+  {
+    "line_1based": 7841,
+    "original": "2026-11-14T03:31:11.7693923Z [RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+  },
+  {
+    "line_1based": 7936,
+    "original": "2026-11-14T03:39:42.7421981Z [LearningCapture] PASS captures=25"
+  },
+  {
+    "line_1based": 7974,
+    "original": "2026-11-14T03:40:20.2932180Z [JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps"
+  },
+  {
+    "line_1based": 7993,
+    "original": "2026-11-14T03:40:43.9135567Z [BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+  },
+  {
+    "line_1based": 8026,
+    "original": "2026-11-14T03:41:12.8597654Z [SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+  },
+  {
+    "line_1based": 8044,
+    "original": "2026-11-14T03:41:13.6390352Z [CreativeNextgenEnvironment] PASS checks=53: original textures, bounded cloud batch, preserved quality and no added lights"
+  },
+  {
+    "line_1based": 8065,
+    "original": "2026-11-14T03:43:08.9949797Z [NextGenGarage] PASS 118 checks; captures=12"
+  },
+  {
+    "line_1based": 8101,
+    "original": "2026-11-14T03:43:58.1455211Z [RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+  },
+  {
+    "line_1based": 8169,
+    "original": "2026-11-14T03:44:39.1084289Z [PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+  },
+  {
+    "line_1based": 8170,
+    "original": "2026-11-14T03:44:39.9736049Z [LumoNextgen] PASS: new production learning, platforming, building, cards, rhythm and garage checks; logs /home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/nextgen"
+  },
+  {
+    "line_1based": 8193,
+    "original": "2026-11-14T03:44:42.8152830Z [LearningSharing] PASS checks=1811"
+  },
+  {
+    "line_1based": 8221,
+    "original": "2026-11-14T03:44:50.6500810Z [LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+  },
+  {
+    "line_1based": 8232,
+    "original": "2026-11-14T03:44:50.9917413Z [LumoStudioMotion] PASS checks=1046 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+  },
+  {
+    "line_1based": 8243,
+    "original": "2026-11-14T03:44:55.7506210Z [PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+  },
+  {
+    "line_1based": 8312,
+    "original": "2026-11-14T03:45:00.7895480Z [PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+  },
+  {
+    "line_1based": 8323,
+    "original": "2026-11-14T03:45:02.7179042Z [TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+  },
+  {
+    "line_1based": 8345,
+    "original": "2026-11-14T03:45:10.7387481Z CARDS_SAFE_AREA_PASS checks=662 failures=0 profiles=5 images=0"
+  },
+  {
+    "line_1based": 8389,
+    "original": "2026-11-14T03:45:20.6005344Z MOBILE_SAFE_AREA_PASS checks=112 failures=0 controls=15 images=0 scope=platform_boundary_fixture"
+  },
+  {
+    "line_1based": 8437,
+    "original": "2026-11-14T03:47:26.0416608Z [LearningSharingCapture] PASS captures=6"
+  },
+  {
+    "line_1based": 8455,
+    "original": "2026-11-14T03:47:29.4867141Z [LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips"
+  },
+  {
+    "line_1based": 8473,
+    "original": "2026-11-14T03:47:51.8821539Z [PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+  },
+  {
+    "line_1based": 8549,
+    "original": "2026-11-14T03:48:12.7317116Z [PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required"
+  },
+  {
+    "line_1based": 8567,
+    "original": "2026-11-14T03:48:47.5552460Z [TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+  },
+  {
+    "line_1based": 8585,
+    "original": "2026-11-14T03:52:38.4460959Z CARDS_SAFE_AREA_PASS checks=671 failures=0 profiles=5 images=3"
+  },
+  {
+    "line_1based": 8637,
+    "original": "2026-11-14T03:54:31.8162329Z MOBILE_SAFE_AREA_PASS checks=124 failures=0 controls=15 images=4 scope=platform_boundary_fixture"
+  },
+  {
+    "line_1based": 8638,
+    "original": "2026-11-14T03:54:32.2141326Z [StudioRasterRoster] PASS 37 actual PNG files"
+  },
+  {
+    "line_1based": 8639,
+    "original": "2026-11-14T03:54:32.2190065Z [LumoStudio] PASS: source-bound learning, character, puzzle, exploration and Cards safe-area evidence"
+  }
+]

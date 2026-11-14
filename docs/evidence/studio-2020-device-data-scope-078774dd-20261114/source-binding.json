@@ -1,0 +1,344 @@
+{
+  "host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "tree": "3f048230ee41fe3c7f0c4dadb5147cb1f39fa61e",
+  "tree_truncated": false,
+  "files": [
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-device-data-scope-078774dd-20261114/workflow-at-078774dd.yml.txt",
+      "git_blob": "4987a607fd3bb1531eff243500ed05cfec50ec57",
+      "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+      "bytes": 58576,
+      "mode": "100644",
+      "exact_published_blob_snapshot": true
+    },
+    {
+      "path": ".github/probes/lumo_2020_update_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/lumo_2020_update_android_probe.py",
+      "git_blob": "f0fd4597111a158ce81ccfc071d480c118208ce0",
+      "sha256": "39eb95d3a69d476b34f80e44d2d54eb640dae527a0aa8912f3b9b7d6feaad293",
+      "bytes": 1899,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/lumo_2003_update_android_probe.py",
+      "git_blob": "6616883a5653f5c8958de92e86da514505e68312",
+      "sha256": "5f2b41e16f1ade611b2a1170d8142b5ed8b7fbfc038294bc1fa5c59fc9928b20",
+      "bytes": 10553,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_learning_journey_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/lumo_learning_journey_probe.py",
+      "git_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "sha256": "695aa825f506c77a8d68e3d3063eb4eaad3e1678a03028f6081a344b1ba02e63",
+      "bytes": 16929,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/modernization_android_tour.py",
+      "git_blob": "c04397ae8e99e0d02cefa341dcf4523deb464d99",
+      "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+      "bytes": 46556,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/creative_android_probe.py",
+      "git_blob": "45ff0d24400ee21673c707b4b6448f914c85ee87",
+      "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+      "bytes": 60697,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "git_blob": "84147964ce848bde78ff8cc9cb7d5a17176da2a8",
+      "sha256": "b072e4b218e05e3756a902d9cb887c1a02275d708bb7a25da83fb6c9b810b415",
+      "bytes": 48924,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "53679cb2a9adda7fbae82621afb29efd920c4485",
+      "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+      "bytes": 36483,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/studio_creative_android_probe.py",
+      "git_blob": "4747ac3d62fddcf7ec3b12f96ca01ff3a93830b5",
+      "sha256": "5b2aad1a5fe0a9bac1e52f891c836393a9ca41492da110d50fcd59d98d4fc2e0",
+      "bytes": 69712,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_free_voice_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/lumo_free_voice_android_probe.py",
+      "git_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "sha256": "c1450522e9f0144ee37824400bac551602e183d55c518dbd74559028ad115664",
+      "bytes": 18897,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_speech_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/lumo_speech_android_probe.py",
+      "git_blob": "51299db715f09cd697b2ac414896b43d222d150a",
+      "sha256": "ef1dd23ad1d83258db4faa38ede3774cfe26c9f5fd947d530651f7b24e4d3e8f",
+      "bytes": 14682,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/tools/android_qa/update_preservation.py",
+      "git_blob": "b52850ecc4d0b80dd76388ca3b5a4af7933540bc",
+      "sha256": "e0df95f2352bdce13fd8068f8f064fb139aa5beac575d8ba7e7bdef85b5dbc4e",
+      "bytes": 9154,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json",
+      "git_blob": "dc3792760859e23561d13988350de3353d832577",
+      "sha256": "8815f517552ebdde7908ff98b1bb389147a4857ccb4a75cabd65e2142eb3338a",
+      "bytes": 7585,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/tools/auto_install/LumoLearningSpeech.kt",
+      "git_blob": "d9adf0665b3a037c090299091340fdae76af9e3a",
+      "sha256": "13bf313696c626a3453cddacdd8e95fb20b4075d84ddaeb8a5c0054d68e43f8d",
+      "bytes": 8902,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/tools/auto_install/LumoSpeechEnvelope.kt",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "bytes": 4697,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/auto_install/LumoGameActivity.kt",
+      "git_blob": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "bytes": 11695,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/ConnectFourBridge.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/tools/auto_install/ConnectFourBridge.kt",
+      "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37",
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+      "bytes": 7788,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/ConnectFourGameActivity.kt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/tools/auto_install/ConnectFourGameActivity.kt",
+      "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+      "bytes": 7355,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/profile_repository.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/profile_repository.dart",
+      "git_blob": "35cfa44b277284cdb1310b778760367a331b5ebe",
+      "sha256": "0aec803483aecbf6b34ef95c8807c5895d859ceba8a0bfe404a2868ab85af6e8",
+      "bytes": 3877,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/native_profile_key_repository.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/native_profile_key_repository.dart",
+      "git_blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "sha256": "27790a3fecd569a57a0c6fb6905636773bc95938fe22f9c8bbe84b677603471c",
+      "bytes": 10553,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/writing_progress_repository.dart",
+      "git_blob": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "sha256": "9cbea3120444ae0011719f42b341690b82a4568f1774345dc0ed7657a68a99a3",
+      "bytes": 3785,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/journal/journal_repository.dart",
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "sha256": "9b6e404d8312ed9ffb874eac2fea06e0fdf45024b308392e1ef58b5a85e13753",
+      "bytes": 3696,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/journal/lumo_journal_screen.dart",
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "sha256": "389270e2a26df93cbc76ec0e028efaa804210236c5d57647afb60023db054aa4",
+      "bytes": 33174,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/widgets/profile_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/widgets/profile_screen.dart",
+      "git_blob": "56980b0c3867e52df7011fd968f1a50423bbd467",
+      "sha256": "7e8676b83e8a54f8862dfbf1cdaf7581c0697325399ab3454b61b16297e818c7",
+      "bytes": 34300,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/widgets/lumo_speech_controls.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/widgets/lumo_speech_controls.dart",
+      "git_blob": "ee919d29d2a0d3147fe5b382ae50b6f6eb0418d7",
+      "sha256": "ba5767406753f2547ef28e2b6c6ebf63732d177c49ad2d7847ddfec0d2077831",
+      "bytes": 3436,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/features/games/connect_four/connect_four_table_session.dart",
+      "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+      "bytes": 9737,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_table_session.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/games/lumo_cards/lumo_cards_table_session.dart",
+      "git_blob": "278ffb71145ad75a62f9aa45a78d4c8bcd8b8f82",
+      "sha256": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee",
+      "bytes": 11296,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_voice.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/lumo_voice.dart",
+      "git_blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08",
+      "sha256": "3fd4deaae3df530677f852207760f0fa362ab1629b7e803714c83f82eb9aa6cc",
+      "bytes": 25712,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_voice_policy.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/lumo_voice_policy.dart",
+      "git_blob": "58c69f341ded28823f79d5a2170ebd9fb4db38ea",
+      "sha256": "2d43c6454b1ffb3e346ea5ffa03ea759a830bbbb8c6c285efae8564f059c3f05",
+      "bytes": 641,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/kart_tour_evidence.py",
+      "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "bytes": 9299,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/nextgen_evidence.py",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8",
+      "bytes": 28512,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/school_repository.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/school_repository.dart",
+      "git_blob": "91e2bd74c742eddd877b111740a54550f05fe511",
+      "sha256": "c7fb332684b64339b70428d84d3e1485534e5029dafec8fabec5517e789756e5",
+      "bytes": 8279,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/teacher/teacher_student_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/teacher/teacher_student_screen.dart",
+      "git_blob": "289eff6908e36b3934e7dabb8c0427b0405b3010",
+      "sha256": "f661dfc24b81527ec2427d6822b29c14319985f71665b423df9cb1f870585349",
+      "bytes": 12656,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/teacher/teacher_dashboard_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/teacher/teacher_dashboard_screen.dart",
+      "git_blob": "dcbe71119d53e38e5f24f52f4ca5732309052cb4",
+      "sha256": "c2db4a526e976412dd11216816ac89edea576b521cdf0bd6f91e45ebc3ac9f08",
+      "bytes": 22418,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/settings/settings_content.dart",
+      "git_blob": "88505af2708e316c72448695e6279fc08e9312e9",
+      "sha256": "0f692e8dcd4d3562feaf443631aee7b5eb013e62495f537f1f996835f8b13cb1",
+      "bytes": 92318,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/home/home_content.dart",
+      "git_blob": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "sha256": "37c66dc5ddd7ab70210f275bc624e32100c25b6214dfe979fd0e5026e203affa",
+      "bytes": 47310,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "git_blob": "845efa5601e0ca314af227502a7e34f303c68858",
+      "sha256": "0fe548e965b96313ddfb186b7e04fabf601a6c7220a3c7100de2c019a0bc3450",
+      "bytes": 45646,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/lumo3d/native_game_saves_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/lumo3d/native_game_saves_screen.dart",
+      "git_blob": "8f5cbee67a38777ebfe8818002416ef26f3ca22a",
+      "sha256": "05e45625de473f6dddbe81567e3412a441e29d2a335a121be115ddb855065d9b",
+      "bytes": 15444,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/progress_repository.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/progress_repository.dart",
+      "git_blob": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "bytes": 13839,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/writing/lumo_writing_coach_screen.dart",
+      "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10",
+      "bytes": 28091,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "git_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd",
+      "bytes": 38878,
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/settings/lumo_voice_diagnostics_card.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/settings/lumo_voice_diagnostics_card.dart",
+      "git_blob": "fc0acfa51f46999ad543a235e1718433d2ad3376",
+      "sha256": "13b6ef327acb40a72155693155545bc3c88f91bf676bb401909018a3e1a9a5a7",
+      "bytes": 4675,
+      "mode": "100644"
+    }
+  ]
+}

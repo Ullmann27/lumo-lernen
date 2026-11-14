@@ -1,0 +1,481 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T03:15:28.937549+00:00",
+  "reviewer": "/root/games_worlds",
+  "status": "NO_ADDITIONAL_CONCRETE_EVIDENCE_OR_SCOPE_BLOCKER",
+  "scope": "Independent read-only package review; no repeated tests, build, downloads, image claims or source changes.",
+  "reviewed_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/upload-manifest.json",
+    "sha256": "a2b9f8cb57c57c5b67588719a6e3b7b004ca568cd11805c5bab5a0e9310b324e",
+    "files": 56,
+    "bytes": 1092990,
+    "all_bytes_sha256_gitblobs_match": true,
+    "all_targets_docs_only": true,
+    "unique_targets": 56
+  },
+  "source_separation": {
+    "original_failed_ci": {
+      "host": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+      "run": 43545886722,
+      "build_job": 132296974547,
+      "conclusion": "FAILURE",
+      "tests": 445,
+      "failures": 2,
+      "seconds": 102.529,
+      "apk_or_android_after_failure": false
+    },
+    "original_compile": {
+      "host": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+      "run": 43545886722,
+      "job": 132296974256,
+      "artifact": 14094167156,
+      "scope": "Actual Android Kotlin/Java compilation only; no APK or runtime claim",
+      "conclusion": "SUCCESS",
+      "does_not_prove_new_86445_build": true
+    },
+    "published_narrow_fix": {
+      "host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+      "tree": "2389b97232041bb77307e47ecc0e550772339a4e",
+      "only_changed_path": "scripts/tests/test_android_voice_scroll.py",
+      "other_blobs_modes_unchanged": 4144,
+      "new_full_run": 43549076631,
+      "new_run_result_not_inferred_from_this_package": true
+    },
+    "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "local_current_source_scope": "38 reviewed changed/new source paths, older local git HEAD expressly retained. Stored before/after maps equal each other and source-manifest-readback; all38 also currently match. This is not an assertion that every file is a clean86445 checkout."
+  },
+  "results_kept_separate": [
+    {
+      "type": "original_c081_CI_Flutter",
+      "passed": 2514,
+      "failed": 0,
+      "skipped": 0,
+      "pngs_reported": 546,
+      "pngs_opened_by_this_review": 0
+    },
+    {
+      "type": "original_c081_CI_build_contracts",
+      "tests": 445,
+      "failures": 2,
+      "seconds": 102.529,
+      "status": "FAIL"
+    },
+    {
+      "type": "focused_original_local",
+      "tests": 7,
+      "failures": 2,
+      "seconds": 0.048,
+      "status": "FAIL"
+    },
+    {
+      "type": "focused_corrected_local",
+      "tests": 7,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 0.063,
+      "status": "PASS"
+    },
+    {
+      "type": "initial_complete_local_missing_environment",
+      "tests": 425,
+      "errors": 2,
+      "skipped": 1,
+      "seconds": 55.291,
+      "status": "FAIL",
+      "reason": "Existing Gradle/Kotlin libraries were not supplied on PATH/LUMO_KOTLIN_LIB_DIR; original errors retained."
+    },
+    {
+      "type": "source_hash_preflight",
+      "test_process_started": false,
+      "status": "FAIL",
+      "reason": "KeyError repository_path; exact correction recorded separately; not counted as a test run."
+    },
+    {
+      "type": "complete_local_build_preservation",
+      "tests": 445,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "unittest_seconds": 74.157,
+      "process_seconds": 74.39590530499117,
+      "status": "PASS",
+      "existing_toolchain_only": true,
+      "require_all_tests": "true"
+    },
+    {
+      "type": "complete_local_android_probe_contracts",
+      "tests": 819,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "unittest_seconds": 40.953,
+      "process_seconds": 41.3479965810111,
+      "status": "PASS",
+      "not_android_device_tours": true
+    }
+  ],
+  "no_combined_success_total_created": true,
+  "preserved_original_failures": [
+    "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-job.log",
+    "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-two-failures.txt",
+    "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081.log",
+    "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts.log",
+    "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/root-harness-first-attempt-error.json"
+  ],
+  "additional_checks": {
+    "original_compile_zip_crc_members": 5,
+    "original_compile_extracted_bytes_equal_zip": true,
+    "source_hash_maps_equal_for_38_paths": true,
+    "current_38_paths_match_frozen_hashes": true,
+    "no_installation_targets": true,
+    "no_apk": true,
+    "source_snapshots_present_only_under_docs_baseline": true,
+    "native_public_archive_immutable": false,
+    "native_public_archive_cleanup_adds_no_gameplay_acceptance": true
+  },
+  "limitations": [
+    "The originalc081 CI remains failed. Local PASS does not turn it green.",
+    "Actual host compilation is a narrower result than APK assembly or Android runtime.",
+    "The current86445 CI requires its own exact-source result; no success inferred here.",
+    "Native release streaming/duplicate cleanup proves retained artifact bytes at observation time, not permanence or new gameplay.",
+    "No physicalFold7/FPS/temperature/latency or new Android game result is established by this review."
+  ],
+  "reviewed_files": [
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/artifact-metadata.json",
+      "bytes": 763,
+      "sha256": "155725432b352f0ed541b8c7c83c87e9eda4aa30560cbde70bb186334d8db104",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/completed-job-metadata.json",
+      "bytes": 2006,
+      "sha256": "fb369908289fbb78bc8969415e23fd29cb77f54f9787df26fefdd9c614ce7274",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/original-artifact.zip",
+      "bytes": 5392,
+      "sha256": "4d10b9d78de2b758710fc98646a1df841163c6c82d47f91f831ebe233d2e49c4",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/original-binding.json",
+      "bytes": 1263,
+      "sha256": "c7dbff4409fbe32a8a395bfc29393fda15987cad7baca0fb0bf0e049770bc3c8",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/original-job.log",
+      "bytes": 236122,
+      "sha256": "82345b53bb7c5e4b88bd751539d76aa322635761a551170caa5ff8c948b3bcfc",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "f70128eb351789ced7b8393ce269a324b6674e5028059a97d70c5b1652d04fdc",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/compile.log",
+      "bytes": 33778,
+      "sha256": "b5d0ced85eb22a4147d9989a52d7d1b2951799d9eb789fabf3351e37dbc5b724",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/result.json",
+      "bytes": 2769,
+      "sha256": "238257a7cc1aeb796f0bda54e4bd55105c4ca5c14783772b5cc4d91838070f17",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/source-sha.txt",
+      "bytes": 41,
+      "sha256": "ddd6fcef95a98a889d812e94b73acd4c7ca266632201e4504901e472f9f90cc7",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/review.json",
+      "bytes": 12526,
+      "sha256": "162b24bc09911b30e4a40eba98af0f68618ac221871d9643d043de2bdb1a9361",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/tool-log-transfer-binding.json",
+      "bytes": 248,
+      "sha256": "f47c37dcd0ae27f6bc8971e625dc765b931edae78dd13193255fcdb84ad280cf",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-host-compile/upload-manifest.json",
+      "bytes": 5244,
+      "sha256": "a8e564b40b4544c42df6833c0020561b028ae8f5694e3d23bd18af43702495c7",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/README.md",
+      "bytes": 1861,
+      "sha256": "ec54ddc705c0de240178894c014935790ece8351a85d38ef22d23d0ebbc8b4b1",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/creative_android_probe.py",
+      "bytes": 59166,
+      "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/lumo_free_voice_android_probe.py",
+      "bytes": 18897,
+      "sha256": "c1450522e9f0144ee37824400bac551602e183d55c518dbd74559028ad115664",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py",
+      "bytes": 7778,
+      "sha256": "abb6822c5bc721c97b210222433d273618f5e5b9ef0ebfea8a35025c0e9e794a",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts-execution.json",
+      "bytes": 469,
+      "sha256": "545229d1ff774bda484a539e294057d438b3f9252bb7b60d577a186208926cca",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts.log",
+      "bytes": 1443,
+      "sha256": "085d48391f1732c0bf8a50ead6249531618670d11a8e77bb1cdd903fe83d0677",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/independent-review.json",
+      "bytes": 2740,
+      "sha256": "33d32fbdcab28b833a5f05521235458a44aba91795c50ceaf568932162d42e51",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/patch-against-exact-c081.diff",
+      "bytes": 1017,
+      "sha256": "a0de0ee4f4ab821e38fddf6284c902558acf4279da6dea1d9700b16bf9737742",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081-execution.json",
+      "bytes": 510,
+      "sha256": "4a1c132e25612b05a7f7effa8d6003dac9e0502ea80633cd9665f75a82d679f2",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081.log",
+      "bytes": 4096,
+      "sha256": "3eeb05b85602307472bdbc57c882f6155287cea6a63a07bf97d9e6e9cad346de",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/root-local-integration.json",
+      "bytes": 372,
+      "sha256": "eb52c935b8634464814cd62ed91b5e507a6092a1fae1bc5bc7bebe7a62142aa8",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-binding.json",
+      "bytes": 3070,
+      "sha256": "4455013e84bc401ac7048ff96fbe0f8fc2196215e4ea3627a2f42fcd7c3322d1",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+      "bytes": 1531,
+      "sha256": "84869ef116dfa6987547939e8350b4d27f5f5aa34e58c21ce5950ad1772aaf1c",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-job.log",
+      "bytes": 218809,
+      "sha256": "1dbd60250899aabe46c8d58b8350e59631b4678809b2b97747ba2569cecffacd",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/source-transfer-binding.json",
+      "bytes": 505,
+      "sha256": "f6f3d3296a65cb95ca886ba1917ab94e225d5bca034b662cca2ee0bc0266c778",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/completed-jobs-metadata.json",
+      "bytes": 10299,
+      "sha256": "9de33c8d3814a4f0b7612325878897cdd942f2eff1f5f666be0463b0b0e4444e",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/run-completed-metadata.json",
+      "bytes": 14777,
+      "sha256": "d4edee71c34d7a6e3bd244b3c8d8ba4b46b6d1987a4369115ed8ad6f5e7c2e57",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/unified-completed-jobs.json",
+      "bytes": 9644,
+      "sha256": "7a8d6eea7b781db6f6f265cb6207feae4227156cc3fb0c74c038eb52dd32b8e5",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/full-flutter-original-summary.json",
+      "bytes": 4562,
+      "sha256": "1545ef741d4c09c235aafba54819c27423b8d0a6eba2e7aa904ad7e834c9f4b5",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-two-failures.txt",
+      "bytes": 3357,
+      "sha256": "cc84496ede88e98e81f8f3d46b839df9bf8bf8d4e203a4b1f015b1f381d5cef2",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/review.json",
+      "bytes": 3719,
+      "sha256": "f12026631357684ac8cf4df091c8369b234af225fcd31050b4434ffcb946449e",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/evidence-upload-manifest.json",
+      "bytes": 10181,
+      "sha256": "38a0f44deae7799e87defb911d839427b6763ebb9ded9b02b7fa167f6de04ce9",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-android-probe-contracts.log",
+      "bytes": 162212,
+      "sha256": "02144370f74f098580d9c5a911069c0c82f338ca2bed83ec8249c32f79ffae92",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm-result.json",
+      "bytes": 13193,
+      "sha256": "a7dd13b0e4849d3388ef39b00cd96a7c8b8c71aa3a8041d352fb92d37e651097",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm.log",
+      "bytes": 90148,
+      "sha256": "0113b8caa750ce7b58dd047f39bc98d3a1c268c0eaed5c248200435fd93dadc4",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts.log",
+      "bytes": 87711,
+      "sha256": "594cf001c58078a63436d5023e7bf166c95b60a4daaf5630144e6f724c1c83d6",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/android-group-result.json",
+      "bytes": 850,
+      "sha256": "264095dd8a95e09ee5ba45dc70391569cf33fb56cfae2a4ddb51684bb87000ea",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/android-tesseract-languages.log",
+      "bytes": 109,
+      "sha256": "464d07e2a4302a06245020f134fe5ace55fd3387a242cdf6789c5642343e541c",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/existing-toolchain-readonly.json",
+      "bytes": 3854,
+      "sha256": "7e01d820591033623372f74c71a98651e55f522ee0c28fa8fe1714549285a505",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/results.json",
+      "bytes": 730,
+      "sha256": "0a02ce3b57c64562052ffbc955ef5048cc9da9ee3e0fa74965fc1156fd0ca590",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/root-harness-first-attempt-error.json",
+      "bytes": 265,
+      "sha256": "2e13f78c7f4f71e40217bb1c9c300aef3a11477555ebe681a20cf0618cbe933b",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/source-manifest-readback.json",
+      "bytes": 6407,
+      "sha256": "afee739a558677851630e1f5b03f05705fd2464b32c59ad041251c53c0b8164e",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-checkpoint.json",
+      "bytes": 596,
+      "sha256": "edb1361119978f59ad4d0ff22086454da197987353b814c6e227b6120f4e1674",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-created-commit.json",
+      "bytes": 166,
+      "sha256": "3c3eb19a8c94b273dbad16cf4e961192ff4e03b8cf5c8c69f416dd998dc37c38",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-created-tree.json",
+      "bytes": 293,
+      "sha256": "23567ac78ee4ec8bdb920c91f03cc0038715d15f506e8a60fb67ba110f8f0783",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-tree-verification.json",
+      "bytes": 648,
+      "sha256": "f976303b71822d23e176cb02af1629de453fca7ffa0f4226a602970c455b3bcd",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/new-studio-run.json",
+      "bytes": 305,
+      "sha256": "a1832971e621a374a39793230aeddd0cdbf41e7e195d9671b2361e55a5020ade",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/current-public-stream.json",
+      "bytes": 778,
+      "sha256": "8bd6c817b797cc18884c94b4e106bddfc343225550c7490989264392c90ab295",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/current-release-original.json",
+      "bytes": 7888,
+      "sha256": "02623692540d8db75e7a0aa3e26fc59af2c07fd362a82c3041bb61fbf49be4a0",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/independent-local-copy-review.json",
+      "bytes": 3072,
+      "sha256": "e8f16948a82d5179d7746a35897efc99aa6f93452bffbdf7feff5a73f08b96df",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/retained-evidence-check.json",
+      "bytes": 28335,
+      "sha256": "80130ba6ad9f4b91e06cc500a83742a20e0b5591047802ccc5d1038f7953e752",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/root-local-duplicate-cleanup.json",
+      "bytes": 1183,
+      "sha256": "5f56e055bb96dca64260cd2bd6b59fa4938149bfff8430598b177b6d39fe3c04",
+      "actual_matches_manifest": true
+    },
+    {
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/README.md",
+      "bytes": 3646,
+      "sha256": "c8142230548260e336bb2804616778b008b1a939175e2d5fd442ebb55feb69c2",
+      "actual_matches_manifest": true
+    }
+  ]
+}

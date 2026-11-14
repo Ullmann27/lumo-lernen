@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T13:06:36.160524+00:00",
+  "scope": "Sieben aktuelle originale Framebuffer aus dem neu aufgebauten Quiz-Presenter, finaler deklarierter Godot-UI-/Transportfixturelauf. Keine alten verlorenen Sichtungen übernommen.",
+  "native_base": "34421df83566dd4773420cc2a225887956459435",
+  "host_protocol_base": "1a903aefc751f80537c7dd4c96ae8c99915962f5",
+  "source_manifest": {
+    "bytes": 1569,
+    "sha256": "f29e1627694d890f572f1f4f280422be6c612dc090e8f8328224ef928fe55cf7",
+    "git_blob_sha": "6f84fbc662d107ff159a150214af371536124094"
+  },
+  "renderer_report": {
+    "bytes": 14990,
+    "sha256": "8d52fd9761845035b4bc6988df9895d2d2b6c1dee7206b3333d7402919ac4cdd",
+    "git_blob_sha": "1c197f0e4eb04c54ec1d224ef2b393ef19b9c063"
+  },
+  "renderer_execution": {
+    "exit_code": 0,
+    "elapsed_seconds": 25.364010280000002,
+    "display": 109,
+    "project": "/tmp/lumo-quiz-native-recovery-20261114",
+    "godot_arguments": [
+      "--resolution",
+      "960x540",
+      "--disable-vsync",
+      "--script",
+      "res://scripts/tests/quiz_studio_runtime.gd",
+      "--",
+      "--fixture",
+      "--capture"
+    ],
+    "timed_out": false,
+    "scope": "Local software renderer; not physical Android performance"
+  },
+  "headless_execution": {
+    "started_at_utc": "2026-11-14T13:02:23.399418+00:00",
+    "completed_at_utc": "2026-11-14T13:02:28.326125+00:00",
+    "elapsed_seconds": 4.926707550000174,
+    "exit_code": 0,
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "/tmp/lumo-quiz-native-recovery-20261114",
+      "--script",
+      "res://scripts/tests/quiz_studio_runtime.gd",
+      "--",
+      "--fixture"
+    ],
+    "environment": {
+      "LUMO_CAPTURE_DIR": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/evidence/final-headless"
+    },
+    "source_before": {
+      "scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+      "scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+      "scripts/tests/quiz_studio_runtime.gd": "22d0d8a4357b63453d35f5befaaae2c4ba0fea19b95bd54bf025a9a00a6ac36c"
+    },
+    "source_after": {
+      "scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+      "scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+      "scripts/tests/quiz_studio_runtime.gd": "22d0d8a4357b63453d35f5befaaae2c4ba0fea19b95bd54bf025a9a00a6ac36c"
+    },
+    "source_unchanged": true,
+    "strict_engine_error": false,
+    "log_sha256": "b7398d9e781936e6f3ea0290e8a01ffec41a861e5ca53b988dc16c4513638385",
+    "scope": "Actual Godot-only UI/transport fixture; production Dart process pending"
+  },
+  "source_before": {
+    "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+    "res://scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+    "res://scripts/characters/lumo/lumo_rigged_actor.gd": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+    "res://scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+    "res://scripts/tests/quiz_studio_runtime.gd": "22d0d8a4357b63453d35f5befaaae2c4ba0fea19b95bd54bf025a9a00a6ac36c"
+  },
+  "source_after": {
+    "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+    "res://scenes/games/quiz_studio.tscn": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+    "res://scripts/characters/lumo/lumo_rigged_actor.gd": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+    "res://scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+    "res://scripts/tests/quiz_studio_runtime.gd": "22d0d8a4357b63453d35f5befaaae2c4ba0fea19b95bd54bf025a9a00a6ac36c"
+  },
+  "actual_inputs": 24,
+  "images": [
+    {
+      "file": "evidence/final-render/captures/quiz-question-landscape.png",
+      "artifact_entry": "quiz-question-landscape.png",
+      "bytes": 79447,
+      "sha256": "8022da0ca3d9f40d40b813304229ee72a69d11d7c5b65190e74981280a600785",
+      "git_blob_sha": "34131a5e029bb658e8c50b73e23c76256e067e11",
+      "size_px": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Original Lumo steht vollständig auf dem blauen Podium im beleuchteten Bogen. Vier Antwortfelder und der Fragetext sind klar voneinander getrennt.",
+        "Keine Auswahl vorgegeben; Aufdecken ist sichtbar deaktiviert. Die Bühne bleibt eine einfache Podium-/Bogenkulisse."
+      ]
+    },
+    {
+      "file": "evidence/final-render/captures/quiz-selected-phone.png",
+      "artifact_entry": "quiz-selected-phone.png",
+      "bytes": 59013,
+      "sha256": "e02cd7f34e16f78442766e10e374cfd2b35c386632fa5b029dbd403250b9346f",
+      "git_blob_sha": "ba511588c4e8d0b7ed3ff375258a70f314a101c5",
+      "size_px": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Die Portraitansicht setzt die vollständige Figur und Bühne über die Frage. Antwort B ist deutlich bernsteinfarben markiert.",
+        "Vier Antworttexte, Aufdecken und Joker sind in diesem Bild erkennbar; keine Überdeckung der Figur durch die Antwortfelder."
+      ]
+    },
+    {
+      "file": "evidence/final-render/captures/quiz-jokers-landscape.png",
+      "artifact_entry": "quiz-jokers-landscape.png",
+      "bytes": 92886,
+      "sha256": "37990b860776521b10cbe1750e7aca288bd622309c25e0d6cbaf42ee9ebdd538",
+      "git_blob_sha": "0241f6fecf6cf53048483a173a3a39e5d607db0d",
+      "size_px": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Die Antwortfelder zeigen die vier beobachteten Publikumsanteile 8/76/11/5 Prozent; B bleibt ausgewählt.",
+        "Der verbrauchte Publikumsjoker und der schriftliche Lumo-Hinweis sind erkennbar. Das Bild belegt keine Sprachausgabe."
+      ]
+    },
+    {
+      "file": "evidence/final-render/captures/quiz-revealed-small.png",
+      "artifact_entry": "quiz-revealed-small.png",
+      "bytes": 49728,
+      "sha256": "52c9eb29538ead8cd98c2d79a897ffe20dadd8f2ca7f9db35878986cd74d6a82",
+      "git_blob_sha": "b4d0959462dd1f17de642e146bec8cd6f565ff20",
+      "size_px": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Der aktuelle echte Wisch hat die kurze Inhaltsfläche nach unten verschoben: Nächste Frage, Richtig, Erklärung und schriftlicher Hinweis sind sichtbar.",
+        "Obere Frage und frühere Antworten sind dadurch außerhalb des Scrollausschnitts; auch die untere Statuszeile ist angeschnitten. Header, vollständiger Lumo und Next-Touchziel bleiben sichtbar."
+      ]
+    },
+    {
+      "file": "evidence/final-render/captures/quiz-paused-portrait.png",
+      "artifact_entry": "quiz-paused-portrait.png",
+      "bytes": 56618,
+      "sha256": "8fcd9618df7255274eeb2c8803474a3dbcaeee818fd9cfd50126aada1dd6fd32",
+      "git_blob_sha": "fda1c7dedde0771130196970073ed8362f91edde",
+      "size_px": [
+        360,
+        800
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Spiel pausiert, Fortsetzen, Neue Runde sowie vier Fachwahlen sind in der hohen Inhaltsfläche sichtbar.",
+        "Original Lumo und Header bleiben vollständig oberhalb der Pausebedienung; die Scrollleiste ist sichtbar."
+      ]
+    },
+    {
+      "file": "evidence/final-render/captures/quiz-result-fold.png",
+      "artifact_entry": "quiz-result-fold.png",
+      "bytes": 122793,
+      "sha256": "e1c87f0cbcce8db525daf16cbcc8362d2d7317affec9de0e3474e3c9608481b9",
+      "git_blob_sha": "0dddb21f3d96f42875309435496551dcf2619d65",
+      "size_px": [
+        1200,
+        896
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Die Endansicht zeigt 20 leuchtende Bogenlampen, Lumo mit erhobenen Armen, grüne richtige Antwort und 5000 Sterne gutgeschrieben.",
+        "Neue Runde und die Fachwahlen sind sichtbar. Der Endstand stammt hier ausdrücklich aus einer deklarierten UI-Fixture, nicht aus 20 tatsächlich durch Dart gelösten Fragen oder einer produktiven Walletbuchung."
+      ]
+    },
+    {
+      "file": "evidence/final-render/captures/quiz-question-cutout.png",
+      "artifact_entry": "quiz-question-cutout.png",
+      "bytes": 297630,
+      "sha256": "759e125bc9cbd8169289e9a6964d03a7accd02b482440aa5d1e45846860e8294",
+      "git_blob_sha": "7c2afa8a4e7ffad879392aae08f353f6b61ae586",
+      "size_px": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Das tatsächliche Bild hat 2400×1080 Pixel. Original Lumo, Frage und alle vier Antworttexte bleiben innerhalb der durch die Inset-Fixture bestimmten Inhaltsflächen sichtbar.",
+        "Aufdecken ist noch deaktiviert und teilweise unterhalb des Scrollausschnitts; die Joker liegen weiter unten. Nicht alle Bedienelemente sind gleichzeitig sichtbar. Die echte Wischprüfung ist separat im Laufzeitjournal belegt; dieses Standbild ist kein Android- oder Geräteleistungsnachweis."
+      ]
+    }
+  ],
+  "limitations": [
+    "Die Aufgabenzustände und ACKs des lokalen Fixturemodus sind synthetisch; Produkt-Quizregeln, Dartprozess, Save-CAS und Wallet werden dadurch nicht abgenommen.",
+    "Der echte Zwei-Prozess-Dart↔Godot-Lauf ist noch ausstehend und benötigt den exakt gepinnten Host sowie den eigenen Authority-Harness.",
+    "Original-Lumo wird aus Native344 unverändert wiederverwendet. Diese Szene stellt schriftliche Hinweise dar und bindet keine eigene Sprachwiedergabe oder phonembasierte Lippenanimation an.",
+    "Software-GL/X11 ist kein Android-, Fold-Geräte-, FPS- oder vollständiger AAA-Nachweis.",
+    "Der spätere gemeinsame Root-Router-/HostBridge-Anschluss war nicht Bestandteil des minimalen lokalen Testprojekts."
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "source_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "selection": "Exact Git tree test/ paths matching reading|recommend|analysis|parent|daily_plan (case insensitive)",
+  "method": "Full UTF-8 blob read with Git SHA verification; searched selected file text for engines, summary types, words and Lesesicherheit",
+  "not_exhaustive_all_test_source_scan": true,
+  "files": [
+    {
+      "path": "test/daily_mission_parent_settings_test.dart",
+      "git_blob_sha": "44f9f8d9fc22db2f20f247e046130c581e042238",
+      "sha256": "426399e3c0716089f6f773b91d458827df5b9b35b409253bffd678ce16606d12",
+      "bytes": 3671,
+      "matches": []
+    },
+    {
+      "path": "test/design/lumo_spatial_reading_capture_test.dart",
+      "git_blob_sha": "5482373fcb61613d0324227ee35fe84b78270eb4",
+      "sha256": "e4e32bafa898d7fbe5d1e688111b7129fc61cd4050f08633512d2e0fafeb0812",
+      "bytes": 5289,
+      "matches": []
+    },
+    {
+      "path": "test/design/nextgen_reading_capture_test.dart",
+      "git_blob_sha": "db22dd9612c8713b1363fb20214d3d2d46b6a677",
+      "sha256": "1c506825aeffaf2550db081a673f1492195abeb216c11b8f20d18390620c2ae7",
+      "bytes": 3638,
+      "matches": []
+    },
+    {
+      "path": "test/design/parent_games_polish_test.dart",
+      "git_blob_sha": "3420f71824a2429f4e5c7d3ff4398f00af452c11",
+      "sha256": "f4bb1278ec531c879745e0df0cd8ce3af2aec36b7f5769b2bf2e410664e5449d",
+      "bytes": 19421,
+      "matches": []
+    },
+    {
+      "path": "test/design/reading_passage_runtime_test.dart",
+      "git_blob_sha": "6ea8e53324772c636de9b06da531da0e5109af48",
+      "sha256": "ba142481834392b4071e59a2b9339f41130686cbfb0dc3f733b63195fa160a48",
+      "bytes": 3484,
+      "matches": []
+    },
+    {
+      "path": "test/domain/learning_analysis_extended_test.dart",
+      "git_blob_sha": "a04ae4de082f15c0efd80a2c87437b9cda6c8b78",
+      "sha256": "e3580a5409ea0febb7567013f3f11131ca6360ed2b172ca14f686862f587c25e",
+      "bytes": 5526,
+      "matches": []
+    },
+    {
+      "path": "test/domain/school_analysis_test.dart",
+      "git_blob_sha": "832b837c95a7b2191f824a1b810160f0175d7d97",
+      "sha256": "2ca425e40c1891ee9fa760f0c3dc4a8ab93cf4d5a73c9a400d99c85b5ef2b4a7",
+      "bytes": 4962,
+      "matches": []
+    },
+    {
+      "path": "test/home/lumo_personal_daily_plan_card_test.dart",
+      "git_blob_sha": "c66c2079fce1e03b0249d6d55ba9d1843f5463b4",
+      "sha256": "1644a33cb4b0c10c6264949fe31c94ecb3800b286ceca8dc96a5f49105ebe4d3",
+      "bytes": 2159,
+      "matches": []
+    },
+    {
+      "path": "test/intelligence/parent_evidence_card_test.dart",
+      "git_blob_sha": "59ff219d8fcb7bc8a31c10b38135dcf29a18b645",
+      "sha256": "67ec72decdfa801fe090cf44ba54b03a728f87a776febd784a6efa80026d6362",
+      "bytes": 1938,
+      "matches": []
+    },
+    {
+      "path": "test/parents/learning_dna_dashboard_evidence_test.dart",
+      "git_blob_sha": "8b29269f81c1b164480676effaa33925f164807d",
+      "sha256": "57974e81c99f9e46aa3091b945017c8e2dedcebd69e21b02ba52bd0f7bbc698d",
+      "bytes": 6388,
+      "matches": []
+    },
+    {
+      "path": "test/parents/lumo_insight_responsive_stats_test.dart",
+      "git_blob_sha": "339cebd1a1f53ec861a3dd0e6dc0f47ac5e113f1",
+      "sha256": "fb542998d17e5c31b355b231e817d8a973c083bca1cf8b02d2be088c8678c083",
+      "bytes": 2148,
+      "matches": []
+    },
+    {
+      "path": "test/parents/parent_report_request_privacy_test.dart",
+      "git_blob_sha": "0b2710df8bd126f69e0694f0c8c16e409fe010fc",
+      "sha256": "2d9067821923c63dc20e8bc2f475f2d63d81dfb3d3911bc5e8704724dfeea043",
+      "bytes": 12021,
+      "matches": [
+        {
+          "line": 87,
+          "text": "                              child: ParentReportCard(appState: app))))));"
+        },
+        {
+          "line": 186,
+          "text": "                        child: ParentReportCard(appState: app)))));"
+        },
+        {
+          "line": 219,
+          "text": "                child: ParentReportCard(appState: app)))));"
+        }
+      ]
+    },
+    {
+      "path": "test/parents/parent_school_grade_progression_test.dart",
+      "git_blob_sha": "d5e9fb9573ea1435f31ea9bd87235f0b0f18cd73",
+      "sha256": "fcafb2eb3a9917bfc7032a63c2a2c00fa809d9b69483c1b6d464a03f17c4d8aa",
+      "bytes": 2311,
+      "matches": []
+    },
+    {
+      "path": "test/progress_recommendation_service_test.dart",
+      "git_blob_sha": "7041b4b1b15d1d4f3db31c30a2b5b9a371a8b53f",
+      "sha256": "813d9e3a3b4348ac2b8ca0d95bf49641dfa2db50a387819abf85702ba64c7f71",
+      "bytes": 7003,
+      "matches": []
+    },
+    {
+      "path": "test/reading_active_sentence_view_test.dart",
+      "git_blob_sha": "877bee8fc682c6983170384f30b18960ed0a9cbc",
+      "sha256": "c96fa3619c959144c254ad62ffdd0d7a2370d56a7e1c40f98e319ff9bc65dd10",
+      "bytes": 1873,
+      "matches": []
+    },
+    {
+      "path": "test/reading_buddy_assessment_test.dart",
+      "git_blob_sha": "c95a9200cd3891b4e79b91d42fc191681278c169",
+      "sha256": "5aadefce399a776e44d459669cc15c175417a24394f07af440049c9b5598e34c",
+      "bytes": 9127,
+      "matches": []
+    },
+    {
+      "path": "test/reading_syllable_chip_test.dart",
+      "git_blob_sha": "9589e57c7edbfb5ffc3bb190e7a4610c07abe96a",
+      "sha256": "925d3b46fb83946f65c68bc265861eab84e5e51ebce85f583afd80acf7c264ab",
+      "bytes": 1317,
+      "matches": []
+    },
+    {
+      "path": "test/reading_writing_content_test.dart",
+      "git_blob_sha": "cdc6b8b7e1746e018f0166f18bed9c77b7fa94a0",
+      "sha256": "44e74199bc2c0c3f6050b503760d75163a9144e23129f2c6eb157a24ee470ca8",
+      "bytes": 2895,
+      "matches": []
+    },
+    {
+      "path": "test/tutoring/tutor_parent_reset_test.dart",
+      "git_blob_sha": "0d6ec675d42db738355cb1a66b3431116696d3cd",
+      "sha256": "e2b6dbb2df06c4e5170617869c3191e55c0575c13c78e55432329f53eb4b0500",
+      "bytes": 13576,
+      "matches": []
+    }
+  ],
+  "conclusion": "No selected test expects ASR-derived reading percentages/problem-word deficits. Existing ParentReportCard privacy tests assert real SkillRecord totals, profile changes, opt-in requests, and load failures. No existing tests changed."
+}

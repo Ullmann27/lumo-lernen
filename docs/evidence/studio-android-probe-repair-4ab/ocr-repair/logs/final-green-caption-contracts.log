@@ -1,0 +1,17 @@
+test_actual_reader_exception_is_preserved_in_the_journal (__main__.NativeCaptionBoundaries.test_actual_reader_exception_is_preserved_in_the_journal) ... ok
+test_colour_components_follow_observed_pixels_in_unrelated_locations (__main__.NativeCaptionBoundaries.test_colour_components_follow_observed_pixels_in_unrelated_locations) ... ok
+test_decorative_gold_without_letters_does_not_fabricate_requested_caption (__main__.NativeCaptionBoundaries.test_decorative_gold_without_letters_does_not_fabricate_requested_caption) ... ok
+test_exact_observed_text_and_confidence_cannot_be_replaced_by_requested_text (__main__.NativeCaptionBoundaries.test_exact_observed_text_and_confidence_cannot_be_replaced_by_requested_text) ... ok
+test_internal_crop_edge_cannot_create_an_accepted_short_caption (__main__.NativeCaptionBoundaries.test_internal_crop_edge_cannot_create_an_accepted_short_caption) ... ok
+test_modified_source_cannot_be_used_as_a_touch_target (__main__.NativeCaptionBoundaries.test_modified_source_cannot_be_used_as_a_touch_target) ... ok
+test_outside_word_bounds_are_a_hard_failure (__main__.NativeCaptionBoundaries.test_outside_word_bounds_are_a_hard_failure) ... ok
+test_remaining_total_budget_cannot_return_a_match_after_expiry (__main__.NativeCaptionBoundaries.test_remaining_total_budget_cannot_return_a_match_after_expiry) ... ok
+test_original_api35_first_frame (__main__.NativeCaptionOriginals.test_original_api35_first_frame) ... ok
+test_original_api35_last_frame (__main__.NativeCaptionOriginals.test_original_api35_last_frame) ... ok
+test_original_api37_first_frame (__main__.NativeCaptionOriginals.test_original_api37_first_frame) ... ok
+test_original_api37_last_frame (__main__.NativeCaptionOriginals.test_original_api37_last_frame) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 15.795s
+
+OK

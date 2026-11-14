@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "scope": "Actual completed local executions; repeated summaries are not added",
+  "logs": {
+    "evidence/render-first/godot.log": {
+      "sha256": "5753f81ed23d1d5bd9c010c436fee82296855f2d40230de13bd3c649e3238b8e",
+      "bytes": 6819,
+      "diagnostics": [
+        {
+          "line": 2,
+          "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        },
+        {
+          "line": 6,
+          "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+        },
+        {
+          "line": 8,
+          "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+        },
+        {
+          "line": 74,
+          "text": "LEARNING_ENGLISH_PASS checks=7228 captures=17 input_events=196 fixture=native_catalogue_fixture"
+        }
+      ]
+    },
+    "evidence/headless-hint-padding/original.log": {
+      "sha256": "551fc0e27ce5d853de457696e1a7387d7d295710488c72453c8a2a967a84e2d2",
+      "bytes": 6523,
+      "diagnostics": [
+        {
+          "line": 3,
+          "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+        },
+        {
+          "line": 5,
+          "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+        },
+        {
+          "line": 71,
+          "text": "LEARNING_ENGLISH_PASS checks=7177 captures=17 input_events=196 fixture=native_catalogue_fixture"
+        }
+      ]
+    },
+    "evidence/headless-first/original.log": {
+      "sha256": "d52169cd8fec844573db58e377c241ceac8a0172b60b1f6b8be6125975865639",
+      "bytes": 8496,
+      "diagnostics": [
+        {
+          "line": 3,
+          "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+        },
+        {
+          "line": 5,
+          "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+        },
+        {
+          "line": 25,
+          "text": "ERROR: [LearningEnglish] ruler: first hint layout: real object projection remains at least48dp across both axes"
+        },
+        {
+          "line": 58,
+          "text": "ERROR: [LearningEnglish] rubber: first hint layout: real object projection remains at least48dp across both axes"
+        },
+        {
+          "line": 67,
+          "text": "ERROR: [LearningEnglish] rubber: first hint layout: real object projection remains at least48dp across both axes"
+        },
+        {
+          "line": 98,
+          "text": "LEARNING_ENGLISH_FAIL checks=7177 failures=3"
+        }
+      ]
+    },
+    "evidence/probe-contracts/original.log": {
+      "sha256": "301f04c8c72416013b974fa4f1a26b39b2392606b711a9ea727ffc38c16dd3f5",
+      "bytes": 5484,
+      "diagnostics": [
+        {
+          "line": 5,
+          "text": "test_blank_object_pixels_are_not_visual_evidence (test_english_objects_android_probe.LayoutContracts.test_blank_object_pixels_are_not_visual_evidence) ... /workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/.github/probes/lumo_english_objects_android_probe.py:442: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead."
+        },
+        {
+          "line": 33,
+          "text": "Ran 28 tests in 0.207s"
+        },
+        {
+          "line": 35,
+          "text": "OK"
+        }
+      ]
+    }
+  }
+}

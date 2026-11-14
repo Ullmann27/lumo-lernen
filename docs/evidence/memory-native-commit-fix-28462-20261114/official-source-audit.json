@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "host_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "status": "SOURCE_CONFIRMED_CONDITIONAL_FAILURE_PATH",
+  "scope": "Read-only official implementation audit; no Android fault injection, package install, Dart/Flutter execution or product change was performed for this audit.",
+  "packages": {
+    "shared_preferences": {
+      "version": "2.5.5",
+      "archive_sha256": "c3025c5534b01739267eb7d76959bbc25a6d10f6988e1c2a2a3036940133dd10bf"
+    },
+    "shared_preferences_android": {
+      "version": "2.4.28",
+      "archive_sha256": "1e12aafe408aa50da80edfd679a2a6bf63ba7ab37c7fa98286da459a757b3399"
+    },
+    "shared_preferences_platform_interface": {
+      "version": "2.4.2",
+      "archive_sha256": "649dc798a33931919ea356c4305c2d1f81619ea6e92244070b520187b5140ef9"
+    }
+  },
+  "official_android_plugin": {
+    "repository": "flutter/packages",
+    "tag": "shared_preferences_android-v2.4.28",
+    "commit": "9854cd5607da4001f2dd3cbdcd6903202d28958c",
+    "legacy_plugin_blob": "bbdb3ecbadb51f6f1454e987be78285146751b89",
+    "dart_plugin_blob": "48f57ee6b9d35430efad88ee6a112aac2ac8cfbf",
+    "binding_limit": "Official version-tag source was read and hashed; the pub.dev archive was not downloaded or compared."
+  },
+  "android_framework": {
+    "repository": "aosp-mirror/platform_frameworks_base",
+    "tag": "android-15.0.0_r1",
+    "commit": "4e43ad12e1b211f15152e9c5b16b0fe88e6b93f3",
+    "file": "core/java/android/app/SharedPreferencesImpl.java",
+    "blob": "a87187b8affb4a8e36bfc28191a575502e78604f",
+    "scope_limit": "Official AOSP Android 15 source. The current emulator/framework binary and Android 17 implementation were not disassembled or fault-injected."
+  },
+  "findings": [
+    {
+      "id": "legacy_backend",
+      "evidence": "SharedPreferencesAndroid.registerWith sets SharedPreferencesStorePlatform.instance to SharedPreferencesAndroid; main Kotlin plugin also attaches LegacySharedPreferencesPlugin.",
+      "conclusion": "The old getInstance API reaches legacy Android SharedPreferences, not the separately registered async DataStore backend."
+    },
+    {
+      "id": "positive_commit",
+      "evidence": "LegacySharedPreferencesPlugin.kt 56–66 returns Editor.putString(...).commit(); Dart setValue 43–46 forwards that boolean.",
+      "conclusion": "The adapter receives the native commit result. A true result is the Android API's positive persistent-storage acknowledgement, not a synthetic Dart-cache success."
+    },
+    {
+      "id": "reload_boundary",
+      "evidence": "Dart shared_preferences_legacy.dart 223–227 replaces its cache after platform getAll; LegacySharedPreferencesPlugin.kt 104–115 reads preferences.all; AOSP 297–301 returns a copy of mMap.",
+      "conclusion": "Successful reload refreshes the Dart cache from native memory. It is not an independent disk read."
+    },
+    {
+      "id": "conditional_false_ack",
+      "evidence": "AOSP commit 610 calls commitToMemory; line580 updates the map. Later failure branches789/808 report false without rolling back that map. Host memory_round.dart 245/281–284/354 accepts equal readback after a failed write.",
+      "conclusion": "Under an actual native commit failure after memory mutation, round or stats could be accepted as saved solely because reload observes the native optimistic cache. This source path is proven; an actual Android disk failure has not been reproduced."
+    },
+    {
+      "id": "bounded_same_value_confirmation",
+      "evidence": "AOSP same-value skip575–577 does not advance memory generation, but synchronous writeToFile759–776 writes when disk generation is behind. Commit610–626 waits for its disk result.",
+      "conclusion": "A separately successful same-value setString can provide a new positive platform acknowledgement. Read equality alone cannot. This does not establish hardware/fsync or cross-engine compare-and-swap guarantees."
+    }
+  ],
+  "sources": [
+    {
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob_sha": "7843602e3d858660dc52d95587983858803976a5",
+      "source_key": "memory-android-durability-audit-28462-lock-response",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/pubspec.lock"
+    },
+    {
+      "bytes": 871,
+      "sha256": "dc1e3a3c64434412c0ddb32cca52ee94945feca76b2631ad185bf1c29da012b8",
+      "git_blob_sha": "36f60994a66478026cfc67f21f1cbf97602e678d",
+      "source_key": "memory-android-durability-audit-source-pubspec",
+      "url": null
+    },
+    {
+      "bytes": 3719,
+      "sha256": "d1eb332c709003363d07d6171eada10df9c0e66cfb8b354f9c156e8388ea6d78",
+      "git_blob_sha": "48f57ee6b9d35430efad88ee6a112aac2ac8cfbf",
+      "source_key": "memory-android-durability-audit-source-dart-legacy",
+      "url": null
+    },
+    {
+      "bytes": 6824,
+      "sha256": "864b788b5491fc3b00f4ef1b2d8f629f1f5d24af4df13baf50d3b42d27cb9841",
+      "git_blob_sha": "bbdb3ecbadb51f6f1454e987be78285146751b89",
+      "source_key": "memory-android-durability-audit-source-android-legacy",
+      "url": null
+    },
+    {
+      "bytes": 18965,
+      "sha256": "e637bce801bddbe3193f723be621712691265a851523e275f8fc293ea5b1cd3f",
+      "git_blob_sha": "31e9f236f4ac563c13f462a10ae5979fba77205b",
+      "source_key": "memory-android-durability-audit-source-android-plugin",
+      "url": null
+    },
+    {
+      "bytes": 10990,
+      "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+      "git_blob_sha": "06d89f0010c86f640d19501c2a2a5183523b8039",
+      "source_key": "memory-android-durability-audit-final-dart-cache",
+      "url": null
+    },
+    {
+      "bytes": 30970,
+      "sha256": "a1daeb52d3211428131f08ae236709059b3c46ab8d050a59d09a935e5ca6f8cd",
+      "git_blob_sha": "a87187b8affb4a8e36bfc28191a575502e78604f",
+      "source_key": "memory-android-durability-audit-followup-1",
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/app/SharedPreferencesImpl.java"
+    },
+    {
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14",
+      "source_key": "memory-android-durability-audit-followup-2",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/memory_flutter_adapter.dart"
+    },
+    {
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob_sha": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+      "source_key": "memory-android-durability-audit-followup-3",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/features/games/memory/memory_round.dart"
+    }
+  ],
+  "tests": {
+    "existing_14_boundary": "The prior 14 Dart-cache cases use an InMemory platform backend whose before-commit faults do not optimistically change a separate native memory map. Their observed PASS remains valid for that stated boundary, not for this newly audited native-cache path.",
+    "new_execution": "NONE"
+  }
+}

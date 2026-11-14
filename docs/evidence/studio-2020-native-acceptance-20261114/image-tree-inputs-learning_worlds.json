@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "archive_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+  "status": "nine_reviewed_original_png_blobs_confirmed",
+  "image_count": 9,
+  "total_bytes": 13212008,
+  "tree": [
+    {
+      "path": "docs/evidence/studio-2020-reviewed/f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3-learning-sharing-complete-1280x720.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eaddeb0eff8e91211cefadfb6d0307e1461bfe3a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709-learning-sharing-first-round-412x915.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b234b00e4d75d1051412c9c3a350f112a5772de2"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075-learning-bridge_hundred-complete-2400x1080.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "696f4e7dd2e1e2e7136d9306c2c8acb37284c3b5"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45-learning-bridge_hundred-complete-412x915.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4164e34b8d8d768e4a0f672fa8ae3e104e3c593a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/679fd4b6574194c6945014e892e16437c57262851dcd75e74832b2febae37d43-treasure-treasure-title-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d625d8a1882d537428b23878a490dbf00b4fe59"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/ac3adaae69494cb8903f39008c0ff2a9a532ab625bfe0fd817d3b242da05fcfd-treasure-treasure-title-portrait.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23e627acd28eb2ab40e4b3a594d3d1f611be2065"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/bd94bfa43d8479470610815d24ddb4cee222175557cb48acfb06c077289f2bec-treasure-treasure-title-fold.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "563a8b365ab60c9e0daad875c5a41c522c7bb016"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/1ab8b0fbe64aa4fd4bb1e4c16b4df4f18bf0bb76dc092f0818477555f501084a-treasure-treasure-title-compact.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f84fa3c0a596728cda3e9fb6fa3f0265ae7b8758"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/9a74ce795a05310b19bb3168e6f5334827eb13820891de3fc935a64f6bd80570-treasure-treasure-title-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54664599ea4796214b2f26d44f1b25fec3e7c49c"
+    }
+  ],
+  "image_source_hashes_before_after": [
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "bytes": 249517,
+      "sha256_before": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "sha256_after": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "git_blob_before": "eaddeb0eff8e91211cefadfb6d0307e1461bfe3a",
+      "git_blob_after": "eaddeb0eff8e91211cefadfb6d0307e1461bfe3a",
+      "github_returned_git_sha": "eaddeb0eff8e91211cefadfb6d0307e1461bfe3a",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "bytes": 111652,
+      "sha256_before": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "sha256_after": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "git_blob_before": "b234b00e4d75d1051412c9c3a350f112a5772de2",
+      "git_blob_after": "b234b00e4d75d1051412c9c3a350f112a5772de2",
+      "github_returned_git_sha": "b234b00e4d75d1051412c9c3a350f112a5772de2",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "bytes": 723941,
+      "sha256_before": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "sha256_after": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "git_blob_before": "696f4e7dd2e1e2e7136d9306c2c8acb37284c3b5",
+      "git_blob_after": "696f4e7dd2e1e2e7136d9306c2c8acb37284c3b5",
+      "github_returned_git_sha": "696f4e7dd2e1e2e7136d9306c2c8acb37284c3b5",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "bytes": 135401,
+      "sha256_before": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "sha256_after": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "git_blob_before": "4164e34b8d8d768e4a0f672fa8ae3e104e3c593a",
+      "git_blob_after": "4164e34b8d8d768e4a0f672fa8ae3e104e3c593a",
+      "github_returned_git_sha": "4164e34b8d8d768e4a0f672fa8ae3e104e3c593a",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "bytes": 2718305,
+      "sha256_before": "679fd4b6574194c6945014e892e16437c57262851dcd75e74832b2febae37d43",
+      "sha256_after": "679fd4b6574194c6945014e892e16437c57262851dcd75e74832b2febae37d43",
+      "git_blob_before": "6d625d8a1882d537428b23878a490dbf00b4fe59",
+      "git_blob_after": "6d625d8a1882d537428b23878a490dbf00b4fe59",
+      "github_returned_git_sha": "6d625d8a1882d537428b23878a490dbf00b4fe59",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "bytes": 2101412,
+      "sha256_before": "ac3adaae69494cb8903f39008c0ff2a9a532ab625bfe0fd817d3b242da05fcfd",
+      "sha256_after": "ac3adaae69494cb8903f39008c0ff2a9a532ab625bfe0fd817d3b242da05fcfd",
+      "git_blob_before": "23e627acd28eb2ab40e4b3a594d3d1f611be2065",
+      "git_blob_after": "23e627acd28eb2ab40e4b3a594d3d1f611be2065",
+      "github_returned_git_sha": "23e627acd28eb2ab40e4b3a594d3d1f611be2065",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "bytes": 4225193,
+      "sha256_before": "bd94bfa43d8479470610815d24ddb4cee222175557cb48acfb06c077289f2bec",
+      "sha256_after": "bd94bfa43d8479470610815d24ddb4cee222175557cb48acfb06c077289f2bec",
+      "git_blob_before": "563a8b365ab60c9e0daad875c5a41c522c7bb016",
+      "git_blob_after": "563a8b365ab60c9e0daad875c5a41c522c7bb016",
+      "github_returned_git_sha": "563a8b365ab60c9e0daad875c5a41c522c7bb016",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "bytes": 323915,
+      "sha256_before": "1ab8b0fbe64aa4fd4bb1e4c16b4df4f18bf0bb76dc092f0818477555f501084a",
+      "sha256_after": "1ab8b0fbe64aa4fd4bb1e4c16b4df4f18bf0bb76dc092f0818477555f501084a",
+      "git_blob_before": "f84fa3c0a596728cda3e9fb6fa3f0265ae7b8758",
+      "git_blob_after": "f84fa3c0a596728cda3e9fb6fa3f0265ae7b8758",
+      "github_returned_git_sha": "f84fa3c0a596728cda3e9fb6fa3f0265ae7b8758",
+      "unchanged": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "bytes": 2622672,
+      "sha256_before": "9a74ce795a05310b19bb3168e6f5334827eb13820891de3fc935a64f6bd80570",
+      "sha256_after": "9a74ce795a05310b19bb3168e6f5334827eb13820891de3fc935a64f6bd80570",
+      "git_blob_before": "54664599ea4796214b2f26d44f1b25fec3e7c49c",
+      "git_blob_after": "54664599ea4796214b2f26d44f1b25fec3e7c49c",
+      "github_returned_git_sha": "54664599ea4796214b2f26d44f1b25fec3e7c49c",
+      "unchanged": true
+    }
+  ],
+  "review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-learning_worlds.json",
+    "bytes": 12212,
+    "sha256": "bc9d6b060566dd3d49da71a041a23afd2211927c96273e73e0ff3c8eef7fa581",
+    "git_blob_sha": "341dbf039a4f2d48b0147076a504cb53d6975389"
+  },
+  "image_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-manifest-learning_worlds.json",
+    "bytes": 7232,
+    "sha256": "c1825f295381d9131fe9bd2fd529ca80265dd10226a620b15378b809e9a698c0",
+    "git_blob_sha": "a069f89341f73ce73683ae6ba0c561dfc1bb06ec"
+  },
+  "all_returned_git_blob_shas_exact": true,
+  "no_tree_commit_ref_receipt_pin_mutation": true,
+  "only_helper_derived_2020_paths": true,
+  "scope": "Nine actual current CI images visually reviewed with no blocking issue. Not Android/device/FPS approval."
+}

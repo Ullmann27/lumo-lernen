@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14 19:51:39 UTC",
+  "scope": "Read-only review of the four existing Wallet regression cases changed in two test files.",
+  "base_commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "verdict": "No additional concrete static blocker found; new CI execution is still required.",
+  "sources": [
+    {
+      "path": "qa/wallet-existing-ack-contracts-0d7e-20261114/baseline/host/test/reward_wallet_queue_zone_test.dart",
+      "bytes": 9797,
+      "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+      "git_blob_sha": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+    },
+    {
+      "path": "qa/wallet-existing-ack-contracts-0d7e-20261114/baseline/host/test/reward_wallet_transaction_test.dart",
+      "bytes": 21962,
+      "sha256": "fbb6759879533037d8d1044cb8232c711b50aa784d149f40c7170cdd63c19a27",
+      "git_blob_sha": "2419030446ada34710594160fc7f732669d97649"
+    },
+    {
+      "path": "qa/wallet-existing-ack-contracts-0d7e-20261114/prepared/host/test/reward_wallet_queue_zone_test.dart",
+      "bytes": 10841,
+      "sha256": "87c86d87ea01e6d8298d3ab48d2e5911924396b8836b2d03746b323543fb712c",
+      "git_blob_sha": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341"
+    },
+    {
+      "path": "qa/wallet-existing-ack-contracts-0d7e-20261114/prepared/host/test/reward_wallet_transaction_test.dart",
+      "bytes": 22524,
+      "sha256": "91864a9f6f5c371b230fd189df78f1d3280069b85bb4dcb6152c2ed01f1a7ac9",
+      "git_blob_sha": "a818134e16fadb009d6d00a1e61e0c5676f29b6a"
+    }
+  ],
+  "diff": {
+    "path": "qa/wallet-existing-ack-contracts-0d7e-20261114/evidence/implementation-against-exact-0d7e.patch",
+    "bytes": 3701,
+    "sha256": "e844d6fdc6964b5bc30a1c5bf3b08e23e036ee65a9abf097cd7b1db6937309ce",
+    "git_blob_sha": "5a02bfa01bba3480f6bddc3428880d7f02e58d16"
+  },
+  "independent_binding": [
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "hunks": 2,
+      "inverse_full_equal": true,
+      "baseline_git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3",
+      "prepared_git_blob": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341"
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "hunks": 1,
+      "inverse_full_equal": true,
+      "baseline_git_blob": "2419030446ada34710594160fc7f732669d97649",
+      "prepared_git_blob": "a818134e16fadb009d6d00a1e61e0c5676f29b6a"
+    }
+  ],
+  "checks": [
+    "Both full baselines were freshly read from GitHub at the exact 0d7e commit and matched local bytes.",
+    "Exactly three replacement regions cover four existing cases because the transaction case runs for falseResult and exception. All other source bytes and test declarations are unchanged.",
+    "Before each duplicate replay, the original expected write prefix is retained. Replay must append exactly one complete identical snapshot; the returned wallet and persisted representation must equal the previously confirmed state.",
+    "Original queue, held-write, prior-zone, balances, XP and result-ID assertions remain.",
+    "Async events are drained before or after the replay as appropriate; duplicate replay must add no event. The two newly introduced stream subscriptions are cancelled in finally.",
+    "The existing wallet load path does not emit for loading the existing seeded JSON; the reopened-repository empty replay-event assertion is consistent with that implementation."
+  ],
+  "limits": {
+    "tests_executed_by_reviewer": 0,
+    "local_sdk_or_flutter_invocations": 0,
+    "product_changes": 0,
+    "new_ci_pass_claim": false,
+    "broader_wallet_guarantee": false
+  }
+}

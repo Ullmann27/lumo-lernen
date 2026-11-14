@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "action": "Local flutter pub get --enforce-lockfile for temporary dependency-cache restoration",
+  "result": "Automatic approval review rejected continued execution because the attempted cloud-metadata endpoint access was not necessary for pub get and could expose instance credentials.",
+  "terminal_exit_known": false,
+  "response": "No retry, indirect dependency restoration or approval bypass. Used the existing GitHub CI workflow, existing Dart parser and Python workflow tests.",
+  "scope": "Local dependency setup only; actual CI failures and later passes are preserved independently."
+}

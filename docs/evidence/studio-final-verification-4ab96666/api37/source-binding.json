@@ -1,0 +1,63 @@
+{
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "published_tree": "f3ffc295cec299bdc6126fcddffbc130c6629e54",
+  "cached_tree_truncated": false,
+  "local_git_HEAD_not_used_as_candidate_identity": true,
+  "files": [
+    {
+      "path": "source-snapshots/.github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1",
+      "repository_path": ".github/probes/creative_android_probe.py",
+      "published_mode": "100644",
+      "published_git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/.github/probes/creative_android_probe.py"
+    },
+    {
+      "path": "source-snapshots/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+      "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68",
+      "repository_path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "published_mode": "100644",
+      "published_git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/.github/probes/lumo_studio_surfaces_android_probe.py"
+    },
+    {
+      "path": "source-snapshots/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 48718,
+      "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+      "git_blob": "977e0c37f9bc93630ebbf1dc97b8257e0efc3512",
+      "repository_path": ".github/workflows/lumo-studio-2019.yml",
+      "published_mode": "100644",
+      "published_git_blob": "977e0c37f9bc93630ebbf1dc97b8257e0efc3512",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/.github/workflows/lumo-studio-2019.yml"
+    },
+    {
+      "path": "source-snapshots/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "e8d96e2bf2020df2510fad816e77e6e945419955fc31ad2e8cd76b83a3086417",
+      "git_blob": "b98e91c96a678eeed1fb6929bd8079cd0cdb156d",
+      "repository_path": "config/godot-source.json",
+      "published_mode": "100644",
+      "published_git_blob": "b98e91c96a678eeed1fb6929bd8079cd0cdb156d",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/config/godot-source.json"
+    },
+    {
+      "path": "source-snapshots/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "repository_path": "pubspec.yaml",
+      "published_mode": "100644",
+      "published_git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/pubspec.yaml"
+    }
+  ]
+}

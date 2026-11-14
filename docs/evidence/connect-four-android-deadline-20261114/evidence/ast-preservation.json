@@ -1,0 +1,13 @@
+{
+  "changed_methods": [
+    "wait",
+    "snapshot"
+  ],
+  "other_methods_unchanged": 13,
+  "all_top_level_functions_unchanged": 22,
+  "original_probe_sha256": "3859544988fb84345fc14f247a5c4ef55db0d65e6aac39b2b261875fd194a273",
+  "new_probe_sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+  "wait_default_seconds": 45,
+  "snapshot_seconds": 45,
+  "all_deadline_values_unchanged": true
+}

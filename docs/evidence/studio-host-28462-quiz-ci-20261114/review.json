@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "kind": "studio_current_quiz_original_closure",
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14T18:38:12.948236+00:00",
+  "run_id": 43626348519,
+  "job_id": 132543177144,
+  "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43626348519/job/132543177144",
+  "status": "completed",
+  "conclusion": "success",
+  "completed_at": "2026-11-14T18:26:57Z",
+  "source_identity": {
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    },
+    "host": {
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e"
+    }
+  },
+  "archive": {
+    "artifact_id": 14126685407,
+    "name": "lumo-studio-2020-nextgen-authority-quiz",
+    "bytes": 501953,
+    "sha256": "0c966c8302e8606cbdaed6311e506d765445b413773599326fab72681a736e6f",
+    "download_count": 1,
+    "all_zip_members_crc_checked": 35,
+    "selected_originals": 35
+  },
+  "current_results": {
+    "dart_contract_cases": 28,
+    "dart_contract_checks": 1786,
+    "dart_contract_failures": 0,
+    "dart_contract_skips": 0,
+    "native_checks": 381,
+    "native_failures": 0,
+    "process_exit_codes": {
+      "DartAuthority": 0,
+      "GodotQuiz": 0
+    },
+    "elapsed_wall_seconds": 45.188,
+    "requests": 67,
+    "input_events": 354,
+    "images_individually_reviewed": 6,
+    "visual_blockers_observed": 0,
+    "action_counts": {
+      "joker": 3,
+      "select": 20,
+      "reveal": 20,
+      "next": 19,
+      "pause": 2,
+      "resume": 2,
+      "exit": 1
+    },
+    "qa_award_stars": 5000,
+    "qa_award_ids": 1
+  },
+  "accepted_scope": "The current exact-source Dart/Godot Quiz process pair completed all twenty questions, current controls/lifecycle and the declared QA ledger. All six current images were individually viewed with explicit scroll limitations.",
+  "important_boundaries": [
+    "This is the current Host28462 Studio job, not the earlier b721 artifact. Current checks/inputs/requests are 381/354/67.",
+    "Initial settled state was already active. Pause/resume after question five and again after completion are present; no initial resume is inferred.",
+    "At 640×360, question/paused contents require scrolling. The paused screenshot does not itself show Fortsetzen; later original drag and tap records are required.",
+    "The end-of-round return is observed at the QA transport boundary, not as a rendered Flutter/Android return.",
+    "No global Studio, APK, physical Fold7, audio/model-inference, FPS, accessibility or release approval follows from this job."
+  ],
+  "artifact_links": {
+    "metadata": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126685407",
+    "archive": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14126685407/zip"
+  },
+  "documents": {
+    "original-artifact-binding.json": {
+      "bytes": 15490,
+      "sha256": "4d22993247bf793ff62ad94a72628fb93825cf0d0bed512a7ddabd556bcd2071",
+      "git_blob_sha": "5fda2a47933a23418c67593a037d29380f5f417b"
+    },
+    "journal-verification.json": {
+      "bytes": 27387,
+      "sha256": "0f65515fca61fda7dc3936432a9b567e3dee3b3d5ab8f077b344a3824cdcf150",
+      "git_blob_sha": "865240738524ee18e9031c73450865a89a5a4e13"
+    },
+    "image-review.json": {
+      "bytes": 10058,
+      "sha256": "3f2d327170768b324e724cbad0d67d74a394042161648e73011b5c523425c27d",
+      "git_blob_sha": "386a654c629c1a59f5e9ee09c5ccffa30aa6ae62"
+    },
+    "quiz-original-job.log": {
+      "bytes": 302674,
+      "sha256": "0ce72cda3e7182cb5ed6d7d085503f0b456bed996cc2c958f97c2bd828099328",
+      "git_blob_sha": "97db6caa0de14619a6388542e52b5b1e51de861f"
+    },
+    "jobs-quiz-terminal-original.json": {
+      "bytes": 23304,
+      "sha256": "770b6d59277c09cd06213fdaaad43673360ef4ae03c853ba83eab1e656f60fe3",
+      "git_blob_sha": "ce1584835a041b041f223015a846fe0851f4307d"
+    },
+    "artifacts-at-quiz-terminal-original.json": {
+      "bytes": 2243,
+      "sha256": "e14657b5a3219489a9c5a2eed51209fb5d92721a07b5846e470b6e3222afab54",
+      "git_blob_sha": "43b0637cc7a48fb25c8597b74725d42542e396d3"
+    },
+    "host-commit-original.json": {
+      "bytes": 1812,
+      "sha256": "e919747de4c8de19570e8df6fc69bd392fc651d376bacdcf19067612b72b5627",
+      "git_blob_sha": "2ad3cb29a5ae2e71b0a0457c0e965be9b36d381f"
+    },
+    "artifact-metadata.json": {
+      "bytes": 821,
+      "sha256": "19bc67fbb34d2d403973a3fdd20a7c787ef95594e7599cece6d90123ffdd1195",
+      "git_blob_sha": "198068ad8b68580e3d60b92692b67f77f0d63ddd"
+    }
+  },
+  "warnings_preserved": {
+    "project_validation_pass": 117,
+    "project_validation_warn": 7,
+    "project_validation_fail": 0,
+    "runtime_warnings": [
+      "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+      "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    ],
+    "notes": "Warnings remain in the exact originals; this review does not turn them into an Android regression or discard them."
+  },
+  "new_test_or_render_executions_by_reviewer": 0,
+  "repository_mutations_by_reviewer": 0
+}

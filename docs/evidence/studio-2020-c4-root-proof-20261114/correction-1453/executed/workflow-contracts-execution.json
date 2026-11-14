@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_studio_2020_android_contracts.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/test-host",
+  "exit_code": 0,
+  "duration_seconds": 0.1691527499933727,
+  "log_sha256": "59d0f042db24a0295ef27e5491c000bdc25569f3d80d26386e45b7ad6aa71ef4",
+  "workflow_sha256": "1313734b6682d4aae7b161e4343d9366d6a855478b9f4004e549f6f231329088",
+  "reported_tests": [
+    "8"
+  ],
+  "skip_reported": false
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--no-test-assets",
+    "--concurrency=1",
+    "--reporter=expanded",
+    "--file-reporter=json:/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/existing-tests.jsonl",
+    "test/lumo_cards_controller_lifecycle_test.dart",
+    "test/lumo_cards_persistence_test.dart"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace",
+  "started_at_utc": "2026-11-14T02:15:33.650456+00:00",
+  "elapsed_seconds": 0.31830121600069106,
+  "exit_code": 1,
+  "error": null,
+  "new_tests_added": false,
+  "scope": "Existing controller lifecycle and persistence tests on isolated patched controller; no asset bundle, renderer or Android run."
+}

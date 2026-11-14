@@ -1,0 +1,12 @@
+{
+  "old_harness_sha256": "7fe252aae499b1fcb0932ac259a535946cde6e9bf4ba0a088c1c8a5e2fcd5752",
+  "final_harness_sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+  "functions_exact_ast_equal": [
+    "finite",
+    "identity",
+    "verify_file",
+    "face_report",
+    "c4_report"
+  ],
+  "scope": "The already replayed original face/C4 readers are unchanged; the Treasure reader is additive."
+}

@@ -1,0 +1,341 @@
+{
+  "schema": 1,
+  "reviewer": "learning_worlds",
+  "scope": "Current Studio English terminal job/log and original REST metadata only. Artifact bytes and all 17 images remain unexamined.",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "b7210db3f53361987fd33592de438fd7984d991a",
+  "native_source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run": {
+    "id": 43619285124,
+    "attempt": 1,
+    "event": "pull_request",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43619285124",
+    "status_at_observation": "in_progress",
+    "conclusion_at_observation": null,
+    "whole_studio_acceptance_claimed": false
+  },
+  "job": {
+    "id": 132521067410,
+    "name": "Nextgen english actual authority",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43619285124/job/132521067410",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-14T17:06:38Z",
+    "completed_at": "2026-11-14T17:16:23Z"
+  },
+  "result": "CI_JOB_SUCCESS_IMAGE_REVIEW_AND_ARCHIVE_VERIFICATION_PENDING",
+  "source_checkout": {
+    "host_log_line": 179,
+    "host_checkout": "b7210db3f53361987fd33592de438fd7984d991a",
+    "native_log_line": 302,
+    "native_checkout": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "artifact_stamp_files_read": false
+  },
+  "actual_dart_marker": {
+    "cases": 10,
+    "checks": 2955,
+    "line": 3167,
+    "text": "2026-11-14T17:08:05.6803458Z NATIVE_ENGLISH_DART_PASS cases=10 checks=2955"
+  },
+  "actual_renderer_marker": {
+    "checks": 7691,
+    "reported_captures": 17,
+    "reported_input_events": 196,
+    "fixture_kind": "actual_dart_producer_report",
+    "line": 3271,
+    "text": "2026-11-14T17:16:17.9804657Z LEARNING_ENGLISH_PASS checks=7691 captures=17 input_events=196 fixture=actual_dart_producer_report"
+  },
+  "environment": {
+    "engine_line": 3198,
+    "engine": "Godot Engine v4.6.3.stable.official.7d41c59c4",
+    "renderer_line": 3201,
+    "renderer": "OpenGL Compatibility / Mesa llvmpipe (LLVM 20.1.2)",
+    "audio_driver": "Dummy",
+    "platform": "Linux Xvfb software renderer",
+    "android_insets": "Fixture values from the regression adapter; console wording 'actual Android View insets' is not evidence of an Android device."
+  },
+  "job_steps": [
+    {
+      "number": 1,
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:06:38Z",
+      "completed_at": "2026-11-14T17:06:41Z"
+    },
+    {
+      "number": 2,
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:06:41Z",
+      "completed_at": "2026-11-14T17:06:55Z"
+    },
+    {
+      "number": 3,
+      "name": "Resolve the exact candidate Host and configured Native commits",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:06:55Z",
+      "completed_at": "2026-11-14T17:06:56Z"
+    },
+    {
+      "number": 4,
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:06:56Z",
+      "completed_at": "2026-11-14T17:07:00Z"
+    },
+    {
+      "number": 5,
+      "name": "Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:07:00Z",
+      "completed_at": "2026-11-14T17:07:17Z"
+    },
+    {
+      "number": 6,
+      "name": "Install the exact verified Godot and actual software renderer",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:07:17Z",
+      "completed_at": "2026-11-14T17:07:29Z"
+    },
+    {
+      "number": 7,
+      "name": "Record exact sources and import the complete original native project",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:07:29Z",
+      "completed_at": "2026-11-14T17:08:01Z"
+    },
+    {
+      "number": 8,
+      "name": "Resolve the pinned existing host dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:08:01Z",
+      "completed_at": "2026-11-14T17:08:03Z"
+    },
+    {
+      "number": 9,
+      "name": "Exercise the actual authority for this activity",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:08:03Z",
+      "completed_at": "2026-11-14T17:08:05Z"
+    },
+    {
+      "number": 10,
+      "name": "Exercise English meshes with actual host producer output",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:08:05Z",
+      "completed_at": "2026-11-14T17:16:18Z"
+    },
+    {
+      "number": 11,
+      "name": "Play all twenty Quiz questions through the real Dart and Godot processes",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T17:16:18Z",
+      "completed_at": "2026-11-14T17:16:18Z"
+    },
+    {
+      "number": 12,
+      "name": "Reject inconsistent Memory pair evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T17:16:18Z",
+      "completed_at": "2026-11-14T17:16:18Z"
+    },
+    {
+      "number": 13,
+      "name": "Render the actual Memory geometry and touch layouts",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T17:16:18Z",
+      "completed_at": "2026-11-14T17:16:18Z"
+    },
+    {
+      "number": 14,
+      "name": "Play Memory through the actual Dart and Godot processes",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T17:16:18Z",
+      "completed_at": "2026-11-14T17:16:18Z"
+    },
+    {
+      "number": 15,
+      "name": "Verify both tracked source trees remain unchanged",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:16:18Z",
+      "completed_at": "2026-11-14T17:16:19Z"
+    },
+    {
+      "number": 16,
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:16:19Z",
+      "completed_at": "2026-11-14T17:16:20Z"
+    },
+    {
+      "number": 30,
+      "name": "Post Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:16:20Z",
+      "completed_at": "2026-11-14T17:16:21Z"
+    },
+    {
+      "number": 31,
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:16:21Z",
+      "completed_at": "2026-11-14T17:16:21Z"
+    },
+    {
+      "number": 32,
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:16:21Z",
+      "completed_at": "2026-11-14T17:16:21Z"
+    },
+    {
+      "number": 33,
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T17:16:21Z",
+      "completed_at": "2026-11-14T17:16:21Z"
+    }
+  ],
+  "matrix_skips": "Steps 11–14 belong to Quiz/Memory and are intentionally skipped in this English matrix leg; this is not a skipped English assertion count.",
+  "source_invariance": {
+    "step": 15,
+    "status": "completed",
+    "conclusion": "success",
+    "commands": [
+      "git -C native-source diff --exit-code HEAD --",
+      "git -C host-source diff --exit-code HEAD --"
+    ],
+    "log_lines": [
+      3274,
+      3275
+    ]
+  },
+  "artifact_metadata": {
+    "id": 14123388980,
+    "name": "lumo-studio-2020-nextgen-authority-english",
+    "bytes": 4559425,
+    "digest": "sha256:78f930c157798be8c117a81dd0f76112b7d890fa15af8f8bf7c462b871dbb2cd",
+    "expired": false,
+    "workflow_run": {
+      "id": 43619285124,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+    },
+    "original_log_upload_lines": [
+      3309,
+      3311,
+      3312
+    ],
+    "downloaded": false,
+    "local_sha256_verified": false,
+    "all_crc_read": false,
+    "members_enumerated": false,
+    "source_stamps_read": false
+  },
+  "renderer_warnings": [
+    {
+      "line": 3199,
+      "text": "2026-11-14T17:08:08.5429556Z WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "line": 3203,
+      "text": "2026-11-14T17:08:09.0019573Z WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "line": 3205,
+      "text": "2026-11-14T17:08:09.0029440Z WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    }
+  ],
+  "additional_action_warnings": [
+    {
+      "line": 3300,
+      "text": "2026-11-14T17:16:19.9811270Z (node:3483) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 3306,
+      "text": "2026-11-14T17:16:20.3492442Z (node:3483) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 3348,
+      "text": "2026-11-14T17:16:21.8358253Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ],
+  "actual_error_lines": [],
+  "log_preservation": {
+    "fetch_calls": 1,
+    "complete_decoded_UTF8_stored": true,
+    "name": "original-english-job.log",
+    "bytes": 309324,
+    "sha256": "ae34ccf08491afbb212a35edce3489331f2df9b95811d1b4b9e4280ff956e079",
+    "git_blob_sha": "d68bd68bfb9a8a0c0afda90f1376c5feb3d1d80c"
+  },
+  "images": {
+    "reported_count": 17,
+    "personally_opened_current_count": 0,
+    "approved_count": 0,
+    "visual_review_status": "BLOCKED_BY_UNAVAILABLE_LOCAL_ENVIRONMENT"
+  },
+  "source_bindings": [
+    {
+      "name": "original-english-job.log",
+      "bytes": 309324,
+      "sha256": "ae34ccf08491afbb212a35edce3489331f2df9b95811d1b4b9e4280ff956e079",
+      "git_blob_sha": "d68bd68bfb9a8a0c0afda90f1376c5feb3d1d80c"
+    },
+    {
+      "name": "run-at-english-completion-original.json",
+      "bytes": 13675,
+      "sha256": "09c013ac5c19c8fecf4f37b4fae76a89b419b553072e34b6611896f0299d842d",
+      "git_blob_sha": "14d3e6744b608e2849d4817aec0cd92d5f089a45"
+    },
+    {
+      "name": "jobs-at-english-completion-original.json",
+      "bytes": 24709,
+      "sha256": "2b2495b1d2eba8c62ed58a01de2b0802e02be04a186617991e8db76d16540d46",
+      "git_blob_sha": "db56aa5aea1eeffad1c33606c55d6db08795789b"
+    },
+    {
+      "name": "artifacts-at-english-completion-original.json",
+      "bytes": 4464,
+      "sha256": "6556420e20ee26d44ba67166126819d934ba2c366616e4111c947c25ba3fb6fc",
+      "git_blob_sha": "31a8b0a4fa55aa3a9a93778ff8ffe4de9f249d10"
+    },
+    {
+      "name": "workflow-at-b721.yml",
+      "bytes": 74256,
+      "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+      "git_blob_sha": "2684ac3cf034fdcd5c71570182396f0664979735"
+    }
+  ],
+  "limits": [
+    "No download, extraction, SHA256/CRC comparison, report JSON parsing or personal image review of artifact 14123388980 has occurred.",
+    "The successful workflow includes strict report/producer-hash/renderer/17-PNG assertions, but this review has not independently read those archive members.",
+    "7691 checks are the exact current marker, not the historical 7633 or 47ca results.",
+    "The source log binds current host b721 and native 29080. Artifact HOST-SOURCE/NATIVE-SOURCE/TREE files remain to be checked after recovery.",
+    "Dart task generation is actual. Native/host transport, touch, platform insets and Dummy audio retain the regression-harness boundaries; no Android speech or real-device interaction is claimed.",
+    "No English pronunciation, audible playback, physical 48dp, 60FPS or complete Studio/Android acceptance is inferred.",
+    "No local tools, tests, image calls, source edits, reruns, trees, commits or refs were used after the explicit environment-unavailable notice."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-next-v2-20261114/evidence/2e20-ci/flutter-original-job.log",
+      "target": "docs/evidence/feature-2e20-ci-20261114/flutter-original-job.log",
+      "bytes": 120054,
+      "sha256": "9c5db4b7a25782c3704032ab8406aefcf446ecaf3bf3b15e65ed9f8ffe4bcfc8",
+      "expected_git_blob": "c7cb63a9d4f4351a74e9e3afd5778f6712ffb31e"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-next-v2-20261114/evidence/2e20-ci/acceptance-summary-from-original-job.json",
+      "target": "docs/evidence/feature-2e20-ci-20261114/acceptance-summary-from-original-job.json",
+      "bytes": 2118,
+      "sha256": "1db3e59aedddef20ade739c31b63a6e19cd1554482c52d7a19538b9e9c5fb60e",
+      "expected_git_blob": "8262bdf9d9e6f3fb6b4efa1737f77828f22a5196"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-memory-next-v2-20261114/evidence/2e20-ci/review.json",
+      "target": "docs/evidence/feature-2e20-ci-20261114/review.json",
+      "bytes": 3742,
+      "sha256": "51defe761f22876038ccbe5f83e98cba2544930df125732a480b992b61aac7e2",
+      "expected_git_blob": "816d171c948370555194c0c54087b486362ff62c"
+    }
+  ],
+  "scope": "Three small current-job documents; no archive or source installation"
+}

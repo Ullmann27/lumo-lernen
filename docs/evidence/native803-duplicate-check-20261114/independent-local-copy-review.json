@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "reviewed_at_utc": "2026-11-14T02:58:51.731596+00:00",
+  "status": "EXACT_LOCAL_DUPLICATE_SAFE_TO_REMOVE_AS_CURRENTLY_PUBLICLY_RECOVERABLE_COPY",
+  "eligible_local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-original.zip",
+  "bytes": 199274727,
+  "sha256": "3b4fcac817efd007797658117f3c62185e3834cbdd624de02d6072fce688a798",
+  "recommendation": "Root kann ausschließlich diese unveränderte lokale Original-ZIP zur Speicherfreigabe entfernen; ausgewählte Bilder, Originalprotokolle, Metadaten und Prüfnachweise bleiben bestehen.",
+  "public_current_readback": {
+    "release_id": 444845191,
+    "asset_id": 745576028,
+    "public_url": "https://github.com/Ullmann27/lumo-godot/releases/download/studio-evidence-803e7a626ea6ef0aeeda9c37010e844033d3a8e3-14085523056/native-evidence.zip",
+    "state": "uploaded",
+    "draft": false,
+    "prerelease": true,
+    "immutable": false,
+    "full_anonymous_stream_executed": true,
+    "curl_exit_code": 0,
+    "duration_seconds": 22.35995058399567,
+    "bytes": 199274727,
+    "sha256": "3b4fcac817efd007797658117f3c62185e3834cbdd624de02d6072fce688a798",
+    "stored_second_archive": false
+  },
+  "original_binding": {
+    "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "run_id": 43524051371,
+    "artifact_id": 14085523056,
+    "archive_job_id": 132237747822,
+    "original_archival_log_read": true,
+    "historical_public_full_download_and_cmp_success_seen_in_original_job": true,
+    "members_in_local_original": 4447
+  },
+  "retained_local_evidence": {
+    "selected_images": 32,
+    "all_images_independently_hashed_and_byte_equal_to_original_zip": true,
+    "frozen_original_evidence_files": 61,
+    "all_frozen_evidence_files_independently_rehashed": true,
+    "selection_directory": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals",
+    "evidence_directory": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review"
+  },
+  "limits": [
+    "GitHub meldet immutable:false. Dieser tatsächliche vollständige Readback belegt die aktuelle Wiederbeschaffbarkeit, nicht garantierte dauerhafte Unveränderlichkeit.",
+    "Diese Speicherprüfung ist keine zusätzliche Android-,Gameplay- oder Geräteabnahme.",
+    "Keine Datei gelöscht oder Quelle/Gitref/CI verändert."
+  ],
+  "checks": {
+    "current-release-original.json": {
+      "bytes": 7888,
+      "sha256": "02623692540d8db75e7a0aa3e26fc59af2c07fd362a82c3041bb61fbf49be4a0"
+    },
+    "current-public-stream.json": {
+      "bytes": 778,
+      "sha256": "8bd6c817b797cc18884c94b4e106bddfc343225550c7490989264392c90ab295"
+    },
+    "retained-evidence-check.json": {
+      "bytes": 28335,
+      "sha256": "80130ba6ad9f4b91e06cc500a83742a20e0b5591047802ccc5d1038f7953e752"
+    }
+  },
+  "archival_job_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/archive-original-job.log",
+    "bytes": 9532,
+    "sha256": "ce6c4321ec8d77baf869970e1ac3100c1d79fd88fe48a1384c36f8288749f8c6"
+  },
+  "deletion_performed": false
+}

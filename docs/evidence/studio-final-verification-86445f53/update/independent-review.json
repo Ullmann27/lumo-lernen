@@ -1,0 +1,398 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T04:25:13.675767+00:00",
+  "reviewer": "Agent A",
+  "status": "PASS_WITH_EXPLICIT_SINGLE_PROFILE_SCOPE",
+  "host_source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "job": {
+    "id": 132324330200,
+    "run_id": 43549076631,
+    "workflow_name": "LUMO Studio 2019 Android candidate",
+    "head_branch": "chatgpt/lumo-studio-20261113",
+    "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43549076631",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOSNzcp88AAAAezyUK2A",
+    "head_sha": "86445f53af5d573549fc8cf03405261611f3cb7e",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132324330200",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43549076631/job/132324330200",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-14T04:01:31Z",
+    "started_at": "2026-11-14T04:01:32Z",
+    "completed_at": "2026-11-14T04:14:36Z",
+    "name": "update-2019-from-2017",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T04:01:33Z",
+        "completed_at": "2026-11-14T04:01:34Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T04:01:34Z",
+        "completed_at": "2026-11-14T04:01:58Z"
+      },
+      {
+        "name": "Run actions/download-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-14T04:01:58Z",
+        "completed_at": "2026-11-14T04:02:07Z"
+      },
+      {
+        "name": "Run actions/download-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-14T04:02:07Z",
+        "completed_at": "2026-11-14T04:02:24Z"
+      },
+      {
+        "name": "Live UI reader",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T04:02:24Z",
+        "completed_at": "2026-11-14T04:02:41Z"
+      },
+      {
+        "name": "Enable accelerated disposable emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T04:02:41Z",
+        "completed_at": "2026-11-14T04:02:41Z"
+      },
+      {
+        "name": "Software display",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T04:02:41Z",
+        "completed_at": "2026-11-14T04:02:49Z"
+      },
+      {
+        "name": "Preserve actual 2017 learning through an in-place 2019 upgrade",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T04:02:49Z",
+        "completed_at": "2026-11-14T04:14:30Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-11-14T04:14:30Z",
+        "completed_at": "2026-11-14T04:14:34Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-11-14T04:14:34Z",
+        "completed_at": "2026-11-14T04:14:34Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19,
+        "started_at": "2026-11-14T04:14:34Z",
+        "completed_at": "2026-11-14T04:14:34Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132324330200",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000017188,
+    "runner_name": "GitHub Actions 1000017188",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14098251050,
+    "name": "lumo-2019-in-place-update-proof",
+    "size_in_bytes": 106283095,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14098251050",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14098251050/zip",
+    "expired": false,
+    "created_at": "2026-11-14T04:14:34Z",
+    "expires_at": "2026-12-14T04:14:30Z",
+    "updated_at": "2026-11-14T04:14:34Z",
+    "digest": "sha256:f081342733fe2f5cf0f2ac2cbedcf2d1ecf59e917c805476a2000bd4a7bcd5d5",
+    "workflow_run": {
+      "id": 43549076631,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "86445f53af5d573549fc8cf03405261611f3cb7e"
+    }
+  },
+  "original_zip": {
+    "bytes": 106283095,
+    "sha256": "f081342733fe2f5cf0f2ac2cbedcf2d1ecf59e917c805476a2000bd4a7bcd5d5",
+    "members": 491,
+    "complete_crc_checked": true
+  },
+  "new_execution_by_reviewer": false,
+  "original_job_log_sha256": "b17a2227094e63a27bdf0692e611da8e8b9184aa129493bb6779e427150282c9",
+  "original_result_sha256": "3a7ddbeaec4a052c688d4ce02d6d19459dc4b6450b0b196759db1b2b7cbd2436",
+  "candidate_apk": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2019,
+    "versionName": "0.13.7",
+    "bytes": 325295654,
+    "sha256": "05ad5b25b97d0999745dadc611b3ad15604a98d911a1233089205eb2c45c4acd",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "abis": [
+      "x86_64"
+    ],
+    "flutter_source_commit": "86445f53af5d573549fc8cf03405261611f3cb7e"
+  },
+  "native_pck": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "engine": "4.6.3",
+    "pck_sha256": "d46495c2320085ca776dae6780a3ee3c72f390c15dabf46d67aee3c4cb3cd97c",
+    "bytes": 66234564
+  },
+  "baseline": {
+    "versionCode": 2017,
+    "versionName": "0.13.5",
+    "bytes": 321904250,
+    "sha256": "03063cdc0956b3c1df00f604de504841e1a5fed4cabf31c9418a9167a11140e8",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "flutter_source_commit": "47889f74a651b073965def70743417cf320b1eb9"
+  },
+  "installation": {
+    "before_version": 2017,
+    "after_version": 2019,
+    "userId": "10209",
+    "firstInstallTime": "2026-11-14 04:04:57"
+  },
+  "preserved_data": {
+    "profile": {
+      "id": "1794629134629450",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-14T04:05:34.629450"
+    },
+    "learning_keys_compared": 7,
+    "learning_keys_added": [],
+    "correct_answers_preserved": 1,
+    "earned_stars": 1,
+    "earned_xp": 5,
+    "approved_migration": {
+      "from_version": 2017,
+      "to_version": 2019,
+      "kind": "independentEvidence-v1",
+      "records": [
+        {
+          "preference_key": "flutter.lumo_progress_skills::local-f613560f2e172b0a11517a18b19c330c",
+          "skill_id": "mathematik::plus bis 10",
+          "added_independent_evidence": {
+            "version": 1,
+            "correct": 1,
+            "wrong": 0,
+            "correctStreak": 1,
+            "wrongStreak": 0
+          }
+        }
+      ],
+      "existing_fields_preserved": true
+    }
+  },
+  "independent_comparison": {
+    "path": "independent-data-comparison.json",
+    "sha256": "3feb3a7dc731a51d9f71a757a8c84652047584facab66dd2752de36936f007b4"
+  },
+  "actual_follow_up": {
+    "offline": true,
+    "kart_drive": {
+      "gas_touch": [
+        2242,
+        936
+      ],
+      "hold_ms": 9000,
+      "gas_pulses": 2,
+      "world_moved": {
+        "changed_fraction": 0.705,
+        "mean_channel_delta": 66.86
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 853,
+            "bright_fraction": 0.819
+          },
+          {
+            "colour_bins": 945,
+            "bright_fraction": 0.935
+          },
+          {
+            "colour_bins": 1136,
+            "bright_fraction": 0.748
+          }
+        ]
+      },
+      "native_progress": {
+        "result_id": "b8faabfe-3c43-4016-8c97-c55bff4dbb10-1794629423452-125916714",
+        "distance_gain": 72.55,
+        "elapsed_gain": 5.02,
+        "checkpoint_index": 0
+      }
+    },
+    "kart_pause": {
+      "result_id": "b8faabfe-3c43-4016-8c97-c55bff4dbb10-1794629423452-125916714",
+      "distance": 104.46197559376014,
+      "elapsed": 6.833333333333314,
+      "checkpoint_index": 0,
+      "finished": false
+    },
+    "after_kart": {
+      "profile": {
+        "id": "1794629134629450",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T04:05:34.629450"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5
+    },
+    "after_restart": {
+      "profile": {
+        "id": "1794629134629450",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T04:05:34.629450"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5
+    },
+    "emulated_displays": {
+      "cover": {
+        "profile": {
+          "id": "1794629134629450",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T04:05:34.629450"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "open": {
+        "profile": {
+          "id": "1794629134629450",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T04:05:34.629450"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "landscape": {
+        "profile": {
+          "id": "1794629134629450",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T04:05:34.629450"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      }
+    },
+    "fatal_crashes_reported": 0
+  },
+  "baseline_optional_navigation_failures": {
+    "t1-deutsch": "FAIL: Kein Bedienelement beginnt mit: Deutsch. ",
+    "t2-englisch": "FAIL: Kein Bedienelement beginnt mit: Englisch. "
+  },
+  "not_subject_acceptance": "The original 2017 optional German and English navigation attempts failed. They do not negate the passed primary math/update preservation check and are not reclassified as successful subject tests.",
+  "actually_opened_images": [
+    {
+      "path": "selected-originals/baseline-learning/07-feedback.png",
+      "sha256": "52b653993795589d93bc2987d3c1615a926144372699aa1a35f2a5f833e1c9d1",
+      "judgment": "Actually viewed: old 2017 math task 4+5; answer 9 checked, 1 star and 5/400 XP visible. Lower Weiter is partly under navigation; no general old-layout acceptance."
+    },
+    {
+      "path": "selected-originals/updated-profile-offline.png",
+      "sha256": "cdafbe391d4b5ba38315cacd20455a9dee0b514e1ddd211459c3c023e717f7e7",
+      "judgment": "Actually viewed: new candidate home says Hallo, LumoTest! with 1 star, 5/400 XP and airplane icon. This is one fixture profile."
+    },
+    {
+      "path": "selected-originals/21_race_driving_late_1.png",
+      "sha256": "ced16719e7480c7467e9dbf1cdaf9db5aabbbc133eac59c6fa12629659fc9a38",
+      "judgment": "Actually viewed: original Lumo kart on Sonnenhafen, HUD lap1/2/place6/6/139kmh, touch controls visible. HUD speed is game speed, not measured rendering FPS."
+    },
+    {
+      "path": "selected-originals/23_zurueck_in_flutter.png",
+      "sha256": "e846bf0f3d375971c52abaf33fb38708ce2933420e12d22ab475027e217a01cd",
+      "judgment": "Actually viewed: Flutter Spielewelt and navigation visible after native return; no native race table remains in this capture."
+    },
+    {
+      "path": "selected-originals/restart-profile-offline.png",
+      "sha256": "43d39cdc840c4f8e8d518b5053e5510a03df17a96259a374546dedf98d463eba",
+      "judgment": "Actually viewed: after restart home again shows LumoTest, 1 star, 5/400 XP and airplane icon."
+    },
+    {
+      "path": "selected-originals/fold-open.png",
+      "sha256": "a9b63ee5ba95ddacd0c674040c004b0121f83d79d8b79bd36b6e0a2ac0fd142e",
+      "judgment": "Actually viewed: emulator open-display-sized home, same named profile and reward. This is resized emulator evidence, not a physical Fold hinge test."
+    }
+  ],
+  "visual_scope": "Only the six named originals were actually opened. Other selected PNGs are preserved original bytes, not a claimed complete visual review.",
+  "not_proven": [
+    "physical Galaxy Z Fold7 / Android17 device acceptance",
+    "real hinge transition",
+    "60 FPS, CPU/GPU frame budget, thermals or touch latency",
+    "second child or same-name child isolation",
+    "journal or writing-trainer migration",
+    "migration of an existing native game save",
+    "full race completion or reward award",
+    "audible offline voice or speech recognition quality",
+    "whole learning curriculum or all school grades"
+  ],
+  "no_overall_release": true
+}

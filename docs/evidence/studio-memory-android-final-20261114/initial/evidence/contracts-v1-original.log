@@ -1,0 +1,62 @@
+test_actual_device_command_is_bounded_and_late_return_rejected (test_memory_android_probe.MemoryAndroidContracts.test_actual_device_command_is_bounded_and_late_return_rejected) ... ok
+test_actual_pair_geometry_and_first_request (test_memory_android_probe.MemoryAndroidContracts.test_actual_pair_geometry_and_first_request) ... ok
+test_actual_rotation_and_density_are_bound (test_memory_android_probe.MemoryAndroidContracts.test_actual_rotation_and_density_are_bound) ... ok
+test_actual_saved_round_and_private_face_crosscheck (test_memory_android_probe.MemoryAndroidContracts.test_actual_saved_round_and_private_face_crosscheck) ... ok
+test_bot_requires_actual_turn_progress_and_same_child_session (test_memory_android_probe.MemoryAndroidContracts.test_bot_requires_actual_turn_progress_and_same_child_session) ... ok
+test_card_requires_exposed_48dp_actual_hit_area (test_memory_android_probe.MemoryAndroidContracts.test_card_requires_exposed_48dp_actual_hit_area) ... ok
+test_changed_layout_is_rejected_before_any_adb_touch (test_memory_android_probe.MemoryAndroidContracts.test_changed_layout_is_rejected_before_any_adb_touch) ... ok
+test_desktop_fixture_cannot_pass_android_default (test_memory_android_probe.MemoryAndroidContracts.test_desktop_fixture_cannot_pass_android_default) ... ok
+test_fake_insets_and_wrong_view_offset_rejected (test_memory_android_probe.MemoryAndroidContracts.test_fake_insets_and_wrong_view_offset_rejected) ... ok
+test_false_polygon_and_camera_rotation_rejected (test_memory_android_probe.MemoryAndroidContracts.test_false_polygon_and_camera_rotation_rejected) ... ok
+test_hidden_deck_and_impossible_score_rejected (test_memory_android_probe.MemoryAndroidContracts.test_hidden_deck_and_impossible_score_rejected) ... ok
+test_late_accepted_observation_cannot_pass_deadline (test_memory_android_probe.MemoryAndroidContracts.test_late_accepted_observation_cannot_pass_deadline) ... ok
+test_missing_layout_keeps_actual_raw_bytes_for_retry (test_memory_android_probe.MemoryAndroidContracts.test_missing_layout_keeps_actual_raw_bytes_for_retry) ... ok
+test_missing_pending_or_unsettled_snapshot_rejected (test_memory_android_probe.MemoryAndroidContracts.test_missing_pending_or_unsettled_snapshot_rejected) ... ok
+test_nonfinite_and_duplicate_json_fail_closed (test_memory_android_probe.MemoryAndroidContracts.test_nonfinite_and_duplicate_json_fail_closed) ... ok
+test_other_profiles_stats_wallet_and_original_key_are_protected (test_memory_android_probe.MemoryAndroidContracts.test_other_profiles_stats_wallet_and_original_key_are_protected) ... ok
+test_pause_reopen_preserves_all_private_rule_data (test_memory_android_probe.MemoryAndroidContracts.test_pause_reopen_preserves_all_private_rule_data) ... ok
+test_paused_card_cannot_be_a_touch_target (test_memory_android_probe.MemoryAndroidContracts.test_paused_card_cannot_be_a_touch_target) ... ok
+test_read_allowlist_cannot_escape_or_write (test_memory_android_probe.MemoryAndroidContracts.test_read_allowlist_cannot_escape_or_write) ... ok
+test_request_needs_current_token_revision_and_positive_ack (test_memory_android_probe.MemoryAndroidContracts.test_request_needs_current_token_revision_and_positive_ack) ... ok
+test_requested_page_waits_before_capturing_old_page (test_memory_android_probe.MemoryAndroidContracts.test_requested_page_waits_before_capturing_old_page) ... ERROR
+test_stale_identity_and_boolean_counters_rejected (test_memory_android_probe.MemoryAndroidContracts.test_stale_identity_and_boolean_counters_rejected) ... ok
+test_wrong_page_and_card_identity_rejected (test_memory_android_probe.MemoryAndroidContracts.test_wrong_page_and_card_identity_rejected) ... FAIL
+
+======================================================================
+ERROR: test_requested_page_waits_before_capturing_old_page (test_memory_android_probe.MemoryAndroidContracts.test_requested_page_waits_before_capturing_old_page)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/test_memory_android_probe.py", line 282, in test_requested_page_waits_before_capturing_old_page
+    observed = p.snapshot('page', expected_page=1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/.github/probes/lumo_memory_android_probe.py", line 417, in snapshot
+    layout, digest = self.raw(LAYOUT, 'layout-before')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1200, in _execute_mock_call
+    result = next(effect)
+             ^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+FAIL: test_wrong_page_and_card_identity_rejected (test_memory_android_probe.MemoryAndroidContracts.test_wrong_page_and_card_identity_rejected)
+----------------------------------------------------------------------
+RuntimeError: Required button missing/ambiguous: card_0
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-memory-android-probe-8b09-20261114/tools/android_qa/tests/test_memory_android_probe.py", line 138, in test_wrong_page_and_card_identity_rejected
+    with self.assertRaisesRegex(RuntimeError, 'Ambiguous'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Ambiguous" does not match "Required button missing/ambiguous: card_0"
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.045s
+
+FAILED (failures=1, errors=1)

@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "status": "FAILED_WITH_ONE_ACTUAL_C4_LIFECYCLE_CASE",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "host_tree": "84b2103328a1b385a0d3c7c1b17f7d7329252da0",
+  "run_id": 43634307306,
+  "run_attempt": 1,
+  "job_id": 132567623144,
+  "job_status": "completed",
+  "job_conclusion": "failure",
+  "job_completed_at": "2026-11-14T20:03:11Z",
+  "status_source": "metadata/jobs-terminal-original.json; actual original attempt-1 response",
+  "early_focus": {
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "original_job_log_line": 670,
+    "step": 7,
+    "scope": "Separate existing 30-case focused invocation; do not add it to the full-suite count."
+  },
+  "analyzer": {
+    "errors": 0,
+    "warnings": 5,
+    "infos": 236,
+    "status": "success"
+  },
+  "full_suite": {
+    "passed": 2676,
+    "failed": 1,
+    "skipped": 0
+  },
+  "full_suite_summary_original_log_line": 875,
+  "actual_new_case_result": {
+    "passed": 44,
+    "failed": 1,
+    "skipped": 0
+  },
+  "new_groups": [
+    {
+      "module": "Memory",
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "module": "Wallet",
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "module": "C4",
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "passed": 5,
+      "failed": 1,
+      "skipped": 0
+    }
+  ],
+  "existing_groups": [
+    {
+      "module": "ASR",
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "module": "Memory durability",
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "module": "Memory profiles",
+      "path": "test/games/memory_profile_storage_test.dart",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "failed_case": {
+    "name": "Lifecycle pause during reward retry defers the settled result",
+    "path": "test/games/connect_four_bot_save_retry_test.dart",
+    "source_line": 261,
+    "test_id": 56,
+    "suite_id": 27,
+    "expected": "true",
+    "actual": "false",
+    "original_start_line": 115,
+    "original_print_line": 123,
+    "original_error_line": 124,
+    "original_done_line": 125,
+    "event_result": "error",
+    "source_owner": "Root; no source mutation by this review",
+    "cause": "Not concluded here; exact original error/stack forwarded for source diagnosis."
+  },
+  "original_log": {
+    "path": "original-flutter-job.log",
+    "bytes": 127983,
+    "sha256": "b0db024d5f285c773bf580bdeca817e2657a6c7931370dc8e7f792aa7c256cd0",
+    "git_blob_sha": "86ccbcc7e9bb622b346e796843d5c5acb59cfdf6",
+    "fetch_count": 1,
+    "preservation": "Exact complete decoded UTF-8 job response, including original BOM."
+  },
+  "artifact": {
+    "artifact_id": 14129347799,
+    "published_size": 342973028,
+    "published_sha256": "8e3b3ef1f4967e4dbdfb507d8672b9e9f776e571d13030b4deee5a010a017d0a",
+    "whole_archive_downloaded": false,
+    "whole_archive_sha256_verified": false,
+    "whole_archive_crc_verified": false,
+    "all_15_requests_exact_206_content_range": true,
+    "transferred_bytes": 241057,
+    "central_directory_entries": 593,
+    "selected_members": [
+      {
+        "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+        "bytes": 41,
+        "sha256": "e4a9b32fc44d2dca93383813ee0db285ccc87eb9388f8982c90c4a7c58519847",
+        "crc32": "4c7187f0",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/HOST-SOURCE.txt"
+      },
+      {
+        "artifact_entry": "feature-evidence/flutter-version.txt",
+        "bytes": 321,
+        "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+        "crc32": "ef6cb86f",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/flutter-version.txt"
+      },
+      {
+        "artifact_entry": "feature-evidence/full-flutter/acceptance-summary.json",
+        "bytes": 2190,
+        "sha256": "182a2a4d1bfc5dc6f63a38ad3684c623c30b29a6d8a13c47953768f3f31b732e",
+        "crc32": "e73c2320",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/full-flutter/acceptance-summary.json"
+      },
+      {
+        "artifact_entry": "feature-evidence/full-flutter/flutter-machine.jsonl",
+        "bytes": 1790959,
+        "sha256": "a54cec8154dd7090740e0ef1c469bc9ae17b0ceb7884d01860b4f73de76adf21",
+        "crc32": "c74b89bb",
+        "crc_verified_by_full_member_read": true,
+        "local_file": "originals/feature-evidence/full-flutter/flutter-machine.jsonl"
+      }
+    ]
+  },
+  "image_scope": {
+    "runner_reported_pngs": 546,
+    "downloaded": 0,
+    "visually_reviewed": 0
+  },
+  "machine_done": {
+    "line": 8480,
+    "event": {
+      "success": false,
+      "type": "done",
+      "time": 596172
+    }
+  },
+  "limitations": [
+    "One C4 requirement failed; no Studio promotion or overall acceptance from this run.",
+    "45 new cases identified independently by suite/test IDs and exact start/done events, not total-count subtraction.",
+    "Old ASR10/Memory14 and existing six profile cases are separate groups; repeated focused/full invocations are not added.",
+    "No physical Android persistence, native inference/audio, FPS or new visual acceptance is established by this Flutter report.",
+    "Final source-cleanliness step12 was skipped.",
+    "No local Dart/Flutter execution, source mutation, CI rerun, tree or ref change by this reviewer."
+  ]
+}

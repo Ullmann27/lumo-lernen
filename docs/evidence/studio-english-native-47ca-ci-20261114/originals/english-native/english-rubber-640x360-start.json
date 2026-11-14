@@ -1,0 +1,214 @@
+{
+	"attempts": 0,
+	"background_depth": [
+		29.5917053222656,
+		56.6678237915039
+	],
+	"complete": false,
+	"controls": [
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"text": "1"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				86.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				86.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"text": "2"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				146.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				146.0,
+				282.0,
+				52.0,
+				52.0
+			],
+			"text": "3"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				206.0,
+				282.0,
+				89.0,
+				52.0
+			],
+			"rect_px": [
+				206.0,
+				282.0,
+				89.0,
+				52.0
+			],
+			"text": "Hinweis"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				303.0,
+				282.0,
+				58.0,
+				52.0
+			],
+			"rect_px": [
+				303.0,
+				282.0,
+				58.0,
+				52.0
+			],
+			"text": "Neu"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				369.0,
+				282.0,
+				96.0,
+				52.0
+			],
+			"rect_px": [
+				369.0,
+				282.0,
+				96.0,
+				52.0
+			],
+			"text": "Anhören"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				473.0,
+				282.0,
+				125.0,
+				52.0
+			],
+			"rect_px": [
+				473.0,
+				282.0,
+				125.0,
+				52.0
+			],
+			"text": "Zur Aufgabe"
+		}
+	],
+	"density": 1.0,
+	"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+	"footer_px": [
+		12.0,
+		268.0,
+		616.0,
+		80.0
+	],
+	"foreground_far_depth": 18.5485973358154,
+	"header_px": [
+		12.0,
+		12.0,
+		616.0,
+		83.0
+	],
+	"hint_level": 0,
+	"lumo_px": [
+		142.163360595703,
+		107.710006713867,
+		92.3282470703125,
+		147.580001831055
+	],
+	"name": "english-rubber-640x360-start",
+	"objects": [
+		{
+			"bounds_px": [
+				256.019226074219,
+				184.180816650391,
+				70.052978515625,
+				66.8831176757812
+			],
+			"spatial_48dp_target_px": [
+				267.045715332031,
+				174.374786376953,
+				48.0,
+				48.0
+			],
+			"triangles": 804,
+			"word": "book"
+		},
+		{
+			"bounds_px": [
+				341.901458740234,
+				188.949722290039,
+				70.0529479980469,
+				62.1142120361328
+			],
+			"spatial_48dp_target_px": [
+				352.927947998047,
+				174.374786376953,
+				48.0,
+				48.0
+			],
+			"triangles": 1448,
+			"word": "rubber"
+		},
+		{
+			"bounds_px": [
+				427.78369140625,
+				188.792953491211,
+				70.0529479980469,
+				62.4225463867188
+			],
+			"spatial_48dp_target_px": [
+				438.810150146484,
+				174.374786376953,
+				48.0,
+				48.0
+			],
+			"triangles": 2896,
+			"word": "pencil case"
+		}
+	],
+	"objects_order": [
+		"book",
+		"rubber",
+		"pencil case"
+	],
+	"observation_source": "platform_fixture",
+	"stage_px": [
+		16.0,
+		103.0,
+		608.0,
+		157.0
+	],
+	"status": "Tippe den Gegenstand oder seine Zahl an.",
+	"title": "Englisch · rubber",
+	"window_px": [
+		640,
+		360
+	],
+	"word": "rubber"
+}

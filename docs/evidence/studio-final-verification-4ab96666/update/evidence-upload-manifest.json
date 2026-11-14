@@ -1,0 +1,489 @@
+{
+  "schema": 1,
+  "scope": "Explicit immutable evidence upload list; excludes original large ZIP, APKs and shader caches. Original ZIP and every member hash remain locally retained.",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43530667812,
+  "reviewed_at_utc": "2026-11-14T01:25:21.021301+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3094,
+      "sha256": "e785fd9a6afafb309c4629dc75c74d08e4a1c75b980eca950c5eb7826a00ede1",
+      "git_blob": "76d45b0661fff18ddb6fcdb750c68445c6a11e13",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/README.md",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/README.md",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 17132,
+      "sha256": "80bdd12883e55f5b9f26bc386d8d021c4a7944698aaee776a0475e7e2867b253",
+      "git_blob": "f81fa866973cf8f9be945232c922ef310dff0b11",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/independent-review.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/independent-review.json",
+      "mode": "100644"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 2133,
+      "sha256": "44be2c99975e849bf5c973e8996007f8c1d59b56f6a9dfe50bc761c0c53e7a52",
+      "git_blob": "d5e60cba26062aaf3ea2aa07116091fdd5576c5c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/source-binding.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/source-binding.json",
+      "mode": "100644"
+    },
+    {
+      "path": "artifact-byte-verification.json",
+      "bytes": 106939,
+      "sha256": "0c0ac074cf4304dc969cb0d1b8f5a15b039ea216c465821d18bcd8c549320ea8",
+      "git_blob": "54a8345cbd9b259ff40c43911bb9b000d5e5dd44",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/artifact-byte-verification.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/artifact-byte-verification.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals-final-manifest.json",
+      "bytes": 13516,
+      "sha256": "0150566e1d76aa94591d3f263bf254f60e81aca257ef080232cc70adea45e95d",
+      "git_blob": "c1c78e5a6dcdf01c1044f955a27944e040498127",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals-final-manifest.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals-final-manifest.json",
+      "mode": "100644"
+    },
+    {
+      "path": "github-artifact-metadata.json",
+      "bytes": 863,
+      "sha256": "07a41018228ebfe74c5f14b2831a8b60f3dfa7cc309bdb926d205cf564460b58",
+      "git_blob": "2be197d9a4797c811e140f89431890704d8d37c2",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/github-artifact-metadata.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/github-artifact-metadata.json",
+      "mode": "100644"
+    },
+    {
+      "path": "completion-run-jobs-original.json",
+      "bytes": 25007,
+      "sha256": "03130d101b73b3586c9f5dae0070f391fc0c829198aa7cabf2ecf292b4a85cbb",
+      "git_blob": "864ecb8f7587819466b892435d49723c2370d69c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/completion-run-jobs-original.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/completion-run-jobs-original.json",
+      "mode": "100644"
+    },
+    {
+      "path": "original-job.log",
+      "bytes": 294496,
+      "sha256": "633f74649f45a7b7559c4e7f2a3220626c18c5255fa017f5842465620cb67430",
+      "git_blob": "1ca72631282f85827f3c98a52025afb736afd029",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/original-job.log",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/original-job.log",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-data-comparison.json",
+      "bytes": 9400,
+      "sha256": "fac93bff51b50d28f7ce8f4cfae806d3d22c83273fc650be6b17118607c7ce53",
+      "git_blob": "a9a5fecbf35753ead3eef91aa86dbfa81f768b35",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/independent-data-comparison.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/independent-data-comparison.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/21_kart_real_touches.json",
+      "bytes": 104,
+      "sha256": "e533dd4a00b7fe4db7f7b77a9a9e64fbeafb850c62dd52cb15d5b901d4a9c6c2",
+      "git_blob": "f1c233a8a62e67462d0ab72d712d5a0a3b23b50c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/21_kart_real_touches.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/21_kart_real_touches.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/21_race_drive_telemetry.json",
+      "bytes": 641,
+      "sha256": "48e08532ed840457fab2b1a21416c704f78f03b651e9eed7a029811f85322192",
+      "git_blob": "5da60839c6641ce0c10d8d45d011209b274a172f",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/21_race_drive_telemetry.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/21_race_drive_telemetry.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/21_race_driving_late_1.png",
+      "bytes": 1891163,
+      "sha256": "8492a5ec3e31c8fd84b0a6e45a7726d2f3469fcfb7058c37e8b52954eb301b79",
+      "git_blob": "44afed9f9f915931aaeec04aded59c0681d49a92",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/21_race_driving_late_1.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/21_race_driving_late_1.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/21_stage_navigation.json",
+      "bytes": 707,
+      "sha256": "f0aca52581636e7096a3d5411e3227d454d2935d2bbd534b23097b6fc4ad7c90",
+      "git_blob": "36d49b34e0efc0c9b11a178adcabcb83119bfe30",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/21_stage_navigation.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/21_stage_navigation.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 468,
+      "sha256": "d28e10fb5474bdf5b9275229866ef818f4445065c7caa2a77164a62f577a2f1b",
+      "git_blob": "8f29270a122a62a544b84b97376e5332cf383971",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/23_zurueck_in_flutter-flutter-return.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/23_zurueck_in_flutter-flutter-return.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/23_zurueck_in_flutter.png",
+      "bytes": 1927156,
+      "sha256": "9973a1f5e4ff25551c6cfeb923d08ba8a607cff6304f2ebbb01e052f3979d0d8",
+      "git_blob": "6383244c25380f5c36b267b53915e483f04447c2",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/23_zurueck_in_flutter.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/23_zurueck_in_flutter.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/after-kart-preferences.xml",
+      "bytes": 4882,
+      "sha256": "543b44aa33fa5a81b02b4f27f1ad2c5ab77c907d7e196cf15c481e489d19bd35",
+      "git_blob": "262d12e427ba76e43914eff22c9dd73d922b40fa",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/after-kart-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/after-kart-preferences.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/after-restart-preferences.xml",
+      "bytes": 4882,
+      "sha256": "146a7ab5ac87bfa033f26410ab41b62fe41138531e85a236f75df1d4020d2999",
+      "git_blob": "0f6b3a8b94b22fe066b0c11556110c30e784037e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/after-restart-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/after-restart-preferences.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/after-update-preferences.xml",
+      "bytes": 4517,
+      "sha256": "9686ee568e220806841df80c92ab62b8b0897951416a0ec01a964db6c53ba073",
+      "git_blob": "0ae1c08e918832c84a5d2b1f3b6024bf6ad53e3c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/after-update-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/after-update-preferences.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/baseline-install.txt",
+      "bytes": 138,
+      "sha256": "ade6fc20e3d87b10de4f040a98a4160a4c7c72d05c8079e45b7178dc99051916",
+      "git_blob": "53bb7ad8c5512d16b459c289a478575121771bf3",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/baseline-install.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/baseline-install.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/baseline-learning/07-feedback.png",
+      "bytes": 1996753,
+      "sha256": "a3af0b58e636271c4ee9eafb4448ce0ac8e433c836aca6a2120e08b3f656ed0b",
+      "git_blob": "8e1b1c798ab16790f893eb08eecbaa76b9525b64",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/baseline-learning/07-feedback.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/baseline-learning/07-feedback.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/baseline-learning/12-restored-learning-menu.png",
+      "bytes": 2426723,
+      "sha256": "1fdbeabddf1f6b8de57c0bbfb0e651f9a19750068aefb69a826bacde22481bc6",
+      "git_blob": "354b012d3ba63eedebbc3363ad3398a4ea4c6582",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/baseline-learning/12-restored-learning-menu.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/baseline-learning/12-restored-learning-menu.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/baseline-learning/learning-journey-result.json",
+      "bytes": 4216,
+      "sha256": "1148f917d0f13eb8f78c8c6f1b71f89572b1c512d31696fd236eaf147a145bc2",
+      "git_blob": "622ffc25f72185bf4dd2a69859ea2675c27acd50",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/baseline-learning/learning-journey-result.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/baseline-learning/learning-journey-result.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/baseline-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "git_blob": "fc0b2c1aa9050c55b713419adbe8754db0a034a9",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/baseline-package-uid.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/baseline-package-uid.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/baseline-package.txt",
+      "bytes": 9968,
+      "sha256": "11c364dd77f02268d49365e591bb96906b6493fa88ceee04fc4820fa5703a82e",
+      "git_blob": "36a06cb34684f7a9959b3ddf3f6c1d9248479525",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/baseline-package.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/baseline-package.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/before-update-preferences.xml",
+      "bytes": 4365,
+      "sha256": "4e3707227a2a59b74e86caaf588fbab683a8535365b49a9f1967c5002dbd6b24",
+      "git_blob": "10e6c656e2f73fa6076bb382b88ec214b036655c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/before-update-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/before-update-preferences.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fatal-logcat.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fatal-logcat.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-cover-0.xml",
+      "bytes": 28876,
+      "sha256": "0252fa8ec0fed6049dae460e176dc598f45cf6801f5362fbe67c8f53b322b419",
+      "git_blob": "c7e574b4282c9d5f7fd0d5df0eeb1b672c9ee97c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-cover-0.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-cover-0.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-cover-preferences.xml",
+      "bytes": 4882,
+      "sha256": "146a7ab5ac87bfa033f26410ab41b62fe41138531e85a236f75df1d4020d2999",
+      "git_blob": "0f6b3a8b94b22fe066b0c11556110c30e784037e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-cover-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-cover-preferences.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-cover-render-readiness.json",
+      "bytes": 528,
+      "sha256": "13409b46d62af532cf2535446b64644e9c6034f5d57342b1b78b1887c8c55c5f",
+      "git_blob": "b10e69a9671bfcaeaef2b3bf7ef1914452d418eb",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-cover-render-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-cover-render-readiness.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-cover.png",
+      "bytes": 2583028,
+      "sha256": "e230a37e8424a2a1111a116072929813ec6edb99b4fe08c818fdda399fdca923",
+      "git_blob": "dd825ce5190ea646652bced01fe050d0915ca3c0",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-cover.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-cover.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-landscape-0.xml",
+      "bytes": 30880,
+      "sha256": "4b1c5336706359fcdb5a24270dace2984368cfe6b6fe84877a1e683e237939e6",
+      "git_blob": "3bc9ea383049894c76b06674fa24fc9eef2a2e7c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-landscape-0.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-landscape-0.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-landscape-preferences.xml",
+      "bytes": 4882,
+      "sha256": "146a7ab5ac87bfa033f26410ab41b62fe41138531e85a236f75df1d4020d2999",
+      "git_blob": "0f6b3a8b94b22fe066b0c11556110c30e784037e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-landscape-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-landscape-preferences.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-landscape-render-readiness.json",
+      "bytes": 537,
+      "sha256": "ac52743aa0c7d4567c52088e9379ed5e92935e64b17a1ee39e63acd5542ae82a",
+      "git_blob": "926d434e16d77eda2006559e75ab11a3d47c374a",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-landscape-render-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-landscape-render-readiness.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-landscape.png",
+      "bytes": 1771410,
+      "sha256": "7af9aa5fd473b5d39939195a0e8c9ac20378a14f334a347d64eea9a762880457",
+      "git_blob": "5c3d2851d333e9e14618df4417a0559227d32bae",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-landscape.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-landscape.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-open-0.xml",
+      "bytes": 28008,
+      "sha256": "3a9e4d3cb55d5ef7eb10347df14a3bcd1ff8e269c59c7455217e928a8568d7c4",
+      "git_blob": "b534a025616a64aa31fdb0d0b68ce86dc0c880c5",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-open-0.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-open-0.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-open-preferences.xml",
+      "bytes": 4882,
+      "sha256": "146a7ab5ac87bfa033f26410ab41b62fe41138531e85a236f75df1d4020d2999",
+      "git_blob": "0f6b3a8b94b22fe066b0c11556110c30e784037e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-open-preferences.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-open-preferences.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-open-render-readiness.json",
+      "bytes": 527,
+      "sha256": "dfb0cf2447b337e5a1b4dcbced642fc079a1a5401a40e77eb3204a4b0a619c97",
+      "git_blob": "f5062d8ddae244da15dea939559c2351e4adeef8",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-open-render-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-open-render-readiness.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/fold-open.png",
+      "bytes": 4266669,
+      "sha256": "b35bbe77870f0b31d09b044a0ae67665b35ab8123c497332bce0e0c0ec3a6691",
+      "git_blob": "6b014194dbc21c80c33ac76554c3a858176bde10",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/fold-open.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/fold-open.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/restart-profile-offline-0.xml",
+      "bytes": 28900,
+      "sha256": "332805df08d260ef0e37562a906959a3c2ee59a59bb47b97e6db0d86a286ee98",
+      "git_blob": "ebf72378c42644a1a0d4a18164eacfbff13256b8",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/restart-profile-offline-0.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/restart-profile-offline-0.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/restart-profile-offline-render-readiness.json",
+      "bytes": 556,
+      "sha256": "0db0eb2c794cd1719f791933391ea656383b85acd69c7770c473184172bb6054",
+      "git_blob": "4e5d2ce39fc8aaf72b7c85aa94cb990327343c18",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/restart-profile-offline-render-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/restart-profile-offline-render-readiness.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/restart-profile-offline.png",
+      "bytes": 3098968,
+      "sha256": "47315506d9fdec001ae7a257f6d81bb128b4914c3cdbe8b32cbe5f33c7c8c7b5",
+      "git_blob": "71d92304afa450e777e4badaa9b07220bafa8bdd",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/restart-profile-offline.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/restart-profile-offline.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/rooted-emulator.json",
+      "bytes": 1521,
+      "sha256": "0822d18172e3d15d52e4297b949ae1ed81bf56cb53e3042e2383453b4f005ecc",
+      "git_blob": "8abeb66e49ea2ddb55baf9de19e67d447898b20a",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/rooted-emulator.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/rooted-emulator.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "26a2c31742e7c61df9071a15204b73be4099bd8fcd39c6eee07e95baecb42332",
+      "git_blob": "9b1562e6ad50aedfb671733340a147293df782cd",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/tested-apk-sha256.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/tested-apk-sha256.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/update-install.txt",
+      "bytes": 139,
+      "sha256": "66aa28cda9c6ed257fb3ad6d7f2bf2ced3cfb4049037247a2ec8240ed6259c21",
+      "git_blob": "53fef157ffb4c160c6a9d1cc62bb6deb500dcb36",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/update-install.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/update-install.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/update-result.json",
+      "bytes": 39956,
+      "sha256": "e7270844feffe9f0546affaf6cf91bfa76ed8dee21238e2c129b22ac3a7972dc",
+      "git_blob": "09be8a137e3625af93f00efda09ae7051937869c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/update-result.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/update-result.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/updated-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "git_blob": "fc0b2c1aa9050c55b713419adbe8754db0a034a9",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/updated-package-uid.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/updated-package-uid.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/updated-package.txt",
+      "bytes": 9340,
+      "sha256": "f18eb8dfca7a756fdd3bbb93aa13036096bc967c688ee27da3fd9c6649fd9143",
+      "git_blob": "965a1948b82cf587631b8255d4ead2740beac15e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/updated-package.txt",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/updated-package.txt",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/updated-profile-offline-0.xml",
+      "bytes": 28900,
+      "sha256": "e8f63835ca2df98f420db9126279f0af29e211a62773a08b743cf963292aa280",
+      "git_blob": "ee43a973a0e711d8bed97eeaa33420898a838d5d",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/updated-profile-offline-0.xml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/updated-profile-offline-0.xml",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/updated-profile-offline-render-readiness.json",
+      "bytes": 556,
+      "sha256": "8c3c36d0ddadba82a7d9ece297d4035687b06260189020bcbc7a0fbe9c9f487c",
+      "git_blob": "5b58cb99be32d168e3c4a5c5fa32171934e950ae",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/updated-profile-offline-render-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/updated-profile-offline-render-readiness.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/updated-profile-offline.png",
+      "bytes": 3099501,
+      "sha256": "480f0d1f86cccf707ad17c7c1b5591a9f263fdd09add4eb367ed3e72f6bfe48c",
+      "git_blob": "1aecc4779215322bbffae00dcc489f5cfff88a09",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/selected-originals/updated-profile-offline.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/selected-originals/updated-profile-offline.png",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/.github/probes/lumo_2003_update_android_probe.py",
+      "bytes": 10533,
+      "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb",
+      "git_blob": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/source-snapshots/.github/probes/lumo_2003_update_android_probe.py",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/source-snapshots/.github/probes/lumo_2003_update_android_probe.py",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/.github/probes/lumo_2019_update_android_probe.py",
+      "bytes": 1899,
+      "sha256": "dbfe68735789ec47ef3e0095fcc8ffaf9435ab1f4a58f3035b64ec62bc72c416",
+      "git_blob": "0ab5b619ef63645195fb9c2174b46788bc17de30",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/source-snapshots/.github/probes/lumo_2019_update_android_probe.py",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/source-snapshots/.github/probes/lumo_2019_update_android_probe.py",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/tools/android_qa/update_preservation.py",
+      "bytes": 9134,
+      "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+      "git_blob": "60e74d96e2766657138f52d28301c39e78b85015",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/source-snapshots/tools/android_qa/update_preservation.py",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/update/source-snapshots/tools/android_qa/update_preservation.py",
+      "mode": "100644"
+    }
+  ],
+  "file_count": 53,
+  "total_bytes": 23804501
+}

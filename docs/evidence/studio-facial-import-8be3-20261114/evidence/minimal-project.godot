@@ -1,0 +1,8 @@
+config_version=5
+[application]
+config/name="Isolated Lumo Facial Import Diagnostic"
+config/features=PackedStringArray("4.6", "Forward Plus")
+[rendering]
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="mobile"
+renderer/rendering_method.web="gl_compatibility"

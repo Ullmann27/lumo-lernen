@@ -1,0 +1,3123 @@
+{
+	"audio_listened": false,
+	"captures": [
+		{
+			"attempts": 0,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						206.0,
+						462.0,
+						89.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						462.0,
+						89.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						303.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						303.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						369.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"rect_px": [
+						369.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						530.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						530.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+			"footer_px": [
+				12.0,
+				420.0,
+				936.0,
+				108.0
+			],
+			"foreground_far_depth": 18.5485973358154,
+			"header_px": [
+				12.0,
+				12.0,
+				936.0,
+				95.0
+			],
+			"hint_level": 0,
+			"lumo_px": [
+				143.582931518555,
+				123.910041809082,
+				174.659164428711,
+				279.179962158203
+			],
+			"name": "english-ball-960x540-start",
+			"objects": [
+				{
+					"bounds_px": [
+						358.966339111328,
+						248.773574829102,
+						132.520538330078,
+						146.321853637695
+					],
+					"spatial_48dp_target_px": [
+						401.226623535156,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 1872,
+					"word": "pen"
+				},
+				{
+					"bounds_px": [
+						521.431457519531,
+						242.432922363281,
+						132.5205078125,
+						152.662506103516
+					],
+					"spatial_48dp_target_px": [
+						563.691711425781,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 3572,
+					"word": "ball"
+				},
+				{
+					"bounds_px": [
+						683.896545410156,
+						268.571350097656,
+						132.520446777344,
+						126.810791015625
+					],
+					"spatial_48dp_target_px": [
+						726.156799316406,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 2164,
+					"word": "book"
+				}
+			],
+			"objects_order": [
+				"pen",
+				"ball",
+				"book"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				115.0,
+				928.0,
+				297.0
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · ball",
+			"window_px": [
+				960,
+				540
+			],
+			"word": "ball"
+		},
+		{
+			"attempts": 1,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": false,
+					"exposed_px": [
+						206.0,
+						462.0,
+						73.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						462.0,
+						73.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						287.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						287.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						353.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"rect_px": [
+						353.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						514.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						514.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Tippe selbst auf den hell umrandeten Gegenstand.",
+			"footer_px": [
+				12.0,
+				420.0,
+				936.0,
+				108.0
+			],
+			"foreground_far_depth": 18.5485973358154,
+			"header_px": [
+				12.0,
+				12.0,
+				936.0,
+				95.0
+			],
+			"hint_level": 2,
+			"lumo_px": [
+				143.582931518555,
+				123.910041809082,
+				174.659164428711,
+				279.179962158203
+			],
+			"name": "english-ball-960x540-hint",
+			"objects": [
+				{
+					"bounds_px": [
+						358.966339111328,
+						248.773574829102,
+						132.520538330078,
+						146.321853637695
+					],
+					"spatial_48dp_target_px": [
+						401.226623535156,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 1872,
+					"word": "pen"
+				},
+				{
+					"bounds_px": [
+						517.92724609375,
+						242.432922363281,
+						139.528869628906,
+						152.662506103516
+					],
+					"spatial_48dp_target_px": [
+						563.691711425781,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 4212,
+					"word": "ball"
+				},
+				{
+					"bounds_px": [
+						683.896545410156,
+						268.571350097656,
+						132.520446777344,
+						126.810791015625
+					],
+					"spatial_48dp_target_px": [
+						726.156799316406,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 2164,
+					"word": "book"
+				}
+			],
+			"objects_order": [
+				"pen",
+				"ball",
+				"book"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				115.0,
+				928.0,
+				297.0
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · ball",
+			"window_px": [
+				960,
+				540
+			],
+			"word": "ball"
+		},
+		{
+			"attempts": 2,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": true,
+			"controls": [
+				{
+					"enabled": false,
+					"exposed_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": false,
+					"exposed_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": false,
+					"exposed_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": false,
+					"exposed_px": [
+						206.0,
+						462.0,
+						73.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						462.0,
+						73.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						287.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						287.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						353.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"rect_px": [
+						353.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						514.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						514.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Richtig: „Ball“. Wähle jetzt „Zur Aufgabe“.",
+			"footer_px": [
+				12.0,
+				420.0,
+				936.0,
+				108.0
+			],
+			"foreground_far_depth": 18.5485973358154,
+			"header_px": [
+				12.0,
+				12.0,
+				936.0,
+				95.0
+			],
+			"hint_level": 2,
+			"lumo_px": [
+				143.582931518555,
+				123.910041809082,
+				174.659164428711,
+				279.179962158203
+			],
+			"name": "english-ball-960x540-complete",
+			"objects": [
+				{
+					"bounds_px": [
+						358.966339111328,
+						248.773574829102,
+						132.520538330078,
+						146.321853637695
+					],
+					"spatial_48dp_target_px": [
+						401.226623535156,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 1872,
+					"word": "pen"
+				},
+				{
+					"bounds_px": [
+						517.92724609375,
+						242.432922363281,
+						139.528869628906,
+						152.662506103516
+					],
+					"spatial_48dp_target_px": [
+						563.691711425781,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 4212,
+					"word": "ball"
+				},
+				{
+					"bounds_px": [
+						683.896545410156,
+						268.571350097656,
+						132.520446777344,
+						126.810791015625
+					],
+					"spatial_48dp_target_px": [
+						726.156799316406,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 2164,
+					"word": "book"
+				}
+			],
+			"objects_order": [
+				"pen",
+				"ball",
+				"book"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				115.0,
+				928.0,
+				297.0
+			],
+			"status": "ball = Ball · Passend zugeordnet",
+			"title": "Englisch · ball",
+			"window_px": [
+				960,
+				540
+			],
+			"word": "ball"
+		},
+		{
+			"attempts": 0,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						86.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						146.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						206.0,
+						777.0,
+						89.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						777.0,
+						89.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						303.0,
+						777.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						303.0,
+						777.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						837.0,
+						153.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						837.0,
+						153.0,
+						52.0
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						187.0,
+						837.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						187.0,
+						837.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+			"footer_px": [
+				12.0,
+				735.0,
+				388.0,
+				168.0
+			],
+			"foreground_far_depth": 20.2539577484131,
+			"header_px": [
+				12.0,
+				12.0,
+				388.0,
+				125.0
+			],
+			"hint_level": 0,
+			"lumo_px": [
+				27.4000301361084,
+				208.570190429688,
+				150.787612915039,
+				257.590209960938
+			],
+			"name": "english-book-412x915-start",
+			"objects": [
+				{
+					"bounds_px": [
+						252.578979492188,
+						237.258148193359,
+						132.021026611328,
+						126.047180175781
+					],
+					"spatial_48dp_target_px": [
+						294.589477539062,
+						240.007934570312,
+						48.0,
+						48.0
+					],
+					"triangles": 804,
+					"word": "book"
+				},
+				{
+					"bounds_px": [
+						252.578979492188,
+						383.195495605469,
+						132.021026611328,
+						117.059661865234
+					],
+					"spatial_48dp_target_px": [
+						294.589477539062,
+						376.957733154297,
+						48.0,
+						48.0
+					],
+					"triangles": 1628,
+					"word": "ruler"
+				},
+				{
+					"bounds_px": [
+						252.578979492188,
+						517.373962402344,
+						132.021026611328,
+						146.055908203125
+					],
+					"spatial_48dp_target_px": [
+						294.589477539062,
+						539.846862792969,
+						48.0,
+						48.0
+					],
+					"triangles": 3232,
+					"word": "pen"
+				}
+			],
+			"objects_order": [
+				"book",
+				"ruler",
+				"pen"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				145.0,
+				380.0,
+				582.0
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · book",
+			"window_px": [
+				412,
+				915
+			],
+			"word": "book"
+		},
+		{
+			"attempts": 2,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": true,
+			"controls": [
+				{
+					"enabled": false,
+					"exposed_px": [
+						26.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": false,
+					"exposed_px": [
+						86.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": false,
+					"exposed_px": [
+						146.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						777.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": false,
+					"exposed_px": [
+						206.0,
+						777.0,
+						73.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						777.0,
+						73.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						287.0,
+						777.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						287.0,
+						777.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						837.0,
+						153.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						837.0,
+						153.0,
+						52.0
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						187.0,
+						837.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						187.0,
+						837.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Richtig: „Buch“. Wähle jetzt „Zur Aufgabe“.",
+			"footer_px": [
+				12.0,
+				735.0,
+				388.0,
+				168.0
+			],
+			"foreground_far_depth": 20.2539577484131,
+			"header_px": [
+				12.0,
+				12.0,
+				388.0,
+				125.0
+			],
+			"hint_level": 2,
+			"lumo_px": [
+				27.4000301361084,
+				210.771301269531,
+				149.328201293945,
+				255.097137451172
+			],
+			"name": "english-book-412x915-complete",
+			"objects": [
+				{
+					"bounds_px": [
+						246.942413330078,
+						239.181686401367,
+						137.657592773438,
+						124.827194213867
+					],
+					"spatial_48dp_target_px": [
+						291.771209716797,
+						241.672546386719,
+						48.0,
+						48.0
+					],
+					"triangles": 1444,
+					"word": "book"
+				},
+				{
+					"bounds_px": [
+						250.399566650391,
+						383.706451416016,
+						130.743255615234,
+						115.926788330078
+					],
+					"spatial_48dp_target_px": [
+						291.771209716797,
+						377.296905517578,
+						48.0,
+						48.0
+					],
+					"triangles": 1628,
+					"word": "ruler"
+				},
+				{
+					"bounds_px": [
+						250.399566650391,
+						516.586303710938,
+						130.743255615234,
+						144.642333984375
+					],
+					"spatial_48dp_target_px": [
+						291.771209716797,
+						538.609436035156,
+						48.0,
+						48.0
+					],
+					"triangles": 3232,
+					"word": "pen"
+				}
+			],
+			"objects_order": [
+				"book",
+				"ruler",
+				"pen"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				145.0,
+				380.0,
+				582.0
+			],
+			"status": "book = Buch · Passend zugeordnet",
+			"title": "Englisch · book",
+			"window_px": [
+				412,
+				915
+			],
+			"word": "book"
+		},
+		{
+			"attempts": 0,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						282.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						282.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						86.0,
+						282.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						282.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						146.0,
+						282.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						282.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						206.0,
+						282.0,
+						89.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						282.0,
+						89.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						303.0,
+						282.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						303.0,
+						282.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						369.0,
+						282.0,
+						96.0,
+						52.0
+					],
+					"rect_px": [
+						369.0,
+						282.0,
+						96.0,
+						52.0
+					],
+					"text": "Anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						473.0,
+						282.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						473.0,
+						282.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+			"footer_px": [
+				12.0,
+				268.0,
+				616.0,
+				80.0
+			],
+			"foreground_far_depth": 18.5485992431641,
+			"header_px": [
+				12.0,
+				12.0,
+				616.0,
+				95.0
+			],
+			"hint_level": 0,
+			"lumo_px": [
+				155.755996704102,
+				119.350021362305,
+				85.2713165283203,
+				136.299987792969
+			],
+			"name": "english-ruler-640x360-start",
+			"objects": [
+				{
+					"bounds_px": [
+						260.909515380859,
+						194.380310058594,
+						64.6985778808594,
+						57.3666381835938
+					],
+					"spatial_48dp_target_px": [
+						269.258819580078,
+						179.084976196289,
+						48.0,
+						48.0
+					],
+					"triangles": 924,
+					"word": "ruler"
+				},
+				{
+					"bounds_px": [
+						340.227508544922,
+						189.975921630859,
+						64.6985778808594,
+						61.7710266113281
+					],
+					"spatial_48dp_target_px": [
+						348.576782226562,
+						179.084976196289,
+						48.0,
+						48.0
+					],
+					"triangles": 1508,
+					"word": "book"
+				},
+				{
+					"bounds_px": [
+						419.545471191406,
+						177.214721679688,
+						64.6985778808594,
+						74.6721954345703
+					],
+					"spatial_48dp_target_px": [
+						427.894775390625,
+						179.084976196289,
+						48.0,
+						48.0
+					],
+					"triangles": 4228,
+					"word": "ball"
+				}
+			],
+			"objects_order": [
+				"ruler",
+				"book",
+				"ball"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				115.0,
+				608.0,
+				145.0
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · ruler",
+			"window_px": [
+				640,
+				360
+			],
+			"word": "ruler"
+		},
+		{
+			"attempts": 0,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						204.25,
+						812.249938964844,
+						136.5,
+						136.5
+					],
+					"rect_px": [
+						204.25,
+						812.249938964844,
+						136.5,
+						136.5
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						361.75,
+						812.249938964844,
+						136.5,
+						136.5
+					],
+					"rect_px": [
+						361.75,
+						812.249938964844,
+						136.5,
+						136.5
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						519.25,
+						812.249938964844,
+						136.5,
+						136.5
+					],
+					"rect_px": [
+						519.25,
+						812.249938964844,
+						136.5,
+						136.5
+					],
+					"text": "3"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						676.75,
+						812.249938964844,
+						233.625,
+						136.5
+					],
+					"rect_px": [
+						676.75,
+						812.249938964844,
+						233.625,
+						136.5
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						931.375,
+						812.249938964844,
+						152.25,
+						136.5
+					],
+					"rect_px": [
+						931.375,
+						812.249938964844,
+						152.25,
+						136.5
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						1104.625,
+						812.249938964844,
+						252.0,
+						136.5
+					],
+					"rect_px": [
+						1104.625,
+						812.249938964844,
+						252.0,
+						136.5
+					],
+					"text": "Anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						1377.625,
+						812.249938964844,
+						328.125,
+						136.5
+					],
+					"rect_px": [
+						1377.625,
+						812.249938964844,
+						328.125,
+						136.5
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 2.625,
+			"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+			"footer_px": [
+				167.5,
+				775.499938964844,
+				2201.0,
+				210.0
+			],
+			"foreground_far_depth": 18.5485992431641,
+			"header_px": [
+				167.5,
+				31.5,
+				2201.0,
+				249.375
+			],
+			"hint_level": 0,
+			"lumo_px": [
+				755.303894042969,
+				315.453887939453,
+				266.178771972656,
+				425.467376708984
+			],
+			"name": "english-car-2400x1080-start",
+			"objects": [
+				{
+					"bounds_px": [
+						1083.54602050781,
+						514.326782226562,
+						201.9599609375,
+						214.410827636719
+					],
+					"spatial_48dp_target_px": [
+						1121.52600097656,
+						513.836791992188,
+						126.0,
+						126.0
+					],
+					"triangles": 2868,
+					"word": "apple"
+				},
+				{
+					"bounds_px": [
+						1331.14111328125,
+						534.365844726562,
+						201.9599609375,
+						194.371765136719
+					],
+					"spatial_48dp_target_px": [
+						1369.12109375,
+						513.836791992188,
+						126.0,
+						126.0
+					],
+					"triangles": 3800,
+					"word": "car"
+				},
+				{
+					"bounds_px": [
+						1578.73620605469,
+						492.3759765625,
+						201.9599609375,
+						236.798645019531
+					],
+					"spatial_48dp_target_px": [
+						1616.71618652344,
+						513.836791992188,
+						126.0,
+						126.0
+					],
+					"triangles": 5812,
+					"word": "sun"
+				}
+			],
+			"objects_order": [
+				"apple",
+				"car",
+				"sun"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				178.0,
+				301.875,
+				2180.0,
+				452.624938964844
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · car",
+			"window_px": [
+				2400,
+				1080
+			],
+			"word": "car"
+		},
+		{
+			"attempts": 0,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						68.25,
+						1974.75,
+						136.5,
+						136.5
+					],
+					"rect_px": [
+						68.25,
+						1974.75,
+						136.5,
+						136.5
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						225.75,
+						1974.75,
+						136.5,
+						136.5
+					],
+					"rect_px": [
+						225.75,
+						1974.75,
+						136.5,
+						136.5
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						383.25,
+						1974.75,
+						136.5,
+						136.5
+					],
+					"rect_px": [
+						383.25,
+						1974.75,
+						136.5,
+						136.5
+					],
+					"text": "3"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						540.75,
+						1974.75,
+						233.625,
+						136.5
+					],
+					"rect_px": [
+						540.75,
+						1974.75,
+						233.625,
+						136.5
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						795.375,
+						1974.75,
+						152.25,
+						136.5
+					],
+					"rect_px": [
+						795.375,
+						1974.75,
+						152.25,
+						136.5
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						68.25,
+						2132.25,
+						401.625,
+						136.5
+					],
+					"rect_px": [
+						68.25,
+						2132.25,
+						401.625,
+						136.5
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						490.875,
+						2132.25,
+						328.125,
+						136.5
+					],
+					"rect_px": [
+						490.875,
+						2132.25,
+						328.125,
+						136.5
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 2.625,
+			"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+			"footer_px": [
+				31.5,
+				1864.5,
+				1016.99993896484,
+				441.0
+			],
+			"foreground_far_depth": 20.2539577484131,
+			"header_px": [
+				31.5,
+				167.5,
+				1016.99993896484,
+				328.125
+			],
+			"hint_level": 0,
+			"lumo_px": [
+				71.8800354003906,
+				575.810363769531,
+				395.222290039062,
+				675.157653808594
+			],
+			"name": "english-pen-1080x2400-start",
+			"objects": [
+				{
+					"bounds_px": [
+						662.0859375,
+						674.559814453125,
+						346.034118652344,
+						306.819763183594
+					],
+					"spatial_48dp_target_px": [
+						772.10302734375,
+						658.115600585938,
+						126.0,
+						126.0
+					],
+					"triangles": 924,
+					"word": "ruler"
+				},
+				{
+					"bounds_px": [
+						662.0859375,
+						1026.24841308594,
+						346.034118652344,
+						330.37646484375
+					],
+					"spatial_48dp_target_px": [
+						772.10302734375,
+						1033.36083984375,
+						126.0,
+						126.0
+					],
+					"triangles": 1508,
+					"word": "book"
+				},
+				{
+					"bounds_px": [
+						662.0859375,
+						1401.49401855469,
+						346.034118652344,
+						382.8203125
+					],
+					"spatial_48dp_target_px": [
+						772.10302734375,
+						1460.30200195312,
+						126.0,
+						126.0
+					],
+					"triangles": 3232,
+					"word": "pen"
+				}
+			],
+			"objects_order": [
+				"ruler",
+				"book",
+				"pen"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				42.0,
+				516.625,
+				995.999938964844,
+				1326.875
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · pen",
+			"window_px": [
+				1080,
+				2400
+			],
+			"word": "pen"
+		},
+		{
+			"attempts": 0,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						206.0,
+						462.0,
+						89.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						462.0,
+						89.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						303.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						303.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						369.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"rect_px": [
+						369.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						530.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						530.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+			"footer_px": [
+				12.0,
+				420.0,
+				936.0,
+				108.0
+			],
+			"foreground_far_depth": 18.5485973358154,
+			"header_px": [
+				12.0,
+				12.0,
+				936.0,
+				95.0
+			],
+			"hint_level": 0,
+			"lumo_px": [
+				143.582931518555,
+				123.910041809082,
+				174.659164428711,
+				279.179962158203
+			],
+			"name": "english-sun-960x540-start",
+			"objects": [
+				{
+					"bounds_px": [
+						358.966339111328,
+						277.592864990234,
+						132.520538330078,
+						117.502563476562
+					],
+					"spatial_48dp_target_px": [
+						401.226623535156,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 924,
+					"word": "ruler"
+				},
+				{
+					"bounds_px": [
+						521.431457519531,
+						240.001419067383,
+						132.5205078125,
+						155.094009399414
+					],
+					"spatial_48dp_target_px": [
+						563.691711425781,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 5156,
+					"word": "sun"
+				},
+				{
+					"bounds_px": [
+						683.896545410156,
+						248.773574829102,
+						132.520446777344,
+						146.60856628418
+					],
+					"spatial_48dp_target_px": [
+						726.156799316406,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 3232,
+					"word": "pen"
+				}
+			],
+			"objects_order": [
+				"ruler",
+				"sun",
+				"pen"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				115.0,
+				928.0,
+				297.0
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · sun",
+			"window_px": [
+				960,
+				540
+			],
+			"word": "sun"
+		},
+		{
+			"attempts": 0,
+			"background_depth": [
+				36.5945205688477,
+				45.6557083129883
+			],
+			"complete": false,
+			"controls": [
+				{
+					"enabled": true,
+					"exposed_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						26.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "1"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						86.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "2"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"rect_px": [
+						146.0,
+						462.0,
+						52.0,
+						52.0
+					],
+					"text": "3"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						206.0,
+						462.0,
+						89.0,
+						52.0
+					],
+					"rect_px": [
+						206.0,
+						462.0,
+						89.0,
+						52.0
+					],
+					"text": "Hinweis"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						303.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"rect_px": [
+						303.0,
+						462.0,
+						58.0,
+						52.0
+					],
+					"text": "Neu"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						369.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"rect_px": [
+						369.0,
+						462.0,
+						153.0,
+						52.0
+					],
+					"text": "Schritt anhören"
+				},
+				{
+					"enabled": true,
+					"exposed_px": [
+						530.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"rect_px": [
+						530.0,
+						462.0,
+						125.0,
+						52.0
+					],
+					"text": "Zur Aufgabe"
+				}
+			],
+			"density": 1.0,
+			"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+			"footer_px": [
+				12.0,
+				420.0,
+				936.0,
+				108.0
+			],
+			"foreground_far_depth": 18.5485973358154,
+			"header_px": [
+				12.0,
+				12.0,
+				936.0,
+				95.0
+			],
+			"hint_level": 0,
+			"lumo_px": [
+				143.582931518555,
+				123.910041809082,
+				174.659164428711,
+				279.179962158203
+			],
+			"name": "english-apple-960x540-start",
+			"objects": [
+				{
+					"bounds_px": [
+						358.966339111328,
+						254.40495300293,
+						132.520538330078,
+						140.690475463867
+					],
+					"spatial_48dp_target_px": [
+						401.226623535156,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 2868,
+					"word": "apple"
+				},
+				{
+					"bounds_px": [
+						521.431457519531,
+						268.571350097656,
+						132.5205078125,
+						126.524078369141
+					],
+					"spatial_48dp_target_px": [
+						563.691711425781,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 1508,
+					"word": "book"
+				},
+				{
+					"bounds_px": [
+						683.896545410156,
+						248.773574829102,
+						132.520446777344,
+						146.60856628418
+					],
+					"spatial_48dp_target_px": [
+						726.156799316406,
+						271.422302246094,
+						48.0,
+						48.0
+					],
+					"triangles": 3232,
+					"word": "pen"
+				}
+			],
+			"objects_order": [
+				"apple",
+				"book",
+				"pen"
+			],
+			"observation_source": "platform_fixture",
+			"stage_px": [
+				16.0,
+				115.0,
+				928.0,
+				297.0
+			],
+			"status": "Tippe den Gegenstand oder seine Zahl an.",
+			"title": "Englisch · apple",
+			"window_px": [
+				960,
+				540
+			],
+			"word": "apple"
+		}
+	],
+	"cases": [
+		{
+			"dimensions": [
+				960,
+				540
+			],
+			"host_boundary": "explicit JNI/audio test double",
+			"input_boundary": "actual Godot ScreenTouch",
+			"return_count": 1,
+			"reward_count": 0,
+			"word": "ball"
+		},
+		{
+			"dimensions": [
+				412,
+				915
+			],
+			"host_boundary": "explicit JNI/audio test double",
+			"input_boundary": "actual Godot ScreenTouch",
+			"return_count": 1,
+			"reward_count": 0,
+			"word": "book"
+		},
+		{
+			"dimensions": [
+				640,
+				360
+			],
+			"host_boundary": "explicit JNI/audio test double",
+			"input_boundary": "actual Godot ScreenTouch",
+			"return_count": 1,
+			"reward_count": 0,
+			"word": "ruler"
+		},
+		{
+			"dimensions": [
+				2400,
+				1080
+			],
+			"host_boundary": "explicit JNI/audio test double",
+			"input_boundary": "actual Godot ScreenTouch",
+			"return_count": 1,
+			"reward_count": 0,
+			"word": "car"
+		},
+		{
+			"dimensions": [
+				1080,
+				2400
+			],
+			"host_boundary": "explicit JNI/audio test double",
+			"input_boundary": "actual Godot ScreenTouch",
+			"return_count": 1,
+			"reward_count": 0,
+			"word": "pen"
+		},
+		{
+			"dimensions": [
+				960,
+				540
+			],
+			"host_boundary": "explicit JNI/audio test double",
+			"input_boundary": "actual Godot ScreenTouch",
+			"return_count": 1,
+			"reward_count": 0,
+			"word": "sun"
+		},
+		{
+			"dimensions": [
+				960,
+				540
+			],
+			"host_boundary": "explicit JNI/audio test double",
+			"input_boundary": "actual Godot ScreenTouch",
+			"return_count": 1,
+			"reward_count": 0,
+			"word": "apple"
+		}
+	],
+	"checks": 1012,
+	"english_pronunciation_verified": false,
+	"failures": [],
+	"fixture_kind": "actual_dart_producer_report",
+	"input_events": [
+		{
+			"context": "ball: wrong visible object choice",
+			"position": [
+				172.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 1204
+		},
+		{
+			"context": "ball: wrong visible object choice",
+			"position": [
+				172.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 1204
+		},
+		{
+			"context": "ball: first targeted hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 1331
+		},
+		{
+			"context": "ball: first targeted hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 1331
+		},
+		{
+			"context": "ball: bounded outline hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 1464
+		},
+		{
+			"context": "ball: bounded outline hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 1464
+		},
+		{
+			"context": "actual3D collision target for ball",
+			"position": [
+				587.691711425781,
+				295.422302246094
+			],
+			"pressed": true,
+			"ticks_msec": 1765
+		},
+		{
+			"context": "actual3D collision target for ball",
+			"position": [
+				587.691711425781,
+				295.422302246094
+			],
+			"pressed": false,
+			"ticks_msec": 1765
+		},
+		{
+			"context": "ball: existing local German readback",
+			"position": [
+				429.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 2065
+		},
+		{
+			"context": "ball: existing local German readback",
+			"position": [
+				429.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 2065
+		},
+		{
+			"context": "ball: restart local illustration",
+			"position": [
+				316.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 2199
+		},
+		{
+			"context": "ball: restart local illustration",
+			"position": [
+				316.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 2201
+		},
+		{
+			"context": "ball: return to actual host task",
+			"position": [
+				592.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 2330
+		},
+		{
+			"context": "ball: return to actual host task",
+			"position": [
+				592.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 2330
+		},
+		{
+			"context": "book: wrong visible object choice",
+			"position": [
+				112.0,
+				803.0
+			],
+			"pressed": true,
+			"ticks_msec": 3018
+		},
+		{
+			"context": "book: wrong visible object choice",
+			"position": [
+				112.0,
+				803.0
+			],
+			"pressed": false,
+			"ticks_msec": 3018
+		},
+		{
+			"context": "book: first targeted hint",
+			"position": [
+				250.5,
+				803.0
+			],
+			"pressed": true,
+			"ticks_msec": 3147
+		},
+		{
+			"context": "book: first targeted hint",
+			"position": [
+				250.5,
+				803.0
+			],
+			"pressed": false,
+			"ticks_msec": 3147
+		},
+		{
+			"context": "book: bounded outline hint",
+			"position": [
+				250.5,
+				803.0
+			],
+			"pressed": true,
+			"ticks_msec": 3280
+		},
+		{
+			"context": "book: bounded outline hint",
+			"position": [
+				250.5,
+				803.0
+			],
+			"pressed": false,
+			"ticks_msec": 3280
+		},
+		{
+			"context": "book: correct actual object",
+			"position": [
+				52.0,
+				803.0
+			],
+			"pressed": true,
+			"ticks_msec": 3413
+		},
+		{
+			"context": "book: correct actual object",
+			"position": [
+				52.0,
+				803.0
+			],
+			"pressed": false,
+			"ticks_msec": 3414
+		},
+		{
+			"context": "book: existing local German readback",
+			"position": [
+				102.5,
+				863.0
+			],
+			"pressed": true,
+			"ticks_msec": 3716
+		},
+		{
+			"context": "book: existing local German readback",
+			"position": [
+				102.5,
+				863.0
+			],
+			"pressed": false,
+			"ticks_msec": 3716
+		},
+		{
+			"context": "book: restart local illustration",
+			"position": [
+				316.0,
+				803.0
+			],
+			"pressed": true,
+			"ticks_msec": 3847
+		},
+		{
+			"context": "book: restart local illustration",
+			"position": [
+				316.0,
+				803.0
+			],
+			"pressed": false,
+			"ticks_msec": 3847
+		},
+		{
+			"context": "book: return to actual host task",
+			"position": [
+				249.5,
+				863.0
+			],
+			"pressed": true,
+			"ticks_msec": 3980
+		},
+		{
+			"context": "book: return to actual host task",
+			"position": [
+				249.5,
+				863.0
+			],
+			"pressed": false,
+			"ticks_msec": 3980
+		},
+		{
+			"context": "ruler: wrong visible object choice",
+			"position": [
+				112.0,
+				308.0
+			],
+			"pressed": true,
+			"ticks_msec": 4682
+		},
+		{
+			"context": "ruler: wrong visible object choice",
+			"position": [
+				112.0,
+				308.0
+			],
+			"pressed": false,
+			"ticks_msec": 4682
+		},
+		{
+			"context": "ruler: first targeted hint",
+			"position": [
+				250.5,
+				308.0
+			],
+			"pressed": true,
+			"ticks_msec": 4811
+		},
+		{
+			"context": "ruler: first targeted hint",
+			"position": [
+				250.5,
+				308.0
+			],
+			"pressed": false,
+			"ticks_msec": 4811
+		},
+		{
+			"context": "ruler: bounded outline hint",
+			"position": [
+				250.5,
+				308.0
+			],
+			"pressed": true,
+			"ticks_msec": 4944
+		},
+		{
+			"context": "ruler: bounded outline hint",
+			"position": [
+				250.5,
+				308.0
+			],
+			"pressed": false,
+			"ticks_msec": 4944
+		},
+		{
+			"context": "ruler: correct actual object",
+			"position": [
+				52.0,
+				308.0
+			],
+			"pressed": true,
+			"ticks_msec": 5077
+		},
+		{
+			"context": "ruler: correct actual object",
+			"position": [
+				52.0,
+				308.0
+			],
+			"pressed": false,
+			"ticks_msec": 5077
+		},
+		{
+			"context": "ruler: existing local German readback",
+			"position": [
+				401.0,
+				308.0
+			],
+			"pressed": true,
+			"ticks_msec": 5211
+		},
+		{
+			"context": "ruler: existing local German readback",
+			"position": [
+				401.0,
+				308.0
+			],
+			"pressed": false,
+			"ticks_msec": 5211
+		},
+		{
+			"context": "ruler: restart local illustration",
+			"position": [
+				316.0,
+				308.0
+			],
+			"pressed": true,
+			"ticks_msec": 5344
+		},
+		{
+			"context": "ruler: restart local illustration",
+			"position": [
+				316.0,
+				308.0
+			],
+			"pressed": false,
+			"ticks_msec": 5345
+		},
+		{
+			"context": "ruler: return to actual host task",
+			"position": [
+				535.5,
+				308.0
+			],
+			"pressed": true,
+			"ticks_msec": 5477
+		},
+		{
+			"context": "ruler: return to actual host task",
+			"position": [
+				535.5,
+				308.0
+			],
+			"pressed": false,
+			"ticks_msec": 5477
+		},
+		{
+			"context": "car: wrong visible object choice",
+			"position": [
+				587.5,
+				880.499938964844
+			],
+			"pressed": true,
+			"ticks_msec": 6185
+		},
+		{
+			"context": "car: wrong visible object choice",
+			"position": [
+				587.5,
+				880.499938964844
+			],
+			"pressed": false,
+			"ticks_msec": 6185
+		},
+		{
+			"context": "car: first targeted hint",
+			"position": [
+				793.5625,
+				880.499938964844
+			],
+			"pressed": true,
+			"ticks_msec": 6313
+		},
+		{
+			"context": "car: first targeted hint",
+			"position": [
+				793.5625,
+				880.499938964844
+			],
+			"pressed": false,
+			"ticks_msec": 6313
+		},
+		{
+			"context": "car: bounded outline hint",
+			"position": [
+				793.5625,
+				880.499938964844
+			],
+			"pressed": true,
+			"ticks_msec": 6445
+		},
+		{
+			"context": "car: bounded outline hint",
+			"position": [
+				793.5625,
+				880.499938964844
+			],
+			"pressed": false,
+			"ticks_msec": 6445
+		},
+		{
+			"context": "car: correct actual object",
+			"position": [
+				430.0,
+				880.499938964844
+			],
+			"pressed": true,
+			"ticks_msec": 6578
+		},
+		{
+			"context": "car: correct actual object",
+			"position": [
+				430.0,
+				880.499938964844
+			],
+			"pressed": false,
+			"ticks_msec": 6578
+		},
+		{
+			"context": "car: existing local German readback",
+			"position": [
+				1188.625,
+				880.499938964844
+			],
+			"pressed": true,
+			"ticks_msec": 6729
+		},
+		{
+			"context": "car: existing local German readback",
+			"position": [
+				1188.625,
+				880.499938964844
+			],
+			"pressed": false,
+			"ticks_msec": 6729
+		},
+		{
+			"context": "car: restart local illustration",
+			"position": [
+				965.5,
+				880.499938964844
+			],
+			"pressed": true,
+			"ticks_msec": 6863
+		},
+		{
+			"context": "car: restart local illustration",
+			"position": [
+				965.5,
+				880.499938964844
+			],
+			"pressed": false,
+			"ticks_msec": 6864
+		},
+		{
+			"context": "car: return to actual host task",
+			"position": [
+				1541.6875,
+				880.499938964844
+			],
+			"pressed": true,
+			"ticks_msec": 6996
+		},
+		{
+			"context": "car: return to actual host task",
+			"position": [
+				1541.6875,
+				880.499938964844
+			],
+			"pressed": false,
+			"ticks_msec": 6996
+		},
+		{
+			"context": "pen: wrong visible object choice",
+			"position": [
+				136.5,
+				2043.0
+			],
+			"pressed": true,
+			"ticks_msec": 7730
+		},
+		{
+			"context": "pen: wrong visible object choice",
+			"position": [
+				136.5,
+				2043.0
+			],
+			"pressed": false,
+			"ticks_msec": 7730
+		},
+		{
+			"context": "pen: first targeted hint",
+			"position": [
+				657.5625,
+				2043.0
+			],
+			"pressed": true,
+			"ticks_msec": 7859
+		},
+		{
+			"context": "pen: first targeted hint",
+			"position": [
+				657.5625,
+				2043.0
+			],
+			"pressed": false,
+			"ticks_msec": 7859
+		},
+		{
+			"context": "pen: bounded outline hint",
+			"position": [
+				657.5625,
+				2043.0
+			],
+			"pressed": true,
+			"ticks_msec": 7992
+		},
+		{
+			"context": "pen: bounded outline hint",
+			"position": [
+				657.5625,
+				2043.0
+			],
+			"pressed": false,
+			"ticks_msec": 7992
+		},
+		{
+			"context": "pen: correct actual object",
+			"position": [
+				451.5,
+				2043.0
+			],
+			"pressed": true,
+			"ticks_msec": 8125
+		},
+		{
+			"context": "pen: correct actual object",
+			"position": [
+				451.5,
+				2043.0
+			],
+			"pressed": false,
+			"ticks_msec": 8125
+		},
+		{
+			"context": "pen: existing local German readback",
+			"position": [
+				269.0625,
+				2200.5
+			],
+			"pressed": true,
+			"ticks_msec": 8259
+		},
+		{
+			"context": "pen: existing local German readback",
+			"position": [
+				269.0625,
+				2200.5
+			],
+			"pressed": false,
+			"ticks_msec": 8259
+		},
+		{
+			"context": "pen: restart local illustration",
+			"position": [
+				829.5,
+				2043.0
+			],
+			"pressed": true,
+			"ticks_msec": 8394
+		},
+		{
+			"context": "pen: restart local illustration",
+			"position": [
+				829.5,
+				2043.0
+			],
+			"pressed": false,
+			"ticks_msec": 8395
+		},
+		{
+			"context": "pen: return to actual host task",
+			"position": [
+				654.9375,
+				2200.5
+			],
+			"pressed": true,
+			"ticks_msec": 8525
+		},
+		{
+			"context": "pen: return to actual host task",
+			"position": [
+				654.9375,
+				2200.5
+			],
+			"pressed": false,
+			"ticks_msec": 8525
+		},
+		{
+			"context": "sun: wrong visible object choice",
+			"position": [
+				172.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 9214
+		},
+		{
+			"context": "sun: wrong visible object choice",
+			"position": [
+				172.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 9214
+		},
+		{
+			"context": "sun: first targeted hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 9342
+		},
+		{
+			"context": "sun: first targeted hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 9342
+		},
+		{
+			"context": "sun: bounded outline hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 9476
+		},
+		{
+			"context": "sun: bounded outline hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 9476
+		},
+		{
+			"context": "sun: correct actual object",
+			"position": [
+				112.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 9608
+		},
+		{
+			"context": "sun: correct actual object",
+			"position": [
+				112.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 9609
+		},
+		{
+			"context": "sun: existing local German readback",
+			"position": [
+				429.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 9742
+		},
+		{
+			"context": "sun: existing local German readback",
+			"position": [
+				429.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 9742
+		},
+		{
+			"context": "sun: restart local illustration",
+			"position": [
+				316.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 9876
+		},
+		{
+			"context": "sun: restart local illustration",
+			"position": [
+				316.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 9876
+		},
+		{
+			"context": "sun: return to actual host task",
+			"position": [
+				592.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 10008
+		},
+		{
+			"context": "sun: return to actual host task",
+			"position": [
+				592.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 10009
+		},
+		{
+			"context": "apple: wrong visible object choice",
+			"position": [
+				112.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 10716
+		},
+		{
+			"context": "apple: wrong visible object choice",
+			"position": [
+				112.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 10716
+		},
+		{
+			"context": "apple: first targeted hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 10833
+		},
+		{
+			"context": "apple: first targeted hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 10833
+		},
+		{
+			"context": "apple: bounded outline hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 10966
+		},
+		{
+			"context": "apple: bounded outline hint",
+			"position": [
+				250.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 10966
+		},
+		{
+			"context": "apple: correct actual object",
+			"position": [
+				52.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 11100
+		},
+		{
+			"context": "apple: correct actual object",
+			"position": [
+				52.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 11100
+		},
+		{
+			"context": "apple: existing local German readback",
+			"position": [
+				429.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 11233
+		},
+		{
+			"context": "apple: existing local German readback",
+			"position": [
+				429.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 11233
+		},
+		{
+			"context": "apple: restart local illustration",
+			"position": [
+				316.0,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 11367
+		},
+		{
+			"context": "apple: restart local illustration",
+			"position": [
+				316.0,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 11367
+		},
+		{
+			"context": "apple: return to actual host task",
+			"position": [
+				592.5,
+				488.0
+			],
+			"pressed": true,
+			"ticks_msec": 11500
+		},
+		{
+			"context": "apple: return to actual host task",
+			"position": [
+				592.5,
+				488.0
+			],
+			"pressed": false,
+			"ticks_msec": 11500
+		}
+	],
+	"renderer": "headless",
+	"schema": 1,
+	"scope": "actual production Godot scene; explicit platform/JNI/audio fixtures; no Android/FPS/mastery claim",
+	"source_sha256": {
+		"scripts/learning/english_object_gallery.gd": "4c6268517ae47fc9075bc4824e4aae1b2044190a1971fd8ca32b06662bf3cb55",
+		"scripts/learning/english_vocabulary.gd": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+		"scripts/learning/learning_activity.gd": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+		"scripts/learning/learning_world.gd": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e",
+		"scripts/tests/learning_english_regression.gd": "00c2a1756562db1c49fdad8ff6944b14065f204ad7e831d98cd2ea41ac31badf"
+	},
+	"task_fixture_sha256": "4f3df3fe61f45c2b899d1e50e71ea3f4980c1d78b92547fb7ca676be0a6f198b"
+}

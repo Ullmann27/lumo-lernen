@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "all_49_current_images_personally_reviewed": true,
+  "source_reports": [
+    {
+      "reviewer": "root",
+      "report": "review-root.json",
+      "sha256": "e7765c7929213e951a0555575cc8ef3b657e8f0c52f9372f885bbbe272ac2fb3",
+      "image_count": 13
+    },
+    {
+      "reviewer": "learning_worlds",
+      "report": "review-learning_worlds.json",
+      "sha256": "967c846ea98d743eaeff7bb29c794b4492d376c2949af790d4a84a75d6657166",
+      "image_count": 9
+    },
+    {
+      "reviewer": "character_animation",
+      "report": "review-character_animation.json",
+      "sha256": "5921aef6ed5e69ef8b02a886d43b27011aca965cf5c4aa97f636ae3aa4cd0712",
+      "image_count": 12
+    },
+    {
+      "reviewer": "games_worlds",
+      "report": "review-games_worlds.json",
+      "sha256": "3cd6da92cca3e3386fcc382242cd05897e762e98786848eb1a9bb7fd748223be",
+      "image_count": 15
+    }
+  ],
+  "selection_sha256": "1b2165e61d54ae9c51f124426409d233bd034216611c69d2e3c751d92897dabb",
+  "earlier_draft_check": "A preparatory report check initially assumed every findings field was a string; two reviewers use lists. Original reviews were preserved, and findings/readability/limits are explicitly composed into receipt text. No image was omitted or replaced."
+}

@@ -1,0 +1,268 @@
+{
+  "status": "PASS",
+  "diagnostic_only": true,
+  "build_or_publish_performed": false,
+  "physical_fold7_performance_measured": false,
+  "commands": [],
+  "expected_qa_source": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "requested_api": 37,
+  "diagnostic_github_run": "43546627017",
+  "diagnostic_github_attempt": "1",
+  "binding": {
+    "sources": {
+      "qa": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen",
+        "head": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+        "tree": "0774003dfb399641044cf83b654335bd91ad4373",
+        "tracked_source_clean": true,
+        "actual_blob_and_mode_checks": 4127,
+        "working_files_manifest_sha256": "9d73d16f1ba8dba2d0ba0d44d348c5f76cd57fa7698a1647f58f884752fbb024",
+        "separate_runtime_roots": [
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist",
+          "/home/runner/work/lumo-lernen/lumo-lernen/tour",
+          "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv",
+          "/home/runner/work/lumo-lernen/lumo-lernen/runner-actions/android-emulator-runner"
+        ],
+        "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode"
+      },
+      "product": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+        "head": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+        "tree": "f3ffc295cec299bdc6126fcddffbc130c6629e54",
+        "tracked_source_clean": true,
+        "actual_blob_and_mode_checks": 4113,
+        "working_files_manifest_sha256": "32cc1136a62991eee1ec389d81f6c039aeacd36d9abf4eccf6af44a58b438839",
+        "separate_runtime_roots": [],
+        "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode"
+      },
+      "qa_basis": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+      "tour_execution_scope": "Modernization unchanged; Studio surface reader bound to the exact approved read-only correction",
+      "surface_reader_binding": {
+        "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+        "original_sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+        "approved_sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+      },
+      "unchanged_other_git_entries": 4111,
+      "reviewed_delta": [
+        {
+          "path": ".github/probes/creative_android_probe.py",
+          "before": {
+            "mode": "100644",
+            "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+          },
+          "after": {
+            "mode": "100644",
+            "git_blob": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd"
+          },
+          "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+        },
+        {
+          "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+          "before": {
+            "mode": "100644",
+            "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68"
+          },
+          "after": {
+            "mode": "100644",
+            "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad"
+          },
+          "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+        },
+        {
+          "path": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "9c54d46545429d02f1f8105ae1b87088855dee3d"
+          },
+          "sha256": "6db11aba49cf3dc7322ce756ac245952a5b1f7cdbe54f9e952743ab08e0ef9c3"
+        },
+        {
+          "path": "scripts/recheck_studio_4ab.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "33ed5d0fc71a3282bb3fb7de6bdf2ff3c2cbc6b2"
+          },
+          "sha256": "667edf06c082d3d48302b7aab6a2e1d3aac92a4581d2fbf62624504208fe9e5b"
+        },
+        {
+          "path": "scripts/tests/test_studio_4ab_recheck.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "e836e7c25a7d68f4d47ff19a15de982f7e241fdb"
+          },
+          "sha256": "467c8554fffa95773423eed0705968929025b324b007f4a558f725515cf17848"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "9c20cac7b42fb285cac1d476bbdf840662a68e2b"
+          },
+          "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "befd8c7c5147beb3754bde89ca4ea18a10b44a7c"
+          },
+          "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "e24a002fcefa4e000ad2336880b639b636131af8"
+          },
+          "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "e2040ad2c440daafd36972f98462f052a19bd6f9"
+          },
+          "sha256": "3a2345f16439c7dba61fb19aecb611c7a230b8c9e90150543338ec00c5009dca"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "8c5735507c17ecfe1d516e044a0587fd8266ba5e"
+          },
+          "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "772eef801ef8cabc05c04dc61de9a530c5c73cc1"
+          },
+          "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "49566dbbef40cc7dc17a38bb67f1dbee508c77ed"
+          },
+          "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "816498d883f8f481c754b06817e26af449f7112f"
+          },
+          "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c"
+          },
+          "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435"
+        },
+        {
+          "path": "tools/android_qa/tests/test_cards_layout_readiness.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "9d2b4a75bc3353dd579f261c1c99229af30c07c1"
+          },
+          "sha256": "e4e1617794a3026a947d135e0883f82664f220a6c430ce0721e611f7b0bd1dc0"
+        },
+        {
+          "path": "tools/android_qa/tests/test_native_caption_ocr.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "5238a7a69190233590eefb50d647bcd244ecbc3f"
+          },
+          "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce"
+        }
+      ],
+      "executed_tour_files": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/modernization_android_tour.py",
+          "bytes": 46556,
+          "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py",
+          "bytes": 48183,
+          "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+        }
+      ],
+      "helper": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py",
+        "bytes": 59073,
+        "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+      }
+    },
+    "original_build": {
+      "original_run": 43530667812,
+      "original_build_job": 132247240154,
+      "original_artifact": 14089507933,
+      "artifact_archive_digest_from_github_metadata": "2bc81726454a0b79e3e7ab9c0668c9359745e4d308e5af6f8b49072e7600ae7c",
+      "original_run_conclusion": "failure",
+      "original_metadata_files": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/artifact.json",
+          "bytes": 806,
+          "sha256": "62410d2d5a462c45f38bf9cb0f09108d526e280d802a32705a949030059af6ef"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/run.json",
+          "bytes": 14516,
+          "sha256": "4282fb4b85847558efa97e319d4e8273bd4a6213127159b1b149c84ed99d9d2d"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/build-job.json",
+          "bytes": 10144,
+          "sha256": "2d7cb4f520a17ada660edd9e8fe06990ac9efc3fd3ccd99b9bc7d4209b250dfd"
+        }
+      ]
+    },
+    "binary": {
+      "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+      "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "apk": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "bytes": 325295610,
+        "sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6"
+      },
+      "pck_bytes": 66234596,
+      "pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+      "provenance": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "bytes": 7586,
+        "sha256": "bb50fe23c109e063fe4f3c6fa4b55d3c6387e15ab2665f8cd2cae22f6d26fbf5"
+      },
+      "sums": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "bytes": 98,
+        "sha256": "4b9e9df9d23a8cf0eb32c0dd6b26175235fc008e1ec1c621f77c35164d565837"
+      },
+      "signature_scope": "Exact original signed APK bytes; certificate from original verified build provenance. No new signing claim."
+    },
+    "expected_api": 37
+  },
+  "scope": "Identity only; Android has not been tested"
+}

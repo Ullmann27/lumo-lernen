@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/README.md",
+      "target": "docs/evidence/studio-artifact-originals-contract-20261114/README.md",
+      "bytes": 4226,
+      "sha256": "30816d87ba2c871c07a747b8db3c897347e5b4eddfe8473e5f9937d501d96bca",
+      "git_blob_sha": "80d42f0392641eb7a190e9b947adce5a4f7a4eb4",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/source-upload-manifest.json",
+      "target": "docs/evidence/studio-artifact-originals-contract-20261114/source-upload-manifest.json",
+      "bytes": 1069,
+      "sha256": "c33b3fbfd1029ef973aff02c8ad22091411860f640cd6e840f727ad2a422a8a6",
+      "git_blob_sha": "a8a7cb02753db1385f747287b24b55ee75d98d75",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/evidence/review.json",
+      "target": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/review.json",
+      "bytes": 1375,
+      "sha256": "2f16233111e9d56da0c23c1f1e329d5b12ba9d6daa682b3af9032f63234651e0",
+      "git_blob_sha": "f8217a1256a3dbff78f9fd7ded38961e64d3781e",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/evidence/contracts.log",
+      "target": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/contracts.log",
+      "bytes": 4313,
+      "sha256": "9ba1aed2778b6da8a0cd22c54a85a0ff0f3b02a5f2c2ea1559aa7806b4adf37f",
+      "git_blob_sha": "74776e92afc6b5a3e11f6d5b6c870a7012241747",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/evidence/contracts-execution.json",
+      "target": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/contracts-execution.json",
+      "bytes": 1182,
+      "sha256": "cd43bfcff713a6a593cf48c1b232481c0d1c004bdd0c76a219a5cb8334fc6acf",
+      "git_blob_sha": "27c672ce624fec8663a65ec8d264fb49087c00c9",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/evidence/cli-help.log",
+      "target": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/cli-help.log",
+      "bytes": 944,
+      "sha256": "6a663f6382cac42cd7c735faa6b1020135b75cf41b9b91b49099ceeb2b8b17bb",
+      "git_blob_sha": "dde705b494661cf6f943302490d9f0c3d91bb91d",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/evidence/cli-help-execution.json",
+      "target": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/cli-help-execution.json",
+      "bytes": 280,
+      "sha256": "e84a3bdbd7b9ed02035af9fa4135c79e2e015ab06905cc3569aafd1ae96ea27b",
+      "git_blob_sha": "ed65f62fb2be24ac6f09cd798e00723c4a7e274b",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 13389
+}

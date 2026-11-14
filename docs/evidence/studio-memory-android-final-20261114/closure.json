@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_AND_INDEPENDENTLY_REVIEWED_ANDROID_NOT_RUN",
+  "final_source_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-prior-tour-followup-20261114/source-upload-manifest.json",
+    "sha256": "8e5a913d01c6e199230854331a278dd1620aebf9ec1c47a1253ad8ef80c7074a"
+  },
+  "final_probe_sha256": "7ed28770dbe692d5e0d8d2032805fda91262de2716b5b8badab2c07cb51aeb01",
+  "final_test_sha256": "f869d05d1e93f81de083ff8582163945eab288ae27b2797aab8e8c4fdd88b397",
+  "final_cases": 25,
+  "failed": 0,
+  "skipped": 0,
+  "independent_review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-memory-android-peer-review-20261114/review.json",
+    "sha256": "2971ef7020f808c48a65d82614d68fb0fa63c7924dded08cb445552dab3c92bf"
+  },
+  "source_before_after_same_at_closure": true,
+  "superseded_source": "Initial b9738543 probe is preserved; final 7ed28770 adds only exact prior-tour names and the corresponding negative contract.",
+  "execution_boundary": "Pure Python validator tests and one original desktop pixel replay; no new Android run, Flutter test or engine render in this probe package.",
+  "reported_integration_head": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "integration_head_evidence": "Parent-reported commit; actual source-run metadata separately observed. No tested runtime outcome is inferred from that commit."
+}

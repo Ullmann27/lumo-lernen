@@ -1,0 +1,27 @@
+{
+  "source": "tour/logcat.txt",
+  "source_sha256": "0f79fd9f2a74ec25484a67fcd9bfcb62e6dfe2441b19b31bb531177593897370",
+  "original_lines": [
+    {
+      "line": 79048,
+      "text": "11-14 01:22:46.788  6248  6274 I godot   : Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    },
+    {
+      "line": 79282,
+      "text": "11-14 01:22:48.590  6248  6274 I godot   : OpenGL API OpenGL ES 3.1 (4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4) - Compatibility - Using Device: Google (Mesa) - Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))"
+    },
+    {
+      "line": 79306,
+      "text": "11-14 01:22:49.259  6248  6274 I godot   : [Mobile] actual Android View insets { \"insets\": [P: (0.0, 36.0), S: (0.0, 48.0)], \"view_size\": (1080.0, 1920.0), \"decor_size\": (1080.0, 1920.0), \"render_rect\": [P: (0.0, 0.0), S: (1080.0, 1920.0)], \"system_insets\": [P: (0.0, 36.0), S: (0.0, 48.0)], \"window_size\": (1080, 1920) }"
+    },
+    {
+      "line": 79519,
+      "text": "11-14 01:22:52.135  6248  6274 I godot   : [Router] loaded:treasure (res://scenes/creative/treasure_world.tscn)"
+    },
+    {
+      "line": 79801,
+      "text": "11-14 01:23:03.105  6248  6274 I godot   : [Mobile] actual Android View insets { \"insets\": [P: (0.0, 36.0), S: (0.0, 48.0)], \"view_size\": (1920.0, 1080.0), \"decor_size\": (1920.0, 1080.0), \"render_rect\": [P: (0.0, 0.0), S: (1920.0, 1080.0)], \"system_insets\": [P: (0.0, 36.0), S: (0.0, 48.0)], \"window_size\": (1920, 1080) }"
+    }
+  ],
+  "interpretation": "llvmpipe software rendering is directly logged. No per-frame or physics-tick measurements are present for this motion sequence; renderer speed is not established as the unique cause."
+}

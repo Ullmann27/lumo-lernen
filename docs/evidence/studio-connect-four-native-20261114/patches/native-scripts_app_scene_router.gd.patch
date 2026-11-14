@@ -1,0 +1,10 @@
+--- a/scripts/app/scene_router.gd
++++ b/scripts/app/scene_router.gd
+@@ -31,6 +31,7 @@
+ 	"jump": "res://scenes/games/jump_islands.tscn",
+ 	"learning": "res://scenes/learning/learning_world.tscn",
+ 	"cards": "res://scenes/games/cards_table.tscn",
++	"connect_four": "res://scenes/games/connect_four_table.tscn",
+ 	"stars": "res://scenes/games/star_collect.tscn",
+ 	"parent": "res://scenes/games/parent_settings.tscn",
+ }

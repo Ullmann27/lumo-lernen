@@ -1,0 +1,61 @@
+{
+  "artifacts": [
+    {
+      "id": 14125828378,
+      "name": "lumo-nextgen-feature-flutter-evidence",
+      "size_in_bytes": 343185779,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125828378",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125828378/zip",
+      "expired": false,
+      "created_at": "2026-11-14T18:15:57Z",
+      "expires_at": "2026-12-14T18:15:48Z",
+      "updated_at": "2026-11-14T18:15:57Z",
+      "digest": "sha256:29d6d2eb056010ed29b09dc82719acd29eb2d9a69d600f663b0ebbebc367b0bd",
+      "workflow_run": {
+        "id": 43624674585,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+        "head_sha": "28462a7547048b75fa114e6f5832248e54c94faa"
+      }
+    },
+    {
+      "id": 14125213414,
+      "name": "lumo-nextgen-feature-android-host-evidence",
+      "size_in_bytes": 29633,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125213414",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125213414/zip",
+      "expired": false,
+      "created_at": "2026-11-14T18:10:27Z",
+      "expires_at": "2026-12-14T18:10:26Z",
+      "updated_at": "2026-11-14T18:10:27Z",
+      "digest": "sha256:0dbc4e9b3556d65784f07ec05d823025f071ca4ce947d5c1ef58ad9079177288",
+      "workflow_run": {
+        "id": 43624674585,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+        "head_sha": "28462a7547048b75fa114e6f5832248e54c94faa"
+      }
+    },
+    {
+      "id": 14125063257,
+      "name": "lumo-nextgen-memory-source-evidence",
+      "size_in_bytes": 3103,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125063257",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125063257/zip",
+      "expired": false,
+      "created_at": "2026-11-14T18:06:33Z",
+      "expires_at": "2026-12-14T18:06:32Z",
+      "updated_at": "2026-11-14T18:06:33Z",
+      "digest": "sha256:830616d729de0953920fc75271fc901affa89fc5af1e84a962ec1fe4f29031fd",
+      "workflow_run": {
+        "id": 43624674585,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+        "head_sha": "28462a7547048b75fa114e6f5832248e54c94faa"
+      }
+    }
+  ]
+}

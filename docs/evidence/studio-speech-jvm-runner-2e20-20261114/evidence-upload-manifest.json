@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T16:41:34.199438+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Docs only; original17 and final19 Python orchestration evidence, no Kotlin execution claim",
+  "files": [
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/README.md",
+      "mode": "100644",
+      "bytes": 4436,
+      "sha256": "70fcd38d60caee0aa050c9381e638f32ba0f34a532c5b295ae66b13ed7beacc1",
+      "git_blob": "aa5f11b411fc95c4843dc7e980309068edde2d06"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 1383,
+      "sha256": "4098b21b665e286ada77cfcc6ebe0a1668ed521c56bd3b226d5fbed6c546de5e",
+      "git_blob": "fc0ec4bd536f5a214df8d532d33bc0e38161cf1a"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/evidence/baseline-path-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/baseline-path-binding.json",
+      "mode": "100644",
+      "bytes": 484,
+      "sha256": "fc9ff880f7d8993ec5c9ad9120be2de10c236972f51e6820b32981f011b5c256",
+      "git_blob": "0c48c501b7dfe0289f3b3b067020b5adc025f5ac"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/evidence/dependency-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/dependency-binding.json",
+      "mode": "100644",
+      "bytes": 5024,
+      "sha256": "9f246c101996d8b29477a1e02168f67138a2911044832c75802a3977447bc53c",
+      "git_blob": "37423215b82c8988844f203f9c8b04888d697364"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/evidence/source-additions.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/source-additions.patch",
+      "mode": "100644",
+      "bytes": 34872,
+      "sha256": "fa11c7329e77289697baec622b80599d87ddebddb142e8451c4c74492569faad",
+      "git_blob": "10409c8724f519949fb114185afe2f79a89fa7f3"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-original.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-original.log",
+      "mode": "100644",
+      "bytes": 2819,
+      "sha256": "b09505abcd9eeaae46daa9fcc5ea4770d8ea45bdd2ab54ef0a75938b55e776f8",
+      "git_blob": "e6068ad2ac3a8766840d2f817fb177893cf7ad7b"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-execution.json",
+      "mode": "100644",
+      "bytes": 1805,
+      "sha256": "1c2c0819c486548e713a93434054fde045581e4691d07e0d8fe919757cee5b65",
+      "git_blob": "fb205cbcc4d1be86201f0a5a98da5919dddd6f43"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-final.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-final.log",
+      "mode": "100644",
+      "bytes": 3183,
+      "sha256": "e617bada26916a8ffb0325762f8b5f69d5d8cb7afb5ce06f9b45526e9a27ab33",
+      "git_blob": "69819cd94de72374882b0010e59453b43a715a26"
+    },
+    {
+      "path": "docs/evidence/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-final-execution.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/evidence/runner-boundaries-final-execution.json",
+      "mode": "100644",
+      "bytes": 1938,
+      "sha256": "4e92b504a4cb97aac52d1b2f18a0d782baff0d5b2391768c5f3d8ce28b5fd480",
+      "git_blob": "58adec398630a776bd096938822d27516e45fa85"
+    }
+  ]
+}

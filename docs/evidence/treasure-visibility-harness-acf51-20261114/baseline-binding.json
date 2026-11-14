@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "files": [
+    {
+      "path": "tools/validate_studio.sh",
+      "bytes": 22674,
+      "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+      "git_blob_sha": "3b41626b54845e70e3ac9046e5120f7aa0eb7907",
+      "source_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "display_url": "https://github.com/Ullmann27/lumo-godot/blob/acf51d3bd2997c4b731e9a48e1791e05e756a132/tools/validate_studio.sh"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "bytes": 40545,
+      "sha256": "9e0252a70d1b9d961696eef1bd90499a2f111c63df51515cf815e46aa21778ca",
+      "git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963",
+      "source_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "display_url": "https://github.com/Ullmann27/lumo-godot/blob/acf51d3bd2997c4b731e9a48e1791e05e756a132/tools/tests/test_nextgen_runner.py"
+    }
+  ]
+}

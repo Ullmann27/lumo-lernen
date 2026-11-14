@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "expected_head": "20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+  "base_tree": "969d123436988626e11500ca310d241e4a2c33e0",
+  "manifest_sha256": "ca16e7caa099bc974e3ad689a4239240b236919a9fb0d53b0cf3b981eb615e81",
+  "checked_targets": 6,
+  "mutations_allowed": [
+    "create_blob"
+  ],
+  "forbidden_mutations_performed": [],
+  "collision_review": {
+    "tree": "969d123436988626e11500ca310d241e4a2c33e0",
+    "truncated": false,
+    "entries": 7124,
+    "checked": [
+      {
+        "path": "docs/evidence/studio-2020-final-module-scope-20261114/MODUL_ABNAHMEMATRIX.md",
+        "existing": null,
+        "expected_blob": "2a4025597c34194b9cc248ca970e1ff5f5cf884d",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-final-module-scope-20261114/host-entry-source-binding.json",
+        "existing": null,
+        "expected_blob": "2aca0cbf537347dcc4d7600a0587c0d173048be6",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-final-module-scope-20261114/staged-host-entry-deltas.json",
+        "existing": null,
+        "expected_blob": "0118a64579dd96258061b821b11c3913b2c75522",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-final-module-scope-20261114/entry-catalog-inventory.json",
+        "existing": null,
+        "expected_blob": "e6f22ee136206d9a8f384c00d85698d12818568b",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-final-module-scope-20261114/evidence-source-index.json",
+        "existing": null,
+        "expected_blob": "27a24d4b2c483518876a1481d0ea49956ef43838",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/evidence/studio-2020-final-module-scope-20261114/upload-manifest.json",
+        "existing": null,
+        "expected_blob": "b20e20d3df5e4bcb0cb910dad3309dfae302d9f5",
+        "mode": "100644"
+      }
+    ]
+  },
+  "confirmed": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/MODUL_ABNAHMEMATRIX.md",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/MODUL_ABNAHMEMATRIX.md",
+      "bytes": 23169,
+      "sha256": "ab9bcc0ad6fd5b18818002d9f06a0feae68a3ad99926c1ffd924a472c9123656",
+      "git_blob_sha": "2a4025597c34194b9cc248ca970e1ff5f5cf884d",
+      "mode": "100644",
+      "role": "documentation",
+      "returned_git_sha": "2a4025597c34194b9cc248ca970e1ff5f5cf884d",
+      "operation": "create_blob",
+      "confirmed_at_utc": "2026-11-14T06:43:25.415Z"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/host-entry-source-binding.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/host-entry-source-binding.json",
+      "bytes": 11367,
+      "sha256": "e6fab3889db31e865b261afc3cf3d7c5f841246e1ce95c14940b1d2496142ac9",
+      "git_blob_sha": "2aca0cbf537347dcc4d7600a0587c0d173048be6",
+      "mode": "100644",
+      "role": "documentation",
+      "returned_git_sha": "2aca0cbf537347dcc4d7600a0587c0d173048be6",
+      "operation": "create_blob",
+      "confirmed_at_utc": "2026-11-14T06:43:26.315Z"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/staged-host-entry-deltas.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/staged-host-entry-deltas.json",
+      "bytes": 3076,
+      "sha256": "221a41d64c35cebc7895d985667629fa5595ed27227f1604285078ecd2c47be3",
+      "git_blob_sha": "0118a64579dd96258061b821b11c3913b2c75522",
+      "mode": "100644",
+      "role": "documentation",
+      "returned_git_sha": "0118a64579dd96258061b821b11c3913b2c75522",
+      "operation": "create_blob",
+      "confirmed_at_utc": "2026-11-14T06:43:26.872Z"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/entry-catalog-inventory.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/entry-catalog-inventory.json",
+      "bytes": 5197,
+      "sha256": "2d2dec25e5af4d4ff633c9fe8c9178ea36577627a45fc21b13461213aa90d3e9",
+      "git_blob_sha": "e6f22ee136206d9a8f384c00d85698d12818568b",
+      "mode": "100644",
+      "role": "documentation",
+      "returned_git_sha": "e6f22ee136206d9a8f384c00d85698d12818568b",
+      "operation": "create_blob",
+      "confirmed_at_utc": "2026-11-14T06:43:27.675Z"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/evidence-source-index.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/evidence-source-index.json",
+      "bytes": 22290,
+      "sha256": "8dba8a3cfb1e130e0b83c80753380d632522cbbe439c2ff2ecf90a1f653e4176",
+      "git_blob_sha": "27a24d4b2c483518876a1481d0ea49956ef43838",
+      "mode": "100644",
+      "role": "documentation",
+      "returned_git_sha": "27a24d4b2c483518876a1481d0ea49956ef43838",
+      "operation": "create_blob",
+      "confirmed_at_utc": "2026-11-14T06:43:28.256Z"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/upload-manifest.json",
+      "target": "docs/evidence/studio-2020-final-module-scope-20261114/upload-manifest.json",
+      "bytes": 4256,
+      "sha256": "ca16e7caa099bc974e3ad689a4239240b236919a9fb0d53b0cf3b981eb615e81",
+      "git_blob_sha": "b20e20d3df5e4bcb0cb910dad3309dfae302d9f5",
+      "mode": "100644",
+      "role": "documentation",
+      "returned_git_sha": "b20e20d3df5e4bcb0cb910dad3309dfae302d9f5",
+      "operation": "create_blob",
+      "confirmed_at_utc": "2026-11-14T06:43:28.803Z"
+    }
+  ],
+  "status": "complete_immutable_blobs_only",
+  "observed_final_ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "sha": "20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+    "observed_at_utc": "2026-11-14T06:43:35.121Z"
+  },
+  "ref_unchanged": true
+}
+

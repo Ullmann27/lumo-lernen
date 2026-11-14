@@ -1,0 +1,559 @@
+--- a/scripts/learning/english_vocabulary.gd
++++ b/scripts/learning/english_vocabulary.gd
+@@ -31,6 +31,34 @@
+ 		"meanings": ["Apfel"],
+ 		"hint": "Diese Frucht wächst am Baum. Sie hat einen Stiel und ein Blatt.",
+ 	},
++	"bag": {
++		"meanings": ["Tasche"],
++		"hint": "In dieser Tasche kannst du Dinge tragen. Schau auf die beiden Henkel.",
++	},
++	"rubber": {
++		"meanings": ["Radiergummi"],
++		"hint": "Damit entfernst du Bleistiftstriche. Das weiche Stück steckt in einer Papierhülle.",
++	},
++	"school bag": {
++		"meanings": ["Schultasche"],
++		"hint": "Darin trägst du deine Schulsachen. Suche die Schulterriemen und die kleine Vordertasche.",
++	},
++	"desk": {
++		"meanings": ["Schreibtisch"],
++		"hint": "An dieser großen Platte kannst du schreiben. Vier Beine tragen sie.",
++	},
++	"chair": {
++		"meanings": ["Sessel"],
++		"hint": "Darauf kannst du sitzen. Suche die Sitzfläche und die hohe Rückenlehne.",
++	},
++	"pencil case": {
++		"meanings": ["Federpennal"],
++		"hint": "Darin bewahrst du deine Stifte auf. Der Reißverschluss öffnet das kleine längliche Etui.",
++	},
++	"paper": {
++		"meanings": ["Papier"],
++		"hint": "Auf diesem dünnen weißen Blatt kannst du schreiben oder zeichnen. Die Linien helfen dir dabei.",
++	},
+ }
+ 
+ 
+--- a/scripts/learning/english_object_gallery.gd
++++ b/scripts/learning/english_object_gallery.gd
+@@ -133,6 +133,81 @@
+ 			stem.rotation.z = -0.16
+ 			var leaf := _sphere(shape, "AppleLeaf", Vector3(0.22, 1.25, 0), Vector3(0.50, 0.09, 0.23), _material("5d8748"))
+ 			leaf.rotation.z = 0.30
++		"bag":
++			var canvas := _material("d9aa50", 0.82)
++			var inner := _material("84683e", 0.90)
++			_box(shape, "ToteBottom", Vector3(0, 0.08, 0), Vector3(1.30, 0.12, 0.76), inner)
++			_box(shape, "ToteFront", Vector3(0, 0.64, 0.36), Vector3(1.30, 1.10, 0.08), canvas)
++			_box(shape, "ToteBack", Vector3(0, 0.64, -0.36), Vector3(1.30, 1.10, 0.08), canvas)
++			for side in [-1.0, 1.0]:
++				_box(shape, "ToteSide%s" % side, Vector3(side * 0.61, 0.64, 0), Vector3(0.08, 1.10, 0.66), canvas)
++			for front in [-1.0, 1.0]:
++				var ring := TorusMesh.new()
++				ring.inner_radius = 0.24
++				ring.outer_radius = 0.30
++				ring.rings = 24
++				ring.ring_segments = 8
++				var handle := _mesh(shape, "ToteHandle%s" % front, ring, Vector3(0, 1.41, front * 0.30), _material("896442", 0.84))
++				handle.rotation.x = PI * 0.5
++			_box(shape, "ToteStitch", Vector3(0, 1.10, 0.407), Vector3(1.16, 0.035, 0.012), _material("eed197", 0.9))
++		"rubber":
++			_box(shape, "EraserBody", Vector3(0, 0.22, 0), Vector3(1.48, 0.42, 0.66), _material("efdac6", 0.92))
++			_box(shape, "PaperSleeve", Vector3(-0.03, 0.22, 0), Vector3(0.72, 0.445, 0.69), _material("387bac", 0.80))
++			_box(shape, "SleeveBand", Vector3(-0.03, 0.448, 0), Vector3(0.46, 0.018, 0.57), _material("e4eef1", 0.90))
++			shape.rotation.y = -0.14
++		"school bag":
++			var fabric := _material("357ba4", 0.82)
++			var trim := _material("173f63", 0.85)
++			_box(shape, "BackpackBody", Vector3(0, 0.69, 0), Vector3(1.18, 1.16, 0.65), fabric)
++			_sphere(shape, "BackpackRoundTop", Vector3(0, 1.23, 0), Vector3(1.18, 0.43, 0.65), fabric)
++			_box(shape, "BackpackBase", Vector3(0, 0.13, 0), Vector3(1.22, 0.17, 0.69), trim)
++			_box(shape, "FrontPocket", Vector3(0, 0.51, 0.40), Vector3(0.86, 0.53, 0.19), _material("e0a652", 0.84))
++			_box(shape, "PocketZip", Vector3(0, 0.71, 0.503), Vector3(0.75, 0.035, 0.025), trim)
++			for side in [-1.0, 1.0]:
++				var strap := Node3D.new()
++				strap.name = "ShoulderStrap%s" % side
++				shape.add_child(strap)
++				_box(strap, "UpperAnchor", Vector3(side * 0.36, 1.18, -0.42), Vector3(0.16, 0.13, 0.28), trim)
++				_box(strap, "LongStrap", Vector3(side * 0.36, 0.77, -0.57), Vector3(0.16, 0.87, 0.09), trim)
++				_box(strap, "LowerAnchor", Vector3(side * 0.36, 0.36, -0.42), Vector3(0.16, 0.13, 0.28), trim)
++			for side in [-1.0, 1.0]:
++				_box(shape, "CarryHandlePost%s" % side, Vector3(side * 0.20, 1.48, 0), Vector3(0.07, 0.18, 0.08), trim)
++			_box(shape, "CarryHandleTop", Vector3(0, 1.56, 0), Vector3(0.44, 0.07, 0.08), trim)
++		"desk":
++			var wood := _material("c99b62", 0.70)
++			var metal := _material("476477", 0.46)
++			_box(shape, "WritingTop", Vector3(0, 1.28, 0), Vector3(1.74, 0.15, 1.16), wood)
++			_box(shape, "DeskApron", Vector3(0, 1.09, -0.42), Vector3(1.44, 0.22, 0.08), wood)
++			for side in [-1.0, 1.0]:
++				for front in [-1.0, 1.0]:
++					var at := Vector3(side * 0.68, 0.64, front * 0.43)
++					_box(shape, "DeskLeg%s_%s" % [side, front], at, Vector3(0.12, 1.22, 0.12), metal)
++					_box(shape, "DeskFoot%s_%s" % [side, front], Vector3(at.x, 0.05, at.z), Vector3(0.17, 0.10, 0.17), _material("233442", 0.88))
++		"chair":
++			var seat := _material("57a09c", 0.72)
++			var legs := _material("bd8c55", 0.77)
++			_box(shape, "ChairSeat", Vector3(0, 0.73, 0), Vector3(1.02, 0.14, 0.96), seat)
++			_box(shape, "ChairBackrest", Vector3(0, 1.24, -0.43), Vector3(1.02, 0.72, 0.12), seat)
++			for side in [-1.0, 1.0]:
++				_box(shape, "BackPost%s" % side, Vector3(side * 0.41, 1.08, -0.43), Vector3(0.11, 0.96, 0.12), legs)
++				for front in [-1.0, 1.0]:
++					_box(shape, "ChairLeg%s_%s" % [side, front], Vector3(side * 0.41, 0.36, front * 0.36), Vector3(0.11, 0.70, 0.11), legs)
++			shape.rotation.y = -0.18
++		"pencil case":
++			_sphere(shape, "SoftCaseBody", Vector3(0, 0.32, 0), Vector3(1.72, 0.56, 0.76), _material("bf5540", 0.84))
++			_box(shape, "ZipperTrack", Vector3(0, 0.59, 0), Vector3(1.24, 0.028, 0.075), _material("273a4b", 0.70))
++			for tooth in range(15):
++				_box(shape, "ZipperTooth%02d" % tooth, Vector3(-0.56 + tooth * 0.08, 0.61, 0), Vector3(0.033, 0.025, 0.082), _material("d3d8d7", 0.35))
++			_box(shape, "ZipperPull", Vector3(0.52, 0.63, 0.13), Vector3(0.12, 0.045, 0.25), _material("dfb459", 0.40))
++			shape.rotation.y = -0.12
++		"paper":
++			_box(shape, "LooseSheet", Vector3(0, 0.065, 0), Vector3(1.46, 0.035, 1.72), _material("f4f1df", 0.96))
++			for line in range(8):
++				_box(shape, "WritingGuide%02d" % line, Vector3(0.04, 0.085, -0.56 + line * 0.16), Vector3(1.18, 0.006, 0.014), _material("84afbc", 0.96))
++			_box(shape, "PageMargin", Vector3(-0.51, 0.086, 0), Vector3(0.014, 0.006, 1.53), _material("c98f8c", 0.96))
++			var corner := _box(shape, "LiftedCorner", Vector3(0.55, 0.13, -0.65), Vector3(0.30, 0.025, 0.31), _material("e3dcc6", 0.96))
++			corner.rotation.z = 0.34
++			shape.rotation.y = -0.14
+ 	var label_mesh := TextMesh.new()
+ 	label_mesh.font = ThemeDB.fallback_font
+ 	label_mesh.font_size = 64
+--- a/scripts/learning/learning_world.gd
++++ b/scripts/learning/learning_world.gd
+@@ -883,6 +883,14 @@
+ 	var available := logical - (insets.position + insets.size) / scale_value
+ 	if activity.kind == "english_objects":
+ 		_english_compact = available.x > available.y and available.y < 480.0
++		# Keep the full hint text and its original readable font. On a short
++		# landscape surface, reduce only empty panel padding so the actual
++		# objects retain their readable size while the hint wraps to two lines.
++		var header_style := header.get_theme_stylebox("panel") as StyleBoxFlat
++		var vertical_margin := 8.0 if _english_compact else 14.0
++		if header_style.content_margin_top != vertical_margin:
++			header_style.content_margin_top = vertical_margin
++			header_style.content_margin_bottom = vertical_margin
+ 		# A short landscape window needs one row of full-sized actions, not a
+ 		# two-row footer that reduces the real objects to tiny thumbnails.
+ 		status.visible = not _english_compact
+--- a/scripts/tests/learning_english_regression.gd
++++ b/scripts/tests/learning_english_regression.gd
+@@ -16,6 +16,7 @@
+ var input_events: Array[Dictionary] = []
+ var captures: Array[Dictionary] = []
+ var cases: Array[Dictionary] = []
++var hint_layouts: Array[Dictionary] = []
+ var output := ""
+ var capture := false
+ var fixture_path := ""
+@@ -94,6 +95,13 @@
+ 		"pen": ["pen", "book", "apple"],
+ 		"sun": ["apple", "sun", "pen"],
+ 		"apple": ["ball", "ruler", "apple"],
++		"bag": ["school bag", "bag", "pencil case"],
++		"rubber": ["rubber", "paper", "book"],
++		"school bag": ["bag", "pencil case", "school bag"],
++		"desk": ["desk", "chair", "bag"],
++		"chair": ["desk", "chair", "school bag"],
++		"pencil case": ["pencil case", "rubber", "pen"],
++		"paper": ["paper", "book", "rubber"],
+ 	}
+ 	return {
+ 		"kind": "english_objects", "word": word,
+@@ -113,7 +121,7 @@
+ 		_check(false, "actual Dart producer report is complete and successful")
+ 		return false
+ 	var source: Dictionary = raw.examples
+-	_check(source.size() == VOCABULARY.ENTRIES.size(), "actual Dart producer supplies all seven supported words")
++	_check(source.size() == VOCABULARY.ENTRIES.size(), "actual Dart producer supplies the complete fourteen-object catalogue")
+ 	for word: String in VOCABULARY.ENTRIES:
+ 		var entry: Variant = source.get(word)
+ 		if not entry is Dictionary or not entry.get("activity") is Dictionary:
+@@ -167,6 +175,9 @@
+ 		{"kind": "english_objects", "word": "book", "meaning": "Buch", "objects": ["book", "res://secret.glb", "ball"]},
+ 		{"kind": "english_objects", "word": 3, "meaning": "Buch", "objects": ["book", "car", "ball"]},
+ 		{"kind": "english_objects", "word": "book", "meaning": 7, "objects": ["book", "car", "ball"]},
++		{"kind": "english_objects", "word": "school  bag", "meaning": "Schultasche", "objects": ["school  bag", "bag", "book"]},
++		{"kind": "english_objects", "word": "school bag", "meaning": "Tasche", "objects": ["school bag", "bag", "book"]},
++		{"kind": "english_objects", "word": "homework", "meaning": "Hausübung", "objects": ["homework", "bag", "book"]},
+ 	]
+ 	for bad in invalid:
+ 		var model = ACTIVITY.new()
+@@ -267,6 +278,43 @@
+ 			high = maxf(high, -position.z)
+ 	return Vector2(low, high)
+ 
++func _school_geometry(object: Node3D, name: String) -> void:
++	var shape := object.get_node("RecognizableObject")
++	var word := str(object.get_meta("word"))
++	match word:
++		"bag":
++			var handles := shape.find_children("ToteHandle*", "MeshInstance3D", false, false)
++			_check(handles.size() == 2, name + ": carrying bag has two actual handles")
++			for handle: MeshInstance3D in handles:
++				_check(handle.mesh is TorusMesh and handle.mesh.inner_radius > 0.0 and handle.position.y > 1.0, name + ": handle has a real open hole above the bag")
++			_check(shape.get_node("ToteFront").position.z > 0.0 and shape.get_node("ToteBack").position.z < 0.0, name + ": bag is an open volume with separate front and back")
++		"rubber":
++			var rubber := shape.get_node("EraserBody") as MeshInstance3D
++			var sleeve := shape.get_node("PaperSleeve") as MeshInstance3D
++			_check((rubber.mesh as BoxMesh).size.x > (sleeve.mesh as BoxMesh).size.x * 1.5, name + ": eraser protrudes from both ends of its paper sleeve")
++			_check(rubber.material_override.albedo_color != sleeve.material_override.albedo_color, name + ": actual eraser and wrapper have distinct materials")
++		"school bag":
++			_check(shape.find_children("ShoulderStrap*", "Node3D", false, false).size() == 2, name + ": school bag has two shoulder straps")
++			_check(shape.get_node("FrontPocket").position.z > shape.get_node("BackpackBody").position.z, name + ": school bag has an actual protruding front pocket")
++			_check(shape.get_node("CarryHandleTop").position.y > shape.get_node("BackpackBody").position.y, name + ": school bag retains a raised carrying handle")
++		"desk":
++			var legs := shape.find_children("DeskLeg*", "MeshInstance3D", false, false)
++			_check(legs.size() == 4, name + ": writing desk has four separate legs")
++			for leg: MeshInstance3D in legs:
++				_check(leg.position.y < shape.get_node("WritingTop").position.y and absf(leg.position.x) > 0.3 and absf(leg.position.z) > 0.2, name + ": desk legs surround empty space beneath the writing top")
++		"chair":
++			_check(shape.find_children("ChairLeg*", "MeshInstance3D", false, false).size() == 4, name + ": chair has four separate legs")
++			_check(shape.get_node("ChairBackrest").position.y > shape.get_node("ChairSeat").position.y, name + ": chair backrest rises above the seat")
++		"pencil case":
++			_check(shape.find_children("ZipperTooth*", "MeshInstance3D", false, false).size() >= 8, name + ": pencil case has a real detailed zipper")
++			_check(shape.get_node("ZipperPull").position.y > shape.get_node("SoftCaseBody").position.y, name + ": zipper pull is exposed on the case")
++		"paper":
++			var sheet := shape.get_node("LooseSheet") as MeshInstance3D
++			var size := (sheet.mesh as BoxMesh).size
++			_check(size.y < minf(size.x, size.z) * 0.04, name + ": loose paper is a thin sheet, not a book block")
++			_check(shape.find_children("WritingGuide*", "MeshInstance3D", false, false).size() >= 6, name + ": actual ruled lines remain distinct sheet geometry")
++
++
+ func _observe(game: Node3D, name: String) -> Dictionary:
+ 	var viewport := Rect2(Vector2.ZERO, Vector2(root.size))
+ 	var body: Rect2 = game.english_stage_rect
+@@ -282,6 +330,7 @@
+ 	var aggregate: Array[Rect2] = []
+ 	for index in range(game.english_models.size()):
+ 		var object: Node3D = game.english_models[index]
++		_school_geometry(object, name)
+ 		var projected := Rect2()
+ 		var first := true
+ 		var triangle_count := 0
+@@ -396,7 +445,7 @@
+ 	await _settle(14)
+ 	_check(game.activity.kind == "english_objects" and game.title.text.ends_with(word), "actual scene displays the exact current word")
+ 	_check(game.english_models.size() == 3 and game.english_buttons.size() == 3, "three actual objects and equivalent buttons exist")
+-	var stem := "english-%s-%dx%d" % [word, dimensions.x, dimensions.y]
++	var stem := "english-%s-%dx%d" % [word.replace(" ", "-"), dimensions.x, dimensions.y]
+ 	await _capture(game, stem + "-start")
+ 	var unchanged := FileAccess.get_sha256(OBSERVATION)
+ 	await _settle(8)
+@@ -408,6 +457,7 @@
+ 	_observation_contract(game, word + "-wrong")
+ 	await _tap(game.main_button, word + ": first targeted hint")
+ 	_check(game.activity.english_hint_level == 1 and game.explanation.text == VOCABULARY.hint_for(word), "actual first hint shows the intended object clue")
++	hint_layouts.append(_observe(game, word + ": first hint layout"))
+ 	await _tap(game.main_button, word + ": bounded outline hint")
+ 	_check(game.activity.english_hint_level == 2 and not game.activity.is_complete(), "actual second hint leaves selection to the child")
+ 	_observation_contract(game, word + "-hint")
+@@ -508,6 +558,13 @@
+ 		["pen", Vector2i(1080, 2400), 2.625, Rect2(0, 136, 0, 63)],
+ 		["sun", Vector2i(960, 540), 1.0, Rect2()],
+ 		["apple", Vector2i(960, 540), 1.0, Rect2()],
++		["bag", Vector2i(960, 540), 1.0, Rect2()],
++		["rubber", Vector2i(640, 360), 1.0, Rect2()],
++		["school bag", Vector2i(412, 915), 1.0, Rect2()],
++		["desk", Vector2i(960, 540), 1.0, Rect2()],
++		["chair", Vector2i(640, 360), 1.0, Rect2()],
++		["pencil case", Vector2i(1080, 2400), 2.625, Rect2(0, 136, 0, 63)],
++		["paper", Vector2i(2400, 1080), 2.625, Rect2(136, 0, 0, 63)],
+ 	]
+ 	for profile in profiles:
+ 		await _exercise(profile[0], profile[1], profile[2], profile[3])
+@@ -524,7 +581,7 @@
+ 			"schema": 1, "scope": "actual production Godot scene; explicit platform/JNI/audio fixtures; no Android/FPS/mastery claim",
+ 			"fixture_kind": fixture_kind, "task_fixture_sha256": FileAccess.get_sha256(fixture_path) if not fixture_path.is_empty() else null,
+ 			"checks": checks, "failures": failures, "renderer": DisplayServer.get_name(),
+-			"source_sha256": sources, "cases": cases, "captures": captures,
++			"source_sha256": sources, "cases": cases, "captures": captures, "hint_layouts": hint_layouts,
+ 			"input_events": input_events, "audio_listened": false, "english_pronunciation_verified": false,
+ 		}, "\t") + "\n")
+ 		file.close()
+--- a/lib/domain/tutoring/native_english_vocabulary.dart
++++ b/lib/domain/tutoring/native_english_vocabulary.dart
+@@ -1,6 +1,8 @@
+ import '../learning/lumo_learning_domain.dart';
+ 
+-/// The first bounded set with an actual, distinguishable native 3D object.
++/// A bounded set with an actual, distinguishable native 3D object.
++/// Includes all ten concrete grade-one/two Schulsachen entries; abstract
++/// later-grade phrases remain outside this object illustration contract.
+ /// These words already occur in the local exercise generator. This is help
+ /// for the current task, not a second exercise generator or answer channel.
+ abstract final class NativeEnglishVocabulary {
+@@ -12,6 +14,13 @@
+     'car': {'Auto'},
+     'sun': {'Sonne'},
+     'apple': {'Apfel'},
++    'bag': {'Tasche'},
++    'rubber': {'Radiergummi'},
++    'school bag': {'Schultasche'},
++    'desk': {'Schreibtisch'},
++    'chair': {'Sessel'},
++    'pencil case': {'Federpennal'},
++    'paper': {'Papier'},
+   };
+ 
+   static Map<String, Object>? illustrationFor(TaskInstance task) {
+@@ -23,9 +32,11 @@
+     // Match only the two actual reviewed local prompt forms. Free text,
+     // a coincidental word in another question, and a wrong answer fail closed.
+     final prompt = task.prompt;
+-    final generated = RegExp(r'^Was bedeutet „([a-z]+)“\?$').firstMatch(prompt);
++    final generated = RegExp(
++      r'^Was bedeutet „([a-z]+(?: [a-z]+)*)“\?$',
++    ).firstMatch(prompt);
+     final fallback = RegExp(
+-      r'^Was heißt ([a-z]+) auf Deutsch\?$',
++      r'^Was heißt ([a-z]+(?: [a-z]+)*) auf Deutsch\?$',
+     ).firstMatch(prompt);
+     final word = generated?.group(1) ?? fallback?.group(1);
+     final accepted = meanings[word];
+--- a/tool/check_native_english_activity.dart
++++ b/tool/check_native_english_activity.dart
+@@ -9,6 +9,19 @@
+ 
+ int checks = 0;
+ int cases = 0;
++
++const schoolWords = <String, String>{
++  'book': 'Buch',
++  'pen': 'Kugelschreiber',
++  'bag': 'Tasche',
++  'ruler': 'Lineal',
++  'rubber': 'Radiergummi',
++  'school bag': 'Schultasche',
++  'desk': 'Schreibtisch',
++  'chair': 'Sessel',
++  'pencil case': 'Federpennal',
++  'paper': 'Papier',
++};
+ 
+ void check(bool condition, String label) {
+   checks++;
+@@ -55,12 +68,14 @@
+ 
+ void main(List<String> args) {
+   final realExamples = <String, Map<String, Object?>>{};
++  final schoolExamples = <int, Map<String, Map<String, Object?>>>{1: {}, 2: {}};
+   scenario(
+-    'actual generator and unchanged checked adapter reach all seven words',
++    'actual generator and unchanged checked adapter reach all fourteen words',
+     () {
+       final factory = ExerciseFactory(seed: 741);
+       for (final family in [
+         (1, 'Schulsachen'),
++        (2, 'Schulsachen'),
+         (2, 'Spielzeug'),
+         (3, 'Wetter'),
+         (3, 'Essen'),
+@@ -98,6 +113,11 @@
+                 ]),
+             'task/child/options/help unchanged',
+           );
++          final isFirstSchoolUnit =
++              original.unit == 'Schulsachen' && original.grade <= 2;
++          if (isFirstSchoolUnit) {
++            check(descriptor != null, 'Every actual grade-one/two school object is supported');
++          }
+           if (descriptor == null) continue;
+           final payload = descriptor.toLaunchOptions();
+           final word = payload['word'] as String;
+@@ -134,14 +154,72 @@
+               'activity': payload,
+             },
+           );
++          if (isFirstSchoolUnit) {
++            check(schoolWords[word] == payload['meaning'],
++                'Exact original school translation, including pen/Kugelschreiber');
++            schoolExamples[original.grade]!.putIfAbsent(
++              word,
++              () => {
++                'prompt': task.prompt,
++                'answer': task.correctAnswer,
++                'options': task.options.map((option) => option.payload).toList(),
++                'grade': original.grade,
++                'unit': original.unit,
++                'activity': payload,
++              },
++            );
++          }
+         }
+       }
+       check(
+-        realExamples.length == 7,
+-        'all seven intended local vocabulary entries reached: ${realExamples.keys}',
++        realExamples.length == 14,
++        'all fourteen intended local vocabulary entries reached: ${realExamples.keys}',
+       );
+     },
+   );
++  scenario('both first school grades retain all ten real school objects', () {
++    for (final grade in [1, 2]) {
++      final observed = schoolExamples[grade]!;
++      check(observed.length == schoolWords.length &&
++          observed.keys.toSet().containsAll(schoolWords.keys),
++          'Actual grade $grade school collection has every intended word');
++    }
++  });
++  scenario('multiword objects require the exact prompt and actual answer', () {
++    for (final word in ['school bag', 'pencil case']) {
++      final answer = schoolWords[word]!;
++      final options = [
++        AnswerOption(id: 'actual', label: answer, payload: answer),
++        const AnswerOption(id: 'book', label: 'Buch', payload: 'Buch'),
++        const AnswerOption(id: 'ball', label: 'Ball', payload: 'Ball'),
++      ];
++      for (final prompt in ['Was bedeutet „$word“?', 'Was heißt $word auf Deutsch?']) {
++        final descriptor = NativeLearningActivity.fromTask(
++          typed(prompt: prompt, answer: answer, options: options),
++        );
++        check(descriptor?.toLaunchOptions()['word'] == word &&
++            descriptor?.toLaunchOptions()['meaning'] == answer,
++            'Actual supported multiword object remains exact');
++      }
++      for (final prompt in [
++        'Was bedeutet „${word.replaceAll(' ', '  ')}“?',
++        'Was bedeutet „${word.replaceAll(' ', '-')}“?',
++        'Was bedeutet „$word“? Zusatz',
++      ]) {
++        check(NativeLearningActivity.fromTask(
++          typed(prompt: prompt, answer: answer, options: options),
++        ) == null, 'Modified multiword prompt rejected');
++      }
++    }
++    for (final prompt in [
++      'Was bedeutet „homework“?',
++      'Was bedeutet „lesson“?',
++      'Was bedeutet „Please open your book.“?',
++    ]) {
++      check(NativeLearningActivity.fromTask(typed(prompt: prompt)) == null,
++          'Abstract/phrase school content is not replaced by a guessed object');
++    }
++  });
+   scenario('fallback prompt remains bound to its actual German answer', () {
+     final result = NativeLearningActivity.fromTask(
+       typed(prompt: 'Was heißt book auf Deutsch?'),
+@@ -272,6 +350,9 @@
+     'checks': checks,
+     'failures': 0,
+     'examples': realExamples,
++    'school_examples': {
++      for (final entry in schoolExamples.entries) '${entry.key}': entry.value,
++    },
+   };
+   if (args.length == 2 && args[0] == '--out') {
+     File(args[1]).writeAsStringSync(
+--- a/test/tutoring/native_english_activity_test.dart
++++ b/test/tutoring/native_english_activity_test.dart
+@@ -45,7 +45,12 @@
+       unit: 'Schulsachen',
+       prompt: 'Was bedeutet „$word“?',
+       answer: answer,
+-      choices: [answer, if (answer != 'Buch') 'Buch', 'Tasche', 'Heft'],
++      choices: [
++        answer,
++        ...['Buch', 'Tasche', 'Lineal', 'Heft']
++            .where((candidate) => candidate != answer)
++            .take(3),
++      ],
+       explanation: 'Das Wort bedeutet $answer.',
+     ),
+     childId: 'synthetic-english-child',
+@@ -121,7 +126,7 @@
+   );
+ 
+   _androidWidgetTest(
+-    'all seven English descriptors use the existing learning bridge',
++    'all fourteen English descriptors use the existing learning bridge',
+     (tester) async {
+       final app = _EnglishLaunchState();
+       addTearDown(app.dispose);
+@@ -149,7 +154,7 @@
+         expect(current.taskInstanceId, originalId);
+         expect(current.correctAnswer, originalAnswer);
+       }
+-      expect(calls, hasLength(7));
++      expect(calls, hasLength(14));
+       expect(tester.takeException(), isNull);
+     },
+   );
+--- a/.github/probes/lumo_english_objects_android_probe.py
++++ b/.github/probes/lumo_english_objects_android_probe.py
+@@ -29,6 +29,10 @@
+     'book': ('Buch',), 'pen': ('Kugelschreiber', 'Stift'),
+     'ruler': ('Lineal',), 'ball': ('Ball',), 'car': ('Auto',),
+     'sun': ('Sonne',), 'apple': ('Apfel',),
++    'bag': ('Tasche',), 'rubber': ('Radiergummi',),
++    'school bag': ('Schultasche',), 'desk': ('Schreibtisch',),
++    'chair': ('Sessel',), 'pencil case': ('Federpennal',),
++    'paper': ('Papier',),
+ }
+ HINTS = {
+     'book': 'Dieser Gegenstand hat viele Seiten. Du kannst darin lesen.',
+@@ -38,6 +42,13 @@
+     'car': 'Dieses Fahrzeug fährt auf vier Rädern.',
+     'sun': 'Dieses helle Himmelsobjekt gibt uns Licht und Wärme.',
+     'apple': 'Diese Frucht wächst am Baum. Sie hat einen Stiel und ein Blatt.',
++    'bag': 'In dieser Tasche kannst du Dinge tragen. Schau auf die beiden Henkel.',
++    'rubber': 'Damit entfernst du Bleistiftstriche. Das weiche Stück steckt in einer Papierhülle.',
++    'school bag': 'Darin trägst du deine Schulsachen. Suche die Schulterriemen und die kleine Vordertasche.',
++    'desk': 'An dieser großen Platte kannst du schreiben. Vier Beine tragen sie.',
++    'chair': 'Darauf kannst du sitzen. Suche die Sitzfläche und die hohe Rückenlehne.',
++    'pencil case': 'Darin bewahrst du deine Stifte auf. Der Reißverschluss öffnet das kleine längliche Etui.',
++    'paper': 'Auf diesem dünnen weißen Blatt kannst du schreiben oder zeichnen. Die Linien helfen dir dabei.',
+ }
+ HOST_FILES = (
+     SELF, '.github/probes/modernization_android_tour.py',
+--- a/tools/android_qa/tests/test_english_objects_android_probe.py
++++ b/tools/android_qa/tests/test_english_objects_android_probe.py
+@@ -247,8 +247,8 @@
+         self.assertEqual(value['meaning'], 'Stift')
+ 
+     def test_unsupported_actual_task_is_not_silently_replaced(self):
+-        with self.assertRaisesRegex(RuntimeError, 'UNSUPPORTED_CURRENT_TASK: bag'):
+-            PROBE.check_task('Was bedeutet „bag“?', ['Buch', 'Tasche', 'Lineal', 'Papier'], 'Aufgabe 1 / 10')
++        with self.assertRaisesRegex(RuntimeError, 'UNSUPPORTED_CURRENT_TASK: homework'):
++            PROBE.check_task('Was bedeutet „homework“?', ['Buch', 'Hausübung', 'Lineal', 'Papier'], 'Aufgabe 1 / 10')
+         for prompt, options, counter in [
+                 ('Was bedeutet „book“?', ['Auto', 'Ball'], 'Aufgabe 1 / 10'),
+                 ('Was bedeutet „pen“?', ['Stift', 'Kugelschreiber'], 'Aufgabe 1 / 10'),
+@@ -257,6 +257,36 @@
+                 ('Was bedeutet „book“?', ['Buch', 'Tasche'], '')]:
+             with self.subTest(prompt=prompt, options=options), self.assertRaises(RuntimeError):
+                 PROBE.check_task(prompt, options, counter)
++
++    def test_all_actual_first_and_second_grade_school_words_keep_exact_meanings(self):
++        # The original vocabulary extensions replace pen/Stift with this exact
++        # school-unit answer. Other topics retain the old Stift alias.
++        school = {
++            'book': 'Buch', 'pen': 'Kugelschreiber', 'bag': 'Tasche',
++            'rubber': 'Radiergummi', 'ruler': 'Lineal',
++            'school bag': 'Schultasche', 'desk': 'Schreibtisch',
++            'chair': 'Sessel', 'pencil case': 'Federpennal', 'paper': 'Papier',
++        }
++        for word, meaning in school.items():
++            options = [meaning] + [value for value in school.values()
++                                   if value != meaning][:3]
++            for prompt in (f'Was bedeutet „{word}“?',
++                           f'Was heißt {word} auf Deutsch?'):
++                with self.subTest(word=word, prompt=prompt):
++                    observed = PROBE.check_task(prompt, options, 'Aufgabe 1 / 10')
++                    self.assertEqual((observed['word'], observed['meaning']),
++                                     (word, meaning))
++                    self.assertEqual(observed['options'], sorted(options))
++
++    def test_multiword_labels_cannot_alias_bags_or_accept_unobserved_phrases(self):
++        for prompt, options in [
++                ('Was bedeutet „school bag“?', ['Tasche', 'Buch', 'Lineal']),
++                ('Was bedeutet „pencil case“?', ['Kugelschreiber', 'Buch', 'Lineal']),
++                ('Was bedeutet „school  bag“?', ['Schultasche', 'Buch', 'Lineal']),
++                ('Was bedeutet „school-bag“?', ['Schultasche', 'Buch', 'Lineal']),
++                ('Was bedeutet „I have a school bag.“?', ['Schultasche', 'Buch', 'Lineal'])]:
++            with self.subTest(prompt=prompt), self.assertRaises(RuntimeError):
++                PROBE.check_task(prompt, options, 'Aufgabe 1 / 10')
+ 
+     def test_hint_and_choice_transitions_preserve_real_session(self):
+         before = fixture()

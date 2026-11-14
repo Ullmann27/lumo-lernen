@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T04:31:27.819872+00:00",
+  "scope": "Independent read-only source review of exactly two new Kotlin sources; no test rerun, no new synthesis or Android playback",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_REVIEWED_SCOPE",
+  "sources": [
+    {
+      "path": "qa/original-lumo-facial-studio-803e/host/tools/auto_install/LumoSpeechEnvelope.kt",
+      "bytes": 4697,
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8"
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/host/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 8902,
+      "sha256": "13bf313696c626a3453cddacdd8e95fb20b4075d84ddaeb8a5c0054d68e43f8d"
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/baseline/host/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 7020,
+      "sha256": "ccf87ff583c80df6cd8cec083059b65f9a01810d508b03c055e61ae776967c8c"
+    },
+    {
+      "path": "lumo-studio-final-e3d/tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 8395,
+      "sha256": "91e5d2dcafd1f04c7d116b05785f4ca284cbe31457ed1777e7c057d60becd62f"
+    },
+    {
+      "path": "lumo-studio-final-e3d/tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 15809,
+      "sha256": "e2fd0ac015a1957053bde4b15d1fe5c518581e423d3d7573698bbbf8c22fdd72"
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/envelope-contract.log",
+      "bytes": 75,
+      "sha256": "1d06734c0efa94dffa2ba330706db19690b97e88dc650587c81ef623dc2b1b3d"
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/speech-lifecycle-contract.log",
+      "bytes": 100,
+      "sha256": "4eb1000abbe5dfb68657e9d3a9dfaad03823ba0372c291a7f8b33987b9c9a31e"
+    }
+  ],
+  "checks": [
+    "Main Handler owns player/generation/state; public actions post there. Actual bridge synthesis completion returns via its main Handler, so its success/error callbacks preserve that ownership.",
+    "PCM parsing alone runs on a bounded single worker. Generation, active and destroyed are rechecked on the posted completion. Stop increments generation before cancel callbacks, cancels envelope work and closes data/player.",
+    "MediaPlayer is created on main; progress uses its actual currentPosition and duration, not elapsed wall time. Rate changes therefore keep sample timing attached to media position.",
+    "Mute/zero stream volume and inactive/destroyed states publish zero envelope. These are software playback conditions, not evidence of an audible physical speaker.",
+    "PCM16 RIFF parser bounds bytes/chunk counts/duration/alignment, rejects unsupported/truncated data and detects worker interruption. Unsupported envelope data yields EMPTY rather than synthesized motion.",
+    "Original game==learning, voiceEnabled and local-license requirements remain. No online request, microphone or child-progress write was added.",
+    "20ms RMS amplitudes with fixed art gain describe loudness only, not phonemes, visemes or linguistic synchronization.",
+    "Actual original engine pcmWave writes mono little-endian signed PCM16 at44100Hz, matching the production profile consumed by this adapter."
+  ],
+  "existing_logs_read_only": {
+    "envelope_checks": 23,
+    "lifecycle_checks": 17,
+    "kind": "Synthetic JVM boundary contracts; not an Android sound run"
+  },
+  "actual_existing_clip_metadata": {
+    "path": "qa/original-lumo-facial-studio-803e/runtime/assets/audio/voice/words/apfel.wav",
+    "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+    "channels": 1,
+    "sample_width_bytes": 2,
+    "sample_rate": 22050,
+    "frames": 20463,
+    "duration_seconds": 0.9280272108843537
+  },
+  "limits": [
+    "No Android MediaPlayer lifecycle or audible-speaker acceptance performed by this reviewer.",
+    "No claim about a rendered mouth, expressive quality, phoneme synchronization or physical device FPS.",
+    "The parser accepts other PCM rates, but the reviewed production engine emits44100Hz."
+  ],
+  "mutations_to_product_or_tests": false
+}

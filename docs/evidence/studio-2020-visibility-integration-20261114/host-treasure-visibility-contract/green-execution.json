@@ -1,0 +1,30 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "test_studio_2020_delivery",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 3.1735789550002664,
+  "tests": 11,
+  "skips": 0,
+  "log_sha256": "9fbe8af1a17ed43456e0ff86f57ee1a0d03df523f6722c1b84207500a9e6c3a0",
+  "preservation": {
+    "scripts/verify_studio_delivery.py": {
+      "old_functions_unchanged": 14,
+      "new_functions": []
+    },
+    "scripts/tests/test_studio_2020_delivery.py": {
+      "old_functions_unchanged": 12,
+      "new_functions": [
+        "test_treasure_cutout_visibility_cannot_reuse_only_four_title_views"
+      ]
+    }
+  },
+  "native_pin_changed": false,
+  "receipt_created": false,
+  "status": "synthetic Host contract tests only; requires new actual Native source and original review"
+}

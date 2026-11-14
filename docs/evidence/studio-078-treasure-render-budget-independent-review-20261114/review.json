@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "reviewer": "games_worlds",
+  "reviewed_at": "2026-11-14T10:59:31.735Z",
+  "basis": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "scope": "Read-only review of exact GitHub785 sources and full new Gitblobs; no CLI/test rerun or source mutation.",
+  "decision": "No additional concrete blocker in these two source deltas.",
+  "files": [
+    {
+      "path": "tools/validate_studio.sh",
+      "git_blob_sha": "542e22df76ae8773d3c7de064a560a977fc9a033",
+      "sha256": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+      "full_utf8_equals_exact_baseline_plus_declared_delta": true
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "git_blob_sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d",
+      "sha256": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+      "full_utf8_equals_exact_baseline_plus_declared_delta": true
+    }
+  ],
+  "findings": [
+    "Exactly one bounded rendered probe budget changes600 to900; all19 other check_probe lines remain byte-identical.",
+    "The existing run_godot_probe receives the same --required marker and nonzero exit handling; failed probes still enter failures/results.tsv.",
+    "The complete raster/sidecar collector remains unchanged, including all54 PNGs and the five Treasure profiles/ten observations.",
+    "Two exact test expectations follow the single new budget; remaining test source is identical.",
+    "The three added comments describe the supplied timing rationale; no FPS or new runtime success is inferred."
+  ],
+  "limitations": [
+    "The interrupted13-method Python process has no confirmed final exit or summary; no13/13 claim in this review.",
+    "Prior successfulNative timing584.700s and Hostlast-profile+16.061s are B/Root original-log findings, not independently remeasured here.",
+    "This review does not replace the required next full Native/Host CI."
+  ]
+}

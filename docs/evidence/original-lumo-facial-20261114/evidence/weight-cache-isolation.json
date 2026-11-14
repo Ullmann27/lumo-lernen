@@ -1,0 +1,15 @@
+[
+  {
+    "variant": "body_always",
+    "exit_code": 0,
+    "errors": [
+      "ERROR: Parameter \"material\" is null.",
+      "ERROR: Parameter \"material\" is null."
+    ]
+  },
+  {
+    "variant": "lid_always",
+    "exit_code": 0,
+    "errors": []
+  }
+]

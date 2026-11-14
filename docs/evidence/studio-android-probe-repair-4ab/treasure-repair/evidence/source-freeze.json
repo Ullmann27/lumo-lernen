@@ -1,0 +1,45 @@
+{
+  "created_utc": "2026-11-14T01:58:12.076668+00:00",
+  "status": "ISOLATED_TEST_CONTROLLER_FROZEN_PENDING_INTEGRATOR_REVIEW",
+  "source_files": [
+    {
+      "file": ".github/probes/studio_creative_android_probe.py",
+      "bytes": 61176,
+      "sha256": "c6711c8891eac622b2833c7ecf92de650034a60dd8e8ab43babdaa9af695b4a7"
+    },
+    {
+      "file": "scripts/tests/test_studio_treasure_movement.py",
+      "bytes": 12241,
+      "sha256": "d6401252f81e249751dc6d031efe2ceba91759255a0528496bbc249ef877fc8f"
+    }
+  ],
+  "baseline_sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+  "product_and_active_probe_unchanged": true,
+  "tests": {
+    "red_original4ab": {
+      "log": "logs/controller-red-original4ab.log",
+      "exit_code": 1,
+      "tests": 2,
+      "errors": 2,
+      "seconds": 0.002
+    },
+    "first_green_attempt": {
+      "log": "logs/controller-green-v1.log",
+      "exit_code": 1,
+      "tests": 11,
+      "failures": 1,
+      "reason": "Negative replay expected the segment-limit message, but the cumulative input budget correctly stopped earlier. The assertion now accepts either hard budget and validates the unchanged observed prefix; original rejection remains required."
+    },
+    "final": {
+      "log": "logs/controller-and-existing-green.log",
+      "exit_code": 0,
+      "tests": 20,
+      "new_tests": 11,
+      "existing_tests": 9,
+      "skips": 0,
+      "seconds": 0.243,
+      "resource_warnings_are_errors": true
+    }
+  },
+  "no_android_or_godot_run": true
+}

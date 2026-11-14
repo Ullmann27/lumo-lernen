@@ -1,0 +1,25 @@
+# Wallet: bestätigter ACK bei wiederholter Ergebnis-ID
+
+Stand: 14. November 2026. Basis ist ausschließlich [Host 28462a75](https://github.com/Ullmann27/lumo-lernen/tree/28462a7547048b75fa114e6f5832248e54c94faa). Die zwei vorbereiteten Quellen wurden nicht lokal mit Dart oder Flutter ausgeführt; die tatsächliche CI-Abnahme steht aus.
+
+## Belegter Pfad und enges Produktdelta
+
+[Die bestehende Wallet](https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/core/reward_wallet_repository.dart) prüft ein negatives `setString`-Ergebnis bereits. Ihre ursprüngliche Instanz veröffentlicht den neuen Snapshot erst nach erfolgreichem Schreiben. Eine neue Repositoryinstanz kann jedoch einen optimistischen SharedPreferences-Wert laden. Enthält dieser schon die Ergebnis-ID, kehrten `awardGameResult`, `awardQuizResult` und `awardLumoCardsResult` bisher ohne weiteren Schreibaufruf erfolgreich zurück. [AppState](https://github.com/Ullmann27/lumo-lernen/blob/28462a7547048b75fa114e6f5832248e54c94faa/lib/app/app_state.dart) entfernt daraufhin den wartenden Reward-Eintrag. Das ist ein konkret gelesener bedingter Fehlerpfad, kein neu ausgeführter Android-Fehlerversuch.
+
+Der vorbereitete Produktdiff setzt ausschließlich vor diese drei Rückgaben `await _persist(current)`. Die identische Wallet muss dadurch einen positiven Plattformbescheid erhalten. Eine erneute Gutschrift, eine neue Ergebnis-ID und eine zusätzliche Wallet-Stream-Emission erfolgen nicht. Durch die dokumentierte inverse Ersetzung wird die gesamte ursprüngliche Datei bytegleich wiederhergestellt; Load-, Fallback-, Queue-, Schema- und Betragslogik bleiben unverändert.
+
+## Vorbereitete Gegenfälle
+
+Die neue Datei enthält **14 gezielte, noch nicht ausgeführte Fälle**. Für alle drei Award-APIs prüft sie eine tatsächlich abgewartete positive Antwort und getrennt einen negativen Boolean, eine Ausnahme nach Änderung des nativen Speichercaches vor Diskcommit sowie eine verlorene Antwort nach tatsächlichem Fixturecommit. Die echte Dart-Preferencesklasse bleibt beteiligt. Der synthetische Plattformrand trennt `nativeMemory` und `durableDisk`; `getAll` liest nur den Cache, während ein erfolgreicher Commit die ganze Datei übernimmt. Ein neuer Dartcache und eine neue Walletinstanz dürfen diese Unterscheidung nicht durch Gleichheitsvergleich umgehen.
+
+Zwei Fälle führen den echten `LumoAppState.recordMemoryResult`-Aufruf mit gültiger Kinderlease aus. Nach dem Fehler wird die bestehende Auswahl nur gelesen. Ein weiterer `setActiveStudent`-Aufruf oder fremder erfolgreicher Prefswrite würde sonst die schmutzige ganze Datei legitim speichern und den Fehler verdecken. Bei weiterhin negativem Walletreply müssen Pending-Eintrag und Speicherfehler bestehen bleiben. Erst nach positivem Retry sind exakt 9 Sterne, 56 XP, 21 insgesamt verdiente Sterne und eine Ergebnis-ID vorhanden; beide vorhandenen Streaks bleiben erhalten.
+
+C ergänzt unabhängig die tatsächliche Memory-Regel-/Abschlusskette und die Fehlerstellen nach bestätigter Wallet vor Statistik beziehungsweise Rundenzahlungsbeleg. A hat nur diese drei Integrationsfälle und ihre tatsächlichen AppState-APIs gelesen, weder deren Dateien bearbeitet noch Tests ausgeführt. Die historischen 14 Durabilitätsfälle werden nicht umgedeutet: Ihr damaliger Plattformstub bildete den zusätzlichen optimistischen nativen Cache nicht ab.
+
+## Grenzen und Übergabe
+
+Ein positives gleichwertiges `setString` ist eine neue positive Bestätigung der bestehenden Android-API. Es wird weder als unabhängiger Dateiread noch als Stromausfall-/fsync-Garantie ausgegeben. Das [gebundene AOSP-Original](https://github.com/aosp-mirror/platform_frameworks_base/blob/4e43ad12e1b211f15152e9c5b16b0fe88e6b93f3/core/java/android/app/SharedPreferencesImpl.java) unterscheidet die Speicher- und Diskgeneration; ein identischer synchroner Folgecommit kann einen zuvor ausstehenden Stand speichern.
+
+Der Fix ändert bewusst nicht die allgemeine `load()/snapshot`-Semantik und führt keine globale Synchronisation zwischen Repositoryinstanzen oder Flutter-Engines ein. Die bestehenden Altwerte, Legacy-Fallbacks, Speicherkeys und Formate bleiben erhalten. Die Vollsuite muss die neuen Fälle zusammen mit den vorhandenen Wallet-/Queue-/Profilverträgen tatsächlich ausführen. Bis dahin lautet der Status **implementiert und statisch gebunden, Laufzeitabnahme offen**.
+
+Das maßgebliche Zwei-Dateien-Manifest ist `source-upload-manifest.json`. `evidence/source-binding.json` enthält die 13 frisch gelesenen, vollständig gehashten Hostoriginale. `evidence/source-boundary-proof.json`, der Produktdiff, die Fallinventur und der quellengebundene Datenpfadreview trennen den tatsächlichen statischen Nachweis von noch nicht erfolgter Ausführung. Bs unabhängige Note ist bytegleich beigefügt: kein zusätzlicher konkreter statischer Blocker. Beide Quellblobs wurden vollständig UTF-8-identisch zurückgelesen und anschließend lokal erneut gehasht; der separate Uploadnachweis enthält die bestätigten Identitäten. Keine Git-Referenz wurde durch dieses Paket verändert.

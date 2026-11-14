@@ -1,0 +1,15 @@
+{
+  "errors": [],
+  "required_marker_present": true,
+  "source_log": {
+    "bytes": 2027,
+    "sha256": "00850b46b56e90f593f26fa45878f2c8f523acdb58cf472f0c1a046a5d4cb617",
+    "git_blob_sha": "009970d7482109582e1df82db1c9c26ee8848e72"
+  },
+  "warnings_preserved": [
+    "unsupported V-Sync change",
+    "Compatibility screen-space AA/volumetric fog",
+    "available-disk warning"
+  ],
+  "scope": "No warnings removed or reclassified as Android performance evidence"
+}

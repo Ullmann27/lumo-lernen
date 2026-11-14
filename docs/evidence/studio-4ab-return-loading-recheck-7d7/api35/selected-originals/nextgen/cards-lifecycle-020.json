@@ -1,0 +1,22 @@
+{
+  "status": "OBSERVED",
+  "sampled_after_state_read": true,
+  "state_file": "cards-mailbox-021-state.json",
+  "state_read_error": null,
+  "state_revision": 5,
+  "state_ack": 1,
+  "state_paused": false,
+  "scope": "Observed device clock and lifecycle only; no game-state writes or automatic resume",
+  "lifecycle": {
+    "active": true,
+    "pauseEpoch": 0,
+    "stamp": 1794629171132
+  },
+  "device_before_ms": 1794629171881,
+  "device_after_ms": 1794629171909,
+  "device_clock_ordered": true,
+  "stamp_age_lower_ms": 749,
+  "stamp_age_upper_ms": 777,
+  "raw_source": "cards-lifecycle-020.txt",
+  "elapsed_seconds": 0.046526
+}

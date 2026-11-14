@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "observed_at": "2026-11-14T09:32:50Z",
+  "refs": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "ref": "refs/heads/main",
+      "sha": "b24474875fe6eb02d4de01030eab9fa4a4aa6007"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "ref": "refs/heads/main",
+      "sha": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+    }
+  ],
+  "scope": "Read-only main references. No main mutation by this task. These SHAs are already present in the preserved initial/precommit checkpoints."
+}

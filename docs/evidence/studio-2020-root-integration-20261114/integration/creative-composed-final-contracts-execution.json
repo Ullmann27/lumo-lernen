@@ -1,0 +1,53 @@
+[
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/scripts/tests",
+      "-p",
+      "test_creative_geometry_readiness.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 2.72883641399676,
+    "log": "qa/studio-2020-integration/evidence/composed-final-test_creative_geometry_readiness.py.log",
+    "log_sha256": "b7c284f6e8be799af04d82ab3d477c6b4e0ad68abfdbaa7ac65842edf1d7be1c"
+  },
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/scripts/tests",
+      "-p",
+      "test_studio_creative_android_probe.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.22760756898787804,
+    "log": "qa/studio-2020-integration/evidence/composed-final-test_studio_creative_android_probe.py.log",
+    "log_sha256": "5a936b517700b5d28d05edd4d60bb4ff7071e45ad5dbb28fd668f3b29a777846"
+  },
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/scripts/tests",
+      "-p",
+      "test_studio_2020_android_contracts.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.12075682000431698,
+    "log": "qa/studio-2020-integration/evidence/composed-final-test_studio_2020_android_contracts.py.log",
+    "log_sha256": "886ba7b8025732014f1ecd8d398f5ab45d3aea228c630d62f6399cda39c5db6b"
+  }
+]

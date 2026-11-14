@@ -1,0 +1,162 @@
+{
+  "kind": "actual Dart production contracts; synthetic child; no Android or reward claim",
+  "cases": 8,
+  "checks": 1060,
+  "failures": 0,
+  "examples": {
+    "pen": {
+      "prompt": "Was bedeutet „pen“?",
+      "answer": "Kugelschreiber",
+      "options": [
+        "Tasche",
+        "Kugelschreiber",
+        "Lineal",
+        "Buch"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "pen",
+        "meaning": "Kugelschreiber",
+        "objects": [
+          "book",
+          "pen",
+          "ruler"
+        ]
+      }
+    },
+    "book": {
+      "prompt": "Was bedeutet „book“?",
+      "answer": "Buch",
+      "options": [
+        "Lineal",
+        "Buch",
+        "Federpennal",
+        "Schultasche"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "book",
+        "meaning": "Buch",
+        "objects": [
+          "book",
+          "ruler",
+          "ball"
+        ]
+      }
+    },
+    "ruler": {
+      "prompt": "Was bedeutet „ruler“?",
+      "answer": "Lineal",
+      "options": [
+        "Papier",
+        "Federpennal",
+        "Lineal",
+        "Buch"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "ruler",
+        "meaning": "Lineal",
+        "objects": [
+          "book",
+          "sun",
+          "ruler"
+        ]
+      }
+    },
+    "car": {
+      "prompt": "Was bedeutet „car“?",
+      "answer": "Auto",
+      "options": [
+        "Teddybär",
+        "Drachen zum Steigenlassen",
+        "Auto",
+        "Springschnur"
+      ],
+      "grade": 2,
+      "unit": "Spielzeug",
+      "activity": {
+        "kind": "english_objects",
+        "word": "car",
+        "meaning": "Auto",
+        "objects": [
+          "sun",
+          "apple",
+          "car"
+        ]
+      }
+    },
+    "ball": {
+      "prompt": "Was bedeutet „ball“?",
+      "answer": "Ball",
+      "options": [
+        "Bausteine",
+        "Zug",
+        "Ball",
+        "Brettspiel"
+      ],
+      "grade": 2,
+      "unit": "Spielzeug",
+      "activity": {
+        "kind": "english_objects",
+        "word": "ball",
+        "meaning": "Ball",
+        "objects": [
+          "ball",
+          "apple",
+          "book"
+        ]
+      }
+    },
+    "sun": {
+      "prompt": "Was bedeutet „sun“?",
+      "answer": "Sonne",
+      "options": [
+        "bewölkt",
+        "Schnee",
+        "Es regnet.",
+        "Sonne"
+      ],
+      "grade": 3,
+      "unit": "Wetter",
+      "activity": {
+        "kind": "english_objects",
+        "word": "sun",
+        "meaning": "Sonne",
+        "objects": [
+          "sun",
+          "car",
+          "apple"
+        ]
+      }
+    },
+    "apple": {
+      "prompt": "Was bedeutet „apple“?",
+      "answer": "Apfel",
+      "options": [
+        "Birne",
+        "Ei",
+        "Apfel",
+        "Orange"
+      ],
+      "grade": 3,
+      "unit": "Essen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "apple",
+        "meaning": "Apfel",
+        "objects": [
+          "book",
+          "apple",
+          "sun"
+        ]
+      }
+    }
+  }
+}

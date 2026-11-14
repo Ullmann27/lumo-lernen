@@ -1,0 +1,248 @@
+{
+  "schema": 1,
+  "status": "CURRENT_ORIGINAL_DESKTOP_RENDER_AND_VISUAL_REVIEW_COMPLETE",
+  "observed_utc": "2026-11-14T18:12:57.144134+00:00",
+  "source": {
+    "host": "b7210db3f53361987fd33592de438fd7984d991a",
+    "native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "run_id": 43619285124,
+    "attempt": 1,
+    "job_id": 132521067410,
+    "job_name": "Nextgen english actual authority",
+    "job_status": "completed",
+    "job_conclusion": "success",
+    "artifact_id": 14123388980,
+    "artifact_bytes": 4559425,
+    "artifact_sha256": "78f930c157798be8c117a81dd0f76112b7d890fa15af8f8bf7c462b871dbb2cd"
+  },
+  "recovery_addendum": {
+    "prior_terminal_log_only_review": {
+      "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+      "git_blob_sha": "1625ac0837957fd26f791e63dd2577cb5960d079",
+      "sha256": "3feaba5d2ba3c189045f158d570531bcf6d681c52440f1a191d7b555ba06086f",
+      "bytes": 12422,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0/docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+      "unchanged": true
+    },
+    "historical_unseen_claim_unchanged": true,
+    "new_archive_downloads": 1,
+    "original_job_log_fetched_again": false,
+    "all_63_members_crc_and_sha_checked": true,
+    "all_17_pngs_fully_decoded_and_personally_opened": true,
+    "all_original_bytes_rechecked_after_views": true
+  },
+  "actual_results": {
+    "dart_producer": {
+      "cases": 10,
+      "checks": 2955,
+      "failures": 0,
+      "kind": "actual Dart production contracts; synthetic child; no Android or reward claim",
+      "example_words": [
+        "pen",
+        "bag",
+        "school bag",
+        "pencil case",
+        "book",
+        "chair",
+        "paper",
+        "ruler",
+        "rubber",
+        "desk",
+        "ball",
+        "car",
+        "sun",
+        "apple"
+      ],
+      "school_grades": [
+        "1",
+        "2"
+      ],
+      "school_objects_per_grade": {
+        "1": 10,
+        "2": 10
+      },
+      "output_sha256": "75ef38eda89ae1d57dff0ac61ea5ef192cf322f7101c7ad0fcd0bffeea150dac"
+    },
+    "godot_renderer": {
+      "checks": 7691,
+      "failures": [],
+      "cases": 14,
+      "captures": 17,
+      "input_event_records": 196,
+      "renderer": "X11",
+      "fixture_kind": "actual_dart_producer_report",
+      "host_boundaries": [
+        "explicit JNI/audio test double"
+      ],
+      "input_boundaries": [
+        "actual Godot ScreenTouch"
+      ],
+      "return_counts": [
+        {
+          "word": "ball",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "book",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "ruler",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "car",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "pen",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "sun",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "apple",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "bag",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "rubber",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "school bag",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "desk",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "chair",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "pencil case",
+          "return_count": 1,
+          "reward_count": 0
+        },
+        {
+          "word": "paper",
+          "return_count": 1,
+          "reward_count": 0
+        }
+      ]
+    },
+    "project_validation": {
+      "passed": 117,
+      "warnings": 7,
+      "failed": 0
+    },
+    "min_reported_exposed_control_dp": 52.0,
+    "min_reported_object_target_dp": 48.0
+  },
+  "visual_result": {
+    "reviewed": 17,
+    "blocking_issues": 0,
+    "image_review": "image-review.json"
+  },
+  "source_verification": "Four source/tree stamps match exact Host/Native; all five source hashes in original renderer report independently match current Native Git blobs; producer file hash matches original report; all 17 launch descriptors match actual Dart output.",
+  "warnings_and_limits": [
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 51,
+      "text": "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+      "next_line": "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 52,
+      "text": "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+      "next_line": "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 53,
+      "text": "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+      "next_line": "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 54,
+      "text": "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+      "next_line": "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 55,
+      "text": "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+      "next_line": "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 56,
+      "text": "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+      "next_line": "[PASS] asset-pack: present: assets/generated/lumo3d_assets"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 115,
+      "text": "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)",
+      "next_line": "[PASS] tool: tools/build_android.sh"
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+      "next_line": "     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)"
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "next_line": "     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)"
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer.",
+      "next_line": "     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)"
+    }
+  ],
+  "claims_not_made": [
+    "No Android/APK/physical device acceptance from this desktop job.",
+    "No English pronunciation, actual model inference or heard playback acceptance.",
+    "No new FPS/60FPS, performance, thermal, journal, writing or two-child migration result.",
+    "JNI/audio and platform insets are explicitly fixtures; return_count is test-transport evidence, not Android activity return.",
+    "Simple geometric teaching assets are not a claim of complete English curriculum or AAA production quality."
+  ],
+  "old_counts_not_added": true,
+  "local_new_tests_or_render_runs": false,
+  "runtime_versions": {
+    "dart": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\"",
+    "godot": "4.6.3.stable.official.7d41c59c4"
+  },
+  "readback_files": [
+    "verified-original-extraction.json",
+    "post-view-original-binding.json",
+    "source-binding.json",
+    "image-review.json"
+  ]
+}

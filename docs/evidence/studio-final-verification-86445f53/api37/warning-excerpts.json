@@ -1,0 +1,94 @@
+{
+  "scope": "Original excerpts, not a claim of warning-free Android logs",
+  "original_log": {
+    "bytes": 1965810,
+    "sha256": "e8487b8dd54590890cda6713d349cd6918c857c4c3c491898425d71e3faa477f",
+    "git_blob": "450d9de34e20151a594e81c8c2ef355269a734fe"
+  },
+  "lines": [
+    {
+      "line": 312,
+      "text": "2026-11-14T04:02:00.4017012Z (node:2457) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 318,
+      "text": "2026-11-14T04:02:00.7881242Z (node:2457) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+    },
+    {
+      "line": 583,
+      "text": "2026-11-14T04:02:40.8866784Z /home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py:100: SyntaxWarning: invalid escape sequence '\\('"
+    },
+    {
+      "line": 845,
+      "text": "2026-11-14T04:04:12.2604232Z Error: Could not load devices from /usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/devices.xml"
+    },
+    {
+      "line": 876,
+      "text": "2026-11-14T04:04:12.7462333Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 885,
+      "text": "2026-11-14T04:04:12.7468603Z USER_WARNING | Suggested minimum system RAM to run avd 'test' is 16384 MiB (available: 15701 MiB)."
+    },
+    {
+      "line": 886,
+      "text": "2026-11-14T04:04:12.7469892Z WARNING      | Feature QuickbootFileBacked is disabled due to stability issues, if you really want that, the environment variable ANDROID_EMU_FORCE_QUICKBOOT_FILE_BACKED need to set to 1"
+    },
+    {
+      "line": 896,
+      "text": "2026-11-14T04:04:13.0230960Z ERROR        | Failed to create Vulkan instance. Error VK_ERROR_INCOMPATIBLE_DRIVER."
+    },
+    {
+      "line": 897,
+      "text": "2026-11-14T04:04:13.0231659Z ERROR        | Failed to initialize global Vulkan emulation requested. Try updating your GPU drivers, using software rendering or disabling Vulkan feature support."
+    },
+    {
+      "line": 898,
+      "text": "2026-11-14T04:04:13.0232344Z WARNING      | Emulator will try disabling Vulkan support, this is an unsupported path."
+    },
+    {
+      "line": 900,
+      "text": "2026-11-14T04:04:13.0233223Z WARNING      | Could not open libX11.so, try libX11.so.6"
+    },
+    {
+      "line": 903,
+      "text": "2026-11-14T04:04:13.0234594Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1"
+    },
+    {
+      "line": 962,
+      "text": "2026-11-14T04:04:13.1558689Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 1005,
+      "text": "2026-11-14T04:04:14.1901934Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 1006,
+      "text": "2026-11-14T04:04:14.2800969Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 10539,
+      "text": "2026-11-14T04:24:33.5766012Z ERROR        | stop: Not implemented"
+    },
+    {
+      "line": 10540,
+      "text": "2026-11-14T04:24:33.5766454Z WARNING      | Emulator client has not yet been configured.. Call configure me first!"
+    },
+    {
+      "line": 10542,
+      "text": "2026-11-14T04:24:33.6417418Z WARNING      | Netsim Wifi dns:///localhost:41923 is gone due to Stream removed (CANCELLED)"
+    },
+    {
+      "line": 10570,
+      "text": "2026-11-14T04:24:34.6109701Z (node:6641) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 10576,
+      "text": "2026-11-14T04:24:35.2618476Z (node:6641) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 10629,
+      "text": "2026-11-14T04:24:40.6853933Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ]
+}

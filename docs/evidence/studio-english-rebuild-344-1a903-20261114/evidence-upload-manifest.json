@@ -1,0 +1,643 @@
+{
+  "schema": 1,
+  "status": "explicit new docs-only handoff; sources already published in e4e5; no Gitref mutation by this agent",
+  "prefix": "docs/evidence/studio-english-rebuild-344-1a903-20261114",
+  "native_source": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "native_base": "34421df83566dd4773420cc2a225887956459435",
+  "actual_host_producer": "bdd86f289a165ea5140a01607d78fcf4c31c98c6",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/README.md",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10283,
+      "sha256": "927afea66ce05c6aefa6b6dde7f57c33f375a3fe5b9aeb1db90ab55f8876585c",
+      "git_blob": "d78b21135dd03336bec76cb8e0cbf23a1ff2d821"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/actual-producer-headless/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/actual-producer-headless/captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 49855,
+      "sha256": "673db0c98146a70a69e52d263e88698241ddfa458f04512842bd25fccd32d8ed",
+      "git_blob": "58b0a76353622939311c24f2aaaa621a10289be7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/actual-producer-headless/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/actual-producer-headless/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1203,
+      "sha256": "5d22b8f813db0db1c0eb7b69e8eeb96b5cef6f6ff3b0a8d4f6286ad96525664a",
+      "git_blob": "0c8c5c1887922a6616f0a157f04a36e8196c8145"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/actual-producer-headless/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/actual-producer-headless/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3718,
+      "sha256": "83cc8bda7b75952580f1b3bbb06d7e2df3cd2d25432f8b661e57d06907bd8a49",
+      "git_blob": "894d1e09a8509000bac7b3de709bf6b2d9d20f4f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-green/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/compact-size-green/captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 49796,
+      "sha256": "d4bde25af60b54f134f83e9a6af75790fdf8cf5a5ead3d503c8015e760de1c70",
+      "git_blob": "0e773c28295a8bdb8c135461ac6c1de0f28b80ad"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-green/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/compact-size-green/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 720,
+      "sha256": "3ce0bcd126e6aebf01882f5b53a165e8eba0cd8dd76a2069598c8eac0e388257",
+      "git_blob": "e906e6f340ad4ef045b9a8ede62c02c80da71006"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-green/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/compact-size-green/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3715,
+      "sha256": "5484bdf5c3f522f902a423d10b9103fdc68e0195385d128cea7b407987336c58",
+      "git_blob": "69d1dd969f81b727e18cb4c03cd667014d909d45"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-red/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/compact-size-red/captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 50694,
+      "sha256": "af93b28cf11917547e66219248ceec0b4bed8c6b61815c1efcd50331a05f9623",
+      "git_blob": "1c56e4a3b68a2020ec6202c10732367045057526"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-red/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/compact-size-red/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 713,
+      "sha256": "053fc74332c42b4571a9640cd97ed63cc8a4a49e1d515e342f26cbb8312fd815",
+      "git_blob": "a2452694a201f9885b3d4e92053b2363660a0ea5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-red/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/compact-size-red/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 6299,
+      "sha256": "99216bc94b7fb15a2452674bf3616fddb4a55c6466fe37acb5cab8af5f51fbee",
+      "git_blob": "f4eb55ac08d30ac25e468dfd54b74fbbf72afaf2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/existing-learning-regressions/learning_sharing_regression/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/existing-learning-regressions/learning_sharing_regression/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 974,
+      "sha256": "6751b28084881ea16d4cf0dd5ebef64c2ff1267d5020d09908baa989f93f2901",
+      "git_blob": "a87a54952af06695c20b24c5ab1482024cf43658"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/existing-learning-regressions/learning_sharing_regression/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/existing-learning-regressions/learning_sharing_regression/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1826,
+      "sha256": "83ae0da406f922c632c52192b00d14d42ae7ed878f6496aa2cdbe1adec9bb31f",
+      "git_blob": "1fb6f24f2d6b5af73aa23795f056effb66776ce7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/existing-learning-regressions/learning_studio_regression/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/existing-learning-regressions/learning_studio_regression/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1033,
+      "sha256": "2fdbba1cce3595cd33c90c5324b4a3af664560e88c3716ef5715538e5461f3c9",
+      "git_blob": "8319ec2fc4f39e09151a8df553d4c173590a95a0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/existing-learning-regressions/learning_studio_regression/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/existing-learning-regressions/learning_studio_regression/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2145,
+      "sha256": "35b5c83cae950a4475557a8fb67af7111ab9d3acd9ec7eb1a5cd628e7d4390d6",
+      "git_blob": "2f9dba2dacbb03756bd3aa4ae48f847d77c68075"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/existing-learning-regressions/learning_world_regression/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/existing-learning-regressions/learning_world_regression/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 967,
+      "sha256": "0e124e4cc233cb87ce89634c6f902dfb634992efbef3b2e81f1085a3acc5dad9",
+      "git_blob": "378e3f97c3f2525b7232bf3d6b196d1202a65d49"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/existing-learning-regressions/learning_world_regression/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/existing-learning-regressions/learning_world_regression/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10943,
+      "sha256": "93b7eab0d8d8eb0d8460ead529024b3c66357bddef7134362c1bf1a9b47197f2",
+      "git_blob": "53965d297dda3d9d069d7b7d858d466877fe9c86"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/existing-learning-regressions/results.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/existing-learning-regressions/results.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3172,
+      "sha256": "04e76ab9cf18722c8b2c566610c80573644db7bb17ea4471480769adac1166d5",
+      "git_blob": "055a93e639506129cff2a4d00377291e7f723112"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/first-visual-blocker.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/first-visual-blocker.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 705,
+      "sha256": "d477758d93ae0ab865da2c21aefbac818c103fe3bde110759f8995d2a9012368",
+      "git_blob": "e4ef1d2fa0bf66984cb1cc098e5c0a49b737cd2d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/headless-first/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/headless-first/captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 50415,
+      "sha256": "09f5c3b4deb5dd72f49295e7192e5ded9bf14e5175ba83fd81abfc08098f24dd",
+      "git_blob": "43a24f08203441cb57ae3e2ba88c4ff7ede7130c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/headless-first/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/headless-first/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 718,
+      "sha256": "2139ab1822409a1053d30f7420e7bc8f2b574154e8c7f90d98335efafffaaa0e",
+      "git_blob": "64de57e076d1ca8418008af5949b90fb64b0737f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/headless-first/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/headless-first/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5171,
+      "sha256": "dbf3a7641ad321717657b0589f262bca4189280294a90753342ec7e79fcdb736",
+      "git_blob": "2174f9480d92689bd9156ed7eb92b0eddf4b6d7d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/headless-spacing/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/headless-spacing/captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 50197,
+      "sha256": "293c2eeacf7bdc305c43a55a6bb6ee71eb3fdf24a5be109e7129fc5fca5ab454",
+      "git_blob": "5f4304c9f8a470862bbd2adc4a9b4d26906b43be"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/headless-spacing/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/headless-spacing/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 720,
+      "sha256": "5f4d3c2b935e18c47168cfa930685f53988ac956722c4eb2ca57085380f23f69",
+      "git_blob": "e4cf9cb41964c8554430bcd4d41241e286789c64"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/headless-spacing/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/headless-spacing/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3714,
+      "sha256": "c818c74b38c66145f7d67817f00efcf1b507efc1744025ea586a3241a2f50f8b",
+      "git_blob": "a064d380f94a090547baf730b1e836f8320a5c20"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/implementation-against-native344.patch",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/implementation-against-native344.patch",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 51319,
+      "sha256": "6d0b38ba53d1c1e29c2024824357d6ec9aba7b4fc0b46b8519114e024390c45a",
+      "git_blob": "1934bbda161ffea1c5e0e0ea91274b1ee6a5e93c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/import-first/execution.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/import-first/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 343,
+      "sha256": "bb69f9dc8c065898fa9d5290b88a05a596399445f54c776b60458c74160f25c6",
+      "git_blob": "1af8bc77c7fe5fd2d8d596c046fce2147f062a11"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/import-first/original.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/import-first/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 6254,
+      "sha256": "412a91c6e668792f782a55553a6af348d2838e53d66218b297bee0a4db3aaa5d",
+      "git_blob": "833707029f25e223f7eb3af63fdfbc77243a3dcb"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/original-host-producer/HOST-SOURCE.txt",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/original-host-producer/HOST-SOURCE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 41,
+      "sha256": "dca7a724d414d798053a6725e3c2839532ab9a488e568e16c7baac0a189159fd",
+      "git_blob": "4632de7e8dfb1b0756f3b354567b6b10556dfaf6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/original-host-producer/artifacts-original.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/original-host-producer/artifacts-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1520,
+      "sha256": "4ad1dd9090796821d45c109c132f8117cbeb312ed4fd42d0947722d17897d2c9",
+      "git_blob": "1e6c89a9d99995afbdad1852d1824cd6e4b54088"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/original-host-producer/binding.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/original-host-producer/binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1013,
+      "sha256": "de8276451cc713d9081f8ff047cb2a95281a901287d101b56a7f0e866173d797",
+      "git_blob": "2f32156c9db6a2998dd025797c4928fc61df86e6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/original-host-producer/english-activity.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/original-host-producer/english-activity.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3246,
+      "sha256": "4f3df3fe61f45c2b899d1e50e71ea3f4980c1d78b92547fb7ca676be0a6f198b",
+      "git_blob": "2324466cdd8e19f786bb4643418f81d3e2360b49"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/original-host-producer/metadata-binding.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/original-host-producer/metadata-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1911,
+      "sha256": "d00d2c8f9519d348cfc49a6682365ce35f76a43a296851249fd912ae19aa5c0d",
+      "git_blob": "f7edfafee388725e6d366cd8a0895d0b247052ac"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/original-host-producer/run-original.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/original-host-producer/run-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 13382,
+      "sha256": "ed4d84afac006275c60c08333967794ac0218c5f756b082f62de836348284555",
+      "git_blob": "b869ff6b6b0a100717e01f5411724cb1beb2f94d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/preserved-function-boundaries.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/preserved-function-boundaries.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5151,
+      "sha256": "c5b09598157c1589ec1f76f6c0b13af934cf45f2e44299fe06a6dde0e87340f5",
+      "git_blob": "c3032970ca283284829d5d83a0129e77cbfbd8ca"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/published-e4e5-source-check.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/published-e4e5-source-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1658,
+      "sha256": "b42eaf3adf75bf083e1f2998634bad4f2347009f169b6440a0b64591d7b94151",
+      "git_blob": "1b256016444292514767c57c7d29575e9d3be191"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-apple-960x540-start.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-apple-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2837,
+      "sha256": "277e2262cca61fc16fb154fbb5c46d4013dc869807385e2944ffd30374ed15e5",
+      "git_blob": "173771c51047c02e27bc06553d3bbe67439dc4e1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-apple-960x540-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-apple-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 171145,
+      "sha256": "ca5681c82c3b8f4630743e98bf694ca08805d310ca5ca4a01e1972a45b759f43",
+      "git_blob": "7738f2f3b741ecbcd696d8f072483cae62f5c0aa"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-complete.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ball-960x540-complete.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2835,
+      "sha256": "9354d76ef884ce4edb7a027a9992a11e268834217ad60c3ac5de94e8bda1689c",
+      "git_blob": "7b61da901148ca9a936b9a393b4be0ebf161686a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-complete.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ball-960x540-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 171007,
+      "sha256": "5a93fd3e78c22f6d386d7f6106184a52e7225d2442a076391677d3cbafaa162b",
+      "git_blob": "8aae9d586dcfa83a4b22ef43a1d2fcdab662a724"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-hint.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ball-960x540-hint.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2832,
+      "sha256": "70bcb69e0e75dce0fbe1d5bfe16aae5cf46533bad22439a9b9df73404bde60d2",
+      "git_blob": "a788b34ae526e8f2432e465d83b40a5463d3c49e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-hint.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ball-960x540-hint.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 171401,
+      "sha256": "4a7796e4d9d4294aec0043781f376307b88c24f6aef2c5a93e1a00d1458f200a",
+      "git_blob": "0a27d730da6b616557c69de4120670191abbfbf7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-start.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ball-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2828,
+      "sha256": "899c2b0042ae959bea49c378e0710c327a41f84e7e2a7edcbd40647611c04116",
+      "git_blob": "bc7e82339eed4e36090bc4c9d984238d74963f6d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ball-960x540-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ball-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 170576,
+      "sha256": "87f2a1fecc1c187ad1a184b9aa098108745ceeceed86464214999b009d7a5387",
+      "git_blob": "bd6c86b76856531368abf1d13d1c3584c6ce83b8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-book-412x915-complete.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-book-412x915-complete.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2837,
+      "sha256": "8824208d6d7dae865f70c42c3bca2e0ed592af51c461850e61a9f2f5064976ad",
+      "git_blob": "4a3e0882b3036b91c5ff404aceac15a952a528fb"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-book-412x915-complete.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-book-412x915-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 117153,
+      "sha256": "0f36483f46b731ee068652dcff086bbf489525911bb2e8bba3802c7624dfeed6",
+      "git_blob": "f1d78bccd71334ab91c669e6831723baee4aecf8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-book-412x915-start.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-book-412x915-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2830,
+      "sha256": "275742780232bc9111b0bdd50b54d3d253ba67cea601df320178400172471a01",
+      "git_blob": "7cfbcade946c0472912450e28e10623cb43691a6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-book-412x915-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-book-412x915-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 118909,
+      "sha256": "754f945be12243e3043e3dbd9d333a1949b1eb6c6f7e41db957d2415845d3a1c",
+      "git_blob": "f66cbb23b9992b13ed111d79d99edc54ae640a56"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-car-2400x1080-start.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-car-2400x1080-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3067,
+      "sha256": "0e6c4bfdf8da57cf5791f1784e4f26adb6cf983dc5c4d455a8183c0d8f5a71b6",
+      "git_blob": "c874b3b38596aa67d78eddce518da7f832b6d21c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-car-2400x1080-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-car-2400x1080-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 659508,
+      "sha256": "2b7d5ddd9114a3b1ac0630fe3dcd43995510d558c1c63978b337c3c69b628dca",
+      "git_blob": "30dde8496cd8767f5c7828ffe01e78f6f6c692ac"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-pen-1080x2400-start.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-pen-1080x2400-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2951,
+      "sha256": "69c7dccc8c024ebf45c9f73970b435ed8405ffde220543c59f9bd8f53a6f8ffe",
+      "git_blob": "cf12d2483548cc6cb7a14768a5e5a56ea1218811"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-pen-1080x2400-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-pen-1080x2400-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 611735,
+      "sha256": "27b92f58f12de1a39cfc6cafa385687d917a5d1908cd0a616733bc2297a8820e",
+      "git_blob": "42d306080f05df467d634188bb93179f4e5136ff"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ruler-640x360-start.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ruler-640x360-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2826,
+      "sha256": "52c67cc00d82854d4d3437db9c4ce5c03a4a4bf1c6252f4a27aaa586eb5ac605",
+      "git_blob": "bcbacd5805d41a5fb2bd558595391c7738fe7db1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-ruler-640x360-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-ruler-640x360-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 95991,
+      "sha256": "3e7ae87a84eb31ea6df347c9d48b435551609fc6e8efd450bce706173dc9a537",
+      "git_blob": "49cbdfb3cd470fb7c16908834a192903fa9678be"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-sun-960x540-start.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-sun-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2824,
+      "sha256": "bf4e3aa53a3dce8667aad35ea6cc1d38e56871b1ce14dfba4f01700597bfdb95",
+      "git_blob": "08db535f1620b3b931c7de4dd141fc7faafe0ca4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/english-sun-960x540-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/english-sun-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 167603,
+      "sha256": "6dc958cf51ffa2cdb68d12bd4db7286a5dbba3139d4d011afbfb9e6ef1bd1250",
+      "git_blob": "ad575dd8e0c0f3dcc25879f99567a266fbd109e0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact-captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact-captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 51179,
+      "sha256": "4b3dedb0a4b7100d387c500548c1be7b9dccc3a80346ef5197f6655e9e15c5da",
+      "git_blob": "1b1a2f2f68a6505a0e2e903bb5f24fa0025c15db"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact/godot.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4011,
+      "sha256": "df44328ff2ede5470712c3f040947dd4b0af945a04244e40d4fe4fb110b44a38",
+      "git_blob": "7b28036e07a64665591ed2f370d461bb99a64305"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-compact/run.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-compact/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 487,
+      "sha256": "a97a77d7301ec28e271f8848d1378e7c391b61f9469d4e5978c63d364d936ac4",
+      "git_blob": "8fba66865d7c47ef413eda9f6591f6f328214364"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-first-captures/english-ruler-640x360-start.png",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-first-captures/english-ruler-640x360-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 41369,
+      "sha256": "8e5b50d280080622b5de6069ffdb5335fd3b7e91c521752c06e22ee9b85240fa",
+      "git_blob": "413e791e7a02417f7e67672b6a157179660eacbd"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-first-captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-first-captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 51585,
+      "sha256": "841ec71d1c0ca85f20a0c485687ee3e993a2005d2ec7880662e200808b7ab459",
+      "git_blob": "2571eb3a867dde44f9043ada5d96e9adeab33630"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-first/godot.log",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-first/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4011,
+      "sha256": "d657f82cd1c13c40e272c27cd35d9b7e84a8b20431385d1a003f26f886a5218e",
+      "git_blob": "28aa243afdfc6e9573497d39926fe34d9ef4e702"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/renderer-first/run.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/renderer-first/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 485,
+      "sha256": "d67fbcd63621ab106f7862f376c991d456e8abed407344419b2c6a0fc0869dfe",
+      "git_blob": "4741e2c50ae6cf160d1f06d86087b08a2f2d659b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/runtime-current-source-binding.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/runtime-current-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2464,
+      "sha256": "78cd147bee89d9aee7bd0d9989463da5a0a3f17aa08a7d2ab542196c49dac6f3",
+      "git_blob": "87af008b721066d8bbb41cee8a689602f0c05edb"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/runtime-source-binding.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/runtime-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 15999,
+      "sha256": "eadc863627ee4c491d72c3e7ecf0f8be3aed5d8b12743ba143fd6059722a9225",
+      "git_blob": "7c999315f9c960c9132e1b4faa2e72cc858af6c9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/runtime-source-final-check.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/runtime-source-final-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 16203,
+      "sha256": "706e41d4a90bae7b0f3918e913752e70035a01249dcfe9e60da3226d0a4da3e4",
+      "git_blob": "5bfd8cc44126e8a9176acff1c9edef8b01eb9b6f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/visual-review.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/evidence/visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10368,
+      "sha256": "cd4717bedda52662ecb92ee649a67471c71cf212681807818f93cc926064bc1b",
+      "git_blob": "e727bfa37150048f530957ce41d6b828f6e54d7d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/final-source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/final-source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7259,
+      "sha256": "1a94b1fdf86304b33c0a853d99623a8b27fa961833d760f47325f11f7b7399d4",
+      "git_blob": "aff9efe5a5d851859c7d9bbf15eeb572d8533ecf"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepare_runtime.py",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/prepare_runtime.py",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3842,
+      "sha256": "130c34507e0b5474f2539584fcf7a2b51a8f0916f60c43c3db83c907f754f541",
+      "git_blob": "2df16c27c4b1292038a7160e12ecb43114270746"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/source-candidate-manifest.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/source-candidate-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3012,
+      "sha256": "4c73c53def8752715a2bb988ee8c31ae0652501f82f63d1804334048d3b4897d",
+      "git_blob": "e94f4543bbabd9cf4041da777a58b4e8d95caeb4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-rebuild-344-1a903-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4263,
+      "sha256": "5d60d7825b848e2aed68b7337a723a5eb1f8e36dfb6ab1ee43cd9031addc53ff",
+      "git_blob": "519b437e62426b06b825ab7a8be17ab04f3d2cee"
+    }
+  ],
+  "file_count": 70,
+  "total_bytes": 3095766,
+  "selection_limit": "All final10rendererPNGs and sidecars, complete rawlogs/reports for explicitly listed runs. Earlier nonfinalrenderer keeps only its concretely rejected640x360PNG in this upload; other earlier PNGs remain locally unmodified and are not claimed reviewed. No runtime cache/assets/wholeAPKorZIP included."
+}

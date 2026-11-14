@@ -1,0 +1,199 @@
+{
+  "status": "READ",
+  "scope": "Independent OCR; no gameplay or visibility PASS",
+  "source": "android37-loading.png",
+  "source_sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf",
+  "surface": [
+    1080,
+    2400
+  ],
+  "wanted": "spielpausiert",
+  "tile_scale": 3,
+  "confidence_minimum": 15,
+  "timeout_seconds": 24.28228175699769,
+  "tiles": [
+    {
+      "index": 0,
+      "bounds": [
+        0,
+        0,
+        440,
+        1280
+      ],
+      "image": "frame-ocr-white-latin-tile-0.png",
+      "tsv": "frame-ocr-white-latin-tile-0.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 980\n",
+      "elapsed_seconds": 0.156203,
+      "matches": []
+    },
+    {
+      "index": 1,
+      "bounds": [
+        0,
+        1120,
+        440,
+        2400
+      ],
+      "image": "frame-ocr-white-latin-tile-1.png",
+      "tsv": "frame-ocr-white-latin-tile-1.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1397\n",
+      "elapsed_seconds": 0.122571,
+      "matches": []
+    },
+    {
+      "index": 2,
+      "bounds": [
+        280,
+        0,
+        800,
+        1280
+      ],
+      "image": "frame-ocr-white-latin-tile-2.png",
+      "tsv": "frame-ocr-white-latin-tile-2.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 957\n",
+      "elapsed_seconds": 0.153523,
+      "matches": []
+    },
+    {
+      "index": 3,
+      "bounds": [
+        280,
+        1120,
+        800,
+        2400
+      ],
+      "image": "frame-ocr-white-latin-tile-3.png",
+      "tsv": "frame-ocr-white-latin-tile-3.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 933\n",
+      "elapsed_seconds": 0.175875,
+      "matches": []
+    },
+    {
+      "index": 4,
+      "bounds": [
+        640,
+        0,
+        1080,
+        1280
+      ],
+      "image": "frame-ocr-white-latin-tile-4.png",
+      "tsv": "frame-ocr-white-latin-tile-4.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 979\n",
+      "elapsed_seconds": 0.142319,
+      "matches": []
+    },
+    {
+      "index": 5,
+      "bounds": [
+        640,
+        1120,
+        1080,
+        2400
+      ],
+      "image": "frame-ocr-white-latin-tile-5.png",
+      "tsv": "frame-ocr-white-latin-tile-5.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 952\n",
+      "elapsed_seconds": 0.137382,
+      "matches": []
+    },
+    {
+      "index": 0,
+      "bounds": [
+        0,
+        0,
+        440,
+        1280
+      ],
+      "image": "frame-ocr-white-latin-dim-tile-0.png",
+      "tsv": "frame-ocr-white-latin-dim-tile-0.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1017\nDetected 31 diacritics\n",
+      "elapsed_seconds": 0.153424,
+      "matches": []
+    },
+    {
+      "index": 1,
+      "bounds": [
+        0,
+        1120,
+        440,
+        2400
+      ],
+      "image": "frame-ocr-white-latin-dim-tile-1.png",
+      "tsv": "frame-ocr-white-latin-dim-tile-1.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 1404\n",
+      "elapsed_seconds": 0.125398,
+      "matches": []
+    },
+    {
+      "index": 2,
+      "bounds": [
+        280,
+        0,
+        800,
+        1280
+      ],
+      "image": "frame-ocr-white-latin-dim-tile-2.png",
+      "tsv": "frame-ocr-white-latin-dim-tile-2.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 954\n",
+      "elapsed_seconds": 0.17406,
+      "matches": []
+    },
+    {
+      "index": 3,
+      "bounds": [
+        280,
+        1120,
+        800,
+        2400
+      ],
+      "image": "frame-ocr-white-latin-dim-tile-3.png",
+      "tsv": "frame-ocr-white-latin-dim-tile-3.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 932\n",
+      "elapsed_seconds": 0.18217,
+      "matches": []
+    },
+    {
+      "index": 4,
+      "bounds": [
+        640,
+        0,
+        1080,
+        1280
+      ],
+      "image": "frame-ocr-white-latin-dim-tile-4.png",
+      "tsv": "frame-ocr-white-latin-dim-tile-4.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 905\nDetected 55 diacritics\n",
+      "elapsed_seconds": 0.19036,
+      "matches": []
+    },
+    {
+      "index": 5,
+      "bounds": [
+        640,
+        1120,
+        1080,
+        2400
+      ],
+      "image": "frame-ocr-white-latin-dim-tile-5.png",
+      "tsv": "frame-ocr-white-latin-dim-tile-5.tsv",
+      "status": "READ",
+      "output": "Estimating resolution as 717\n",
+      "elapsed_seconds": 0.150792,
+      "matches": []
+    }
+  ],
+  "matches": [],
+  "matched": false,
+  "elapsed_seconds": 2.460686
+}

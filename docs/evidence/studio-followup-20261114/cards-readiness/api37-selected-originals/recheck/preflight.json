@@ -1,0 +1,195 @@
+{
+  "status": "PASS",
+  "diagnostic_only": true,
+  "build_or_publish_performed": false,
+  "physical_fold7_performance_measured": false,
+  "commands": [],
+  "expected_qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "requested_api": 37,
+  "diagnostic_github_run": "43542310963",
+  "diagnostic_github_attempt": "1",
+  "binding": {
+    "sources": {
+      "qa": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen",
+        "head": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+        "tree": "6c4c61df114317f168c27653afebac8a5d16a659",
+        "tracked_source_clean": true,
+        "actual_blob_and_mode_checks": 4121,
+        "working_files_manifest_sha256": "04b7947c944fb429c9953df18b64f194d7aed5db40b612e60a6ada13a9c2bc4d",
+        "separate_runtime_roots": [
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist",
+          "/home/runner/work/lumo-lernen/lumo-lernen/tour",
+          "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv",
+          "/home/runner/work/lumo-lernen/lumo-lernen/runner-actions/android-emulator-runner"
+        ],
+        "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode"
+      },
+      "product": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+        "head": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+        "tree": "f3ffc295cec299bdc6126fcddffbc130c6629e54",
+        "tracked_source_clean": true,
+        "actual_blob_and_mode_checks": 4113,
+        "working_files_manifest_sha256": "32cc1136a62991eee1ec389d81f6c039aeacd36d9abf4eccf6af44a58b438839",
+        "separate_runtime_roots": [],
+        "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode"
+      },
+      "unchanged_other_git_entries": 4112,
+      "reviewed_delta": [
+        {
+          "path": ".github/probes/creative_android_probe.py",
+          "before": {
+            "mode": "100644",
+            "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+          },
+          "after": {
+            "mode": "100644",
+            "git_blob": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd"
+          },
+          "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+        },
+        {
+          "path": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "b3b2381f124a688c5f7f817f868fa57329d5633a"
+          },
+          "sha256": "25819826d39aea8a1566769932356db4ab2035bb877d0f6ce724453ca058dea2"
+        },
+        {
+          "path": "scripts/recheck_studio_4ab.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "7cc8a6c4a4cc6faf6e20fab42887bc27cee451a0"
+          },
+          "sha256": "2e01e9ed7b6286bce1d30d4d6249d5f17d2e01a1a75cf1d935cd0a051d514660"
+        },
+        {
+          "path": "scripts/tests/test_studio_4ab_recheck.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "a65a0bc99b188ab0518344ec6a9e7ed7fc6fe856"
+          },
+          "sha256": "c381c6820a21ff6ae4662731be0e94c3adbec94452a2e25963436e958fa07b22"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "772eef801ef8cabc05c04dc61de9a530c5c73cc1"
+          },
+          "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "49566dbbef40cc7dc17a38bb67f1dbee508c77ed"
+          },
+          "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "816498d883f8f481c754b06817e26af449f7112f"
+          },
+          "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c"
+          },
+          "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435"
+        },
+        {
+          "path": "tools/android_qa/tests/test_native_caption_ocr.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "5238a7a69190233590eefb50d647bcd244ecbc3f"
+          },
+          "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce"
+        }
+      ],
+      "executed_tour_files": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/modernization_android_tour.py",
+          "bytes": 46556,
+          "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py",
+          "bytes": 47960,
+          "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6"
+        }
+      ],
+      "helper": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py",
+        "bytes": 59073,
+        "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+      }
+    },
+    "original_build": {
+      "original_run": 43530667812,
+      "original_build_job": 132247240154,
+      "original_artifact": 14089507933,
+      "artifact_archive_digest_from_github_metadata": "2bc81726454a0b79e3e7ab9c0668c9359745e4d308e5af6f8b49072e7600ae7c",
+      "original_run_conclusion": "failure",
+      "original_metadata_files": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/artifact.json",
+          "bytes": 806,
+          "sha256": "62410d2d5a462c45f38bf9cb0f09108d526e280d802a32705a949030059af6ef"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/run.json",
+          "bytes": 14516,
+          "sha256": "98fc9be16b6fcfa7f68481e3713e335f1052d4a0b275226de7bed08507555a3e"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/build-job.json",
+          "bytes": 10144,
+          "sha256": "2d7cb4f520a17ada660edd9e8fe06990ac9efc3fd3ccd99b9bc7d4209b250dfd"
+        }
+      ]
+    },
+    "binary": {
+      "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+      "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "apk": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "bytes": 325295610,
+        "sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6"
+      },
+      "pck_bytes": 66234596,
+      "pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+      "provenance": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "bytes": 7586,
+        "sha256": "bb50fe23c109e063fe4f3c6fa4b55d3c6387e15ab2665f8cd2cae22f6d26fbf5"
+      },
+      "sums": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "bytes": 98,
+        "sha256": "4b9e9df9d23a8cf0eb32c0dd6b26175235fc008e1ec1c621f77c35164d565837"
+      },
+      "signature_scope": "Exact original signed APK bytes; certificate from original verified build provenance. No new signing claim."
+    },
+    "expected_api": 37
+  },
+  "scope": "Identity only; Android has not been tested"
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "isolated_source_patch_no_active_installation",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "path": "lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "repository": "Ullmann27/lumo-lernen",
+      "bytes": 18821,
+      "sha256": "ef94f30fd339e46da6fb58a39989dfacdb0f2a8f5d881314f40afdfcf5503d13",
+      "git_blob": "067a16c3e6061120fe8b58c1e3585d2982964be7",
+      "baseline_git_blob": "c9326aeb6b9db4909aed2de83f1e03e1fc1c6dd7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host/test/games/cards_german_feedback_test.dart",
+      "path": "test/games/cards_german_feedback_test.dart",
+      "repository": "Ullmann27/lumo-lernen",
+      "bytes": 10882,
+      "sha256": "2b0be338ce21fe68a359d487c1e9b47233ed446667fd03fdf37006e980170829",
+      "git_blob": "ac53a542304fd1ca1239a4e71abe0a00ec729c28",
+      "baseline_git_blob": null,
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 2,
+  "bytes": 29703,
+  "tests_passed": 64,
+  "android_tested_after_patch": false
+}

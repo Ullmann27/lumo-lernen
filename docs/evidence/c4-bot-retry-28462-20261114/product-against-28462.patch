@@ -1,0 +1,57 @@
+--- a/lib/features/games/connect_four/lumo_connect_four_game.dart
++++ b/lib/features/games/connect_four/lumo_connect_four_game.dart
+@@ -306,7 +306,20 @@
+       position = await _controller!
+           .play(column, bot: !_twoPlayers && piece == ConnectPiece.lumo);
+     } catch (_) {
++      if (!_currentOwner() || generation != _round) return;
+       _saveError();
++      // The failed bot action has already left the pausable clock. Re-arm it
++      // for this same live round so Fortsetzen can retry instead of leaving
++      // the child permanently waiting for Lumo. A committed terminal result
++      // or a local second player must never receive an extra bot move.
++      if (!_twoPlayers &&
++          _game.turn == ConnectPiece.lumo &&
++          _game.phase == ConnectPhase.playing) {
++        _resumeBot();
++      } else if (_game.phase != ConnectPhase.playing) {
++        _clock.schedule(Duration.zero,
++            () => unawaited(_retryFinishedRound(generation)));
++      }
+       return;
+     }
+     if (!_currentOwner() || generation != _round) return;
+@@ -374,6 +387,33 @@
+     } else {
+       _clock.schedule(duration, land);
+     }
++  }
++
++  Future<void> _retryFinishedRound(int generation) async {
++    if (!_currentOwner() ||
++        generation != _round ||
++        _controller == null ||
++        _nativeOpening ||
++        _game.phase == ConnectPhase.playing) return;
++    setState(() => _busy = true);
++    try {
++      // The final move is already saved. Retry only its existing idempotent
++      // reward and receipt; never drop another piece or invent an award.
++      await _controller!.settleReward();
++    } catch (_) {
++      if (!_currentOwner() || generation != _round) return;
++      _saveError();
++      _clock.schedule(Duration.zero,
++          () => unawaited(_retryFinishedRound(generation)));
++      return;
++    }
++    if (!_currentOwner() || generation != _round || _nativeOpening) return;
++    // Home/Pause may have arrived while the wallet was being confirmed.
++    // Deliver the already settled result only when the same clock resumes.
++    _clock.schedule(Duration.zero, () {
++      if (!_currentOwner() || generation != _round || _nativeOpening) return;
++      _finish();
++    });
+   }
+ 
+   void _finish() {

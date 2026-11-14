@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "source_sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "counts": {
+    "error": 2,
+    "warning": 5,
+    "info": 236
+  },
+  "total_issues": 243,
+  "errors": [
+    {
+      "original_artifact_line": 117,
+      "severity": "error",
+      "message": "The method 'confirmRoundReadback' isn't defined for the type 'MemoryStore'. Try correcting the name to the name of an existing method, or defining a method named 'confirmRoundReadback'",
+      "location": "lib/features/games/memory/memory_round.dart:268:26",
+      "code": "undefined_method"
+    },
+    {
+      "original_artifact_line": 118,
+      "severity": "error",
+      "message": "The method 'confirmStatsReadback' isn't defined for the type 'MemoryStore'. Try correcting the name to the name of an existing method, or defining a method named 'confirmStatsReadback'",
+      "location": "lib/features/games/memory/memory_round.dart:277:26",
+      "code": "undefined_method"
+    }
+  ],
+  "warnings": [
+    {
+      "original_artifact_line": 148,
+      "severity": "warning",
+      "message": "The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto'",
+      "location": "lib/features/live/lumo_live_pro_screen.dart:343:16",
+      "code": "unused_element"
+    },
+    {
+      "original_artifact_line": 150,
+      "severity": "warning",
+      "message": "Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive",
+      "location": "lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8",
+      "code": "unused_import"
+    },
+    {
+      "original_artifact_line": 179,
+      "severity": "warning",
+      "message": "The value of the field '_ink' isn't used. Try removing the field, or using it",
+      "location": "lib/features/story/widgets/lumo_story_scene.dart:150:16",
+      "code": "unused_field"
+    },
+    {
+      "original_artifact_line": 188,
+      "severity": "warning",
+      "message": "Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive",
+      "location": "test/design/denkprofil_knobel_before_after_capture_test.dart:11:8",
+      "code": "unused_import"
+    },
+    {
+      "original_artifact_line": 228,
+      "severity": "warning",
+      "message": "Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive",
+      "location": "test/iq/iq_extended_adventure_test.dart:5:8",
+      "code": "unused_import"
+    }
+  ],
+  "run_command": "flutter analyze --no-fatal-infos --no-fatal-warnings",
+  "elapsed_seconds_reported": 18.2,
+  "exit_code": 1,
+  "limits": "Analyzer findings only, not test results. No testcase result is inferred from severity counts."
+}

@@ -1,0 +1,1633 @@
+{
+  "status": "PASS",
+  "stage": "12_cards_real_table_persisted_draw",
+  "frames": [
+    {
+      "revision": 5,
+      "public_before": {
+        "protocol": 1,
+        "token": "98950002416eeebe7349d59afa58ba79",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-69",
+            "color": "blue",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-56",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "wind-50",
+            "color": "purple",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-23",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "think-25",
+            "color": "orange",
+            "type": "thinkPause",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-44",
+          "color": "purple",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "purple",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt purple 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-00-before-layout.json"
+    },
+    {
+      "revision": 5,
+      "public_before": {
+        "protocol": 1,
+        "token": "98950002416eeebe7349d59afa58ba79",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-69",
+            "color": "blue",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-56",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "wind-50",
+            "color": "purple",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-23",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "think-25",
+            "color": "orange",
+            "type": "thinkPause",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-44",
+          "color": "purple",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "purple",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt purple 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-01-before-layout.json"
+    },
+    {
+      "revision": 5,
+      "public_before": {
+        "protocol": 1,
+        "token": "98950002416eeebe7349d59afa58ba79",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-69",
+            "color": "blue",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-56",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "wind-50",
+            "color": "purple",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-23",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "think-25",
+            "color": "orange",
+            "type": "thinkPause",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-44",
+          "color": "purple",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "purple",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt purple 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "REJECTED",
+      "error": "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-02-before-layout.json"
+    },
+    {
+      "revision": 5,
+      "public_before": {
+        "protocol": 1,
+        "token": "98950002416eeebe7349d59afa58ba79",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-69",
+            "color": "blue",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-56",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "wind-50",
+            "color": "purple",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-23",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "think-25",
+            "color": "orange",
+            "type": "thinkPause",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-44",
+          "color": "purple",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "purple",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt purple 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "VISIBLE_FRONT_ARTWORK",
+      "layout_before": {
+        "layout": {
+          "ack": 1,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-44",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-69",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-56",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "wind-50",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 5,
+          "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 77711,
+          "token": "98950002416eeebe7349d59afa58ba79",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12_cards_real_table_persisted_draw-face-check-03-before-layout.json",
+        "source_sha256": "d04d3c8747261bca100e7cd9dfdb05d934d8d67eb88215a658199c9074731ffd"
+      },
+      "source": "12_cards_real_table_persisted_draw-face-check-03.png",
+      "source_sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+      "public_after": {
+        "protocol": 1,
+        "token": "98950002416eeebe7349d59afa58ba79",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-69",
+            "color": "blue",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-56",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "wind-50",
+            "color": "purple",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-23",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "think-25",
+            "color": "orange",
+            "type": "thinkPause",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-44",
+          "color": "purple",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "purple",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt purple 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "layout_after": {
+        "layout": {
+          "ack": 1,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-44",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-69",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-56",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "wind-50",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 5,
+          "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 77711,
+          "token": "98950002416eeebe7349d59afa58ba79",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12_cards_real_table_persisted_draw-face-check-03-after-layout.json",
+        "source_sha256": "d04d3c8747261bca100e7cd9dfdb05d934d8d67eb88215a658199c9074731ffd"
+      },
+      "observations": {
+        "source_sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+        "pause": {
+          "text": "Pause",
+          "bounds": [
+            896.0,
+            214.0,
+            1025.0,
+            248.0
+          ],
+          "variant": "contrast"
+        },
+        "page": {
+          "text": "1/3",
+          "bounds": [
+            508.0,
+            2052.0,
+            574.0,
+            2087.0
+          ],
+          "variant": "contrast"
+        }
+      },
+      "pixels": {
+        "source": "12_cards_real_table_persisted_draw-face-check-03.png",
+        "source_sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "revision": 5,
+        "page": "1/3",
+        "faces": [
+          {
+            "card_id": "num-69",
+            "quad": [
+              [
+                40.79796876332972,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1971.3573554952166
+              ],
+              [
+                40.79796876332972,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9790468564218291,
+            "luminance_p95_minus_p05": 84
+          },
+          {
+            "card_id": "num-56",
+            "quad": [
+              [
+                373.42305101742465,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1971.3573554952166
+              ],
+              [
+                373.42305101742465,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82080,
+            "colored_fraction": 0.9869152046783626,
+            "luminance_p95_minus_p05": 83
+          },
+          {
+            "card_id": "wind-50",
+            "quad": [
+              [
+                706.0481332715195,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1971.3573554952166
+              ],
+              [
+                706.0481332715195,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.8555604086287641,
+            "luminance_p95_minus_p05": 186
+          },
+          {
+            "card_id": "num-44",
+            "quad": [
+              [
+                581.2395030333607,
+                1114.463159188243
+              ],
+              [
+                748.2091982416016,
+                1114.463159188243
+              ],
+              [
+                763.9861794547594,
+                1246.988624585146
+              ],
+              [
+                584.3644123557737,
+                1246.988624585146
+              ]
+            ],
+            "interior_pixels": 12096,
+            "colored_fraction": 0.744130291005291,
+            "luminance_p95_minus_p05": 127
+          }
+        ],
+        "scope": "Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim",
+        "layout_binding": {
+          "layout_sha256": "d04d3c8747261bca100e7cd9dfdb05d934d8d67eb88215a658199c9074731ffd",
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      }
+    },
+    {
+      "revision": 5,
+      "public_before": {
+        "protocol": 1,
+        "token": "98950002416eeebe7349d59afa58ba79",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-69",
+            "color": "blue",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-56",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "wind-50",
+            "color": "purple",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-23",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "think-25",
+            "color": "orange",
+            "type": "thinkPause",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-44",
+          "color": "purple",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "purple",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt purple 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "VISIBLE_FRONT_ARTWORK",
+      "layout_before": {
+        "layout": {
+          "ack": 1,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-44",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-69",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-56",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "wind-50",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 5,
+          "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 77711,
+          "token": "98950002416eeebe7349d59afa58ba79",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12_cards_real_table_persisted_draw-face-check-04-before-layout.json",
+        "source_sha256": "d04d3c8747261bca100e7cd9dfdb05d934d8d67eb88215a658199c9074731ffd"
+      },
+      "source": "12_cards_real_table_persisted_draw-face-check-04.png",
+      "source_sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+      "public_after": {
+        "protocol": 1,
+        "token": "98950002416eeebe7349d59afa58ba79",
+        "revision": 5,
+        "ack": 1,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 6,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-69",
+            "color": "blue",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-56",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "wind-50",
+            "color": "purple",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-3",
+            "color": "orange",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "rain-23",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "think-25",
+            "color": "orange",
+            "type": "thinkPause",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": false
+          },
+          {
+            "id": "num-40",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-44",
+          "color": "purple",
+          "type": "number",
+          "number": 9
+        },
+        "selectedColor": "purple",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt purple 9.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "layout_after": {
+        "layout": {
+          "ack": 1,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-44",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-69",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-56",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "wind-50",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 5,
+          "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 77711,
+          "token": "98950002416eeebe7349d59afa58ba79",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "12_cards_real_table_persisted_draw-face-check-04-after-layout.json",
+        "source_sha256": "d04d3c8747261bca100e7cd9dfdb05d934d8d67eb88215a658199c9074731ffd"
+      },
+      "observations": {
+        "source_sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+        "pause": {
+          "text": "Pause",
+          "bounds": [
+            896.0,
+            214.0,
+            1025.0,
+            248.0
+          ],
+          "variant": "contrast"
+        },
+        "page": {
+          "text": "1/3",
+          "bounds": [
+            508.0,
+            2052.0,
+            574.0,
+            2087.0
+          ],
+          "variant": "contrast"
+        }
+      },
+      "pixels": {
+        "source": "12_cards_real_table_persisted_draw-face-check-04.png",
+        "source_sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+        "revision": 5,
+        "page": "1/3",
+        "faces": [
+          {
+            "card_id": "num-69",
+            "quad": [
+              [
+                40.79796876332972,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1971.3573554952166
+              ],
+              [
+                40.79796876332972,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9790468564218291,
+            "luminance_p95_minus_p05": 84
+          },
+          {
+            "card_id": "num-56",
+            "quad": [
+              [
+                373.42305101742465,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1971.3573554952166
+              ],
+              [
+                373.42305101742465,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82080,
+            "colored_fraction": 0.9869152046783626,
+            "luminance_p95_minus_p05": 83
+          },
+          {
+            "card_id": "wind-50",
+            "quad": [
+              [
+                706.0481332715195,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1971.3573554952166
+              ],
+              [
+                706.0481332715195,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.8555604086287641,
+            "luminance_p95_minus_p05": 186
+          },
+          {
+            "card_id": "num-44",
+            "quad": [
+              [
+                581.2395030333607,
+                1114.463159188243
+              ],
+              [
+                748.2091982416016,
+                1114.463159188243
+              ],
+              [
+                763.9861794547594,
+                1246.988624585146
+              ],
+              [
+                584.3644123557737,
+                1246.988624585146
+              ]
+            ],
+            "interior_pixels": 12096,
+            "colored_fraction": 0.744130291005291,
+            "luminance_p95_minus_p05": 127
+          }
+        ],
+        "scope": "Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim",
+        "layout_binding": {
+          "layout_sha256": "d04d3c8747261bca100e7cd9dfdb05d934d8d67eb88215a658199c9074731ffd",
+          "layout_sequence": 2,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      }
+    }
+  ],
+  "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+  "consecutive_same_revision_frames": 2,
+  "revision": 5,
+  "page": "1/3",
+  "layout_sequence": 2,
+  "layout_sha256": "d04d3c8747261bca100e7cd9dfdb05d934d8d67eb88215a658199c9074731ffd",
+  "token": "98950002416eeebe7349d59afa58ba79",
+  "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+  "viewer": 0,
+  "source": "12_cards_real_table_persisted_draw.png",
+  "source_sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+  "elapsed_seconds": 14.201531
+}

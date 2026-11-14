@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_connect_four_android_probe.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.3499960810004268,
+  "scope": "27 synthetic cases including two real-code post-read deadline counterexamples; no Android run"
+}

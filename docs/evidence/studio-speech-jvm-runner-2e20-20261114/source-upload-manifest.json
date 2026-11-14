@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T16:41:34.196699+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "baseline": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "scope": "Two additive Python runner/contract files only; no workflow, product, fixture, or native mutation",
+  "files": [
+    {
+      "path": "scripts/run_speech_jvm_contracts.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/prepared/host/scripts/run_speech_jvm_contracts.py",
+      "mode": "100644",
+      "change": "added",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-speech-jvm-runner-2e20-20261114/prepared/host/scripts/tests/test_speech_jvm_runner.py",
+      "mode": "100644",
+      "change": "added",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "git_blob": "4358a2540c65c19701b39d582465089672f884e5"
+    }
+  ],
+  "actual_local_validation": "19 pure Python orchestration cases PASS/0 skip; no Kotlin or Gradle production execution",
+  "cli": "python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech"
+}

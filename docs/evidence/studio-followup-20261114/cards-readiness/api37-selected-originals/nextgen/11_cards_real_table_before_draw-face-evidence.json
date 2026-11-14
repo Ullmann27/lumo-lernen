@@ -1,0 +1,1296 @@
+{
+  "status": "PASS",
+  "stage": "11_cards_real_table_before_draw",
+  "frames": [
+    {
+      "revision": 3,
+      "public_before": {
+        "protocol": 1,
+        "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+        "revision": 3,
+        "ack": 0,
+        "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 7,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 7,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-27",
+            "color": "purple",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-11",
+            "color": "orange",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-95",
+            "color": "green",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-65",
+            "color": "blue",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-37",
+            "color": "purple",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-84",
+          "color": "green",
+          "type": "number",
+          "number": 3
+        },
+        "selectedColor": "green",
+        "drawCount": 97,
+        "canDraw": true,
+        "message": "Du fängt an. Lege eine passende Karte!",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "VISIBLE_FRONT_ARTWORK",
+      "layout_before": {
+        "layout": {
+          "ack": 0,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-84",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-27",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-11",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-95",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 1,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 3,
+          "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 11300,
+          "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "11_cards_real_table_before_draw-face-check-00-before-layout.json",
+        "source_sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+      },
+      "source": "11_cards_real_table_before_draw-face-check-00.png",
+      "source_sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+      "public_after": {
+        "protocol": 1,
+        "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+        "revision": 3,
+        "ack": 0,
+        "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 7,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 7,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-27",
+            "color": "purple",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-11",
+            "color": "orange",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-95",
+            "color": "green",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-65",
+            "color": "blue",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-37",
+            "color": "purple",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-84",
+          "color": "green",
+          "type": "number",
+          "number": 3
+        },
+        "selectedColor": "green",
+        "drawCount": 97,
+        "canDraw": true,
+        "message": "Du fängt an. Lege eine passende Karte!",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "layout_after": {
+        "layout": {
+          "ack": 0,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-84",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-27",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-11",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-95",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 1,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 3,
+          "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 11300,
+          "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "11_cards_real_table_before_draw-face-check-00-after-layout.json",
+        "source_sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+      },
+      "observations": {
+        "source_sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+        "pause": {
+          "text": "Pause",
+          "bounds": [
+            896.0,
+            214.0,
+            1025.0,
+            248.0
+          ],
+          "variant": "contrast"
+        },
+        "page": {
+          "text": "1/3",
+          "bounds": [
+            508.0,
+            2052.0,
+            574.0,
+            2087.0
+          ],
+          "variant": "contrast"
+        }
+      },
+      "pixels": {
+        "source": "11_cards_real_table_before_draw-face-check-00.png",
+        "source_sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+        "revision": 3,
+        "page": "1/3",
+        "faces": [
+          {
+            "card_id": "num-27",
+            "quad": [
+              [
+                40.79796876332972,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1971.3573554952166
+              ],
+              [
+                40.79796876332972,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9139186139622916,
+            "luminance_p95_minus_p05": 143
+          },
+          {
+            "card_id": "num-11",
+            "quad": [
+              [
+                373.42305101742465,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1971.3573554952166
+              ],
+              [
+                373.42305101742465,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82080,
+            "colored_fraction": 0.9506091617933723,
+            "luminance_p95_minus_p05": 99
+          },
+          {
+            "card_id": "num-95",
+            "quad": [
+              [
+                706.0481332715195,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1971.3573554952166
+              ],
+              [
+                706.0481332715195,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.7000194122928345,
+            "luminance_p95_minus_p05": 100
+          },
+          {
+            "card_id": "num-84",
+            "quad": [
+              [
+                581.2395030333607,
+                1114.463159188243
+              ],
+              [
+                748.2091982416016,
+                1114.463159188243
+              ],
+              [
+                763.9861794547594,
+                1246.988624585146
+              ],
+              [
+                584.3644123557737,
+                1246.988624585146
+              ]
+            ],
+            "interior_pixels": 12096,
+            "colored_fraction": 0.9654431216931217,
+            "luminance_p95_minus_p05": 78
+          }
+        ],
+        "scope": "Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim",
+        "layout_binding": {
+          "layout_sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37",
+          "layout_sequence": 1,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      }
+    },
+    {
+      "revision": 3,
+      "public_before": {
+        "protocol": 1,
+        "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+        "revision": 3,
+        "ack": 0,
+        "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 7,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 7,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-27",
+            "color": "purple",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-11",
+            "color": "orange",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-95",
+            "color": "green",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-65",
+            "color": "blue",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-37",
+            "color": "purple",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-84",
+          "color": "green",
+          "type": "number",
+          "number": 3
+        },
+        "selectedColor": "green",
+        "drawCount": 97,
+        "canDraw": true,
+        "message": "Du fängt an. Lege eine passende Karte!",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "VISIBLE_FRONT_ARTWORK",
+      "layout_before": {
+        "layout": {
+          "ack": 0,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-84",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-27",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-11",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-95",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 1,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 3,
+          "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 11300,
+          "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "11_cards_real_table_before_draw-face-check-01-before-layout.json",
+        "source_sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+      },
+      "source": "11_cards_real_table_before_draw-face-check-01.png",
+      "source_sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+      "public_after": {
+        "protocol": 1,
+        "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+        "revision": 3,
+        "ack": 0,
+        "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 7,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 7,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-27",
+            "color": "purple",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          },
+          {
+            "id": "num-11",
+            "color": "orange",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-95",
+            "color": "green",
+            "type": "number",
+            "number": 9,
+            "playable": true
+          },
+          {
+            "id": "num-65",
+            "color": "blue",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          },
+          {
+            "id": "wild-110",
+            "color": "orange",
+            "type": "colorMagic",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-37",
+            "color": "purple",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-57",
+            "color": "blue",
+            "type": "number",
+            "number": 3,
+            "playable": true
+          }
+        ],
+        "top": {
+          "id": "num-84",
+          "color": "green",
+          "type": "number",
+          "number": 3
+        },
+        "selectedColor": "green",
+        "drawCount": 97,
+        "canDraw": true,
+        "message": "Du fängt an. Lege eine passende Karte!",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "layout_after": {
+        "layout": {
+          "ack": 0,
+          "android_observation": {
+            "decor_size": [
+              1080.0,
+              2400.0
+            ],
+            "insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "render_rect": [
+              0.0,
+              0.0,
+              1080.0,
+              2400.0
+            ],
+            "system_insets": [
+              0.0,
+              136.0,
+              0.0,
+              63.0
+            ],
+            "view_size": [
+              1080.0,
+              2400.0
+            ]
+          },
+          "density": 2.625,
+          "discard": {
+            "id": "num-84",
+            "quad": [
+              [
+                581.239501953125,
+                1114.46313476562
+              ],
+              [
+                748.209167480469,
+                1114.46313476562
+              ],
+              [
+                763.986145019531,
+                1246.98864746094
+              ],
+              [
+                584.364379882812,
+                1246.98864746094
+              ]
+            ]
+          },
+          "hand": [
+            {
+              "id": "num-27",
+              "quad": [
+                [
+                  40.7980422973633,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1497.71704101562
+                ],
+                [
+                  373.951873779297,
+                  1971.357421875
+                ],
+                [
+                  40.7980728149414,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-11",
+              "quad": [
+                [
+                  373.423065185547,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1497.71704101562
+                ],
+                [
+                  706.576904296875,
+                  1971.357421875
+                ],
+                [
+                  373.423095703125,
+                  1971.357421875
+                ]
+              ]
+            },
+            {
+              "id": "num-95",
+              "quad": [
+                [
+                  706.048156738281,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1497.71704101562
+                ],
+                [
+                  1039.20190429688,
+                  1971.357421875
+                ],
+                [
+                  706.048095703125,
+                  1971.357421875
+                ]
+              ]
+            }
+          ],
+          "layout_sequence": 1,
+          "observation_source": "android_window_insets",
+          "page": 0,
+          "page_size": 3,
+          "paused": false,
+          "pending": 0,
+          "phase": "playing",
+          "revision": 3,
+          "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+          "schema": 1,
+          "selected_card_id": "",
+          "settled": true,
+          "ticks_msec": 11300,
+          "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+          "ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "ui_visible": true,
+          "viewer": 0,
+          "viewport_px": [
+            1080.0,
+            2400.0
+          ],
+          "window_px": [
+            1080.0,
+            2400.0
+          ]
+        },
+        "source": "11_cards_real_table_before_draw-face-check-01-after-layout.json",
+        "source_sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+      },
+      "observations": {
+        "source_sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+        "pause": {
+          "text": "Pause",
+          "bounds": [
+            896.0,
+            214.0,
+            1025.0,
+            248.0
+          ],
+          "variant": "contrast"
+        },
+        "page": {
+          "text": "1/3",
+          "bounds": [
+            508.0,
+            2052.0,
+            574.0,
+            2087.0
+          ],
+          "variant": "contrast"
+        }
+      },
+      "pixels": {
+        "source": "11_cards_real_table_before_draw-face-check-01.png",
+        "source_sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+        "revision": 3,
+        "page": "1/3",
+        "faces": [
+          {
+            "card_id": "num-27",
+            "quad": [
+              [
+                40.79796876332972,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1497.7168740507852
+              ],
+              [
+                373.9518667284804,
+                1971.3573554952166
+              ],
+              [
+                40.79796876332972,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.9139186139622916,
+            "luminance_p95_minus_p05": 143
+          },
+          {
+            "card_id": "num-11",
+            "quad": [
+              [
+                373.42305101742465,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1497.7168740507852
+              ],
+              [
+                706.5769489825753,
+                1971.3573554952166
+              ],
+              [
+                373.42305101742465,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82080,
+            "colored_fraction": 0.9506091617933723,
+            "luminance_p95_minus_p05": 99
+          },
+          {
+            "card_id": "num-95",
+            "quad": [
+              [
+                706.0481332715195,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1497.7168740507852
+              ],
+              [
+                1039.2020312366703,
+                1971.3573554952166
+              ],
+              [
+                706.0481332715195,
+                1971.3573554952166
+              ]
+            ],
+            "interior_pixels": 82422,
+            "colored_fraction": 0.7000194122928345,
+            "luminance_p95_minus_p05": 100
+          },
+          {
+            "card_id": "num-84",
+            "quad": [
+              [
+                581.2395030333607,
+                1114.463159188243
+              ],
+              [
+                748.2091982416016,
+                1114.463159188243
+              ],
+              [
+                763.9861794547594,
+                1246.988624585146
+              ],
+              [
+                584.3644123557737,
+                1246.988624585146
+              ]
+            ],
+            "interior_pixels": 12096,
+            "colored_fraction": 0.9654431216931217,
+            "luminance_p95_minus_p05": 78
+          }
+        ],
+        "scope": "Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim",
+        "layout_binding": {
+          "layout_sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37",
+          "layout_sequence": 1,
+          "observation_source": "android_window_insets",
+          "safe_ui_rect": [
+            0.0,
+            136.0,
+            1080.0,
+            2201.0
+          ],
+          "mesh_readback_tolerance_px": 0.05,
+          "scope": "Independent projection agrees with actual native mesh readbacks"
+        }
+      }
+    }
+  ],
+  "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+  "consecutive_same_revision_frames": 2,
+  "revision": 3,
+  "page": "1/3",
+  "layout_sequence": 1,
+  "layout_sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37",
+  "token": "cfd0b0935e0d5a555e1bff4d1c19a81a",
+  "roundId": "cards-324ecf240e65c30c7af4876044d4ccdd",
+  "viewer": 0,
+  "source": "11_cards_real_table_before_draw.png",
+  "source_sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+  "elapsed_seconds": 9.019299
+}

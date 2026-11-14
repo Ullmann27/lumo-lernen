@@ -1,0 +1,589 @@
+{
+  "schema": 1,
+  "commit": {
+    "sha": "d0ba260dd55ec2654d25871973c696264be0f3ad",
+    "node_id": "C_kwDOSNzcp9oAKGQwYmEyNjBkZDU1ZWMyNjU0ZDI1ODcxOTczYzY5NjI2NGJlMGYzYWQ",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/d0ba260dd55ec2654d25871973c696264be0f3ad",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/d0ba260dd55ec2654d25871973c696264be0f3ad",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:02:24Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:02:24Z"
+    },
+    "tree": {
+      "sha": "7c523123bd0159b1f1c24ceeb73de3368b9f2063",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/7c523123bd0159b1f1c24ceeb73de3368b9f2063"
+    },
+    "message": "docs: bind current native renderer reviews and Treasure visibility blocker",
+    "parents": [
+      {
+        "sha": "20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/20fbe81804d91e2fc4270a83cfa3038e8557b71d",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/20fbe81804d91e2fc4270a83cfa3038e8557b71d"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref_readback": {
+    "ref": "refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "node_id": "REF_kwDOSNzcp9oAOXJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby00YWI5NjY2Ni1ldmlkZW5jZS0yMDI2MTExNA",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "object": {
+      "sha": "d0ba260dd55ec2654d25871973c696264be0f3ad",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/d0ba260dd55ec2654d25871973c696264be0f3ad"
+    }
+  },
+  "tree_proof": {
+    "tree_sha": "7c523123bd0159b1f1c24ceeb73de3368b9f2063",
+    "old_preserved": 6227,
+    "new_files": 73,
+    "total_files": 6300,
+    "total_tree_entries": 7211,
+    "truncated": false
+  },
+  "constructed_trees": [
+    {
+      "directory": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources",
+      "sha": "cd1dcb6133aff1a2b5b23c64d84ffe2adad60ac2",
+      "entries": 3
+    },
+    {
+      "directory": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation",
+      "sha": "8d04bb3d161bad2da67545d1d4f3392da96f00fa",
+      "entries": 17
+    },
+    {
+      "directory": "docs/evidence/studio-native-acf51-observation-20261114/additional-workflows",
+      "sha": "c1b6a8d3501a84f981b8416945528c9574e4377a",
+      "entries": 1
+    },
+    {
+      "directory": "docs/evidence/studio-native-acf51-observation-20261114/completed-success",
+      "sha": "37026d7b3f13b7efafff11f495e489b14715d14e",
+      "entries": 2
+    },
+    {
+      "directory": "docs/evidence/studio-2020-acf51-review-root-20261114/blocked-originals",
+      "sha": "77156109776f3aac2afcfc830bfad75a6d870074",
+      "entries": 2
+    },
+    {
+      "directory": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests",
+      "sha": "4c1f663a92fb84cab386fbd14c2d98d0ca0b6d0f",
+      "entries": 5
+    },
+    {
+      "directory": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds",
+      "sha": "d165fb1e4b0f7308a394e01b87ae3ae5101c7b2a",
+      "entries": 3
+    },
+    {
+      "directory": "docs/evidence/studio-native-acf51-review-20261114/log-review",
+      "sha": "6146012514144dbcaf5ef7775e126bd686f9c6a6",
+      "entries": 3
+    },
+    {
+      "directory": "docs/evidence/studio-2020-native-acf51-review-20261114",
+      "sha": "64baa384a82cb23eaf2b344112eb18d14f4ee0af",
+      "entries": 5
+    },
+    {
+      "directory": "docs/evidence/studio-native-acf51-observation-20261114",
+      "sha": "57727cc4859d567a0462994fc3f9ad7e4cb63750",
+      "entries": 15
+    },
+    {
+      "directory": "docs/evidence/studio-2020-final-module-scope-20261114",
+      "sha": "c4ce3eb1b58fd6686ec106c96c7e330bf8e70e80",
+      "entries": 6
+    },
+    {
+      "directory": "docs/evidence/studio-2020-acf51-review-root-20261114",
+      "sha": "22ae94b0d6048ef0ec20a6a48d3b319295e75894",
+      "entries": 17
+    },
+    {
+      "directory": "docs/evidence/studio-2020-native-acf51-image-review",
+      "sha": "4fbc0c7efa19e83877de34855e6f7c959a67484e",
+      "entries": 1
+    },
+    {
+      "directory": "docs/evidence/studio-native-acf51-review-20261114",
+      "sha": "4473b7834c770feed67135c804c2d94f900877ac",
+      "entries": 1
+    },
+    {
+      "directory": "docs/evidence",
+      "sha": "b5178e8f8d74ae5792625ef5eb387a0446390c59",
+      "entries": 112
+    },
+    {
+      "directory": "docs",
+      "sha": "7b8f052d6375116f77d25e82c418ac0d0ee21f20",
+      "entries": 113
+    },
+    {
+      "directory": "",
+      "sha": "7c523123bd0159b1f1c24ceeb73de3368b9f2063",
+      "entries": 26
+    }
+  ],
+  "targets": [
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4584dd7ae5a99110da6a100c6f7c306b7ff160b"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72bd42203c96c14eda36f83502a45a1dc961a245"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/source-workflow-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e31a43169413c6bf98cbe6a21625d36d24e4e5ee"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/expected-job-contract.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3df68322e879e395d50320a3f769253760d081e6"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/workflow-at-acf51.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-run-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57bde1cb00261d446277d4fa9adccfbf08d39ecb"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-jobs-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "373a1de415f67d76b217ecbabbad8f26f632457f"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-artifacts-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54f93ba7ea0c9cf42d24c9f122cab5e8a27619b8"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-artifact-selected.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d40de01c62bc14b9c2b49bb168f8bffdc08e4a4"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-release-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fea9c7b3e62f40e89d468f9afc78375ed71aa814"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-release-ref-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b5aa76302d748cfe33194f375452d0fcd2b194b"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/final-commit-workflows-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b3063c504629ee0735f7aa1ded7494e6cdcdb46"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/archive-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cb63b6f732ed9ed802f2a68d922325306f76edc"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db7cfeaae76417752f28d3472d7547edf60ca30d"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c8228fee5f621a1f361469df357f0ec7254f4b3"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-observation-20261114/additional-workflows/stage2-success-jobs-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "226302b28b8483ad9b93e1a96b45bad221c92e83"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/native-observation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a97c7da3c0f2bf81363c70eb0ba7012f5c83a35c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/selection-games_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d09bbad6eacb57feeb17834b4349ee4ec797d132"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/review-games_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbc9712971b8520c440751784852a1b73b8a8cf4"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/games-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03ad386ca033c3db4ecc19c5bc892809a7f3b39a"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27cf0570dbdd9907e68d446397cc926d8eb1fb99"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2608af1512c5da08bba6f658551a33fdc09f9cd"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_2014.sh.github.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "970efc04caccc7acfd2897a4696cb5ec4bb162dd"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_project.sh.github.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02441b7a83a5c42a8f4f6357b8a29703d12dc869"
+    },
+    {
+      "path": "docs/evidence/studio-native-acf51-review-20261114/log-review/exact-sources/validate_technical_art.sh.github.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8485b2de6452e8fcfb0619d23dc3411557ff5a0"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/log-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cbde4222bda7cfd6f8933a1c0315635c97038a9c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-selected-byte-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3833df2f431b3a8dbd6388a06756e6a37cbfa51a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/selection-learning_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55229a9052230773ceebb9ab266c092bf42eb1f3"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-image-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d42ec60fa1a3c977c8d66820781505085b889da3"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/learning-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8d385bd35cc2eeee098cb2a05cf157a2dc856ef"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/selection-character_animation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43deb9c483273776ff451b1cd1dcfc0afabca93c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/review-character_animation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f92404f3127bcf822e5a43e06e6fe55616218d80"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/decode-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffaf4f3ae2b0e674ac6f619c78053fac76657902"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-decode-stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-001-012.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6f0be7995e4f5deb8f8955abfc06090ed2f579b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-013-024.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10abe8b9c992618cbf1b97b4a6df7865840580b8"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-025-036.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b47c2a38b263ae81c3c4f57ab318114645b124d9"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-037-048.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2319ff39825caac190bec96079eba100d19b792c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-049-060.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dda192e1c3b713cc13a526609e710eaf972046df"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-061-072.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f072f45a57544f72af348c18b530281f41d69e24"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-073-084.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05cc4fe135c10a528be657b9693fe6164f648bbc"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-085-096.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c7e98b793f3d2fc6dd2bdc506e06c9fec6c0f92"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-097-108.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0cb8c044af8a381527d650521638ff8d5f3598a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-109-120.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b77f373317c0d8291e99a3c48585933f1ea6edbc"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-121-132.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d03894ff802cbf67d447977bfb405f9e0ffafec"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-133-144.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfc4029aa33ce40e0eb10cd421f847ee1524732d"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-145-148.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46d9cad74f090b0fe9a543af9f8bad3090247cf4"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-015.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3aedbda4f0e6d8f429641bca4496271e2277e95"
+    },
+    {
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-019.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "876b6426688950f04f25a2016102871730dbe145"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/input-manifests/character-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6daf2931bd327d8501c6ea11a715e6a9de921b12"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9b2bf0994555c0101241adb0a10e40e56f4b14a"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "596e0e9f2d92980930a012e5e07147db89281786"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-artifact.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d40de01c62bc14b9c2b49bb168f8bffdc08e4a4"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a17019bbfd5450cf640a6037029e5de0539ed804"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/native-release.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10dc8e977c4fc63b004a3b2d92173e4dd9c25f61"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/required-image-review-plan.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4140b3042d5b224403a40fbf21ba9c9f6edd463b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/verified-original-extraction.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "489fb650c26e57d2997d73b8d195ca4a9c6b9ab8"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/extraction-first-setup-failure.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbb4e9d3f8334ce065afb2d896d17d51d0f7af73"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/selection-root.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d48e3b9c34c5b4710c9ef06a82a81551da50a6fe"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/root-visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c46137f9b4e7cb42820f27b31b04dc08ba27c95"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/blocked-originals/treasure-landscape-cutout-original.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d956ff6e3def794654c45a67bf2ec2cac2ae7a9"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/blocked-originals/treasure-compact-original.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2826e3259450d9eb230cc54d877f135686eb98c"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/previous-555-github-checkpoint.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82dd03ebf388a4c540cc6ddd77be9609df09cb82"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/module-scope-verified-tree-input.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e461fc1fe03ab8ae6bc2c6c075029ff45818dece"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/module-scope-blob-upload-proof.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33102556983a802f65e60a9beda9dc886ec7ac31"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f582218c703c8217a0553882e2b9de4dd7642827"
+    },
+    {
+      "path": "docs/evidence/studio-2020-acf51-review-root-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c1786882dacf18094c10b397f84de9b279683b6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-final-module-scope-20261114/MODUL_ABNAHMEMATRIX.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a4025597c34194b9cc248ca970e1ff5f5cf884d"
+    },
+    {
+      "path": "docs/evidence/studio-2020-final-module-scope-20261114/host-entry-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2aca0cbf537347dcc4d7600a0587c0d173048be6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-final-module-scope-20261114/staged-host-entry-deltas.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0118a64579dd96258061b821b11c3913b2c75522"
+    },
+    {
+      "path": "docs/evidence/studio-2020-final-module-scope-20261114/entry-catalog-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6f22ee136206d9a8f384c00d85698d12818568b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-final-module-scope-20261114/evidence-source-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27a24d4b2c483518876a1481d0ea49956ef43838"
+    },
+    {
+      "path": "docs/evidence/studio-2020-final-module-scope-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b20e20d3df5e4bcb0cb910dad3309dfae302d9f5"
+    }
+  ],
+  "transport_error": {
+    "file": "docs/evidence/studio-2020-acf51-review-root-20261114/module-scope-blob-upload-proof.json",
+    "sha": "33102556983a802f65e60a9beda9dc886ec7ac31",
+    "error": "RemoteProtocolError: Server disconnected without sending a response.",
+    "confirmed_before_error": 64
+  }
+}

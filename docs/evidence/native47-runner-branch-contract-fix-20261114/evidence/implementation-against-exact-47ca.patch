@@ -1,0 +1,31 @@
+--- a/tools/tests/test_nextgen_runner.py
++++ b/tools/tests/test_nextgen_runner.py
+@@ -767,7 +767,27 @@
+ 
+     def test_new_workflow_preserves_all_required_jobs_and_exact_source_archive(self):
+         workflow = (ROOT / '.github/workflows/lumo-studio-2020.yml').read_text()
+-        self.assertIn('branches: [chatgpt/lumo-studio-2020-20261114]', workflow)
++        allowed_branches = (
++            'chatgpt/lumo-studio-2020-20261114',
++            'chatgpt/lumo-nextgen-feature-20261114',
++        )
++        push = workflow.split('\n  push:\n', 1)[1].split('\n  workflow_dispatch:', 1)[0]
++        branch_lists = re.findall(r'^    branches: \[([^\]\n]+)\]$', push, re.M)
++        self.assertEqual(len(branch_lists), 1)
++        self.assertCountEqual(
++            [branch.strip() for branch in branch_lists[0].split(',')], allowed_branches)
++        archive = workflow.split('\n  archive-evidence:\n', 1)[1]
++        self.assertEqual(re.findall(r'^    if: (.+)$', archive, re.M), [
++            "github.repository == 'Ullmann27/lumo-godot' && "
++            "(github.ref_name == 'chatgpt/lumo-studio-2020-20261114' || "
++            "github.ref_name == 'chatgpt/lumo-nextgen-feature-20261114')",
++        ])
++        self.assertIn('      SOURCE_SHA: ${{ github.sha }}', archive)
++        self.assertIn('      RUN_ID: ${{ github.run_id }}', archive)
++        self.assertIn(
++            "assert artifact['workflow_run']['head_sha'] == os.environ['SOURCE_SHA']", archive)
++        self.assertIn(
++            "assert artifact['workflow_run']['id'] == int(os.environ['RUN_ID'])", archive)
+         self.assertIn('scope: [workshop, treasure, build]', workflow)
+         for job in ('learning-preview', 'gameplay', 'new-worlds', 'studio', 'touch-density', 'bundle-evidence', 'archive-evidence'):
+             self.assertIn('  ' + job + ':', workflow)

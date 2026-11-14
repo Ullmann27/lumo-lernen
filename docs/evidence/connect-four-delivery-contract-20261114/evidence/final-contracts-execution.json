@@ -1,0 +1,33 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_studio_connect_four_android_delivery.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/host",
+  "started_utc": "2026-11-14T05:30:56.428130+00:00",
+  "elapsed_seconds": 2.4944564799952786,
+  "exit_code": 0,
+  "source_before": {
+    "scripts/verify_studio_connect_four_android.py": "b17f88f8d499e28be1663d9bcf1ada451221703174939fa60fde8bf990363e4c",
+    "scripts/tests/test_studio_connect_four_android_delivery.py": "707e4aceed63868f282775035642ad6c6341bdcf75db211b3eb24109508963f4",
+    ".github/probes/lumo_connect_four_android_probe.py": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e"
+  },
+  "source_after": {
+    "scripts/verify_studio_connect_four_android.py": "b17f88f8d499e28be1663d9bcf1ada451221703174939fa60fde8bf990363e4c",
+    "scripts/tests/test_studio_connect_four_android_delivery.py": "707e4aceed63868f282775035642ad6c6341bdcf75db211b3eb24109508963f4",
+    ".github/probes/lumo_connect_four_android_probe.py": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e"
+  },
+  "source_unchanged": true,
+  "log_sha256": "3f2003f657adb4f46aa20def6f6fd8fd7cfaa44e4e539ba84045a10821a6b28e",
+  "scope": "Synthetic local parser/negative contracts only; no Android device, publisher receipt, or real runtime execution"
+}

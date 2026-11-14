@@ -1,0 +1,249 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T18:52:55.647506+00:00",
+  "status": "completed_english_job_and_current_images_accepted_with_explicit_limits",
+  "source_binding": {
+    "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+    "host_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+    "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+    "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+  },
+  "run": {
+    "id": 43626348519,
+    "attempt": 1,
+    "event": "pull_request",
+    "status_at_saved_snapshot": "in_progress",
+    "conclusion_at_saved_snapshot": null,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43626348519"
+  },
+  "job": {
+    "id": 132543177130,
+    "name": "Nextgen english actual authority",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-14T18:24:34Z",
+    "completed_at": "2026-11-14T18:34:55Z",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43626348519/job/132543177130"
+  },
+  "status_source": "jobs-terminal-English-original.json, not PASS strings alone",
+  "artifact": {
+    "id": 14126931759,
+    "name": "lumo-studio-2020-nextgen-authority-english",
+    "size_in_bytes": 4562890,
+    "sha256": "4a5eac90950324658934671a6c9fc4d6a9b77b52cf7d11350c86e28e43838324",
+    "single_download": true,
+    "all_63_members_full_crc_and_post_review_byte_comparison": true
+  },
+  "actual_results": {
+    "dart": {
+      "cases": 10,
+      "checks": 2955,
+      "failures": 0,
+      "original": "originals/english-authority.log",
+      "line": 11,
+      "producer": "originals/english-activity.json",
+      "producer_sha256": "b764a959c0151cfb83cbd477ec0e318c76f19821bfaeba2cf930cdc926e3cd50",
+      "examples": 14,
+      "kind": "actual Dart production contracts; synthetic child; no Android or reward claim"
+    },
+    "godot": {
+      "checks": 7576,
+      "failures": 0,
+      "cases": 14,
+      "captures": 17,
+      "hint_layouts": 14,
+      "input_event_records": 196,
+      "original": "originals/english-native/learning-english-report.json",
+      "marker_log": "originals/english-render.log",
+      "marker_line": 74,
+      "renderer": "X11",
+      "fixture_kind": "actual_dart_producer_report",
+      "scope": "actual production Godot scene; explicit platform/JNI/audio fixtures; no Android/FPS/mastery claim",
+      "cases_return_count": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cases_reward_count": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "project_validation": {
+      "pass": 117,
+      "warnings": 7,
+      "fail": 0,
+      "original": "originals/project-validation.log",
+      "summary_line": 128
+    }
+  },
+  "image_review": {
+    "path": "image-review.json",
+    "images_personally_reviewed": 17,
+    "single_file_recheck": true,
+    "blocking_issues": 0,
+    "correction_record": "review-correction.json"
+  },
+  "tracked_trees_unchanged_step": {
+    "name": "Verify both tracked source trees remain unchanged",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 15,
+    "started_at": "2026-11-14T18:34:47Z",
+    "completed_at": "2026-11-14T18:34:48Z"
+  },
+  "matrix_only_skips": [
+    {
+      "number": 11,
+      "name": "Play all twenty Quiz questions through the real Dart and Godot processes"
+    },
+    {
+      "number": 12,
+      "name": "Reject inconsistent Memory pair evidence"
+    },
+    {
+      "number": 13,
+      "name": "Render the actual Memory geometry and touch layouts"
+    },
+    {
+      "number": 14,
+      "name": "Play Memory through the actual Dart and Godot processes"
+    }
+  ],
+  "warnings": [
+    {
+      "path": "originals/project-validation.log",
+      "line": 51,
+      "text": "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "path": "originals/project-validation.log",
+      "line": 52,
+      "text": "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "path": "originals/project-validation.log",
+      "line": 53,
+      "text": "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "path": "originals/project-validation.log",
+      "line": 54,
+      "text": "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "path": "originals/project-validation.log",
+      "line": 55,
+      "text": "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "path": "originals/project-validation.log",
+      "line": 56,
+      "text": "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "path": "originals/project-validation.log",
+      "line": 115,
+      "text": "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)"
+    },
+    {
+      "path": "originals/english-render.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "path": "originals/english-render.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "path": "originals/english-render.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    }
+  ],
+  "warning_interpretation": "Preserved concrete warnings; no assertion that they are harmless and no inference that the visibly rendered Lumo uses an absent alias. Renderer limitations are distinct from missing alias checks.",
+  "source_hashes_match_five_fresh_native_files": true,
+  "versions": {
+    "dart": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\"",
+    "godot": "4.6.3.stable.official.7d41c59c4"
+  },
+  "bindings": [
+    {
+      "path": "original-english-job.log",
+      "bytes": 310142,
+      "sha256": "019ea59ea2236c2c9fa30c456205fa575f94a09ee77a765a34073bffde2624cb",
+      "git_blob_sha": "49aba012d3ce1904469b6d6d3619fcd9d8b9e768"
+    },
+    {
+      "path": "originals/english-activity.json",
+      "bytes": 16729,
+      "sha256": "b764a959c0151cfb83cbd477ec0e318c76f19821bfaeba2cf930cdc926e3cd50",
+      "git_blob_sha": "124bd66f09a19d3a7baefb4304b3ffdf39fc3cf7"
+    },
+    {
+      "path": "originals/english-native/learning-english-report.json",
+      "bytes": 138916,
+      "sha256": "40e2f15137f4192b0beefba37bc9dff7b2852cec884b29e51f61420c8273789e",
+      "git_blob_sha": "f3245e8d94f37a025b1e20cabcc3920afa4a8f6b"
+    },
+    {
+      "path": "image-review.json",
+      "bytes": 27402,
+      "sha256": "e815cd650d3a1d362396285b51ad2520274fcff2565a55bbadd486eb6cd6495c",
+      "git_blob_sha": "45b0b4eaf31424cfeff191b7508812f7a4afdb8e"
+    },
+    {
+      "path": "review-correction.json",
+      "bytes": 1305,
+      "sha256": "0486471f1df48edb064c57a7820ed6d0ece650f5edecd94fa1ef77dad5c20a7b",
+      "git_blob_sha": "4ade9ec667916d6e86547850bede678fbed5ce4e"
+    },
+    {
+      "path": "post-review-original-binding.json",
+      "bytes": 27417,
+      "sha256": "74ad347024914a11cf0943d715bbdf02405517798467f3212990cad77d7852af",
+      "git_blob_sha": "68163c8ff4b197a70bcd0c5568ae1990c48085e4"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 2486,
+      "sha256": "9f0b2a7af23db3135b5c90ba2bb8d898e21606a9710858962b3b1999458bc7b9",
+      "git_blob_sha": "29416943b638135dc2387501063df6506714cd74"
+    }
+  ],
+  "limitations": [
+    "Actual Godot X11/software renderer, with explicit platform, JNI and audio fixtures; not Android or Fold7 evidence.",
+    "17 image views and their repeat single-file association check are review work, not additional functional tests.",
+    "Reported 52 dp UI and 48 dp spatial targets are checked in the declared platform fixture; no physical-device touch or thermal/FPS result follows.",
+    "No audio was listened to; English pronunciation and actual ONNX inference remain unverified by this job.",
+    "No child, mastery or reward claim: producer uses a synthetic child and renderer records zero rewards in every case.",
+    "Simple geometric objects and visible hard shadows are accepted in this narrow exercise scope; no AAA or broader art-quality completion claim.",
+    "Overall Studio run and APK/Android result remain outside this completed English job review."
+  ],
+  "local_product_changes": false,
+  "new_local_functional_runs": false
+}

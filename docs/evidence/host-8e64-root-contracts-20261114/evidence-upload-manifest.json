@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/memory-source-original-job.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/memory-source-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 35384,
+      "sha256": "319603c021dc7981914612fe8341ef373707ead3ccb63b481614be275c1824fe",
+      "sha": "d1c7dfbf3f542d79ee7f48d39ee2f97330fa4aa4"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/memory-source-byte-binding.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/memory-source-byte-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 305,
+      "sha256": "3d57d98ce99929ba75c367c961b873ccd158b77653fd58ebfefb5149f400b90c",
+      "sha": "f3ac716e5db72e9ac121ec75bb91f565b074e506"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/android-host-compile-original-job.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/android-host-compile-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 248302,
+      "sha256": "76b15955621ed28f1c7e86638e0043520b131bee895198af2caab4926d2e07ba",
+      "sha": "ab9fb8282ebbfb4609d984aaf330072b65385ede"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/android-host-compile-byte-binding.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/android-host-compile-byte-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 313,
+      "sha256": "3b71859b31582f12efcc66057de55d3ef813e24fe8c1e3ef9983d2d5fe72c466",
+      "sha": "9dfd65927a7b68ba2dbb1fecf58bc08f8e505e9a"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/review.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2376,
+      "sha256": "fdd370957f4fac9a97b48d950e8731af6286a40e7dca9a1752ac7f12990439df",
+      "sha": "8fa4fa0a9fa182509e8c4eae1381e9c2fe129209"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/artifact-byte-binding.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/artifact-byte-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2743,
+      "sha256": "1656c250f7ae9eea6402d79f1330e47afe07e60226f01533c40bea9b11e88f89",
+      "sha": "ee0a8186c45cea817a31fafc6f919b3a7ccf0eda"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/cards-authority-registry.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/cards-authority-registry.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1325,
+      "sha256": "aaa261826ad7dd3a3dc82e56ea1cbd7c903f283578172e2134e96eb543cd93f8",
+      "sha": "8864b9cdee0c93295b8bf2a241c71f6642845a58"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/flutter-version.txt",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/flutter-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/compile.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 34386,
+      "sha256": "efcfca43ce9d611acf2eab1e012856fce29be46219fb48f74d459ca62efde0fa",
+      "sha": "122f2f648abbab04ec9a49fb6c0fd799612f24b1"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/result.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5235,
+      "sha256": "5feb10d715ab316a651342e6e9859b391e25e9cc1c79486596f85625cbb44347",
+      "sha": "db1846d1584c312c8836987e63e0aea459823367"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/source-sha.txt",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/source-sha.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 41,
+      "sha256": "e4a9b32fc44d2dca93383813ee0db285ccc87eb9388f8982c90c4a7c58519847",
+      "sha": "6633277812f5ac6ae279bbd09c8ed8c21d89b9bf"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/speech/resolved-toolchain.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/speech/resolved-toolchain.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 321,
+      "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+      "sha": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/speech/result.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/speech/result.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 62736,
+      "sha256": "ac73fe00d15c8c22f3f2703f8684bbfdd02a18b78b8e825e25068ee322ad2e99",
+      "sha": "2f8a3ed113a8229f55a7861f38d4fbf4852a36e1"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_english_lesson_speech.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_english_lesson_speech.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1338,
+      "sha256": "260a8cdb3fc8c87ef5cdc8f487695f8743ea04de844914e92c8ae2289748d6c5",
+      "sha": "71b6fa1abba514759376e3948c9ffba43ec1680f"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_english_lesson_speech.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_english_lesson_speech.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2894,
+      "sha256": "522e9234a954a0901144b4d54a2748fa2bf406cfee38cbf595e0ce6b85a12913",
+      "sha": "bb49e8aeb8cf80980bfb9afdd74774f684e4ea7c"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_learning_english_speech_lifecycle.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_learning_english_speech_lifecycle.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1264,
+      "sha256": "9a4b3a178d283d32e83cfdd9d535c2ad5a5ee3fa9222124690b1d6a83c907f6d",
+      "sha": "83f92eb824e4bbd230b04f593f8a0f558249af5f"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_learning_english_speech_lifecycle.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/speech/test_learning_english_speech_lifecycle.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2709,
+      "sha256": "b0c4033fd159753d2b887bf320816814d2702a953bcbc526c887e98c55b664d4",
+      "sha": "4da8677a071b6f81f22c1190bad6612c3067057b"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/speech/toolchain-original.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/speech/toolchain-original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 493,
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+      "sha": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14130045642/originals/table-native-contracts.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14130045642/originals/table-native-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4804,
+      "sha256": "4dfe33ea5d354396b51270f2d906364e554e688263e61a854e1cef3661cc1071",
+      "sha": "eb799e7ae9500830866e68d634b9460d0908887e"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14129147269/artifact-byte-binding.json",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14129147269/artifact-byte-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1158,
+      "sha256": "92330179fd323155f2009f83ae3721c1fe2fe77c397d29a27870a75ba308293e",
+      "sha": "bfb854aa8f2869465d32c827bf67198f841bd1ae"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14129147269/originals/HOST-SOURCE.txt",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14129147269/originals/HOST-SOURCE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 41,
+      "sha256": "e4a9b32fc44d2dca93383813ee0db285ccc87eb9388f8982c90c4a7c58519847",
+      "sha": "6633277812f5ac6ae279bbd09c8ed8c21d89b9bf"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14129147269/originals/dart-version.txt",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14129147269/originals/dart-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14129147269/originals/memory-round.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14129147269/originals/memory-round.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2319,
+      "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c",
+      "sha": "0cad364c865f41f80773ef4ee4f69481b38da342"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14129147269/originals/memory-scheduler.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14129147269/originals/memory-scheduler.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 689,
+      "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1",
+      "sha": "f2cf3690ef4b28288d3651930fd581e8357eecf5"
+    },
+    {
+      "local": "qa/host-8e64-root-contracts-20261114/14129147269/originals/quiz-round.log",
+      "path": "docs/evidence/host-8e64-root-contracts-20261114/14129147269/originals/quiz-round.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1785,
+      "sha256": "7429cc464b0ce54672578ea38c427db97e5539cf358495d57b1aa2865ee08981",
+      "sha": "de8bc090571162465efc431735bcde5f8f9ec92c"
+    }
+  ]
+}

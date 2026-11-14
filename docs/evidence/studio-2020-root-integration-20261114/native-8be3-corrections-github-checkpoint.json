@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "commit": {
+    "sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "node_id": "C_kwDOSpcSONoAKGFjZjUxZDNiZDI5OTdjNGI3MzFlOWE0OGUxNzkxZTA1ZTc1NmExMzI",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/commit/acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T06:10:47Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T06:10:47Z"
+    },
+    "tree": {
+      "sha": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/625d501c8517fa88787a0a415cd5d5b2e75ac845"
+    },
+    "message": "Fix Studio 2020 import stability and original-model/movie acceptance\n\nRetain the original GLB guard alongside the explicit facial derivative. Canonicalize only Godot-generated eyelid import fields. Set capture-only MovieMaker dimensions before writer initialization and preserve the strict 640x640 roster with an additional negative fixture.\n\nThe failed 8be3 CI remains recorded. Targeted original red/green and actual new movie proofs are documented; a fresh complete native run remains required. Production project defaults, assets, old workflows and Main are unchanged.",
+    "parents": [
+      {
+        "sha": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/8be3a95d5d948d457c4c39bc6694138d60b70027",
+        "html_url": "https://github.com/Ullmann27/lumo-godot/commit/8be3a95d5d948d457c4c39bc6694138d60b70027"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "node_id": "REF_kwDOSpcSONoALHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDIwLTIwMjYxMTE0",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "object": {
+      "sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    }
+  },
+  "tree_proof": {
+    "base_commit": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+    "base_tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+    "new_tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+    "base_files": 2234,
+    "new_files": 2235,
+    "preserved": 2230,
+    "changed": [
+      "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "scripts/tests/lumo_attention_landing_regression.gd",
+      "scripts/tests/lumo_facial_capture.gd",
+      "tools/tests/test_nextgen_runner.py"
+    ],
+    "added": [
+      "docs/studio-2020-ci-corrections.md"
+    ],
+    "unexpected_changes": []
+  },
+  "source_manifest_sha256": "328e7aa626825c523fc923a1a88a399ee8bb4235fdbb529c460b4bf6054a070a",
+  "main_preflight": {
+    "ref": "refs/heads/main",
+    "node_id": "REF_kwDOSpcSOK9yZWZzL2hlYWRzL21haW4",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/main",
+    "object": {
+      "sha": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+    }
+  },
+  "previous_studio_ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-20261113",
+    "node_id": "REF_kwDOSpcSONoAJ3JlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDI2MTExMw",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/chatgpt/lumo-studio-20261113",
+    "object": {
+      "sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    }
+  },
+  "new_ci_pass_claimed": false
+}

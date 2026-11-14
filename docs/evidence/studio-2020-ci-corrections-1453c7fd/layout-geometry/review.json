@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "source_host": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "scope": "read_only_geometry_and_existing_fold_test_review",
+  "sources": [
+    {
+      "path": "qa/studio-2020-integration/assembled/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+      "scope": [
+        "build and outer constraints",
+        "_playArea",
+        "_columnControls",
+        "_board"
+      ]
+    },
+    {
+      "path": "qa/studio-2020-integration/assembled/host/test/games/connect_four_fold_controls_test.dart",
+      "sha256": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd"
+    }
+  ],
+  "test_execution": false,
+  "product_mutation": false,
+  "product_owner": "root",
+  "recommended_geometry": {
+    "shared_horizontal_content": true,
+    "shared_scroll_offset": true,
+    "inset_dp": 12.4,
+    "minimum_content_width_dp": 360.8,
+    "column_width_formula": "(content_width - 24.8) / 7 >= 48",
+    "common_center_formula": "origin_x - scroll_offset + 12.4 + (column + 0.5) * (content_width - 24.8) / 7",
+    "reserved_vertical_space_dp": 84,
+    "vertical_reservation_parts": {
+      "pedestal": 28,
+      "gap": 8,
+      "buttons": 48
+    },
+    "board_height_formula": "min(content_width * 6 / 7, play_area_height - 84), subject to explicit visual floor and vertical scrolling below the floor",
+    "board_layout": "Remove the old AspectRatio; use the tight parent width and explicit height. Bind pedestal height to actual board_height.",
+    "circular_discs": "The existing min(cellW,cellH) calculation preserves circles when row height differs from column width.",
+    "chosen_visual_floor": {
+      "row_height_dp": 24,
+      "outer_board_height_dp": 168.8,
+      "total_content_height_dp": 252.8,
+      "status": "Root accepted design choice, not a platform requirement or measured device minimum"
+    }
+  },
+  "source_derived_cases": [
+    {
+      "screen_width_dp": 320,
+      "orientation": "portrait",
+      "play_viewport_width_dp": 296,
+      "content_width_dp": 360.8,
+      "horizontal_scroll_extent_dp": 64.8
+    },
+    {
+      "screen_width_dp": 360,
+      "orientation": "portrait",
+      "play_viewport_width_dp": 336,
+      "content_width_dp": 360.8,
+      "horizontal_scroll_extent_dp": 24.8
+    },
+    {
+      "screen_size_dp": [
+        640,
+        360
+      ],
+      "orientation": "landscape",
+      "play_viewport_width_dp": 348,
+      "content_width_dp": 360.8,
+      "horizontal_scroll_extent_dp": 12.8,
+      "assumed_play_height_dp": 280,
+      "board_height_dp": 196,
+      "row_height_dp": 28.53333333333333,
+      "disc_diameter_dp": 22.826666666666668,
+      "assumption": "No system insets, default 48dp header targets plus 8dp padding, unchanged 20dp outer padding and 20dp gutter with 3:2 split"
+    }
+  ],
+  "unchanged_aspect_ratio_counterexample": {
+    "minimum_board_height_dp": 309.25714285714287,
+    "total_height_dp": 393.25714285714287,
+    "finding": "393.26dp total cannot fit the normal 640x360 play area."
+  },
+  "existing_test_scope": [
+    "One 320x740 viewport.",
+    "Switches to two-player mode before size/reachability assertions.",
+    "Checks all seven render boxes for at least 48x48dp.",
+    "Uses ensureVisible for the last button, taps it and checks a real child piece in row 5/column 6.",
+    "Does not perform a finger swipe or compare exposed clipping intersections or board/button centers.",
+    "Does not cover 640x360 or enlarged text."
+  ],
+  "constraints": [
+    "Retain all seven column mappings, keys and existing move assertions.",
+    "Do not scale buttons or use an input overlay to disguise the mismatch.",
+    "Each target must be fully exposable through the shared horizontal scroll.",
+    "At extreme text scale, a scroller only inside a zero-height play area is insufficient: outer portrait content must remain scrollable or reserve a nonzero play viewport.",
+    "No native 3D, rules, saves or clock changes are part of this geometry fix."
+  ],
+  "limits": [
+    "No Flutter/Godot/Android execution.",
+    "No post-fix runtime/visual approval.",
+    "Derived dimensions are explicitly source arithmetic, not new device measurements."
+  ],
+  "persistence_status": "saved_after_exec_recovery",
+  "saved_at_utc": "2026-11-14T09:03:02.404Z"
+}

@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T06:08:23.319611+00:00",
+  "baseline_native": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "source_manifest": {
+    "bytes": 1502,
+    "sha256": "4e5e85902a32660e67057917e4071d9e0d8ff8014adcff507da27fdc8f15f8f2",
+    "git_blob_sha": "2326f574b6e0968024e5a146caa1357214cdc80a"
+  },
+  "status": "PASS for the narrow recording-resolution repair; full next Native CI and Android remain pending",
+  "original_failed_run": 43561885899,
+  "original_failed_job": 132347187651,
+  "original_artifact": 14100974125,
+  "original_zip_sha256": "46db85923551b9e6508047fba6d8d096540e081b2d1ac3680e753476936f3ce1",
+  "original_sidecar_size_px": [
+    720,
+    1280
+  ],
+  "local_new_movie": {
+    "bytes": 1178093,
+    "sha256": "498f3670e0148ffdd0bd581147b5d312c0dac82d3cd4e3b4fab58747c87765d0",
+    "git_blob_sha": "587757210dddbdd1d95633d9f77991b0321e92b6"
+  },
+  "actual_streams": [
+    {
+      "codec_type": "video",
+      "codec_name": "h264",
+      "width": 640,
+      "height": 640,
+      "r_frame_rate": "24/1",
+      "nb_read_frames": "148",
+      "duration": "6.166667"
+    },
+    {
+      "codec_type": "audio",
+      "codec_name": "aac",
+      "width": null,
+      "height": null,
+      "r_frame_rate": "0/0",
+      "nb_read_frames": "290",
+      "duration": "6.166000"
+    }
+  ],
+  "full_decode_exit_code": 0,
+  "all_decoded_frames_actually_viewed": 148,
+  "review_method": "All 13 indexed contact sheets opened, plus all 8 full-resolution original PNGs individually opened. No claim of continuous real-time video playback or physical audio listening.",
+  "sequence_findings": [
+    "Frames 1–25 show the valid Apfel task and moving Original-Lumo.",
+    "Frame26 intentionally switches to the inspection close-up; face stays visible and unstretched through frame145.",
+    "Actual visible blink near frame45, re-opened intermediate frame46; further blink near135.",
+    "Three local Apfel playback phases and muted/stopped closed-mouth phases are represented; amplitude-driven closed-muzzle articulation remains subtle.",
+    "Frames146–148 show the normal empty teardown viewport after queued scene removal; no intermediate blank run."
+  ],
+  "sidecar_checks": {
+    "rows": 144,
+    "actual_max_jaw_weight": 0.699060499668121,
+    "audible_jaw": true,
+    "muted_closed": true,
+    "stopped_closed": true,
+    "blink": true
+  },
+  "pngs": [
+    {
+      "file": "green-capture/teacher_scene.png",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "git_blob_sha": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Produktive gültige Apfel-Silbenszene, zwei Slots, zwei getrennte Silbenobjekte und Original-Lumo links sichtbar; keine gelöste Aufgabe behauptet."
+    },
+    {
+      "file": "green-capture/neutral.png",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "git_blob_sha": "8645e70de9f6badf6e4c260eaf02957c6e4ad147",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Originalkopf, Ohren, Brille, Augen und geschlossene Schnauze erkennbar; unverzerrte quadratische Nahaufnahme."
+    },
+    {
+      "file": "green-capture/audio_jaw.png",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "git_blob_sha": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Geschlossene Schnauze in lokaler Apfel-Wiedergabe; subtile Artikulation wird im Sequenzverlauf und über tatsächliche Meshgewichte belegt, kein offener Mund oder Phonemvisem."
+    },
+    {
+      "file": "green-capture/blink.png",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "git_blob_sha": "22808f200b3258d7ec2f25d3bac6ad3302742b0e",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Beide geometrischen Lider nahezu geschlossen; schmale Lid-/Augenkante bleibt sichtbar. Keine Formänderung durch diesen Aufnahmefix."
+    },
+    {
+      "file": "green-capture/blink_intermediate.png",
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "git_blob_sha": "1f7ca9f42343c3653990403225db5529808207da",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Beide Augen zwischen geschlossenem und offenem Zustand; geometrisch sichtbare Zwischenstellung."
+    },
+    {
+      "file": "green-capture/muted.png",
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "git_blob_sha": "87810252dcc1e0e627c267320a43e2cc8346f277",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Stumm-Beschriftung und geschlossene Schnauze; Null-Kiefergewicht und nicht hörbarer Wiedergabestatus sind zusätzlich im tatsächlichen Sidecar gebunden."
+    },
+    {
+      "file": "green-capture/gaze_left.png",
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "git_blob_sha": "67e626fd8edf3af3bf3c4955fd905047d9897e7c",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Kopf-/Blickausrichtung gegenüber Neutral verändert; Originalfigur erkennbar, keine behauptete unabhängige Augen-Trackingqualität."
+    },
+    {
+      "file": "green-capture/stopped.png",
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "git_blob_sha": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b",
+      "size_px": [
+        640,
+        640
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Pause/geschlossen und geschlossene Schnauze; Stop-/Nullwerte werden im unveränderten Bericht geprüft."
+    }
+  ],
+  "decoded_contact_sheets": [
+    {
+      "file": "green-decoded-review/frames-001-012.png",
+      "bytes": 251261,
+      "sha256": "8daf28c29635ec899bce5f047c7d7ea4f6cad4963c42634038eecab027459d5f",
+      "git_blob_sha": "3d727898fb567c7bf5f22452f4c88c41892f945d",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-013-024.png",
+      "bytes": 226873,
+      "sha256": "55c6cb610b46ce1039483b805efe81cc486ffdb63e28fbdf3d380d11c87d3035",
+      "git_blob_sha": "4ab6c3fe9b5c0f5bcc9669529de71fd1367e28ef",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-025-036.png",
+      "bytes": 693462,
+      "sha256": "e8a6713c488893c61686314c5eba2654346d5bc995ca213fbfd97f33cf1b71b6",
+      "git_blob_sha": "062f5cf7b368b8ea72410d968afd0894632ad5bf",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-037-048.png",
+      "bytes": 706854,
+      "sha256": "d3f890bb735dabd0d10365aebc4288c6da25e640ee44169ebc9f13d390683409",
+      "git_blob_sha": "bda7430312f9c53daea55bd4828172b3219db88f",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-049-060.png",
+      "bytes": 714773,
+      "sha256": "d4e36dc9442e2102b1507728fbac454e789e806525b7ab1c01b38beea1fd4328",
+      "git_blob_sha": "30314271df03d80fc57c6679fd081580c803b8b2",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-061-072.png",
+      "bytes": 715409,
+      "sha256": "dac84e935d5d8ada7980d2d7f8efaf2d680707c607431f5e43450414285aba20",
+      "git_blob_sha": "141e66a3a0425b2f8db1bff395d57137f18bcc06",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-073-084.png",
+      "bytes": 682431,
+      "sha256": "136769a2962eed0cb3203970202cb43a0a776749721848929be22ee2598833c4",
+      "git_blob_sha": "5c5ec75337a6f87ea0e203b20e2a908ddb2ed052",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-085-096.png",
+      "bytes": 699913,
+      "sha256": "d55fae197c6196c6db83de0742a0ca14e8baf0c391ecd63a53ee94e4619bf3d6",
+      "git_blob_sha": "3de7aa06109741fa653ef6e051001b85297784ac",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-097-108.png",
+      "bytes": 696637,
+      "sha256": "3566e44a47fb8b086be6b53345f3151855d7e5762aef2ec6252d93cb613417a3",
+      "git_blob_sha": "9c55c2d43386c05780d2b67f618f961bfdcc9482",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-109-120.png",
+      "bytes": 671231,
+      "sha256": "4dd75bb0264292fd8462552902ed8f5e7a4537cc33a792c3984059b4c4ea542a",
+      "git_blob_sha": "bc63e8c8d878bdb215932391c6472533eb0dee19",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-121-132.png",
+      "bytes": 691379,
+      "sha256": "bcb2cae4fb158efcb4492dd9ab534d843ec22a11c55803b33116df51287b5f4a",
+      "git_blob_sha": "a76bd44f9d486e3d6a23db587f24fc6be621bec9",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-133-144.png",
+      "bytes": 695108,
+      "sha256": "7d581397d81975b6a9f4c8c72d903a7e221ef4e66e55b38a08760f3fd37c22fc",
+      "git_blob_sha": "4e94924dea4c2716e4a6aa700655a20f487519ac",
+      "actually_opened_with_view_image": true
+    },
+    {
+      "file": "green-decoded-review/frames-145-148.png",
+      "bytes": 76579,
+      "sha256": "996223bf4981da33b9f8029f74c2dfa9c4c195265561e9457989bff0db458125",
+      "git_blob_sha": "0389afb701373f0bd95bc96df3320e85df330995",
+      "actually_opened_with_view_image": true
+    }
+  ],
+  "limits": [
+    "Actual local software-GL rendering using a private dependency closure, not Android/Fold7 performance.",
+    "24fps is the recording format; no 60fps or physical-device claim.",
+    "No phoneme lip sync, open-mouth geometry, new lesson completion or gameplay claim.",
+    "The original failed CI video was not downloaded/viewed locally; its untouched ffprobe/log/sidecars establish the failure.",
+    "The earlier missing-workflow test invocation is preserved and followed by all13 passing after exact unchanged fixture dependency restoration."
+  ]
+}

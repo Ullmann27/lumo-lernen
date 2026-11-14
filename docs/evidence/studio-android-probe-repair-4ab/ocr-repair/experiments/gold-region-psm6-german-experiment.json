@@ -1,0 +1,573 @@
+{
+  "scope": "Offline real OCR only, no app input",
+  "cases": [
+    {
+      "api": 35,
+      "frame": 0,
+      "source": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api35/selected-originals/nextgen/learning-move-1-0.png",
+      "source_sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+      "boxes": [
+        [
+          60,
+          1968,
+          512,
+          2116
+        ],
+        [
+          368,
+          852,
+          1080,
+          936
+        ],
+        [
+          196,
+          1336,
+          844,
+          1580
+        ],
+        [
+          452,
+          780,
+          1080,
+          860
+        ],
+        [
+          376,
+          708,
+          1080,
+          788
+        ],
+        [
+          360,
+          924,
+          1080,
+          1004
+        ],
+        [
+          24,
+          624,
+          364,
+          788
+        ],
+        [
+          0,
+          852,
+          240,
+          936
+        ],
+        [
+          0,
+          780,
+          256,
+          860
+        ],
+        [
+          0,
+          924,
+          224,
+          1004
+        ],
+        [
+          0,
+          1276,
+          140,
+          1360
+        ],
+        [
+          0,
+          1064,
+          140,
+          1148
+        ],
+        [
+          0,
+          992,
+          140,
+          1076
+        ],
+        [
+          0,
+          1704,
+          140,
+          1788
+        ],
+        [
+          0,
+          1776,
+          140,
+          1856
+        ],
+        [
+          0,
+          1632,
+          140,
+          1712
+        ]
+      ],
+      "attempts": [
+        {
+          "command": [
+            "tesseract",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api35-frame0-region0.png",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api35-frame0-region0",
+            "--psm",
+            "6",
+            "-l",
+            "deu+eng",
+            "tsv"
+          ],
+          "region": 0,
+          "box": [
+            60,
+            1968,
+            512,
+            2116
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.23183877000701614,
+          "stderr": "",
+          "exact_matches": [
+            {
+              "text": "Ein Objekt zeigen",
+              "bounds": [
+                104.0,
+                2029.0,
+                467.0,
+                2071.0
+              ],
+              "variant": "gold-component-1x",
+              "confidence": 95.722694
+            }
+          ]
+        }
+      ],
+      "source_unchanged": true
+    },
+    {
+      "api": 35,
+      "frame": 7,
+      "source": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api35/selected-originals/nextgen/learning-move-1-7.png",
+      "source_sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+      "boxes": [
+        [
+          60,
+          1968,
+          512,
+          2116
+        ],
+        [
+          368,
+          852,
+          1080,
+          936
+        ],
+        [
+          196,
+          1336,
+          844,
+          1580
+        ],
+        [
+          452,
+          780,
+          1080,
+          860
+        ],
+        [
+          376,
+          708,
+          1080,
+          788
+        ],
+        [
+          360,
+          924,
+          1080,
+          1004
+        ],
+        [
+          24,
+          628,
+          364,
+          808
+        ],
+        [
+          0,
+          852,
+          236,
+          936
+        ],
+        [
+          0,
+          780,
+          256,
+          860
+        ],
+        [
+          0,
+          924,
+          224,
+          1004
+        ],
+        [
+          0,
+          1276,
+          140,
+          1360
+        ],
+        [
+          0,
+          1064,
+          140,
+          1148
+        ],
+        [
+          0,
+          992,
+          140,
+          1076
+        ],
+        [
+          0,
+          1704,
+          140,
+          1788
+        ],
+        [
+          0,
+          1776,
+          140,
+          1856
+        ],
+        [
+          0,
+          1632,
+          140,
+          1712
+        ]
+      ],
+      "attempts": [
+        {
+          "command": [
+            "tesseract",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api35-frame7-region0.png",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api35-frame7-region0",
+            "--psm",
+            "6",
+            "-l",
+            "deu+eng",
+            "tsv"
+          ],
+          "region": 0,
+          "box": [
+            60,
+            1968,
+            512,
+            2116
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.17382087098667398,
+          "stderr": "",
+          "exact_matches": [
+            {
+              "text": "Ein Objekt zeigen",
+              "bounds": [
+                104.0,
+                2029.0,
+                467.0,
+                2071.0
+              ],
+              "variant": "gold-component-1x",
+              "confidence": 95.722694
+            }
+          ]
+        }
+      ],
+      "source_unchanged": true
+    },
+    {
+      "api": 37,
+      "frame": 0,
+      "source": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-0.png",
+      "source_sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "boxes": [
+        [
+          60,
+          1968,
+          512,
+          2116
+        ],
+        [
+          368,
+          852,
+          1080,
+          936
+        ],
+        [
+          196,
+          1336,
+          844,
+          1580
+        ],
+        [
+          452,
+          780,
+          1080,
+          860
+        ],
+        [
+          376,
+          708,
+          1080,
+          788
+        ],
+        [
+          360,
+          924,
+          1080,
+          1004
+        ],
+        [
+          0,
+          852,
+          240,
+          936
+        ],
+        [
+          0,
+          780,
+          256,
+          860
+        ],
+        [
+          0,
+          924,
+          224,
+          1004
+        ],
+        [
+          156,
+          632,
+          364,
+          772
+        ],
+        [
+          0,
+          1276,
+          140,
+          1360
+        ],
+        [
+          0,
+          1064,
+          140,
+          1148
+        ],
+        [
+          0,
+          992,
+          140,
+          1076
+        ],
+        [
+          0,
+          1704,
+          140,
+          1788
+        ],
+        [
+          0,
+          1776,
+          140,
+          1856
+        ],
+        [
+          0,
+          1632,
+          140,
+          1712
+        ]
+      ],
+      "attempts": [
+        {
+          "command": [
+            "tesseract",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api37-frame0-region0.png",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api37-frame0-region0",
+            "--psm",
+            "6",
+            "-l",
+            "deu+eng",
+            "tsv"
+          ],
+          "region": 0,
+          "box": [
+            60,
+            1968,
+            512,
+            2116
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.18327932601096109,
+          "stderr": "",
+          "exact_matches": [
+            {
+              "text": "Ein Objekt zeigen",
+              "bounds": [
+                104.0,
+                2029.0,
+                467.0,
+                2071.0
+              ],
+              "variant": "gold-component-1x",
+              "confidence": 95.722694
+            }
+          ]
+        }
+      ],
+      "source_unchanged": true
+    },
+    {
+      "api": 37,
+      "frame": 6,
+      "source": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-6.png",
+      "source_sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+      "boxes": [
+        [
+          60,
+          1968,
+          512,
+          2116
+        ],
+        [
+          368,
+          852,
+          1080,
+          936
+        ],
+        [
+          196,
+          1336,
+          844,
+          1580
+        ],
+        [
+          456,
+          780,
+          1080,
+          860
+        ],
+        [
+          376,
+          708,
+          1080,
+          788
+        ],
+        [
+          360,
+          924,
+          1080,
+          1004
+        ],
+        [
+          24,
+          624,
+          364,
+          788
+        ],
+        [
+          0,
+          852,
+          236,
+          936
+        ],
+        [
+          0,
+          780,
+          256,
+          860
+        ],
+        [
+          0,
+          924,
+          224,
+          1004
+        ],
+        [
+          0,
+          1276,
+          140,
+          1360
+        ],
+        [
+          0,
+          1064,
+          140,
+          1148
+        ],
+        [
+          0,
+          992,
+          140,
+          1076
+        ],
+        [
+          0,
+          1704,
+          140,
+          1788
+        ],
+        [
+          0,
+          1776,
+          140,
+          1856
+        ],
+        [
+          0,
+          1632,
+          140,
+          1712
+        ]
+      ],
+      "attempts": [
+        {
+          "command": [
+            "tesseract",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api37-frame6-region0.png",
+            "/workspace/scratch/5987865ae883/qa/ocr-original-scale-4ab/gold-region-psm6-german-experiment/api37-frame6-region0",
+            "--psm",
+            "6",
+            "-l",
+            "deu+eng",
+            "tsv"
+          ],
+          "region": 0,
+          "box": [
+            60,
+            1968,
+            512,
+            2116
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.10565142799168825,
+          "stderr": "",
+          "exact_matches": [
+            {
+              "text": "Ein Objekt zeigen",
+              "bounds": [
+                104.0,
+                2029.0,
+                467.0,
+                2071.0
+              ],
+              "variant": "gold-component-1x",
+              "confidence": 95.722694
+            }
+          ]
+        }
+      ],
+      "source_unchanged": true
+    }
+  ]
+}

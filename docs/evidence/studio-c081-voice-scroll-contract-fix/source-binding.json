@@ -1,0 +1,64 @@
+{
+  "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "original_run_id": 43545886722,
+  "original_job_id": 132296974547,
+  "original_run_status": "FAILURE",
+  "original_sources": [
+    {
+      "repository_path": "scripts/tests/test_android_voice_scroll.py",
+      "baseline_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py",
+      "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+      "git_blob": "c207e73d0c865a60067acb21e124762a4235ae32",
+      "bytes": 7778,
+      "sha256": "abb6822c5bc721c97b210222433d273618f5e5b9ef0ebfea8a35025c0e9e794a",
+      "fetched_from_github_at_exact_commit": true
+    },
+    {
+      "repository_path": ".github/probes/creative_android_probe.py",
+      "baseline_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/creative_android_probe.py",
+      "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+      "git_blob": "d377cee88da237025fd5bb57b6555451bf3f36a8",
+      "bytes": 59166,
+      "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "fetched_from_github_at_exact_commit": true,
+      "patched_helper_bytes_identical": true
+    },
+    {
+      "repository_path": ".github/probes/lumo_free_voice_android_probe.py",
+      "baseline_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/lumo_free_voice_android_probe.py",
+      "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+      "git_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "bytes": 18897,
+      "sha256": "c1450522e9f0144ee37824400bac551602e183d55c518dbd74559028ad115664",
+      "fetched_from_github_at_exact_commit": true,
+      "patched_helper_bytes_identical": true
+    }
+  ],
+  "only_changed_source": {
+    "repository_path": "scripts/tests/test_android_voice_scroll.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/patched/scripts/tests/test_android_voice_scroll.py",
+    "bytes": 7852,
+    "sha256": "b41399c3dea694591c4aafa9fdbad0aed62452063b570638e0e1692eddb996e8",
+    "git_blob": "71287cd09024988f7d3cf212c2ed6d79b7bacc15",
+    "mode": "100644",
+    "change": "modified",
+    "expected_original_git_blob": "c207e73d0c865a60067acb21e124762a4235ae32"
+  },
+  "exact_delta": "Add orientation=\"landscape\" to two existing assert_called_once_with calls.",
+  "all_other_ast_nodes_unchanged_after_removing_two_added_keywords": true,
+  "existing_test_count_preserved": 7,
+  "existing_call_count_caption_tap_exact_and_scroll_assertions_preserved": true,
+  "no_product_helper_or_workflow_change": true,
+  "red": {
+    "tests": 7,
+    "failures": 2,
+    "log": "red-original-c081.log"
+  },
+  "green": {
+    "tests": 7,
+    "failures": 0,
+    "log": "green-seven-contracts.log",
+    "reported_elapsed_seconds": 0.063
+  },
+  "scope": "A mock-call expectation repair, not a new Android or release PASS. Broader current suites are assigned to Root."
+}

@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T10:09:04.843179+00:00",
+  "status": "READ_ONLY_SCOPE_REVIEW_COMPLETE_NO_NEW_RUNTIME_CLAIM",
+  "source": {
+    "host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "host_tree": "3f048230ee41fe3c7f0c4dadb5147cb1f39fa61e",
+    "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "native_tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+    "studio_run": 43580228966,
+    "run_attempt": 1
+  },
+  "read_source_count": {
+    "host": 42,
+    "native": 6
+  },
+  "executed_tests": 0,
+  "product_mutations": 0,
+  "git_mutations": 0,
+  "job_observation": {
+    "observed_at": "2026-11-14T10:08:08Z",
+    "builder_job": 132403166536,
+    "builder_status": "in_progress",
+    "active_step": "Require actual gameplay gates on the exact pinned native source",
+    "host_compile_job": 132403166681,
+    "host_compile_conclusion": "success",
+    "android_jobs_created": false,
+    "not_an_acceptance_claim": true
+  },
+  "required_probe_scope": {
+    "children": "One UI-created local LumoTest per isolated emulator; no A-to-B-to-A switch.",
+    "update": "Exactly 2017-to-2020. Existing primary learning namespace, UID, firstInstallTime, profile, learning values, restart/offline/Kart/display probes. No seeded pre-upgrade native save or C4 round, Journal entry or WritingProgress record.",
+    "cards": "Current-version single-child solo round: two draws, bot response, four front-pixel phases, visible idle, pause/save/return/reopen. No filled-round force-kill or second child.",
+    "connect_four": "Current-version local-child solo round, two child and two bot moves, occupied-cell pixels, pause/resume/Home with same native PID, save/return/reopen with new token. No full-game reward or two-child test.",
+    "creative": "Current-version single-child Jump checkpoint, Build block/undo/redo/starterhouse reward, 6-piece motif-1 rotated Puzzle, first Treasure clue and relevant saved-state reopen."
+  },
+  "historical_fixture": {
+    "path": "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json",
+    "sha256": "8815f517552ebdde7908ff98b1bb389147a4857ccb4a75cabd65e2142eb3338a",
+    "historical_versions": [
+      2017,
+      2018
+    ],
+    "children": 1,
+    "correct_answers": 1,
+    "stars": 1,
+    "xp": 5,
+    "all_preference_entries": 15,
+    "protected_learning_keys": 7,
+    "journal_record_present": false,
+    "writing_progress_present": false,
+    "current_078_result": false
+  },
+  "storage_scope": {
+    "journal": {
+      "repository": "lib/features/journal/journal_repository.dart",
+      "repository_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "instance": "SharedPreferences.getInstance()",
+      "key": "lumo_journal_entries",
+      "caller": "lib/features/journal/lumo_journal_screen.dart:31 constructs const JournalRepository() without a child argument",
+      "scope": "app-wide in the exact inspected production chain"
+    },
+    "writing_progress": {
+      "repository": "lib/core/writing_progress_repository.dart",
+      "repository_blob": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "instance": "SharedPreferences.getInstance()",
+      "key": "lumo_writing_progress_v1",
+      "callers": [
+        "lib/features/writing/lumo_writing_coach_screen.dart:78 constructs WritingProgressRepository()",
+        "lib/features/writing/lumo_writing_word_coach_screen.dart:125 uses default repository when none provided",
+        "Production Akademie constructors pass appState without a repository override"
+      ],
+      "scope": "app-wide writing-progress object in the inspected chain; separate appState learning-answer storage is not the same repository"
+    },
+    "limit": "Source scope finding, not a newly reproduced data-loss defect or migration authorization."
+  },
+  "speech": {
+    "artifact_names": [
+      "lumo-studio-2020-android-tour",
+      "lumo-studio-2020-android-17-tour"
+    ],
+    "original_paths": [
+      "nextgen/learning-speech-logcat.txt",
+      "nextgen/learning-movement-logcat.txt",
+      "nextgen/logcat.txt",
+      "nextgen/native-surfaces-result.json"
+    ],
+    "result_objects": [
+      "learning.speech.initial",
+      "learning.speech.result"
+    ],
+    "saved_result_keys": [
+      "native_process_pid",
+      "completed_utterance_ids",
+      "profile",
+      "preset",
+      "audible_quality_verified",
+      "lip_sync_verified"
+    ],
+    "explicit_quality_flags": {
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "volatile_snapshot_keys_not_preserved_as_android_timeline": [
+      "state",
+      "id",
+      "positionMs",
+      "durationMs",
+      "audible",
+      "envelopeAvailable",
+      "envelope"
+    ],
+    "native_state_source": "LumoLearningSpeech.status -> LumoHost.getLearningSpeechStatus -> LearningWorld._tick_speech -> actor.apply_speech_sample",
+    "actual_mesh_readback": "lesson.fox.facial_pose.body.get_blend_shape_value(lesson.fox.facial_pose.body_ids[4])",
+    "mesh_name": "JawArticulation",
+    "existing_mesh_readback_scope": "scripts/tests/lumo_facial_capture.gd: desktop LocalPlayback AudioStreamPlayer fixture, runtime-frames.json rows[].actual_jaw_weight. Not Android MediaPlayer data.",
+    "android_production_file_for_mesh_weight_found": false,
+    "needed_addition_not_implemented": "Bounded read-only Android observer pairing actual MediaPlayer status/PID/utterance and two or more advancing playback positions with actual rendered mesh weight/frame; separate real Stop, Home and system-mute observations. No inference from PCM amplitude alone."
+  },
+  "remaining_unproven": [
+    "Two distinct children switched A-to-B-to-A on device",
+    "Populated Journal and WritingProgress data through upgrade and child switching",
+    "Migration of pre-existing native saves or C4 round",
+    "Android applied Jaw weight and speech envelope during real Stop/Home/Mute",
+    "Physical Fold7, acoustic quality, thermal performance and 60 FPS"
+  ],
+  "boundaries": [
+    "Private preferences/mailbox readers assume the rooted disposable emulator; not a general non-root physical-device reader.",
+    "Existing preference text comparisons preserve present selected keys but do not require populated Journal/Writing data and do not compare every app key.",
+    "No current device result is inferred from historical fixture counts, desktop facial captures, or source guards."
+  ],
+  "details": "README.md",
+  "source_bindings": [
+    "source-binding.json",
+    "native-speech-source-binding.json"
+  ],
+  "post_read_proof": "post-read-source-check.json"
+}

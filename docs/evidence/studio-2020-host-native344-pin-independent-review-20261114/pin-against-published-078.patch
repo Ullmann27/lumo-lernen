@@ -1,0 +1,31 @@
+--- baseline/config/godot-source.json
++++ prepared/config/godot-source.json
+@@ -1,5 +1,5 @@
+ {
+   "repository": "https://github.com/Ullmann27/lumo-godot.git",
+-  "revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
++  "revision": "34421df83566dd4773420cc2a225887956459435",
+   "engine": "4.6.3"
+ }
+--- baseline/scripts/verify_legacy_release_pin.py
++++ prepared/scripts/verify_legacy_release_pin.py
+@@ -144,7 +144,7 @@
+     # 2020: exact Native source passed all nine Studio jobs and the actual
+     # current49-image review. This approves source identity only; the new
+     # APK, Android35/37, Creative, C4 and update gates remain mandatory.
+-    2020: "785413d395292a243eaa0a0748671eb15d3f80ff",
++    2020: "34421df83566dd4773420cc2a225887956459435",
+ }
+ 
+ def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
+--- baseline/scripts/tests/test_candidate_2011_pin.py
++++ prepared/scripts/tests/test_candidate_2011_pin.py
+@@ -23,7 +23,7 @@
+ ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
+ NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
+ STUDIO_2019_REVISION = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+-STUDIO_2020_REVISION = "785413d395292a243eaa0a0748671eb15d3f80ff"
++STUDIO_2020_REVISION = "34421df83566dd4773420cc2a225887956459435"
+ SUPERSEDED_2017_CANDIDATES = {
+     "460c94b10df6adae11def608068d72e99c0950db",
+     "a16a4fc6791c3c7a594273f4544458382cc2c884",

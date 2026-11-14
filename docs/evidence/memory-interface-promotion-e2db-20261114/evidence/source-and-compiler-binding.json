@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "base_commit": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "repo_path": "lib/features/games/memory/memory_round.dart",
+  "baseline": {
+    "bytes": 16091,
+    "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+    "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+  },
+  "final": {
+    "bytes": 16155,
+    "sha256": "e1911d59e58d92b92dbb56a1447702656dff491ae1a61edec051b976ce74af1d",
+    "git_blob_sha": "4844cabaa5ed881d8f29dbd7c9758f03ef510df4"
+  },
+  "exact_changed_lines": [
+    268,
+    277
+  ],
+  "inverse_full_file_equals_baseline": true,
+  "guards_interfaces_tests_rules_unchanged": true,
+  "earlier_freeze_unchanged": true,
+  "compiler_pin": {
+    "flutter": "3.44.9",
+    "dart": "3.12.2",
+    "pubspec_language_lower_bound": "3.4.0"
+  },
+  "original_versions": [
+    {
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-memory-source-20261114/originals/dart-version.txt",
+      "local_copy": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/evidence/dart-version-original.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "text": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\"\n"
+    },
+    {
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-version.txt",
+      "local_copy": "/workspace/scratch/5987865ae883/qa/memory-interface-promotion-e2db-20261114/evidence/flutter-version-original.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "text": "Flutter 3.44.9 \u2022 channel stable \u2022 https://github.com/flutter/flutter.git\nFramework \u2022 revision 6b182d2c75 (3 months ago) \u2022 2026-08-05 10:04:07 -0700\nEngine \u2022 hash b9499e4c25212536ba3a4eec4f5c1905fb3214fe (revision 5a2a6a42cc) (3 months ago) \u2022 2026-07-31 18:31:59.000Z\nTools \u2022 Dart 3.12.2 \u2022 DevTools 2.57.0\n"
+    }
+  ],
+  "original_failure": {
+    "run_id": 43632642356,
+    "memory_job_id": 132562421738,
+    "flutter_job_id": 132562421770,
+    "new_test_execution_reached": false,
+    "reason": "undefined_method at memory_round.dart268:26 and277:26 for static MemoryStore",
+    "original_joblog_downloads_by_this_patch": 0
+  },
+  "official_language_reference": "https://dart.dev/tools/non-promotion-reasons#subtype-mismatch",
+  "explanation": "The official subtype-mismatch section documents a redundant cast within the existing is guard as a supported explicit typing solution for unrelated interfaces. Both casts keep the same final object reference and existing checks.",
+  "local_dart_flutter_executions": 0,
+  "new_runtime_pass_claim": false,
+  "checked_at_utc": "2026-11-14T19:38:42.020466+00:00"
+}

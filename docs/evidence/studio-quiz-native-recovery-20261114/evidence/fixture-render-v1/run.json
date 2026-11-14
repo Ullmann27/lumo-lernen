@@ -1,0 +1,18 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 19.761477110999977,
+  "display": 109,
+  "project": "/tmp/lumo-quiz-native-recovery-20261114",
+  "godot_arguments": [
+    "--resolution",
+    "960x540",
+    "--disable-vsync",
+    "--script",
+    "res://scripts/tests/quiz_studio_runtime.gd",
+    "--",
+    "--fixture",
+    "--capture"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

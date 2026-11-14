@@ -1,0 +1,2180 @@
+{
+  "primary_baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "files": [
+    {
+      "path": "assets/characters/lumo/reference/01_master_character_sheet.png",
+      "sha256": "5b5ef2dd830177cd4193026e7b8e075e1028f41da6f4f8f3a55479a89ca9cad9",
+      "bytes": 1797916,
+      "after_sha256": "5b5ef2dd830177cd4193026e7b8e075e1028f41da6f4f8f3a55479a89ca9cad9",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/02_orthographic_model_sheet.png",
+      "sha256": "17bfde16d8d12c20f88fbbab98b7326ec72453d817d5bb471fa42e08c561151f",
+      "bytes": 1851796,
+      "after_sha256": "17bfde16d8d12c20f88fbbab98b7326ec72453d817d5bb471fa42e08c561151f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/03_facial_expression_sheet.png",
+      "sha256": "3bbe4bf103eec86d900db319013228a401baf285a94c5c6ed37b7220b04554f8",
+      "bytes": 1779483,
+      "after_sha256": "3bbe4bf103eec86d900db319013228a401baf285a94c5c6ed37b7220b04554f8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/04_mouth_viseme_sheet.png",
+      "sha256": "ba901a31adafaf273ebdcafc6c7855e874dd84607a80e225947f224d779f95d1",
+      "bytes": 2000102,
+      "after_sha256": "ba901a31adafaf273ebdcafc6c7855e874dd84607a80e225947f224d779f95d1",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/05_eye_blink_sheet.png",
+      "sha256": "0ffd76480f9216756e05416109a1f11c8890f7d90fc339f30d2fa1b7f188361c",
+      "bytes": 1909497,
+      "after_sha256": "0ffd76480f9216756e05416109a1f11c8890f7d90fc339f30d2fa1b7f188361c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/06_gesture_arm_pose_sheet.png",
+      "sha256": "d2bb899dc946fbd45e3a57831b93b884b31819b5a07ab60821eabd0a3f8ba4dd",
+      "bytes": 1786242,
+      "after_sha256": "d2bb899dc946fbd45e3a57831b93b884b31819b5a07ab60821eabd0a3f8ba4dd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/07_walk_cycle_keyposes.png",
+      "sha256": "3730d8bacb2303e4d8d6ea51c882bd6175846f17d54734da9d317a4a1e8e5043",
+      "bytes": 1498191,
+      "after_sha256": "3730d8bacb2303e4d8d6ea51c882bd6175846f17d54734da9d317a4a1e8e5043",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/08_jump_hop_keyposes.png",
+      "sha256": "d87a5011a789fd0a84d1269471c77b3fe3c32efe50b534c24bd528e40287a562",
+      "bytes": 1793366,
+      "after_sha256": "d87a5011a789fd0a84d1269471c77b3fe3c32efe50b534c24bd528e40287a562",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/09_turnaround_rotation_sheet.png",
+      "sha256": "1662c77b636faf681d61bd5eadbb357696e44f442988ea0b7051730d4398c388",
+      "bytes": 1700864,
+      "after_sha256": "1662c77b636faf681d61bd5eadbb357696e44f442988ea0b7051730d4398c388",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo/reference/10_interaction_app_behavior_sheet.png",
+      "sha256": "efe5c5f61f8c01cc40899e0595c61c9d15a7c0cfc3ada18b0c2da9608488a4f0",
+      "bytes": 1943890,
+      "after_sha256": "efe5c5f61f8c01cc40899e0595c61c9d15a7c0cfc3ada18b0c2da9608488a4f0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "bytes": 5156596,
+      "after_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+      "bytes": 196296,
+      "after_sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/bark_albedo.png",
+      "sha256": "67ea6e6fc8d8d205021cde4dcb0e76834f8f540dc93764251520eb431e98e29a",
+      "bytes": 32773,
+      "after_sha256": "67ea6e6fc8d8d205021cde4dcb0e76834f8f540dc93764251520eb431e98e29a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/bark_normal.png",
+      "sha256": "9b80a089af01f1e646dcc355dea915bd1f33005f71584c1741eb9b25d8574d63",
+      "bytes": 85181,
+      "after_sha256": "9b80a089af01f1e646dcc355dea915bd1f33005f71584c1741eb9b25d8574d63",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/dirt_albedo.png",
+      "sha256": "895adfe09fd9575007241f9636b3d452f952a620e4a27d7caf34f70807b22ff8",
+      "bytes": 39714,
+      "after_sha256": "895adfe09fd9575007241f9636b3d452f952a620e4a27d7caf34f70807b22ff8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/dirt_normal.png",
+      "sha256": "ee3a37d51071941d24e240416c54ae1b2ecc2d1c373aedeb5d395c7b7a7a6767",
+      "bytes": 118408,
+      "after_sha256": "ee3a37d51071941d24e240416c54ae1b2ecc2d1c373aedeb5d395c7b7a7a6767",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/grass_side_albedo.png",
+      "sha256": "ca4fcdfe98c4a79ee538b11da6dea993b49dd6cbab486522dbdff15191d270bc",
+      "bytes": 44637,
+      "after_sha256": "ca4fcdfe98c4a79ee538b11da6dea993b49dd6cbab486522dbdff15191d270bc",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/grass_side_normal.png",
+      "sha256": "9d0a4655abd67c3d68ffa0759cf4dfa7d0c397edfdef09579d0617abc6bbc40a",
+      "bytes": 96754,
+      "after_sha256": "9d0a4655abd67c3d68ffa0759cf4dfa7d0c397edfdef09579d0617abc6bbc40a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/grass_top_albedo.png",
+      "sha256": "0eaf06f6550e978b45aca8f27690d17050106587fb7215af7288dd12dbd834f6",
+      "bytes": 53053,
+      "after_sha256": "0eaf06f6550e978b45aca8f27690d17050106587fb7215af7288dd12dbd834f6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/grass_top_normal.png",
+      "sha256": "90568119fbc27b2e940ec70a2f93499a658bd9b48be3954267d347be4964bfce",
+      "bytes": 127145,
+      "after_sha256": "90568119fbc27b2e940ec70a2f93499a658bd9b48be3954267d347be4964bfce",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/leaves_albedo.png",
+      "sha256": "53a38aae08baed6135e2cd8fb5551f229238d2ef252a4469b3cff5cd9b6dd050",
+      "bytes": 39142,
+      "after_sha256": "53a38aae08baed6135e2cd8fb5551f229238d2ef252a4469b3cff5cd9b6dd050",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/leaves_normal.png",
+      "sha256": "bb314dbb53f00c581ab652b227f4b345da177e61e9be8be91d254b8a03e0cdd8",
+      "bytes": 93752,
+      "after_sha256": "bb314dbb53f00c581ab652b227f4b345da177e61e9be8be91d254b8a03e0cdd8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/magic_albedo.png",
+      "sha256": "b13a94ceeab1c5907ae6ec2975192bfe4a061ff7a6c5c13245821eca5e540f0d",
+      "bytes": 31831,
+      "after_sha256": "b13a94ceeab1c5907ae6ec2975192bfe4a061ff7a6c5c13245821eca5e540f0d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/magic_normal.png",
+      "sha256": "46f2f38cf00b657500c3210f1733051d387d224cc4f8982b83039adc1dfda2eb",
+      "bytes": 59915,
+      "after_sha256": "46f2f38cf00b657500c3210f1733051d387d224cc4f8982b83039adc1dfda2eb",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/paving_albedo.png",
+      "sha256": "11cf1be71839f79d211f57f5925b7a9666219ec6c516bb204dd70ae7f31f850a",
+      "bytes": 19822,
+      "after_sha256": "11cf1be71839f79d211f57f5925b7a9666219ec6c516bb204dd70ae7f31f850a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/paving_normal.png",
+      "sha256": "ada26befe26fdd52d1811832422afd3e54f43adb33702db2cc32e4278eae6e2c",
+      "bytes": 72516,
+      "after_sha256": "ada26befe26fdd52d1811832422afd3e54f43adb33702db2cc32e4278eae6e2c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/plain_albedo.png",
+      "sha256": "d2e3d44b6be6bbd77330a71f6d8c5fc21de0ee46414b92fb4ac6e464a526d35f",
+      "bytes": 18150,
+      "after_sha256": "d2e3d44b6be6bbd77330a71f6d8c5fc21de0ee46414b92fb4ac6e464a526d35f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/plain_normal.png",
+      "sha256": "308e07fda560cbad50aaa22b576f5d150571e254eeb6dfb6da3044c685073c52",
+      "bytes": 41288,
+      "after_sha256": "308e07fda560cbad50aaa22b576f5d150571e254eeb6dfb6da3044c685073c52",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/roof_albedo.png",
+      "sha256": "3785b60cacf6329bf36bb630e648d3f4912be5991144da7953e884e6e804e9fc",
+      "bytes": 19937,
+      "after_sha256": "3785b60cacf6329bf36bb630e648d3f4912be5991144da7953e884e6e804e9fc",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/roof_normal.png",
+      "sha256": "481748e53a74ece20d359c479d28123cf83a1ec8d89263d8775e5249c0849211",
+      "bytes": 13090,
+      "after_sha256": "481748e53a74ece20d359c479d28123cf83a1ec8d89263d8775e5249c0849211",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/sand_albedo.png",
+      "sha256": "7619c336a53c9d1caec67d5135299d56fec46f9220cf4338059b265b054a553d",
+      "bytes": 34826,
+      "after_sha256": "7619c336a53c9d1caec67d5135299d56fec46f9220cf4338059b265b054a553d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/sand_normal.png",
+      "sha256": "b6db13b78c31c6c534441195acee000ce723186c2bf174f0792d3c5d06ce5eeb",
+      "bytes": 84276,
+      "after_sha256": "b6db13b78c31c6c534441195acee000ce723186c2bf174f0792d3c5d06ce5eeb",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/stone_albedo.png",
+      "sha256": "79d7229b3d06a09688998fd0ea40a418642a8ab7746fe2c06863fa4775723238",
+      "bytes": 21286,
+      "after_sha256": "79d7229b3d06a09688998fd0ea40a418642a8ab7746fe2c06863fa4775723238",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/stone_normal.png",
+      "sha256": "df0bc9460d7a45338367c50d452ad563006b5bb82a3ad8165186696c085e1400",
+      "bytes": 76338,
+      "after_sha256": "df0bc9460d7a45338367c50d452ad563006b5bb82a3ad8165186696c085e1400",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/wood_albedo.png",
+      "sha256": "5905ecce2724c660fe134cebe346a9c9a226f27762139733b0932ff8844872f6",
+      "bytes": 49470,
+      "after_sha256": "5905ecce2724c660fe134cebe346a9c9a226f27762139733b0932ff8844872f6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/bauwelt_voxel/wood_normal.png",
+      "sha256": "dcdab889664426dc3f754ece45c0b1c367001439ceda18274485b01065c82b3c",
+      "bytes": 105768,
+      "after_sha256": "dcdab889664426dc3f754ece45c0b1c367001439ceda18274485b01065c82b3c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/models/lumo_lantern.glb",
+      "sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3",
+      "bytes": 58924,
+      "after_sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/models/lumo_treasure_chest.glb",
+      "sha256": "606bf5f7b1c25849fc12bd857957d632fe63dab8b4849e128c7554cf07845096",
+      "bytes": 175048,
+      "after_sha256": "606bf5f7b1c25849fc12bd857957d632fe63dab8b4849e128c7554cf07845096",
+      "unchanged": true
+    },
+    {
+      "path": "assets/creative/sandstone.webp",
+      "sha256": "c0c0f19e7ef59754b39f7c584d9a9800a25469dcca1ddf3ede495aa5a939715e",
+      "bytes": 433820,
+      "after_sha256": "c0c0f19e7ef59754b39f7c584d9a9800a25469dcca1ddf3ede495aa5a939715e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "sha256": "3a373c4d17cffecdc9f3c351e2ce9ec83edb0622925a59d802be24fd442346f8",
+      "bytes": 39260,
+      "after_sha256": "3a373c4d17cffecdc9f3c351e2ce9ec83edb0622925a59d802be24fd442346f8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/book_billboard_04.png",
+      "sha256": "762dadfda5691453c4a6aa5bffb214e3e845bedf5d335ee678c9836d4b93d845",
+      "bytes": 20734,
+      "after_sha256": "762dadfda5691453c4a6aa5bffb214e3e845bedf5d335ee678c9836d4b93d845",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/book_billboard_09.png",
+      "sha256": "4dbf4a6d257e3f816aaef5ab292a104b05dddf9738c1196acd3d1d34667d215c",
+      "bytes": 20887,
+      "after_sha256": "4dbf4a6d257e3f816aaef5ab292a104b05dddf9738c1196acd3d1d34667d215c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/book_billboard_14.png",
+      "sha256": "97ad9c0393deae1fb5f4d6f9f6dd22cc579211eca0557402407bbccb0b325286",
+      "bytes": 20754,
+      "after_sha256": "97ad9c0393deae1fb5f4d6f9f6dd22cc579211eca0557402407bbccb0b325286",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/book_billboard_19.png",
+      "sha256": "a73a59d09dccf4922bd64afe96bd7461d482c0fdd083bc3671187468014c9831",
+      "bytes": 20736,
+      "after_sha256": "a73a59d09dccf4922bd64afe96bd7461d482c0fdd083bc3671187468014c9831",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/book_billboard_24.png",
+      "sha256": "832eddfb2be9f18836f68eb39e8ee14adcc9b1d8ddd198cc6b5a90be142ca2c7",
+      "bytes": 19883,
+      "after_sha256": "832eddfb2be9f18836f68eb39e8ee14adcc9b1d8ddd198cc6b5a90be142ca2c7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/crystal_billboard_01.png",
+      "sha256": "eb94dd926e5971cc5cc0a35037e7ee9d3942cbc877cb846c67ce9ed9be1cd66e",
+      "bytes": 23956,
+      "after_sha256": "eb94dd926e5971cc5cc0a35037e7ee9d3942cbc877cb846c67ce9ed9be1cd66e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/crystal_billboard_06.png",
+      "sha256": "0199dda80fcea1b7a17bd7010006682db0c053a05b42d70d2c1361d7006eae05",
+      "bytes": 22675,
+      "after_sha256": "0199dda80fcea1b7a17bd7010006682db0c053a05b42d70d2c1361d7006eae05",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/crystal_billboard_11.png",
+      "sha256": "c0a2da4e77b6c58c4cbd3b12605f25d19b70e58990ff43cc0452fed2adbe9fa8",
+      "bytes": 23530,
+      "after_sha256": "c0a2da4e77b6c58c4cbd3b12605f25d19b70e58990ff43cc0452fed2adbe9fa8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/crystal_billboard_16.png",
+      "sha256": "451db3aa96cc611e30024f2cdc10b206a2cb0896f98e37b587828aea2de4ade4",
+      "bytes": 24005,
+      "after_sha256": "451db3aa96cc611e30024f2cdc10b206a2cb0896f98e37b587828aea2de4ade4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/crystal_billboard_21.png",
+      "sha256": "f8830023f5e0a0698a733dd8f82259c6d141578112cb567416d2cb6d79323ab7",
+      "bytes": 24137,
+      "after_sha256": "f8830023f5e0a0698a733dd8f82259c6d141578112cb567416d2cb6d79323ab7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/crystal_billboard_26.png",
+      "sha256": "5bb4d35d54593a90f16b572c02645b1f653e6b9c5f98a2c605423f2b45c91e48",
+      "bytes": 23950,
+      "after_sha256": "5bb4d35d54593a90f16b572c02645b1f653e6b9c5f98a2c605423f2b45c91e48",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/number_billboard_05.png",
+      "sha256": "76c33b21a438c9e3e98b703bd8be1eaff118ff47d5e64d93c7e44a89c07f79f6",
+      "bytes": 19568,
+      "after_sha256": "76c33b21a438c9e3e98b703bd8be1eaff118ff47d5e64d93c7e44a89c07f79f6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/number_billboard_10.png",
+      "sha256": "fbff7680939196514ce09b33e67df320dce3bd04a26f53fab7dc3910dae7ea95",
+      "bytes": 19496,
+      "after_sha256": "fbff7680939196514ce09b33e67df320dce3bd04a26f53fab7dc3910dae7ea95",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/number_billboard_15.png",
+      "sha256": "9674e16749efe54826d6a31674192438fe4d2677fe5538fe5527ed9da190b9dd",
+      "bytes": 19669,
+      "after_sha256": "9674e16749efe54826d6a31674192438fe4d2677fe5538fe5527ed9da190b9dd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/number_billboard_20.png",
+      "sha256": "0cc7c3372af4ab0bd939e4ab104d562a70d29440a186c2698e299dc85ad57996",
+      "bytes": 19497,
+      "after_sha256": "0cc7c3372af4ab0bd939e4ab104d562a70d29440a186c2698e299dc85ad57996",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/number_billboard_25.png",
+      "sha256": "ac81b305d17f18ffd6c7e64ffaf87acbf9f3f08f49bc111c29ac97728438c7c2",
+      "bytes": 19482,
+      "after_sha256": "ac81b305d17f18ffd6c7e64ffaf87acbf9f3f08f49bc111c29ac97728438c7c2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/orb_billboard_03.png",
+      "sha256": "6c1c2dae4e4a7149a47aa880bc79312cd72c12c55dc929aa8c20145b0f87e269",
+      "bytes": 23022,
+      "after_sha256": "6c1c2dae4e4a7149a47aa880bc79312cd72c12c55dc929aa8c20145b0f87e269",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/orb_billboard_08.png",
+      "sha256": "3698145f385ef15b4799d5f19e8329f303dd3860a1be420b02d4bab6a1ee8246",
+      "bytes": 22759,
+      "after_sha256": "3698145f385ef15b4799d5f19e8329f303dd3860a1be420b02d4bab6a1ee8246",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/orb_billboard_13.png",
+      "sha256": "eef2d6edad47948f23c680d3cf3df78f4c0eb596732a1cd69a96045a2a08ff86",
+      "bytes": 22763,
+      "after_sha256": "eef2d6edad47948f23c680d3cf3df78f4c0eb596732a1cd69a96045a2a08ff86",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/orb_billboard_18.png",
+      "sha256": "76b380a8fcce59d72e0ebca073a705689d06f4f478f96f32c691b2fc46e1b7c9",
+      "bytes": 22033,
+      "after_sha256": "76b380a8fcce59d72e0ebca073a705689d06f4f478f96f32c691b2fc46e1b7c9",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/orb_billboard_23.png",
+      "sha256": "dc180646bb0ba8f3d79a1733d7d1c8f31fea2bddfa15491eef3eedaf0fc9030b",
+      "bytes": 23011,
+      "after_sha256": "dc180646bb0ba8f3d79a1733d7d1c8f31fea2bddfa15491eef3eedaf0fc9030b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/orb_billboard_28.png",
+      "sha256": "ba2a3096229edf967d06260c9b9e86d09b24fc3eda0ec5c66b59dea56fab6f8a",
+      "bytes": 22757,
+      "after_sha256": "ba2a3096229edf967d06260c9b9e86d09b24fc3eda0ec5c66b59dea56fab6f8a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/star_billboard_02.png",
+      "sha256": "0de6e98e61448024e0ca860f61bf8ea9e61c37383fe3c46edaf4c76c8fed8fe4",
+      "bytes": 29483,
+      "after_sha256": "0de6e98e61448024e0ca860f61bf8ea9e61c37383fe3c46edaf4c76c8fed8fe4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/star_billboard_07.png",
+      "sha256": "cf9599357c4ce17c18acbebac5ec3b3e79cfa60895c8bcd8f1b348bafd889084",
+      "bytes": 28068,
+      "after_sha256": "cf9599357c4ce17c18acbebac5ec3b3e79cfa60895c8bcd8f1b348bafd889084",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/star_billboard_12.png",
+      "sha256": "ca7581bfeee5a1e549a2b6b472d64f90de442a971c7d3bdc403465cf208c37e8",
+      "bytes": 28660,
+      "after_sha256": "ca7581bfeee5a1e549a2b6b472d64f90de442a971c7d3bdc403465cf208c37e8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/star_billboard_17.png",
+      "sha256": "a03719495b01cad6b41eaab91c9ba058bbc5f28715b3835536fb537d7692982f",
+      "bytes": 28145,
+      "after_sha256": "a03719495b01cad6b41eaab91c9ba058bbc5f28715b3835536fb537d7692982f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/star_billboard_22.png",
+      "sha256": "97d3ed3e93d6a57d66238dd130cb47ae79bfecd5c65e51c03981dad5d2cd4b79",
+      "bytes": 29013,
+      "after_sha256": "97d3ed3e93d6a57d66238dd130cb47ae79bfecd5c65e51c03981dad5d2cd4b79",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/billboards/star_billboard_27.png",
+      "sha256": "9fd3c532f88453c1fcf95639dd781e5e69951f3f9f56d14e24f964744ec040af",
+      "bytes": 28883,
+      "after_sha256": "9fd3c532f88453c1fcf95639dd781e5e69951f3f9f56d14e24f964744ec040af",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_01.png",
+      "sha256": "88bf07028ef0c494adf95064e3154dbb7037863e26793220887d22c377f5bb2e",
+      "bytes": 20316,
+      "after_sha256": "88bf07028ef0c494adf95064e3154dbb7037863e26793220887d22c377f5bb2e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_02.png",
+      "sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "bytes": 9187,
+      "after_sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_03.png",
+      "sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "bytes": 24992,
+      "after_sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_04.png",
+      "sha256": "4dcd29e8005e84a90c8f8854c420ed8f1509dc1521bca4026e8d64591cb29556",
+      "bytes": 130801,
+      "after_sha256": "4dcd29e8005e84a90c8f8854c420ed8f1509dc1521bca4026e8d64591cb29556",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_05.png",
+      "sha256": "562994ad2812c5aa528f3104e22ad7cd38cbd7486e77505ba61f6d0513fc8a75",
+      "bytes": 21151,
+      "after_sha256": "562994ad2812c5aa528f3104e22ad7cd38cbd7486e77505ba61f6d0513fc8a75",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_06.png",
+      "sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "bytes": 9187,
+      "after_sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_07.png",
+      "sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "bytes": 24992,
+      "after_sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_08.png",
+      "sha256": "f5258eec5e01d7b7807ceaf2e85ae15aaece976bf366af93be616b63bfd0f580",
+      "bytes": 130364,
+      "after_sha256": "f5258eec5e01d7b7807ceaf2e85ae15aaece976bf366af93be616b63bfd0f580",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_09.png",
+      "sha256": "35ac787b2d7970d1f95d173d0978af41e452c858c0a4784eac8cd5c6f5c05e22",
+      "bytes": 20867,
+      "after_sha256": "35ac787b2d7970d1f95d173d0978af41e452c858c0a4784eac8cd5c6f5c05e22",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_10.png",
+      "sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "bytes": 9187,
+      "after_sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_11.png",
+      "sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "bytes": 24992,
+      "after_sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_12.png",
+      "sha256": "c9cbd1220f8157e019d8226dd48af184b94c7a66055b6035361b03c6106d4fa9",
+      "bytes": 132447,
+      "after_sha256": "c9cbd1220f8157e019d8226dd48af184b94c7a66055b6035361b03c6106d4fa9",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_13.png",
+      "sha256": "a51734b1dd39bd201630daf4fcaf8a64749340172c03768f7fc6b88c169bf3de",
+      "bytes": 20863,
+      "after_sha256": "a51734b1dd39bd201630daf4fcaf8a64749340172c03768f7fc6b88c169bf3de",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_14.png",
+      "sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "bytes": 9187,
+      "after_sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_15.png",
+      "sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "bytes": 24992,
+      "after_sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_16.png",
+      "sha256": "edcac99d3cbb623d4cf4e7dfd610fc03752e790d3d6913d0bb64655a9eb547dc",
+      "bytes": 130067,
+      "after_sha256": "edcac99d3cbb623d4cf4e7dfd610fc03752e790d3d6913d0bb64655a9eb547dc",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_17.png",
+      "sha256": "41ed2d19e2ada60c9168a01dc7634ed9ca2c8f27f4b47764c4ff1cb4bd751ac2",
+      "bytes": 20391,
+      "after_sha256": "41ed2d19e2ada60c9168a01dc7634ed9ca2c8f27f4b47764c4ff1cb4bd751ac2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_18.png",
+      "sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "bytes": 9187,
+      "after_sha256": "a73f5e832a9facff57b72fe07685c069c5a9dedef7636e5bb5ba2377bce61184",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_19.png",
+      "sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "bytes": 24992,
+      "after_sha256": "3cd39dad7cb62c09483e22184f9fe1023936009e6b2c0c79c34484aadb908fc0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/masks/mask_20.png",
+      "sha256": "d2f313dcc153e6885590ebf12b32deeddfd060ecaba5dea0c2ab3e2043bbdbda",
+      "bytes": 133265,
+      "after_sha256": "d2f313dcc153e6885590ebf12b32deeddfd060ecaba5dea0c2ab3e2043bbdbda",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_01.png",
+      "sha256": "99fd39fe79ca831458548b310459436744e916625d96cc69fc686f2316e7db43",
+      "bytes": 12427,
+      "after_sha256": "99fd39fe79ca831458548b310459436744e916625d96cc69fc686f2316e7db43",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_02.png",
+      "sha256": "9c48a883641ae1df6434b55f7a7123910aeb36973c18974706203c68fda98a59",
+      "bytes": 11439,
+      "after_sha256": "9c48a883641ae1df6434b55f7a7123910aeb36973c18974706203c68fda98a59",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_03.png",
+      "sha256": "30f41c003b5dd648456e271a77c30a98141d723ee80a0a804c28a6c8dcdadce8",
+      "bytes": 12124,
+      "after_sha256": "30f41c003b5dd648456e271a77c30a98141d723ee80a0a804c28a6c8dcdadce8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_04.png",
+      "sha256": "f4d6aa21ffe60b5ff87a1d05796bdad75c53b42b6951943eb18443508578d0f2",
+      "bytes": 11368,
+      "after_sha256": "f4d6aa21ffe60b5ff87a1d05796bdad75c53b42b6951943eb18443508578d0f2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_05.png",
+      "sha256": "a6ea9d5b078c16927c164c194c12ccc12359b9f6ac1c1d3a3e9525ddd61d24dd",
+      "bytes": 10650,
+      "after_sha256": "a6ea9d5b078c16927c164c194c12ccc12359b9f6ac1c1d3a3e9525ddd61d24dd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_06.png",
+      "sha256": "4594a324427623d12ad7b850010702045bb322e6d4f3405e5f543bfab158a468",
+      "bytes": 11643,
+      "after_sha256": "4594a324427623d12ad7b850010702045bb322e6d4f3405e5f543bfab158a468",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_07.png",
+      "sha256": "68d99cbf09fa91c8779f7bbe117da4dd2f84eaa71420ae2c1c89bdb636f0775a",
+      "bytes": 10826,
+      "after_sha256": "68d99cbf09fa91c8779f7bbe117da4dd2f84eaa71420ae2c1c89bdb636f0775a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/cyan_particle_08.png",
+      "sha256": "537e7762fb33e04802faa8b333d5d265f64133d80eb8cf1b5a402d63f6d4b162",
+      "bytes": 10050,
+      "after_sha256": "537e7762fb33e04802faa8b333d5d265f64133d80eb8cf1b5a402d63f6d4b162",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_01.png",
+      "sha256": "1ea296a4e4d67c91e9fda7fe506b27cc02727d08b4c2c3ebd8aa10c50e570588",
+      "bytes": 12525,
+      "after_sha256": "1ea296a4e4d67c91e9fda7fe506b27cc02727d08b4c2c3ebd8aa10c50e570588",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_02.png",
+      "sha256": "5645c58053110d3421d5b9422a2c90fcd1e8ebe04a84b61e8622dfd06c2b19c3",
+      "bytes": 11504,
+      "after_sha256": "5645c58053110d3421d5b9422a2c90fcd1e8ebe04a84b61e8622dfd06c2b19c3",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_03.png",
+      "sha256": "8a9d4dbcc50acc331a3ea5d34c3f84f1895ba2d9651752492c2c2bce3f7f8b03",
+      "bytes": 12136,
+      "after_sha256": "8a9d4dbcc50acc331a3ea5d34c3f84f1895ba2d9651752492c2c2bce3f7f8b03",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_04.png",
+      "sha256": "9c666be0dad68e6cefb86203f75d7d9fb68fc7691b03d69a8bc2f4e86d7c97ef",
+      "bytes": 11481,
+      "after_sha256": "9c666be0dad68e6cefb86203f75d7d9fb68fc7691b03d69a8bc2f4e86d7c97ef",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_05.png",
+      "sha256": "bc1541fd307c48e2717717d0396a508139dee2cf3b1a0ecfb95ab705ff1c29a7",
+      "bytes": 10727,
+      "after_sha256": "bc1541fd307c48e2717717d0396a508139dee2cf3b1a0ecfb95ab705ff1c29a7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_06.png",
+      "sha256": "64040d49a7105a307497fd7f729e27e959f62bcb320012a0176547fde3a9400b",
+      "bytes": 11730,
+      "after_sha256": "64040d49a7105a307497fd7f729e27e959f62bcb320012a0176547fde3a9400b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_07.png",
+      "sha256": "e631f55f05c7c90be2bef190f83621e000808cf603efe019075aef95cae0c26c",
+      "bytes": 10916,
+      "after_sha256": "e631f55f05c7c90be2bef190f83621e000808cf603efe019075aef95cae0c26c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/gold_particle_08.png",
+      "sha256": "1bec7ced845a59568b219cbf580672a165f38bf9f7bcfa0c6ebe501bb4c8415d",
+      "bytes": 10139,
+      "after_sha256": "1bec7ced845a59568b219cbf580672a165f38bf9f7bcfa0c6ebe501bb4c8415d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_01.png",
+      "sha256": "f3130da8f4007de4ce408341a025a2cc96b69e6e67997b59aa35bca4750d5945",
+      "bytes": 12462,
+      "after_sha256": "f3130da8f4007de4ce408341a025a2cc96b69e6e67997b59aa35bca4750d5945",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_02.png",
+      "sha256": "28d331d05fcab42632b944789d049b8bf7db8b5726556aceaf02f2971f4c07af",
+      "bytes": 11455,
+      "after_sha256": "28d331d05fcab42632b944789d049b8bf7db8b5726556aceaf02f2971f4c07af",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_03.png",
+      "sha256": "2037b616c1f69fec7f7d58e655d529f41d4ae7ebe23d0523f177bc59e22d6d4b",
+      "bytes": 12130,
+      "after_sha256": "2037b616c1f69fec7f7d58e655d529f41d4ae7ebe23d0523f177bc59e22d6d4b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_04.png",
+      "sha256": "230157a28e1212c17ad269af3607c643b8de72824adef1dc6bd7f3beb406b168",
+      "bytes": 11350,
+      "after_sha256": "230157a28e1212c17ad269af3607c643b8de72824adef1dc6bd7f3beb406b168",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_05.png",
+      "sha256": "2aa43894d737ca2e9b7871c7ca505162f34ad2cb04c08bb2cb195f042d2d8a8f",
+      "bytes": 10663,
+      "after_sha256": "2aa43894d737ca2e9b7871c7ca505162f34ad2cb04c08bb2cb195f042d2d8a8f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_06.png",
+      "sha256": "e1f26b0990606805ac740ee6c2acb3f28049f3d210f32fcf21f44b454953b872",
+      "bytes": 11672,
+      "after_sha256": "e1f26b0990606805ac740ee6c2acb3f28049f3d210f32fcf21f44b454953b872",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_07.png",
+      "sha256": "d6a7415f5a681628c21b3c808dc3c1c64c124b652bc37fbed6f5da13c2f3fdfa",
+      "bytes": 10816,
+      "after_sha256": "d6a7415f5a681628c21b3c808dc3c1c64c124b652bc37fbed6f5da13c2f3fdfa",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/green_particle_08.png",
+      "sha256": "839e1dff0004379c3746bc27bba093f7e49f4c6db1fc078a76391134aaf7258b",
+      "bytes": 10052,
+      "after_sha256": "839e1dff0004379c3746bc27bba093f7e49f4c6db1fc078a76391134aaf7258b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_01.png",
+      "sha256": "4e3af2838bfcdde1026da47fe72e4dbd23d413746af9280583d350b27970794c",
+      "bytes": 12431,
+      "after_sha256": "4e3af2838bfcdde1026da47fe72e4dbd23d413746af9280583d350b27970794c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_02.png",
+      "sha256": "396189d51f0cc07a2f4d11220f7385e80bc8e6cfcd5321f38f9f1aae7d0b4cd2",
+      "bytes": 11406,
+      "after_sha256": "396189d51f0cc07a2f4d11220f7385e80bc8e6cfcd5321f38f9f1aae7d0b4cd2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_03.png",
+      "sha256": "9ff5e9f9d7502f5e767eb49cfe14ca5677ccad797e44280168769fff3e274c37",
+      "bytes": 12084,
+      "after_sha256": "9ff5e9f9d7502f5e767eb49cfe14ca5677ccad797e44280168769fff3e274c37",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_04.png",
+      "sha256": "b6da0f7e68238afbce119156511b73a40b517daad5c243fcc82a6fb5d3d202b5",
+      "bytes": 11328,
+      "after_sha256": "b6da0f7e68238afbce119156511b73a40b517daad5c243fcc82a6fb5d3d202b5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_05.png",
+      "sha256": "901fbbb500257dd93fb0cb02469b5cf9b58ff3b986884952e065a15000ece8de",
+      "bytes": 10631,
+      "after_sha256": "901fbbb500257dd93fb0cb02469b5cf9b58ff3b986884952e065a15000ece8de",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_06.png",
+      "sha256": "e3cee2815fc39fb1ca98ed4bc712d962a58f14c553bcf7583f011217e4840ae8",
+      "bytes": 11650,
+      "after_sha256": "e3cee2815fc39fb1ca98ed4bc712d962a58f14c553bcf7583f011217e4840ae8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_07.png",
+      "sha256": "371e9d5132fd24e2ac20dfb10b178e1bc91224fcc3a9f45f161c511df1d16e20",
+      "bytes": 10790,
+      "after_sha256": "371e9d5132fd24e2ac20dfb10b178e1bc91224fcc3a9f45f161c511df1d16e20",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/particles/violet_particle_08.png",
+      "sha256": "6bacc863aa34601a9fe30ddfa4079284e8e51163807555bbe385d0377db06883",
+      "bytes": 10039,
+      "after_sha256": "6bacc863aa34601a9fe30ddfa4079284e8e51163807555bbe385d0377db06883",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_games_01.png",
+      "sha256": "5dda84373070767bd126cbb085d925382630650e012e159fa70320ec7e04be24",
+      "bytes": 27720,
+      "after_sha256": "5dda84373070767bd126cbb085d925382630650e012e159fa70320ec7e04be24",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_games_02.png",
+      "sha256": "c11d1a13c62bf77084a811b64b716061a607e485d16f8e5639244770aec36a8e",
+      "bytes": 28097,
+      "after_sha256": "c11d1a13c62bf77084a811b64b716061a607e485d16f8e5639244770aec36a8e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_games_03.png",
+      "sha256": "033482e2c171a2a634a6c49f3ce66214bb0d480388d427fb4023fbad17b4edd0",
+      "bytes": 27840,
+      "after_sha256": "033482e2c171a2a634a6c49f3ce66214bb0d480388d427fb4023fbad17b4edd0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_games_04.png",
+      "sha256": "94c19b52fb80b524f6a0c67cf5df4ae28166239c6634cbd9741aa11a7a137620",
+      "bytes": 28013,
+      "after_sha256": "94c19b52fb80b524f6a0c67cf5df4ae28166239c6634cbd9741aa11a7a137620",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_games_05.png",
+      "sha256": "d8f537b8edd6b79f06ade0a1fef04d44de5f5ddd5eee1bebe9334fd0952d91ba",
+      "bytes": 27818,
+      "after_sha256": "d8f537b8edd6b79f06ade0a1fef04d44de5f5ddd5eee1bebe9334fd0952d91ba",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_learn_01.png",
+      "sha256": "c678848ea0359e7cf9befbb019bb41687a6500ccbedd57c8d86e6a28fbc3d8b4",
+      "bytes": 27571,
+      "after_sha256": "c678848ea0359e7cf9befbb019bb41687a6500ccbedd57c8d86e6a28fbc3d8b4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_learn_02.png",
+      "sha256": "18c84470ee63df5df719d2efcde6ee9ada78da3553811635281768a44690d0d3",
+      "bytes": 27897,
+      "after_sha256": "18c84470ee63df5df719d2efcde6ee9ada78da3553811635281768a44690d0d3",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_learn_03.png",
+      "sha256": "77d01aa2d0c370128f89ce7678241e2f6e780225625ea550633743e87b48293a",
+      "bytes": 27706,
+      "after_sha256": "77d01aa2d0c370128f89ce7678241e2f6e780225625ea550633743e87b48293a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_learn_04.png",
+      "sha256": "b9fe206168793a576c323c40660594b4c4bc82eb6f829b0a63e7e26c6c1fa463",
+      "bytes": 28044,
+      "after_sha256": "b9fe206168793a576c323c40660594b4c4bc82eb6f829b0a63e7e26c6c1fa463",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_learn_05.png",
+      "sha256": "2caf827471a21d4def2703793ae53fabc17e98b4f84b9d100c174d76554a933b",
+      "bytes": 27495,
+      "after_sha256": "2caf827471a21d4def2703793ae53fabc17e98b4f84b9d100c174d76554a933b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_magic_01.png",
+      "sha256": "bf093fd997c5dcbc24459a7f5e9fdc8e6a5ec30f8ed19c2dba12be2ab6e1f52e",
+      "bytes": 27192,
+      "after_sha256": "bf093fd997c5dcbc24459a7f5e9fdc8e6a5ec30f8ed19c2dba12be2ab6e1f52e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_magic_02.png",
+      "sha256": "e034d9102eb016ac21b09f8df2f12ab6abee2605c3b02ee095773d6fa54750cf",
+      "bytes": 27523,
+      "after_sha256": "e034d9102eb016ac21b09f8df2f12ab6abee2605c3b02ee095773d6fa54750cf",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_magic_03.png",
+      "sha256": "7a8410a0cc4df2990dfe71a32275384863d3eebf7fc466181e51b1e05d7e2844",
+      "bytes": 27281,
+      "after_sha256": "7a8410a0cc4df2990dfe71a32275384863d3eebf7fc466181e51b1e05d7e2844",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_magic_04.png",
+      "sha256": "a00c032e2d58c298edb3e9543cc32835fbb681d566eca26b6f6d6a03a227125f",
+      "bytes": 27668,
+      "after_sha256": "a00c032e2d58c298edb3e9543cc32835fbb681d566eca26b6f6d6a03a227125f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_magic_05.png",
+      "sha256": "4bfa55045fa9447ae7c25b74a2c3e847b81e5fb8fdb5a588c5c8e373119aa0d4",
+      "bytes": 27332,
+      "after_sha256": "4bfa55045fa9447ae7c25b74a2c3e847b81e5fb8fdb5a588c5c8e373119aa0d4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_parent_01.png",
+      "sha256": "21c64554d3d1d84ea018cfbdc5efd0b58afb8cc208c0438801d2c5e99032b11f",
+      "bytes": 26419,
+      "after_sha256": "21c64554d3d1d84ea018cfbdc5efd0b58afb8cc208c0438801d2c5e99032b11f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_parent_02.png",
+      "sha256": "804589262c5924bf39513e39f1e8e6648f562efc492222e7b15d2c472caf406e",
+      "bytes": 26653,
+      "after_sha256": "804589262c5924bf39513e39f1e8e6648f562efc492222e7b15d2c472caf406e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_parent_03.png",
+      "sha256": "2c4b8aeb16d6fca0cd73fc71a79d01eca9f2dc0d263a7804a3369e935a2933b0",
+      "bytes": 26816,
+      "after_sha256": "2c4b8aeb16d6fca0cd73fc71a79d01eca9f2dc0d263a7804a3369e935a2933b0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_parent_04.png",
+      "sha256": "09d55b8cc17bbb6a86f5e6fe7024ff5bff1cf2ffda4a0cb55008729f4235a416",
+      "bytes": 26883,
+      "after_sha256": "09d55b8cc17bbb6a86f5e6fe7024ff5bff1cf2ffda4a0cb55008729f4235a416",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/portals/portal_parent_05.png",
+      "sha256": "eaebc630bca982dde018d774561cde89e17623fc3c404dd7bd2bca87ef72549f",
+      "bytes": 26491,
+      "after_sha256": "eaebc630bca982dde018d774561cde89e17623fc3c404dd7bd2bca87ef72549f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/aurora_green.png",
+      "sha256": "58ac37a176a4557ec2b22e36cb935eb437334c25403bc46483287fbfee403766",
+      "bytes": 7656,
+      "after_sha256": "58ac37a176a4557ec2b22e36cb935eb437334c25403bc46483287fbfee403766",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/candy_sky.png",
+      "sha256": "3d8a574710984358a3ab3a9eb7a6107d086fb9d2e11cc8d3ace99549fb930d2a",
+      "bytes": 7058,
+      "after_sha256": "3d8a574710984358a3ab3a9eb7a6107d086fb9d2e11cc8d3ace99549fb930d2a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/cosmic_kids.png",
+      "sha256": "eb303ef1977d2c9ab480d789bdfc77491d582a17e7376e75b9606ae10ab97560",
+      "bytes": 7681,
+      "after_sha256": "eb303ef1977d2c9ab480d789bdfc77491d582a17e7376e75b9606ae10ab97560",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/dream_blue.png",
+      "sha256": "94f95b8282a30b2a7c9b4eb39d5f04ebf49e029254bda03447ebc4343fe0bc60",
+      "bytes": 7111,
+      "after_sha256": "94f95b8282a30b2a7c9b4eb39d5f04ebf49e029254bda03447ebc4343fe0bc60",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/forest_morning.png",
+      "sha256": "827ad193ad4ad137ba5c04712a52307b586cb5d690b7abda58d0af5fc23f422e",
+      "bytes": 7127,
+      "after_sha256": "827ad193ad4ad137ba5c04712a52307b586cb5d690b7abda58d0af5fc23f422e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/golden_clouds.png",
+      "sha256": "dbb8b44b1345310bce96f1b9d62fe719a8b3d23a092b2bbd4da29d7445fe49e1",
+      "bytes": 6265,
+      "after_sha256": "dbb8b44b1345310bce96f1b9d62fe719a8b3d23a092b2bbd4da29d7445fe49e1",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/portal_space.png",
+      "sha256": "7902eee44cadc88a42a5556f54b2a5d93580f0ad02073ede0ab4e84b4cd7d255",
+      "bytes": 7382,
+      "after_sha256": "7902eee44cadc88a42a5556f54b2a5d93580f0ad02073ede0ab4e84b4cd7d255",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/royal_night.png",
+      "sha256": "735f40e9694df0a7e43a4cc7252c050607263fc6ed638b296af1589f245b7baa",
+      "bytes": 7553,
+      "after_sha256": "735f40e9694df0a7e43a4cc7252c050607263fc6ed638b296af1589f245b7baa",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/soft_day.png",
+      "sha256": "91605f8b33c2acdd7617852654ce1272127f92038df90db8f3bd7d8307cd3c27",
+      "bytes": 6647,
+      "after_sha256": "91605f8b33c2acdd7617852654ce1272127f92038df90db8f3bd7d8307cd3c27",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/sunrise_magic.png",
+      "sha256": "bfeff23a5f069cdab121add4a38fbe64043a4af8b0a896480ba5cd1e64271542",
+      "bytes": 8207,
+      "after_sha256": "bfeff23a5f069cdab121add4a38fbe64043a4af8b0a896480ba5cd1e64271542",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/twilight_violet.png",
+      "sha256": "cb4f553f9209d1e6a81a7174cf484edd9b210c8d8b39a496c901f793ca5e68c0",
+      "bytes": 8067,
+      "after_sha256": "cb4f553f9209d1e6a81a7174cf484edd9b210c8d8b39a496c901f793ca5e68c0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/sky_gradients/warm_safe.png",
+      "sha256": "aaadb927ad307a72b98e4522b81cd1a31ac3cda26933f5b0acc920c401995134",
+      "bytes": 6323,
+      "after_sha256": "aaadb927ad307a72b98e4522b81cd1a31ac3cda26933f5b0acc920c401995134",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/cloud_soft_albedo.png",
+      "sha256": "8bf085e36391f6d7f126307e27d95aa099437e03a47cacd1157039fdcabffbc5",
+      "bytes": 121995,
+      "after_sha256": "8bf085e36391f6d7f126307e27d95aa099437e03a47cacd1157039fdcabffbc5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/crystal_floor_albedo.png",
+      "sha256": "40ff8d572a5db0e60fbd95e93f5165be75afa7ed86d43893a47768d0a207cd2a",
+      "bytes": 130109,
+      "after_sha256": "40ff8d572a5db0e60fbd95e93f5165be75afa7ed86d43893a47768d0a207cd2a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/grass_deep_albedo.png",
+      "sha256": "8aaf2052d431557fccf9fdd0fc3a8b108f04397bb82b4db8f716b57b6ae58d2b",
+      "bytes": 107312,
+      "after_sha256": "8aaf2052d431557fccf9fdd0fc3a8b108f04397bb82b4db8f716b57b6ae58d2b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/grass_magic_albedo.png",
+      "sha256": "e520d97eed4df3e035b2eec4dcb895eaddca91e27010eb7142cb62de9e26dd67",
+      "bytes": 135765,
+      "after_sha256": "e520d97eed4df3e035b2eec4dcb895eaddca91e27010eb7142cb62de9e26dd67",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/hologrid_cyan_albedo.png",
+      "sha256": "f03565c02e670c5ff8a3249cc68bcaccaa59190e74688ab66f1da2878fd25212",
+      "bytes": 109428,
+      "after_sha256": "f03565c02e670c5ff8a3249cc68bcaccaa59190e74688ab66f1da2878fd25212",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/hologrid_violet_albedo.png",
+      "sha256": "85c952fe3f03c7cf3d06917327235dce52b74b0a8f93e1a710740d72fe609e8b",
+      "bytes": 107129,
+      "after_sha256": "85c952fe3f03c7cf3d06917327235dce52b74b0a8f93e1a710740d72fe609e8b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/stone_blue_magic_albedo.png",
+      "sha256": "9a71f83fdfd2df66e3ab6b0b92fe4d4023eb1577accefbf5b5d061fa29a79d6f",
+      "bytes": 145052,
+      "after_sha256": "9a71f83fdfd2df66e3ab6b0b92fe4d4023eb1577accefbf5b5d061fa29a79d6f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/stone_warm_albedo.png",
+      "sha256": "41fce97b78aee9bd85a978681f45ca139ce250003ef500bcc0052786b7cf0fdf",
+      "bytes": 132462,
+      "after_sha256": "41fce97b78aee9bd85a978681f45ca139ce250003ef500bcc0052786b7cf0fdf",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/velvet_blue_3d_albedo.png",
+      "sha256": "17affa30539b8a7bf743eab213d8977e1c228a85448088824d58d1d5b4c4011f",
+      "bytes": 122408,
+      "after_sha256": "17affa30539b8a7bf743eab213d8977e1c228a85448088824d58d1d5b4c4011f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/velvet_purple_3d_albedo.png",
+      "sha256": "2e231d1f77ae7a8984162875ce3f0017824813e1ea3b69902b50d43e782b5734",
+      "bytes": 124815,
+      "after_sha256": "2e231d1f77ae7a8984162875ce3f0017824813e1ea3b69902b50d43e782b5734",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/wood_pastel_albedo.png",
+      "sha256": "6529e440b3ebc95b6c03508964d128cf8f6d82c6eea6ce662b90ed93cace9d58",
+      "bytes": 193556,
+      "after_sha256": "6529e440b3ebc95b6c03508964d128cf8f6d82c6eea6ce662b90ed93cace9d58",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/albedo/wood_warm_soft_albedo.png",
+      "sha256": "867d6d23f7b210c89c99c334385ecda9cab97fdafa92f3f80032d8ea9a06b986",
+      "bytes": 186009,
+      "after_sha256": "867d6d23f7b210c89c99c334385ecda9cab97fdafa92f3f80032d8ea9a06b986",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/crystal_floor_emission.png",
+      "sha256": "dbcd7622b7ebe92e7625fb535404b52842977c364f0338bdf23e04ac26e8e145",
+      "bytes": 3856,
+      "after_sha256": "dbcd7622b7ebe92e7625fb535404b52842977c364f0338bdf23e04ac26e8e145",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/hologrid_cyan_emission.png",
+      "sha256": "dbcd7622b7ebe92e7625fb535404b52842977c364f0338bdf23e04ac26e8e145",
+      "bytes": 3856,
+      "after_sha256": "dbcd7622b7ebe92e7625fb535404b52842977c364f0338bdf23e04ac26e8e145",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/hologrid_violet_emission.png",
+      "sha256": "5b87f63e0e1b5a36d286ff738cd4b1143719eed2564565351a46e750f91cce5c",
+      "bytes": 4120,
+      "after_sha256": "5b87f63e0e1b5a36d286ff738cd4b1143719eed2564565351a46e750f91cce5c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_games_01_emission.png",
+      "sha256": "ff5d3b8714aa80fd12e100a878e05e66ddb3e67e1283146d992225f80d93a47e",
+      "bytes": 20921,
+      "after_sha256": "ff5d3b8714aa80fd12e100a878e05e66ddb3e67e1283146d992225f80d93a47e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_games_02_emission.png",
+      "sha256": "d6c384298501adc0ef0421e5c04c1c5194a113af8ef0283c59d4ddbdbeec243a",
+      "bytes": 20786,
+      "after_sha256": "d6c384298501adc0ef0421e5c04c1c5194a113af8ef0283c59d4ddbdbeec243a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_games_03_emission.png",
+      "sha256": "f83df4cc1ab4f2bfc35eeb39572205faa3d976bfe93e6e69553f91b3209c4472",
+      "bytes": 20888,
+      "after_sha256": "f83df4cc1ab4f2bfc35eeb39572205faa3d976bfe93e6e69553f91b3209c4472",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_games_04_emission.png",
+      "sha256": "77ebb5adf3a8ba24a6a10c3bf78b14cd58448ec989409cf45e2bfd35d33ede43",
+      "bytes": 21098,
+      "after_sha256": "77ebb5adf3a8ba24a6a10c3bf78b14cd58448ec989409cf45e2bfd35d33ede43",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_games_05_emission.png",
+      "sha256": "5f2473d5be8f41f3459e7452f7e3dc8bd8320b4f941ffe236e7f268f6250495e",
+      "bytes": 20640,
+      "after_sha256": "5f2473d5be8f41f3459e7452f7e3dc8bd8320b4f941ffe236e7f268f6250495e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_learn_01_emission.png",
+      "sha256": "54c236074ff7fd16b28726334f0e2e9f9bf9edc849dc0dab1f937013b628fbb1",
+      "bytes": 21110,
+      "after_sha256": "54c236074ff7fd16b28726334f0e2e9f9bf9edc849dc0dab1f937013b628fbb1",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_learn_02_emission.png",
+      "sha256": "ca1a307f0913b7f146f801986bbeea4b5984b064c2df35c85ae5f7d3d6c10b59",
+      "bytes": 20884,
+      "after_sha256": "ca1a307f0913b7f146f801986bbeea4b5984b064c2df35c85ae5f7d3d6c10b59",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_learn_03_emission.png",
+      "sha256": "9f8cdcd8e2ffaf438ad336ec1524f8f32dd5d05f4cc9e1c7029e4158ab31605b",
+      "bytes": 21021,
+      "after_sha256": "9f8cdcd8e2ffaf438ad336ec1524f8f32dd5d05f4cc9e1c7029e4158ab31605b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_learn_04_emission.png",
+      "sha256": "ca2dc4f9afbd03bce7ec9485116b90992884aef0a9e2f8253e77fb547fa3d5ab",
+      "bytes": 21141,
+      "after_sha256": "ca2dc4f9afbd03bce7ec9485116b90992884aef0a9e2f8253e77fb547fa3d5ab",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_learn_05_emission.png",
+      "sha256": "12280692127c23f6a992de7be7cbf0415c88a19a3d4cae4279bbacac34b51e78",
+      "bytes": 20690,
+      "after_sha256": "12280692127c23f6a992de7be7cbf0415c88a19a3d4cae4279bbacac34b51e78",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_magic_01_emission.png",
+      "sha256": "e80a3919c5654555a600c8ddd397ec5ec8f9372dda33e2618223d675ecc8ec87",
+      "bytes": 21089,
+      "after_sha256": "e80a3919c5654555a600c8ddd397ec5ec8f9372dda33e2618223d675ecc8ec87",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_magic_02_emission.png",
+      "sha256": "ae9711b81a1f73c3780f5952ca615acd4be8d81e90eb5cfc653115fb433fbf3d",
+      "bytes": 20994,
+      "after_sha256": "ae9711b81a1f73c3780f5952ca615acd4be8d81e90eb5cfc653115fb433fbf3d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_magic_03_emission.png",
+      "sha256": "206da505e0edd9a2bd380db9d7163b296d74ebd6fb479dd97ca15d35adfdbf18",
+      "bytes": 21131,
+      "after_sha256": "206da505e0edd9a2bd380db9d7163b296d74ebd6fb479dd97ca15d35adfdbf18",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_magic_04_emission.png",
+      "sha256": "611173f1aaaf3093f7b72d1bb934057e591b8aa49b0d42644a5a2124f37192aa",
+      "bytes": 21291,
+      "after_sha256": "611173f1aaaf3093f7b72d1bb934057e591b8aa49b0d42644a5a2124f37192aa",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_magic_05_emission.png",
+      "sha256": "e3d4bf55cb1a9d51b98e022ef33152f0d047605ca4390eff477d40e32d1613c6",
+      "bytes": 20773,
+      "after_sha256": "e3d4bf55cb1a9d51b98e022ef33152f0d047605ca4390eff477d40e32d1613c6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_parent_01_emission.png",
+      "sha256": "f7f2e4d9fc63ed9513e9b9d01e7f57fb307fc1bf5cb7a7b3bb4d263735c9ffcd",
+      "bytes": 20898,
+      "after_sha256": "f7f2e4d9fc63ed9513e9b9d01e7f57fb307fc1bf5cb7a7b3bb4d263735c9ffcd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_parent_02_emission.png",
+      "sha256": "ff063d080c4fca4d94d53551caecda9df41c6458c2c8af08de79fc302c3751c4",
+      "bytes": 20766,
+      "after_sha256": "ff063d080c4fca4d94d53551caecda9df41c6458c2c8af08de79fc302c3751c4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_parent_03_emission.png",
+      "sha256": "eaee3ccb81d38ebd3fd599ad66f79803457c11651a35ecb8a1690ae9d0ac3538",
+      "bytes": 20878,
+      "after_sha256": "eaee3ccb81d38ebd3fd599ad66f79803457c11651a35ecb8a1690ae9d0ac3538",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_parent_04_emission.png",
+      "sha256": "626baa0e878224049875131591f8f522e1b0c1479361c8e1b9b68d007e01d670",
+      "bytes": 21019,
+      "after_sha256": "626baa0e878224049875131591f8f522e1b0c1479361c8e1b9b68d007e01d670",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/emission/portal_parent_05_emission.png",
+      "sha256": "1ee98559474e31bce46bb7227508e02ca37adaeea797ef70b495a999f9275e20",
+      "bytes": 20572,
+      "after_sha256": "1ee98559474e31bce46bb7227508e02ca37adaeea797ef70b495a999f9275e20",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/cloud_soft_normal.png",
+      "sha256": "5e8cbb6349d63d19df4c091793f23aa45d3de915ac8aa14cbda19739ff7e9be6",
+      "bytes": 174297,
+      "after_sha256": "5e8cbb6349d63d19df4c091793f23aa45d3de915ac8aa14cbda19739ff7e9be6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/crystal_floor_normal.png",
+      "sha256": "c76543e8fd818a8f4a42991035fcfd16b73d5375180081715dd329b9e6777f6e",
+      "bytes": 174563,
+      "after_sha256": "c76543e8fd818a8f4a42991035fcfd16b73d5375180081715dd329b9e6777f6e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/grass_deep_normal.png",
+      "sha256": "a591a563f9d1549269e602bae32255de660ad2a04311301b5a8c5d9eed08e002",
+      "bytes": 174222,
+      "after_sha256": "a591a563f9d1549269e602bae32255de660ad2a04311301b5a8c5d9eed08e002",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/grass_magic_normal.png",
+      "sha256": "26cacc93f6b56b7bf54972bf0d47f6aa53f3347eeefa6bb2a5d0870bb4743f28",
+      "bytes": 174840,
+      "after_sha256": "26cacc93f6b56b7bf54972bf0d47f6aa53f3347eeefa6bb2a5d0870bb4743f28",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/hologrid_cyan_normal.png",
+      "sha256": "6ff794a9625e3ebe71e995cc75964264a849f070b9f958e8f1f9dc855a54c1e2",
+      "bytes": 174333,
+      "after_sha256": "6ff794a9625e3ebe71e995cc75964264a849f070b9f958e8f1f9dc855a54c1e2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/hologrid_violet_normal.png",
+      "sha256": "bbc12dc5af46a8c3e66cf52f41bd53fb092578c2c30db07fa93ebd67cc85aedd",
+      "bytes": 174633,
+      "after_sha256": "bbc12dc5af46a8c3e66cf52f41bd53fb092578c2c30db07fa93ebd67cc85aedd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/stone_blue_magic_normal.png",
+      "sha256": "065b6c9f4db1ff6513e91c850c52621595824a28e8915346c82b70627d00bfa8",
+      "bytes": 174520,
+      "after_sha256": "065b6c9f4db1ff6513e91c850c52621595824a28e8915346c82b70627d00bfa8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/stone_warm_normal.png",
+      "sha256": "4ef58070a65dd350cebf704e82b45004f0c61e6e1d271213b6408567c043f6f4",
+      "bytes": 174216,
+      "after_sha256": "4ef58070a65dd350cebf704e82b45004f0c61e6e1d271213b6408567c043f6f4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/velvet_blue_3d_normal.png",
+      "sha256": "42bc4dfdcf37278fdec91b692aaa31074ed06219273984f82ef770eb33f36cf6",
+      "bytes": 174133,
+      "after_sha256": "42bc4dfdcf37278fdec91b692aaa31074ed06219273984f82ef770eb33f36cf6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/velvet_purple_3d_normal.png",
+      "sha256": "b0713dc363a0b39255d90ea31e871fa49f8bf0aef3f589763df27f499915e755",
+      "bytes": 173914,
+      "after_sha256": "b0713dc363a0b39255d90ea31e871fa49f8bf0aef3f589763df27f499915e755",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/wood_pastel_normal.png",
+      "sha256": "ce8643997d88cbddd3326a104e039fc5822567f6315a72a6076e18a4c51318c2",
+      "bytes": 174132,
+      "after_sha256": "ce8643997d88cbddd3326a104e039fc5822567f6315a72a6076e18a4c51318c2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/textures/normal/wood_warm_soft_normal.png",
+      "sha256": "01245a4ae51ccf304dbc46039f5ef53b67ce0ebed602d1b7d01157c28dad066e",
+      "bytes": 174585,
+      "after_sha256": "01245a4ae51ccf304dbc46039f5ef53b67ce0ebed602d1b7d01157c28dad066e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_cyan_01.png",
+      "sha256": "9b398dd78167682279eed7f35c4c7678a7986c872174f174751ce439f990306a",
+      "bytes": 1986,
+      "after_sha256": "9b398dd78167682279eed7f35c4c7678a7986c872174f174751ce439f990306a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_cyan_02.png",
+      "sha256": "6001d5c74975c4a79f783800e0263a3cd28560648210aa3ebeefff15e8f8633d",
+      "bytes": 1970,
+      "after_sha256": "6001d5c74975c4a79f783800e0263a3cd28560648210aa3ebeefff15e8f8633d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_cyan_03.png",
+      "sha256": "d17316ac456a5f70f8406261624239d9d8352722d332d460586372da82b45e28",
+      "bytes": 1946,
+      "after_sha256": "d17316ac456a5f70f8406261624239d9d8352722d332d460586372da82b45e28",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_cyan_04.png",
+      "sha256": "47e5753d5eb84fcb182b50749fe1c082cd89ae1838a8531c50109dab0603391a",
+      "bytes": 1923,
+      "after_sha256": "47e5753d5eb84fcb182b50749fe1c082cd89ae1838a8531c50109dab0603391a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_gold_01.png",
+      "sha256": "37ac22a610390315d1742c894516f040c9902e30d7974552579cbd81912b9930",
+      "bytes": 2037,
+      "after_sha256": "37ac22a610390315d1742c894516f040c9902e30d7974552579cbd81912b9930",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_gold_02.png",
+      "sha256": "ec306050a2ece45742e77ff4760b00607723ed21b7b40ed5735080be453c2120",
+      "bytes": 2018,
+      "after_sha256": "ec306050a2ece45742e77ff4760b00607723ed21b7b40ed5735080be453c2120",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_gold_03.png",
+      "sha256": "ca301dfd1d155e3c53b530d9c06e46a3c59ae0b6eb794a2e4e8936371000464d",
+      "bytes": 1994,
+      "after_sha256": "ca301dfd1d155e3c53b530d9c06e46a3c59ae0b6eb794a2e4e8936371000464d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_gold_04.png",
+      "sha256": "a29b1555a5e3fae6cdc37c9dd9b3dd5b9bdc87947c41a7cf079455c8eb68fbf6",
+      "bytes": 1970,
+      "after_sha256": "a29b1555a5e3fae6cdc37c9dd9b3dd5b9bdc87947c41a7cf079455c8eb68fbf6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_green_01.png",
+      "sha256": "83db89b674b2ad3c653561bb5674bf5b4f50304e929538b506297403b3f8f53f",
+      "bytes": 1991,
+      "after_sha256": "83db89b674b2ad3c653561bb5674bf5b4f50304e929538b506297403b3f8f53f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_green_02.png",
+      "sha256": "e6f345b41893191838764841d0eb4d4c706644b38bec2144e8826ccd5561d899",
+      "bytes": 1975,
+      "after_sha256": "e6f345b41893191838764841d0eb4d4c706644b38bec2144e8826ccd5561d899",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_green_03.png",
+      "sha256": "b3d6a4d4325e5531fbfc90eec7bbcbdfdf6a2d89b67a5e4553e2e9fbdf02e6ba",
+      "bytes": 1951,
+      "after_sha256": "b3d6a4d4325e5531fbfc90eec7bbcbdfdf6a2d89b67a5e4553e2e9fbdf02e6ba",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_green_04.png",
+      "sha256": "d8b5c89c83531bf005428a7cbde2c918acb1c2dd33644d47b2bc343b44dfe7be",
+      "bytes": 1928,
+      "after_sha256": "d8b5c89c83531bf005428a7cbde2c918acb1c2dd33644d47b2bc343b44dfe7be",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_violet_01.png",
+      "sha256": "2cc44d568cc8ab34edabc2ab2f08857d88981532bb0bc1c8d45a7a0cb297c404",
+      "bytes": 1987,
+      "after_sha256": "2cc44d568cc8ab34edabc2ab2f08857d88981532bb0bc1c8d45a7a0cb297c404",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_violet_02.png",
+      "sha256": "8f8d585fa967aa0a8b46e12fa47a7574847caf522045d7f1b21e09d375b57374",
+      "bytes": 1970,
+      "after_sha256": "8f8d585fa967aa0a8b46e12fa47a7574847caf522045d7f1b21e09d375b57374",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_violet_03.png",
+      "sha256": "ea048a48f4c21b9188dd42c4a9781784a46b410568bec7f7c4b55ab37bb92e3a",
+      "bytes": 1946,
+      "after_sha256": "ea048a48f4c21b9188dd42c4a9781784a46b410568bec7f7c4b55ab37bb92e3a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/generated/lumo3d_assets/ui_panels/panel_violet_04.png",
+      "sha256": "dda118b0eaca71ea9606fe91d77c826396cc45da0bc0315a8b1804ec2baf7f62",
+      "bytes": 1923,
+      "after_sha256": "dda118b0eaca71ea9606fe91d77c826396cc45da0bc0315a8b1804ec2baf7f62",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/boost.svg",
+      "sha256": "2869fc2721b9d585d5709cc15a819e56e4383663548419c9c8912143de0a9330",
+      "bytes": 1056,
+      "after_sha256": "2869fc2721b9d585d5709cc15a819e56e4383663548419c9c8912143de0a9330",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/brake.svg",
+      "sha256": "789dc074270fe1d2d81e1643c7904377c16e777185c2b5cd5016fd0115e4a4e7",
+      "bytes": 731,
+      "after_sha256": "789dc074270fe1d2d81e1643c7904377c16e777185c2b5cd5016fd0115e4a4e7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/drift.svg",
+      "sha256": "417cb6879b6a90d1ac45a8d2d8c4e375a0a371a1ea8702d0058c4af8d36ed0c2",
+      "bytes": 1032,
+      "after_sha256": "417cb6879b6a90d1ac45a8d2d8c4e375a0a371a1ea8702d0058c4af8d36ed0c2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/gas.svg",
+      "sha256": "23674887ee88bca0f84090a55d5e3d588e076661610f67684c1c40700719d9ab",
+      "bytes": 813,
+      "after_sha256": "23674887ee88bca0f84090a55d5e3d588e076661610f67684c1c40700719d9ab",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/item.svg",
+      "sha256": "220ba6d09575a9242ed5f95b4d095f0ff1d39cf0183a1350a2f5a425237a6080",
+      "bytes": 905,
+      "after_sha256": "220ba6d09575a9242ed5f95b4d095f0ff1d39cf0183a1350a2f5a425237a6080",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/bremse_disabled.png",
+      "sha256": "af4a3b149eec5af057bffac8f6a8e6edbc3e4ab582671dedaaa4c1b686a7aa74",
+      "bytes": 269939,
+      "after_sha256": "af4a3b149eec5af057bffac8f6a8e6edbc3e4ab582671dedaaa4c1b686a7aa74",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/bremse_normal.png",
+      "sha256": "c214c6a838701698c249c90d391cce29ef83ca2ccd8cbfa8a5b099ec7ab11f00",
+      "bytes": 258309,
+      "after_sha256": "c214c6a838701698c249c90d391cce29ef83ca2ccd8cbfa8a5b099ec7ab11f00",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/bremse_pressed.png",
+      "sha256": "270e3c96a96b9b0d1411c8b92dba3a5d2181965970aedb9bc408a520aa1dad35",
+      "bytes": 256109,
+      "after_sha256": "270e3c96a96b9b0d1411c8b92dba3a5d2181965970aedb9bc408a520aa1dad35",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/drift_disabled.png",
+      "sha256": "64370ab1d0408e0ba6d44b6942fdea47dc3512ce302ea19fbe4d574cf8e2b361",
+      "bytes": 244800,
+      "after_sha256": "64370ab1d0408e0ba6d44b6942fdea47dc3512ce302ea19fbe4d574cf8e2b361",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/drift_normal.png",
+      "sha256": "8bac60aa96e3b6d75b6337756357c7fee52ad52fdc3e26746a75a7278fcc47b7",
+      "bytes": 228995,
+      "after_sha256": "8bac60aa96e3b6d75b6337756357c7fee52ad52fdc3e26746a75a7278fcc47b7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/drift_pressed.png",
+      "sha256": "465e4847f66bddb29a7f5fd8fb5deadc4803e88e35a38cafb768b2a2c9576920",
+      "bytes": 232017,
+      "after_sha256": "465e4847f66bddb29a7f5fd8fb5deadc4803e88e35a38cafb768b2a2c9576920",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/gas_disabled.png",
+      "sha256": "6c619503418d338c178139ad750cfedb998ccfa72cc403db8d58dbf2f08e0ece",
+      "bytes": 316722,
+      "after_sha256": "6c619503418d338c178139ad750cfedb998ccfa72cc403db8d58dbf2f08e0ece",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/gas_normal.png",
+      "sha256": "ce7af81ab3da7efe717b3e81f9ae1f020c21658c59cd452dd5157114a89dfc97",
+      "bytes": 248981,
+      "after_sha256": "ce7af81ab3da7efe717b3e81f9ae1f020c21658c59cd452dd5157114a89dfc97",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/gas_pressed.png",
+      "sha256": "662e79b1900228259093bea7b61925fb856a6b9c32820978e3cee6d195b4a342",
+      "bytes": 253740,
+      "after_sha256": "662e79b1900228259093bea7b61925fb856a6b9c32820978e3cee6d195b4a342",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/item_disabled.png",
+      "sha256": "942a1af13c344591cb95ee61cf56e908ecd8935eceae2831adc666a2462367bf",
+      "bytes": 259235,
+      "after_sha256": "942a1af13c344591cb95ee61cf56e908ecd8935eceae2831adc666a2462367bf",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/item_normal.png",
+      "sha256": "f8b7647c123cfbdfb5b987090a58904657f95e12d6fad88de196e51879069b74",
+      "bytes": 251399,
+      "after_sha256": "f8b7647c123cfbdfb5b987090a58904657f95e12d6fad88de196e51879069b74",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/item_pressed.png",
+      "sha256": "ef15af959600718a28a2938e61e8376997440eae49f5b4038e862739d09a054d",
+      "bytes": 252547,
+      "after_sha256": "ef15af959600718a28a2938e61e8376997440eae49f5b4038e862739d09a054d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/speed_disabled.png",
+      "sha256": "7648a3c1f94744d68941cdb0ee785a295641e4fa50830a95eea9995ab5b5bd23",
+      "bytes": 274111,
+      "after_sha256": "7648a3c1f94744d68941cdb0ee785a295641e4fa50830a95eea9995ab5b5bd23",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/speed_normal.png",
+      "sha256": "942a93918d0d993adc64e436cad9945f53f80f7bf5ffdaf8bc103190fa1a5f28",
+      "bytes": 284192,
+      "after_sha256": "942a93918d0d993adc64e436cad9945f53f80f7bf5ffdaf8bc103190fa1a5f28",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/speed_pressed.png",
+      "sha256": "1ad35bbd97b07d2820d10ae774cc458bb17b00c2b504319e8a30279bbeb55129",
+      "bytes": 291699,
+      "after_sha256": "1ad35bbd97b07d2820d10ae774cc458bb17b00c2b504319e8a30279bbeb55129",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/stick_basis.png",
+      "sha256": "71a61749cf29ffd6ec4e7813e815b6405365ac4e0a671ef0f1706bc81a45b773",
+      "bytes": 1023296,
+      "after_sha256": "71a61749cf29ffd6ec4e7813e815b6405365ac4e0a671ef0f1706bc81a45b773",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/stick_knopf_normal.png",
+      "sha256": "5128df0c2309856ad728f3b2bf0dfc5f6d80ea62c2ef27b228d2269506926271",
+      "bytes": 149841,
+      "after_sha256": "5128df0c2309856ad728f3b2bf0dfc5f6d80ea62c2ef27b228d2269506926271",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/controls/reference/stick_knopf_pressed.png",
+      "sha256": "9b2b6edef18ab5cbf6f1b5ebaca0ee0c67ca27bc880ec359935f68d2a6f880bd",
+      "bytes": 162274,
+      "after_sha256": "9b2b6edef18ab5cbf6f1b5ebaca0ee0c67ca27bc880ec359935f68d2a6f880bd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/hud/icon_pulse.png",
+      "sha256": "15a2ccbf76989f203157b1ffdf7f16f38147a9940d6d46082c1078e77cdad9b4",
+      "bytes": 92765,
+      "after_sha256": "15a2ccbf76989f203157b1ffdf7f16f38147a9940d6d46082c1078e77cdad9b4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/hud/icon_shield.png",
+      "sha256": "d339766055262afa8cf759dea301f323568974f89c9d46deac5ff72871912353",
+      "bytes": 47165,
+      "after_sha256": "d339766055262afa8cf759dea301f323568974f89c9d46deac5ff72871912353",
+      "unchanged": true
+    },
+    {
+      "path": "assets/kart/hud/icon_wind.png",
+      "sha256": "ba608466f9a79af607c15536f4ccf2097e645d15f68e2559787b0fc85d88e170",
+      "bytes": 58271,
+      "after_sha256": "ba608466f9a79af607c15536f4ccf2097e645d15f68e2559787b0fc85d88e170",
+      "unchanged": true
+    },
+    {
+      "path": "assets/manifests/assets.json",
+      "sha256": "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185",
+      "bytes": 22295,
+      "after_sha256": "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_billboard_book.tres",
+      "sha256": "f46dbad4d4ee6e5645adef1879565275b41670d8d9872a21878b7faca5350c35",
+      "bytes": 422,
+      "after_sha256": "f46dbad4d4ee6e5645adef1879565275b41670d8d9872a21878b7faca5350c35",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_billboard_crystal.tres",
+      "sha256": "26791fd4639df43db0795ccbdd310623cf9756f6e0c0491d88a110ea06e4ff2a",
+      "bytes": 425,
+      "after_sha256": "26791fd4639df43db0795ccbdd310623cf9756f6e0c0491d88a110ea06e4ff2a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_crystal_floor.tres",
+      "sha256": "2764a932cf273c485a3bce99c95435df5843db450c46869f499928092bfd8b44",
+      "bytes": 769,
+      "after_sha256": "2764a932cf273c485a3bce99c95435df5843db450c46869f499928092bfd8b44",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_grass_magic.tres",
+      "sha256": "f2ff432497dffdf98b0c0f4d21549c45e9a13942d49ad07e71767522798ddb5d",
+      "bytes": 511,
+      "after_sha256": "f2ff432497dffdf98b0c0f4d21549c45e9a13942d49ad07e71767522798ddb5d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_hologrid_cyan.tres",
+      "sha256": "7be4ddcab494941665f556723f6360197c2a3b03dc891e6588bfd7e719c2fa75",
+      "bytes": 768,
+      "after_sha256": "7be4ddcab494941665f556723f6360197c2a3b03dc891e6588bfd7e719c2fa75",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_particle_gold.tres",
+      "sha256": "e8dfb9e52ad0592ead79ba2bd032c96fce44bfcd5fe2710516b564ad4cabb0d0",
+      "bytes": 419,
+      "after_sha256": "e8dfb9e52ad0592ead79ba2bd032c96fce44bfcd5fe2710516b564ad4cabb0d0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_portal_games.tres",
+      "sha256": "dd33574b927efc23848087db89bdfe1fb75c38f18cfffafe76afd139de77e6a6",
+      "bytes": 578,
+      "after_sha256": "dd33574b927efc23848087db89bdfe1fb75c38f18cfffafe76afd139de77e6a6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_portal_learn.tres",
+      "sha256": "df94a3e94220f651d054c97f8181c09976c9031ac87e34f84d46edd0115ccfd3",
+      "bytes": 578,
+      "after_sha256": "df94a3e94220f651d054c97f8181c09976c9031ac87e34f84d46edd0115ccfd3",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_portal_parent.tres",
+      "sha256": "d379b9dc314623d53daf3a34d5c09ebb9d418f0a652f626d8904279c6e77ccf0",
+      "bytes": 580,
+      "after_sha256": "d379b9dc314623d53daf3a34d5c09ebb9d418f0a652f626d8904279c6e77ccf0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_sky_backdrop.tres",
+      "sha256": "6fc0415674806898ac96b54acf6c903e9ff001f5be8a9c71e0aaf3a3ac1d7fb5",
+      "bytes": 282,
+      "after_sha256": "6fc0415674806898ac96b54acf6c903e9ff001f5be8a9c71e0aaf3a3ac1d7fb5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_stone_warm.tres",
+      "sha256": "7e7d745b83b5bf7f7452d45f2d56d6e93e6488d1093027b6bce6153e2b4e8c4d",
+      "bytes": 509,
+      "after_sha256": "7e7d745b83b5bf7f7452d45f2d56d6e93e6488d1093027b6bce6153e2b4e8c4d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/generated/mat_wood_warm.tres",
+      "sha256": "e6296fdb0176e1b645467a4f46a70bc8e94f881adc7ef2f3c2cbafd1bc9b0f8f",
+      "bytes": 516,
+      "after_sha256": "e6296fdb0176e1b645467a4f46a70bc8e94f881adc7ef2f3c2cbafd1bc9b0f8f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/materials/holographic_soft.tres",
+      "sha256": "b928c3fa28ac321feb4fd712f58356ae59a81d8b63d3bad15c8175452575cf36",
+      "bytes": 572,
+      "after_sha256": "b928c3fa28ac321feb4fd712f58356ae59a81d8b63d3bad15c8175452575cf36",
+      "unchanged": true
+    },
+    {
+      "path": "assets/shaders/holographic.gdshader",
+      "sha256": "796bfcc5e4652a6a5e1d59032fa125c21a0fd0883669de1749225c45d90312b3",
+      "bytes": 2801,
+      "after_sha256": "796bfcc5e4652a6a5e1d59032fa125c21a0fd0883669de1749225c45d90312b3",
+      "unchanged": true
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_high.gdshader",
+      "sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4",
+      "bytes": 3921,
+      "after_sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/shaders/kart_lumo_cinema_mobile.gdshader",
+      "sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536",
+      "bytes": 2254,
+      "after_sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536",
+      "unchanged": true
+    },
+    {
+      "path": "assets/shaders/kart_water.gdshader",
+      "sha256": "c9a0c0a616f9db96b2e47fa3d5c6e973894ca98647b0fa9cee86da12d8b53e74",
+      "bytes": 1959,
+      "after_sha256": "c9a0c0a616f9db96b2e47fa3d5c6e973894ca98647b0fa9cee86da12d8b53e74",
+      "unchanged": true
+    },
+    {
+      "path": "assets/shaders/kart_waterfall.gdshader",
+      "sha256": "dd11f9e30f19ee5964e326da161395ca1e935a07121b70e1db81d52a60615f25",
+      "bytes": 1390,
+      "after_sha256": "dd11f9e30f19ee5964e326da161395ca1e935a07121b70e1db81d52a60615f25",
+      "unchanged": true
+    },
+    {
+      "path": "scenes/characters/lumo/lumo_character.tscn",
+      "sha256": "20531a45bf93b61a836c9e88ccfccf1710981eb2db3fa69e9c404bc541c67495",
+      "bytes": 9745,
+      "after_sha256": "20531a45bf93b61a836c9e88ccfccf1710981eb2db3fa69e9c404bc541c67495",
+      "unchanged": true
+    },
+    {
+      "path": "scenes/characters/lumo/lumo_showcase.tscn",
+      "sha256": "8efc93a5434d7d8ca98b557a776b2dc773f978417b8169ed01c45ae16d12d12c",
+      "bytes": 1411,
+      "after_sha256": "8efc93a5434d7d8ca98b557a776b2dc773f978417b8169ed01c45ae16d12d12c",
+      "unchanged": true
+    },
+    {
+      "path": "scenes/creative/treasure_world.tscn",
+      "sha256": "ab8602737e328c2c6b57d28151cdcbed7e52b06e4c770f8cb480a41b3190b0d4",
+      "bytes": 190,
+      "after_sha256": "ab8602737e328c2c6b57d28151cdcbed7e52b06e4c770f8cb480a41b3190b0d4",
+      "unchanged": true
+    },
+    {
+      "path": "scenes/default_env.tres",
+      "sha256": "659c707ad122dc81f36e11a872ade3a0eabdb2bc548cea50521d72ffc8976fa3",
+      "bytes": 1700,
+      "after_sha256": "659c707ad122dc81f36e11a872ade3a0eabdb2bc548cea50521d72ffc8976fa3",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "bytes": 5708,
+      "after_sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "bytes": 7146,
+      "after_sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+      "bytes": 4394,
+      "after_sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/app/showcase_controller.gd",
+      "sha256": "a70139b90a3b4d3f77d7320995ea11a503eec52deaefecfd113dc32b6b48beec",
+      "bytes": 992,
+      "after_sha256": "a70139b90a3b4d3f77d7320995ea11a503eec52deaefecfd113dc32b6b48beec",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_animation_state.gd",
+      "sha256": "95d1fa3ca5f8282354247a00b4f7f319ecc91de385258d5525b570351adebb07",
+      "bytes": 1113,
+      "after_sha256": "95d1fa3ca5f8282354247a00b4f7f319ecc91de385258d5525b570351adebb07",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_behavior_controller.gd",
+      "sha256": "68d19e420c50096cf9abc78a7ecb7c37e5f90478c6fd43112784ffab617512cc",
+      "bytes": 10608,
+      "after_sha256": "68d19e420c50096cf9abc78a7ecb7c37e5f90478c6fd43112784ffab617512cc",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+      "bytes": 2902,
+      "after_sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_character_controller.gd",
+      "sha256": "dc0f19f223cf1e08fcc966c9e5ff5b896200163de14e0810906d579130af8403",
+      "bytes": 3472,
+      "after_sha256": "dc0f19f223cf1e08fcc966c9e5ff5b896200163de14e0810906d579130af8403",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_eye_system.gd",
+      "sha256": "b40ca73c016968052415a282428eec517a1da2041621c663ce14cc6f7f14980c",
+      "bytes": 4428,
+      "after_sha256": "b40ca73c016968052415a282428eec517a1da2041621c663ce14cc6f7f14980c",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_kart_animation_adapter.gd",
+      "sha256": "afe2bc4f6b3a1753d64e536878754fcfa52d0c5758cf6adfdccdaa38ea779edc",
+      "bytes": 13808,
+      "after_sha256": "afe2bc4f6b3a1753d64e536878754fcfa52d0c5758cf6adfdccdaa38ea779edc",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_mouth_system.gd",
+      "sha256": "1a2d14d4aa631548c4fbd084475c1f2f67ad702895f19dec3f3f3310c3f02cf8",
+      "bytes": 3450,
+      "after_sha256": "1a2d14d4aa631548c4fbd084475c1f2f67ad702895f19dec3f3f3310c3f02cf8",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "bytes": 5002,
+      "after_sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_reference_board.gd",
+      "sha256": "7b5150a26bd28ff51952883e4e4a82c1393670229a110aa72de349b26b06a233",
+      "bytes": 2104,
+      "after_sha256": "7b5150a26bd28ff51952883e4e4a82c1393670229a110aa72de349b26b06a233",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0",
+      "bytes": 10090,
+      "after_sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "bytes": 4228,
+      "after_sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+      "bytes": 2736,
+      "after_sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/build_catalog.gd",
+      "sha256": "4a2f35b589d22722ca1b48b16638c711f47f54f83001f327660f5aef8556d427",
+      "bytes": 6711,
+      "after_sha256": "4a2f35b589d22722ca1b48b16638c711f47f54f83001f327660f5aef8556d427",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/build_landmarks.gd",
+      "sha256": "27dcd9f8523ff0d43439f546cf759c4c290a397fb4ff001a9566719becc6bf2b",
+      "bytes": 43928,
+      "after_sha256": "27dcd9f8523ff0d43439f546cf759c4c290a397fb4ff001a9566719becc6bf2b",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/build_premium_props.gd",
+      "sha256": "f453019cf41ed1e06d77ca0454abc6524f2f5858ec33356c7b5def30b0137157",
+      "bytes": 15990,
+      "after_sha256": "f453019cf41ed1e06d77ca0454abc6524f2f5858ec33356c7b5def30b0137157",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/build_voxel_style.gd",
+      "sha256": "403b5ff3cd1f3391c49c97432c1c341436f5bc665921d431a33f8bc33d84e54c",
+      "bytes": 11680,
+      "after_sha256": "403b5ff3cd1f3391c49c97432c1c341436f5bc665921d431a33f8bc33d84e54c",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/creative_kit.gd",
+      "sha256": "a3d32bb117ba62f984575907d99c8b95b0e92849cab46b2a5ef097998ea4fed7",
+      "bytes": 10563,
+      "after_sha256": "a3d32bb117ba62f984575907d99c8b95b0e92849cab46b2a5ef097998ea4fed7",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/creative_runtime.gd",
+      "sha256": "b800c7d77c7a4fcc9a47081c2f25672fb2f2eefbb95c24fdc442f4f2df2185aa",
+      "bytes": 3498,
+      "after_sha256": "b800c7d77c7a4fcc9a47081c2f25672fb2f2eefbb95c24fdc442f4f2df2185aa",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/floating_island.gd",
+      "sha256": "6a083ebf1635a2fdc9b4f41a50654a57b1e7c2b6d04392f11ab4c993c932f1bb",
+      "bytes": 815,
+      "after_sha256": "6a083ebf1635a2fdc9b4f41a50654a57b1e7c2b6d04392f11ab4c993c932f1bb",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/treasure_island_art.gd",
+      "sha256": "0577c27db2a8260605d08fe3fed885d2cfdb00d38738a459e7bc814007f0f570",
+      "bytes": 17431,
+      "after_sha256": "0577c27db2a8260605d08fe3fed885d2cfdb00d38738a459e7bc814007f0f570",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/treasure_state.gd",
+      "sha256": "8a11898f66d1db922158d3169dd9ddcd7985bb7e3639c64fbfc60e3980064288",
+      "bytes": 7517,
+      "after_sha256": "8a11898f66d1db922158d3169dd9ddcd7985bb7e3639c64fbfc60e3980064288",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/creative/treasure_world.gd",
+      "sha256": "c46d260fef1c4f6ee88db1b5e5704707b35771f2fc64522fc5927a25c3bd34cf",
+      "bytes": 24782,
+      "after_sha256": "c46d260fef1c4f6ee88db1b5e5704707b35771f2fc64522fc5927a25c3bd34cf",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/kart_character_finish.gd",
+      "sha256": "42182df326361dcce398f1a8e3210bce53c760db467cb4b64ed59df4b5da16ef",
+      "bytes": 9469,
+      "after_sha256": "42182df326361dcce398f1a8e3210bce53c760db467cb4b64ed59df4b5da16ef",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/kart_fleet.gd",
+      "sha256": "0aa63caf22f5fd6aaa841b889415e794420518f7ce3f388b9ee4a346e5ef0377",
+      "bytes": 16092,
+      "after_sha256": "0aa63caf22f5fd6aaa841b889415e794420518f7ce3f388b9ee4a346e5ef0377",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/kart_fur_geometry.gd",
+      "sha256": "eaee8cabfe93e5c7f39d16a371f87d2c20fa3bc78bc5b99c955e9e0e20491eba",
+      "bytes": 3477,
+      "after_sha256": "eaee8cabfe93e5c7f39d16a371f87d2c20fa3bc78bc5b99c955e9e0e20491eba",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/kart_joystick.gd",
+      "sha256": "040d901a499e97c18086579047d1f1332e4c46244fe0b5b10f1512effc49671e",
+      "bytes": 3283,
+      "after_sha256": "040d901a499e97c18086579047d1f1332e4c46244fe0b5b10f1512effc49671e",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/kart_touch_action.gd",
+      "sha256": "72ba965c75bbb2d94b05dd3f47936e50e895e64e7c0bd6b65ec89a1ed4c61eb2",
+      "bytes": 8500,
+      "after_sha256": "72ba965c75bbb2d94b05dd3f47936e50e895e64e7c0bd6b65ec89a1ed4c61eb2",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/kart_vehicle.gd",
+      "sha256": "1db5369d8521a94d2118833519d90229d3fb2ff8ff95194d39f5ab74e0ba42de",
+      "bytes": 118712,
+      "after_sha256": "1db5369d8521a94d2118833519d90229d3fb2ff8ff95194d39f5ab74e0ba42de",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/kart_world_meshes.gd",
+      "sha256": "df551c3a231c251a4e5be976775d720758295b2fda2eefc49cf80780f7795a12",
+      "bytes": 6120,
+      "after_sha256": "df551c3a231c251a4e5be976775d720758295b2fda2eefc49cf80780f7795a12",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/games/visual/kart_cinema_materials.gd",
+      "sha256": "69fc8def6197e5173104f015d82daf7a6b7c8574e0e6b158ae3e2a083ba0df15",
+      "bytes": 2016,
+      "after_sha256": "69fc8def6197e5173104f015d82daf7a6b7c8574e0e6b158ae3e2a083ba0df15",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/asset_loader.gd",
+      "sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436",
+      "bytes": 6824,
+      "after_sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/audio_manager.gd",
+      "sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0",
+      "bytes": 5507,
+      "after_sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/event_bus.gd",
+      "sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340",
+      "bytes": 2299,
+      "after_sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "sha256": "11abed8d8bb15a048ff3934b958c5aa39c1de233146f8bc9b47c8be0854099bc",
+      "bytes": 5177,
+      "after_sha256": "11abed8d8bb15a048ff3934b958c5aa39c1de233146f8bc9b47c8be0854099bc",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/performance_manager.gd",
+      "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+      "bytes": 5167,
+      "after_sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/progress_store.gd",
+      "sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811",
+      "bytes": 5664,
+      "after_sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/render/lumo_environment.gd",
+      "sha256": "791be11bf5de041b9746557c395f33a0b0bef5db4c1d0af822b21ee4fd8065be",
+      "bytes": 5917,
+      "after_sha256": "791be11bf5de041b9746557c395f33a0b0bef5db4c1d0af822b21ee4fd8065be",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/render/lumo_environment_creative_presets.gd",
+      "sha256": "5217ebfbc63ed08ad94d9906c058f407d21515428fc3c4f898fbc5214fcdbe9b",
+      "bytes": 12479,
+      "after_sha256": "5217ebfbc63ed08ad94d9906c058f407d21515428fc3c4f898fbc5214fcdbe9b",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/render/lumo_quality.gd",
+      "sha256": "76da4cb1e689f9c6c72f307d4887a90264a28a18e50d2facf96e00eb4f4e08c4",
+      "bytes": 2168,
+      "after_sha256": "76da4cb1e689f9c6c72f307d4887a90264a28a18e50d2facf96e00eb4f4e08c4",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/systems/settings_store.gd",
+      "sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82",
+      "bytes": 1673,
+      "after_sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/treasure_density_regression.gd",
+      "sha256": "b3be76fa9caa6da23490fb2de684397f21afac7c21b02e65a3a137c16d655f70",
+      "bytes": 15173,
+      "after_sha256": "b3be76fa9caa6da23490fb2de684397f21afac7c21b02e65a3a137c16d655f70",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/treasure_exploration_regression.gd",
+      "sha256": "2fff6b5359237626dbb402e46482aac0e15697491f8790ef0e6fb89d0ac00384",
+      "bytes": 6999,
+      "after_sha256": "2fff6b5359237626dbb402e46482aac0e15697491f8790ef0e6fb89d0ac00384",
+      "unchanged": true
+    }
+  ],
+  "all_primary_dependency_files_unchanged": true,
+  "count": 310,
+  "runtime_title_override_sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+  "runtime_project": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/runtime/project.godot",
+  "runtime_project_sha256": "7f95df9c886bcf137e80d60436ae19f556df4577969272e52b8a9526b18ce4fe"
+}

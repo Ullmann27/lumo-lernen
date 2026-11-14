@@ -1,0 +1,232 @@
+{
+  "schema": 1,
+  "host_sha": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "run_id": 43634307306,
+  "job_id": 132567623144,
+  "path": "test/games/memory_profile_storage_test.dart",
+  "source_git_blob": "3da940a91cf02aae13083693e8f702d1bbc55fc5",
+  "source_sha256": "9f63b7ad07c7a74a78279cf58e95c93de08d319c713575d06f6f4c83ab99f8fa",
+  "scope": "Six existing Memory profile cases, separate from the 45 new cases; actual original full-suite events.",
+  "machine_sha256": "a54cec8154dd7090740e0ef1c469bc9ae17b0ceb7884d01860b4f73de76adf21",
+  "passed": 6,
+  "failed": 0,
+  "skipped": 0,
+  "cases": [
+    {
+      "name": "Old unowned record stays byte-identical and is assigned to no child",
+      "test_id": 335,
+      "start_line": 688,
+      "done_line": 692,
+      "start": {
+        "test": {
+          "id": 335,
+          "name": "Old unowned record stays byte-identical and is assigned to no child",
+          "suiteID": 321,
+          "groupIDs": [
+            334
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 174,
+          "column": 5,
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "root_line": 88,
+          "root_column": 3,
+          "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart"
+        },
+        "type": "testStart",
+        "time": 51946
+      },
+      "done": {
+        "testID": 335,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 53135
+      }
+    },
+    {
+      "name": "Real completed round restores only its child best and difficulty",
+      "test_id": 338,
+      "start_line": 693,
+      "done_line": 697,
+      "start": {
+        "test": {
+          "id": 338,
+          "name": "Real completed round restores only its child best and difficulty",
+          "suiteID": 321,
+          "groupIDs": [
+            334
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 174,
+          "column": 5,
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "root_line": 113,
+          "root_column": 3,
+          "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart"
+        },
+        "type": "testStart",
+        "time": 53136
+      },
+      "done": {
+        "testID": 338,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 53712
+      }
+    },
+    {
+      "name": "Delayed old-child write cannot overwrite the newly selected child",
+      "test_id": 341,
+      "start_line": 698,
+      "done_line": 701,
+      "start": {
+        "test": {
+          "id": 341,
+          "name": "Delayed old-child write cannot overwrite the newly selected child",
+          "suiteID": 321,
+          "groupIDs": [
+            334
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 174,
+          "column": 5,
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "root_line": 159,
+          "root_column": 3,
+          "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart"
+        },
+        "type": "testStart",
+        "time": 53712
+      },
+      "done": {
+        "testID": 341,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 54236
+      }
+    },
+    {
+      "name": "Delayed identity load cannot expose old best after profile switch",
+      "test_id": 342,
+      "start_line": 702,
+      "done_line": 703,
+      "start": {
+        "test": {
+          "id": 342,
+          "name": "Delayed identity load cannot expose old best after profile switch",
+          "suiteID": 321,
+          "groupIDs": [
+            334
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 174,
+          "column": 5,
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "root_line": 221,
+          "root_column": 3,
+          "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart"
+        },
+        "type": "testStart",
+        "time": 54236
+      },
+      "done": {
+        "testID": 342,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 54343
+      }
+    },
+    {
+      "name": "Pending successive choices retain captured snapshots and final order",
+      "test_id": 343,
+      "start_line": 704,
+      "done_line": 710,
+      "start": {
+        "test": {
+          "id": 343,
+          "name": "Pending successive choices retain captured snapshots and final order",
+          "suiteID": 321,
+          "groupIDs": [
+            334
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 174,
+          "column": 5,
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "root_line": 246,
+          "root_column": 3,
+          "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart"
+        },
+        "type": "testStart",
+        "time": 54343
+      },
+      "done": {
+        "testID": 343,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 54525
+      }
+    },
+    {
+      "name": "Unreadable existing child stats are preserved instead of reset",
+      "test_id": 347,
+      "start_line": 711,
+      "done_line": 712,
+      "start": {
+        "test": {
+          "id": 347,
+          "name": "Unreadable existing child stats are preserved instead of reset",
+          "suiteID": 321,
+          "groupIDs": [
+            334
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 174,
+          "column": 5,
+          "url": "package:flutter_test/src/widget_tester.dart",
+          "root_line": 292,
+          "root_column": 3,
+          "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart"
+        },
+        "type": "testStart",
+        "time": 54526
+      },
+      "done": {
+        "testID": 347,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 54651
+      }
+    }
+  ]
+}

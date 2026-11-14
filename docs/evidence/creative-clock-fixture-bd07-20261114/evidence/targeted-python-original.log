@@ -1,0 +1,13 @@
+test_first_zero_away_and_changed_identity_still_stop_before_a_second_touch (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_first_zero_away_and_changed_identity_still_stop_before_a_second_touch) ... ok
+test_foreign_activity_and_a_persistent_modal_never_allow_stick_input (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_foreign_activity_and_a_persistent_modal_never_allow_stick_input) ... ok
+test_frame_guard_requires_two_current_playable_frames_after_the_modal (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_frame_guard_requires_two_current_playable_frames_after_the_modal) ... ok
+test_full_original_video_decodes_without_rewriting_and_truncation_still_fails (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_full_original_video_decodes_without_rewriting_and_truncation_still_fails) ... ok
+test_original_fixture_bytes_and_distinct_source_timestamps (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_original_fixture_bytes_and_distinct_source_timestamps) ... ok
+test_original_playing_and_paused_caption_reads_are_distinguished (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_original_playing_and_paused_caption_reads_are_distinguished) ... ok
+test_original_small_first_step_only_requests_a_bounded_calibration_followup (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_original_small_first_step_only_requests_a_bounded_calibration_followup) ... ok
+test_repeated_small_zero_or_away_readback_cannot_be_accepted_progress (test_studio_creative_clock_calibration.CreativeClockAndCalibration.test_repeated_small_zero_or_away_readback_cannot_be_accepted_progress) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.996s
+
+OK

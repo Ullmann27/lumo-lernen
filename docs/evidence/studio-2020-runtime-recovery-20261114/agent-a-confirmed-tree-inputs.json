@@ -1,0 +1,192 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+  "base_tree": "179ac404caa8d263d0028aa9503cb514ae484d41",
+  "all_targets_absent_in_complete_base_tree": true,
+  "file_count": 30,
+  "total_bytes": 1678152,
+  "tree": [
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "938fe540b0c67c2db74a8d4820dbde896950d90e"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94e2fa13cd55337cce1aa2c09df29bd22817ae1b"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/github-source-tree-selection.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "735e6f6e1d8afd27ed033eab09791336975413b2"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/official-engine-excerpts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15b40b6793f8b3a3ac27e02ff98da507ff053646"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2422f0b5e4d550a2b44845f897e49a382009f693"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "528d8a4a9de0f0763aafecfb41e32cd4ace3e204"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30f0976ed74aa33c52a496ce37445faac53bdf52"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/expected-source-tree.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21b272d1053d0d86fc20db38469ecfb60ee9c145"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/runtime-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53b8fab35a0681e4c48b858dd3fcc1987748f4f1"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/private-runtime-scope.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "179815fc52a05152c9d4806e0da9e58b813e8ef9"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/source-before-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "245efe1f94d9ebce4546e41247a3a13d736f2dc5"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/source-after-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39a0f1a9a0fb33ca0b4d489c60538840fd33785e"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/source-checkpoints-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "624284e5909e93268476040896e411a31012fd5d"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/loaded-resources.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c5f063c1eee4b4d75fbbf274355c25348ee8056"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/engine.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0930b07d3212e2f2729e908457e47b5a0243e541"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/run_four_probes.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c045eab00edb18c6749059978cbe9ba10406c7e9"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/execution-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa7a6e6ceb260fa4777220dc01bf64795a45d9ce"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/private-import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0468a4bef3244bffed3b42cde6ed32269684e78"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/private-import.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40e76f60b9bb78cbced29b3d753cf139ad8b2237"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_ai_behavior_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "951bab348cb1a09ab2499dd23a44bda70d2a80eb"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_ai_behavior_regression-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6df7b2b00f3f9d92aeb5f829623eea7a9ccc0f6"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_racecraft_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "816f800f768e958ac4ec472766be369812416169"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_racecraft_regression-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9feb7d92f41fa52954d3dd9dff1548c137a1c06"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_full_field_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d20c022a96ff961bb0120679b48ed53f7b722807"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_full_field_regression-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88eca59d67994efdc5f9549b8fde33dbe3c70064"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_harbor_race_hook_regression.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "121deee107c7b854c4a49a557441fbcdbd930e31"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_harbor_race_hook_regression-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a27343f5dab5a8f92a6e9bad57762e9a5f47a156"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_harbor_race_hook_regression-launcher.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a361563b30a4b33a63b492490eeb31475718ab28"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/kart_harbor_race_hook_regression-renderer-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfc7a8d001d815729008f236bf95c904bec545bb"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-verbose-785413-20261114/upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb5ec8b3f1b7ec1e25aaeceb9d099f91eb34709c"
+    }
+  ],
+  "scope": "Confirmed immutable blobs only; caller owns any later tree/commit/ref operation."
+}

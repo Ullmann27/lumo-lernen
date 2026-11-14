@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "base_evidence_commit": "946ed588e4976312bcfc67364a3bde3ffdaa55a8",
+  "base_evidence_tree": "200e8e66d79bf8b23349a3d7c6057aadfb92dfe1",
+  "scope": "immutable docs-only evidence, no refs or execution claims",
+  "input_manifests": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 4178,
+      "sha256": "c42d2325d3cd4336e724cb80fb9646afb5e24bc290a25ff7fdf7f98d576fa484",
+      "git_blob": "5c84b3aa3018d7e722cb16ec7e3e70de5df54490"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 5393,
+      "sha256": "0f09fbc19de60f5b769b6fd6dd264b808e26e34a52246589225b7ebe1778fea3",
+      "git_blob": "9ebd79b14c87350d27291ed3b459b3c0265fc007"
+    }
+  ],
+  "file_count": 25,
+  "total_bytes": 43633,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/README.md",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/README.md",
+      "mode": "100644",
+      "bytes": 1869,
+      "sha256": "90fd687f0994198cbf497b3fc6824815e099c8be7b02f33f61e99d4c92b729e2",
+      "git_blob": "52ad6856cc6067a0961e98f211b32fdc0d563eb9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/source-upload-manifest.json",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 896,
+      "sha256": "3fcf4c7a7c03d93416ad670e4aeec3d7d54c88b42af936d43a2e1a2fb172f241",
+      "git_blob": "356d396f1535f37f9923c942c25d63fb3ea699ac"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/original-binding.json",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/original-binding.json",
+      "mode": "100644",
+      "bytes": 912,
+      "sha256": "2483abb72f5f439c705966739dff12158356c2a3158c23942c3c533d5c64b307",
+      "git_blob": "22eb325d71aa624ff78d9124b0bd7041a3aa1000"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "mode": "100644",
+      "bytes": 1136,
+      "sha256": "31eb6b769b43528c90fd464278e44300f3e39da6d616e9192498692765921e08",
+      "git_blob": "0ecadaa56b134561785f25f97434be11adb387f3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/yaml-and-job-order-review.json",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/yaml-and-job-order-review.json",
+      "mode": "100644",
+      "bytes": 2047,
+      "sha256": "78f539dbb725c8ce3a7d93138e710c5e1f5550a534fbf937eabfe46aa09e590d",
+      "git_blob": "addfd04c8f75dfebbb0c1decb7ebcf84ee96b122"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "mode": "100644",
+      "bytes": 95,
+      "sha256": "9d34cdaec053c6005199c08f2bac628bd8c087303faa26fd8ab58c3e22216ff5",
+      "git_blob": "4f689b41e26bf40b7f6b5493e046df51a33d92f2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "mode": "100644",
+      "bytes": 1401,
+      "sha256": "753db0b8ed62c5fe7dab3630cd3628211ddfa26577e466864e9794d2c69e93cb",
+      "git_blob": "ba0158d5f318c3c14c7829aae445f8c3a4a828a2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "target_path": "docs/evidence/studio-2020-ffmpeg-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 4178,
+      "sha256": "c42d2325d3cd4336e724cb80fb9646afb5e24bc290a25ff7fdf7f98d576fa484",
+      "git_blob": "5c84b3aa3018d7e722cb16ec7e3e70de5df54490"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/README.md",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/README.md",
+      "mode": "100644",
+      "bytes": 2796,
+      "sha256": "4a26d54c9e9915d3a301302d8e88cd041bef4de85eacb0b481ad5460c0a8b83b",
+      "git_blob": "bb24bf9386094d612c6c13aedd838c1b320b4329"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/source-upload-manifest.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 2310,
+      "sha256": "d8e4a06f88aa3b3a39b34041a246b538825e48cdd4d29463dcea27edc00d227e",
+      "git_blob": "967128c6c194ee49981f995519a4b3dd27aebfc4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/confirmed-source-tree-input.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/confirmed-source-tree-input.json",
+      "mode": "100644",
+      "bytes": 146,
+      "sha256": "4c1d5a97a89f484bda2f95df3ecb0ad981617f4c6e97096d2480dbd929a4e975",
+      "git_blob": "fccb7d56a82fe2e039333176f9152c33218da2b1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/required-probe-input-binding.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/required-probe-input-binding.json",
+      "mode": "100644",
+      "bytes": 1237,
+      "sha256": "be45ea7adcc7ce4142e1304c32b6ee475bd005184d09cee17d26a9afc6700854",
+      "git_blob": "6e1c80b73c6f448eaba427eae2c08b255ae4c8e6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-ffmpeg-v1.patch",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-ffmpeg-v1.patch",
+      "mode": "100644",
+      "bytes": 4234,
+      "sha256": "af2a3722546e949d26399399f4c640d0879a22af4fe69bc77ccafa159bb364cf",
+      "git_blob": "fde706a18765a6e4931f234722c2819d678648da"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "mode": "100644",
+      "bytes": 5280,
+      "sha256": "590ec9c16d43555565b90838d3105886eedfe28b736e11153b59ff0a3c095b6c",
+      "git_blob": "f2f0cbf10e3843a4de4f7694f9e1c8d9da81f41d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/yaml-and-delta-review.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/yaml-and-delta-review.json",
+      "mode": "100644",
+      "bytes": 2086,
+      "sha256": "09ca0ad932c80eb090fa74b1eea181d52fe29835bf31e586e92fcdc7137014fe",
+      "git_blob": "8655f96ac831cffe5cc4df0b89b180a90a8c8c1c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "mode": "100644",
+      "bytes": 95,
+      "sha256": "9d34cdaec053c6005199c08f2bac628bd8c087303faa26fd8ab58c3e22216ff5",
+      "git_blob": "4f689b41e26bf40b7f6b5493e046df51a33d92f2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "mode": "100644",
+      "bytes": 1039,
+      "sha256": "482bf7774f51f3b1b2f60e34b4825efb1ad3872c9ce4822b60f13f2301faa77b",
+      "git_blob": "3b0a1d1002de3f1e95a4272c2f4bb825c3f9458a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 5393,
+      "sha256": "0f09fbc19de60f5b769b6fd6dd264b808e26e34a52246589225b7ebe1778fea3",
+      "git_blob": "9ebd79b14c87350d27291ed3b459b3c0265fc007"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-ffmpeg-workflow-independent-review-20261114/review.json",
+      "target_path": "docs/evidence/studio-078-ffmpeg-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "bytes": 1465,
+      "sha256": "4557b32e3232e67bf36d660c801449ff8170ac3af1746c74131eea46b6ce708d",
+      "git_blob": "53dc9cc7a1953a814e72c48550e1515870630a29"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-preview-workflow-independent-review-20261114/review.json",
+      "target_path": "docs/evidence/studio-078-preview-workflow-independent-review-20261114/review.json",
+      "mode": "100644",
+      "bytes": 1800,
+      "sha256": "b2f6d54872b38dc949f39f667b7eb31a53a25a46ab1eeedd67332261bb1136e1",
+      "git_blob": "357bc9aff2e2a248869476583dfc3a1ffccad2d9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-workflow-evidence-078774dd-20261114/README.md",
+      "target_path": "docs/evidence/studio-2020-host-workflow-evidence-078774dd-20261114/README.md",
+      "mode": "100644",
+      "bytes": 3218,
+      "sha256": "ef07ba68c385962b52085b5840a387c6026253d3df6a03c16205511321953c3d",
+      "git_blob": "5873b4a9f725d054b609d29a96ecd89d3d2ca063"
+    }
+  ]
+}

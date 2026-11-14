@@ -1,0 +1,32 @@
+{
+  "name": "learning_sharing_regression",
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_sharing_regression.gd"
+  ],
+  "timeout_seconds": 180,
+  "timed_out": false,
+  "exit_code": 0,
+  "elapsed_seconds": 3.5383061490001637,
+  "log_bytes": 1826,
+  "log_sha256": "83ae0da406f922c632c52192b00d14d42ae7ed878f6496aa2cdbe1adec9bb31f",
+  "required_marker": "[LearningSharing] PASS",
+  "markers": [
+    "[LearningSharing] PASS checks=1811"
+  ],
+  "errors": [],
+  "warnings": [
+    "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+    "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+  ],
+  "test_source_sha256": "2d829cf28cd7b9fdd1396d0dda7e9dd20d14c5285d25940943c15bccc55fa9f3",
+  "test_unchanged_vs_native344": true
+}

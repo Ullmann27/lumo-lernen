@@ -1,0 +1,345 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/README.md",
+      "bytes": 1611,
+      "sha256": "9007a71655aa11bb2749fd2bf8192dfc1386bf1a9b11e8000c2f83c179c48b29",
+      "sha": "30aa6efffafa46d56e11cc958315c878846d4aa2",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/review.json",
+      "bytes": 15203,
+      "sha256": "fe609799f8e30697bf6c451d19aca28eb84478b2a3d916fb0c0a4a392bf4e920",
+      "sha": "cda83a531061208fcee39d50384ca4adb882f829",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/source-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/source-binding.json",
+      "bytes": 435,
+      "sha256": "801186d1ad22a5cf8ffb6d737791d8296feea3e7c27c108cb0d1f19bbd3440f4",
+      "sha": "0c4c64f4d3b32b2f99c30624653e20a42a330fa2",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/original-job.log",
+      "bytes": 2045230,
+      "sha256": "ac261d415340ab497c4a8c1e88e87f0390102f0b2869063f43b0a95e87005782",
+      "sha": "acb985ff4ea74cf9acdf1bbbf2a99da986ce95b5",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/index-transfer/central-directory.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/index-transfer/central-directory.json",
+      "bytes": 311169,
+      "sha256": "355b63274a1c7faeebbd6149dd5444aa8846b190d589269671d0c6d0abc2d226",
+      "sha": "86b7ce834858066a696793a173838bee7ed0e62b",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/index-transfer/range-download-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/index-transfer/range-download-report.json",
+      "bytes": 1793,
+      "sha256": "ace4980dd373c98b9684a9aa5d822b190717fe9c10c8d389483d22f93ab051d6",
+      "sha": "18e39727399b955b25de94664dcab7e3b3204821",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/range-download-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/range-download-report.json",
+      "bytes": 18316,
+      "sha256": "33b059f2a59e1a01db38ba26f43adad3c35b89160b312f2418e8a96b1edefae9",
+      "sha": "15b2ec1d4478825f1de5144ff868c60a5eae956e",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/range-download-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/range-download-report.json",
+      "bytes": 14389,
+      "sha256": "66048b6d63f05c430c45c24fb0c8c92450a312fff669d46ed97d0effcb1cacfb",
+      "sha": "a0216aee04c3626e4f8b9bcb33b1606979d3900f",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/visible-c4-frame-transfer/range-download-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/visible-c4-frame-transfer/range-download-report.json",
+      "bytes": 497,
+      "sha256": "a29ca5a3d4f8653a8088b224a068b17d9bf3a0a237d5bd54bbda3a7ea7dc7cb4",
+      "sha": "be714360042dea876253dde19cc7a5cebe5ce761",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/visible-c4-frame-transfer-v2/range-download-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/visible-c4-frame-transfer-v2/range-download-report.json",
+      "bytes": 3046,
+      "sha256": "96aedfa3ca477dd6837549fc92288cde2d4bcdba3aadcaa649f74d66a10c502a",
+      "sha": "091eabeed89e821b8e0c459680007ffdceed341e",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/result.json",
+      "bytes": 261,
+      "sha256": "45321729d170c6e9acb4bcc5aa483106797d732ab0237c550e9a42daabb2329e",
+      "sha": "58535335b4231f08eff3c2984950e04437d0a7b9",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/failure-traceback.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/failure-traceback.txt",
+      "bytes": 778,
+      "sha256": "ed80c96de754e99bf71244e9f88aa271ded9af8a10bffeff575d8638c3a4543c",
+      "sha": "d2e3c32ef824439e8b1e6c4b3ac4390b310a48fa",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/input-events.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/input-events.json",
+      "bytes": 961,
+      "sha256": "cb2cf0b70a8ac1be88feb546154f8ea9ce089f040196814674459b2e70b8e5a6",
+      "sha": "344cdae2a591185f08ac5aaaab0afd6cfe946aaf",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/binding-before.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/binding-before.json",
+      "bytes": 3029,
+      "sha256": "12726c7cb24cb78ee7e467416b1160b7f8918965295af6cf3741a43fb46c5224",
+      "sha": "6ce836d4950b28f5df8782cb847170e777d6e9dc",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0001-actual-flutter-navigation-route.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0001-actual-flutter-navigation-route.json",
+      "bytes": 370,
+      "sha256": "583e21589e2a12c1d0aae0635ce870d06c8b127d209fcc81447740bfbf36da83",
+      "sha": "5594339969a03768eff96ebf429f26ee871cde42",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0002-actual-flutter-navigation-route.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0002-actual-flutter-navigation-route.json",
+      "bytes": 374,
+      "sha256": "283dee2b0d5c1c46b2dd1a5a7ef6a9d8b19fe5b7db69de8303df1fd0d845f7ee",
+      "sha": "5aee6b6c265eabafa766111e3b39dd819febf19f",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation-route.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation-route.json",
+      "bytes": 258,
+      "sha256": "b8145b5cfbdd3e30b79da81f2d22780becc5acd234d5ca8044db3433258a2df1",
+      "sha": "5e7a633f9c1b3970dd95c3c598e4a6e32ad0f677",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0001-actual-flutter-navigation-confirmed.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0001-actual-flutter-navigation-confirmed.xml",
+      "bytes": 34224,
+      "sha256": "c774224b0160d1d6f65d1330aaa928a8386ab761decc5b2ea5475aa08a46a0b0",
+      "sha": "566fd2671488f7e748f17b736aa18ce644ba305c",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0002-actual-flutter-navigation-confirmed.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0002-actual-flutter-navigation-confirmed.xml",
+      "bytes": 15889,
+      "sha256": "718a26da0525403f5bfbaa18f4f3c7148a91fe280159dadd1799f0325d5a1c1a",
+      "sha": "5a2633507ae6c03ff2ff946a50e11f903eb86a6e",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation-confirmed.xml",
+      "bytes": 25229,
+      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+      "sha": "0e3ea3a4002c8421176e85e36b75b710309ecdab",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0003-actual-flutter-navigation.png",
+      "bytes": 1822689,
+      "sha256": "7b4487cbedc71a95bb1721afe65763181747115d93671ccc6f3b717d5a726a4c",
+      "sha": "2f1acbd90b5f1508eb279a669936ab7658f3659f",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "base64"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0025-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/0025-actual-c4-hub.xml",
+      "bytes": 25229,
+      "sha256": "0f1bd62257f5df3126bdf6cb88bc76bcfc6520affd2a7ac8c4396f1b47d88e6f",
+      "sha": "dd4690d308d8e0aad9e710d89cc3a85d60c6cdee",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/failure-actual-screen.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/selected-transfer/originals/connect-four/failure-actual-screen.png",
+      "bytes": 1913672,
+      "sha256": "9433c9f68a08c52583ae6865719e154f240a2913a6d32bcc7cf09dda3807ae48",
+      "sha": "4242693c7350eb9614848a3570fef3fce4113c0b",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "base64"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0005-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0005-actual-c4-hub.xml",
+      "bytes": 24357,
+      "sha256": "3ff70dddcbb2633d52c7b58fd21c22a4cddda005600f164b2a6690758b62ddec",
+      "sha": "fb62e7c639d8bf3e4283a50538c2dc324592cfcf",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0006-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0006-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0007-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0007-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0008-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0008-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0009-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0009-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0010-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0010-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0011-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0011-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0012-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0012-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0013-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0013-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0014-actual-c4-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/intermediate-xml-transfer/originals/connect-four/0014-actual-c4-hub.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/studio-28462-api35-tour-20261114/visible-c4-frame-transfer-v2/originals/connect-four/0006-actual-c4-hub.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-28462-api35-tour-20261114/visible-c4-frame-transfer-v2/originals/connect-four/0006-actual-c4-hub.png",
+      "bytes": 1786323,
+      "sha256": "62fd8514be063af465444c4b42651d23d42f7ee82c4dc87d2cfc35cbd4677dec",
+      "sha": "da6188f450fe76bfb7633b30a3dd7a15a0d276c0",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "base64"
+    }
+  ]
+}

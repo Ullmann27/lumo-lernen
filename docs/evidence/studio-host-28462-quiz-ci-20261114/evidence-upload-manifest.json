@@ -1,0 +1,481 @@
+{
+  "schema": 1,
+  "kind": "explicit_docs_only_current_quiz_evidence",
+  "observed_at_utc": "2026-11-14T18:38:12.948236+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "prefix": "docs/evidence/studio-host-28462-quiz-ci-20261114/",
+  "source_identity": {
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    },
+    "host": {
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e"
+    }
+  },
+  "run_id": 43626348519,
+  "job_id": 132543177144,
+  "artifact_id": 14126685407,
+  "count": 45,
+  "total_bytes": 1168429,
+  "entries": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/HOST-SOURCE.txt",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/HOST-SOURCE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 41,
+      "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+      "git_blob_sha": "53b01f5ab9eb3b8d53026fe764cc76631df9268d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/HOST-TREE.txt",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/HOST-TREE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 41,
+      "sha256": "bed94a27fdd7f6d19823df3276f905a806e68e4500889e9146e8a1d847446fe9",
+      "git_blob_sha": "ab207b39c155b4dcb164db37f2bed59b2843dc8a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/NATIVE-TREE.txt",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/NATIVE-TREE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 41,
+      "sha256": "2026c5958af62e253bd00d24d4c3f3b285bfeb69f5ac4fe3355b2b6a3219d13b",
+      "git_blob_sha": "89867577a6119431a41ddebd6b51dde0b70054c9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/NATIVE-SOURCE.txt",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/NATIVE-SOURCE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 41,
+      "sha256": "cc7d7df4f9a8560292f59c1c310864e279a589a464a57d216c4425caddb3703d",
+      "git_blob_sha": "51bde130837ae501b8aff7afefeffc1fe9b862cc"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/dart-version.txt",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/dart-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/godot-version.txt",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/godot-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob_sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/import.log",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/import.log",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "git_blob_sha": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/project-validation.log",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/project-validation.log",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 6140,
+      "sha256": "188d0950424b0d1f9b965ecadfd28e80ac6d176122df6912851af65f9df016d9",
+      "git_blob_sha": "9340046407c29eb35faacccb11d03f91ca7885fb"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-authority-contract.log",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-authority-contract.log",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 1829,
+      "sha256": "13c2e7773efb5ec23b7125b6eda2ef466f8573cd4aec32c7e226f45cb52b8194",
+      "git_blob_sha": "957a68c7947b0f946d6637f3ae5c0135ef951551"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/authority-result.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/authority-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 18251,
+      "sha256": "2328d47873e6f802a7fa786ee18a93fec3f5b683f65fe97c76b1232ad1fb2318",
+      "git_blob_sha": "0cc1384f8256276168103b633f0ee17eedf5e941"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/closed.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/closed.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 44,
+      "sha256": "b656d5b50f97d46267a358d7801013c3485d3ab4fb1caafe6fcc7beb73e02886",
+      "git_blob_sha": "724364b67e007f0da97be26d4ea91363de35fbe9"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/lifecycle.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/lifecycle.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 52,
+      "sha256": "4de984a69c20dd9bdf6690dfed31c62100290673965d23d1668e76d1a2bd3029",
+      "git_blob_sha": "216950bb03bc858dde66ecdf28ad474ececae552"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/native-result.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/native-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 51,
+      "sha256": "1f03988160241ca82476416d241eb51a84c118aff8b284299be771b9f865e759",
+      "git_blob_sha": "3ff9e32044d5332599f51ac4192d1d9a035db33d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/private-test-control.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/private-test-control.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 135,
+      "sha256": "ece0f7326e0ae324136ceeb59d450b90cfb3f340cc24e54b1ab88d1937b6f392",
+      "git_blob_sha": "5dfbc0adf40a5736bb5cfb23a157c75106be3f75"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/public-state.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/public-state.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 807,
+      "sha256": "52c200dfea91d14eec8a2b6fd3c39ce39d1b003855585cd3bd9e777ae1935a46",
+      "git_blob_sha": "463491b1f5f73d475e2ddf01263ffde8a70407d3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/request.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/request.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 133,
+      "sha256": "8cbd033651af67ab416c6553c002d44bf1211c1b96c6c3cd45fe322050760721",
+      "git_blob_sha": "a55082d05ff99c3f1aacf7d640b586ec372e82b6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 5689,
+      "sha256": "4fa3ab75c3265043f437f4ddc0bca7aaa93abe42c608ffaa5d19db0d9a576c46",
+      "git_blob_sha": "97c19643858bf403d7fb959dd4087e078fda43b7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/wallet.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/authority/wallet.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 127,
+      "sha256": "50599332cd70caec1f8c0f05c4e7b23779dc4609691e0082d8586de1e31984f1",
+      "git_blob_sha": "6f2fc53e1df4677d53b957f073ed9aacbe7331e5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/dart-authority.log",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/dart-authority.log",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 54,
+      "sha256": "5036019ac334e734bd8340a9f1e21dabd6162d902a972afd8c293aa1381d3265",
+      "git_blob_sha": "9d8f92c8d13f19150f8fbb0c2efe1b82d0d8dc51"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/godot-runtime.log",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/godot-runtime.log",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 1163,
+      "sha256": "df7c2975c1a506fef813dedd09e30976fa3481bb3f291ebb621c5b88b869fc8d",
+      "git_blob_sha": "e9338e876995efd7c7450bed80723a8e9306e9e7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-complete.layout.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-complete.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 4589,
+      "sha256": "db4ad49030bc45131fc4dc34b58da02826fa71938b5928c4894b3250de194ec8",
+      "git_blob_sha": "86df2d6baf6c0ff8ac9f090a7e605ed0c14e96d2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-complete.png",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 113759,
+      "sha256": "c1a2c06ac19746fdee0dd1c460ccbf6e5f2143f5e91f8a5e44dec38547e09c51",
+      "git_blob_sha": "20a2bf51756a917d7686900e0dca079e5ab59961"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-jokers.layout.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-jokers.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 4676,
+      "sha256": "23cd609e133d1ad32079f46e29b6e0dbabcc2eb815c8ac9945c5c9f6acfecf4c",
+      "git_blob_sha": "75643670e2d52749909f6f5554d4f6b8e83c2d24"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-jokers.png",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-jokers.png",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 98259,
+      "sha256": "f99229488ae820694be7904a31f5eca65113f6765de00eb1da757cebf4452a87",
+      "git_blob_sha": "c916c46314d92897d605e4dbf1c0a247d0486fa8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-paused.layout.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-paused.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 4451,
+      "sha256": "abed509458e20e4c3db13924e4134ee656e23939c400a12cd5a9935077cf1fcb",
+      "git_blob_sha": "57f23cb0114264f176196e00260f76793bbf04e5"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-paused.png",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-paused.png",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 42997,
+      "sha256": "ef9469457c6f8625aa7a6e4de02491c119f20aa9d90160336405e2d2da4d9315",
+      "git_blob_sha": "2cf9aa3d42d2457af3da30ad15a7fe4981b8a06c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-question.layout.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-question.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 4526,
+      "sha256": "a2c33044e5e0cdf272b8789f2e65ba1206605fc4392039895300b26ce0ac46d6",
+      "git_blob_sha": "a78a2bbad72ea525c81f39941b709aa320687f27"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-question.png",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-question.png",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 87171,
+      "sha256": "44e09d42cafc03e53b344b34bf0e8380cb8a6a906d397fdac8ea712748c236b2",
+      "git_blob_sha": "071653c7f1732497707ad9d7a19562ea11623961"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-revealed-small.layout.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-revealed-small.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 4642,
+      "sha256": "6fd80a4194d68bb87748f227136cdbd3cbb6ba47392d54b2caa910c9e8ab2567",
+      "git_blob_sha": "0661e9614de925b5ee329141d25e80151ba06907"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-revealed-small.png",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-revealed-small.png",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 46861,
+      "sha256": "6e5398394db59a18c0c000520880b55cb9540eb24a68581286ef06978b278784",
+      "git_blob_sha": "05186956c25a327be4cad31e5e2a4618ab3f47c0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-selected-phone.layout.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-selected-phone.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 4650,
+      "sha256": "63a527b8c515e95569cea709772f8363b9ecbd16afaa6ea2f3596cf58ea353f4",
+      "git_blob_sha": "cf8113bcf7d8ac84ed5e37fecf17778f21ed6653"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-selected-phone.png",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-dart-selected-phone.png",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 81267,
+      "sha256": "8d7231a8f9f4c114f87d46fb21c8ba3b307b97474aec5d2d6c85954181c6d600",
+      "git_blob_sha": "3c6bcaa060ac971fc7ef7ee9e39a5c9f7981cef6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-runtime-report.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/native/quiz-runtime-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 70276,
+      "sha256": "0b27d3cd4d4e38669d2e968e3fe401cad3b6c2e58a48227e6e0db74140bb8caa",
+      "git_blob_sha": "7bba21681a7887d7d1cec5751e1195919c849597"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/pair-result.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/pair-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 5964,
+      "sha256": "f8c106ffc92bba3c29fee5d3936eef28bf7baf4e3f67baf5f3b4316a86080c07",
+      "git_blob_sha": "51b06a0f6650add7f2e3d1304c25fbff0ee5fd12"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/source-identity.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/originals/quiz-pair/source-identity.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "unmodified_current_artifact_member",
+      "bytes": 265,
+      "sha256": "bf05961fba1f949f1e665e65b1b632f8c82ed510d1f4d004dd850c0c13709f20",
+      "git_blob_sha": "74c924472877820fccb2bd022f328f11673b38ea"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/quiz-original-job.log",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/quiz-original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "role": "original_terminal_metadata_or_log",
+      "bytes": 302674,
+      "sha256": "0ce72cda3e7182cb5ed6d7d085503f0b456bed996cc2c958f97c2bd828099328",
+      "git_blob_sha": "97db6caa0de14619a6388542e52b5b1e51de861f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/jobs-quiz-terminal-original.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/jobs-quiz-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "original_terminal_metadata_or_log",
+      "bytes": 23304,
+      "sha256": "770b6d59277c09cd06213fdaaad43673360ef4ae03c853ba83eab1e656f60fe3",
+      "git_blob_sha": "ce1584835a041b041f223015a846fe0851f4307d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/artifacts-at-quiz-terminal-original.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/artifacts-at-quiz-terminal-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "original_terminal_metadata_or_log",
+      "bytes": 2243,
+      "sha256": "e14657b5a3219489a9c5a2eed51209fb5d92721a07b5846e470b6e3222afab54",
+      "git_blob_sha": "43b0637cc7a48fb25c8597b74725d42542e396d3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/host-commit-original.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/host-commit-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "original_terminal_metadata_or_log",
+      "bytes": 1812,
+      "sha256": "e919747de4c8de19570e8df6fc69bd392fc651d376bacdcf19067612b72b5627",
+      "git_blob_sha": "2ad3cb29a5ae2e71b0a0457c0e965be9b36d381f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/artifact-metadata.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/artifact-metadata.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "original_terminal_metadata_or_log",
+      "bytes": 821,
+      "sha256": "19bc67fbb34d2d403973a3fdd20a7c787ef95594e7599cece6d90123ffdd1195",
+      "git_blob_sha": "198068ad8b68580e3d60b92692b67f77f0d63ddd"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/original-artifact-binding.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/original-artifact-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "read_only_review_or_binding",
+      "bytes": 15490,
+      "sha256": "4d22993247bf793ff62ad94a72628fb93825cf0d0bed512a7ddabd556bcd2071",
+      "git_blob_sha": "5fda2a47933a23418c67593a037d29380f5f417b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/journal-verification.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/journal-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "read_only_review_or_binding",
+      "bytes": 27387,
+      "sha256": "0f65515fca61fda7dc3936432a9b567e3dee3b3d5ab8f077b344a3824cdcf150",
+      "git_blob_sha": "865240738524ee18e9031c73450865a89a5a4e13"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/image-review.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/image-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "read_only_review_or_binding",
+      "bytes": 10058,
+      "sha256": "3f2d327170768b324e724cbad0d67d74a394042161648e73011b5c523425c27d",
+      "git_blob_sha": "386a654c629c1a59f5e9ee09c5ccffa30aa6ae62"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/review.json",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "role": "read_only_review_or_binding",
+      "bytes": 5283,
+      "sha256": "b87ef4ec249b1c1192f5db40a487be97fab04437d9a50ba2a420d836916ed2a6",
+      "git_blob_sha": "68a9e07fc8c38e3719a95c903b7224f1d2af7e08"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-28462-quiz-ci-20261114/README.md",
+      "path": "docs/evidence/studio-host-28462-quiz-ci-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "role": "read_only_review_or_binding",
+      "bytes": 4761,
+      "sha256": "476725f35539436618f654fcd6782b360088ad2b87ccc52e46d82ec2f1784019",
+      "git_blob_sha": "7217dbb86f59f97f831f4c4cdadb8b7b41db3b20"
+    }
+  ],
+  "manifest_target": "docs/evidence/studio-host-28462-quiz-ci-20261114/evidence-upload-manifest.json",
+  "upload_status": "prepared_not_uploaded",
+  "exclude": [
+    "quiz-original-artifact.zip",
+    "jobs-initial-original.json"
+  ],
+  "scope": "45 explicit targets plus this unchanged manifest = 46 potential docs blobs. No ref/tree/commit/source mutation."
+}

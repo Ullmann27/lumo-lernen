@@ -1,0 +1,24 @@
+{
+  "module": "test_english_lesson_speech",
+  "test_ids": [
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_after_join_before_return",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_before_first_inference",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_before_join",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_cancel_between_inferences",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_english_word_tags_and_input_bound",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_existing_german_engine_contract",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_interrupted_worker_never_starts_inference",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_join_preserves_pcm_and_exact_gap",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_language_order_identity_and_no_result_cache",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_malformed_wave_formats_refused",
+    "test_english_lesson_speech.EnglishLessonSpeechJavaTest.test_total_envelope_duration_bound"
+  ],
+  "tests_run": 11,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "expected_failures": 0,
+  "unexpected_successes": 0,
+  "successful": true,
+  "duration_seconds": 1.4783147549999853
+}

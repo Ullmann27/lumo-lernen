@@ -1,0 +1,80 @@
+{
+  "jobs": [
+    {
+      "id": 132296975215,
+      "name": "Family download gates",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 43545886948,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run release-pipeline unit tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Check pubspec, updater contract and last published family build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        }
+      ]
+    },
+    {
+      "id": 132297135785,
+      "name": "Build family APK without publishing",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886948,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132297136608,
+      "name": "Upload draft family release",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886948,
+      "logs_url": null,
+      "steps": null
+    }
+  ]
+}

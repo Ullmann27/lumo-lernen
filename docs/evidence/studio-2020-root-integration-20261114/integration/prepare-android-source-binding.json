@@ -1,0 +1,8 @@
+{
+  "baseline": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "path": "scripts/prepare_android.py",
+  "baseline_git_blob": "f54580d334774dd0f275429b12deeac658a725d4",
+  "baseline_sha256": "552aba5a06cc3ad403e61e47f7d1e4f43592dae028baadcec09bd4130173bae5",
+  "new_sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f",
+  "scope": "Copy actual new speech envelope source through existing package-preserving Android generator."
+}

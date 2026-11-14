@@ -1,0 +1,42 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[Mobile] runtime ready screen:(960, 540) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (640.0, 360.0), "decor_size": (640.0, 360.0), "render_rect": [P: (0.0, 0.0), S: (640.0, 360.0)], "system_insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "window_size": (640, 360) }
+ERROR: [ConnectFourRuntime] Real bounded menu swipe reveals complete target
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:46)
+       [1] _reveal_menu_button (res://scripts/tests/connect_four_runtime_regression.gd:168)
+       [2] _frames (res://scripts/tests/connect_four_runtime_regression.gd:78)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:66)
+ERROR: [ConnectFourRuntime] small_landscape actual visible resume fully exposed inside scroll clip
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:46)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:106)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:291)
+       [3] _reveal_menu_button (res://scripts/tests/connect_four_runtime_regression.gd:168)
+       [4] _frames (res://scripts/tests/connect_four_runtime_regression.gd:78)
+       [5] _frame (res://scripts/tests/connect_four_runtime_regression.gd:66)
+ERROR: [ConnectFourRuntime] Leave responsive menu
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:46)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:87)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:66)
+[Mobile] actual Android View insets { "view_size": (320.0, 740.0), "decor_size": (320.0, 740.0), "render_rect": [P: (0.0, 0.0), S: (320.0, 740.0)], "system_insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "window_size": (320, 740) }
+ERROR: [ConnectFourRuntime] small_portrait menu in real safe area actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:46)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:97)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:286)
+       [3] _frames (res://scripts/tests/connect_four_runtime_regression.gd:78)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:66)
+[ConnectFourRuntime] FAIL 171 checks, 248 frames

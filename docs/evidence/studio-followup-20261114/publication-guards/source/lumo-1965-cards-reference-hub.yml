@@ -1,0 +1,66 @@
+name: Lumo 1965 – Reference Cards playable hub
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1965-cards-reference-hub-2026-10-16
+  pull_request:
+    paths:
+      - lib/features/games/lumo_cards/lumo_cards_showcase_screen.dart
+      - lib/features/games/games_content.dart
+      - lib/features/games/lumo_cards/lumo_cards_screen.dart
+      - test/lumo_cards_reference_showcase_test.dart
+      - pubspec.yaml
+      - .github/workflows/lumo-1965-cards-reference-hub.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cards-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install Flutter dependencies from lockfile
+        run: flutter pub get --enforce-lockfile
+      - name: Analyze all Dart sources
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Run interactive Cards reference and gameplay tests
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=1 \
+            test/lumo_cards_reference_showcase_test.dart \
+            test/lumo_cards_layout_foundation_test.dart \
+            test/lumo_cards_session_ui_test.dart
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+          expected={
+            'phone_390x844':(585,1266),
+            'fold_cover_320x780':(480,1170),
+            'fold_open_840x760':(1260,1140),
+            'landscape_840x400':(1260,600),
+          }
+          for label,size in expected.items():
+              path=Path('visual-evidence')/f'cards_hub_{label}.png'
+              data=path.read_bytes()
+              assert len(data)>10000 and data[:8]==b'\x89PNG\r\n\x1a\n',(path,len(data))
+              assert struct.unpack('>II',data[16:24])==size,(path,size)
+              print(f'REAL_CARDS_FLUTTER_FRAME {path} {size}')
+          PY
+          git rev-parse HEAD > visual-evidence/SOURCE-COMMIT.txt
+          sha256sum visual-evidence/cards_hub_*.png > visual-evidence/SHA256SUMS.txt
+          echo 'Rendered by Flutter widget tests, not physical Android.' > visual-evidence/CAPTURE-TYPE.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1965-reference-hub-phone-fold
+          path: visual-evidence/
+          if-no-files-found: warn
+          retention-days: 21

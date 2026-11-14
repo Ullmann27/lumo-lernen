@@ -1,0 +1,62 @@
+[
+  {
+    "name": "cards-missing-layout",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_cards_layout_readiness.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 1.118623476009816,
+    "log": "cards-missing-layout.log",
+    "log_sha256": "317029c0070de241d0b3c44e0c9bb7b1e2abfbefd745adff7e2a0ab2b8a007f8",
+    "pythonpath": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa"
+  },
+  {
+    "name": "existing-cards-layout",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_studio_cards_layout.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 4.100515541009372,
+    "log": "existing-cards-layout.log",
+    "log_sha256": "81efdb4ed5084273c5c8cd8b81e671f9f97a2ac3412761d8437264b0f5d10aa4",
+    "pythonpath": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa"
+  },
+  {
+    "name": "existing-cards-lifecycle",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_cards_lifecycle_observation.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.2216319349972764,
+    "log": "existing-cards-lifecycle.log",
+    "log_sha256": "037c7a8381b1f9f222466640942ef59cdd95e3f7c0ba9190079229f2ed060de6",
+    "pythonpath": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "when": "2026-11-14T10:19:51.174319+00:00",
+  "operation": "relocate verified own intermediate archive; no artifact bytes discarded",
+  "from": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/flutter/original-artifact.zip",
+  "to": "/tmp/lumo-previous-verified-archive-cache/4ab96666-flutter-14087637888.zip",
+  "artifact_id": 14087637888,
+  "bytes": 333604197,
+  "sha256": "dea2a82c895e3cc3822e4880dba28f3fb1437ec2ce8adbb60be50fda3ead2d4c",
+  "copy_readback_identical": true
+}

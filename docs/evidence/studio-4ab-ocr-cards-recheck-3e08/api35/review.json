@@ -1,0 +1,946 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T03:12:55.887613+00:00",
+  "status": "PASS_FOR_EXACT_4AB_API35_DIAGNOSTIC_SCOPE",
+  "overall_release_approved": false,
+  "run": 43546627017,
+  "attempt": 1,
+  "job": {
+    "id": 132299721965,
+    "head_sha": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-14T02:31:05Z",
+    "completed_at": "2026-11-14T02:57:20Z",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43546627017/job/132299721965"
+  },
+  "qa_source": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "original_archive": {
+    "artifact": 14094852782,
+    "zip_bytes": 140941270,
+    "zip_sha256": "b60b4ca93749fa105858328eb4044c643faa9a8a254630e7de0febecf0db7409",
+    "github_digest_equal": true,
+    "crc": "PASS",
+    "member_count": 1342,
+    "total_uncompressed_bytes": 155440354
+  },
+  "original_job_log": {
+    "path": "original-job.log",
+    "bytes": 2035947,
+    "sha256": "0977667c471e13516238ca04567932e1c277a7277cabf36aa532b126fc90f6ee"
+  },
+  "identity": {
+    "before_binding_equals_after": true,
+    "before_binding_verified": true,
+    "after_binding_matches": true,
+    "sources": {
+      "qa": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen",
+        "head": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+        "tree": "0774003dfb399641044cf83b654335bd91ad4373",
+        "tracked_source_clean": true,
+        "actual_blob_and_mode_checks": 4127,
+        "working_files_manifest_sha256": "9d73d16f1ba8dba2d0ba0d44d348c5f76cd57fa7698a1647f58f884752fbb024",
+        "separate_runtime_roots": [
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist",
+          "/home/runner/work/lumo-lernen/lumo-lernen/tour",
+          "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv",
+          "/home/runner/work/lumo-lernen/lumo-lernen/runner-actions/android-emulator-runner"
+        ],
+        "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode"
+      },
+      "product": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+        "head": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+        "tree": "f3ffc295cec299bdc6126fcddffbc130c6629e54",
+        "tracked_source_clean": true,
+        "actual_blob_and_mode_checks": 4113,
+        "working_files_manifest_sha256": "32cc1136a62991eee1ec389d81f6c039aeacd36d9abf4eccf6af44a58b438839",
+        "separate_runtime_roots": [],
+        "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode"
+      },
+      "qa_basis": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+      "tour_execution_scope": "Modernization unchanged; Studio surface reader bound to the exact approved read-only correction",
+      "surface_reader_binding": {
+        "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+        "original_sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+        "approved_sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+      },
+      "unchanged_other_git_entries": 4111,
+      "reviewed_delta": [
+        {
+          "path": ".github/probes/creative_android_probe.py",
+          "before": {
+            "mode": "100644",
+            "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+          },
+          "after": {
+            "mode": "100644",
+            "git_blob": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd"
+          },
+          "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+        },
+        {
+          "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+          "before": {
+            "mode": "100644",
+            "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68"
+          },
+          "after": {
+            "mode": "100644",
+            "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad"
+          },
+          "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+        },
+        {
+          "path": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "9c54d46545429d02f1f8105ae1b87088855dee3d"
+          },
+          "sha256": "6db11aba49cf3dc7322ce756ac245952a5b1f7cdbe54f9e952743ab08e0ef9c3"
+        },
+        {
+          "path": "scripts/recheck_studio_4ab.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "33ed5d0fc71a3282bb3fb7de6bdf2ff3c2cbc6b2"
+          },
+          "sha256": "667edf06c082d3d48302b7aab6a2e1d3aac92a4581d2fbf62624504208fe9e5b"
+        },
+        {
+          "path": "scripts/tests/test_studio_4ab_recheck.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "e836e7c25a7d68f4d47ff19a15de982f7e241fdb"
+          },
+          "sha256": "467c8554fffa95773423eed0705968929025b324b007f4a558f725515cf17848"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "9c20cac7b42fb285cac1d476bbdf840662a68e2b"
+          },
+          "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "befd8c7c5147beb3754bde89ca4ea18a10b44a7c"
+          },
+          "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "e24a002fcefa4e000ad2336880b639b636131af8"
+          },
+          "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "e2040ad2c440daafd36972f98462f052a19bd6f9"
+          },
+          "sha256": "3a2345f16439c7dba61fb19aecb611c7a230b8c9e90150543338ec00c5009dca"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "8c5735507c17ecfe1d516e044a0587fd8266ba5e"
+          },
+          "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "772eef801ef8cabc05c04dc61de9a530c5c73cc1"
+          },
+          "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "49566dbbef40cc7dc17a38bb67f1dbee508c77ed"
+          },
+          "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "816498d883f8f481c754b06817e26af449f7112f"
+          },
+          "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843"
+        },
+        {
+          "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c"
+          },
+          "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435"
+        },
+        {
+          "path": "tools/android_qa/tests/test_cards_layout_readiness.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "9d2b4a75bc3353dd579f261c1c99229af30c07c1"
+          },
+          "sha256": "e4e1617794a3026a947d135e0883f82664f220a6c430ce0721e611f7b0bd1dc0"
+        },
+        {
+          "path": "tools/android_qa/tests/test_native_caption_ocr.py",
+          "before": null,
+          "after": {
+            "mode": "100644",
+            "git_blob": "5238a7a69190233590eefb50d647bcd244ecbc3f"
+          },
+          "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce"
+        }
+      ],
+      "executed_tour_files": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/modernization_android_tour.py",
+          "bytes": 46556,
+          "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py",
+          "bytes": 48183,
+          "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+        }
+      ],
+      "helper": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py",
+        "bytes": 59073,
+        "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+      }
+    },
+    "original_build": {
+      "original_run": 43530667812,
+      "original_build_job": 132247240154,
+      "original_artifact": 14089507933,
+      "artifact_archive_digest_from_github_metadata": "2bc81726454a0b79e3e7ab9c0668c9359745e4d308e5af6f8b49072e7600ae7c",
+      "original_run_conclusion": "failure",
+      "original_metadata_files": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/artifact.json",
+          "bytes": 806,
+          "sha256": "62410d2d5a462c45f38bf9cb0f09108d526e280d802a32705a949030059af6ef"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/run.json",
+          "bytes": 14516,
+          "sha256": "4282fb4b85847558efa97e319d4e8273bd4a6213127159b1b149c84ed99d9d2d"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/build-job.json",
+          "bytes": 10144,
+          "sha256": "2d7cb4f520a17ada660edd9e8fe06990ac9efc3fd3ccd99b9bc7d4209b250dfd"
+        }
+      ]
+    },
+    "binary": {
+      "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+      "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "apk": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "bytes": 325295610,
+        "sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6"
+      },
+      "pck_bytes": 66234596,
+      "pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+      "provenance": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "bytes": 7586,
+        "sha256": "bb50fe23c109e063fe4f3c6fa4b55d3c6387e15ab2665f8cd2cae22f6d26fbf5"
+      },
+      "sums": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "bytes": 98,
+        "sha256": "4b9e9df9d23a8cf0eb32c0dd6b26175235fc008e1ec1c621f77c35164d565837"
+      },
+      "signature_scope": "Exact original signed APK bytes; certificate from original verified build provenance. No new signing claim."
+    },
+    "android_runtime": {
+      "sdk": 35,
+      "release": "15",
+      "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+      "model": "sdk_gphone64_x86_64"
+    },
+    "measurement_scope": "APK and embedded PCK were hashed before and after on the real CI runner; this reviewer did not download another APK."
+  },
+  "executed_commands": [
+    {
+      "command": [
+        "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv/bin/python",
+        "-B",
+        "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/modernization_android_tour.py",
+        "--apk",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "--provenance",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "--sums",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "--out",
+        "/home/runner/work/lumo-lernen/lumo-lernen/tour"
+      ],
+      "cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+      "started_at": "2026-11-14T02:35:16.699460+00:00",
+      "returncode": 0,
+      "finished_at": "2026-11-14T02:44:52.753648+00:00"
+    },
+    {
+      "command": [
+        "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv/bin/python",
+        "-B",
+        "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py",
+        "--apk",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "--provenance",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "--sums",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "--prior-tour",
+        "/home/runner/work/lumo-lernen/lumo-lernen/tour/tour-result.json",
+        "--expected-api",
+        "35",
+        "--out",
+        "/home/runner/work/lumo-lernen/lumo-lernen/tour/nextgen"
+      ],
+      "cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+      "started_at": "2026-11-14T02:44:52.753679+00:00",
+      "returncode": 0,
+      "finished_at": "2026-11-14T02:57:02.616370+00:00"
+    }
+  ],
+  "modernization": {
+    "status": "PASS",
+    "steps_pass": 21,
+    "steps_fail": 0,
+    "steps": [
+      "apk-identity",
+      "launch",
+      "onboarding",
+      "navigate-start",
+      "atelier-roundtrip",
+      "navigate-lernen",
+      "navigate-spiele",
+      "open-kart",
+      "start-kart-race",
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu",
+      "return-from-kart",
+      "learning-state-after-kart",
+      "lernen-usable-after-kart",
+      "profile-after-kart",
+      "restart-keeps-learning-state",
+      "display-fold_offen",
+      "display-fold_aussen",
+      "display-quer"
+    ],
+    "fatal_crashes": 0,
+    "reported_limits": [
+      "physical Samsung Fold",
+      "device GPU frame times / 60 FPS",
+      "audio output",
+      "complete two-lap race and reward (kart_complete_android_probe)"
+    ],
+    "source": {
+      "path": "selected-originals/tour-result.json",
+      "bytes": 9658,
+      "sha256": "62a1d615c798daaa909d60c220b2882f25bd19bf894c007b81f5e1458cc9d15b"
+    }
+  },
+  "studio": {
+    "status": "PASS",
+    "offline": true,
+    "fatal_crashes": 0,
+    "local_voice_permission": {
+      "local_model_assent": true,
+      "voice_enabled": true,
+      "auto_read": true,
+      "unrelated_permissions_unchanged": true,
+      "no_audio_emulator": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "learning": {
+      "moves": {
+        "moved_objects": 5,
+        "ten_filled_after": 2,
+        "remainder": 3,
+        "target_indices": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "preservation": {
+        "profile": {
+          "id": "1794623787019932",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T02:36:27.019932"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      "same_lesson_after_return": true,
+      "speech": {
+        "initial": {
+          "native_process_pid": 6869,
+          "completed_utterance_ids": [
+            3
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "result": {
+          "native_process_pid": 6869,
+          "completed_utterance_ids": [
+            18
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "native_process_gone_on_return": true,
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "illustration_did_not_award_mastery": true
+    },
+    "cards": {
+      "initial_readiness": {
+        "status": "READY",
+        "states": [
+          {
+            "token": "2ed3cd71f6f3774e0ce789e42c9ffe53",
+            "roundId": "cards-62098664f60fb57cabfa5322f1f77448",
+            "viewer": 0,
+            "current": 0,
+            "phase": "playing",
+            "paused": false,
+            "canDraw": true,
+            "revision": 3,
+            "ack": 0
+          }
+        ],
+        "frames": [],
+        "touch": null,
+        "scope": "Actual initial Cards state and, only if needed, native resume",
+        "mode": "active_without_resume_touch",
+        "elapsed_seconds": 0.094208
+      },
+      "draw": {
+        "round_id": "cards-62098664f60fb57cabfa5322f1f77448",
+        "owner": "34bbba84ae38eaa75f93ab98494ef3a6b8a1985143090ab056ef5a2cf9a8a30c",
+        "cards_conserved": 112,
+        "sequence": 1,
+        "revision_before": 3,
+        "revision_after": 5,
+        "child_cards_added": 1,
+        "draw_count_before": 97,
+        "draw_count_after": 96
+      },
+      "draw_after_visible_idle": {
+        "round_id": "cards-62098664f60fb57cabfa5322f1f77448",
+        "owner": "34bbba84ae38eaa75f93ab98494ef3a6b8a1985143090ab056ef5a2cf9a8a30c",
+        "cards_conserved": 112,
+        "sequence": 2,
+        "revision_before": 5,
+        "revision_after": 8,
+        "child_cards_added": 1,
+        "draw_count_before": 96,
+        "draw_count_after": 95
+      },
+      "visible_idle_seconds": 35.092440457000066,
+      "android_authority_binding": [
+        {
+          "main_process_pid": 5798,
+          "native_process_pid": 7594,
+          "service": "dev.ullmann.lumo.lumo_lernen.CardsAuthorityService",
+          "bound": true
+        },
+        {
+          "main_process_pid": 5798,
+          "native_process_pid": 7594,
+          "service": "dev.ullmann.lumo.lumo_lernen.CardsAuthorityService",
+          "bound": true
+        }
+      ],
+      "pause_saved_state_unchanged": true,
+      "reopened_same_round": true,
+      "new_mailbox_token": true,
+      "learning_preservation": {
+        "profile": {
+          "id": "1794623787019932",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T02:36:27.019932"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      }
+    },
+    "front_face_phases": [
+      {
+        "stage": "11_cards_real_table_before_draw",
+        "status": "PASS",
+        "consecutive_same_revision_frames": 2,
+        "revision": 3,
+        "elapsed_seconds": 9.279282,
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "observed_frame_status_counts": {
+          "VISIBLE_FRONT_ARTWORK": 2
+        }
+      },
+      {
+        "stage": "12_cards_real_table_persisted_draw",
+        "status": "PASS",
+        "consecutive_same_revision_frames": 2,
+        "revision": 5,
+        "elapsed_seconds": 12.77581,
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "observed_frame_status_counts": {
+          "REJECTED": 5,
+          "VISIBLE_FRONT_ARTWORK": 2
+        }
+      },
+      {
+        "stage": "12a_cards_real_table_before_late_draw",
+        "status": "PASS",
+        "consecutive_same_revision_frames": 2,
+        "revision": 5,
+        "elapsed_seconds": 12.610882,
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "observed_frame_status_counts": {
+          "VISIBLE_FRONT_ARTWORK": 2
+        }
+      },
+      {
+        "stage": "12b_cards_persisted_draw_after_visible_idle",
+        "status": "PASS",
+        "consecutive_same_revision_frames": 2,
+        "revision": 8,
+        "elapsed_seconds": 15.720577,
+        "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+        "observed_frame_status_counts": {
+          "REJECTED": 6,
+          "VISIBLE_FRONT_ARTWORK": 2
+        }
+      }
+    ],
+    "return_pixel_guards": [
+      {
+        "status": "PASS",
+        "expected_captions": [
+          "Erklärung lesen",
+          "Schritt 6 von 6"
+        ],
+        "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+        "consecutive_confirmed_frames": 2,
+        "source": "05_learning_same_flutter_lesson.png",
+        "source_sha256": "289c07a49454ed0eb38d88543362815bab2aa7c1402ede64fc211f0ff2ba72b7",
+        "elapsed_seconds": 5.255091,
+        "source_report": "nextgen/05_learning_same_flutter_lesson-return-pixels.json"
+      },
+      {
+        "status": "PASS",
+        "expected_captions": [
+          "Spiel pausiert"
+        ],
+        "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+        "consecutive_confirmed_frames": 2,
+        "source": "14_cards_same_flutter_round.png",
+        "source_sha256": "bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9",
+        "elapsed_seconds": 10.111239,
+        "source_report": "nextgen/14_cards_same_flutter_round-return-pixels.json"
+      },
+      {
+        "status": "PASS",
+        "expected_captions": [
+          "Spiel pausiert"
+        ],
+        "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+        "consecutive_confirmed_frames": 2,
+        "source": "16_cards_final_flutter_return.png",
+        "source_sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880",
+        "elapsed_seconds": 9.061765,
+        "source_report": "nextgen/16_cards_final_flutter_return-return-pixels.json"
+      }
+    ],
+    "source": {
+      "path": "selected-originals/nextgen/native-surfaces-result.json",
+      "bytes": 211165,
+      "sha256": "a881665c9af2ada9ead176241e42523c9cee3c8ce1f2cf3c6c4e8c7e80cd40c0"
+    }
+  },
+  "actual_layout": {
+    "source": {
+      "path": "selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "bytes": 1326,
+      "sha256": "d8998559a91937fbc67913b4282430da72dd09f53cdedf5a97255dcd61bd4ab9"
+    },
+    "observation_source": "android_window_insets",
+    "android_observation": {
+      "decor_size": [
+        1080.0,
+        2400.0
+      ],
+      "insets": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "render_rect": [
+        0.0,
+        0.0,
+        1080.0,
+        2400.0
+      ],
+      "system_insets": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "view_size": [
+        1080.0,
+        2400.0
+      ]
+    },
+    "density": 2.625,
+    "window_px": [
+      1080.0,
+      2400.0
+    ],
+    "ui_rect": [
+      0.0,
+      136.0,
+      1080.0,
+      2201.0
+    ],
+    "settled": true,
+    "scope": "Actual Android WindowInsets/RenderView observation. This is not the prior desktop fixture. No full 48dp target inventory is inferred from this one snapshot."
+  },
+  "input_evidence": {
+    "draw_requests": [
+      {
+        "action": "draw",
+        "revision": 3,
+        "sequence": 1,
+        "token": "2ed3cd71f6f3774e0ce789e42c9ffe53"
+      },
+      {
+        "action": "draw",
+        "revision": 5,
+        "sequence": 2,
+        "token": "2ed3cd71f6f3774e0ce789e42c9ffe53"
+      }
+    ],
+    "touches": [
+      {
+        "status": "TOUCH_SENT",
+        "label": "Ziehen",
+        "timeout_seconds": 120,
+        "exact_caption_required": true,
+        "orientation_policy": "responsive",
+        "scope": "Observed touch prerequisites; post-action assertions still required",
+        "final_observed_bounds": [
+          600.0,
+          2191.0,
+          748.0,
+          2227.0
+        ],
+        "touch": [
+          674,
+          2209
+        ],
+        "elapsed_seconds": 11.923884
+      },
+      {
+        "status": "TOUCH_SENT",
+        "label": "Ziehen",
+        "timeout_seconds": 120,
+        "exact_caption_required": true,
+        "orientation_policy": "responsive",
+        "scope": "Observed touch prerequisites; post-action assertions still required",
+        "final_observed_bounds": [
+          599.0,
+          2191.0,
+          748.0,
+          2227.0
+        ],
+        "touch": [
+          674,
+          2209
+        ],
+        "elapsed_seconds": 12.619532
+      },
+      {
+        "status": "TOUCH_SENT",
+        "label": "Pause",
+        "timeout_seconds": 120,
+        "exact_caption_required": true,
+        "orientation_policy": "responsive",
+        "scope": "Observed touch prerequisites; post-action assertions still required",
+        "final_observed_bounds": [
+          896.0,
+          214.0,
+          1025.0,
+          248.0
+        ],
+        "touch": [
+          960,
+          231
+        ],
+        "elapsed_seconds": 11.615993
+      },
+      {
+        "status": "TOUCH_SENT",
+        "label": "Zurück",
+        "timeout_seconds": 120,
+        "exact_caption_required": true,
+        "orientation_policy": "responsive",
+        "scope": "Observed touch prerequisites; post-action assertions still required",
+        "final_observed_bounds": [
+          56.0,
+          212.0,
+          210.0,
+          248.0
+        ],
+        "touch": [
+          133,
+          230
+        ],
+        "elapsed_seconds": 11.658173
+      },
+      {
+        "status": "TOUCH_SENT",
+        "label": "Zurück",
+        "timeout_seconds": 120,
+        "exact_caption_required": true,
+        "orientation_policy": "responsive",
+        "scope": "Observed touch prerequisites; post-action assertions still required",
+        "final_observed_bounds": [
+          56.0,
+          212.0,
+          210.0,
+          248.0
+        ],
+        "touch": [
+          133,
+          230
+        ],
+        "elapsed_seconds": 11.392848
+      }
+    ],
+    "scope": "Real OCR-derived Android touches and public mailbox requests/acknowledgements. No fabricated state write or injected draw action."
+  },
+  "pause_and_reopen": {
+    "paused_state": {
+      "roundId": "cards-62098664f60fb57cabfa5322f1f77448",
+      "token": "2ed3cd71f6f3774e0ce789e42c9ffe53",
+      "revision": 9,
+      "ack": 3,
+      "paused": true,
+      "canDraw": false,
+      "drawCount": 95,
+      "players": [
+        {
+          "name": "Du",
+          "count": 9,
+          "stars": 0
+        },
+        {
+          "name": "Lumo",
+          "count": 5,
+          "stars": 0
+        }
+      ]
+    },
+    "reopened_state": {
+      "roundId": "cards-62098664f60fb57cabfa5322f1f77448",
+      "token": "879634b6180ea149340047c1cb44bfb8",
+      "revision": 3,
+      "ack": 0,
+      "paused": false,
+      "canDraw": true,
+      "drawCount": 95,
+      "players": [
+        {
+          "name": "Du",
+          "count": 9,
+          "stars": 0
+        },
+        {
+          "name": "Lumo",
+          "count": 5,
+          "stars": 0
+        }
+      ]
+    },
+    "filename_reuse_warning": "cards-mailbox-001-state.json is the reopened mailbox observation because its counter restarts. Do not label it as the initial seven-card state; original phase histories and 002-state preserve the initial state."
+  },
+  "visual_review": {
+    "viewed_images": 10,
+    "images": [
+      {
+        "path": "selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+        "bytes": 553917,
+        "sha256": "3006a596dbc722317ecd684744ba219bc751212ac6e2191a1ce342572f3fbe25",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Acht blaue Würfel, fünf gelbe Ergänzungswürfel und die zwei freien Zehnerplätze sind sichtbar. Original-Lumo, lesbare 8+5-Aufgabe und Goldknopf Ein Objekt zeigen; keine Überlagerung des Zielknopfs durch die Systemleiste."
+      },
+      {
+        "path": "selected-originals/nextgen/04_learning_native_thirteen.png",
+        "bytes": 582010,
+        "sha256": "d7743d5d374816d130e78a91aa267d08a817684de2176691df7e3523692708d5",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Die Zehnerreihe zeigt acht blaue und zwei gelbe Würfel; drei gelbe Würfel bleiben getrennt. Die Zerlegung 8 + 5 = 10 + 3 = 13 und Abschlussbedienung sind lesbar. Ein Standbild belegt keine Lippen- oder Gesichtsanimation."
+      },
+      {
+        "path": "selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+        "bytes": 1509160,
+        "sha256": "289c07a49454ed0eb38d88543362815bab2aa7c1402ede64fc211f0ff2ba72b7",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Tatsächliche Flutter-Lektion Acht und fünf mit Schritt 6 von 6, 13 Äpfeln und Mit Lumo in 3D ausprobieren. Kein zurückgebliebener Godot-Abschlussframe; Sterne/XP sind weiterhin bei null sichtbar."
+      },
+      {
+        "path": "selected-originals/nextgen/11_cards_real_table_before_draw.png",
+        "bytes": 959284,
+        "sha256": "a9629a4138e4a5fd2ba0731bcc8662bdf9fbd3a9c9ddde8ce2144408c59401ba",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Räumlicher Tisch mit Originalfuchs, Kartenstapeln, Ablage und drei sichtbaren Handkarten. Header Zurück/Pause liegt unter der Statusleiste, Ziehen oberhalb der Gestenleiste. Zähler 7/7. Der alte 4ab-Text Du fängt an. ist noch sichtbar und durch diesen QA-Lauf nicht repariert."
+      },
+      {
+        "path": "selected-originals/nextgen/12_cards_real_table_persisted_draw.png",
+        "bytes": 945600,
+        "sha256": "3adcd65fc170b9089143ae33bcfcf2fee0aecd3d00ff11f8cf76d23cb161c65a",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Nach erstem Ziehen sind 8 eigene und 6 Lumo-Karten angegeben. Drei Handkarten bleiben deutlich sichtbar; Ablage zeigt eine 7. Header und Ziehen sind frei. Bestehender Mischtext Lumo legt blue 7. bleibt sichtbar."
+      },
+      {
+        "path": "selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+        "bytes": 939477,
+        "sha256": "96a1752cc85139e82ef00b20bdf6bb380ffae8f44bbbbbf5626f40ff6356bdbe",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Nach zweitem Ziehen stehen 9/5 Karten und Seite 1/3. Drei ursprüngliche Fronten sind lesbar; der Ablagestapel hat sich sichtbar geändert. Exakte Identitäten und Kartenerhaltung stammen aus den gesonderten Zustands-/Save-Prüfungen."
+      },
+      {
+        "path": "selected-originals/nextgen/13_cards_native_pause.png",
+        "bytes": 940465,
+        "sha256": "b72f2f2d14ea7b0642263590d98a439a842f9ce4f9ce1c27a13a991bc8954b6d",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Header zeigt Dein Zug wird gespeichert …; Pause/Ziehen sind deaktiviert dargestellt. Dieser Frame ist ein Speicher-/Übergangszustand und allein kein abgeschlossener Flutter-Returnbeleg."
+      },
+      {
+        "path": "selected-originals/nextgen/14_cards_same_flutter_round.png",
+        "bytes": 519056,
+        "sha256": "bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Vollständiger sichtbarer Flutter-Pausendialog Spiel pausiert mit Fortsetzen, Zur Spieleauswahl und Neu starten. Kein natives Tischbild."
+      },
+      {
+        "path": "selected-originals/nextgen/15_cards_reopened_same_round.png",
+        "bytes": 939945,
+        "sha256": "1c92ac231288a6ba4e654a726e0b1e1ba1dd7d736445acc854f566c02aa5f3f2",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Native Runde wieder sichtbar mit 9/5 Karten, Seite 1/3 und denselben drei sichtbaren Fronten wie nach dem zweiten Ziehen. Pause und Ziehen wieder verfügbar; die Rundengleichheit wird separat maschinell geprüft."
+      },
+      {
+        "path": "selected-originals/nextgen/16_cards_final_flutter_return.png",
+        "bytes": 519505,
+        "sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880",
+        "actually_opened_with_view_image": true,
+        "reviewer": "/root/learning_worlds",
+        "byte_equal_to_original_zip": true,
+        "observation": "Erneut vollständiger Flutter-Pausendialog Spiel pausiert mit allen drei Aktionen. Sichtbarer Rückkehrbeleg nach Wiederöffnung; kein übernommener früherer Screenshot."
+      }
+    ],
+    "root_independent_review": {
+      "path": "root-four-image-review.json",
+      "bytes": 2708,
+      "sha256": "9468dfdfb90a0df948d83e6c43154557e79d8514ead67499359a217863d855fb"
+    },
+    "quality_limits": [
+      "Hard and jagged shadows and simple room materials remain visible.",
+      "Still images do not establish facial rig, lipsync or continuous animation.",
+      "Pixel front-artwork checks are not pixel recognition of every semantic card identity."
+    ]
+  },
+  "preserved_warnings": [
+    "Node DEP0040, DEP0169 and DEP0005 plus Node20/24 migration warning in original log.",
+    "Existing SyntaxWarning about invalid escape sequence in test_nextgen_speech_logcat_recovery.py.",
+    "Emulator startup Vulkan-incompatible-driver, initial adb/multidisplay, libX11 and ini warnings; cleanup stop: Not implemented. Original log is not error-free despite successful required commands.",
+    "Eleven transient absent/incomplete layout observations were correctly REJECTED, followed by all four required phases with two stable accepted frames."
+  ],
+  "limits": [
+    "This is the exact old 4ab APK under QA3e08, not a new c081 or 86445 APK.",
+    "API35 x86_64 emulator only; no physical Fold7, FPS, GPU/CPU frame budget, thermal or touch-latency measurements.",
+    "One test-child profile and two preserved learning keys. No proof of a second child, Journal migration or historical native saves.",
+    "Cards scope: two real draws and bot responses, pause, persistence, reopening and Flutter return. No complete match, win, manual card play or colour-selection acceptance.",
+    "Local speech completion is reported but audible quality and lipsync are explicitly unverified.",
+    "Modernization Kart scope excludes a full two-lap result/reward and physical-device performance.",
+    "No result for API37 or the regular release follows from this API35 success."
+  ],
+  "new_tests_run_by_reviewer": false,
+  "source_mutation": false,
+  "git_mutation": false,
+  "ci_retry": false
+}

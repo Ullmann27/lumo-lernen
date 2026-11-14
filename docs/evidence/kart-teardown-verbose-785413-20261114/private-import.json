@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/local/bin/godot",
+    "--headless",
+    "--editor",
+    "--import",
+    "--quit"
+  ],
+  "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+  "started_utc": "2026-11-14T07:40:53.688182+00:00",
+  "finished_utc": "2026-11-14T07:40:58.663555+00:00",
+  "elapsed_seconds": 4.975397135989624,
+  "exit_code": 0,
+  "timed_out": false,
+  "deadline_seconds": 120,
+  "original_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/private-import.log",
+    "bytes": 2073,
+    "sha256": "193a7ada806d3995d0a1beb499e3ae38ae9082ba79b1a129456cbe5bc5d24de4"
+  }
+}

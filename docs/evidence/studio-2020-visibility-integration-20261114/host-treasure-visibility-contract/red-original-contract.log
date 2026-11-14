@@ -1,0 +1,15 @@
+test_treasure_cutout_visibility_cannot_reuse_only_four_title_views (test_studio_2020_delivery.Studio2020DeliveryTests.test_treasure_cutout_visibility_cannot_reuse_only_four_title_views) ... FAIL
+
+======================================================================
+FAIL: test_treasure_cutout_visibility_cannot_reuse_only_four_title_views (test_studio_2020_delivery.Studio2020DeliveryTests.test_treasure_cutout_visibility_cannot_reuse_only_four_title_views)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-2020-integration/test-host/scripts/tests/test_studio_2020_delivery.py", line 169, in test_treasure_cutout_visibility_cannot_reuse_only_four_title_views
+    with self.assertRaisesRegex(ValueError, 'C4 and facial'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.188s
+
+FAILED (failures=1)

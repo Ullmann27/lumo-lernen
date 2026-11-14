@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618076296,
+  "run_attempt": 1,
+  "job_id": 132517423810,
+  "full_job_log_fetch_calls": 1,
+  "fetch_method": "github_fetch_workflow_job_logs; complete decoded UTF-8 result saved including initial BOM",
+  "log_originals": {
+    "path": "original-flutter-job.log",
+    "bytes": 120661,
+    "sha256": "4192247ed86ddb17fa3a5d558eee665acbbb4f408fcc6e199ab8e9e1699bbab7",
+    "git_blob_sha": "bf0e50d174f18f5b2f1891cf71bf8bbf4d9c212b"
+  },
+  "log_lines": 935,
+  "artifact_downloads": 0,
+  "artifact_metadata_reconciled_with_original_log": true,
+  "original_metadata_urls": {
+    "run": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43618076296",
+    "jobs": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43618076296/attempts/1/jobs?per_page=100",
+    "artifacts": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43618076296/artifacts?per_page=100"
+  },
+  "source_urls": {
+    "workflow": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/.github/workflows/lumo-nextgen-feature-contracts.yml",
+    "runner": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/scripts/run_full_flutter_acceptance.py"
+  },
+  "no_reconstructed_originals": true,
+  "no_local_flutter_tests": true,
+  "no_product_source_changes": true
+}

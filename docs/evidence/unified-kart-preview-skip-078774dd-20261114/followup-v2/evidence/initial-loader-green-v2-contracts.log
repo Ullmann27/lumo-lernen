@@ -1,0 +1,308 @@
+test_exact078_identity_session_hud_and_driving_contracts_are_unchanged (__main__.OriginalGatePreservationTests.test_exact078_identity_session_hud_and_driving_contracts_are_unchanged) ... ok
+test_main_preserves_all_original_pause_save_return_and_learning_checks (__main__.OriginalGatePreservationTests.test_main_preserves_all_original_pause_save_return_and_learning_checks) ... ok
+test_running_gate_only_adds_diagnostic_after_its_original_terminal_condition (__main__.OriginalGatePreservationTests.test_running_gate_only_adds_diagnostic_after_its_original_terminal_condition) ... ok
+test_actual_helper_cannot_touch_after_original_deadline (__main__.PreviewSkipTests.test_actual_helper_cannot_touch_after_original_deadline) ... ERROR
+test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span (__main__.PreviewSkipTests.test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span) ... ERROR
+test_actual_helper_observes_fade_then_two_fresh_exact_frames (__main__.PreviewSkipTests.test_actual_helper_observes_fade_then_two_fresh_exact_frames) ... ERROR
+test_changed_touch_witness_cannot_report_success (__main__.PreviewSkipTests.test_changed_touch_witness_cannot_report_success) ... ERROR
+test_existing55s_deadline_is_not_restarted_after_slow_race_capture (__main__.PreviewSkipTests.test_existing55s_deadline_is_not_restarted_after_slow_race_capture) ... ERROR
+test_expired_initial_budget_cannot_sample_or_touch (__main__.PreviewSkipTests.test_expired_initial_budget_cannot_sample_or_touch) ... ERROR
+test_failed_timeout_capture_preserves_original_clock_failure (__main__.PreviewSkipTests.test_failed_timeout_capture_preserves_original_clock_failure) ... ERROR
+test_late_after_capture_cannot_report_success (__main__.PreviewSkipTests.test_late_after_capture_cannot_report_success) ... ERROR
+test_late_touch_helper_result_cannot_report_success (__main__.PreviewSkipTests.test_late_touch_helper_result_cannot_report_success) ... ERROR
+test_legacy_default_sends_no_added_touch_or_ocr (__main__.PreviewSkipTests.test_legacy_default_sends_no_added_touch_or_ocr) ... ERROR
+test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch (__main__.PreviewSkipTests.test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch) ... ERROR
+test_missing_original_ocr_journal_cannot_report_success (__main__.PreviewSkipTests.test_missing_original_ocr_journal_cannot_report_success) ... ERROR
+test_one_frame_or_failed_touch_journal_never_reports_success (__main__.PreviewSkipTests.test_one_frame_or_failed_touch_journal_never_reports_success) ... ERROR
+test_opt_in_skips_actual_observed_cue_before_reporting_start (__main__.PreviewSkipTests.test_opt_in_skips_actual_observed_cue_before_reporting_start) ... ERROR
+test_partial_or_different_caption_never_authorizes_skip (__main__.PreviewSkipTests.test_partial_or_different_caption_never_authorizes_skip) ... ERROR
+test_remaining_budget_is_passed_to_unmodified_two_frame_touch_helper (__main__.PreviewSkipTests.test_remaining_budget_is_passed_to_unmodified_two_frame_touch_helper) ... ERROR
+test_running_clock_still_requires_countdown_over_and_full_elapsed_second (__main__.PreviewSkipTests.test_running_clock_still_requires_countdown_over_and_full_elapsed_second) ... ERROR
+test_timeout_captures_current_frame_after_failure_without_new_state_acceptance (__main__.PreviewSkipTests.test_timeout_captures_current_frame_after_failure_without_new_state_acceptance) ... ERROR
+test_wrong_actual_ocr_words_or_bounds_cannot_report_success (__main__.PreviewSkipTests.test_wrong_actual_ocr_words_or_bounds_cannot_report_success) ... ERROR
+test_wrong_foreground_is_rejected_before_input (__main__.PreviewSkipTests.test_wrong_foreground_is_rejected_before_input) ... ERROR
+
+======================================================================
+ERROR: test_actual_helper_cannot_touch_after_original_deadline (__main__.PreviewSkipTests.test_actual_helper_cannot_touch_after_original_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span (__main__.PreviewSkipTests.test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_actual_helper_observes_fade_then_two_fresh_exact_frames (__main__.PreviewSkipTests.test_actual_helper_observes_fade_then_two_fresh_exact_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_changed_touch_witness_cannot_report_success (__main__.PreviewSkipTests.test_changed_touch_witness_cannot_report_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_existing55s_deadline_is_not_restarted_after_slow_race_capture (__main__.PreviewSkipTests.test_existing55s_deadline_is_not_restarted_after_slow_race_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_expired_initial_budget_cannot_sample_or_touch (__main__.PreviewSkipTests.test_expired_initial_budget_cannot_sample_or_touch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_failed_timeout_capture_preserves_original_clock_failure (__main__.PreviewSkipTests.test_failed_timeout_capture_preserves_original_clock_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_late_after_capture_cannot_report_success (__main__.PreviewSkipTests.test_late_after_capture_cannot_report_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_late_touch_helper_result_cannot_report_success (__main__.PreviewSkipTests.test_late_touch_helper_result_cannot_report_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_legacy_default_sends_no_added_touch_or_ocr (__main__.PreviewSkipTests.test_legacy_default_sends_no_added_touch_or_ocr)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch (__main__.PreviewSkipTests.test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_missing_original_ocr_journal_cannot_report_success (__main__.PreviewSkipTests.test_missing_original_ocr_journal_cannot_report_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_one_frame_or_failed_touch_journal_never_reports_success (__main__.PreviewSkipTests.test_one_frame_or_failed_touch_journal_never_reports_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_opt_in_skips_actual_observed_cue_before_reporting_start (__main__.PreviewSkipTests.test_opt_in_skips_actual_observed_cue_before_reporting_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_partial_or_different_caption_never_authorizes_skip (__main__.PreviewSkipTests.test_partial_or_different_caption_never_authorizes_skip)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_remaining_budget_is_passed_to_unmodified_two_frame_touch_helper (__main__.PreviewSkipTests.test_remaining_budget_is_passed_to_unmodified_two_frame_touch_helper)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_running_clock_still_requires_countdown_over_and_full_elapsed_second (__main__.PreviewSkipTests.test_running_clock_still_requires_countdown_over_and_full_elapsed_second)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_timeout_captures_current_frame_after_failure_without_new_state_acceptance (__main__.PreviewSkipTests.test_timeout_captures_current_frame_after_failure_without_new_state_acceptance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_wrong_actual_ocr_words_or_bounds_cannot_report_success (__main__.PreviewSkipTests.test_wrong_actual_ocr_words_or_bounds_cannot_report_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+======================================================================
+ERROR: test_wrong_foreground_is_rejected_before_input (__main__.PreviewSkipTests.test_wrong_foreground_is_rejected_before_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 79, in setUp
+    helper = definitions(HELPER, {'re': re, 'unicodedata': unicodedata})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 47, in definitions
+    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py", line 315, in <module>
+    *, timeout: float = 15, clock=time.monotonic) -> list[dict]:
+                                  ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.439s
+
+FAILED (errors=20)

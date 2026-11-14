@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14T17:01:05.617136+00:00",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618076296,
+  "job_id": 132517423515,
+  "artifact_id": 14123441105,
+  "archive_bytes": 29621,
+  "archive_sha256": "b7475b6099187a0562cd11b8471f19b755052829014b7c046d42f91a2cf3deeb",
+  "all_zip_crc_pass": true,
+  "members": 13,
+  "files": [
+    {
+      "artifact_entry": "cards-authority-registry.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "5a1829d3a4e5c4fe33cca6af2cb79afa6df0ef59d7b4851cea2ca63e50eedc19",
+      "git_blob": "b66455a29bdeab5cafbd3313e5b722d8a70f9b02",
+      "zip_crc32": "88d2ef55"
+    },
+    {
+      "artifact_entry": "compile.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/compile.log",
+      "bytes": 34386,
+      "sha256": "4cdd8bca988b0a1a98b4fafcc33eda49e62241cc97b10a4f2af79f45c7e5790b",
+      "git_blob": "27e570a3f21a194c11ff78f0216c399c10d8c3c6",
+      "zip_crc32": "a1d86e62"
+    },
+    {
+      "artifact_entry": "flutter-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "zip_crc32": "ef6cb86f"
+    },
+    {
+      "artifact_entry": "result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/result.json",
+      "bytes": 5235,
+      "sha256": "aec93cba646eebcb721714fcf7a4f94c5fce2513dabea228ae91798a827ec3e7",
+      "git_blob": "e03e969bce913e43a7069d27bd8c223df734584e",
+      "zip_crc32": "e904bf61"
+    },
+    {
+      "artifact_entry": "source-sha.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/source-sha.txt",
+      "bytes": 41,
+      "sha256": "d2eb08849fc1e67c5546e8c94cd35c7485354cc48336de67d88beb5285d7a718",
+      "git_blob": "736c55be82243a7ebe0c7a7c4c2ecb4d3e73c570",
+      "zip_crc32": "da760fe6"
+    },
+    {
+      "artifact_entry": "speech/resolved-toolchain.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/resolved-toolchain.json",
+      "bytes": 321,
+      "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+      "git_blob": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5",
+      "zip_crc32": "d6c42e44"
+    },
+    {
+      "artifact_entry": "speech/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/result.json",
+      "bytes": 62738,
+      "sha256": "a3ac7e32c7433ca237b1d2102132d9ecae16703158c47b9443e3221965e11b35",
+      "git_blob": "d3d2ab7e9be66b08dae147d4041b65933e69a237",
+      "zip_crc32": "a6007098"
+    },
+    {
+      "artifact_entry": "speech/test_english_lesson_speech.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.json",
+      "bytes": 1338,
+      "sha256": "5d6d207c1fa1ebbf0d02c88f770ba95d3a51f703154b3cb08a9b41376687e9f5",
+      "git_blob": "5af2255c23b340a608068059672ee3e53bb26ecd",
+      "zip_crc32": "a3ba4d9f"
+    },
+    {
+      "artifact_entry": "speech/test_english_lesson_speech.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.log",
+      "bytes": 2894,
+      "sha256": "0654d0af03fece793d9a904b1ad5f792aafe2f0d68144c0684f9280b7517e50c",
+      "git_blob": "ffcb93a949a7a16a6a85736763b2f1c5c7ff328a",
+      "zip_crc32": "76bfa3cf"
+    },
+    {
+      "artifact_entry": "speech/test_learning_english_speech_lifecycle.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.json",
+      "bytes": 1264,
+      "sha256": "b561a7c397e245e5c0756d6690744ef50a37d76ca658ff10e90a817ebb16342a",
+      "git_blob": "9b0d584d1a595ae6d27d4930bec34bc5fc1e4930",
+      "zip_crc32": "7ef7f188"
+    },
+    {
+      "artifact_entry": "speech/test_learning_english_speech_lifecycle.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.log",
+      "bytes": 2709,
+      "sha256": "550234e2bbb8198964c3aac01b13246f68d9c49d36d862ce0af16f6a5533df22",
+      "git_blob": "68d22fc01f704ba25f707128fa72ab972743a0dc",
+      "zip_crc32": "c5b2f27f"
+    },
+    {
+      "artifact_entry": "speech/toolchain-original.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/speech/toolchain-original.log",
+      "bytes": 493,
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+      "git_blob": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f",
+      "zip_crc32": "f9b981c5"
+    },
+    {
+      "artifact_entry": "table-native-contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-speech-ci-20261114/originals/table-native-contracts.log",
+      "bytes": 4804,
+      "sha256": "37084aab3aa66bba3148196e9da81de9f0b7770a1abad1f6707f2899192e1e44",
+      "git_blob": "375760df15431bc607e4504946f11dcfc1fca936",
+      "zip_crc32": "7638032c"
+    }
+  ]
+}

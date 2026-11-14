@@ -1,0 +1,95 @@
+{
+  "commit": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+  "branch": "chatgpt/lumo-studio-2020-20261114",
+  "pr": 167,
+  "url": "https://github.com/Ullmann27/lumo-godot/pull/167",
+  "tree_proof": {
+    "base": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+    "allowed_changes": [
+      "scripts/systems/host_bridge.gd",
+      "scripts/app/scene_router.gd",
+      "scripts/app/app_boot.gd",
+      "scripts/tests/connect_four_runtime_regression.gd",
+      "scripts/games/connect_four/connect_four_table.gd",
+      "scenes/games/connect_four_table.tscn",
+      "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "scripts/characters/lumo/lumo_facial_pose.gd",
+      "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "scripts/learning/learning_world.gd",
+      "scripts/tests/learning_world_regression.gd",
+      "scripts/tests/lumo_facial_capture.gd",
+      "scripts/tests/lumo_facial_regression.gd",
+      "scripts/tests/lumo_rigged_animation_capture.gd",
+      "scripts/tests/lumo_studio_motion_regression.gd",
+      "scripts/tests/lumo_teacher_pose_regression.gd",
+      "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "scripts/tests/connect_four_visual_capture.gd",
+      "scripts/creative/treasure_world.gd",
+      "scripts/tests/treasure_title_contrast_regression.gd",
+      "scripts/tests/fixtures/treasure_title_86445.json",
+      "docs/studio-2020-implementation.md",
+      ".github/workflows/lumo-studio-2020.yml",
+      "tools/validate_studio.sh",
+      "tools/tests/test_nextgen_runner.py"
+    ],
+    "old_leaf_count": 2220,
+    "new_leaf_count": 2234,
+    "unchanged_old_leaves": 2208,
+    "all_remaining_original_blobs_modes_types_unchanged": true,
+    "new_source_count": 26
+  },
+  "runs": [
+    {
+      "id": 43561889508,
+      "path": ".github/workflows/lumo-65bone-walk-qa.yml",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "8be3a95d5d948d457c4c39bc6694138d60b70027"
+    },
+    {
+      "id": 43561889507,
+      "path": ".github/workflows/lumo-sonnenhafen-stunt-integration.yml",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "8be3a95d5d948d457c4c39bc6694138d60b70027"
+    },
+    {
+      "id": 43561889541,
+      "path": ".github/workflows/lumo-kart-bauwelt-integration.yml",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "8be3a95d5d948d457c4c39bc6694138d60b70027"
+    },
+    {
+      "id": 43561889426,
+      "path": ".github/workflows/kart-stage2-regression.yml",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "8be3a95d5d948d457c4c39bc6694138d60b70027"
+    },
+    {
+      "id": 43561889477,
+      "path": ".github/workflows/lumo-native-lifecycle-bauwelt-proof.yml",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "8be3a95d5d948d457c4c39bc6694138d60b70027"
+    },
+    {
+      "id": 43561889431,
+      "path": ".github/workflows/kart-vehicle-regression.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "8be3a95d5d948d457c4c39bc6694138d60b70027"
+    },
+    {
+      "id": 43561885899,
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "8be3a95d5d948d457c4c39bc6694138d60b70027"
+    }
+  ]
+}

@@ -1,0 +1,3310 @@
+{
+  "artifact": 14087637888,
+  "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "run": 43530667812,
+  "bytes": 333604197,
+  "sha256": "dea2a82c895e3cc3822e4880dba28f3fb1437ec2ce8adbb60be50fda3ead2d4c",
+  "crc_all_members_passed": true,
+  "members": [
+    {
+      "path": "acceptance-summary.json",
+      "bytes": 2118,
+      "compressed_bytes": 661,
+      "crc32": "3d05e363"
+    },
+    {
+      "path": "assisted-learning/independent-strength.png",
+      "bytes": 78693,
+      "compressed_bytes": 74833,
+      "crc32": "fefbc0d4"
+    },
+    {
+      "path": "assisted-learning/independent-review.png",
+      "bytes": 77980,
+      "compressed_bytes": 73304,
+      "crc32": "d3903b75"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_0.png",
+      "bytes": 38894,
+      "compressed_bytes": 37431,
+      "crc32": "ba3b794c"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_2.png",
+      "bytes": 38820,
+      "compressed_bytes": 37339,
+      "crc32": "ad21c714"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_1.png",
+      "bytes": 37532,
+      "compressed_bytes": 36012,
+      "crc32": "d1b0e0d2"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_3.png",
+      "bytes": 39403,
+      "compressed_bytes": 37961,
+      "crc32": "e8ddf9f8"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_4.png",
+      "bytes": 38310,
+      "compressed_bytes": 36867,
+      "crc32": "0687128a"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_5.png",
+      "bytes": 39119,
+      "compressed_bytes": 37663,
+      "crc32": "ec3f59ae"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_6.png",
+      "bytes": 39537,
+      "compressed_bytes": 38098,
+      "crc32": "f104654e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_7.png",
+      "bytes": 38330,
+      "compressed_bytes": 36860,
+      "crc32": "7e93ef4e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_8.png",
+      "bytes": 39522,
+      "compressed_bytes": 38148,
+      "crc32": "68924e7b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_9.png",
+      "bytes": 39541,
+      "compressed_bytes": 38078,
+      "crc32": "bd94456e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_draw_two.png",
+      "bytes": 39116,
+      "compressed_bytes": 37685,
+      "crc32": "1d7b3d7c"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_reverse.png",
+      "bytes": 43627,
+      "compressed_bytes": 42217,
+      "crc32": "7747b99d"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_skip.png",
+      "bytes": 40078,
+      "compressed_bytes": 38713,
+      "crc32": "0ba3df15"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_think_pause.png",
+      "bytes": 40547,
+      "compressed_bytes": 39131,
+      "crc32": "c712e2ff"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_0.png",
+      "bytes": 35970,
+      "compressed_bytes": 34666,
+      "crc32": "d6aba6b3"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_1.png",
+      "bytes": 34715,
+      "compressed_bytes": 33419,
+      "crc32": "b63b82e3"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_2.png",
+      "bytes": 35818,
+      "compressed_bytes": 34604,
+      "crc32": "0ab1da42"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_3.png",
+      "bytes": 36306,
+      "compressed_bytes": 34882,
+      "crc32": "8dee759a"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_4.png",
+      "bytes": 35244,
+      "compressed_bytes": 33989,
+      "crc32": "a871c1f0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_5.png",
+      "bytes": 36083,
+      "compressed_bytes": 34855,
+      "crc32": "e6408be1"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_6.png",
+      "bytes": 36526,
+      "compressed_bytes": 35190,
+      "crc32": "f78b4661"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_7.png",
+      "bytes": 35332,
+      "compressed_bytes": 33918,
+      "crc32": "8a588cd0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_8.png",
+      "bytes": 36503,
+      "compressed_bytes": 35258,
+      "crc32": "55c974ec"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_9.png",
+      "bytes": 36475,
+      "compressed_bytes": 35270,
+      "crc32": "f45b9430"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_draw_two.png",
+      "bytes": 36647,
+      "compressed_bytes": 35486,
+      "crc32": "0da7b089"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_reverse.png",
+      "bytes": 40949,
+      "compressed_bytes": 39451,
+      "crc32": "28352eda"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_skip.png",
+      "bytes": 37459,
+      "compressed_bytes": 36241,
+      "crc32": "14d2cbb9"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_think_pause.png",
+      "bytes": 37686,
+      "compressed_bytes": 36443,
+      "crc32": "4a3259ef"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_0.png",
+      "bytes": 34036,
+      "compressed_bytes": 33127,
+      "crc32": "c3f2eac7"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_1.png",
+      "bytes": 32487,
+      "compressed_bytes": 31541,
+      "crc32": "c6f8178b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_2.png",
+      "bytes": 33782,
+      "compressed_bytes": 32724,
+      "crc32": "9488d183"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_5.png",
+      "bytes": 34022,
+      "compressed_bytes": 33018,
+      "crc32": "2fb925ee"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_6.png",
+      "bytes": 34579,
+      "compressed_bytes": 33611,
+      "crc32": "f7a08dcb"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_3.png",
+      "bytes": 34445,
+      "compressed_bytes": 33408,
+      "crc32": "9194e4c9"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_4.png",
+      "bytes": 33285,
+      "compressed_bytes": 32344,
+      "crc32": "69274fbd"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_7.png",
+      "bytes": 33216,
+      "compressed_bytes": 32233,
+      "crc32": "f3435205"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_8.png",
+      "bytes": 34624,
+      "compressed_bytes": 33534,
+      "crc32": "c9b746fa"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_9.png",
+      "bytes": 34627,
+      "compressed_bytes": 33666,
+      "crc32": "31938399"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_draw_two.png",
+      "bytes": 33899,
+      "compressed_bytes": 32897,
+      "crc32": "486b16c2"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_reverse.png",
+      "bytes": 38717,
+      "compressed_bytes": 37743,
+      "crc32": "7360ffa3"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_skip.png",
+      "bytes": 35357,
+      "compressed_bytes": 34343,
+      "crc32": "85e2e41d"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_think_pause.png",
+      "bytes": 35207,
+      "compressed_bytes": 34224,
+      "crc32": "4c372be0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_1.png",
+      "bytes": 36146,
+      "compressed_bytes": 34884,
+      "crc32": "377805e6"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_0.png",
+      "bytes": 37677,
+      "compressed_bytes": 36292,
+      "crc32": "a763a7a4"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_2.png",
+      "bytes": 37438,
+      "compressed_bytes": 36223,
+      "crc32": "ae92dbca"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_3.png",
+      "bytes": 38071,
+      "compressed_bytes": 36776,
+      "crc32": "5a5013f3"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_4.png",
+      "bytes": 36809,
+      "compressed_bytes": 35435,
+      "crc32": "301e4223"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_6.png",
+      "bytes": 38220,
+      "compressed_bytes": 36872,
+      "crc32": "e09cd997"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_5.png",
+      "bytes": 37779,
+      "compressed_bytes": 36463,
+      "crc32": "e2e050d4"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_7.png",
+      "bytes": 36888,
+      "compressed_bytes": 35477,
+      "crc32": "5e3c3e6d"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_8.png",
+      "bytes": 38238,
+      "compressed_bytes": 36992,
+      "crc32": "79b83d50"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_9.png",
+      "bytes": 38205,
+      "compressed_bytes": 37028,
+      "crc32": "c31857ce"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_draw_two.png",
+      "bytes": 38290,
+      "compressed_bytes": 37024,
+      "crc32": "632be07b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_reverse.png",
+      "bytes": 42791,
+      "compressed_bytes": 41539,
+      "crc32": "de1d3223"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_skip.png",
+      "bytes": 39288,
+      "compressed_bytes": 38182,
+      "crc32": "bbe07caf"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_think_pause.png",
+      "bytes": 39963,
+      "compressed_bytes": 38627,
+      "crc32": "2ed2ead0"
+    },
+    {
+      "path": "cards-cup/trophy.png",
+      "bytes": 114224,
+      "compressed_bytes": 108229,
+      "crc32": "02e04c61"
+    },
+    {
+      "path": "cards-memory/cards_overview_fold.png",
+      "bytes": 757506,
+      "compressed_bytes": 756304,
+      "crc32": "6968568c"
+    },
+    {
+      "path": "cards-memory/cards_overview_landscape.png",
+      "bytes": 545580,
+      "compressed_bytes": 545313,
+      "crc32": "7dad3e67"
+    },
+    {
+      "path": "cards-memory/cards_overview_phone.png",
+      "bytes": 575089,
+      "compressed_bytes": 574733,
+      "crc32": "a1d2651f"
+    },
+    {
+      "path": "cards-memory/memory_flipped_phone.png",
+      "bytes": 596968,
+      "compressed_bytes": 597039,
+      "crc32": "4efa7b3d"
+    },
+    {
+      "path": "cards-memory/memory_matched_phone.png",
+      "bytes": 583339,
+      "compressed_bytes": 583358,
+      "crc32": "dffed2b4"
+    },
+    {
+      "path": "cards-memory/memory_overview_fold.png",
+      "bytes": 704006,
+      "compressed_bytes": 702993,
+      "crc32": "bed5471d"
+    },
+    {
+      "path": "cards-memory/memory_overview_leicht.png",
+      "bytes": 571834,
+      "compressed_bytes": 571858,
+      "crc32": "8d70254c"
+    },
+    {
+      "path": "cards-memory/memory_overview_phone.png",
+      "bytes": 610082,
+      "compressed_bytes": 610111,
+      "crc32": "ce1a7c3c"
+    },
+    {
+      "path": "cards-opponents/cards_board_fold.png",
+      "bytes": 757506,
+      "compressed_bytes": 756304,
+      "crc32": "6968568c"
+    },
+    {
+      "path": "cards-opponents/cards_board_phone.png",
+      "bytes": 575089,
+      "compressed_bytes": 574733,
+      "crc32": "a1d2651f"
+    },
+    {
+      "path": "cards-opponents/cards_opponent_fold.png",
+      "bytes": 167225,
+      "compressed_bytes": 163079,
+      "crc32": "f55c4b22"
+    },
+    {
+      "path": "cards-opponents/cards_opponent_phone.png",
+      "bytes": 147432,
+      "compressed_bytes": 145011,
+      "crc32": "3bd5f2e2"
+    },
+    {
+      "path": "companion/fold-target-actual-help.png",
+      "bytes": 783724,
+      "compressed_bytes": 783773,
+      "crc32": "d4c0bd5c"
+    },
+    {
+      "path": "companion/fold-target-alternative-help.png",
+      "bytes": 783474,
+      "compressed_bytes": 783546,
+      "crc32": "75e32ff1"
+    },
+    {
+      "path": "companion/fold-target-task.png",
+      "bytes": 795294,
+      "compressed_bytes": 795416,
+      "crc32": "a24ec029"
+    },
+    {
+      "path": "companion/phone-360x800-actual-help.png",
+      "bytes": 325685,
+      "compressed_bytes": 325785,
+      "crc32": "f415a645"
+    },
+    {
+      "path": "companion/phone-360x800-alternative-help.png",
+      "bytes": 286054,
+      "compressed_bytes": 286127,
+      "crc32": "9cec3a04"
+    },
+    {
+      "path": "companion/phone-360x800-task.png",
+      "bytes": 333062,
+      "compressed_bytes": 333163,
+      "crc32": "b05babf1"
+    },
+    {
+      "path": "flutter-machine.jsonl",
+      "bytes": 1584279,
+      "compressed_bytes": 152295,
+      "crc32": "3275da47"
+    },
+    {
+      "path": "games/cards_jump_fold.png",
+      "bytes": 58188,
+      "compressed_bytes": 51363,
+      "crc32": "e2f7a2d6"
+    },
+    {
+      "path": "games/cards_jump_phone.png",
+      "bytes": 56243,
+      "compressed_bytes": 50012,
+      "crc32": "68ce1e12"
+    },
+    {
+      "path": "games/cards_overview_fold.png",
+      "bytes": 757579,
+      "compressed_bytes": 756358,
+      "crc32": "2bbc74d0"
+    },
+    {
+      "path": "games/cards_overview_phone.png",
+      "bytes": 575246,
+      "compressed_bytes": 574909,
+      "crc32": "d0163e78"
+    },
+    {
+      "path": "games/cards_summary_fold.png",
+      "bytes": 273111,
+      "compressed_bytes": 265969,
+      "crc32": "3068e122"
+    },
+    {
+      "path": "games/cards_summary_phone.png",
+      "bytes": 223771,
+      "compressed_bytes": 218293,
+      "crc32": "47e11cf9"
+    },
+    {
+      "path": "games/connect_overview_fold.png",
+      "bytes": 709156,
+      "compressed_bytes": 706578,
+      "crc32": "c7522218"
+    },
+    {
+      "path": "games/connect_overview_phone.png",
+      "bytes": 549229,
+      "compressed_bytes": 547597,
+      "crc32": "3dfeef70"
+    },
+    {
+      "path": "games/connect_winglow_fold.png",
+      "bytes": 725842,
+      "compressed_bytes": 722884,
+      "crc32": "cfe61f7e"
+    },
+    {
+      "path": "games/connect_winglow_phone.png",
+      "bytes": 558895,
+      "compressed_bytes": 557010,
+      "crc32": "d2601f9e"
+    },
+    {
+      "path": "games/memory_combo_fold.png",
+      "bytes": 762130,
+      "compressed_bytes": 761037,
+      "crc32": "4579850b"
+    },
+    {
+      "path": "games/memory_combo_phone.png",
+      "bytes": 565894,
+      "compressed_bytes": 565889,
+      "crc32": "fff4f0f4"
+    },
+    {
+      "path": "games/memory_overview_fold.png",
+      "bytes": 704006,
+      "compressed_bytes": 702993,
+      "crc32": "bed5471d"
+    },
+    {
+      "path": "games/memory_overview_phone.png",
+      "bytes": 610082,
+      "compressed_bytes": 610111,
+      "crc32": "ce1a7c3c"
+    },
+    {
+      "path": "games/quiz_overview_fold.png",
+      "bytes": 913490,
+      "compressed_bytes": 911677,
+      "crc32": "554b0287"
+    },
+    {
+      "path": "games/quiz_overview_phone.png",
+      "bytes": 715193,
+      "compressed_bytes": 714531,
+      "crc32": "8d59cb20"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0000.png",
+      "bytes": 680227,
+      "compressed_bytes": 679602,
+      "crc32": "67faae89"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0001.png",
+      "bytes": 681481,
+      "compressed_bytes": 680931,
+      "crc32": "7eb3a315"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0002.png",
+      "bytes": 688038,
+      "compressed_bytes": 687536,
+      "crc32": "2c4c0a4e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0003.png",
+      "bytes": 682196,
+      "compressed_bytes": 681604,
+      "crc32": "334352a6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0004.png",
+      "bytes": 680790,
+      "compressed_bytes": 680187,
+      "crc32": "17e39544"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0005.png",
+      "bytes": 679546,
+      "compressed_bytes": 678940,
+      "crc32": "27435b46"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0006.png",
+      "bytes": 679657,
+      "compressed_bytes": 679049,
+      "crc32": "bda6db2a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0007.png",
+      "bytes": 680010,
+      "compressed_bytes": 679397,
+      "crc32": "89ea89f4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0008.png",
+      "bytes": 680108,
+      "compressed_bytes": 679472,
+      "crc32": "1aa8131b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0009.png",
+      "bytes": 679804,
+      "compressed_bytes": 679250,
+      "crc32": "c0f6c58c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0010.png",
+      "bytes": 680075,
+      "compressed_bytes": 679571,
+      "crc32": "1a8b0c49"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0011.png",
+      "bytes": 680627,
+      "compressed_bytes": 680109,
+      "crc32": "95d2d658"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0012.png",
+      "bytes": 680015,
+      "compressed_bytes": 679416,
+      "crc32": "24aa4476"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0013.png",
+      "bytes": 680355,
+      "compressed_bytes": 679759,
+      "crc32": "82a39881"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0014.png",
+      "bytes": 680255,
+      "compressed_bytes": 679645,
+      "crc32": "98c22632"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0015.png",
+      "bytes": 679705,
+      "compressed_bytes": 679117,
+      "crc32": "fd56cee6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0016.png",
+      "bytes": 680273,
+      "compressed_bytes": 679716,
+      "crc32": "22f05960"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0017.png",
+      "bytes": 680279,
+      "compressed_bytes": 679697,
+      "crc32": "97cbfc1f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0018.png",
+      "bytes": 679994,
+      "compressed_bytes": 679405,
+      "crc32": "314fa87a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0019.png",
+      "bytes": 679814,
+      "compressed_bytes": 679229,
+      "crc32": "507935c0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0020.png",
+      "bytes": 679884,
+      "compressed_bytes": 679391,
+      "crc32": "ac031aff"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0021.png",
+      "bytes": 679648,
+      "compressed_bytes": 679065,
+      "crc32": "26c57225"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0023.png",
+      "bytes": 679761,
+      "compressed_bytes": 679182,
+      "crc32": "7bc51e28"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0024.png",
+      "bytes": 679924,
+      "compressed_bytes": 679347,
+      "crc32": "1162702e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0022.png",
+      "bytes": 679261,
+      "compressed_bytes": 678639,
+      "crc32": "a8b37f58"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0025.png",
+      "bytes": 679799,
+      "compressed_bytes": 679254,
+      "crc32": "368c9bd9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0026.png",
+      "bytes": 679779,
+      "compressed_bytes": 679222,
+      "crc32": "01e37b79"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0027.png",
+      "bytes": 679609,
+      "compressed_bytes": 679060,
+      "crc32": "eb8611eb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0028.png",
+      "bytes": 679416,
+      "compressed_bytes": 678850,
+      "crc32": "22a51830"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0029.png",
+      "bytes": 679034,
+      "compressed_bytes": 678409,
+      "crc32": "84288362"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0030.png",
+      "bytes": 678857,
+      "compressed_bytes": 678227,
+      "crc32": "39d46a25"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0031.png",
+      "bytes": 678970,
+      "compressed_bytes": 678379,
+      "crc32": "0134eaac"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0032.png",
+      "bytes": 679181,
+      "compressed_bytes": 678573,
+      "crc32": "a5c4e922"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0033.png",
+      "bytes": 679502,
+      "compressed_bytes": 678943,
+      "crc32": "84efa52c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0034.png",
+      "bytes": 679778,
+      "compressed_bytes": 679200,
+      "crc32": "d312ac90"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0035.png",
+      "bytes": 679130,
+      "compressed_bytes": 678508,
+      "crc32": "41c42df2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0036.png",
+      "bytes": 679512,
+      "compressed_bytes": 678938,
+      "crc32": "9472dc6b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0037.png",
+      "bytes": 679393,
+      "compressed_bytes": 678797,
+      "crc32": "b44387d6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0038.png",
+      "bytes": 679425,
+      "compressed_bytes": 678847,
+      "crc32": "1c3f1e02"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0039.png",
+      "bytes": 679653,
+      "compressed_bytes": 679078,
+      "crc32": "6b109ebb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0040.png",
+      "bytes": 679493,
+      "compressed_bytes": 678862,
+      "crc32": "5e4c6a0d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0041.png",
+      "bytes": 679179,
+      "compressed_bytes": 678573,
+      "crc32": "6d5f3b3d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0042.png",
+      "bytes": 679199,
+      "compressed_bytes": 678563,
+      "crc32": "ec22cce3"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0043.png",
+      "bytes": 679002,
+      "compressed_bytes": 678400,
+      "crc32": "953848cf"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0044.png",
+      "bytes": 679468,
+      "compressed_bytes": 678884,
+      "crc32": "0a078509"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0045.png",
+      "bytes": 679057,
+      "compressed_bytes": 678364,
+      "crc32": "11c1ba09"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0046.png",
+      "bytes": 679014,
+      "compressed_bytes": 678371,
+      "crc32": "d25fd5bc"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0047.png",
+      "bytes": 679502,
+      "compressed_bytes": 678898,
+      "crc32": "a90c8c62"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0048.png",
+      "bytes": 679707,
+      "compressed_bytes": 679065,
+      "crc32": "036d6f48"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0049.png",
+      "bytes": 679697,
+      "compressed_bytes": 679089,
+      "crc32": "d53b9ddb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0050.png",
+      "bytes": 679483,
+      "compressed_bytes": 678827,
+      "crc32": "e9193e5f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0051.png",
+      "bytes": 679679,
+      "compressed_bytes": 679013,
+      "crc32": "decfafc8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0052.png",
+      "bytes": 679438,
+      "compressed_bytes": 678785,
+      "crc32": "eb0e87fc"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0053.png",
+      "bytes": 679339,
+      "compressed_bytes": 678663,
+      "crc32": "4be67ebf"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0054.png",
+      "bytes": 679655,
+      "compressed_bytes": 679008,
+      "crc32": "f14c1544"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0055.png",
+      "bytes": 679226,
+      "compressed_bytes": 678583,
+      "crc32": "a0e6db39"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0056.png",
+      "bytes": 679146,
+      "compressed_bytes": 678489,
+      "crc32": "de765c97"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0057.png",
+      "bytes": 679355,
+      "compressed_bytes": 678723,
+      "crc32": "91a76464"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0058.png",
+      "bytes": 681330,
+      "compressed_bytes": 680713,
+      "crc32": "4e2f17f2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0059.png",
+      "bytes": 681220,
+      "compressed_bytes": 680646,
+      "crc32": "2395003b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0060.png",
+      "bytes": 681313,
+      "compressed_bytes": 680687,
+      "crc32": "dbab3874"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0061.png",
+      "bytes": 681303,
+      "compressed_bytes": 680698,
+      "crc32": "a335eb4b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0062.png",
+      "bytes": 681636,
+      "compressed_bytes": 681026,
+      "crc32": "152afe8a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0063.png",
+      "bytes": 681705,
+      "compressed_bytes": 681137,
+      "crc32": "1f1146da"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0064.png",
+      "bytes": 681455,
+      "compressed_bytes": 680847,
+      "crc32": "7188283a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0065.png",
+      "bytes": 682195,
+      "compressed_bytes": 681607,
+      "crc32": "788bd4f3"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0066.png",
+      "bytes": 681344,
+      "compressed_bytes": 680726,
+      "crc32": "941106c8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0067.png",
+      "bytes": 681003,
+      "compressed_bytes": 680408,
+      "crc32": "7aca4fe7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0068.png",
+      "bytes": 681536,
+      "compressed_bytes": 680930,
+      "crc32": "a961e456"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0069.png",
+      "bytes": 681743,
+      "compressed_bytes": 681195,
+      "crc32": "12a8113b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0070.png",
+      "bytes": 681538,
+      "compressed_bytes": 680946,
+      "crc32": "2ed82fbc"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0071.png",
+      "bytes": 681546,
+      "compressed_bytes": 680944,
+      "crc32": "6843280d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0072.png",
+      "bytes": 681833,
+      "compressed_bytes": 681264,
+      "crc32": "ef35e562"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0073.png",
+      "bytes": 682417,
+      "compressed_bytes": 681864,
+      "crc32": "163957cd"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0074.png",
+      "bytes": 682256,
+      "compressed_bytes": 681694,
+      "crc32": "8f1cc35f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0075.png",
+      "bytes": 682088,
+      "compressed_bytes": 681529,
+      "crc32": "28eaf500"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0076.png",
+      "bytes": 682199,
+      "compressed_bytes": 681611,
+      "crc32": "aab8b3ab"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0077.png",
+      "bytes": 681530,
+      "compressed_bytes": 680985,
+      "crc32": "0a8f2e09"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0078.png",
+      "bytes": 682064,
+      "compressed_bytes": 681506,
+      "crc32": "d0644eb1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0079.png",
+      "bytes": 682190,
+      "compressed_bytes": 681616,
+      "crc32": "5c40cb46"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0080.png",
+      "bytes": 680583,
+      "compressed_bytes": 680069,
+      "crc32": "0cfa72e2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0081.png",
+      "bytes": 681156,
+      "compressed_bytes": 680543,
+      "crc32": "970f2ca1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0082.png",
+      "bytes": 681790,
+      "compressed_bytes": 681227,
+      "crc32": "afd1b333"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0083.png",
+      "bytes": 681567,
+      "compressed_bytes": 680957,
+      "crc32": "a850c369"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0084.png",
+      "bytes": 681141,
+      "compressed_bytes": 680569,
+      "crc32": "c216c69c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0086.png",
+      "bytes": 681797,
+      "compressed_bytes": 681220,
+      "crc32": "bc165872"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0087.png",
+      "bytes": 681210,
+      "compressed_bytes": 680605,
+      "crc32": "2328817c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0085.png",
+      "bytes": 681367,
+      "compressed_bytes": 680728,
+      "crc32": "c2333445"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0088.png",
+      "bytes": 681114,
+      "compressed_bytes": 680544,
+      "crc32": "12d92aaa"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0089.png",
+      "bytes": 681346,
+      "compressed_bytes": 680773,
+      "crc32": "09a7af50"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0091.png",
+      "bytes": 681502,
+      "compressed_bytes": 680958,
+      "crc32": "a5e3e239"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0092.png",
+      "bytes": 681150,
+      "compressed_bytes": 680548,
+      "crc32": "2ce2c1e5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0090.png",
+      "bytes": 681301,
+      "compressed_bytes": 680710,
+      "crc32": "0c9a1a57"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0093.png",
+      "bytes": 680989,
+      "compressed_bytes": 680427,
+      "crc32": "9be90823"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0094.png",
+      "bytes": 681096,
+      "compressed_bytes": 680485,
+      "crc32": "9ea58abe"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0095.png",
+      "bytes": 680996,
+      "compressed_bytes": 680464,
+      "crc32": "f4041068"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0096.png",
+      "bytes": 681828,
+      "compressed_bytes": 681263,
+      "crc32": "a9dfd378"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0097.png",
+      "bytes": 681975,
+      "compressed_bytes": 681330,
+      "crc32": "10e2f127"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0098.png",
+      "bytes": 681748,
+      "compressed_bytes": 681156,
+      "crc32": "807faa5d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0099.png",
+      "bytes": 681846,
+      "compressed_bytes": 681287,
+      "crc32": "dfa753ef"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0100.png",
+      "bytes": 681886,
+      "compressed_bytes": 681330,
+      "crc32": "c4807655"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0101.png",
+      "bytes": 681758,
+      "compressed_bytes": 681120,
+      "crc32": "7a2c55d5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0102.png",
+      "bytes": 681680,
+      "compressed_bytes": 681115,
+      "crc32": "e94a2ae5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0103.png",
+      "bytes": 681243,
+      "compressed_bytes": 680657,
+      "crc32": "c6f47f97"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0104.png",
+      "bytes": 681383,
+      "compressed_bytes": 680781,
+      "crc32": "6d4c2282"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0105.png",
+      "bytes": 681282,
+      "compressed_bytes": 680712,
+      "crc32": "5d42c876"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0106.png",
+      "bytes": 681356,
+      "compressed_bytes": 680778,
+      "crc32": "2a83ec71"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0107.png",
+      "bytes": 681222,
+      "compressed_bytes": 680692,
+      "crc32": "ef7ec13a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0108.png",
+      "bytes": 681162,
+      "compressed_bytes": 680680,
+      "crc32": "c1368d62"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0109.png",
+      "bytes": 681079,
+      "compressed_bytes": 680566,
+      "crc32": "09e767d7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0110.png",
+      "bytes": 681556,
+      "compressed_bytes": 681039,
+      "crc32": "7e784700"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0111.png",
+      "bytes": 681443,
+      "compressed_bytes": 680870,
+      "crc32": "b6dd5866"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0112.png",
+      "bytes": 681467,
+      "compressed_bytes": 680885,
+      "crc32": "f48e8b1f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0113.png",
+      "bytes": 681127,
+      "compressed_bytes": 680618,
+      "crc32": "3193b81d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0114.png",
+      "bytes": 681068,
+      "compressed_bytes": 680475,
+      "crc32": "580a0761"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0115.png",
+      "bytes": 680636,
+      "compressed_bytes": 680119,
+      "crc32": "d2a557f4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0117.png",
+      "bytes": 681487,
+      "compressed_bytes": 680902,
+      "crc32": "33dc2da9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0116.png",
+      "bytes": 680976,
+      "compressed_bytes": 680387,
+      "crc32": "83ec98fd"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0118.png",
+      "bytes": 681432,
+      "compressed_bytes": 680906,
+      "crc32": "fc602b4b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0119.png",
+      "bytes": 680549,
+      "compressed_bytes": 680000,
+      "crc32": "84a79913"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0120.png",
+      "bytes": 681133,
+      "compressed_bytes": 680560,
+      "crc32": "714dc709"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0121.png",
+      "bytes": 681404,
+      "compressed_bytes": 680804,
+      "crc32": "8dc0ef1f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0122.png",
+      "bytes": 681077,
+      "compressed_bytes": 680493,
+      "crc32": "1d00470e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0123.png",
+      "bytes": 681416,
+      "compressed_bytes": 680873,
+      "crc32": "91d5c23a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0124.png",
+      "bytes": 681757,
+      "compressed_bytes": 681121,
+      "crc32": "f0200c83"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0125.png",
+      "bytes": 681833,
+      "compressed_bytes": 681228,
+      "crc32": "84854145"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0126.png",
+      "bytes": 681536,
+      "compressed_bytes": 680959,
+      "crc32": "341cd722"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0127.png",
+      "bytes": 681387,
+      "compressed_bytes": 680871,
+      "crc32": "dfb0578f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0128.png",
+      "bytes": 680807,
+      "compressed_bytes": 680275,
+      "crc32": "80625859"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0129.png",
+      "bytes": 681071,
+      "compressed_bytes": 680516,
+      "crc32": "0d81b257"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0130.png",
+      "bytes": 681340,
+      "compressed_bytes": 680764,
+      "crc32": "29e9ed39"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0131.png",
+      "bytes": 679819,
+      "compressed_bytes": 679247,
+      "crc32": "c55fe2e7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0132.png",
+      "bytes": 681129,
+      "compressed_bytes": 680580,
+      "crc32": "c0a85ceb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0133.png",
+      "bytes": 680880,
+      "compressed_bytes": 680351,
+      "crc32": "880ff2c8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0134.png",
+      "bytes": 681392,
+      "compressed_bytes": 680828,
+      "crc32": "601df2da"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0135.png",
+      "bytes": 681710,
+      "compressed_bytes": 681104,
+      "crc32": "7a7a5230"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0138.png",
+      "bytes": 681087,
+      "compressed_bytes": 680588,
+      "crc32": "5befdc14"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0139.png",
+      "bytes": 681638,
+      "compressed_bytes": 681098,
+      "crc32": "a8b16695"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0136.png",
+      "bytes": 681188,
+      "compressed_bytes": 680638,
+      "crc32": "ac1b3aed"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0137.png",
+      "bytes": 681097,
+      "compressed_bytes": 680560,
+      "crc32": "d8381fb3"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0140.png",
+      "bytes": 681406,
+      "compressed_bytes": 680916,
+      "crc32": "5d01d8a1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0141.png",
+      "bytes": 681056,
+      "compressed_bytes": 680529,
+      "crc32": "1a6e8d0f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0143.png",
+      "bytes": 681227,
+      "compressed_bytes": 680701,
+      "crc32": "fe60763b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0144.png",
+      "bytes": 681442,
+      "compressed_bytes": 680864,
+      "crc32": "20ab9466"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0145.png",
+      "bytes": 681079,
+      "compressed_bytes": 680547,
+      "crc32": "f25be618"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0142.png",
+      "bytes": 681124,
+      "compressed_bytes": 680615,
+      "crc32": "af654a01"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0146.png",
+      "bytes": 680802,
+      "compressed_bytes": 680294,
+      "crc32": "c54a812d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0148.png",
+      "bytes": 681256,
+      "compressed_bytes": 680751,
+      "crc32": "1eb38413"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0149.png",
+      "bytes": 680843,
+      "compressed_bytes": 680259,
+      "crc32": "d745d4e5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0147.png",
+      "bytes": 681264,
+      "compressed_bytes": 680740,
+      "crc32": "d537c6d8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0150.png",
+      "bytes": 680795,
+      "compressed_bytes": 680275,
+      "crc32": "080b67e1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0151.png",
+      "bytes": 681038,
+      "compressed_bytes": 680489,
+      "crc32": "9fad3e10"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0153.png",
+      "bytes": 681051,
+      "compressed_bytes": 680533,
+      "crc32": "d4749620"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0152.png",
+      "bytes": 680860,
+      "compressed_bytes": 680339,
+      "crc32": "1a23ad27"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0154.png",
+      "bytes": 681572,
+      "compressed_bytes": 681035,
+      "crc32": "7c93da97"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0155.png",
+      "bytes": 681159,
+      "compressed_bytes": 680619,
+      "crc32": "5e9d15c7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0156.png",
+      "bytes": 681273,
+      "compressed_bytes": 680757,
+      "crc32": "909b8e99"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0157.png",
+      "bytes": 681672,
+      "compressed_bytes": 681085,
+      "crc32": "63dc8035"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0158.png",
+      "bytes": 681107,
+      "compressed_bytes": 680568,
+      "crc32": "7c5ac580"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0159.png",
+      "bytes": 681413,
+      "compressed_bytes": 680866,
+      "crc32": "422f882f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0160.png",
+      "bytes": 679801,
+      "compressed_bytes": 679176,
+      "crc32": "9648a2c3"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-bridge_ten-example.png",
+      "bytes": 707695,
+      "compressed_bytes": 707349,
+      "crc32": "c001050b"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-equal_groups-example.png",
+      "bytes": 678756,
+      "compressed_bytes": 677941,
+      "crc32": "c171690a"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-subtract_ten-example.png",
+      "bytes": 700909,
+      "compressed_bytes": 700558,
+      "crc32": "207836ab"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-adult-confirmation.png",
+      "bytes": 147016,
+      "compressed_bytes": 146183,
+      "crc32": "b4949348"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-bridge_ten-example.png",
+      "bytes": 310283,
+      "compressed_bytes": 310157,
+      "crc32": "036d7583"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-discovery-hub.png",
+      "bytes": 380691,
+      "compressed_bytes": 380293,
+      "crc32": "5e8eb1ec"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-equal_groups-example.png",
+      "bytes": 287602,
+      "compressed_bytes": 287535,
+      "crc32": "2181a098"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-parent-permission.png",
+      "bytes": 287086,
+      "compressed_bytes": 286807,
+      "crc32": "d3e0bbf6"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-subtract_ten-example.png",
+      "bytes": 309976,
+      "compressed_bytes": 309772,
+      "crc32": "b18b0eb5"
+    },
+    {
+      "path": "learning-adventure/artikel-fold-2176x1812-density-225.png",
+      "bytes": 675930,
+      "compressed_bytes": 674805,
+      "crc32": "2da2830c"
+    },
+    {
+      "path": "learning-adventure/artikel-phone-360x800.png",
+      "bytes": 290732,
+      "compressed_bytes": 290614,
+      "crc32": "509bec4c"
+    },
+    {
+      "path": "learning-adventure/artikel-wide-1280x720.png",
+      "bytes": 774869,
+      "compressed_bytes": 774253,
+      "crc32": "50e8d39a"
+    },
+    {
+      "path": "learning-adventure/artikel-landscape-640x360.png",
+      "bytes": 210680,
+      "compressed_bytes": 210715,
+      "crc32": "7467d91c"
+    },
+    {
+      "path": "learning-adventure/brueche-fold-2176x1812-density-225.png",
+      "bytes": 688872,
+      "compressed_bytes": 688448,
+      "crc32": "90e1f7b6"
+    },
+    {
+      "path": "learning-adventure/brueche-phone-360x800.png",
+      "bytes": 309937,
+      "compressed_bytes": 309854,
+      "crc32": "f32b6935"
+    },
+    {
+      "path": "learning-adventure/brueche-landscape-640x360.png",
+      "bytes": 226895,
+      "compressed_bytes": 226960,
+      "crc32": "d6a79be0"
+    },
+    {
+      "path": "learning-adventure/brueche-wide-1280x720.png",
+      "bytes": 793008,
+      "compressed_bytes": 792354,
+      "crc32": "2f20aa8c"
+    },
+    {
+      "path": "learning-adventure/einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 746146,
+      "compressed_bytes": 746158,
+      "crc32": "af19f5e1"
+    },
+    {
+      "path": "learning-adventure/einmaleins-landscape-640x360.png",
+      "bytes": 241768,
+      "compressed_bytes": 241843,
+      "crc32": "2bd1a03b"
+    },
+    {
+      "path": "learning-adventure/einmaleins-wide-1280x720.png",
+      "bytes": 847172,
+      "compressed_bytes": 847096,
+      "crc32": "9ef3c6da"
+    },
+    {
+      "path": "learning-adventure/einmaleins-phone-360x800.png",
+      "bytes": 319557,
+      "compressed_bytes": 319605,
+      "crc32": "12aa2e7e"
+    },
+    {
+      "path": "learning-adventure/farben-fold-2176x1812-density-225.png",
+      "bytes": 681303,
+      "compressed_bytes": 678154,
+      "crc32": "13d390d4"
+    },
+    {
+      "path": "learning-adventure/farben-landscape-640x360.png",
+      "bytes": 212978,
+      "compressed_bytes": 212424,
+      "crc32": "c6a1e8d2"
+    },
+    {
+      "path": "learning-adventure/farben-phone-360x800.png",
+      "bytes": 286606,
+      "compressed_bytes": 285869,
+      "crc32": "696ace99"
+    },
+    {
+      "path": "learning-adventure/farben-wide-1280x720.png",
+      "bytes": 794889,
+      "compressed_bytes": 791300,
+      "crc32": "5ecd629d"
+    },
+    {
+      "path": "learning-adventure/formen-landscape-640x360.png",
+      "bytes": 243548,
+      "compressed_bytes": 243623,
+      "crc32": "dfb67338"
+    },
+    {
+      "path": "learning-adventure/formen-fold-2176x1812-density-225.png",
+      "bytes": 684075,
+      "compressed_bytes": 683590,
+      "crc32": "2b848838"
+    },
+    {
+      "path": "learning-adventure/formen-wide-1280x720.png",
+      "bytes": 783964,
+      "compressed_bytes": 783288,
+      "crc32": "28f18c2f"
+    },
+    {
+      "path": "learning-adventure/formen-phone-360x800.png",
+      "bytes": 306178,
+      "compressed_bytes": 306038,
+      "crc32": "fe8dc54c"
+    },
+    {
+      "path": "learning-adventure/geld-fold-2176x1812-density-225.png",
+      "bytes": 788917,
+      "compressed_bytes": 788980,
+      "crc32": "e98e7af9"
+    },
+    {
+      "path": "learning-adventure/geld-landscape-640x360.png",
+      "bytes": 231374,
+      "compressed_bytes": 231449,
+      "crc32": "af82e240"
+    },
+    {
+      "path": "learning-adventure/geld-phone-360x800.png",
+      "bytes": 332142,
+      "compressed_bytes": 332197,
+      "crc32": "c37a587e"
+    },
+    {
+      "path": "learning-adventure/geld-wide-1280x720.png",
+      "bytes": 807941,
+      "compressed_bytes": 807515,
+      "crc32": "cdb695c9"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 774772,
+      "compressed_bytes": 774832,
+      "crc32": "02fd2781"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-landscape-640x360.png",
+      "bytes": 219136,
+      "compressed_bytes": 219197,
+      "crc32": "07d9fcc3"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-phone-360x800.png",
+      "bytes": 329930,
+      "compressed_bytes": 329967,
+      "crc32": "3abce376"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-wide-1280x720.png",
+      "bytes": 844819,
+      "compressed_bytes": 844754,
+      "crc32": "bc947780"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-fold-2176x1812-density-225.png",
+      "bytes": 707057,
+      "compressed_bytes": 706230,
+      "crc32": "279d2912"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-landscape-640x360.png",
+      "bytes": 231934,
+      "compressed_bytes": 231911,
+      "crc32": "82bf4e6e"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-phone-360x800.png",
+      "bytes": 318586,
+      "compressed_bytes": 318568,
+      "crc32": "9a5aa5ae"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-wide-1280x720.png",
+      "bytes": 803494,
+      "compressed_bytes": 802932,
+      "crc32": "47d00a4a"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-fold-2176x1812-density-225.png",
+      "bytes": 692059,
+      "compressed_bytes": 691800,
+      "crc32": "675174e2"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-phone-360x800.png",
+      "bytes": 303658,
+      "compressed_bytes": 303668,
+      "crc32": "93bd4b79"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-landscape-640x360.png",
+      "bytes": 212625,
+      "compressed_bytes": 212659,
+      "crc32": "d77be1e6"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-wide-1280x720.png",
+      "bytes": 783401,
+      "compressed_bytes": 782874,
+      "crc32": "21ff46ea"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 807359,
+      "compressed_bytes": 807436,
+      "crc32": "26ff62d1"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-landscape-640x360.png",
+      "bytes": 279032,
+      "compressed_bytes": 279122,
+      "crc32": "07e1ce70"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-phone-360x800.png",
+      "bytes": 344081,
+      "compressed_bytes": 344171,
+      "crc32": "ea65c928"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-wide-1280x720.png",
+      "bytes": 863772,
+      "compressed_bytes": 863695,
+      "crc32": "15bbe929"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "bytes": 795494,
+      "compressed_bytes": 795621,
+      "crc32": "1a1960d8"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-landscape-640x360.png",
+      "bytes": 277211,
+      "compressed_bytes": 277296,
+      "crc32": "52ca0f9e"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-phone-360x800.png",
+      "bytes": 335046,
+      "compressed_bytes": 335145,
+      "crc32": "ff914a74"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-wide-1280x720.png",
+      "bytes": 841690,
+      "compressed_bytes": 841622,
+      "crc32": "7a74b38b"
+    },
+    {
+      "path": "learning-adventure/tiere-fold-2176x1812-density-225.png",
+      "bytes": 694426,
+      "compressed_bytes": 694243,
+      "crc32": "6bef0fbf"
+    },
+    {
+      "path": "learning-adventure/tiere-landscape-640x360.png",
+      "bytes": 204566,
+      "compressed_bytes": 204611,
+      "crc32": "4d9ae619"
+    },
+    {
+      "path": "learning-adventure/tiere-phone-360x800.png",
+      "bytes": 313881,
+      "compressed_bytes": 313901,
+      "crc32": "76e0ed65"
+    },
+    {
+      "path": "learning-adventure/tiere-wide-1280x720.png",
+      "bytes": 794274,
+      "compressed_bytes": 793747,
+      "crc32": "ed7b8fff"
+    },
+    {
+      "path": "learning-adventure/uhr-fold-2176x1812-density-225.png",
+      "bytes": 683077,
+      "compressed_bytes": 682414,
+      "crc32": "3c960832"
+    },
+    {
+      "path": "learning-adventure/uhr-landscape-640x360.png",
+      "bytes": 248245,
+      "compressed_bytes": 248325,
+      "crc32": "c2f7e9e4"
+    },
+    {
+      "path": "learning-adventure/uhr-phone-360x800.png",
+      "bytes": 309669,
+      "compressed_bytes": 309575,
+      "crc32": "a252ebad"
+    },
+    {
+      "path": "learning-adventure/uhr-wide-1280x720.png",
+      "bytes": 788641,
+      "compressed_bytes": 787928,
+      "crc32": "70c30cb9"
+    },
+    {
+      "path": "learning-adventure/verkehr-landscape-640x360.png",
+      "bytes": 228903,
+      "compressed_bytes": 228962,
+      "crc32": "da168162"
+    },
+    {
+      "path": "learning-adventure/verkehr-fold-2176x1812-density-225.png",
+      "bytes": 736613,
+      "compressed_bytes": 736585,
+      "crc32": "6d85fc96"
+    },
+    {
+      "path": "learning-adventure/verkehr-phone-360x800.png",
+      "bytes": 309613,
+      "compressed_bytes": 309655,
+      "crc32": "6e553b92"
+    },
+    {
+      "path": "learning-adventure/verkehr-wide-1280x720.png",
+      "bytes": 799151,
+      "compressed_bytes": 798898,
+      "crc32": "f421056a"
+    },
+    {
+      "path": "learning-adventure/wetter-fold-2176x1812-density-225.png",
+      "bytes": 718512,
+      "compressed_bytes": 718469,
+      "crc32": "2d474660"
+    },
+    {
+      "path": "learning-adventure/wetter-landscape-640x360.png",
+      "bytes": 221662,
+      "compressed_bytes": 221686,
+      "crc32": "71e643bb"
+    },
+    {
+      "path": "learning-adventure/wetter-phone-360x800.png",
+      "bytes": 295974,
+      "compressed_bytes": 295824,
+      "crc32": "02d75e47"
+    },
+    {
+      "path": "learning-adventure/wetter-wide-1280x720.png",
+      "bytes": 806203,
+      "compressed_bytes": 805746,
+      "crc32": "a268d544"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-fold-2176x1812-density-225.png",
+      "bytes": 611404,
+      "compressed_bytes": 609522,
+      "crc32": "62ba5fdc"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-landscape-640x360.png",
+      "bytes": 183965,
+      "compressed_bytes": 183510,
+      "crc32": "20e5be19"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-phone-360x800.png",
+      "bytes": 204317,
+      "compressed_bytes": 203884,
+      "crc32": "e32060bb"
+    },
+    {
+      "path": "learning-adventure/wortarten-fold-2176x1812-density-225.png",
+      "bytes": 711773,
+      "compressed_bytes": 711570,
+      "crc32": "2c155f57"
+    },
+    {
+      "path": "learning-adventure/wortarten-landscape-640x360.png",
+      "bytes": 245988,
+      "compressed_bytes": 246063,
+      "crc32": "6a6dc92a"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-wide-1280x720.png",
+      "bytes": 713952,
+      "compressed_bytes": 711854,
+      "crc32": "ff493029"
+    },
+    {
+      "path": "learning-adventure/wortarten-phone-360x800.png",
+      "bytes": 325089,
+      "compressed_bytes": 325100,
+      "crc32": "25133730"
+    },
+    {
+      "path": "learning-adventure/wortarten-wide-1280x720.png",
+      "bytes": 843762,
+      "compressed_bytes": 843486,
+      "crc32": "c8ba383c"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 801505,
+      "compressed_bytes": 801550,
+      "crc32": "d536b40f"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-landscape-640x360.png",
+      "bytes": 284832,
+      "compressed_bytes": 284922,
+      "crc32": "e6a9cb3c"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-phone-360x800.png",
+      "bytes": 333524,
+      "compressed_bytes": 333612,
+      "crc32": "465d4fae"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-wide-1280x720.png",
+      "bytes": 866790,
+      "compressed_bytes": 866655,
+      "crc32": "3e95c5d8"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-fold-2176x1812-density-225.png",
+      "bytes": 859149,
+      "compressed_bytes": 859179,
+      "crc32": "0953bf23"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-landscape-640x360.png",
+      "bytes": 273427,
+      "compressed_bytes": 273475,
+      "crc32": "2b5a072c"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-phone-360x800.png",
+      "bytes": 324654,
+      "compressed_bytes": 324683,
+      "crc32": "9a290cf3"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-wide-1280x720.png",
+      "bytes": 963075,
+      "compressed_bytes": 963056,
+      "crc32": "45949669"
+    },
+    {
+      "path": "learning-adventure/zeitformen-fold-2176x1812-density-225.png",
+      "bytes": 766982,
+      "compressed_bytes": 767022,
+      "crc32": "0458ccb6"
+    },
+    {
+      "path": "learning-adventure/zeitformen-landscape-640x360.png",
+      "bytes": 233839,
+      "compressed_bytes": 233902,
+      "crc32": "ebb62e1d"
+    },
+    {
+      "path": "learning-adventure/zeitformen-phone-360x800.png",
+      "bytes": 315916,
+      "compressed_bytes": 315947,
+      "crc32": "05dc80b0"
+    },
+    {
+      "path": "learning-adventure/zeitformen-wide-1280x720.png",
+      "bytes": 819345,
+      "compressed_bytes": 819085,
+      "crc32": "b6c2bf32"
+    },
+    {
+      "path": "modernization/achievements_fold-cover.png",
+      "bytes": 692042,
+      "compressed_bytes": 690820,
+      "crc32": "2a17dca0"
+    },
+    {
+      "path": "modernization/achievements_fold-open.png",
+      "bytes": 986908,
+      "compressed_bytes": 978539,
+      "crc32": "a4d40b24"
+    },
+    {
+      "path": "modernization/achievements_phone.png",
+      "bytes": 822071,
+      "compressed_bytes": 819511,
+      "crc32": "62e48ee5"
+    },
+    {
+      "path": "modernization/foto_lektion_fold-cover.png",
+      "bytes": 1229380,
+      "compressed_bytes": 1229320,
+      "crc32": "2fa7b220"
+    },
+    {
+      "path": "modernization/foto_lektion_fold-open.png",
+      "bytes": 2169731,
+      "compressed_bytes": 2169330,
+      "crc32": "c82379a6"
+    },
+    {
+      "path": "modernization/foto_lektion_phone.png",
+      "bytes": 1506221,
+      "compressed_bytes": 1505931,
+      "crc32": "03601d76"
+    },
+    {
+      "path": "modernization/journal_fold-cover.png",
+      "bytes": 1313410,
+      "compressed_bytes": 1313309,
+      "crc32": "e977a693"
+    },
+    {
+      "path": "modernization/journal_fold-open.png",
+      "bytes": 2348916,
+      "compressed_bytes": 2349171,
+      "crc32": "dddf9bdb"
+    },
+    {
+      "path": "modernization/journal_phone.png",
+      "bytes": 1623870,
+      "compressed_bytes": 1624110,
+      "crc32": "70296fd5"
+    },
+    {
+      "path": "modernization/lumo_magic_fold-cover.png",
+      "bytes": 1174395,
+      "compressed_bytes": 1168861,
+      "crc32": "c998c8ca"
+    },
+    {
+      "path": "modernization/lumo_magic_fold-open.png",
+      "bytes": 2037658,
+      "compressed_bytes": 2027651,
+      "crc32": "897dbfb3"
+    },
+    {
+      "path": "modernization/lumo_magic_phone.png",
+      "bytes": 1459095,
+      "compressed_bytes": 1456103,
+      "crc32": "933bcbf1"
+    },
+    {
+      "path": "modernization/lumo_quest_fold-cover.png",
+      "bytes": 855842,
+      "compressed_bytes": 855384,
+      "crc32": "f31b3b1a"
+    },
+    {
+      "path": "modernization/lumo_quest_fold-open.png",
+      "bytes": 1538204,
+      "compressed_bytes": 1536321,
+      "crc32": "33f5de1c"
+    },
+    {
+      "path": "modernization/lumo_quest_phone.png",
+      "bytes": 1181846,
+      "compressed_bytes": 1181145,
+      "crc32": "631d1c86"
+    },
+    {
+      "path": "modernization/lumo_welt_fold-cover.png",
+      "bytes": 774121,
+      "compressed_bytes": 771273,
+      "crc32": "f94aae69"
+    },
+    {
+      "path": "modernization/lumo_welt_fold-open.png",
+      "bytes": 1135928,
+      "compressed_bytes": 1125963,
+      "crc32": "1650d3a6"
+    },
+    {
+      "path": "modernization/lumo_welt_phone.png",
+      "bytes": 881813,
+      "compressed_bytes": 877645,
+      "crc32": "6dc3a1d1"
+    },
+    {
+      "path": "modernization/reading_buddy_fold-open.png",
+      "bytes": 1056781,
+      "compressed_bytes": 1046437,
+      "crc32": "4402e47b"
+    },
+    {
+      "path": "modernization/reading_buddy_fold-cover.png",
+      "bytes": 700926,
+      "compressed_bytes": 697487,
+      "crc32": "94b2b8a5"
+    },
+    {
+      "path": "modernization/reading_buddy_phone.png",
+      "bytes": 824343,
+      "compressed_bytes": 818692,
+      "crc32": "33033850"
+    },
+    {
+      "path": "modernization/rechentricks_fold-cover.png",
+      "bytes": 957403,
+      "compressed_bytes": 956305,
+      "crc32": "afef038d"
+    },
+    {
+      "path": "modernization/rechentricks_fold-open.png",
+      "bytes": 1533696,
+      "compressed_bytes": 1529879,
+      "crc32": "ef4efd94"
+    },
+    {
+      "path": "modernization/rechentricks_phone.png",
+      "bytes": 1184203,
+      "compressed_bytes": 1182048,
+      "crc32": "101abce7"
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-cover.png",
+      "bytes": 331307,
+      "compressed_bytes": 325604,
+      "crc32": "d7038058"
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-open.png",
+      "bytes": 495048,
+      "compressed_bytes": 484293,
+      "crc32": "2a75d109"
+    },
+    {
+      "path": "modernization/schreibaufgabe_phone.png",
+      "bytes": 372820,
+      "compressed_bytes": 365987,
+      "crc32": "395409a0"
+    },
+    {
+      "path": "modernization/schreibcoach_fold-cover.png",
+      "bytes": 118039,
+      "compressed_bytes": 108251,
+      "crc32": "481860a2"
+    },
+    {
+      "path": "modernization/schreibcoach_fold-open.png",
+      "bytes": 175408,
+      "compressed_bytes": 160240,
+      "crc32": "eeac2d44"
+    },
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "bytes": 131666,
+      "compressed_bytes": 121596,
+      "crc32": "f13485ad"
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_geuebt.png",
+      "bytes": 448685,
+      "compressed_bytes": 441022,
+      "crc32": "54d54261"
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_leer.png",
+      "bytes": 384350,
+      "compressed_bytes": 376468,
+      "crc32": "75f63f59"
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_geuebt.png",
+      "bytes": 667884,
+      "compressed_bytes": 648842,
+      "crc32": "644d1beb"
+    },
+    {
+      "path": "modernization/trainer_B_phone_geuebt.png",
+      "bytes": 558344,
+      "compressed_bytes": 545365,
+      "crc32": "026c99f7"
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_leer.png",
+      "bytes": 643243,
+      "compressed_bytes": 621527,
+      "crc32": "8c1397b1"
+    },
+    {
+      "path": "modernization/trainer_B_phone_leer.png",
+      "bytes": 489085,
+      "compressed_bytes": 476975,
+      "crc32": "13617975"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_geuebt.png",
+      "bytes": 429285,
+      "compressed_bytes": 405350,
+      "crc32": "c5bee71f"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_leer.png",
+      "bytes": 358743,
+      "compressed_bytes": 332151,
+      "crc32": "c3806654"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_geuebt.png",
+      "bytes": 635561,
+      "compressed_bytes": 597452,
+      "crc32": "a412c19a"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_leer.png",
+      "bytes": 599242,
+      "compressed_bytes": 554367,
+      "crc32": "a237cb5e"
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_geuebt.png",
+      "bytes": 533225,
+      "compressed_bytes": 496490,
+      "crc32": "c1a52ac1"
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_leer.png",
+      "bytes": 457713,
+      "compressed_bytes": 422484,
+      "crc32": "a76c0a8d"
+    },
+    {
+      "path": "native-profiles/native_profiles_adult_confirmation.png",
+      "bytes": 84459,
+      "compressed_bytes": 80870,
+      "crc32": "a6e20eb9"
+    },
+    {
+      "path": "native-profiles/native_profiles_fold.png",
+      "bytes": 87637,
+      "compressed_bytes": 83315,
+      "crc32": "ad60c435"
+    },
+    {
+      "path": "native-profiles/native_profiles_parent_entry.png",
+      "bytes": 400185,
+      "compressed_bytes": 400299,
+      "crc32": "3af1a6cf"
+    },
+    {
+      "path": "navigation/english-task-fold.png",
+      "bytes": 1516919,
+      "compressed_bytes": 1515733,
+      "crc32": "89003375"
+    },
+    {
+      "path": "native-profiles/native_profiles_phone.png",
+      "bytes": 89923,
+      "compressed_bytes": 86845,
+      "crc32": "d58faed7"
+    },
+    {
+      "path": "navigation/english-task-phone.png",
+      "bytes": 1184450,
+      "compressed_bytes": 1184057,
+      "crc32": "cbbfbbae"
+    },
+    {
+      "path": "navigation/english-topics-fold.png",
+      "bytes": 1099050,
+      "compressed_bytes": 1095209,
+      "crc32": "30f6e5f7"
+    },
+    {
+      "path": "navigation/english-topics-phone.png",
+      "bytes": 870470,
+      "compressed_bytes": 868199,
+      "crc32": "d6820e3e"
+    },
+    {
+      "path": "navigation/games-fold.png",
+      "bytes": 1146716,
+      "compressed_bytes": 1142892,
+      "crc32": "cf67b519"
+    },
+    {
+      "path": "navigation/games-phone.png",
+      "bytes": 853856,
+      "compressed_bytes": 852481,
+      "crc32": "b72b0e18"
+    },
+    {
+      "path": "navigation/german-task-fold.png",
+      "bytes": 1521184,
+      "compressed_bytes": 1520068,
+      "crc32": "fdb1dc03"
+    },
+    {
+      "path": "navigation/german-task-phone.png",
+      "bytes": 1187516,
+      "compressed_bytes": 1187095,
+      "crc32": "7a2e5b27"
+    },
+    {
+      "path": "navigation/german-topics-fold.png",
+      "bytes": 1100443,
+      "compressed_bytes": 1096341,
+      "crc32": "0d26d6e2"
+    },
+    {
+      "path": "navigation/german-topics-phone.png",
+      "bytes": 874057,
+      "compressed_bytes": 872010,
+      "crc32": "09b7ba41"
+    },
+    {
+      "path": "navigation/home-fold.png",
+      "bytes": 1644368,
+      "compressed_bytes": 1641014,
+      "crc32": "ab641cd3"
+    },
+    {
+      "path": "navigation/home-phone.png",
+      "bytes": 1538153,
+      "compressed_bytes": 1537921,
+      "crc32": "5206b18c"
+    },
+    {
+      "path": "navigation/learning-entry-fold.png",
+      "bytes": 1019130,
+      "compressed_bytes": 1014567,
+      "crc32": "7dd42b1c"
+    },
+    {
+      "path": "navigation/learning-entry-phone.png",
+      "bytes": 937007,
+      "compressed_bytes": 935572,
+      "crc32": "1e3813f9"
+    },
+    {
+      "path": "navigation/math-task-phone.png",
+      "bytes": 1205961,
+      "compressed_bytes": 1205518,
+      "crc32": "d94e3d36"
+    },
+    {
+      "path": "navigation/math-task-fold.png",
+      "bytes": 1522392,
+      "compressed_bytes": 1521084,
+      "crc32": "346c656f"
+    },
+    {
+      "path": "navigation/math-topics-fold.png",
+      "bytes": 1103503,
+      "compressed_bytes": 1099476,
+      "crc32": "bbe9a8fd"
+    },
+    {
+      "path": "navigation/math-topics-phone.png",
+      "bytes": 874073,
+      "compressed_bytes": 871979,
+      "crc32": "3afe8dd4"
+    },
+    {
+      "path": "navigation/modern-grade-4-fold.png",
+      "bytes": 1017969,
+      "compressed_bytes": 1012899,
+      "crc32": "101ef310"
+    },
+    {
+      "path": "navigation/modern-grade-4-phone.png",
+      "bytes": 944831,
+      "compressed_bytes": 940339,
+      "crc32": "e4ea4cfe"
+    },
+    {
+      "path": "navigation/modern-tools-fold.png",
+      "bytes": 1176159,
+      "compressed_bytes": 1172962,
+      "crc32": "df8f495b"
+    },
+    {
+      "path": "navigation/modern-tools-phone.png",
+      "bytes": 1049825,
+      "compressed_bytes": 1049711,
+      "crc32": "a4ebda41"
+    },
+    {
+      "path": "navigation/science-task-fold.png",
+      "bytes": 1521648,
+      "compressed_bytes": 1520306,
+      "crc32": "3a89764b"
+    },
+    {
+      "path": "navigation/science-task-phone.png",
+      "bytes": 1194157,
+      "compressed_bytes": 1193846,
+      "crc32": "493969c4"
+    },
+    {
+      "path": "navigation/science-topics-fold.png",
+      "bytes": 1104576,
+      "compressed_bytes": 1100306,
+      "crc32": "c2cd006d"
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-explanation.png",
+      "bytes": 269660,
+      "compressed_bytes": 250774,
+      "crc32": "cce78b1a"
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-question.png",
+      "bytes": 316142,
+      "compressed_bytes": 299938,
+      "crc32": "1b0a4e01"
+    },
+    {
+      "path": "navigation/science-topics-phone.png",
+      "bytes": 872886,
+      "compressed_bytes": 870554,
+      "crc32": "6f153d87"
+    },
+    {
+      "path": "nextgen-reading/fold-open-explanation.png",
+      "bytes": 323541,
+      "compressed_bytes": 305279,
+      "crc32": "82dd527d"
+    },
+    {
+      "path": "nextgen-reading/fold-open-question.png",
+      "bytes": 310020,
+      "compressed_bytes": 292200,
+      "crc32": "fa038bfe"
+    },
+    {
+      "path": "nextgen-reading/phone-explanation.png",
+      "bytes": 250544,
+      "compressed_bytes": 241251,
+      "crc32": "c983d87d"
+    },
+    {
+      "path": "reading/home-fold-cover.png",
+      "bytes": 957764,
+      "compressed_bytes": 957874,
+      "crc32": "ba36df8f"
+    },
+    {
+      "path": "nextgen-reading/phone-question.png",
+      "bytes": 236105,
+      "compressed_bytes": 225953,
+      "crc32": "e514548f"
+    },
+    {
+      "path": "reading/home-fold-open.png",
+      "bytes": 1792712,
+      "compressed_bytes": 1792955,
+      "crc32": "8b0576b0"
+    },
+    {
+      "path": "reading/home-phone.png",
+      "bytes": 1140153,
+      "compressed_bytes": 1140156,
+      "crc32": "b27e7363"
+    },
+    {
+      "path": "reading/reading-fold-cover.png",
+      "bytes": 895473,
+      "compressed_bytes": 895547,
+      "crc32": "8de78e13"
+    },
+    {
+      "path": "reading/reading-phone.png",
+      "bytes": 1094115,
+      "compressed_bytes": 1094161,
+      "crc32": "c10fc9d3"
+    },
+    {
+      "path": "reading/retry-fold-cover.png",
+      "bytes": 658882,
+      "compressed_bytes": 658542,
+      "crc32": "9bd610b8"
+    },
+    {
+      "path": "reading/reading-fold-open.png",
+      "bytes": 1483640,
+      "compressed_bytes": 1483342,
+      "crc32": "606705ef"
+    },
+    {
+      "path": "reading/retry-fold-open.png",
+      "bytes": 1058515,
+      "compressed_bytes": 1056547,
+      "crc32": "f6bb46bb"
+    },
+    {
+      "path": "reading/retry-phone.png",
+      "bytes": 798473,
+      "compressed_bytes": 797879,
+      "crc32": "b9e59049"
+    },
+    {
+      "path": "reading/subjects-fold-cover.png",
+      "bytes": 953766,
+      "compressed_bytes": 953874,
+      "crc32": "db6d23a5"
+    },
+    {
+      "path": "reading/subjects-fold-open.png",
+      "bytes": 1330229,
+      "compressed_bytes": 1328848,
+      "crc32": "9ff5612b"
+    },
+    {
+      "path": "reading/subjects-phone.png",
+      "bytes": 1133008,
+      "compressed_bytes": 1132966,
+      "crc32": "d0517f11"
+    },
+    {
+      "path": "reading-passages/reading-fold.png",
+      "bytes": 570542,
+      "compressed_bytes": 562165,
+      "crc32": "909b910b"
+    },
+    {
+      "path": "reading-passages/reading-landscape.png",
+      "bytes": 244975,
+      "compressed_bytes": 242344,
+      "crc32": "c2e8e22b"
+    },
+    {
+      "path": "reading-passages/reading-phone.png",
+      "bytes": 289963,
+      "compressed_bytes": 287289,
+      "crc32": "d2623617"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-01-oeffnen.png",
+      "bytes": 786548,
+      "compressed_bytes": 786527,
+      "crc32": "a9715c54"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-01-start.png",
+      "bytes": 767770,
+      "compressed_bytes": 767547,
+      "crc32": "8e4b65ae"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-02-bereich.png",
+      "bytes": 705987,
+      "compressed_bytes": 705937,
+      "crc32": "2244f564"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-02-erste-frage.png",
+      "bytes": 491494,
+      "compressed_bytes": 491349,
+      "crc32": "310d1eec"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-03-raetsel.png",
+      "bytes": 667616,
+      "compressed_bytes": 667567,
+      "crc32": "defe0583"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-01-oeffnen.png",
+      "bytes": 1387610,
+      "compressed_bytes": 1387036,
+      "crc32": "ed99c68a"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-01-start.png",
+      "bytes": 1373671,
+      "compressed_bytes": 1372605,
+      "crc32": "d559d42d"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-02-erste-frage.png",
+      "bytes": 773429,
+      "compressed_bytes": 772061,
+      "crc32": "3a43d1e3"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-02-bereich.png",
+      "bytes": 1217783,
+      "compressed_bytes": 1217255,
+      "crc32": "642ee663"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-03-raetsel.png",
+      "bytes": 1248771,
+      "compressed_bytes": 1248423,
+      "crc32": "d0d7be67"
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-01-oeffnen.png",
+      "bytes": 955653,
+      "compressed_bytes": 955551,
+      "crc32": "434b4050"
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-02-erste-frage.png",
+      "bytes": 580784,
+      "compressed_bytes": 580548,
+      "crc32": "fd9f41ee"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-01-start.png",
+      "bytes": 938448,
+      "compressed_bytes": 937946,
+      "crc32": "997b22b1"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-02-bereich.png",
+      "bytes": 843920,
+      "compressed_bytes": 843885,
+      "crc32": "f72dde32"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-03-raetsel.png",
+      "bytes": 786960,
+      "compressed_bytes": 786848,
+      "crc32": "871559fd"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-rest.png",
+      "bytes": 163873,
+      "compressed_bytes": 163923,
+      "crc32": "9a5f5023"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-a.png",
+      "bytes": 165295,
+      "compressed_bytes": 165318,
+      "crc32": "1f44b755"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-b.png",
+      "bytes": 164402,
+      "compressed_bytes": 164448,
+      "crc32": "e2ad51a8"
+    },
+    {
+      "path": "rig-stress/fox_book_point-rest.png",
+      "bytes": 181287,
+      "compressed_bytes": 181347,
+      "crc32": "087d695f"
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-a.png",
+      "bytes": 183525,
+      "compressed_bytes": 183576,
+      "crc32": "a0c6573c"
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-b.png",
+      "bytes": 181586,
+      "compressed_bytes": 181641,
+      "crc32": "0b873b60"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-rest.png",
+      "bytes": 212818,
+      "compressed_bytes": 212826,
+      "crc32": "f7cb4750"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-a.png",
+      "bytes": 213462,
+      "compressed_bytes": 213399,
+      "crc32": "86e1fdf8"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-b.png",
+      "bytes": 213902,
+      "compressed_bytes": 213899,
+      "crc32": "d54988c8"
+    },
+    {
+      "path": "rig-stress/fox_cheer-rest.png",
+      "bytes": 149909,
+      "compressed_bytes": 149953,
+      "crc32": "2b27c5c9"
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-a.png",
+      "bytes": 150608,
+      "compressed_bytes": 150635,
+      "crc32": "ab4a536b"
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-b.png",
+      "bytes": 150852,
+      "compressed_bytes": 150886,
+      "crc32": "0a297d71"
+    },
+    {
+      "path": "rig-stress/fox_point_side-rest.png",
+      "bytes": 160699,
+      "compressed_bytes": 160749,
+      "crc32": "70aa9c89"
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-a.png",
+      "bytes": 162817,
+      "compressed_bytes": 162844,
+      "crc32": "ec8c8f2d"
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-b.png",
+      "bytes": 160606,
+      "compressed_bytes": 160656,
+      "crc32": "9f2c5f71"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-rest.png",
+      "bytes": 156432,
+      "compressed_bytes": 156482,
+      "crc32": "0e81e65e"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-a.png",
+      "bytes": 158778,
+      "compressed_bytes": 158795,
+      "crc32": "b7f6b8a1"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-b.png",
+      "bytes": 155706,
+      "compressed_bytes": 155756,
+      "crc32": "66aa6560"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-rest.png",
+      "bytes": 152875,
+      "compressed_bytes": 152925,
+      "crc32": "5796d170"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-a.png",
+      "bytes": 153993,
+      "compressed_bytes": 154021,
+      "crc32": "3930d94b"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-b.png",
+      "bytes": 153498,
+      "compressed_bytes": 153548,
+      "crc32": "703b6b95"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-rest.png",
+      "bytes": 157113,
+      "compressed_bytes": 157160,
+      "crc32": "178a9a64"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-a.png",
+      "bytes": 157377,
+      "compressed_bytes": 157335,
+      "crc32": "91bffd09"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-b.png",
+      "bytes": 158763,
+      "compressed_bytes": 158805,
+      "crc32": "08dfe9ad"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-rest.png",
+      "bytes": 170727,
+      "compressed_bytes": 170779,
+      "crc32": "80bc3fc8"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-a.png",
+      "bytes": 171788,
+      "compressed_bytes": 171802,
+      "crc32": "3b46f480"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-b.png",
+      "bytes": 172277,
+      "compressed_bytes": 172332,
+      "crc32": "4cf4fb45"
+    },
+    {
+      "path": "tour/fold_01_start.png",
+      "bytes": 1417762,
+      "compressed_bytes": 1417220,
+      "crc32": "f27d7dd3"
+    },
+    {
+      "path": "tour/fold_02_anleitung_matrix.png",
+      "bytes": 1217783,
+      "compressed_bytes": 1217255,
+      "crc32": "642ee663"
+    },
+    {
+      "path": "tour/fold_02_anleitung_numbers.png",
+      "bytes": 1272046,
+      "compressed_bytes": 1271643,
+      "crc32": "855ee734"
+    },
+    {
+      "path": "tour/fold_02_anleitung_memory.png",
+      "bytes": 1136486,
+      "compressed_bytes": 1135895,
+      "crc32": "cecc0f6a"
+    },
+    {
+      "path": "tour/fold_02_anleitung_oddone.png",
+      "bytes": 1261683,
+      "compressed_bytes": 1261349,
+      "crc32": "3242a5c5"
+    },
+    {
+      "path": "tour/fold_02_anleitung_rotation.png",
+      "bytes": 1237242,
+      "compressed_bytes": 1236923,
+      "crc32": "1d347cd4"
+    },
+    {
+      "path": "tour/fold_02_anleitung_series.png",
+      "bytes": 1252078,
+      "compressed_bytes": 1251601,
+      "crc32": "a5dd3c1c"
+    },
+    {
+      "path": "tour/fold_03_raetsel_matrix.png",
+      "bytes": 1228404,
+      "compressed_bytes": 1228091,
+      "crc32": "9681903b"
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory.png",
+      "bytes": 1231083,
+      "compressed_bytes": 1230788,
+      "crc32": "715bec98"
+    },
+    {
+      "path": "tour/fold_03_raetsel_numbers.png",
+      "bytes": 1259822,
+      "compressed_bytes": 1259651,
+      "crc32": "17dbdf93"
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory_zeigen.png",
+      "bytes": 1229542,
+      "compressed_bytes": 1229263,
+      "crc32": "429064fa"
+    },
+    {
+      "path": "tour/fold_03_raetsel_oddone.png",
+      "bytes": 1327305,
+      "compressed_bytes": 1327099,
+      "crc32": "1f1b18bc"
+    },
+    {
+      "path": "tour/fold_03_raetsel_rotation.png",
+      "bytes": 1235090,
+      "compressed_bytes": 1234722,
+      "crc32": "cd037697"
+    },
+    {
+      "path": "tour/fold_03_raetsel_series.png",
+      "bytes": 1260651,
+      "compressed_bytes": 1260488,
+      "crc32": "ce220feb"
+    },
+    {
+      "path": "tour/fold_04_ergebnis.png",
+      "bytes": 1102222,
+      "compressed_bytes": 1101992,
+      "crc32": "c90dcc3d"
+    },
+    {
+      "path": "tour/fold_04_ergebnis_komplett.png",
+      "bytes": 1085922,
+      "compressed_bytes": 1086142,
+      "crc32": "cc0c3bdb"
+    },
+    {
+      "path": "tour/fold_05_rueckblick.png",
+      "bytes": 1095885,
+      "compressed_bytes": 1095916,
+      "crc32": "88b0f7e5"
+    },
+    {
+      "path": "tour/fold_05_rueckblick_drehen.png",
+      "bytes": 1042440,
+      "compressed_bytes": 1042122,
+      "crc32": "9ea2ae3f"
+    },
+    {
+      "path": "tour/fold_05_rueckblick_loesung.png",
+      "bytes": 1082883,
+      "compressed_bytes": 1082900,
+      "crc32": "34842e1a"
+    },
+    {
+      "path": "tour/fold_06_tests_seite.png",
+      "bytes": 1059453,
+      "compressed_bytes": 1059200,
+      "crc32": "c26283a0"
+    },
+    {
+      "path": "tour/fold_games.png",
+      "bytes": 519816,
+      "compressed_bytes": 519831,
+      "crc32": "95baeea3"
+    },
+    {
+      "path": "tour/fold_home.png",
+      "bytes": 850481,
+      "compressed_bytes": 850589,
+      "crc32": "7894dc0d"
+    },
+    {
+      "path": "tour/fold_learn.png",
+      "bytes": 463066,
+      "compressed_bytes": 463030,
+      "crc32": "ebb157d2"
+    },
+    {
+      "path": "tour/fold_profile.png",
+      "bytes": 668928,
+      "compressed_bytes": 669040,
+      "crc32": "eb846e65"
+    },
+    {
+      "path": "tour/fold_rewards.png",
+      "bytes": 517157,
+      "compressed_bytes": 517085,
+      "crc32": "09e5c893"
+    },
+    {
+      "path": "tour/fold_tests.png",
+      "bytes": 633186,
+      "compressed_bytes": 633348,
+      "crc32": "b5f55097"
+    },
+    {
+      "path": "tour/phone_02_anleitung_matrix.png",
+      "bytes": 843920,
+      "compressed_bytes": 843885,
+      "crc32": "f72dde32"
+    },
+    {
+      "path": "tour/phone_01_start.png",
+      "bytes": 962676,
+      "compressed_bytes": 962538,
+      "crc32": "a5e03ad9"
+    },
+    {
+      "path": "tour/phone_02_anleitung_numbers.png",
+      "bytes": 870762,
+      "compressed_bytes": 870671,
+      "crc32": "34d6c9f0"
+    },
+    {
+      "path": "tour/phone_02_anleitung_memory.png",
+      "bytes": 771065,
+      "compressed_bytes": 770949,
+      "crc32": "ace95795"
+    },
+    {
+      "path": "tour/phone_02_anleitung_oddone.png",
+      "bytes": 856534,
+      "compressed_bytes": 856476,
+      "crc32": "389a62c7"
+    },
+    {
+      "path": "tour/phone_02_anleitung_rotation.png",
+      "bytes": 839306,
+      "compressed_bytes": 839183,
+      "crc32": "4fb3c182"
+    },
+    {
+      "path": "tour/phone_02_anleitung_series.png",
+      "bytes": 853804,
+      "compressed_bytes": 853682,
+      "crc32": "fa695ff7"
+    },
+    {
+      "path": "tour/phone_03_raetsel_matrix.png",
+      "bytes": 776876,
+      "compressed_bytes": 776866,
+      "crc32": "b38e7655"
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory.png",
+      "bytes": 805998,
+      "compressed_bytes": 805697,
+      "crc32": "bcf1df52"
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory_zeigen.png",
+      "bytes": 801173,
+      "compressed_bytes": 800769,
+      "crc32": "f42cc91c"
+    },
+    {
+      "path": "tour/phone_03_raetsel_numbers.png",
+      "bytes": 842666,
+      "compressed_bytes": 842573,
+      "crc32": "693ccad4"
+    },
+    {
+      "path": "tour/phone_03_raetsel_oddone.png",
+      "bytes": 890956,
+      "compressed_bytes": 890861,
+      "crc32": "74df6f3a"
+    },
+    {
+      "path": "tour/phone_03_raetsel_rotation.png",
+      "bytes": 862829,
+      "compressed_bytes": 862738,
+      "crc32": "1571b47e"
+    },
+    {
+      "path": "tour/phone_03_raetsel_series.png",
+      "bytes": 803309,
+      "compressed_bytes": 803226,
+      "crc32": "a2d4024b"
+    },
+    {
+      "path": "tour/phone_04_ergebnis.png",
+      "bytes": 813934,
+      "compressed_bytes": 814137,
+      "crc32": "e28be97f"
+    },
+    {
+      "path": "tour/phone_04_ergebnis_komplett.png",
+      "bytes": 737080,
+      "compressed_bytes": 737298,
+      "crc32": "757b4aaa"
+    },
+    {
+      "path": "tour/phone_05_rueckblick_drehen.png",
+      "bytes": 798646,
+      "compressed_bytes": 798761,
+      "crc32": "7a82ba37"
+    },
+    {
+      "path": "tour/phone_05_rueckblick_loesung.png",
+      "bytes": 821758,
+      "compressed_bytes": 822004,
+      "crc32": "730d45a9"
+    },
+    {
+      "path": "tour/phone_05_rueckblick.png",
+      "bytes": 853307,
+      "compressed_bytes": 853530,
+      "crc32": "1bb2c175"
+    },
+    {
+      "path": "tour/phone_06_tests_seite.png",
+      "bytes": 827850,
+      "compressed_bytes": 827928,
+      "crc32": "c1562ae7"
+    },
+    {
+      "path": "tour/phone_games.png",
+      "bytes": 344456,
+      "compressed_bytes": 344517,
+      "crc32": "237141ad"
+    },
+    {
+      "path": "tour/phone_home.png",
+      "bytes": 569390,
+      "compressed_bytes": 569487,
+      "crc32": "c5135e5b"
+    },
+    {
+      "path": "tour/phone_profile.png",
+      "bytes": 488879,
+      "compressed_bytes": 489029,
+      "crc32": "0d48cae3"
+    },
+    {
+      "path": "tour/phone_rewards.png",
+      "bytes": 421569,
+      "compressed_bytes": 421603,
+      "crc32": "e80ccf4d"
+    },
+    {
+      "path": "tour/phone_learn.png",
+      "bytes": 388358,
+      "compressed_bytes": 388432,
+      "crc32": "a3905d1d"
+    },
+    {
+      "path": "tour/phone_tests.png",
+      "bytes": 478481,
+      "compressed_bytes": 478631,
+      "crc32": "4420bdcb"
+    },
+    {
+      "path": "tour/quer_01_start.png",
+      "bytes": 784968,
+      "compressed_bytes": 784333,
+      "crc32": "a74d9579"
+    },
+    {
+      "path": "tour/quer_03_raetsel_matrix.png",
+      "bytes": 687610,
+      "compressed_bytes": 686947,
+      "crc32": "c867001e"
+    },
+    {
+      "path": "tour/quer_03_raetsel_rotation.png",
+      "bytes": 668905,
+      "compressed_bytes": 668238,
+      "crc32": "5ca642d8"
+    },
+    {
+      "path": "tour/quer_04_ergebnis.png",
+      "bytes": 666482,
+      "compressed_bytes": 665930,
+      "crc32": "eee1210a"
+    },
+    {
+      "path": "tour/reference-phone_games.png",
+      "bytes": 284058,
+      "compressed_bytes": 284111,
+      "crc32": "52a71d6a"
+    },
+    {
+      "path": "tour/reference-phone_learn.png",
+      "bytes": 298656,
+      "compressed_bytes": 298625,
+      "crc32": "671ca9f1"
+    },
+    {
+      "path": "tour/reference-phone_home.png",
+      "bytes": 464345,
+      "compressed_bytes": 464490,
+      "crc32": "cc906ff0"
+    },
+    {
+      "path": "tutoring/fold-target-actual-opened-course.png",
+      "bytes": 777596,
+      "compressed_bytes": 777418,
+      "crc32": "b1012150"
+    },
+    {
+      "path": "tour/reference-phone_profile.png",
+      "bytes": 381162,
+      "compressed_bytes": 381282,
+      "crc32": "193dcf70"
+    },
+    {
+      "path": "tour/reference-phone_rewards.png",
+      "bytes": 342499,
+      "compressed_bytes": 342529,
+      "crc32": "5acd58df"
+    },
+    {
+      "path": "tour/reference-phone_tests.png",
+      "bytes": 350908,
+      "compressed_bytes": 351018,
+      "crc32": "52926570"
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-card.png",
+      "bytes": 734968,
+      "compressed_bytes": 734541,
+      "crc32": "00436df3"
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-reason.png",
+      "bytes": 771806,
+      "compressed_bytes": 771409,
+      "crc32": "16e65ff1"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-card.png",
+      "bytes": 264129,
+      "compressed_bytes": 264004,
+      "crc32": "dc4a426e"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-opened-course.png",
+      "bytes": 313838,
+      "compressed_bytes": 313716,
+      "crc32": "1cf1e8e3"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-reason.png",
+      "bytes": 373236,
+      "compressed_bytes": 373165,
+      "crc32": "ddfab298"
+    }
+  ],
+  "selected_nonimage_originals": [
+    {
+      "path": "acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "2404c7f7ef28483b1ea63dc35f7fb990e5347810bc40c216a782d3e5dd1dbb8b"
+    },
+    {
+      "path": "flutter-machine.jsonl",
+      "bytes": 1584279,
+      "sha256": "ffc8040eebcdc0ea42a6fa8b8fd3adcb6fa5991f669056139b0156625a1d4032"
+    }
+  ]
+}

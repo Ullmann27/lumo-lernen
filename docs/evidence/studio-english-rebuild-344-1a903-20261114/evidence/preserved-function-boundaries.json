@@ -1,0 +1,161 @@
+{
+  "base_native": "34421df83566dd4773420cc2a225887956459435",
+  "scope": "Source comparison only. English voice button captions shorten in compact mode; speech consent/status/stop logic remains in unchanged functions.",
+  "files": [
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "compared_method": "exact function text after excluding separator trailing newlines",
+      "identical_functions": [
+        "_whole_number",
+        "_bounded_integer",
+        "initial_count",
+        "target_index",
+        "target_for_step",
+        "group_count",
+        "group_size",
+        "count_in_group",
+        "inspect_part"
+      ],
+      "changed_functions": [
+        "configure",
+        "reset",
+        "token_count",
+        "goal_count",
+        "is_complete",
+        "place",
+        "explanation"
+      ],
+      "new_functions": [
+        "choose_english",
+        "english_hint"
+      ],
+      "removed_functions": []
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "compared_method": "exact function text after excluding separator trailing newlines",
+      "identical_functions": [
+        "_ready",
+        "_material",
+        "_mesh",
+        "_box",
+        "_sphere",
+        "_cylinder",
+        "_text",
+        "_top_text",
+        "_soften_teacher_materials",
+        "_build_ui",
+        "_panel",
+        "_button",
+        "_slot",
+        "_build_ten_frame",
+        "_build_hundred_stock",
+        "_build_subtraction",
+        "_build_groups",
+        "_build_fractions",
+        "_build_syllables",
+        "_branch",
+        "_build_plant",
+        "_queue_layout",
+        "_arrange_activity",
+        "_input",
+        "_unhandled_input",
+        "_drag_to",
+        "_end_drag",
+        "move_token",
+        "_animate_token",
+        "_show_one",
+        "_part_position",
+        "_inspect",
+        "_give_water",
+        "_give_sun",
+        "restart",
+        "_process",
+        "_cancel_drag",
+        "_return_to_lesson",
+        "_notification",
+        "_exit_tree",
+        "_teacher",
+        "_queue_narration",
+        "_voice_action",
+        "_speak",
+        "_stop_speech",
+        "_tick_speech"
+      ],
+      "changed_functions": [
+        "_build_stage",
+        "_rebuild_activity",
+        "_refresh",
+        "_layout",
+        "_begin_drag",
+        "_update_voice_button"
+      ],
+      "new_functions": [
+        "_build_english_objects",
+        "_english_projected_bounds",
+        "_layout_english",
+        "english_pick_rect",
+        "_pick_english_object",
+        "_choose_english",
+        "_english_hint"
+      ],
+      "removed_functions": [],
+      "critical_functions": [
+        {
+          "name": "_return_to_lesson",
+          "identical": true,
+          "baseline_sha256": "650d04da669db4be62ba802dc117405a77c11d1350c2e039eef152ab50ac9144",
+          "new_sha256": "650d04da669db4be62ba802dc117405a77c11d1350c2e039eef152ab50ac9144"
+        },
+        {
+          "name": "_notification",
+          "identical": true,
+          "baseline_sha256": "6782e6e4ab6bc322cbfa8e6bfab5c074f106d2f688953536d7ab0b12f66f42d6",
+          "new_sha256": "6782e6e4ab6bc322cbfa8e6bfab5c074f106d2f688953536d7ab0b12f66f42d6"
+        },
+        {
+          "name": "_exit_tree",
+          "identical": true,
+          "baseline_sha256": "be6262f01b02165a2286a996042d63fbd8481ab761ac5d383e79403632145f6d",
+          "new_sha256": "be6262f01b02165a2286a996042d63fbd8481ab761ac5d383e79403632145f6d"
+        },
+        {
+          "name": "_teacher",
+          "identical": true,
+          "baseline_sha256": "3e3e8f7b1ecf68cca35d4b8c5d0bcf88901496d03d8f85317a95eacf0e3a4729",
+          "new_sha256": "3e3e8f7b1ecf68cca35d4b8c5d0bcf88901496d03d8f85317a95eacf0e3a4729"
+        },
+        {
+          "name": "_queue_narration",
+          "identical": true,
+          "baseline_sha256": "d97c89bafd5e8ad68ce142468b31963f4ee0d640a44635df4ec0c9afc776f26b",
+          "new_sha256": "d97c89bafd5e8ad68ce142468b31963f4ee0d640a44635df4ec0c9afc776f26b"
+        },
+        {
+          "name": "_voice_action",
+          "identical": true,
+          "baseline_sha256": "1fb6f104d33ec593b8b4a48348cb33c34ccdb23c4ed0bd8d422cfd3806732dcd",
+          "new_sha256": "1fb6f104d33ec593b8b4a48348cb33c34ccdb23c4ed0bd8d422cfd3806732dcd"
+        },
+        {
+          "name": "_speak",
+          "identical": true,
+          "baseline_sha256": "b9710911de3537f9dd0f636763b9db2821671511f38471ea7601bc14e688af0d",
+          "new_sha256": "b9710911de3537f9dd0f636763b9db2821671511f38471ea7601bc14e688af0d"
+        },
+        {
+          "name": "_stop_speech",
+          "identical": true,
+          "baseline_sha256": "10114506561bd0fde22993c5ceb174b052b2dea4bf42b50c5f4566ec988cf725",
+          "new_sha256": "10114506561bd0fde22993c5ceb174b052b2dea4bf42b50c5f4566ec988cf725"
+        },
+        {
+          "name": "_tick_speech",
+          "identical": true,
+          "baseline_sha256": "fc64f7c7b07d28fd703bec32294566b366f8fa464dac48fb21046182b0ec4f1d",
+          "new_sha256": "fc64f7c7b07d28fd703bec32294566b366f8fa464dac48fb21046182b0ec4f1d"
+        }
+      ]
+    }
+  ]
+}

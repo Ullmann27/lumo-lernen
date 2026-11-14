@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T06:54:58.114672+00:00",
+  "review_owner": "learning_worlds",
+  "status": "BLOCKED_BY_TREASURE_COMPACT_FIGURE_OCCLUSION_NO_OVERALL_APPROVAL",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "run_attempt": 1,
+  "artifact_id": 14103142984,
+  "archive": {
+    "path": "/tmp/lumo-studio-2020-acf51-native-evidence.zip",
+    "bytes": 225382332,
+    "sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+    "zip_entries": 5064,
+    "archive_sha_independently_rechecked": true,
+    "selected_eight_members_individually_read_and_crc_checked": true,
+    "all_5064_entry_crc_validation_attribution": "Root; recorded in verified-original-extraction.json. This reviewer independently rechecked the full archive SHA and selected eight members, not every member CRC."
+  },
+  "bindings": {
+    "extraction_manifest": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/verified-original-extraction.json",
+      "bytes": 29784,
+      "sha256": "faff9fcf4c6974fa4ab1229e5b870ba3358519d6dfa29568fdceead9a9813608",
+      "git_blob_sha1": "489fb650c26e57d2997d73b8d195ca4a9c6b9ab8"
+    },
+    "selected_byte_verification": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/learning-worlds-selected-byte-check.json",
+      "bytes": 6126,
+      "sha256": "1263e4dd1b419106f761ed519cec9e9149ca9e47ca27c9069841bd3a2d853dd6",
+      "git_blob_sha1": "3833df2f431b3a8dbd6388a06756e6a37cbfa51a"
+    },
+    "required_image_plan": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/required-image-review-plan.json",
+      "bytes": 9128,
+      "sha256": "8acb74cfa4bd5c0572fb692ead980b70090dbf37afbad9a3438d24cff958c181",
+      "git_blob_sha1": "4140b3042d5b224403a40fbf21ba9c9f6edd463b"
+    }
+  },
+  "archive_source_stamps": {
+    "nextgen-evidence/nextgen": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "studio-evidence": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "touch-evidence/workshop": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "touch-evidence/treasure": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "touch-evidence/build": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+  },
+  "personally_opened_image_count": 8,
+  "selected_png_bytes": 10738507,
+  "images": [
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "bytes": 249517,
+      "sha256": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 1,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Die Abschlussansicht zeigt drei räumliche Gruppen mit jeweils vier gelben Würfeln; die drei sichtbaren Zähler lauten 4. Die Erklärung zu 12 : 3 stimmt mit dem sichtbaren Endstand überein.",
+        "Original-Lumo und die hölzerne Lernumgebung sind sichtbar. Erfolgstext, Noch einmal und Zur Aufgabe bleiben frei; der Verteilknopf ist im Abschlusszustand sichtbar deaktiviert. Kein konkreter visueller Blocker in diesem Bild festgestellt."
+      ],
+      "scope_verdict": "NO_CONCRETE_BLOCKER_IN_THIS_STATIC_VIEW",
+      "static_image_only": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "bytes": 111652,
+      "sha256": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "dimensions": [
+        412,
+        915
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 2,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Die erste Verteilrunde zeigt je einen Würfel in drei Gruppen und neun noch nicht verteilte Würfel. Die Zähler 1 und die Anzeige 3/12 bewegt passen zu diesem sichtbaren Zustand.",
+        "Im Hochformat sind die Erklärung, die Gruppen, Lumo sowie Verteilknopf, Noch einmal und Zur Aufgabe sichtbar. Die Rückkehraktion steht in einer eigenen Footerzeile; kein konkreter visueller Blocker in diesem Bild festgestellt."
+      ],
+      "scope_verdict": "NO_CONCRETE_BLOCKER_IN_THIS_STATIC_VIEW",
+      "static_image_only": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "bytes": 723941,
+      "sha256": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 3,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Die Erklärung 180 plus 50 ist 230 ist lesbar. Oben besitzt das echte räumliche Gleichheitszeichen in 10 Zehner = 100 zwei sichtbar getrennte Balken.",
+        "Die untere Beschriftung 230 = 2 Hunderter + 3 Zehner steht kontrastreich auf einem dunklen Schild. Zehnerblöcke, Hundertermodell und Lumo sind sichtbar; Header und Footer überdecken diese beiden mathematischen Beschriftungen nicht."
+      ],
+      "scope_verdict": "NO_CONCRETE_BLOCKER_IN_THIS_STATIC_VIEW",
+      "static_image_only": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "bytes": 135401,
+      "sha256": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "dimensions": [
+        412,
+        915
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 4,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Auch im Hochformat bleiben die getrennten Balken des oberen Gleichheitszeichens sichtbar. Das untere dunkle Schild macht 230 = 2 Hunderter + 3 Zehner lesbar.",
+        "Die Figur steht nah am linken Beginn der oberen Beschriftung; das Gleichheitszeichen selbst bleibt frei. Zehnergruppen und Hundertermodell sowie die zweizeilige Anordnung der Footeraktionen sind sichtbar. Keine eigenständige Touch- oder Animationsprüfung durch dieses Standbild."
+      ],
+      "scope_verdict": "NO_CONCRETE_BLOCKER_IN_THIS_STATIC_VIEW",
+      "static_image_only": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "bytes": 2754674,
+      "sha256": "6b778dcfc6d9f4c24b1a5343f8d4368c2995f9b90f5355ac0ec192ef7a58ec8d",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 5,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Der vollständige Titel LUMOS STERNENSCHATZ steht hell auf einer dunklen, umrandeten Fläche und ist gegenüber der hellen 3D-Szene lesbar.",
+        "Zur Spieleauswahl, Rucksack, Pause, Springen, Ansehen und der Stick sind sichtbar. Aktuelle Aufgabe, Spielfigur und Umgebung sind in diesem 1920×1080-Bild erkennbar; keine Titelüberlagerung durch die Nachbarbuttons festgestellt."
+      ],
+      "scope_verdict": "NO_CONCRETE_BLOCKER_IN_THIS_STATIC_VIEW",
+      "static_image_only": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "bytes": 2156415,
+      "sha256": "b8087cbf2d9f0db0bc07165024346956551d612ebb6a925f7d731f00ec9c1fff",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 6,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Im Hochformat erscheint der Spieltitel platzbedingt als LUMOS STER…; der sichtbare Teil kontrastiert klar. Die Ellipse wird ausdrücklich nicht als vollständige Darstellung des Spielnamens ausgegeben.",
+        "Aufgabenfeld und Fortschrittsangaben sind lesbar, der Zähler 0 / 3 bricht auf zwei Zeilen um. Die Figur und die unteren Steuerflächen sind sichtbar; Zur Spieleauswahl, Rucksack und Pause überlappen den sichtbaren Titelbereich nicht."
+      ],
+      "scope_verdict": "NO_CONCRETE_BLOCKER_IN_THIS_STATIC_VIEW",
+      "static_image_only": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "bytes": 4289034,
+      "sha256": "6ba8e4ffcf2a9ece75270f8e50a76521e698cc21e0c26059a1c6d6afa2bc42e8",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 7,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Im 2176×1812-Format ist LUMOS STERNENSCHATZ vollständig und kontrastreich lesbar. Aktuelle Aufgabe und Fortschritt stehen auf einer dunklen Fläche.",
+        "Figur, Stick, Springen, Ansehen und obere Bedienelemente sind sichtbar. Dies ist ein Desktop-Rendererbild in einem Fold-ähnlichen Format, kein Screenshot eines physischen Galaxy Z Fold7."
+      ],
+      "scope_verdict": "NO_CONCRETE_BLOCKER_IN_THIS_STATIC_VIEW",
+      "static_image_only": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "bytes": 317873,
+      "sha256": "e28aaa78f26bcb99d7fcb2aa3f31eaf320be6fa5eb1da981199b2e9e126bd5f4",
+      "dimensions": [
+        640,
+        320
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true,
+      "review_index": 8,
+      "personally_opened_with_view_image": true,
+      "findings": [
+        "Der Titel LUMOS STERNENSCHATZ und die aktuelle Aufgabe bleiben im 640×320-Bild lesbar; Zur Spieleauswahl, Rucksack, Pause, Springen, Ansehen und Stick sind sichtbar.",
+        "Konkreter Gameplay-/Layoutblocker: Das große Aufgabenfeld verdeckt den größten Teil der Spielfigur. Der zusätzliche weiße Erkundungshinweis liegt außerdem über einer hellen, unruhigen Szene und hat dort schlechteren Kontrast. Der bestandene enge Titelkontrast hebt diese Sichtbarkeitsprobleme nicht auf."
+      ],
+      "scope_verdict": "BLOCKING_GAMEPLAY_LAYOUT_OCCLUSION",
+      "static_image_only": true
+    }
+  ],
+  "blocking_findings": [
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "observation": "Das Aufgabenfeld verdeckt den größten Teil der Spielfigur im tatsächlich geöffneten 640×320-Original.",
+      "classification": "Gameplay-/Layoutblocker; die Titelkontrastkorrektur allein ist keine vollständige Gameplay-Abnahme.",
+      "required_followup": "Separater enger Hinweisfeld-/Kamerafix und neue echte Renderer-/CI-Evidenz. Keine Korrektur oder Freigabe durch dieses Review."
+    }
+  ],
+  "secondary_visual_limitations": [
+    "Der zusätzliche weiße Erkundungshinweis hat im kompakten Treasure-Bild über heller Szene ungleichmäßigen Kontrast.",
+    "Der Treasure-Spielname ist im Hochformat mit einer Ellipse verkürzt.",
+    "Harte Schatten und einfache Raum-/Umgebungsmaterialien sind sichtbar; die Bilder belegen keine umfassende AAA-Grafikabnahme."
+  ],
+  "parent_reported_additional_evidence": {
+    "source": "Nachricht von Root nach der Sichtung dieser acht Bilder",
+    "observation": "Root berichtet dieselbe Figurenverdeckung in seinem aktuellen 2400×1080-Cutout-Bild und hat C mit einer engen Korrektur beauftragt.",
+    "personally_viewed_by_this_reviewer": false
+  },
+  "scope_limits": [
+    "Genau diese acht aktuellen Originalbilder wurden einzeln geöffnet; keine pauschale Sichtfreigabe aller Archivbilder.",
+    "Die Hunderterglyphen und Titel werden in den realen PNG-Rastern beurteilt; keine neu erzeugten Bilder und keine Übernahme historischer Sichtbefunde.",
+    "Statische Desktop-/Software-Rendererbilder zeigen keine tatsächlich ausgeführten Android-Taps, keine 48-dp-Gerätemessung und keine physische Fold7-Abnahme.",
+    "Kein FPS-, Wärme-, Touchlatenz-, Facial-Rig-, Lippensynchronitäts- oder kontinuierlicher Animationsnachweis aus diesen Standbildern.",
+    "Kein neuer Test, kein Produktpatch, keine Pin-/Receipt-/Gitrefänderung.",
+    "Erfolgreicher CI-Jobstatus beseitigt den sichtbaren Layoutblocker nicht; keine Gesamtfreigabe."
+  ]
+}

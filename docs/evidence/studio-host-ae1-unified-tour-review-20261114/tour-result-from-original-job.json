@@ -1,0 +1,633 @@
+{
+  "schema": 1,
+  "derived_from": {
+    "file": "android-tour-original-job.log",
+    "bytes": 1539461,
+    "sha256": "da078abf166df6f517b9cd6a0ad3da52b677285fd6b23633d0673e96ab530af3",
+    "git_blob_sha": "207d3edde77be0e29b3ed0022a8fd75d85ce1bfa"
+  },
+  "line_range": [
+    2459,
+    3077
+  ],
+  "timestamp_prefix_removed": true,
+  "report": {
+    "status": "PASS",
+    "steps": [
+      {
+        "step": "apk-identity",
+        "ok": true,
+        "apk_sha256": "db75d78731b3d5e4e3c65bca5cfd2e896e4c7ae08e564577de7ea27ff7fbfcb2",
+        "flutter_source_commit": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+        "godot_revision": "34421df83566dd4773420cc2a225887956459435",
+        "godot_pck_sha256": "1d3b27cd3ed59a6acf6ec7ec47f956fb370884f22d309056950f1c6bcb24b56e",
+        "versionName": "0.13.8",
+        "versionCode": 2020,
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "checks": {
+          "sha256_matches_provenance": true,
+          "sha256_matches_build_sums": true,
+          "flutter_source_is_this_commit": true,
+          "tracked_source_clean": true,
+          "godot_revision_is_pinned": true,
+          "signing_certificate": true,
+          "version_matches_pubspec": true,
+          "x86_64_native_code": true
+        }
+      },
+      {
+        "step": "launch",
+        "ok": true
+      },
+      {
+        "step": "onboarding",
+        "ok": true
+      },
+      {
+        "step": "navigate-start",
+        "ok": true,
+        "label": "Start"
+      },
+      {
+        "step": "atelier-roundtrip",
+        "ok": true,
+        "screen": "Real native-Android Flutter Zehnerbrücke",
+        "observed": [
+          "Hub",
+          "Worked example",
+          "Interactive ten-frame",
+          "Model check",
+          "Flutter return"
+        ],
+        "screenshots": [
+          "11_atelier_hub.png",
+          "12_atelier_beispiel.png",
+          "13_atelier_zehnerbruecke.png"
+        ]
+      },
+      {
+        "step": "navigate-lernen",
+        "ok": true,
+        "label": "Lernen",
+        "visible_labels": 50
+      },
+      {
+        "step": "navigate-spiele",
+        "ok": true,
+        "label": "Spielen"
+      },
+      {
+        "step": "open-kart",
+        "ok": true,
+        "label": "Lumo Kart. Fahre mit Lumo um die Wette! Spielen"
+      },
+      {
+        "step": "start-kart-race",
+        "ok": true,
+        "touches": [
+          {
+            "step": "premium-start",
+            "button": "START",
+            "tap": [
+              1791,
+              916
+            ]
+          },
+          {
+            "step": "preview-skip",
+            "button": "Tippen zum Überspringen",
+            "tap": [
+              1198,
+              420
+            ],
+            "input": "swipe",
+            "duration_ms": 120,
+            "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json"
+          }
+        ],
+        "expected_mode": "cup",
+        "expected_track": "sonnenhafen",
+        "garage_replaced": {
+          "changed_fraction": 0.885,
+          "mean_channel_delta": 114.46
+        },
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1,
+            1,
+            1
+          ],
+          "detail": [
+            {
+              "colour_bins": 633,
+              "bright_fraction": 0.917
+            },
+            {
+              "colour_bins": 530,
+              "bright_fraction": 0.975
+            },
+            {
+              "colour_bins": 1040,
+              "bright_fraction": 0.796
+            }
+          ]
+        },
+        "preview_skip": {
+          "schema": 1,
+          "status": "TOUCH_SENT",
+          "countercheck_scope": "OBSERVED_UI_TOUCH_ONLY",
+          "caption": "Tippen zum Überspringen",
+          "deadline_policy": "original race-world-ready55s",
+          "initial_remaining_seconds": 32.40123741999997,
+          "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json",
+          "initial_capture": {
+            "source": "21_lumo_kart_real_race.png",
+            "source_sha256": "98fd47d52a4452209d35d8a5ae4064b2cd146d0f1dff359f80b6d53016bb1b59",
+            "scope": "Context only; never a touch prerequisite"
+          },
+          "foreground_before_touch": "    topResumedActivity=ActivityRecord{3094242 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8}",
+          "readiness": {
+            "status": "TOUCH_SENT",
+            "label": "Tippen zum Überspringen",
+            "timeout_seconds": 32.196206787999984,
+            "exact_caption_required": true,
+            "orientation_policy": "landscape",
+            "scope": "Observed touch prerequisites; post-action assertions still required",
+            "frames": [
+              {
+                "source": "21_kart_preview_skip_touch-0.png",
+                "source_sha256": "b778d229698e4cff82e4079f5f3599dc753199424dbdde7c7a919e88a932bc95",
+                "source_bytes": 1895632,
+                "pixels": [
+                  2400,
+                  1080
+                ],
+                "orientation_policy": "landscape",
+                "sample_rows": [
+                  130,
+                  238,
+                  346,
+                  454,
+                  562,
+                  670,
+                  778,
+                  886
+                ],
+                "blank_edge_columns": {
+                  "left": 0,
+                  "right": 0
+                },
+                "blank_threshold_rgb_max": 8,
+                "blank_required_rows": 7,
+                "acceptable_for_target_sampling": true,
+                "reasons": [],
+                "scope": "Reject observed partial surface; no scene/gameplay PASS",
+                "captured_after_seconds": 1.377675,
+                "target": {
+                  "surface_sha256": "b778d229698e4cff82e4079f5f3599dc753199424dbdde7c7a919e88a932bc95",
+                  "pixels": [
+                    2400,
+                    1080
+                  ],
+                  "bounds": [
+                    1055,
+                    402,
+                    1341,
+                    433
+                  ],
+                  "anchor": "",
+                  "reasons": [
+                    "waiting for second stable observed target bounds"
+                  ],
+                  "target_geometry_valid": true,
+                  "stable_observed_target": false
+                }
+              },
+              {
+                "source": "21_kart_preview_skip_touch-1.png",
+                "source_sha256": "ba55ab65732b02661fa01c9e60faee0f851a42771821ccde2812a29ad70eaa87",
+                "source_bytes": 1936003,
+                "pixels": [
+                  2400,
+                  1080
+                ],
+                "orientation_policy": "landscape",
+                "sample_rows": [
+                  130,
+                  238,
+                  346,
+                  454,
+                  562,
+                  670,
+                  778,
+                  886
+                ],
+                "blank_edge_columns": {
+                  "left": 0,
+                  "right": 0
+                },
+                "blank_threshold_rgb_max": 8,
+                "blank_required_rows": 7,
+                "acceptable_for_target_sampling": true,
+                "reasons": [],
+                "scope": "Reject observed partial surface; no scene/gameplay PASS",
+                "captured_after_seconds": 5.440588,
+                "target": {
+                  "surface_sha256": "ba55ab65732b02661fa01c9e60faee0f851a42771821ccde2812a29ad70eaa87",
+                  "pixels": [
+                    2400,
+                    1080
+                  ],
+                  "bounds": [
+                    1055,
+                    402,
+                    1341,
+                    461
+                  ],
+                  "anchor": "",
+                  "reasons": [
+                    "waiting for second stable observed target bounds"
+                  ],
+                  "target_geometry_valid": true,
+                  "stable_observed_target": false
+                }
+              },
+              {
+                "source": "21_kart_preview_skip_touch-2.png",
+                "source_sha256": "05aa92d19f88a8fc7eb5213c34767bc220cfa09b36a743b0a52c40af44321f63",
+                "source_bytes": 2222691,
+                "pixels": [
+                  2400,
+                  1080
+                ],
+                "orientation_policy": "landscape",
+                "sample_rows": [
+                  130,
+                  238,
+                  346,
+                  454,
+                  562,
+                  670,
+                  778,
+                  886
+                ],
+                "blank_edge_columns": {
+                  "left": 0,
+                  "right": 0
+                },
+                "blank_threshold_rgb_max": 8,
+                "blank_required_rows": 7,
+                "acceptable_for_target_sampling": true,
+                "reasons": [],
+                "scope": "Reject observed partial surface; no scene/gameplay PASS",
+                "captured_after_seconds": 10.174626,
+                "target": {
+                  "surface_sha256": "05aa92d19f88a8fc7eb5213c34767bc220cfa09b36a743b0a52c40af44321f63",
+                  "pixels": [
+                    2400,
+                    1080
+                  ],
+                  "bounds": [
+                    1055,
+                    404,
+                    1341.5,
+                    431
+                  ],
+                  "anchor": "",
+                  "reasons": [
+                    "waiting for second stable observed target bounds"
+                  ],
+                  "target_geometry_valid": true,
+                  "stable_observed_target": false
+                }
+              },
+              {
+                "source": "21_kart_preview_skip_touch-3.png",
+                "source_sha256": "bff2bfbbb4dea519284336f77136b29ff6eea70cac69f3de0dac02811c7b1b97",
+                "source_bytes": 2271226,
+                "pixels": [
+                  2400,
+                  1080
+                ],
+                "orientation_policy": "landscape",
+                "sample_rows": [
+                  130,
+                  238,
+                  346,
+                  454,
+                  562,
+                  670,
+                  778,
+                  886
+                ],
+                "blank_edge_columns": {
+                  "left": 0,
+                  "right": 0
+                },
+                "blank_threshold_rgb_max": 8,
+                "blank_required_rows": 7,
+                "acceptable_for_target_sampling": true,
+                "reasons": [],
+                "scope": "Reject observed partial surface; no scene/gameplay PASS",
+                "captured_after_seconds": 20.183267,
+                "target": {
+                  "surface_sha256": "bff2bfbbb4dea519284336f77136b29ff6eea70cac69f3de0dac02811c7b1b97",
+                  "pixels": [
+                    2400,
+                    1080
+                  ],
+                  "bounds": [
+                    1055,
+                    409,
+                    1341,
+                    431
+                  ],
+                  "anchor": "",
+                  "reasons": [],
+                  "target_geometry_valid": true,
+                  "stable_observed_target": true
+                }
+              }
+            ],
+            "final_observed_bounds": [
+              1055,
+              409,
+              1341,
+              431
+            ],
+            "touch": [
+              1198,
+              420
+            ],
+            "elapsed_seconds": 23.634018
+          },
+          "cue_witnesses": [
+            {
+              "source": "21_kart_preview_skip_touch-2.png",
+              "source_sha256": "05aa92d19f88a8fc7eb5213c34767bc220cfa09b36a743b0a52c40af44321f63",
+              "ocr_file": "21_kart_preview_skip_touch-2-ocr.json",
+              "ocr_sha256": "ef70af3a41a1160be031b926583b6deb61515bda5db801fb76655a2472c12578",
+              "observed_matches": [
+                {
+                  "text": "Tippen zum Überspringen",
+                  "bounds": [
+                    1055,
+                    404,
+                    1341.5,
+                    431
+                  ],
+                  "variant": "raw"
+                },
+                {
+                  "text": "Tippen zum Überspringen",
+                  "bounds": [
+                    1055,
+                    404,
+                    1341.5,
+                    431
+                  ],
+                  "variant": "raw"
+                }
+              ]
+            },
+            {
+              "source": "21_kart_preview_skip_touch-3.png",
+              "source_sha256": "bff2bfbbb4dea519284336f77136b29ff6eea70cac69f3de0dac02811c7b1b97",
+              "ocr_file": "21_kart_preview_skip_touch-3-ocr.json",
+              "ocr_sha256": "51d6cf1e003a465b79a5f48cd1f8c6e78bb67b7492d616b56a13e3049ef3aa07",
+              "observed_matches": [
+                {
+                  "text": "Tippen zum Uberspringen",
+                  "bounds": [
+                    1055,
+                    409,
+                    1341,
+                    431
+                  ],
+                  "variant": "contrast"
+                },
+                {
+                  "text": "Tippen zum Uberspringen",
+                  "bounds": [
+                    1055,
+                    409,
+                    1341,
+                    431
+                  ],
+                  "variant": "contrast"
+                }
+              ]
+            }
+          ],
+          "cue": {
+            "source": "21_kart_preview_skip_touch-3.png",
+            "source_sha256": "bff2bfbbb4dea519284336f77136b29ff6eea70cac69f3de0dac02811c7b1b97",
+            "ocr_file": "21_kart_preview_skip_touch-3-ocr.json",
+            "ocr_sha256": "51d6cf1e003a465b79a5f48cd1f8c6e78bb67b7492d616b56a13e3049ef3aa07",
+            "observed_matches": [
+              {
+                "text": "Tippen zum Uberspringen",
+                "bounds": [
+                  1055,
+                  409,
+                  1341,
+                  431
+                ],
+                "variant": "contrast"
+              },
+              {
+                "text": "Tippen zum Uberspringen",
+                "bounds": [
+                  1055,
+                  409,
+                  1341,
+                  431
+                ],
+                "variant": "contrast"
+              }
+            ]
+          },
+          "touch": [
+            1198,
+            420
+          ],
+          "after_capture": {
+            "file": "21_kart_preview_after_touch.png",
+            "width": 2400,
+            "height": 1080,
+            "sha256": "d74c8ac3e6434ac9c158e6ec2a3557179d099feba3c2f01c53613da119a29efc"
+          },
+          "elapsed_seconds": 25.178088
+        }
+      },
+      {
+        "step": "race-running",
+        "ok": true,
+        "state": {
+          "result_id": "99e31c71-f667-48ff-8ad8-6759d6604855-1794658789538-42148725",
+          "countdown": 0,
+          "elapsed": 1.0000000000000013,
+          "distance": 0.0000039689185,
+          "checkpoint_index": 0
+        }
+      },
+      {
+        "step": "race-hud",
+        "ok": true,
+        "capture": "21_race_hud_3",
+        "race_state": null,
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1,
+            0.998,
+            1
+          ],
+          "detail": [
+            {
+              "colour_bins": 900,
+              "bright_fraction": 0.838
+            },
+            {
+              "colour_bins": 1127,
+              "bright_fraction": 0.855
+            },
+            {
+              "colour_bins": 1247,
+              "bright_fraction": 0.679
+            }
+          ]
+        },
+        "hud_lines": [
+          "km/h * 0",
+          "RUNDE1/2 PLATZ won 0"
+        ],
+        "focused_hud": null
+      },
+      {
+        "step": "race-drive",
+        "ok": true,
+        "gas_touch": [
+          2242,
+          936
+        ],
+        "hold_ms": 9000,
+        "gas_pulses": 2,
+        "world_moved": {
+          "changed_fraction": 0.707,
+          "mean_channel_delta": 62.29
+        },
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1,
+            0.999,
+            1
+          ],
+          "detail": [
+            {
+              "colour_bins": 949,
+              "bright_fraction": 0.893
+            },
+            {
+              "colour_bins": 851,
+              "bright_fraction": 0.883
+            },
+            {
+              "colour_bins": 1227,
+              "bright_fraction": 0.73
+            }
+          ]
+        },
+        "native_progress": {
+          "result_id": "99e31c71-f667-48ff-8ad8-6759d6604855-1794658789538-42148725",
+          "distance_gain": 60.11,
+          "elapsed_gain": 5.02,
+          "checkpoint_index": 0
+        }
+      },
+      {
+        "step": "pause-menu",
+        "ok": true,
+        "frozen_while_paused": {
+          "result_id": "99e31c71-f667-48ff-8ad8-6759d6604855-1794658789538-42148725",
+          "distance": 67.03797886779648,
+          "elapsed": 6.383333333333316,
+          "checkpoint_index": 0,
+          "finished": false
+        }
+      },
+      {
+        "step": "return-from-kart",
+        "ok": true,
+        "capture": "23_zurueck_in_flutter.png",
+        "foreground_is_flutter": true
+      },
+      {
+        "step": "learning-state-after-kart",
+        "ok": true,
+        "profile": {
+          "id": "1794658672594124",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T12:17:52.594124"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      {
+        "step": "lernen-usable-after-kart",
+        "ok": true,
+        "labels_before": 39,
+        "labels_after": 39,
+        "kept_fraction": 1
+      },
+      {
+        "step": "profile-after-kart",
+        "ok": true,
+        "profile_name_visible": "LumoTest",
+        "observed_after_scrolls": 3,
+        "source": "live Android accessibility tree"
+      },
+      {
+        "step": "restart-keeps-learning-state",
+        "ok": true,
+        "profile": {
+          "id": "1794658672594124",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T12:17:52.594124"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      {
+        "step": "display-fold_offen",
+        "ok": true,
+        "size": "1812x2176@420"
+      },
+      {
+        "step": "display-fold_aussen",
+        "ok": true,
+        "size": "904x2316@420"
+      },
+      {
+        "step": "display-quer",
+        "ok": true,
+        "size": "2400x1080@420"
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "initial_attempt": "Stopped before manifest creation: old2019 workflow is intentionally absent from the sparse new2020 source directory.",
+  "corrected_check": "Read actual original2019 source path from Root baseline manifest and verified unchanged SHA256. No file was installed/restored to satisfy this check.",
+  "old_workflow_path": "/workspace/scratch/5987865ae883/lumo-godot/.github/workflows/lumo-studio-2019.yml",
+  "old_workflow_sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b"
+}

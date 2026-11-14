@@ -1,0 +1,17 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/runtime",
+    "--rendering-method",
+    "gl_compatibility",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://scripts/tests/treasure_title_contrast_regression.gd"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 4.393113099009497,
+  "log_sha256": "1503d17e24d0a83837979e4cf4f651db6a275c024bf45b18beec5d479a8595ba"
+}

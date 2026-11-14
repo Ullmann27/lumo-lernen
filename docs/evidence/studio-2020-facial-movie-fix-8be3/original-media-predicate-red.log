@@ -1,0 +1,5 @@
+EXPECTED REJECTION: original CI 720x1280 encoded video against unchanged 640x640 predicate
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+  File "unchanged-original-face-report-predicate", line 91, in <module>
+AssertionError: /workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie.json

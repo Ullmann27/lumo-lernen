@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "scope": "Seven documentation-only source audit records; source snapshots are already published Git objects and are not included as product deltas.",
+  "host_source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "native_source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "files": [
+    {
+      "path": "docs/evidence/studio-english-voice-audit-2e20-29080-20261114/README.md",
+      "bytes": 3682,
+      "sha256": "76b7b66ba34d8cb3e39696422c89190818b63bb0c3ba9860c6496814eaf2d640",
+      "git_blob": "83c8cb81a810852f8dc803e301af376c8cebebe3",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-voice-audit-2e20-29080-20261114/README.md",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-english-voice-audit-2e20-29080-20261114/review.json",
+      "bytes": 7994,
+      "sha256": "6269e791952d7709ef155c2ff6aa680fb7e3a8d5ee8934f3c1a6aa208b3254b0",
+      "git_blob": "56488ddef8b059ecbe9579b08a10b86091d780de",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-voice-audit-2e20-29080-20261114/review.json",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-english-voice-audit-2e20-29080-20261114/source-binding.json",
+      "bytes": 12775,
+      "sha256": "6baa6b4a275dfcc885fd19c3c267307c051d0d0bc06be8a83dc2e23c19eb5860",
+      "git_blob": "d7e1daa85db7bcdaf8ef1d52b1712fa09eb2f8ef",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-voice-audit-2e20-29080-20261114/source-binding.json",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-english-voice-audit-2e20-29080-20261114/source-excerpts.json",
+      "bytes": 45586,
+      "sha256": "1e06d7464fae5ed6d1483130ec889d6cfff01c8817ed4239803edc1a291368e9",
+      "git_blob": "bdbdd27b2d4d00f0faa7046a414a1703f9c25cb4",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-voice-audit-2e20-29080-20261114/source-excerpts.json",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-english-voice-audit-2e20-29080-20261114/catalog-exact-word-audit.json",
+      "bytes": 4138,
+      "sha256": "360b63377814d54f353a067d1823e9af3dde197f1e08d03759ec609bad5beb1c",
+      "git_blob": "368b87694a41b905e6169636430e2f0153e6e61d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-voice-audit-2e20-29080-20261114/catalog-exact-word-audit.json",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-english-voice-audit-2e20-29080-20261114/host-commit-original.json",
+      "bytes": 1846,
+      "sha256": "a78568ecbf3635b6ba4f56ebfe5840abd75f95bad1d3340e533e2271f276ed89",
+      "git_blob": "772e9a6cd8e6eb268e04778d0a4e774600fb5acf",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-voice-audit-2e20-29080-20261114/host-commit-original.json",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-english-voice-audit-2e20-29080-20261114/expected-source-tree-entries.json",
+      "bytes": 10153,
+      "sha256": "672f8f4c111809545c1164617443ab5c8494284cba024ea84f1db0d9501ac455",
+      "git_blob": "bd746a46cb94cf60ad8beba0c91132278e819215",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-voice-audit-2e20-29080-20261114/expected-source-tree-entries.json",
+      "mode": "100644"
+    }
+  ],
+  "count": 7,
+  "bytes": 86174
+}

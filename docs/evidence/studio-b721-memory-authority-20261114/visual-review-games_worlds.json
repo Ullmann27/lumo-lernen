@@ -1,0 +1,274 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14 17:19:18 UTC",
+  "reviewer": "games_worlds",
+  "run_id": 43619285124,
+  "job_id": 132521067548,
+  "artifact_id": 14123817299,
+  "source": {
+    "host": {
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "tree": "c65558a13e4dd2950eda7a685583e5484d9b9959"
+    },
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    }
+  },
+  "archive_sha256": "ea977121218cc945f3ddb1fe09bff81109d0ecbfaa45b7c955ed849194ffcc8a",
+  "archive_bytes": 3943940,
+  "personally_opened_files": 19,
+  "fully_decoded_png_files": 28,
+  "blocking_issues": 0,
+  "scope": "Current desktop X11 originals, production Dart authority plus explicit QA transport/clock/ledger; no Android or physical FPS claim.",
+  "per_file_hash_limit": "Thirteen SHA-256 strings were retained in the current original report output. Six remaining values are recorded in the inaccessible local extraction inventory and are not reconstructed. All 19 were opened from the CRC-verified current archive extraction.",
+  "findings": [
+    {
+      "artifact_entry": "memory-pair/native/01-memory-real-hidden.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Eight concealed cards in two rows; all cards and Back/Pause labels visible, count 0:0 and zero moves. Lumo is fully visible at the right.",
+      "sha256": "925d8730f6e8efc1fcb888f094a7df3ab01f2b9482f83ef9717279345f767af7",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/02-memory-real-face.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First card shows a bright treasure-chest motif; seven backs remain. Card silhouette and neighboring gap are distinct.",
+      "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/03-memory-real-paused.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Readable paused/saved banner and exposed Continue/New round controls. Lower difficulty and pack choices are in a visibly scrollable modal; this frame does not expose every option.",
+      "sha256": "b7edc981fb904cb8b56663ef26d6a7ae343757d3a65264f8bb03cfd15a66cf68",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/04-memory-real-reopened.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Same paused modal visually restored; Continue and New round visible. Round identity is established by original state JSON, not by this image alone.",
+      "sha256": "a99264d13091d49baf897fd05f99ebbf2eefabe706363a598b1d0968e682678d",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/05-memory-real-bot-first.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "One bottom-row motif revealed with 'Mein Zug! Ich denke nach...' and one child move; Lumo remains visible.",
+      "sha256": "a24c57107edfb85f45738c26734895631ae3ba83315480eec88218f212f25297",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/06-memory-real-bot-second.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Two distinct bottom-row motifs visible during the bot turn; readable footer and counter.",
+      "sha256": "577dea2a2d773af23a5be2a5392c5c2fd64cfb413782947cd715268098d24fce",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/07-memory-real-win.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Readable win modal with two stars, saved-result text, Show board and New round; lower choices scroll. Wallet idempotence relies on current original ledger/state records.",
+      "sha256": "7c224189d4e1e064704a9f2c15e56accb6cb5cbd6289ebc29eb799b045a8f75b",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/08-memory-real-paid-reopen.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fresh eight-card concealed board, zero moves and starting prompt. New round/token are verified separately from original state JSON.",
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-hidden.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture eight-card concealed board, readable counters and footer, Lumo fully visible.",
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-one-flipped.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture first panda motif clearly visible with seven backs; unobscured card gap.",
+      "sha256": "e4e9ae047faca1a2a21a87544bbe91ef108363fe7fd6fbfa1b615147d392ebd3",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-paused.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture paused modal and fully visible Continue/New round; scrolling needed for lower settings.",
+      "sha256": null,
+      "sha256_provenance": "Value pending recovery of verified-original-extraction.json",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-matched.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture matched panda pair has two clear check markers and child count one; footer announces a match.",
+      "sha256": null,
+      "sha256_provenance": "Value pending recovery of verified-original-extraction.json",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-phone-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Portrait fixture displays all 24 backs in four columns by six rows with readable header/footer and preserved inset space. Lumo is not shown in this narrow layout.",
+      "sha256": null,
+      "sha256_provenance": "Value pending recovery of verified-original-extraction.json",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-fold-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fold fixture displays all 24 backs in six columns by four rows, Lumo visible at right, and complete header/footer.",
+      "sha256": null,
+      "sha256_provenance": "Value pending recovery of verified-original-extraction.json",
+      "dimensions": [
+        2208,
+        1840
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-compact-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "640x320 fixture exposes eight cards in one row and a readable 1–8 of24 page counter; Next arrow visible and enabled. Lumo is not shown.",
+      "sha256": null,
+      "sha256_provenance": "Value pending recovery of verified-original-extraction.json",
+      "dimensions": [
+        640,
+        320
+      ]
+    },
+    {
+      "artifact_entry": "memory-view/memory-cutout-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Wide cutout fixture preserves left inset, exposes twelve cards in two rows, complete header/footer and Next arrow with1–12 of24. Lumo is not shown.",
+      "sha256": null,
+      "sha256_provenance": "Value pending recovery of verified-original-extraction.json",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-00.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First-card motion sample begins with the back visible.",
+      "sha256": "a3c31660363757456acba9a44d4bc907874a4802e560223e524e13be84a57a3a",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-05.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First-card mid-flip sample is visibly narrower with the front motif appearing; neighboring cards unchanged.",
+      "sha256": "413a113112d077f24dc3b6719e37717a5d98072ba12b9339e3b746874fcb9ebd",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-11.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First-card late sample shows the full chest front. Three selected frames are visual motion evidence, not a measured physical-device frame rate.",
+      "sha256": "32976fa0acdfe5728f16117b05563ec3abf630cef5dbc91f8c6ea9b09133c154",
+      "sha256_provenance": "Current original capture/pair report read before outage",
+      "dimensions": [
+        960,
+        540
+      ]
+    }
+  ]
+}

@@ -1,0 +1,438 @@
+﻿2026-11-14T01:43:46.9560602Z Current runner version: '2.338.2'
+2026-11-14T01:43:46.9584589Z ##[group]Runner Image Provisioner
+2026-11-14T01:43:46.9585437Z Hosted Compute Agent
+2026-11-14T01:43:46.9586012Z Version: 20261103.629
+2026-11-14T01:43:46.9586695Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T01:43:46.9587434Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T01:43:46.9588118Z Worker ID: {27e28748-de2d-409b-90d2-0002761a0ea2}
+2026-11-14T01:43:46.9588769Z Region: eastus2
+2026-11-14T01:43:46.9589267Z Cloud: Azure
+2026-11-14T01:43:46.9590087Z ##[endgroup]
+2026-11-14T01:43:46.9591489Z ##[group]Operating System
+2026-11-14T01:43:46.9592373Z Ubuntu
+2026-11-14T01:43:46.9593096Z 24.04.5
+2026-11-14T01:43:46.9593637Z LTS
+2026-11-14T01:43:46.9594147Z ##[endgroup]
+2026-11-14T01:43:46.9594695Z ##[group]Runner Image
+2026-11-14T01:43:46.9595272Z Image: ubuntu-24.04
+2026-11-14T01:43:46.9595820Z Version: 20261111.370.1
+2026-11-14T01:43:46.9597039Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T01:43:46.9598493Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T01:43:46.9599958Z ##[endgroup]
+2026-11-14T01:43:46.9601128Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T01:43:46.9603529Z Actions: read
+2026-11-14T01:43:46.9604147Z Contents: read
+2026-11-14T01:43:46.9604664Z Metadata: read
+2026-11-14T01:43:46.9605225Z ##[endgroup]
+2026-11-14T01:43:46.9607463Z Secret source: Actions
+2026-11-14T01:43:46.9608356Z Cache mode: write
+2026-11-14T01:43:46.9609178Z Prepare workflow directory
+2026-11-14T01:43:46.9928383Z Prepare all required actions
+2026-11-14T01:43:46.9977636Z Getting action download info
+2026-11-14T01:43:47.2312652Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T01:43:47.3557234Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T01:43:47.6183653Z Complete job name: Original Android PNG captions on CI Tesseract
+2026-11-14T01:43:47.6955708Z ##[group]Run actions/checkout@v4
+2026-11-14T01:43:47.6956502Z with:
+2026-11-14T01:43:47.6957140Z   ref: a446f3c1a320ad5297e17606727d801c5e993ce1
+2026-11-14T01:43:47.6957826Z   persist-credentials: false
+2026-11-14T01:43:47.6958439Z   repository: Ullmann27/lumo-lernen
+2026-11-14T01:43:47.6962504Z   token: ***
+2026-11-14T01:43:47.6962997Z   ssh-strict: true
+2026-11-14T01:43:47.6963535Z   ssh-user: git
+2026-11-14T01:43:47.6964018Z   clean: true
+2026-11-14T01:43:47.6964689Z   sparse-checkout-cone-mode: true
+2026-11-14T01:43:47.6965604Z   fetch-depth: 1
+2026-11-14T01:43:47.6966218Z   fetch-tags: false
+2026-11-14T01:43:47.6966795Z   show-progress: true
+2026-11-14T01:43:47.6967299Z   lfs: false
+2026-11-14T01:43:47.6967773Z   submodules: false
+2026-11-14T01:43:47.6968539Z   set-safe-directory: true
+2026-11-14T01:43:47.6969114Z   allow-unsafe-pr-checkout: false
+2026-11-14T01:43:47.6970497Z ##[endgroup]
+2026-11-14T01:43:47.9752403Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T01:43:47.9756484Z ##[group]Getting Git version info
+2026-11-14T01:43:47.9757914Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T01:43:47.9760781Z [command]/usr/bin/git version
+2026-11-14T01:43:47.9869468Z git version 2.56.1
+2026-11-14T01:43:47.9895624Z ##[endgroup]
+2026-11-14T01:43:47.9912153Z Temporarily overriding HOME='/home/runner/work/_temp/c4364d34-55d8-4748-8188-905b8b4daf26' before making global git config changes
+2026-11-14T01:43:47.9914425Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T01:43:47.9918774Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T01:43:47.9971922Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T01:43:47.9988300Z ##[group]Initializing the repository
+2026-11-14T01:43:47.9991633Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T01:43:48.0107261Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T01:43:48.0109148Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T01:43:48.0110706Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T01:43:48.0111647Z hint: call:
+2026-11-14T01:43:48.0112170Z hint:
+2026-11-14T01:43:48.0112799Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T01:43:48.0113595Z hint:
+2026-11-14T01:43:48.0114318Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T01:43:48.0115463Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T01:43:48.0116392Z hint:
+2026-11-14T01:43:48.0116963Z hint: 	git branch -m <name>
+2026-11-14T01:43:48.0117852Z hint:
+2026-11-14T01:43:48.0119085Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T01:43:48.0121403Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T01:43:48.0134681Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T01:43:48.0284003Z ##[endgroup]
+2026-11-14T01:43:48.0284978Z ##[group]Disabling automatic garbage collection
+2026-11-14T01:43:48.0286631Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T01:43:48.0318379Z ##[endgroup]
+2026-11-14T01:43:48.0319282Z ##[group]Setting up auth
+2026-11-14T01:43:48.0325782Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T01:43:48.0358385Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T01:43:48.0724927Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T01:43:48.0752455Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T01:43:48.0936573Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T01:43:48.0965114Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T01:43:48.1154733Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T01:43:48.1193638Z ##[endgroup]
+2026-11-14T01:43:48.1195188Z ##[group]Fetching the repository
+2026-11-14T01:43:48.1207846Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin a446f3c1a320ad5297e17606727d801c5e993ce1
+2026-11-14T01:44:10.8167389Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T01:44:10.8168378Z  * branch            a446f3c1a320ad5297e17606727d801c5e993ce1 -> FETCH_HEAD
+2026-11-14T01:44:10.8174664Z ##[endgroup]
+2026-11-14T01:44:10.8175487Z ##[group]Determining the checkout info
+2026-11-14T01:44:10.8176213Z ##[endgroup]
+2026-11-14T01:44:10.8179370Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T01:44:10.8242153Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T01:44:10.8273330Z ##[group]Checking out the ref
+2026-11-14T01:44:10.8276160Z [command]/usr/bin/git checkout --progress --force a446f3c1a320ad5297e17606727d801c5e993ce1
+2026-11-14T01:44:11.8622827Z Updating files:  42% (1744/4121)
+2026-11-14T01:44:11.8652520Z Updating files:  43% (1773/4121)
+2026-11-14T01:44:11.8758774Z Updating files:  44% (1814/4121)
+2026-11-14T01:44:11.8776633Z Updating files:  45% (1855/4121)
+2026-11-14T01:44:11.8871575Z Updating files:  46% (1896/4121)
+2026-11-14T01:44:11.8890034Z Updating files:  47% (1937/4121)
+2026-11-14T01:44:11.8900405Z Updating files:  48% (1979/4121)
+2026-11-14T01:44:11.9000156Z Updating files:  49% (2020/4121)
+2026-11-14T01:44:11.9160618Z Updating files:  50% (2061/4121)
+2026-11-14T01:44:11.9235864Z Updating files:  51% (2102/4121)
+2026-11-14T01:44:12.0097430Z Updating files:  52% (2143/4121)
+2026-11-14T01:44:12.0109430Z Updating files:  53% (2185/4121)
+2026-11-14T01:44:12.0134928Z Updating files:  54% (2226/4121)
+2026-11-14T01:44:12.0356899Z Updating files:  55% (2267/4121)
+2026-11-14T01:44:12.0580563Z Updating files:  56% (2308/4121)
+2026-11-14T01:44:12.1218086Z Updating files:  57% (2349/4121)
+2026-11-14T01:44:12.1304917Z Updating files:  58% (2391/4121)
+2026-11-14T01:44:12.1332667Z Updating files:  59% (2432/4121)
+2026-11-14T01:44:12.1345781Z Updating files:  60% (2473/4121)
+2026-11-14T01:44:12.1393381Z Updating files:  61% (2514/4121)
+2026-11-14T01:44:12.1495176Z Updating files:  62% (2556/4121)
+2026-11-14T01:44:12.1619676Z Updating files:  63% (2597/4121)
+2026-11-14T01:44:12.1905568Z Updating files:  64% (2638/4121)
+2026-11-14T01:44:12.2033929Z Updating files:  65% (2679/4121)
+2026-11-14T01:44:12.2213274Z Updating files:  66% (2720/4121)
+2026-11-14T01:44:12.2301088Z Updating files:  67% (2762/4121)
+2026-11-14T01:44:12.2870841Z Updating files:  68% (2803/4121)
+2026-11-14T01:44:12.3179107Z Updating files:  69% (2844/4121)
+2026-11-14T01:44:12.3428045Z Updating files:  70% (2885/4121)
+2026-11-14T01:44:12.3693880Z Updating files:  71% (2926/4121)
+2026-11-14T01:44:12.3797181Z Updating files:  72% (2968/4121)
+2026-11-14T01:44:12.3824363Z Updating files:  73% (3009/4121)
+2026-11-14T01:44:12.3852533Z Updating files:  74% (3050/4121)
+2026-11-14T01:44:12.3878411Z Updating files:  75% (3091/4121)
+2026-11-14T01:44:12.3911373Z Updating files:  76% (3132/4121)
+2026-11-14T01:44:12.3955886Z Updating files:  77% (3174/4121)
+2026-11-14T01:44:12.3995322Z Updating files:  78% (3215/4121)
+2026-11-14T01:44:12.4028995Z Updating files:  79% (3256/4121)
+2026-11-14T01:44:12.4065157Z Updating files:  80% (3297/4121)
+2026-11-14T01:44:12.4099902Z Updating files:  81% (3339/4121)
+2026-11-14T01:44:12.4128250Z Updating files:  82% (3380/4121)
+2026-11-14T01:44:12.4152375Z Updating files:  83% (3421/4121)
+2026-11-14T01:44:12.4174380Z Updating files:  84% (3462/4121)
+2026-11-14T01:44:12.4200571Z Updating files:  85% (3503/4121)
+2026-11-14T01:44:12.4220638Z Updating files:  86% (3545/4121)
+2026-11-14T01:44:12.4240522Z Updating files:  87% (3586/4121)
+2026-11-14T01:44:12.4258209Z Updating files:  88% (3627/4121)
+2026-11-14T01:44:12.4274361Z Updating files:  89% (3668/4121)
+2026-11-14T01:44:12.4297682Z Updating files:  90% (3709/4121)
+2026-11-14T01:44:12.4315969Z Updating files:  91% (3751/4121)
+2026-11-14T01:44:12.4333441Z Updating files:  92% (3792/4121)
+2026-11-14T01:44:12.4350396Z Updating files:  93% (3833/4121)
+2026-11-14T01:44:12.4368016Z Updating files:  94% (3874/4121)
+2026-11-14T01:44:12.4396302Z Updating files:  95% (3915/4121)
+2026-11-14T01:44:12.4706941Z Updating files:  96% (3957/4121)
+2026-11-14T01:44:12.4933257Z Updating files:  97% (3998/4121)
+2026-11-14T01:44:12.4959568Z Updating files:  98% (4039/4121)
+2026-11-14T01:44:12.4981716Z Updating files:  99% (4080/4121)
+2026-11-14T01:44:12.4982354Z Updating files: 100% (4121/4121)
+2026-11-14T01:44:12.4982967Z Updating files: 100% (4121/4121), done.
+2026-11-14T01:44:12.5028474Z Note: switching to 'a446f3c1a320ad5297e17606727d801c5e993ce1'.
+2026-11-14T01:44:12.5029075Z 
+2026-11-14T01:44:12.5029877Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T01:44:12.5030648Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T01:44:12.5032368Z state without impacting any branches by switching back to a branch.
+2026-11-14T01:44:12.5032890Z 
+2026-11-14T01:44:12.5033232Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T01:44:12.5034136Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T01:44:12.5034556Z 
+2026-11-14T01:44:12.5034774Z   git switch -c <new-branch-name>
+2026-11-14T01:44:12.5035038Z 
+2026-11-14T01:44:12.5035232Z Or undo this operation with:
+2026-11-14T01:44:12.5035522Z 
+2026-11-14T01:44:12.5035729Z   git switch -
+2026-11-14T01:44:12.5036009Z 
+2026-11-14T01:44:12.5036613Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T01:44:12.5037093Z 
+2026-11-14T01:44:12.5037488Z HEAD is now at a446f3c qa: read observed gold captions and recheck the exact 4ab Studio APK
+2026-11-14T01:44:12.5112791Z ##[endgroup]
+2026-11-14T01:44:12.5154651Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T01:44:12.5176272Z a446f3c1a320ad5297e17606727d801c5e993ce1
+2026-11-14T01:44:12.5185203Z ##[group]Removing auth
+2026-11-14T01:44:12.5188352Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T01:44:12.5215090Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T01:44:12.5409848Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T01:44:12.5433911Z http.https://github.com/.extraheader
+2026-11-14T01:44:12.5441407Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T01:44:12.5473487Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T01:44:12.5667126Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T01:44:12.5691925Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T01:44:12.5888131Z ##[endgroup]
+2026-11-14T01:44:12.6108184Z ##[group]Run set -euo pipefail
+2026-11-14T01:44:12.6108724Z [36;1mset -euo pipefail[0m
+2026-11-14T01:44:12.6109184Z [36;1mmkdir -p ocr-regression[0m
+2026-11-14T01:44:12.6109644Z [36;1msudo apt-get -o Acquire::Retries=2 update -qq[0m
+2026-11-14T01:44:12.6110691Z [36;1msudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng[0m
+2026-11-14T01:44:12.6111442Z [36;1mtesseract --version > ocr-regression/tesseract-version.txt 2>&1[0m
+2026-11-14T01:44:12.6111992Z [36;1mgrep -Fxq 'tesseract 5.3.4' ocr-regression/tesseract-version.txt[0m
+2026-11-14T01:44:12.6112605Z [36;1mtesseract --list-langs 2>&1 | tee ocr-regression/tesseract-languages.txt[0m
+2026-11-14T01:44:12.6113148Z [36;1mgrep -Fxq 'deu' ocr-regression/tesseract-languages.txt[0m
+2026-11-14T01:44:12.6113612Z [36;1mgrep -Fxq 'eng' ocr-regression/tesseract-languages.txt[0m
+2026-11-14T01:44:12.6114062Z [36;1mpython3 -m venv .ocr-venv[0m
+2026-11-14T01:44:12.6114669Z [36;1m.ocr-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0[0m
+2026-11-14T01:44:12.6132825Z shell: /usr/bin/bash -e {0}
+2026-11-14T01:44:12.6133281Z ##[endgroup]
+2026-11-14T01:44:17.6796176Z Reading package lists...
+2026-11-14T01:44:17.9194219Z Building dependency tree...
+2026-11-14T01:44:17.9202364Z Reading state information...
+2026-11-14T01:44:18.0873724Z The following additional packages will be installed:
+2026-11-14T01:44:18.0881316Z   libgif7 liblept5 libtesseract5 tesseract-ocr-osd
+2026-11-14T01:44:18.1062100Z The following NEW packages will be installed:
+2026-11-14T01:44:18.1067205Z   libgif7 liblept5 libtesseract5 tesseract-ocr tesseract-ocr-deu
+2026-11-14T01:44:18.1068375Z   tesseract-ocr-eng tesseract-ocr-osd
+2026-11-14T01:44:18.1374666Z 0 upgraded, 7 newly installed, 0 to remove and 20 not upgraded.
+2026-11-14T01:44:18.1375269Z Need to get 9231 kB of archives.
+2026-11-14T01:44:18.1375696Z After this operation, 23.4 MB of additional disk space will be used.
+2026-11-14T01:44:18.1376213Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-14T01:44:18.1957179Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgif7 amd64 5.2.2-1ubuntu1.2 [35.6 kB]
+2026-11-14T01:44:18.2143768Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 liblept5 amd64 1.82.0-3build4 [1099 kB]
+2026-11-14T01:44:18.2398029Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libtesseract5 amd64 5.3.4-1build5 [1291 kB]
+2026-11-14T01:44:18.2656196Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-eng all 1:4.1.0-2 [1818 kB]
+2026-11-14T01:44:18.2950775Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-osd all 1:4.1.0-2 [3841 kB]
+2026-11-14T01:44:18.3358770Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr amd64 5.3.4-1build5 [328 kB]
+2026-11-14T01:44:18.3551723Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-deu all 1:4.1.0-2 [818 kB]
+2026-11-14T01:44:18.6301395Z Fetched 9231 kB in 0s (39.7 MB/s)
+2026-11-14T01:44:18.6531982Z Selecting previously unselected package libgif7:amd64.
+2026-11-14T01:44:18.6768566Z (Reading database ... 
+2026-11-14T01:44:18.6769250Z (Reading database ... 5%
+2026-11-14T01:44:18.6769646Z (Reading database ... 10%
+2026-11-14T01:44:18.6770195Z (Reading database ... 15%
+2026-11-14T01:44:18.6770784Z (Reading database ... 20%
+2026-11-14T01:44:18.6771265Z (Reading database ... 25%
+2026-11-14T01:44:18.6771733Z (Reading database ... 30%
+2026-11-14T01:44:18.6772135Z (Reading database ... 35%
+2026-11-14T01:44:18.6772899Z (Reading database ... 40%
+2026-11-14T01:44:18.6773378Z (Reading database ... 45%
+2026-11-14T01:44:18.6773784Z (Reading database ... 50%
+2026-11-14T01:44:18.6824417Z (Reading database ... 55%
+2026-11-14T01:44:18.8193321Z (Reading database ... 60%
+2026-11-14T01:44:19.0036565Z (Reading database ... 65%
+2026-11-14T01:44:19.1513464Z (Reading database ... 70%
+2026-11-14T01:44:19.3567898Z (Reading database ... 75%
+2026-11-14T01:44:19.4512965Z (Reading database ... 80%
+2026-11-14T01:44:19.6054854Z (Reading database ... 85%
+2026-11-14T01:44:19.7085384Z (Reading database ... 90%
+2026-11-14T01:44:19.8240297Z (Reading database ... 95%
+2026-11-14T01:44:19.8240965Z (Reading database ... 100%
+2026-11-14T01:44:19.8241882Z (Reading database ... 216752 files and directories currently installed.)
+2026-11-14T01:44:19.8288318Z Preparing to unpack .../0-libgif7_5.2.2-1ubuntu1.2_amd64.deb ...
+2026-11-14T01:44:19.8365178Z Unpacking libgif7:amd64 (5.2.2-1ubuntu1.2) ...
+2026-11-14T01:44:19.8577758Z Selecting previously unselected package liblept5:amd64.
+2026-11-14T01:44:19.8707994Z Preparing to unpack .../1-liblept5_1.82.0-3build4_amd64.deb ...
+2026-11-14T01:44:19.8722772Z Unpacking liblept5:amd64 (1.82.0-3build4) ...
+2026-11-14T01:44:19.9287683Z Selecting previously unselected package libtesseract5:amd64.
+2026-11-14T01:44:19.9417158Z Preparing to unpack .../2-libtesseract5_5.3.4-1build5_amd64.deb ...
+2026-11-14T01:44:19.9430746Z Unpacking libtesseract5:amd64 (5.3.4-1build5) ...
+2026-11-14T01:44:19.9832407Z Selecting previously unselected package tesseract-ocr-eng.
+2026-11-14T01:44:19.9964256Z Preparing to unpack .../3-tesseract-ocr-eng_1%3a4.1.0-2_all.deb ...
+2026-11-14T01:44:19.9977551Z Unpacking tesseract-ocr-eng (1:4.1.0-2) ...
+2026-11-14T01:44:20.0497642Z Selecting previously unselected package tesseract-ocr-osd.
+2026-11-14T01:44:20.0631454Z Preparing to unpack .../4-tesseract-ocr-osd_1%3a4.1.0-2_all.deb ...
+2026-11-14T01:44:20.0646001Z Unpacking tesseract-ocr-osd (1:4.1.0-2) ...
+2026-11-14T01:44:20.1955521Z Selecting previously unselected package tesseract-ocr.
+2026-11-14T01:44:20.2087173Z Preparing to unpack .../5-tesseract-ocr_5.3.4-1build5_amd64.deb ...
+2026-11-14T01:44:20.2099077Z Unpacking tesseract-ocr (5.3.4-1build5) ...
+2026-11-14T01:44:20.2439012Z Selecting previously unselected package tesseract-ocr-deu.
+2026-11-14T01:44:20.2572636Z Preparing to unpack .../6-tesseract-ocr-deu_1%3a4.1.0-2_all.deb ...
+2026-11-14T01:44:20.2586782Z Unpacking tesseract-ocr-deu (1:4.1.0-2) ...
+2026-11-14T01:44:20.3030033Z Setting up tesseract-ocr-eng (1:4.1.0-2) ...
+2026-11-14T01:44:20.3062434Z Setting up tesseract-ocr-deu (1:4.1.0-2) ...
+2026-11-14T01:44:20.3088247Z Setting up libgif7:amd64 (5.2.2-1ubuntu1.2) ...
+2026-11-14T01:44:20.3113381Z Setting up tesseract-ocr-osd (1:4.1.0-2) ...
+2026-11-14T01:44:20.3137462Z Setting up liblept5:amd64 (1.82.0-3build4) ...
+2026-11-14T01:44:20.3161383Z Setting up libtesseract5:amd64 (5.3.4-1build5) ...
+2026-11-14T01:44:20.3217417Z Setting up tesseract-ocr (5.3.4-1build5) ...
+2026-11-14T01:44:20.3245428Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-11-14T01:44:20.3286573Z Not building database; man-db/auto-update is not 'true'.
+2026-11-14T01:44:20.3300723Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-11-14T01:44:20.9560957Z 
+2026-11-14T01:44:20.9561901Z Running kernel seems to be up-to-date.
+2026-11-14T01:44:20.9562234Z 
+2026-11-14T01:44:20.9562599Z No services need to be restarted.
+2026-11-14T01:44:20.9562907Z 
+2026-11-14T01:44:20.9563067Z No containers need to be restarted.
+2026-11-14T01:44:20.9563340Z 
+2026-11-14T01:44:20.9563502Z No user sessions are running outdated binaries.
+2026-11-14T01:44:20.9563853Z 
+2026-11-14T01:44:20.9564098Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-14T01:44:22.0488141Z List of available languages in "/usr/share/tesseract-ocr/5/tessdata/" (3):
+2026-11-14T01:44:22.0488713Z deu
+2026-11-14T01:44:22.0488972Z eng
+2026-11-14T01:44:22.0489311Z osd
+2026-11-14T01:44:25.4614122Z Collecting Pillow==12.3.0
+2026-11-14T01:44:25.6523447Z   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-14T01:44:25.7230601Z Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-14T01:44:26.1300938Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 17.6 MB/s eta 0:00:00
+2026-11-14T01:44:26.1554487Z Installing collected packages: Pillow
+2026-11-14T01:44:26.4579664Z Successfully installed Pillow-12.3.0
+2026-11-14T01:44:26.5438839Z ##[group]Run set -euo pipefail
+2026-11-14T01:44:26.5439253Z [36;1mset -euo pipefail[0m
+2026-11-14T01:44:26.5440352Z [36;1m.ocr-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_native_caption_ocr.py -v 2>&1 | tee ocr-regression/original-caption-replay.log[0m
+2026-11-14T01:44:26.5441455Z [36;1m.ocr-venv/bin/python -B -m unittest discover -s scripts/tests -p test_studio_4ab_recheck.py -v 2>&1 | tee ocr-regression/source-binding-counterexamples.log[0m
+2026-11-14T01:44:26.5456607Z shell: /usr/bin/bash -e {0}
+2026-11-14T01:44:26.5457011Z ##[endgroup]
+2026-11-14T01:44:26.6705105Z test_actual_reader_exception_is_preserved_in_the_journal (test_native_caption_ocr.NativeCaptionBoundaries.test_actual_reader_exception_is_preserved_in_the_journal) ... ok
+2026-11-14T01:44:26.6876836Z test_colour_components_follow_observed_pixels_in_unrelated_locations (test_native_caption_ocr.NativeCaptionBoundaries.test_colour_components_follow_observed_pixels_in_unrelated_locations) ... ok
+2026-11-14T01:44:26.8714380Z test_decorative_gold_without_letters_does_not_fabricate_requested_caption (test_native_caption_ocr.NativeCaptionBoundaries.test_decorative_gold_without_letters_does_not_fabricate_requested_caption) ... ok
+2026-11-14T01:44:26.9011363Z test_exact_observed_text_and_confidence_cannot_be_replaced_by_requested_text (test_native_caption_ocr.NativeCaptionBoundaries.test_exact_observed_text_and_confidence_cannot_be_replaced_by_requested_text) ... ok
+2026-11-14T01:44:26.9199688Z test_internal_crop_edge_cannot_create_an_accepted_short_caption (test_native_caption_ocr.NativeCaptionBoundaries.test_internal_crop_edge_cannot_create_an_accepted_short_caption) ... ok
+2026-11-14T01:44:26.9412808Z test_modified_source_cannot_be_used_as_a_touch_target (test_native_caption_ocr.NativeCaptionBoundaries.test_modified_source_cannot_be_used_as_a_touch_target) ... ok
+2026-11-14T01:44:26.9596444Z test_outside_word_bounds_are_a_hard_failure (test_native_caption_ocr.NativeCaptionBoundaries.test_outside_word_bounds_are_a_hard_failure) ... ok
+2026-11-14T01:44:26.9796265Z test_remaining_total_budget_cannot_return_a_match_after_expiry (test_native_caption_ocr.NativeCaptionBoundaries.test_remaining_total_budget_cannot_return_a_match_after_expiry) ... ok
+2026-11-14T01:44:32.3857175Z test_original_api35_first_frame (test_native_caption_ocr.NativeCaptionOriginals.test_original_api35_first_frame) ... ok
+2026-11-14T01:44:37.6856161Z test_original_api35_last_frame (test_native_caption_ocr.NativeCaptionOriginals.test_original_api35_last_frame) ... ok
+2026-11-14T01:44:43.1276181Z test_original_api37_first_frame (test_native_caption_ocr.NativeCaptionOriginals.test_original_api37_first_frame) ... ok
+2026-11-14T01:44:48.8229413Z test_original_api37_last_frame (test_native_caption_ocr.NativeCaptionOriginals.test_original_api37_last_frame) ... ok
+2026-11-14T01:44:48.8230399Z 
+2026-11-14T01:44:48.8232891Z ----------------------------------------------------------------------
+2026-11-14T01:44:48.8233637Z Ran 12 tests in 22.180s
+2026-11-14T01:44:48.8234001Z 
+2026-11-14T01:44:48.8234153Z OK
+2026-11-14T01:44:48.9775247Z test_both_unchanged_clis_use_absolute_qa_paths_and_product_cwd (test_studio_4ab_recheck.ExecutionBoundaryTests.test_both_unchanged_clis_use_absolute_qa_paths_and_product_cwd) ... ok
+2026-11-14T01:44:48.9778535Z test_declared_artifact_path_cannot_create_a_source_directory_exception (test_studio_4ab_recheck.ExecutionBoundaryTests.test_declared_artifact_path_cannot_create_a_source_directory_exception) ... Only the workflow's explicit, separate product/artifact/output paths are accepted
+2026-11-14T01:44:48.9780600Z ok
+2026-11-14T01:44:48.9784035Z test_failed_first_original_tour_never_invokes_cards_tour (test_studio_4ab_recheck.ExecutionBoundaryTests.test_failed_first_original_tour_never_invokes_cards_tour) ... ok
+2026-11-14T01:44:48.9797990Z test_failed_tour_still_records_actual_post_binding (test_studio_4ab_recheck.ExecutionBoundaryTests.test_failed_tour_still_records_actual_post_binding) ... {
+2026-11-14T01:44:48.9799470Z   "status": "FAIL",
+2026-11-14T01:44:48.9800222Z   "diagnostic_only": true,
+2026-11-14T01:44:48.9800793Z   "build_or_publish_performed": false,
+2026-11-14T01:44:48.9801479Z   "physical_fold7_performance_measured": false,
+2026-11-14T01:44:48.9802035Z   "commands": [],
+2026-11-14T01:44:48.9802571Z   "expected_qa_source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+2026-11-14T01:44:48.9803381Z   "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+2026-11-14T01:44:48.9804086Z   "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+2026-11-14T01:44:48.9804687Z   "requested_api": 37,
+2026-11-14T01:44:48.9805180Z   "diagnostic_github_run": "43542310963",
+2026-11-14T01:44:48.9805781Z   "diagnostic_github_attempt": "1",
+2026-11-14T01:44:48.9806339Z   "error": "RuntimeError: original tour failed",
+2026-11-14T01:44:48.9806971Z   "finished_at": "2026-11-14T01:44:48.979353+00:00",
+2026-11-14T01:44:48.9807473Z   "before_binding_verified": true,
+2026-11-14T01:44:48.9807968Z   "after_binding_matches": true
+2026-11-14T01:44:48.9808434Z }
+2026-11-14T01:44:48.9808851Z ok
+2026-11-14T01:44:48.9821634Z test_post_execution_identity_change_cannot_pass (test_studio_4ab_recheck.ExecutionBoundaryTests.test_post_execution_identity_change_cannot_pass) ... {
+2026-11-14T01:44:48.9823007Z   "status": "FAIL",
+2026-11-14T01:44:48.9823549Z   "diagnostic_only": true,
+2026-11-14T01:44:48.9824127Z   "build_or_publish_performed": false,
+2026-11-14T01:44:48.9824822Z   "physical_fold7_performance_measured": false,
+2026-11-14T01:44:48.9825442Z   "commands": [],
+2026-11-14T01:44:48.9826060Z   "expected_qa_source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+2026-11-14T01:44:48.9826869Z   "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+2026-11-14T01:44:48.9827600Z   "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+2026-11-14T01:44:48.9828277Z   "requested_api": 37,
+2026-11-14T01:44:48.9828806Z   "diagnostic_github_run": "43542310963",
+2026-11-14T01:44:48.9829323Z   "diagnostic_github_attempt": "1",
+2026-11-14T01:44:48.9830413Z   "error": "RuntimeError: Sources, original metadata or binary bytes changed during the tour",
+2026-11-14T01:44:48.9831267Z   "finished_at": "2026-11-14T01:44:48.981850+00:00",
+2026-11-14T01:44:48.9831975Z   "before_binding_verified": true,
+2026-11-14T01:44:48.9832537Z   "after_binding_matches": false
+2026-11-14T01:44:48.9833224Z }
+2026-11-14T01:44:48.9833679Z ok
+2026-11-14T01:44:48.9843336Z test_stale_reports_and_source_output_do_not_trigger_android (test_studio_4ab_recheck.ExecutionBoundaryTests.test_stale_reports_and_source_output_do_not_trigger_android) ... {
+2026-11-14T01:44:48.9844798Z   "status": "FAIL",
+2026-11-14T01:44:48.9845314Z   "diagnostic_only": true,
+2026-11-14T01:44:48.9845798Z   "build_or_publish_performed": false,
+2026-11-14T01:44:48.9846453Z   "physical_fold7_performance_measured": false,
+2026-11-14T01:44:48.9847012Z   "commands": [],
+2026-11-14T01:44:48.9847591Z   "expected_qa_source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+2026-11-14T01:44:48.9848464Z   "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+2026-11-14T01:44:48.9849152Z   "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+2026-11-14T01:44:48.9850020Z   "requested_api": 37,
+2026-11-14T01:44:48.9850545Z   "diagnostic_github_run": "43542310963",
+2026-11-14T01:44:48.9851090Z   "diagnostic_github_attempt": "1",
+2026-11-14T01:44:48.9851755Z   "error": "RuntimeError: Old runtime reports cannot be reused",
+2026-11-14T01:44:48.9852415Z   "finished_at": "2026-11-14T01:44:48.984028+00:00",
+2026-11-14T01:44:48.9853005Z   "before_binding_verified": true,
+2026-11-14T01:44:48.9853507Z   "after_binding_matches": false
+2026-11-14T01:44:48.9853954Z }
+2026-11-14T01:44:48.9854553Z Original diagnostic result already exists; use a fresh output
+2026-11-14T01:44:48.9855349Z Only the workflow's explicit, separate product/artifact/output paths are accepted
+2026-11-14T01:44:48.9856136Z ok
+2026-11-14T01:44:50.5276918Z test_assume_unchanged_cannot_hide_actual_dirty_source (test_studio_4ab_recheck.GitBindingTests.test_assume_unchanged_cannot_hide_actual_dirty_source) ... ok
+2026-11-14T01:44:50.8775282Z test_committed_mode_change_is_not_a_qa_exception (test_studio_4ab_recheck.GitBindingTests.test_committed_mode_change_is_not_a_qa_exception) ... ok
+2026-11-14T01:44:50.9661545Z test_exact_nine_file_delta_and_real_worktree_pass (test_studio_4ab_recheck.GitBindingTests.test_exact_nine_file_delta_and_real_worktree_pass) ... ok
+2026-11-14T01:44:51.1019189Z test_output_growth_does_not_change_bound_source_identity (test_studio_4ab_recheck.GitBindingTests.test_output_growth_does_not_change_bound_source_identity) ... ok
+2026-11-14T01:44:51.1997023Z test_product_change_outside_allowlist_is_rejected (test_studio_4ab_recheck.GitBindingTests.test_product_change_outside_allowlist_is_rejected) ... ok
+2026-11-14T01:44:51.3006631Z test_wrong_candidate_head_and_undeclared_source_are_rejected (test_studio_4ab_recheck.GitBindingTests.test_wrong_candidate_head_and_undeclared_source_are_rejected) ... ok
+2026-11-14T01:44:51.3043584Z test_changed_pck_rejected_even_with_new_matching_outer_apk_digest (test_studio_4ab_recheck.MetadataAndBinaryTests.test_changed_pck_rejected_even_with_new_matching_outer_apk_digest) ... ok
+2026-11-14T01:44:51.3044872Z test_failed_later_original_gates_do_not_disguise_successful_builder (test_studio_4ab_recheck.MetadataAndBinaryTests.test_failed_later_original_gates_do_not_disguise_successful_builder) ... ok
+2026-11-14T01:44:51.3123072Z test_foreign_artifact_run_attempt_and_failed_build_are_rejected (test_studio_4ab_recheck.MetadataAndBinaryTests.test_foreign_artifact_run_attempt_and_failed_build_are_rejected) ... ok
+2026-11-14T01:44:51.3159000Z test_foreign_provenance_signature_and_duplicate_sums_are_rejected (test_studio_4ab_recheck.MetadataAndBinaryTests.test_foreign_provenance_signature_and_duplicate_sums_are_rejected) ... ok
+2026-11-14T01:44:51.3170910Z test_real_small_zip_bytes_are_measured_and_later_tampering_fails (test_studio_4ab_recheck.MetadataAndBinaryTests.test_real_small_zip_bytes_are_measured_and_later_tampering_fails) ... ok
+2026-11-14T01:44:51.3171549Z 
+2026-11-14T01:44:51.3171869Z ----------------------------------------------------------------------
+2026-11-14T01:44:51.3172291Z Ran 17 tests in 2.340s
+2026-11-14T01:44:51.3172482Z 
+2026-11-14T01:44:51.3172587Z OK
+2026-11-14T01:44:51.3404843Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T01:44:51.3405383Z with:
+2026-11-14T01:44:51.3405805Z   name: lumo-studio-4ab-original-caption-replay-43542310963
+2026-11-14T01:44:51.3406281Z   path: ocr-regression/
+2026-11-14T01:44:51.3406650Z   if-no-files-found: error
+2026-11-14T01:44:51.3406977Z   retention-days: 30
+2026-11-14T01:44:51.3407275Z   compression-level: 6
+2026-11-14T01:44:51.3407628Z   overwrite: false
+2026-11-14T01:44:51.3407942Z   include-hidden-files: false
+2026-11-14T01:44:51.3408272Z ##[endgroup]
+2026-11-14T01:44:51.5092154Z (node:3265) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T01:44:51.5093085Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T01:44:51.5148614Z With the provided path, there will be 4 files uploaded
+2026-11-14T01:44:51.5160955Z Artifact name is valid!
+2026-11-14T01:44:51.5162032Z Root directory input is valid!
+2026-11-14T01:44:51.7598861Z Beginning upload of artifact content to blob storage
+2026-11-14T01:44:51.7820389Z (node:3265) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T01:44:51.8232607Z Uploaded bytes 2613
+2026-11-14T01:44:51.8406803Z Finished uploading artifact content to blob storage!
+2026-11-14T01:44:51.8407691Z SHA256 digest of uploaded artifact zip is 54b7887130b9868e70132439c6604b59b233111cc7e4818a90fce3340b842687
+2026-11-14T01:44:51.8409343Z Finalizing artifact upload
+2026-11-14T01:44:52.2219845Z Artifact lumo-studio-4ab-original-caption-replay-43542310963.zip successfully finalized. Artifact ID 14091419071
+2026-11-14T01:44:52.2221642Z Artifact lumo-studio-4ab-original-caption-replay-43542310963 has been successfully uploaded! Final size is 2613 bytes. Artifact ID is 14091419071
+2026-11-14T01:44:52.2227639Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43542310963/artifacts/14091419071
+2026-11-14T01:44:52.2447146Z Post job cleanup.
+2026-11-14T01:44:52.3279401Z [command]/usr/bin/git version
+2026-11-14T01:44:52.3314564Z git version 2.56.1
+2026-11-14T01:44:52.3348765Z Temporarily overriding HOME='/home/runner/work/_temp/46d107c5-bec9-4b92-8483-029365192850' before making global git config changes
+2026-11-14T01:44:52.3350328Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T01:44:52.3354959Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T01:44:52.3391750Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T01:44:52.3422633Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T01:44:52.3622882Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T01:44:52.3651880Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T01:44:52.3843040Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T01:44:52.3900550Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T01:44:52.4221618Z Cleaning up orphan processes
+2026-11-14T01:44:52.4574025Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,67 @@
+{
+  "status": "LOCAL_ORIGINAL_FRAME_REPLAY_AND_CONTRACTS_PASS_NOT_ANDROID",
+  "exact_original_source_sha256": "f3438c5d56cc26f0945831f13458faf07f73f3dd9c35dca2365a85d8a4824fe8",
+  "patched_source_sha256": "d18afe3b68113f9932ba17819dfcc2f0dfd0dd5047b84070ebd03d84d02b10d9",
+  "original_artifact_id": 14099161487,
+  "original_artifact_sha256": "c8b78ebfccf0db7f6a05db94208fcb6f95218fdd29accef175d68c82016b7347",
+  "original_failure_notes": "../studio-final-86445f53/creative/streamed-original/failure-diagnosis-review.json",
+  "changes": [
+    {
+      "function": "stick_target",
+      "actual_bug": "186px original portrait joystick rejected against 249.6px height-derived minimum",
+      "fix": "Same 13% bound tied to actual shorter screenshot edge; cyan ring, hollow center, uniqueness and real coordinates retained"
+    },
+    {
+      "function": "puzzle_piece_target",
+      "actual_bug": "Original visible board RGB47/55/87 excluded by the old red<=36 mask",
+      "fix": "Bounded actual navy range and channel ratios; same unique contour/homography and visible nonblank tray required"
+    },
+    {
+      "function": "Tour.enter / new scene_entry",
+      "actual_bug": "Original title existed on loading cover, so Back was sent before ready Build and returned to Flutter",
+      "fix": "At most10 observations within120s; complete actual surface and no observed loading caption; two stable actual title boxes before subsequent original Back; no synthetic input or fixed target"
+    }
+  ],
+  "unchanged_methods": [
+    "Tour.build",
+    "Tour.puzzle",
+    "Tour.treasure",
+    "Tour.jump",
+    "Tour.pause_save",
+    "Tour.leave",
+    "approach_treasure",
+    "candidate_binding",
+    "verify_candidate_metadata"
+  ],
+  "unchanged_definitions": 43,
+  "executed_tests": {
+    "identical_new_tests_on_original": {
+      "cases": 11,
+      "passed": 2,
+      "failures": 5,
+      "errors": 4,
+      "exit_code": 1,
+      "scope": "Original two pixel detectors fail; old entry behavior lacks new readiness contract. Not nine independent product bugs."
+    },
+    "same_tests_on_patch": {
+      "passed": 11,
+      "failures": 0,
+      "skip": 0,
+      "exit_code": 0
+    },
+    "original_nine_contracts_unchanged": {
+      "passed": 9,
+      "failures": 0,
+      "skip": 0,
+      "exit_code": 0
+    }
+  },
+  "test_limits": [
+    "Actual original image pixel detection is replayed without Android",
+    "Scene-entry transport and clock are doubles; ready OCR bounds are explicitly synthetic, not a new OCR/Android claim",
+    "No successful new Creative Android run or save round-trip is asserted",
+    "Version2020 changes owned by A are deliberately absent; Root composes disjoint patches"
+  ],
+  "primary_sources_unchanged": true,
+  "host_source_manifest_sha256": "42f968237181909fd1091953b74bec201c16fa7c919df7b18e619534cecf807c"
+}

@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "attempts": [
+    {
+      "arguments": [
+        "get-serialno"
+      ],
+      "elapsed_seconds": 0.0,
+      "status": "PASS",
+      "return_code": 0,
+      "output": "emulator-5554"
+    },
+    {
+      "arguments": [
+        "-s",
+        "emulator-5554",
+        "root"
+      ],
+      "elapsed_seconds": 0.007,
+      "status": "PASS",
+      "return_code": 0,
+      "output": "restarting adbd as root"
+    },
+    {
+      "arguments": [
+        "-s",
+        "emulator-5554",
+        "wait-for-device"
+      ],
+      "elapsed_seconds": 1.346,
+      "status": "PASS",
+      "return_code": 0,
+      "output": ""
+    },
+    {
+      "arguments": [
+        "-s",
+        "emulator-5554",
+        "shell",
+        "id",
+        "-u"
+      ],
+      "elapsed_seconds": 1.353,
+      "status": "PASS",
+      "return_code": 0,
+      "output": "0"
+    },
+    {
+      "arguments": [
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "elapsed_seconds": 1.411,
+      "status": "PASS",
+      "return_code": 0,
+      "output": "1"
+    }
+  ],
+  "root_transport_recovered": false,
+  "initial_offline_recovered": false,
+  "initial_missing_recovered": false,
+  "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+  "scope": "disposable emulator setup; this does not pass installation or gameplay",
+  "serial": "emulator-5554",
+  "last_shell_uid": "0",
+  "last_boot_completed": "1",
+  "shell_uid": 0,
+  "boot_completed": true,
+  "elapsed_seconds": 1.429
+}

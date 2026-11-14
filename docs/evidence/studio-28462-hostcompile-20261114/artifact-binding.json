@@ -1,0 +1,80 @@
+{
+  "artifact_id": 14126072166,
+  "bytes": 28909,
+  "sha256": "a78f60574d5634f32ff4fcfd80f22a2179a3d781d273ab4f8c4279142550139d",
+  "all_crc_ok": true,
+  "files": [
+    {
+      "path": "cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "e0455b28f4b9e6bcc052c36bf8155bc5d357f28b018ebf54789a35188c288764",
+      "git_blob_sha": "bbe707a9dd08170fe6b457aa99bde6042e10ca77"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 34385,
+      "sha256": "7807294a76a3c16ac6096f2d7b9ac9308948ce49b04a0b830f5606ac334310f8",
+      "git_blob_sha": "df45d3225c1fb7a4410605013190138efbb5bfa5"
+    },
+    {
+      "path": "flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "result.json",
+      "bytes": 5235,
+      "sha256": "fce1ebba9d2c6e82daa7c3645fc580063c40a141f8cf675c6cd9ec339d4e4dc7",
+      "git_blob_sha": "004dbb6c00a155359f11dbce8442eeae37f868ff"
+    },
+    {
+      "path": "source-sha.txt",
+      "bytes": 41,
+      "sha256": "7ad2070869ceb5ecdf19db99bf370de5d70d617ea24c79a9c23b0ea87988c084",
+      "git_blob_sha": "53b01f5ab9eb3b8d53026fe764cc76631df9268d"
+    },
+    {
+      "path": "speech/resolved-toolchain.json",
+      "bytes": 321,
+      "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+      "git_blob_sha": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5"
+    },
+    {
+      "path": "speech/result.json",
+      "bytes": 62738,
+      "sha256": "06e99e7b23b393a2c0a40992b2ad1692336461ddfacd0c91c8d50a7eb4973d8d",
+      "git_blob_sha": "0bcdd838407e1d53ba7cdd6f9dab0546283b6929"
+    },
+    {
+      "path": "speech/test_english_lesson_speech.json",
+      "bytes": 1338,
+      "sha256": "e1a092008002bf5374ec19d883bc99ebbfc077f4b140135d6dacad0ee0e6d673",
+      "git_blob_sha": "563f9969d885bec8b2b41b21e20bd168dbee76d1"
+    },
+    {
+      "path": "speech/test_english_lesson_speech.log",
+      "bytes": 2894,
+      "sha256": "aeed46faf905f257830aa1ce622f913dfc1811adfa8081fbec989e784af98d46",
+      "git_blob_sha": "c3eea51d854650c1188015a54663ae2332713008"
+    },
+    {
+      "path": "speech/test_learning_english_speech_lifecycle.json",
+      "bytes": 1265,
+      "sha256": "38c8bc110184679b9c2554201cf1e6b9426730e1cb9588475232f4cfafcdaf54",
+      "git_blob_sha": "7241a9cc4568c4d38143946d2b17ca34bc7a8ada"
+    },
+    {
+      "path": "speech/test_learning_english_speech_lifecycle.log",
+      "bytes": 2709,
+      "sha256": "bd9933ea090b9b1a4f719b1f1d3536ed8ae922dca0f07989d3b937b1d9c8f1e3",
+      "git_blob_sha": "65c80ff36875bba22e0fe55d55dee140f441f97b"
+    },
+    {
+      "path": "speech/toolchain-original.log",
+      "bytes": 493,
+      "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+      "git_blob_sha": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f"
+    }
+  ]
+}

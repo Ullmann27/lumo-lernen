@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "repo_path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14",
+      "unchanged_after_upload": true,
+      "full_utf8_readback": true
+    },
+    {
+      "repo_path": "test/games/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "unchanged_after_upload": true,
+      "full_utf8_readback": true
+    }
+  ],
+  "peer_review": {
+    "path": "/workspace/scratch/5987865ae883/qa/memory-durability-peer-review-b721-20261114/review.json",
+    "bytes": 6724,
+    "sha256": "09e5e429f0aab23a15743b8522d5b52a93c20f25af5f2502f1b016c49d454764",
+    "finding": "No additional concrete blocker in the read-only product/test/API review",
+    "tests_run": 0
+  },
+  "manifest_sha256": "0b42c1c81c4b15d7565f556dce1b95cb9be9d8e240c8a13a97589fb475a722dc",
+  "new_tests_defined": 14,
+  "new_tests_executed": 0,
+  "trees_commits_refs_changed": false
+}

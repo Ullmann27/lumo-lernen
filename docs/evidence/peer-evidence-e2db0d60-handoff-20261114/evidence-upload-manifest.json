@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "kind": "explicit_additive_peer_evidence_upload",
+  "created_utc": "2026-11-14 19:36:27 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "product_context": {
+    "host_source": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+    "source_status": "Root reports committed on PR507; these unchanged peer notes are static review history, not a compiler or Flutter execution result.",
+    "review_baseline": "28462a7547048b75fa114e6f5832248e54c94faa"
+  },
+  "evidence_base": {
+    "branch": "chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "commit": "e77c802080ea0f1abe1a0e8fba39b17d9fe0e88d",
+    "tree": "59c0aff73063a9c2ee57522bfb7feb2f255d59cf",
+    "truncated": false,
+    "existing_blob_leaves": 8761
+  },
+  "scope": {
+    "document_targets": 8,
+    "source_changes": false,
+    "new_tests": false,
+    "tree_commit_ref_mutations": false,
+    "png_reuploads": false,
+    "binary_readback_claim": false,
+    "note": "Original peer documents and source manifests remain byte-identical. Image proof and tree inputs document two previously confirmed original PNG blobs; this package adds only UTF-8 documents."
+  },
+  "owner_manifest_checks": [
+    {
+      "local_path": "qa/memory-native-commit-fix-28462-20261114/evidence-upload-manifest.json",
+      "sha256": "e5c0683047033f41b3d34de768f04f432461d1b41180bcd500d9e3b486b55af1",
+      "git_blob_sha": "8c7f355d2ffea43a4c0312e628ad4f26f376c429",
+      "explicit_targets": 23
+    },
+    {
+      "local_path": "qa/wallet-dedup-ack-barrier-28462-20261114/evidence-upload-manifest.json",
+      "sha256": "c06e90453943fd7cfdc2ec8e9385ba4f70519e748361122501a1e92e1b271438",
+      "git_blob_sha": "501dbbcc71ec3b01efd07e636be4e15f5f5a3129",
+      "explicit_targets": 11
+    }
+  ],
+  "deduplication": [
+    {
+      "group": "wallet_peer",
+      "decision": "excluded_already_explicitly_owned",
+      "canonical_target": "docs/evidence/wallet-dedup-ack-barrier-28462-20261114/evidence/independent-peer-review.json",
+      "sha256": "1e10c907d37ef2ee7e8604762cc6618699aad9829ead94d4d829015f9ed74a1e",
+      "git_blob_sha": "85b1b66c218ce1f9bfac15ac63409303e64e0332",
+      "own_alias_manifest_excluded": true,
+      "owner_manifest": "qa/wallet-dedup-ack-barrier-28462-20261114/evidence-upload-manifest.json"
+    },
+    {
+      "group": "memory_peer",
+      "decision": "include_final_note_and_original_manifest",
+      "reason": "C's explicit package includes only peer-review-reference.json, not the final peer text or B's original upload manifest.",
+      "owner_manifest": "qa/memory-native-commit-fix-28462-20261114/evidence-upload-manifest.json"
+    }
+  ],
+  "files": [
+    {
+      "source_path": "qa/kart-preview-reader-peer-review-28462-20261114/review.json",
+      "path": "docs/evidence/kart-preview-reader-peer-review-28462-20261114/review.json",
+      "sha256": "742cf57a9d1206617c95711a9a08844fe0b87463b55af1aba0ed747be32d118e",
+      "bytes": 7912,
+      "git_blob_sha": "e353a5c91932403dd86e5d531a526cea69d0f095",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    },
+    {
+      "source_path": "qa/kart-preview-reader-peer-review-28462-20261114/upload-manifest.json",
+      "path": "docs/evidence/kart-preview-reader-peer-review-28462-20261114/upload-manifest.json",
+      "sha256": "4011ab68d351156b20388dd35e7de9f1db63f6b9e0a53036599239088a84a230",
+      "bytes": 467,
+      "git_blob_sha": "f539b09879dadabcca4c1bf39160d283b0406644",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    },
+    {
+      "source_path": "qa/kart-preview-reader-peer-review-28462-20261114/original-image-confirmed-tree-inputs.json",
+      "path": "docs/evidence/kart-preview-reader-peer-review-28462-20261114/original-image-confirmed-tree-inputs.json",
+      "sha256": "7bde5a0f6e24b9edc8c0d0e13916f38d8395095d55a8c13f628fb6e34ca2bc4d",
+      "bytes": 447,
+      "git_blob_sha": "4f32481da326f7907ef109fd25751259a3cae15d",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    },
+    {
+      "source_path": "qa/kart-preview-reader-peer-review-28462-20261114/original-image-upload-proof.json",
+      "path": "docs/evidence/kart-preview-reader-peer-review-28462-20261114/original-image-upload-proof.json",
+      "sha256": "652c0f02d7156551242db92994ed45d2d29caf49e483fcad8b6ba56f158febdb",
+      "bytes": 2805,
+      "git_blob_sha": "dbc493875ac01db1eab5aabf1f29ce662a22ce65",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    },
+    {
+      "source_path": "qa/c4-bot-retry-peer-review-28462-20261114/review.json",
+      "path": "docs/evidence/c4-bot-retry-peer-review-28462-20261114/review.json",
+      "sha256": "6c9b86e4785360a33d17011f2c00968e0865f97420fda6ee33e933eef2a4c254",
+      "bytes": 4993,
+      "git_blob_sha": "fea2185de935236939dbddb49f03685eb2346246",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    },
+    {
+      "source_path": "qa/c4-bot-retry-peer-review-28462-20261114/upload-manifest.json",
+      "path": "docs/evidence/c4-bot-retry-peer-review-28462-20261114/upload-manifest.json",
+      "sha256": "d94350ec7a2ea5b29819db58c87bbac4a9a71307523fd2c73e27351c6452b05e",
+      "bytes": 375,
+      "git_blob_sha": "900a7b449c96d7eb532a129accc1cd44d50d7c0c",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    },
+    {
+      "source_path": "qa/memory-native-commit-peer-review-28462-20261114/final-review.json",
+      "path": "docs/evidence/memory-native-commit-peer-review-28462-20261114/final-review.json",
+      "sha256": "46d0b063584e0c6c842a7dbbf73e35a7cfa56b57f811ff9616ad14da8ca4c7fa",
+      "bytes": 6263,
+      "git_blob_sha": "e6c8171c0e9fd89e7ff149549d4724d2724db3d2",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    },
+    {
+      "source_path": "qa/memory-native-commit-peer-review-28462-20261114/upload-manifest.json",
+      "path": "docs/evidence/memory-native-commit-peer-review-28462-20261114/upload-manifest.json",
+      "sha256": "5a683366e52bd122967ef63167487e194b7c6f851c3203d2c68f80e3df2ba56c",
+      "bytes": 619,
+      "git_blob_sha": "58d7310c2a97dc9cb7c6fcc9f68df48ee997cecf",
+      "mode": "100644",
+      "type": "blob",
+      "pre_upload_local_hashes_verified": true,
+      "target_existing_at_base": false
+    }
+  ],
+  "own_manifest_target": "docs/evidence/peer-evidence-e2db0d60-handoff-20261114/evidence-upload-manifest.json"
+}

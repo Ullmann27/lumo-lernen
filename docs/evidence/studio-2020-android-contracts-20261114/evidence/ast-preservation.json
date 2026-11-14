@@ -1,0 +1,162 @@
+{
+  "definitions": {
+    ".github/probes/lumo_studio_surfaces_android_probe.py": {
+      "unchanged": [
+        "CardsMailbox.__init__",
+        "CardsMailbox._observe_lifecycle",
+        "CardsMailbox.locate",
+        "CardsMailbox.read",
+        "CardsMailbox.saved",
+        "_speech_logcat",
+        "capture_cards_faces",
+        "capture_returned_flutter",
+        "cards_display_density",
+        "cards_ready_to_draw",
+        "cards_roundtrip",
+        "completed_native_speech",
+        "learning_roundtrip",
+        "local_voice_permission",
+        "must_see",
+        "native_ready",
+        "read_cards_layout",
+        "resumed_activity",
+        "returned_to_flutter",
+        "tap_flutter",
+        "wait_for"
+      ],
+      "changed": [
+        "main"
+      ],
+      "added": [
+        "require_studio_version"
+      ],
+      "removed": []
+    },
+    ".github/probes/studio_creative_android_probe.py": {
+      "unchanged": [
+        "Tour.__init__",
+        "Tour.audit_adb",
+        "Tour.build",
+        "Tour.current_stick",
+        "Tour.enter",
+        "Tour.jump",
+        "Tour.jump_save",
+        "Tour.leave",
+        "Tour.move_stick",
+        "Tour.move_treasure_stick",
+        "Tour.native",
+        "Tour.observe",
+        "Tour.pause_save",
+        "Tour.portal",
+        "Tour.puzzle",
+        "Tour.saved",
+        "Tour.shot",
+        "Tour.tag",
+        "Tour.toolbar",
+        "Tour.touch",
+        "Tour.treasure",
+        "Tour.viewport",
+        "approach_treasure",
+        "bounds",
+        "build_targets",
+        "committed_helper",
+        "components",
+        "config_variant_values",
+        "hub_choice",
+        "one_added_piece",
+        "one_quarter_turn",
+        "parse_jump_save",
+        "pieces",
+        "puzzle_piece_target",
+        "read_image",
+        "require",
+        "resume_equal",
+        "sha",
+        "solve",
+        "stick_target",
+        "treasure_position",
+        "write"
+      ],
+      "changed": [
+        "Tour.run",
+        "candidate_binding",
+        "main",
+        "verify_candidate_metadata"
+      ],
+      "added": [
+        "studio_contract"
+      ],
+      "removed": []
+    },
+    ".github/probes/lumo_2003_update_android_probe.py": {
+      "unchanged": [
+        "artifact",
+        "native_tour",
+        "wait_profile"
+      ],
+      "changed": [
+        "main"
+      ],
+      "added": [],
+      "removed": []
+    },
+    "tools/android_qa/update_preservation.py": {
+      "unchanged": [
+        "_legacy_evidence",
+        "_strict_object",
+        "require_in_place_update",
+        "require_learning_preserved",
+        "require_post_update_learning_preserved"
+      ],
+      "changed": [
+        "_approved_migration_view"
+      ],
+      "added": [],
+      "removed": []
+    },
+    "tools/android_qa/tests/test_update_preservation.py": {
+      "unchanged": [
+        "Build2018IndependentEvidenceMigrationTests.change_record",
+        "Build2018IndependentEvidenceMigrationTests.require",
+        "Build2018IndependentEvidenceMigrationTests.setUp",
+        "Build2018IndependentEvidenceMigrationTests.test_actual_fixture_is_hash_bound_to_original_failed_android_artifact",
+        "Build2018IndependentEvidenceMigrationTests.test_all_evidence_fields_require_exact_version_values_and_types",
+        "Build2018IndependentEvidenceMigrationTests.test_all_original_fields_require_identical_value_and_type",
+        "Build2018IndependentEvidenceMigrationTests.test_default_post_update_report_shape_and_byte_gate_are_unchanged",
+        "Build2018IndependentEvidenceMigrationTests.test_default_remains_strict_and_exact_approved_upgrade_is_recorded",
+        "Build2018IndependentEvidenceMigrationTests.test_every_post_update_snapshot_is_byte_exact_plus_transitive_history",
+        "Build2018IndependentEvidenceMigrationTests.test_existing_future_or_malformed_evidence_cannot_be_replaced_as_a_migration",
+        "Build2018IndependentEvidenceMigrationTests.test_foreign_child_keys_remain_exact_and_cannot_be_added_or_reassigned",
+        "Build2018IndependentEvidenceMigrationTests.test_helped_history_is_retained_without_invented_independent_success",
+        "Build2018IndependentEvidenceMigrationTests.test_legacy_streak_bounds_follow_reviewed_attribution_without_changing_history",
+        "Build2018IndependentEvidenceMigrationTests.test_map_identity_membership_unknown_fields_and_invalid_json_are_rejected",
+        "Build2018IndependentEvidenceMigrationTests.test_primary_namespace_is_bound_to_unchanged_persisted_local_identity",
+        "Build2018IndependentEvidenceMigrationTests.test_unrelated_protected_fields_profile_and_rewards_remain_exact",
+        "StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity",
+        "UpdatePreservationTests.setUp",
+        "UpdatePreservationTests.test_deleted_changed_and_unearned_reward_data_are_rejected",
+        "UpdatePreservationTests.test_empty_or_zero_progress_is_never_update_evidence",
+        "UpdatePreservationTests.test_nonempty_learning_and_other_child_data_are_preserved",
+        "UpdatePreservationTests.test_reinstall_version_reuse_and_wrong_version_are_rejected",
+        "UpdatePreservationTests.test_same_installation_with_higher_expected_version_is_accepted"
+      ],
+      "changed": [
+        "Build2018IndependentEvidenceMigrationTests.test_unapproved_version_pairs_types_and_missing_opt_in_fail",
+        "StudioUpdateWrapperExecutionTests.run_wrapper",
+        "StudioUpdateWrapperExecutionTests.setUp"
+      ],
+      "added": [
+        "Studio2020UpdateWrapperExecutionTests.test_2019_to_2020_is_not_a_reviewed_migration_pair",
+        "Studio2020UpdateWrapperExecutionTests.test_unapproved_2020_pin_is_rejected_before_the_android_boundary",
+        "StudioUpdateWrapperExecutionTests.test_actual_wrapper_validates_both_artifacts_before_device_boundary"
+      ],
+      "removed": [
+        "StudioUpdateWrapperExecutionTests.test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary"
+      ]
+    }
+  },
+  "only_exact_pair_and_error_text_changed_in_both_migration_guards": true,
+  "original_2019_wrapper_bytes_unchanged": true,
+  "new_wrapper_is_exact_four_version_occurrence_derivative": true,
+  "test_name_change": "Existing 2019-specific method was renamed to candidate-neutral and is executed in both 2019 and 2020 classes; no production definition removed"
+}

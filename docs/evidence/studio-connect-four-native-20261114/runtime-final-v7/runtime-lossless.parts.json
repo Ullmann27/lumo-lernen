@@ -1,0 +1,29 @@
+{
+  "format": "Raw contiguous byte parts; no recompression or modification",
+  "reason": "GitHub connector request body limit is16MiB; base64 encoding of14,919,129B exceeds it",
+  "original": {
+    "path": "docs/evidence/studio-connect-four-native-20261114/runtime-final-v7/runtime-lossless.mkv",
+    "bytes": 14919129,
+    "sha256": "ff0a15be47ec2330f3971e582f95736f02e9193e44db3bbcb2b4e7f1ce9a802d",
+    "git_blob": "833b3fd637967f8faa70d6283c9e459c83f1f01c"
+  },
+  "parts": [
+    {
+      "name": "runtime-lossless.mkv.part01",
+      "bytes": 5000000,
+      "sha256": "b993ec38bebe1d3b39c2c99ede6229e423f87ee47af63920ad83b442b86f7568"
+    },
+    {
+      "name": "runtime-lossless.mkv.part02",
+      "bytes": 5000000,
+      "sha256": "55bb7f45f9d6ed5946547f1468c3df16a8a95d5b3241e7d212728fca80954f21"
+    },
+    {
+      "name": "runtime-lossless.mkv.part03",
+      "bytes": 4919129,
+      "sha256": "458e18b08e6aae0e883c3dfcb9d3f544bc57574a532761cb9e1f6c6e8af6e8cf"
+    }
+  ],
+  "original_frozen_source_manifest_unchanged": true,
+  "reassembled_byte_equality_checked": true
+}

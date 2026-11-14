@@ -1,0 +1,244 @@
+{
+  "host": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9adf0665b3a037c090299091340fdae76af9e3a",
+      "size": 8902,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/d9adf0665b3a037c090299091340fdae76af9e3a"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b40217befd633a2a606a5cd8ae732f33068a1c22",
+      "size": 8395,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/b40217befd633a2a606a5cd8ae732f33068a1c22"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "tools/auto_install/LumoOfflineSpeechEngine.java",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a986433953773678feb4c98226caafb47c6abd9",
+      "size": 15809,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/7a986433953773678feb4c98226caafb47c6abd9"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "tools/auto_install/MainActivity.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065",
+      "size": 18497,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/3ff5b361e55e05d9f23a8c90dd237c1896cd3065"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/core/lumo_voice.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22e7ebaa40c270fe3d0a76d22294ad3667745b08",
+      "size": 25712,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/22e7ebaa40c270fe3d0a76d22294ad3667745b08"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/core/lumo_offline_voice_client.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81a38c5657966229fd7cdb48d0b269308fab2e92",
+      "size": 2609,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/81a38c5657966229fd7cdb48d0b269308fab2e92"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/core/lumo_learning_narration.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21951b83273c935c71a9baa31dd4165500037ef0",
+      "size": 3213,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/21951b83273c935c71a9baa31dd4165500037ef0"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/core/lumo_voice_clips.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81bf621b9be72b18f92c9701537c9a1b77f6896b",
+      "size": 5320,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/81bf621b9be72b18f92c9701537c9a1b77f6896b"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/core/lumo_voice_policy.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58c69f341ded28823f79d5a2170ebd9fb4db38ea",
+      "size": 641,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/58c69f341ded28823f79d5a2170ebd9fb4db38ea"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "config/lumo-offline-voice.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "200b67029cd4e19f27118f77b52e683c49461a6b",
+      "size": 1877,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/200b67029cd4e19f27118f77b52e683c49461a6b"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "assets/audio/voice/lumo/catalog.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17d3787418a6db2bff453d8606d31a9c1aee89f1",
+      "size": 5072,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/17d3787418a6db2bff453d8606d31a9c1aee89f1"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "assets/audio/voice/lumo_free/catalog.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315",
+      "size": 64441,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "scripts/prepare_embedded_games.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b",
+      "size": 11694,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+      "size": 11695,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/b9f48afed517b6123b13e7c77b81e00a1b908e13"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "size": 10634,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/0bfb11538d05bd8bf267bf1e4a06b35f627314ca"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/features/tutoring/guided_lesson_screen.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bf3ed80b59184c5aae261a905b91f401909aca2",
+      "size": 29394,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/8bf3ed80b59184c5aae261a905b91f401909aca2"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "size": 7587,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/f8bfc0af97806255ec8b72d89963c2831e250089"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "sha": "4469849b204f91fab3e645604e11922e29cb594c",
+      "size": 3323,
+      "mode": "100644"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "source": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "tree": "f53e255d2edcf59977a1e23f6638b219a136ebe2",
+      "path": "lib/features/learning/learning_content.dart",
+      "sha": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "size": 134562,
+      "mode": "100644"
+    }
+  ],
+  "native": [
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "size": 62477,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f5a296f1e0394ef3ac1dd518bdf1b60912793ee9"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+      "path": "scripts/learning/learning_activity.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "size": 10967,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "source": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+      "path": "scripts/learning/english_vocabulary.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa8debed147eceea108acc98ac318ac1362cf8eb",
+      "size": 2849,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/fa8debed147eceea108acc98ac318ac1362cf8eb"
+    }
+  ]
+}

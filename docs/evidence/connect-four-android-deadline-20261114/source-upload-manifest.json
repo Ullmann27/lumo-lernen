@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "scope": "Exactly two-file post-read deadline follow-up; unchanged original fixtures remain required",
+  "supersedes_manifest": {
+    "path": "qa/connect-four-android-probe-86445/source-upload-manifest.json",
+    "sha256": "8a2b90c8cd60471487ede963cf00aefaf415c3228c9165625fcfceda51c0bcbb"
+  },
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/.github/probes/lumo_connect_four_android_probe.py",
+      "target": ".github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 36483,
+      "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+      "git_blob_sha": "53679cb2a9adda7fbae82621afb29efd920c4485",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/tools/android_qa/tests/test_connect_four_android_probe.py",
+      "target": "tools/android_qa/tests/test_connect_four_android_probe.py",
+      "bytes": 19270,
+      "sha256": "cdc678f97a8f60ea53d91e3682cf7e49e88151a8079de6a9d58f38b36dee0548",
+      "git_blob_sha": "3c760b4711b1bc6c57544095ac08b5df8f942825",
+      "mode": "100644"
+    }
+  ]
+}

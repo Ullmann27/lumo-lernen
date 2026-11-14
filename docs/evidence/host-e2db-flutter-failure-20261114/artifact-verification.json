@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "host_sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "run_id": 43632642356,
+  "job_id": 132562421770,
+  "artifact_id": 14128393124,
+  "archive_bytes": 4776,
+  "archive_sha256": "31f1c98d5c12cd07132a86aa5444318824f4d5722aef806f27e07c31bb5dde44",
+  "complete_archive_sha256_verified": true,
+  "all_entry_crc_verified": true,
+  "full_archive_entry_count": 3,
+  "files": [
+    {
+      "artifact_entry": "feature-evidence/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "7bc92089af826898a9c74d717f0da199b43d69f0c47f7436eb32d59ad3f5889b",
+      "git_blob_sha": "0dfe1605bfc84d748e79a12408fae92f14b1c4c6",
+      "crc32": "d92736b0",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/HOST-SOURCE.txt"
+    },
+    {
+      "artifact_entry": "feature-evidence/flutter-analyze.log",
+      "bytes": 52874,
+      "sha256": "bf27b1c7883e6e9ad74108b0cb4d6a35444a265023a17d27352819336cb0c787",
+      "git_blob_sha": "59cdc7d4617197b8c393a5eed9f7e5fbdd004a87",
+      "crc32": "21a1bc08",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-analyze.log"
+    },
+    {
+      "artifact_entry": "feature-evidence/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "crc32": "ef6cb86f",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-e2db-flutter-acceptance-20261114/originals/feature-evidence/flutter-version.txt"
+    }
+  ],
+  "download_count_from_github_connector": 1,
+  "machine_stream_present": false,
+  "limits": "Full small failure artifact verified. No large capture ZIP or range download was needed; test execution was skipped by the workflow."
+}

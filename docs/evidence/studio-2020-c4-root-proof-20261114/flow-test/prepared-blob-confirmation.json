@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "path": "test/games/games_screen_flow_test.dart",
+  "before_git_blob": "92190a24410646e27d321a5f87ed06f6dbf9e005",
+  "before_sha256": "5fb9b1253d79f851516c2bc37b326e29d8ab80bf1414f30203e9a8315a456172",
+  "after_git_blob": "31793fa489756398b656c63b86f7e5dcfe953006",
+  "after_sha256": "d13b42f24be5965b35e4528a20f4c9e3a7a6db56ebbc8624aea976bf0595015a",
+  "after_bytes": 11691,
+  "blob_created": true,
+  "full_utf8_readback_equal": true,
+  "status": "PREPARED_NOT_EXECUTED",
+  "change_scope": [
+    "Explicit unavailable native-channel fixture only within existing Connect Four test",
+    "Bounded actual Flutter fallback readiness before untouched full-game loop"
+  ],
+  "preserved": [
+    "All test bytes from var turns through end of file",
+    "All Cards and Dice tests",
+    "All existing full-game reward/result/restart/bot-cancellation assertions",
+    "Production files"
+  ],
+  "local_execution_limits": [
+    "First attempt failed before running Dart test because a pubspec asset was missing; original log retained.",
+    "Second attempt exited compiler during test loading; no Connect Four assertion executed; interrupted wrapper final exit is unknown.",
+    "Environment recovery removed /tmp test copies and pub cache. Parent reports automatic review rejected cache recovery. No retry, workaround, or successful local execution claimed."
+  ],
+  "evidence_rescue": {
+    "count": 6,
+    "total_bytes": 2503367,
+    "tree_inputs_blob": "179562a483d038c6bee107c82b867c19ac658de2",
+    "upload_proof_blob": "98e868a1f8664721785b92678b6d2f70b7946c16"
+  },
+  "refs_changed": false
+}

@@ -1,0 +1,24 @@
+{
+  "source": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched/.github/probes/creative_android_probe.py",
+  "source_sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+  "commands": [
+    {
+      "command": [
+        "tesseract",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/ocr-work.png",
+        "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr-contrast",
+        "--psm",
+        "11",
+        "-l",
+        "deu+eng",
+        "tsv"
+      ],
+      "timeout": 29.90236968800309,
+      "elapsed_seconds": 0.5346283039980335,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Estimating resolution as 661\n"
+    }
+  ],
+  "scope": "Actual local OCR, no Android/device run"
+}

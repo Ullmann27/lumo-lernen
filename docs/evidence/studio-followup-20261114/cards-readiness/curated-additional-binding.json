@@ -1,0 +1,26 @@
+{
+  "scope": "Only additional original metadata selected from already verified local ZIPs; no further download.",
+  "files": [
+    {
+      "api": 35,
+      "artifact_id": 14093032556,
+      "artifact_entry": "recheck/before.json",
+      "bytes": 7779,
+      "sha256": "5445d6eb2454956a7cfd8da4fd5051e09a4de0ee44c0f6cb5eb2dacdec2b724e"
+    },
+    {
+      "api": 35,
+      "artifact_id": 14093032556,
+      "artifact_entry": "recheck/after.json",
+      "bytes": 7779,
+      "sha256": "5445d6eb2454956a7cfd8da4fd5051e09a4de0ee44c0f6cb5eb2dacdec2b724e"
+    },
+    {
+      "api": 35,
+      "artifact_id": 14093032556,
+      "artifact_entry": "recheck/preflight.json",
+      "bytes": 8260,
+      "sha256": "4a7e6ad0f681296fa63c862fcc587420a114b0d044ae5fc053868f15450c0011"
+    }
+  ]
+}

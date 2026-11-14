@@ -1,0 +1,11 @@
+test_foreign_session_and_oversized_layout_remain_rejected (test_cards_layout_readiness.CardsLayoutReadinessTests.test_foreign_session_and_oversized_layout_remain_rejected) ... ok
+test_missing_between_observations_resets_the_two_frame_requirement (test_cards_layout_readiness.CardsLayoutReadinessTests.test_missing_between_observations_resets_the_two_frame_requirement) ... ok
+test_one_transient_missing_reply_still_requires_two_complete_stable_frames (test_cards_layout_readiness.CardsLayoutReadinessTests.test_one_transient_missing_reply_still_requires_two_complete_stable_frames) ... ok
+test_original_missing_file_reply_is_saved_before_a_readiness_error (test_cards_layout_readiness.CardsLayoutReadinessTests.test_original_missing_file_reply_is_saved_before_a_readiness_error) ... ok
+test_persistent_missing_reply_expires_without_a_fallback_or_accepted_image (test_cards_layout_readiness.CardsLayoutReadinessTests.test_persistent_missing_reply_expires_without_a_fallback_or_accepted_image) ... ok
+test_valid_but_stale_layout_cannot_satisfy_the_current_public_revision (test_cards_layout_readiness.CardsLayoutReadinessTests.test_valid_but_stale_layout_cannot_satisfy_the_current_public_revision) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.281s
+
+OK

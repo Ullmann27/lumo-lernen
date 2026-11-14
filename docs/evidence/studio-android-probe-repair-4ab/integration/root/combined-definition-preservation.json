@@ -1,0 +1,31 @@
+{
+  ".github/probes/creative_android_probe.py": {
+    "changed": [
+      "image_lines",
+      "leave"
+    ],
+    "added": [
+      "gold_caption_boxes",
+      "read_component_caption"
+    ],
+    "unchanged_definitions": 19,
+    "removed": []
+  },
+  ".github/probes/studio_creative_android_probe.py": {
+    "changed": [
+      "Tour.jump",
+      "Tour.leave",
+      "Tour.native",
+      "Tour.observe",
+      "Tour.puzzle",
+      "Tour.treasure"
+    ],
+    "added": [
+      "Tour.move_treasure_stick",
+      "approach_treasure",
+      "treasure_position"
+    ],
+    "unchanged_definitions": 37,
+    "removed": []
+  }
+}

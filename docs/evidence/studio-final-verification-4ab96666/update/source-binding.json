@@ -1,0 +1,41 @@
+{
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "published_tree": "f3ffc295cec299bdc6126fcddffbc130c6629e54",
+  "cached_tree_truncated": false,
+  "local_git_HEAD_not_used_as_candidate_identity": true,
+  "files": [
+    {
+      "path": "source-snapshots/.github/probes/lumo_2003_update_android_probe.py",
+      "bytes": 10533,
+      "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb",
+      "git_blob": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "repository_path": ".github/probes/lumo_2003_update_android_probe.py",
+      "published_mode": "100644",
+      "published_git_blob": "0712dd5e583f6da5cef5b2dc06876a6455107e68",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/.github/probes/lumo_2003_update_android_probe.py"
+    },
+    {
+      "path": "source-snapshots/.github/probes/lumo_2019_update_android_probe.py",
+      "bytes": 1899,
+      "sha256": "dbfe68735789ec47ef3e0095fcc8ffaf9435ab1f4a58f3035b64ec62bc72c416",
+      "git_blob": "0ab5b619ef63645195fb9c2174b46788bc17de30",
+      "repository_path": ".github/probes/lumo_2019_update_android_probe.py",
+      "published_mode": "100644",
+      "published_git_blob": "0ab5b619ef63645195fb9c2174b46788bc17de30",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/.github/probes/lumo_2019_update_android_probe.py"
+    },
+    {
+      "path": "source-snapshots/tools/android_qa/update_preservation.py",
+      "bytes": 9134,
+      "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+      "git_blob": "60e74d96e2766657138f52d28301c39e78b85015",
+      "repository_path": "tools/android_qa/update_preservation.py",
+      "published_mode": "100644",
+      "published_git_blob": "60e74d96e2766657138f52d28301c39e78b85015",
+      "matches_exact_published_tree": true,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/4ab96666f954baf258422d6ed277fc297b7ddeef/tools/android_qa/update_preservation.py"
+    }
+  ]
+}

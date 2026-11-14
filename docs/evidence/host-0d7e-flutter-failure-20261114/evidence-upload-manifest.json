@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "run_id": 43633267932,
+  "job_id": 132564402577,
+  "status": "FAILED_IN_EARLY_EXISTING_FOCUS_GROUP",
+  "scope": "Small complete negative original evidence. No product-source targets, no complete-suite or 45-new-case PASS. The manifest itself is an additional docs target.",
+  "file_count": 15,
+  "total_bytes": 250467,
+  "files": [
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/README.md",
+      "mode": "100644",
+      "bytes": 4015,
+      "sha256": "6ac5d846ff4f7ada355b9acb245ff20997f782dd2a25745549cb3d9dcda59835",
+      "git_blob_sha": "1b2af31046b1ead802ff38e973515d07de664fe2"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/review.json",
+      "mode": "100644",
+      "bytes": 10508,
+      "sha256": "9e6538d6bdfe637e3f03bc02a37b2bc1ab54de34253fb8b334bbb1e35026c7e1",
+      "git_blob_sha": "c0337f271cce9dfaa2b808534bcfa9e69fb927fa"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/original-artifact-verification.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/original-artifact-verification.json",
+      "mode": "100644",
+      "bytes": 1776,
+      "sha256": "4d87c4c5fc12066772ac2b762272f09a26a961d474c8df8bd38942dd01ff9df7",
+      "git_blob_sha": "715a493e569fa900d144cf3353f67645a83d388c"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/analyzer-diagnostics.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/analyzer-diagnostics.json",
+      "mode": "100644",
+      "bytes": 1513,
+      "sha256": "53a6fe1923b6801963f7ecc626ab8322a0633ff37bfcd14ba6173301e7d8aa61",
+      "git_blob_sha": "26263d30e6944828d19eefb8a52b6c3e0611c540"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/diagnosis-source-bindings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/diagnosis-source-bindings.json",
+      "mode": "100644",
+      "bytes": 4678,
+      "sha256": "133b1f5c26a5b0ff66d8271324dc69c77789ef00fad1bd8cc4878c8da6d31f3e",
+      "git_blob_sha": "d1d506fdb37a754907f0e5d157b4fb1828fb5976"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/original-flutter-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/original-flutter-job.log",
+      "mode": "100644",
+      "bytes": 121892,
+      "sha256": "730624ed6be190ce6305d6b8c90e4d8eddb96c9a25ac22c5c4b4139c5e1b4ab2",
+      "git_blob_sha": "eec03570b1215ea2e479fc37a6753c2e16245b0c"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/metadata/run-initial-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/metadata/run-initial-original.json",
+      "mode": "100644",
+      "bytes": 13147,
+      "sha256": "662220c80d843dee64e6ac170c8fccf6950659a7c4fb206b3197b92f5039abb2",
+      "git_blob_sha": "4d9dbc9dd828d7bc9acf197f143640dc4fe48656"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/metadata/jobs-1941-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/metadata/jobs-1941-original.json",
+      "mode": "100644",
+      "bytes": 9255,
+      "sha256": "b257a2dc11da11f8b8c3ce432574bad194224c4fd8ec14bf79795fc8c195262c",
+      "git_blob_sha": "f4635278661c04d38245eca0a8b5754c99d2cf8f"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/metadata/flutter-terminal-job-extract.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/metadata/flutter-terminal-job-extract.json",
+      "mode": "100644",
+      "bytes": 5240,
+      "sha256": "90f9a0a20a05ae528513deb1448c04bcabb36dd9ac585cceeb8d325d90adffa3",
+      "git_blob_sha": "f725a9a113f610cc8a9b5c9d44c0e4991fa56319"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/metadata/commit-initial-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/metadata/commit-initial-original.json",
+      "mode": "100644",
+      "bytes": 4967,
+      "sha256": "98703a40dd6c9b37e35c227afa27a87371a4f139fe0fdd416d85c7f62e050acd",
+      "git_blob_sha": "f358947644a03868911851aaffbdb54cf74808ed"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/metadata/artifacts-terminal-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/metadata/artifacts-terminal-original.json",
+      "mode": "100644",
+      "bytes": 1507,
+      "sha256": "8e3d464ddea11f48ae2397b93f372ba54ade149441c863c20ef6ab87da1958e1",
+      "git_blob_sha": "e827892e2c0ecd31c2d9df3db170ba19c29109c9"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/originals/feature-evidence/HOST-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/HOST-SOURCE.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "27679d136ba5b6ac231d406783c56b1ad5885aebda6f3cfff113bd83d5a75376",
+      "git_blob_sha": "8be331d6e2c37edcc7fd14d9c99eac361597180e"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/originals/feature-evidence/flutter-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/flutter-version.txt",
+      "mode": "100644",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/originals/feature-evidence/flutter-analyze.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/flutter-analyze.log",
+      "mode": "100644",
+      "bytes": 52328,
+      "sha256": "1a24e3e1f653318489065ff1bfde6ef6bcad33dab4727c8b9a0eca068835b7f2",
+      "git_blob_sha": "457172be2bffba6eecc23ed7ffda2f10bc02b324"
+    },
+    {
+      "path": "docs/evidence/host-0d7e-flutter-failure-20261114/originals/feature-evidence/wallet-zone-profile-regression.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-0d7e-flutter-acceptance-20261114/originals/feature-evidence/wallet-zone-profile-regression.log",
+      "mode": "100644",
+      "bytes": 19279,
+      "sha256": "7da11aa3d96c7b269e72c8b77df8dc3102ee44a853f1cc20987b72af6a6ec0b9",
+      "git_blob_sha": "d1017dcd8a1b6e61176b6c6b46da2dfe0d10ad7a"
+    }
+  ]
+}

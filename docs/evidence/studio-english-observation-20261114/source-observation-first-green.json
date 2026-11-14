@@ -1,0 +1,30 @@
+{
+  "native_base": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "status": "headless observation contract passed; renderer and Android validators pending",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/native/scripts/learning/english_object_gallery.gd",
+      "path": "scripts/learning/english_object_gallery.gd",
+      "mode": "100644",
+      "bytes": 8635,
+      "sha256": "0c83e2df3973ba7c1b6cdad86a13bcb49a055a0de5e556f2f180f8088886f797",
+      "git_blob": "a65934fc2a7ed57108a2c1b92c3e68e6a1a1cfdf"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/native/scripts/learning/learning_world.gd",
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "bytes": 61965,
+      "sha256": "3078e3aaba4bf5a811ddc5878370cdf945ddf8313c0cba6d4f9089e1c4062c6d",
+      "git_blob": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/native/scripts/tests/learning_english_regression.gd",
+      "path": "scripts/tests/learning_english_regression.gd",
+      "mode": "100644",
+      "bytes": 29076,
+      "sha256": "04deeabe369a04d0ab95a5afbb9778725dd0ff3a21384d662613f59cdf25ad5a",
+      "git_blob": "b923cbabf62ec5a30b4f38e8d16aeced493aac72"
+    }
+  ]
+}

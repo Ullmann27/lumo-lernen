@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "scope": "unpublished Root-owned Host2020 contracts before fifth Treasure capture requirement",
+  "files": [
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "bytes": 32623,
+      "sha256": "7d97aca5339d24841febd29765ec9ae0f2d391e073edead5fb9d1fe4b3a3077b",
+      "git_blob_sha": "938ff72d12751d9a7fa83a43b7f8f2703356e04a"
+    },
+    {
+      "path": "scripts/tests/test_studio_2020_delivery.py",
+      "bytes": 9305,
+      "sha256": "26a74be04ffd031bce3934896f415b0bf5d5de974d9385500865a0976cc17630",
+      "git_blob_sha": "4d696d150bdf53976782bf10dc5c31fd278140a0"
+    }
+  ]
+}

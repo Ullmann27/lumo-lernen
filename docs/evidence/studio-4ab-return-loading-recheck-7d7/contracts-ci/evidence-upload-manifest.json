@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "scope": "Docs-only original completed prerequisite CI evidence; not part of strict QA source tree.",
+  "file_count": 16,
+  "total_bytes": 90518,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/README.md",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/README.md",
+      "bytes": 931,
+      "sha256": "29904898358df4850e0d18260c3973012f417ef611faeb0f3963cadec31d3db8",
+      "git_blob": "ccf7dfc85f0d03e690a40159e1f4d89a3306bfb3",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/artifact-byte-verification.json",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/artifact-byte-verification.json",
+      "bytes": 1550,
+      "sha256": "9d2b4f68255f9781c78879c4f3eec60fe20c3fa90468c0af6a0ebe853e3eb35f",
+      "git_blob": "d8b10e7e7e2ac85fae81b17a1a7dc5fe415a05b7",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/github-artifact-metadata.json",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/github-artifact-metadata.json",
+      "bytes": 799,
+      "sha256": "faa9ab93f96ccff9de26e27a66f5592dee567eba8182c400a1dfa0a4e9c24a77",
+      "git_blob": "b601e3217af7d6dc7b019eec1ae0979f1b3c0475",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/job-completion-observation.json",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/job-completion-observation.json",
+      "bytes": 2750,
+      "sha256": "6b337111309ed033d04b4e6488c2f3fb025ec3edbdbae598f41818de73893079",
+      "git_blob": "463718d572b56d8406ce21993ff98faedd2697ea",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/jobs-initial-original.json",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/jobs-initial-original.json",
+      "bytes": 10788,
+      "sha256": "533a0ea418976fb47716f93cfe9c0066a485043dfd37dd2c5288da422edccbfe",
+      "git_blob": "462e3bc70e265949875f21663440465f502e66a2",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact/cards-layout-readiness.log",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact/cards-layout-readiness.log",
+      "bytes": 1302,
+      "sha256": "3cb77b5636d7e075788591afbbc69723d36d6bf46d8bad6ccd8581c0f786e32d",
+      "git_blob": "c2520a84cf6efe5eb08d59368c138a62d3d4969e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact/loading-frame-boundaries.log",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact/loading-frame-boundaries.log",
+      "bytes": 1124,
+      "sha256": "2761f9a6db1161adef5046e6ff3e999443ce2170a0bef828cd34d8328e0496b1",
+      "git_blob": "0c2bf06d2fe560ff491a59a8111ee237762aba95",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact/loading-frame-original-ocr.log",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact/loading-frame-original-ocr.log",
+      "bytes": 996,
+      "sha256": "023eb4630bb3363ba21fcfc0d43858a5fb300bc86c1a401773664f6b14ba108a",
+      "git_blob": "9726b1a134c7b8c61b37ed077f415dfeda60306c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact/original-caption-replay.log",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact/original-caption-replay.log",
+      "bytes": 2036,
+      "sha256": "94f7c672bf8e975c7813d30a83ac222bdfdfe99e8b0546f37d348b2eea54c377",
+      "git_blob": "67fc89e1a88818784a72726c4051d034482b7e81",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact/source-binding-counterexamples.log",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact/source-binding-counterexamples.log",
+      "bytes": 5357,
+      "sha256": "a0ec7c6a410783952af78d354cbf58bd6c68dea63882c4e2bb94795723b3b116",
+      "git_blob": "115152e432cb2491c28061272b8135c697aeabec",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact/tesseract-languages.txt",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact/tesseract-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+      "git_blob": "416e4d01d7185326c5d27a86066ce5bdabf609fe",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact/tesseract-version.txt",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact/tesseract-version.txt",
+      "bytes": 502,
+      "sha256": "649d4af0dc5137c789d882b38f8ba28de18715a70ef271ba2a8bb6064f10d205",
+      "git_blob": "1a03deb8b32336e3e7260f98bdf2460483f66eb4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-artifact.zip",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-artifact.zip",
+      "bytes": 3919,
+      "sha256": "caf33e8eacfac57e456728847a4570132ac89f46c609b041862f215697d240bc",
+      "git_blob": "17177acb64c7c53dfdd0e904f1494e6cf668d84d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/original-job.log",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/original-job.log",
+      "bytes": 41485,
+      "sha256": "151ccd90b9ec34bb0b7a7a113eb8ea539743aaad806e431375b71b758500b28a",
+      "git_blob": "414e70f82d4df8e29802d9e3daea8643093719e3",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/review.json",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/review.json",
+      "bytes": 3346,
+      "sha256": "9668841f68e95b188134355793f5f32d9418adc3de0dfbfecaf3fa9dd9e881e1",
+      "git_blob": "361304d4f0610f7fa8a7aeb8a4f4097915aef52f",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/ci-7d7-originals/run-initial-original.json",
+      "repository_path": "docs/evidence/studio-4ab-return-loading-recheck-7d7/contracts-ci/run-initial-original.json",
+      "bytes": 13546,
+      "sha256": "ab6a0e965590524b0e1754f5f0436fc6f0ac231e95b2da5208f9ee796e781791",
+      "git_blob": "ee898bd2d76e4a40b0f2064ee32039f5045fec84",
+      "mode": "100644"
+    }
+  ]
+}

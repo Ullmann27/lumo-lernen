@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "scope": "Only original test failure, exact source binding, one-file test fix and blob verification; no new execution claimed",
+  "file_count": 9,
+  "total_bytes": 39539,
+  "files": [
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/README.md",
+      "bytes": 2984,
+      "sha256": "7fc5f26aa2cc1dd8e3c2adc0bb2f66fd8f812711736dc6042f99d1603b810b1c",
+      "git_blob_sha": "8e78509e69c61312f00fdff6b23ae0059c145753"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/source-upload-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/source-upload-manifest.json",
+      "bytes": 970,
+      "sha256": "08903a53d2f2371d1b46cb7c9220d97a4fbcfc026745e0ec31fcd46eafb89880",
+      "git_blob_sha": "8214db02461068f766981704371dd75619169ae1"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/source-confirmed-tree-inputs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/source-confirmed-tree-inputs.json",
+      "bytes": 167,
+      "sha256": "ca9cbba51f549ce3837bdc52272e29024af5662d1c85190c41594ba9cfd286df",
+      "git_blob_sha": "585888c7dbcc7d7df9d239563c2336932b5029fa"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/source-blob-upload-proof.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/source-blob-upload-proof.json",
+      "bytes": 528,
+      "sha256": "0ca0ff34970912af61df380ae01ce0be30c59bc912cba8a49095264696080939",
+      "git_blob_sha": "c69aaf5a15a313d6b0e7748f19e9b114ac1aa8d9"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/implementation-against-exact-0d7e.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/implementation-against-exact-0d7e.patch",
+      "bytes": 7325,
+      "sha256": "fb02309c9e1e5edaae426df0d2a632ec1d5da349c7c486ce7aee7f8ec2254cf8",
+      "git_blob_sha": "bbe7aa9b07d7e21ec56d2554be61792de8276ee4"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/baseline/host/test/games/memory_profile_storage_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/baseline/host/test/games/memory_profile_storage_test.dart",
+      "bytes": 10767,
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "git_blob_sha": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/evidence/source-binding-and-static-check.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/evidence/source-binding-and-static-check.json",
+      "bytes": 2957,
+      "sha256": "d551b7d5d56c39b3c22138fdb427185a2545f6a872fc7366c2fa7633d43a0d96",
+      "git_blob_sha": "1c7b94c0a4fde2ee9197758cc3370a363bcf9d08"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/evidence/original-memory-failure-excerpt.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/evidence/original-memory-failure-excerpt.log",
+      "bytes": 10240,
+      "sha256": "88224a92d7a8e786be7fde99a28e3debe915710473f118f98ac4833606edca03",
+      "git_blob_sha": "9197dc0b263dc754b89ce9e25e33b116f7a341df"
+    },
+    {
+      "path": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/evidence/review-template.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/memory-profile-ack-contract-0d7e-20261114/evidence/review-template.json",
+      "bytes": 3601,
+      "sha256": "bee0af5e52285a51c36220ca890b0f7c311d489e1e9ff30854630e55cdf50f25",
+      "git_blob_sha": "9896ab10bc9b7302618cc35cf9ea87f29a3ef536"
+    }
+  ],
+  "manifest_self_target": "docs/evidence/memory-profile-ack-contract-0d7e-20261114/evidence-upload-manifest.json",
+  "peer_review_owner": "character_animation; separate review not duplicated",
+  "source_installation_targets": false
+}

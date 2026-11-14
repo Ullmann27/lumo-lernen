@@ -1,0 +1,270 @@
+{
+  "schema": 1,
+  "read_only_summary_of": "final-render/treasure-title-report.json",
+  "source_sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02",
+  "checks": 3351,
+  "failures": [],
+  "observations": [
+    {
+      "profile": "landscape",
+      "initial_state_fixture": "production fresh start",
+      "density": 1.5,
+      "roles": [
+        "header",
+        "clue",
+        "toast",
+        "joystick",
+        "action",
+        "jump"
+      ],
+      "avatar_rect_px": [
+        838.877685546875,
+        413.779266357422,
+        128.020263671875,
+        233.223724365234
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": null,
+      "toast_to_jump_vertical_gap_px": -318.0,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": null
+    },
+    {
+      "profile": "landscape",
+      "initial_state_fixture": "original86445 first tree save",
+      "density": 1.5,
+      "roles": [
+        "header",
+        "clue",
+        "toast",
+        "joystick",
+        "action",
+        "jump"
+      ],
+      "avatar_rect_px": [
+        838.877685546875,
+        413.779235839844,
+        128.020263671875,
+        233.223754882812
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": null,
+      "toast_to_jump_vertical_gap_px": -318.0,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": "treasure-title-landscape.png"
+    },
+    {
+      "profile": "compact",
+      "initial_state_fixture": "production fresh start",
+      "density": 1.0,
+      "roles": [
+        "header",
+        "toast",
+        "joystick",
+        "action",
+        "jump",
+        "hint"
+      ],
+      "avatar_rect_px": [
+        284.136444091797,
+        122.601379394531,
+        37.7430725097656,
+        69.1177978515625
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": [
+        14.0,
+        68.0,
+        110.0,
+        48.0
+      ],
+      "toast_to_jump_vertical_gap_px": 32.0,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": null
+    },
+    {
+      "profile": "compact",
+      "initial_state_fixture": "original86445 first tree save",
+      "density": 1.0,
+      "roles": [
+        "header",
+        "toast",
+        "joystick",
+        "action",
+        "jump",
+        "hint"
+      ],
+      "avatar_rect_px": [
+        284.1611328125,
+        122.601753234863,
+        37.5545043945312,
+        69.1319046020508
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": [
+        14.0,
+        68.0,
+        110.0,
+        48.0
+      ],
+      "toast_to_jump_vertical_gap_px": 32.0,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": "treasure-title-compact.png"
+    },
+    {
+      "profile": "portrait",
+      "initial_state_fixture": "production fresh start",
+      "density": 2.625,
+      "roles": [
+        "header",
+        "clue",
+        "toast",
+        "joystick",
+        "action",
+        "jump"
+      ],
+      "avatar_rect_px": [
+        270.642761230469,
+        919.509521484375,
+        284.697204589844,
+        518.275024414062
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": null,
+      "toast_to_jump_vertical_gap_px": 31.50984191894804,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": null
+    },
+    {
+      "profile": "portrait",
+      "initial_state_fixture": "original86445 first tree save",
+      "density": 2.625,
+      "roles": [
+        "header",
+        "clue",
+        "toast",
+        "joystick",
+        "action",
+        "jump"
+      ],
+      "avatar_rect_px": [
+        270.642761230469,
+        919.509399414062,
+        284.697265625,
+        518.275024414062
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": null,
+      "toast_to_jump_vertical_gap_px": 31.50984191894804,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": "treasure-title-portrait.png"
+    },
+    {
+      "profile": "fold",
+      "initial_state_fixture": "production fresh start",
+      "density": 2.25,
+      "roles": [
+        "header",
+        "clue",
+        "toast",
+        "joystick",
+        "action",
+        "jump"
+      ],
+      "avatar_rect_px": [
+        884.844360351562,
+        694.229736328125,
+        214.725341796875,
+        391.297607421875
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": null,
+      "toast_to_jump_vertical_gap_px": -477.19755554199196,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": null
+    },
+    {
+      "profile": "fold",
+      "initial_state_fixture": "original86445 first tree save",
+      "density": 2.25,
+      "roles": [
+        "header",
+        "clue",
+        "toast",
+        "joystick",
+        "action",
+        "jump"
+      ],
+      "avatar_rect_px": [
+        884.844360351562,
+        694.229553222656,
+        214.725341796875,
+        391.297790527344
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": null,
+      "toast_to_jump_vertical_gap_px": -477.19755554199196,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": "treasure-title-fold.png"
+    },
+    {
+      "profile": "landscape-cutout",
+      "initial_state_fixture": "production fresh start",
+      "density": 2.625,
+      "roles": [
+        "header",
+        "toast",
+        "joystick",
+        "action",
+        "jump",
+        "hint"
+      ],
+      "avatar_rect_px": [
+        1078.96606445312,
+        413.779296875,
+        127.926879882812,
+        233.223754882812
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": [
+        65.813901,
+        92.070905,
+        110.034389,
+        48.05006
+      ],
+      "toast_to_jump_vertical_gap_px": 163.27444458007898,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": "treasure-title-landscape-cutout.png"
+    },
+    {
+      "profile": "landscape-cutout",
+      "initial_state_fixture": "original86445 first tree save",
+      "density": 2.625,
+      "roles": [
+        "header",
+        "toast",
+        "joystick",
+        "action",
+        "jump",
+        "hint"
+      ],
+      "avatar_rect_px": [
+        1078.96606445312,
+        413.779205322266,
+        127.926879882812,
+        233.223785400391
+      ],
+      "avatar_hud_positive_area_intersections": 0,
+      "hint_rect_dp": [
+        65.813901,
+        92.070905,
+        110.034389,
+        48.05006
+      ],
+      "toast_to_jump_vertical_gap_px": 163.27444458007898,
+      "secondary_contrast": 14.4422647052388,
+      "capture_file": null
+    }
+  ],
+  "note": "Summary of original measurements, not an additional execution. Negative vertical gap can be valid where controls are horizontally separated; strict overlap checks in actual regression use both axes."
+}

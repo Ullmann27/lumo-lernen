@@ -1,0 +1,61 @@
+test_memory_authority (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_authority) ... ok
+test_memory_bind_timeout (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_bind_timeout) ... ok
+test_memory_closed_mailbox (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_closed_mailbox) ... ok
+test_memory_invalid_intents (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_invalid_intents) ... ok
+test_memory_mailbox (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_mailbox) ... ok
+test_memory_owner_and_revision (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_owner_and_revision) ... ok
+test_memory_pause_stale (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_pause_stale) ... ok
+test_memory_pending_terminal (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_pending_terminal) ... ok
+test_memory_plugin_isolation (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_plugin_isolation) ... ok
+test_memory_publish_write_failure (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_publish_write_failure) ... ok
+test_memory_render_stall (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_render_stall) ... ok
+test_memory_return_durable (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_return_durable) ... ok
+test_memory_return_write_failure (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_return_write_failure) ... ok
+test_memory_stop_resume (test_table_games_native_contract.TableGamesNativeContractTest.test_memory_stop_resume) ... ok
+test_quiz_authority (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_authority) ... ok
+test_quiz_bind_timeout (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_bind_timeout) ... ok
+test_quiz_closed_mailbox (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_closed_mailbox) ... ok
+test_quiz_invalid_intents (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_invalid_intents) ... ok
+test_quiz_mailbox (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_mailbox) ... ok
+test_quiz_owner_and_revision (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_owner_and_revision) ... ok
+test_quiz_pause_stale (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_pause_stale) ... ok
+test_quiz_pending_terminal (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_pending_terminal) ... ok
+test_quiz_plugin_isolation (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_plugin_isolation) ... ok
+test_quiz_publish_write_failure (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_publish_write_failure) ... ok
+test_quiz_render_stall (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_render_stall) ... ok
+test_quiz_return_durable (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_return_durable) ... ok
+test_quiz_return_write_failure (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_return_write_failure) ... ok
+test_quiz_stop_resume (test_table_games_native_contract.TableGamesNativeContractTest.test_quiz_stop_resume) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 32.872s
+
+OK
+TABLE_GAMES_NATIVE_PASS authority memory
+TABLE_GAMES_NATIVE_PASS bind-timeout memory
+TABLE_GAMES_NATIVE_PASS closed-mailbox memory
+TABLE_GAMES_NATIVE_PASS invalid-intents memory
+TABLE_GAMES_NATIVE_PASS mailbox memory
+TABLE_GAMES_NATIVE_PASS owner-and-revision memory
+TABLE_GAMES_NATIVE_PASS pause-stale memory
+TABLE_GAMES_NATIVE_PASS pending-terminal memory
+TABLE_GAMES_NATIVE_PASS plugin-isolation memory
+TABLE_GAMES_NATIVE_PASS publish-write-failure memory
+TABLE_GAMES_NATIVE_PASS render-stall memory
+TABLE_GAMES_NATIVE_PASS return-durable memory
+TABLE_GAMES_NATIVE_PASS return-write-failure memory
+TABLE_GAMES_NATIVE_PASS stop-resume memory
+TABLE_GAMES_NATIVE_PASS authority quiz
+TABLE_GAMES_NATIVE_PASS bind-timeout quiz
+TABLE_GAMES_NATIVE_PASS closed-mailbox quiz
+TABLE_GAMES_NATIVE_PASS invalid-intents quiz
+TABLE_GAMES_NATIVE_PASS mailbox quiz
+TABLE_GAMES_NATIVE_PASS owner-and-revision quiz
+TABLE_GAMES_NATIVE_PASS pause-stale quiz
+TABLE_GAMES_NATIVE_PASS pending-terminal quiz
+TABLE_GAMES_NATIVE_PASS plugin-isolation quiz
+TABLE_GAMES_NATIVE_PASS publish-write-failure quiz
+TABLE_GAMES_NATIVE_PASS render-stall quiz
+TABLE_GAMES_NATIVE_PASS return-durable quiz
+TABLE_GAMES_NATIVE_PASS return-write-failure quiz
+TABLE_GAMES_NATIVE_PASS stop-resume quiz

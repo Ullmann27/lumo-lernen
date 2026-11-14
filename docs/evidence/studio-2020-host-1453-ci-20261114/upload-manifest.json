@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "run_id": 43579548170,
+  "file_count": 13,
+  "bytes": 1272797,
+  "docs_only": true,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/main-final-run-original.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/main-final-run-original.json",
+      "bytes": 13630,
+      "sha256": "709f3f3ab8b63e7bde028b60fb1ced8a77c458faa03f979424e82cceb95135b4",
+      "git_blob_sha": "c84db88c8d86a064087f44ee11527207aeb18eed",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/main-final-jobs-original.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/main-final-jobs-original.json",
+      "bytes": 15602,
+      "sha256": "8d6548fdb9b5b47fcc2743ca3cb4bf9fb05feefb8ef62b5926729200fd5c8df6",
+      "git_blob_sha": "2bf6c28f466382553290d81a322db68d5f4dac7d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/verify-and-build-132401125864-original.log",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/verify-and-build-132401125864-original.log",
+      "bytes": 105191,
+      "sha256": "5aa290a986cff2ae5591ae4c1b316b26832e753a4c0fd77ed0da2a0ec5e2f4eb",
+      "git_blob_sha": "9ae2c164f310b2f833bad1177b106ed3e926b67a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/android-host-compile-132401126077-original.log",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/android-host-compile-132401126077-original.log",
+      "bytes": 238661,
+      "sha256": "76c7b3e5a5425c9ba94c5a9f163ce7294e53cd66e1ca0847ea94406822275d00",
+      "git_blob_sha": "64148c575664ca38ad0f5a45aec6068c4d351413",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/living-core-132401125796-original.log",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/living-core-132401125796-original.log",
+      "bytes": 644378,
+      "sha256": "b2888a5dec8ede1ecf618d91174444f179bea3ee2c9412650f99967d3a75aa81",
+      "git_blob_sha": "936694151804a83f947adfd43b087a7811fec649",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/living-core-jobs-original.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/living-core-jobs-original.json",
+      "bytes": 3074,
+      "sha256": "cfbe3fc3ef9fca6ce3945d9d2689d09fe500554c76675aa6baff951c953a085b",
+      "git_blob_sha": "5c7509e8b4b52582ebfe6ce4a75466c9d7d80b2c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/living-core-run-original.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/living-core-run-original.json",
+      "bytes": 13640,
+      "sha256": "37153caa55c9c7a3a1ce72a5b49d9bc1039c4b02c5cf82a1015be7386d7a9927",
+      "git_blob_sha": "5bb3b427d2d942dd0511979961c1522e5150f3b3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/final-all-head-runs-original.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/final-all-head-runs-original.json",
+      "bytes": 218476,
+      "sha256": "5fad96acc6c0cd75fa0c3df52f18ae41e7105cca74ad70c32971954fcd3f86cd",
+      "git_blob_sha": "73bd1d0b260d65f363e8eb388087f1aee496b93d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/early-c4-original-failure-analysis.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/early-c4-original-failure-analysis.json",
+      "bytes": 2714,
+      "sha256": "4ebc2efb5c8515571176b218727715cd18d86f995133d58bec2c20ea501b34fb",
+      "git_blob_sha": "444df0bcc45dcb7392c2f54d1cb42e51a4448d49",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/fold-controls-at-1453.dart",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/fold-controls-at-1453.dart.txt",
+      "bytes": 9473,
+      "sha256": "d81c02439db9ba9394e1ddb9f62245520b2781345a83e3df6a3bc2bf081961e2",
+      "git_blob_sha": "3dfc352bb0cd000b79cf5111b10b0247f7add943",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/artifacts-after-early-c4-failure-original.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/artifacts-after-early-c4-failure-original.json",
+      "bytes": 2239,
+      "sha256": "6c1ad8edbdb383c79f5250b722827f244ce2b5ee32dc3a997203ed63a8d3de39",
+      "git_blob_sha": "6cb4c5df45169a110ffb61183ab69b49b2fff73b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/review.json",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/review.json",
+      "bytes": 3634,
+      "sha256": "a366232b3218953bf176c03088f5b83f59997959ec5a43d77c0517b558a505dc",
+      "git_blob_sha": "383a013de71516da81e2a609f79956413715b1d0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/README.md",
+      "path": "docs/evidence/studio-2020-host-1453-ci-20261114/README.md",
+      "bytes": 2085,
+      "sha256": "faf5c2a497c33d035f888519af6b53cbebcb9406b6ac54fce315ace7dbf20051",
+      "git_blob_sha": "aef5a6c388e7c1753274b7512a7cd95d6f4f31c6",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ]
+}

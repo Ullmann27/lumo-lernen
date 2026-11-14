@@ -1,0 +1,21 @@
+{
+  "lines": [
+    {
+      "file": "legacy-gameplay.log",
+      "line": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+    },
+    {
+      "file": "legacy-gameplay.log",
+      "line": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+    },
+    {
+      "file": "2014/kart_harbor_race_hook_regression.log",
+      "line": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+    },
+    {
+      "file": "2014/kart_rival_drift_items_regression.log",
+      "line": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+    }
+  ],
+  "note": "Original error-formatted lines retained. Gate success is not a claim of zero engine warnings or device memory stability."
+}

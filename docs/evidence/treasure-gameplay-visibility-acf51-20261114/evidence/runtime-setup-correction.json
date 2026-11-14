@@ -1,0 +1,27 @@
+{
+  "initial_red_and_green_v1_are_setup_failures": true,
+  "reason": "Missing actual acf51 facial preload dependency in isolated original803 closure",
+  "added_exact_acf51": [
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "git_blob": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad"
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+      "git_blob": "0fc3016ba886172aaf2575db2984e81b5567455c"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_facial_pose.gd",
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "git_blob": "91b8a8cd25f21dab84b77f178aa82d06673b54f9"
+    },
+    {
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216"
+    }
+  ],
+  "gameplay_sources_changed": false
+}

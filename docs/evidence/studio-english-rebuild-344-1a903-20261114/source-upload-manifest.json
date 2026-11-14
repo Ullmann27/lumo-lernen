@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "status": "frozen new implementation with completed local catalogue/renderer and existing learning gates; actual Dart producer run pending original JSON",
+  "native_base": "34421df83566dd4773420cc2a225887956459435",
+  "published_feature_source": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "host_initial_contract": "1a903aefc751f80537c7dd4c96ae8c99915962f5",
+  "actual_host_producer_commit": "bdd86f289a165ea5140a01607d78fcf4c31c98c6",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/english_object_gallery.gd",
+      "path": "scripts/learning/english_object_gallery.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7670,
+      "sha256": "4c6268517ae47fc9075bc4824e4aae1b2044190a1971fd8ca32b06662bf3cb55",
+      "git_blob": "44e9031dd31c86197b90ac004558ba50f01a2d7a",
+      "baseline": null
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/english_vocabulary.gd",
+      "path": "scripts/learning/english_vocabulary.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1857,
+      "sha256": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+      "git_blob": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4",
+      "baseline": null
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/learning_activity.gd",
+      "path": "scripts/learning/learning_activity.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "baseline": {
+        "bytes": 9286,
+        "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+        "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe"
+      }
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/learning/learning_world.gd",
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 53802,
+      "sha256": "4f37dc1f540f2a6c4c43d71f3508da1840abb6fdd3c18ad143d13f9948b2aa3e",
+      "git_blob": "1e8b528797b2c89f9833a1f0d5d6d98a9950948c",
+      "baseline": {
+        "bytes": 45446,
+        "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+        "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+      }
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/prepared/native/scripts/tests/learning_english_regression.gd",
+      "path": "scripts/tests/learning_english_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25074,
+      "sha256": "00c2a1756562db1c49fdad8ff6944b14065f204ad7e831d98cd2ea41ac31badf",
+      "git_blob": "c91720bbeb41b08bc46316a485e94356e2d50c66",
+      "baseline": null
+    }
+  ],
+  "actual_local_results": {
+    "catalogue_headless": {
+      "checks": 1021,
+      "failures": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 12.331197298000006
+    },
+    "catalogue_renderer": {
+      "checks": 1051,
+      "failures": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 235.54603275199997,
+      "pngs": 10,
+      "personally_opened_pngs": 10,
+      "touch_events": 98
+    },
+    "unchanged_legacy_learning": [
+      {
+        "name": "LearningWorld",
+        "checks": 5340
+      },
+      {
+        "name": "LearningStudio",
+        "checks": 183
+      },
+      {
+        "name": "LearningSharing",
+        "checks": 1811
+      }
+    ]
+  },
+  "scope_limits": [
+    "All local inputs so far are declared native catalogue and platform/JNI/audio fixtures.",
+    "This is new source; no previous630-check/10-image acceptance is transferred.",
+    "No physical Android/Fold7/60FPS/English-pronunciation claim.",
+    "No shared Router/HostBridge edit; actual native integration route remains Root-owned.",
+    "Renderer compatibility/VSync warnings remain in original logs."
+  ]
+}

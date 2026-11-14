@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14T10:06:11.290699+00:00",
+  "status": "FIVE_ACTUAL_ORIGINAL_IMAGES_REVIEWED_DIAGNOSTIC_ONLY",
+  "host_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "workflow_run_id": 43580229005,
+  "job_id": 132408947901,
+  "artifact_id": 14108983381,
+  "archive": {
+    "path": "/tmp/lumo-078-unified-failed-tour-originals.zip",
+    "bytes": 42844151,
+    "sha256": "8ebe012f6da4d113b5c51ce69854c27175ac603da1b2c850c192fe992d77e83b",
+    "full_archive_hash_recomputed": true,
+    "all232_entries_crc_checked_by_root_index": true,
+    "this_review_member_reads": 5
+  },
+  "original_index": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-unified-tour-originals/verified-original-extraction.json",
+    "sha256": "77725defb065c4cea60672d11eba65bc2367ba38c1c831390ef9b3802b55e3a8"
+  },
+  "images": [
+    {
+      "artifact_entry": "21_lumo_kart_12s.png",
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/21_lumo_kart_12s.png",
+      "bytes": 2659856,
+      "sha256": "df820264206ef559aff7f025b632026ef532d8feb29c8481c1a27403c907509b",
+      "git_blob_sha": "faeea7a1eeffbde1760c7724206b62c9d20b3280",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "opened_individually_with_view_image": true,
+      "archive_member_byte_equal": true,
+      "visible_state": "portrait_loading_cover",
+      "findings": [
+        "Hochkant-Ladebild mit Lumo-Kart-Logo, Insel-/Schlossmotiv und lesbarem „Rennwelt wird vorbereitet …“.",
+        "Unten ist ein teilweise gefüllter Fortschrittsbalken zu sehen. Rennstrecke, Fahrcontrols, Menüauswahl und numerischer Countdown sind in diesem Bild nicht sichtbar.",
+        "Android-Statusleiste und Gestennavigationsbalken sind sichtbar; kein Berechtigungsdialog, Fehlerdialog oder Pausenmodal erkennbar."
+      ],
+      "focus_evidence": "Das Bild allein bestimmt weder Activity-/Window-Fokus noch laufende Enginephysik."
+    },
+    {
+      "artifact_entry": "21_lumo_kart_20s.png",
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/21_lumo_kart_20s.png",
+      "bytes": 227990,
+      "sha256": "34e37f27f52124e2dc9682c4636ba050c323e185ef041992d8dd582b9106eb7b",
+      "git_blob_sha": "3d26fc83358f099b8a533c762fb2639c46486146",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "opened_individually_with_view_image": true,
+      "archive_member_byte_equal": true,
+      "visible_state": "kart_menu_grand_prix_selected",
+      "findings": [
+        "Querformat-Kartmenü: Einzelrennen, Grand Prix und Zeitrennen; Grand Prix ist mit heller Umrandung und Häkchen markiert.",
+        "Fahrer, Garage, Strecken, Tempo, Mehr Modi, Spielewelt und die große gelbe START-Fläche sind sichtbar. Oben Optionen und Sternzähler0.",
+        "Der freie Mittelbereich enthält in diesem Frame keine sichtbare Strecken-/Kartvorschau; rechts ist eine leere dunkle umrandete Fläche angeschnitten.",
+        "Kein Renncountdown, keine sichtbare Fahrt und kein Pausen-/Systemmodal. Die Auswahlumrandung ist ein sichtbarer Auswahlzustand, kein Nachweis des Android-Window-Fokus."
+      ],
+      "focus_evidence": "Keine Aussage zu tatsächlichem Window-Fokus oder Reaktionsfähigkeit der sichtbaren Knöpfe."
+    },
+    {
+      "artifact_entry": "21_lumo_kart_real_race.png",
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/21_lumo_kart_real_race.png",
+      "bytes": 1936717,
+      "sha256": "628769b688062f62808fac49fb4ab39ee2486c269fae4ca7a867f6109bb1bb1c",
+      "git_blob_sha": "84752ac89cdb55562ae59a0ada5c995e41eff293",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "opened_individually_with_view_image": true,
+      "archive_member_byte_equal": true,
+      "visible_state": "sunharbor_track_view_with_intro_overlay",
+      "findings": [
+        "Sonnenhafen ist als echte räumliche Straßen-/Brücken-/Wasseransicht mit erhöhtem Blick entlang der Fahrbahn sichtbar; mittig liegt ein Stern auf der Straße.",
+        "Unter dem oberen SONNENHAFEN-Header bleibt eine halbtransparente Streckeneinblendung „Sonnenhafen“ mit thematischer Unterzeile und schwachem Überspringen-Hinweis sichtbar. Ihr Kontrast vor dem hellen Himmel/Brückenbereich ist gering.",
+        "Menü, Rücksetzsymbol und „Ⅱ Pause“ liegen oben. Linker Stick und rechte DRIFT-, SPEED-, TAKTIK-, BREMSE- und GAS-Flächen sind sichtbar; die große Minimap belegt den oberen rechten Bereich und überschneidet den Bereich über SPEED.",
+        "Eine numerische Countdownzahl und ein eindeutig sichtbares eigenes Kart sind im Bild nicht erkennbar. Die vorhandene Pause-Aktion ist kein sichtbares Pausenmodal und beweist nicht, dass der Simulationsbaum unpausiert ist.",
+        "Kein Systemdialog oder sichtbarer Absturzbildschirm. Eine erhöhte Introansicht ist ein Bildbefund; daraus wird weder eine normal laufende Fahrt noch eine konkrete Hängerursache abgeleitet."
+      ],
+      "focus_evidence": "Keine direkte Fokusmessung. Die sichtbare Streckeneinblendung ist ein Ansatzpunkt für den unabhängigen Vergleich mit Intro-/Pausezuständen in CFG und Logcat."
+    },
+    {
+      "artifact_entry": "23_zurueck_in_flutter-flutter-visible-0.png",
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/23_zurueck_in_flutter-flutter-visible-0.png",
+      "bytes": 753543,
+      "sha256": "1e949f8e61b01c6f26054cf02108cda5ef64ccbe41e6a80614e8e8013df4b7ec",
+      "git_blob_sha": "38072cc773c7d021792ce4f99d4d36aed92fa0bd",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "opened_individually_with_view_image": true,
+      "archive_member_byte_equal": true,
+      "visible_state": "flutter_hub_rotation_or_surface_transition_frame",
+      "findings": [
+        "Flutter-Inhalte der Spielewelt sind erkennbar, darunter Überschrift, Abenteuerknopf, Kart- und Cardskachel.",
+        "Der Inhalt liegt seitlich gedreht und stark gestreckt im oberen Teil des Querformatbildes. Der große untere Restbereich ist schwarz.",
+        "Dies ist kein vollständiger normaler Flutter-Rückkehrframe und wird nicht als sichtbarer Rückkehr-PASS gewertet.",
+        "Die genaue Ursache und Dauer des Dreh-/Surface-Zwischenzustands können aus diesem einzelnen Bild nicht bestimmt werden."
+      ],
+      "focus_evidence": "Erkennbare Flutterpixel belegen keine abgeschlossene Ausrichtungs-/Surface-Erholung und keinen Window-Fokus."
+    },
+    {
+      "artifact_entry": "23_zurueck_in_flutter-flutter-visible-1.png",
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/23_zurueck_in_flutter-flutter-visible-1.png",
+      "bytes": 1965563,
+      "sha256": "1e92133263ea8a97d1172fa0546c03f25cbefe35166f7feb6bcba908e5d65be2",
+      "git_blob_sha": "de2d39bad0f203642ceb287322c71a5218aea454",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "opened_individually_with_view_image": true,
+      "archive_member_byte_equal": true,
+      "visible_state": "complete_portrait_flutter_games_hub",
+      "findings": [
+        "Normale aufrechte Portrait-Spielewelt mit LUMO, Sternzähler0, Abenteuerknopf und Lumo-Figur.",
+        "Lumo Kart, Cards, Bauwelt und Puzzle sind vollständig dargestellt; Memory und Jump & Run reichen bis an den unteren scrollbaren Ausschnitt.",
+        "Hilfe-&-Ideen-Fläche und untere Navigation Start/Lernen/Spielen/Tests/Profil/Mehr sind sichtbar; Spielen ist hervorgehoben. Keine schwarze großflächige Restfläche wie im vorherigen Bild.",
+        "Das Bild zeigt einen tatsächlich sichtbaren vollständigen Flutter-Hub. Es belegt für sich allein weder Prozessende der nativen Activity noch funktionierende weitere Eingaben oder den erforderlichen zweiten stabilen Frame eines konkreten Rückkehrgates."
+      ],
+      "focus_evidence": "Die hervorgehobene Navigation ist UI-Auswahl; ein Activity-/Window-Fokus muss aus eigener Telemetrie stammen."
+    }
+  ],
+  "combined_findings": [
+    "The three kart images visibly distinguish loading cover, Grand Prix selection menu and track/intro overlay. The filename real_race is not proof of elapsed race simulation.",
+    "No numeric countdown is visible in the requested race PNG; frozen countdown/elapsed/distance values are independent log/CFG observations, not measured by this image review.",
+    "The first return PNG is visibly malformed/in transition; the second shows a complete portrait Flutter hub. Duration and root cause are not inferred from filenames or status-bar clocks.",
+    "No visible system modal or pause dialog supplies a screenshot-only explanation for the race-progress failure. Actual focus, pause flags, process state and intro timing remain for the independent log/CFG timeline."
+  ],
+  "new_blocking_source_diagnosis": null,
+  "test_result_reclassified": false,
+  "workflow_gate_approval": false,
+  "separate_from_required_studio_run": 43580228966,
+  "originals_unchanged_before_after": true,
+  "product_source_changes": false,
+  "git_mutations": false,
+  "new_tests_or_reruns": 0,
+  "new_renderings": 0,
+  "limits": [
+    "Five original screenshots only; no video playback or audio hearing.",
+    "No screenshot-derived duration/FPS/physical Fold7 measurement.",
+    "No claim that a visible Pause action equals unpaused physics or that Android statusbar equals app focus.",
+    "The additional Unified workflow failure is preserved; no result transferred to the separate Studio run."
+  ]
+}

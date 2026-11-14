@@ -1,0 +1,35 @@
+{
+  "files": [
+    {
+      "path": "host/lib/features/games/connect_four/connect_four_engine.dart",
+      "bytes": 9755,
+      "sha256": "d08eb72cdc131ab764510b346d509a0c5d24592f3e3bbeafb7db47fdfe49f334"
+    },
+    {
+      "path": "host/lib/features/games/connect_four/connect_four_round.dart",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754"
+    },
+    {
+      "path": "host/lib/features/games/connect_four/connect_four_table_session.dart",
+      "bytes": 9737,
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e"
+    },
+    {
+      "path": "host/test/games/connect_four_runtime_bridge.dart",
+      "bytes": 4838,
+      "sha256": "f74b56bc14994b9f9a987ec0719fa85f9d2427012c83ae18b8740a98c18fed65"
+    },
+    {
+      "path": "native/scripts/games/connect_four/connect_four_table.gd",
+      "bytes": 29835,
+      "sha256": "6a0ef7cdbf806e0a3050cf3da931f416fd149f366883e108e7f84daf074081ef"
+    },
+    {
+      "path": "native/scripts/tests/connect_four_runtime_regression.gd",
+      "bytes": 14487,
+      "sha256": "00511058606fd1183d404a114d6588ea0f8bb34490677a05f921fbbf57fe1ade"
+    }
+  ],
+  "all_unchanged": true
+}

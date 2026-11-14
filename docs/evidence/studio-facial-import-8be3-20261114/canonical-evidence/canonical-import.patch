@@ -1,0 +1,17 @@
+--- a/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import
++++ b/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import
+@@ -40,7 +40,13 @@
+ _subresources={
+ "meshes": {
+ "Lumo-Facial-Mobile_LumoEyelids": {
+-"generate/lods": 2
++"generate/lightmap_uv": 0,
++"generate/lods": 2,
++"generate/shadow_meshes": 0,
++"lods/normal_merge_angle": 20.0,
++"save_to_file/enabled": false,
++"save_to_file/fallback_path": "",
++"save_to_file/path": ""
+ }
+ }
+ }

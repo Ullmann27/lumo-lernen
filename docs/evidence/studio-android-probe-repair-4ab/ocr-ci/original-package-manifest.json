@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "status": "FROZEN_READ_ONLY_ORIGINAL_OCR_CI_EVIDENCE",
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "run_id": 43542310963,
+  "job_id": 132285430053,
+  "artifact_id": 14091419071,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/README.md",
+      "relative_path": "README.md",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/README.md",
+      "bytes": 1891,
+      "sha256": "4bbfbd1bebfc8bc28a9920850f98ba685e435a6802076c39a5d5e7012893e70f",
+      "git_blob_sha1": "47e4efdadbf3fb9ff6e7f86a2f3ae5bac9cd7495",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/artifact-byte-verification.json",
+      "relative_path": "artifact-byte-verification.json",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/artifact-byte-verification.json",
+      "bytes": 1398,
+      "sha256": "e54d53dd4a2a04acbc95de07c1d2e1c6e8ef973245fe907ea2f3b2a4fc9365ac",
+      "git_blob_sha1": "9dc3335136c4c02888d7f988b65351ba2ebfdd03",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/artifact-metadata-original.json",
+      "relative_path": "artifact-metadata-original.json",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/artifact-metadata-original.json",
+      "bytes": 894,
+      "sha256": "821afa45ba7d9c8d4c6c8305b8c49410dbd36dceafe9a043252da085bc9feb05",
+      "git_blob_sha1": "c70a5dda37ea095192dda753589c339c641f2d25",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/original-artifact/original-caption-replay.log",
+      "relative_path": "original-artifact/original-caption-replay.log",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/original-artifact/original-caption-replay.log",
+      "bytes": 2036,
+      "sha256": "3d5d2c628accd453833d169057200cb5876b243605bae1358c390fd3177931f8",
+      "git_blob_sha1": "673479977614c72d281521fe88a0c4ab9cf8142e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/original-artifact/source-binding-counterexamples.log",
+      "relative_path": "original-artifact/source-binding-counterexamples.log",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/original-artifact/source-binding-counterexamples.log",
+      "bytes": 5150,
+      "sha256": "5fa6aebf8bd6d1ceaac8550d500da5d5ee7b56d57ca0eddbd6ccb293e3074123",
+      "git_blob_sha1": "f7c72690555181b8b8cda31d489b38ff7e125d4e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/original-artifact/tesseract-languages.txt",
+      "relative_path": "original-artifact/tesseract-languages.txt",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/original-artifact/tesseract-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+      "git_blob_sha1": "416e4d01d7185326c5d27a86066ce5bdabf609fe",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/original-artifact/tesseract-version.txt",
+      "relative_path": "original-artifact/tesseract-version.txt",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/original-artifact/tesseract-version.txt",
+      "bytes": 551,
+      "sha256": "b0244d9f75aa00508fdb60e44c34390b452fbce9c0773fae505aed6fc1fb51bf",
+      "git_blob_sha1": "c42a0c122bf147b34ae9df71d9dbc5c46be9f0c4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/original-artifact.zip",
+      "relative_path": "original-artifact.zip",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/original-artifact.zip",
+      "bytes": 2613,
+      "sha256": "54b7887130b9868e70132439c6604b59b233111cc7e4818a90fce3340b842687",
+      "git_blob_sha1": "f0cbcfd3c0f26c1dde7288f00a269c7520693843",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/original-job.log",
+      "relative_path": "original-job.log",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/original-job.log",
+      "bytes": 36842,
+      "sha256": "112b623abf2a2ebc52501ff16006242b5b5897a260d2ebb79c691f11631b0b1d",
+      "git_blob_sha1": "c14f4144d7796e483da5fca58af3f12d890f1029",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/review.json",
+      "relative_path": "review.json",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/review.json",
+      "bytes": 6539,
+      "sha256": "ef0f5671d4b09c933c92a4edeaae57325742632e265a900057b68929648c046d",
+      "git_blob_sha1": "78f42607333b370e4710383395f444d94ee35ad7",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/ci-originals/run-attempt-jobs-original.json",
+      "relative_path": "run-attempt-jobs-original.json",
+      "repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/run-attempt-jobs-original.json",
+      "bytes": 11255,
+      "sha256": "42808d2d33cd037dff460ed06fc0439e3f04b5bff4d2807accdf80c91e2de90e",
+      "git_blob_sha1": "a3ecdbc166966fcbe382b9b6f37d1b29db011758",
+      "mode": "100644"
+    }
+  ],
+  "file_count": 11,
+  "total_bytes": 69256,
+  "manifest_repo_path": "docs/evidence/studio-4ab-ocr-recheck-a446f3c1/ci-originals/evidence-upload-manifest.json",
+  "manifest_is_additional_file": true,
+  "contains_apk": false,
+  "product_or_workflow_modified": false
+}

@@ -1,0 +1,22 @@
+{
+  "host_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "files": {
+    "scripts/run_speech_jvm_contracts.py": "9d17f343b16d80bddb861cf26cfeae9e38994f24",
+    "scripts/compile_android_host.sh": "c5138523453d4e185f6af46f96e15478888075de",
+    "scripts/gradle/lumo-maven-central-mirror.init.gradle": "2bc1e7655536e92a8d7ff2cccbc8026f932ea208",
+    "scripts/speech_contracts/test_english_lesson_speech.py": "93b4d63069533f160207e098ff6093c963ce3bfd",
+    "scripts/speech_contracts/test_learning_english_speech_lifecycle.py": "b0fe0ebe291be6ba1f84ab6bda50ab34c987823a",
+    "scripts/voice/LumoOfflineSpeechEngineProbe.java": "e16b0a53e240bf4fffb536f0b698ea42560c8437",
+    "tools/auto_install/LumoLearningSpeech.kt": "755077c4f1385f9b09464113aeaab3a20ec8a376",
+    "tools/auto_install/LumoOfflineSpeechBridge.kt": "9e034ca2a46e53adf8a3014c0e8868d33ba54a9c",
+    "tools/auto_install/LumoOfflineSpeechEngine.java": "38fb6157588ddcc1a9e3cf3bab29a7c8addefbfd",
+    "tools/auto_install/LumoSpeechEnvelope.kt": "5721274734e111e96d55762d86b3d3e830fc26e8",
+    "scripts/tests/fixtures/learning_english_speech/LearningSpeechLifecycleContract.kt": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+    "scripts/tests/fixtures/learning_english_speech/SpeechEnvelopeContract.kt": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+    "scripts/tests/fixtures/learning_english_speech/EnglishLessonLifecycleContract.kt": "9e22b98ad3938b6d0dafd4c1971d20faf09e337a",
+    "scripts/tests/fixtures/learning_english_speech/platform_fixture.py": "40897dc0e2a48cb0c054f19820557ffa7fc43579",
+    "scripts/tests/fixtures/learning_english_speech/apfel-original.wav": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905"
+  },
+  "source": "Complete non-truncated actual Git tree already verified in Host integration."
+}

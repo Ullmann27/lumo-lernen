@@ -1,0 +1,344 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T10:46:09.600072+00:00",
+  "scope": "One explicitly requested paired Python journal contract: real C controller, real image_lines/native_tap/target_observation, synthetic raster/TSV/ADB and clock transport. No Android execution, no original-image OCR replay.",
+  "manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/source-upload-manifest.json",
+    "bytes": 2504,
+    "sha256": "1042540ea5c764782da577e822fa80d590004199bdab0dd2a321ae85a2d5cae4",
+    "git_blob_sha": "8cc98eeaf94359df06887591a35e812885707b31"
+  },
+  "source_before": {
+    ".github/probes/modernization_android_tour.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+    },
+    "tools/android_qa/tests/test_kart_preview_skip.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+    },
+    "scripts/recheck_studio_078_kart.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/recheck_studio_078_kart.py",
+      "bytes": 24511,
+      "sha256": "f495aea0e3c6073bdba675ac53d5f79376583f9f293c3ebe2891c1a7737619ce",
+      "git_blob_sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77"
+    },
+    "scripts/tests/test_studio_078_kart_recheck.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/tests/test_studio_078_kart_recheck.py",
+      "bytes": 17326,
+      "sha256": "8dba66a1f1408912a154ec5e05705adb131833b37e17a15ecace1f68ec5fd1c9",
+      "git_blob_sha": "b1130cfce0731b9aa5c3e80531aa9c4eddf675cb"
+    },
+    ".github/workflows/lumo-studio-078-kart-recheck.yml": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/.github/workflows/lumo-studio-078-kart-recheck.yml",
+      "bytes": 6633,
+      "sha256": "529f317a2f05d537f4206138169a76657cf9970e27fcdb45ba66b87a49b354df",
+      "git_blob_sha": "503c4f4350fdccf58054d2c146e96603af5726c5"
+    }
+  },
+  "helper_sources": {
+    "LUMO_KART_TOUR_SOURCE": {
+      "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+    },
+    "LUMO_KART_CREATIVE_SOURCE": {
+      "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py",
+      "bytes": 60697,
+      "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+      "git_blob_sha": "45ff0d24400ee21673c707b4b6448f914c85ee87"
+    },
+    "LUMO_KART_SURFACE_SOURCE": {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob_sha": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    "LUMO_KART_EVIDENCE_SOURCE": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source/host/tools/android_qa/kart_tour_evidence.py",
+      "bytes": 9299,
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "git_blob_sha": "c7bd2af82f3912c468bc21212ae017b06f70d116"
+    }
+  },
+  "test_method": "test_actual_helper_observes_fade_then_two_fresh_exact_frames",
+  "result": "PASS",
+  "binder_result": {
+    "status": "OBSERVED_TOUCH_VERIFIED",
+    "touch": [
+      295,
+      168
+    ],
+    "source_frames": [
+      {
+        "path": "/tmp/tmpi4b3d5i6/21_kart_preview_skip_touch-1.png",
+        "bytes": 42,
+        "sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c"
+      },
+      {
+        "path": "/tmp/tmpi4b3d5i6/21_kart_preview_skip_touch-2.png",
+        "bytes": 42,
+        "sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c"
+      }
+    ],
+    "cue": {
+      "path": "/tmp/tmpi4b3d5i6/21_kart_preview_skip_touch-2.png",
+      "bytes": 42,
+      "sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c"
+    },
+    "cue_ocr": {
+      "path": "/tmp/tmpi4b3d5i6/21_kart_preview_skip_touch-2-ocr.json",
+      "bytes": 314,
+      "sha256": "aedd793c5badc213543bc3f182da596a2ca806f3af763e3b14b89badc53ca8c1"
+    },
+    "after_touch": {
+      "path": "/tmp/tmpi4b3d5i6/21_kart_preview_after_touch.png",
+      "bytes": 42,
+      "sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c"
+    },
+    "journal": {
+      "path": "/tmp/tmpi4b3d5i6/21_kart_preview_skip.json",
+      "bytes": 5147,
+      "sha256": "3e6603f053b4997ee4769a4f3cdec817b5d98c729731ce8a6b54cbfb04fb127c"
+    }
+  },
+  "clock_seconds": 9.3,
+  "readiness_frames": 3,
+  "cue_witnesses": 2,
+  "synthetic_journal": {
+    "schema": 1,
+    "status": "TOUCH_SENT",
+    "countercheck_scope": "OBSERVED_UI_TOUCH_ONLY",
+    "caption": "Tippen zum Überspringen",
+    "deadline_policy": "original race-world-ready55s",
+    "initial_remaining_seconds": 55.0,
+    "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json",
+    "initial_capture": {
+      "source": "21_lumo_kart_real_race.png",
+      "source_sha256": "206213b87d33ceb7c22118f72d7d7dd9ebc545b08c9d0043a6df8212118ecc88",
+      "scope": "Context only; never a touch prerequisite"
+    },
+    "foreground_before_touch": "app/LumoGameActivity",
+    "readiness": {
+      "status": "TOUCH_SENT",
+      "label": "Tippen zum Überspringen",
+      "timeout_seconds": 55.0,
+      "exact_caption_required": true,
+      "orientation_policy": "landscape",
+      "scope": "Observed touch prerequisites; post-action assertions still required",
+      "frames": [
+        {
+          "source": "21_kart_preview_skip_touch-0.png",
+          "source_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+          "source_bytes": 42,
+          "pixels": [
+            2400,
+            1080
+          ],
+          "acceptable_for_target_sampling": true,
+          "reasons": [
+            "actual requested caption not observed"
+          ],
+          "orientation_policy": "landscape",
+          "captured_after_seconds": 1.0
+        },
+        {
+          "source": "21_kart_preview_skip_touch-1.png",
+          "source_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+          "source_bytes": 42,
+          "pixels": [
+            2400,
+            1080
+          ],
+          "acceptable_for_target_sampling": true,
+          "reasons": [],
+          "orientation_policy": "landscape",
+          "captured_after_seconds": 4.1,
+          "target": {
+            "surface_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+            "pixels": [
+              2400,
+              1080
+            ],
+            "bounds": [
+              180.0,
+              150.0,
+              410.0,
+              185.0
+            ],
+            "anchor": "",
+            "reasons": [
+              "waiting for second stable observed target bounds"
+            ],
+            "target_geometry_valid": true,
+            "stable_observed_target": false
+          }
+        },
+        {
+          "source": "21_kart_preview_skip_touch-2.png",
+          "source_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+          "source_bytes": 42,
+          "pixels": [
+            2400,
+            1080
+          ],
+          "acceptable_for_target_sampling": true,
+          "reasons": [],
+          "orientation_policy": "landscape",
+          "captured_after_seconds": 6.7,
+          "target": {
+            "surface_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+            "pixels": [
+              2400,
+              1080
+            ],
+            "bounds": [
+              180.0,
+              150.0,
+              410.0,
+              185.0
+            ],
+            "anchor": "",
+            "reasons": [],
+            "target_geometry_valid": true,
+            "stable_observed_target": true
+          }
+        }
+      ],
+      "final_observed_bounds": [
+        180.0,
+        150.0,
+        410.0,
+        185.0
+      ],
+      "touch": [
+        295,
+        168
+      ],
+      "elapsed_seconds": 8.3
+    },
+    "cue_witnesses": [
+      {
+        "source": "21_kart_preview_skip_touch-1.png",
+        "source_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+        "ocr_file": "21_kart_preview_skip_touch-1-ocr.json",
+        "ocr_sha256": "aedd793c5badc213543bc3f182da596a2ca806f3af763e3b14b89badc53ca8c1",
+        "observed_matches": [
+          {
+            "text": "Tippen zum Überspringen",
+            "bounds": [
+              180.0,
+              150.0,
+              410.0,
+              185.0
+            ],
+            "variant": "contrast"
+          }
+        ]
+      },
+      {
+        "source": "21_kart_preview_skip_touch-2.png",
+        "source_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+        "ocr_file": "21_kart_preview_skip_touch-2-ocr.json",
+        "ocr_sha256": "aedd793c5badc213543bc3f182da596a2ca806f3af763e3b14b89badc53ca8c1",
+        "observed_matches": [
+          {
+            "text": "Tippen zum Überspringen",
+            "bounds": [
+              180.0,
+              150.0,
+              410.0,
+              185.0
+            ],
+            "variant": "contrast"
+          }
+        ]
+      }
+    ],
+    "cue": {
+      "source": "21_kart_preview_skip_touch-2.png",
+      "source_sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+      "ocr_file": "21_kart_preview_skip_touch-2-ocr.json",
+      "ocr_sha256": "aedd793c5badc213543bc3f182da596a2ca806f3af763e3b14b89badc53ca8c1",
+      "observed_matches": [
+        {
+          "text": "Tippen zum Überspringen",
+          "bounds": [
+            180.0,
+            150.0,
+            410.0,
+            185.0
+          ],
+          "variant": "contrast"
+        }
+      ]
+    },
+    "touch": [
+      295,
+      168
+    ],
+    "after_capture": {
+      "file": "21_kart_preview_after_touch.png",
+      "sha256": "49a465a6008792cf3f1329da095e905a647ae90d946f2a74304d821981fd7b3c",
+      "width": 2400,
+      "height": 1080
+    },
+    "elapsed_seconds": 9.3
+  },
+  "elapsed_seconds": 0.08515762198658194,
+  "source_after": {
+    ".github/probes/modernization_android_tour.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+    },
+    "tools/android_qa/tests/test_kart_preview_skip.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+    },
+    "scripts/recheck_studio_078_kart.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/recheck_studio_078_kart.py",
+      "bytes": 24511,
+      "sha256": "f495aea0e3c6073bdba675ac53d5f79376583f9f293c3ebe2891c1a7737619ce",
+      "git_blob_sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77"
+    },
+    "scripts/tests/test_studio_078_kart_recheck.py": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/tests/test_studio_078_kart_recheck.py",
+      "bytes": 17326,
+      "sha256": "8dba66a1f1408912a154ec5e05705adb131833b37e17a15ecace1f68ec5fd1c9",
+      "git_blob_sha": "b1130cfce0731b9aa5c3e80531aa9c4eddf675cb"
+    },
+    ".github/workflows/lumo-studio-078-kart-recheck.yml": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/.github/workflows/lumo-studio-078-kart-recheck.yml",
+      "bytes": 6633,
+      "sha256": "529f317a2f05d537f4206138169a76657cf9970e27fcdb45ba66b87a49b354df",
+      "git_blob_sha": "503c4f4350fdccf58054d2c146e96603af5726c5"
+    }
+  },
+  "all_five_sources_unchanged": true,
+  "synthetic_adb_transport_calls": [
+    {
+      "args": [
+        "shell",
+        "input",
+        "swipe",
+        "295",
+        "168",
+        "295",
+        "168",
+        "120"
+      ],
+      "kwargs": {
+        "timeout": 15
+      }
+    }
+  ]
+}

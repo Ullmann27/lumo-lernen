@@ -1,0 +1,28 @@
+{
+  "source": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "published_tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+  "original_bound_source_files": 1185,
+  "original_source_changes": [],
+  "private_runtime_changes": [
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "before_sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "after_sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a"
+    },
+    {
+      "path": "scripts/tests/lumo_attention_landing_regression.gd",
+      "before_sha256": "7c56887fd79b6f18514922104ce97f5239f10f6d5208c73fed99d337839f50ea",
+      "after_sha256": "84789b1e8d4404a637481b5df0f099a7fa4d7fe437dc4a48b35c1c1735a81e53"
+    }
+  ],
+  "unchanged_sections": [
+    "all helpers and setup through 65-bone guard",
+    "all production motion, hand-contact, attention, landing, pause, reduced-motion and teardown checks",
+    "report save and exit code handling"
+  ],
+  "checks_before": 1843,
+  "checks_after": 1846,
+  "failed_before": 1,
+  "failed_after": 0,
+  "note": "One incorrect active-model/original-hash assertion was replaced by four explicit original/derivative path/hash assertions; all other assertions remain byte-identical. Import normalization is independently recorded and identical for both runs."
+}

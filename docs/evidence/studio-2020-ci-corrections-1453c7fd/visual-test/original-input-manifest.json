@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "scope": "read_only_review_no_product_or_test_execution",
+  "files": [
+    {
+      "path": "qa/connect-four-visual-test-peer-review-20261114/review.json",
+      "bytes": 2340,
+      "sha256": "cc1bf594f7d1eeecbe42a2da69ea64f41970ef75200001ad7af2a5cbe67a4427",
+      "git_blob": "5900f4c9b980c856aa126026be3f7080121b92b4",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-visual-test-peer-review-20261114/review.json"
+    },
+    {
+      "path": "qa/connect-four-visual-test-peer-review-20261114/baseline.dart.txt",
+      "bytes": 4091,
+      "sha256": "599ba9fc1ed1abdb3ef993d0e0e07b4c71ce2d59508ffd1482c4177bce98a79f",
+      "git_blob": "1a344ef9012cfdd7230cad2b6ebcd680151218e7",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-visual-test-peer-review-20261114/baseline.dart.txt"
+    },
+    {
+      "path": "qa/connect-four-visual-test-peer-review-20261114/proposed.dart.txt",
+      "bytes": 7736,
+      "sha256": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+      "git_blob": "2b6225ad3972ae801620d8363458833434358616",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-visual-test-peer-review-20261114/proposed.dart.txt"
+    }
+  ]
+}

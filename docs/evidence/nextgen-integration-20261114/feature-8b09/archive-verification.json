@@ -1,0 +1,15 @@
+{
+  "artifact_id": 14117248948,
+  "run_id": 43604481767,
+  "source": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+  "bytes": 342924933,
+  "sha256": "e2688f4ef747b4c43cd31f886bf17c859200ce4a23631c858ac9fcafe402fe8f",
+  "all_crc_verified": true,
+  "entries": 593,
+  "extracted": [
+    "feature-evidence/HOST-SOURCE.txt",
+    "feature-evidence/full-flutter/acceptance-summary.json",
+    "feature-evidence/full-flutter/flutter-machine.jsonl"
+  ],
+  "scope": "untouched original artifact; overall Flutter failure retained"
+}

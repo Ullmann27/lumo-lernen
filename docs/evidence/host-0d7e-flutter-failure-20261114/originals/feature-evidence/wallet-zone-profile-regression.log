@@ -1,0 +1,334 @@
+00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart
+00:00 +0: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: An unused wallet constructed in another zone starts in its caller zone
+00:00 +1: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: A fully committed wallet tail releases its completed originating zone
+00:00 +2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: A failed durable write releases its zone and the exact reward can retry
+00:00 +2 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: A failed durable write releases its zone and the exact reward can retry [E]
+  Expected: an object with length of <2>
+    Actual: [
+              {
+                'stars': 2,
+                'xp': 16,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 2,
+                'lastDailyKey': '',
+                'gameResultIds': ['retry-round'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 2,
+                'xp': 16,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 2,
+                'lastDailyKey': '',
+                'gameResultIds': ['retry-round'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 2,
+                'xp': 16,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 2,
+                'lastDailyKey': '',
+                'gameResultIds': ['retry-round'],
+                'lumoCardsWinStreak': 0
+              }
+            ]
+     Which: has length of <3>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/reward_wallet_queue_zone_test.dart 219:5       main.<fn>
+  
+00:00 +2 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: An older completion cannot release a younger pending durable write
+00:00 +2 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: An older completion cannot release a younger pending durable write [E]
+  Expected: an object with length of <3>
+    Actual: [
+              {
+                'stars': 3,
+                'xp': 24,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 3,
+                'lastDailyKey': '',
+                'gameResultIds': ['first'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 8,
+                'xp': 64,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 8,
+                'lastDailyKey': '',
+                'gameResultIds': ['first', 'second'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 10,
+                'xp': 80,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 10,
+                'lastDailyKey': '',
+                'gameResultIds': ['first', 'second', 'third'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 10,
+                'xp': 80,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 10,
+                'lastDailyKey': '',
+                'gameResultIds': ['first', 'second', 'third'],
+                'lumoCardsWinStreak': 0
+              }
+            ]
+     Which: has length of <4>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/reward_wallet_queue_zone_test.dart 293:5       main.<fn>
+  
+00:00 +2 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Old flat wallet JSON keeps balances, levels, streak and earned stars
+00:00 +3 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: A combined lesson reward (_Outcome.falseResult) is all-or-nothing and safely retried
+00:00 +4 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: A combined lesson reward (_Outcome.exception) is all-or-nothing and safely retried
+00:00 +5 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Combined lessons and a game share the queue without partial reward snapshots
+00:00 +6 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Combined deductions clamp balances and do not increase earned-star totals
+00:00 +7 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.falseResult) preserves concurrent learning and allows replay
+00:00 +7 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.falseResult) preserves concurrent learning and allows replay [E]
+  Expected: an object with length of <4>
+    Actual: [
+              {
+                'stars': 6,
+                'xp': 20,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 6,
+                'lastDailyKey': '',
+                'gameResultIds': ['race-1'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 3,
+                'xp': 0,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 3,
+                'lastDailyKey': '',
+                'gameResultIds': [],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 3,
+                'xp': 5,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 3,
+                'lastDailyKey': '',
+                'gameResultIds': [],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 9,
+                'xp': 25,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 9,
+                'lastDailyKey': '',
+                'gameResultIds': ['race-1'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 9,
+                'xp': 25,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 9,
+                'lastDailyKey': '',
+                'gameResultIds': ['race-1'],
+                'lumoCardsWinStreak': 0
+              }
+            ]
+     Which: has length of <5>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/reward_wallet_transaction_test.dart 209:7      main.<fn>
+  
+00:00 +7 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.exception) preserves concurrent learning and allows replay
+00:00 +7 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.exception) preserves concurrent learning and allows replay [E]
+  Expected: an object with length of <4>
+    Actual: [
+              {
+                'stars': 6,
+                'xp': 20,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 6,
+                'lastDailyKey': '',
+                'gameResultIds': ['race-1'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 3,
+                'xp': 0,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 3,
+                'lastDailyKey': '',
+                'gameResultIds': [],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 3,
+                'xp': 5,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 3,
+                'lastDailyKey': '',
+                'gameResultIds': [],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 9,
+                'xp': 25,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 9,
+                'lastDailyKey': '',
+                'gameResultIds': ['race-1'],
+                'lumoCardsWinStreak': 0
+              },
+              {
+                'stars': 9,
+                'xp': 25,
+                'level': 1,
+                'streak': 0,
+                'totalEarnedStars': 9,
+                'lastDailyKey': '',
+                'gameResultIds': ['race-1'],
+                'lumoCardsWinStreak': 0
+              }
+            ]
+     Which: has length of <5>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/reward_wallet_transaction_test.dart 209:7      main.<fn>
+  
+00:00 +7 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Successful game write commits balance and identity together before queued changes
+00:00 +8 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Concurrent duplicate awards and a fresh-process replay grant one reward
+00:00 +9 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Reset waits for an in-flight award and does not restore its old snapshot
+00:00 +10 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: A failed reset reports failure and preserves the existing balance
+00:00 +11 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: A failed lesson mutation does not poison later XP or its explicit retry
+00:00 +12 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed legacy migration keeps saved rewards for the next transaction
+00:00 +13 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: AppState exposes failed save and flush retries the complete lesson once
+00:00 +14 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: AppState keeps younger rewards queued after the oldest storage error
+00:00 +15 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Flush includes a reward queued while saved state notifies its listeners
+00:00 +16 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Cards win sequence, Stars and XP survive new AppState and settings hydration
+00:00 +17 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed Cards persistence cannot advance its series or grant half a reward
+00:00 +18 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Native import cannot acknowledge an event after a failed lesson flush
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: Bad state: Belohnung konnte nicht gespeichert werden
+00:00 +19 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Invalid native rewards cannot write balances or poison the queue
+00:01 +20 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Old unowned record stays byte-identical and is assigned to no child
+00:02 +21 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Real completed round restores only its child best and difficulty
+00:02 +22 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed old-child write cannot overwrite the newly selected child
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: an object with length of <1>
+  Actual: [
+            ({String key, String value}):(key:
+flutter.lumo.memory.stats.v1.e1ded4c36723f878c4c45316cadaf868fb3a20432f414010a1d93e974657529c,
+value: {"difficulty":"leicht","best":{"leicht":7}}),
+            ({String key, String value}):(key:
+flutter.lumo.memory.stats.v1.e1ded4c36723f878c4c45316cadaf868fb3a20432f414010a1d93e974657529c,
+value: {"difficulty":"profi","best":{"leicht":7}})
+          ]
+   Which: has length of <2>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:175:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart line 175
+The test description was:
+  Delayed old-child write cannot overwrite the newly selected child
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +22 -5: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed old-child write cannot overwrite the newly selected child [E]
+  Test failed. See exception logs above.
+  The test description was: Delayed old-child write cannot overwrite the newly selected child
+  
+00:03 +22 -5: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed identity load cannot expose old best after profile switch
+00:03 +23 -5: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Pending successive choices retain captured snapshots and final order
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with key [<'memory-diff-mittel'>]: []" (used in a call to "tap()") could
+not find any matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      _choose (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:70:16)
+#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:233:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Pending successive choices retain captured snapshots and final order
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +23 -6: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Pending successive choices retain captured snapshots and final order [E]
+  Test failed. See exception logs above.
+  The test description was: Pending successive choices retain captured snapshots and final order
+  
+00:03 +23 -6: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Unreadable existing child stats are preserved instead of reset
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with key [<'memory-diff-leicht'>]: []" (used in a call to "tap()") could
+not find any matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      _choose (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:70:16)
+#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:254:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Unreadable existing child stats are preserved instead of reset
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +23 -7: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Unreadable existing child stats are preserved instead of reset [E]
+  Test failed. See exception logs above.
+  The test description was: Unreadable existing child stats are preserved instead of reset
+  
+00:03 +23 -7: Some tests failed.
+
+Failing tests:
+  /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed old-child write cannot overwrite the newly selected child
+  /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Pending successive choices retain captured snapshots and final order
+  /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Unreadable existing child stats are preserved instead of reset
+  /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_queue_zone_test.dart: A failed durable write releases its zone and the exact reward can retry
+  ... and 3 more

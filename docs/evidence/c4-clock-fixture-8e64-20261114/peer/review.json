@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14 20:11:27 UTC",
+  "status": "READ_ONLY_REVIEW_NO_ADDITIONAL_CONCRETE_BLOCKER",
+  "base_commit": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "source_manifest": {
+    "path": "qa/c4-clock-fixture-8e64-20261114/source-upload-manifest.json",
+    "bytes": 1327,
+    "sha256": "804a3e8081516f24d870d0f597a849a187246e21c0b47702efb85238189cf728",
+    "git_blob_sha": "8cbfe98e840c444b23a6b63c268dad5c2d6dfa64"
+  },
+  "diff": {
+    "path": "qa/c4-clock-fixture-8e64-20261114/implementation-against-exact-8e64.patch",
+    "bytes": 5022,
+    "sha256": "8add49e73d786616e1de75e9ec48731049752a7f48650ccf88fb23ace59c90f2"
+  },
+  "sources": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "git_blob_sha": "830b3f661c2a289f5ae76ed545cfed60fe27b36a",
+      "baseline_git_blob_sha": "c4b90bc73b76a2df23acdb253fa4213b798fed21",
+      "baseline_sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "baseline_fresh_pinned_github_read_matches": true
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "bytes": 7711,
+      "sha256": "865996a3c4a6ad81a4629cb983a364b0a80474e0aa00c5715667be3fa02b48b7",
+      "git_blob_sha": "5a5c88cd1cc63e629461acb88fe62dd442d65d83",
+      "baseline_git_blob_sha": "829b819945d980e2082f478c1ddccea9463e3fa5",
+      "baseline_sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "baseline_fresh_pinned_github_read_matches": true
+    }
+  ],
+  "actual_failure": {
+    "run_id": 43634307306,
+    "job_id": 132567623144,
+    "artifact_id": 14129347799,
+    "test_id": 56,
+    "test_name": "Lifecycle pause during reward retry defers the settled result",
+    "selection_path": "qa/host-8e64-flutter-acceptance-20261114/failure-test-original-events.json",
+    "selection_sha256": "401d68138b13feb728cf123b0575a3011be4642833bc8914072792ae058fb1b0",
+    "original_member": "feature-evidence/full-flutter/flutter-machine.jsonl",
+    "original_member_bytes": 1790959,
+    "original_member_sha256": "a54cec8154dd7090740e0ef1c469bc9ae17b0ceb7884d01860b4f73de76adf21",
+    "original_member_rehashed_locally": true,
+    "selected_events_compared_to_exact_original_lines": [
+      56,
+      115,
+      123,
+      124,
+      125
+    ],
+    "original_failure_assertion": "connect_four_bot_save_retry_test.dart:261:5: expected held.entered.isCompleted true; actual false",
+    "phase": "Before inactive lifecycle event, before release of held platform ACK; no result-deferral assertion was reached in this failed case."
+  },
+  "source_mechanism": {
+    "product_path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "product_git_blob_sha": "7e0dfc297090d5d3e558367107a28ff5986de786",
+    "product_sha256": "1a968ed55fa15d47124158b70fb50f88e77aae60661ce38ef916cb0e4e50bba0",
+    "clock_path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+    "clock_git_blob_sha": "9ffc5f25494bb03c64a68cd704d5069aae41013e",
+    "clock_sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+    "clock_behavior": "The rejected terminal reward schedules _retryFinishedRound on Duration.zero while the production clock is paused; explicit Fortsetzen resumes and arms Timer(_remaining).",
+    "sdk_observed_in_original": "Flutter 3.44.9 / framework 6b182d2c75 / Dart 3.12.2",
+    "sdk_source_url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter_test/lib/src/binding.dart#L2248-L2263",
+    "sdk_source_sha256": "3841b362c87d7dfd9fb07272338a20a0dd6bdd09ed916dd096b5dce4a99b162f",
+    "sdk_source_git_blob_sha": "44b74b7d6be7726228605cce77c04231c6070bd6",
+    "sdk_behavior": "AutomatedTestWidgetsFlutterBinding.pump calls FakeAsync.elapse only when duration is non-null; a bare pump flushes microtasks and scheduled frames but does not advance timers.",
+    "assessment": "The bounded one-millisecond pump directly addresses the observed precondition failure and reaches the real queued retry. A successful rerun is still required; this read-only review is not a runtime PASS."
+  },
+  "boundaries": {
+    "first_five_and_helpers_byte_identical": true,
+    "existing_sixth_assertions_preserved_in_order": 11,
+    "new_sixth_assertion_count": 14,
+    "workflow_inverse_fulltext_exact": true
+  },
+  "test_review": {
+    "new_pre_ack_assertions": [
+      "held.entered.isCompleted remains required",
+      "held.release.isCompleted is false",
+      "actual app stars remain zero",
+      "no AlertDialog exists"
+    ],
+    "preserved_checks": [
+      "inactive causes visible pause",
+      "released real platform ACK permits exactly five stars",
+      "no result dialog while paused even after 2500 ms",
+      "same four child and three opponent pieces",
+      "resumed lifecycle alone still leaves explicit pause",
+      "explicit Fortsetzen then allows the result dialog",
+      "five stars remain unchanged and no tester exception"
+    ],
+    "cleanup": "The gate is created before try; finally conditionally releases it, restores lifecycle to resumed, drains microtasks, unmounts/disposes through the unchanged _close helper, and drains again. Cleanup is outside all success assertions and does not turn their failures into success.",
+    "helpers_and_first_five_cases": "Byte-identical to exact 8e64 baseline; only sixth case changes."
+  },
+  "workflow_review": {
+    "changed_step": "Existing earlier focus step gains exactly test/games/connect_four_bot_save_retry_test.dart and a descriptive name.",
+    "inverse_fulltext_matches_exact_baseline": true,
+    "unchanged": [
+      "three jobs and their source/branch/repository conditions",
+      "Flutter pin 3.44.9",
+      "all previous focus file arguments and their ordering",
+      "set -euo pipefail and original tee log target",
+      "60-second focused test timeout and concurrency 2",
+      "complete Flutter suite and enabled capture invocation",
+      "source-cleanliness gate",
+      "Android host compile and speech/table contracts",
+      "pure Memory/Quiz contracts",
+      "existing job budgets and always artifact uploads"
+    ]
+  },
+  "limits": {
+    "local_dart_flutter_sdk_execution": false,
+    "tests_run": false,
+    "new_pass_claim": false,
+    "product_changes": false,
+    "source_changes_by_reviewer": false,
+    "workflow_changes_by_reviewer": false,
+    "refs_trees_commits_pr_mutated": false,
+    "original_logs_or_artifacts_redownloaded": false,
+    "android_or_device_acceptance": false
+  }
+}

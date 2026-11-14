@@ -1,0 +1,33 @@
+test_failure_does_not_suppress_other_module_evidence_or_emit_pass (test_nextgen_runner.NextgenRunnerTests.test_failure_does_not_suppress_other_module_evidence_or_emit_pass) ... ok
+test_missing_required_source_is_a_failure_and_other_captures_still_run (test_nextgen_runner.NextgenRunnerTests.test_missing_required_source_is_a_failure_and_other_captures_still_run) ... ok
+test_success_requires_every_logic_and_rendered_probe (test_nextgen_runner.NextgenRunnerTests.test_success_requires_every_logic_and_rendered_probe) ... ok
+test_all_thirty_seven_required_rasters_and_named_menu_views_are_enforced (test_nextgen_runner.StudioPuzzleMenuContractTests.test_all_thirty_seven_required_rasters_and_named_menu_views_are_enforced) ... ok
+test_c4_fixture_requires_real_geometry_safe_targets_and_original_bound_states (test_nextgen_runner.StudioPuzzleMenuContractTests.test_c4_fixture_requires_real_geometry_safe_targets_and_original_bound_states) ... ok
+test_cards_require_each_raster_and_settled_matching_layout_sidecar (test_nextgen_runner.StudioPuzzleMenuContractTests.test_cards_require_each_raster_and_settled_matching_layout_sidecar) ... ok
+test_existing_probes_and_budgets_survive_two_required_menu_modes (test_nextgen_runner.StudioPuzzleMenuContractTests.test_existing_probes_and_budgets_survive_two_required_menu_modes) ... ok
+test_face_requires_valid_lesson_actual_mesh_audio_and_decoded_bound_movie (test_nextgen_runner.StudioPuzzleMenuContractTests.test_face_requires_valid_lesson_actual_mesh_audio_and_decoded_bound_movie) ... ok
+test_mobile_requires_all_named_images_and_safe_hash_bound_target_report (test_nextgen_runner.StudioPuzzleMenuContractTests.test_mobile_requires_all_named_images_and_safe_hash_bound_target_report) ... ok
+test_native_menu_error_rejects_even_a_success_marker_and_zero_exit (test_nextgen_runner.StudioPuzzleMenuContractTests.test_native_menu_error_rejects_even_a_success_marker_and_zero_exit) ... ok
+test_new_roster_entries_bind_sidecars_and_the_recorded_movie (test_nextgen_runner.StudioPuzzleMenuContractTests.test_new_roster_entries_bind_sidecars_and_the_recorded_movie) ... ok
+test_new_workflow_preserves_all_required_jobs_and_exact_source_archive (test_nextgen_runner.StudioPuzzleMenuContractTests.test_new_workflow_preserves_all_required_jobs_and_exact_source_archive) ... ERROR
+test_treasure_title_requires_four_hash_bound_contrast_and_safe_layout_reports (test_nextgen_runner.StudioPuzzleMenuContractTests.test_treasure_title_requires_four_hash_bound_contrast_and_safe_layout_reports) ... ok
+
+======================================================================
+ERROR: test_new_workflow_preserves_all_required_jobs_and_exact_source_archive (test_nextgen_runner.StudioPuzzleMenuContractTests.test_new_workflow_preserves_all_required_jobs_and_exact_source_archive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/tools/tests/test_nextgen_runner.py", line 639, in test_new_workflow_preserves_all_required_jobs_and_exact_source_archive
+    workflow = (ROOT / '.github/workflows/lumo-studio-2020.yml').read_text()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/.github/workflows/lumo-studio-2020.yml'
+
+----------------------------------------------------------------------
+Ran 13 tests in 28.470s
+
+FAILED (errors=1)

@@ -1,0 +1,7 @@
+{
+  "scope": "Reviewer metadata readback, not a test run",
+  "initial_observation": "Git trees queried by commit returned sha50503; treating that response reference as the root tree caused an inspection assertion.",
+  "resolution": "Actual git commit endpoint resolves the root tree59c469; a fresh untruncated request by that exact tree SHA now binds every selected path. Source/blob bytes all matched before and after.",
+  "original_query_ref": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "resolved_tree_sha": "59c469de6252d368470bb41b0bcef21151cec826"
+}

@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T17:07:29.541058+00:00",
+  "reviewer": "learning_worlds",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "b7210db3f53361987fd33592de438fd7984d991a",
+  "native_pin_context": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "run": {
+    "id": 43618076296,
+    "attempt": 1,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43618076296",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow": ".github/workflows/lumo-nextgen-feature-contracts.yml"
+  },
+  "job": {
+    "id": 132517423810,
+    "name": "flutter-contracts",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43618076296/job/132517423810",
+    "started_at": "2026-11-14T16:53:38Z",
+    "completed_at": "2026-11-14T17:04:52Z",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "result": "PASS_FOR_DECLARED_FLUTTER_SCOPE_WITH_RETAINED_ANALYZER_DIAGNOSTICS",
+  "full_flutter": {
+    "log_line": 834,
+    "passed": 2608,
+    "failed": 0,
+    "skipped": 0,
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "capture_error_files": [],
+    "reported_rendered_png_count": 546,
+    "step": 11,
+    "step_started_at": "2026-11-14T16:55:28Z",
+    "step_completed_at": "2026-11-14T17:04:41Z"
+  },
+  "separate_targeted_flutter_groups": [
+    {
+      "label": "Wallet queues, reward transactions, actual Memory profiles",
+      "step": 7,
+      "passed": 30,
+      "line": 630
+    },
+    {
+      "label": "Quiz UI, roundtrip, rewards and layout regressions",
+      "step": 9,
+      "passed": 46,
+      "line": 744
+    },
+    {
+      "label": "Memory UI and profile/statistics regressions",
+      "step": 10,
+      "passed": 36,
+      "line": 800
+    }
+  ],
+  "dart_authorities": [
+    {
+      "label": "Actual English descriptor producer",
+      "cases": 10,
+      "checks": 2955,
+      "marker": "NATIVE_ENGLISH_DART_PASS",
+      "log_line": 650,
+      "not_a_speech_inference_or_android_test": true
+    },
+    {
+      "label": "Quiz production Dart authority",
+      "cases": 28,
+      "checks": 1786,
+      "failed": 0,
+      "skipped": 0,
+      "log_line": 679
+    }
+  ],
+  "analyzer": {
+    "info": 209,
+    "warning": 5,
+    "error": 0,
+    "total": 214,
+    "nonfatal_info_and_warning_policy": "unchanged existing workflow command",
+    "five_warnings": [
+      {
+        "line": 478,
+        "severity": "warning",
+        "message": "The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto'",
+        "location": "lib/features/live/lumo_live_pro_screen.dart:343:16",
+        "code": "unused_element"
+      },
+      {
+        "line": 480,
+        "severity": "warning",
+        "message": "Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive",
+        "location": "lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8",
+        "code": "unused_import"
+      },
+      {
+        "line": 509,
+        "severity": "warning",
+        "message": "The value of the field '_ink' isn't used. Try removing the field, or using it",
+        "location": "lib/features/story/widgets/lumo_story_scene.dart:150:16",
+        "code": "unused_field"
+      },
+      {
+        "line": 518,
+        "severity": "warning",
+        "message": "Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive",
+        "location": "test/design/denkprofil_knobel_before_after_capture_test.dart:11:8",
+        "code": "unused_import"
+      },
+      {
+        "line": 532,
+        "severity": "warning",
+        "message": "Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive",
+        "location": "test/iq/iq_extended_adventure_test.dart:5:8",
+        "code": "unused_import"
+      }
+    ]
+  },
+  "other_reported_warnings": [
+    {
+      "line": 857,
+      "text": "2026-11-14T17:04:41.2516490Z (node:7235) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+    },
+    {
+      "line": 865,
+      "text": "2026-11-14T17:04:41.8072134Z (node:7235) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+    },
+    {
+      "line": 935,
+      "text": "2026-11-14T17:04:51.5229066Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ],
+  "tracked_source_check": {
+    "step": 12,
+    "command": "git diff --exit-code HEAD --",
+    "conclusion": "success",
+    "log_lines": [
+      835,
+      841
+    ],
+    "checkout_HEAD_output_line": 172,
+    "actual_checkout_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+  },
+  "artifact_metadata_only": {
+    "id": 14123036723,
+    "name": "lumo-nextgen-feature-flutter-evidence",
+    "bytes": 343154361,
+    "digest": "sha256:f95c63dcc363d515c1268046289f9a3a012afdc66f79c9f27795e32f69f9223f",
+    "expired": false,
+    "downloaded": false,
+    "console_reported_uploaded_file_count": 593,
+    "console_reported_uploaded_file_count_line": 861
+  },
+  "source_bindings": [
+    {
+      "path": "workflow-at-b721.yml",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "git_blob_sha": "829b819945d980e2082f478c1ddccea9463e3fa5"
+    },
+    {
+      "path": "full-flutter-runner-at-b721.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob_sha": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    },
+    {
+      "path": "original-flutter-job.log",
+      "bytes": 120661,
+      "sha256": "4192247ed86ddb17fa3a5d558eee665acbbb4f408fcc6e199ab8e9e1699bbab7",
+      "git_blob_sha": "bf0e50d174f18f5b2f1891cf71bf8bbf4d9c212b"
+    },
+    {
+      "path": "run-terminal-original.json",
+      "bytes": 13695,
+      "sha256": "2f48ea7155bd11b4ce66a2913b869d8e6a470f200bd42da78f1788f1c6e0026c",
+      "git_blob_sha": "5b112d32f1180cc2c543149718fe0f8d1884345d"
+    },
+    {
+      "path": "jobs-terminal-original.json",
+      "bytes": 9709,
+      "sha256": "b07569c23933375b00452b900f112639828a8dd3afea81abf72e164b3df225f6",
+      "git_blob_sha": "3abb4270df2f37864849ed39b73cab896383b2a4"
+    },
+    {
+      "path": "artifacts-terminal-original.json",
+      "bytes": 2257,
+      "sha256": "43e9407ad31025ea2b5afa6d6690cfc73480d7e4bc1ef53b096463d266194415",
+      "git_blob_sha": "77a8fb5bf01c1ff18ca33d2b0631acd41b397396"
+    }
+  ],
+  "limits": [
+    "Counts are from this b721 run only; preceding targeted Flutter groups overlap the full suite and are not added to 2608.",
+    "The complete returned job log and original REST metadata were saved. The Flutter artifact ZIP was not downloaded, extracted or CRC-checked in this task.",
+    "546 PNGs are the current runner report, not 546 images personally viewed here.",
+    "This Flutter result does not execute or accept the new Java/Kotlin English speech implementation, model inference, audible English pronunciation or physical-device playback. Those have separate Host/Speech gates and narrower inference boundaries.",
+    "No Android API35/API37 application, update, native 60FPS, physical Fold7, or new visual receipt acceptance follows from this job.",
+    "The job console does not print the complete flutter-machine.jsonl event stream. Counts here are the printed runner summary; no independent re-count of the artifact event stream is claimed.",
+    "The source-invariance step covers tracked working files through git diff --exit-code HEAD --; generated untracked capture outputs are expected."
+  ],
+  "new_product_failure_detected": false,
+  "source_or_workflow_patch_created": false,
+  "reruns_or_ref_changes": false
+}

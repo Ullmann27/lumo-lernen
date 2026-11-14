@@ -1,0 +1,102 @@
+{
+  "qa_parent": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "parent_tree": "0774003dfb399641044cf83b654335bd91ad4373",
+  "product": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "allowed_paths": 26,
+  "modified_against_parent": 5,
+  "new_against_parent": 10,
+  "unchanged_reviewed_files": 11,
+  "changed_paths": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "before": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd",
+      "after": "05ba8c69fbbe92c0990e0e364d5fa70565edb640",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "before": "77f96e02602277c8c1f82c72bfe3b49672fe8aad",
+      "after": "33f725e2114b4cedc43a65297232866311946d5d",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "before": "9c54d46545429d02f1f8105ae1b87088855dee3d",
+      "after": "9e413d75d32b085a9d041a7344470c8a4208a6ff",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/recheck_studio_4ab.py",
+      "before": "33ed5d0fc71a3282bb3fb7de6bdf2ff3c2cbc6b2",
+      "after": "a27f6351463870ada08388b55758a1e94aa0f8d4",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_studio_4ab_recheck.py",
+      "before": "e836e7c25a7d68f4d47ff19a15de982f7e241fdb",
+      "after": "afdb78e474ca884695599cdfb387af171efdd92c",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv",
+      "before": null,
+      "after": "752b0e82eecc7f3dee6c2106e13ad044590aa83e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png",
+      "before": null,
+      "after": "079ef467b495fbeee65dde5577e56f1e31037079",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv",
+      "before": null,
+      "after": "5123bc5603466b885147057a0dc2da437fc4022e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png",
+      "before": null,
+      "after": "395f6df8112fe13e85d2a2438bcae90e8be4297b",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png",
+      "before": null,
+      "after": "c59914e7412dc42ae223bf9ea9ff146906784605",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv",
+      "before": null,
+      "after": "a5b02c00874f623724f11b7eaaaa50b949f6c726",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
+      "before": null,
+      "after": "87ac5dcf26440b0142c9425a49e1c5c0a5f4856e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json",
+      "before": null,
+      "after": "6ce0a25604c0bcd7f6d33eec7416bd82b6d33bcc",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+      "before": null,
+      "after": "ce969e7a1236b8ed601b598ce13810a088f91f60",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/android_qa/tests/test_flutter_loading_frame_rejection.py",
+      "before": null,
+      "after": "20fe9e8d8640fe9aa41695b9dd10b4b4a38a23ce",
+      "mode": "100644"
+    }
+  ],
+  "scope": "Strict QA-only same-APK recheck; original source and Android positive gates retained."
+}

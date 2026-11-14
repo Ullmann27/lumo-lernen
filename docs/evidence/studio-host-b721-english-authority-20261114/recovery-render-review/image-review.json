@@ -1,0 +1,546 @@
+{
+  "schema": 1,
+  "scope": "Personally opened all 17 current original PNGs; actual desktop Godot renderer with platform/JNI/audio fixtures; not Android screenshots.",
+  "run_id": 43619285124,
+  "job_id": 132521067410,
+  "artifact_id": 14123388980,
+  "host_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "reviewed_distinct_images": 17,
+  "blocking_issue_count": 0,
+  "images": [
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-apple-960x540-start.png",
+      "sha256": "a19fbed956150e481cceb7be752180e15569f6dc07ce101fb97a12d363f6ca28",
+      "git_blob_sha": "ed7ca7092f2d4a43517071a447ebcfbc0544ad1b",
+      "bytes": 168701,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Titel apple und deutsche Handlungsanweisung gut lesbar. Roter Apfel mit Blatt ist links klar von Tasche und Radiergummi getrennt; Lumo steht frei links. Nummern und sieben untere Bedienfelder sind sichtbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · apple",
+      "word": "apple",
+      "objects_order": [
+        "apple",
+        "bag",
+        "rubber"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "27254add247d4618903ba2bf418e5afb1dcde32678ccd48a58e5810a272470d7",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-bag-960x540-start.png",
+      "sha256": "bf4db2327300a1c534f99bb4429a34aec7f0995a0f97c4fd60d608ed0dcb966d",
+      "git_blob_sha": "85939e00b8c7d8c04c9944af58e7bc037ab6e559",
+      "bytes": 163335,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Titel bag lesbar. Die Tasche mit zwei Griffen steht rechts neben Radiergummi und Schreibtisch; nummerierte Sockel und Lumo sind getrennt. Hinweis, Anhören und Rückkehr sind vollständig im Footer sichtbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · bag",
+      "word": "bag",
+      "objects_order": [
+        "rubber",
+        "desk",
+        "bag"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "7bcbe35ec28b1eb9c989827d28260d7938bdf712ad6608db9e536bb3f56da122",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "sha256": "093be19e851b43512b1fd269c54e69ffad51a99812afb4ecaefa761321692f9f",
+      "git_blob_sha": "9f758cbe57c8df5b353f0f271aa4922bb882c102",
+      "bytes": 168681,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Richtig: Ball und der Auftrag Zur Aufgabe erscheinen im Header; unten steht ball = Ball · Passend zugeordnet. Auswahl/Hinweis sind sichtbar deaktiviert, Neu, Schritt anhören und Zur Aufgabe bleiben aktiv dargestellt.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · ball",
+      "word": "ball",
+      "objects_order": [
+        "pen",
+        "ruler",
+        "ball"
+      ],
+      "complete": true,
+      "hint_level": 2,
+      "attempts": 2,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "f1ea0094c53bc6c43aa4934c05fb949546ec9944aae87849eb5992953846b76b",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "sha256": "e7db38405eb1e016ca5e72292fe69af97046c28a19ddf5ea04f3063c2a03deef",
+      "git_blob_sha": "d53384d82206c1889237aab41d48fc1ada68ceef",
+      "bytes": 169038,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Die konkrete Aufforderung zum hell umrandeten Gegenstand ist sichtbar. Der Ball trägt den zusätzlichen hellen Auswahlring, die Aufgabe bleibt offen; Hinweis erscheint deaktiviert, Auswahl und Rückkehr bleiben sichtbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · ball",
+      "word": "ball",
+      "objects_order": [
+        "pen",
+        "ruler",
+        "ball"
+      ],
+      "complete": false,
+      "hint_level": 2,
+      "attempts": 1,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "9afa47df0c3120cc31b6885df4044b17e18f99fe0b2d3f153b682396d0f756b1",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ball-960x540-start.png",
+      "sha256": "11147ab0a3bbb105452a14fc9e7e04be484ad947be201122cd8e51379a6bc0ce",
+      "git_blob_sha": "479c6bb868ac547bc8e5f327b627319aeb7cc6bb",
+      "bytes": 168828,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Titel ball und Aufforderung sind lesbar. Blauer Ball mit Linien steht rechts, daneben Kugelschreiber und Lineal. Drei Auswahlknöpfe, Hinweis, Neustart, Audio und Rückkehr sind klar getrennt.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · ball",
+      "word": "ball",
+      "objects_order": [
+        "pen",
+        "ruler",
+        "ball"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "328ddb59dc49a0e269e3547e3d7af03e5235015590723064386fc7761b9ee136",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-complete.png",
+      "sha256": "f0195b404bce03c7a7337a31ed527f27c80a98145eff6fb2624beee59d2fb951",
+      "git_blob_sha": "c79c35c0522cf075405f9732935d783774629b53",
+      "bytes": 119520,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Richtig: Buch und Rückkehraufforderung sind vollständig umbrochen. book = Buch · Passend zugeordnet ist im Footer lesbar; das Buch ist umrundet. Deaktivierte Auswahl und die erreichbare zweite Zeile mit Audio/Rückkehr sind sichtbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · book",
+      "word": "book",
+      "objects_order": [
+        "pencil case",
+        "book",
+        "ruler"
+      ],
+      "complete": true,
+      "hint_level": 2,
+      "attempts": 2,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "a99ab66de50ee61900cc3cbdcd9a326fb3ab0a262ecce2213b6965680f948534",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-book-412x915-start.png",
+      "sha256": "039d1991fe08e76d4b4417dfee3c004b1d7106e6e0b806e4e9922b99c6fc9a43",
+      "git_blob_sha": "adfd279383e31c98cda918eceba9b31982a744a0",
+      "bytes": 119833,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Im schmalen Hochformat ist book mit umbrochener vollständiger Anweisung lesbar. Federpennal, rotes Buch mit sichtbaren Seiten und Lineal stehen vertikal auf getrennten Sockeln; Lumo links bleibt frei. Footer nutzt zwei vollständige Zeilen.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · book",
+      "word": "book",
+      "objects_order": [
+        "pencil case",
+        "book",
+        "ruler"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "0e887e254217dc467c5cffee900290d886ac037c93c8691d159872545bcee1b0",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "sha256": "e62f66bcabd08fcebd811b0254c0e1bc2dc3f26cfa52055ea5224b7a1d3bb02e",
+      "git_blob_sha": "16b189c737f2c938baf90b3d1be9edfaf12d0473",
+      "bytes": 694432,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Breites Format mit seitlich eingerücktem Header und Footer. Das rote geometrische Auto mit Rädern steht mittig zwischen Lineal und Ball; Lumo bleibt vollständig links sichtbar. car, alle Nummern und die kompakte Anhören-Beschriftung sind lesbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · car",
+      "word": "car",
+      "objects_order": [
+        "ruler",
+        "car",
+        "ball"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "3a99d4b2837f0ec0a2ce41d2961fb9084578a99657a00291041fc7cb1e35a28f",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-chair-640x360-start.png",
+      "sha256": "6903e1b9d301f8f1fd6eacdb6584143d7c58fd545270f2085a1b9a7c92a8fc2c",
+      "git_blob_sha": "71735c7d73dc38fbbdd4d06a29e8009589078504",
+      "bytes": 95632,
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Kompaktes Querformat: chair und Anweisung passen vollständig. Papier, Federpennal und Stuhl mit Sitz/Rückenlehne sind unterscheidbar; Lumo bleibt klein, aber vollständig sichtbar. Die einzeilige Bedienreihe wird nicht abgeschnitten.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · chair",
+      "word": "chair",
+      "objects_order": [
+        "paper",
+        "pencil case",
+        "chair"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "e21b319f130ba0fc239f2e748fddbf307f071a6bd496ba6c7bfb0e12b275b4c3",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-desk-960x540-start.png",
+      "sha256": "4baa2446b3a8e4da7090d603638ad48a7e83b88a8baa9dc90fd0ed932ff4992f",
+      "git_blob_sha": "5a1646f8bc5b6d95689921311112a6a70ad82323",
+      "bytes": 162734,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Titel desk klar sichtbar. Schreibtisch mit Platte und Beinen steht rechts neben Buch und Lineal; keine HUD-Verdeckung des Zielgegenstands. Lumo und die nummerierte Auswahl sind sichtbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · desk",
+      "word": "desk",
+      "objects_order": [
+        "book",
+        "ruler",
+        "desk"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "867b7c218785674712491096482d5aae0dea0d8b65c55b68df6f2912fc1764f1",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "sha256": "6b5ca63fc26e4f599f1035f661352286826dbe4fa90d2a1f3b070a6f4705e3a7",
+      "git_blob_sha": "bab6a9abda0832629da231664fafc20feeb90fb2",
+      "bytes": 695126,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Titel paper und komplette Anweisung sind im eingerückten Header lesbar. Das linierte Blatt mit Randlinie und umgeschlagener Ecke steht mittig zwischen Tisch und Federpennal. Footer, Lumo und Nummern liegen getrennt.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · paper",
+      "word": "paper",
+      "objects_order": [
+        "desk",
+        "paper",
+        "pencil case"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "53d03cb8c3e0e8bb916540ee6621d2a45d2643e00add17c19f8ad3b09754a253",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "sha256": "21ccb7abad6d6761f6e9a164aa3ffdf408852028126b8cbebcf9a5e3ea011228",
+      "git_blob_sha": "4c7fed63173f439623e143809c1b2501b84c9b9a",
+      "bytes": 587509,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Im hohen Telefonformat ist pen lesbar; der blaue Kugelschreiber mit Clip/Spitze steht mittig zwischen Lineal und Tasche. Lumo bleibt vollständig frei. Zweizeiliger Footer einschließlich Schritt anhören und Zur Aufgabe ist sichtbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · pen",
+      "word": "pen",
+      "objects_order": [
+        "ruler",
+        "pen",
+        "bag"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "3fc603b1667a7fb9a1460ae44fb78c261e0339f2932b17b6287b757aeacb4286",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "sha256": "0fb40334f333a3f143aea481bfb791e17c8405ca6b9965a7b82d3d8f69ec7565",
+      "git_blob_sha": "eea7c9345e310ac2760d95be06dbe34c74c7f2d5",
+      "bytes": 611583,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Mehrworttitel pencil case wird vollständig angezeigt. Rotes Federpennal mit sichtbarem Reißverschluss steht unten, darüber Lineal und Schultasche; Lumo ist frei. Beide Footerzeilen einschließlich Rückkehr wurden im Originalbild geprüft.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · pencil case",
+      "word": "pencil case",
+      "objects_order": [
+        "ruler",
+        "school bag",
+        "pencil case"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "15975b3b5bfda6163e7cf4dc9f6682c0140d32b71edd7dd66d0c8c1d1c60cc97",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "git_blob_sha": "0e1bf8dae81bc64c38c824181526e9476ec14634",
+      "bytes": 95377,
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Im kleinen Querformat ist rubber klar lesbar. Der helle Radiergummi mit blauem Band ist rechts neben Federpennal und Buch zu erkennen. Lumo und komplette einzeilige Bedienfelder bleiben sichtbar; die Gegenstände sind erwartbar kleiner als im Telefonformat.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · rubber",
+      "word": "rubber",
+      "objects_order": [
+        "pencil case",
+        "book",
+        "rubber"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "8ff451ef0a22afb3ddbbc04fe926ca5f9a74d97fe613a7989c32a43812add05b",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "sha256": "189e6a575287b2b8284e94a35b753200084ca030c3ea793ce3686c6124c30afe",
+      "git_blob_sha": "600c8407da5183dc72ec8afa3217f93107643590",
+      "bytes": 95173,
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "ruler und Anweisung passen in den Header. Das gelbe Lineal mit Teilstrichen steht mittig zwischen Federpennal und Papier; drei Sockel sind getrennt. Die gesamte kompakte Bedienzeile ist lesbar und sichtbar.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · ruler",
+      "word": "ruler",
+      "objects_order": [
+        "pencil case",
+        "ruler",
+        "paper"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "2aa21f3e5a1ab223b11eb89710355f24fb6f6fb9399ecebc1c7e0a97fd3ebc96",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "sha256": "06e9e497af0d353cb39c379b64f48289941e8c37df03ae64f36c5526ff846d64",
+      "git_blob_sha": "0f5298bf2f07dd86525d8ff2c3988407d3e03c6e",
+      "bytes": 117152,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Mehrworttitel school bag und Anweisung sind ohne Textverlust umbrochen. Die blaue Schultasche mit Griff und Fronttasche steht oben, darunter Radiergummi und Tisch. Lumo bleibt frei; zweizeiliger Footer mit Audio/Rückkehr passt vollständig.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · school bag",
+      "word": "school bag",
+      "objects_order": [
+        "school bag",
+        "rubber",
+        "desk"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "e8f87cc861f2af58ce8e25cbd3ff4bc26d9c2a961f8e617c16a81a91b12935f1",
+      "actual_host_producer_descriptor_matches": true
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-host-b721-english-recovery-review-20261114/originals/english-native/english-sun-960x540-start.png",
+      "sha256": "d494453f50878fdfb100fca1b9a332f7d96a999cc6eabac9df3dc51b1c2fb6be",
+      "git_blob_sha": "1aa0dc6913b78cddafb58a2e91ff4d4e0290c9d7",
+      "bytes": 164600,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": "Titel sun ist lesbar. Die goldene Sonne mit deutlich sichtbaren Strahlen steht rechts neben Tasche und Radiergummi; die drei nummerierten Sockel sind unterscheidbar. Lumo und alle unteren Bedienfelder bleiben frei.",
+      "blocking_issue": false,
+      "accepted_for_desktop_fixture_visual_scope": true,
+      "title": "Englisch · sun",
+      "word": "sun",
+      "objects_order": [
+        "bag",
+        "rubber",
+        "sun"
+      ],
+      "complete": false,
+      "hint_level": 0,
+      "attempts": 0,
+      "min_reported_exposed_control_dp": 52.0,
+      "min_reported_object_target_dp": 48.0,
+      "observation_source": "platform_fixture",
+      "layout_sha256": "83bf92823ee6e207815d854297766ac87ad82f98ab6a72f647d514de6bc73327",
+      "actual_host_producer_descriptor_matches": true
+    }
+  ],
+  "limits": [
+    "Static PNG review cannot measure frame rate, latency, continuous animation or facial speech synchronization.",
+    "Simple geometric teaching objects, stylized room materials and hard shadows; no AAA-quality claim.",
+    "Physical Android system insets and touch routing are not established by platform_fixture data.",
+    "No audio synthesized or heard by this review."
+  ]
+}

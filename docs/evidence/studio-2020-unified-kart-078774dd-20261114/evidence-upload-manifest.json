@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "docs_only": true,
+  "target_prefix": "docs/evidence/studio-2020-unified-kart-078774dd-20261114",
+  "source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "file_count": 14,
+  "total_bytes": 3001497,
+  "files": [
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/original-run.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/original-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 13491,
+      "sha256": "0c9b720b3071128612301c1541e09a3b1f2b59f53c0378574f1a95473a0a3e94",
+      "git_blob_sha": "d7ceb59a8906fb21726eaf83a3c3c02c08f6c422"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/original-jobs.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/original-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 20971,
+      "sha256": "f43e90382e84ead27126789c4d87bd0d1e3b56b8be9c03d54fb07786ba13c87c",
+      "git_blob_sha": "2f00c46afb0b56fd8e44ca8efde07dec064f75d4"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/original-artifacts.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/original-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4435,
+      "sha256": "0e2054e963d937ab02a4dcd11325faef7e4f385b8dcb072c3a7e4950ec164ecf",
+      "git_blob_sha": "5049639a5d9c0c35153cb3f921521ee65011368e"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/original-build-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/original-build-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1517302,
+      "sha256": "232abb547ee07b93f2c79482bfd10a5285ac09f7dddd72bc2ae9cbde701d8984",
+      "git_blob_sha": "d8a8c416f2c000e336f85801152f153a67d0726e"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1367789,
+      "sha256": "df02e81527516e537cb02a1d09140e9e1cdf2710a5073b4dc95881c9e495b092",
+      "git_blob_sha": "801d12cae1e3ca44d84d0a7dec32e591828f317b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/source-bindings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source-bindings.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 6816,
+      "sha256": "54638b66c624a29b8ebcbc025b21b8bacf456d68e60f774c57f7008137647b4f",
+      "git_blob_sha": "7e019e95071c6034139bffec7fe009a847d1b195"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/read-only-diagnosis.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/read-only-diagnosis.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7326,
+      "sha256": "a4607e0a336b9a47beebbd7d5951f93f9cd3254676d0cbccb9bf4564764be6e1",
+      "git_blob_sha": "60ae00aca56c5f68ef7dd69cb95b694484ebdfd6"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/session-snapshot-analysis.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/session-snapshot-analysis.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 20096,
+      "sha256": "496bf11538cc140041fe33e186f52a48c8972c5b90e63a89fdca3c0d3c32ea30",
+      "git_blob_sha": "876490563c87dca75f1a892c266068b792508bf8"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/runtime-timeline-analysis.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/runtime-timeline-analysis.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25371,
+      "sha256": "43bc88023bab89838eaed94b286d95e157762d042833a4ee50d396b99e16a363",
+      "git_blob_sha": "84874093c61320c3957a7433f2502664e1fdf340"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/build-identity-cross-check.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/build-identity-cross-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5401,
+      "sha256": "bfba2b17862403990df8e78a8962a4baf6d7e75f23202cf509e0bc5761c2511d",
+      "git_blob_sha": "432ca6059b5e31bdfceeebd25d53cbbef38d77c5"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/parsed-tour-evidence.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/parsed-tour-evidence.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4515,
+      "sha256": "f2505e56c7252caaac847dc843d49e97fe44f7161f62dd658e2e2b6a08e183ae",
+      "git_blob_sha": "792a4a59351efd2648ff9d61cc2b82e16b22ca8d"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4234,
+      "sha256": "879843df127cfe310ff84d678c8e510b981cbb5987c26b4c3fdec66a0ff3500c",
+      "git_blob_sha": "e425b8d3145628db466d549a933fa78dd4c0819b"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/originals/21_race_running_0-session.cfg",
+      "local_path": "/tmp/lumo-078-unified-failed-tour-originals/21_race_running_0-session.cfg",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1875,
+      "sha256": "6bf49282926cd5fdffb5188d1bee3c649f9e0e322476fba4a8deed8efa5d2ab8",
+      "git_blob_sha": "11e3dcebbc6223dbb5369e8d1a9aabf54f2a9c05"
+    },
+    {
+      "path": "docs/evidence/studio-2020-unified-kart-078774dd-20261114/originals/21_race_running_66-session.cfg",
+      "local_path": "/tmp/lumo-078-unified-failed-tour-originals/21_race_running_66-session.cfg",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1875,
+      "sha256": "6bf49282926cd5fdffb5188d1bee3c649f9e0e322476fba4a8deed8efa5d2ab8",
+      "git_blob_sha": "11e3dcebbc6223dbb5369e8d1a9aabf54f2a9c05"
+    }
+  ],
+  "excluded": "No APK/large ZIP, no product installation, no ref mutation. Root appends its original PNGs/extraction/tour result and image reviews separately."
+}

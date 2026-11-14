@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_candidate_2011_pin.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/test-host",
+  "exit_code": 0,
+  "duration_seconds": 0.22736231499584392,
+  "log_sha256": "729c523e5c53680c83bd1d486d4221a456f4e876573e1ed15d666ed72e0e5034",
+  "log_bytes": 4393,
+  "source_manifest_sha256": "4e38b9b227cecfba954f25a2da351cf9c0949c52ada74d0c9db1279bff86e749",
+  "reported_tests": [
+    "26"
+  ],
+  "skip_reported": false
+}

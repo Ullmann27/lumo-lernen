@@ -1,0 +1,193 @@
+--- a/lib/features/games/memory/memory_round.dart
++++ b/lib/features/games/memory/memory_round.dart
+@@ -9,6 +9,26 @@
+   Future<void> writeRound(String value);
+   Future<String?> readStats();
+   Future<void> writeStats(String value);
++}
++
++/// A platform snapshot alone is not a successful write acknowledgement.
++/// Stores with an optimistic native cache opt into this explicit barrier.
++abstract interface class MemoryReadbackConfirmation {
++  Future<void> confirmRoundReadback(String value);
++  Future<void> confirmStatsReadback(String value);
++}
++
++/// The storage operation has no positive platform acknowledgement. In
++/// particular, a transport error does not prove whether a write committed.
++class MemoryStorageUnconfirmed extends StateError {
++  MemoryStorageUnconfirmed(super.message, {this.cause});
++
++  final Object? cause;
++}
++
++/// The platform explicitly returned false for this write attempt.
++class MemoryStorageRejected extends MemoryStorageUnconfirmed {
++  MemoryStorageRejected(super.message);
+ }
+ 
+ typedef MemoryAward = Future<void> Function(
+@@ -136,7 +156,10 @@
+       controller._guard();
+       if (raw != null) {
+         // Corrupt/private foreign rounds are never replaced with defaults.
+-        controller._round = MemoryRound.read(raw, catalog, owner);
++        final restored = MemoryRound.read(raw, catalog, owner);
++        await controller._confirmRoundReadback(raw);
++        controller._guard();
++        controller._round = restored;
+         controller.restored = true;
+         final rules = controller._round.rules;
+         final unplayed = rules.phase == 'select' && rules.turn == 'kind' &&
+@@ -222,12 +245,37 @@
+         }
+         values[entry.key as String] = entry.value as int;
+       }
++      await _confirmStatsReadback(raw);
++      _guard();
+       _stats = Map<String, dynamic>.from(document);
+       _best = values;
++    } on MemoryStorageUnconfirmed {
++      _guard();
++      // An unavailable or unconfirmed platform is not corrupt legacy data.
++      // Never skip its statistics and mark an unsettled finish as rewarded.
++      rethrow;
+     } catch (_) {
+       _guard();
+       // Existing unreadable statistics remain byte-for-byte untouched.
+       _statsWritable = false;
++    }
++  }
++
++  Future<void> _confirmRoundReadback(String value) async {
++    _guard();
++    final confirmation = store;
++    if (confirmation is MemoryReadbackConfirmation) {
++      await confirmation.confirmRoundReadback(value);
++      _guard();
++    }
++  }
++
++  Future<void> _confirmStatsReadback(String value) async {
++    _guard();
++    final confirmation = store;
++    if (confirmation is MemoryReadbackConfirmation) {
++      await confirmation.confirmStatsReadback(value);
++      _guard();
+     }
+   }
+ 
+@@ -243,6 +291,7 @@
+     } catch (_) {
+       _guard();
+       if (await store.readRound() != text) rethrow;
++      await _confirmRoundReadback(text);
+     }
+     _guard();
+     _round = next;
+@@ -258,6 +307,8 @@
+       if (disk.id != _round.id || disk.revision < _round.revision) {
+         throw StateError('Memory-Spielstand wurde anderweitig ersetzt');
+       }
++      await _confirmRoundReadback(raw);
++      _guard();
+       _round = disk;
+       _uncertain = false;
+     } else if (jsonEncode(disk.toJson()) != jsonEncode(_round.toJson())) {
+@@ -281,6 +332,8 @@
+       final observed = await store.readRound();
+       _guard();
+       if (observed != text) rethrow;
++      await _confirmRoundReadback(text);
++      _guard();
+       _uncertain = false;
+     }
+     _guard();
+@@ -352,6 +405,7 @@
+     } catch (_) {
+       _guard();
+       if (await store.readStats() != encoded) rethrow;
++      await _confirmStatsReadback(encoded);
+     }
+     _guard();
+     _stats = next;
+--- a/lib/features/games/memory/memory_flutter_adapter.dart
++++ b/lib/features/games/memory/memory_flutter_adapter.dart
+@@ -28,7 +28,8 @@
+ 
+ /// The private new round key is independent of the existing statistics key.
+ /// Never reads, migrates or overwrites the historical unowned lumo_memory_v2.
+-class PreferencesMemoryStore implements MemoryStore {
++class PreferencesMemoryStore
++    implements MemoryStore, MemoryReadbackConfirmation {
+   PreferencesMemoryStore(this.preferences, String owner)
+       : roundKey = 'lumo.memory.round.v1.' + owner,
+         statsKey = 'lumo.memory.stats.v1.' + owner {
+@@ -41,33 +42,49 @@
+   final String roundKey;
+   final String statsKey;
+ 
+-  // The legacy Preferences API changes its cache before the platform replies.
+-  // A failed write can therefore leave the requested value in that cache.
+-  // Every read, including a new adapter's first read, must successfully reload
+-  // the platform snapshot. A failed reload throws; it never authorizes a later
+-  // cached read as the controller's write-recovery acknowledgement.
+-  Future<String?> _readConfirmed(String key) async {
+-    await preferences.reload();
++  // Reload refreshes Dart's cache from the platform snapshot. Android's native
++  // SharedPreferences cache can itself contain a failed commit's value, so this
++  // read is not a storage acknowledgement and has no write side effect.
++  Future<String?> _readPlatform(String key) async {
++    try {
++      await preferences.reload();
++    } catch (error) {
++      throw MemoryStorageUnconfirmed(
++          'Memory-Speicher konnte nicht gelesen werden', cause: error);
++    }
+     return preferences.getString(key);
+   }
+ 
+   @override
+-  Future<String?> readRound() => _readConfirmed(roundKey);
++  Future<String?> readRound() => _readPlatform(roundKey);
+ 
+   @override
+-  Future<String?> readStats() => _readConfirmed(statsKey);
++  Future<String?> readStats() => _readPlatform(statsKey);
+ 
+-  @override
+-  Future<void> writeRound(String value) async {
+-    if (!await preferences.setString(roundKey, value)) {
+-      throw StateError('Memory-Runde wurde nicht gespeichert');
++  Future<void> _writeConfirmed(String key, String value, String message) async {
++    final bool confirmed;
++    try {
++      confirmed = await preferences.setString(key, value);
++    } catch (error) {
++      throw MemoryStorageUnconfirmed(message, cause: error);
+     }
++    if (!confirmed) throw MemoryStorageRejected(message);
+   }
+ 
+   @override
+-  Future<void> writeStats(String value) async {
+-    if (!await preferences.setString(statsKey, value)) {
+-      throw StateError('Memory-Bestwerte wurden nicht gespeichert');
+-    }
+-  }
++  Future<void> writeRound(String value) => _writeConfirmed(
++      roundKey, value, 'Memory-Runde wurde nicht bestätigt');
++
++  @override
++  Future<void> writeStats(String value) => _writeConfirmed(
++      statsKey, value, 'Memory-Bestwerte wurden nicht bestätigt');
++
++  // The controller validates the exact snapshot and checks its profile lease
++  // immediately before and after this bounded, same-value write. Only a true
++  // platform reply succeeds; read equality never replaces that reply.
++  @override
++  Future<void> confirmRoundReadback(String value) => writeRound(value);
++
++  @override
++  Future<void> confirmStatsReadback(String value) => writeStats(value);
+ }

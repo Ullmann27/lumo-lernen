@@ -1,0 +1,22 @@
+{
+  "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/main/main.cpp",
+  "version": "4.6.3-stable",
+  "excerpts": [
+    {
+      "start_line": 1387,
+      "end_line": 1412,
+      "content": "\t\t} else if (arg == \"--resolution\") { // force resolution\n\n\t\t\tif (N) {\n\t\t\t\tString vm = N->get();\n\n\t\t\t\tif (!vm.contains_char('x')) { // invalid parameter format\n\n\t\t\t\t\tOS::get_singleton()->print(\"Invalid resolution '%s', it should be e.g. '1280x720'.\\n\",\n\t\t\t\t\t\t\tvm.utf8().get_data());\n\t\t\t\t\tgoto error;\n\t\t\t\t}\n\n\t\t\t\tint w = vm.get_slicec('x', 0).to_int();\n\t\t\t\tint h = vm.get_slicec('x', 1).to_int();\n\n\t\t\t\tif (w <= 0 || h <= 0) {\n\t\t\t\t\tOS::get_singleton()->print(\"Invalid resolution '%s', width and height must be above 0.\\n\",\n\t\t\t\t\t\t\tvm.utf8().get_data());\n\t\t\t\t\tgoto error;\n\t\t\t\t}\n\n\t\t\t\twindow_size.width = w;\n\t\t\t\twindow_size.height = h;\n\t\t\t\tforce_res = true;\n\n\t\t\t\tN = N->next();"
+    },
+    {
+      "start_line": 4284,
+      "end_line": 4296,
+      "content": "\t\t\t\t}\n\t\t\t\tOS::get_singleton()->alert(vformat(\"Can't load the script \\\"%s\\\" as it doesn't inherit from SceneTree or MainLoop.\", script));\n\t\t\t\tERR_FAIL_V_MSG(EXIT_FAILURE, vformat(\"Can't load the script \\\"%s\\\" as it doesn't inherit from SceneTree or MainLoop.\", script));\n\t\t\t}\n\n\t\t\tscript_loop->set_script(script_res);\n\t\t\tmain_loop = script_loop;\n\t\t} else {\n\t\t\treturn EXIT_FAILURE;\n\t\t}\n\t} else { // Not based on script path.\n\t\tif (!editor && !ClassDB::class_exists(main_loop_type) && ScriptServer::is_global_class(main_loop_type)) {\n\t\t\tString script_path = ScriptServer::get_global_class_path(main_loop_type);"
+    },
+    {
+      "start_line": 4739,
+      "end_line": 4759,
+      "content": "\t}\n\n\tif (movie_writer) {\n\t\tSize2i movie_size = Size2i(GLOBAL_GET(\"display/window/size/viewport_width\"), GLOBAL_GET(\"display/window/size/viewport_height\"));\n\t\tString stretch_mode = GLOBAL_GET(\"display/window/stretch/mode\");\n\t\tif (stretch_mode != \"viewport\") {\n\t\t\t// `canvas_items` and `disabled` modes use the window size override instead,\n\t\t\t// which allows for higher resolution recording with 2D elements designed for a lower resolution.\n\t\t\tconst int window_width_override = GLOBAL_GET(\"display/window/size/window_width_override\");\n\t\t\tif (window_width_override > 0) {\n\t\t\t\tmovie_size.width = window_width_override;\n\t\t\t}\n\t\t\tconst int window_height_override = GLOBAL_GET(\"display/window/size/window_height_override\");\n\t\t\tif (window_height_override > 0) {\n\t\t\t\tmovie_size.height = window_height_override;\n\t\t\t}\n\t\t}\n\t\tmovie_writer->begin(movie_size, fixed_fps, Engine::get_singleton()->get_write_movie_path());\n\t}\n\n\tGDExtensionManager::get_singleton()->startup();"
+    }
+  ],
+  "scope": "Observed upstream source order only. The actual private renderer run separately proves the patch's recording size."
+}

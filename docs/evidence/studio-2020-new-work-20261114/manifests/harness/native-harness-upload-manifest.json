@@ -1,0 +1,381 @@
+{
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "scope": "Exactly3 authorized harness/workflow/test source files plus explicit small evidence. No product asset/active tree/Git mutation. No new CI or Android result claimed.",
+  "source_freeze_sha256": "ac151996480da401dd8719f0c84d0f293ac6753be6a80c995f6cf006ba41a0c4",
+  "source_count": 3,
+  "evidence_count": 34,
+  "file_count": 37,
+  "bytes": 314214,
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/.github/workflows/lumo-studio-2020.yml",
+      "mode": "100644",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "category": "source"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "tools/validate_studio.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/tools/validate_studio.sh",
+      "mode": "100644",
+      "bytes": 22674,
+      "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+      "git_blob": "3b41626b54845e70e3ac9046e5120f7aa0eb7907",
+      "category": "source"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "tools/tests/test_nextgen_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "bytes": 40391,
+      "sha256": "9dc3ed010222305ff100b6d7c9cc0118ea690e4f4b8a498ce0b113aa245bbf7d",
+      "git_blob": "7b7b9049889848354abc64d0e4028bcb943c2811",
+      "category": "source"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/.gdignore",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-harness.gdignore",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/native-harness-README.md",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 6931,
+      "sha256": "aa449006e1ef7fbaee6080b8c97e23746491ddcb3527d7422592f673b75043b7",
+      "git_blob": "50e4d381682d65c0025c59a29f54c64b37088e3b"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/source-freeze.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-source-freeze.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1621,
+      "sha256": "ac151996480da401dd8719f0c84d0f293ac6753be6a80c995f6cf006ba41a0c4",
+      "git_blob": "b9bb89f85c482df6e0cb7486ae0309c7e8237922"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/implementation-against-803e.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-implementation.patch",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 65362,
+      "sha256": "556963bc2f1cb5cbd525e3b583dbe585f66dba540c18575beb3511d1d748add8",
+      "git_blob": "a148cfd0407d45119ae381306caada9b26cc420b"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/baseline-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-baseline-binding.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1554,
+      "sha256": "34dd96d023ff373107b184b8a02c043fac72a6b7621a339028953340ac8902a4",
+      "git_blob": "10e16344d061ae49609ee2ec88eef173ba6027ab"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/manifest-preparation.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/manifest-preparation.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 519,
+      "sha256": "4eae9e4cf4c4c0e491205c6777fc22dec48dc9894e1ee6888f8177e012a84d16",
+      "git_blob": "1d9bd3ee5fc19f745eb881accaebc155406fb3e8"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/unchanged-dependencies.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native-harness-unchanged-dependencies.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 863,
+      "sha256": "bcd3a10e60314218779d3dc7277ce796ff938ce9436bd4ed2d612af5e7bb1748",
+      "git_blob": "52350f637abc3f391238af2f5ef76e63bf1f24be"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/contracts-final.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-contracts-treasure-final.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 2626,
+      "sha256": "158140b2ec70b7bbdab44a72f7aeb89ceb97fe4ff44697cfc9acc91c49a23a06",
+      "git_blob": "30f23d11a15338ad42fc99b3d70491d42f84d848"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/contracts-final.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-contracts-treasure-final.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 865,
+      "sha256": "71f319ce3e6901a55d472f7ebec529c1a76eed46ccb2af7b0108651288990a5c",
+      "git_blob": "35c148ee2af15a26ad52aa8d34e6abdc90b37793"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/structural-final.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-structural-treasure-final.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 4198,
+      "sha256": "4cbe651642fac87ec03a02f2d8c1a60f7431278a72716c804f3c98576e542ab2",
+      "git_blob": "31a7f18524f643ce286aa04af8cf33a44e1cd123"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/bash-syntax-final.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-bash-syntax-treasure-final.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actionlint-final.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-actionlint-treasure-final.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/treasure-original-sidecar-replay.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/treasure-original-sidecar-replay.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 2137,
+      "sha256": "18bfc90d28387e5503544537b49f0041031dad3adfed95222bdcf1b69fd25384",
+      "git_blob": "f004e9d70ae3661ecfc1202d89cef2b0a9d78b87"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/unchanged-face-c4-readers-after-treasure.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/unchanged-face-c4-readers-after-treasure.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 419,
+      "sha256": "9f96a1818960250f23fbc4daa10126a41ac441f7521b51b3fbc6d05bd302c80c",
+      "git_blob": "d4cf8ab537325719106a5c68aeaced2c0ebbba04"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/replay_new_native_sidecars.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/replay_new_native_sidecars.py",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1506,
+      "sha256": "23e8d0b94c2c9be54a14ee1d4e93481edf2414c2e0f6449076ccf2a9f1232b87",
+      "git_blob": "3f58d1feb4239b91808f00d002d11b65a50fcf74"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/rejected-before-c4-visibility/validate_studio.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-harness-before-c4-visibility.sh",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 19955,
+      "sha256": "77e179c128c459c0a60db3cb31c203fc244c7183fe36f4370467ff7f6b9d8dad",
+      "git_blob": "7064d04a6c2f5b89ba4a18af03dc123ea1f12abb"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/rejected-before-c4-visibility/original-sidecar-red.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-sidecars-red.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1181,
+      "sha256": "665d1f54e7bb532d3a9eddab0c6f6caed4129fa3d3b322ee37d8f1952a17cbe2",
+      "git_blob": "5c49eb14ed97f74c0988b8f70b7dd3ec3df38902"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/rejected-before-c4-visibility/original-sidecar-red.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-sidecars-red.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1648,
+      "sha256": "c7852b0d6d47b8221061fc6ef06b1d0010172b6bf569efeaebe2e63491f12c96",
+      "git_blob": "cd847034c8d68f949182908091b768514b5a0aad"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/original-sidecars-green.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-sidecars-green.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1548,
+      "sha256": "320befafb1fafeef8f9786561b4d887eeeff41466909c0c12ff39b52fab9e2bd",
+      "git_blob": "0dd29ea08d0cd5c608c5197ebf720e6b9fe2db01"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/original-sidecars-green.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-sidecars-green.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1548,
+      "sha256": "320befafb1fafeef8f9786561b4d887eeeff41466909c0c12ff39b52fab9e2bd",
+      "git_blob": "0dd29ea08d0cd5c608c5197ebf720e6b9fe2db01"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/contracts.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-contracts-final.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 2411,
+      "sha256": "e927310844e20699884072de62fee96e80fb4cb832ebf8563b0143fd65156664",
+      "git_blob": "444eb1aae469a4d139b6c90de5485f91f2f28d6e"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/contracts.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-contracts-final.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 688,
+      "sha256": "3181903cf389afc7f7cfb79ad779df18118731a1080f64521636a65d93dd1e47",
+      "git_blob": "0f14333265ac39a5c313d995228751d48bfb8603"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/structural-contract.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/native2020-structural-contract.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 3453,
+      "sha256": "1c0419ecf1ddf0819203067e73fc27d0434c693365dea68c6107467a30aa0c4b",
+      "git_blob": "1e0e0583a5d7c42036f12feb3391e6561f7a498f"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/source-freeze.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/before-treasure-19-gates/native2020-source-freeze.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1560,
+      "sha256": "7af98156437e7fcfc8a7ef9b96b4bb7b14c77cca59033f8868f38bb387858099",
+      "git_blob": "1a180ff1f9462424da5b1ce0f298c4eaffe81e78"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/implementation.patch",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/before-treasure-19-gates/native2020-implementation.patch",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 41107,
+      "sha256": "c067fc1a71567367084457ec560cef9bb87e1266609e0cdcd13afe60338094ae",
+      "git_blob": "dfa25f1a6a4bc48d27bd70e7668ba42a145ccb1d"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/validate_studio.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/before-treasure-19-gates/validate_studio.sh",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 20003,
+      "sha256": "7fe252aae499b1fcb0932ac259a535946cde6e9bf4ba0a088c1c8a5e2fcd5752",
+      "git_blob": "436aee252a47cb6613d2854bb8e3795c5ca242b9"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/before-treasure-19-gates/test_nextgen_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/before-treasure-19-gates/test_nextgen_runner.py",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 34642,
+      "sha256": "8cef480f04a8cef32593d6f279b7eaab677ea95a38ade226b4f1828b88c4a529",
+      "git_blob": "2374a9b4d614e9e37163705d1777e5a7c18345c3"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie-helper.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-media-sidecar-original-replay/movie-helper.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/movie.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 732,
+      "sha256": "e05e049610301c631f4918550bcc603d6d9b1b682e3af1a605deebdff007b768",
+      "git_blob": "1b2cd43414854efa80284f93a83deb0b442a2507"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-ffprobe.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/movie-ffprobe.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 4673,
+      "sha256": "9bfa9b2cdb13e20b7526980d74d560e8f4e6d8d14365ef57bdeacfa01849ac33",
+      "git_blob": "9e7b0302d57a68d72255d673eced6509db6ffeb0"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-decode.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/movie-decode.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-encode.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/movie-encode.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 5977,
+      "sha256": "86b5b694e088c949e516ac0baa080f472e7b3d9007e28ea6fd57a17797452db4",
+      "git_blob": "223a3ef9bd81c07bf1ad5179e0a82b472cdfd246"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/actual-movie/movie-ffprobe-stderr.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/movie-ffprobe-stderr.log",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "docs/evidence/native-studio-2020-harness-20261114/independent-treasure-connection-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/independent-native-harness-connection.json",
+      "mode": "100644",
+      "category": "evidence",
+      "bytes": 1650,
+      "sha256": "b3dfcb840e769c140c62a5450c9edc9f6a0dbf5eacf08ed75f7001af9ccedc47",
+      "git_blob": "e9b6f039e74a787060f1437376f9ab075820bbf0"
+    }
+  ]
+}

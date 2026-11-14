@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "tools.android_qa.tests.test_cards_layout_readiness",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched",
+  "exit_code": 1,
+  "elapsed_seconds": 0.41998446300567593,
+  "scope": "Six local transport/clock contract tests using original pre-draw API35 pixels and live validation functions; not a new Android draw run."
+}

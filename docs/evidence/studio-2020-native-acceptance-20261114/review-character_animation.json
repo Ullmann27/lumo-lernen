@@ -1,0 +1,707 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14T08:20:21.089769+00:00",
+  "status": "REVIEW_COMPLETE_NO_NEW_BLOCKING_VISUAL_ISSUE",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "archive": {
+    "path": "/tmp/lumo-studio-2020-785413-native-evidence.zip",
+    "bytes": 227410428,
+    "sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+    "entry_count": 5085,
+    "root_full_crc_and_source_stamp_verification": {
+      "manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/verified-original-extraction.json",
+      "sha256": "8549474e622f91c320d87e4134045ae76cd82ec6090773ec9e265b98f2c652ef"
+    },
+    "reviewer_scope": "Die zwölf Bilder und acht Filmoriginale wurden persönlich bytegleich mit ihren aktuellen ZIP-Mitgliedern verglichen. Der vollständige ZIP-SHA-/5085-CRC-Lauf und die fünf Source-Stamps stammen aus dem gebundenen Root-Extraktionsbericht und wurden hier nicht erneut vollständig ausgeführt."
+  },
+  "selection_sha256": "9a180cd743dd8b58deea1f62803c9150c141a75972e8bc8b546305bb5a9aa323",
+  "byte_binding_sha256": "5f432cbc1f2ab83acaea3809a8ea3f25a90bfc364c44477960db2a7a76b9a8e4",
+  "helper": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/scripts/verify_studio_delivery.py",
+    "sha256": "831a3aafbef39b53f7883b103b9d650eb14b49164c774fb1aae499d05174e8ae",
+    "function": "reviewed_relative_path(digest,module,entry,studio_version=2020)",
+    "invoked_for_all_images": true
+  },
+  "images": [
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Original-Lumo steht sichtbar links neben der verwendeten Lernfläche und gestikuliert. Die räumliche Holzklasse mit Globus, Pflanzen und Rechenrahmen, das Wort Apfel, zwei freie Slots sowie die getrennten Bausteine fel und Ap sind erkennbar. Aufgabenhinweis, Fortschritt 0 / 2 und die drei unteren Aktionen sind vollständig sichtbar; kein beobachteter Text- oder Figurenübergriff. Dies ist ein Rendererbild der produktiven Lehrerszene, kein Android- oder Lernwirksamkeitsnachweis.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55-learning-teacher_scene.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Kopf und Blick sind gegenüber den frontalen Zuständen nach links im Bild gedreht. Augen, Brille und Schnauze bleiben verbunden und gut erkennbar; die Schnauze ist geschlossen. Die eingeblendete Beschriftung stumm ist allein kein Beweis für einen akustischen Stummschaltzustand.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "67e626fd8edf3af3bf3c4955fd905047d9897e7c",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163-learning-gaze_left.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "module": "connect_four",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "bytes": 29411,
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Im kompakten 640×360-Bild sind die vollständige Pausenerklärung sowie Fortsetzen und Neue Runde sichtbar. Ein Scrollbalken zeigt weitere Menüinhalte an; nicht alle Optionen sind gleichzeitig im Bild. Das darunterliegende Brett wird vom geöffneten Pausenfenster absichtlich verdeckt, Status und abgedunkelte Spaltenaktionen bleiben erkennbar. Kein abgeschnittener Pausentext; Lumo ist in diesem kleinen Layout ausgeblendet.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "7806e7f57e122d27342bbd6342325cf96b96ef55",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195-connect_four-c4-paused-small.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Die Nahaufnahme erhält orangefarbenes Fell, weiße Schnauze, große Ohren, blaue Schutzbrille und cyanfarbene Kleidung des Original-Lumo. Beide Augen sind offen, die Schnauze geschlossen; keine grobe Gesichtsverformung oder abgelöste Brille sichtbar. Der untere Körper ist durch den gewählten Nahbildausschnitt abgeschnitten. Die Bildunterschrift benennt Pause / geschlossen.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "8645e70de9f6badf6e4c260eaf02957c6e4ad147",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703-learning-neutral.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/muted.png",
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Beide Augen und die geschlossene, leicht lächelnde Schnauze sind intakt; sichtbare Beschriftung stumm. Kein festgehaltener offenstehender Mund erkennbar. Im zugehörigen aktuellen Laufzeitbericht bleibt am Übergang kurz eine kleine gedämpfte Restbewegung erhalten; deshalb keine Behauptung eines sofortigen numerischen Nullwerts allein aus diesem Bild.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "87810252dcc1e0e627c267320a43e2cc8346f277",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1-learning-muted.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/blink.png",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Die orangefarbenen Lider schließen sich erkennbar über beide Augen. Entlang der unteren Lidkante bleibt ein schmaler heller beziehungsweise dunkler Spalt sichtbar; daher kein Anspruch auf vollkommen nahtlos geschlossene Lider. Die Originalfigur bleibt erkennbar, keine sichtbare grobe Meshzerstörung. Das Schließen und erneute Öffnen ist zusätzlich im aktuellen Film überprüft.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "22808f200b3258d7ec2f25d3bac6ad3302742b0e",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973-learning-blink.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "module": "connect_four",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "bytes": 82090,
+      "sha256": "23b058ffab7567daeb9296c40d067b81cbd6d90cc546b8b12bddd19ff9e5bc95",
+      "dimensions": [
+        960,
+        540
+      ],
+      "findings": "Vollständiges räumliches Brett mit sieben Spalten und sechs Lochreihen, sichtbarer Dicke, gelben Haltern und Holzsockel. Der kleine Original-Lumo steht rechts sichtbar neben dem Brett. Zurück, Titel, Pause, Status und alle sieben Spaltenaktionen bleiben sichtbar. Ein leerer visueller Fixturezustand belegt weder Dart-Regeln noch dauerhaftes Speichern.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "07db92794fdb2c11cbf45fd1216d78a037fa8516",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/23b058ffab7567daeb9296c40d067b81cbd6d90cc546b8b12bddd19ff9e5bc95-connect_four-c4-empty-landscape.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Die nach links gerichtete Nahaufnahme zeigt eine geschlossene Schnauze und intakte Augen-/Brillengeometrie. Beschriftung Pause / geschlossen sichtbar; kein visuell fortbestehender offener Mund. Der tatsächliche Playerzustand wird separat aus den aktuellen Originalzeilen gelesen.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52-learning-stopped.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "module": "connect_four",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "bytes": 83817,
+      "sha256": "2ea5e8514828623b00d4679856ec6fcce11161ba345b97a4243eb3eff4ff7800",
+      "dimensions": [
+        960,
+        540
+      ],
+      "findings": "Vier cyanfarbene Steine in der unteren Reihe sind jeweils mit einem weißen Gewinnring markiert; drei goldene Steine liegen rechts. Die Beschriftung Cyan gewinnt!, deaktivierte Spaltenaktionen, Menü und der rechts gestikulierende Lumo sind erkennbar. Die Gewinninszenierung ist verständlich; der vorgegebene Fixturezustand ersetzt keinen regelgeprüften Android-Spielzug.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "1bee642943081c25a0de7ce6cb37c1bd6a5feb54",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/2ea5e8514828623b00d4679856ec6fcce11161ba345b97a4243eb3eff4ff7800-connect_four-c4-win-landscape.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "module": "connect_four",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "bytes": 67672,
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Das gesamte Brett bleibt in der hohen 412×915-Ansicht sichtbar. In der mittleren vierten Spalte liegen ein cyanfarbener Stein unten und ein goldener Stein darüber. Kopf- und Fußaktionen sowie alle sieben Spaltentasten sind vollständig sichtbar. Ober- und unterhalb des Bretts besteht viel freier Hintergrund; Lumo ist in diesem schmalen Layout ausgeblendet. Keine beobachtete Überlagerung von Brett und Bedienung.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "93f1122761f944ff0ec85829d666dea0fc491cc0",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c-connect_four-c4-playing-phone.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Beide real sichtbaren Lider bedecken einen Teil der Augen, während darunter Pupillen und Augenweiß erkennbar bleiben. Kopf, Ohren, Brille und Schnauze behalten ihre Form. Die zusätzliche Lidkante bleibt als kleine erhabene Naht sichtbar; dies wird als sichtbare kosmetische Grenze dokumentiert.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "1f7ca9f42343c3653990403225db5529808207da",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554-learning-blink_intermediate.png"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "module": "learning",
+      "review_owner": "character_animation",
+      "local_path": "/tmp/lumo-studio-2020-785413-originals/original-images/studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "dimensions": [
+        640,
+        640
+      ],
+      "findings": "Frontale Nahaufnahme mit geöffneten Augen und erhaltener Originalidentität. Die untere Schnauzen-/Kinnform artikuliert nur dezent; keine offene Mundhöhle, Zähne oder lesbaren Phonemformen. Die Einblendung nennt die lokale Apfel-WAV. Audioabhängigkeit wird getrennt an die aktuellen Laufzeitzeilen gebunden; aus diesem Einzelbild allein folgt keine Lippensynchronität.",
+      "blocking_issue": false,
+      "reviewed": true,
+      "review_method": "Original-PNG einzeln mit view_image geöffnet; aktuelle ZIP-Bytes und Hash zusätzlich geprüft.",
+      "git_blob_sha": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8",
+      "reviewed_relative_path": "docs/evidence/studio-2020-reviewed/9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9-learning-audio_jaw.png"
+    }
+  ],
+  "selection_entries": [
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "findings": "Original-Lumo steht sichtbar links neben der verwendeten Lernfläche und gestikuliert. Die räumliche Holzklasse mit Globus, Pflanzen und Rechenrahmen, das Wort Apfel, zwei freie Slots sowie die getrennten Bausteine fel und Ap sind erkennbar. Aufgabenhinweis, Fortschritt 0 / 2 und die drei unteren Aktionen sind vollständig sichtbar; kein beobachteter Text- oder Figurenübergriff. Dies ist ein Rendererbild der produktiven Lehrerszene, kein Android- oder Lernwirksamkeitsnachweis."
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "findings": "Kopf und Blick sind gegenüber den frontalen Zuständen nach links im Bild gedreht. Augen, Brille und Schnauze bleiben verbunden und gut erkennbar; die Schnauze ist geschlossen. Die eingeblendete Beschriftung stumm ist allein kein Beweis für einen akustischen Stummschaltzustand."
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "findings": "Im kompakten 640×360-Bild sind die vollständige Pausenerklärung sowie Fortsetzen und Neue Runde sichtbar. Ein Scrollbalken zeigt weitere Menüinhalte an; nicht alle Optionen sind gleichzeitig im Bild. Das darunterliegende Brett wird vom geöffneten Pausenfenster absichtlich verdeckt, Status und abgedunkelte Spaltenaktionen bleiben erkennbar. Kein abgeschnittener Pausentext; Lumo ist in diesem kleinen Layout ausgeblendet."
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "findings": "Die Nahaufnahme erhält orangefarbenes Fell, weiße Schnauze, große Ohren, blaue Schutzbrille und cyanfarbene Kleidung des Original-Lumo. Beide Augen sind offen, die Schnauze geschlossen; keine grobe Gesichtsverformung oder abgelöste Brille sichtbar. Der untere Körper ist durch den gewählten Nahbildausschnitt abgeschnitten. Die Bildunterschrift benennt Pause / geschlossen."
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "findings": "Beide Augen und die geschlossene, leicht lächelnde Schnauze sind intakt; sichtbare Beschriftung stumm. Kein festgehaltener offenstehender Mund erkennbar. Im zugehörigen aktuellen Laufzeitbericht bleibt am Übergang kurz eine kleine gedämpfte Restbewegung erhalten; deshalb keine Behauptung eines sofortigen numerischen Nullwerts allein aus diesem Bild."
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "findings": "Die orangefarbenen Lider schließen sich erkennbar über beide Augen. Entlang der unteren Lidkante bleibt ein schmaler heller beziehungsweise dunkler Spalt sichtbar; daher kein Anspruch auf vollkommen nahtlos geschlossene Lider. Die Originalfigur bleibt erkennbar, keine sichtbare grobe Meshzerstörung. Das Schließen und erneute Öffnen ist zusätzlich im aktuellen Film überprüft."
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "findings": "Vollständiges räumliches Brett mit sieben Spalten und sechs Lochreihen, sichtbarer Dicke, gelben Haltern und Holzsockel. Der kleine Original-Lumo steht rechts sichtbar neben dem Brett. Zurück, Titel, Pause, Status und alle sieben Spaltenaktionen bleiben sichtbar. Ein leerer visueller Fixturezustand belegt weder Dart-Regeln noch dauerhaftes Speichern."
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "findings": "Die nach links gerichtete Nahaufnahme zeigt eine geschlossene Schnauze und intakte Augen-/Brillengeometrie. Beschriftung Pause / geschlossen sichtbar; kein visuell fortbestehender offener Mund. Der tatsächliche Playerzustand wird separat aus den aktuellen Originalzeilen gelesen."
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "findings": "Vier cyanfarbene Steine in der unteren Reihe sind jeweils mit einem weißen Gewinnring markiert; drei goldene Steine liegen rechts. Die Beschriftung Cyan gewinnt!, deaktivierte Spaltenaktionen, Menü und der rechts gestikulierende Lumo sind erkennbar. Die Gewinninszenierung ist verständlich; der vorgegebene Fixturezustand ersetzt keinen regelgeprüften Android-Spielzug."
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "findings": "Das gesamte Brett bleibt in der hohen 412×915-Ansicht sichtbar. In der mittleren vierten Spalte liegen ein cyanfarbener Stein unten und ein goldener Stein darüber. Kopf- und Fußaktionen sowie alle sieben Spaltentasten sind vollständig sichtbar. Ober- und unterhalb des Bretts besteht viel freier Hintergrund; Lumo ist in diesem schmalen Layout ausgeblendet. Keine beobachtete Überlagerung von Brett und Bedienung."
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "findings": "Beide real sichtbaren Lider bedecken einen Teil der Augen, während darunter Pupillen und Augenweiß erkennbar bleiben. Kopf, Ohren, Brille und Schnauze behalten ihre Form. Die zusätzliche Lidkante bleibt als kleine erhabene Naht sichtbar; dies wird als sichtbare kosmetische Grenze dokumentiert."
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "findings": "Frontale Nahaufnahme mit geöffneten Augen und erhaltener Originalidentität. Die untere Schnauzen-/Kinnform artikuliert nur dezent; keine offene Mundhöhle, Zähne oder lesbaren Phonemformen. Die Einblendung nennt die lokale Apfel-WAV. Audioabhängigkeit wird getrennt an die aktuellen Laufzeitzeilen gebunden; aus diesem Einzelbild allein folgt keine Lippensynchronität."
+    }
+  ],
+  "movie_review": {
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+    "path": "/tmp/lumo-studio-2020-785413-originals/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+    "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+    "bytes": 1067731,
+    "fully_decoded_video_and_audio": true,
+    "decode_exit_code": 0,
+    "decode_commands": [
+      {
+        "name": "ffprobe",
+        "command": [
+          "ffprobe",
+          "-v",
+          "error",
+          "-count_frames",
+          "-show_streams",
+          "-show_format",
+          "-of",
+          "json",
+          "/tmp/lumo-studio-2020-785413-originals/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4"
+        ],
+        "exit_code": 0,
+        "seconds": 0.2197737319947919,
+        "stdout_sha256": "a8c4a07217070003a7c2cd8d8e4d1532e795690978ea0ea0146ff3847e426054",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "full-decode",
+        "command": [
+          "ffmpeg",
+          "-nostdin",
+          "-v",
+          "error",
+          "-xerror",
+          "-i",
+          "/tmp/lumo-studio-2020-785413-originals/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+          "-map",
+          "0",
+          "-f",
+          "null",
+          "-"
+        ],
+        "exit_code": 0,
+        "seconds": 0.1914273449947359,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "frame-times",
+        "command": [
+          "ffprobe",
+          "-v",
+          "error",
+          "-select_streams",
+          "v:0",
+          "-show_entries",
+          "frame=best_effort_timestamp_time",
+          "-of",
+          "json",
+          "/tmp/lumo-studio-2020-785413-originals/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4"
+        ],
+        "exit_code": 0,
+        "seconds": 0.2084414580021985,
+        "stdout_sha256": "68eb29df9462217c892b3db48aab35f405b2971c2848b784ce48f64075a33c0b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "extract-frames",
+        "command": [
+          "ffmpeg",
+          "-nostdin",
+          "-v",
+          "error",
+          "-xerror",
+          "-i",
+          "/tmp/lumo-studio-2020-785413-originals/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+          "-map",
+          "0:v:0",
+          "-vsync",
+          "0",
+          "/tmp/lumo-facial-review-785413-20261114/frames/frame-%04d.png"
+        ],
+        "exit_code": 0,
+        "seconds": 0.5798740850004833,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "decode_proof_path": "/tmp/lumo-facial-review-785413-20261114/decode-and-contact-sheet-proof.json",
+    "decode_proof_sha256": "d13f7a9ce1cf3433fd7e1c185b989961dda1087d89d335617e2d1ca955ddb29e",
+    "video": {
+      "codec": "h264",
+      "dimensions": [
+        640,
+        640
+      ],
+      "frames": 148,
+      "recording_fps": "24/1",
+      "duration_seconds": 6.166667
+    },
+    "audio": {
+      "codec": "aac",
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "duration_seconds": 6.166,
+      "listened_to": false,
+      "limitation": "Der Audiostream wurde vollständig dekodiert, aber nicht angehört. Keine Aussage zu wahrgenommener Aussprache oder akustischer Synchronität."
+    },
+    "visual_scope": "Alle 148 frisch dekodierten Frames auf 13 einzeln geöffneten Kontaktbögen angesehen; zusätzlich Frames 16, 38 und 45 in originaler 640×640-Auflösung geöffnet. Keine zeitlich interpolierten oder generierten Frames. Kein Anspruch auf Wiedergabe in Echtzeit.",
+    "contact_sheets": [
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-01.png",
+        "first_frame": 1,
+        "last_frame": 12,
+        "sha256": "830c304bf97581981c0758eb60f8d385c1e00db7beae94741c9e15e31aabd3a5",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-02.png",
+        "first_frame": 13,
+        "last_frame": 24,
+        "sha256": "b4857f41a4df4b56e7ea6e79ffeebc1a937d25bdecb9b43b0cddfaff46dcf2bf",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-03.png",
+        "first_frame": 25,
+        "last_frame": 36,
+        "sha256": "6b43ec9f8a51bdf0e3a655af3d07b5557bfd230cdd728ff26e4a72b5854b108f",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-04.png",
+        "first_frame": 37,
+        "last_frame": 48,
+        "sha256": "1ff138a58a849f01bc26e63fcf4d231491c81ea409dd1b603522aa7ab0eefeb2",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-05.png",
+        "first_frame": 49,
+        "last_frame": 60,
+        "sha256": "c16d0a16f10b1de1c4e1f104e9b50ecba1ba218c95ba22915245179a8d8c28de",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-06.png",
+        "first_frame": 61,
+        "last_frame": 72,
+        "sha256": "5b3a5b0f71413e73d7db671c1a66fa65844b3f0bea1a332917c1de3e89162612",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-07.png",
+        "first_frame": 73,
+        "last_frame": 84,
+        "sha256": "715b2dd9d0976d8c7fe6e3528c07d566ad403b7f72ad18f6e03d686426615405",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-08.png",
+        "first_frame": 85,
+        "last_frame": 96,
+        "sha256": "e21bc0d8a12334e8e6346d340ef0310d995afbc8c2673b78165fbdd4c06d3ea9",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-09.png",
+        "first_frame": 97,
+        "last_frame": 108,
+        "sha256": "8dcbd88ef891ecc40238c92bfc4513f0c338ea320163a469a1662363a6b89190",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-10.png",
+        "first_frame": 109,
+        "last_frame": 120,
+        "sha256": "f4f9b4b9dba79587c5e4a2fcc17d770f4955a45e89fcaa86371312c36db48a45",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-11.png",
+        "first_frame": 121,
+        "last_frame": 132,
+        "sha256": "2fc3b45f1f255fd31a391060a33680c8259aa3a6f5d4839e0c4cd419b8c69c58",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-12.png",
+        "first_frame": 133,
+        "last_frame": 144,
+        "sha256": "56abc538889abbda23d686f5e40f64a3855d621862b6167f7f50fa3a24380255",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      },
+      {
+        "path": "/tmp/lumo-facial-review-785413-20261114/contact-sheets/sheet-13.png",
+        "first_frame": 145,
+        "last_frame": 148,
+        "sha256": "54bf4924e2ee712b52e9f50681c06f858525d55f2c184b7a500304312e12d894",
+        "dimensions": [
+          864,
+          732
+        ],
+        "reviewed": true
+      }
+    ],
+    "full_resolution_frames": [
+      {
+        "frame": 16,
+        "pts_seconds": 0.625,
+        "path": "/tmp/lumo-facial-review-785413-20261114/frames/frame-0016.png",
+        "sha256": "9b7c206daae511d69729f963a1b75cb705ba5237b3a5d8664203fde9ca1707ee"
+      },
+      {
+        "frame": 38,
+        "pts_seconds": 1.541667,
+        "path": "/tmp/lumo-facial-review-785413-20261114/frames/frame-0038.png",
+        "sha256": "54b62074af89c1a54a83836ee9098207f6b79c31df5d93eada947aebca961893"
+      },
+      {
+        "frame": 45,
+        "pts_seconds": 1.833333,
+        "path": "/tmp/lumo-facial-review-785413-20261114/frames/frame-0045.png",
+        "sha256": "5f98da2c633445928d55b74d91d16009b6970cdbeb0e5d3d9cc1935c6d7db151"
+      }
+    ],
+    "observations": [
+      {
+        "frames": [
+          1,
+          25
+        ],
+        "time_seconds": [
+          0,
+          1.0
+        ],
+        "finding": "Die verwendete Silben-Lernszene zeigt Original-Lumo neben Apfel, den zwei Slots und den beiden Bausteinen. Die Gestik verändert sich bei stabiler Aufgaben- und Aktionsfläche. Frame16 wurde für die tatsächliche Textlesbarkeit zusätzlich in voller Auflösung angesehen."
+      },
+      {
+        "frames": [
+          26,
+          145
+        ],
+        "time_seconds": [
+          1.041667,
+          6.0
+        ],
+        "finding": "Bewusster Schnitt zur Gesichtsinspektionskamera. Die Originalidentität bleibt erhalten; Kopf-/Blickbewegung nach links und wiederholte dezente Kinn-/Schnauzenbewegung sind sichtbar. Keine offene Mundhöhle oder Phonemformen."
+      },
+      {
+        "frames": [
+          44,
+          47
+        ],
+        "time_seconds": [
+          1.791667,
+          1.916667
+        ],
+        "finding": "Erstes Schließen und erneutes Öffnen der Lider erkennbar; Frame45 zeigt eine schmale sichtbare untere Lidnaht beziehungsweise Restspalte."
+      },
+      {
+        "frames": [
+          134,
+          137
+        ],
+        "time_seconds": [
+          5.541667,
+          5.666667
+        ],
+        "finding": "Zweiter Blinkzyklus in der Pause; Augen öffnen sich wieder. Die sichtbare Lidnaht bleibt eine kosmetische Grenze."
+      },
+      {
+        "frames": [
+          69,
+          98
+        ],
+        "time_seconds": [
+          2.833333,
+          4.041667
+        ],
+        "finding": "Beschriftung stumm bei geschlossener Schnauze; Kopf-/Blickbewegung bleibt sichtbar. Beschriftung wird nicht mit einer akustischen Messung gleichgesetzt."
+      },
+      {
+        "frames": [
+          111,
+          145
+        ],
+        "time_seconds": [
+          4.583333,
+          6.0
+        ],
+        "finding": "Beschriftung Pause / geschlossen und geschlossene Schnauze; kein sichtbarer hängender offener Mund."
+      },
+      {
+        "frames": [
+          146,
+          148
+        ],
+        "time_seconds": [
+          6.041667,
+          6.125
+        ],
+        "finding": "Drei dunkel gefüllte Abschlussframes sind im Originalfilm vorhanden. Sie zeigen keine Spielfigur und werden nicht als weiterer Szenennachweis gezählt."
+      }
+    ],
+    "runtime_sidecar": {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "rows": 144,
+      "step_range": [
+        0,
+        143
+      ],
+      "lesson_kind": "syllables",
+      "lesson_word": "Apfel",
+      "word_source": "res://assets/audio/voice/words/apfel.wav",
+      "actual_max_jaw_weight": 0.699060499668121,
+      "max_muted_playing_jaw_weight": 0.0255176480859518,
+      "max_idle_jaw_weight": 0.0,
+      "observed_flags": {
+        "observed_audible_jaw": true,
+        "observed_blink": true,
+        "observed_muted_closed": true,
+        "observed_stopped_closed": true
+      },
+      "measurement_scope": "Player-/Geometriewerte des tatsächlichen aktuellen Godot-Laufs; keine akustische Abhörung, keine phonembasierte Lippenabnahme und keine Android-Messung."
+    },
+    "blocking_issue": false
+  },
+  "connect_four_sidecar": {
+    "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/visual-state.json",
+    "sha256": "c2d940e95349f2615ba1734aab95276cfe0051d84e61e4f9414a71596d4ad201",
+    "checks": 303,
+    "errors": [],
+    "input_events_count": 30,
+    "source_before_after_equal": true,
+    "kind": "connect_four_visual_fixture",
+    "read_only_fixture_host": true,
+    "scope": "Native renderer-only; no Dart, bot, reward, save, Android or FPS acceptance"
+  },
+  "limitations": [
+    "Nur diese zwölf aktuellen Originalbilder und der gebundene aktuelle Gesichtsfilm sind Gegenstand dieser Sichtprüfung.",
+    "Kein Android2020-, Fold7-, Temperatur-, Touchlatenz- oder 60-FPS-Nachweis. 24fps ist das Aufnahmeformat.",
+    "Die C4-Aufnahme verwendet echte Produktionsgeometrie mit vorgegebenen visuellen Zuständen; kein Dart-Regel-, Bot-, Reward- oder dauerhaftes Save-Ergebnis.",
+    "Blinzeln hat noch eine sichtbare Lidnaht; die Kieferbewegung ist geschlossene Schnauzenartikulation und keine vollständige phonembasierte Lippenanimation.",
+    "Der Originalfilm enthält drei dunkle Abschlussframes; keine Behauptung, alle 148 Frames zeigten eine Spielfigur."
+  ],
+  "blocking_issues": [],
+  "product_files_changed": false,
+  "receipt_or_release_approval": false,
+  "git_ref_mutation": false
+}

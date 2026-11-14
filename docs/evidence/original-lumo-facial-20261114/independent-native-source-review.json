@@ -1,0 +1,167 @@
+{
+  "status": "READ_ONLY_NATIVE_SOURCE_REVIEW_NO_ADDITIONAL_BLOCKER",
+  "reviewer": "games_worlds",
+  "source_freeze_sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "files_hash_verified": [
+    {
+      "path": "native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "bytes": 8408740
+    },
+    {
+      "path": "native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "bytes": 1162
+    },
+    {
+      "path": "native/scripts/characters/lumo/lumo_facial_pose.gd",
+      "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+      "bytes": 6120
+    },
+    {
+      "path": "native/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "bytes": 11313
+    },
+    {
+      "path": "native/scripts/learning/learning_world.gd",
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "bytes": 45446
+    },
+    {
+      "path": "native/scripts/tests/learning_world_regression.gd",
+      "sha256": "4873ac19bfadf84f318973d02950e11ffafd57024898148790e3d66d221f715d",
+      "bytes": 22332
+    },
+    {
+      "path": "native/scripts/tests/lumo_facial_capture.gd",
+      "sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "bytes": 8675
+    },
+    {
+      "path": "native/scripts/tests/lumo_facial_regression.gd",
+      "sha256": "dc98c2521543d5b28238f37ed064b0ccd105378d124e44bbefd668c1b16cc03e",
+      "bytes": 7102
+    },
+    {
+      "path": "native/scripts/tests/lumo_rigged_animation_capture.gd",
+      "sha256": "03ce996e765947e20c32cea4b683e70b25ec07e20f8d8c844a0cb0af038df151",
+      "bytes": 5631
+    },
+    {
+      "path": "native/scripts/tests/lumo_studio_motion_regression.gd",
+      "sha256": "f6451145eec7729f35b3aab70d9fe69ad970e171288c156de3e484213984253e",
+      "bytes": 8857
+    },
+    {
+      "path": "native/scripts/tests/lumo_teacher_pose_regression.gd",
+      "sha256": "51b32d1cb3d3684334bb5445626cacc5b20d87471f9e0f8325f07514f23f1a26",
+      "bytes": 7298
+    },
+    {
+      "path": "host/tools/auto_install/LumoLearningSpeech.kt",
+      "sha256": "13bf313696c626a3453cddacdd8e95fb20b4075d84ddaeb8a5c0054d68e43f8d",
+      "bytes": 8902
+    },
+    {
+      "path": "host/tools/auto_install/LumoSpeechEnvelope.kt",
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+      "bytes": 4697
+    },
+    {
+      "path": "native/assets/characters/lumo_facial/ATTRIBUTION.md",
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "bytes": 2626
+    }
+  ],
+  "review_scope": [
+    "lumo_facial_pose.gd",
+    "lumo_rigged_actor.gd",
+    "learning_world.gd speech integration",
+    "newGLB import and originalbody preservation record",
+    "final valid-lesson QA correction"
+  ],
+  "findings": [
+    {
+      "area": "Actual geometry ownership",
+      "finding": "Face adapter binds existing imported MeshInstance3D blendshape names; only mesh weights and head-relative look calculation are added. Original body clips and bone animation remain under their prior owner."
+    },
+    {
+      "area": "Speech authenticity",
+      "finding": "Product teacher accepts only matching utterance ID and permitted state; audible playing+envelopeAvailable required for jaw. Synthesis/mute/stop/missing envelope close it; frozen media positions age out at0.35s. ActualPCM amplitude is not a phoneme/viseme claim."
+    },
+    {
+      "area": "Lifecycle",
+      "finding": "Actor suspension/reduced-motion resets face and stops samples; learning stop increments utteranceID then clears both gestural and jaw state. Late canceled response cannot reopen it."
+    },
+    {
+      "area": "Model/import",
+      "finding": "New derived GLB chosen through actualPackedScene import; original model remains availability fallback. Only newLumoEyelids meshLOD is disabled; bodyLOD generation remains. Final102test explicitly checks importedLOD policy."
+    },
+    {
+      "area": "Test correction",
+      "finding": "Final tests require valid bridge_ten8+5 and productiveApfel syllable payloads. Earlier101count and rejectedinvalidcapture are preserved and not described as finalvalidlesson proof."
+    }
+  ],
+  "asset_preservation_record": {
+    "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/asset-preservation-v9.json",
+    "sha256": "2f9e7c05177ba089b15d8d9d4d4cce393cf346008c88aff6c7ecc83754de873e",
+    "read_not_rerun": true,
+    "original_binary_skin_animation_material_checks_reported": true
+  },
+  "raw_logs_read": [
+    {
+      "path": "evidence/native-final/lumo_facial_valid_lesson.log",
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b",
+      "markers": [
+        "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false"
+      ],
+      "read_not_rerun": true
+    },
+    {
+      "path": "evidence/native-final/lumo_studio_motion_regression.log",
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+      "markers": [
+        "[LumoStudioMotion] PASS checks=1047 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+      ],
+      "read_not_rerun": true
+    },
+    {
+      "path": "evidence/native-final/lumo_teacher_pose_regression.log",
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629",
+      "markers": [
+        "[LumoTeacherPose] PASS 34 checks: original gestures, bounded split gaze, owner exclusivity, pause and honest voice seam"
+      ],
+      "read_not_rerun": true
+    },
+    {
+      "path": "evidence/native-final/lumo_rigged_animation_capture.log",
+      "sha256": "7211cdab9979bcd87148b2c1a8568a8800ab33b3f56d550505ea7a4c1899aaac",
+      "markers": [
+        "[LumoRig] PASS checks=21 real exported rig and clips; physical Android not tested"
+      ],
+      "read_not_rerun": true
+    },
+    {
+      "path": "evidence/native-final/learning_world_regression.log",
+      "sha256": "63d6dfe55ad0fa205abedfcfcceb4068e305f41fab57269daf8b8a0dcaf36838",
+      "markers": [
+        "[LearningWorld] PASS checks=5340"
+      ],
+      "read_not_rerun": true
+    }
+  ],
+  "delegated_kotlin_review": {
+    "path": "evidence/independent-speech-source-review.json",
+    "sha256": "cd461814c55ea8ac924ba92c2789760a16f2e45a0af68e2dccb23159a150861f",
+    "scope": "A independently reviewed real Kotlin API/lifecycle; not reexecuted here"
+  },
+  "scope_limits": [
+    "No tests or source changes by this reviewer",
+    "No face images or movie independently opened during this source review; visual evidence belongs to B final-visual-review",
+    "No newAndroid MediaPlayer/physicalFold7/FPS proof",
+    "Closed muzzle deformation and painted-surface gaze, no modeled mouth cavity/visemes/independent eyeballs"
+  ]
+}

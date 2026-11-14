@@ -1,0 +1,47 @@
+{
+  "scope": "Actually read local runtime/authoring sources; no claim of a fresh runtime test",
+  "files": [
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 10090,
+      "sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0",
+      "git_blob": "dea775d2f26877c858bb79079a01b3b464e4d88f"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "bytes": 4228,
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "git_blob": "5d3a1ae763e84cb09276cafe9ba5f9541bf49447"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_kart_animation_adapter.gd",
+      "bytes": 13808,
+      "sha256": "afe2bc4f6b3a1753d64e536878754fcfa52d0c5758cf6adfdccdaa38ea779edc",
+      "git_blob": "8431a588aeedfa6e0cc46a4d363b51c8f53cd992"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_eye_system.gd",
+      "bytes": 4428,
+      "sha256": "b40ca73c016968052415a282428eec517a1da2041621c663ce14cc6f7f14980c",
+      "git_blob": "cd9a80d1e11590e964227e341e2b17f5255db272"
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_mouth_system.gd",
+      "bytes": 3450,
+      "sha256": "1a2d14d4aa631548c4fbd084475c1f2f67ad702895f19dec3f3f3310c3f02cf8",
+      "git_blob": "af0675a3e987745cb3136e9aceed997f203524be"
+    },
+    {
+      "path": "scenes/characters/lumo/lumo_character.tscn",
+      "bytes": 9745,
+      "sha256": "20531a45bf93b61a836c9e88ccfccf1710981eb2db3fa69e9c404bc541c67495",
+      "git_blob": "6244b2a134e1f385bd77f8ec21c1b2d72557bb05"
+    },
+    {
+      "path": "tools/lumo_animation/author_platform_clips.py",
+      "bytes": 14998,
+      "sha256": "cbb0823ac359ac45d323a9037f6cc7c10a903e44dff6c374689ba84a3ec429c3",
+      "git_blob": "2fb2a93458eb372fe5c78958c54b3b5a0f052a26"
+    }
+  ]
+}

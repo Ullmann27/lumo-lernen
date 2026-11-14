@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "host_sha": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "host_tree": "84b2103328a1b385a0d3c7c1b17f7d7329252da0",
+  "parent": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+  "changed_files": [
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "git_blob_sha": "3da940a91cf02aae13083693e8f702d1bbc55fc5"
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "git_blob_sha": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341"
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "git_blob_sha": "a818134e16fadb009d6d00a1e61e0c5676f29b6a"
+    }
+  ],
+  "files": [
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob_sha": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b",
+      "freshly_fetched_at": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "current_binding": "8e64 is the direct child and its exact original commit response changes only the three existing focus test files."
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "bytes": 13409,
+      "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+      "git_blob_sha": "4615f10622420d53dedb380ff4648e5692995861",
+      "freshly_fetched_at": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "current_binding": "8e64 is the direct child and its exact original commit response changes only the three existing focus test files."
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob_sha": "c4b90bc73b76a2df23acdb253fa4213b798fed21",
+      "freshly_fetched_at": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "current_binding": "8e64 is the direct child and its exact original commit response changes only the three existing focus test files."
+    },
+    {
+      "path": "test/reading_asr_evidence_boundary_test.dart",
+      "bytes": 12601,
+      "sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "freshly_fetched_at": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "current_binding": "8e64 is the direct child and its exact original commit response changes only the three existing focus test files."
+    },
+    {
+      "path": "test/games/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "freshly_fetched_at": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "current_binding": "8e64 is the direct child and its exact original commit response changes only the three existing focus test files."
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob_sha": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "freshly_fetched_at": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "current_binding": "8e64 is the direct child and its exact original commit response changes only the three existing focus test files."
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "git_blob_sha": "829b819945d980e2082f478c1ddccea9463e3fa5",
+      "freshly_fetched_at": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "current_binding": "8e64 is the direct child and its exact original commit response changes only the three existing focus test files."
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "bytes": 10841,
+      "sha256": "87c86d87ea01e6d8298d3ab48d2e5911924396b8836b2d03746b323543fb712c",
+      "git_blob_sha": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341",
+      "current_binding": "Exact published 8e64 commit file Gitblob matched; Wallet pair full UTF-8 readback, Memory profile exact commit fetch."
+    },
+    {
+      "path": "test/reward_wallet_transaction_test.dart",
+      "bytes": 22524,
+      "sha256": "91864a9f6f5c371b230fd189df78f1d3280069b85bb4dcb6152c2ed01f1a7ac9",
+      "git_blob_sha": "a818134e16fadb009d6d00a1e61e0c5676f29b6a",
+      "current_binding": "Exact published 8e64 commit file Gitblob matched; Wallet pair full UTF-8 readback, Memory profile exact commit fetch."
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "bytes": 13044,
+      "sha256": "9f63b7ad07c7a74a78279cf58e95c93de08d319c713575d06f6f4c83ab99f8fa",
+      "git_blob_sha": "3da940a91cf02aae13083693e8f702d1bbc55fc5",
+      "current_binding": "Exact published 8e64 commit file Gitblob matched; Wallet pair full UTF-8 readback, Memory profile exact commit fetch."
+    }
+  ],
+  "limit": "Source commit plus original HOST-SOURCE stamp bound; final tracked-source verification step12 was skipped after the full-suite failure."
+}

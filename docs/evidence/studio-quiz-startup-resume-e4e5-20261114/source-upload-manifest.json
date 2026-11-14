@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T13:38:40.843879+00:00",
+  "base_revision": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "scope": "One QA startup function only; production sources and external deadlines unchanged. Actual paired CI pending.",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-startup-resume-e4e5-20261114/patched/native/scripts/tests/quiz_studio_runtime.gd",
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 29223,
+      "sha256": "a8929947827cc83f1b490b5ab37bd6647ef73e8e1fa878bfcca54947744d954e",
+      "git_blob_sha": "510f97b4a4a5bb58c0d1183fa7a5994ddea542d2"
+    }
+  ]
+}

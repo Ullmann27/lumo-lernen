@@ -1,0 +1,695 @@
+{
+  "schema": 1,
+  "reviewer": "learning_worlds",
+  "reviewed_at_utc": "2026-11-14T18:52:55.647506+00:00",
+  "run_id": 43626348519,
+  "run_attempt": 1,
+  "job_id": 132543177130,
+  "artifact_id": 14126931759,
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "native_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "images_reviewed": 17,
+  "all_rechecked_in_individual_views": true,
+  "original_bytes_unchanged": true,
+  "review_correction": "review-correction.json",
+  "images": [
+    {
+      "review_order": 1,
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "sha256": "2b7cd3b18204e4892367531f98251a27c05c951c3a5d6ae1c030e8ffa932bc91",
+      "git_blob_sha": "1ccc2a764c6da1ed3f57686b9b147b434d0aed3b",
+      "bytes": 168716,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "apple",
+      "visible_objects_order": [
+        "bag",
+        "rubber",
+        "apple"
+      ],
+      "reported_objects_order": [
+        "bag",
+        "rubber",
+        "apple"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Titel Englisch · apple und vollständige deutsche Anweisung lesbar.",
+        "Zwei Henkel an Tasche 1, Radiergummi 2 und roter Apfel mit Blatt 3 sichtbar.",
+        "Lumo vollständig links; nummerierte Auswahl, Hinweis, Neu, Schritt anhören und Zur Aufgabe sichtbar."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 2,
+      "artifact_entry": "english-native/english-bag-960x540-start.png",
+      "sha256": "9eae62ac29680c10ef7aebdbbe6286f6532be04776871f19b58b998406576e6f",
+      "git_blob_sha": "2ca1e44e4d5a5433542234a47cc43ff08beca8ce",
+      "bytes": 163086,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "bag",
+      "visible_objects_order": [
+        "bag",
+        "rubber",
+        "desk"
+      ],
+      "reported_objects_order": [
+        "bag",
+        "rubber",
+        "desk"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Wort bag vollständig sichtbar; Tasche mit zwei Henkeln auf Sockel 1.",
+        "Radiergummi 2 und Tisch mit Beinen 3 sind sichtbar unterscheidbar.",
+        "Alle unteren Aktionen und vollständige Lumofigur passen ohne erkennbaren HUD-Schnitt."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 3,
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "sha256": "ac444a03534367bae4e1fecc85eed8010292f745345b7e01e94f5968df6789a1",
+      "git_blob_sha": "c02938988dc82006918a8d8b062ab28cdd07f027",
+      "bytes": 167287,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "ball",
+      "visible_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "reported_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Eindeutige Einzelansicht zeigt Stuhl 1, blauen Ball 2 und Tisch 3; diese Folge entspricht dem echten Dart-Descriptor und beiden Sidecars.",
+        "Titel ball, normale Startanweisung und sämtliche unteren Aktionen sichtbar.",
+        "Die zuvor gemeldete abweichende Objektfolge war eine zurückgenommene Review-Fehlzuordnung; kein belegter Bildkonflikt."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 4,
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "sha256": "cc19981b98c58f648b4a5c114d79582736fe16df7990287792cc3d369896cf28",
+      "git_blob_sha": "c0148f37ed84d84518772249e58ad15ee070bf88",
+      "bytes": 168170,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "ball",
+      "visible_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "reported_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 1,
+      "hint_level": 2,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Einzelansicht zeigt Stuhl auf 1, blauen Ball auf 2 und Tisch auf 3; die helle Markierung um den mittleren Ball passt zum Hinweiszustand.",
+        "Die Anweisung „Tippe selbst auf den hell umrandeten Gegenstand.“ ist vollständig lesbar; Hinweis ist nach Benutzung ausgegraut.",
+        "Lumo und alle drei Objekte sind sichtbar; Zahlen, Neu, Schritt anhören und Zur Aufgabe liegen vollständig im Bild."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 5,
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "sha256": "1f61e5ccd3e847e6d81856e184216486039627ae4d322a5000881cfddcc07643",
+      "git_blob_sha": "fb1496876e9390a85d0b888072f3d9c9c2e2a87e",
+      "bytes": 167812,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "ball",
+      "visible_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "reported_objects_order": [
+        "chair",
+        "ball",
+        "desk"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": true,
+      "attempts": 2,
+      "hint_level": 2,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Objektfolge bleibt Stuhl 1, Ball 2, Tisch 3; Titel ball und Rückmeldung „Richtig: „Ball“. Wähle jetzt „Zur Aufgabe“.“ sind lesbar.",
+        "Die untere Bestätigung „ball = Ball · Passend zugeordnet“ ist sichtbar; nummerierte Auswahl und Hinweis sind ausgegraut.",
+        "Neu, Schritt anhören und Zur Aufgabe bleiben vollständig sichtbar; kein sichtbarer HUD-Schnitt an Lumo oder den Gegenständen."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 6,
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "sha256": "dfce357fb14f5c8dffdf16ffa040e0ba7755c70573a20200b193dbc128285d25",
+      "git_blob_sha": "e3f251c601e7ab8993e2a420ed6d0ab217040eef",
+      "bytes": 119541,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "book",
+      "visible_objects_order": [
+        "book",
+        "ruler",
+        "pencil case"
+      ],
+      "reported_objects_order": [
+        "book",
+        "ruler",
+        "pencil case"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Im schmalen Hochformat stehen Buch 1, Lineal 2 und Federmäppchen 3 untereinander; die Beschriftungen und Ziffern sind sichtbar.",
+        "Titel book und zweizeilige deutsche Anweisung bleiben vollständig lesbar; Lumo ist links vollständig dargestellt.",
+        "Die unteren Aktionen sind auf zwei Reihen umgebrochen und vollständig im 412×915-Bild enthalten."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 7,
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "sha256": "bffc19761e6032e605b3781d9bb2174dc635dce7d2a626fe895ebbef6dac6ebd",
+      "git_blob_sha": "13bb289e34f77a679d6f000e7d8bcdfadc608eee",
+      "bytes": 119313,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "book",
+      "visible_objects_order": [
+        "book",
+        "ruler",
+        "pencil case"
+      ],
+      "reported_objects_order": [
+        "book",
+        "ruler",
+        "pencil case"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": true,
+      "attempts": 2,
+      "hint_level": 2,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Buch 1 ist hell umrandet; Lineal 2 und Federmäppchen 3 bleiben sichtbar in derselben vertikalen Reihenfolge.",
+        "„Richtig: „Buch“. Wähle jetzt „Zur Aufgabe“.“ und „book = Buch · Passend zugeordnet“ sind vollständig lesbar.",
+        "Auswahl und Hinweis sind ausgegraut; Neu, Schritt anhören und Zur Aufgabe passen weiterhin vollständig in den zweireihigen Fußbereich."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 8,
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "sha256": "f558e8eb0f25191d421d2e721374e3c86acf466f995234ca4a2283c8c7702dd4",
+      "git_blob_sha": "0dd2451f91a08161ba520cb21a2c84abdb020e13",
+      "bytes": 698674,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "car",
+      "visible_objects_order": [
+        "ball",
+        "pen",
+        "car"
+      ],
+      "reported_objects_order": [
+        "ball",
+        "pen",
+        "car"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Breite Einzelansicht zeigt Ball 1, blauen Kugelschreiber 2 und rotes Auto mit sichtbaren Rädern 3.",
+        "Titel car, deutsche Startanweisung und sämtliche unteren Aktionen sind lesbar; die kompakte Aktion heißt „Anhören“.",
+        "Lumo und Objektgeometrie bleiben zwischen Kopf- und Fußleiste vollständig sichtbar; seitlicher Sicherheitsabstand ist sichtbar."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 9,
+      "artifact_entry": "english-native/english-chair-640x360-start.png",
+      "sha256": "43f47164008700620b7d33ee6c7fc37e7eb89802b767f91a819f9581b775398d",
+      "git_blob_sha": "1fb75ca62ad823f88b8fd057c7f066f85415acec",
+      "bytes": 95737,
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "chair",
+      "visible_objects_order": [
+        "chair",
+        "paper",
+        "pencil case"
+      ],
+      "reported_objects_order": [
+        "chair",
+        "paper",
+        "pencil case"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Auch im 640×360-Format sind Stuhl 1, liniertes Papier 2 und Federmäppchen 3 sichtbar getrennt und nummeriert.",
+        "Titel chair und vollständige deutsche Startanweisung sind lesbar; Lumo wird ohne sichtbaren Anschnitt dargestellt.",
+        "Alle sieben Aktionen passen in die kompakte untere Reihe; diese Bildsicht allein misst keine Android-Touchfläche."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 10,
+      "artifact_entry": "english-native/english-desk-960x540-start.png",
+      "sha256": "160edd234a0a65315d15c8b3fe87b6315833c079f925826317e9d64402dc2491",
+      "git_blob_sha": "13eed6454a8ddbc61f1f384f8596d99440aca84a",
+      "bytes": 163322,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "desk",
+      "visible_objects_order": [
+        "ruler",
+        "desk",
+        "book"
+      ],
+      "reported_objects_order": [
+        "ruler",
+        "desk",
+        "book"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Einzelansicht zeigt gelbes Lineal 1, Tisch mit sichtbaren Beinen 2 und rotes Buch 3; Titel desk passt zum mittleren Gegenstand.",
+        "Deutsche Startanweisung, unterer Hinweistext und alle Aktionen sind vollständig lesbar.",
+        "Lumo und die drei Gegenstände werden nicht von Kopf- oder Fußleiste verdeckt."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 11,
+      "artifact_entry": "english-native/english-paper-2400x1080-start.png",
+      "sha256": "6b5ca63fc26e4f599f1035f661352286826dbe4fa90d2a1f3b070a6f4705e3a7",
+      "git_blob_sha": "bab6a9abda0832629da231664fafc20feeb90fb2",
+      "bytes": 695126,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "paper",
+      "visible_objects_order": [
+        "desk",
+        "paper",
+        "pencil case"
+      ],
+      "reported_objects_order": [
+        "desk",
+        "paper",
+        "pencil case"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Tisch 1, liniertes Papier 2 und Federmäppchen mit Reißverschluss 3 entsprechen der sichtbaren Nummerierung; Titel paper ist eindeutig.",
+        "Startanweisung und alle unteren Aktionen sind vollständig lesbar; die kompakte Wiedergabeaktion heißt „Anhören“.",
+        "Lumo und alle drei Gegenstände bleiben ohne sichtbare HUD-Verdeckung im mittleren Bereich."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 12,
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "sha256": "270783d868cde686851731ee97854f7ebc870c0896cba83c58eb7382612f909d",
+      "git_blob_sha": "c0ce6c3ae0d878c6f68bd650139e78a59a4f9894",
+      "bytes": 596944,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "pen",
+      "visible_objects_order": [
+        "bag",
+        "ruler",
+        "pen"
+      ],
+      "reported_objects_order": [
+        "bag",
+        "ruler",
+        "pen"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Hochformat zeigt Tasche 1, Lineal 2 und blauen Kugelschreiber 3 untereinander; der Gegenstand zu pen ist sichtbar.",
+        "Titel, zweizeilige Startanweisung, Ziffern und vollständiger Fußbereich mit zwei Aktionsreihen sind lesbar.",
+        "Lumo ist links vollständig sichtbar; Kopf- und Fußbereich haben im Bild Abstand zum Fensterrand."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 13,
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "sha256": "0fb40334f333a3f143aea481bfb791e17c8405ca6b9965a7b82d3d8f69ec7565",
+      "git_blob_sha": "eea7c9345e310ac2760d95be06dbe34c74c7f2d5",
+      "bytes": 611583,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": [
+        0,
+        1800,
+        1080,
+        2400
+      ],
+      "word": "pencil case",
+      "visible_objects_order": [
+        "ruler",
+        "school bag",
+        "pencil case"
+      ],
+      "reported_objects_order": [
+        "ruler",
+        "school bag",
+        "pencil case"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Einzelansicht zeigt Lineal 1, blaue Schultasche mit Fronttasche und Gurten 2 sowie rotes Federmäppchen mit Reißverschluss 3.",
+        "Titel pencil case, deutsche Startanweisung und Lumo links sind sichtbar; das Federmäppchen liegt auf dem dritten Sockel.",
+        "Der Fußbereich wurde zusätzlich als Leseausschnitt aus denselben unveränderten Originalbytes angesehen: Hinweistext und beide Aktionsreihen sind vollständig enthalten."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 14,
+      "artifact_entry": "english-native/english-rubber-640x360-start.png",
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "git_blob_sha": "0e1bf8dae81bc64c38c824181526e9476ec14634",
+      "bytes": 95377,
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "rubber",
+      "visible_objects_order": [
+        "pencil case",
+        "book",
+        "rubber"
+      ],
+      "reported_objects_order": [
+        "pencil case",
+        "book",
+        "rubber"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Federmäppchen 1, rotes Buch 2 und weiß-blauer Radiergummi 3 sind im kleinen Querformat sichtbar getrennt.",
+        "Titel rubber und die ganze deutsche Anweisung sind lesbar; alle sieben Aktionen passen in die untere Reihe.",
+        "Lumo bleibt vollständig dargestellt; kein sichtbarer Objekt- oder Figurenanschnitt durch die beiden HUD-Leisten."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 15,
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "sha256": "e9f12bd9bdab5b6fc97aeca51f7cd5031a731c0ae2f838ac841c4ad8564ea2fd",
+      "git_blob_sha": "5ab1d9fa54bb2d532b473d47a6dba975c615b669",
+      "bytes": 95359,
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "ruler",
+      "visible_objects_order": [
+        "ruler",
+        "paper",
+        "pencil case"
+      ],
+      "reported_objects_order": [
+        "ruler",
+        "paper",
+        "pencil case"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Lineal 1, liniertes Papier 2 und Federmäppchen 3 sind sichtbar; die Striche des Lineals und die Papierlinien unterscheiden die Objekte.",
+        "Titel ruler, Startanweisung und die gesamte kompakte Aktionsreihe sind lesbar.",
+        "Lumo und die drei nummerierten Sockel liegen sichtbar zwischen den HUD-Leisten."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 16,
+      "artifact_entry": "english-native/english-school-bag-412x915-start.png",
+      "sha256": "e13ff76c40f58299489f6731cfb0207726280fb26cacf1c125873c0a1d1af0d5",
+      "git_blob_sha": "647e5827564065f21eb7d1e4781d6e2b08f6020e",
+      "bytes": 116487,
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "school bag",
+      "visible_objects_order": [
+        "desk",
+        "school bag",
+        "rubber"
+      ],
+      "reported_objects_order": [
+        "desk",
+        "school bag",
+        "rubber"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Das schmale Hochformat zeigt Tisch 1, blaue Schultasche 2 und Radiergummi 3 untereinander.",
+        "Titel school bag bleibt vollständig in einer Zeile; Anweisung und Ziffern sind lesbar.",
+        "Lumo ist vollständig links sichtbar; unterer Hinweistext und beide Aktionsreihen passen in das Bild."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    },
+    {
+      "review_order": 17,
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "sha256": "095d213ef7dcb67d3604b058ed012f7c209f568b47e9e421dcc97812ac2defa5",
+      "git_blob_sha": "640ee518a9494f1682c98de4617ad869b5f2d0d4",
+      "bytes": 168215,
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "review_method": "Actual current original opened individually with explicit filename; no old findings transferred",
+      "additional_inspection_crop": null,
+      "word": "sun",
+      "visible_objects_order": [
+        "apple",
+        "bag",
+        "sun"
+      ],
+      "reported_objects_order": [
+        "apple",
+        "bag",
+        "sun"
+      ],
+      "producer_and_both_sidecars_match": true,
+      "complete": false,
+      "attempts": 0,
+      "hint_level": 0,
+      "minimum_enabled_control_side_dp": 52.0,
+      "minimum_object_target_side_dp": 48.0,
+      "reported_mesh_hud_intersection_px2": 0.0,
+      "findings": [
+        "Apfel 1, Tasche 2 und gelbe Sonnenform mit Strahlen 3 entsprechen der sichtbaren Nummerierung.",
+        "Titel sun, deutsche Startanweisung, unterer Hinweistext und alle Aktionen sind lesbar.",
+        "Lumo und die drei Gegenstände bleiben vollständig zwischen Kopf- und Fußbereich sichtbar."
+      ],
+      "blocking_issue": false,
+      "accepted_for": "Current actual Dart descriptor and desktop Godot renderer/image consistency only"
+    }
+  ],
+  "blocking_issues": [],
+  "limitations": [
+    "Actual Godot X11/software renderer, with explicit platform, JNI and audio fixtures; not Android or Fold7 evidence.",
+    "17 image views and their repeat single-file association check are review work, not additional functional tests.",
+    "Reported 52 dp UI and 48 dp spatial targets are checked in the declared platform fixture; no physical-device touch or thermal/FPS result follows.",
+    "No audio was listened to; English pronunciation and actual ONNX inference remain unverified by this job.",
+    "No child, mastery or reward claim: producer uses a synthetic child and renderer records zero rewards in every case.",
+    "Simple geometric objects and visible hard shadows are accepted in this narrow exercise scope; no AAA or broader art-quality completion claim.",
+    "Overall Studio run and APK/Android result remain outside this completed English job review."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "file_count": 11,
+  "total_bytes": 19223,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/README.md",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/README.md",
+      "mode": "100644",
+      "bytes": 2796,
+      "sha256": "4a26d54c9e9915d3a301302d8e88cd041bef4de85eacb0b481ad5460c0a8b83b",
+      "git_blob": "bb24bf9386094d612c6c13aedd838c1b320b4329"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/source-upload-manifest.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 2310,
+      "sha256": "d8e4a06f88aa3b3a39b34041a246b538825e48cdd4d29463dcea27edc00d227e",
+      "git_blob": "967128c6c194ee49981f995519a4b3dd27aebfc4"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/confirmed-source-tree-input.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/confirmed-source-tree-input.json",
+      "mode": "100644",
+      "bytes": 146,
+      "sha256": "4c1d5a97a89f484bda2f95df3ecb0ad981617f4c6e97096d2480dbd929a4e975",
+      "git_blob": "fccb7d56a82fe2e039333176f9152c33218da2b1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/required-probe-input-binding.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/required-probe-input-binding.json",
+      "mode": "100644",
+      "bytes": 1237,
+      "sha256": "be45ea7adcc7ce4142e1304c32b6ee475bd005184d09cee17d26a9afc6700854",
+      "git_blob": "6e1c80b73c6f448eaba427eae2c08b255ae4c8e6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-ffmpeg-v1.patch",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-ffmpeg-v1.patch",
+      "mode": "100644",
+      "bytes": 4234,
+      "sha256": "af2a3722546e949d26399399f4c640d0879a22af4fe69bc77ccafa159bb364cf",
+      "git_blob": "fde706a18765a6e4931f234722c2819d678648da"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/workflow-against-published-078.patch",
+      "mode": "100644",
+      "bytes": 5280,
+      "sha256": "590ec9c16d43555565b90838d3105886eedfe28b736e11153b59ff0a3c095b6c",
+      "git_blob": "f2f0cbf10e3843a4de4f7694f9e1c8d9da81f41d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/yaml-and-delta-review.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/yaml-and-delta-review.json",
+      "mode": "100644",
+      "bytes": 2086,
+      "sha256": "09ca0ad932c80eb090fa74b1eea181d52fe29835bf31e586e92fcdc7137014fe",
+      "git_blob": "8655f96ac831cffe5cc4df0b89b180a90a8c8c1c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-version.txt",
+      "mode": "100644",
+      "bytes": 95,
+      "sha256": "9d34cdaec053c6005199c08f2bac628bd8c087303faa26fd8ab58c3e22216ff5",
+      "git_blob": "4f689b41e26bf40b7f6b5493e046df51a33d92f2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stdout.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint.stderr.log",
+      "mode": "100644",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "target_path": "docs/evidence/studio-2020-tools-kart-preview-workflow-078774dd-20261114/evidence/actionlint-execution.json",
+      "mode": "100644",
+      "bytes": 1039,
+      "sha256": "482bf7774f51f3b1b2f60e34b4825efb1ad3872c9ce4822b60f13f2301faa77b",
+      "git_blob": "3b0a1d1002de3f1e95a4272c2f4bb825c3f9458a"
+    }
+  ],
+  "not_uploaded": true
+}

@@ -1,0 +1,29 @@
+{
+  "started_at_utc": "2026-11-14T14:01:38.485723+00:00",
+  "completed_at_utc": "2026-11-14T14:01:39.865397+00:00",
+  "elapsed_seconds": 1.379680998999902,
+  "exit_code": 0,
+  "timed_out": false,
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-quiz-settled-startup-d5b1",
+    "--script",
+    "res://scripts/tests/quiz_settled_startup_replay.gd",
+    "--",
+    "--fixture"
+  ],
+  "case": "active_before_release",
+  "source_before": {
+    "/tmp/lumo-quiz-settled-startup-d5b1/scripts/tests/quiz_studio_runtime.gd": "8df756dee8e5daee17a88a8899d6189aba8acd8b9148ca3cd0c5e606fdd1d0cd",
+    "/tmp/lumo-quiz-settled-startup-d5b1/scripts/tests/quiz_settled_startup_replay.gd": "ef8225f50a515b7382bc08ea30865c3f1d88dc2239a891414386a27602dd846a",
+    "/tmp/lumo-quiz-settled-startup-d5b1/scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29"
+  },
+  "source_after": {
+    "/tmp/lumo-quiz-settled-startup-d5b1/scripts/tests/quiz_studio_runtime.gd": "8df756dee8e5daee17a88a8899d6189aba8acd8b9148ca3cd0c5e606fdd1d0cd",
+    "/tmp/lumo-quiz-settled-startup-d5b1/scripts/tests/quiz_settled_startup_replay.gd": "ef8225f50a515b7382bc08ea30865c3f1d88dc2239a891414386a27602dd846a",
+    "/tmp/lumo-quiz-settled-startup-d5b1/scripts/games/quiz/quiz_studio.gd": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29"
+  },
+  "scope": "Actual Godot UI and explicit synthetic lifecycle/ACK transport, not Dart/Android"
+}

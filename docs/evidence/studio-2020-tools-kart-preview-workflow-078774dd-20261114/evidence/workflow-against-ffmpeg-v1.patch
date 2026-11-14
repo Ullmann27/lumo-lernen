@@ -1,0 +1,32 @@
+--- a/.github/workflows/lumo-studio-2020.yml
++++ b/.github/workflows/lumo-studio-2020.yml
+@@ -103,6 +103,11 @@
+           # scripts/export_embedded_game.py subsequently fetches/checks out this
+           # exact SHA, then compares its HEAD before packaging the native PCK.
+           PY
++      - name: Verify observed Kart preview skip contracts before acceptance
++        run: |
++          set -euo pipefail
++          test -s tools/android_qa/tests/test_kart_preview_skip.py
++          python3 -B -m unittest discover -s tools/android_qa/tests -p test_kart_preview_skip.py -v
+       - uses: actions/setup-java@v4
+         with:
+           distribution: temurin
+@@ -535,7 +540,7 @@
+             adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+             adb shell getprop ro.build.version.release > tour/android-release.txt
+             "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+-            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
++            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --skip-observed-kart-preview --out tour
+             .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --studio-version 2020 --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen
+             .probe-venv/bin/python .github/probes/lumo_connect_four_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/connect-four
+       - name: Install and tour the exact APK after Android 17 framework readiness
+@@ -567,7 +572,7 @@
+             adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+             adb shell getprop ro.build.version.release > tour/android-release.txt
+             "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+-            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
++            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --skip-observed-kart-preview --out tour
+             .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --studio-version 2020 --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen
+             .probe-venv/bin/python .github/probes/lumo_connect_four_android_probe.py --candidate-source . --native-source c4-native-source --expected-source "${{ github.event.pull_request.head.sha || github.sha }}" --expected-native "${{ steps.c4-native-pin.outputs.revision }}" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --tour-result tour/tour-result.json --expected-api ${{ matrix.api }} --serial emulator-5554 --out tour/connect-four
+       - name: Preserve actual Android 17 generated hardware and disk configuration

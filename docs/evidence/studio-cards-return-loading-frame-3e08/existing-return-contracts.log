@@ -1,0 +1,11 @@
+test_activity_change_during_ocr_cannot_authorize_a_flutter_capture (test_studio_flutter_return.StudioFlutterReturnTests.test_activity_change_during_ocr_cannot_authorize_a_flutter_capture) ... ok
+test_caption_sequence_must_restart_after_an_intervening_stale_frame (test_studio_flutter_return.StudioFlutterReturnTests.test_caption_sequence_must_restart_after_an_intervening_stale_frame) ... ok
+test_native_process_must_exit_before_any_capture (test_studio_flutter_return.StudioFlutterReturnTests.test_native_process_must_exit_before_any_capture) ... ok
+test_original_api37_native_frame_is_rejected_before_two_fresh_flutter_frames (test_studio_flutter_return.StudioFlutterReturnTests.test_original_api37_native_frame_is_rejected_before_two_fresh_flutter_frames) ... ok
+test_semantics_ready_does_not_accept_persistently_native_pixels (test_studio_flutter_return.StudioFlutterReturnTests.test_semantics_ready_does_not_accept_persistently_native_pixels) ... ok
+test_wrong_visible_caption_cannot_be_replaced_by_semantics (test_studio_flutter_return.StudioFlutterReturnTests.test_wrong_visible_caption_cannot_be_replaced_by_semantics) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.507s
+
+OK

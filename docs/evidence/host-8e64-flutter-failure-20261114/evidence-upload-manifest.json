@@ -1,0 +1,346 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "run_id": 43634307306,
+  "job_id": 132567623144,
+  "status": "FULL_SUITE_2676_PASS_1_FAIL_0_SKIP",
+  "scope": "37 explicit docs targets plus this manifest; full original UTF8 machine member and 15 exact range binaries. No source/capture/full-archive upload. Binary transport has local byte/GitSHA/create binding only; textual blobs require full UTF8 readback.",
+  "file_count": 37,
+  "total_bytes": 2510846,
+  "files": [
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/README.md",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 5107,
+      "sha256": "516d2a0fb8c3d3af5c2d56a41a4a93e0375a27d1be4f3a17dc0a17981d8579e5",
+      "git_blob_sha": "728fae38a1c513e595f9122b4518c50bac3ebfcb"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/review.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 5774,
+      "sha256": "ff805216d0dca032721cb9fcdbfc787d06ed81b76c48771ee614b3a6aad8226e",
+      "git_blob_sha": "77a4674bdbf81b4323fca54ef9a135bcd6c38eb4"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/actual-new-cases-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/actual-new-cases-review.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 83015,
+      "sha256": "54c4a178c78a2d93a1fe66272bd3af6ec02d158f0d5dc03b23da2ba18f27e734",
+      "git_blob_sha": "e35f63968b15e5d9069d0163f025085fb389e3ba"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/actual-new-and-existing-case-original-lines.jsonl",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/actual-new-and-existing-case-original-lines.jsonl",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 31093,
+      "sha256": "6a84f09f3eaf0342105f37d18777240a96a2824e3d17770cc18b817eae26bd2d",
+      "git_blob_sha": "34c88242639987c33e8995903d5547af729850d4"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/memory-profile-cases-review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/memory-profile-cases-review.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 6694,
+      "sha256": "c722d7d62997a3d8b8ecdd9d82faae4b265e32deb0a336682cb957055103e7ff",
+      "git_blob_sha": "6d967eae51dd2ef05eacdc7e168d850911fcf04a"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/failure-test-original-events.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/failure-test-original-events.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 3729,
+      "sha256": "401d68138b13feb728cf123b0575a3011be4642833bc8914072792ae058fb1b0",
+      "git_blob_sha": "d0c9011f8a1bb5d280bd8b82bf7fb5aa29c60882"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/failure-test-original-events.jsonl",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/failure-test-original-events.jsonl",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 2222,
+      "sha256": "1e59e41a504148320d360f91d97b1d5635076a77366c038db2c7cc8960144e71",
+      "git_blob_sha": "05b4d901396803265543fee60a65c183a098e5c6"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/full-suite-summary-from-original-job.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/full-suite-summary-from-original-job.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 2541,
+      "sha256": "16159efcded41e54ca7adf2749a68ea31c55f749b5b8752e6409838bde5e50c9",
+      "git_blob_sha": "29a12d1334b8990421a7bc8d5405aa7e8d97b41d"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/analysis-observations.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/analysis-observations.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 1753,
+      "sha256": "ced106a25bfcc2d151903cf577ba3eb91035f3ec3971fcda6ce09a573ed38786",
+      "git_blob_sha": "08aa552ad431238681877e5de6051b19ed203f99"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/source-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/source-binding.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 5202,
+      "sha256": "931701b491d854a2991ed39e5ea8c636edacd3ae05b500fa4fdc8d44606a8f46",
+      "git_blob_sha": "c40bc409a9357ddd80baee4d41e3263b02b8020f"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/original-flutter-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/original-flutter-job.log",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 127983,
+      "sha256": "b0db024d5f285c773bf580bdeca817e2657a6c7931370dc8e7f792aa7c256cd0",
+      "git_blob_sha": "86ccbcc7e9bb622b346e796843d5c5acb59cfdf6"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/metadata/run-terminal-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/metadata/run-terminal-original.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 13371,
+      "sha256": "b27ad6d326dbc2593a90512d6aa4e2b0e869845067de9628f9b27ab4bf61ebb2",
+      "git_blob_sha": "e2803434d35d5755d113777d71ee18c510d17296"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/metadata/jobs-terminal-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/metadata/jobs-terminal-original.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 9709,
+      "sha256": "37d807cd2215b84a777b60c993f15135c17c00f8dd3fbdeb701fd0e7ca5a77a5",
+      "git_blob_sha": "226dd1ab31cb919d97709fb351145780ea8fa2c4"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/metadata/commit-initial-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/metadata/commit-initial-original.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 16841,
+      "sha256": "c022d753d0968d242cf2852a31d41248fce8e3f1ee765296e682d42ddd3a9fb7",
+      "git_blob_sha": "26c9032584e56a161da4e98e76b163186a4849db"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/metadata/artifacts-terminal-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/metadata/artifacts-terminal-original.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 2257,
+      "sha256": "8baeddd74a1026cb115b3630b67cf89646c46019c7149c91dee1631703b37666",
+      "git_blob_sha": "9f2a3b411b8f78b04e5b2809f6b00568ee42f049"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/read_original_member_ranges.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/read_original_member_ranges.py",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 6099,
+      "sha256": "8cac20833db03888514dcb2544cf446aa0cdba6e7b4758e2e912194450e08b52",
+      "git_blob_sha": "2dbf56a2e8a44ffff445998d95186f5755e41f78"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/range-download-report.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/range-download-report.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 6578,
+      "sha256": "55f5329a4b8932815e85664bb3bc376e7aafbcf5a5900236769392249a8458bb",
+      "git_blob_sha": "a632b79fe39bcba100d782ba8b46fafeb6c57701"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/central-directory.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/central-directory.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 146310,
+      "sha256": "af7811e65447f15951a2473a233a9c7e9c602582679a5fbf18df7f8989536c17",
+      "git_blob_sha": "8d9a34a5a1698068a3da508eda766ca75a838add"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/originals/feature-evidence/HOST-SOURCE.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/originals/feature-evidence/HOST-SOURCE.txt",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 41,
+      "sha256": "e4a9b32fc44d2dca93383813ee0db285ccc87eb9388f8982c90c4a7c58519847",
+      "git_blob_sha": "6633277812f5ac6ae279bbd09c8ed8c21d89b9bf"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/originals/feature-evidence/flutter-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/originals/feature-evidence/flutter-version.txt",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob_sha": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/originals/feature-evidence/full-flutter/acceptance-summary.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/originals/feature-evidence/full-flutter/acceptance-summary.json",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 2190,
+      "sha256": "182a2a4d1bfc5dc6f63a38ad3684c623c30b29a6d8a13c47953768f3f31b732e",
+      "git_blob_sha": "5c98e44e85086540737032841e359e275487bf66"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/originals/feature-evidence/full-flutter/flutter-machine.jsonl",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/originals/feature-evidence/full-flutter/flutter-machine.jsonl",
+      "mode": "100644",
+      "encoding": "utf-8",
+      "bytes": 1790959,
+      "sha256": "a54cec8154dd7090740e0ef1c469bc9ae17b0ceb7884d01860b4f73de76adf21",
+      "git_blob_sha": "c309159717e8e2b6060e8ccb7ec2c92fff94f581"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-000-342973006-342973027.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-000-342973006-342973027.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 22,
+      "sha256": "75f8de6c945035b33142c70819d0a3c27cca75ea61f2b41a19de4d2bad8c12d2",
+      "git_blob_sha": "6664f7c1512c31b5e38f13f149d16e52028bea1f"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-001-342972986-342973005.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-001-342972986-342973005.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 20,
+      "sha256": "cefc1e9db808d373890c303f30dc36b96947e6a9128eabd487a8b11c7cb3ba57",
+      "git_blob_sha": "1f36ac09a63fdcfc48b65762408561da8887d9dc"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-002-342903291-342973005.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-002-342903291-342973005.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 69715,
+      "sha256": "485fcff949e783bed9fd21e6910eb84b95377f5f7ba9a6472614d3630e574e06",
+      "git_blob_sha": "bd391065497f3e437fd52b65afc35c91032b4d35"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-003-0-29.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-003-0-29.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 30,
+      "sha256": "898c650573d127282d87db3470d0f1dfae89276fd7e948a6ae5ddc63b90c92f9",
+      "git_blob_sha": "7245fa1805213095ba743114bb190afe0e83adc2"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-004-30-61.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-004-30-61.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 32,
+      "sha256": "6ec00b3da9c0b026e6289a7b96e3549b3de3c16983772cf6c6430c8aee7f33c3",
+      "git_blob_sha": "5a1d31298b67cec3fb873348cd9f145c980aa7a2"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-005-62-103.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-005-62-103.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 42,
+      "sha256": "1158e0c2304d3bfc622769b48972da5c42060b3c638b0928eb41d72dd70155af",
+      "git_blob_sha": "1059805c1a47b0305426788e8d99f94e6b0efe18"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-006-6252-6281.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-006-6252-6281.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 30,
+      "sha256": "5faece1821023624234f84945a391170fa6bf549826d59220cda24eb8396d143",
+      "git_blob_sha": "09b43acdfb1509fc9647c53996fc0827e07d2b49"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-007-6282-6317.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-007-6282-6317.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 36,
+      "sha256": "6e08e80b29fa0ee115ecb4c3966acd4f9eb930149de2d2d9ea026b42d36833fd",
+      "git_blob_sha": "2ecc05672e8cd596975d58c7e059d66fe9b5e57f"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-008-6318-6536.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-008-6318-6536.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 219,
+      "sha256": "50cd1ce0aabe182c109632ee4854c5cc23942c5ee26d0d972b553a1e5a5d0a4d",
+      "git_blob_sha": "b086f9b589b337c38c9ace00e192c69ad8bb9d05"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-009-6553-6582.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-009-6553-6582.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 30,
+      "sha256": "345a9269766c67f12ecc1673efc57d1ec7067a7e06244c60d3e22b32602cae34",
+      "git_blob_sha": "1192aba953e73d458ae42487f2c6e96f832bace7"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-010-6583-6635.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-010-6583-6635.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 53,
+      "sha256": "781d8776207ac024c71241384febe92b0f71841ab933c348b4c9499dd08d0c3b",
+      "git_blob_sha": "f3be2c463b795b6b012ffb15ede8859b85225319"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-011-6636-7338.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-011-6636-7338.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 703,
+      "sha256": "5b10e5055b27da19f84dc35bb57d5f57e1432ed5bb915e8ac1ac9ff07744e93e",
+      "git_blob_sha": "bbf715e9f04c54773d8a6faf6c01ebec6efeca24"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-012-12176799-12176828.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-012-12176799-12176828.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 30,
+      "sha256": "39d24404470e9da6bbb7de8f68c7333b50b6f53cb79cb09770455be405a79834",
+      "git_blob_sha": "7c5025b26746e0d03e01cbf5299990afa7045799"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-013-12176829-12176879.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-013-12176829-12176879.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 51,
+      "sha256": "fcb026e132ee2ed4b6e8ca05f1d34df1b560f67f94c9e35c4036f8dc71f26f75",
+      "git_blob_sha": "a01750619a3ffc254539f05ae274385b5e798b11"
+    },
+    {
+      "path": "docs/evidence/host-8e64-flutter-failure-20261114/selected-artifact/ranges/range-014-12176880-12346923.bin",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-8e64-flutter-acceptance-20261114/selected-artifact/ranges/range-014-12176880-12346923.bin",
+      "mode": "100644",
+      "encoding": "base64",
+      "bytes": 170044,
+      "sha256": "d9203cf66cd25c0f522c6fd115192b6a8b23e478fea173d8c951c4882bfd5729",
+      "git_blob_sha": "c3dd3b4d66bbdaa84345b56bf8c50031850c6f8b"
+    }
+  ]
+}

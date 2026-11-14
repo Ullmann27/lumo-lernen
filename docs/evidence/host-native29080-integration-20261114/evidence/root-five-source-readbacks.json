@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "baseline": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "count": 5,
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "sha": "942eb5395127c775f4355721f4c04b974e02df48",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 145,
+      "sha256": "1eebdb508ada42b93519ca8e30c9ea2ac75de47afcf869fbbebe33c7826a40a8",
+      "full_utf8_readback_equal": true
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "sha": "0118449f0946468dd41cfe2afdc19e12a17e3c30",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10708,
+      "sha256": "e76cc4d3bca1072eacad7b3f1da6f86cdb2461636f6cce30365c7461d02c0f68",
+      "full_utf8_readback_equal": true
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "sha": "b2c4abbdb26b5831663ed042d0fba6aabbb57cfb",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 20217,
+      "sha256": "7bcb7b74f734f43c724caf0c58b6dbd271d3dbe2aa7cfa02b2cd498d697b149d",
+      "full_utf8_readback_equal": true
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "sha": "829b819945d980e2082f478c1ddccea9463e3fa5",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "full_utf8_readback_equal": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "sha": "2684ac3cf034fdcd5c71570182396f0664979735",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 74256,
+      "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+      "full_utf8_readback_equal": true
+    }
+  ]
+}

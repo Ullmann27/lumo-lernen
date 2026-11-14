@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Real production Dart bank/controller/session and Godot input with an explicit QA disk transport and award ledger. No Android/device performance claim.",
+  "capture_requested": true,
+  "source_before": {
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    },
+    "host": {
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e"
+    }
+  },
+  "versions": {
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "dart": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\""
+  },
+  "commands": {
+    "dart": [
+      "dart",
+      "/home/runner/work/lumo-lernen/lumo-lernen/host-source/tools/android_qa/quiz_native_authority.dart",
+      "/home/runner/work/lumo-lernen/lumo-lernen/authority-evidence/quiz-pair/authority"
+    ],
+    "godot": [
+      "godot",
+      "--path",
+      "/home/runner/work/lumo-lernen/lumo-lernen/native-source",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://scripts/tests/quiz_studio_runtime.gd",
+      "--",
+      "--capture"
+    ]
+  },
+  "source_after": {
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    },
+    "host": {
+      "commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+      "tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e"
+    }
+  },
+  "checks": 381,
+  "inputs": 354,
+  "captures": 6,
+  "requests": 67,
+  "confirmed_stars_in_qa_ledger": 5000,
+  "elapsed_wall_seconds": 45.188,
+  "process_exit_codes": {
+    "DartAuthority": 0,
+    "GodotQuiz": 0
+  },
+  "evidence": [
+    {
+      "path": "authority/authority-result.json",
+      "bytes": 18251,
+      "sha256": "2328d47873e6f802a7fa786ee18a93fec3f5b683f65fe97c76b1232ad1fb2318"
+    },
+    {
+      "path": "authority/closed.json",
+      "bytes": 44,
+      "sha256": "b656d5b50f97d46267a358d7801013c3485d3ab4fb1caafe6fcc7beb73e02886"
+    },
+    {
+      "path": "authority/lifecycle.json",
+      "bytes": 52,
+      "sha256": "4de984a69c20dd9bdf6690dfed31c62100290673965d23d1668e76d1a2bd3029"
+    },
+    {
+      "path": "authority/native-result.json",
+      "bytes": 51,
+      "sha256": "1f03988160241ca82476416d241eb51a84c118aff8b284299be771b9f865e759"
+    },
+    {
+      "path": "authority/private-test-control.json",
+      "bytes": 135,
+      "sha256": "ece0f7326e0ae324136ceeb59d450b90cfb3f340cc24e54b1ab88d1937b6f392"
+    },
+    {
+      "path": "authority/public-state.json",
+      "bytes": 807,
+      "sha256": "52c200dfea91d14eec8a2b6fd3c39ce39d1b003855585cd3bd9e777ae1935a46"
+    },
+    {
+      "path": "authority/request.json",
+      "bytes": 133,
+      "sha256": "8cbd033651af67ab416c6553c002d44bf1211c1b96c6c3cd45fe322050760721"
+    },
+    {
+      "path": "authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 5689,
+      "sha256": "4fa3ab75c3265043f437f4ddc0bca7aaa93abe42c608ffaa5d19db0d9a576c46"
+    },
+    {
+      "path": "authority/wallet.json",
+      "bytes": 127,
+      "sha256": "50599332cd70caec1f8c0f05c4e7b23779dc4609691e0082d8586de1e31984f1"
+    },
+    {
+      "path": "dart-authority.log",
+      "bytes": 54,
+      "sha256": "5036019ac334e734bd8340a9f1e21dabd6162d902a972afd8c293aa1381d3265"
+    },
+    {
+      "path": "godot-runtime.log",
+      "bytes": 1163,
+      "sha256": "df7c2975c1a506fef813dedd09e30976fa3481bb3f291ebb621c5b88b869fc8d"
+    },
+    {
+      "path": "native/quiz-dart-complete.layout.json",
+      "bytes": 4589,
+      "sha256": "db4ad49030bc45131fc4dc34b58da02826fa71938b5928c4894b3250de194ec8"
+    },
+    {
+      "path": "native/quiz-dart-complete.png",
+      "bytes": 113759,
+      "sha256": "c1a2c06ac19746fdee0dd1c460ccbf6e5f2143f5e91f8a5e44dec38547e09c51"
+    },
+    {
+      "path": "native/quiz-dart-jokers.layout.json",
+      "bytes": 4676,
+      "sha256": "23cd609e133d1ad32079f46e29b6e0dbabcc2eb815c8ac9945c5c9f6acfecf4c"
+    },
+    {
+      "path": "native/quiz-dart-jokers.png",
+      "bytes": 98259,
+      "sha256": "f99229488ae820694be7904a31f5eca65113f6765de00eb1da757cebf4452a87"
+    },
+    {
+      "path": "native/quiz-dart-paused.layout.json",
+      "bytes": 4451,
+      "sha256": "abed509458e20e4c3db13924e4134ee656e23939c400a12cd5a9935077cf1fcb"
+    },
+    {
+      "path": "native/quiz-dart-paused.png",
+      "bytes": 42997,
+      "sha256": "ef9469457c6f8625aa7a6e4de02491c119f20aa9d90160336405e2d2da4d9315"
+    },
+    {
+      "path": "native/quiz-dart-question.layout.json",
+      "bytes": 4526,
+      "sha256": "a2c33044e5e0cdf272b8789f2e65ba1206605fc4392039895300b26ce0ac46d6"
+    },
+    {
+      "path": "native/quiz-dart-question.png",
+      "bytes": 87171,
+      "sha256": "44e09d42cafc03e53b344b34bf0e8380cb8a6a906d397fdac8ea712748c236b2"
+    },
+    {
+      "path": "native/quiz-dart-revealed-small.layout.json",
+      "bytes": 4642,
+      "sha256": "6fd80a4194d68bb87748f227136cdbd3cbb6ba47392d54b2caa910c9e8ab2567"
+    },
+    {
+      "path": "native/quiz-dart-revealed-small.png",
+      "bytes": 46861,
+      "sha256": "6e5398394db59a18c0c000520880b55cb9540eb24a68581286ef06978b278784"
+    },
+    {
+      "path": "native/quiz-dart-selected-phone.layout.json",
+      "bytes": 4650,
+      "sha256": "63a527b8c515e95569cea709772f8363b9ecbd16afaa6ea2f3596cf58ea353f4"
+    },
+    {
+      "path": "native/quiz-dart-selected-phone.png",
+      "bytes": 81267,
+      "sha256": "8d7231a8f9f4c114f87d46fb21c8ba3b307b97474aec5d2d6c85954181c6d600"
+    },
+    {
+      "path": "native/quiz-runtime-report.json",
+      "bytes": 70276,
+      "sha256": "0b27d3cd4d4e38669d2e968e3fe401cad3b6c2e58a48227e6e0db74140bb8caa"
+    },
+    {
+      "path": "source-identity.json",
+      "bytes": 265,
+      "sha256": "bf05961fba1f949f1e665e65b1b632f8c82ed510d1f4d004dd850c0c13709f20"
+    }
+  ]
+}

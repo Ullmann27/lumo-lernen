@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "test_nextgen_runner.StudioPuzzleMenuContractTests.test_new_workflow_preserves_all_required_jobs_and_exact_source_archive",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/native47-runner-branch-contract-fix-20261114/prepared/native",
+  "environment_override": {
+    "PYTHONPATH": "tools/tests"
+  },
+  "finished_utc": "2026-11-14T15:43:30.667741+00:00",
+  "duration_seconds": 2.1703207990012743,
+  "exit_code": 0,
+  "reason": "The existing full 16-case suite is still processing unrelated existing movie fixtures; this one original test directly verifies the changed workflow contract."
+}

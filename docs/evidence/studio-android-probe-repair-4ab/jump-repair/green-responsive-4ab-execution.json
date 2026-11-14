@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/replay_jump_orientation.py",
+    "--source-root",
+    "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched",
+    "--output",
+    "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/green-responsive-4ab"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.667764663696289,
+  "environment": {
+    "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata",
+    "OMP_THREAD_LIMIT": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  }
+}

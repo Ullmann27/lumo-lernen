@@ -1,0 +1,17 @@
+{
+  "workflow_sha256": "0caabde427205969d2cc70a258e554463d189edffd7f2e43c90b1cd4bca0ed2c",
+  "shell_blocks_parsed": 70,
+  "same_existing_job_budgets": true,
+  "existing_publisher_steps_byte_equivalent_after_yaml": true,
+  "only_added_publisher_requirement": "nextgen-authorities success",
+  "android_apis": [
+    35,
+    37
+  ],
+  "new_authorities": [
+    "english",
+    "quiz",
+    "memory"
+  ],
+  "status": "static YAML/shell/source-binding review only; new live runs pending"
+}

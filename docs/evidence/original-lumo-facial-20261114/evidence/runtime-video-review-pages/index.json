@@ -1,0 +1,265 @@
+{
+  "source": "qa/original-lumo-facial-studio-803e/evidence/Lumo-Original-Facial-Runtime.mp4",
+  "source_sha256": "3bbc2a491e59a4fd971d95479713cf1e9fff0c59b7cc6de63290512bfdd6b1ac",
+  "command": [
+    "ffmpeg",
+    "-nostdin",
+    "-v",
+    "error",
+    "-i",
+    "qa/original-lumo-facial-studio-803e/evidence/Lumo-Original-Facial-Runtime.mp4",
+    "-map",
+    "0:v:0",
+    "-vf",
+    "scale=240:240",
+    "-pix_fmt",
+    "rgb24",
+    "-f",
+    "rawvideo",
+    "-"
+  ],
+  "exit_code": 0,
+  "decoded_frames": 148,
+  "review_pages": [
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-000-011.jpg",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "sha256": "dfb907f03028b1cdddd907955b6a7d835885cc76400ca98b52eed0176cb029e7",
+      "bytes": 223175
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-012-023.jpg",
+      "frames": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "sha256": "89f6ba21947f99e95fd355d2d6ab5d69442c57a12d88140ecb763c3367bf473d",
+      "bytes": 222860
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-024-035.jpg",
+      "frames": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "sha256": "0e782b7381f8eb8164d933665c987a75dd135e0a4f5abaf5d42cc4a02f5cd8cd",
+      "bytes": 202981
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-036-047.jpg",
+      "frames": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "sha256": "579b04ca15c71a78934bf22ef8fb71468bd677d5d3e7b3f2b9957fe3d8fe90cf",
+      "bytes": 207539
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-048-059.jpg",
+      "frames": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "sha256": "bd86b7df00f6e3282bc73ffab3a9e0cfafdad9eca2fdb6a27ce2ac2a47c563eb",
+      "bytes": 209129
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-060-071.jpg",
+      "frames": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "sha256": "3c9381ee3de4f342c1d17a29a86174e4992ad14080d3dccb84968d7cb2a9ce2e",
+      "bytes": 209279
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-072-083.jpg",
+      "frames": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      "sha256": "6424f3d2ea47cb26b2fe946ab895e2a202ef02c205374c08f666ea071058986f",
+      "bytes": 207722
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-084-095.jpg",
+      "frames": [
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ],
+      "sha256": "4129d565479fac059cf7f2ecad0cd7b421a031dea5e8a7b814b5345cd4501722",
+      "bytes": 207552
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-096-107.jpg",
+      "frames": [
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "sha256": "4687704653be1a556522f420f89efa1e5722c5021c6f5569392813d56d1f29a8",
+      "bytes": 209509
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-108-119.jpg",
+      "frames": [
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      "sha256": "dee41a4af687af93f63aef6b6e688f14dc9ac9459e108325e5aee2ee45b13c16",
+      "bytes": 210383
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-120-131.jpg",
+      "frames": [
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131
+      ],
+      "sha256": "237a4a0dbd2a3f174632d124d8113678865b939de83745fd5d6353fdf768501b",
+      "bytes": 210123
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-132-143.jpg",
+      "frames": [
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143
+      ],
+      "sha256": "02957f8feb1457d2cf3400e8ed1e3d351b3dc13e2c8e41665ed938af6cb8d0a8",
+      "bytes": 208154
+    },
+    {
+      "path": "qa/original-lumo-facial-studio-803e/evidence/runtime-video-review-pages/frames-144-147.jpg",
+      "frames": [
+        144,
+        145,
+        146,
+        147
+      ],
+      "sha256": "34588c159a366057570330a5670104aa63860ca5e1f17575cab1da3ca2ef50bb",
+      "bytes": 36640
+    }
+  ],
+  "scope": "Unmodified frame thumbnails, no optical flow/interpolation/generation. Full-resolution originals separately reviewed."
+}

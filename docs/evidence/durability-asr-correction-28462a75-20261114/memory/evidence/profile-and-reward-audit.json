@@ -1,0 +1,200 @@
+{
+  "schema": 1,
+  "kind": "read-only-source-audit",
+  "host_commit": "b7210db3f53361987fd33592de438fd7984d991a",
+  "host_tree": "c65558a13e4dd2950eda7a685583e5484d9b9959",
+  "source_bindings": [
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "bytes": 14257,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/memory/memory_round.dart"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a",
+      "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+      "bytes": 2146,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/memory/memory_flutter_adapter.dart"
+    },
+    {
+      "path": "lib/features/games/memory/memory_table_session.dart",
+      "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c",
+      "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64",
+      "bytes": 9373,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/memory/memory_table_session.dart"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_round.dart",
+      "git_blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc",
+      "sha256": "ed036809b409b44d72cfbd6be275ff64a949a8701f31891c46131034fa758676",
+      "bytes": 14125,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/quiz/quiz_show_round.dart"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_repository.dart",
+      "git_blob": "0c2b7dc207809bbcabed4180e7423b8cd8080117",
+      "sha256": "509973ae13ac25a0010578832b170dd52ccafd317d2f2805a194892fe78b381b",
+      "bytes": 1371,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/quiz/quiz_show_repository.dart"
+    },
+    {
+      "path": "lib/features/quiz/quiz_table_session.dart",
+      "git_blob": "a5e23633de431c9b4777dad39df4a7758badefb7",
+      "sha256": "94711cbc566b3863b0660569ddb68f9b728b3705a4c0e2fa67b84a19fba38ea5",
+      "bytes": 8689,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/quiz/quiz_table_session.dart"
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "git_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5",
+      "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+      "bytes": 14366,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/reward_wallet_repository.dart"
+    },
+    {
+      "path": "lib/core/legacy_learning_data.dart",
+      "git_blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+      "sha256": "4a97ae4829b7f64a7f68ca61d77e97951d4cb0fef5c5b8806bf3595ac6955ea3",
+      "bytes": 13768,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/core/legacy_learning_data.dart"
+    },
+    {
+      "path": "tools/auto_install/TableGamesBridge.kt",
+      "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461",
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "bytes": 8236,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/auto_install/TableGamesBridge.kt"
+    },
+    {
+      "path": "pubspec.lock",
+      "git_blob": "7843602e3d858660dc52d95587983858803976a5",
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "bytes": 24467,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/pubspec.lock"
+    },
+    {
+      "path": "test/games/memory_profile_storage_test.dart",
+      "git_blob": "5fa7cf5b882a20b85c31a2693e9fcff8cec21508",
+      "sha256": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+      "bytes": 10767,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/games/memory_profile_storage_test.dart"
+    },
+    {
+      "path": "test/table_games_wallet_profile_test.dart",
+      "git_blob": "2646c037d575b068a697e99c574ace047aaa57a3",
+      "sha256": "1d15b4610b84c3432cac20446be22f47884af749472fae45570c273a0aab9f3b",
+      "bytes": 12489,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/table_games_wallet_profile_test.dart"
+    },
+    {
+      "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "git_blob": "92e220331786a78b21bf800e98a3d927c9b2711a",
+      "sha256": "3436faf0dfdc0ba386f2881c057b265b2419aacaff53892d106dac70270b57de",
+      "bytes": 14514,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/test/quiz_native_roundtrip_lifecycle_test.dart"
+    },
+    {
+      "path": "tools/android_qa/memory_round_contract.dart",
+      "git_blob": "6a06883ce1f8a03205b914d30a2dfd55acb96597",
+      "sha256": "c09c429647aec943fe5934013fef594a5b2bb4f31b7241d8beef32d0983003f2",
+      "bytes": 31437,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/android_qa/memory_round_contract.dart"
+    },
+    {
+      "path": "tools/android_qa/quiz_round_contract.dart",
+      "git_blob": "cc25a01bba32ffab5eef37483e4697927db70081",
+      "sha256": "4792c6067ea30588c77c2f3e423d4457fc93f64f93d43a14302d7eeec098239b",
+      "bytes": 20965,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/tools/android_qa/quiz_round_contract.dart"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "bytes": 52654,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/games/memory/lumo_memory_game.dart"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "git_blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407",
+      "sha256": "9ae4b83ee78bd13c85b033921826d7813da6a54277faa62787c785f3a24eac45",
+      "bytes": 62121,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/features/quiz/quiz_show_content.dart"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "git_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+      "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+      "bytes": 57118,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/b7210db3f53361987fd33592de438fd7984d991a/lib/app/app_state.dart"
+    }
+  ],
+  "profile_identity": {
+    "captured_before_await": true,
+    "source": "lib/app/app_state.dart captureLearningProfile/_captureLearningProfile",
+    "student_identity": "selected school studentId, otherwise persistent lumo_learning_local_student_id_v1",
+    "owner": "sha256(utf8(studentId)); not child display name",
+    "ui_guards": [
+      "captured generation",
+      "current selected studentId",
+      "lease reset/session epoch",
+      "mounted/disposal"
+    ],
+    "generic_lease_limit": "canUseLearningLease alone intentionally does not check active selection; the Memory/Quiz UI and table reward adapter add that check."
+  },
+  "storage": {
+    "memory_round": "lumo.memory.round.v1.<owner64>",
+    "memory_stats": "lumo.memory.stats.v1.<owner64>",
+    "quiz_round": "lumo.quiz.round.v1.<owner64>",
+    "wallet": "lumo_reward_wallet_v1",
+    "historical_memory": "lumo_memory_v2 is neither read nor migrated nor overwritten by PreferencesMemoryStore",
+    "memory_unfinished": "same round resumes paused with persisted private rule state",
+    "memory_finished_unrewarded": "retained for idempotent award/receipt recovery",
+    "memory_finished_rewarded": "new ID only after acknowledged finish; same difficulty/pack/bests/random stream",
+    "quiz_restore": "stored questions/actions replay through existing rules; same completed result remains until explicit restart; old grade retained for old round"
+  },
+  "late_operations": {
+    "memory": "per-owner serialized writes; full saved snapshot conflict check; profile checked before and after awaits; an already-started write can finish only in its captured key, without installing stale UI result",
+    "quiz": "LearningStorage serialized transactions and exact prior snapshot comparison; current lease checked around platform writes",
+    "native": "token/round/revision/sequence gate; same-session actions terminate in ack or rejection; exact-token close; Kotlin publish forbids game/owner change"
+  },
+  "rewards": {
+    "memory_id": "memory:<owner64>:<round32>",
+    "quiz_id": "quiz:<owner64>:<round32>",
+    "wallet_dedupe": "gameResultIds and credited balance in the same persisted wallet snapshot",
+    "guards": "AppState validates active lease/generation/student and owner-bound ID before enqueue, after prior reward drain, and after persistence",
+    "amounts": "Memory existing difficulty formula and XP=stars*8; Quiz existing allowed milestones50/200/800/5000 with no new XP",
+    "limit": "existing global wallet, not a newly isolated per-child wallet or a two-child migration"
+  },
+  "finding": {
+    "id": "MEMORY_PREFERENCES_CACHED_READBACK",
+    "status": "CONFIRMED_SOURCE_PATH; execution counterexample not run",
+    "adapter_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a",
+    "controller_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+    "dependency": "shared_preferences2.5.5, exact lockfile7843602e3d858660dc52d95587983858803976a5",
+    "chain": [
+      "SharedPreferences._setValue changes Dart cache before platform write result",
+      "PreferencesMemoryStore throws on false or propagated write exception",
+      "MemoryRoundController error recovery reads the same adapter",
+      "old readRound/readStats return the optimistic Dart cache",
+      "equal text can incorrectly settle a failed write"
+    ],
+    "scope": "round and statistics write acknowledgement; not a demonstrated cross-child overwrite",
+    "repair": "every adapter read must await successful platform reload, including reads from fresh adapter/controller instances; reload failure propagates without cache fallback"
+  },
+  "existing_tests_read": [
+    "test/games/memory_profile_storage_test.dart",
+    "test/table_games_wallet_profile_test.dart",
+    "test/quiz_native_roundtrip_lifecycle_test.dart",
+    "tools/android_qa/memory_round_contract.dart",
+    "tools/android_qa/quiz_round_contract.dart"
+  ],
+  "execution_boundary": {
+    "new_tests_run": 0,
+    "android_two_child_migration": false,
+    "physical_process_death_storage_test": false,
+    "model": "source review only; prior authority QA file transports do not exercise this SharedPreferences cache failure"
+  }
+}

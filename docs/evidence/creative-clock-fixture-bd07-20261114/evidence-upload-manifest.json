@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "scope": "Explicit immutable remote recovery checkpoint; no archive, PNG, runtime copy, ref/tree/commit mutation",
+  "files": [
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/README.md",
+      "bytes": 1541,
+      "sha256": "dcc71ee2ce38f95e00cc5e1da53366273a7b1eda2405e581a5460e3b3f63224c",
+      "git_blob_sha": "869782923b1df3db301e2b683962fc84a2b54ec8",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/source-upload-manifest.json",
+      "bytes": 1480,
+      "sha256": "bf2e32cf3d6a33c1f4db08a540987f8d3af89e8880f8e63568a8a0f7d001294a",
+      "git_blob_sha": "f406dadb2d5f3284aacbccc447ed88bceb0df976",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/original-recovery-job.log",
+      "bytes": 235203,
+      "sha256": "06f0ebf75a4815bbaad3a14ab27f8b3be5f02dcbee6d275b329c5b7aac8c6857",
+      "git_blob_sha": "beb8b303b9b347a82aeff3a8dbf6d0c2fddd01b7",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/original-recovery-jobs.json",
+      "bytes": 1914,
+      "sha256": "22263d78dcb1b84d30ccb03689df39be6ff1acf8ee172f4e1c69b8347ead3d9c",
+      "git_blob_sha": "a8102c9abe03dbf9eeac07c09cff35b4895ebcb6",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-feature-commit.json",
+      "bytes": 1894,
+      "sha256": "f370a3186f8ca4da64c4d61647404229011768ac653a463afe1f6620569e95c0",
+      "git_blob_sha": "3580fb7eac8a93cdd7ca5820e9f7c5b8fde84729",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-pr-merge-commit.json",
+      "bytes": 2675,
+      "sha256": "479e5ece14dbe9966379ecca8b52110b2c3dafb7fd9b3656c6abbce29d431219",
+      "git_blob_sha": "09d0ff7c5e44be460801ec2e88ee5aeaf3bf002e",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/github-original-fixture-directory.json",
+      "bytes": 11264,
+      "sha256": "23acb477fc77cd38826619dd3f5f67d077e53aee20971d18ab62b05e829d4951",
+      "git_blob_sha": "005d5783bcfe4765de9339fee702bd012122c4a6",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/targeted-python-original.log",
+      "bytes": 1830,
+      "sha256": "b26a4bb80c1b5030738735448452cb3bb1cacee70ce62dcea4eba31f783e9c05",
+      "git_blob_sha": "ef18d9781baae571186f70c5aae82cddedecfb39",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "docs/evidence/creative-clock-fixture-bd07-20261114/evidence/remote-observed-execution.json",
+      "bytes": 3521,
+      "sha256": "50eb019eb0b3a8bf27ec5fb975dd24ad5641a9f208cd610969f63ab3af51391b",
+      "git_blob_sha": "6005d8ca6a0a76ee097fb9805527d7511d965e47",
+      "mode": "100644",
+      "type": "blob",
+      "encoding": "utf-8"
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "jobs": [
+    {
+      "id": 132296974802,
+      "name": "verify-and-build",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Save source identity and validate exact Godot integration pin",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install real system emoji for ABC screenshots and Flutter test suite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Resolve immutable Flutter dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Flutter static analysis",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Real widget tests for premium quiz and 3D learning islands",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Save genuine rendered Quizshow screenshots for reference comparison",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Full Flutter regression suite including every capture",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12
+        },
+        {
+          "name": "Capture and verify actual 2001 tutor, transfer and daily-plan routes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Capture spatial reading, answer retry and subject cards on phone and Fold",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Install actual app-script verification dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Install verified Gradle for the real build-contract probe",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17
+        },
+        {
+          "name": "Verify all build and preservation contracts",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 18
+        },
+        {
+          "name": "Code-level Android probe regression with verified image dependencies",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19
+        },
+        {
+          "name": "Reject unreadable Ahem-font captures before issuing visual proof",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 20
+        },
+        {
+          "name": "Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 21
+        },
+        {
+          "name": "Render actual premium lessons on phone and Fold",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 22
+        },
+        {
+          "name": "Render actual app sections on phone and Fold",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 23
+        },
+        {
+          "name": "Render playable Connect Four on five real layout sizes",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24
+        },
+        {
+          "name": "Render genuine offline atelier on phone and Fold",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25
+        },
+        {
+          "name": "Archive only verified readable Flutter captures",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 26
+        },
+        {
+          "name": "Install Godot 4.6.3 for the exact pinned Kart source",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 27
+        },
+        {
+          "name": "Require actual gameplay gates on the exact pinned native source",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 28
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 29
+        },
+        {
+          "name": "Build unified real Android APK",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 30
+        },
+        {
+          "name": "Verify APK archive and collect reproducible source hashes",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 31
+        },
+        {
+          "name": "Upload exact candidate (no release or synthetic screenshots)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 32
+        },
+        {
+          "name": "Deliver verified ARM64 APK separately for direct download",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 33
+        },
+        {
+          "name": "Post Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67
+        }
+      ]
+    },
+    {
+      "id": 132300874707,
+      "name": "Publish verified 0.12.85+1997 ARM64 APK as direct HTTPS download",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300874726,
+      "name": "Publish verified Lumo 1989 ARM64 test APK",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300874823,
+      "name": "android-tour",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300874938,
+      "name": "update-from-2013",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300874980,
+      "name": "Publish verified 1988 spatial reading APK to Releases",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300875072,
+      "name": "update-from-2015",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300875207,
+      "name": "update-from-2014",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300875221,
+      "name": "update-2017-from-2015",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300875323,
+      "name": "Publish verified 0.12.87+1999 ARM64 APK as direct HTTPS download",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300875330,
+      "name": "Publish verified 0.13.5+2017 ARM64 APK for direct Chrome download",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300875430,
+      "name": "Publish independently tested NextGen ARM64 prerelease",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 132300875496,
+      "name": "Publish verified 0.12.86+1998 ARM64 APK as direct HTTPS download",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43545886858,
+      "logs_url": null,
+      "steps": null
+    }
+  ]
+}

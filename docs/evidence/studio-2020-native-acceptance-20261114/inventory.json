@@ -1,0 +1,271 @@
+{
+  "schema": 1,
+  "frozen_utc": "2026-11-14T08:35:04.972648+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "target_prefix": "docs/evidence/studio-2020-native-acceptance-20261114/",
+  "purpose": "Unveränderte aktuelle Native2020-Abnahme als reine Dokument-Blobs sichern.",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "archive_bytes": 227410428,
+  "archive_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+  "original_document_count": 20,
+  "payload_count_excluding_inventory": 21,
+  "upload_count_including_inventory": 22,
+  "inventory_target": "docs/evidence/studio-2020-native-acceptance-20261114/inventory.json",
+  "base_evidence_head": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+  "base_evidence_tree": "179ac404caa8d263d0028aa9503cb514ae484d41",
+  "target_prefix_absent_at_checked_head": true,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/verified-original-extraction.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/verified-original-extraction.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 28849,
+      "sha256": "8549474e622f91c320d87e4134045ae76cd82ec6090773ec9e265b98f2c652ef",
+      "git_blob_sha": "ac9fafebcd9cea65f152349c08b16fbf48223601",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/visual-review-binding.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/visual-review-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2349,
+      "sha256": "d7bea5f3f9845269632284679513d2342cf86ef58eda991a1e53034a9c3ffb20",
+      "git_blob_sha": "5ee4dc341b612038fe1c5291afb6398f896ea85c",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-root.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/review-root.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10914,
+      "sha256": "36dc552bf97e3b279c293815495ccaee9c70aea63480863991ce4863439811af",
+      "git_blob_sha": "34379584eb11ca9b2dde9086441dfe14d8313d98",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-learning_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/review-learning_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 12212,
+      "sha256": "bc9d6b060566dd3d49da71a041a23afd2211927c96273e73e0ff3c8eef7fa581",
+      "git_blob_sha": "341dbf039a4f2d48b0147076a504cb53d6975389",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-character_animation.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/review-character_animation.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 37112,
+      "sha256": "80451f646c1417a31fc7497650283e1ccaeb8249f7b4bd2255f032c6df6e1d9b",
+      "git_blob_sha": "9626ea30fe8404bc06e8c97a5334d975a88b0b9b",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-games_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/review-games_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 17581,
+      "sha256": "cd2bdfb57f17bfc086dbe5963bfcc2e635c3019883de688c5eb59dd066ff4291",
+      "git_blob_sha": "4ea0fce975b94ddd785ad948e52bc4242a64f73b",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/root-post-view-original-binding.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/root-post-view-original-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 403,
+      "sha256": "beaece0c577325a33243412d31319f901224be05d8f5cfe05cff632b46ca61b7",
+      "git_blob_sha": "df4e575269a6b11a3a879fa4c5271e0e07eb6c6b",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-tree-inputs-root.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-tree-inputs-root.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 12566,
+      "sha256": "a2e230ccec573dc1d5f69d4e1852b2df0030bbb65b201e8e1b6fe03ecd6c6454",
+      "git_blob_sha": "a6aeca581ef2109a4dbb63175c9c7bd1f13c7720",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-tree-inputs-learning_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-tree-inputs-learning_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8876,
+      "sha256": "12bdee72f72210d00f0b5e9a32e4d6c34e00aecf2812faf0fd825236b3793a36",
+      "git_blob_sha": "1a400a31c0537611f959507c3c2480cef911efaf",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-tree-inputs-character_animation.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-tree-inputs-character_animation.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2965,
+      "sha256": "9fd27df218dbf02af9579e88bb98da44f170aff208f040e85274a3a9978e178f",
+      "git_blob_sha": "db0b1e5ae7c597be12d2df1ae77f7a4a7eba6879",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-tree-inputs-games_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-tree-inputs-games_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3807,
+      "sha256": "14af94b3fdbff3dd340ec9800681ae5f3c63c66fb4a74cebf9e0317f36f5b212",
+      "git_blob_sha": "911b3d0e0e441900459e1bff05e41be998fac33a",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-completion-root.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-upload-completion-root.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2202,
+      "sha256": "c286575b34d213ea91d37820c182d475daf345ff64d8b37b8d8a2b63a0c4480e",
+      "git_blob_sha": "195e1d3c999bcec7da782cc040e34f942d9623ea",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-completion-learning_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-upload-completion-learning_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1325,
+      "sha256": "497fd54401861a1f8570648635ffa04332c409a070e1cc982b9be089c7efdcc5",
+      "git_blob_sha": "b202b245b1285399bbce64390c5e1e85f9536e83",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-proof-character_animation.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-upload-proof-character_animation.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9784,
+      "sha256": "23101b972a1a0bd2a60ea4d261ac426f159643e1821093befe028c21799491c5",
+      "git_blob_sha": "10dc23513a0d0a41a9a2560ee64bb7f2f432861e",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-proof-games_worlds.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/image-upload-proof-games_worlds.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 12539,
+      "sha256": "89ef29de31f0f521ce7d681e3f45085f91b02a4aa2a3b75882a6da3a56f4f4dd",
+      "git_blob_sha": "79cfaffa88ff1d77fc358224c0dd9f502ae8750e",
+      "scope": "Unverändertes aktuelles Originaldokument der Native-/Bildabnahme",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/config/studio-2020-visual-review.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/studio-2020-visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 43034,
+      "sha256": "12ffaba3dac821f480aaeb3a9392f2f6fbfdf669535d6b6351026ec22fef70b7",
+      "git_blob_sha": "c48adf68a2a28570a1156be13824c5772d74a51c",
+      "scope": "Unveränderter endgültiger Native2020-Bildreceipt; hier ausschließlich inerte Dokumentkopie",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/candidate2020-pin-source-manifest.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/host-pin/candidate2020-pin-source-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2125,
+      "sha256": "4e38b9b227cecfba954f25a2da351cf9c0949c52ada74d0c9db1279bff86e749",
+      "git_blob_sha": "05be0b3d103186d88a8e468edb729c438059588c",
+      "scope": "Unveränderter Host2020-Identitäts-/Pinbeleg von Root",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/candidate2020-pin-contracts-execution.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/host-pin/candidate2020-pin-contracts-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 650,
+      "sha256": "2c654c8b812ac75bc00271d3f016f2b8883a3de1467dc51292668f6a96ae018f",
+      "git_blob_sha": "2faad8477f770133459a394edae0f7bba25b7e32",
+      "scope": "Unveränderter Host2020-Identitäts-/Pinbeleg von Root",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/candidate2020-pin-contracts.log",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/host-pin/candidate2020-pin-contracts.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4393,
+      "sha256": "729c523e5c53680c83bd1d486d4221a456f4e876573e1ed15d666ed72e0e5034",
+      "git_blob_sha": "005ab9738a8346458fd3c640b456a9719ec4338b",
+      "scope": "Unveränderter Host2020-Identitäts-/Pinbeleg von Root",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-pin-review-20261114/independent-review.json",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/host-pin/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 12698,
+      "sha256": "b72725397c32a2eeba7c4ee37c8d2de69d059e645b978a2f000a6330d313260e",
+      "git_blob_sha": "8bce3579ca980d9e336e7c74b9ce377723be981a",
+      "scope": "Unveränderter unabhängiger Quellen-/Pinreview; keine neue Testausführung",
+      "original_document": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acceptance-evidence-20261114/README.md",
+      "path": "docs/evidence/studio-2020-native-acceptance-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3826,
+      "sha256": "e2481b3a577fc39abef730492a7168ac65b0ba3e85907ad78af61edfec4914a3",
+      "git_blob_sha": "a4792c9fcce0b54bd2345eabec25516be7f86141",
+      "scope": "Neue sachliche Paketübersicht mit ausdrücklichen Abnahmegrenzen",
+      "original_document": false
+    }
+  ],
+  "cross_bindings": {
+    "receipt_sha256": "12ffaba3dac821f480aaeb3a9392f2f6fbfdf669535d6b6351026ec22fef70b7",
+    "all_review_source_hashes_equal_visual_binding": true,
+    "all49_receipt_metadata_rows_equal_original_index": true,
+    "all49_image_tree_paths_equal_receipt": true,
+    "review_owner_counts": {
+      "root": 13,
+      "learning_worlds": 9,
+      "character_animation": 12,
+      "games_worlds": 15
+    },
+    "pin_execution_log_and_source_manifest_hashes_equal": true
+  },
+  "boundaries": [
+    "Keine Originalbilder, Filme, ZIPs, Caches oder Produktquellen dupliziert.",
+    "20 Quelldokumente unverändert als Bytes erhalten; README und Inventar sind neue Begleitdokumente.",
+    "Keine Tests erneut ausgeführt und keine APK-/Android-/Gerätefreigabe ausgestellt.",
+    "Keine Trees, Commits, Refs, Pins oder Receipts geändert."
+  ]
+}

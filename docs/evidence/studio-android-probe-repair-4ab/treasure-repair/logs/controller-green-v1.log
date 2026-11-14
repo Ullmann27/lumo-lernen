@@ -1,0 +1,29 @@
+test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second) ... ok
+test_no_pending_external_alarm_is_silently_replaced (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_no_pending_external_alarm_is_silently_replaced) ... ok
+test_no_progress_and_movement_away_stop_before_another_input (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_no_progress_and_movement_away_stop_before_another_input) ... ok
+test_nonfinite_readback_is_rejected_before_further_touch (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_nonfinite_readback_is_rejected_before_further_touch) ... ok
+test_original_failure_is_never_relabelled_as_a_success (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_original_failure_is_never_relabelled_as_a_success) ... FAIL
+test_original_fixture_bytes_and_observed_progress_remain_exact (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_original_fixture_bytes_and_observed_progress_remain_exact) ... ok
+test_round_and_clue_state_cannot_change_during_motion (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_round_and_clue_state_cannot_change_during_motion) ... ok
+test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure) ... ok
+test_total_held_input_budget_stops_even_with_small_positive_progress (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_total_held_input_budget_stops_even_with_small_positive_progress) ... ok
+test_touch_uses_fresh_observed_ring_and_bounded_hold (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_touch_uses_fresh_observed_ring_and_bounded_hold) ... ok
+test_wallclock_deadline_interrupts_a_stalled_checkpoint_and_restores_signal (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_wallclock_deadline_interrupts_a_stalled_checkpoint_and_restores_signal) ... ok
+
+======================================================================
+FAIL: test_original_failure_is_never_relabelled_as_a_success (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_original_failure_is_never_relabelled_as_a_success)
+----------------------------------------------------------------------
+RuntimeError: Treasure held-input budget exhausted before reaching first clue
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/scripts/tests/test_studio_treasure_movement.py", line 140, in test_original_failure_is_never_relabelled_as_a_success
+    with self.assertRaisesRegex(RuntimeError, 'segment budget'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "segment budget" does not match "Treasure held-input budget exhausted before reaching first clue"
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.072s
+
+FAILED (failures=1)

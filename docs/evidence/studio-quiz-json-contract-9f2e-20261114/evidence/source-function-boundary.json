@@ -1,0 +1,86 @@
+{
+  "method": "Exact function text sections split at top-level func declarations; not a parsed semantic AST",
+  "files": [
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "changed_functions": [
+        "_valid_state",
+        "_allowed",
+        "_update_ui"
+      ],
+      "added_functions": [
+        "_option_hidden"
+      ],
+      "removed_functions": [],
+      "unchanged_functions": [
+        "_ready",
+        "_exit_tree",
+        "_notification",
+        "_process",
+        "_poll_state",
+        "_lose_authority",
+        "_integer",
+        "_hex",
+        "_text",
+        "apply_state",
+        "_send",
+        "_material",
+        "_mesh",
+        "_build_studio",
+        "_sync_studio",
+        "_panel",
+        "_label",
+        "_button",
+        "_build_ui",
+        "_layout",
+        "_fit_answer_heights",
+        "_remove_observation",
+        "_mark_layout_changed",
+        "_rect_array",
+        "_control_pixels",
+        "_button_observation",
+        "_publish_layout_observation"
+      ]
+    },
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "changed_functions": [
+        "_authority_contracts",
+        "_finish",
+        "_source_hashes",
+        "_run"
+      ],
+      "added_functions": [
+        "_disabled_original_touch",
+        "_original_json_contracts"
+      ],
+      "removed_functions": [],
+      "unchanged_functions": [
+        "_initialize",
+        "_check",
+        "_write",
+        "_read",
+        "_frame",
+        "_frames",
+        "_until",
+        "_physical",
+        "_exposed",
+        "_input_guard",
+        "_cancel_pointer",
+        "_swipe_to",
+        "_swipe_checked",
+        "_tap",
+        "_tap_checked",
+        "_startup_layout_current",
+        "_startup_authority",
+        "_snapshot",
+        "_profile",
+        "_fixture_state",
+        "_fixture_publish",
+        "_fixture_ack",
+        "_fixture_contracts",
+        "_authority_action"
+      ]
+    }
+  ]
+}

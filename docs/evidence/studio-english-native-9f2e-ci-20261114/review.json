@@ -1,0 +1,325 @@
+{
+  "schema": 1,
+  "status": "ENGLISH_JOB_AND_TEN_CURRENT_RENDER_IMAGES_REVIEWED",
+  "native_source": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "host_source": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "run_id": 43603969762,
+  "run_attempt": 1,
+  "overall_run_conclusion": "failure",
+  "overall_run_note": "The separate Quiz matrix job failed. This review does not turn the whole workflow green.",
+  "job": {
+    "id": 132474493698,
+    "name": "english actual authority",
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-11-14T14:22:54Z"
+  },
+  "artifact": {
+    "id": 14117362686,
+    "name": "lumo-nextgen-actual-authority-evidence-english",
+    "bytes": 2543233,
+    "sha256": "f428e72ed30705ead36121629ef48c1288ed8ebbc1e579c5685e66dbad6591aa",
+    "files": 42,
+    "all_crc_and_extracted_bytes_verified": true
+  },
+  "source_bindings": [
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "published_mode": "100644",
+      "bytes": 1857,
+      "sha256": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+      "git_blob_sha": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4"
+    },
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "published_mode": "100644",
+      "bytes": 9213,
+      "sha256": "7c1eba4dadb6bfea6935da0031e1416536c9e60055721eed893a0e2f593afaf7",
+      "git_blob_sha": "401864874d7dc5fc9a97e057d1a49bdf894b9e0b"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "published_mode": "100644",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob_sha": "245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "published_mode": "100644",
+      "bytes": 61965,
+      "sha256": "3078e3aaba4bf5a811ddc5878370cdf945ddf8313c0cba6d4f9089e1c4062c6d",
+      "git_blob_sha": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72"
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "published_mode": "100644",
+      "bytes": 29246,
+      "sha256": "f9a64251022db5f2e8b8647f17ff0402dac08094e91cceaf0cc301b8193ba4f9",
+      "git_blob_sha": "64dece9ec9619c6bf527c6398feef90b9e1a5298"
+    }
+  ],
+  "actual_dart": {
+    "cases": 8,
+    "checks": 1060,
+    "failures": 0,
+    "producer_file": "english-activity.json",
+    "producer_sha256": "62c14fb8498968cc60ff5a03bef9ef06a4e9a0d793b09e4f02331ca1801cff48"
+  },
+  "actual_godot": {
+    "checks": 3299,
+    "failures": 0,
+    "cases": 7,
+    "touch_events": 98,
+    "captures": 10,
+    "renderer": "X11",
+    "minimum_exposed_control_dp_in_ten_captures": 52.0
+  },
+  "images": [
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "bytes": 172603,
+      "sha256": "63ffb369c0477f9b85ba09b65760565e06d1f1f45cd80ff48f0076e9b5d4a187",
+      "git_blob_sha": "59dbfa2b3dc50c3530baae0eb69e6db10a58403e",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Blauer Ball, Apfel und Buch sind als drei getrennte reale Gegenstände zu erkennen; die Zahlen 1–3 passen zu den nummerierten Aktionen. Lumo bleibt vollständig sichtbar.",
+      "actual_object_order": [
+        "ball",
+        "apple",
+        "book"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "bytes": 173207,
+      "sha256": "d3459497e4bac1baafc27f73d6c084d736df59da39479f069838ca0cbafb48a1",
+      "git_blob_sha": "7d76d6ab881c8a4bbd36b45608cb55a1a6f3b148",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Der Ball auf Position 1 ist hell umrandet. Die echte Aufforderung lässt die Auswahl beim Kind; das ausgeschöpfte Hinweisfeld ist sichtbar deaktiviert.",
+      "actual_object_order": [
+        "ball",
+        "apple",
+        "book"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "bytes": 172819,
+      "sha256": "8fc380b2dd973d33b38f474327fc2a087113497beec8785b6d33c0238f9dcc55",
+      "git_blob_sha": "b00cf5f6448a975252eb0b0ca8a3093ced29d0e0",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die sichtbare Rückmeldung nennt Ball und die Zuordnung ball = Ball. Zur Aufgabe bleibt vollständig lesbar und erreichbar; die drei Auswahlaktionen sind deaktiviert.",
+      "actual_object_order": [
+        "ball",
+        "apple",
+        "book"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "bytes": 122886,
+      "sha256": "12c3b13dfe212b21c14a7d258c7a3a902e7a2d758548124e2e45115402a3f76d",
+      "git_blob_sha": "18927f17bace9fb42bfbec2866ed3f21d30921e8",
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Buch, Lineal und Ball sind im Hochformat getrennt untereinander angeordnet. Der Fuchs links ist vollständig sichtbar. Die zwei Aktionszeilen liegen vollständig innerhalb des Bilds.",
+      "actual_object_order": [
+        "book",
+        "ruler",
+        "ball"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "bytes": 122464,
+      "sha256": "911ec06d3a692eb01275d4a2f5a98699f3ccfe414972596d63d2a60d0e02ad4e",
+      "git_blob_sha": "2ebc27e2c2a0b98fb27a0df674ac0108ef9fab61",
+      "dimensions": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die Rückmeldung nennt Buch; Zur Aufgabe bleibt auf der zweiten Aktionszeile sichtbar. Keine sichtbare Überlagerung von Lumo, Gegenständen oder Hinweistext.",
+      "actual_object_order": [
+        "book",
+        "ruler",
+        "ball"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "bytes": 95756,
+      "sha256": "ac4a006beb415d1dd58bb630dd626c8bee54e01a183c364ad81ff78bd1bdfa08",
+      "git_blob_sha": "c16499647cbfe9e45c9c01a261965dd1467e8466",
+      "dimensions": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Im kurzen Querformat stehen Buch, Sonne und Lineal getrennt auf ihren Podesten. Die Objekte sind kleiner, bleiben unterscheidbar; alle sieben Aktionen passen in eine vollständig sichtbare Zeile.",
+      "actual_object_order": [
+        "book",
+        "sun",
+        "ruler"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "bytes": 666265,
+      "sha256": "8ebbc23e481deafc5e5f316419203e5ea248f26ab61ce6adf97c5766eacd9841",
+      "git_blob_sha": "5f7d7c7970ab531dc6dcf4db663b23abc2f3942d",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Sonne, Apfel und Auto sind getrennt erkennbar. Der linke Bereich der deklarierten Cutout-Fixture bleibt frei; der komplette Header und die Aktionszeile bleiben innerhalb der sicheren Fläche.",
+      "actual_object_order": [
+        "sun",
+        "apple",
+        "car"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "bytes": 594743,
+      "sha256": "29ce24b665d0b7a96b78dfe27a7ee2d91de721654796089965156ad5176113cf",
+      "git_blob_sha": "e07074304c0b63d9afede8a8fd23c1e2ca59ffa5",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Buch, blauer Kugelschreiber und Lineal sind im Hochformat vollständig sichtbar. Die deklarierten oberen und unteren Fixture-Insetbereiche bleiben von den Aktionsflächen frei.",
+      "actual_object_order": [
+        "book",
+        "pen",
+        "ruler"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "bytes": 167369,
+      "sha256": "8ad7a09e6286986d26e9eaf45e2836cb34499895ff4f4c08002075155870f223",
+      "git_blob_sha": "541406012632c36d007ad0d816a3eb2c4a975784",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die gelbe Sonne mit Strahlen ist von Auto und Apfel klar unterscheidbar. Zahlen, Titel, Hilfe und Rückkehr sind lesbar; Lumo ist nicht durch den Header oder das Footerpanel verdeckt.",
+      "actual_object_order": [
+        "sun",
+        "car",
+        "apple"
+      ]
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "bytes": 168747,
+      "sha256": "1dde63894a348d3afe4b35b432c5316dacf163a9f7fbc502597c2fad0a466bd5",
+      "git_blob_sha": "8423139ce0062fc54c628fa842f7af903602fca8",
+      "dimensions": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Der rote Apfel mit Stiel und Blatt steht getrennt zwischen Buch und Sonne. Das Wort apple und die drei Zahlen sind sichtbar; keine neue sichtbare Verdeckung.",
+      "actual_object_order": [
+        "book",
+        "apple",
+        "sun"
+      ]
+    }
+  ],
+  "warnings_preserved": [
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 51,
+      "text": "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 52,
+      "text": "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 53,
+      "text": "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 54,
+      "text": "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 55,
+      "text": "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 56,
+      "text": "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "line": 115,
+      "text": "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)"
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 2,
+      "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 6,
+      "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "line": 8,
+      "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    }
+  ],
+  "limits": [
+    "Actual desktop Godot renderer and actual Dart payload producer; Android Insets and JNI/audio host are explicitly declared fixtures.",
+    "No Android installation, navigation, Binder, physical touch, frame-rate or thermal acceptance follows from this job.",
+    "Return is observed against the declared test host. No real profile save, reward, multi-child migration or task submission is proven.",
+    "No English pronunciation, listening verification, phoneme lip synchronization or audible playback is claimed.",
+    "Simple object materials and hard shadows are visible. No film-quality or 60-FPS claim is made.",
+    "The seven additional school objects, later header-padding change, new Host producer and Android probe are separate unapproved source deltas."
+  ],
+  "original_log": {
+    "bytes": 303434,
+    "sha256": "f06e68aa00fc37d39a56cba81116e3fcd4515ccbf5f4742587b3222d6fac33a4",
+    "git_blob_sha": "47ceeef14b0cad1a1ec32464f5e13f0e41e80f21"
+  }
+}

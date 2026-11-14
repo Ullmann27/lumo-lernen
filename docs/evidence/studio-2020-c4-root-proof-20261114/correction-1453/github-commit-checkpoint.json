@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "proof": {
+    "schema": 1,
+    "parent": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "parent_tree": "63af179a4ef7a4ab9edb35e8365c1ea059f9258a",
+    "new_tree": "680de0e2d632971ff9462e9d0b262b73e9f78548",
+    "old_leaf_count": 4239,
+    "new_leaf_count": 4240,
+    "new_entries": 4806,
+    "explicit_changed_files": 6,
+    "new_files": 1,
+    "modified_files": 5,
+    "unchanged_parent_leaves": 4234,
+    "all_other_modes_types_and_blobs_preserved": true,
+    "versus_pr_base": {
+      "commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+      "changed_files": 126,
+      "new_files": 95,
+      "modified_files": 31,
+      "unchanged": 4114
+    },
+    "native_pin_receipt_and_49_images_unchanged": true
+  },
+  "manifest": {
+    "schema": 1,
+    "parent": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "base_tree": "63af179a4ef7a4ab9edb35e8365c1ea059f9258a",
+    "native_unchanged": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "file_count": 6,
+    "files": [
+      {
+        "path": ".github/workflows/lumo-studio-2020.yml",
+        "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/.github/workflows/lumo-studio-2020.yml",
+        "bytes": 58576,
+        "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+        "git_blob_sha": "4987a607fd3bb1531eff243500ed05cfec50ec57",
+        "mode": "100644",
+        "type": "blob",
+        "previous_git_blob_sha": "91900659c06ab2d6713b8bd24d37800eb533c470",
+        "confirmed_uploaded": false
+      },
+      {
+        "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "bytes": 44247,
+        "sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+        "git_blob_sha": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+        "mode": "100644",
+        "type": "blob",
+        "previous_git_blob_sha": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+        "confirmed_uploaded": false
+      },
+      {
+        "path": "test/games/connect_four_fold_controls_test.dart",
+        "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/test/games/connect_four_fold_controls_test.dart",
+        "bytes": 9473,
+        "sha256": "d81c02439db9ba9394e1ddb9f62245520b2781345a83e3df6a3bc2bf081961e2",
+        "git_blob_sha": "3dfc352bb0cd000b79cf5111b10b0247f7add943",
+        "mode": "100644",
+        "type": "blob",
+        "previous_git_blob_sha": "92956444dee338921853aea037ca32033bcd3b2e",
+        "confirmed_uploaded": false
+      },
+      {
+        "path": "test/design/connect_four_visual_test.dart",
+        "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-b/host/test/design/connect_four_visual_test.dart",
+        "bytes": 7736,
+        "sha256": "769da01fdacc066f5f36ac42a70790d3007abb0498628ec38a981627c99eb11c",
+        "git_blob_sha": "2b6225ad3972ae801620d8363458833434358616",
+        "mode": "100644",
+        "type": "blob",
+        "previous_git_blob_sha": "1a344ef9012cfdd7230cad2b6ebcd680151218e7",
+        "confirmed_uploaded": true
+      },
+      {
+        "path": "test/games/games_screen_flow_test.dart",
+        "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/agent-c/host/test/games/games_screen_flow_test.dart",
+        "bytes": 11691,
+        "sha256": "d13b42f24be5965b35e4528a20f4c9e3a7a6db56ebbc8624aea976bf0595015a",
+        "git_blob_sha": "31793fa489756398b656c63b86f7e5dcfe953006",
+        "mode": "100644",
+        "type": "blob",
+        "previous_git_blob_sha": "92190a24410646e27d321a5f87ed06f6dbf9e005",
+        "confirmed_uploaded": true
+      },
+      {
+        "path": "docs/studio-2020-c4-ci-corrections.md",
+        "source": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/docs/studio-2020-c4-ci-corrections.md",
+        "bytes": 6080,
+        "sha256": "37dbc760b15bda4c8d0687e1639f58421010d89fcb2c8d87ed2be4a8e42156c2",
+        "git_blob_sha": "198d0ecb40da1832bb8c7f0703a435cdab764286",
+        "mode": "100644",
+        "type": "blob",
+        "previous_git_blob_sha": null,
+        "confirmed_uploaded": false
+      }
+    ],
+    "total_bytes": 137803,
+    "execution": "Actual Dart parser and8 workflow-contract tests only; corrected widget tests awaiting GitHub CI."
+  },
+  "commit": {
+    "sha": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+    "node_id": "C_kwDOSNzcp9oAKDE0NTNjN2ZkMDljYzkxZWUwNGRjZGRjMjYzMWRmZDYwMjhhMzdkNTY",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T09:13:37Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T09:13:37Z"
+    },
+    "tree": {
+      "sha": "680de0e2d632971ff9462e9d0b262b73e9f78548",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/680de0e2d632971ff9462e9d0b262b73e9f78548"
+    },
+    "message": "fix(connect-four): keep 48dp controls aligned through real scrolling\n\nShare board/control geometry and scroll offset, adapt board height for short\nlandscape views and retain a scrollable portrait layout for large text.\nPreserve all game rules, native sessions, save logic and reviewed Native pin.\n\nMake existing flow/visual tests wait for the actual MissingPlugin fallback;\nretain their game/reward and strict alignment assertions. Add real two-way\nswipe, exposed target and exact manual-piece checks on four small layouts.\nRun the concrete regressions early without weakening any existing gate.\n\nDart source parser and 8 workflow contracts passed locally. Corrected Flutter\nexecution remains pending CI after local runtime/cache recovery failure.",
+    "parents": [
+      {
+        "sha": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/ae394f55c606ce66999df5b72acd1f8d34ec3ee4"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "node_id": "REF_kwDOSNzcp9oALHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDIwLTIwMjYxMTE0",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "object": {
+      "sha": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/1453c7fd09cc91ee04dcddc2631dfd6028a37d56"
+    }
+  }
+}

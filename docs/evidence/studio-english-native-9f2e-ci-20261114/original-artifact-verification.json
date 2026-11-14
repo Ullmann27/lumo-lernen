@@ -1,0 +1,221 @@
+{
+  "native_source": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "run": 43603969762,
+  "job": 132474493698,
+  "artifact": 14117362686,
+  "archive_bytes": 2543233,
+  "archive_sha256": "f428e72ed30705ead36121629ef48c1288ed8ebbc1e579c5685e66dbad6591aa",
+  "all_crc_pass": true,
+  "entries": [
+    {
+      "artifact_entry": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "8437032eba00ec29231f4a3595b69f89e77a6606eb72610a01fa8dd4db240c20"
+    },
+    {
+      "artifact_entry": "NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "2c829d9c0061b5c19b11693dd29b9b6f972270753bb16f023c1d20978cffe184"
+    },
+    {
+      "artifact_entry": "HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "50ab94d7189e4db4fe67d64928681bbff4cb969dc9f12a87648e4c59bed3c749"
+    },
+    {
+      "artifact_entry": "NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "b47270f245fb95ba1f7bad0019838eae0626d97c5c3bdd7c201f2eed775e0aba"
+    },
+    {
+      "artifact_entry": "dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495"
+    },
+    {
+      "artifact_entry": "english-activity.json",
+      "bytes": 3248,
+      "sha256": "62c14fb8498968cc60ff5a03bef9ef06a4e9a0d793b09e4f02331ca1801cff48"
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "cf9a93321b12dc86261a07d11f3b8ea4aa94f28c01dfc950b277cac598e8071f"
+    },
+    {
+      "artifact_entry": "english-authority.log",
+      "bytes": 620,
+      "sha256": "d554271cdaf9978d98bcc25d950ffefa3ffe41b44cd37821b095292c868af003"
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.layout.json",
+      "bytes": 33304,
+      "sha256": "af01912b7b8666ae981e7d6bd7df6d5d4b93ceeb17120cc0cef603496f86b075"
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "bytes": 168747,
+      "sha256": "1dde63894a348d3afe4b35b432c5316dacf163a9f7fbc502597c2fad0a466bd5"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.json",
+      "bytes": 2838,
+      "sha256": "e5d073b1d3e437f3fc9efdb7497f61a4869c8664f03c34191167591c5a71d9ed"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.layout.json",
+      "bytes": 26007,
+      "sha256": "4b84177a7ce39b4f7188ff75d34687cbe77dcc38ffd7ad6d3850693862066f89"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "bytes": 172819,
+      "sha256": "8fc380b2dd973d33b38f474327fc2a087113497beec8785b6d33c0238f9dcc55"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.json",
+      "bytes": 2835,
+      "sha256": "5edbfe1c496c709c1bf05d6eed28060539b38c258e028dbed41a79470ad47f4a"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.layout.json",
+      "bytes": 26008,
+      "sha256": "81ade247e94b1aedc1d055a763faea12553bffd73c16fd59b1882fb2f9a1306c"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "bytes": 173207,
+      "sha256": "d3459497e4bac1baafc27f73d6c084d736df59da39479f069838ca0cbafb48a1"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "954865d594dfb991218239e2221020ef11528573a0a69448030da8fb3fea40de"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.layout.json",
+      "bytes": 25199,
+      "sha256": "4c5da0fd1d7a4385a8a79a630fefc21e7a6b74f57b52a980624892e5d55a874f"
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "bytes": 172603,
+      "sha256": "63ffb369c0477f9b85ba09b65760565e06d1f1f45cd80ff48f0076e9b5d4a187"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.json",
+      "bytes": 2835,
+      "sha256": "d917ac50b3fd87ff57f6610b178ab97456a6a80e1127ad096ea774abbe224902"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.layout.json",
+      "bytes": 36966,
+      "sha256": "c41de6f263a06ea9f31930737608bf190eceacf2ef4631200a20cdef05571e74"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "bytes": 122464,
+      "sha256": "911ec06d3a692eb01275d4a2f5a98699f3ccfe414972596d63d2a60d0e02ad4e"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.json",
+      "bytes": 2833,
+      "sha256": "d38d1120ef607a423d7f00af23e282877c68720353d9632add32f7082e5fac59"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.layout.json",
+      "bytes": 36260,
+      "sha256": "41b1d4128bf59024258957cc6c5abefe2d850449c282fd2deabc3a5235b7a0e2"
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "bytes": 122886,
+      "sha256": "12c3b13dfe212b21c14a7d258c7a3a902e7a2d758548124e2e45115402a3f76d"
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.json",
+      "bytes": 3070,
+      "sha256": "f9c59ebcadad3fcc0469a03b0ca4b80f33251293c78edf6e9c17bdd2551b89b2"
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.layout.json",
+      "bytes": 38916,
+      "sha256": "cad1fc2d2e295b4d8f77b689038f515a3df8e5290023bbd98e84eac90be36296"
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "bytes": 666265,
+      "sha256": "8ebbc23e481deafc5e5f316419203e5ea248f26ab61ce6adf97c5766eacd9841"
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.json",
+      "bytes": 2950,
+      "sha256": "bc347a36f5a6c59ed9b109c77b6e06f9c48168b852fcc658fd48c0ce3caeee32"
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.layout.json",
+      "bytes": 36827,
+      "sha256": "8bfa124d289f24376ffc071c012d2317c39e0097382a9a55ea51c50811c26421"
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "bytes": 594743,
+      "sha256": "29ce24b665d0b7a96b78dfe27a7ee2d91de721654796089965156ad5176113cf"
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.json",
+      "bytes": 2824,
+      "sha256": "e163bbad5d80fe5e819a3c1eee60b987f003673cfb49ab49316ee5b9cde45a02"
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.layout.json",
+      "bytes": 44834,
+      "sha256": "94cf2f332b4a173e4da5fa179f220c3cb33296f3aa66c942e186481fdfd0e44d"
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "bytes": 95756,
+      "sha256": "ac4a006beb415d1dd58bb630dd626c8bee54e01a183c364ad81ff78bd1bdfa08"
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.json",
+      "bytes": 2825,
+      "sha256": "84d0cd3ca6ccd1e873f6b85106e883fa32436fe6bee38b232ca66066edba75a8"
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.layout.json",
+      "bytes": 39073,
+      "sha256": "7ccdc375c3e8990621ee816a7abc1818fc1c2c84dc5911a3fe850e51e1aa962f"
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "bytes": 167369,
+      "sha256": "8ad7a09e6286986d26e9eaf45e2836cb34499895ff4f4c08002075155870f223"
+    },
+    {
+      "artifact_entry": "english-native/learning-english-report.json",
+      "bytes": 51255,
+      "sha256": "fe01a1de277f8fc12dd512481b4114b82e84f24834957998967b1cb675ad691f"
+    },
+    {
+      "artifact_entry": "english-render.log",
+      "bytes": 4021,
+      "sha256": "0cebdc4b738cf288a70c66ef9c4d0946976498e47dea85ea121fbc735c3e17f6"
+    },
+    {
+      "artifact_entry": "godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "artifact_entry": "import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf"
+    },
+    {
+      "artifact_entry": "project-validation.log",
+      "bytes": 6138,
+      "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7"
+    }
+  ]
+}

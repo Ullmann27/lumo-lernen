@@ -1,0 +1,61 @@
+{
+  "artifacts": [
+    {
+      "id": 14119281510,
+      "name": "lumo-nextgen-actual-authority-evidence-memory",
+      "size_in_bytes": 3943934,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14119281510",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14119281510/zip",
+      "expired": false,
+      "created_at": "2026-11-14T15:00:02Z",
+      "expires_at": "2026-12-14T15:00:01Z",
+      "updated_at": "2026-11-14T15:00:02Z",
+      "digest": "sha256:e72064bcc6b796b6949c6a6b823fadb1bb8a2e23f6c05be6419ee4c2e60dcb76",
+      "workflow_run": {
+        "id": 43607369297,
+        "repository_id": 1251414584,
+        "head_repository_id": 1251414584,
+        "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+        "head_sha": "47ca642aad9290c9ba274b08e7dadfc953854d4f"
+      }
+    },
+    {
+      "id": 14118967950,
+      "name": "lumo-nextgen-actual-authority-evidence-english",
+      "size_in_bytes": 4575912,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14118967950",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14118967950/zip",
+      "expired": false,
+      "created_at": "2026-11-14T15:05:14Z",
+      "expires_at": "2026-12-14T15:05:12Z",
+      "updated_at": "2026-11-14T15:05:14Z",
+      "digest": "sha256:661661bcfeeae342357466f7468e36801a0eea581ab5566264ccd529064a559a",
+      "workflow_run": {
+        "id": 43607369297,
+        "repository_id": 1251414584,
+        "head_repository_id": 1251414584,
+        "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+        "head_sha": "47ca642aad9290c9ba274b08e7dadfc953854d4f"
+      }
+    },
+    {
+      "id": 14118662523,
+      "name": "lumo-nextgen-actual-authority-evidence-quiz",
+      "size_in_bytes": 509914,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14118662523",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14118662523/zip",
+      "expired": false,
+      "created_at": "2026-11-14T14:57:37Z",
+      "expires_at": "2026-12-14T14:57:37Z",
+      "updated_at": "2026-11-14T14:57:37Z",
+      "digest": "sha256:d4f09cbaec3cb199b1a69635a2ab1417ad083c08a2e1f2ae3f57def9261ccbc4",
+      "workflow_run": {
+        "id": 43607369297,
+        "repository_id": 1251414584,
+        "head_repository_id": 1251414584,
+        "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+        "head_sha": "47ca642aad9290c9ba274b08e7dadfc953854d4f"
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "created_utc": "2026-11-14T01:58:12.076668+00:00",
+  "result": "CONCRETE_TEST_CONTROLLER_ASSUMPTION_REPAIRED_OFFLINE_ONLY",
+  "sources": {
+    "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+  },
+  "original_failure": {
+    "run": 43530667812,
+    "job": 132269951369,
+    "artifact": 14092241868,
+    "error": "First clue remained unreachable after bounded genuine movement",
+    "line": 738,
+    "original_probe_sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb"
+  },
+  "established_cause": [
+    "The original controller exhausts twelve real movement segments while actual saved distance strictly decreases from 18.4390889146 to 8.4775029018.",
+    "The original duration formula divides remaining world distance by six as though simulation speed were wall-clock speed. The original movements cover only 0.694200209 to1.513463048 units per segment.",
+    "The for/else additionally rejects a target reached only after the final permitted segment; a separate unchanged contract reproduces that boundary defect.",
+    "The log records software rendering, but no actual simulation/frame timing can isolate why this emulator advances less distance per wall time. No product-physics or collision defect is proven."
+  ],
+  "repair": [
+    "Retains maximum twelve segments and the original <3.4 target distance.",
+    "Initial real hold remains1500ms; later holds use measured radial progress per requested hold duration, clamped to220..6000ms and60000ms cumulative.",
+    "A900s Linux real timer bounds movement plus checkpoint/OCR work and restores the previous signal handler. An existing active alarm is rejected rather than replaced.",
+    "All touch coordinates still come from a fresh detected original joystick ring; real input capture/audit is unchanged.",
+    "No movement or nonpositive/insufficient approach, nonfinite positions, changed round/clue state, or lost discoveries is rejected.",
+    "The original movement assertion and all first-fund/question/answer/inventory/save/leave/reopen/resume checks remain AST-identical."
+  ],
+  "scope": [
+    "Only first tree clue, visible inventory and resume are intended Android gates.",
+    "Both branches and final treasure completion are not added and are not claimed.",
+    "All originals remain a failed Android tour. The rate-driven positive local case is explicitly a synthetic response model calibrated from original measured movements.",
+    "No game state, app data, product source, native source, shared helper, Git ref, or CI run was changed."
+  ],
+  "tests": {
+    "red_original4ab": {
+      "log": "logs/controller-red-original4ab.log",
+      "exit_code": 1,
+      "tests": 2,
+      "errors": 2,
+      "seconds": 0.002
+    },
+    "first_green_attempt": {
+      "log": "logs/controller-green-v1.log",
+      "exit_code": 1,
+      "tests": 11,
+      "failures": 1,
+      "reason": "Negative replay expected the segment-limit message, but the cumulative input budget correctly stopped earlier. The assertion now accepts either hard budget and validates the unchanged observed prefix; original rejection remains required."
+    },
+    "final": {
+      "log": "logs/controller-and-existing-green.log",
+      "exit_code": 0,
+      "tests": 20,
+      "new_tests": 11,
+      "existing_tests": 9,
+      "skips": 0,
+      "seconds": 0.243,
+      "resource_warnings_are_errors": true
+    }
+  },
+  "source_freeze": "source-freeze.json",
+  "original_observations": "original-observations.json",
+  "protected_sources": "source-preservation.json",
+  "new_android_validation_required": true
+}

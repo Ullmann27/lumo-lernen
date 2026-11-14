@@ -1,0 +1,77 @@
+{
+  "source_commit": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "source_tree": "0774003dfb399641044cf83b654335bd91ad4373",
+  "baseline_five_changed_files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/.github/probes/creative_android_probe.py",
+      "bytes": 59073,
+      "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c",
+      "git_blob": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd",
+      "mode": "100644",
+      "repository_path": ".github/probes/creative_android_probe.py",
+      "matches_actual_prior_ci_blob": true
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48183,
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad",
+      "mode": "100644",
+      "repository_path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "matches_actual_prior_ci_blob": true
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/.github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "bytes": 14774,
+      "sha256": "6db11aba49cf3dc7322ce756ac245952a5b1f7cdbe54f9e952743ab08e0ef9c3",
+      "git_blob": "9c54d46545429d02f1f8105ae1b87088855dee3d",
+      "mode": "100644",
+      "repository_path": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "matches_actual_prior_ci_blob": true
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/scripts/recheck_studio_4ab.py",
+      "bytes": 25518,
+      "sha256": "667edf06c082d3d48302b7aab6a2e1d3aac92a4581d2fbf62624504208fe9e5b",
+      "git_blob": "33ed5d0fc71a3282bb3fb7de6bdf2ff3c2cbc6b2",
+      "mode": "100644",
+      "repository_path": "scripts/recheck_studio_4ab.py",
+      "matches_actual_prior_ci_blob": true
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/baseline/scripts/tests/test_studio_4ab_recheck.py",
+      "bytes": 18540,
+      "sha256": "467c8554fffa95773423eed0705968929025b324b007f4a558f725515cf17848",
+      "git_blob": "e836e7c25a7d68f4d47ff19a15de982f7e241fdb",
+      "mode": "100644",
+      "repository_path": "scripts/tests/test_studio_4ab_recheck.py",
+      "matches_actual_prior_ci_blob": true
+    }
+  ],
+  "actual_prior_ci_source_report": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/before.json",
+    "bytes": 10906,
+    "sha256": "63e7d8a0639e7a9ff62eec3be39b09d78f8dcb824ef951db19ca958197a73fd2",
+    "git_blob": "e0591c07a1ad0907bba381665ab8fd7c1fcb0384",
+    "mode": "100644"
+  },
+  "prior_ci_run": 43546627017,
+  "prior_ci_api35_job": 132299721965,
+  "baseline_source_report_qa_status": {
+    "path": "/home/runner/work/lumo-lernen/lumo-lernen",
+    "head": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+    "tree": "0774003dfb399641044cf83b654335bd91ad4373",
+    "tracked_source_clean": true,
+    "actual_blob_and_mode_checks": 4127,
+    "working_files_manifest_sha256": "9d73d16f1ba8dba2d0ba0d44d348c5f76cd57fa7698a1647f58f884752fbb024",
+    "separate_runtime_roots": [
+      "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+      "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist",
+      "/home/runner/work/lumo-lernen/lumo-lernen/tour",
+      "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv",
+      "/home/runner/work/lumo-lernen/lumo-lernen/runner-actions/android-emulator-runner"
+    ],
+    "untracked_scope": "Only declared artifact/checkouts/output/venv/action roots and generated Python bytecode"
+  },
+  "provenance": "Four text baselines were freshly fetched from exact 3e08 by GitHub connector; all five are independently identical to the actual prior CI source-binding report. Eleven reused source paths and ten incoming reviewed test/fixture paths were individually hash-checked."
+}

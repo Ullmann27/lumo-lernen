@@ -1,0 +1,47 @@
+{
+  "compared_to_v1": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/.github/probes/modernization_android_tour.py",
+    "bytes": 52372,
+    "sha256": "392bc0ec34f8fbc935635f98e75f66416e7f31d4e92fa388a134233592c1b6d7",
+    "git_blob_sha": "c407f582a4f72beb8068461ed2003d0443530385"
+  },
+  "current": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+    "bytes": 53786,
+    "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+    "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+  },
+  "changed_definitions": [
+    "_skip_observed_kart_preview"
+  ],
+  "all_other_definitions_unchanged": [
+    "logcat_fatal",
+    "alive",
+    "godot_alive",
+    "try_tap",
+    "labels",
+    "_atelier_roundtrip",
+    "_simplify",
+    "_screencap",
+    "_shot",
+    "verify_apk_identity",
+    "_read_garage_footer",
+    "_inspect_spatial_kart_menu",
+    "_start_actual_embedded_race",
+    "RaceSession",
+    "wait_race_running",
+    "wait_race_hud",
+    "find_gas",
+    "drive_with_gas",
+    "log_images",
+    "main"
+  ],
+  "actual_helper_reference": {
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/078774ddaf64808addaa4c6406f6a3c85b1f239a/.github/probes/creative_android_probe.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/reference/creative_android_probe.py",
+    "bytes": 60697,
+    "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+    "git_blob_sha": "45ff0d24400ee21673c707b4b6448f914c85ee87"
+  },
+  "baseline_contract_tests": "OriginalGatePreservationTests are part of final23/23; original150s predicate/pause/save/return/learning gates retained."
+}

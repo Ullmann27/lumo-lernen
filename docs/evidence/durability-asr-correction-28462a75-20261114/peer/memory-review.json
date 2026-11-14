@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_source_review",
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14 18:02:17 UTC",
+  "host_revision": "b7210db3f53361987fd33592de438fd7984d991a",
+  "verdict": "No additional concrete blocker found in the reviewed adapter delta and fourteen prepared contracts.",
+  "source_files": [
+    {
+      "path": "qa/memory-durability-fix-b721-20261114/prepared/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2632,
+      "sha256": "12a4d709555d1189e1cb7f4f642153efea57cabb259183a801134487031f2654",
+      "git_blob_sha": "a2a5cdcb1d995d3c0176f032ddfae552171f3c14"
+    },
+    {
+      "path": "qa/memory-durability-fix-b721-20261114/prepared/test/games/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+    },
+    {
+      "path": "qa/memory-durability-fix-b721-20261114/baseline/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 2146,
+      "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+      "git_blob_sha": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+    },
+    {
+      "path": "qa/memory-durability-fix-b721-20261114/baseline/lib/features/games/memory/memory_round.dart",
+      "bytes": 14257,
+      "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+      "git_blob_sha": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    }
+  ],
+  "diff_sha256": "b2607a7df5037200b42d3459e52226b417536e50986c57a960aa043b0440e298",
+  "upstream_bindings": {
+    "legacy": {
+      "url": "https://api.github.com/repos/flutter/packages/contents/packages/shared_preferences/shared_preferences/lib/src/shared_preferences_legacy.dart?ref=shared_preferences-v2.5.5",
+      "bytes": 10990,
+      "sha256": "7ccdf3738704630a3d5d947ac73989403b167f3c6aa114b475e8e106f5de1045",
+      "git_blob_sha": "06d89f0010c86f640d19501c2a2a5183523b8039"
+    },
+    "platform": {
+      "url": "https://github.com/flutter/packages/blob/shared_preferences_platform_interface-v2.4.2/packages/shared_preferences/shared_preferences_platform_interface/lib/shared_preferences_platform_interface.dart",
+      "bytes": 6876,
+      "sha256": "6541beea828275f22d95ee0d6db9345cd809626622129093ac7a4c8c215e4790",
+      "git_blob_sha": "c5b86042b6f822ceb2f08b9810844dcad440e664"
+    },
+    "lock": {
+      "path": "pubspec.lock",
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob_sha": "7843602e3d858660dc52d95587983858803976a5"
+    }
+  },
+  "original_failure_chain": [
+    "shared_preferences 2.5.5 _setValue changes _preferenceCache before returning the platform setValue Future; false or a thrown error does not restore the previous cache.",
+    "The b721 PreferencesMemoryStore readRound/readStats return getString directly. Controller _writeInitial/_commit/_saveStats compare this readback with the proposed JSON after a failed write, so the unchanged optimistic cache can impersonate a confirmed platform commit."
+  ],
+  "reviewed_changes": [
+    "Only readRound/readStats and their private _readConfirmed helper change. Each read awaits preferences.reload before getString. A reload error escapes; no catch, default, cached fallback or per-instance uncertainty flag can bypass it.",
+    "The same SharedPreferences singleton reached through a newly constructed adapter is subject to a new successful reload. No prior failed write or failed reload is rehabilitated by merely reopening.",
+    "The unchanged controller still permits commit-then-error recovery only when the subsequent read returns the proposed JSON; the patched adapter obtains that read after successful platform refresh.",
+    "Controller _commit leaves the currently exposed round unchanged and keeps uncertainty when write/reload fails. A later successful read can reconcile an actually committed round. Stats failures do not update _stats/_best through the failed _saveStats path.",
+    "Initial unreadable statistics retain the existing controller behavior: _statsWritable becomes false and those values are not overwritten. A failed round read aborts open, rather than creating an empty default.",
+    "Round/Stats keys, owner validation, unowned historical lumo_memory_v2 exclusion, catalog, write methods, owner-serial queue, rules, reward ID, and profile guards are unchanged."
+  ],
+  "prepared_tests": {
+    "defined_cases": 14,
+    "executed_by_reviewer": false,
+    "execution_status": "NOT_EXECUTED; actual Flutter CI is required",
+    "backend": "Real SharedPreferences legacy cache plus a controlled InMemorySharedPreferencesStore platform boundary; no MemoryStore mock.",
+    "checked_api": "Exact host pubspec.lock pins shared_preferences 2.5.5 and direct-dev shared_preferences_platform_interface 2.4.2. The independently read upstream interface permits the subclass and matches getAll/setValue/persisted access signatures.",
+    "groups": [
+      "Rejected initial round cannot become acknowledged solely through cache.",
+      "Round false-before-commit and throw-before-commit keep original state.",
+      "Round and Stats false/throw, repeated reload errors, a second store and a fresh controller over the identical singleton cannot read poisoned cache as platform data.",
+      "Actual round commit followed by error is recovered; actual commit plus failed reload remains hidden until later successful recovery.",
+      "Failed Stats commit leaves the same result ID unresolved for explicit retry; actual Stats commit followed by error permits the confirmed finish without another award.",
+      "Profile revoked before I/O, during reload and during an already accepted write cannot expose a stale-owner result or mutate the other owner's key."
+    ],
+    "timing_review": "Gate outcomes are attached before release, entered waits are bounded, gate release occurs in finally, and test outcomes are awaited. Source review only; this is not an executed race result."
+  },
+  "limitations": [
+    "No Flutter, Dart, test, application, emulator or physical-device execution by this reviewer.",
+    "The fourteen test cases are declarations, not fourteen PASS results.",
+    "Platform-backend tests establish cache/platform contract behavior; they are not a physical storage fsync, Android restart or device performance measurement.",
+    "The focused review does not certify unrelated SharedPreferences callers or cross-isolate external writers."
+  ],
+  "review_actions": {
+    "product_edits": false,
+    "test_edits": false,
+    "dependency_downloads": false,
+    "git_mutations": false
+  }
+}

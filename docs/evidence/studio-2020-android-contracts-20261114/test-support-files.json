@@ -1,0 +1,51 @@
+[
+  {
+    "path": "scripts/verify_legacy_release_pin.py",
+    "bytes": 10421,
+    "sha256": "30413b1418821e0f3177005c8a1eb93028deca9a3887bcf533b5d859e2098f0d",
+    "git_blob": "5a3d71e7b8e382d46b9536734fd71dc81e88631a",
+    "scope": "Unmodified local test support only; not in source upload"
+  },
+  {
+    "path": "config/godot-source.json",
+    "bytes": 145,
+    "sha256": "e8d96e2bf2020df2510fad816e77e6e945419955fc31ad2e8cd76b83a3086417",
+    "git_blob": "b98e91c96a678eeed1fb6929bd8079cd0cdb156d",
+    "scope": "Unmodified local test support only; not in source upload"
+  },
+  {
+    "path": "pubspec.yaml",
+    "bytes": 2675,
+    "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+    "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+    "scope": "Unmodified local test support only; not in source upload"
+  },
+  {
+    "path": "tools/android_qa/kart_tour_evidence.py",
+    "bytes": 9299,
+    "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+    "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+    "scope": "Unmodified local test support only; not in source upload"
+  },
+  {
+    "path": "tools/android_qa/update_artifact_identity.py",
+    "bytes": 1105,
+    "sha256": "4a6bb7d2809f5551abcc07e0cae997d4b56180f962a19b0d9866a218c0d63dd4",
+    "git_blob": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+    "scope": "Unmodified local test support only; not in source upload"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json",
+    "bytes": 7585,
+    "sha256": "8815f517552ebdde7908ff98b1bb389147a4857ccb4a75cabd65e2142eb3338a",
+    "git_blob": "dc3792760859e23561d13988350de3353d832577",
+    "scope": "Unmodified local test support only; not in source upload"
+  },
+  {
+    "path": "scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg",
+    "bytes": 425,
+    "sha256": "dd4b43efa2202f92ddad79640ed4443880154c4e76b928fb4d72ad5aa067dd5c",
+    "git_blob": "4a373b848fc245cd14b1c95f0992377de54e2ff8",
+    "scope": "Unmodified local test support only; not in source upload"
+  }
+]

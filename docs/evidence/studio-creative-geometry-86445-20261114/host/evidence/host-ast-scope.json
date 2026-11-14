@@ -1,0 +1,195 @@
+{
+  "changed_existing_definitions": [
+    "stick_target",
+    "puzzle_piece_target",
+    "Tour.enter"
+  ],
+  "new_definition": "Tour.scene_entry",
+  "definitions": [
+    {
+      "definition": "sha",
+      "unchanged": true
+    },
+    {
+      "definition": "write",
+      "unchanged": true
+    },
+    {
+      "definition": "read_image",
+      "unchanged": true
+    },
+    {
+      "definition": "require",
+      "unchanged": true
+    },
+    {
+      "definition": "treasure_position",
+      "unchanged": true
+    },
+    {
+      "definition": "approach_treasure",
+      "unchanged": true
+    },
+    {
+      "definition": "verify_candidate_metadata",
+      "unchanged": true
+    },
+    {
+      "definition": "candidate_binding",
+      "unchanged": true
+    },
+    {
+      "definition": "committed_helper",
+      "unchanged": true
+    },
+    {
+      "definition": "bounds",
+      "unchanged": true
+    },
+    {
+      "definition": "hub_choice",
+      "unchanged": true
+    },
+    {
+      "definition": "pieces",
+      "unchanged": true
+    },
+    {
+      "definition": "one_added_piece",
+      "unchanged": true
+    },
+    {
+      "definition": "one_quarter_turn",
+      "unchanged": true
+    },
+    {
+      "definition": "resume_equal",
+      "unchanged": true
+    },
+    {
+      "definition": "config_variant_values",
+      "unchanged": true
+    },
+    {
+      "definition": "parse_jump_save",
+      "unchanged": true
+    },
+    {
+      "definition": "components",
+      "unchanged": true
+    },
+    {
+      "definition": "stick_target",
+      "unchanged": false
+    },
+    {
+      "definition": "solve",
+      "unchanged": true
+    },
+    {
+      "definition": "puzzle_piece_target",
+      "unchanged": false
+    },
+    {
+      "definition": "build_targets",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.__init__",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.tag",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.shot",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.audit_adb",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.touch",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.native",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.observe",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.current_stick",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.move_stick",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.move_treasure_stick",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.portal",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.enter",
+      "unchanged": false
+    },
+    {
+      "definition": "Tour.leave",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.saved",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.pause_save",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.toolbar",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.viewport",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.build",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.puzzle",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.treasure",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.jump_save",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.jump",
+      "unchanged": true
+    },
+    {
+      "definition": "Tour.run",
+      "unchanged": true
+    },
+    {
+      "definition": "main",
+      "unchanged": true
+    }
+  ],
+  "no_game_save_rule_or_reward_changes": true
+}

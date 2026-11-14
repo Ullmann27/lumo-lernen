@@ -1,0 +1,79 @@
+{
+  "reviewer": "agent_C_independent_read_only",
+  "tested_again": "none",
+  "sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/run_connect_four_runtime.py",
+      "bytes": 14820,
+      "sha256": "7234f865ebe12642eaa1beaee837a6de2a2aa1d92298170f25621e744e679b2b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py",
+      "bytes": 7942,
+      "sha256": "4c2f6a6403b97ba72d0c6565e9f2aff1d2300c13805667b1430d302b0c890b10"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/workflow-draft.patch",
+      "bytes": 1526,
+      "sha256": "0af40cdf3b2cad4cc895253f3c2c4728b5aaf0f88e21990708674de98bc93fbe"
+    }
+  ],
+  "existing_results_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/runner-contracts-with-actual-motion-execution.json",
+      "bytes": 515,
+      "sha256": "560fea67b463d5b5fddb08e86abd54b8726232cf02c402b8bfef19e417758f4a"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/runner-contracts-with-actual-motion.log",
+      "bytes": 2517,
+      "sha256": "0b2e5b666dc79077087702d8250b1a25ac249be65a80e7d6378d2097e16ceb49"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/actual-v4-result-validation.json",
+      "bytes": 50799,
+      "sha256": "1884983d2e140dc4dfb0d4e315b1f1af6f6deef46e09e41128ffdc15ff44bab7"
+    }
+  ],
+  "observed_results": {
+    "runner_contracts": 15,
+    "contract_skips": 0,
+    "v4_result_validation_native_checks": 143,
+    "v4_result_validation_frames": 250,
+    "v4_decoded_pngs": 259,
+    "not_a_full_wrapper_execution": true
+  },
+  "positive_findings": [
+    "Exact source bytes and modes are checked against tracked HEAD before and after; symlink staging cannot masquerade as a published run.",
+    "Native HEAD must match configured revision and Godot4.6.3; CWD and explicit paths preserve the real Dart/Godot source boundaries.",
+    "Both owned process groups must terminate successfully;120s startup and1080s pair deadline; failures terminate only owned groups.",
+    "Original Dart/native outputs require matching legal seven-move history, final round/owner, token, exitACK, reward totals and same-process reopen.",
+    "Real geometry motion, one through seven discs and four winning markers must occur across actual successive PNG frames.",
+    "All nine current capture names and every original frame are decoded; the recording format is explicitly not deviceFPS.",
+    "v7 interface is compatible:170checks/248frames/ninePNGs and both process exits0; those local statistics are not substituted for a full published wrapper run."
+  ],
+  "findings": [
+    {
+      "id": "C4-GATE-LOG",
+      "severity": "requires_small_gate_completion",
+      "line": 257,
+      "observation": "The wrapper does not inspect original-godot.log for SCRIPT ERROR: or ERROR:. Godot can report an unhandled script error without a nonzero process exit; a separate unaffected test path could still produce passed:true.",
+      "evidence_scope": "read-only code-path finding; no extra reproduction executed",
+      "suggested_change": "Apply the existing strict native log-failure policy before acceptance, preserving ordinary WARNING lines such as unsupported VSync."
+    },
+    {
+      "id": "C4-GATE-HANDSHAKE-OWNER",
+      "severity": "small_identity_binding_completion",
+      "line": 144,
+      "observation": "The final Dart/native owner values are compared to each other, but are not compared to the independently read initial session owner. A mode change legitimately changes roundId, so only owner and token should bind across that transition.",
+      "evidence_scope": "read-only comparison finding",
+      "suggested_change": "Bind final owner/token to the captured handshake and require legal hexadecimal owner/round token syntax in the handshake."
+    }
+  ],
+  "limits": [
+    "No new tests, Android execution, CI run, source edit or source/ref mutation by reviewer.",
+    "The existing15contracts and v4 decoder output were read, not repeated.",
+    "Current C4 v7 source is frozen separately; this review concerns only the proposed integration wrapper.",
+    "Local viewport texture images may be1079×2400 for a1080×2400window because of integer logical stretch; actual Android screenshot checks must use observed Decor/RenderView mapping rather than relabel these local PNGs."
+  ]
+}

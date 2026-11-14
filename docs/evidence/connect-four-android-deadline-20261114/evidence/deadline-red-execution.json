@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_connect_four_android_probe.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 0.3611640999879455,
+  "source": "unmodified original 38595449 probe; new two deadline tests"
+}

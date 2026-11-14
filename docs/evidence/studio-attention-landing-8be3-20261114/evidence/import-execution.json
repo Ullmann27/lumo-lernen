@@ -1,0 +1,19 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-attention-8be3-20261114/runtime",
+    "--editor",
+    "--import",
+    "--quit",
+    "--audio-driver",
+    "Dummy"
+  ],
+  "source": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "started_utc": "2026-11-14T05:52:12.638480+00:00",
+  "elapsed_seconds": 9.420401736992062,
+  "exit_code": 0,
+  "private_runtime": "/tmp/lumo-attention-8be3-20261114/runtime",
+  "source_files": 1185
+}

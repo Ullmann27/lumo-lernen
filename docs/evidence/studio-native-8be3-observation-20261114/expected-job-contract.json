@@ -1,0 +1,76 @@
+{
+  "source": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "workflow": ".github/workflows/lumo-studio-2020.yml",
+  "workflow_sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+  "run_id": 43561885899,
+  "jobs": [
+    {
+      "job_name": "learning-preview",
+      "workflow_job": "learning-preview",
+      "timeout_minutes": 20,
+      "needs": []
+    },
+    {
+      "job_name": "gameplay",
+      "workflow_job": "gameplay",
+      "timeout_minutes": 55,
+      "needs": []
+    },
+    {
+      "job_name": "new-worlds",
+      "workflow_job": "new-worlds",
+      "timeout_minutes": 35,
+      "needs": "studio"
+    },
+    {
+      "job_name": "studio",
+      "workflow_job": "studio",
+      "timeout_minutes": 35,
+      "needs": []
+    },
+    {
+      "job_name": "touch-workshop",
+      "workflow_job": "touch-density",
+      "timeout_minutes": 50,
+      "needs": []
+    },
+    {
+      "job_name": "touch-treasure",
+      "workflow_job": "touch-density",
+      "timeout_minutes": 50,
+      "needs": []
+    },
+    {
+      "job_name": "touch-build",
+      "workflow_job": "touch-density",
+      "timeout_minutes": 50,
+      "needs": []
+    },
+    {
+      "job_name": "bundle-evidence",
+      "workflow_job": "bundle-evidence",
+      "timeout_minutes": 12,
+      "needs": [
+        "new-worlds",
+        "touch-density"
+      ]
+    },
+    {
+      "job_name": "archive-evidence",
+      "workflow_job": "archive-evidence",
+      "timeout_minutes": 12,
+      "needs": [
+        "learning-preview",
+        "gameplay",
+        "new-worlds",
+        "studio",
+        "touch-density",
+        "bundle-evidence"
+      ]
+    }
+  ],
+  "mandatory_before_archive": 8,
+  "archive_job": "archive-evidence",
+  "large_archives_downloaded": false,
+  "created_utc": "2026-11-14T05:37:54.482713+00:00"
+}

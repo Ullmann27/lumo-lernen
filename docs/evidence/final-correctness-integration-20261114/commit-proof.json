@@ -1,0 +1,90 @@
+{
+  "base_commit": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "base_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "tree": "944a412a34a09ef24c3fb65c118e8a678809758f",
+  "base_leaves": 4369,
+  "final_leaves": 4372,
+  "added": [
+    "test/games/connect_four_bot_save_retry_test.dart",
+    "test/games/memory_native_commit_confirmation_test.dart",
+    "test/reward_wallet_dedup_confirmation_test.dart"
+  ],
+  "modified": [
+    ".github/probes/creative_android_probe.py",
+    "tools/android_qa/tests/test_kart_preview_skip.py",
+    "lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "lib/features/games/memory/memory_round.dart",
+    "lib/features/games/memory/memory_flutter_adapter.dart",
+    "lib/core/reward_wallet_repository.dart"
+  ],
+  "unchanged_old_leaves": 4363,
+  "unexpected_changes": 0,
+  "deletions": 0,
+  "refs_changed": true,
+  "entries": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b977b3d2406cdc321655f61e1f34cbd673d4aa2"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55b7142cf0bb59cb7e75479a4c77abd7b6b42ba9"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e0dfc297090d5d3e558367107a28ff5986de786"
+    },
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddbafa79864878446bc3efa064b71c81e252fc63"
+    },
+    {
+      "path": "test/games/memory_native_commit_confirmation_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c"
+    },
+    {
+      "path": "test/reward_wallet_dedup_confirmation_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4615f10622420d53dedb380ff4648e5692995861"
+    }
+  ],
+  "commit": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "parent": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "branch": "chatgpt/lumo-nextgen-feature-20261114",
+  "expected_old": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "force": false,
+  "postref": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+  "observed_at_utc": "2026-11-14 19:32:25 UTC",
+  "studio_unchanged": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "main_mutated": false,
+  "tree_build_refs_changed": false
+}

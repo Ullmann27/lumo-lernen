@@ -1,0 +1,92 @@
+name: lumo_lernen
+description: Lumo Lernen - Lern-App mit integrierten Spielen fuer die 1. bis 4. Klasse Volksschule in Oesterreich
+publish_to: none
+version: 0.13.8+2020
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  crypto: ^3.0.6
+  clock: ^1.1.2
+  flutter:
+    sdk: flutter
+  flame: ^1.18.0
+  shared_preferences: ^2.3.3
+  speech_to_text: ^7.0.0
+  image_picker: ^1.1.2
+  google_mlkit_text_recognition: ^0.13.0
+  url_launcher: ^6.3.1
+  audioplayers: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  shared_preferences_platform_interface: ^2.4.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/videos/
+    - assets/images/
+    - assets/lumo_design/fox/
+    - assets/lumo_design/bg/
+    - assets/lumo_design/learning_world/
+    - assets/lumo_design/logo/
+    - assets/lumo_design/cards/
+    - assets/lumo_design/gameplay/
+    - assets/lumo_design/board_games/
+    - assets/lumo_design/ui/
+    - assets/lumo_design/icons/
+    - assets/lumo_design/task_objects/
+    - assets/lumo_design/badges/
+    - assets/lumo_design/onboarding/
+    - assets/lumo_design/spielwelt/
+    - assets/lumo_design/memory/
+    - assets/lumo_design/cards_game/
+    - assets/lumo_design/buildings/
+    - assets/lumo_design/characters/
+    - assets/lumo_design/deco/
+    - assets/lumo_design/garage/
+    - assets/lumo_design/kart_items/
+    - assets/lumo_design/nature/
+    - assets/lumo_design/rewards/
+    - assets/lumo_design/track/
+    - assets/lumo_jump/fox/master/
+    - assets/lumo_jump/fox/sprite_sheets/
+    - assets/lumo_jump/fox/idle/
+    - assets/lumo_jump/fox/run/
+    - assets/lumo_jump/fox/jump/
+    - assets/lumo_jump/fox/fall/
+    - assets/lumo_jump/fox/duck/
+    - assets/lumo_jump/fox/roll/
+    - assets/lumo_sprite_pack/
+    - assets/lumo_sprite_pack/cheer/
+    - assets/lumo_cards/
+    - assets/lumo_cards/cards/red/
+    - assets/lumo_cards/cards/yellow/
+    - assets/lumo_cards/cards/green/
+    - assets/lumo_cards/cards/blue/
+    - assets/lumo_cards/cards/special/
+    - assets/lumo_cards/cards/back/
+    - assets/lumo_cards/avatars/
+    - docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp
+    - assets/rivals/
+    - assets/audio/sfx/
+    - assets/audio/music/
+    - assets/audio/voice/lumo/
+    - assets/audio/voice/lumo_free/
+    - assets/companion/
+    - assets/lottie/
+    - assets/learning_questions/
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Nunito-Black.ttf
+          weight: 900

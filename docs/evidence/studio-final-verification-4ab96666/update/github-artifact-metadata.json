@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14091240196,
+      "name": "lumo-2019-in-place-update-proof",
+      "size_in_bytes": 105702437,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14091240196",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14091240196/zip",
+      "expired": false,
+      "created_at": "2026-11-14T01:12:07Z",
+      "expires_at": "2026-12-14T01:11:58Z",
+      "updated_at": "2026-11-14T01:12:07Z",
+      "digest": "sha256:3c5360e2b650893e48499ce512d062dd458de3b32080b3101a6abcc6246fb8ae",
+      "workflow_run": {
+        "id": 43530667812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-20261113",
+        "head_sha": "4ab96666f954baf258422d6ed277fc297b7ddeef"
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "reviewer": "character_animation",
+  "run_id": 43542310963,
+  "job_id": 132285770547,
+  "artifact_id": 14093670723,
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "original_zip": {
+    "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-original.zip",
+    "bytes": 117884820,
+    "sha256": "131290ad1a01c825e9856cd48538437cc52eee7c34c3427ede1ffa693b299c3d"
+  },
+  "status": "THREE_ORIGINAL_IMAGES_VISUALLY_REVIEWED",
+  "overall_android_job_status": "FAILURE",
+  "images": [
+    {
+      "artifact_entry": "nextgen/04_learning_native_thirteen.png",
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/04_learning_native_thirteen.png",
+      "bytes": 581478,
+      "sha256": "6ee38bfca33caa9c04d287352b9dc2e3e11935b3ffbd23286f04557e6dca23e9",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true,
+      "findings_de": [
+        "Original-Lumo steht neben zwei räumlichen Zehnerfeldern; oben acht türkise und zwei goldene Würfel, darunter drei goldene Würfel. Zusammen sind dreizehn Würfel sichtbar.",
+        "Die Erklärung 8 + 5 = 10 + 3 = 13 ist vollständig lesbar; Abschlusszustand und deaktiviertes Ein Objekt zeigen passen zum Ende der fünf Bewegungen. Zur Aufgabe und Noch einmal bleiben sichtbar oberhalb der Android-Gestenleiste.",
+        "Ein einzelnes Standbild belegt keine flüssige Animation, Sprachausgabequalität oder gemessene Bildrate."
+      ]
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson.png",
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1508438,
+      "sha256": "e5e22f2f0e10ee35dd8d1670d6cc80d820d384ba489d52dfee18c75d4fb7b4b0",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true,
+      "findings_de": [
+        "Die Flutter-Lektion Acht und fünf ist wieder sichtbar: 8 + 5, zehn eingerahmte Äpfel und drei weitere Äpfel, Ergebnis 8 + 2 + 3 = 13, Schritt 6 von 6.",
+        "Lernnavigation, Erklärung lesen und Mit Lumo in 3D ausprobieren sind lesbar. Der sichtbare Zähler bleibt bei null Sternen und 0 / 400 XP; der unveränderte Fortschritt wird zusätzlich vom gespeicherten Zustandsvergleich geprüft.",
+        "Das Bild allein beweist keine umfassende Profil- oder Migrationsprüfung."
+      ]
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw.png",
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 951833,
+      "sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true,
+      "findings_de": [
+        "Vor dem Ziehen zeigt die echte native Szene Original-Lumo am räumlichen Tisch, einen Kartenstapel, eine offene Ablagekarte und drei groß sichtbare vollständige Handkartenfronten mit Zahlen 1, 6 und 9.",
+        "Pause, Zurück, die Seite 1/3 und Ziehen sind sichtbar. Keine schwarze oder abgeschnittene native Teilfläche; keine sichtbare Überdeckung der drei Fronten durch die unteren Aktionsflächen.",
+        "Dieses Bild stammt ausdrücklich vor dem Ziehen. Es ersetzt weder den später fehlgeschlagenen Nachhervergleich noch Speicher-, Ruhezeit- oder Wiederaufnahmeprüfungen."
+      ]
+    }
+  ],
+  "android_full_tour_pass": false,
+  "physical_fold7_or_fps_claim": false
+}

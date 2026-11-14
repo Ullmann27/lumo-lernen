@@ -1,0 +1,46 @@
+{
+  "observed_at_utc": "2026-11-14T03:50:14.520483+00:00",
+  "purpose": "Remove only reproducible installation archives after verifying installed tools; preserve all originals, test evidence, sources and active agent directories.",
+  "files": [
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/flutter_linux_3.44.9-stable.tar.xz",
+      "bytes": 1546711080,
+      "sha256": "a9120fa4a01048bdef438ddc3a2d4b7389662ea98a95db86eeaf10382bc4efcb"
+    },
+    {
+      "path": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0-bin.zip",
+      "bytes": 134528013,
+      "sha256": "a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806"
+    }
+  ],
+  "flutter_release_metadata": {
+    "hash": "6b182d2c7585eba26d4edce0f97630effd256c33",
+    "channel": "stable",
+    "version": "3.44.9",
+    "dart_sdk_version": "3.12.2",
+    "dart_sdk_arch": "x64",
+    "release_date": "2026-08-06T17:45:05.228366Z",
+    "archive": "stable/linux/flutter_linux_3.44.9-stable.tar.xz",
+    "sha256": "a9120fa4a01048bdef438ddc3a2d4b7389662ea98a95db86eeaf10382bc4efcb"
+  },
+  "installed_flutter": {
+    "frameworkVersion": "3.44.9",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "6b182d2c7585eba26d4edce0f97630effd256c33",
+    "frameworkCommitDate": "2026-08-05 10:04:07 -0700",
+    "engineRevision": "5a2a6a42cce67f965cf540fcecf616faca624aa1",
+    "engineCommitDate": "2026-07-31 18:31:59.000Z",
+    "engineContentHash": "b9499e4c25212536ba3a4eec4f5c1905fb3214fe",
+    "engineBuildDate": "2026-07-31 13:30:03.301",
+    "dartSdkVersion": "3.12.2",
+    "devToolsVersion": "2.57.0",
+    "flutterVersion": "3.44.9"
+  },
+  "gradle_archive_files_matched_to_installed": 307,
+  "no_product_or_evidence_removed": true,
+  "free_before": 194854912,
+  "removed_bytes": 1681239093,
+  "free_after": 1876103168,
+  "status": "REMOVED_TWO_VERIFIED_REPRODUCIBLE_INSTALLERS_ONLY"
+}

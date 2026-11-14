@@ -1,0 +1,15 @@
+{
+  "status": "PREPARED_NOT_EXECUTED",
+  "host_base": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "path": "test/games/games_screen_flow_test.dart",
+  "before_sha256": "5fb9b1253d79f851516c2bc37b326e29d8ab80bf1414f30203e9a8315a456172",
+  "before_git_blob_sha": "92190a24410646e27d321a5f87ed06f6dbf9e005",
+  "after_sha256": "d13b42f24be5965b35e4528a20f4c9e3a7a6db56ebbc8624aea976bf0595015a",
+  "after_git_blob_sha": "31793fa489756398b656c63b86f7e5dcfe953006",
+  "old_assertions_after_initial_start_preserved": true,
+  "local_attempts": [
+    "First asset-bundle setup failure before test execution; original log retained.",
+    "Second Dart compiler exit while loading before any C4 assertion. Environment failed and /tmp was removed during recovery. Actual wrapper exit status is unknown."
+  ],
+  "authoritative_red_evidence": "Actual ae394 GitHub complete-suite failures; no local red/green test claim."
+}

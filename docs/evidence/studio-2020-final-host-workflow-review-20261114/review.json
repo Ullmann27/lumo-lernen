@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T06:01:48.670208+00:00",
+  "status": "NO_ADDITIONAL_CONCRETE_WIRING_BLOCKER_IN_READ_SCOPE",
+  "workflow_sha256": "43c795cc9aff8b4c7479e559ff5e5bf48213dc79232b1528b406152de3b3bf7a",
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 56929,
+      "sha256": "43c795cc9aff8b4c7479e559ff5e5bf48213dc79232b1528b406152de3b3bf7a",
+      "git_blob_sha": "91900659c06ab2d6713b8bd24d37800eb533c470"
+    },
+    {
+      "path": "scripts/verify_studio_artifact_originals.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/verify_studio_artifact_originals.py",
+      "bytes": 14822,
+      "sha256": "99dd5ea5555c7f07ad6ea1a3302aaeb8f6fd2e4fc83ee2b5e0733241503eab0d",
+      "git_blob_sha": "995da085c5d3b5406d5e9aa9829cb2f7691e66b3"
+    },
+    {
+      "path": "scripts/verify_studio_connect_four_android.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/verify_studio_connect_four_android.py",
+      "bytes": 34503,
+      "sha256": "b17f88f8d499e28be1663d9bcf1ada451221703174939fa60fde8bf990363e4c",
+      "git_blob_sha": "b05348751d7c3c8b74ed91dd03d0acd6f21cd4a8"
+    },
+    {
+      "path": "scripts/run_connect_four_runtime.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/run_connect_four_runtime.py",
+      "bytes": 15683,
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "git_blob_sha": "36d93ed0908705e339346bf5ef451cf047b641b5"
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 36483,
+      "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+      "git_blob_sha": "53679cb2a9adda7fbae82621afb29efd920c4485"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48924,
+      "sha256": "b072e4b218e05e3756a902d9cb887c1a02275d708bb7a25da83fb6c9b810b415",
+      "git_blob_sha": "84147964ce848bde78ff8cc9cb7d5a17176da2a8"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/.github/probes/studio_creative_android_probe.py",
+      "bytes": 69712,
+      "sha256": "5b2aad1a5fe0a9bac1e52f891c836393a9ca41492da110d50fcd59d98d4fc2e0",
+      "git_blob_sha": "4747ac3d62fddcf7ec3b12f96ca01ff3a93830b5"
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/verify_studio_delivery.py",
+      "bytes": 32623,
+      "sha256": "7d97aca5339d24841febd29765ec9ae0f2d391e073edead5fb9d1fe4b3a3077b",
+      "git_blob_sha": "938ff72d12751d9a7fa83a43b7f8f2703356e04a"
+    },
+    {
+      "path": "scripts/verify_studio_creative_android.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/verify_studio_creative_android.py",
+      "bytes": 9714,
+      "sha256": "0ab298bef6fbe6f500d471b58958e6952a2141069a2077056da872b85b5fa62c",
+      "git_blob_sha": "52293d7a3e121862ef033e139f87016692f56d05"
+    },
+    {
+      "path": "pubspec.yaml",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "git_blob_sha": "40a3226d7b575cc414abc1494dfff5924a5de775"
+    }
+  ],
+  "composition_reference": {
+    "path": "qa/studio-2020-integration/host-first-composition-manifest.json",
+    "sha256": "b85e86c6d946bf9dec079b9fb6159d1ff5a096e0f614677fd70b1877b412bbe1",
+    "status": "Staged, not release-approved; waiting for native CI/pin and creative/publisher final deltas"
+  },
+  "checks": [
+    {
+      "name": "Exact reviewed workflow and helper bytes",
+      "result": "PASS_READ_CHECK",
+      "details": "Workflow 43c795cc exactly matches requested bytes. Original-archive verifier 99dd5ea5, C4 publisher b17f88f8, runtime runner dc91ce09 and Android probe d9c72a9f exactly match the independently reviewed frozen packages."
+    },
+    {
+      "name": "All release dependencies",
+      "result": "PASS_READ_CHECK",
+      "lines": [
+        764,
+        779
+      ],
+      "details": "Publisher requires successful verify-and-build, independent host compile, complete API 35/37 matrix, 2017→2020 upgrade and creative Android job. Branch/repository/PR source guards remain. gh release create is the only release creation call; an existing version is verified without asset replacement."
+    },
+    {
+      "name": "Original ZIP verification before derivative evidence",
+      "result": "PASS_READ_CHECK",
+      "lines": [
+        824,
+        916
+      ],
+      "details": "Three complete artifacts download to distinct proofs/tour, proofs/android17, proofs/native-runtime roots. Original ZIP verifier runs at publisher step 14 before release/C4 verification step 16 and release creation step 18. Metadata is written only in proofs/c4-metadata; archive proof and all subsequent generated facts go to dist. No source code read in this path writes into the three original roots."
+    },
+    {
+      "name": "REST metadata and current attempt",
+      "result": "PASS_READ_CHECK",
+      "lines": [
+        853,
+        876
+      ],
+      "details": "Actual current GITHUB_RUN_ID run/jobs/artifacts are read with GH_TOKEN and actions:read. Lists must be complete by total_count equality. The C4 verifier requires all four exact current jobs completed/success with matching run_attempt/head_sha; archive IDs/digests/creation times/source/run are bound. No self-reported run-only acceptance. More than 100 returned entries would fail closed rather than accept a truncated list."
+    },
+    {
+      "name": "Sparse native checkout",
+      "result": "PASS_READ_CHECK",
+      "lines": [
+        376,
+        398,
+        788,
+        810
+      ],
+      "details": "Both probe/publisher read exact config revision from the allowed Native repository and 4.6.3 engine. Sparse paths scripts and scenes/games contain actual C4 scene/table/runtime regression. Full git tree/object metadata remains available for source manifest comparisons; assets need not be materialized in this publisher-only sparse checkout."
+    },
+    {
+      "name": "Both Android probe chains use the installed verified APK",
+      "result": "PASS_READ_CHECK",
+      "lines": [
+        477,
+        535
+      ],
+      "details": "For both API 35 and 37, normal tour then 2020 surfaces then C4 use the same candidate/dist/x86_64/Lumo-Lernen-Neu.apk, provenance and sums, in the Host checkout cwd. C4 performs no installation and hashes actual installed base.apk before/after. Actual SDK/release 35/15 and 37/17, exact source/native pin, serial emulator-5554, prior 21-step tour and all C4 state/pixel/save checks remain mandatory."
+    },
+    {
+      "name": "Actual Dart/Godot runner before packaging",
+      "result": "PASS_READ_CHECK",
+      "lines": [
+        274,
+        324
+      ],
+      "details": "Gameplay gates fetch exact native pin; runtime runner then uses that actual native checkout and the current Host checkout. Both processes, source-before/after, 170+ original checks, media and original logs are mandatory; output acceptance-native/connect-four-runtime is uploaded within lumo-candidate-pinned-native-gameplay. Publisher reads matching proofs/native-runtime/connect-four-runtime and reuses unchanged validate_results."
+    },
+    {
+      "name": "Existing time/state gates",
+      "result": "PASS_READ_CHECK",
+      "details": "Frozen C4 probe retains post-read 45-second bounds. Current surfaces retain 30-second/12-frame/two-consecutive-positive return plus foreground/process/bounds checks and only the authorized exact negative loading caption. Runtime handshake 120 s/process 1080 s unchanged. No threshold relaxation was introduced by this review."
+    }
+  ],
+  "open_prerequisites": [
+    {
+      "severity": "open-integration-precondition",
+      "path": "pubspec.yaml",
+      "observed": "Actual staged version remains 0.13.7+2019",
+      "effect": "The explicit build==2020 check would reject these bytes if published unchanged. Composition metadata already identifies staging as awaiting final native pin/receipt; this is not a newly introduced workflow bypass."
+    },
+    {
+      "severity": "open-integration-precondition",
+      "paths": [
+        "config/godot-source.json",
+        "config/studio-2020-visual-review.json"
+      ],
+      "observed": "Not present in this partial assembled delta directory",
+      "effect": "Final current native pin and approved source/ZIP-bound 2020 receipt remain required. Missing unchanged baseline files in this partial staging directory are not treated as missing from the eventual full checkout."
+    }
+  ],
+  "read_check_execution": {
+    "yaml_parsed": true,
+    "selected_python_ast_parsed": true,
+    "exact_download_map_and_step_order_asserted": true,
+    "four_frozen_helper_byte_hashes_asserted": true,
+    "new_test_suites": 0,
+    "new_ci_runs": 0,
+    "actual_downloads": 0,
+    "renderer_or_android_executions": 0
+  },
+  "limits": [
+    "Partial delta staging only, not a final clean Host source checkout or a source publication approval",
+    "Final 0.13.8+2020 version/native pin/approved image receipt and successful candidate CI remain pending",
+    "Original unchanged baseline helpers were read from existing workspace copies where needed, without fetching a new complete 86445 tree",
+    "No physical Fold7/performance or new 2020 Android acceptance",
+    "No Root-owned workflow/helper or Git reference was changed"
+  ]
+}

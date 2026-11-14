@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "qa/studio-2020-integration/test-host/scripts/tests",
+    "-p",
+    "test_prepare_android.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.08972133199858945,
+  "scope": "Actual source-template copying, namespace and retained-file checks; not Android compilation."
+}

@@ -1,0 +1,392 @@
+[
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/README.md",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "cb823f99077c82ad7cdb37b333b7697ccf7b4e86"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-upload-manifest.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "6c503e3dbe56700c0d836554817bcbb518161182"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/implementation-against-acf51.patch",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "02d690c2dc0acfc58d265a8f3815cd115a110539"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/visual-review.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "f92e3a8c4e82765b8e3649faa47a22089ad6c58a"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/original-blocker-binding.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "d4d250966b5498dc58e5a001b144474ea921a505"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/independent-review-reference.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "d1e5a784d05a12119b72bf3e7900585b93c5a5c3"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/capture-contract.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "20b1ada582fa695577c5d4a07c96ef7df446521e"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/actual-acf51-tree.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "16bfc136f01c1dea1d5df718144d89c7ecfdbea0"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/existing-density-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "e97c013c1f8f2f962126722b7095855a1278c0d4"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/existing-density.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "0faa9236aaa5016eac807f0d81a97e5f6e5bf0fc"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-existing-density-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "01dae501f30b6ac4c336b980761290ec9f1ad450"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-existing-density.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "0faa9236aaa5016eac807f0d81a97e5f6e5bf0fc"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-green-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "9cfc8731b4f022098003b3fcea31f24a13e6ac9d"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-green-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "db1a6fc7f4a69e1ed438fbb0dcfc1e8aa2e2c4f5"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-green.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "22e7adfc4d12e49c6902a63eb9b007df1cbde863"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-headless-group.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "bfeb06615b580b8584de07c98b80bec12edd1043"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-red-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "0b8b4d08855dbfcb58d34e6eed37c2785835188f"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-red-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "df3ebdb4f3b569f30c9d1e8284b11cc8566de3ec"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-red.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "acf99276f3e3979fed6ef1aad5138519c7b10434"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "11db1fa6e9ea396b1aecc9522233327fd90625b4"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-launcher.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "ea60c77cfd495bd34784be03db2f78ecc66ece83"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-v2-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "dc43fa03e1a2be52dbaf6783f30b3e79b41da0e4"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-render-v2-launcher.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "7898048775a959851702924468934a876c2846a4"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/final-report-summary.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "8120e3e1acf6c503f072fa79210777f3669d38ac"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v1-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "31d4dee2a007e68149661956ab06ce441c4cfe9e"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v1-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "da7f182c1c687fd1973cadaaa0d33821ee175f63"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v1.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "ba4a2320fa254c25ea7d5fcdb35b5a184a706e58"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v2-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "d7eee86e764bba82b5dbb208db624ae13a285e89"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v2-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "96c14392bc440fc898106a8eefc20a08cbcb5ce9"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/green-headless-v2.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "1c5938875c57f679c69e733ef457a70235d89c42"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-before-treasure_world.gd.txt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "5a2b5df679ae1b342fe5c88d4208b1edfcb52d63"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-red-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "ff81f2b3b167502c8cc970cfc83a740d869b7527"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-red-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "f05bc451f99ff294de42eb794fc1228dec42638e"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/portrait-gap-red.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "75433a2b6b89616a1b97d00ce7baca3f7e688b3a"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/product-against-acf51.patch",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "f5450b44cda2bcaf04883d14356e92c1d6280fd2"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/product-function-preservation-final.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "41dcb3b7ab03f489905947d59507206e98559304"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/product-function-preservation.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "62499b381e86315b5518cbc11cc6bb99f16e4eba"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "d257b54a8cd2f745c48e227df8f889d5cbd77467"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-initial-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "8e50cb422c1a5f91c1c68b61b72f57e3afe9f767"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-v2-execution.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "53f2fd038a88e6f1fed1c17a20f1ca1b8aec1c7f"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-v2-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "eb13cfab8c3446b7babf253a1785d797e1085a00"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless-v2.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "969c100eff413d922a58e3c408524812896f6217"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/red-headless.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "cb7e12d595500363dff1b93f37b2a233f0e511cb"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/godot.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "0b42a39ad2ee7b2aee1ec5cd1bf6fe0571cf4cd0"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/run.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "068244c945f4ef567bd78f84188aa1025c4ef909"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/treasure-title-portrait.png",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "3bd92ed577f41e256a0f72ed912b95d3fe7f8a55"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/rejected-first-render/treasure-title-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "05367030b1ba9166933e28bf3bac491dd1813c9c"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-setup-correction.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "5afc51e6e0a0c2b3cbab09a890e96866c4f0413c"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-source-binding-before.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "1dab0ffc99a46419b0a883715805f22753bd121c"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-source-binding-complete.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "22c0d0d5c31b2e2b2017b9a63858c4a881b3fff9"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/runtime-source-binding-final.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "ae09f442060634b9e498815b416df6a02d1235f8"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence/test-against-acf51.patch",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "24df14bcd59db4ff99fce8b00fdb5f22d7f88bcf"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/godot.log",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "0511d080c22294df9c196554bff340466dcabd6c"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/run.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "c77097700baf9894cdef44923e5d7b577b9358f9"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-compact.png",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "d2b3006e1aaad8c326249967afa2ff8f1768d6c2"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-fold.png",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "3613821ae34cf1c2c54f231ee268dbeb1e339d79"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-landscape-cutout.png",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "245662ba30c7f0fa73748b529080006bae24df0a"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-landscape.png",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "0f2935d5c044fd18e2519e21e19f6d32eb94598a"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-portrait.png",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "02088211d1da96a7d1995acbcfe1b57bac440752"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/final-render/treasure-title-report.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "c4af955fda0b302aa309dbe07d66fa12a3af542a"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/baseline/scripts/creative/treasure_world.gd.txt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/baseline/scripts/tests/treasure_title_contrast_regression.gd.txt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "6e50ace998d896fd88f0006112152e490e7c64e3"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/patched/scripts/creative/treasure_world.gd.txt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "aae80484834823c8cf063df6bfb2607313f39ef7"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/source-snapshots/patched/scripts/tests/treasure_title_contrast_regression.gd.txt",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "73939c37e38bdbaca77220f79227e3dcde26e59c"
+  },
+  {
+    "path": "docs/evidence/treasure-gameplay-visibility-acf51-20261114/evidence-upload-manifest.json",
+    "mode": "100644",
+    "type": "blob",
+    "sha": "85efd3894db1620f7894a220f118cf036543e572"
+  }
+]

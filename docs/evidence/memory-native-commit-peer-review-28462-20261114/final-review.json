@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14 19:27:35 UTC",
+  "host_baseline": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "status": "NO_ADDITIONAL_STATIC_BLOCKER_FOUND_EXECUTION_PENDING",
+  "reviewer_test_executions": 0,
+  "source_mutations_by_reviewer": false,
+  "scope": "Independent complete read of the two Memory product files, their exact baseline diff, and the new 25-case test source. No Dart/Flutter execution, Android disk-failure experiment, or runtime acceptance.",
+  "sources": [
+    {
+      "path": "qa/memory-native-commit-fix-28462-20261114/prepared/host/lib/features/games/memory/memory_round.dart",
+      "bytes": 16091,
+      "sha256": "9238bc5a7966db2dccd39b819ade6925fef7270a44ae4308294769a75b178216",
+      "git_blob_sha": "6d691fffc24c70faf3a78d176cbba6b73b66c6a1"
+    },
+    {
+      "path": "qa/memory-native-commit-fix-28462-20261114/prepared/host/lib/features/games/memory/memory_flutter_adapter.dart",
+      "bytes": 3275,
+      "sha256": "dd00f01aabc503869540e396e757cb86538523dc6146a0ee54357235bbaca260",
+      "git_blob_sha": "ddbafa79864878446bc3efa064b71c81e252fc63"
+    },
+    {
+      "path": "qa/memory-native-commit-fix-28462-20261114/prepared/host/test/games/memory_native_commit_confirmation_test.dart",
+      "bytes": 29908,
+      "sha256": "33331c4b0c804b803e22785e9f7a5e25fe3e3086913bc0e02beecf529f956c32",
+      "git_blob_sha": "0896b1cb364e3bc1a131ba46205a731aef6c1f8b"
+    },
+    {
+      "path": "qa/memory-native-commit-fix-28462-20261114/official-source-binding/host/memory_preferences_durability_test.dart",
+      "bytes": 15378,
+      "sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758"
+    }
+  ],
+  "integration_dependency": {
+    "path": "qa/wallet-dedup-ack-barrier-28462-20261114/prepared/host/lib/core/reward_wallet_repository.dart",
+    "bytes": 14543,
+    "sha256": "737ba4778054657f5cb7d3efc109ff48175f6551486e7f4040f3add057ab13d9",
+    "git_blob_sha": "a0aa9a9bc0865c74b02d1284188df8e5c9c76a3c"
+  },
+  "integration_sources_read": [
+    {
+      "path": "qa/memory-native-cache-adversarial-28462-20261114/originals/lib/app/app_state.dart",
+      "bytes": 57118,
+      "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+      "git_blob_sha": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "path": "qa/memory-native-cache-adversarial-28462-20261114/originals/lib/core/school_repository.dart",
+      "bytes": 8279,
+      "sha256": "c7fb332684b64339b70428d84d3e1485534e5029dafec8fabec5517e789756e5",
+      "git_blob_sha": "91e2bd74c742eddd877b111740a54550f05fe511"
+    }
+  ],
+  "previous_design_review": {
+    "path": "qa/memory-native-commit-peer-review-28462-20261114/product-design-review.json",
+    "sha256": "480facc6b345fc19dd63f81f7f5a9579868db0bc7fb7370822504c66b86f7134"
+  },
+  "findings": [
+    "The original Android plugin returns Editor.commit() and getAll exposes native preferences memory. AOSP API35 changes mMap before the disk result. A successful reload alone is not a positive write acknowledgement.",
+    "The optional MemoryReadbackConfirmation interface is implemented by PreferencesMemoryStore. Its readRound/readStats remain read-only reload snapshots; positive confirmation is a separate same-value setString.",
+    "The controller validates an observed payload and checks the captured profile immediately before and after confirming it. open, initial-write recovery, uncertain subsequent reads, commit recovery and statistics adoption cannot substitute equality for a positive platform reply.",
+    "Negative or missing platform replies remain MemoryStorageUnconfirmed; false is distinguished as MemoryStorageRejected. Statistics confirmation failures propagate, while corrupt historical statistics remain untouched.",
+    "A failed action retains uncertainty. A bounded later positive same-value confirmation can adopt the same round and revision without a second flip, RNG draw or reward identity. No retry loop or key/schema/rule change was added.",
+    "The new test platform separates Dart's real cache, nativeMemory and durableDisk, models generation tracking and whole-file commits, and distinguishes a new Dart cache from a modeled native-process restart.",
+    "All 25 declared cases were read: raw snapshots after false/throw, initial creation, failed flip and subsequent uncertainty, new controller, modeled process restart, lost reply after commit, no-positive-reply failure, statistics, corruption, foreign owner, before/during-profile-loss guards, exact newer revision and three actual Memory-to-AppState/Wallet cases.",
+    "The three AppState integrations use actual Memory rules/controller/catalog, captured child lease and wallet repository. The final duplicate-wallet negative case explicitly requires Wallet737ba477; it must not be run against the unchanged 28462 Wallet and described as a Memory-only result.",
+    "The final integration avoids setting the same profile again after a failed wallet write, because any unrelated successful preference commit can legitimately flush the outstanding whole native preference file.",
+    "Existing 14-case durability test bytes remain exactly SHA7f81307b; no prior PASS result is transferred to the new 25 cases."
+  ],
+  "upstream_boundaries": {
+    "plugin_git_blob": "bbdb3ecbadb51f6f1454e987be78285146751b89",
+    "aosp_git_blob": "a87187b8affb4a8e36bfc28191a575502e78604f",
+    "same_value_commit": "AOSP synchronous commit can retry an outstanding memory generation even when the value itself is unchanged. A positive reply is a platform acknowledgement, not a new independent physical-disk measurement."
+  },
+  "limits": [
+    "All new 25 test cases remain unexecuted in this review; actual combined CI is required.",
+    "The platform model is synthetic. It is not an Android fault-injection, fsync, power-loss or device restart experiment.",
+    "The existing owner queue serializes the current Dart runtime. This patch does not establish cross-engine compare-and-swap or arbitrary concurrent-writer correctness.",
+    "General Wallet.load/fallback behavior and cross-repository stale snapshots remain outside this narrow change."
+  ]
+}

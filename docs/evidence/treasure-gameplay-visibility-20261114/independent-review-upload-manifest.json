@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "status": "SCOPED_LOCAL_SOURCE_AND_RENDER_REVIEW_COMPLETE_NO_ADDITIONAL_BLOCKER",
+  "files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-independent-review-20261114/independent-source-review.json",
+      "bytes": 10906,
+      "sha256": "7b7c75d1f167dad57c267e2c6304e5b59d0c77d58e831554372252975fc9b2b3",
+      "git_blob_sha1": "1d122af2076ddd23607c4fd63c263b0d1f3d5b59",
+      "target": "docs/evidence/treasure-gameplay-visibility-20261114/independent-source-review.json",
+      "mode": "100644"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-independent-review-20261114/independent-render-closure.json",
+      "bytes": 9365,
+      "sha256": "fe281ffdf249fe9782ae0c7c29fe0b55c453780f26e1dbbba04bd2e49fad11b9",
+      "git_blob_sha1": "f6a69955b2fc1b29e614cf948fce8d2f6b811622",
+      "target": "docs/evidence/treasure-gameplay-visibility-20261114/independent-render-closure.json",
+      "mode": "100644"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "status": "READ_ONLY_NO_ADDITIONAL_BLOCKER",
+  "harness": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native/tools/validate_studio.sh",
+  "harness_sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+  "source_manifest_sha256": "ea075b909d8325ca9bcc682d531aa9b4876d76382f1da9ae4f29db85e095d1e9",
+  "review_scope": "Only additive Treasure title gate and roster binding",
+  "findings": [
+    "Exactly one new required rendered600second probe with unchanged [TreasureTitleContrast] PASS marker and -- --capture",
+    "Original LUMO_CAPTURE_DIR plus isolated XDG passed through existing runner; nonzero exit/engineERROR remains a failure",
+    "Four exact PNG names and exact dimensions required;640x320 exception limited to this group; all prior images keep previous minima",
+    "Sidecar requires137checks/no failures/four exact profiles/source scope/insets/contrast>=7/safe title geometry; every actual PNGhash bound back to original readback",
+    "Existing body of prior19gate/49image checks not relaxed for this addition",
+    "Report explicitly identifies saved-position and platform-boundary fixture, noAndroid/FPS claim"
+  ],
+  "existing_original_replay": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/treasure-original-sidecar-replay.json",
+    "sha256": "18bfc90d28387e5503544537b49f0041031dad3adfed95222bdcf1b69fd25384",
+    "read_not_reexecuted": true
+  },
+  "new_tests_by_reviewer": [],
+  "images_opened_this_review": [],
+  "prior_images_opened": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/native-title-review.json"
+}

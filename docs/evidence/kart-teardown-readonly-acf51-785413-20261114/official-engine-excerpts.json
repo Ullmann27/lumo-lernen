@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "engine_version_in_original_logs": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Exact code excerpts read from official Godot 4.6.3-stable source; no engine execution.",
+  "files": [
+    {
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/scene/main/scene_tree.cpp",
+      "path": "scene/main/scene_tree.cpp",
+      "ref": "4.6.3-stable",
+      "first_line": 844,
+      "last_line": 880,
+      "content": "void SceneTree::finalize() {\n\t_flush_delete_queue();\n\n\t_flush_ugc();\n\n\tif (root) {\n\t\troot->_set_tree(nullptr);\n\t\troot->_propagate_after_exit_tree();\n\t\tmemdelete(root); //delete root\n\t\troot = nullptr;\n\n\t\t// In case deletion of some objects was queued when destructing the `root`.\n\t\t// E.g. if `queue_free()` was called for some node outside the tree when handling NOTIFICATION_PREDELETE for some node in the tree.\n\t\t_flush_delete_queue();\n\t}\n\n\tMainLoop::finalize();\n\n\t// Cleanup timers.\n\tfor (Ref<SceneTreeTimer> &timer : timers) {\n\t\ttimer->release_connections();\n\t}\n\ttimers.clear();\n\n\t// Cleanup tweens.\n\tfor (Ref<Tween> &tween : tweens) {\n\t\ttween->clear();\n\t}\n\ttweens.clear();\n}\n\nvoid SceneTree::quit(int p_exit_code) {\n\t_THREAD_SAFE_METHOD_\n\n\tOS::get_singleton()->set_exit_code(p_exit_code);\n\t_quit = true;\n}\n"
+    },
+    {
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/io/resource.cpp",
+      "path": "core/io/resource.cpp",
+      "ref": "4.6.3-stable",
+      "first_line": 802,
+      "last_line": 815,
+      "content": "void ResourceCache::clear() {\n\tif (!resources.is_empty()) {\n\t\tif (OS::get_singleton()->is_stdout_verbose()) {\n\t\t\tERR_PRINT(vformat(\"%d resources still in use at exit.\", resources.size()));\n\t\t\tfor (const KeyValue<String, Resource *> &E : resources) {\n\t\t\t\tprint_line(vformat(\"Resource still in use: %s (%s)\", E.key, E.value->get_class()));\n\t\t\t}\n\t\t} else {\n\t\t\tERR_PRINT(vformat(\"%d resources still in use at exit (run with --verbose for details).\", resources.size()));\n\t\t}\n\t}\n\n\tresources.clear();\n}\n"
+    },
+    {
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/object/object.cpp",
+      "path": "core/object/object.cpp",
+      "ref": "4.6.3-stable",
+      "first_line": 2659,
+      "last_line": 2703,
+      "content": "void ObjectDB::cleanup() {\n\tspin_lock.lock();\n\n\tif (slot_count > 0) {\n\t\tWARN_PRINT(\"ObjectDB instances leaked at exit (run with --verbose for details).\");\n\t\tif (OS::get_singleton()->is_stdout_verbose()) {\n\t\t\t// Ensure calling the native classes because if a leaked instance has a script\n\t\t\t// that overrides any of those methods, it'd not be OK to call them at this point,\n\t\t\t// now the scripting languages have already been terminated.\n\t\t\tMethodBind *node_get_path = ClassDB::get_method(\"Node\", \"get_path\");\n\t\t\tMethodBind *resource_get_path = ClassDB::get_method(\"Resource\", \"get_path\");\n\t\t\tCallable::CallError call_error;\n\n\t\t\tfor (uint32_t i = 0, count = slot_count; i < slot_max && count != 0; i++) {\n\t\t\t\tif (object_slots[i].validator) {\n\t\t\t\t\tObject *obj = object_slots[i].object;\n\n\t\t\t\t\tString extra_info;\n\t\t\t\t\tif (obj->is_class(\"Node\")) {\n\t\t\t\t\t\textra_info = \" - Node path: \" + String(node_get_path->call(obj, nullptr, 0, call_error));\n\t\t\t\t\t}\n\t\t\t\t\tif (obj->is_class(\"Resource\")) {\n\t\t\t\t\t\textra_info = \" - Resource path: \" + String(resource_get_path->call(obj, nullptr, 0, call_error));\n\t\t\t\t\t}\n\t\t\t\t\tif (obj->is_class(\"RefCounted\")) {\n\t\t\t\t\t\textra_info = \" - Reference count: \" + itos((static_cast<RefCounted *>(obj))->get_reference_count());\n\t\t\t\t\t}\n\n\t\t\t\t\tuint64_t id = uint64_t(i) | (uint64_t(object_slots[i].validator) << OBJECTDB_SLOT_MAX_COUNT_BITS) | (object_slots[i].is_ref_counted ? OBJECTDB_REFERENCE_BIT : 0);\n\t\t\t\t\tDEV_ASSERT(id == (uint64_t)obj->get_instance_id()); // We could just use the id from the object, but this check may help catching memory corruption catastrophes.\n\t\t\t\t\tprint_line(\"Leaked instance: \" + String(obj->get_class()) + \":\" + uitos(id) + extra_info);\n\n\t\t\t\t\tcount--;\n\t\t\t\t}\n\t\t\t}\n\t\t\tprint_line(\"Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).\");\n\t\t}\n\t}\n\n\tif (object_slots) {\n\t\tmemfree(object_slots);\n\t}\n\n\tspin_lock.unlock();\n}\n"
+    }
+  ]
+}

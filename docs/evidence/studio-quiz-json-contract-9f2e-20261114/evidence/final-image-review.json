@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14T14:37:27.797347+00:00",
+  "native_baseline": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "current_product_sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+  "current_test_sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948",
+  "scope": "Ten actual newly rendered local Godot PNGs opened individually. Software renderer and explicitly declared test transport. No current paired Dart, Android, audio, device-performance or final release approval.",
+  "images": [
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-question-landscape.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-question-landscape.png",
+      "bytes": 79588,
+      "sha256": "c4f4b1556770a9441f2e659efa799f030e627a606d4aae81f2ef5d046e5c5faf",
+      "git_blob_sha": "813bb72de834901e078fc5c7228f780919bc0355",
+      "size_px": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Lumo steht vollständig auf dem Podium links; Frage, vier Antworten, drei Joker sowie Zurück und Pause sind lesbar. Antwortaufdeckung ist vor Auswahl sichtbar gedimmt. Einfaches Podium/Bogen-Set, kein Nachweis einer fertig ausgebauten Fernsehstudio-Welt."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-selected-phone.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-selected-phone.png",
+      "bytes": 59044,
+      "sha256": "b7b006d8a122d9e8d4269fe39164884bc207cec2e12396793578eb3bab61807d",
+      "git_blob_sha": "296e85f58d1a84793622941ef658b79cab0df8c3",
+      "size_px": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Portrait zeigt Lumo über dem Fragepanel. B Drei ist gold markiert; alle vier Antworten, Antwort aufdecken und Joker sind in diesem Zustand lesbar. Keine sichtbare Überlagerung durch die vorige Testszene."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-jokers-landscape.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-jokers-landscape.png",
+      "bytes": 92935,
+      "sha256": "cd3e3fdb6d11a8348632297a2ec65092e9f133583715bb9b221c16c9a8965c06",
+      "git_blob_sha": "a6350934e249a64c9c304955659088e802f6e3a2",
+      "size_px": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Publikumsprozente und der Hinweis sind sichtbar, B bleibt gold. Dieser ursprüngliche Fixturezustand verwendet nur den Publikumsjoker; die weiter sichtbaren vier Antworttexte sind hier beabsichtigt und kein 50:50-Nachweis."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-revealed-small.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-revealed-small.png",
+      "bytes": 42544,
+      "sha256": "70f5f3fd30427b2c6ad02cbf8daca5dd2689b35d91f40ab94c5913e7f0538e0e",
+      "git_blob_sha": "645b8fb485f47feaa5b8ce2d155cad2ef66e9b9a",
+      "size_px": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Nach echtem Scrollen sind Nächste Frage und Richtig! sichtbar; der obere grüne Antwortstreifen ist am Cliprand abgeschnitten. Die Frage und Erklärung sind nicht gleichzeitig vollständig im kompakten Frame zu sehen."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-paused-portrait.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-paused-portrait.png",
+      "bytes": 56622,
+      "sha256": "bca8ca6340f6d9e5d1d6d459f5d904fb5f8e1074db680808fa54c87e205ae2d4",
+      "git_blob_sha": "344d4a3c8859a1bc7eff714893aa655346f55089",
+      "size_px": [
+        360,
+        800
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Spiel pausiert, Fortsetzen, Neue Runde und vier Fachoptionen sind vollständig lesbar. Lumo bleibt sichtbar über dem Menü; Pause erscheint gedimmt. Keine Aussage über Android-Lifecycle aus diesem lokalen Fixturebild."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-result-fold.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-result-fold.png",
+      "bytes": 122271,
+      "sha256": "addcd36550e280be07278e734fc5caf8acc895a76406d7b249dd5502afc2be4d",
+      "git_blob_sha": "9a6a2b442b589dd825ffa0502fac848e5a9e070a",
+      "size_px": [
+        1200,
+        896
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Alle 20 gelben Bogenlichter, Lumo, Ergebnistext, neue Runde und Fachauswahl sind sichtbar. Die angezeigten 5000 Sterne stammen ausdrücklich aus dem deklarierten lokalen Abschlussfixture; das Bild belegt keine tatsächliche Auszahlung oder zwanzig lokal gespielte Fragen."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-question-cutout.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-question-cutout.png",
+      "bytes": 297638,
+      "sha256": "66f1078b0b6cde9ad56da107fa8fe5c1a1fa66617c06e398dbe69a4ed20d96e8",
+      "git_blob_sha": "1462a4d6e35e7cd0b83c902bd6e3bf57160d0b2e",
+      "size_px": [
+        2400,
+        1080
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Lumo, Header, Frage und vier Antworten sind im simulierten 2400×1080-Cutoutprofil sichtbar. Antwort aufdecken ist am unteren Scrollclip teilweise abgeschnitten; weitere Controls liegen darunter. Der Test nutzt echte Wischer, das Standbild belegt nicht die gleichzeitige Sichtbarkeit sämtlicher Controls oder ein physisches Fold-Gerät."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-json-hidden-landscape.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-json-hidden-landscape.png",
+      "bytes": 94178,
+      "sha256": "39a772d8d03dd379732cd5fccd16666d7bb8690dbf8495eaca8e794e03a8269f",
+      "git_blob_sha": "158ddc087421b65a25c381ca64221b33cd1f1fdf",
+      "size_px": [
+        960,
+        540
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Die originale Sachunterrichtsfrage Womit riechen wir? wird mit A/B samt Publikumswerten gezeigt; C und D zeigen ausschließlich Ausgeblendet. Verborgene Antworttexte/Prozente sind nicht mehr sichtbar. Lumo und Header bleiben sichtbar. Keine schwache Altstatus-Schrift mehr hinter dem Panel."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-json-hidden-phone.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-json-hidden-phone.png",
+      "bytes": 78632,
+      "sha256": "5fd682f049f578ae38d5a47d9178af53389ee9d388543a5b2bb092b4585d1918",
+      "git_blob_sha": "2800a6a1154215ec557212317e189108a4f18656",
+      "size_px": [
+        412,
+        915
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "B Mit der Nase ist gold ausgewählt; C und D heißen ausschließlich Ausgeblendet. Frage, Reveal-Button, benutzte Joker, Hinweis und gespeicherter Sternestand sind sichtbar. Die vier echten Negativ-Touchereignisse werden im Testprotokoll gebunden; das PNG allein beweist keine Eingabesperre."
+    },
+    {
+      "artifact_entry": "local-fixture/green-corrected-render-final-v2/captures/quiz-json-null-explanation.png",
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-json-null-explanation.png",
+      "bytes": 45484,
+      "sha256": "7547f8ace1554781e12edb0cbdc49c2ce84c75e45f40d3a831011039d987ab82",
+      "git_blob_sha": "5d6352d88c97e1b01104ce39a1745cd9a36dc8ca",
+      "size_px": [
+        640,
+        360
+      ],
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": "Im kompakten gescrollten Originalzustand sind der grüne B-Antwortstreifen, C/D Ausgeblendet und Nächste Frage sichtbar. Der Feedbacktext Richtig! liegt in diesem konkreten Frame unter dem Scrollclip; sein exakter tatsächlicher Controlwert und die fehlende erfundene Erklärung sind separat im Runtimebericht geprüft. Kein sichtbarer null-Text."
+    }
+  ]
+}

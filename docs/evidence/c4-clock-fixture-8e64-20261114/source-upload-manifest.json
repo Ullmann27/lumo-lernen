@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "base_commit": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "files": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/prepared/test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "sha": "830b3f661c2a289f5ae76ed545cfed60fe27b36a",
+      "baseline_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/c4-clock-fixture-8e64-20261114/prepared/.github/workflows/lumo-nextgen-feature-contracts.yml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 7711,
+      "sha256": "865996a3c4a6ad81a4629cb983a364b0a80474e0aa00c5715667be3fa02b48b7",
+      "sha": "5a5c88cd1cc63e629461acb88fe62dd442d65d83",
+      "baseline_blob": "829b819945d980e2082f478c1ddccea9463e3fa5"
+    }
+  ],
+  "product_changes": 0,
+  "sdk_execution": "NOT_RUN",
+  "scope": "One test fixture advances the real zero-delay production clock; all six retry cases added to existing early gate without removing any complete-suite gate"
+}

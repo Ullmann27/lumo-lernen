@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "downloaded_at": "2026-11-14T09:19:45.485900+00:00",
+  "artifact_id": 14107945718,
+  "workflow_run": 43579548170,
+  "host": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "archive_bytes": 2080118,
+  "archive_sha256": "f459f562ca26a2eafb2d8c66bfc3dd6efb7d32786367aa588f01fb8b5fe19a28",
+  "all_zip_entries_crc_valid": true,
+  "entry_count": 10,
+  "files": [
+    {
+      "path": "EXIT-CODE.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "03e54144f696fcf751dfa1afe3a4642a28735083b3ca6f13d98aff97ee42ae64"
+    },
+    {
+      "path": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414"
+    },
+    {
+      "path": "LOG-EXIT-CODE.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "captures/1200x896.png",
+      "bytes": 705374,
+      "sha256": "e7ddd655f26b2c84c7ef2f9235c59f2cf399b547aec8ea8535006dfccbe9586d",
+      "width": 1200,
+      "height": 896,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/1200x896.png"
+    },
+    {
+      "path": "captures/1280x720.png",
+      "bytes": 635882,
+      "sha256": "bb22f40bb2193e6d67aa43a5cec929eee8fd98a84c20e436ac4d191c8f1a2e12",
+      "width": 1280,
+      "height": 720,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/1280x720.png"
+    },
+    {
+      "path": "captures/360x800.png",
+      "bytes": 199897,
+      "sha256": "4d8b0db20534914db8960081886236421357d13af0a2f8e09580ed0905b387f4",
+      "width": 360,
+      "height": 800,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/360x800.png"
+    },
+    {
+      "path": "captures/640x360.png",
+      "bytes": 150801,
+      "sha256": "6f34ad2e2db979155137f6a9bb7d958aafb70079065ed61a9917e284ee057c2c",
+      "width": 640,
+      "height": 360,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/640x360.png"
+    },
+    {
+      "path": "captures/740x840.png",
+      "bytes": 390737,
+      "sha256": "5990524a7235f52e3588acea53db98c8cccad1cde1bfcb43831122f5bb1d0a72",
+      "width": 740,
+      "height": 840,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/740x840.png"
+    },
+    {
+      "path": "flutter.log",
+      "bytes": 10997,
+      "sha256": "e6807cd54af562f21269133da1d5b0a3048c0ae529d2b97de691e4079ebbcb7f"
+    }
+  ],
+  "png_count": 5,
+  "images": [
+    {
+      "path": "captures/1200x896.png",
+      "bytes": 705374,
+      "sha256": "e7ddd655f26b2c84c7ef2f9235c59f2cf399b547aec8ea8535006dfccbe9586d",
+      "width": 1200,
+      "height": 896,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/1200x896.png"
+    },
+    {
+      "path": "captures/1280x720.png",
+      "bytes": 635882,
+      "sha256": "bb22f40bb2193e6d67aa43a5cec929eee8fd98a84c20e436ac4d191c8f1a2e12",
+      "width": 1280,
+      "height": 720,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/1280x720.png"
+    },
+    {
+      "path": "captures/360x800.png",
+      "bytes": 199897,
+      "sha256": "4d8b0db20534914db8960081886236421357d13af0a2f8e09580ed0905b387f4",
+      "width": 360,
+      "height": 800,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/360x800.png"
+    },
+    {
+      "path": "captures/640x360.png",
+      "bytes": 150801,
+      "sha256": "6f34ad2e2db979155137f6a9bb7d958aafb70079065ed61a9917e284ee057c2c",
+      "width": 640,
+      "height": 360,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/640x360.png"
+    },
+    {
+      "path": "captures/740x840.png",
+      "bytes": 390737,
+      "sha256": "5990524a7235f52e3588acea53db98c8cccad1cde1bfcb43831122f5bb1d0a72",
+      "width": 740,
+      "height": 840,
+      "local_path": "/tmp/lumo-1453-c4-originals/captures/740x840.png"
+    }
+  ],
+  "scope": "Original early C4 regression artifact: eight passed tests and four failed numerical size checks; no full Flutter or Android acceptance."
+}

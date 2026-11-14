@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "FROZEN_READ_ONLY_REVIEW_GAMEPLAY_LAYOUT_BLOCKER",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "artifact_id": 14103142984,
+  "files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/learning-worlds-selected-byte-check.json",
+      "bytes": 6126,
+      "sha256": "1263e4dd1b419106f761ed519cec9e9149ca9e47ca27c9069841bd3a2d853dd6",
+      "git_blob_sha1": "3833df2f431b3a8dbd6388a06756e6a37cbfa51a",
+      "target": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-selected-byte-check.json",
+      "mode": "100644"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/selection-learning_worlds.json",
+      "bytes": 4619,
+      "sha256": "9efaa494b4f14c198f6293ddf6e8089c19bdd6eac0e85b7915a05d43ae2afd8e",
+      "git_blob_sha1": "55229a9052230773ceebb9ab266c092bf42eb1f3",
+      "target": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/selection-learning_worlds.json",
+      "mode": "100644"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/learning-worlds-image-review.json",
+      "bytes": 14806,
+      "sha256": "e33e43a7efb66ab5223d65bcffc8d9cd1f7d5780e342be4777a33cd796de24ae",
+      "git_blob_sha1": "d42ec60fa1a3c977c8d66820781505085b889da3",
+      "target": "docs/evidence/studio-2020-native-acf51-image-review/learning-worlds/learning-worlds-image-review.json",
+      "mode": "100644"
+    }
+  ]
+}

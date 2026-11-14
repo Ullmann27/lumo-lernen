@@ -1,0 +1,48 @@
+[
+  {
+    "kind": "actual_flutter_navigation_touch",
+    "target": {
+      "action": "leave_paused_game",
+      "caption": "Zur Spieleauswahl",
+      "bounds": [
+        116,
+        1377,
+        964,
+        1503
+      ]
+    },
+    "capture": {
+      "file": "0001-actual-flutter-navigation.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "71a1f3b27c749ea6d9ddf6157d35f24bc3840904c33973803da465c0ff77f386"
+    },
+    "point": [
+      540,
+      1440
+    ]
+  },
+  {
+    "kind": "actual_flutter_navigation_touch",
+    "target": {
+      "action": "leave_cards_showcase",
+      "caption": "Zur Spielwelt zurück",
+      "bounds": [
+        32,
+        157,
+        158,
+        283
+      ]
+    },
+    "capture": {
+      "file": "0002-actual-flutter-navigation.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "bca71925e43938a29937053eb97f4932aaa3abb84be329105e8a1c65754ff002"
+    },
+    "point": [
+      95,
+      220
+    ]
+  }
+]

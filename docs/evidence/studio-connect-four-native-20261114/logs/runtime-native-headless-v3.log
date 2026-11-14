@@ -1,0 +1,175 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+ERROR: [ConnectFourRuntime] Drop 1 into column 1 actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:96)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:160)
+       [3] _frames (res://scripts/tests/connect_four_runtime_regression.gd:77)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart durably acknowledged move 1
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] One geometry disc per acknowledged move
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:163)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Drop 2 into column 7 actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:96)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:160)
+       [3] _frames (res://scripts/tests/connect_four_runtime_regression.gd:77)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart durably acknowledged move 2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] One geometry disc per acknowledged move
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:163)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Drop 3 into column 2 actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:96)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:160)
+       [3] _frames (res://scripts/tests/connect_four_runtime_regression.gd:77)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart durably acknowledged move 3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] One geometry disc per acknowledged move
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:163)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Drop 4 into column 7 actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:96)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:160)
+       [3] _until (res://scripts/tests/connect_four_runtime_regression.gd:84)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart durably acknowledged move 4
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] One geometry disc per acknowledged move
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:163)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Drop 5 into column 3 actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:96)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:160)
+       [3] _frames (res://scripts/tests/connect_four_runtime_regression.gd:77)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart durably acknowledged move 5
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] One geometry disc per acknowledged move
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:163)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Drop 6 into column 6 actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:96)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:160)
+       [3] _frames (res://scripts/tests/connect_four_runtime_regression.gd:77)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart durably acknowledged move 6
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] One geometry disc per acknowledged move
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:163)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Drop 7 into column 4 actionable
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _tap (res://scripts/tests/connect_four_runtime_regression.gd:96)
+       [2] _run (res://scripts/tests/connect_four_runtime_regression.gd:160)
+       [3] _frames (res://scripts/tests/connect_four_runtime_regression.gd:77)
+       [4] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart durably acknowledged move 7
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] One geometry disc per acknowledged move
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:163)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Dart win and original wallet reward committed
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [2] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Four actual winning discs visibly marked
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:175)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+ERROR: [ConnectFourRuntime] Winning positions supplied by original Dart engine
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/connect_four_runtime_regression.gd:45)
+       [1] _run (res://scripts/tests/connect_four_runtime_regression.gd:176)
+       [2] _until (res://scripts/tests/connect_four_runtime_regression.gd:86)
+       [3] _frame (res://scripts/tests/connect_four_runtime_regression.gd:72)
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (640.0, 360.0), "decor_size": (640.0, 360.0), "render_rect": [P: (0.0, 0.0), S: (640.0, 360.0)], "system_insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "window_size": (640, 360) }
+[Mobile] actual Android View insets { "view_size": (320.0, 740.0), "decor_size": (320.0, 740.0), "render_rect": [P: (0.0, 0.0), S: (320.0, 740.0)], "system_insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "insets": [P: (0.0, 24.0), S: (0.0, 24.0)], "window_size": (320, 740) }
+[ConnectFourRuntime] FAIL 97 checks, 1406 frames

@@ -1,0 +1,26 @@
+{
+  "recorded_at_utc": "2026-11-14 18:45:46 UTC",
+  "scope": "Read-only executable version checks after local environment recovery; no new render or SDK restore.",
+  "commands": [
+    {
+      "command": "blender --version",
+      "path": "/usr/bin/blender",
+      "exit_code": 0,
+      "stdout_first_line": "Blender 4.3.2"
+    },
+    {
+      "command": "godot --version",
+      "path": "/usr/local/bin/godot",
+      "exit_code": 0,
+      "stdout_first_line": "4.6.3.stable.official.7d41c59c4"
+    },
+    {
+      "command": "ffmpeg -version",
+      "path": "/usr/bin/ffmpeg",
+      "exit_code": 0,
+      "stdout_first_line": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+    }
+  ],
+  "adb_path": null,
+  "local_flutter_dart_executed": false
+}

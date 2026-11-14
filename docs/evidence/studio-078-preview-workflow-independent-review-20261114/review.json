@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_REVIEWED_DELTA",
+  "scope": "Independent read-only review of Studio workflow v2 relative to the previously reviewed ffmpeg-v1. No tests or Android execution by this review.",
+  "repository": "Ullmann27/lumo-lernen",
+  "path": ".github/workflows/lumo-studio-2020.yml",
+  "baseline": {
+    "blob": "bc1d497ab87a5211c13b0cafeb2a6e5493fe04d4",
+    "sha256": "c333c4d33c37fd1f08bfce9b750f348e2ecd8fb16f3c25a6adc7543f546d30a6"
+  },
+  "reviewed": {
+    "blob": "b8e63e1841828cab1e75ef3896e47b2d4d6aa38f",
+    "sha256": "441ddceba899294f0c5a2c4657473251978b3be38704b31a692f39d786c377a7"
+  },
+  "checks": {
+    "full_blob_text_read": true,
+    "strict_inverse_byte_equality": true,
+    "new_contract_step_count": 1,
+    "new_flag_count": 2,
+    "actual_api35_and_api37_tour_commands": true,
+    "step_before_java_flutter": true,
+    "shell_set_euo_pipefail": true,
+    "explicit_nonempty_test_file": true,
+    "existing_step_order_preserved": true,
+    "all_other_gates_budgets_permissions_and_arguments_byte_equal": true
+  },
+  "frozen_dependencies": {
+    "qa_commit": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+    "probe_blob": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+    "test_blob": "ca2477afc4708385e705645613d45e3374f829f7",
+    "test_count_existing_actual_ci": 23
+  },
+  "limits": [
+    "Root must include the exact frozen probe and test when integrating the workflow; the workflow alone does not install them.",
+    "The existing default for the optional skip flag remains false in the probe. These two explicit Studio invocations enable it.",
+    "Successful API35 diagnostic execution does not establish API37 success.",
+    "This read-only delta review did not repeat A's YAML/actionlint validation or the 23 contracts."
+  ]
+}

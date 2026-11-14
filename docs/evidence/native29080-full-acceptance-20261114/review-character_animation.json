@@ -1,0 +1,286 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_utc": "2026-11-14T16:46:38.929318+00:00",
+  "status": "ACCEPTED_WITHIN_STATIC_IMAGE_SCOPE",
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "native_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "workflow_run_id": 43611803408,
+  "all_nine_jobs_success_from_read_original_metadata": true,
+  "artifact_id": 14121618349,
+  "archive_sha256": "f9d84c3d4f80f27fe134ab5e4cb040b811262d6d6c6a032433bc5f644ed886fc",
+  "archive_bytes": 227270408,
+  "count": 12,
+  "accepted_count": 12,
+  "blocking_issues": [],
+  "scope": "Twelve fresh current Native CI original PNGs personally opened one by one; static visual acceptance only",
+  "limits": [
+    "No Android/APK, physical-device, FPS, full release or all-game acceptance.",
+    "No audio listened to and no movie decoded/viewed by this reviewer; Root handles the separate current movie review.",
+    "Runtime sidecar reading is numerical evidence, not heard speech or phoneme/viseme proof.",
+    "No old47ca/344/785 image acceptance transferred. Assignment status was a historical pre-completion planning field; actual completed status was read from current run.json/jobs.json.",
+    "No product, source, pin, receipt, Git ref or original image changed."
+  ],
+  "runtime_sidecar": {
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+    "bytes": 83168,
+    "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+    "git_blob": "471e2e633df635545f99270e1960eb5ba41ced2e",
+    "scope": "Read-only numerical sidecar summary, separate from image observations; no film decoded or heard by this reviewer",
+    "rows": 144,
+    "lesson_kind": "syllables",
+    "lesson_word": "Apfel",
+    "recording_fps_not_device_fps": 24,
+    "actual_max_jaw_weight": 0.699060499668121,
+    "actual_max_blink_weight": 0.954545454545413,
+    "observed_audible_jaw_field": true,
+    "observed_muted_closed_field": true,
+    "observed_stopped_closed_field": true,
+    "word_source": "res://assets/audio/voice/words/apfel.wav",
+    "same_bytes_as_original_archive_member": true
+  },
+  "images": [
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "bytes": 605103,
+      "sha256": "fca50c2cbf0a0bfe6ca3f2a62b22ad389cd880b9fd1bb13662a7df6ec3ff1c57",
+      "git_blob": "b6640daef5a1c728b0a387e282ccb665df8a58dd",
+      "size_px": [
+        690,
+        829
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Lumo ist mit sichtbaren Händen, Beinen und Schwanz über dem Übergang zwischen Startinsel und nächster Plattform erkennbar. Der gepflasterte Weg und die Folgeinseln sind räumlich lesbar. Spiele/Pause, Statuszeilen sowie linker Joystick und rechter Springenknopf bleiben vollständig sichtbar; die unteren Eingaben überdecken die Figur nicht.",
+      "limitations": "Das Standbild belegt die sichtbare Luftpose, keine Absprungzeit, Kollisionsfunktion, Sprunghöhe oder Bildrate. Die sehr hellen Wolken und Leuchtpunkte begrenzen die Materialdetailbeurteilung.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "bytes": 473783,
+      "sha256": "2561fbf0953953cce91dcf43fae6274ac25a5517475245eedf8cdfddeae19f24",
+      "git_blob": "98b86563bb0e1305fec15cab3d147267885bac7a",
+      "size_px": [
+        412,
+        915
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Im schmalen Portraitformat steht Lumo sichtbar auf dem mittleren gepflasterten Weg; die nahe Folgeplattform bleibt vor ihm erkennbar. Die Statuszeile bricht bei Lernstopps um, ohne die beiden oberen Schaltflächen zu überdecken. Bewegungsring, Springenbeschriftung und Haltenhinweis liegen vollständig im Bild.",
+      "limitations": "Die Bezeichnung landed wird als Originaldateiname erhalten; eine tatsächlich abgeschlossene Landung und deren Physik folgen nicht allein aus einem Standbild. Keine Messung physischer 48-dp-Flächen aus Pixelmaßen.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655541,
+      "sha256": "6f0f0c7eab4d16b4d294821a66022c85fc58c8434c56a2bb7832e491284ed80a",
+      "git_blob": "1cb6a46ebeeb719bcacb0c2d02f316623175db2e",
+      "size_px": [
+        1280,
+        720
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Vier farblich getrennte Rhythmusspuren führen zu vier sichtbaren Eingabeflächen mit 1/D, 2/F, 3/G und 4/H. Ein heller diagonaler Slide liegt zwischen der dritten Zielzone und der rechten Spur. Punkte/Combo, Zur nächsten Spur!, der Rückweg und Pause sind lesbar. Lumo steht als kleine vollständige Figur mittig auf der beleuchteten Bühne.",
+      "limitations": "Lumo ist hier zu klein für eine Gesichtsbeurteilung. Ein Bild beweist weder Musik-/Eingabesynchronität noch gelungene Slide-Interaktion; es wurde kein Ton angehört.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "bytes": 1856392,
+      "sha256": "ca5c0e21ad762bc58c0c2c0e6e9079c4e1998e1f69f2e1244197975444578555",
+      "git_blob": "26400d53984c57affc90012fbb2839575b3287fe",
+      "size_px": [
+        2400,
+        1080
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Im breiten 2400×1080-Bild bleiben Lumo und der unmittelbare Startweg frei. Joystick und großer Springenknopf liegen jeweils vollständig im Bild und seitlich außerhalb der Figur. Spiele und Pause sind vom Rand eingerückt. Die oberen Status- und Etappenzeilen sind lesbar, liegen aber teilweise über ferner Inselgeometrie.",
+      "limitations": "Der große obere Textblock beansprucht beträchtlichen Bildraum; dunkle Schrift berührt stellenweise dunklere Inselteile. Dies bleibt eine sichtbare Kontrast-/Gestaltungsgrenze, ohne hier Lumo oder die Hauptbedienung zu verdecken. Der Capture-Dateiname belegt keinen physischen Geräteausschnitt.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "git_blob": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Die echte Lernansicht zeigt Wörter bauen · Apfel und die konkrete nächste Silbe Ap. Zwei leere Zielplätze und die auswählbaren Silben fel und Ap sind deutlich getrennt. Lumo ist links vollständig mit Armhaltung, Körper und Füßen sichtbar. Die untere Fortschrittszeile 0/2 und alle drei Schaltflächen Nächste Silbe zeigen, Noch einmal und Zur Aufgabe sind lesbar.",
+      "limitations": "Dies ist die Silbenaufgabe Apfel, kein aktueller Englischdialog. Das Bild allein beweist keine Hilfs-/Antwortbedienung, Sprachausgabe oder gespeicherten Lernfortschritt.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "git_blob": "67e626fd8edf3af3bf3c4955fd905047d9897e7c",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Die Nahaufnahme zeigt die charakteristische orange-weiße Fuchsform, beide Ohren, Brille und blaues Lumo-Outfit. Beide Pupillen sind mit einer seitlichen Blickausrichtung sichtbar; die Schnauze bleibt geschlossen. Der untere Original-Lumo · stumm-Hinweis ist lesbar.",
+      "limitations": "Kopfpose und Zeitpunkt unterscheiden sich von neutral.png. Daher ist dies kein isolierter Pixelvergleich ausschließlich der Augenbewegung. Ein stumm-Label ist kein Hörnachweis.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "git_blob": "8645e70de9f6badf6e4c260eaf02957c6e4ad147",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Lumos Kopf ist nach unten/rechts geneigt; Ohren und Brille bleiben vollständig im Bild. Beide offenen Augen und die geschlossene Schnauzenkontur sind sichtbar. Der Körper ist als beabsichtigte Brustnahaufnahme unten angeschnitten. Die Pause/geschlossen-Beschriftung ist lesbar.",
+      "limitations": "Neutral bezeichnet hier die geschlossene Gesichtsstellung, nicht einen Nachweis einer unbewegten Ganzkörper-Bindpose. Die Kontur bestätigt weder Knochenanzahl noch Original-GLB-Identität ohne Quellenbindung.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/muted.png",
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "git_blob": "87810252dcc1e0e627c267320a43e2cc8346f277",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Die nahezu frontale Nahaufnahme zeigt beide offenen Augen, erkennbare Pupillen und eine geschlossene, leicht lächelnde Schnauze. Fellfarben, Brille und Lumo-Kleidung bleiben konsistent; der stumm-Hinweis ist vollständig sichtbar.",
+      "limitations": "Das Bild zeigt nur den geschlossenen Zustand unter dieser Beschriftung. Tatsächliche Stummschaltung, Lautstärke und Start-/Stop-Zeit sind aus dem Bild nicht hör- oder messbar.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink.png",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "git_blob": "22808f200b3258d7ec2f25d3bac6ad3302742b0e",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Beide orangefarbenen Lidflächen bedecken die Pupillen deutlich. Damit unterscheidet sich der Gesichtszustand sichtbar von den offenen Augen der benachbarten Originale. Brille, Ohren und Schnauze bleiben erkennbar. Schmale helle Restkanten beziehungsweise eine dunkle Naht bleiben am unteren Lidabschluss sichtbar.",
+      "limitations": "Die Lidkante ist eine verbleibende sichtbare Qualitätsgrenze; keine Behauptung anatomisch perfekter oder vollständig nahtloser Lider. Die Apfel/lokale-WAV-Beschriftung ist kein Audiohörbeleg.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "git_blob": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Beide Augen sind wieder offen und die Schnauze geschlossen. Die leicht seitliche Kopfhaltung bleibt innerhalb des Ausschnitts; Ohren und Brille sind vollständig sichtbar. Unten steht wieder Pause/geschlossen.",
+      "limitations": "Das einzelne Bild beweist keine Dauer bis zum Stopp. Ein offenes Auge nach dem Blinkbild allein ersetzt keine zeitliche Animationsprüfung; der Film gehört zum getrennten Rootreview.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "git_blob": "1f7ca9f42343c3653990403225db5529808207da",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Die Lider bedecken nur den oberen Teil der Augen; Pupillen und helle Augenflächen sind darunter noch sichtbar. Dieser tatsächliche Zwischenzustand ist visuell von offen und geschlossen unterscheidbar. Die Brillen- und Schnauzenform bleiben erhalten.",
+      "limitations": "Die aufgesetzte Kontur der Lidflächen bleibt sichtbar. Ein Zwischenbild weist keinen gleichmäßigen Verlauf, keine konkrete Blinkfrequenz und keine physische Bildrate nach.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "planned_local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "git_blob": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8",
+      "size_px": [
+        640,
+        640
+      ],
+      "review_method": "Individually opened actual original using view_image in this review; no old view transferred",
+      "reviewed": true,
+      "accepted": true,
+      "blocking_issue": false,
+      "findings": "Unter der Apfel/lokale-WAV-Beschriftung ist Lumo frontal mit offenen Augen zu sehen. Die untere weiße Schnauzenkontur bleibt geschlossen; die Artikulation ist im Einzelbild dezent. Es ist weder ein offener Mundraum noch eine erkennbare Phonem-/Visemform dargestellt.",
+      "limitations": "Die amplitudenabhängige Kiefergewichtung wird ergänzend im aktuellen Sidecar numerisch protokolliert; diese Aufnahme allein belegt keine zeitgenaue Lippensynchronität oder hörbare Wiedergabe.",
+      "same_bytes_as_original_archive_member": true,
+      "preflight_sha256_equals_post_review": true
+    }
+  ],
+  "original_binding_file": "image-original-binding-character_animation.json",
+  "original_binding_sha256": "f5c6474ae43941302a5af7653c77bfde99082b045ef417b388ddcd6802923d49"
+}

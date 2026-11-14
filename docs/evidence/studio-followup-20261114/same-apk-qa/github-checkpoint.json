@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "qa_commit": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "qa_parent": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "tree_sha": "0774003dfb399641044cf83b654335bd91ad4373",
+  "branch": "chatgpt/lumo-studio-4ab-ocr-recheck-20261114",
+  "pr": 478,
+  "actual_apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "separate_current_product_source_not_tested_here": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "delta_vs_product_paths": 16,
+  "unchanged_original_blobs_and_modes": 4111,
+  "modified_original": 2,
+  "new_files": 14,
+  "independent_review_sha256": "ddf1304705b4e11db3addef7f62d80998da7e4a759200f8f70cc48e0ea3d9fcc",
+  "android_result": "PENDING_NEW_RUN"
+}

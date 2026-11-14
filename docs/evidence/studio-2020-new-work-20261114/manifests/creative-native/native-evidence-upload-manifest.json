@@ -1,0 +1,727 @@
+{
+  "kind": "docs_only_explicit_evidence",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/README-native-title.md",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/README-native-title.md",
+      "bytes": 1861,
+      "sha256": "8e2f29b4e490aca74d8f6b4f84865c9bcbc87792effd661aea384cd66bb51bfa",
+      "git_blob": "04745888ccd377d37f7e8f17ebcf8cd1265004f7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/native-source-upload-manifest.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/native-source-upload-manifest.json",
+      "bytes": 1963,
+      "sha256": "ea075b909d8325ca9bcc682d531aa9b4876d76382f1da9ae4f29db85e095d1e9",
+      "git_blob": "fd2eeb8d03a725dc79ca0ed00e57bb9e20ceb4f8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/replay_treasure_title_ocr.py",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/replay_treasure_title_ocr.py",
+      "bytes": 2974,
+      "sha256": "91e4a905b19531d98b1fa7d61c1b2a81cf1d2700b4d86670b38a615d600641d7",
+      "git_blob": "794464e0ddca6c3327a9fb39b6bfb48e72a58e1f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/native-title-against-803.patch",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/native-title-against-803.patch",
+      "bytes": 693,
+      "sha256": "8c95c9baf146cf692c3622c90ed5252d5a93ec66a5ba0789a403f96146e0fa4c",
+      "git_blob": "3b1b628ae2f7e886ab249773488736492d34a8ed",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/native-title-review.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/native-title-review.json",
+      "bytes": 6314,
+      "sha256": "bb2a5d7c683fb0494039666ea993dccb0ff8aec443e3f9bbb10bedb67a0b590b",
+      "git_blob": "89d119655227e0ca4fe550924c158e5c9ec6c11d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/source-before.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/source-before.json",
+      "bytes": 537,
+      "sha256": "4fff42ccc1244c6a96fa878dbdae3f6038291dbbb5cde09018ccc1aee3c14cfe",
+      "git_blob": "9d6db6f96dc11ca679523aeaa0a495563c223cf8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/runtime-dependency-binding-before.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-dependency-binding-before.json",
+      "bytes": 59126,
+      "sha256": "d76babc0c9f8603acf69c2c9fe7434abb98e0abdd7459ed7ac8f3c9da4901dc8",
+      "git_blob": "9d4aff02359fb56af32074275f3ab0da3fc89d7d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/runtime-dependency-binding-after.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-dependency-binding-after.json",
+      "bytes": 95108,
+      "sha256": "a646b27131e5dbedbb430edee61154c61c20cd3e41783a5a109ae623ae160bb4",
+      "git_blob": "8a33eb84d557217a30b560c43600ad6d36ab564a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/runtime-import.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-import.log",
+      "bytes": 57544,
+      "sha256": "97a8300e63e02787bc5069eeba9b25a4cec40d1807fccb18318d300c0e0e78d6",
+      "git_blob": "e797c67e5a40b7356079a9b144b48ce407ece353",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/runtime-import.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/runtime-import.json",
+      "bytes": 389,
+      "sha256": "f521c78cf52b529f2d9623be002b6296a8d3a0a854464b1ec63a2c3be33406e1",
+      "git_blob": "f7072d2095bd801228267ae9fb493133a785de26",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/initial-native-harness-error.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/initial-native-harness-error.json",
+      "bytes": 379,
+      "sha256": "52c778a5e5fcf44b032631c6290588e6965aad1554c1c8088b20b0b5572c1a0b",
+      "git_blob": "2dd366fe59d1bc59298527a4143e15104e63daca",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/treasure-render-launcher.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/treasure-render-launcher.log",
+      "bytes": 364,
+      "sha256": "75f2541a67ad75c59ecb4af9cf3fe6f19988a2fc6df51fab02a90b96ee425f78",
+      "git_blob": "0aefd64b1cd444b7f22f2080b4c50bc40fbf714c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/treasure-render-launcher.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/treasure-render-launcher.json",
+      "bytes": 785,
+      "sha256": "7ea7aa4ca1912c41685e6ef7b7d8426f4f4b11f21301ab9849a3082d8ad216de",
+      "git_blob": "b7388d0ec7092166285f17c9be4005462e0f8913",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr-original.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr-original.log",
+      "bytes": 729,
+      "sha256": "eec7ff236191170f9e5c5e68e46d292b5e6d73931bc409a639952efe37b53160",
+      "git_blob": "a0b3e6e9d4251db40620baef720d3e78f886cfb7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr-replay.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr-replay.log",
+      "bytes": 1567,
+      "sha256": "5f2f4e556d59ea02cb64e2f546ef3df733247c1fc8f884459f4bc6b6cfd300c0",
+      "git_blob": "471b10fb4cc93787735f7f957ddcf57bd8f306da",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render/godot.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render/godot.log",
+      "bytes": 3097,
+      "sha256": "5d0f59a377a22de904a2258315f5772c0d0fe36d24465752baa09d6cbce577fa",
+      "git_blob": "2f027dab34d8e2beb825551011424ffe2cfdab0f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render/run.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render/run.json",
+      "bytes": 400,
+      "sha256": "64164c2a634ac479dab98d105e6f0cec87518f5f6206677a44c52e99644915c3",
+      "git_blob": "4c91480be26b472dda3e4358523d1f5d04971a48",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-red-headless/godot.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless/godot.log",
+      "bytes": 4551,
+      "sha256": "1503d17e24d0a83837979e4cf4f651db6a275c024bf45b18beec5d479a8595ba",
+      "git_blob": "d563377f086e5c03ac9ff48d3d4c6af8455378d8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-red-headless/execution.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless/execution.json",
+      "bytes": 459,
+      "sha256": "951efd58486028fce4bfb2374de4bd9b16019291d27f6ddb1465f8522112bc72",
+      "git_blob": "9eb0fdd70b33ab1b0db561a5e39c05961e315f7d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-red-headless-v2/godot.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless-v2/godot.log",
+      "bytes": 4477,
+      "sha256": "2735b42530f8ce2fd133ef487c5a67221ad48ee298eaacabff99afa5104d7bc2",
+      "git_blob": "40396d6821ecf996dfea30cf6970e321d302d2a7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-red-headless-v2/execution.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-red-headless-v2/execution.json",
+      "bytes": 664,
+      "sha256": "cbbbe61bc968c3c6d2a8f49eabead2d521ba2d2063f76224f4d2406c90da0ece",
+      "git_blob": "9e18bead861178b7f0b5622366e9ed063cc84968",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-headless/godot.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-headless/godot.log",
+      "bytes": 2801,
+      "sha256": "c87b567d20e7868a0304ac27191387b9e7a3e7e12aea9d410731c36925b9b811",
+      "git_blob": "82c81d3897b4636d88e4f44acc0abd191584b4dd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-headless/execution.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-headless/execution.json",
+      "bytes": 663,
+      "sha256": "81d9add02127da841aa7e78d1946cd062b4113001929156cec1ceb38d4e1e393",
+      "git_blob": "fb06f626425ac8c18a1a73d40ef20c7a40eaa4dd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-existing-density-headless/godot.log",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-existing-density-headless/godot.log",
+      "bytes": 1239,
+      "sha256": "3455af332615c52dbca7be133eaad00b83257ff8859266841cffaa5e7128e04a",
+      "git_blob": "0faa9236aaa5016eac807f0d81a97e5f6e5bf0fc",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-existing-density-headless/execution.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-existing-density-headless/execution.json",
+      "bytes": 657,
+      "sha256": "e4c9bef298ace87056bcb2f4e001761fbc715617e9b7ea81e8512081cf86639e",
+      "git_blob": "ab86404111af1442a8ec6f645ed9e4baacc44b65",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-compact.png",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-compact.png",
+      "bytes": 317999,
+      "sha256": "4b728bf98c4494a8460cae52a700d50b4d71303215c0a90588d90a9e8a1c6979",
+      "git_blob": "9e4ba50dbf65d56ed6f9a3f68f0cf65c2f107dce",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-fold.png",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-fold.png",
+      "bytes": 4289044,
+      "sha256": "5092f84494226a982de99794b5fef4060fc632ab1f92e5e4c2519070f79124f0",
+      "git_blob": "33d134dd94f6fd779f32d6f8d66dddde007919f9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-landscape.png",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-landscape.png",
+      "bytes": 2754869,
+      "sha256": "9dedbb2382d6f88b20434d7b3ee5ad8d6d2f9f316bcf7ece31c0443ab42ac82e",
+      "git_blob": "d89ec9c2ecf97f316af62e4dddea876046b00db0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-portrait.png",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-portrait.png",
+      "bytes": 2156680,
+      "sha256": "24a8d89cf60208fea4a028ed0203a46d369a19b4dd843146cd21d49cf82e1704",
+      "git_blob": "33b705d6742504886b0d679479019a0ba4403180",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-report.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/treasure-green-render-captures/treasure-title-report.json",
+      "bytes": 3116,
+      "sha256": "42edeca87413b05cb7b1ae4b6a717c8aebf18f3ef15d26db65a6ffe50e3b92c9",
+      "git_blob": "f4f492af458d1e83aaf73bb9102c1f85e81aac00",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/result.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/result.json",
+      "bytes": 131575,
+      "sha256": "4d070db85c013f06b56585b0cec4321dc704e028ebfc0d6379288e9113d1502b",
+      "git_blob": "74976b16240eafd418b781ee3e63cc3fa3b414e1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-contrast.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-contrast.tsv",
+      "bytes": 6430,
+      "sha256": "50557ad29e02f0510ff29ae80850147a122afe06109b205513f65aeb6594bc69",
+      "git_blob": "b836fc79577107801745e7b2b12767ab9030d2e3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-gold-component-0.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-gold-component-0.tsv",
+      "bytes": 110,
+      "sha256": "dfd69a0def69a86d74e294e4a288c347ba8854c7693e86fa75a09f4d1e02a076",
+      "git_blob": "2acae09ca9779bb18489d9e52ef63a19a6b6fefb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-navy-latin-1x.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-navy-latin-1x.tsv",
+      "bytes": 726,
+      "sha256": "78fc9f495b743a7508de080b6e4bd0f2b8ad226c6944435e9fd139ab2b649909",
+      "git_blob": "f83c6039633d21db11b2e8076a19c886412b11ca",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-navy-latin.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-navy-latin.tsv",
+      "bytes": 834,
+      "sha256": "9ebd6247c70658c4059324f4ed572360047ad1895c82146fe4c85e50a57d0bf3",
+      "git_blob": "994242775c2e6e4b221a0fa3f2f083f2f395e3d0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-raw.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-raw.tsv",
+      "bytes": 4797,
+      "sha256": "54f5c4023630d7a79d3530f8caa9c578b87f56080656f43c9d44db26d28ba555",
+      "git_blob": "6e1615827ab16b85602f5edcd16e1353aaff30c2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-teal-text-1x.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-teal-text-1x.tsv",
+      "bytes": 1761,
+      "sha256": "83830d1c22e4942d1aa1b151eafabab0ee27f6e0b0b198a6123141b7e68225fd",
+      "git_blob": "c7770625b78d307e331f75da1731c641536c90c5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-0.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1429,
+      "sha256": "b49da8d50c409e82d216123620b022582d6e9f729bea7c03bd74daad6fefb71a",
+      "git_blob": "ad35f056a8ee40236c098b6517cf2ae9d6ec23e4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-1.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1854,
+      "sha256": "a92e63918a5591a8494356aa7565c55904f11ccc676c2b1813ddd6d964a46e3b",
+      "git_blob": "86ab8067cfa09adbf5b97a12804c75104e720953",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-2.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 2235,
+      "sha256": "e99536876574942f3d6833db32b57036b275fab85952b14e512c9c74dec5ab83",
+      "git_blob": "358147d41ef005960edf053d8c3c1385592280d7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-3.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 2314,
+      "sha256": "083a15db9666372edff33a000f272fbfa82138351cb5b7b1dbc68bc297019d70",
+      "git_blob": "3176e8d997336fc99f9d953cfe71ec2120aa4cc6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-4.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 3255,
+      "sha256": "a53a334494eb4dbde5320eea9bc6c89de37129849fed3c6b6599eb619663e52e",
+      "git_blob": "1db645ed9ad8df5febc4c727f2f79984d1338785",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-5.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 3648,
+      "sha256": "bcf8428ad98b1ae657e7a5506b5452c6f0c38fc29fd3f78e69b2068a3508942f",
+      "git_blob": "50eb34fa766422b48d1a8555f2d8a464e2e7100c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-tile-0.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-0.tsv",
+      "bytes": 1429,
+      "sha256": "3a7b32397a1975869df5e3f7f13f985376851c267ea243177afaf2aee9370a1a",
+      "git_blob": "a5fdbf9a248b62882d942cb944c6bcb60174689c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-tile-1.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-1.tsv",
+      "bytes": 1079,
+      "sha256": "cf5ca82ca0a00145395eca952f8a0d481a1b446b03b013ba102d2b73df3f6494",
+      "git_blob": "4a3aa1c1086ab5e79ddb856fc26bbde055489698",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-tile-2.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-2.tsv",
+      "bytes": 2066,
+      "sha256": "229e855a9e75bff1f0dfe5e6f4f622982ab3b49e2550b8627fc015a927e12f66",
+      "git_blob": "c3a0655f2399c66fb723f63e11ed8205a1c019d6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-tile-3.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-3.tsv",
+      "bytes": 1214,
+      "sha256": "969907577aa866662136362fb4b51ffc0e5b32e545344c74baa3ebf244b60e41",
+      "git_blob": "55346fa9743211e1dc65318d7640b80c9b81fb17",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-tile-4.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-4.tsv",
+      "bytes": 2779,
+      "sha256": "81a6aee2e492586b2c604c249cc6fd191232467616b265ee99d79f3c92381315",
+      "git_blob": "c57babfb34b9520301ec5112648a9d327793bda8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin-tile-5.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin-tile-5.tsv",
+      "bytes": 2897,
+      "sha256": "6dad515f35530308e2c64aaed4ed4beae02e22eea4c9c7d415a5a600efa6e3e6",
+      "git_blob": "ae5e8c2b32edb820c973c7b7534e200099ac279a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-latin.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-latin.tsv",
+      "bytes": 4024,
+      "sha256": "11f06c1d99516f5debb9fa83ff3c51e92f59f53aae9fd8eb798a2589749738eb",
+      "git_blob": "8bc64407a7c40d8145e711c11ca661973625e4af",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-white-text.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-white-text.tsv",
+      "bytes": 4024,
+      "sha256": "11f06c1d99516f5debb9fa83ff3c51e92f59f53aae9fd8eb798a2589749738eb",
+      "git_blob": "8bc64407a7c40d8145e711c11ca661973625e4af",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-fold-ocr-contrast.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-fold-ocr-contrast.tsv",
+      "bytes": 23561,
+      "sha256": "b9a5b6673f1c7424b8e335317a5904da159706689d77dd3d741976ef0643ed6c",
+      "git_blob": "5569af18e11cc742eb52a689c0478a334966e5dd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-landscape-ocr-contrast.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-landscape-ocr-contrast.tsv",
+      "bytes": 16346,
+      "sha256": "9c2dee6424864dd56b9d9b34715e34a9ebdc9a2b864d22e757855a4fd54c8fb9",
+      "git_blob": "ea7de83cbdda8d2b4b8d45819a97bae6fac79cb2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-landscape-ocr-raw.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-landscape-ocr-raw.tsv",
+      "bytes": 13505,
+      "sha256": "5189d1b765652cdfac4a4337526a84bded4218a511bd8e8ce10774557553ab35",
+      "git_blob": "4cde1fec8beaeb3bdbdde3376fc78a579cd277c4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-contrast.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-contrast.tsv",
+      "bytes": 13422,
+      "sha256": "9e573245a48111132bcd593c90d9fac7e7efa20478d3d47b0feb74ab7b403027",
+      "git_blob": "eaaa7b71eeb83974967f012cfbb7bce7c93e924d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-gold-component-0.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-0.tsv",
+      "bytes": 232,
+      "sha256": "27b93c1f14b35d220fba09b4e6653ea85dc7f74880d237a1f3d7cd16f0756258",
+      "git_blob": "34572a65393cff7e083237f0fe0d9e0e38d36cb0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-gold-component-1.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-1.tsv",
+      "bytes": 110,
+      "sha256": "c01ddb7e1b7f07e2da99bb66210f8a95dbddf6b280b7b652bc68ef826440d679",
+      "git_blob": "3462f6360aea17340778e4e0c56b2ba71aca29f1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-gold-component-2.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-2.tsv",
+      "bytes": 230,
+      "sha256": "62db62f3bcc90becd230be3a37a8f161a632331bcb4667785e6cbe1b2d214566",
+      "git_blob": "305b28cac8129168230ae0f88e3900972b3fd1b9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-gold-component-3.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-3.tsv",
+      "bytes": 109,
+      "sha256": "2213d52982c6a0e457defe39d3b21cbf4ffe6e8dcf49ce4cde9bdeaa37650b19",
+      "git_blob": "e07b9de01bf7486c15d7c4d39abdca5fe086592f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-gold-component-4.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-gold-component-4.tsv",
+      "bytes": 109,
+      "sha256": "7e37c944b8afac05958573d2861ee3486184ca1d4c7c08db0fbc927f4b336967",
+      "git_blob": "71e9e980cbbc3b1b01517024740be404a2c6a967",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-navy-latin-1x.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-navy-latin-1x.tsv",
+      "bytes": 1557,
+      "sha256": "d2ffd7bde9663fed991c21d64c99be33523ee26a82d7212f4dcc6d5cf1aa8934",
+      "git_blob": "88deb1e01c7016c367355a223fd061809cf795fb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-navy-latin.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-navy-latin.tsv",
+      "bytes": 1439,
+      "sha256": "1901d6d9627e30221b9f1f2a69ba55446460a24b83237eae0cb5d17edeb47a56",
+      "git_blob": "df0b8eb397d5195e05fcf8c8048cd065654d9bea",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-raw.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-raw.tsv",
+      "bytes": 16700,
+      "sha256": "c2b7bd1bb788e49ccd99a0186965fe7db2ec64da7e5050048a3a5689a32d64d9",
+      "git_blob": "2da82c061ac9f98e6d5d291353fb1a0bb1d3a634",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-teal-text-1x.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-teal-text-1x.tsv",
+      "bytes": 8431,
+      "sha256": "fd9203d330d9305f888db2a20491cb507c3cc4a174bdd83bf924fdcddf2527ce",
+      "git_blob": "c5c25149988c02c1f1b0d71d565891c4636aa8cf",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-0.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 2461,
+      "sha256": "dfbd95b5f60a72b895bc41d9c0707e1022aca6e1e45d709e051c0fcdc83dc106",
+      "git_blob": "0f20fc4cbdf8e091fdadb42d3dfec96323eece71",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-1.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 2094,
+      "sha256": "2935de6550dc16d4a1be7f4f1881d58577868a6f046ba06879c8c9176e6d6756",
+      "git_blob": "f6cf416d2a66c41f7e8921d2ccb413a201fda030",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-2.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 4360,
+      "sha256": "5373c7e83b7a37fdad5dc17783b1cb2d63b89d56a3ed63f3d1f7aa6a0ef40171",
+      "git_blob": "40f02aa691c4850ad93c7feaa80588579d9778cd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-3.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 4917,
+      "sha256": "83e3ee2f953e2f9a57da94801217996619246b7ebbe3ea8cff3e558ef2a0ac3a",
+      "git_blob": "76693eb3ce3268180fa99c9e9f4d06e27923ca89",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-4.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 9681,
+      "sha256": "8a27ca68aa3589bbe5ce3a070d64af6a6d3eb654bc0b2fd97837ff7d1d71a985",
+      "git_blob": "d015656a6cb14eb7b399130b5cecc08dfc0898e3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-5.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 5409,
+      "sha256": "d8cc67b2a02c11198eb18d2048700cd4634689afef0a5bdff8aa90465a8f5e4b",
+      "git_blob": "fc3035ace1de15eac5da66271fc05f61b75fd051",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-tile-0.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-0.tsv",
+      "bytes": 1954,
+      "sha256": "d6a75cf8e9a0d76007754f13164306a7dc3095ce58d8059a2686d7b981d6946a",
+      "git_blob": "d24bcae54c4e1c30ed4ceba9abf437e27dbf07c1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-tile-1.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-1.tsv",
+      "bytes": 1581,
+      "sha256": "14dd3784512e9813117ea210bc4f0f359bf68043d46be58d979e3d81620bb8f1",
+      "git_blob": "88bfa21c1f0e91dd53b2523ec9b61464a0423b3f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-tile-2.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-2.tsv",
+      "bytes": 4577,
+      "sha256": "872eb2bee0c7e04e68f3b0fde9bf55f883e80a5b1b850a2034445c48ebd45465",
+      "git_blob": "2d6329f1f32f9418d09d6497cb65f2af14bd958f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-tile-3.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-3.tsv",
+      "bytes": 921,
+      "sha256": "fbda840da903a10ad73903c51826209d052c480cac8f56d54d2d7befe3530eeb",
+      "git_blob": "6866c442fb41bc05e239ba1b74e25b939d20d940",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-tile-4.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-4.tsv",
+      "bytes": 9700,
+      "sha256": "21bc5ce38758cc5a99d67de383624618251ccdb9839ed45a38e5ff7036110fd9",
+      "git_blob": "a83a9cc696039d9bc3d26930a51bfcecc04c769d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin-tile-5.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin-tile-5.tsv",
+      "bytes": 1067,
+      "sha256": "c1ae25a9b751d6f70821541bd36666ccf3fca492ada95ee0feb3bd1d8a2aafc9",
+      "git_blob": "33f26fb076982e72a9a9df0f2279f953d47b2629",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-latin.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-latin.tsv",
+      "bytes": 6912,
+      "sha256": "cefa5d7cd64eb3752e56601e81cfa9a8daf75d582c0da2d3c40fffa547027390",
+      "git_blob": "c8e7a077fef6edd9f39999ce0b444a5dd3de7658",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-white-text.tsv",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-white-text.tsv",
+      "bytes": 6912,
+      "sha256": "cefa5d7cd64eb3752e56601e81cfa9a8daf75d582c0da2d3c40fffa547027390",
+      "git_blob": "c8e7a077fef6edd9f39999ce0b444a5dd3de7658",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/new-compact-ocr-components.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/new-compact-ocr-components.json",
+      "bytes": 1015,
+      "sha256": "286f88ce27335e5bee23a30a09d42594f83a4762ddd7b7074288dac005b9aa38",
+      "git_blob": "275e9da94ab86252d2257b9e7a3c74ee7ad8763a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/evidence/title-ocr/original-android-ocr-components.json",
+      "path": "docs/evidence/studio-creative-geometry-86445-20261114/native/evidence/title-ocr/original-android-ocr-components.json",
+      "bytes": 3301,
+      "sha256": "e7af9c1e52c155525c1016c7ef5c24ef2e76923e7a2c7c1c013115ddd2310131",
+      "git_blob": "9a35995613fdba2d61253e4ae4a0f5039ed35ed7",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "file_count": 80,
+  "bytes": 10114142
+}

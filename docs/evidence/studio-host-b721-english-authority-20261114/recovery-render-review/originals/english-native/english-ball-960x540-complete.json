@@ -1,0 +1,214 @@
+{
+	"attempts": 2,
+	"background_depth": [
+		29.5917053222656,
+		56.6678237915039
+	],
+	"complete": true,
+	"controls": [
+		{
+			"enabled": false,
+			"exposed_px": [
+				26.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"text": "1"
+		},
+		{
+			"enabled": false,
+			"exposed_px": [
+				86.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				86.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"text": "2"
+		},
+		{
+			"enabled": false,
+			"exposed_px": [
+				146.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				146.0,
+				462.0,
+				52.0,
+				52.0
+			],
+			"text": "3"
+		},
+		{
+			"enabled": false,
+			"exposed_px": [
+				206.0,
+				462.0,
+				73.0,
+				52.0
+			],
+			"rect_px": [
+				206.0,
+				462.0,
+				73.0,
+				52.0
+			],
+			"text": "Hinweis"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				287.0,
+				462.0,
+				58.0,
+				52.0
+			],
+			"rect_px": [
+				287.0,
+				462.0,
+				58.0,
+				52.0
+			],
+			"text": "Neu"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				353.0,
+				462.0,
+				153.0,
+				52.0
+			],
+			"rect_px": [
+				353.0,
+				462.0,
+				153.0,
+				52.0
+			],
+			"text": "Schritt anhören"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				514.0,
+				462.0,
+				125.0,
+				52.0
+			],
+			"rect_px": [
+				514.0,
+				462.0,
+				125.0,
+				52.0
+			],
+			"text": "Zur Aufgabe"
+		}
+	],
+	"density": 1.0,
+	"explanation": "Richtig: „Ball“. Wähle jetzt „Zur Aufgabe“.",
+	"footer_px": [
+		12.0,
+		420.0,
+		936.0,
+		108.0
+	],
+	"foreground_far_depth": 18.5485973358154,
+	"header_px": [
+		12.0,
+		12.0,
+		936.0,
+		95.0
+	],
+	"hint_level": 2,
+	"lumo_px": [
+		141.830871582031,
+		123.910041809082,
+		174.659149169922,
+		279.179962158203
+	],
+	"name": "english-ball-960x540-complete",
+	"objects": [
+		{
+			"bounds_px": [
+				357.214263916016,
+				248.773574829102,
+				132.520538330078,
+				146.321853637695
+			],
+			"spatial_48dp_target_px": [
+				399.474548339844,
+				271.422302246094,
+				48.0,
+				48.0
+			],
+			"triangles": 1872,
+			"word": "pen"
+		},
+		{
+			"bounds_px": [
+				519.679382324219,
+				277.592864990234,
+				132.5205078125,
+				117.502563476562
+			],
+			"spatial_48dp_target_px": [
+				561.939636230469,
+				271.422302246094,
+				48.0,
+				48.0
+			],
+			"triangles": 1628,
+			"word": "ruler"
+		},
+		{
+			"bounds_px": [
+				678.640319824219,
+				242.432922363281,
+				139.52880859375,
+				152.94921875
+			],
+			"spatial_48dp_target_px": [
+				724.404663085938,
+				271.422302246094,
+				48.0,
+				48.0
+			],
+			"triangles": 4868,
+			"word": "ball"
+		}
+	],
+	"objects_order": [
+		"pen",
+		"ruler",
+		"ball"
+	],
+	"observation_source": "platform_fixture",
+	"stage_px": [
+		16.0,
+		115.0,
+		928.0,
+		297.0
+	],
+	"status": "ball = Ball · Passend zugeordnet",
+	"title": "Englisch · ball",
+	"window_px": [
+		960,
+		540
+	],
+	"word": "ball"
+}

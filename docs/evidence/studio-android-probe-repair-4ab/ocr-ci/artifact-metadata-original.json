@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14091419071,
+      "name": "lumo-studio-4ab-original-caption-replay-43542310963",
+      "size_in_bytes": 2613,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14091419071",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14091419071/zip",
+      "expired": false,
+      "created_at": "2026-11-14T01:44:52Z",
+      "expires_at": "2026-12-14T01:44:51Z",
+      "updated_at": "2026-11-14T01:44:52Z",
+      "digest": "sha256:54b7887130b9868e70132439c6604b59b233111cc7e4818a90fce3340b842687",
+      "workflow_run": {
+        "id": 43542310963,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-4ab-ocr-recheck-20261114",
+        "head_sha": "a446f3c1a320ad5297e17606727d801c5e993ce1"
+      }
+    }
+  ]
+}

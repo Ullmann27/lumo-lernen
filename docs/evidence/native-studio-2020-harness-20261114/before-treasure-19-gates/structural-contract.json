@@ -1,0 +1,156 @@
+{
+  "scope": "Pure shell/YAML and exact-source orchestration checks; no native or Android rendering is claimed here.",
+  "executions": [
+    {
+      "name": "bash-syntax",
+      "command": [
+        "bash",
+        "-n",
+        "qa/studio-2020-integration/root/native/tools/validate_studio.sh"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.003568902990082279
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        "qa/studio-2020-integration/root/native/.github/workflows/lumo-studio-2020.yml"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.032041459999163635
+    }
+  ],
+  "job_ids_unchanged": [
+    "learning-preview",
+    "gameplay",
+    "new-worlds",
+    "studio",
+    "touch-density",
+    "bundle-evidence",
+    "archive-evidence"
+  ],
+  "expanded_required_jobs": 8,
+  "original_job_needs_timeouts_permissions_strategy_preserved": true,
+  "original16_probe_calls_and_budgets_preserved": [
+    [
+      "learning_sharing_regression",
+      "[LearningSharing] PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "learning_studio_regression",
+      "[LearningStudio] PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "lumo_studio_motion_regression",
+      "[LumoStudioMotion] PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "puzzle_rotation_regression",
+      "[PuzzleRotation] PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "puzzle_menu_lifecycle_regression",
+      "[PuzzleMenuLifecycle] PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "treasure_exploration_regression",
+      "[TreasureExploration] PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "cards_safe_area_android_contract",
+      "CARDS_ANDROID_INSETS_PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "cards_safe_area_regression",
+      "CARDS_SAFE_AREA_PASS",
+      "headless",
+      "180"
+    ],
+    [
+      "mobile_safe_area_regression",
+      "MOBILE_SAFE_AREA_PASS",
+      "headless",
+      "240"
+    ],
+    [
+      "learning_sharing_capture",
+      "[LearningSharingCapture] PASS",
+      "rendered",
+      "600"
+    ],
+    [
+      "lumo_studio_motion_capture",
+      "[LumoStudioCapture] PASS",
+      "rendered",
+      "420"
+    ],
+    [
+      "puzzle_rotation_regression",
+      "[PuzzleRotation] PASS",
+      "rendered",
+      "600"
+    ],
+    [
+      "puzzle_menu_lifecycle_regression",
+      "[PuzzleMenuLifecycle] PASS",
+      "rendered",
+      "600"
+    ],
+    [
+      "treasure_exploration_regression",
+      "[TreasureExploration] PASS",
+      "rendered",
+      "600"
+    ],
+    [
+      "cards_safe_area_regression",
+      "CARDS_SAFE_AREA_PASS",
+      "rendered",
+      "600"
+    ],
+    [
+      "mobile_safe_area_regression",
+      "MOBILE_SAFE_AREA_PASS",
+      "rendered",
+      "900"
+    ]
+  ],
+  "new3_probe_calls": [
+    [
+      "lumo_facial_regression",
+      "LUMO_FACIAL_PASS checks=102",
+      "headless",
+      "180"
+    ],
+    [
+      "lumo_facial_capture",
+      "LUMO_FACIAL_CAPTURE_PASS frames=144",
+      "rendered",
+      "420"
+    ],
+    [
+      "connect_four_visual_capture",
+      "CONNECT_FOUR_VISUAL_PASS",
+      "rendered",
+      "600"
+    ]
+  ],
+  "old_workflow_sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b",
+  "new_workflow_sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+  "tag": "studio-2020-evidence-$SOURCE_SHA-$artifact_id"
+}

@@ -1,0 +1,901 @@
+{
+  "schema": 1,
+  "scope": "Actual completed full Flutter suite; exact named cases, not inferred from total-count difference.",
+  "host_sha": "28462a7547048b75fa114e6f5832248e54c94faa",
+  "run_id": 43624674585,
+  "attempt": 1,
+  "job_id": 132537752822,
+  "job_status": "completed",
+  "job_conclusion": "success",
+  "source_commit_tree": "21cc39c37c96c8d76d46434b42b172e88ffb745e",
+  "machine_original": {
+    "artifact_id": 14125828378,
+    "artifact_entry": "feature-evidence/full-flutter/flutter-machine.jsonl",
+    "bytes": 1767777,
+    "sha256": "273c38c24fa7694f15f21ed9d2aba05a6f39e6be6591620f1a34b3c1977be939",
+    "crc_verified_by_full_member_read": true
+  },
+  "full_suite": {
+    "passed": 2632,
+    "failed": 0,
+    "skipped": 0
+  },
+  "machine_done": {
+    "event": {
+      "success": true,
+      "type": "done",
+      "time": 483345
+    },
+    "line": 8377
+  },
+  "summary_equals_original_job_line": 846,
+  "new_case_count": 24,
+  "groups": [
+    {
+      "module": "ASR",
+      "source_path": "test/reading_asr_evidence_boundary_test.dart",
+      "source_git_blob_sha": "fd5e624055383e935bfd5fab074d62cb746f396c",
+      "source_sha256": "668784b41f260386721b7365e3a7ee1cc1491ec59259622f3950fc31177d8908",
+      "suite": {
+        "event": {
+          "suite": {
+            "id": 810,
+            "platform": "vm",
+            "path": "/home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+          },
+          "type": "suite",
+          "time": 82043
+        },
+        "line": 1598
+      },
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "initial zero score does not establish reading competence",
+          "test_id": 822,
+          "suite_id": 810,
+          "test_start_line": 1623,
+          "test_done_line": 1624,
+          "start": {
+            "test": {
+              "id": 822,
+              "name": "initial zero score does not establish reading competence",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 108,
+              "column": 5,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82561
+          },
+          "done": {
+            "testID": 822,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82589
+          }
+        },
+        {
+          "name": "low alignment and a retained word does not establish reading competence",
+          "test_id": 823,
+          "suite_id": 810,
+          "test_start_line": 1625,
+          "test_done_line": 1626,
+          "start": {
+            "test": {
+              "id": 823,
+              "name": "low alignment and a retained word does not establish reading competence",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 108,
+              "column": 5,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82589
+          },
+          "done": {
+            "testID": 823,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82598
+          }
+        },
+        {
+          "name": "repeated mismatches and assistance does not establish reading competence",
+          "test_id": 824,
+          "suite_id": 810,
+          "test_start_line": 1627,
+          "test_done_line": 1628,
+          "start": {
+            "test": {
+              "id": 824,
+              "name": "repeated mismatches and assistance does not establish reading competence",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 108,
+              "column": 5,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82599
+          },
+          "done": {
+            "testID": 824,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82609
+          }
+        },
+        {
+          "name": "perfect alignment without assessed answers does not establish reading competence",
+          "test_id": 825,
+          "suite_id": 810,
+          "test_start_line": 1629,
+          "test_done_line": 1630,
+          "start": {
+            "test": {
+              "id": 825,
+              "name": "perfect alignment without assessed answers does not establish reading competence",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 108,
+              "column": 5,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82609
+          },
+          "done": {
+            "testID": 825,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82614
+          }
+        },
+        {
+          "name": "another profile ASR history cannot describe the current child",
+          "test_id": 826,
+          "suite_id": 810,
+          "test_start_line": 1631,
+          "test_done_line": 1632,
+          "start": {
+            "test": {
+              "id": 826,
+              "name": "another profile ASR history cannot describe the current child",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 154,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82614
+          },
+          "done": {
+            "testID": 826,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82617
+          }
+        },
+        {
+          "name": "accepted positive reading records remain positive and unchanged",
+          "test_id": 827,
+          "suite_id": 810,
+          "test_start_line": 1633,
+          "test_done_line": 1634,
+          "start": {
+            "test": {
+              "id": 827,
+              "name": "accepted positive reading records remain positive and unchanged",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 193,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82617
+          },
+          "done": {
+            "testID": 827,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82622
+          }
+        },
+        {
+          "name": "genuinely assessed comprehension errors still guide practice",
+          "test_id": 828,
+          "suite_id": 810,
+          "test_start_line": 1635,
+          "test_done_line": 1636,
+          "start": {
+            "test": {
+              "id": 828,
+              "name": "genuinely assessed comprehension errors still guide practice",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 233,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82622
+          },
+          "done": {
+            "testID": 828,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82625
+          }
+        },
+        {
+          "name": "accompanied practice stays separate from assessed deficits",
+          "test_id": 829,
+          "suite_id": 810,
+          "test_start_line": 1637,
+          "test_done_line": 1638,
+          "start": {
+            "test": {
+              "id": 829,
+              "name": "accompanied practice stays separate from assessed deficits",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 268,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82625
+          },
+          "done": {
+            "testID": 829,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82627
+          }
+        },
+        {
+          "name": "legacy stored summaries are read without migration or deletion",
+          "test_id": 830,
+          "suite_id": 810,
+          "test_start_line": 1639,
+          "test_done_line": 1640,
+          "start": {
+            "test": {
+              "id": 830,
+              "name": "legacy stored summaries are read without migration or deletion",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 301,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82628
+          },
+          "done": {
+            "testID": 830,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82635
+          }
+        },
+        {
+          "name": "retained historical words cannot override a later accepted answer",
+          "test_id": 831,
+          "suite_id": 810,
+          "test_start_line": 1641,
+          "test_done_line": 1642,
+          "start": {
+            "test": {
+              "id": 831,
+              "name": "retained historical words cannot override a later accepted answer",
+              "suiteID": 810,
+              "groupIDs": [
+                821
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 333,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/reading_asr_evidence_boundary_test.dart"
+            },
+            "type": "testStart",
+            "time": 82635
+          },
+          "done": {
+            "testID": 831,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 82640
+          }
+        }
+      ]
+    },
+    {
+      "module": "Memory",
+      "source_path": "test/games/memory_preferences_durability_test.dart",
+      "source_git_blob_sha": "51591a968f2b71cd4e52e30bc43c4be0cc3bf758",
+      "source_sha256": "7f81307bad7da1e00f849a48d14d506df0449a35d81d498aeb3fa3afae23e4e7",
+      "suite": {
+        "event": {
+          "suite": {
+            "id": 1278,
+            "platform": "vm",
+            "path": "/home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+          },
+          "type": "suite",
+          "time": 135825
+        },
+        "line": 2707
+      },
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "Rejected initial round is not accepted from the optimistic cache",
+          "test_id": 1284,
+          "suite_id": 1278,
+          "test_start_line": 2731,
+          "test_done_line": 2732,
+          "start": {
+            "test": {
+              "id": 1284,
+              "name": "Rejected initial round is not accepted from the optimistic cache",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 173,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136249
+          },
+          "done": {
+            "testID": 1284,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136277
+          }
+        },
+        {
+          "name": "Round falseBeforeCommit cannot acknowledge an unsaved flip",
+          "test_id": 1285,
+          "suite_id": 1278,
+          "test_start_line": 2733,
+          "test_done_line": 2740,
+          "start": {
+            "test": {
+              "id": 1285,
+              "name": "Round falseBeforeCommit cannot acknowledge an unsaved flip",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 190,
+              "column": 5,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136278
+          },
+          "done": {
+            "testID": 1285,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136298
+          }
+        },
+        {
+          "name": "round falseBeforeCommit stays untrusted across failed reloads and new instances",
+          "test_id": 1287,
+          "suite_id": 1278,
+          "test_start_line": 2741,
+          "test_done_line": 2742,
+          "start": {
+            "test": {
+              "id": 1287,
+              "name": "round falseBeforeCommit stays untrusted across failed reloads and new instances",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 210,
+              "column": 7,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136298
+          },
+          "done": {
+            "testID": 1287,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136305
+          }
+        },
+        {
+          "name": "stats falseBeforeCommit stays untrusted across failed reloads and new instances",
+          "test_id": 1288,
+          "suite_id": 1278,
+          "test_start_line": 2743,
+          "test_done_line": 2744,
+          "start": {
+            "test": {
+              "id": 1288,
+              "name": "stats falseBeforeCommit stays untrusted across failed reloads and new instances",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 210,
+              "column": 7,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136305
+          },
+          "done": {
+            "testID": 1288,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136310
+          }
+        },
+        {
+          "name": "Round throwBeforeCommit cannot acknowledge an unsaved flip",
+          "test_id": 1289,
+          "suite_id": 1278,
+          "test_start_line": 2745,
+          "test_done_line": 2746,
+          "start": {
+            "test": {
+              "id": 1289,
+              "name": "Round throwBeforeCommit cannot acknowledge an unsaved flip",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 190,
+              "column": 5,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136311
+          },
+          "done": {
+            "testID": 1289,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136316
+          }
+        },
+        {
+          "name": "round throwBeforeCommit stays untrusted across failed reloads and new instances",
+          "test_id": 1290,
+          "suite_id": 1278,
+          "test_start_line": 2747,
+          "test_done_line": 2748,
+          "start": {
+            "test": {
+              "id": 1290,
+              "name": "round throwBeforeCommit stays untrusted across failed reloads and new instances",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 210,
+              "column": 7,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136316
+          },
+          "done": {
+            "testID": 1290,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136321
+          }
+        },
+        {
+          "name": "stats throwBeforeCommit stays untrusted across failed reloads and new instances",
+          "test_id": 1291,
+          "suite_id": 1278,
+          "test_start_line": 2749,
+          "test_done_line": 2750,
+          "start": {
+            "test": {
+              "id": 1291,
+              "name": "stats throwBeforeCommit stays untrusted across failed reloads and new instances",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 210,
+              "column": 7,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136321
+          },
+          "done": {
+            "testID": 1291,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136325
+          }
+        },
+        {
+          "name": "Actual round commit followed by a lost reply is recovered from platform",
+          "test_id": 1292,
+          "suite_id": 1278,
+          "test_start_line": 2751,
+          "test_done_line": 2752,
+          "start": {
+            "test": {
+              "id": 1292,
+              "name": "Actual round commit followed by a lost reply is recovered from platform",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 271,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136325
+          },
+          "done": {
+            "testID": 1292,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136331
+          }
+        },
+        {
+          "name": "A lost round reply and failed reload expose no state until fresh recovery",
+          "test_id": 1293,
+          "suite_id": 1278,
+          "test_start_line": 2753,
+          "test_done_line": 2754,
+          "start": {
+            "test": {
+              "id": 1293,
+              "name": "A lost round reply and failed reload expose no state until fresh recovery",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 286,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136332
+          },
+          "done": {
+            "testID": 1293,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136337
+          }
+        },
+        {
+          "name": "Failed stats commit keeps the real finish pending with one result ID",
+          "test_id": 1294,
+          "suite_id": 1278,
+          "test_start_line": 2755,
+          "test_done_line": 2756,
+          "start": {
+            "test": {
+              "id": 1294,
+              "name": "Failed stats commit keeps the real finish pending with one result ID",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 309,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136337
+          },
+          "done": {
+            "testID": 1294,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136356
+          }
+        },
+        {
+          "name": "Actual stats commit followed by error preserves the real completed round",
+          "test_id": 1295,
+          "suite_id": 1278,
+          "test_start_line": 2757,
+          "test_done_line": 2758,
+          "start": {
+            "test": {
+              "id": 1295,
+              "name": "Actual stats commit followed by error preserves the real completed round",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 344,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136356
+          },
+          "done": {
+            "testID": 1295,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136371
+          }
+        },
+        {
+          "name": "Revoked profile cannot begin another platform read or write",
+          "test_id": 1296,
+          "suite_id": 1278,
+          "test_start_line": 2759,
+          "test_done_line": 2760,
+          "start": {
+            "test": {
+              "id": 1296,
+              "name": "Revoked profile cannot begin another platform read or write",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 369,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136371
+          },
+          "done": {
+            "testID": 1296,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136375
+          }
+        },
+        {
+          "name": "Profile switch during a fresh read prevents the following write",
+          "test_id": 1297,
+          "suite_id": 1278,
+          "test_start_line": 2761,
+          "test_done_line": 2762,
+          "start": {
+            "test": {
+              "id": 1297,
+              "name": "Profile switch during a fresh read prevents the following write",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 383,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136375
+          },
+          "done": {
+            "testID": 1297,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136378
+          }
+        },
+        {
+          "name": "Late accepted write stays with its old owner and cannot expose a result",
+          "test_id": 1298,
+          "suite_id": 1278,
+          "test_start_line": 2763,
+          "test_done_line": 2764,
+          "start": {
+            "test": {
+              "id": 1298,
+              "name": "Late accepted write stays with its old owner and cannot expose a result",
+              "suiteID": 1278,
+              "groupIDs": [
+                1283
+              ],
+              "metadata": {
+                "skip": false,
+                "skipReason": null
+              },
+              "line": 404,
+              "column": 3,
+              "url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_preferences_durability_test.dart"
+            },
+            "type": "testStart",
+            "time": 136379
+          },
+          "done": {
+            "testID": 1298,
+            "result": "success",
+            "skipped": false,
+            "hidden": false,
+            "type": "testDone",
+            "time": 136383
+          }
+        }
+      ]
+    }
+  ],
+  "total_difference_not_used_as_evidence": true,
+  "local_dart_or_flutter_execution": false,
+  "audio_model_or_android_claim": false,
+  "machine_non_json_line_count": 398
+}

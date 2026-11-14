@@ -1,0 +1,159 @@
+{
+  "host": "50f2a0edf87a0e22f24345d8504f4d83e803bf37",
+  "native": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "host_files": [
+    {
+      "path": ".github/probes/lumo_english_objects_android_probe.py",
+      "published_blob": null,
+      "scope": "new_owned_source"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "published_blob": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+      "scope": "published_baseline"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "published_blob": "45ff0d24400ee21673c707b4b6448f914c85ee87",
+      "scope": "published_baseline"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "published_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+      "scope": "published_baseline"
+    },
+    {
+      "path": ".github/probes/lumo_education_android_probe.py",
+      "published_blob": "a19c7f4062a568569562699dfd19ee32ce866533",
+      "scope": "published_baseline"
+    },
+    {
+      "path": ".github/probes/lumo_learning_journey_probe.py",
+      "published_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "scope": "published_baseline"
+    },
+    {
+      "path": ".github/probes/lumo_free_voice_android_probe.py",
+      "published_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "published_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "published_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "published_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "published_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "scope": "published_baseline"
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "published_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "published_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "published_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "published_blob": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "published_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "published_blob": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "published_blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "lib/core/native_profile_key_repository.dart",
+      "published_blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "published_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "lib/core/legacy_learning_data.dart",
+      "published_blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "published_blob": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065",
+      "scope": "published_baseline"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "published_blob": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+      "scope": "published_baseline"
+    }
+  ],
+  "native_files": [
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "published_blob": "1e8b528797b2c89f9833a1f0d5d6d98a9950948c"
+    },
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "published_blob": "44e9031dd31c86197b90ac004558ba50f01a2d7a"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "published_blob": "245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "published_blob": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4"
+    },
+    {
+      "path": "scenes/learning/learning_world.tscn",
+      "published_blob": "05f835f6c87c528b64b38054c2c41adc8cbef078"
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "published_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "published_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279"
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "published_blob": "88fc81248b517736186e17939b11f1671f56d3b5"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "published_blob": "3637fdf31ba2492b00628b25c665518d6290ee13"
+    }
+  ]
+}

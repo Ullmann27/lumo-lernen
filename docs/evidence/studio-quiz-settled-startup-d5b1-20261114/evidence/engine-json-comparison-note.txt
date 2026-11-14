@@ -1,0 +1,3 @@
+Godot4.6.3 direct comparison:
+{"array_equality":false,"cancel_property":true,"dict_equality":false,"recursive_equality":false,"scalar_equality":true}
+Full command/output is from the actual 2026-11-14 diagnostic; layout comparison now compares the complete serialized state on both sides.

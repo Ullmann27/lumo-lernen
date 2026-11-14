@@ -1,0 +1,82 @@
+{
+  "native_tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+  "native_tree_truncated": false,
+  "native_rows": [
+    {
+      "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8698b092e7f46bcd319f31479f75e0d5e2536e0",
+      "size": 9280,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/b8698b092e7f46bcd319f31479f75e0d5e2536e0"
+    },
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bc459bc88d10f48aa918014eedbb91071cd98a7",
+      "size": 13988,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/1bc459bc88d10f48aa918014eedbb91071cd98a7"
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa8debed147eceea108acc98ac318ac1362cf8eb",
+      "size": 2849,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/fa8debed147eceea108acc98ac318ac1362cf8eb"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "size": 10967,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "size": 62477,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f5a296f1e0394ef3ac1dd518bdf1b60912793ee9"
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+      "size": 33455,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/0a86b01f2f1de7058f50f185e60746fb7d7564e1"
+    }
+  ],
+  "host_tree": "59c469de6252d368470bb41b0bcef21151cec826",
+  "host_tree_truncated": false,
+  "host_rows": [
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4469849b204f91fab3e645604e11922e29cb594c",
+      "size": 3323,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/4469849b204f91fab3e645604e11922e29cb594c"
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39",
+      "size": 7686,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/e12cadfa4bdc33be932fc1e570f5ce51d17f0c39"
+    },
+    {
+      "path": "tool/check_native_english_activity.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d304dfbf89e7be2cd123808b8a3352d7622e87b",
+      "size": 12610,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/2d304dfbf89e7be2cd123808b8a3352d7622e87b"
+    }
+  ]
+}

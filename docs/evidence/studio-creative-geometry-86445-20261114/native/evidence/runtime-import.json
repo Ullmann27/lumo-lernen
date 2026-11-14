@@ -1,0 +1,16 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--editor",
+    "--import",
+    "--path",
+    "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/runtime",
+    "--rendering-method",
+    "gl_compatibility",
+    "--quit"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 7.160338840010809,
+  "log_sha256": "97a8300e63e02787bc5069eeba9b25a4cec40d1807fccb18318d300c0e0e78d6"
+}

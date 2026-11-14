@@ -1,0 +1,473 @@
+{
+  "schema": 1,
+  "status": "PASS_ORIGINAL_EVIDENCE_CORRELATION",
+  "run_id": 43619285124,
+  "job_id": 132521067548,
+  "artifact_id": 14123817299,
+  "sources": {
+    "host": {
+      "commit": "b7210db3f53361987fd33592de438fd7984d991a",
+      "tree": "c65558a13e4dd2950eda7a685583e5484d9b9959"
+    },
+    "native": {
+      "commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+      "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada"
+    }
+  },
+  "source_before_after_equal": true,
+  "process_exit_codes": {
+    "DartAuthority": 0,
+    "GodotMemory": 0
+  },
+  "archive_bytes": 3943940,
+  "archive_sha256": "ea977121218cc945f3ddb1fe09bff81109d0ecbfaa45b7c955ed849194ffcc8a",
+  "members_crc_and_extracted_bytes_checked": 73,
+  "png_ihdr_and_hashes_checked": 28,
+  "personally_opened_before_interruption": 19,
+  "new_personal_openings_in_this_script": 0,
+  "authority_contract": {
+    "status": "PASS",
+    "cases": 30,
+    "passed": 30,
+    "failed": [],
+    "checks": 1694,
+    "skipped": 0,
+    "scope": "Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim."
+  },
+  "scheduler_contract": {
+    "status": "PASS",
+    "cases": 7,
+    "passed": 7,
+    "failed": [],
+    "checks": 13,
+    "skipped": 0,
+    "scope": "Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim."
+  },
+  "view_report_checks": 7020,
+  "pair_report_checks_before_report_write_check": 243,
+  "pair_terminal_checks_including_report_write_check": 244,
+  "native_inputs": 57,
+  "touch_pairs": 19,
+  "exact_correlated_requests": [
+    {
+      "ordinal": 1,
+      "authority_input_id": 2,
+      "label": "first actual Dart card",
+      "point": [
+        199.260559082031,
+        184.699340820312
+      ],
+      "raw_sha256": "7c9957cee3993e1ac0ac9c1d27dea15644d8324615b1e8db8d631bdef6152f31",
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "flip",
+      "sequence": 1,
+      "ack": 1,
+      "rejected": 0,
+      "record_revision": 2,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 2,
+      "authority_input_id": 3,
+      "label": "second actual Dart card",
+      "point": [
+        329.620544433594,
+        184.699340820312
+      ],
+      "raw_sha256": "11f9c2cb8d56cf79ddbfc28812143f2e2b4ea5df9c1b14fdc8ae67a32f22ca85",
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "flip",
+      "sequence": 2,
+      "ack": 2,
+      "rejected": 0,
+      "record_revision": 3,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 3,
+      "authority_input_id": 4,
+      "label": "pause real resolve",
+      "point": [
+        905.5,
+        37.0
+      ],
+      "raw_sha256": "53431e47d66552c5de63ff63d5495f112ec45e2deb012e88df5981d7b03410a0",
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "pause",
+      "sequence": 3,
+      "ack": 3,
+      "rejected": 0,
+      "record_revision": 4,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 4,
+      "authority_input_id": 6,
+      "label": "explicit real resume",
+      "point": [
+        476.0,
+        142.0
+      ],
+      "raw_sha256": "20150789d9854a761682bfe671e27d6228600c0634ef92fcb08d5c38e48c55b5",
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "resume",
+      "sequence": 4,
+      "ack": 4,
+      "rejected": 0,
+      "record_revision": 5,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 5,
+      "authority_input_id": 7,
+      "label": "pause before actual return",
+      "point": [
+        905.5,
+        37.0
+      ],
+      "raw_sha256": "d605ea6c00035e80e59188556166b3238ce907497383af238279ec5c11eb2da2",
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "pause",
+      "sequence": 5,
+      "ack": 5,
+      "rejected": 0,
+      "record_revision": 6,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 6,
+      "authority_input_id": 8,
+      "label": "durable unfinished return",
+      "point": [
+        58.5,
+        37.0
+      ],
+      "raw_sha256": "9715f0b2cd0c364906e5fef2cd7ea74501777cb1782da2586c8a6dd6eaed71b6",
+      "token": "b32be765ee90e3b87981e830813190a8",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "exit",
+      "sequence": 6,
+      "ack": 6,
+      "rejected": 0,
+      "record_revision": 6,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 7,
+      "authority_input_id": 10,
+      "label": "resume restored real round",
+      "point": [
+        476.0,
+        142.0
+      ],
+      "raw_sha256": "4f6968af1cd55fc7ff63fbca71101e7bf313337ecf8d468ab72d71916045b31a",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "resume",
+      "sequence": 1,
+      "ack": 1,
+      "rejected": 0,
+      "record_revision": 7,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 8,
+      "authority_input_id": 15,
+      "label": "pause after real bot reply",
+      "point": [
+        905.5,
+        37.0
+      ],
+      "raw_sha256": "7e589a41c9a7a1e31a6d66f7b51256e3e02520928a5aa8cf85c08851a79fd8cf",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "79c878f2f21a462905135b22346f739a",
+      "action": "pause",
+      "sequence": 2,
+      "ack": 2,
+      "rejected": 0,
+      "record_revision": 12,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 9,
+      "authority_input_id": 16,
+      "label": "real new-round button",
+      "point": [
+        476.0,
+        202.0
+      ],
+      "raw_sha256": "15ed082bc06c16bb1838a1cc3172990086a1048ec092797091411350053da9b4",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "79c878f2f21a462905135b22346f739a",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "restart",
+      "sequence": 3,
+      "ack": 3,
+      "rejected": 0,
+      "record_revision": 13,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 10,
+      "authority_input_id": 17,
+      "label": "legal actual pair card",
+      "point": [
+        199.260559082031,
+        184.699340820312
+      ],
+      "raw_sha256": "e343e28b513d7e439fa204bedc2b8990319de6a76c671f4e2e5e56c75d43b9e5",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 4,
+      "ack": 4,
+      "rejected": 0,
+      "record_revision": 14,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 11,
+      "authority_input_id": 18,
+      "label": "legal actual pair card",
+      "point": [
+        199.260498046875,
+        353.699340820312
+      ],
+      "raw_sha256": "cadacc2a61a7f266c522302076fd19b73c7240d879acd22858711553aa6a7210",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 5,
+      "ack": 5,
+      "rejected": 0,
+      "record_revision": 15,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 12,
+      "authority_input_id": 20,
+      "label": "legal actual pair card",
+      "point": [
+        329.620544433594,
+        184.699340820312
+      ],
+      "raw_sha256": "8904603589576b30b3c243cc1e8f0e64e6ab7075ce388db37bd300a851825624",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 6,
+      "ack": 6,
+      "rejected": 0,
+      "record_revision": 17,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 13,
+      "authority_input_id": 21,
+      "label": "legal actual pair card",
+      "point": [
+        459.980560302734,
+        353.699340820312
+      ],
+      "raw_sha256": "c022dbdd64d99623b5731ac71de9cc896ad9b9dd666df7780f3838d0a117f4cf",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 7,
+      "ack": 7,
+      "rejected": 0,
+      "record_revision": 18,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 14,
+      "authority_input_id": 23,
+      "label": "legal actual pair card",
+      "point": [
+        459.980560302734,
+        184.699340820312
+      ],
+      "raw_sha256": "372f8c3adb2daff1b670e095c64fb20c3a1824155e6c1c2d18eb931a54c24d21",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 8,
+      "ack": 8,
+      "rejected": 0,
+      "record_revision": 20,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 15,
+      "authority_input_id": 24,
+      "label": "legal actual pair card",
+      "point": [
+        590.340515136719,
+        184.699340820312
+      ],
+      "raw_sha256": "8f4161ff67b246d340d3ef2a9d32dc9b2fc9e1c2ffc9bacb6bb69fdbcf00383d",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 9,
+      "ack": 9,
+      "rejected": 0,
+      "record_revision": 21,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 16,
+      "authority_input_id": 26,
+      "label": "legal actual pair card",
+      "point": [
+        329.620544433594,
+        353.699340820312
+      ],
+      "raw_sha256": "c9a943b6d899f053832ea18637f96bb9ea3d5a4eb18b27029cd0085d855f7c2e",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 10,
+      "ack": 10,
+      "rejected": 0,
+      "record_revision": 23,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 17,
+      "authority_input_id": 27,
+      "label": "legal actual pair card",
+      "point": [
+        590.340515136719,
+        353.699340820312
+      ],
+      "raw_sha256": "e77423f2f43e0aeb5a424d64c2ad24e0798260505232c5acf86a96f9343c3837",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "flip",
+      "sequence": 11,
+      "ack": 11,
+      "rejected": 0,
+      "record_revision": 24,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 18,
+      "authority_input_id": 29,
+      "label": "durable completed return",
+      "point": [
+        58.5,
+        37.0
+      ],
+      "raw_sha256": "0b749184b868e9215fa812941d9a5f6fadcdc61c8dcad3d5ecb6a96e01879cba",
+      "token": "64921bcee435fa8930f809ba370f382f",
+      "round_id_before": "787b92cabe0a150e9cb9c190d56beb0b",
+      "round_id_after": "787b92cabe0a150e9cb9c190d56beb0b",
+      "action": "exit",
+      "sequence": 12,
+      "ack": 12,
+      "rejected": 0,
+      "record_revision": 27,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    },
+    {
+      "ordinal": 19,
+      "authority_input_id": 31,
+      "label": "final actual return",
+      "point": [
+        58.5,
+        37.0
+      ],
+      "raw_sha256": "5cf2aa3c6e9b509801c0f0232d8cc5631f6589f98269e51095fd93a9d5c15173",
+      "token": "8953eb1d0ed0a2c1ffb242069acfb7f2",
+      "round_id_before": "b89ffa76546ea965348ac4ba4ea4b75c",
+      "round_id_after": "b89ffa76546ea965348ac4ba4ea4b75c",
+      "action": "exit",
+      "sequence": 1,
+      "ack": 1,
+      "rejected": 0,
+      "record_revision": 29,
+      "exact_raw_equal_in_native_inputs_native_requests_and_authority": true,
+      "matched_down_and_up_events": true
+    }
+  ],
+  "states": 32,
+  "tokens": [
+    "b32be765ee90e3b87981e830813190a8",
+    "64921bcee435fa8930f809ba370f382f",
+    "8953eb1d0ed0a2c1ffb242069acfb7f2"
+  ],
+  "unfinished_reopen": {
+    "roundId": "79c878f2f21a462905135b22346f739a",
+    "restoredRoundId": "79c878f2f21a462905135b22346f739a",
+    "oldToken": "b32be765ee90e3b87981e830813190a8",
+    "newToken": "64921bcee435fa8930f809ba370f382f",
+    "paused": true,
+    "remainingMs": 550
+  },
+  "paid_reopen": {
+    "completedRoundId": "787b92cabe0a150e9cb9c190d56beb0b",
+    "newRoundId": "b89ffa76546ea965348ac4ba4ea4b75c",
+    "oldToken": "64921bcee435fa8930f809ba370f382f",
+    "newToken": "8953eb1d0ed0a2c1ffb242069acfb7f2",
+    "best": {
+      "schwer": 17,
+      "leicht": 4
+    },
+    "difficulty": "leicht",
+    "pack": "alle"
+  },
+  "qa_wallet": {
+    "stars": 2,
+    "xp": 16,
+    "ids": [
+      "memory:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:787b92cabe0a150e9cb9c190d56beb0b"
+    ]
+  },
+  "qa_award_calls": 1,
+  "bounded_scope": "Run actual Memory rules and Godot input with explicitly bounded QA adapters.\n\nThe production controller/session and original dealer run in Dart. Godot uses\nreal ScreenTouch events and renderer geometry. Disk transport, deterministic\nclock, private test deck plan and reward ledger are QA adapters. This does not\nprove Android Binder, SharedPreferences, physical-device timing or frame rate.\n",
+  "shared_preferences_durability_fix_validation": false,
+  "android_binder_or_two_child_migration_validation": false,
+  "physical_fps_validation": false,
+  "prior_interrupted_command_exit": "UNCONFIRMED; unchanged historical record",
+  "this_execution": "New read-only completion after recovery; no renderer/Dart/Flutter invocation."
+}

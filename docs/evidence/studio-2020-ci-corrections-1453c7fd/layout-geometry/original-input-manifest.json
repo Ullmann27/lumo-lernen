@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "scope": "read_only_review_no_product_or_test_execution",
+  "files": [
+    {
+      "path": "qa/connect-four-shared-layout-review-ae394-20261114/review.json",
+      "bytes": 4343,
+      "sha256": "d825daa7cdb04576542a52d184233ae077880d262b1b7b300ced0a6b20f2ed36",
+      "git_blob": "5f0ea82447a83e6d5867ea0cd9c77e6e15b8050a",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-shared-layout-review-ae394-20261114/review.json"
+    },
+    {
+      "path": "qa/connect-four-shared-layout-review-ae394-20261114/README.md",
+      "bytes": 2613,
+      "sha256": "1be417635bde09e3655df2a168b05f7347daa64243042871a1c7d2eef5a3608b",
+      "git_blob": "4dbc33a693493e2ba8962a9cbdd666384208987c",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-shared-layout-review-ae394-20261114/README.md"
+    }
+  ]
+}

@@ -1,0 +1,539 @@
+{
+  "schema": 1,
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "run_id": 43611803404,
+  "artifact_id": 14120777154,
+  "archive_sha256": "e21f46588a7d711cb76314951255d8ea016b473f1029ddf7300a587e7dd146e7",
+  "all_current_originals_opened": true,
+  "scope": "17 current original desktop renderer PNGs; platform fixture, no Android/audio/FPS approval",
+  "images": [
+    {
+      "artifact_entry": "english-native/english-ball-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-start.png",
+      "sha256": "4ebfa8b41828f3e93f9dd2e84e99159ea3432c7e1e52efb1b69a55c1de648bc1",
+      "bytes": 172058,
+      "dimensions": [
+        960,
+        540
+      ],
+      "word": "ball",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "ball",
+        "sun",
+        "apple"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Titel und vollständige deutsche Anweisung sind lesbar. Ball, Sonne und Apfel sind als getrennte 3D-Objekte auf den nummerierten Podesten 1–3 sichtbar; Lumo bleibt frei sichtbar. Untere Zahlen-, Hinweis-, Neu-, Anhören- und Rückkehrtasten sind vollständig im Bild.",
+        "Stilisierte Geometrie und deutliche Schatten; das Einzelbild belegt keine Bildrate oder Sprachwiedergabe."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "db0a9d0d096974d0132b0f97dfed48394b92424a7d5d80f6b9cd83162c38bc08",
+      "layout_sidecar_sha256": "69b7e548f2cccf9be5bd22216379d0cfb33ff8618b4f7c4b5b6b035386b5c976",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-hint.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "sha256": "8765749c3aaaf4d660987d84fb808bb29fb419878d02d22129aa671a3c999c84",
+      "bytes": 172781,
+      "dimensions": [
+        960,
+        540
+      ],
+      "word": "ball",
+      "state": {
+        "attempts": 1,
+        "hint_level": 2,
+        "complete": false
+      },
+      "objects_order": [
+        "ball",
+        "sun",
+        "apple"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Die Anweisung fordert ausdrücklich die eigene Auswahl. Der Ball auf Podest 1 ist sichtbar hell umrandet, während Sonne und Apfel weiterhin sichtbar bleiben. Hinweis ist ausgegraut; Auswahl und Zur Aufgabe sind weiterhin vorhanden.",
+        "Kein automatisches Abschließen ist aus dem Bild abgeleitet; die Zustandsbindung wird separat aus dem aktuellen Sidecar geprüft."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "35e81161173b763ee9821158fc69cda9cdb057c7b4fc16474113bb683d971730",
+      "layout_sidecar_sha256": "ad5421c7e4d37330b0be54adb6587375d4bbc218379f07927fceffdbf1dfc713",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-ball-960x540-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "sha256": "1761edba3eec3b4008348acf3edea34312815206c52f7637ecf4d4cbd62d3549",
+      "bytes": 172403,
+      "dimensions": [
+        960,
+        540
+      ],
+      "word": "ball",
+      "state": {
+        "attempts": 2,
+        "hint_level": 2,
+        "complete": true
+      },
+      "objects_order": [
+        "ball",
+        "sun",
+        "apple"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Lesbar sind Richtig: „Ball“ sowie ball = Ball · Passend zugeordnet. Zahlen und Hinweis sind ausgegraut; Neu, Schritt anhören und Zur Aufgabe bleiben sichtbar. Lumo, drei Objekte und der Rahmen um den Ball bleiben im freien Bühnenbereich.",
+        "Das Bild zeigt den nativen Abschlusszustand, keinen tatsächlich ausgeführten Android-/Flutter-Rücksprung."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "15cfd34ab354ba895ac1a5be34c998b2aa0707d45f1fa16f875169371f34d742",
+      "layout_sidecar_sha256": "3bb86b2d450d0b2d2f060f4cd1b79c4a61afcc011f51357b394c656bf169c133",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-start.png",
+      "sha256": "882c7d39a47d93c27f84a7acb7df4294450c352805f7bf30fe549c30cf05bd1a",
+      "bytes": 119902,
+      "dimensions": [
+        412,
+        915
+      ],
+      "word": "book",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "ruler",
+        "pencil case",
+        "book"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Im schmalen Portraitformat ist die Anweisung vollständig umgebrochen und lesbar. Lineal, Federpennal und Buch stehen vertikal auf den Podesten 1–3. Lumo ist links vollständig sichtbar; die Fußleiste verteilt die Aktionen auf zwei Reihen ohne abgeschnittene Beschriftung.",
+        "Die sichtbaren Ränder stammen aus dem aktuellen Desktop-Plattformfixture; echte Android-Systemleisten sind hier nicht aufgenommen."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "e181b883a51c47e22f80fbf97a776ed9fe94ef1f919bc6aaaa1c8ba667cfb407",
+      "layout_sidecar_sha256": "9f4cf1d4ca404100c74c5601bd7145d3722f8448759c3fef3b75a809078ac5a2",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-book-412x915-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-book-412x915-complete.png",
+      "sha256": "e796a8440ae7a5577aa1c5b29b4e1767df591761cfa08dd0c4d85a6534f2861c",
+      "bytes": 119497,
+      "dimensions": [
+        412,
+        915
+      ],
+      "word": "book",
+      "state": {
+        "attempts": 2,
+        "hint_level": 2,
+        "complete": true
+      },
+      "objects_order": [
+        "ruler",
+        "pencil case",
+        "book"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Richtig: „Buch“ und book = Buch · Passend zugeordnet sind lesbar. Das untere Buch ist hell umrandet. Die Auswahl ist deaktiviert, während Neu, Schritt anhören und Zur Aufgabe vollständig sichtbar bleiben.",
+        "Der sichtbare Abschluss und die zweizeilige Fußleiste sind kein Android-Rückkehrbeleg."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "e707271911284d4139479d31379e8797c7c16e66a570dff713e09db9e52f8916",
+      "layout_sidecar_sha256": "8a0c38ad0334ac22ff87358d954147ccff974d283b6f9331618fa38f6cbf4e4c",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-ruler-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "sha256": "03aca0ec7fa0ca423675d66e58abec1818467f3d681853a3aec9fa321f8a7522",
+      "bytes": 95369,
+      "dimensions": [
+        640,
+        360
+      ],
+      "word": "ruler",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "paper",
+        "pencil case",
+        "ruler"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Die kurze Queransicht zeigt die vollständige Aufgabe, Lumo sowie Papier, Federpennal und Lineal auf drei getrennten Podesten. Die kompakte Fußleiste hat alle sieben Aktionen einschließlich Anhören und Zur Aufgabe sichtbar.",
+        "Objekte sind in dieser kurzen Ansicht klein und stilisiert; die 48-dp-Eingabegeometrie wird aus dem aktuellen Layoutbericht und den Inputprüfungen gebunden, nicht aus vermuteten Meshabmessungen."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "a01b5dcd6f8acd443210b7da12a53df3a0892d5bd994e4f033cfdd355dda5662",
+      "layout_sidecar_sha256": "3f349f5c8e8198b0e07638925dab3aa048a192c90c637ec7e3bd770d19a2069d",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-car-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "sha256": "3a45e0a3d05aa527b0ce334418a42705e2a191fb5896c7310580942963587796",
+      "bytes": 692917,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "word": "car",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "ball",
+        "desk",
+        "car"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Die große Queransicht zeigt Ball, Schreibtisch und rotes Spielzeugauto klar getrennt auf den Podesten 1–3. Titel car, vollständige Anweisung und kompakte Fußleiste sind lesbar; Lumo ist vollständig frei. Der linke sichere Abstand ist sichtbar eingehalten.",
+        "Die Bildschirmränder sind eine skalierte Plattformfixture, kein echter Android-Cutout-Nachweis."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "3f9d8cebf6c581d64bd500b0788c00b225ab2ee6becde44c77ca7757d63d41c1",
+      "layout_sidecar_sha256": "6f0384903ee4709e2cc8804c56e18b06a5e99ac5ec99df44faa5e163af197ed4",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-pen-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "sha256": "73adaba0cc8142a023f85c671fb916139ec14fd066c4b0af9812ecf32026286d",
+      "bytes": 598869,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "word": "pen",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "pen",
+        "bag",
+        "ruler"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Der blaue Kugelschreiber mit Clip und Spitze ist als Gegenstand 1 sichtbar; Tasche und Lineal folgen darunter. Titel pen und die vollständig umgebrochene Anweisung sind lesbar, Lumo ist frei, die großen unteren Aktionen passen in zwei Reihen.",
+        "Das Bild belegt Form und Anordnung; die deutsche Bedeutungsbindung Kugelschreiber wird zusätzlich im echten Producer geprüft."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "7fa286809478358a191f674ea23047cefcf82080580cd6f7b74ce81778ba2e20",
+      "layout_sidecar_sha256": "9add86c480de45306359017e92f94c4b5079408a3619cfa236fa2d0872153bdc",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-sun-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-sun-960x540-start.png",
+      "sha256": "7a5dfe69f8d30fb5d482d721f76917a09b070ea63a409dea3af06044473e6dcf",
+      "bytes": 168374,
+      "dimensions": [
+        960,
+        540
+      ],
+      "word": "sun",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "bag",
+        "sun",
+        "apple"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Tasche, strahlenförmige Sonne und roter Apfel sind sichtbar und den Zahlen 1–3 zugeordnet. Lumo, Titel sun und sämtliche Fußaktionen sind frei und lesbar.",
+        "Die Sonne ist bewusst ein stilisiertes anschauliches 3D-Modell; keine reale Lichtsimulation oder Aussprache wird daraus abgeleitet."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "635e8c3f7db38c35f37b59005df00ef398b2c54ef67f88afbcd63143d411bfdf",
+      "layout_sidecar_sha256": "b1342748366b7aa3df6a7d1aed31091feea5db68f4da9acd7447cbc0c0b27bd9",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-apple-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-apple-960x540-start.png",
+      "sha256": "62dfd4e2361d09264b63b510b67900959b62323bef0291f12c649c5d728ddec3",
+      "bytes": 167664,
+      "dimensions": [
+        960,
+        540
+      ],
+      "word": "apple",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "rubber",
+        "school bag",
+        "apple"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Radiergummi, blaue Schultasche und roter Apfel sind getrennt sichtbar; der Apfel mit Blatt ist klar erkennbar. Titel apple, deutsche Anweisung und sämtliche Fußaktionen sind lesbar; Lumo bleibt unverdeckt.",
+        "Die Gegenstände sind einfach modelliert; kein zusätzlicher Geräte-/Audioleistungsbeleg."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "9da7c8ed549546bd6048ef88247a00cb2676b8562b53e31b5b9c937e3bc76eec",
+      "layout_sidecar_sha256": "5b4de20b8f0b94807df18d2db6e52d64e6c6fdbb5ca0e1275aac6c02a5515dc0",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-bag-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-bag-960x540-start.png",
+      "sha256": "bf4db2327300a1c534f99bb4429a34aec7f0995a0f97c4fd60d608ed0dcb966d",
+      "bytes": 163335,
+      "dimensions": [
+        960,
+        540
+      ],
+      "word": "bag",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "rubber",
+        "desk",
+        "bag"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Der Titel bag ist lesbar. Radiergummi, Schreibtisch und offene braune Tasche mit zwei Griffen sind auf den drei Podesten erkennbar; die Tasche ist visuell von der blauen Schultasche anderer Aufgaben unterschieden. Alle Fußaktionen und Lumo bleiben frei.",
+        "Die Tasche ist ein einfaches geometrisches Modell; aus diesem Startbild folgt noch keine abgeschlossene Aufgabe."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "8bc2ae96825aff8d71c44a62ea10a330d61934e5ed3cf7678cdbcdb54ec6078a",
+      "layout_sidecar_sha256": "3649e7400a4458d26a7b979082c09574b992fb5f3d91827a92bcee385074957c",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-rubber-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "sha256": "201b292ff3681448e9c7470e56f92d925d8d5ae56ef87e184d1906f8e347369c",
+      "bytes": 95377,
+      "dimensions": [
+        640,
+        360
+      ],
+      "word": "rubber",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "pencil case",
+        "book",
+        "rubber"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Im kurzen Querformat bleiben Titel rubber, die gesamte Anweisung und alle Aktionen lesbar. Federpennal, Buch und heller Radiergummi mit blauer Hülle sind auf getrennten Podesten sichtbar; Lumo wird nicht vom HUD verdeckt.",
+        "Das Radiergummimodell ist klein und schlicht; Eingabegrößen werden separat aus dem Layoutbericht gebunden."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "0884162a70c7299910a465a960bb3519791ca99b2f3c49cab1e94a61c794df7c",
+      "layout_sidecar_sha256": "26e5ae703bf55d7f8216c6b4c52a49fae8891b5c469811af34cf5a4f46e0ac01",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-school-bag-412x915-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "sha256": "ed5e3346147719bd82f8c6585b12eabef3477cc4c8fb015ec28db22568dee7fc",
+      "bytes": 114243,
+      "dimensions": [
+        412,
+        915
+      ],
+      "word": "school bag",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "rubber",
+        "desk",
+        "school bag"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Der vollständige mehrteilige Titel school bag passt in die Portrait-Kopfzeile. Radiergummi, Schreibtisch und blaue Schultasche sind vertikal sichtbar; die Schultasche hat Griff und Fronttasche. Lumo sowie beide Reihen der Fußaktionen sind unverdeckt.",
+        "Die Wort-/Antwortbindung wird im echten Producer geprüft, nicht durch die sichtbare Überschrift allein."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "8a5cfdd877abc6146116442ffc6e7826966edcb088562ac52545ad4527bd5e7f",
+      "layout_sidecar_sha256": "ad57e0da1976872bee82496b7dcb11116ca937c11c86523475397632250130f1",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-desk-960x540-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-desk-960x540-start.png",
+      "sha256": "4baa2446b3a8e4da7090d603638ad48a7e83b88a8baa9dc90fd0ed932ff4992f",
+      "bytes": 162734,
+      "dimensions": [
+        960,
+        540
+      ],
+      "word": "desk",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "book",
+        "ruler",
+        "desk"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Buch, Lineal und Schreibtisch mit Tischplatte und Beinen stehen getrennt und vollständig im Bühnenbereich. Titel desk und komplette Anweisung sind lesbar; alle Aktionen und Lumo bleiben frei.",
+        "Die Darstellung belegt die geometrische Zuordnung im Renderer, keinen echten Android-Gerätelauf."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "81e3e4edd9ed6f1d7c1626a260699a43250bbd1ae7ad1c38b09ec398d30ca354",
+      "layout_sidecar_sha256": "754321e5e171e1592b189fd32ad1ebe69422499176569948bb04b63e7224b6f8",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-chair-640x360-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-chair-640x360-start.png",
+      "sha256": "5eeed0b3adb653ac39794561ed5b34b0a1d3915748aa290befe9cab9a521eb6e",
+      "bytes": 95439,
+      "dimensions": [
+        640,
+        360
+      ],
+      "word": "chair",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "pencil case",
+        "chair",
+        "paper"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Die kompakte Queransicht zeigt Federpennal, grünen Sessel mit Lehne und Beinen sowie Papier. Der Titel chair und die vollständige Anweisung sind lesbar; Lumo und die sieben unteren Aktionen werden nicht überdeckt.",
+        "Der geringe Bühnenraum wird sichtbar genutzt; kein Anspruch auf physische Gerätebedienung oder 60 FPS."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "0a267becd8bf11c3f374dd2d119e39109e99d3ca8db802f6fa5c3379ea6696a7",
+      "layout_sidecar_sha256": "e52b99786792a80510e0a8f129bb2b6b800e6aef85958882cf52bafc5d6914c9",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "sha256": "af84619c66d98298ca33f4f2c8061669135a9cdd3acc92c845a0b4bbdf5bd26e",
+      "bytes": 601523,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "word": "pencil case",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "school bag",
+        "pencil case",
+        "ruler"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Der vollständige Titel pencil case und die zweizeilige Anweisung passen in den Kopfbereich. Blaue Schultasche, rotes Federpennal mit deutlich sichtbarem Reißverschluss und Lineal stehen auf getrennten Podesten; Lumo bleibt frei. Die Fußaktionen sind in zwei vollständig sichtbaren Reihen angeordnet.",
+        "Die Bedeutungsbindung Federpennal stammt zusätzlich aus dem aktuellen echten Producer; Audio wurde nicht gehört."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "4d213c3b9613d5cff66e7b7f390ce364f776b80ace1f0c27198d6eaee5c18038",
+      "layout_sidecar_sha256": "e11abb34fd9c4236774ebf03f3a5140977d56dfacef201aaa32758c44f9a1758",
+      "current_producer_descriptor_exact": true
+    },
+    {
+      "artifact_entry": "english-native/english-paper-2400x1080-start.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-29080-ci-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "sha256": "7ecad1f334955110981c63e5c147b56b343823062bf92143d24c67b479ec681a",
+      "bytes": 694192,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "word": "paper",
+      "state": {
+        "attempts": 0,
+        "hint_level": 0,
+        "complete": false
+      },
+      "objects_order": [
+        "pencil case",
+        "desk",
+        "paper"
+      ],
+      "reviewed": true,
+      "reviewer": "learning_worlds",
+      "findings": [
+        "Federpennal, Schreibtisch und ein liniertes Blatt mit umgelegter Ecke sind klar voneinander getrennt. Titel paper, vollständige Anweisung und kompakte Fußaktionen sind lesbar. Lumo und die Objekte bleiben zwischen Kopf- und Fußbereich frei.",
+        "Das große Querformat ist ein echter Desktop-Rendereroutput mit Plattformfixture, kein Android-Screenshot."
+      ],
+      "blocking_issue": false,
+      "capture_report_sha256": "7598ab7257e7f878e04c9a4ef493518fd8e54aa17345ff143591873168890f90",
+      "layout_sidecar_sha256": "f640269c7a4078abc1db5c200123674e1a333e2945e915704be60465bb58ac95",
+      "current_producer_descriptor_exact": true
+    }
+  ]
+}

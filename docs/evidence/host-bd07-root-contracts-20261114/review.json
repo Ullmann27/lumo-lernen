@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "host_commit": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+  "run_id": 43640054345,
+  "android_host_job": 132585422078,
+  "memory_source_job": 132585422107,
+  "android_host_status": "PASS",
+  "actual_compiled_class_groups": 18,
+  "compiled_class_groups": [
+    "MainActivity",
+    "LumoGameActivity",
+    "LumoHostPlugin",
+    "CardsTableBridge",
+    "CardsAuthorityService",
+    "CardsAuthorityRegistry",
+    "LumoLearningSpeech",
+    "LumoSpeechEnvelope",
+    "LumoOfflineSpeechBridge",
+    "LumoOfflineSpeechEngine",
+    "ConnectFourBridge",
+    "ConnectFourGameActivity",
+    "ConnectFourAuthorityService",
+    "TableGameActivity",
+    "TableGamesHostPlugin",
+    "TableGamesBridge",
+    "TableAuthorityService",
+    "TableGameIntent"
+  ],
+  "speech_case_counts": {
+    "test_english_lesson_speech": 11,
+    "test_learning_english_speech_lifecycle": 8
+  },
+  "speech_failure_error_skip_expectedfailure_unexpectedsuccess": 0,
+  "speech_source_before_equals_after": true,
+  "table_native_unique_pass_markers": [
+    "TABLE_GAMES_NATIVE_PASS authority memory",
+    "TABLE_GAMES_NATIVE_PASS bind-timeout memory",
+    "TABLE_GAMES_NATIVE_PASS closed-mailbox memory",
+    "TABLE_GAMES_NATIVE_PASS invalid-intents memory",
+    "TABLE_GAMES_NATIVE_PASS mailbox memory",
+    "TABLE_GAMES_NATIVE_PASS owner-and-revision memory",
+    "TABLE_GAMES_NATIVE_PASS pause-stale memory",
+    "TABLE_GAMES_NATIVE_PASS pending-terminal memory",
+    "TABLE_GAMES_NATIVE_PASS plugin-isolation memory",
+    "TABLE_GAMES_NATIVE_PASS publish-write-failure memory",
+    "TABLE_GAMES_NATIVE_PASS render-stall memory",
+    "TABLE_GAMES_NATIVE_PASS return-durable memory",
+    "TABLE_GAMES_NATIVE_PASS return-write-failure memory",
+    "TABLE_GAMES_NATIVE_PASS stop-resume memory",
+    "TABLE_GAMES_NATIVE_PASS authority quiz",
+    "TABLE_GAMES_NATIVE_PASS bind-timeout quiz",
+    "TABLE_GAMES_NATIVE_PASS closed-mailbox quiz",
+    "TABLE_GAMES_NATIVE_PASS invalid-intents quiz",
+    "TABLE_GAMES_NATIVE_PASS mailbox quiz",
+    "TABLE_GAMES_NATIVE_PASS owner-and-revision quiz",
+    "TABLE_GAMES_NATIVE_PASS pause-stale quiz",
+    "TABLE_GAMES_NATIVE_PASS pending-terminal quiz",
+    "TABLE_GAMES_NATIVE_PASS plugin-isolation quiz",
+    "TABLE_GAMES_NATIVE_PASS publish-write-failure quiz",
+    "TABLE_GAMES_NATIVE_PASS render-stall quiz",
+    "TABLE_GAMES_NATIVE_PASS return-durable quiz",
+    "TABLE_GAMES_NATIVE_PASS return-write-failure quiz",
+    "TABLE_GAMES_NATIVE_PASS stop-resume quiz"
+  ],
+  "memory_round": {
+    "status": "PASS",
+    "cases": 30,
+    "passed": 30,
+    "failed": [],
+    "checks": 1694,
+    "skipped": 0,
+    "scope": "Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim."
+  },
+  "memory_scheduler": {
+    "status": "PASS",
+    "cases": 7,
+    "passed": 7,
+    "failed": [],
+    "checks": 13,
+    "skipped": 0,
+    "scope": "Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim."
+  },
+  "quiz": {
+    "cases": 28,
+    "checks": 1786,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifacts": [
+    {
+      "artifact_id": 14132260632,
+      "artifact_name": "android-host",
+      "bytes": 29643,
+      "sha256": "d3628fb40eff2eb1dcdd5742b341af6975d99bd78923d18cf22677db78b8e380",
+      "download_count": 1,
+      "whole_archive_sha256_verified": true,
+      "all_member_crcs_verified": true,
+      "members": [
+        {
+          "path": "cards-authority-registry.log",
+          "bytes": 1325,
+          "sha256": "92bd39b440fe9701f967df6851ce91927eac319885bd3e98bb827aa24d95c270",
+          "crc32": "fa0ad9bf",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/cards-authority-registry.log"
+        },
+        {
+          "path": "compile.log",
+          "bytes": 34385,
+          "sha256": "0ed506fe41957e6062fc5c217b66735c9249bc8a6e506d0fb7aa976031376cd2",
+          "crc32": "d3f5db6e",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/compile.log"
+        },
+        {
+          "path": "result.json",
+          "bytes": 5235,
+          "sha256": "47befadcdac615858a5195690c6e5e3434d7a2eacfbfcbd8c50efe80bb64b1b7",
+          "crc32": "41302f28",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/result.json"
+        },
+        {
+          "path": "flutter-version.txt",
+          "bytes": 321,
+          "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+          "crc32": "ef6cb86f",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/flutter-version.txt"
+        },
+        {
+          "path": "source-sha.txt",
+          "bytes": 41,
+          "sha256": "02112b4b7c092612f84c0a34650b2b3530b07a4f8771b26096883aa2f5d348a7",
+          "crc32": "5096cb34",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/source-sha.txt"
+        },
+        {
+          "path": "speech/resolved-toolchain.json",
+          "bytes": 321,
+          "sha256": "8b6ce8612de42cb27e8423e298e6df75f3b71523467006d18fc832e7a1a968c4",
+          "crc32": "d6c42e44",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/resolved-toolchain.json"
+        },
+        {
+          "path": "speech/result.json",
+          "bytes": 62733,
+          "sha256": "8f39e5d2a45ae3a10696d47bbfefc1bda3574fbdc6f5bf5fe329ec57ef0469f2",
+          "crc32": "7d3669ea",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/result.json"
+        },
+        {
+          "path": "speech/test_english_lesson_speech.json",
+          "bytes": 1339,
+          "sha256": "d97337bea61f7943a880f3ddea16d17efcaa1947eba941292482b5d6f9729c50",
+          "crc32": "b0c37bb0",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_english_lesson_speech.json"
+        },
+        {
+          "path": "speech/test_english_lesson_speech.log",
+          "bytes": 2894,
+          "sha256": "18c0fd83b87d9cca56eeb36f443a2c77b2eb94109bb8be457b280e7a073c18a3",
+          "crc32": "635d21a4",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_english_lesson_speech.log"
+        },
+        {
+          "path": "speech/test_learning_english_speech_lifecycle.json",
+          "bytes": 1265,
+          "sha256": "56d92cb42586b1c161986db3b9acadfb56721cd6dd73f15d0b48716ba26f0e2a",
+          "crc32": "24aaf07e",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_learning_english_speech_lifecycle.json"
+        },
+        {
+          "path": "speech/test_learning_english_speech_lifecycle.log",
+          "bytes": 2709,
+          "sha256": "0b47929914f33e86f8a2d8adbddcf9af89d140de02d857e13b5d3ece30a3ab37",
+          "crc32": "70e80339",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/test_learning_english_speech_lifecycle.log"
+        },
+        {
+          "path": "speech/toolchain-original.log",
+          "bytes": 493,
+          "sha256": "08d6c47210556d277a874e674b6c75b0add0f52a55267343be3990268ec001a7",
+          "crc32": "f9b981c5",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/speech/toolchain-original.log"
+        },
+        {
+          "path": "table-native-contracts.log",
+          "bytes": 4804,
+          "sha256": "c13c2ef865ebea13209bebae163dd709df5c211e8f2fc88d8226fa48e69fca45",
+          "crc32": "72d2d67b",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/android-host/table-native-contracts.log"
+        }
+      ],
+      "temporary_url_saved": false
+    },
+    {
+      "artifact_id": 14131955552,
+      "artifact_name": "memory-source",
+      "bytes": 3103,
+      "sha256": "1b716c4f3bf7c1ec5c34264bcda72d9b19922d969fca124ec8f339e64b0fde47",
+      "download_count": 1,
+      "whole_archive_sha256_verified": true,
+      "all_member_crcs_verified": true,
+      "members": [
+        {
+          "path": "HOST-SOURCE.txt",
+          "bytes": 41,
+          "sha256": "02112b4b7c092612f84c0a34650b2b3530b07a4f8771b26096883aa2f5d348a7",
+          "crc32": "5096cb34",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/HOST-SOURCE.txt"
+        },
+        {
+          "path": "dart-version.txt",
+          "bytes": 81,
+          "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+          "crc32": "a9679d22",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/dart-version.txt"
+        },
+        {
+          "path": "memory-round.log",
+          "bytes": 2319,
+          "sha256": "31e51040106853dddceef856cdcba56a008ac7d279062969c816ab756b3cc68c",
+          "crc32": "92460123",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/memory-round.log"
+        },
+        {
+          "path": "memory-scheduler.log",
+          "bytes": 689,
+          "sha256": "bd79138720f22b33bcdcbf10e0eb70bda5729a11e1922a783bc73fa22bc5a0a1",
+          "crc32": "8082ae07",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/memory-scheduler.log"
+        },
+        {
+          "path": "quiz-round.log",
+          "bytes": 1785,
+          "sha256": "7429cc464b0ce54672578ea38c427db97e5539cf358495d57b1aa2865ee08981",
+          "crc32": "ab423993",
+          "full_member_crc_verified": true,
+          "local_path": "/workspace/scratch/5987865ae883/qa/host-bd07-root-contracts-20261114/originals/memory-source/quiz-round.log"
+        }
+      ],
+      "temporary_url_saved": false
+    }
+  ],
+  "scope_limits": [
+    "Real Kotlin/Java compilation is not an APK or Android runtime result.",
+    "Speech contracts use explicit synthetic ONNX/Android boundaries; no inference or heard speech claim.",
+    "Dart persistence/scheduler contracts use stated synthetic storage/lifecycle transport; no physical disk or full child-data migration claim.",
+    "No device FPS, temperature, energy or latency evidence.",
+    "Separate Flutter, recovery-script and Android gates remain separately assessed."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "observed_at_utc": "2026-11-14T15:16:19.024376+00:00",
+  "status": "READ_ONLY_NO_ADDITIONAL_CONCRETE_BLOCKER_FOUND",
+  "source_bindings": {
+    "reviewed_workflow": {
+      "path": "qa/nextgen-android-integration-20261114/prepared/host/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 74063,
+      "sha256": "0caabde427205969d2cc70a258e554463d189edffd7f2e43c90b1cd4bca0ed2c",
+      "git_blob_sha": "7111ad168903f5bc97808f74bd7944392d7325da"
+    },
+    "baseline_ffmpeg_workflow": {
+      "path": "qa/studio-ffmpeg-discovery-50503-20261114/prepared/host/.github/workflows/lumo-studio-2020.yml",
+      "bytes": 59699,
+      "sha256": "53355d456640ac6f13d7ac25e06d45129d66fcfc6b2e393c595ee9f3e43ca346",
+      "git_blob_sha": "ee5180d7140ba34f51e9a07acb7afabbd3c8e6f8"
+    }
+  },
+  "checks": [
+    {
+      "topic": "Exact candidate source and CWD",
+      "finding": "The new matrix checks out the PR head or workflow-dispatch SHA into host-source; it validates that HEAD and reads the native pin from that checkout. Native checkout and both pair runners receive those exact current revisions. validate_project.py resolves its root from __file__; pair paths resolve from the workspace and child CWDs are the matching repository roots."
+    },
+    {
+      "topic": "Published command paths",
+      "finding": "All six Host authority/producer paths and all nine Native entry/test/runner paths were checked in fresh non-truncated GitHub tree responses for Host50503 and Native47ca. Local assembled-host is a delta directory and was not mistaken for a complete checkout. The next candidate must retain these source paths."
+    },
+    {
+      "topic": "Actual CLI interfaces",
+      "finding": "English uses the actual --out producer and --task-fixtures/--output reader; Quiz/Memory pair runners accept native/host/expected-native/expected-host/output/capture exactly as passed. All three Android probes accept the common mandatory argument names."
+    },
+    {
+      "topic": "Sparse native reads and Android sequence",
+      "finding": "scripts plus scenes/games plus newly added scenes/learning cover the actual Native source paths requested by C4, Quiz, Memory and English. Both API35/API37 scripts run the actual normal tour, surfaces, C4, Quiz, Memory, then English using the same candidate APK, provenance, checksums, serial and source pins; separate output directories avoid collisions."
+    },
+    {
+      "topic": "Failure propagation and publication",
+      "finding": "The three authority matrix legs use fail-fast:false, retain failing process exits/strict reader gates, and preserve outputs with always(). Android-tour needs the complete matrix; publisher needs and explicitly requires nextgen-authorities success alongside every prior prerequisite. Pair steps may still collect diagnostics after an earlier authority-contract failure, but no continue-on-error removes that failed job outcome."
+    },
+    {
+      "topic": "Prior workflow preservation",
+      "finding": "Top-level triggers/permissions/concurrency, all previous job timeout values, four unchanged jobs and the complete existing publisher step structures are byte/value equivalent to the ffmpeg baseline. The publisher additions are only the matrix need/result condition."
+    }
+  ],
+  "structural_read_results": {
+    "previous_job_timeouts_equal": true,
+    "publisher_steps_equal": true,
+    "unchanged_jobs": [
+      "android-host-compile",
+      "verify-and-build",
+      "update-2020-from-2017",
+      "creative-android"
+    ]
+  },
+  "blocking_issues": [],
+  "limits": [
+    "Read-only source/path/CLI/workflow review; no new tests, Godot run, Flutter run or Android execution by this reviewer.",
+    "The current candidate Native pin and receipt still require Root integration and all actual CI gates.",
+    "A new job timeout is a CI budget, not evidence of physical-device speed or frame rate."
+  ],
+  "source_path_binding": {
+    "path": "qa/nextgen-android-workflow-independent-review-20261114/source-path-binding.json",
+    "bytes": 3155,
+    "sha256": "23db57c90e61966db71272ad8399ea20acceca91e02d52402dfef870f18439b6",
+    "git_blob_sha": "e50a3374c4b5132e3b3ba1b8ac18aa5ded409b1c"
+  }
+}

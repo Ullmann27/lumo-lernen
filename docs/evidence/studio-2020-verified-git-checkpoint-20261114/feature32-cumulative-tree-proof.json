@@ -1,0 +1,239 @@
+{
+  "base": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+  "head": "1a903aefc751f80537c7dd4c96ae8c99915962f5",
+  "base_tree": "9d2eed6883ca3f80347dc97980e0336b109e4cae",
+  "head_tree": "fada6c73215051295dbb277de3197852a1ab6956",
+  "old_count": 4262,
+  "new_count": 4283,
+  "changed": 32,
+  "modified": 11,
+  "added": 21,
+  "removed": 0,
+  "unchanged": 4251,
+  "files": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f313dc0494ff76c64524f5def618f1c5306af6c3",
+      "prior": null
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eda1235e5975c21885fba87ac1512927769a878a",
+      "prior": "bea1a0e7ee59565c34aff3e453ad0154d2d3bc18"
+    },
+    {
+      "path": "config/studio-2020-visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8626624dca0035447e8e86874ef39b262c36de86",
+      "prior": "2fa78d07d6fabfefb053848b678c01d46184048c"
+    },
+    {
+      "path": "docs/NEXTGEN_FEATURE_20261114.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4b531b230034afa1171bf2d375d8d486c514f8b",
+      "prior": null
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a75c8092e071d5ca019d06d5206dee4834f98fd4",
+      "prior": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_show.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1246a1602c27961e5a705f523e14f409900f8db",
+      "prior": "ce3fda0842c32b242b25acac51e716acdcaeae87"
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+      "prior": null
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "prior": "83463a26665cd0b58aa776c28f6dec1600552e3d"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "prior": "b9eff2d23c35d01e6df674cad909c5c495a87bde"
+    },
+    {
+      "path": "lib/features/lumo3d/native_method_table_transport.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c160054a74531b22e817bb284b7860421d2a7f1",
+      "prior": null
+    },
+    {
+      "path": "lib/features/lumo3d/native_table_transport.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2",
+      "prior": null
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f85871afa1a8baa20fc08c30a935fcef56c7b3a8",
+      "prior": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_repository.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c2b7dc207809bbcabed4180e7423b8cd8080117",
+      "prior": null
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_round.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6606300c19972195b4cf7fcee4810835a3c5ddcc",
+      "prior": null
+    },
+    {
+      "path": "lib/features/quiz/quiz_table_session.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4105f3899d7cfb52fc0e5ec64b7b274a03a0fa4",
+      "prior": null
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5138523453d4e185f6af46f96e15478888075de",
+      "prior": "002eb5a6177d92ab2bc7d53078823283d6b48ead"
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b",
+      "prior": "a1615455b5ea6251926d5037900e025d46971c18"
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e049e6fe75a82c38d105384f37e16ad8715ee95",
+      "prior": "6ad0e520940b6e576324fff7615c2cf5c400bf8f"
+    },
+    {
+      "path": "scripts/tests/test_table_games_native_contract.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1379b936394dba8f70137657e9f91f68b5a9bee2",
+      "prior": null
+    },
+    {
+      "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92e220331786a78b21bf800e98a3d927c9b2711a",
+      "prior": null
+    },
+    {
+      "path": "test/table_games_launcher_binding_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "705e90212916b784136a33088a4dbedaf7f0f8e2",
+      "prior": null
+    },
+    {
+      "path": "test/table_games_wallet_profile_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5034e41a86ba9977251abe233be574bcaf889240",
+      "prior": null
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70cacfce15bdd374d582c570b49c2a865cee63d6",
+      "prior": null
+    },
+    {
+      "path": "tool/check_native_english_activity.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85a96d92e0eac2c1d9f6791820d8990d816fdc48",
+      "prior": null
+    },
+    {
+      "path": "tools/android_qa/jvm/TableGameIntentContract.java",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "194fdaa97578ef6ca0d434cd9ec0066f20be6818",
+      "prior": null
+    },
+    {
+      "path": "tools/android_qa/quiz_native_authority.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ded270bb685306e74faa024043ec9638f0cc8d1",
+      "prior": null
+    },
+    {
+      "path": "tools/android_qa/quiz_round_contract.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80df17ac25b0a81855f0c0e88a4f37162c04db86",
+      "prior": null
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065",
+      "prior": "ed589d9bbc5a99e7b37e606bc45cf932b5ce9257"
+    },
+    {
+      "path": "tools/auto_install/TableAuthorityService.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08",
+      "prior": null
+    },
+    {
+      "path": "tools/auto_install/TableGameActivity.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74e9f7476cb192e016f5bf42421c89a30f58ee28",
+      "prior": null
+    },
+    {
+      "path": "tools/auto_install/TableGameIntent.java",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d14b09e3438164aea359d478d7af11f8c0fb5433",
+      "prior": null
+    },
+    {
+      "path": "tools/auto_install/TableGamesBridge.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b25e208043ac9cd939e98eb955ef6a850315461",
+      "prior": null
+    }
+  ]
+}

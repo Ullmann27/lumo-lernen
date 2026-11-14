@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "status": "FROZEN_DOCUMENTATION_ONLY",
+  "source_manifest_sha256": "3bcb3962ac85e77dd1ef241995a34672d45fc847e552154660ffd6ce09523c14",
+  "no_android_run_performed": true,
+  "file_count": 16,
+  "total_bytes": 151577,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/README.md",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/README.md",
+      "bytes": 4846,
+      "sha256": "e01b77d75d7c78f1d17fbb83a20b444f3d269ec4c37be43c110a839201eda61d",
+      "git_blob": "34532d42e32fb1753b0c15fe9c57f97893896978",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/review.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/review.json",
+      "bytes": 1969,
+      "sha256": "3e456dd230b8ebe18015b645ea225e60104d07072fc464ada17e0770e5e7e740",
+      "git_blob": "eaee8e133c408ef56c42cdcefbde00bb1cedcf72",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/source-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/source-upload-manifest.json",
+      "bytes": 10081,
+      "sha256": "3bcb3962ac85e77dd1ef241995a34672d45fc847e552154660ffd6ce09523c14",
+      "git_blob": "f7f049fb68bd70841829c16cd66fb8f46b5bfa0d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/baseline-a446/published-source-binding.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/baseline-a446/published-source-binding.json",
+      "bytes": 4438,
+      "sha256": "b48096fab76e8cedc253df9e574db2f2018e354d3db093474d953c87d68e67d0",
+      "git_blob": "4932a5d7daa7337bb2705ecdc4043d3a7d280850",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/baseline-a446/scripts/recheck_studio_4ab.py",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/baseline-a446/scripts/recheck_studio_4ab.py",
+      "bytes": 23050,
+      "sha256": "2e01e9ed7b6286bce1d30d4d6249d5f17d2e01a1a75cf1d935cd0a051d514660",
+      "git_blob": "7cc8a6c4a4cc6faf6e20fab42887bc27cee451a0",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/baseline-a446/scripts/tests/test_studio_4ab_recheck.py",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/baseline-a446/scripts/tests/test_studio_4ab_recheck.py",
+      "bytes": 16954,
+      "sha256": "c381c6820a21ff6ae4662731be0e94c3adbec94452a2e25963436e958fa07b22",
+      "git_blob": "a65a0bc99b188ab0518344ec6a9e7ed7fc6fe856",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/baseline-a446/.github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/baseline-a446/.github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "bytes": 13954,
+      "sha256": "25819826d39aea8a1566769932356db4ab2035bb877d0f6ce724453ca058dea2",
+      "git_blob": "b3b2381f124a688c5f7f817f868fa57329d5633a",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/baseline-a446/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/baseline-a446/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+      "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/binder.log",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/binder.log",
+      "bytes": 5337,
+      "sha256": "9761ea74b83275e183917caa828f57e8d17c5ac418a88a92ea55f74fc7a10a83",
+      "git_blob": "bde61509d874464e08168a406607c46050c38c0e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/binder-execution.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/binder-execution.json",
+      "bytes": 526,
+      "sha256": "31b73e14a7d5cd4065d2b4eec5e07a8d0e9b7575d4405ca0afaa28b19606d8a1",
+      "git_blob": "9c3c21c789b23b078e681407798c24ce1601c012",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/cards-readiness.log",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/cards-readiness.log",
+      "bytes": 1302,
+      "sha256": "f2cffdb197117c1e1885e9d6518f2b60a2da5a43d4c069354d57bc08b66d2dda",
+      "git_blob": "6391ef6e483d57c43c6b9c5b5168e045dd19c776",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/cards-readiness-execution.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/cards-readiness-execution.json",
+      "bytes": 549,
+      "sha256": "3ebc46bb507dbd9836b9d1a1b6e82327fbdf4f7f39b2387c5e948924c87ad97d",
+      "git_blob": "d8c7ef39165149eed828804f18663ecfb8efdb1a",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/actionlint.log",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/static-integration-review.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/static-integration-review.json",
+      "bytes": 4046,
+      "sha256": "5391e33330d327ffee9d1da6f63acfd1b5319a10e46c63fdb5f14d9077a11d61",
+      "git_blob": "25d1fbe9d0a41b3f13c73820c97b4565de38dcc0",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/unchanged-product-reader-dependencies.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/unchanged-product-reader-dependencies.json",
+      "bytes": 1339,
+      "sha256": "6ffbc25028c7f606a1eeb3b900d9a6b2f336b0f553bbeb52e3603358dbe8696e",
+      "git_blob": "6ea5f2719aee07ea51c9c47b2975784399ed3fe6",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/validation/reviewed-delta-against-a446.patch",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-preparation/validation/reviewed-delta-against-a446.patch",
+      "bytes": 15226,
+      "sha256": "f84b50f752ebbd9f521c49d0afefc6e6beda6f49c7ba2f81b798861f0ec8826b",
+      "git_blob": "35963da86e8c0f5fa418f530d72893fe34508ab4",
+      "mode": "100644"
+    }
+  ],
+  "destination_constraint": "Publish only to a separate evidence branch, never the strict diagnostic source branch"
+}

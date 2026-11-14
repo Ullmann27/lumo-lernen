@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "baseline_native": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "baseline_tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+  "scope": "Only early MovieMaker capture dimensions and additive wrong-resolution rejection fixture; all production/default/harness bytes and assertions preserved. No Git mutation or new CI claim.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/scripts/tests/lumo_facial_capture.gd",
+      "target": "scripts/tests/lumo_facial_capture.gd",
+      "mode": "100644",
+      "bytes": 9009,
+      "sha256": "d5c519844281ec83d2965e2cfdf4b0157f8304fb1e9f093d705356315ee924a5",
+      "git_blob_sha": "55304d9eb68ecc2f335bb66288446945c84d27cd",
+      "baseline_blob": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9",
+      "baseline_sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/tools/tests/test_nextgen_runner.py",
+      "target": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "bytes": 40545,
+      "sha256": "9e0252a70d1b9d961696eef1bd90499a2f111c63df51515cf815e46aa21778ca",
+      "git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963",
+      "baseline_blob": "7b7b9049889848354abc64d0e4028bcb943c2811",
+      "baseline_sha256": "9dc3ed010222305ff100b6d7c9cc0118ea690e4f4b8a498ce0b113aa245bbf7d"
+    }
+  ],
+  "total_bytes": 49554
+}

@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 0.3828369330003625,
+  "scope": "20 subprocess/source/result counterexamples; not game acceptance",
+  "sources": {
+    "host/scripts/run_connect_four_runtime.py": {
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "bytes": 15683
+    },
+    "host/scripts/tests/test_connect_four_runtime_gate.py": {
+      "sha256": "53be3d0d582f72709b00437a8f91386a7bfa245a3c35be85a5f320686b3a2d55",
+      "bytes": 10033
+    }
+  }
+}

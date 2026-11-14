@@ -1,0 +1,148 @@
+{
+  "scope": "Exact final Treasure renderer JSON and five PNGs replayed through original and extended roster. Other 49 rasters and their sidecars are synthetic contract fixtures. No new Engine/CI/Android execution or visual review.",
+  "native_baseline": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "actual_report_checks": 3351,
+  "actual_observation_count": 10,
+  "sources": [
+    {
+      "path": "tools/validate_studio.sh",
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c"
+    }
+  ],
+  "files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-report.json",
+      "bytes": 30295,
+      "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-compact.png",
+      "bytes": 324217,
+      "sha256": "01fb3aa476f1c07950023cfdb2e6c8ee56af9ff902ed91a4ceab2e5812787fb9",
+      "size_px": [
+        640,
+        320
+      ]
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-fold.png",
+      "bytes": 4225356,
+      "sha256": "e2913b19defe9a740494da0aab2eb63a008adb07f7de85d6cef2d1122d04099f",
+      "size_px": [
+        2176,
+        1812
+      ]
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-landscape-cutout.png",
+      "bytes": 2622432,
+      "sha256": "a4ddd95b35a4253bca35863eb5f6a04b7cc24af731c2d314f774502fa769f328",
+      "size_px": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-landscape.png",
+      "bytes": 2718314,
+      "sha256": "609ae9a2f31c55cac080e90ea98187bde3d8f75523e3cca768fd00ffb4a2c398",
+      "size_px": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-portrait.png",
+      "bytes": 2101916,
+      "sha256": "a9dd2fb6b1d56f94d67b74e5665acc328ba70a5d20c0bd2e49e2285767c4df7f",
+      "size_px": [
+        1080,
+        2400
+      ]
+    }
+  ],
+  "results": [
+    {
+      "runner": "original-acf51",
+      "exit_code": 1,
+      "elapsed_seconds": 0.2280312210059492,
+      "renderer_roster_emitted": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 171, in <module>\nAssertionError: ('treasure_title_contrast_regression', 5, 4)\n"
+    },
+    {
+      "runner": "extended",
+      "exit_code": 0,
+      "elapsed_seconds": 0.25079416899825446,
+      "renderer_roster_emitted": true,
+      "stdout": "[StudioRasterRoster] PASS 54 actual PNG files\n",
+      "stderr": "",
+      "actual_treasure_image_entries": [
+        {
+          "path": "captures/treasure_title_contrast_regression/treasure-title-compact.png",
+          "width": 640,
+          "height": 320,
+          "bytes": 324217,
+          "sha256": "01fb3aa476f1c07950023cfdb2e6c8ee56af9ff902ed91a4ceab2e5812787fb9",
+          "treasure_title_report": {
+            "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+            "bytes": 30295,
+            "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+          }
+        },
+        {
+          "path": "captures/treasure_title_contrast_regression/treasure-title-fold.png",
+          "width": 2176,
+          "height": 1812,
+          "bytes": 4225356,
+          "sha256": "e2913b19defe9a740494da0aab2eb63a008adb07f7de85d6cef2d1122d04099f",
+          "treasure_title_report": {
+            "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+            "bytes": 30295,
+            "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+          }
+        },
+        {
+          "path": "captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+          "width": 2400,
+          "height": 1080,
+          "bytes": 2622432,
+          "sha256": "a4ddd95b35a4253bca35863eb5f6a04b7cc24af731c2d314f774502fa769f328",
+          "treasure_title_report": {
+            "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+            "bytes": 30295,
+            "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+          }
+        },
+        {
+          "path": "captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 2718314,
+          "sha256": "609ae9a2f31c55cac080e90ea98187bde3d8f75523e3cca768fd00ffb4a2c398",
+          "treasure_title_report": {
+            "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+            "bytes": 30295,
+            "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+          }
+        },
+        {
+          "path": "captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+          "width": 1080,
+          "height": 2400,
+          "bytes": 2101916,
+          "sha256": "a9dd2fb6b1d56f94d67b74e5665acc328ba70a5d20c0bd2e49e2285767c4df7f",
+          "treasure_title_report": {
+            "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+            "bytes": 30295,
+            "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+          }
+        }
+      ]
+    }
+  ]
+}

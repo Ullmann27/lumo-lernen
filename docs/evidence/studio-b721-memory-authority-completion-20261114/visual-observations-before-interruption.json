@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "run_id": 43619285124,
+  "job_id": 132521067548,
+  "artifact_id": 14123817299,
+  "archive_bytes": 3943940,
+  "archive_sha256": "ea977121218cc945f3ddb1fe09bff81109d0ecbfaa45b7c955ed849194ffcc8a",
+  "personally_opened": 19,
+  "png_decoded_before_outage": 28,
+  "crc_members_before_outage": 73,
+  "findings": [
+    {
+      "artifact_entry": "memory-pair/native/01-memory-real-hidden.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Eight concealed cards in two rows; all cards and Back/Pause labels visible, count 0:0 and zero moves. Lumo is fully visible at the right."
+    },
+    {
+      "artifact_entry": "memory-pair/native/02-memory-real-face.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First card shows a bright treasure-chest motif; seven backs remain. Card silhouette and neighboring gap are distinct."
+    },
+    {
+      "artifact_entry": "memory-pair/native/03-memory-real-paused.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Readable paused/saved banner and exposed Continue/New round controls. Lower difficulty and pack choices are in a visibly scrollable modal; this frame does not expose every option."
+    },
+    {
+      "artifact_entry": "memory-pair/native/04-memory-real-reopened.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Same paused modal visually restored; Continue and New round visible. Round identity is established by original state JSON, not by this image alone."
+    },
+    {
+      "artifact_entry": "memory-pair/native/05-memory-real-bot-first.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "One bottom-row motif revealed with 'Mein Zug! Ich denke nach...' and one child move; Lumo remains visible."
+    },
+    {
+      "artifact_entry": "memory-pair/native/06-memory-real-bot-second.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Two distinct bottom-row motifs visible during the bot turn; readable footer and counter."
+    },
+    {
+      "artifact_entry": "memory-pair/native/07-memory-real-win.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Readable win modal with two stars, saved-result text, Show board and New round; lower choices scroll. Wallet idempotence relies on current original ledger/state records."
+    },
+    {
+      "artifact_entry": "memory-pair/native/08-memory-real-paid-reopen.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fresh eight-card concealed board, zero moves and starting prompt. New round/token are verified separately from original state JSON."
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-hidden.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture eight-card concealed board, readable counters and footer, Lumo fully visible."
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-one-flipped.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture first panda motif clearly visible with seven backs; unobscured card gap."
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-paused.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture paused modal and fully visible Continue/New round; scrolling needed for lower settings."
+    },
+    {
+      "artifact_entry": "memory-view/memory-landscape-matched.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fixture matched panda pair has two clear check markers and child count one; footer announces a match."
+    },
+    {
+      "artifact_entry": "memory-view/memory-phone-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Portrait fixture displays all 24 backs in four columns by six rows with readable header/footer and preserved inset space. Lumo is not shown in this narrow layout."
+    },
+    {
+      "artifact_entry": "memory-view/memory-fold-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Fold fixture displays all 24 backs in six columns by four rows, Lumo visible at right, and complete header/footer."
+    },
+    {
+      "artifact_entry": "memory-view/memory-compact-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "640x320 fixture exposes eight cards in one row and a readable 1–8 of24 page counter; Next arrow visible and enabled. Lumo is not shown."
+    },
+    {
+      "artifact_entry": "memory-view/memory-cutout-profi.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "Wide cutout fixture preserves left inset, exposes twelve cards in two rows, complete header/footer and Next arrow with1–12 of24. Lumo is not shown."
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-00.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First-card motion sample begins with the back visible."
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-05.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First-card mid-flip sample is visibly narrower with the front motif appearing; neighboring cards unchanged."
+    },
+    {
+      "artifact_entry": "memory-pair/native/motion-11.png",
+      "reviewed": true,
+      "accepted_within_desktop_scope": true,
+      "blocking_issue": false,
+      "observed": "First-card late sample shows the full chest front. Three selected frames are visual motion evidence, not a measured physical-device frame rate."
+    }
+  ],
+  "scope": "Current desktop X11 originals, production Dart authority plus explicit QA transport/clock/ledger; no Android or physical FPS claim.",
+  "final_inventory_hash_attachment": "Pending filesystem recovery",
+  "detail_recompute_command_exit": "UNCONFIRMED after exec-server transport disconnected"
+}

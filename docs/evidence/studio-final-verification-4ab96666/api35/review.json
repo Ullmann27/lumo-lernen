@@ -1,0 +1,667 @@
+{
+  "schema": 1,
+  "status": "FAIL_NO_ANDROID_ACCEPTANCE",
+  "reviewed_at_utc": "2026-11-14T01:29:02.705939+00:00",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43530667812,
+  "run_attempt": 1,
+  "job": {
+    "id": 132269951320,
+    "run_id": 43530667812,
+    "workflow_name": "LUMO Studio 2019 Android candidate",
+    "head_branch": "chatgpt/lumo-studio-20261113",
+    "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43530667812",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOSNzcp88AAAAey-dJWA",
+    "head_sha": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132269951320",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43530667812/job/132269951320",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-14T00:57:01Z",
+    "started_at": "2026-11-14T00:57:02Z",
+    "completed_at": "2026-11-14T01:14:36Z",
+    "name": "Android API 35 live application tour",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-14T00:57:03Z",
+        "completed_at": "2026-11-14T00:57:04Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-14T00:57:04Z",
+        "completed_at": "2026-11-14T00:57:27Z"
+      },
+      {
+        "name": "Checkout exact upstream action only for Android 17",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 3,
+        "started_at": "2026-11-14T00:57:27Z",
+        "completed_at": "2026-11-14T00:57:27Z"
+      },
+      {
+        "name": "Verify framework guard before the Android 17 emulator",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 4,
+        "started_at": "2026-11-14T00:57:27Z",
+        "completed_at": "2026-11-14T00:57:27Z"
+      },
+      {
+        "name": "Run actions/download-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-14T00:57:27Z",
+        "completed_at": "2026-11-14T00:57:34Z"
+      },
+      {
+        "name": "Live UI reader",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-14T00:57:34Z",
+        "completed_at": "2026-11-14T00:58:14Z"
+      },
+      {
+        "name": "Enable accelerated disposable emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-14T00:58:14Z",
+        "completed_at": "2026-11-14T00:58:14Z"
+      },
+      {
+        "name": "Software display",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-11-14T00:58:14Z",
+        "completed_at": "2026-11-14T00:58:15Z"
+      },
+      {
+        "name": "Verify the Android 17 CLI22 source and AVD counterexamples",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 9,
+        "started_at": "2026-11-14T00:58:15Z",
+        "completed_at": "2026-11-14T00:58:15Z"
+      },
+      {
+        "name": "Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 10,
+        "started_at": "2026-11-14T00:58:15Z",
+        "completed_at": "2026-11-14T00:58:15Z"
+      },
+      {
+        "name": "Bind the Android 17 guard to this actual new Studio APK source",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 11,
+        "started_at": "2026-11-14T00:58:15Z",
+        "completed_at": "2026-11-14T00:58:15Z"
+      },
+      {
+        "name": "Install and tour the exact APK",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 12,
+        "started_at": "2026-11-14T00:58:15Z",
+        "completed_at": "2026-11-14T01:14:32Z"
+      },
+      {
+        "name": "Install and tour the exact APK after Android 17 framework readiness",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 13,
+        "started_at": "2026-11-14T01:14:32Z",
+        "completed_at": "2026-11-14T01:14:32Z"
+      },
+      {
+        "name": "Preserve actual Android 17 generated hardware and disk configuration",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 14,
+        "started_at": "2026-11-14T01:14:32Z",
+        "completed_at": "2026-11-14T01:14:32Z"
+      },
+      {
+        "name": "Preserve Android 17 startup diagnostics even after action failure",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 15,
+        "started_at": "2026-11-14T01:14:32Z",
+        "completed_at": "2026-11-14T01:14:32Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-11-14T01:14:32Z",
+        "completed_at": "2026-11-14T01:14:35Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32,
+        "started_at": "2026-11-14T01:14:35Z",
+        "completed_at": "2026-11-14T01:14:35Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33,
+        "started_at": "2026-11-14T01:14:35Z",
+        "completed_at": "2026-11-14T01:14:35Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132269951320",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000017025,
+    "runner_name": "GitHub Actions 1000017025",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "artifact": {
+    "id": 14090824265,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA5MDgyNDI2NQ==",
+    "name": "lumo-studio-2019-android-tour",
+    "size_in_bytes": 93626609,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14090824265",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14090824265/zip",
+    "expired": false,
+    "digest": "sha256:a8ef0dbf1fa44ec6bde2fdd4107067a8b842f4dd17651808bffa65bd8aaa5b7e",
+    "created_at": "2026-11-14T01:14:35Z",
+    "updated_at": "2026-11-14T01:14:35Z",
+    "expires_at": "2026-12-14T01:14:32Z",
+    "workflow_run": {
+      "id": 43530667812,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "4ab96666f954baf258422d6ed277fc297b7ddeef"
+    }
+  },
+  "archive": {
+    "artifact_id": 14090824265,
+    "zip_bytes": 93626609,
+    "zip_sha256": "a8ef0dbf1fa44ec6bde2fdd4107067a8b842f4dd17651808bffa65bd8aaa5b7e",
+    "crc_pass": true,
+    "member_count": 803
+  },
+  "original_zip_location": "qa/studio-final-4ab96666/api35/original-artifact.zip",
+  "original_zip_in_git_manifest": false,
+  "apk_identity": {
+    "apk_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+    "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "godot_revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "godot_pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "android_runtime": {
+    "sdk": 35,
+    "release": "15",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "original_job_log": {
+    "bytes": 1528151,
+    "sha256": "86c1f3878267546d3a1a1f33174190d1516d0d529dde7fa870ef9883506a9e15"
+  },
+  "completed_regular_tour": {
+    "status": "PASS",
+    "step_count": 21,
+    "passed_step_count": 21,
+    "steps": [
+      "apk-identity",
+      "launch",
+      "onboarding",
+      "navigate-start",
+      "atelier-roundtrip",
+      "navigate-lernen",
+      "navigate-spiele",
+      "open-kart",
+      "start-kart-race",
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu",
+      "return-from-kart",
+      "learning-state-after-kart",
+      "lernen-usable-after-kart",
+      "profile-after-kart",
+      "restart-keeps-learning-state",
+      "display-fold_offen",
+      "display-fold_aussen",
+      "display-quer"
+    ],
+    "scope": "Originale normale Tour einschließlich tatsächlicher Kartfahrt, Pause, Rückkehr und begrenztem Profil-/Lernschlüsselvergleich. Getrennt vom später gescheiterten Native-Surfaces-Teil."
+  },
+  "failure": {
+    "stage": "learning_roundtrip / first Ein Objekt zeigen touch prerequisite",
+    "source_callsite": ".github/probes/lumo_studio_surfaces_android_probe.py:269 → creative_android_probe.py:458,406,325",
+    "exception": "TimeoutExpired: Command '('tesseract', '/home/runner/work/lumo-lernen/lumo-lernen/tour/nextgen/ocr-work.png', '/home/runner/work/lumo-lernen/lumo-lernen/tour/nextgen/learning-move-1-7-ocr-raw', '--psm', '11', '-l', 'deu+eng', 'tsv')' timed out after 0.6367536309999196 seconds",
+    "configured_total_deadline_seconds": 120,
+    "elapsed_seconds": 120.839505,
+    "frames": 8,
+    "complete_surface_frames": 8,
+    "completed_ocr_attempts_without_exact_caption": 7,
+    "last_capture_after_seconds": 118.345779,
+    "final_tesseract_remaining_timeout_seconds": 0.6367536309999196,
+    "touch_sent": false,
+    "objects_moved": 0,
+    "classification": "Vorliegender Bild-/OCR-Nachweis: sichtbare, lesbare Beschriftung wurde vom aktuellen OCR-Verfahren nicht exakt erkannt. Der abschließende Subprozess hatte nur noch das verbleibende äußere Zeitbudget; kein Nachweis eines allgemein hängenden Tesseract-Prozesses."
+  },
+  "visual_review": {
+    "actually_opened": [
+      "nextgen/learning-move-1-0.png",
+      "nextgen/learning-move-1-7.png"
+    ],
+    "findings": [
+      "Beide unveränderten 1080×2400-Bilder zeigen die tatsächlich gestartete 8+5-Lernszene.",
+      "Die goldene Schaltfläche Ein Objekt zeigen ist vollständig sichtbar und lesbar; keine beobachtete Systemleistenüberdeckung.",
+      "Acht blaue Würfel, fünf goldene Reservewürfel und 0/5 bewegt bleiben sichtbar."
+    ],
+    "not_claimed": [
+      "Kein fünffaches Objektverschieben",
+      "Kein Abschluss der 8+5-Erklärung",
+      "Kein Bildnachweis der Rückkehr aus dieser Native-Lernszene",
+      "Keine Cards-Ausführung, Frontflächen-, Layout-/Pixel-, Draw-/Bot-, Pause-/Save-/Reopen-/Return-Abnahme",
+      "Keine physische Fold7- oder 60-FPS-Abnahme"
+    ]
+  },
+  "speech_scope": "Der Original-Log enthält started/completed für die native Lernäußerung. Keine hörbare Audioqualität und keine Lippenanimation geprüft.",
+  "historical_scope_correction": "Alte visuell angesehene Cards-Bilder sind keine automatischen Front-PASS. Dieser neue 4ab-Lauf erreicht Cards überhaupt nicht.",
+  "mutations": [],
+  "reruns": [],
+  "selected_originals": [
+    {
+      "archive_path": "tour-result.json",
+      "bytes": 9995,
+      "sha256": "5cfc7d56a7c92b8d1f63d44142d7d94bc18c35e9f77cc022f38ea6b459c89c37",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "26a2c31742e7c61df9071a15204b73be4099bd8fcd39c6eee07e95baecb42332",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "android-sdk.txt",
+      "bytes": 3,
+      "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "android-release.txt",
+      "bytes": 3,
+      "sha256": "238903180cc104ec2c5d8b3f20c5bc61b389ec0a967df8cc208cdc7cd454174f",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "android-emulator-version.txt",
+      "bytes": 655,
+      "sha256": "0db3b7136e8bef389a3d7d9261221475ec77cdcde4e774d052cadd0aab7852cc",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/native-surfaces-result.json",
+      "bytes": 5816,
+      "sha256": "042189e510fea8ae7113e247991d0caf80a5464402922439a41101a1d7ce77e4",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 6859,
+      "sha256": "7f78dab6f5d0e3325f314f40bbbdec6b6e4d076f94e50b36f4a4d1858347c8f5",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0.png",
+      "bytes": 557393,
+      "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-7.png",
+      "bytes": 556055,
+      "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-speech-logcat.txt",
+      "bytes": 1628,
+      "sha256": "c8a137cf2fc68df772a7e650c9a28b6b19f6253d34880c9d264953cd48174c4a",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/logcat.txt",
+      "bytes": 699192,
+      "sha256": "2b3cbbbeab7cdfa0b1cc232adc788a24415613afd83585e3276fe0c50666f317",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr.json",
+      "bytes": 9809,
+      "sha256": "7f53a275db075671cc321d5271ad3fbe70b0ccdf33f09a86a99416eccd770ae2",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-1-ocr.json",
+      "bytes": 10318,
+      "sha256": "f51a91c698fdfafb33e6862f7c083876f4bb86774155ac58e3dcaa9cc9cf02ad",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-2-ocr.json",
+      "bytes": 9835,
+      "sha256": "1c98d133f17f92d8d39e2be41a6204ed72f4da364526ae6bec6b0a821661573a",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-3-ocr.json",
+      "bytes": 10067,
+      "sha256": "c23b802f15cd51f509fe2f9be5fb3559f5b37b196d70009729ff9410f317771f",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-4-ocr.json",
+      "bytes": 11776,
+      "sha256": "b48f18497309f743c00213896d449a8404ffda8a21f7c94652e5ae3e056186a6",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-5-ocr.json",
+      "bytes": 10342,
+      "sha256": "ecd6eef7f3c9cbd35dfcdeccafb183d812d75a01df40b2fd8130989f1dac4185",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr.json",
+      "bytes": 9959,
+      "sha256": "4cbc3a89c028b452156b750e35f064e59a837ac8238c0f7acb56ba820f600f7f",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "bytes": 2906,
+      "sha256": "6d362fcc5b13bf44e7df57b69ef72eac01e92f7150f58d4b147ab8ffa6b520ac",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "bytes": 246,
+      "sha256": "d8c211f576d9a28b8f2f35714d47c84d32f524f5e08d7b67fca3ec8db562bc3d",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-raw.tsv",
+      "bytes": 3371,
+      "sha256": "79edb90a3a5527c401426dec30d21895eab3221fbac421d36896bac51e8362df",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "bytes": 4109,
+      "sha256": "e72d6aefc052eba507f9e68ddd979457b42d8a4b751443bbfd5351c34cdfd612",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1445,
+      "sha256": "0c12f78809fcf8a85d2640a267f05b76eed8a9ca80d712234f3fca7cb82c0856",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "sha256": "aebcddcb0ed78780fe38d8de9aee56831f7fb872b0a98dea9bdc1ee46fae3424",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1225,
+      "sha256": "116e7efb181c8b156f13fd4b53810015326c517dd408dceb7f1858b4fd5a772e",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "sha256": "c2bed00571cfe60865cc00068c68bcacd137b8472f77c72aa09c3420ba79c817",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "sha256": "081da59dd555cec540947a7f4802864db060df97dbfb7b07d931b55af6ab87b6",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "sha256": "46ffd33dfa9034daf5346469bec12d0977bd14cf49ca369f908401ab76a3f180",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1489,
+      "sha256": "d3af58f017de1d6339c5d19927e9e0f64b84bd7f74ee297bb6dcc19d30b0036f",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "sha256": "1a007b768f9c4775cbfae1f78052052de6fbd4509a84bee77e1bc57985ca2d96",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1045,
+      "sha256": "84c702b0b45946631d81243c9df8ca5f280607f0ab73321ebd53643fd6194cb4",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "sha256": "f9a02dee15ea6374735055650ccb9fec83a9b91714b16bf22494643010796f38",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "sha256": "88ada34d529e37c6fe369beb03908cabc4dcb891f6bf7de501774daf5b24610b",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "sha256": "4d163844962e7047e703035f23fac2fffab12a8422423ea588ca7d84c8dfb709",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "bytes": 2784,
+      "sha256": "62dfd321fd81abe9ec922af5199b75be4c23a862529f5edc5481cbe83e33b3e4",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "bytes": 2826,
+      "sha256": "f1381716e69b83b68e9005fe434b527891629688683771dc2d7ae3a4c16877d0",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-contrast.tsv",
+      "bytes": 3335,
+      "sha256": "12d8ceea3ecd86573455672dc4ca7de6cab7c875485249931a89aa7eb4e97f9b",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "d69fbd7737ffb11d9322aee50de163859af4d659af6a1bc94260edf21bd54d9c",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-raw.tsv",
+      "bytes": 2805,
+      "sha256": "2e4fd78e2a56057f1f3b3b375481c956aebb7cf2261acc399416090e53914e09",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-teal-text-1x.tsv",
+      "bytes": 4386,
+      "sha256": "35f80e32d4629e5a44dbf9acc9ec12f31e50dc143d3486e72570f9b79391e8dc",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1533,
+      "sha256": "677c6f6e763e466cacefb8b0a256f4444c07203b1d5021b555e161d6584c7da6",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "sha256": "aebcddcb0ed78780fe38d8de9aee56831f7fb872b0a98dea9bdc1ee46fae3424",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1044,
+      "sha256": "e773471d2e641332bf571a97354a46f91b5e8f6e12dd042da7455ad11de08877",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "sha256": "c2bed00571cfe60865cc00068c68bcacd137b8472f77c72aa09c3420ba79c817",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "sha256": "081da59dd555cec540947a7f4802864db060df97dbfb7b07d931b55af6ab87b6",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "sha256": "46ffd33dfa9034daf5346469bec12d0977bd14cf49ca369f908401ab76a3f180",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-tile-0.tsv",
+      "bytes": 1484,
+      "sha256": "438fd7ced829d2dde8b04f9c212eb0620e47b653bf6e98ce5929cb37fe90625a",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "sha256": "1a007b768f9c4775cbfae1f78052052de6fbd4509a84bee77e1bc57985ca2d96",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-tile-2.tsv",
+      "bytes": 1045,
+      "sha256": "fa0afd1e10336fa729b498a8f8d5ac0e86188a502448e49e956779d8fdc9520f",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "sha256": "f9a02dee15ea6374735055650ccb9fec83a9b91714b16bf22494643010796f38",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "sha256": "88ada34d529e37c6fe369beb03908cabc4dcb891f6bf7de501774daf5b24610b",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "sha256": "4d163844962e7047e703035f23fac2fffab12a8422423ea588ca7d84c8dfb709",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-latin.tsv",
+      "bytes": 2790,
+      "sha256": "12f47dd3096ccbcd013a626b7d5316265912e421f4b1d52c492f7a334435cf5b",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-white-text.tsv",
+      "bytes": 2869,
+      "sha256": "f13e13b316dc59f6ec2f7265d81c69d7ae08cebca458bd14b361a4af6a1c088e",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-7-ocr-contrast.tsv",
+      "bytes": 2950,
+      "sha256": "d95761d04b20d1477b3d0322e781d21b2b4ab765932688dbfcac855e73de8030",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-7-ocr-raw.tsv",
+      "bytes": 83,
+      "sha256": "4e2c6c2dfca00003e4b505ad08bd3bc9e53a70aa34ba9f06d98d3e444af7c9e8",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-0-ocr-tiles.json",
+      "bytes": 5062,
+      "sha256": "df57577d1cd8b7a72290c26ea4d22e53f7cc2b6d033d81df93601b748276af73",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "archive_path": "nextgen/learning-move-1-6-ocr-tiles.json",
+      "bytes": 5103,
+      "sha256": "7c1aedbff7bfb5159a17f862cc5e5b518a484028625c32d9556c222f46091c87",
+      "byte_equal_to_original_zip": true
+    }
+  ]
+}

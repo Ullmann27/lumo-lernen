@@ -1,0 +1,194 @@
+{
+  "artifacts": [
+    {
+      "id": 14124235246,
+      "name": "lumo-tutor-2001-actual-flutter-captures",
+      "size_in_bytes": 5791974,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124235246",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124235246/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:20:10Z",
+      "expires_at": "2027-02-12T17:06:36Z",
+      "updated_at": "2026-11-14T17:20:10Z",
+      "digest": "sha256:88622f028d0233d53c3c67ec153649a08ef70e3ec26a064012871714a472b17e",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14124091508,
+      "name": "lumo-candidate-all-flutter-tests-and-captures",
+      "size_in_bytes": 332314669,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124091508",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124091508/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:19:58Z",
+      "expires_at": "2026-12-14T17:19:48Z",
+      "updated_at": "2026-11-14T17:19:58Z",
+      "digest": "sha256:a29969c591698ed99e1a2dcfd80afda63bb543f7f36119f3d11139ed3a626e58",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14124041583,
+      "name": "lumo-studio-2020-caption-ocr-regression",
+      "size_in_bytes": 1635,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124041583",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124041583/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:21:17Z",
+      "expires_at": "2026-12-14T17:21:16Z",
+      "updated_at": "2026-11-14T17:21:17Z",
+      "digest": "sha256:602f03a5da2534106747107551610b746e6825855bb1ac26ae8249210eef72e7",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14124000432,
+      "name": "lumo-studio-2020-nextgen-authority-quiz",
+      "size_in_bytes": 501399,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124000432",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14124000432/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:09:04Z",
+      "expires_at": "2026-12-14T17:09:03Z",
+      "updated_at": "2026-11-14T17:09:04Z",
+      "digest": "sha256:ac00a40ffb8215e6e50b6f17a5aaedf346f1ed3c40f7a05224549f195c332a8d",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14123946410,
+      "name": "lumo-studio-2020-connect-four-regression",
+      "size_in_bytes": 2703376,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123946410",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123946410/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:08:36Z",
+      "expires_at": "2026-12-14T17:08:36Z",
+      "updated_at": "2026-11-14T17:08:36Z",
+      "digest": "sha256:ac71834b76a083ee38056c0d0962d3d4e740309e069c9e71d3ac31b464bcf47b",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14123896298,
+      "name": "lumo-studio-2020-android-host-compile",
+      "size_in_bytes": 28897,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123896298",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123896298/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:11:22Z",
+      "expires_at": "2026-12-14T17:11:21Z",
+      "updated_at": "2026-11-14T17:11:22Z",
+      "digest": "sha256:d663f3ec1d3065aa6e1a1d4435003fd4cd7ee8d2553214b73425930201e93e24",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14123817299,
+      "name": "lumo-studio-2020-nextgen-authority-memory",
+      "size_in_bytes": 3943940,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123817299",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123817299/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:10:50Z",
+      "expires_at": "2026-12-14T17:10:50Z",
+      "updated_at": "2026-11-14T17:10:50Z",
+      "digest": "sha256:ea977121218cc945f3ddb1fe09bff81109d0ecbfaa45b7c955ed849194ffcc8a",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14123779961,
+      "name": "lumo-1981-real-flutter-captures",
+      "size_in_bytes": 38327617,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123779961",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123779961/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:25:42Z",
+      "expires_at": "2026-12-14T17:25:40Z",
+      "updated_at": "2026-11-14T17:25:42Z",
+      "digest": "sha256:6048819262bf4e921aea415b159241f3cf74f222d114150f1f795881a6af4a2e",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14123592209,
+      "name": "lumo-1983-quiz-studio-captures",
+      "size_in_bytes": 10603026,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123592209",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123592209/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:08:14Z",
+      "expires_at": "2026-12-14T17:08:13Z",
+      "updated_at": "2026-11-14T17:08:14Z",
+      "digest": "sha256:2b1d242cac92a4cd4fcd61154f681528e7b4ac930cc3f28c4dc836719c8c24bd",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    },
+    {
+      "id": 14123388980,
+      "name": "lumo-studio-2020-nextgen-authority-english",
+      "size_in_bytes": 4559425,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123388980",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14123388980/zip",
+      "expired": false,
+      "created_at": "2026-11-14T17:16:20Z",
+      "expires_at": "2026-12-14T17:16:19Z",
+      "updated_at": "2026-11-14T17:16:20Z",
+      "digest": "sha256:78f930c157798be8c117a81dd0f76112b7d890fa15af8f8bf7c462b871dbb2cd",
+      "workflow_run": {
+        "id": 43619285124,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-2020-20261114",
+        "head_sha": "b7210db3f53361987fd33592de438fd7984d991a"
+      }
+    }
+  ]
+}

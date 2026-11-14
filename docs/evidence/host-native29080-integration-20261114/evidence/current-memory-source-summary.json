@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "source": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618076296,
+  "job_id": 132517423829,
+  "status": "SUCCESS",
+  "memory": {
+    "status": "PASS",
+    "cases": 30,
+    "passed": 30,
+    "failed": [],
+    "checks": 1694,
+    "skipped": 0,
+    "scope": "Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim."
+  },
+  "scheduler": {
+    "status": "PASS",
+    "cases": 7,
+    "passed": 7,
+    "failed": [],
+    "checks": 13,
+    "skipped": 0,
+    "scope": "Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim."
+  },
+  "quiz": {
+    "cases": 28,
+    "checks": 1786,
+    "failed": 0,
+    "skips": 0,
+    "original": "2026-11-14T16:54:15.0402066Z [QuizRoundContract] PASS cases=28 failed=0 checks=1786 skips=0"
+  },
+  "scope": "Actual current production Dart contracts with their declared synthetic store/transport boundaries; not Android or audio playback"
+}

@@ -1,0 +1,19 @@
+--- a/.github/workflows/lumo-studio-2020.yml
++++ b/.github/workflows/lumo-studio-2020.yml
+@@ -314,11 +314,15 @@
+         run: |
+           set -euo pipefail
+           sudo apt-get -o Acquire::Retries=2 update -qq
+-          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0
++          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 ffmpeg
+           native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+           native_source="$RUNNER_TEMP/lumo-native-acceptance"
+           native_logs="$GITHUB_WORKSPACE/acceptance-native"
+           mkdir -p "$native_logs/user-data/godot/app_userdata/Lumo 3D"
++          command -v ffmpeg
++          command -v ffprobe
++          ffmpeg -version 2>&1 | tee "$native_logs/ffmpeg-version.txt"
++          ffprobe -version 2>&1 | tee "$native_logs/ffprobe-version.txt"
+           git init "$native_source"
+           git -C "$native_source" remote add origin https://github.com/Ullmann27/lumo-godot.git
+           git -C "$native_source" fetch --depth 1 origin "$native_revision"

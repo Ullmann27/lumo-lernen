@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "host_source": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "run_id": 43579548170,
+  "attempt": 1,
+  "job_id": 132401125864,
+  "job_conclusion": "failure",
+  "failed_step": {
+    "number": 11,
+    "name": "Verify Connect Four touch geometry and fallback before full acceptance"
+  },
+  "actual_early_c4_results": {
+    "passed": 8,
+    "failed": 4,
+    "tests_executed": 12,
+    "games_screen_flow": {
+      "passed": 3,
+      "failed": 0
+    },
+    "connect_four_visual": {
+      "passed": 5,
+      "failed": 0
+    },
+    "connect_four_fold_controls": {
+      "passed": 0,
+      "failed": 4
+    }
+  },
+  "failure": {
+    "file": "test/games/connect_four_fold_controls_test.dart",
+    "assertion_line": 37,
+    "caller_line": 172,
+    "assertion": "expect(control.width, greaterThanOrEqualTo(48))",
+    "measured_width": 47.99999999999997,
+    "required_width": 48,
+    "difference": 2.842170943040401e-14,
+    "profiles": [
+      "320x740 text1.0",
+      "360x800 text1.0",
+      "640x360 text1.0",
+      "320x480 text2.0"
+    ],
+    "scope": "All four stop at first global-rect width assertion before their subsequent real swipe/drop checks. Those later interactions are not passed by this run."
+  },
+  "interpretation": {
+    "status": "numerical boundary finding; no product or test patch made",
+    "observed": "The global rect is below48 by about2.84e-14 logical pixels. The same test independently allows0.001 precision tolerance in its existing visible-intersection assertions.",
+    "not_claimed": [
+      "Measured local RenderBox minimum in this run",
+      "Successful downstream Fold swipe/drop actions",
+      "Successful full Flutter suite",
+      "Built new APK",
+      "Any Android/C4 live-device result"
+    ]
+  },
+  "c4_artifact": {
+    "id": 14107945718,
+    "bytes": 2080118,
+    "sha256": "f459f562ca26a2eafb2d8c66bfc3dd6efb7d32786367aa588f01fb8b5fe19a28",
+    "downloaded": false
+  },
+  "secondary_failure": "Original-caption archive upload found no files because earlier failure skipped the OCR steps; not an OCR assertion failure.",
+  "local_tests_executed": false,
+  "source_changes": false,
+  "reruns": false,
+  "original_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/verify-and-build-132401125864-original.log",
+    "bytes": 105191,
+    "sha256": "5aa290a986cff2ae5591ae4c1b316b26832e753a4c0fd77ed0da2a0ec5e2f4eb"
+  },
+  "source_snapshot": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-1453-ci-20261114/fold-controls-at-1453.dart",
+    "bytes": 9473,
+    "sha256": "d81c02439db9ba9394e1ddb9f62245520b2781345a83e3df6a3bc2bf081961e2",
+    "git_blob_sha": "3dfc352bb0cd000b79cf5111b10b0247f7add943"
+  }
+}

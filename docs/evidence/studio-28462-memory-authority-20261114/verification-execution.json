@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "/workspace/scratch/5987865ae883/qa/studio-28462-memory-authority-20261114/verify_originals.py"
+  ],
+  "scope": "Read-only original archive, image decode, source stamps and request journal verification. No application/test/renderer invocation.",
+  "started_at": "2026-11-14T18:35:06.866125+00:00",
+  "elapsed_seconds": 1.168688967001799,
+  "exit_code": 0,
+  "verifier_sha256_before": "c0f847a93cf8a4115c6de92633778cb18660c74c50c48f9ca96a7e979c7ee8cb",
+  "verifier_sha256_after": "c0f847a93cf8a4115c6de92633778cb18660c74c50c48f9ca96a7e979c7ee8cb",
+  "log_bytes": 409,
+  "log_sha256": "32ccad5f4318e40e5a9199409ac44a481ecef9623a3daf1ea01e998fda83dbc4"
+}

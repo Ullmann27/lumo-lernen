@@ -1,0 +1,15 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_controller_lifecycle_test.dart
+00:00 +0: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_controller_lifecycle_test.dart: Opponent choice preserves the paused round and pending timer
+00:00 +1: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_controller_lifecycle_test.dart: Paused handover cannot expose or advance the next hand
+00:00 +2: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_controller_lifecycle_test.dart: Disposed controller ignores delayed card and restart callbacks
+00:00 +3: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_controller_lifecycle_test.dart: Deferred navigation disposal cancels the pending bot action
+00:00 +4: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_controller_lifecycle_test.dart: Paused input stays inert and restart cancels the old bot turn
+00:00 +5: loading /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart
+00:01 +5: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart: Complete real round survives every phase, deck order and pending question
+00:01 +6: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart: Unknown schema, lost/duplicate cards and inconsistent phases fall back safely
+00:01 +7: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart: School children, local child, grade and solo mode have separate slots
+00:01 +8: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart: Failed saves leave last durable deck intact and retry exactly once
+00:01 +9: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart: Restored bot waits for explicit resume and keeps strategy and deck
+00:01 +10: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart: Completed round and learning/call bonuses never reward twice after restart
+00:01 +11: /workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/test/lumo_cards_persistence_test.dart: Failed idempotent Cards award retries without increasing streak twice
+00:01 +12: All tests passed!

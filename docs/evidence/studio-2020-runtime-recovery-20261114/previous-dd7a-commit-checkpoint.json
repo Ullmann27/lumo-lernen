@@ -1,0 +1,252 @@
+{
+  "schema": 1,
+  "commit": {
+    "sha": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+    "node_id": "C_kwDOSNzcp9oAKGRkN2E3YzE2YTc5YjUwNTk2NzMxNjEyZTVhNWI3MDA2M2YyYmZkZWU",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:33:51Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:33:51Z"
+    },
+    "tree": {
+      "sha": "179ac404caa8d263d0028aa9503cb514ae484d41",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/179ac404caa8d263d0028aa9503cb514ae484d41"
+    },
+    "message": "docs: preserve Treasure visibility correction and independent reviews\n\nArchive the observed occlusion, final red and green local checks, original rendered views, tightened Native and Host contracts, and exact source publication proof. Add 131 documentation files while preserving all 6300 existing files. The new Native run and Android candidate remain unapproved.",
+    "parents": [
+      {
+        "sha": "d0ba260dd55ec2654d25871973c696264be0f3ad",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/d0ba260dd55ec2654d25871973c696264be0f3ad",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/d0ba260dd55ec2654d25871973c696264be0f3ad"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref_readback": {
+    "ref": "refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "node_id": "REF_kwDOSNzcp9oAOXJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby00YWI5NjY2Ni1ldmlkZW5jZS0yMDI2MTExNA",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "object": {
+      "sha": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/dd7a7c16a79b50596731612e5a5b70063f2bfdee"
+    }
+  },
+  "tree_proof": {
+    "base_commit": "d0ba260dd55ec2654d25871973c696264be0f3ad",
+    "base_tree": "7c523123bd0159b1f1c24ceeb73de3368b9f2063",
+    "new_tree": "179ac404caa8d263d0028aa9503cb514ae484d41",
+    "preserved_files": 6300,
+    "added_docs": 131,
+    "total_files": 6431,
+    "total_tree_entries": 7375,
+    "truncated": false
+  },
+  "root_uploads": [
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/native-source-manifest.json",
+      "sha": "ba47e4111da25c5d956dc67f9a7556f9cbaf016b",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/native-github-checkpoint.json",
+      "sha": "7958e8896557d9bab14f22f34d9f862da80dec2b",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/root-local-render-review.json",
+      "sha": "c4de195a389da66299756e07cb52c9de395a97e6",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/completed-cache-cleanup.json",
+      "sha": "43c965bd9bcc1f5f4bf15e00b8e5a64ca5ea54ca",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/unpublished-host-source-blobs.json",
+      "sha": "d39a2bd85f1166224b10b706684599709d2d4d7e",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-c-confirmed-tree-inputs.json",
+      "sha": "d0a1943119484d2a6d7956349453131db18d5d40",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-c-blob-upload-proof.json",
+      "sha": "21db4891d71bbc8189c801db283977e90b53ab7a",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-b-confirmed-tree-inputs.json",
+      "sha": "806c2c4390bb334073fd0db9be4909fb39e896eb",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/agent-b-blob-upload-proof.json",
+      "sha": "2d6b837ed3a4c447a17f82f27d7b1125dc707dea",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/previous-d0ba-github-checkpoint.json",
+      "sha": "85a3f156425d4e58b604e5ec6bf90e856c2ccd51",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/unpublished-host-integration-document.md",
+      "sha": "23dd9d3e6fc3fdb732d9973f2093444d2911128f",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/baseline/scripts/tests/test_studio_2020_delivery.py",
+      "sha": "4d696d150bdf53976782bf10dc5c31fd278140a0",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/baseline/scripts/verify_studio_delivery.py",
+      "sha": "938ff72d12751d9a7fa83a43b7f8f2703356e04a",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/baseline.json",
+      "sha": "6a7a235879021442288157208e0edf138d0f09fa",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/green-all-2020-contracts.log",
+      "sha": "6692bcce7e7adf6600e52614e0728395c4720168",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/green-execution.json",
+      "sha": "61806545e7e804eed1b65dd4ebec6cdc046591e2",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/red-execution.json",
+      "sha": "9c57740494c29ab0f9158e9913c8a4c414569d19",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/red-original-contract.log",
+      "sha": "c9899a251140c38d9c1fd6138ead4be3f100af33",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/source/scripts/tests/test_studio_2020_delivery.py",
+      "sha": "3a3d6539d865c1e23c9a8345775b387e31c04ea5",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/source/scripts/verify_studio_delivery.py",
+      "sha": "f4bf0481002a08bf9c88704d4ff3dd9cc9a43916",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/source-upload-manifest.json",
+      "sha": "10b683b68c0d11aa186b029c7f44b3a63b347c98",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/test_studio_2020_delivery.py.diff",
+      "sha": "60ae7207c31e2ecec8606b6741b373c6e146fe98",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/host-treasure-visibility-contract/verify_studio_delivery.py.diff",
+      "sha": "27eb2793a648e02351256e9a1f199b1fd80dec65",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/README.md",
+      "sha": "cd2d190aa3457b0fee1b59dee0ee1cb925513f23",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    },
+    {
+      "path": "docs/evidence/studio-2020-visibility-integration-20261114/upload-manifest.json",
+      "sha": "98af09f389b9402592289a854dfa48c6c3fb9b2d",
+      "mode": "100644",
+      "type": "blob",
+      "reused_confirmed_blob": false
+    }
+  ],
+  "post_upload_hash_proof": {
+    "root_files": 25,
+    "all_hashes_unchanged": true,
+    "agent_tree_inputs_verified": 2
+  },
+  "agents": {
+    "C": {
+      "entries": 65,
+      "input_sha256": "0e5aa0787216d67acec34b291ee80d4269e5ded0440c610c6ae72ca88016ab19"
+    },
+    "B": {
+      "entries": 41,
+      "input_sha256": "8165fa362b63ab4370688748af9713dd1c42c0556b2e92f8a6264c38ee928248"
+    }
+  },
+  "scope": "131 added documentation files; all 6300 prior files preserved; new Native and Host candidate not approved"
+}
+

@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/usr/local/bin/godot",
+    "--headless",
+    "--verbose",
+    "--path",
+    "/tmp/lumo-attention-8be3-20261114/runtime",
+    "--script",
+    "scripts/tests/kart_ai_behavior_regression.gd"
+  ],
+  "cwd": "/tmp/lumo-attention-8be3-20261114/runtime",
+  "started_utc": "2026-11-14T07:40:58.774753+00:00",
+  "finished_utc": "2026-11-14T07:41:02.886147+00:00",
+  "elapsed_seconds": 4.111418796994258,
+  "exit_code": 0,
+  "timed_out": false,
+  "deadline_seconds": 180,
+  "original_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/kart-teardown-verbose-785413-20261114/kart_ai_behavior_regression.log",
+    "bytes": 15058,
+    "sha256": "7ee71916cfb02ab640bcb918f27dd210122e2016a29703bc92d7aa582b08e7db"
+  },
+  "probe": "kart_ai_behavior_regression",
+  "mode": "headless",
+  "required_marker": "[KartAI] PASS",
+  "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "code_unchanged": true,
+  "marker_present": true,
+  "error_lines": []
+}

@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "target_repository": "Ullmann27/lumo-lernen",
+  "target_prefix": "docs/evidence/studio-b721-memory-authority-20261114/",
+  "evidence_base": {
+    "commit": "99c9fc48013163ba356644b456fc00d2273c2965",
+    "tree": "d124005853438fc4f77125970d42204a76c47e63",
+    "leaves": 8162
+  },
+  "created_utc": "2026-11-14 17:19:18 UTC",
+  "documents": [
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/run-at-memory-completion.json",
+      "bytes": 13675,
+      "sha256": "09c013ac5c19c8fecf4f37b4fae76a89b419b553072e34b6611896f0299d842d",
+      "git_blob_sha": "14d3e6744b608e2849d4817aec0cd92d5f089a45",
+      "kind": "exact_connector_utf8"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/jobs-at-memory-completion.json",
+      "bytes": 23758,
+      "sha256": "5a30c51645e07ce6caba33ad0125b5fc3f37b141daa4a0039a62b391fcb81365",
+      "git_blob_sha": "66a70d84a747e32a1ce2439451ef22b71d819b92",
+      "kind": "exact_connector_utf8"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/artifacts-at-memory-completion.json",
+      "bytes": 2985,
+      "sha256": "944fdb6f8f863c8cbbf934c0de6696d03b8f68528d5da36a31558a7d9d550ac4",
+      "git_blob_sha": "2e9f2a918fe37cee986769de195e130051f447b3",
+      "kind": "exact_connector_utf8"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/original-job.log",
+      "bytes": 310120,
+      "sha256": "ed2ff6bfcbff9441819049ccb28727441bff2e2d8cebd145c9d742326027b331",
+      "git_blob_sha": "dde92d3f9bed1d00524a0b02ec8ce5e133d86859",
+      "kind": "exact_connector_utf8"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/workflow-original.yml",
+      "bytes": 74256,
+      "sha256": "6261e26cd489fe0497bc035f1575ab76e95e33a1e092977ef1c13970658a2b28",
+      "git_blob_sha": "2684ac3cf034fdcd5c71570182396f0664979735",
+      "kind": "exact_b721_workflow_utf8"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/archive-verification-observed.json",
+      "bytes": 1008,
+      "sha256": "6f90d072fdaed910daf90ef5906a76028b732da5c8759e6bcb097e7a1ccd4199",
+      "git_blob_sha": "333ce5a5ec7e69de213a7561349417b6c9096af6",
+      "kind": "new_review_from_completed_observations"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/visual-review-games_worlds.json",
+      "bytes": 11212,
+      "sha256": "f1618f1be37bcf3fd1f2ee0227c70035339953aafeeb266d8a36a9be2f8a7cf8",
+      "git_blob_sha": "afb5992f94773576311d87ab8762cf1bc0286c37",
+      "kind": "new_review_from_completed_observations"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/journal-read-review.json",
+      "bytes": 8521,
+      "sha256": "6c17e0771fcae0c00ad0bc33cc5054d25285f09beb1c64a283d84326c59bccd1",
+      "git_blob_sha": "9d770c0cbbc50370e7a5fb3b1530a3e5c34237ca",
+      "kind": "new_review_from_completed_observations"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/environment-interruption.json",
+      "bytes": 975,
+      "sha256": "0126901679e738303820a093c5a7d88ac5c51e7b9e33ea6637b3d46d513b5429",
+      "git_blob_sha": "8ffaf2c317d57b6dd501e37594e23b5f4225a6ee",
+      "kind": "new_review_from_completed_observations"
+    },
+    {
+      "target": "docs/evidence/studio-b721-memory-authority-20261114/README.md",
+      "bytes": 4096,
+      "sha256": "dd392a17797f8849411f7ba7fe7962caa874bf5acc743594fae823396949cd3a",
+      "git_blob_sha": "19511eb0eb17db3f2b4a0efa8d77c999fd318f4f",
+      "kind": "new_review"
+    }
+  ],
+  "count": 10,
+  "source_of_payloads": "Retained Functions strings and newly authored explicit review documents; filesystem unavailable.",
+  "exclude": [
+    "original ZIP",
+    "PNG bytes",
+    "unconfirmed original-results-verification.json"
+  ],
+  "self_target": "docs/evidence/studio-b721-memory-authority-20261114/evidence-upload-manifest.json"
+}

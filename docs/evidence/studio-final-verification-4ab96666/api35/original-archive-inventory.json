@@ -1,0 +1,4832 @@
+{
+  "artifact_id": 14090824265,
+  "run_id": 43530667812,
+  "run_attempt": 1,
+  "job_id": 132269951320,
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "zip_bytes": 93626609,
+  "zip_sha256": "a8ef0dbf1fa44ec6bde2fdd4107067a8b842f4dd17651808bffa65bd8aaa5b7e",
+  "crc_pass": true,
+  "member_count": 803,
+  "regular_entries": [
+    {
+      "path": "01_erster_start.png",
+      "bytes": 199626,
+      "compressed": 184811,
+      "crc32": "841a0ecd"
+    },
+    {
+      "path": "07_home_after_onboarding-render-readiness.json",
+      "bytes": 947,
+      "compressed": 401,
+      "crc32": "f28f0333"
+    },
+    {
+      "path": "07_home_after_onboarding.png",
+      "bytes": 3054959,
+      "compressed": 3053793,
+      "crc32": "d0e7ed6b"
+    },
+    {
+      "path": "07_home_after_onboarding-render-candidate-1.png",
+      "bytes": 19797,
+      "compressed": 4574,
+      "crc32": "a5b87ca0"
+    },
+    {
+      "path": "08_games_after_navigation.png",
+      "bytes": 879708,
+      "compressed": 876939,
+      "crc32": "e51cc04b"
+    },
+    {
+      "path": "10_lernen-render-readiness.json",
+      "bytes": 526,
+      "compressed": 321,
+      "crc32": "c7c33a1e"
+    },
+    {
+      "path": "10_lernen.png",
+      "bytes": 1891479,
+      "compressed": 1890545,
+      "crc32": "eca10b32"
+    },
+    {
+      "path": "10_start-render-readiness.json",
+      "bytes": 526,
+      "compressed": 322,
+      "crc32": "97b9159d"
+    },
+    {
+      "path": "10_start.png",
+      "bytes": 3054973,
+      "compressed": 3053827,
+      "crc32": "2beaeb1b"
+    },
+    {
+      "path": "11_atelier_hub-render-readiness.json",
+      "bytes": 538,
+      "compressed": 327,
+      "crc32": "e015d5f5"
+    },
+    {
+      "path": "11_atelier_hub.png",
+      "bytes": 484527,
+      "compressed": 474999,
+      "crc32": "6fc6a21f"
+    },
+    {
+      "path": "12_atelier_beispiel-render-readiness.json",
+      "bytes": 548,
+      "compressed": 324,
+      "crc32": "51cdcaa2"
+    },
+    {
+      "path": "12_atelier_beispiel.png",
+      "bytes": 346039,
+      "compressed": 311511,
+      "crc32": "a9f6a537"
+    },
+    {
+      "path": "13_atelier_zehnerbruecke-render-readiness.json",
+      "bytes": 558,
+      "compressed": 333,
+      "crc32": "91c5b82c"
+    },
+    {
+      "path": "13_atelier_zehnerbruecke.png",
+      "bytes": 679002,
+      "compressed": 653746,
+      "crc32": "41f99d0f"
+    },
+    {
+      "path": "20_spiele-render-readiness.json",
+      "bytes": 524,
+      "compressed": 319,
+      "crc32": "027d2251"
+    },
+    {
+      "path": "20_spiele.png",
+      "bytes": 1965641,
+      "compressed": 1964657,
+      "crc32": "29caae9f"
+    },
+    {
+      "path": "21_kart_premium_start.png",
+      "bytes": 902004,
+      "compressed": 899725,
+      "crc32": "b64ae789"
+    },
+    {
+      "path": "21_kart_race_frame_check.json",
+      "bytes": 1476,
+      "compressed": 529,
+      "crc32": "ed926778"
+    },
+    {
+      "path": "21_lumo_kart_12s.png",
+      "bytes": 940891,
+      "compressed": 941181,
+      "crc32": "37f67e58"
+    },
+    {
+      "path": "21_kart_real_touches.json",
+      "bytes": 104,
+      "compressed": 80,
+      "crc32": "88047634"
+    },
+    {
+      "path": "21_lumo_kart_20s.png",
+      "bytes": 906134,
+      "compressed": 903325,
+      "crc32": "97dab4c4"
+    },
+    {
+      "path": "21_lumo_kart_pause.png",
+      "bytes": 836557,
+      "compressed": 824352,
+      "crc32": "735ad54f"
+    },
+    {
+      "path": "21_lumo_kart_real_race.png",
+      "bytes": 1907227,
+      "compressed": 1906102,
+      "crc32": "81a440cf"
+    },
+    {
+      "path": "21_pause_first-session.cfg",
+      "bytes": 2114,
+      "compressed": 1008,
+      "crc32": "199e38b1"
+    },
+    {
+      "path": "21_pause_resume-0-ocr-contrast.tsv",
+      "bytes": 2063,
+      "compressed": 751,
+      "crc32": "744d684e"
+    },
+    {
+      "path": "21_pause_resume-0-ocr.json",
+      "bytes": 1560,
+      "compressed": 345,
+      "crc32": "819491a4"
+    },
+    {
+      "path": "21_pause_resume-0.png",
+      "bytes": 838291,
+      "compressed": 826213,
+      "crc32": "ef3fdb9d"
+    },
+    {
+      "path": "21_pause_second-session.cfg",
+      "bytes": 2114,
+      "compressed": 1008,
+      "crc32": "199e38b1"
+    },
+    {
+      "path": "21_pause_title-0-ocr-contrast.tsv",
+      "bytes": 9055,
+      "compressed": 2561,
+      "crc32": "6554de49"
+    },
+    {
+      "path": "21_pause_title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 1419,
+      "compressed": 452,
+      "crc32": "397acdf9"
+    },
+    {
+      "path": "21_pause_title-0-ocr-navy-latin.tsv",
+      "bytes": 1559,
+      "compressed": 477,
+      "crc32": "7e597598"
+    },
+    {
+      "path": "21_pause_title-0-ocr-raw.tsv",
+      "bytes": 9531,
+      "compressed": 2720,
+      "crc32": "040eb487"
+    },
+    {
+      "path": "21_pause_title-0-ocr-teal-text-1x.tsv",
+      "bytes": 5334,
+      "compressed": 1614,
+      "crc32": "c954bd89"
+    },
+    {
+      "path": "21_pause_title-0-ocr-tiles.json",
+      "bytes": 4807,
+      "compressed": 698,
+      "crc32": "de90016c"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 93139,
+      "compressed": 87786,
+      "crc32": "a45eebb3"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1837,
+      "compressed": 587,
+      "crc32": "8521f7da"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 100723,
+      "compressed": 95518,
+      "crc32": "a8a92386"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 3160,
+      "compressed": 935,
+      "crc32": "3966de55"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 132935,
+      "compressed": 125395,
+      "crc32": "1ae50765"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 4241,
+      "compressed": 1274,
+      "crc32": "f8d36bc4"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 104165,
+      "compressed": 97093,
+      "crc32": "431c1003"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 2319,
+      "compressed": 690,
+      "crc32": "2b6965c5"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 65275,
+      "compressed": 60456,
+      "crc32": "d090f949"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1889,
+      "compressed": 633,
+      "crc32": "3636bfd2"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 87808,
+      "compressed": 81784,
+      "crc32": "69b05948"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 4983,
+      "compressed": 1483,
+      "crc32": "1884b9bd"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-0.png",
+      "bytes": 86056,
+      "compressed": 80487,
+      "crc32": "82c8b487"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1809,
+      "compressed": 569,
+      "crc32": "67333f2f"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-1.png",
+      "bytes": 85214,
+      "compressed": 79676,
+      "crc32": "43604985"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 3571,
+      "compressed": 1044,
+      "crc32": "d657e174"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-2.png",
+      "bytes": 113552,
+      "compressed": 106076,
+      "crc32": "ac995c01"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 3365,
+      "compressed": 1058,
+      "crc32": "a09ecab6"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-3.png",
+      "bytes": 84917,
+      "compressed": 77454,
+      "crc32": "b56ed4b9"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 1864,
+      "compressed": 587,
+      "crc32": "f57d7bb3"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-4.png",
+      "bytes": 52508,
+      "compressed": 48290,
+      "crc32": "bb70bc11"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 770,
+      "compressed": 302,
+      "crc32": "ce22a563"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-5.png",
+      "bytes": 72820,
+      "compressed": 67261,
+      "crc32": "49049e9c"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 4606,
+      "compressed": 1340,
+      "crc32": "14c827ac"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin.tsv",
+      "bytes": 10474,
+      "compressed": 2999,
+      "crc32": "653efd50"
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-text.tsv",
+      "bytes": 10372,
+      "compressed": 2972,
+      "crc32": "872a28a1"
+    },
+    {
+      "path": "21_pause_title-0-ocr.json",
+      "bytes": 34136,
+      "compressed": 4026,
+      "crc32": "7bd3b543"
+    },
+    {
+      "path": "21_pause_title-0.png",
+      "bytes": 1952621,
+      "compressed": 1951519,
+      "crc32": "2b2bad13"
+    },
+    {
+      "path": "21_pause_title-1-ocr-contrast.tsv",
+      "bytes": 2063,
+      "compressed": 751,
+      "crc32": "744d684e"
+    },
+    {
+      "path": "21_pause_title-1-ocr.json",
+      "bytes": 1424,
+      "compressed": 335,
+      "crc32": "0ca16071"
+    },
+    {
+      "path": "21_pause_title-1.png",
+      "bytes": 841249,
+      "compressed": 828970,
+      "crc32": "11e8a334"
+    },
+    {
+      "path": "21_race_after_gas_pulse_0-session.cfg",
+      "bytes": 2032,
+      "compressed": 976,
+      "crc32": "ad06d3df"
+    },
+    {
+      "path": "21_race_after_gas_pulse_1-session.cfg",
+      "bytes": 2032,
+      "compressed": 976,
+      "crc32": "ad06d3df"
+    },
+    {
+      "path": "21_race_before_gas.png",
+      "bytes": 1967126,
+      "compressed": 1967477,
+      "crc32": "f8fca603"
+    },
+    {
+      "path": "21_race_drive_telemetry.json",
+      "bytes": 817,
+      "compressed": 299,
+      "crc32": "a5755af2"
+    },
+    {
+      "path": "21_race_after_gas_pulse_2-session.cfg",
+      "bytes": 2040,
+      "compressed": 984,
+      "crc32": "8b5ab02b"
+    },
+    {
+      "path": "21_race_driving_late_0.png",
+      "bytes": 1988747,
+      "compressed": 1988461,
+      "crc32": "1b61ed41"
+    },
+    {
+      "path": "21_race_driving_late_1.png",
+      "bytes": 1892612,
+      "compressed": 1892607,
+      "crc32": "f39f578b"
+    },
+    {
+      "path": "21_race_driving_late_2.png",
+      "bytes": 1878910,
+      "compressed": 1877630,
+      "crc32": "92830610"
+    },
+    {
+      "path": "21_race_driving_mid_0.png",
+      "bytes": 1928898,
+      "compressed": 1929067,
+      "crc32": "2d84f8bc"
+    },
+    {
+      "path": "21_race_driving_mid_1.png",
+      "bytes": 1902236,
+      "compressed": 1901922,
+      "crc32": "8d8bce81"
+    },
+    {
+      "path": "21_race_driving_mid_2.png",
+      "bytes": 1883133,
+      "compressed": 1883143,
+      "crc32": "fbd4146b"
+    },
+    {
+      "path": "21_race_hud.png",
+      "bytes": 1991714,
+      "compressed": 1992086,
+      "crc32": "1c956cac"
+    },
+    {
+      "path": "21_race_hud_0-focused-hud.json",
+      "bytes": 135,
+      "compressed": 123,
+      "crc32": "5e073be5"
+    },
+    {
+      "path": "21_race_hud_0.png",
+      "bytes": 1951369,
+      "compressed": 1951741,
+      "crc32": "ae69f1cd"
+    },
+    {
+      "path": "21_race_hud_1-focused-hud.json",
+      "bytes": 133,
+      "compressed": 121,
+      "crc32": "c857534c"
+    },
+    {
+      "path": "21_race_hud_1.png",
+      "bytes": 2058868,
+      "compressed": 2059356,
+      "crc32": "df68868f"
+    },
+    {
+      "path": "21_race_hud_2-gas-ocr-contrast.tsv",
+      "bytes": 11351,
+      "compressed": 3096,
+      "crc32": "8a2f8ada"
+    },
+    {
+      "path": "21_race_hud_2-gas-ocr.json",
+      "bytes": 8659,
+      "compressed": 1195,
+      "crc32": "bb07f021"
+    },
+    {
+      "path": "21_race_hud_2.png",
+      "bytes": 1991714,
+      "compressed": 1992086,
+      "crc32": "1c956cac"
+    },
+    {
+      "path": "21_race_running_0-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_10-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_1-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_11-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_12-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_13-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_14-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_16-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_17-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_15-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_18-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_19-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_20-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_2-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_21-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_22-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_23-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_24-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_25-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_26-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_27-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_28-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_29-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_3-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_30-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_31-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_32-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_33-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_34-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_35-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_36-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_37-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_38-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_39-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_4-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_41-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_40-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_42-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_43-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_44-session.cfg",
+      "bytes": 2032,
+      "compressed": 976,
+      "crc32": "ad06d3df"
+    },
+    {
+      "path": "21_race_running_5-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_6-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_7-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_8-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_race_running_9-session.cfg",
+      "bytes": 1876,
+      "compressed": 869,
+      "crc32": "0a30a112"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-contrast.tsv",
+      "bytes": 4746,
+      "compressed": 1393,
+      "crc32": "e3b71d76"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-navy-latin-1x.tsv",
+      "bytes": 3368,
+      "compressed": 950,
+      "crc32": "173b45ec"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-raw.tsv",
+      "bytes": 4019,
+      "compressed": 1216,
+      "crc32": "48e9ad4a"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-navy-latin.tsv",
+      "bytes": 4105,
+      "compressed": 1156,
+      "crc32": "9c4032a3"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-teal-text-1x.tsv",
+      "bytes": 5694,
+      "compressed": 1563,
+      "crc32": "b9acd4f8"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-tiles.json",
+      "bytes": 5223,
+      "compressed": 685,
+      "crc32": "d7d99060"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 28792,
+      "compressed": 21862,
+      "crc32": "19a11a14"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1372,
+      "compressed": 426,
+      "crc32": "efba8808"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 22675,
+      "compressed": 14978,
+      "crc32": "968511aa"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 660,
+      "compressed": 277,
+      "crc32": "52bef8b1"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1516,
+      "compressed": 489,
+      "crc32": "75cefec0"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 36086,
+      "compressed": 28714,
+      "crc32": "9bae7804"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 39341,
+      "compressed": 33434,
+      "crc32": "289d6c78"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1361,
+      "compressed": 454,
+      "crc32": "b1c3ffbe"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 29907,
+      "compressed": 22002,
+      "crc32": "1ca9dd2f"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1051,
+      "compressed": 372,
+      "crc32": "1e95fb85"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 18261,
+      "compressed": 10944,
+      "crc32": "dd7b4d47"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 729,
+      "compressed": 278,
+      "crc32": "c25101bc"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-0.png",
+      "bytes": 26623,
+      "compressed": 19122,
+      "crc32": "88c4cd58"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1198,
+      "compressed": 379,
+      "crc32": "1ac26e79"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-1.png",
+      "bytes": 18352,
+      "compressed": 10100,
+      "crc32": "921b3926"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 481,
+      "compressed": 227,
+      "crc32": "db0271b0"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-2.png",
+      "bytes": 29012,
+      "compressed": 21000,
+      "crc32": "15be09a0"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1343,
+      "compressed": 445,
+      "crc32": "fb4289a8"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-3.png",
+      "bytes": 29588,
+      "compressed": 23141,
+      "crc32": "acc919be"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 845,
+      "compressed": 298,
+      "crc32": "b6c5ecce"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-4.png",
+      "bytes": 29000,
+      "compressed": 20414,
+      "crc32": "d56c8830"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1051,
+      "compressed": 370,
+      "crc32": "140bed80"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-5.png",
+      "bytes": 15499,
+      "compressed": 7339,
+      "crc32": "1ca09c7f"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 430,
+      "compressed": 204,
+      "crc32": "9ed4381f"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-latin.tsv",
+      "bytes": 3305,
+      "compressed": 982,
+      "crc32": "229eb051"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr-white-text.tsv",
+      "bytes": 3342,
+      "compressed": 990,
+      "crc32": "52068a4c"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0-ocr.json",
+      "bytes": 21178,
+      "compressed": 2479,
+      "crc32": "0c22ae9b"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-0.png",
+      "bytes": 778241,
+      "compressed": 775230,
+      "crc32": "70a918b1"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-1-ocr.json",
+      "bytes": 3194,
+      "compressed": 568,
+      "crc32": "f53019e1"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-1-ocr-contrast.tsv",
+      "bytes": 4315,
+      "compressed": 1327,
+      "crc32": "ea7ea04a"
+    },
+    {
+      "path": "21_stage_driver-landing-restored-1.png",
+      "bytes": 902050,
+      "compressed": 899783,
+      "crc32": "9402b816"
+    },
+    {
+      "path": "21_stage_driver-open-0-ocr-contrast.tsv",
+      "bytes": 4170,
+      "compressed": 1292,
+      "crc32": "37f330ba"
+    },
+    {
+      "path": "21_stage_driver-open-0-ocr.json",
+      "bytes": 3062,
+      "compressed": 537,
+      "crc32": "b63ce8de"
+    },
+    {
+      "path": "21_stage_driver-open-0.png",
+      "bytes": 902873,
+      "compressed": 900240,
+      "crc32": "fa23efea"
+    },
+    {
+      "path": "21_stage_driver-open-1-ocr-contrast.tsv",
+      "bytes": 4740,
+      "compressed": 1445,
+      "crc32": "6e4a05b4"
+    },
+    {
+      "path": "21_stage_driver-open-1-ocr.json",
+      "bytes": 3714,
+      "compressed": 627,
+      "crc32": "b753708d"
+    },
+    {
+      "path": "21_stage_driver-open-1.png",
+      "bytes": 902905,
+      "compressed": 900286,
+      "crc32": "382a51f7"
+    },
+    {
+      "path": "21_stage_driver-open-surface-readiness.json",
+      "bytes": 2743,
+      "compressed": 753,
+      "crc32": "51f0f4be"
+    },
+    {
+      "path": "21_stage_driver-return-0.png",
+      "bytes": 778609,
+      "compressed": 775700,
+      "crc32": "11ec9b45"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-contrast.tsv",
+      "bytes": 4128,
+      "compressed": 1275,
+      "crc32": "d49ba8a8"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-navy-latin-1x.tsv",
+      "bytes": 2118,
+      "compressed": 590,
+      "crc32": "fdd6a8ee"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-navy-latin.tsv",
+      "bytes": 3319,
+      "compressed": 918,
+      "crc32": "8df744fa"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-raw.tsv",
+      "bytes": 3542,
+      "compressed": 1090,
+      "crc32": "f3ed47eb"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-teal-text-1x.tsv",
+      "bytes": 5868,
+      "compressed": 1577,
+      "crc32": "fefd6a16"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-tiles.json",
+      "bytes": 5200,
+      "compressed": 686,
+      "crc32": "af5d68da"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 31996,
+      "compressed": 24878,
+      "crc32": "6ae004a7"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1289,
+      "compressed": 418,
+      "crc32": "606d084a"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1263,
+      "compressed": 454,
+      "crc32": "a24c4e0d"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 27450,
+      "compressed": 19284,
+      "crc32": "229ec2b9"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 44150,
+      "compressed": 38444,
+      "crc32": "84c61b09"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 952,
+      "compressed": 365,
+      "crc32": "378b5999"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1243,
+      "compressed": 439,
+      "crc32": "f5032759"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 38166,
+      "compressed": 32604,
+      "crc32": "c95e22cd"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 32860,
+      "compressed": 26571,
+      "crc32": "8da41a86"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1273,
+      "compressed": 427,
+      "crc32": "f1d43897"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 25456,
+      "compressed": 19165,
+      "crc32": "bbc1362e"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 824,
+      "compressed": 291,
+      "crc32": "5b537d2d"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-0.png",
+      "bytes": 30739,
+      "compressed": 23256,
+      "crc32": "c781e819"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1290,
+      "compressed": 414,
+      "crc32": "882f445c"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-1.png",
+      "bytes": 26349,
+      "compressed": 18049,
+      "crc32": "c0835da9"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1262,
+      "compressed": 456,
+      "crc32": "99353a68"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-2.png",
+      "bytes": 32640,
+      "compressed": 25924,
+      "crc32": "7c27c1f2"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 900,
+      "compressed": 338,
+      "crc32": "7dbaf753"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-3.png",
+      "bytes": 30448,
+      "compressed": 24199,
+      "crc32": "142fd196"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 785,
+      "compressed": 272,
+      "crc32": "56a0ac5f"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-4.png",
+      "bytes": 28880,
+      "compressed": 22151,
+      "crc32": "502648e2"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1145,
+      "compressed": 392,
+      "crc32": "8d8c8aa0"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-5.png",
+      "bytes": 20776,
+      "compressed": 13632,
+      "crc32": "616736ed"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 829,
+      "compressed": 296,
+      "crc32": "2c1c2081"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-latin.tsv",
+      "bytes": 3598,
+      "compressed": 1107,
+      "crc32": "fc5de4ea"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr-white-text.tsv",
+      "bytes": 3675,
+      "compressed": 1132,
+      "crc32": "c3fc7f76"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0-ocr.json",
+      "bytes": 19870,
+      "compressed": 2338,
+      "crc32": "27192b9a"
+    },
+    {
+      "path": "21_stage_driver-section-visible-0.png",
+      "bytes": 902775,
+      "compressed": 900201,
+      "crc32": "831e2deb"
+    },
+    {
+      "path": "21_stage_driver-section-visible-1-ocr-contrast.tsv",
+      "bytes": 4559,
+      "compressed": 1374,
+      "crc32": "735f50cd"
+    },
+    {
+      "path": "21_stage_driver-section-visible-1-ocr.json",
+      "bytes": 3058,
+      "compressed": 531,
+      "crc32": "1838c2dc"
+    },
+    {
+      "path": "21_stage_driver-section-visible-1.png",
+      "bytes": 778568,
+      "compressed": 775882,
+      "crc32": "7c652440"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-contrast.tsv",
+      "bytes": 5289,
+      "compressed": 1520,
+      "crc32": "fed60537"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-navy-latin.tsv",
+      "bytes": 3800,
+      "compressed": 1138,
+      "crc32": "84ee5e2a"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-navy-latin-1x.tsv",
+      "bytes": 3393,
+      "compressed": 991,
+      "crc32": "00e18698"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-raw.tsv",
+      "bytes": 4916,
+      "compressed": 1449,
+      "crc32": "b66cea8a"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-teal-text-1x.tsv",
+      "bytes": 5581,
+      "compressed": 1572,
+      "crc32": "7993acef"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-tiles.json",
+      "bytes": 5221,
+      "compressed": 683,
+      "crc32": "4e74d526"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 31746,
+      "compressed": 25128,
+      "crc32": "c2eb0aeb"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1923,
+      "compressed": 563,
+      "crc32": "8780b8d2"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30965,
+      "compressed": 23270,
+      "crc32": "f875c961"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 890,
+      "compressed": 367,
+      "crc32": "bcbd6e12"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 29449,
+      "compressed": 21754,
+      "crc32": "2a0993ce"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1502,
+      "compressed": 492,
+      "crc32": "2a3b81b2"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1554,
+      "compressed": 528,
+      "crc32": "93b96132"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 39508,
+      "compressed": 33469,
+      "crc32": "7b67116b"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 36280,
+      "compressed": 28876,
+      "crc32": "f95de1d3"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1316,
+      "compressed": 432,
+      "crc32": "c2104bae"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 28162,
+      "compressed": 21600,
+      "crc32": "ccc28cb4"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 1074,
+      "compressed": 388,
+      "crc32": "b3ae6a7c"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-0.png",
+      "bytes": 29280,
+      "compressed": 22334,
+      "crc32": "800bd826"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1544,
+      "compressed": 478,
+      "crc32": "1cd981c7"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-1.png",
+      "bytes": 28144,
+      "compressed": 20295,
+      "crc32": "f5f5b9fa"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 709,
+      "compressed": 312,
+      "crc32": "07fd97b6"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-2.png",
+      "bytes": 22410,
+      "compressed": 14422,
+      "crc32": "66782faf"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1002,
+      "compressed": 353,
+      "crc32": "edcbfc06"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-3.png",
+      "bytes": 28752,
+      "compressed": 22140,
+      "crc32": "0da41606"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 1016,
+      "compressed": 358,
+      "crc32": "8a04ff5f"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-4.png",
+      "bytes": 33944,
+      "compressed": 26189,
+      "crc32": "cf0bfc47"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1306,
+      "compressed": 430,
+      "crc32": "efde5938"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-5.png",
+      "bytes": 23409,
+      "compressed": 16576,
+      "crc32": "d6da31eb"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 717,
+      "compressed": 287,
+      "crc32": "535d0802"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-latin.tsv",
+      "bytes": 3293,
+      "compressed": 1008,
+      "crc32": "d8fd5ef3"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr-white-text.tsv",
+      "bytes": 3293,
+      "compressed": 1007,
+      "crc32": "525d1367"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0-ocr.json",
+      "bytes": 22220,
+      "compressed": 2605,
+      "crc32": "bb949591"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-0.png",
+      "bytes": 786801,
+      "compressed": 783327,
+      "crc32": "561efa39"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-1-ocr-contrast.tsv",
+      "bytes": 4168,
+      "compressed": 1288,
+      "crc32": "27c7f822"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-1-ocr.json",
+      "bytes": 3064,
+      "compressed": 546,
+      "crc32": "6d31667d"
+    },
+    {
+      "path": "21_stage_garage-landing-restored-1.png",
+      "bytes": 902727,
+      "compressed": 900086,
+      "crc32": "d25f4942"
+    },
+    {
+      "path": "21_stage_garage-open-0-ocr-contrast.tsv",
+      "bytes": 4590,
+      "compressed": 1395,
+      "crc32": "78b2770e"
+    },
+    {
+      "path": "21_stage_garage-open-0-ocr.json",
+      "bytes": 3709,
+      "compressed": 621,
+      "crc32": "c874cdf4"
+    },
+    {
+      "path": "21_stage_garage-open-1-ocr-contrast.tsv",
+      "bytes": 4271,
+      "compressed": 1312,
+      "crc32": "64ca0ae3"
+    },
+    {
+      "path": "21_stage_garage-open-0.png",
+      "bytes": 903271,
+      "compressed": 900669,
+      "crc32": "6d45a20d"
+    },
+    {
+      "path": "21_stage_garage-open-1-ocr.json",
+      "bytes": 3320,
+      "compressed": 576,
+      "crc32": "5aad09e3"
+    },
+    {
+      "path": "21_stage_garage-open-1.png",
+      "bytes": 903300,
+      "compressed": 900698,
+      "crc32": "8770620f"
+    },
+    {
+      "path": "21_stage_garage-open-surface-readiness.json",
+      "bytes": 2742,
+      "compressed": 753,
+      "crc32": "09f7f58d"
+    },
+    {
+      "path": "21_stage_garage-return-0.png",
+      "bytes": 787355,
+      "compressed": 783839,
+      "crc32": "006b88c1"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-contrast.tsv",
+      "bytes": 4909,
+      "compressed": 1484,
+      "crc32": "47b2b825"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-navy-latin-1x.tsv",
+      "bytes": 2433,
+      "compressed": 673,
+      "crc32": "47ecdd5d"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-navy-latin.tsv",
+      "bytes": 2990,
+      "compressed": 853,
+      "crc32": "3380eb92"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-raw.tsv",
+      "bytes": 3639,
+      "compressed": 1100,
+      "crc32": "234ba16c"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-teal-text-1x.tsv",
+      "bytes": 5957,
+      "compressed": 1623,
+      "crc32": "96d25f43"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-tiles.json",
+      "bytes": 5227,
+      "compressed": 702,
+      "crc32": "cdd13e44"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 32369,
+      "compressed": 25236,
+      "crc32": "9449e132"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1325,
+      "compressed": 440,
+      "crc32": "5b80f0a1"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 27450,
+      "compressed": 19284,
+      "crc32": "229ec2b9"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1263,
+      "compressed": 454,
+      "crc32": "a24c4e0d"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 44208,
+      "compressed": 38558,
+      "crc32": "c0b26cdd"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1183,
+      "compressed": 396,
+      "crc32": "29f6d954"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 38416,
+      "compressed": 32904,
+      "crc32": "1d950181"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 32319,
+      "compressed": 26143,
+      "crc32": "d3b06be4"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1205,
+      "compressed": 426,
+      "crc32": "43b7da98"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1010,
+      "compressed": 353,
+      "crc32": "425317fa"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 25508,
+      "compressed": 19053,
+      "crc32": "7021f3e2"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 863,
+      "compressed": 314,
+      "crc32": "ca903dd1"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-0.png",
+      "bytes": 31057,
+      "compressed": 23499,
+      "crc32": "3d0b378a"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1327,
+      "compressed": 437,
+      "crc32": "3f8bde4a"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-1.png",
+      "bytes": 26349,
+      "compressed": 18049,
+      "crc32": "c0835da9"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1262,
+      "compressed": 456,
+      "crc32": "99353a68"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-2.png",
+      "bytes": 32258,
+      "compressed": 25562,
+      "crc32": "db27aa37"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 689,
+      "compressed": 254,
+      "crc32": "adbf773a"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-3.png",
+      "bytes": 30551,
+      "compressed": 24434,
+      "crc32": "8ccd7cad"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 786,
+      "compressed": 269,
+      "crc32": "b9ad55be"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-4.png",
+      "bytes": 28502,
+      "compressed": 21886,
+      "crc32": "ce75ce8f"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1221,
+      "compressed": 426,
+      "crc32": "bfafc2a1"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-5.png",
+      "bytes": 21081,
+      "compressed": 14054,
+      "crc32": "fec4dc1f"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 829,
+      "compressed": 298,
+      "crc32": "4a372d92"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-latin.tsv",
+      "bytes": 3461,
+      "compressed": 1062,
+      "crc32": "6cb231ad"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr.json",
+      "bytes": 19722,
+      "compressed": 2368,
+      "crc32": "5997a859"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0-ocr-white-text.tsv",
+      "bytes": 3497,
+      "compressed": 1076,
+      "crc32": "926fd4fb"
+    },
+    {
+      "path": "21_stage_garage-section-visible-0.png",
+      "bytes": 903279,
+      "compressed": 900615,
+      "crc32": "94abbfda"
+    },
+    {
+      "path": "21_stage_garage-section-visible-1-ocr-contrast.tsv",
+      "bytes": 4768,
+      "compressed": 1361,
+      "crc32": "489393dc"
+    },
+    {
+      "path": "21_stage_garage-section-visible-1.png",
+      "bytes": 787444,
+      "compressed": 784008,
+      "crc32": "93c37279"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr-contrast.tsv",
+      "bytes": 4561,
+      "compressed": 1380,
+      "crc32": "9a5e8bc2"
+    },
+    {
+      "path": "21_stage_garage-section-visible-1-ocr.json",
+      "bytes": 4066,
+      "compressed": 632,
+      "crc32": "e28dbf5b"
+    },
+    {
+      "path": "21_stage_mode_cup-0-ocr.json",
+      "bytes": 3580,
+      "compressed": 618,
+      "crc32": "e3ad0788"
+    },
+    {
+      "path": "21_stage_mode_cup-0.png",
+      "bytes": 902146,
+      "compressed": 899823,
+      "crc32": "21e34158"
+    },
+    {
+      "path": "21_stage_mode_cup-1-ocr-contrast.tsv",
+      "bytes": 4312,
+      "compressed": 1320,
+      "crc32": "937a74d8"
+    },
+    {
+      "path": "21_stage_mode_cup-1-ocr.json",
+      "bytes": 3063,
+      "compressed": 554,
+      "crc32": "ad6b3b59"
+    },
+    {
+      "path": "21_stage_mode_cup-1.png",
+      "bytes": 902311,
+      "compressed": 899731,
+      "crc32": "04c7dea9"
+    },
+    {
+      "path": "21_stage_mode_cup-surface-readiness.json",
+      "bytes": 2741,
+      "compressed": 755,
+      "crc32": "02d37eb4"
+    },
+    {
+      "path": "21_stage_navigation.json",
+      "bytes": 707,
+      "compressed": 273,
+      "crc32": "edcc99a6"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 467,
+      "compressed": 306,
+      "crc32": "ce02da69"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+      "bytes": 7004,
+      "compressed": 1926,
+      "crc32": "73cbe333"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+      "bytes": 5517,
+      "compressed": 826,
+      "crc32": "7c2607fc"
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0.png",
+      "bytes": 1956335,
+      "compressed": 1955279,
+      "crc32": "7c9ea8a6"
+    },
+    {
+      "path": "23_zurueck_in_flutter.png",
+      "bytes": 1956335,
+      "compressed": 1955279,
+      "crc32": "7c9ea8a6"
+    },
+    {
+      "path": "24_lernen_nach_kart.png",
+      "bytes": 1891494,
+      "compressed": 1890508,
+      "crc32": "bc3bc21f"
+    },
+    {
+      "path": "25_start_nach_kart.png",
+      "bytes": 2496113,
+      "compressed": 2494064,
+      "crc32": "4617ae84"
+    },
+    {
+      "path": "26_neustart.png",
+      "bytes": 3055316,
+      "compressed": 3053982,
+      "crc32": "875e75fb"
+    },
+    {
+      "path": "30_fold_aussen.png",
+      "bytes": 2562850,
+      "compressed": 2562193,
+      "crc32": "3ea5742b"
+    },
+    {
+      "path": "30_fold_offen.png",
+      "bytes": 4267334,
+      "compressed": 4264581,
+      "crc32": "a7e0df14"
+    },
+    {
+      "path": "30_quer.png",
+      "bytes": 1824322,
+      "compressed": 1821112,
+      "crc32": "4b19358f"
+    },
+    {
+      "path": "after-kart-preferences.xml",
+      "bytes": 2011,
+      "compressed": 724,
+      "crc32": "5b42b80d"
+    },
+    {
+      "path": "after-restart-preferences.xml",
+      "bytes": 2011,
+      "compressed": 729,
+      "crc32": "cfaa35d9"
+    },
+    {
+      "path": "android-emulator-version.txt",
+      "bytes": 655,
+      "compressed": 417,
+      "crc32": "1a0e9259"
+    },
+    {
+      "path": "android-release.txt",
+      "bytes": 3,
+      "compressed": 5,
+      "crc32": "980c7d1d"
+    },
+    {
+      "path": "atelier-after-return.xml",
+      "bytes": 34426,
+      "compressed": 2266,
+      "crc32": "38e18459"
+    },
+    {
+      "path": "android-sdk.txt",
+      "bytes": 3,
+      "compressed": 5,
+      "crc32": "9b88a973"
+    },
+    {
+      "path": "atelier-build--1-0.xml",
+      "bytes": 21700,
+      "compressed": 1482,
+      "crc32": "ff459a0c"
+    },
+    {
+      "path": "atelier-enter-bridge--1-0.xml",
+      "bytes": 23965,
+      "compressed": 1608,
+      "crc32": "caa89fb6"
+    },
+    {
+      "path": "atelier-home-entry--1-0.xml",
+      "bytes": 33133,
+      "compressed": 2176,
+      "crc32": "2b9abd2c"
+    },
+    {
+      "path": "atelier-home-entry--1-1.xml",
+      "bytes": 33140,
+      "compressed": 2183,
+      "crc32": "3d2d27e2"
+    },
+    {
+      "path": "atelier-home-entry--1-11.xml",
+      "bytes": 33131,
+      "compressed": 2177,
+      "crc32": "17acafa8"
+    },
+    {
+      "path": "atelier-home-entry--1-10.xml",
+      "bytes": 33131,
+      "compressed": 2177,
+      "crc32": "3e0af3c7"
+    },
+    {
+      "path": "atelier-home-entry--1-12.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-13.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-14.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-15.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-16.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-17.xml",
+      "bytes": 33131,
+      "compressed": 2177,
+      "crc32": "3e0af3c7"
+    },
+    {
+      "path": "atelier-home-entry--1-2.xml",
+      "bytes": 33140,
+      "compressed": 2183,
+      "crc32": "3d2d27e2"
+    },
+    {
+      "path": "atelier-home-entry--1-18.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-3.xml",
+      "bytes": 33133,
+      "compressed": 2178,
+      "crc32": "1a3f5397"
+    },
+    {
+      "path": "atelier-home-entry--1-4.xml",
+      "bytes": 33133,
+      "compressed": 2176,
+      "crc32": "2b9abd2c"
+    },
+    {
+      "path": "atelier-home-entry--1-5.xml",
+      "bytes": 33133,
+      "compressed": 2176,
+      "crc32": "2b9abd2c"
+    },
+    {
+      "path": "atelier-home-entry--1-6.xml",
+      "bytes": 33133,
+      "compressed": 2178,
+      "crc32": "1a3f5397"
+    },
+    {
+      "path": "atelier-home-entry--1-7.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-8.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry--1-9.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry-1-0.xml",
+      "bytes": 33131,
+      "compressed": 2175,
+      "crc32": "3fedd177"
+    },
+    {
+      "path": "atelier-home-entry-1-1.xml",
+      "bytes": 36250,
+      "compressed": 2382,
+      "crc32": "d19ea7fb"
+    },
+    {
+      "path": "atelier-home-entry-1-2.xml",
+      "bytes": 29956,
+      "compressed": 2041,
+      "crc32": "b7e5e5ae"
+    },
+    {
+      "path": "atelier-home-entry-1-3.xml",
+      "bytes": 33954,
+      "compressed": 2247,
+      "crc32": "78c2bc64"
+    },
+    {
+      "path": "atelier-hub-0.xml",
+      "bytes": 23965,
+      "compressed": 1608,
+      "crc32": "caa89fb6"
+    },
+    {
+      "path": "atelier-model-check-0.xml",
+      "bytes": 24838,
+      "compressed": 1706,
+      "crc32": "eefc3f89"
+    },
+    {
+      "path": "atelier-real-ten-frame-0.xml",
+      "bytes": 24838,
+      "compressed": 1706,
+      "crc32": "eefc3f89"
+    },
+    {
+      "path": "atelier-topic-list-0.xml",
+      "bytes": 23965,
+      "compressed": 1608,
+      "crc32": "caa89fb6"
+    },
+    {
+      "path": "atelier-worked-example-0.xml",
+      "bytes": 21700,
+      "compressed": 1482,
+      "crc32": "32e3eb59"
+    },
+    {
+      "path": "before-kart-preferences.xml",
+      "bytes": 1646,
+      "compressed": 601,
+      "crc32": "2eb82397"
+    },
+    {
+      "path": "cold-start-launch.txt",
+      "bytes": 547,
+      "compressed": 224,
+      "crc32": "06d51320"
+    },
+    {
+      "path": "fatal-logcat.txt",
+      "bytes": 0,
+      "compressed": 2,
+      "crc32": "00000000"
+    },
+    {
+      "path": "home-to-games-0.xml",
+      "bytes": 33133,
+      "compressed": 2176,
+      "crc32": "2b9abd2c"
+    },
+    {
+      "path": "install.txt",
+      "bytes": 139,
+      "compressed": 128,
+      "crc32": "fad214fc"
+    },
+    {
+      "path": "installed-package-uid.txt",
+      "bytes": 59,
+      "compressed": 57,
+      "crc32": "efd16759"
+    },
+    {
+      "path": "installed-package.txt",
+      "bytes": 8744,
+      "compressed": 2280,
+      "crc32": "2eae4bff"
+    },
+    {
+      "path": "lernen-after-kart.xml",
+      "bytes": 31733,
+      "compressed": 2081,
+      "crc32": "d196f866"
+    },
+    {
+      "path": "lernen-before-kart.xml",
+      "bytes": 31729,
+      "compressed": 2094,
+      "crc32": "f4dbb77d"
+    },
+    {
+      "path": "logcat.txt",
+      "bytes": 2000020,
+      "compressed": 227485,
+      "crc32": "07056ceb"
+    },
+    {
+      "path": "mesa-renderer.txt",
+      "bytes": 1724,
+      "compressed": 560,
+      "crc32": "cafbfc99"
+    },
+    {
+      "path": "nav-lernen-6--1-0.xml",
+      "bytes": 34426,
+      "compressed": 2266,
+      "crc32": "38e18459"
+    },
+    {
+      "path": "nav-spiele-7--1-0.xml",
+      "bytes": 31729,
+      "compressed": 2094,
+      "crc32": "f4dbb77d"
+    },
+    {
+      "path": "nav-lernen-after-kart-6--1-0.xml",
+      "bytes": 28524,
+      "compressed": 1909,
+      "crc32": "75c1aba0"
+    },
+    {
+      "path": "nav-start-5--1-0.xml",
+      "bytes": 28522,
+      "compressed": 1921,
+      "crc32": "1ba5b745"
+    },
+    {
+      "path": "nav-start-after-kart-5--1-0.xml",
+      "bytes": 31733,
+      "compressed": 2081,
+      "crc32": "d196f866"
+    },
+    {
+      "path": "nextgen/00a_voice_local_model_assent-render-readiness.json",
+      "bytes": 565,
+      "compressed": 335,
+      "crc32": "29b02ac9"
+    },
+    {
+      "path": "nextgen/00a_voice_local_model_assent.png",
+      "bytes": 574850,
+      "compressed": 562773,
+      "crc32": "03339606"
+    },
+    {
+      "path": "nextgen/00b_voice_local_model_enabled-render-readiness.json",
+      "bytes": 568,
+      "compressed": 338,
+      "crc32": "3c7b5427"
+    },
+    {
+      "path": "nextgen/00b_voice_local_model_enabled.png",
+      "bytes": 1389127,
+      "compressed": 1385353,
+      "crc32": "2be77c86"
+    },
+    {
+      "path": "nextgen/01_learning_flutter_before-render-readiness.json",
+      "bytes": 562,
+      "compressed": 332,
+      "crc32": "4281723c"
+    },
+    {
+      "path": "nextgen/02_learning_native_eight_plus_five.png",
+      "bytes": 553454,
+      "compressed": 545441,
+      "crc32": "474859d5"
+    },
+    {
+      "path": "nextgen/01_learning_flutter_before.png",
+      "bytes": 1907430,
+      "compressed": 1904416,
+      "crc32": "2e3335d5"
+    },
+    {
+      "path": "nextgen/99_nextgen_failure.png",
+      "bytes": 556068,
+      "compressed": 548281,
+      "crc32": "5015e3b9"
+    },
+    {
+      "path": "nextgen/guided-answer-six-1--1-0.xml",
+      "bytes": 28885,
+      "compressed": 1982,
+      "crc32": "e180f8a0"
+    },
+    {
+      "path": "nextgen/guided-bridge-actual-target.json",
+      "bytes": 242,
+      "compressed": 152,
+      "crc32": "4e02e864"
+    },
+    {
+      "path": "nextgen/guided-bridge-card.xml",
+      "bytes": 19565,
+      "compressed": 1450,
+      "crc32": "e1d62588"
+    },
+    {
+      "path": "nextgen/guided-bridge-observed-0.xml",
+      "bytes": 19565,
+      "compressed": 1450,
+      "crc32": "e1d62588"
+    },
+    {
+      "path": "nextgen/guided-current-example.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/guided-example-6--1-0.xml",
+      "bytes": 28055,
+      "compressed": 1973,
+      "crc32": "bfa1ea6e"
+    },
+    {
+      "path": "nextgen/guided-greeting.xml",
+      "bytes": 25444,
+      "compressed": 1884,
+      "crc32": "e8b76cad"
+    },
+    {
+      "path": "nextgen/guided-foundation.xml",
+      "bytes": 28885,
+      "compressed": 1982,
+      "crc32": "e180f8a0"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-0.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-1.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-10.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-11.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-12.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-13.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-14.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-15.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-16.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-3.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-2.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-4.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-5.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-6.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-7.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-8.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19--1-9.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-hub-19-1-0.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/guided-next-6--1-0.xml",
+      "bytes": 25444,
+      "compressed": 1884,
+      "crc32": "e8b76cad"
+    },
+    {
+      "path": "nextgen/guided-hub-19-1-1.xml",
+      "bytes": 28375,
+      "compressed": 1996,
+      "crc32": "cf444fa0"
+    },
+    {
+      "path": "nextgen/guided-tools-27--1-0.xml",
+      "bytes": 28440,
+      "compressed": 1978,
+      "crc32": "bd7ff7ad"
+    },
+    {
+      "path": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2757,
+      "compressed": 958,
+      "crc32": "b5a32047"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "bytes": 2906,
+      "compressed": 956,
+      "crc32": "91ee193f"
+    },
+    {
+      "path": "nextgen/guided-tools-open.xml",
+      "bytes": 27505,
+      "compressed": 1966,
+      "crc32": "4bb9a338"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "663a60c7"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "bytes": 246,
+      "compressed": 125,
+      "crc32": "91ba3095"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-raw.tsv",
+      "bytes": 3371,
+      "compressed": 1077,
+      "crc32": "91b4ccd7"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "bytes": 4109,
+      "compressed": 1346,
+      "crc32": "4bcd2691"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-tiles.json",
+      "bytes": 5062,
+      "compressed": 760,
+      "crc32": "fbfc480b"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 56382,
+      "compressed": 46074,
+      "crc32": "b280d0a6"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1445,
+      "compressed": 492,
+      "crc32": "20c1e694"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30529,
+      "compressed": 18926,
+      "crc32": "81ab6793"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "compressed": 383,
+      "crc32": "4df23ee8"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48641,
+      "compressed": 38092,
+      "crc32": "6bcbaba7"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1225,
+      "compressed": 451,
+      "crc32": "de774e0c"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 30895,
+      "compressed": 18967,
+      "crc32": "d037c01e"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "compressed": 298,
+      "crc32": "2bde08d9"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 31073,
+      "compressed": 19941,
+      "crc32": "d707c1bd"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "compressed": 309,
+      "crc32": "64d56404"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21558,
+      "compressed": 10399,
+      "crc32": "d91fb992"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "compressed": 185,
+      "crc32": "7bd82035"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-0.png",
+      "bytes": 52235,
+      "compressed": 42021,
+      "crc32": "55daa5f1"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1489,
+      "compressed": 519,
+      "crc32": "57e4d51e"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-1.png",
+      "bytes": 26565,
+      "compressed": 14581,
+      "crc32": "2f21366c"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "compressed": 253,
+      "crc32": "e6d137cf"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-2.png",
+      "bytes": 46305,
+      "compressed": 35147,
+      "crc32": "2b6c8f67"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1045,
+      "compressed": 401,
+      "crc32": "05810961"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-3.png",
+      "bytes": 29691,
+      "compressed": 17333,
+      "crc32": "d9979186"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "compressed": 293,
+      "crc32": "07b34e6f"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-4.png",
+      "bytes": 33364,
+      "compressed": 22212,
+      "crc32": "97518de2"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "compressed": 355,
+      "crc32": "5d50a3b9"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-5.png",
+      "bytes": 19731,
+      "compressed": 8133,
+      "crc32": "3384c8cd"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "compressed": 185,
+      "crc32": "6d744ba8"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "bytes": 2784,
+      "compressed": 936,
+      "crc32": "3994c87e"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "bytes": 2826,
+      "compressed": 944,
+      "crc32": "e1f5806e"
+    },
+    {
+      "path": "nextgen/learning-move-1-0-ocr.json",
+      "bytes": 9809,
+      "compressed": 1262,
+      "crc32": "4c554a86"
+    },
+    {
+      "path": "nextgen/learning-move-1-0.png",
+      "bytes": 557393,
+      "compressed": 549711,
+      "crc32": "0941fb88"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-navy-latin-1x.tsv",
+      "bytes": 234,
+      "compressed": 123,
+      "crc32": "c2a32d8c"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-contrast.tsv",
+      "bytes": 2945,
+      "compressed": 980,
+      "crc32": "2b253b97"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-raw.tsv",
+      "bytes": 3364,
+      "compressed": 1082,
+      "crc32": "96652406"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-navy-latin.tsv",
+      "bytes": 246,
+      "compressed": 128,
+      "crc32": "27cd2226"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-teal-text-1x.tsv",
+      "bytes": 4112,
+      "compressed": 1348,
+      "crc32": "2712e290"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-tiles.json",
+      "bytes": 5086,
+      "compressed": 776,
+      "crc32": "f05114ec"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-0.png",
+      "bytes": 56283,
+      "compressed": 45992,
+      "crc32": "530016ec"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1487,
+      "compressed": 513,
+      "crc32": "6a562159"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30529,
+      "compressed": 18926,
+      "crc32": "81ab6793"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "compressed": 383,
+      "crc32": "4df23ee8"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48516,
+      "compressed": 37826,
+      "crc32": "a306c733"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1261,
+      "compressed": 476,
+      "crc32": "681f046b"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-3.png",
+      "bytes": 30895,
+      "compressed": 18967,
+      "crc32": "d037c01e"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "compressed": 298,
+      "crc32": "2bde08d9"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-4.png",
+      "bytes": 31073,
+      "compressed": 19941,
+      "crc32": "d707c1bd"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "compressed": 309,
+      "crc32": "64d56404"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21558,
+      "compressed": 10399,
+      "crc32": "d91fb992"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "compressed": 185,
+      "crc32": "7bd82035"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-0.png",
+      "bytes": 52334,
+      "compressed": 41995,
+      "crc32": "86215933"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-0.tsv",
+      "bytes": 1345,
+      "compressed": 471,
+      "crc32": "567e300d"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-1.png",
+      "bytes": 26565,
+      "compressed": 14581,
+      "crc32": "2f21366c"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "compressed": 253,
+      "crc32": "e6d137cf"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-2.png",
+      "bytes": 46570,
+      "compressed": 35449,
+      "crc32": "11e6e5f8"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-2.tsv",
+      "bytes": 1086,
+      "compressed": 417,
+      "crc32": "06ccce9f"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-3.png",
+      "bytes": 29691,
+      "compressed": 17333,
+      "crc32": "d9979186"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "compressed": 293,
+      "crc32": "07b34e6f"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-4.png",
+      "bytes": 33364,
+      "compressed": 22212,
+      "crc32": "97518de2"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "compressed": 355,
+      "crc32": "5d50a3b9"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-5.png",
+      "bytes": 19731,
+      "compressed": 8133,
+      "crc32": "3384c8cd"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "compressed": 185,
+      "crc32": "6d744ba8"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-latin.tsv",
+      "bytes": 2783,
+      "compressed": 932,
+      "crc32": "899adf9f"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr-white-text.tsv",
+      "bytes": 2826,
+      "compressed": 946,
+      "crc32": "118d9976"
+    },
+    {
+      "path": "nextgen/learning-move-1-1-ocr.json",
+      "bytes": 10318,
+      "compressed": 1322,
+      "crc32": "fd6fa2dd"
+    },
+    {
+      "path": "nextgen/learning-move-1-1.png",
+      "bytes": 555631,
+      "compressed": 547754,
+      "crc32": "87a0326d"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-contrast.tsv",
+      "bytes": 3183,
+      "compressed": 1025,
+      "crc32": "77d45d79"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "663a60c7"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "0a492342"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-raw.tsv",
+      "bytes": 2840,
+      "compressed": 961,
+      "crc32": "256714f5"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-teal-text-1x.tsv",
+      "bytes": 4386,
+      "compressed": 1407,
+      "crc32": "14d2ca8b"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-tiles.json",
+      "bytes": 5064,
+      "compressed": 755,
+      "crc32": "feaa8d72"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-0.png",
+      "bytes": 55419,
+      "compressed": 45320,
+      "crc32": "fa581efe"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1444,
+      "compressed": 493,
+      "crc32": "48bb1a4c"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30529,
+      "compressed": 18926,
+      "crc32": "81ab6793"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "compressed": 383,
+      "crc32": "4df23ee8"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48152,
+      "compressed": 37706,
+      "crc32": "c621192e"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1300,
+      "compressed": 482,
+      "crc32": "4bd3fc81"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-3.png",
+      "bytes": 30895,
+      "compressed": 18967,
+      "crc32": "d037c01e"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "compressed": 298,
+      "crc32": "2bde08d9"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "compressed": 309,
+      "crc32": "64d56404"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21558,
+      "compressed": 10399,
+      "crc32": "d91fb992"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "compressed": 185,
+      "crc32": "7bd82035"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-dim-tile-4.png",
+      "bytes": 31073,
+      "compressed": 19941,
+      "crc32": "d707c1bd"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-1.png",
+      "bytes": 26565,
+      "compressed": 14581,
+      "crc32": "2f21366c"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-0.tsv",
+      "bytes": 1344,
+      "compressed": 467,
+      "crc32": "b349c5a3"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-0.png",
+      "bytes": 52852,
+      "compressed": 42332,
+      "crc32": "a65bd7e7"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "compressed": 253,
+      "crc32": "e6d137cf"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-2.png",
+      "bytes": 46852,
+      "compressed": 35868,
+      "crc32": "0614bb12"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-2.tsv",
+      "bytes": 1085,
+      "compressed": 417,
+      "crc32": "93a42d17"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-3.png",
+      "bytes": 29691,
+      "compressed": 17333,
+      "crc32": "d9979186"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "compressed": 293,
+      "crc32": "07b34e6f"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-4.png",
+      "bytes": 33364,
+      "compressed": 22212,
+      "crc32": "97518de2"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "compressed": 355,
+      "crc32": "5d50a3b9"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-5.png",
+      "bytes": 19731,
+      "compressed": 8133,
+      "crc32": "3384c8cd"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "compressed": 185,
+      "crc32": "6d744ba8"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-latin.tsv",
+      "bytes": 2603,
+      "compressed": 888,
+      "crc32": "5fa08214"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr-white-text.tsv",
+      "bytes": 2682,
+      "compressed": 915,
+      "crc32": "ac716692"
+    },
+    {
+      "path": "nextgen/learning-move-1-2-ocr.json",
+      "bytes": 9835,
+      "compressed": 1277,
+      "crc32": "75a505db"
+    },
+    {
+      "path": "nextgen/learning-move-1-2.png",
+      "bytes": 556036,
+      "compressed": 548083,
+      "crc32": "2af2fee9"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-contrast.tsv",
+      "bytes": 3088,
+      "compressed": 1014,
+      "crc32": "7874d194"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "663a60c7"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-navy-latin.tsv",
+      "bytes": 237,
+      "compressed": 123,
+      "crc32": "a661b281"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-raw.tsv",
+      "bytes": 2931,
+      "compressed": 969,
+      "crc32": "09c09c9d"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-teal-text-1x.tsv",
+      "bytes": 4110,
+      "compressed": 1344,
+      "crc32": "2797244b"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-tiles.json",
+      "bytes": 5063,
+      "compressed": 759,
+      "crc32": "805459a9"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-0.png",
+      "bytes": 56313,
+      "compressed": 46173,
+      "crc32": "18e8fc42"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 2455,
+      "compressed": 750,
+      "crc32": "727a1b40"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30529,
+      "compressed": 18926,
+      "crc32": "81ab6793"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "compressed": 383,
+      "crc32": "4df23ee8"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48570,
+      "compressed": 38127,
+      "crc32": "fc4343fa"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1524,
+      "compressed": 539,
+      "crc32": "d4b4f11a"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "compressed": 309,
+      "crc32": "64d56404"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-3.png",
+      "bytes": 30895,
+      "compressed": 18967,
+      "crc32": "d037c01e"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "compressed": 298,
+      "crc32": "2bde08d9"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-4.png",
+      "bytes": 31073,
+      "compressed": 19941,
+      "crc32": "d707c1bd"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21558,
+      "compressed": 10399,
+      "crc32": "d91fb992"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "compressed": 185,
+      "crc32": "7bd82035"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-0.png",
+      "bytes": 52663,
+      "compressed": 42399,
+      "crc32": "d29be8ff"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-0.tsv",
+      "bytes": 1486,
+      "compressed": 513,
+      "crc32": "47d07948"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-1.png",
+      "bytes": 26565,
+      "compressed": 14581,
+      "crc32": "2f21366c"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "compressed": 253,
+      "crc32": "e6d137cf"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-2.png",
+      "bytes": 46791,
+      "compressed": 35766,
+      "crc32": "88b15fed"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-2.tsv",
+      "bytes": 1042,
+      "compressed": 402,
+      "crc32": "df1aec30"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-3.png",
+      "bytes": 29691,
+      "compressed": 17333,
+      "crc32": "d9979186"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "compressed": 293,
+      "crc32": "07b34e6f"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-4.png",
+      "bytes": 33364,
+      "compressed": 22212,
+      "crc32": "97518de2"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "compressed": 355,
+      "crc32": "5d50a3b9"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-5.png",
+      "bytes": 19731,
+      "compressed": 8133,
+      "crc32": "3384c8cd"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "compressed": 185,
+      "crc32": "6d744ba8"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-latin.tsv",
+      "bytes": 2750,
+      "compressed": 933,
+      "crc32": "061c550a"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr-white-text.tsv",
+      "bytes": 2828,
+      "compressed": 955,
+      "crc32": "1917e27d"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "663a60c7"
+    },
+    {
+      "path": "nextgen/learning-move-1-3-ocr.json",
+      "bytes": 10067,
+      "compressed": 1318,
+      "crc32": "47e7267b"
+    },
+    {
+      "path": "nextgen/learning-move-1-3.png",
+      "bytes": 556169,
+      "compressed": 548361,
+      "crc32": "d89316e3"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-contrast.tsv",
+      "bytes": 2912,
+      "compressed": 957,
+      "crc32": "851c5f9c"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-navy-latin.tsv",
+      "bytes": 741,
+      "compressed": 238,
+      "crc32": "d61541af"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-teal-text-1x.tsv",
+      "bytes": 4386,
+      "compressed": 1404,
+      "crc32": "656bd127"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-raw.tsv",
+      "bytes": 2832,
+      "compressed": 965,
+      "crc32": "e8f9a190"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-tiles.json",
+      "bytes": 5159,
+      "compressed": 767,
+      "crc32": "07fdf8e6"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-0.png",
+      "bytes": 55899,
+      "compressed": 45592,
+      "crc32": "e685324a"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30529,
+      "compressed": 18926,
+      "crc32": "81ab6793"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1994,
+      "compressed": 644,
+      "crc32": "604bf228"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "compressed": 383,
+      "crc32": "4df23ee8"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48929,
+      "compressed": 38434,
+      "crc32": "15dbb3c8"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 2223,
+      "compressed": 708,
+      "crc32": "00418be8"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-3.png",
+      "bytes": 30895,
+      "compressed": 18967,
+      "crc32": "d037c01e"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "compressed": 298,
+      "crc32": "2bde08d9"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-4.png",
+      "bytes": 31073,
+      "compressed": 19941,
+      "crc32": "d707c1bd"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "compressed": 309,
+      "crc32": "64d56404"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21558,
+      "compressed": 10399,
+      "crc32": "d91fb992"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "compressed": 185,
+      "crc32": "7bd82035"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-0.png",
+      "bytes": 52336,
+      "compressed": 41876,
+      "crc32": "488e193a"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-0.tsv",
+      "bytes": 1897,
+      "compressed": 591,
+      "crc32": "95c900dc"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-1.png",
+      "bytes": 26565,
+      "compressed": 14581,
+      "crc32": "2f21366c"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "compressed": 253,
+      "crc32": "e6d137cf"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-2.png",
+      "bytes": 46764,
+      "compressed": 35884,
+      "crc32": "6f44a60f"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-2.tsv",
+      "bytes": 1085,
+      "compressed": 416,
+      "crc32": "6f9e694d"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-3.png",
+      "bytes": 29691,
+      "compressed": 17333,
+      "crc32": "d9979186"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "compressed": 293,
+      "crc32": "07b34e6f"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-4.png",
+      "bytes": 33364,
+      "compressed": 22212,
+      "crc32": "97518de2"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "compressed": 355,
+      "crc32": "5d50a3b9"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-5.png",
+      "bytes": 19731,
+      "compressed": 8133,
+      "crc32": "3384c8cd"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "compressed": 185,
+      "crc32": "6d744ba8"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-text.tsv",
+      "bytes": 3559,
+      "compressed": 1134,
+      "crc32": "a2220d5a"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr-white-latin.tsv",
+      "bytes": 3479,
+      "compressed": 1107,
+      "crc32": "9b5cbcd8"
+    },
+    {
+      "path": "nextgen/learning-move-1-4-ocr.json",
+      "bytes": 11776,
+      "compressed": 1458,
+      "crc32": "44bb1bfe"
+    },
+    {
+      "path": "nextgen/learning-move-1-4.png",
+      "bytes": 555481,
+      "compressed": 547680,
+      "crc32": "864c0897"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "663a60c7"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-contrast.tsv",
+      "bytes": 2983,
+      "compressed": 991,
+      "crc32": "a9e7ff5b"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-navy-latin.tsv",
+      "bytes": 366,
+      "compressed": 154,
+      "crc32": "4f5421f4"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-raw.tsv",
+      "bytes": 2971,
+      "compressed": 987,
+      "crc32": "f78c99ed"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-tiles.json",
+      "bytes": 5076,
+      "compressed": 759,
+      "crc32": "9472d3d8"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-teal-text-1x.tsv",
+      "bytes": 4386,
+      "compressed": 1405,
+      "crc32": "a0fc997b"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-0.png",
+      "bytes": 56486,
+      "compressed": 46296,
+      "crc32": "94bc2da8"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 2455,
+      "compressed": 751,
+      "crc32": "d1863509"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30529,
+      "compressed": 18926,
+      "crc32": "81ab6793"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "compressed": 383,
+      "crc32": "4df23ee8"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1262,
+      "compressed": 477,
+      "crc32": "f3f8d237"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48668,
+      "compressed": 38128,
+      "crc32": "5051054e"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-3.png",
+      "bytes": 30895,
+      "compressed": 18967,
+      "crc32": "d037c01e"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "compressed": 298,
+      "crc32": "2bde08d9"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-4.png",
+      "bytes": 31073,
+      "compressed": 19941,
+      "crc32": "d707c1bd"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "compressed": 309,
+      "crc32": "64d56404"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21558,
+      "compressed": 10399,
+      "crc32": "d91fb992"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "compressed": 185,
+      "crc32": "7bd82035"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-0.png",
+      "bytes": 52563,
+      "compressed": 42338,
+      "crc32": "e8b69fc5"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-0.tsv",
+      "bytes": 1524,
+      "compressed": 523,
+      "crc32": "7b1f9dd7"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-1.png",
+      "bytes": 26565,
+      "compressed": 14581,
+      "crc32": "2f21366c"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "compressed": 253,
+      "crc32": "e6d137cf"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-2.png",
+      "bytes": 47032,
+      "compressed": 36113,
+      "crc32": "7b80d6f7"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-2.tsv",
+      "bytes": 1084,
+      "compressed": 417,
+      "crc32": "2fcaf3e5"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-3.png",
+      "bytes": 29691,
+      "compressed": 17333,
+      "crc32": "d9979186"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-4.png",
+      "bytes": 33364,
+      "compressed": 22212,
+      "crc32": "97518de2"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "compressed": 355,
+      "crc32": "5d50a3b9"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-5.png",
+      "bytes": 19731,
+      "compressed": 8133,
+      "crc32": "3384c8cd"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "compressed": 293,
+      "crc32": "07b34e6f"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "compressed": 185,
+      "crc32": "6d744ba8"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-latin.tsv",
+      "bytes": 2754,
+      "compressed": 934,
+      "crc32": "a497497b"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr-white-text.tsv",
+      "bytes": 2870,
+      "compressed": 977,
+      "crc32": "89952de7"
+    },
+    {
+      "path": "nextgen/learning-move-1-5-ocr.json",
+      "bytes": 10342,
+      "compressed": 1359,
+      "crc32": "b466bc92"
+    },
+    {
+      "path": "nextgen/learning-move-1-5.png",
+      "bytes": 556348,
+      "compressed": 548480,
+      "crc32": "48d65684"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-contrast.tsv",
+      "bytes": 3335,
+      "compressed": 1057,
+      "crc32": "dcdabf91"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "663a60c7"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "0a492342"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-raw.tsv",
+      "bytes": 2805,
+      "compressed": 943,
+      "crc32": "5df2a725"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-teal-text-1x.tsv",
+      "bytes": 4386,
+      "compressed": 1400,
+      "crc32": "aef07030"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-0.png",
+      "bytes": 55423,
+      "compressed": 45158,
+      "crc32": "5a2c9368"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-tiles.json",
+      "bytes": 5103,
+      "compressed": 780,
+      "crc32": "39e5c141"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1533,
+      "compressed": 543,
+      "crc32": "8e25990f"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-1.png",
+      "bytes": 30529,
+      "compressed": 18926,
+      "crc32": "81ab6793"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1009,
+      "compressed": 383,
+      "crc32": "4df23ee8"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48588,
+      "compressed": 38352,
+      "crc32": "d3db387b"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1044,
+      "compressed": 406,
+      "crc32": "8ab6a667"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-3.png",
+      "bytes": 30895,
+      "compressed": 18967,
+      "crc32": "d037c01e"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 705,
+      "compressed": 298,
+      "crc32": "2bde08d9"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-4.png",
+      "bytes": 31073,
+      "compressed": 19941,
+      "crc32": "d707c1bd"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 783,
+      "compressed": 309,
+      "crc32": "64d56404"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21558,
+      "compressed": 10399,
+      "crc32": "d91fb992"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 424,
+      "compressed": 185,
+      "crc32": "7bd82035"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-0.png",
+      "bytes": 52596,
+      "compressed": 41939,
+      "crc32": "b2c8123b"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-0.tsv",
+      "bytes": 1484,
+      "compressed": 512,
+      "crc32": "e97f09f3"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-1.png",
+      "bytes": 26565,
+      "compressed": 14581,
+      "crc32": "2f21366c"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "compressed": 253,
+      "crc32": "e6d137cf"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-2.png",
+      "bytes": 46832,
+      "compressed": 36016,
+      "crc32": "1b60c41d"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-2.tsv",
+      "bytes": 1045,
+      "compressed": 399,
+      "crc32": "beaf6b76"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-3.png",
+      "bytes": 29691,
+      "compressed": 17333,
+      "crc32": "d9979186"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-3.tsv",
+      "bytes": 704,
+      "compressed": 293,
+      "crc32": "07b34e6f"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-4.png",
+      "bytes": 33364,
+      "compressed": 22212,
+      "crc32": "97518de2"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-4.tsv",
+      "bytes": 989,
+      "compressed": 355,
+      "crc32": "5d50a3b9"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-5.png",
+      "bytes": 19731,
+      "compressed": 8133,
+      "crc32": "3384c8cd"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin-tile-5.tsv",
+      "bytes": 428,
+      "compressed": 185,
+      "crc32": "6d744ba8"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-latin.tsv",
+      "bytes": 2790,
+      "compressed": 940,
+      "crc32": "de3f6aba"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr-white-text.tsv",
+      "bytes": 2869,
+      "compressed": 967,
+      "crc32": "c4c66d6d"
+    },
+    {
+      "path": "nextgen/learning-move-1-6-ocr.json",
+      "bytes": 9959,
+      "compressed": 1294,
+      "crc32": "40c25056"
+    },
+    {
+      "path": "nextgen/learning-move-1-6.png",
+      "bytes": 555170,
+      "compressed": 547318,
+      "crc32": "af5b12a6"
+    },
+    {
+      "path": "nextgen/learning-move-1-7-ocr-contrast.tsv",
+      "bytes": 2950,
+      "compressed": 981,
+      "crc32": "c65393a9"
+    },
+    {
+      "path": "nextgen/learning-move-1-7-ocr-raw.tsv",
+      "bytes": 83,
+      "compressed": 65,
+      "crc32": "55755e10"
+    },
+    {
+      "path": "nextgen/learning-move-1-7.png",
+      "bytes": 556055,
+      "compressed": 548247,
+      "crc32": "52dd4146"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-0.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-1.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 6859,
+      "compressed": 1128,
+      "crc32": "1128bcf3"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-10.xml",
+      "bytes": 27206,
+      "compressed": 1987,
+      "crc32": "abb7f6a9"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-11.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-12.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-13.xml",
+      "bytes": 27206,
+      "compressed": 1987,
+      "crc32": "abb7f6a9"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-15.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-14.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-16.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-2.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-3.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-4.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-5.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-6.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-7.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-8.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27--1-9.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27-1-0.xml",
+      "bytes": 27206,
+      "compressed": 1985,
+      "crc32": "aae73eca"
+    },
+    {
+      "path": "nextgen/learning-native-entry-27-1-1.xml",
+      "bytes": 24016,
+      "compressed": 1765,
+      "crc32": "195d96fe"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-contrast.tsv",
+      "bytes": 377,
+      "compressed": 161,
+      "crc32": "e3cda754"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "52c6252c"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "95a69067"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-raw.tsv",
+      "bytes": 377,
+      "compressed": 162,
+      "crc32": "00f9c70d"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-teal-text-1x.tsv",
+      "bytes": 409,
+      "compressed": 181,
+      "crc32": "36afe7fa"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-tiles.json",
+      "bytes": 4732,
+      "compressed": 659,
+      "crc32": "a4431919"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 6306,
+      "compressed": 1689,
+      "crc32": "375ddcbe"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 243,
+      "compressed": 125,
+      "crc32": "65d19678"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 4839,
+      "compressed": 112,
+      "crc32": "d636dcc5"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "b246cbf0"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 5271,
+      "compressed": 115,
+      "crc32": "c93fc841"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 5775,
+      "compressed": 712,
+      "crc32": "fcf9fdcb"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 6783,
+      "compressed": 2170,
+      "crc32": "d92f76f6"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 4839,
+      "compressed": 112,
+      "crc32": "d636dcc5"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 282,
+      "compressed": 150,
+      "crc32": "5b411a9c"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "b246cbf0"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-0.png",
+      "bytes": 6192,
+      "compressed": 1547,
+      "crc32": "c2c1ae15"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 282,
+      "compressed": 146,
+      "crc32": "fd186dff"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-1.png",
+      "bytes": 4839,
+      "compressed": 112,
+      "crc32": "d636dcc5"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "b246cbf0"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-2.png",
+      "bytes": 5271,
+      "compressed": 115,
+      "crc32": "c93fc841"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-3.png",
+      "bytes": 5708,
+      "compressed": 659,
+      "crc32": "f6dff40e"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 288,
+      "compressed": 152,
+      "crc32": "b14d8e0f"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-4.png",
+      "bytes": 6845,
+      "compressed": 2267,
+      "crc32": "2cfc06e1"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-5.png",
+      "bytes": 4839,
+      "compressed": 112,
+      "crc32": "d636dcc5"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "compressed": 86,
+      "crc32": "b246cbf0"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-latin.tsv",
+      "bytes": 450,
+      "compressed": 203,
+      "crc32": "b9a20a81"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr-white-text.tsv",
+      "bytes": 377,
+      "compressed": 161,
+      "crc32": "e32cfdf6"
+    },
+    {
+      "path": "nextgen/learning-native-title-0-ocr.json",
+      "bytes": 1282,
+      "compressed": 209,
+      "crc32": "92bda8de"
+    },
+    {
+      "path": "nextgen/learning-native-title-0.png",
+      "bytes": 15441,
+      "compressed": 3348,
+      "crc32": "d5f69bba"
+    },
+    {
+      "path": "nextgen/learning-native-title-1-ocr-contrast.tsv",
+      "bytes": 2486,
+      "compressed": 861,
+      "crc32": "7ab730cc"
+    },
+    {
+      "path": "nextgen/learning-native-title-1-ocr.json",
+      "bytes": 1801,
+      "compressed": 373,
+      "crc32": "ab1c8e2f"
+    },
+    {
+      "path": "nextgen/learning-native-title-1.png",
+      "bytes": 566059,
+      "compressed": 558578,
+      "crc32": "7f1ef907"
+    },
+    {
+      "path": "nextgen/learning-speech-logcat.txt",
+      "bytes": 1628,
+      "compressed": 775,
+      "crc32": "5aaee844"
+    },
+    {
+      "path": "nextgen/learning-tab-6--1-0.xml",
+      "bytes": 26779,
+      "compressed": 2190,
+      "crc32": "d0bdf547"
+    },
+    {
+      "path": "nextgen/native-surfaces-result.json",
+      "bytes": 5816,
+      "compressed": 1761,
+      "crc32": "14eb65e0"
+    },
+    {
+      "path": "nextgen/ocr-work.png",
+      "bytes": 1664119,
+      "compressed": 1630907,
+      "crc32": "052c3f29"
+    },
+    {
+      "path": "nextgen/logcat.txt",
+      "bytes": 699192,
+      "compressed": 74285,
+      "crc32": "18486171"
+    },
+    {
+      "path": "nextgen/rooted-emulator.json",
+      "bytes": 1553,
+      "compressed": 416,
+      "crc32": "16d95be8"
+    },
+    {
+      "path": "nextgen/uiautomator-config.json",
+      "bytes": 189,
+      "compressed": 118,
+      "crc32": "bc079679"
+    },
+    {
+      "path": "nextgen/voice-games-entry-7--1-0.xml",
+      "bytes": 28900,
+      "compressed": 1969,
+      "crc32": "6bfd94e5"
+    },
+    {
+      "path": "nextgen/voice-license-checkbox-145--1-0.xml",
+      "bytes": 33802,
+      "compressed": 7260,
+      "crc32": "02f0bf4d"
+    },
+    {
+      "path": "nextgen/voice-license-confirm-23--1-0.xml",
+      "bytes": 33799,
+      "compressed": 7255,
+      "crc32": "5a474fbc"
+    },
+    {
+      "path": "nextgen/voice-license-dialog.xml",
+      "bytes": 33802,
+      "compressed": 7260,
+      "crc32": "02f0bf4d"
+    },
+    {
+      "path": "nextgen/voice-license-observed-preferences.xml",
+      "bytes": 2757,
+      "compressed": 958,
+      "crc32": "b5a32047"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-0.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-1.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-10.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-11.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-12.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-13.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-14.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "cab88b39"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-15.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-16.xml",
+      "bytes": 27245,
+      "compressed": 2218,
+      "crc32": "1339437f"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-2.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "cab88b39"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-3.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-4.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-5.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-6.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-7.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-8.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27--1-9.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-0.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-1.xml",
+      "bytes": 26410,
+      "compressed": 2163,
+      "crc32": "0f9facd2"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-10.xml",
+      "bytes": 30155,
+      "compressed": 2120,
+      "crc32": "8a920050"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-11.xml",
+      "bytes": 28459,
+      "compressed": 2064,
+      "crc32": "1d2e340c"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-12.xml",
+      "bytes": 28960,
+      "compressed": 2072,
+      "crc32": "39f099a3"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-14.xml",
+      "bytes": 25616,
+      "compressed": 1996,
+      "crc32": "7d905b3b"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-13.xml",
+      "bytes": 28125,
+      "compressed": 2061,
+      "crc32": "0dcbaa2b"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-15.xml",
+      "bytes": 26354,
+      "compressed": 2179,
+      "crc32": "e7db2851"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-2.xml",
+      "bytes": 25508,
+      "compressed": 1898,
+      "crc32": "b183dffe"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-3.xml",
+      "bytes": 26033,
+      "compressed": 1992,
+      "crc32": "1b1af2e6"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-4.xml",
+      "bytes": 27299,
+      "compressed": 2070,
+      "crc32": "188f0665"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-5.xml",
+      "bytes": 29029,
+      "compressed": 2113,
+      "crc32": "81e7ae0f"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-6.xml",
+      "bytes": 26845,
+      "compressed": 2001,
+      "crc32": "4140c481"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-7.xml",
+      "bytes": 25521,
+      "compressed": 1886,
+      "crc32": "bd316c5a"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-8.xml",
+      "bytes": 28551,
+      "compressed": 2091,
+      "crc32": "c33a7009"
+    },
+    {
+      "path": "nextgen/voice-license-open-27-1-9.xml",
+      "bytes": 27825,
+      "compressed": 2170,
+      "crc32": "2d8e9df2"
+    },
+    {
+      "path": "nextgen/voice-setting-autoReadEnabled-preferences.xml",
+      "bytes": 2757,
+      "compressed": 958,
+      "crc32": "b5a32047"
+    },
+    {
+      "path": "nextgen/voice-setting-calmMode-preferences.xml",
+      "bytes": 2757,
+      "compressed": 958,
+      "crc32": "b5a32047"
+    },
+    {
+      "path": "nextgen/voice-setting-voiceEnabled-preferences.xml",
+      "bytes": 2757,
+      "compressed": 958,
+      "crc32": "b5a32047"
+    },
+    {
+      "path": "nextgen/voice-settings-after-preferences.xml",
+      "bytes": 2757,
+      "compressed": 958,
+      "crc32": "b5a32047"
+    },
+    {
+      "path": "nextgen/voice-settings-before-preferences.xml",
+      "bytes": 2011,
+      "compressed": 729,
+      "crc32": "cfaa35d9"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-1.xml",
+      "bytes": 25229,
+      "compressed": 1799,
+      "crc32": "3cef4696"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-0.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "dd974456"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-11.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-10.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-12.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-13.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-14.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-15.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-16.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-2.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "dd974456"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-3.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "dd974456"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-4.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-5.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-6.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-7.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-8.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13--1-9.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13-1-0.xml",
+      "bytes": 25229,
+      "compressed": 1800,
+      "crc32": "3189b094"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13-1-1.xml",
+      "bytes": 23401,
+      "compressed": 1741,
+      "crc32": "8ffec7e9"
+    },
+    {
+      "path": "nextgen/voice-settings-entry-13-1-2.xml",
+      "bytes": 24720,
+      "compressed": 1814,
+      "crc32": "4487ce85"
+    },
+    {
+      "path": "nextgen/voice-settings-open.xml",
+      "bytes": 27245,
+      "compressed": 2217,
+      "crc32": "57594048"
+    },
+    {
+      "path": "ocr-work.png",
+      "bytes": 205698,
+      "compressed": 192311,
+      "crc32": "0780fd1b"
+    },
+    {
+      "path": "onboard-age-next-0.xml",
+      "bytes": 24478,
+      "compressed": 1588,
+      "crc32": "754e90d8"
+    },
+    {
+      "path": "onboard-games-Spiele-0.xml",
+      "bytes": 28522,
+      "compressed": 1921,
+      "crc32": "1ba5b745"
+    },
+    {
+      "path": "onboard-grade-save-0.xml",
+      "bytes": 23672,
+      "compressed": 1590,
+      "crc32": "a65b1404"
+    },
+    {
+      "path": "onboard-home-0.xml",
+      "bytes": 33133,
+      "compressed": 2176,
+      "crc32": "2b9abd2c"
+    },
+    {
+      "path": "onboard-name-next-0.xml",
+      "bytes": 23172,
+      "compressed": 1562,
+      "crc32": "bc619953"
+    },
+    {
+      "path": "onboard-ime-before-dismiss.xml",
+      "bytes": 96341,
+      "compressed": 4120,
+      "crc32": "6c6fbde2"
+    },
+    {
+      "path": "onboard-name-written-1-0.xml",
+      "bytes": 96317,
+      "compressed": 4105,
+      "crc32": "3042f39b"
+    },
+    {
+      "path": "onboard-name-written-2-0.xml",
+      "bytes": 96318,
+      "compressed": 4106,
+      "crc32": "9a77fbf4"
+    },
+    {
+      "path": "onboard-name-written-3-0.xml",
+      "bytes": 96324,
+      "compressed": 4106,
+      "crc32": "c2d55d77"
+    },
+    {
+      "path": "onboard-name-written-4-0.xml",
+      "bytes": 96324,
+      "compressed": 4114,
+      "crc32": "4aa3c594"
+    },
+    {
+      "path": "onboard-name-written-6-0.xml",
+      "bytes": 96328,
+      "compressed": 4118,
+      "crc32": "d5c5896f"
+    },
+    {
+      "path": "onboard-name-written-5-0.xml",
+      "bytes": 96327,
+      "compressed": 4118,
+      "crc32": "92e39854"
+    },
+    {
+      "path": "onboard-name-written-7-0.xml",
+      "bytes": 96334,
+      "compressed": 4124,
+      "crc32": "d973de39"
+    },
+    {
+      "path": "onboard-name-written-8-0.xml",
+      "bytes": 96335,
+      "compressed": 4124,
+      "crc32": "039bde08"
+    },
+    {
+      "path": "onboard-name.xml",
+      "bytes": 23187,
+      "compressed": 1556,
+      "crc32": "c8ac265a"
+    },
+    {
+      "path": "onboard-welcome--1-0.xml",
+      "bytes": 22847,
+      "compressed": 1563,
+      "crc32": "9a7f6087"
+    },
+    {
+      "path": "open-kart-47-1-0.xml",
+      "bytes": 28523,
+      "compressed": 1914,
+      "crc32": "d57727df"
+    },
+    {
+      "path": "restart-0.xml",
+      "bytes": 33135,
+      "compressed": 2163,
+      "crc32": "0a84b214"
+    },
+    {
+      "path": "rooted-emulator.json",
+      "bytes": 1761,
+      "compressed": 520,
+      "crc32": "7fa229f8"
+    },
+    {
+      "path": "restart-after-kart-launch.txt",
+      "bytes": 545,
+      "compressed": 223,
+      "crc32": "6fb6c8e0"
+    },
+    {
+      "path": "start-after-kart-0.xml",
+      "bytes": 34430,
+      "compressed": 2255,
+      "crc32": "2a401579"
+    },
+    {
+      "path": "start-after-kart-1.xml",
+      "bytes": 32610,
+      "compressed": 2128,
+      "crc32": "6dd5c506"
+    },
+    {
+      "path": "start-after-kart-2.xml",
+      "bytes": 34895,
+      "compressed": 2298,
+      "crc32": "23bc5ecb"
+    },
+    {
+      "path": "start-after-kart-3.xml",
+      "bytes": 35428,
+      "compressed": 2303,
+      "crc32": "9ea8bdf0"
+    },
+    {
+      "path": "tesseract-installed-languages.txt",
+      "bytes": 87,
+      "compressed": 81,
+      "crc32": "d3854710"
+    },
+    {
+      "path": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "compressed": 99,
+      "crc32": "428a6d65"
+    },
+    {
+      "path": "tour-result.json",
+      "bytes": 9995,
+      "compressed": 2669,
+      "crc32": "f71c1d72"
+    },
+    {
+      "path": "uiautomator-config.json",
+      "bytes": 189,
+      "compressed": 118,
+      "crc32": "bc079679"
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 4696,
+      "compressed": 296,
+      "crc32": "ef9e06c9"
+    }
+  ]
+}

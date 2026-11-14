@@ -1,0 +1,2876 @@
+{
+  "api35-green-two": {
+    "message": "Lumo legt Grün 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "other-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "bot",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "spare-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "api37-whirlwind": {
+    "message": "Wirbelwind! Du ziehst 1 Karte.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "other-0",
+            "draw-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "bot",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "spare-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Du-orange": {
+    "message": "Du legst Rot 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "orange",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Du-purple": {
+    "message": "Du legst Gelb 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "purple",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Du-blue": {
+    "message": "Du legst Blau 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "blue",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Du-green": {
+    "message": "Du legst Grün 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Mila-orange": {
+    "message": "Mila legt Rot 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "orange",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Mila-purple": {
+    "message": "Mila legt Gelb 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "purple",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Mila-blue": {
+    "message": "Mila legt Blau 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "blue",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Mila-green": {
+    "message": "Mila legt Grün 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Lumo-orange": {
+    "message": "Lumo legt Rot 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "orange",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Lumo-purple": {
+    "message": "Lumo legt Gelb 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "purple",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Lumo-blue": {
+    "message": "Lumo legt Blau 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "blue",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "number-Lumo-green": {
+    "message": "Lumo legt Grün 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "draw-Du": {
+    "message": "Du ziehst eine Karte.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "played",
+            "spare-0",
+            "draw-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top"
+      ],
+      "question": null
+    }
+  },
+  "draw-Mila": {
+    "message": "Mila zieht eine Karte.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "played",
+            "spare-0",
+            "draw-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top"
+      ],
+      "question": null
+    }
+  },
+  "draw-Lumo": {
+    "message": "Lumo zieht eine Karte.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "played",
+            "spare-0",
+            "draw-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top"
+      ],
+      "question": null
+    }
+  },
+  "starRain-Du": {
+    "message": "Sternenregen! Du ziehst 2 Karten.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0",
+            "draw-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "starRain-Mila": {
+    "message": "Sternenregen! Mila zieht 2 Karten.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0",
+            "draw-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "starRain-Lumo": {
+    "message": "Sternenregen! Lumo zieht 2 Karten.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "bot",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0",
+            "draw-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "superRain-Du": {
+    "message": "Super-Sternenregen! Du ziehst 4 Karten - jetzt Farbe wählen.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "chooseColor",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0",
+            "draw-1",
+            "draw-2",
+            "draw-3"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "superRain-Mila": {
+    "message": "Super-Sternenregen! Mila zieht 4 Karten - jetzt Farbe wählen.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "chooseColor",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0",
+            "draw-1",
+            "draw-2",
+            "draw-3"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "superRain-Lumo": {
+    "message": "Super-Sternenregen! Lumo zieht 4 Karten - jetzt Farbe wählen.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "chooseColor",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "bot",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0",
+            "draw-1",
+            "draw-2",
+            "draw-3"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "whirlwind-Mila": {
+    "message": "Wirbelwind! Mila zieht 1 Karte.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "whirlwind-Lumo": {
+    "message": "Wirbelwind! Lumo zieht 1 Karte.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "bot",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1",
+            "draw-0"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "wild-prompt-Du": {
+    "message": "Farbzauber! Du wählst eine Farbe.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "chooseColor",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Du-orange": {
+    "message": "Du wählst Rot.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "orange",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Du-purple": {
+    "message": "Du wählst Gelb.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "purple",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Du-blue": {
+    "message": "Du wählst Blau.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "blue",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Du-green": {
+    "message": "Du wählst Grün.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "wild-prompt-Mila": {
+    "message": "Farbzauber! Mila wählt eine Farbe.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "chooseColor",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Mila-orange": {
+    "message": "Mila wählt Rot.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "orange",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Mila-purple": {
+    "message": "Mila wählt Gelb.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "purple",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Mila-blue": {
+    "message": "Mila wählt Blau.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "blue",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Mila-green": {
+    "message": "Mila wählt Grün.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "wild-prompt-Lumo": {
+    "message": "Farbzauber! Lumo wählt eine Farbe.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "chooseColor",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Lumo-orange": {
+    "message": "Lumo wählt Rot.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "orange",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Lumo-purple": {
+    "message": "Lumo wählt Gelb.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "purple",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Lumo-blue": {
+    "message": "Lumo wählt Blau.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "blue",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "color-Lumo-green": {
+    "message": "Lumo wählt Grün.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 1,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "win-Du": {
+    "message": "Du hast alle Karten abgelegt!",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "gameOver",
+      "color": "green",
+      "winner": 0,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": []
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "win-Mila": {
+    "message": "Mila hat alle Karten abgelegt!",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "gameOver",
+      "color": "green",
+      "winner": 0,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": []
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "win-Lumo": {
+    "message": "Lumo hat alle Karten abgelegt!",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "gameOver",
+      "color": "green",
+      "winner": 0,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": []
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "question-Du": {
+    "message": "Denkpause! Lumo hat eine kleine Frage für dich.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "learningQuestion",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": {
+        "prompt": "Wie viel ist zwei plus eins?",
+        "options": [
+          "Zwei",
+          "Drei"
+        ],
+        "correct": 1,
+        "hint": "Zähle noch eins dazu."
+      }
+    }
+  },
+  "question-Mila": {
+    "message": "Denkpause! Lumo hat eine kleine Frage für Mila.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "learningQuestion",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": {
+        "prompt": "Wie viel ist zwei plus eins?",
+        "options": [
+          "Zwei",
+          "Drei"
+        ],
+        "correct": 1,
+        "hint": "Zähle noch eins dazu."
+      }
+    }
+  },
+  "question-Lumo": {
+    "message": "Denkpause! Lumo hat eine kleine Frage für Lumo.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "learningQuestion",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": {
+        "prompt": "Wie viel ist zwei plus eins?",
+        "options": [
+          "Zwei",
+          "Drei"
+        ],
+        "correct": 1,
+        "hint": "Zähle noch eins dazu."
+      }
+    }
+  },
+  "correct-Du": {
+    "message": "Richtig! Du bekommst einen Stern und darfst nochmal.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "playing",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 1,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "correct-Mila": {
+    "message": "Richtig! Mila bekommt einen Stern und darf nochmal.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "playing",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 1,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "correct-Lumo": {
+    "message": "Richtig! Lumo bekommt einen Stern und darf nochmal.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "playing",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "bot",
+          "stars": 1,
+          "score": 10,
+          "hand": [
+            "spare-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "human",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "other-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "native-view-number": {
+    "message": "Lumo legt Grün 2.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "other-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "bot",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "spare-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-0",
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  },
+  "native-view-whirlwind": {
+    "message": "Wirbelwind! Du ziehst 1 Karte.",
+    "round": {
+      "version": 1,
+      "deckVersion": 1,
+      "owner": "message-regression-owner",
+      "id": "cards-11111111111111111111111111111111",
+      "grade": 1,
+      "vsBot": true,
+      "difficulty": "clever",
+      "style": "planner",
+      "callRewarded": false,
+      "rewardedLearningStars": 0,
+      "callRewardSettled": false,
+      "current": 0,
+      "direction": 1,
+      "phase": "passDevice",
+      "color": "green",
+      "winner": null,
+      "players": [
+        {
+          "id": "p1",
+          "kind": "human",
+          "stars": 0,
+          "score": 10,
+          "hand": [
+            "other-0",
+            "draw-0"
+          ]
+        },
+        {
+          "id": "p2",
+          "kind": "bot",
+          "stars": 1,
+          "score": 11,
+          "hand": [
+            "spare-1"
+          ]
+        }
+      ],
+      "draw": [
+        "draw-1",
+        "draw-2",
+        "draw-3",
+        "draw-4",
+        "draw-5",
+        "draw-6",
+        "draw-7"
+      ],
+      "discard": [
+        "top",
+        "played"
+      ],
+      "question": null
+    }
+  }
+}

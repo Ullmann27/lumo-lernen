@@ -1,0 +1,94 @@
+2026-11-14T19:40:53.8992053Z Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: Bad state: Belohnung konnte nicht gespeichert werden
+2026-11-14T19:40:53.9003667Z 00:00 +19 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/reward_wallet_transaction_test.dart: Invalid native rewards cannot write balances or poison the queue
+2026-11-14T19:40:54.7266194Z 00:01 +20 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Old unowned record stays byte-identical and is assigned to no child
+2026-11-14T19:40:55.8903971Z 00:02 +21 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Real completed round restores only its child best and difficulty
+2026-11-14T19:40:56.3825695Z 00:02 +22 -4: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed old-child write cannot overwrite the newly selected child
+2026-11-14T19:40:57.0015959Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-11-14T19:40:57.0017403Z The following TestFailure was thrown running a test:
+2026-11-14T19:40:57.0018521Z Expected: an object with length of <1>
+2026-11-14T19:40:57.0019502Z   Actual: [
+2026-11-14T19:40:57.0020404Z             ({String key, String value}):(key:
+2026-11-14T19:40:57.0021231Z flutter.lumo.memory.stats.v1.e1ded4c36723f878c4c45316cadaf868fb3a20432f414010a1d93e974657529c,
+2026-11-14T19:40:57.0022235Z value: {"difficulty":"leicht","best":{"leicht":7}}),
+2026-11-14T19:40:57.0022822Z             ({String key, String value}):(key:
+2026-11-14T19:40:57.0024009Z flutter.lumo.memory.stats.v1.e1ded4c36723f878c4c45316cadaf868fb3a20432f414010a1d93e974657529c,
+2026-11-14T19:40:57.0024968Z value: {"difficulty":"profi","best":{"leicht":7}})
+2026-11-14T19:40:57.0025470Z           ]
+2026-11-14T19:40:57.0025803Z    Which: has length of <2>
+2026-11-14T19:40:57.0026108Z 
+2026-11-14T19:40:57.0026351Z When the exception was thrown, this was the stack:
+2026-11-14T19:40:57.0027646Z #4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:175:5)
+2026-11-14T19:40:57.0028526Z <asynchronous suspension>
+2026-11-14T19:40:57.0029459Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-11-14T19:40:57.0030029Z <asynchronous suspension>
+2026-11-14T19:40:57.0030459Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+2026-11-14T19:40:57.0030941Z <asynchronous suspension>
+2026-11-14T19:40:57.0031179Z <asynchronous suspension>
+2026-11-14T19:40:57.0031450Z (elided one frame from package:stack_trace)
+2026-11-14T19:40:57.0031656Z 
+2026-11-14T19:40:57.0031836Z This was caught by the test expectation on the following line:
+2026-11-14T19:40:57.0032415Z   file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart line 175
+2026-11-14T19:40:57.0032937Z The test description was:
+2026-11-14T19:40:57.0033363Z   Delayed old-child write cannot overwrite the newly selected child
+2026-11-14T19:40:57.0034105Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-11-14T19:40:57.0034990Z 00:03 +22 -5: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed old-child write cannot overwrite the newly selected child [E]
+2026-11-14T19:40:57.0036324Z   Test failed. See exception logs above.
+2026-11-14T19:40:57.0037193Z   The test description was: Delayed old-child write cannot overwrite the newly selected child
+2026-11-14T19:40:57.0037914Z   
+2026-11-14T19:40:57.0046718Z 00:03 +22 -5: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Delayed identity load cannot expose old best after profile switch
+2026-11-14T19:40:57.1242639Z 00:03 +23 -5: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Pending successive choices retain captured snapshots and final order
+2026-11-14T19:40:57.1753072Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-11-14T19:40:57.1754223Z The following assertion was thrown running a test:
+2026-11-14T19:40:57.1755248Z The finder "Found 0 widgets with key [<'memory-diff-mittel'>]: []" (used in a call to "tap()") could
+2026-11-14T19:40:57.1756889Z not find any matching widgets.
+2026-11-14T19:40:57.1757736Z 
+2026-11-14T19:40:57.1758266Z When the exception was thrown, this was the stack:
+2026-11-14T19:40:57.1759659Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-11-14T19:40:57.1761097Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-11-14T19:40:57.1762367Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+2026-11-14T19:40:57.1763848Z #3      _choose (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:70:16)
+2026-11-14T19:40:57.1765600Z #4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:233:11)
+2026-11-14T19:40:57.1766851Z <asynchronous suspension>
+2026-11-14T19:40:57.1767847Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-11-14T19:40:57.1769864Z <asynchronous suspension>
+2026-11-14T19:40:57.1770777Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+2026-11-14T19:40:57.1771770Z <asynchronous suspension>
+2026-11-14T19:40:57.1772346Z <asynchronous suspension>
+2026-11-14T19:40:57.1773149Z (elided one frame from package:stack_trace)
+2026-11-14T19:40:57.1773692Z 
+2026-11-14T19:40:57.1774016Z The test description was:
+2026-11-14T19:40:57.1774771Z   Pending successive choices retain captured snapshots and final order
+2026-11-14T19:40:57.1776149Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-11-14T19:40:57.1777805Z 00:03 +23 -6: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Pending successive choices retain captured snapshots and final order [E]
+2026-11-14T19:40:57.1779283Z   Test failed. See exception logs above.
+2026-11-14T19:40:57.1780562Z   The test description was: Pending successive choices retain captured snapshots and final order
+2026-11-14T19:40:57.1781833Z   
+2026-11-14T19:40:57.1783172Z 00:03 +23 -6: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Unreadable existing child stats are preserved instead of reset
+2026-11-14T19:40:57.2157593Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+2026-11-14T19:40:57.2159629Z The following assertion was thrown running a test:
+2026-11-14T19:40:57.2160592Z The finder "Found 0 widgets with key [<'memory-diff-leicht'>]: []" (used in a call to "tap()") could
+2026-11-14T19:40:57.2161729Z not find any matching widgets.
+2026-11-14T19:40:57.2162258Z 
+2026-11-14T19:40:57.2162556Z When the exception was thrown, this was the stack:
+2026-11-14T19:40:57.2163428Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+2026-11-14T19:40:57.2164778Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+2026-11-14T19:40:57.2165614Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+2026-11-14T19:40:57.2166434Z #3      _choose (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:70:16)
+2026-11-14T19:40:57.2167454Z #4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart:254:11)
+2026-11-14T19:40:57.2168220Z <asynchronous suspension>
+2026-11-14T19:40:57.2169155Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+2026-11-14T19:40:57.2170264Z <asynchronous suspension>
+2026-11-14T19:40:57.2171016Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+2026-11-14T19:40:57.2171845Z <asynchronous suspension>
+2026-11-14T19:40:57.2172272Z <asynchronous suspension>
+2026-11-14T19:40:57.2172701Z (elided one frame from package:stack_trace)
+2026-11-14T19:40:57.2173504Z 
+2026-11-14T19:40:57.2173678Z The test description was:
+2026-11-14T19:40:57.2174250Z   Unreadable existing child stats are preserved instead of reset
+2026-11-14T19:40:57.2175445Z ════════════════════════════════════════════════════════════════════════════════════════════════════
+2026-11-14T19:40:57.2176969Z 00:03 +23 -7: /home/runner/work/lumo-lernen/lumo-lernen/test/games/memory_profile_storage_test.dart: Unreadable existing child stats are preserved instead of reset [E]
+2026-11-14T19:40:57.2178299Z   Test failed. See exception logs above.
+2026-11-14T19:40:57.2179196Z   The test description was: Unreadable existing child stats are preserved instead of reset
+2026-11-14T19:40:57.2179669Z   
+2026-11-14T19:40:57.2427721Z 00:03 +23 -7: Some tests failed.
+2026-11-14T19:40:57.2435948Z 

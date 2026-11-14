@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "native_baseline": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "scope": "Immutable Git blobs only; no trees, commits, refs or PRs changed",
+  "files": [
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3",
+      "bytes": 32524,
+      "sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+      "created_sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3",
+      "full_utf8_readback_equal": true,
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/games/quiz/quiz_studio.gd"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7624036f7e342a6d5b0c3430019c98ab13f13baf",
+      "bytes": 4378,
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+      "created_sha": "7624036f7e342a6d5b0c3430019c98ab13f13baf",
+      "full_utf8_readback_equal": true,
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/durable-round.json"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b",
+      "bytes": 4718,
+      "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6",
+      "created_sha": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b",
+      "full_utf8_readback_equal": true,
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/jokers-layout.json"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/public-state.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d6438f6706d875c87f82e694b22a8d0a5f96352",
+      "bytes": 845,
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+      "created_sha": "0d6438f6706d875c87f82e694b22a8d0a5f96352",
+      "full_utf8_readback_equal": true,
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/public-state.json"
+    },
+    {
+      "path": "scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1e09d14f6c1b01caf6c30b89d2e12d818146031",
+      "bytes": 4692,
+      "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42",
+      "created_sha": "b1e09d14f6c1b01caf6c30b89d2e12d818146031",
+      "full_utf8_readback_equal": true,
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json"
+    },
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "623e76afd47d1cd96fcaebdebacac0a684f38f7b",
+      "bytes": 40358,
+      "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948",
+      "created_sha": "623e76afd47d1cd96fcaebdebacac0a684f38f7b",
+      "full_utf8_readback_equal": true,
+      "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/quiz_studio_runtime.gd"
+    }
+  ]
+}

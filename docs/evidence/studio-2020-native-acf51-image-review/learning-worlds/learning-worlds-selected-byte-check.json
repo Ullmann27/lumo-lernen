@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "extraction_manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/verified-original-extraction.json",
+  "extraction_manifest_sha256": "faff9fcf4c6974fa4ab1229e5b870ba3358519d6dfa29568fdceead9a9813608",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "artifact_id": 14103142984,
+  "archive_path": "/tmp/lumo-studio-2020-acf51-native-evidence.zip",
+  "archive_bytes": 225382332,
+  "archive_sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+  "archive_sha_independently_rechecked": true,
+  "zip_entries": 5064,
+  "all_entry_crc_scope": "Parent already validated all 5064; this review independently fully read and CRC-checked the selected eight members.",
+  "images": [
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "bytes": 249517,
+      "sha256": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "bytes": 111652,
+      "sha256": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "dimensions": [
+        412,
+        915
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "bytes": 723941,
+      "sha256": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "module": "learning",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "bytes": 135401,
+      "sha256": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "dimensions": [
+        412,
+        915
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "bytes": 2754674,
+      "sha256": "6b778dcfc6d9f4c24b1a5343f8d4368c2995f9b90f5355ac0ec192ef7a58ec8d",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "bytes": 2156415,
+      "sha256": "b8087cbf2d9f0db0bc07165024346956551d612ebb6a925f7d731f00ec9c1fff",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "bytes": 4289034,
+      "sha256": "6ba8e4ffcf2a9ece75270f8e50a76521e698cc21e0c26059a1c6d6afa2bc42e8",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "module": "treasure",
+      "review_owner": "learning_worlds",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "bytes": 317873,
+      "sha256": "e28aaa78f26bcb99d7fcb2aa3f31eaf320be6fa5eb1da981199b2e9e126bd5f4",
+      "dimensions": [
+        640,
+        320
+      ],
+      "zip_member_byte_identical": true,
+      "selected_member_crc_valid": true,
+      "png_verified": true
+    }
+  ],
+  "images_visually_opened_at_this_stage": 0
+}

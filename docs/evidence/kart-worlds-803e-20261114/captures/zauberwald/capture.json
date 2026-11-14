@@ -1,0 +1,307 @@
+{
+	"accepted_sites": [
+		{
+			"distance": 13.1784399414062,
+			"position": [
+				11.0913848876953,
+				-0.192449018359184,
+				37.1397705078125
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 32.0047827148437,
+			"position": [
+				38.6307563781738,
+				0.909451842308044,
+				55.9758071899414
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 50.8311254882813,
+			"position": [
+				36.5407333374023,
+				1.98439884185791,
+				27.0254974365234
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 126.136496582031,
+			"position": [
+				38.0596160888672,
+				-0.260212361812592,
+				-32.7301559448242
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 144.962839355469,
+			"position": [
+				42.4366111755371,
+				2.31010341644287,
+				-62.921085357666
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 163.789182128906,
+			"position": [
+				16.0912342071533,
+				1.25992691516876,
+				-47.5917472839355
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 182.615524902344,
+			"position": [
+				-0.387921988964081,
+				1.81847512722015,
+				-72.6389846801758
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 201.441867675781,
+			"position": [
+				-17.3652763366699,
+				2.19911336898804,
+				-42.498908996582
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 220.268210449219,
+			"position": [
+				-41.4406318664551,
+				2.91273283958435,
+				-67.2230834960938
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 239.094553222656,
+			"position": [
+				-43.7746276855469,
+				3.94625973701477,
+				-38.1408882141113
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 257.920895996094,
+			"position": [
+				-71.300651550293,
+				3.78236317634583,
+				-30.7386283874512
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 276.747238769531,
+			"position": [
+				-45.9366302490234,
+				3.34937381744385,
+				-13.5925674438477
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 295.573581542969,
+			"position": [
+				-70.3750762939453,
+				1.98113536834717,
+				10.6775150299072
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 314.399924316406,
+			"position": [
+				-37.2752342224121,
+				1.431267619133,
+				20.1417274475098
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 333.226267089844,
+			"position": [
+				-45.9978332519531,
+				0.872902512550354,
+				50.0159225463867
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 352.052609863281,
+			"position": [
+				-16.9406929016113,
+				1.03047525882721,
+				40.886531829834
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 370.878952636719,
+			"position": [
+				-3.5554723739624,
+				0.542777895927429,
+				67.4208755493164
+			],
+			"radius": 1.8
+		}
+	],
+	"actual_detail": "full",
+	"actual_lightweight": false,
+	"capture_kind": "stationary production scene inspection; no driven race",
+	"capture_root": "/tmp/lumo-theme-capture.wfrzzjss",
+	"graphics_profile": "high",
+	"isolation_check": "single-use marker, exact XDG paths, user:// containment and no existing kart state checked before scene load",
+	"process_frozen": true,
+	"reduced_motion": true,
+	"reference_detail_count": 421,
+	"reference_detail_theme": "zauberwald",
+	"requested_detail": "full",
+	"seed": 1923,
+	"selected_site_index": 0,
+	"source": {
+		"clean_tracked_source": false,
+		"engine": "4.6.3-stable (official)",
+		"physical_android_device": false,
+		"renderer": "gl_compatibility",
+		"source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+		"tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+		"visual_acceptance": "Manual reference review required; render success is not art approval"
+	},
+	"status": "captured",
+	"track_id": "zauberwald",
+	"track_length": 376.52685546875,
+	"user_data_path": "/tmp/lumo-theme-capture.wfrzzjss/userdata/godot/app_userdata/Lumo 3D/",
+	"viewport": [
+		1280,
+		720
+	],
+	"views": [
+		{
+			"camera_basis_x": [
+				0.0626399964094162,
+				0.0,
+				0.998036205768585
+			],
+			"camera_basis_y": [
+				0.200153261423111,
+				0.979684054851532,
+				-0.0125622693449259
+			],
+			"camera_basis_z": [
+				-0.977760195732117,
+				0.200547114014626,
+				0.0613674074411392
+			],
+			"camera_position": [
+				-1.16582822799683,
+				4.19281435012817,
+				55.4588165283203
+			],
+			"camera_source": "production _update_camera; stationary player placed 12 m before accepted site",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "01_chase",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/zauberwald/01_chase.png",
+			"player_distance": 1.17843994140625,
+			"player_position": [
+				3.17562913894653,
+				1.67281436920166,
+				55.1863327026367
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.976332426071167,
+				0.0,
+				0.216275200247765
+			],
+			"camera_basis_y": [
+				0.0557450167834759,
+				0.966211557388306,
+				-0.25165006518364
+			],
+			"camera_basis_z": [
+				-0.208967596292496,
+				0.257750391960144,
+				0.943343698978424
+			],
+			"camera_position": [
+				7.16366386413574,
+				6.65218496322632,
+				54.8707046508789
+			],
+			"camera_source": "manual road-context pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "02_context",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/zauberwald/02_context.png",
+			"player_distance": 1.17843994140625,
+			"player_position": [
+				3.17562913894653,
+				1.67281436920166,
+				55.1863327026367
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.972230970859528,
+				0.0,
+				-0.234023466706276
+			],
+			"camera_basis_y": [
+				-0.058986883610487,
+				0.967712819576263,
+				-0.245056077837944
+			],
+			"camera_basis_z": [
+				0.226467505097389,
+				0.252055406570435,
+				0.940840363502502
+			],
+			"camera_position": [
+				13.6071376800537,
+				4.10755109786987,
+				47.5912551879883
+			],
+			"camera_source": "manual road-facing detail pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "03_detail",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/zauberwald/03_detail.png",
+			"player_distance": 1.17843994140625,
+			"player_position": [
+				3.17562913894653,
+				1.67281436920166,
+				55.1863327026367
+			]
+		}
+	],
+	"visual_review": "pending original-reference review",
+	"xdg_cache_home": "/tmp/lumo-theme-capture.wfrzzjss/cache",
+	"xdg_config_home": "/tmp/lumo-theme-capture.wfrzzjss/config",
+	"xdg_data_home": "/tmp/lumo-theme-capture.wfrzzjss/userdata"
+}

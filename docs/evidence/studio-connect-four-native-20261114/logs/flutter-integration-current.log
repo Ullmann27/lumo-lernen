@@ -1,0 +1,67 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart
+00:00 +0 -1: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_rules_test.dart [E]
+  Failed to load "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_rules_test.dart": Does not exist.
+00:00 +0 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Two stable child IDs have distinct durable rounds, even with the same presentation
+00:00 +1 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Class/name changes do not change stable ID save keys
+00:00 +2 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Completed round reopens without a second reward; repeated result is idempotent
+00:00 +3 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Process interruption after wallet commit before round ACK retries the same result ID
+00:00 +4 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Failed move save never installs a visible piece or advances its turn
+00:00 +5 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Profile switch during a held bot write cannot replace either child round
+00:00 +6 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Profile switch during reward allows no stale round ACK or foreign ownership
+00:00 +7 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Native bot uses unchanged leicht policy and legal replay
+00:00 +8 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Native bot uses unchanged mittel policy and legal replay
+00:00 +9 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Native bot uses unchanged schlau policy and legal replay
+00:00 +10 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Corrupt, post-win and foreign-owner saves fail without modifying bytes
+00:00 +11 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Existing unrelated preferences remain byte-identical
+00:00 +12 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: AppState rejects foreign result ID, stale lease and changed reward amounts
+00:00 +13 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Actual session drop is durable before ACK; duplicate sequence cannot add a piece
+00:00 +14 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Pause, stale heartbeat and explicit resume preserve bot/round history
+00:00 +15 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Render stall with fresh lifecycle keeps authoritative session live
+00:00 +16 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Pause epoch while no render poll requires explicit resume
+00:00 +17 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Foreign token, round, revision, opcode, column cannot change existing board
+00:00 +18 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Save failure gives negative result, no ACK, and explicit retry is safe
+00:00 +19 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Accepted drop invalidated by Activity pause releases slot for Resume
+00:00 +20 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Old profile lease closes transport before processing pending human/bot input
+00:00 +21 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Exit stores same round; reopen has new session token and explicit active lease
+00:00 +22 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +23 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +24 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +25 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +26 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +27 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +28 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +29 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +30 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +31 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +32 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +33 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +34 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: tapping the board selects its column and locks repeated taps
+00:01 +35 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_lumo_level_test.dart: difficulty chips show against Lumo and hide in two-player
+00:02 +36 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_fold_controls_test.dart: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+00:02 +37 -1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_fold_controls_test.dart: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value greater than or equal to <48>
+  Actual: <34.47142857142857>
+   Which: is not a value greater than or equal to <48>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_fold_controls_test.dart:43:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_fold_controls_test.dart line 43
+The test description was:
+  Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +37 -2: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: local two-player win rewards once and replay preserves wallet
+00:03 +37 -2: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_fold_controls_test.dart: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable [E]
+  Test failed. See exception logs above.
+  The test description was: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+  

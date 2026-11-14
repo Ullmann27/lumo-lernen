@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_unchanged": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "supersedes_source_manifest_sha256": "1919a9d6c00ffa2b3134c8e784a24bd6badad59a1e43171ad55aaa9d0f179328",
+  "scope": "Same exactly two QA paths; direct existing native_tap on fresh frames, actual OCR journal witnesses; no helper/product modification.",
+  "files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+    }
+  ]
+}

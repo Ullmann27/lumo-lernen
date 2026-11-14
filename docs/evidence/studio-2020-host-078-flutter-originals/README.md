@@ -1,0 +1,7 @@
+# Vollständige Flutter-Prüfung am Commit 078774dd
+
+Dieser Beleg gehört zu Run `43580228966`, Host `078774ddaf64808addaa4c6406f6a3c85b1f239a` und Native `785413d395292a243eaa0a0748671eb15d3f80ff`. Das Originalartefakt `14108757022` wurde vollständig übertragen: 332.452.605 Bytes, SHA256 `d57836c40d0e41e62da54bfd8181ac1c8106cbe71d43b2644cee7c241fd2b553`. Alle 548 Archiveinträge bestanden die CRC-Prüfung.
+
+Die originale Abnahmezusammenfassung meldet **2.555 PASS, 0 FAIL, 0 SKIP**, Flutter-Exitcode 0, einen erfolgreich abgeschlossenen Runner und keine Capture-Fehlerdateien. Das unabhängige Lesen der originalen Maschinenprotokolle bestätigt genau 2.555 sichtbare erfolgreiche `testDone`-Ereignisse, keinen sichtbaren Skip oder Fehler und `done.success=true`. Weitere 561 versteckte Ereignisse für Aufbau und Abbau werden separat aufgeführt und nicht zur Testzahl addiert. Diagnostische Zeilen ohne Ereignisformat bleiben von dieser Zählung ausgenommen.
+
+Das Archiv enthält 546 tatsächliche PNG-Dateien. Diese Inventur behauptet keine manuelle Sichtprüfung aller 546 Bilder. Die gezielt geprüften neun C4-Aufnahmen und 49 Native-Aufnahmen besitzen eigene Quellenbindungen, Originalartefakte, Reviews und Gitdateien. Der erfolgreiche Flutter-Lauf ersetzt keine Android- oder APK-Freigabe. Der verbleibende Build, der echte Dart/Godot-Prozesslauf sowie die Prüfungen für Android 35/37, Creative, Update und Publisher behalten ihre eigenen Abnahmebedingungen.

@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "observation": {
+    "paths": [
+      {
+        "path": "/tmp/lumo-attention-8be3-20261114/runtime",
+        "exists": false,
+        "is_file": false
+      },
+      {
+        "path": "/tmp/lumo-studio-2020-acf51-native-evidence.zip",
+        "exists": false,
+        "is_file": false
+      },
+      {
+        "path": "/tmp/lumo-treasure-visibility-acf51/runtime",
+        "exists": false,
+        "is_file": false
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/verified-original-extraction.json",
+        "exists": true,
+        "is_file": true,
+        "bytes": 29784,
+        "sha256": "faff9fcf4c6974fa4ab1229e5b870ba3358519d6dfa29568fdceead9a9813608"
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/required-image-review-plan.json",
+        "exists": true,
+        "is_file": true,
+        "bytes": 9365,
+        "sha256": "0b5944044457fd5e486781a0ff71b25b687e4c97ca6efa3fb701f774acd22434"
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-visibility-integration-evidence-20261114/github-131-commit-checkpoint.json",
+        "exists": true,
+        "is_file": true,
+        "bytes": 10105,
+        "sha256": "8efc7769c86477f25744f5a9070172b568d94d13e4842c603a8ecb79fbec066c"
+      }
+    ],
+    "tools": {
+      "python3": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "godot": "/usr/local/bin/godot",
+      "blender": "/usr/bin/blender",
+      "ffmpeg": "/usr/bin/ffmpeg"
+    },
+    "free": {
+      "/workspace": 52518912,
+      "/tmp": 5225652224
+    }
+  },
+  "source_check": {
+    "unchanged_prepared_files": 69,
+    "pillow_import": true,
+    "before_state": "69-file source snapshot captured before transient exec transport recovery"
+  },
+  "scope": "Read-only checks after transient exec-server recovery; workspace source and stored evidence retained; named temporary runtime copies and previous archive absent; no recreation or test rerun claimed."
+}
+

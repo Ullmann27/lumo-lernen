@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/replay_new_native_sidecars.py", line 14, in <module>
+    result=ns['c4_report'](a.c4.resolve());report['c4_sidecar']=result[0];report['c4_capture_names']=sorted(result[1])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "qa/studio-2020-integration/root/native/tools/validate_studio.sh:roster", line 115, in c4_report
+AssertionError: c4-playing-phone.png
+{
+  "scope": "Replay actual preserved local sidecars through the new pure roster readers.\nNo new scene is rendered and no Android/CI PASS is inferred.\n",
+  "harness_sha256": "77e179c128c459c0a60db3cb31c203fc244c7183fe36f4370467ff7f6b9d8dad",
+  "errors": [
+    {
+      "type": "AssertionError",
+      "message": "c4-playing-phone.png"
+    }
+  ],
+  "face": [
+    {
+      "path": "studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+    },
+    {
+      "path": "studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/facial-runtime.mp4",
+      "bytes": 1178091,
+      "sha256": "3bbc2a491e59a4fd971d95479713cf1e9fff0c59b7cc6de63290512bfdd6b1ac",
+      "proof": {
+        "path": "studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/movie.json",
+        "bytes": 732,
+        "sha256": "e05e049610301c631f4918550bcc603d6d9b1b682e3af1a605deebdff007b768"
+      }
+    }
+  ],
+  "face_original_sidecar_sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+  "passed": false
+}

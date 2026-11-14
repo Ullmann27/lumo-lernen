@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "artifact_id": 14130101135,
+  "expected_archive_bytes": 196404454,
+  "published_archive_sha256": "bfddd9c10504e2271a8b785bd3a46aef4ec76c3fab80bdd2dadea6162ea58e0b",
+  "full_archive_downloaded": false,
+  "full_archive_sha256_locally_verified": false,
+  "whole_archive_crc_verified": false,
+  "temporary_url_saved": false,
+  "members": [],
+  "status": "FAILED",
+  "error_type": "BadZipFile",
+  "error": "File is not a zip file",
+  "range_requests": [],
+  "transferred_bytes": 0
+}

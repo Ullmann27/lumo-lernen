@@ -1,0 +1,10 @@
+{
+  "result": "EXPECTED_REJECTION",
+  "predicate": "assert video['codec_name'] == 'h264' and (video['width'], video['height']) == (640, 640), proof_path",
+  "actual_size": [
+    720,
+    1280
+  ],
+  "original_ffprobe_sha256": "39708856ab9932c1f72ff026ab47db2e6dcce57cb293728adf378abeadfb9741",
+  "scope": "Exact failing media predicate replay on original CI sidecar; original AVI/MP4 were not downloaded or decoded locally"
+}

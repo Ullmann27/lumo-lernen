@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T04:40:00.615040+00:00",
+  "reviewer": "games_worlds / independent read-only",
+  "status": "TWO_CONCRETE_REVIEW_FINDINGS_CLOSED",
+  "source_files_edited": [],
+  "tests_repeated": [],
+  "files_reviewed": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/run_connect_four_runtime.py",
+      "bytes": 15683,
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py",
+      "bytes": 10033,
+      "sha256": "53be3d0d582f72709b00437a8f91386a7bfa245a3c35be85a5f320686b3a2d55"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/independent-review-followup/runner-before.py",
+      "bytes": 14820,
+      "sha256": "7234f865ebe12642eaa1beaee837a6de2a2aa1d92298170f25621e744e679b2b"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/independent-review-followup/contracts-green.log",
+      "bytes": 3413,
+      "sha256": "70569e578264db515d58704707af767446165bd779ed4f70b0822f32d5c43050"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/independent-review-followup/contracts-red.log",
+      "bytes": 10791,
+      "sha256": "75763b66ac6e9c6ef6f4bc9dee5118b1b2bc32b60f871941846020618300a889"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/independent-review-followup/contracts-green-execution.json",
+      "bytes": 496,
+      "sha256": "65e200d39c12bef99f8b73236eb9e0ed0a257528a50c3417a036b16b1eda2ee2"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/independent-review-followup/contracts-red-execution.json",
+      "bytes": 161,
+      "sha256": "af14532fd67c6b3d7f23bc92fadfd23d2187863f3f91e860d7ec918e1ad66c56"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/evidence/independent-review-followup/actual-v7-result-validation.json",
+      "bytes": 55146,
+      "sha256": "aeb0d4ad950ab29eeec1ecc8f5ce53162af5effd3c27c19a4a76b1adf951f4fe"
+    }
+  ],
+  "findings": [
+    {
+      "id": "original_engine_log",
+      "status": "closed",
+      "basis": "run calls validate_native_log after both successful subprocess exits and before result/source acceptance. Empty log or any ERROR: (including SCRIPT ERROR:) rejects. A later success marker cannot hide it. WARNING remains preserved."
+    },
+    {
+      "id": "original_session_ownership",
+      "status": "closed",
+      "basis": "run stores the original wait_for_session result and passes it to validate_results. Final Dart/native owners must equal that original owner; final native token must equal the original fixed test token. Final round identity is compared between Dart and Godot, not to the initial round; legitimate mode replacement is preserved."
+    }
+  ],
+  "unchanged_contracts": [
+    "exact tracked Gitblob/mode before-after validation",
+    "nativeHEAD equals configured immutable pin",
+    "source symlinks rejected",
+    "120-second startup and1080-second pair bounds",
+    "only owned subprocess groups terminated",
+    "both processExit0 required",
+    "durable legal seven-move win and same-round reopening",
+    "single-player human and Dart bot evidence",
+    "stars5/xp40 and exitACK",
+    "nine required screenshots and full PNG decoding",
+    "24fps is media format only"
+  ],
+  "read_test_evidence": {
+    "green_tests": 20,
+    "green_skips": 0,
+    "unittest_reported_seconds": 0.321,
+    "green_command_elapsed_seconds": 0.3828369330003625,
+    "red_tests": 20,
+    "red_errors": 9,
+    "red_explanation": "Preserved original red log contains API-interface errors (missing log validator / old validate_results signature), not nine independently reproduced gameplay defects."
+  },
+  "read_original_v7_result_validation": {
+    "performed_by": "Root; independently read here without rerunning",
+    "native_checks": 170,
+    "frames": 248,
+    "decoded_pngs": 262,
+    "moving_frames": 90,
+    "winning_frames": 43,
+    "original_godot_log_sha256": "8cb411152205de38aa50a72b061adccc49f44ed1ccb0520275268053c8290272",
+    "original_godot_log_errors": 0
+  },
+  "limits": [
+    "Full new wrapper not yet executed against clean published checkouts.",
+    "Production Dart controller uses test SharedPreferences and local file transport.",
+    "No Android Binder/disk/process-restart/device-FPS approval.",
+    "No change to the frozen C4 source/evidence manifests.",
+    "This is static closure of the two stated findings, not a whole-candidate release receipt."
+  ]
+}

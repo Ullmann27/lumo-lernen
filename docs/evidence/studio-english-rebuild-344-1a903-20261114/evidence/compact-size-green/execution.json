@@ -1,0 +1,21 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-rebuild-344-1a903",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-next-20261114/rebuild-344-1a903/evidence/compact-size-green/captures"
+  ],
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "exit_code": 0,
+  "elapsed_seconds": 12.331197298000006,
+  "log_bytes": 3715,
+  "log_sha256": "5484bdf5c3f522f902a423d10b9103fdc68e0195385d128cea7b407987336c58",
+  "scope": "Same complete minimum-size contract on English compact layout; native catalogue and explicit platform/JNI fixtures"
+}

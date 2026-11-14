@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "status": "PREPARED_NOT_EXECUTED",
+  "test_file": "test/reward_wallet_dedup_confirmation_test.dart",
+  "sha256": "990d57d3f6d49e46c1eb226c0378148275d9940965dd97419e4a5e3a849f45d0",
+  "cases": 14,
+  "entries": [
+    {
+      "name": "game: known result waits for a positive duplicate commit",
+      "boundary": "The duplicate future waits for the actual gated platform reply; same snapshot and bytes, no new Wallet.changes event."
+    },
+    {
+      "name": "game: falseAfterMemory stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "game: throwAfterMemory stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "game: throwAfterCommit stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "quiz: known result waits for a positive duplicate commit",
+      "boundary": "The duplicate future waits for the actual gated platform reply; same snapshot and bytes, no new Wallet.changes event."
+    },
+    {
+      "name": "quiz: falseAfterMemory stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "quiz: throwAfterMemory stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "quiz: throwAfterCommit stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "cards: known result waits for a positive duplicate commit",
+      "boundary": "The duplicate future waits for the actual gated platform reply; same snapshot and bytes, no new Wallet.changes event."
+    },
+    {
+      "name": "cards: falseAfterMemory stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "cards: throwAfterMemory stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "cards: throwAfterCommit stays unconfirmed in a new wallet",
+      "boundary": "Initial negative reply, native optimistic map, new Dart preferences and repository, successful native-cache reload, repeated negative duplicate acknowledgement, then a genuinely positive identical-value platform reply and cold fixture reopen."
+    },
+    {
+      "name": "AppState falseAfterMemory: fresh wallet cannot clear an unsaved result",
+      "boundary": "Real AppState and profile lease; its pending reward survives a negative duplicate reply in a new repository. No intervening profile/unrelated commit may flush dirty native memory. Positive retry leaves one result ID and 9 stars / 56 XP / 21 earned stars."
+    },
+    {
+      "name": "AppState throwAfterMemory: fresh wallet cannot clear an unsaved result",
+      "boundary": "Real AppState and profile lease; its pending reward survives a negative duplicate reply in a new repository. No intervening profile/unrelated commit may flush dirty native memory. Positive retry leaves one result ID and 9 stars / 56 XP / 21 earned stars."
+    }
+  ],
+  "backend_scope": "Synthetic AOSP-relevant boundary with real Dart SharedPreferences cache, distinct nativeMemory/durableDisk, entire-file successful commits and generation-aware identical-value retry; no actual Android disk failure, fsync, power-loss or cross-engine claim."
+}

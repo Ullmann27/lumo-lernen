@@ -1,0 +1,16 @@
+{
+  "red_exit": 1,
+  "green_exit": 0,
+  "every_other_definition_ast_identical": true,
+  "saved_condition_and_all_later_puzzle_bytes_identical": true,
+  ".github/probes/studio_creative_android_probe.py": {
+    "bytes": 58630,
+    "sha256": "622ca4b037bd4b5722a279a2c45a01990ec9d7a920dfc9fdd2cde97a91f732cc",
+    "git_blob": "f350edf6e7eede3691198d635918578f502c3475"
+  },
+  "tools/android_qa/tests/test_studio_puzzle_menu_selection.py": {
+    "bytes": 8681,
+    "sha256": "745620771d6db0a8edf28774c0f3e918baea4466d3586f7e8a8a0bf5abf5c2b8",
+    "git_blob": "52cf6d9cfae97e9aaf7ede767bf7f9c142451f60"
+  }
+}

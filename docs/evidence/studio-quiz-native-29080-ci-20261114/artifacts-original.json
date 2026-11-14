@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14120796271,
+      "name": "lumo-nextgen-actual-authority-evidence-quiz",
+      "size_in_bytes": 502448,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14120796271",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14120796271/zip",
+      "expired": false,
+      "created_at": "2026-11-14T15:47:06Z",
+      "expires_at": "2026-12-14T15:47:05Z",
+      "updated_at": "2026-11-14T15:47:06Z",
+      "digest": "sha256:1eb1db04b4226df164c58b0166e0524797f96ec1b82054593e7e5001f60ae0fd",
+      "workflow_run": {
+        "id": 43611803404,
+        "repository_id": 1251414584,
+        "head_repository_id": 1251414584,
+        "head_branch": "chatgpt/lumo-nextgen-feature-20261114",
+        "head_sha": "29080ef8cd1a5b385eeeec97976fbefd31280427"
+      }
+    }
+  ]
+}

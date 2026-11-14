@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "scope": "Older candidate actual in-place update: exact text originals and bounded original XML comparison",
+  "files": [
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/original-job.log",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 301541,
+      "sha256": "301142750e22b63d7378a9396342004d66d18110a580a5d9aeb2df458a771cf1",
+      "sha": "f5dfb4827338dfc9f7250f4b4826cc77cb7fb969"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/source-binding.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 424,
+      "sha256": "8b2981c69a4f1bd4eddcca7bf5221faf6d3d2e9d7be791d47e0c3a479340abf5",
+      "sha": "eb0c28a02ad1cd0f221e5376c114f29284797412"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/original-prefs-comparison.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/original-prefs-comparison.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 906,
+      "sha256": "9169091e57c0b769224db8aa05aab2c71299b96d9dac531f09885fb5e54bbb71",
+      "sha": "deb5ff6d7013461998e595a83399f3db98b9ca5f"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/review.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2519,
+      "sha256": "f1615e2b810bd7d961d9df4f22a5b44ee38d4c95045d7e9590a9ee64e959f3a0",
+      "sha": "13a64410362981482e86a808f36b114faa38891b"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/README.md",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2288,
+      "sha256": "a7a9db3ffa2031e8b6e683c7acbef7dd358c92bf2aab49238d513c7a0456ffd6",
+      "sha": "ca3584f6b6f82c255cb98aca7e8374596189f4cf"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/index-transfer/range-download-report.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/index-transfer/range-download-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1789,
+      "sha256": "58b0599f8feb8f0b63fb4725cca8767e968b3ee47ccd722497cda3d2ccb80144",
+      "sha": "bdf93d980e9322a0b991544b087c59328a836120"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/index-transfer/central-directory.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/index-transfer/central-directory.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 122375,
+      "sha256": "6da71cc6e195eb11fbbf1ea1e2cf7a48f3b169835dc3186b00015ab1a0e928d9",
+      "sha": "71abb5e2eb481b8eef371e05b33e35c7c0eed366"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/range-download-report.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/range-download-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 15328,
+      "sha256": "b4810e77aac8966307c1286a317ee7861efca2ad9472534a2b02ef8161326fb1",
+      "sha": "159064b3dc1547262ab09e5593126fa905f9e985"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/update-result.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/update-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 39982,
+      "sha256": "3006cb843faa57b131b94a4bb274c332c46ffe941f251c790071bb1cc201f7a0",
+      "sha": "c40fc1d988e5d62d2a64044ec58c75dcfa005887"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/before-update-preferences.xml",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/before-update-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4365,
+      "sha256": "c162448b08570f9473fedea4f40283c3e14a0ac2ea73e9cfa21c2225fad94f16",
+      "sha": "b09c7b361def5b609f86bfa93530cb309c23058f"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/after-update-preferences.xml",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/after-update-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4517,
+      "sha256": "a00edf58755b36ca2b1ac2703bb9da8385d936d4bfa24490d20453f9fda9d1c3",
+      "sha": "e579e97935412b3c29d1fa34c614ea0bffd3ce39"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/after-kart-preferences.xml",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/after-kart-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4882,
+      "sha256": "a0c5e6f009d1c6d13bfbb49af2c9aa45ad2163160ace3baed65457b4fa9b5846",
+      "sha": "bf454f40a2a29b0daee74a0ee4e0ab4a56fe981f"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/after-restart-preferences.xml",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/after-restart-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4882,
+      "sha256": "9cebd1af93a570356f70620a2e538bf51299a941f19654cf9925c5b068edc1b1",
+      "sha": "3864ac85c74b1b247412ac874ef011ded6d2ec48"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/baseline-learning/learning-journey-result.json",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/baseline-learning/learning-journey-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4215,
+      "sha256": "ddc4075ff5a71f6a9ad236c950a22b098cd52cbe4d3178080f811f53d3080214",
+      "sha": "a801fac02463d2be5ddb6d64671c5afd9df2c3b4"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/baseline-package-uid.txt",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/baseline-package-uid.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "sha": "fc0b2c1aa9050c55b713419adbe8754db0a034a9"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/updated-package-uid.txt",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/updated-package-uid.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "sha": "fc0b2c1aa9050c55b713419adbe8754db0a034a9"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/baseline-package.txt",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/baseline-package.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9966,
+      "sha256": "0adaada4ab75f0ff7e103bc120e1b0db6587b9d468202f59705a028b47b2c6ef",
+      "sha": "a38c89ea77934413626f3ff970148c5d3bf56c81"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/updated-package.txt",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/updated-package.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9342,
+      "sha256": "42a3b39c3e6a5329837a123cbc189c3455828f6a832f744c8126794402187b62",
+      "sha": "9456174f996bdaea6d0fe223d78a2c7b38363b9d"
+    },
+    {
+      "local": "qa/studio-28462-update-before-followup-20261114/selected-transfer/originals/update-install.txt",
+      "path": "docs/evidence/studio-28462-update-before-followup-20261114/selected-transfer/originals/update-install.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 139,
+      "sha256": "840c8a5ecbea84a9b7706a7396b883eb1d627201189cd04613f4ec538bc384e3",
+      "sha": "d46e735f6da2290a3c8fbe2d91c28b0c4e997f17"
+    }
+  ]
+}

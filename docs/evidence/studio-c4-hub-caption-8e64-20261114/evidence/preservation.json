@@ -1,0 +1,104 @@
+{
+  "changed_definitions": [
+    "AndroidProbe.navigate"
+  ],
+  "unchanged_definitions": [
+    "allowed_read",
+    "require",
+    "flutter_hub_navigation_target",
+    "sha",
+    "verified_pck",
+    "write",
+    "parse_json",
+    "number",
+    "integer",
+    "vector",
+    "rectangle",
+    "same_numbers",
+    "inside",
+    "replay",
+    "check_state",
+    "project",
+    "to_decor",
+    "check_layout",
+    "button_target",
+    "check_pixels",
+    "check_saved",
+    "check_drop",
+    "AndroidProbe.__init__",
+    "AndroidProbe.tag",
+    "AndroidProbe.adb",
+    "AndroidProbe.raw",
+    "AndroidProbe.pid",
+    "AndroidProbe.foreground",
+    "AndroidProbe.state",
+    "AndroidProbe.wait",
+    "AndroidProbe.saved",
+    "AndroidProbe.snapshot",
+    "AndroidProbe.touch",
+    "AndroidProbe.lease",
+    "AndroidProbe.binding",
+    "AndroidProbe.run",
+    "main"
+  ],
+  "initial_30_second_navigation_phase_byte_identical": true,
+  "old_five_test_methods_and_class_byte_identical": true,
+  "unchanged_numeric_input_contracts": {
+    "direction_order": [
+      1,
+      -1
+    ],
+    "attempts_per_direction": 11,
+    "swipe_duration_ms": 450,
+    "post_swipe_sleep_seconds": 0.6,
+    "minimum_tile_dp": 48
+  },
+  "final_tile_loop_boundary": "Existing finite attempts, not a new or increased global timeout. Added fresh reads remain within the existing iteration bounds.",
+  "source_rows": [
+    {
+      "repo_path": ".github/probes/lumo_connect_four_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 41289,
+      "sha256": "514451ce71c0e870ab2d708d6a88c031838d5b0541f9392fb2eee2ab747ca11b",
+      "git_blob_sha": "325d2058bb23e1b27dfb866cdfe4d9b59041bc15",
+      "baseline_blob": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e",
+      "mode": "100644"
+    },
+    {
+      "repo_path": "scripts/tests/test_studio_c4_navigation.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/scripts/tests/test_studio_c4_navigation.py",
+      "bytes": 11957,
+      "sha256": "fe30aeef4a26d3cf7b624c084b92c40e87362ea85439679efdd4002f356c1286",
+      "git_blob_sha": "559adba1623955d37f1deb53d4d2eb13601abb40",
+      "baseline_blob": "73f7b88fc567dbeb3b3cc72ad3832d7a60219012",
+      "mode": "100644"
+    },
+    {
+      "repo_path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/scripts/tests/fixtures/studio_c4_navigation/api35-28462-hub-top.xml",
+      "bytes": 25229,
+      "sha256": "9f965db4c05303926a2173c43fafa7ae07ffa9f94aaa8524a18b068d33c7dfda",
+      "git_blob_sha": "0e3ea3a4002c8421176e85e36b75b710309ecdab",
+      "baseline_blob": null,
+      "mode": "100644"
+    },
+    {
+      "repo_path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/scripts/tests/fixtures/studio_c4_navigation/api35-28462-c4-visible.xml",
+      "bytes": 24720,
+      "sha256": "7cd295534d370d8f4451671d1354e28600f77dcfca3f2bbf462e119a68641182",
+      "git_blob_sha": "80469d00bd6b11600840ae116b48408928a54349",
+      "baseline_blob": null,
+      "mode": "100644"
+    },
+    {
+      "repo_path": "scripts/tests/fixtures/studio_c4_navigation/api35-28462-provenance.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c4-hub-caption-8e64-20261114/prepared/host/scripts/tests/fixtures/studio_c4_navigation/api35-28462-provenance.json",
+      "bytes": 1934,
+      "sha256": "6aeae2eb7c790ec6f6971838235052b1f3e006757acc6f708b6d0bf167fffa14",
+      "git_blob_sha": "bcad1302a7f8a3c6a28e33d5fdf133712dc6781a",
+      "baseline_blob": null,
+      "mode": "100644"
+    }
+  ]
+}

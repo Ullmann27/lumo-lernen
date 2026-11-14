@@ -1,0 +1,445 @@
+{
+  "original_path": "qa/studio-2020-host-ae394-ci-20261114/living-core-132391629884-original.log",
+  "original_sha256": "11ac1e33b22a00241fcd131b8021f356b0c04ca29d6dbb50c343e40ec22e7df9",
+  "host_revision": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "run_id": 43576453040,
+  "job_id": 132391629884,
+  "lines": [
+    {
+      "line": 1348,
+      "text": "2026-11-14T08:37:39.1478026Z 01:44 +665 ~27 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0"
+    },
+    {
+      "line": 1349,
+      "text": "2026-11-14T08:37:39.6907082Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════"
+    },
+    {
+      "line": 1350,
+      "text": "2026-11-14T08:37:39.6913820Z The following TestFailure was thrown running a test:"
+    },
+    {
+      "line": 1351,
+      "text": "2026-11-14T08:37:39.6914278Z Expected: a numeric value within <1> of <46.62857142857142>"
+    },
+    {
+      "line": 1352,
+      "text": "2026-11-14T08:37:39.6914702Z   Actual: <48.0>"
+    },
+    {
+      "line": 1353,
+      "text": "2026-11-14T08:37:39.6914982Z    Which:  differs by <1.3714285714285808>"
+    },
+    {
+      "line": 1354,
+      "text": "2026-11-14T08:37:39.6915350Z Each drop button must align with its board column."
+    },
+    {
+      "line": 1355,
+      "text": "2026-11-14T08:37:39.6915634Z "
+    },
+    {
+      "line": 1356,
+      "text": "2026-11-14T08:37:39.6915841Z When the exception was thrown, this was the stack:"
+    },
+    {
+      "line": 1357,
+      "text": "2026-11-14T08:37:39.6916417Z #4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart:81:9)"
+    },
+    {
+      "line": 1358,
+      "text": "2026-11-14T08:37:39.6917044Z <asynchronous suspension>"
+    },
+    {
+      "line": 1359,
+      "text": "2026-11-14T08:37:39.6917551Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)"
+    },
+    {
+      "line": 1360,
+      "text": "2026-11-14T08:37:39.6918091Z <asynchronous suspension>"
+    },
+    {
+      "line": 1361,
+      "text": "2026-11-14T08:37:39.6918565Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)"
+    },
+    {
+      "line": 1362,
+      "text": "2026-11-14T08:37:39.6919072Z <asynchronous suspension>"
+    },
+    {
+      "line": 1363,
+      "text": "2026-11-14T08:37:39.6919734Z <asynchronous suspension>"
+    },
+    {
+      "line": 1364,
+      "text": "2026-11-14T08:37:39.6920096Z (elided one frame from package:stack_trace)"
+    },
+    {
+      "line": 1365,
+      "text": "2026-11-14T08:37:39.6920380Z "
+    },
+    {
+      "line": 1366,
+      "text": "2026-11-14T08:37:39.6920643Z This was caught by the test expectation on the following line:"
+    },
+    {
+      "line": 1367,
+      "text": "2026-11-14T08:37:39.6921227Z   file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart line 81"
+    },
+    {
+      "line": 1368,
+      "text": "2026-11-14T08:37:39.6921765Z The test description was:"
+    },
+    {
+      "line": 1369,
+      "text": "2026-11-14T08:37:39.6922093Z   Connect Four layout 360.0x800.0"
+    },
+    {
+      "line": 1370,
+      "text": "2026-11-14T08:37:39.6923035Z ════════════════════════════════════════════════════════════════════════════════════════════════════"
+    },
+    {
+      "line": 1371,
+      "text": "2026-11-14T08:37:39.6923985Z 01:45 +665 ~27 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/design/legacy_learning_assignment_test.dart: rapid confirmation taps keep the parent page open and assign once"
+    },
+    {
+      "line": 1372,
+      "text": "2026-11-14T08:37:39.6937377Z 01:45 +665 ~27 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0 [E]"
+    },
+    {
+      "line": 1373,
+      "text": "2026-11-14T08:37:39.6949204Z   Test failed. See exception logs above."
+    },
+    {
+      "line": 1374,
+      "text": "2026-11-14T08:37:39.6951337Z   The test description was: Connect Four layout 360.0x800.0"
+    },
+    {
+      "line": 1375,
+      "text": "2026-11-14T08:37:39.6951805Z   "
+    },
+    {
+      "line": 1376,
+      "text": "2026-11-14T08:37:39.8250115Z 01:45 +665 ~27 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0"
+    },
+    {
+      "line": 1377,
+      "text": "2026-11-14T08:37:39.8250988Z "
+    },
+    {
+      "line": 1378,
+      "text": "2026-11-14T08:37:39.8251312Z Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "line": 1379,
+      "text": "2026-11-14T08:37:39.8255073Z   FilledButton-[<'connect-mode-true'>](style: ButtonStyle#24e44(textStyle: WidgetStatePropertyAll(TextStyle(inherit: true, family: Nunito, size: 16.0, weight: 900)), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 0.9216, red: 0.0471, green: 0.1725, blue: 0.3451, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), padding: WidgetStatePropertyAll(EdgeInsets(12.0, 0.0, 12.0, 0.0)), minimumSize: WidgetStatePropertyAll(Size(104.0, 48.0)), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#623ab]], state: _ButtonStyleState#67b36),"
+    },
+    {
+      "line": 1380,
+      "text": "2026-11-14T08:37:39.8258771Z ]\" derived an Offset (Offset(504.0, 208.0)) that would not hit test on the specified widget."
+    },
+    {
+      "line": 1381,
+      "text": "2026-11-14T08:37:39.8259327Z Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events."
+    },
+    {
+      "line": 1382,
+      "text": "2026-11-14T08:37:39.8259915Z The finder corresponds to this RenderBox: RenderSemanticsAnnotations#521b0 relayoutBoundary=up21"
+    },
+    {
+      "line": 1383,
+      "text": "2026-11-14T08:37:39.8264913Z The hit test result at that offset is: HitTestResult(RenderPointerListener#c8f16@Offset(376.0, 17.5), RenderSemanticsAnnotations#a900b@Offset(376.0, 17.5), RenderMouseRegion#281e5@Offset(376.0, 17.5), RenderSemanticsAnnotations#a5c54@Offset(376.0, 17.5), _RenderInkFeatures#8e000@Offset(376.0, 17.5), RenderCustomPaint#ee931@Offset(376.0, 17.5), RenderPhysicalShape#b39ce@Offset(376.0, 17.5), RenderConstrainedBox#d84bd@Offset(376.0, 17.5), _RenderInputPadding#51ccc@Offset(376.0, 19.5), RenderSemanticsAnnotations#a52f5@Offset(376.0, 19.5), RenderFlex#5ad25@Offset(376.0, 126.5), RenderPadding#7d466@Offset(394.0, 138.5), RenderDecoratedBox#cca09@Offset(394.0, 138.5), RenderConstrainedBox#c9d10@Offset(394.0, 138.5), RenderPadding#be35f@Offset(402.0, 146.5), _RenderSingleChildViewport#4b3c1@Offset(402.0, 146.5), RenderIgnorePointer#2797a@Offset(402.0, 146.5), RenderSemanticsAnnotations#cea39@Offset(402.0, 146.5), RenderPointerListener#3f9d0@Offset(402.0, 146.5), RenderSemanticsGestureHandler#5910e@Offset(402.0, 146.5), RenderPointerListener#02f71@Offset(402.0, 146.5), _RenderScrollSemantics#8fd2a@Offset(402.0, 146.5), RenderClipRect#c3844@Offset(402.0, 146.5), RenderPositionedBox#25482@Offset(504.0, 208.0), _RenderLayoutBuilder#07a0a@Offset(504.0, 208.0), RenderPadding#13639@Offset(504.0, 208.0), RenderStack#b5bd8@Offset(504.0, 208.0), _RenderInkFeatures#a80e2@Offset(504.0, 208.0), RenderCustomPaint#92e6c@Offset(504.0, 208.0), RenderClipPath#bc561@Offset(504.0, 208.0), RenderStack#c9124@Offset(504.0, 208.0), RenderRepaintBoundary#a388c@Offset(504.0, 208.0), RenderSemanticsAnnotations#4e136@Offset(504.0, 208.0), RenderRepaintBoundary#b4101@Offset(504.0, 208.0), RenderIgnorePointer#77de9@Offset(504.0, 208.0), RenderAnimatedOpacity#f98d2@Offset(504.0, 208.0), RenderAnimatedOpacity#0493b@Offset(504.0, 208.0), RenderRepaintBoundary#d82ea@Offset(504.0, 208.0), RenderSemanticsAnnotations#545f6@Offset(504.0, 208.0), RenderOffstage#4562c@Offset(504.0, 208.0), RenderSemanticsAnnotations#48033@Offset(504.0, 208.0), _RenderTheater#a8369@Offset(504.0, 208.0), RenderAbsorbPointer#1fff8@Offset(504.0, 208.0), RenderPointerListener#b9876@Offset(504.0, 208.0), RenderSemanticsAnnotations#e096b@Offset(504.0, 208.0), RenderCustomPaint#2e742@Offset(504.0, 208.0), RenderSemanticsAnnotations#6c86b@Offset(504.0, 208.0), RenderSemanticsAnnotations#81a32@Offset(504.0, 208.0), RenderSemanticsAnnotations#709d8@Offset(504.0, 208.0), RenderTapRegionSurface#1885d@Offset(504.0, 208.0), RenderSemanticsAnnotations#10e8e@Offset(504.0, 208.0), RenderSemanticsAnnotations#82cd0@Offset(504.0, 208.0), HitTestEntry<HitTestTarget>#38cd6(_ReusableRenderView#bf36a), HitTestEntry<HitTestTarget>#70aaf(<AutomatedTestWidgetsFlutterBinding>))"
+    },
+    {
+      "line": 1384,
+      "text": "2026-11-14T08:37:39.8269379Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)"
+    },
+    {
+      "line": 1385,
+      "text": "2026-11-14T08:37:39.8269693Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)"
+    },
+    {
+      "line": 1386,
+      "text": "2026-11-14T08:37:39.8269974Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)"
+    },
+    {
+      "line": 1387,
+      "text": "2026-11-14T08:37:39.8270333Z #3      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart:60:20)"
+    },
+    {
+      "line": 1388,
+      "text": "2026-11-14T08:37:39.8270629Z <asynchronous suspension>"
+    },
+    {
+      "line": 1389,
+      "text": "2026-11-14T08:37:39.8270883Z #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)"
+    },
+    {
+      "line": 1390,
+      "text": "2026-11-14T08:37:39.8271144Z <asynchronous suspension>"
+    },
+    {
+      "line": 1391,
+      "text": "2026-11-14T08:37:39.8271368Z #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)"
+    },
+    {
+      "line": 1392,
+      "text": "2026-11-14T08:37:39.8271604Z <asynchronous suspension>"
+    },
+    {
+      "line": 1393,
+      "text": "2026-11-14T08:37:39.8271884Z #6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)"
+    },
+    {
+      "line": 1394,
+      "text": "2026-11-14T08:37:39.8272181Z <asynchronous suspension>"
+    },
+    {
+      "line": 1395,
+      "text": "2026-11-14T08:37:39.8272353Z To silence this warning, pass \"warnIfMissed: false\" to \"tap()\"."
+    },
+    {
+      "line": 1396,
+      "text": "2026-11-14T08:37:39.8272622Z To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true."
+    },
+    {
+      "line": 1397,
+      "text": "2026-11-14T08:37:39.8272919Z "
+    },
+    {
+      "line": 1398,
+      "text": "2026-11-14T08:37:39.8456545Z "
+    },
+    {
+      "line": 1399,
+      "text": "2026-11-14T08:37:39.8459364Z Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-3'>]: ["
+    },
+    {
+      "line": 1400,
+      "text": "2026-11-14T08:37:39.8460130Z   IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#623ab]]),"
+    },
+    {
+      "line": 1401,
+      "text": "2026-11-14T08:37:39.8460910Z ]\" derived an Offset (Offset(259.7, 320.0)) that would not hit test on the specified widget."
+    },
+    {
+      "line": 1402,
+      "text": "2026-11-14T08:37:39.8461496Z Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events."
+    },
+    {
+      "line": 1403,
+      "text": "2026-11-14T08:37:39.8462133Z The finder corresponds to this RenderBox: RenderSemanticsAnnotations#66f4a relayoutBoundary=up25"
+    },
+    {
+      "line": 1404,
+      "text": "2026-11-14T08:37:39.8463373Z The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#96a4d(_ReusableRenderView#bf36a), HitTestEntry<HitTestTarget>#9f06c(<AutomatedTestWidgetsFlutterBinding>))"
+    },
+    {
+      "line": 1405,
+      "text": "2026-11-14T08:37:39.8464146Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)"
+    },
+    {
+      "line": 1406,
+      "text": "2026-11-14T08:37:39.8464644Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)"
+    },
+    {
+      "line": 1407,
+      "text": "2026-11-14T08:37:39.8465132Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)"
+    },
+    {
+      "line": 1408,
+      "text": "2026-11-14T08:37:39.8465894Z #3      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart:63:22)"
+    },
+    {
+      "line": 1409,
+      "text": "2026-11-14T08:37:39.8466373Z <asynchronous suspension>"
+    },
+    {
+      "line": 1410,
+      "text": "2026-11-14T08:37:39.8466782Z #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)"
+    },
+    {
+      "line": 1411,
+      "text": "2026-11-14T08:37:39.8467205Z <asynchronous suspension>"
+    },
+    {
+      "line": 1412,
+      "text": "2026-11-14T08:37:39.8467580Z #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)"
+    },
+    {
+      "line": 1413,
+      "text": "2026-11-14T08:37:39.8467984Z <asynchronous suspension>"
+    },
+    {
+      "line": 1414,
+      "text": "2026-11-14T08:37:39.8468466Z #6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)"
+    },
+    {
+      "line": 1415,
+      "text": "2026-11-14T08:37:39.8469092Z <asynchronous suspension>"
+    },
+    {
+      "line": 1416,
+      "text": "2026-11-14T08:37:39.8469368Z To silence this warning, pass \"warnIfMissed: false\" to \"tap()\"."
+    },
+    {
+      "line": 1417,
+      "text": "2026-11-14T08:37:39.8469820Z To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true."
+    },
+    {
+      "line": 1418,
+      "text": "2026-11-14T08:37:39.8470131Z "
+    },
+    {
+      "line": 1419,
+      "text": "2026-11-14T08:37:39.8579781Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════"
+    },
+    {
+      "line": 1420,
+      "text": "2026-11-14T08:37:39.8580399Z The following assertion was thrown running a test:"
+    },
+    {
+      "line": 1421,
+      "text": "2026-11-14T08:37:39.8582480Z The finder \"Found 0 widgets with key [<'connect-column-2'>]: []\" (used in a call to \"tap()\") could"
+    },
+    {
+      "line": 1422,
+      "text": "2026-11-14T08:37:39.8583197Z not find any matching widgets."
+    },
+    {
+      "line": 1423,
+      "text": "2026-11-14T08:37:39.8583505Z "
+    },
+    {
+      "line": 1424,
+      "text": "2026-11-14T08:37:39.8583750Z When the exception was thrown, this was the stack:"
+    },
+    {
+      "line": 1425,
+      "text": "2026-11-14T08:37:39.8584284Z #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)"
+    },
+    {
+      "line": 1426,
+      "text": "2026-11-14T08:37:39.8584867Z #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)"
+    },
+    {
+      "line": 1427,
+      "text": "2026-11-14T08:37:39.8585431Z #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)"
+    },
+    {
+      "line": 1428,
+      "text": "2026-11-14T08:37:39.8586105Z #3      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart:63:22)"
+    },
+    {
+      "line": 1429,
+      "text": "2026-11-14T08:37:39.8607180Z <asynchronous suspension>"
+    },
+    {
+      "line": 1430,
+      "text": "2026-11-14T08:37:39.8607675Z #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)"
+    },
+    {
+      "line": 1431,
+      "text": "2026-11-14T08:37:39.8608251Z <asynchronous suspension>"
+    },
+    {
+      "line": 1432,
+      "text": "2026-11-14T08:37:39.8608693Z #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)"
+    },
+    {
+      "line": 1433,
+      "text": "2026-11-14T08:37:39.8609157Z <asynchronous suspension>"
+    },
+    {
+      "line": 1434,
+      "text": "2026-11-14T08:37:39.8609455Z <asynchronous suspension>"
+    },
+    {
+      "line": 1435,
+      "text": "2026-11-14T08:37:39.8609786Z (elided one frame from package:stack_trace)"
+    },
+    {
+      "line": 1436,
+      "text": "2026-11-14T08:37:39.8610061Z "
+    },
+    {
+      "line": 1437,
+      "text": "2026-11-14T08:37:39.8610246Z The test description was:"
+    },
+    {
+      "line": 1438,
+      "text": "2026-11-14T08:37:39.8610555Z   Connect Four layout 640.0x360.0"
+    },
+    {
+      "line": 1439,
+      "text": "2026-11-14T08:37:39.8611234Z ════════════════════════════════════════════════════════════════════════════════════════════════════"
+    },
+    {
+      "line": 1440,
+      "text": "2026-11-14T08:37:39.8612072Z 01:45 +665 ~27 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/design/legacy_learning_assignment_test.dart: rapid confirmation taps keep the parent page open and assign once"
+    },
+    {
+      "line": 1441,
+      "text": "2026-11-14T08:37:39.8613115Z 01:45 +665 ~27 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0 [E]"
+    },
+    {
+      "line": 1442,
+      "text": "2026-11-14T08:37:39.8613758Z   Test failed. See exception logs above."
+    },
+    {
+      "line": 1443,
+      "text": "2026-11-14T08:37:39.8614137Z   The test description was: Connect Four layout 640.0x360.0"
+    },
+    {
+      "line": 1444,
+      "text": "2026-11-14T08:37:39.8614513Z   "
+    },
+    {
+      "line": 1445,
+      "text": "2026-11-14T08:37:39.9450095Z 01:45 +665 ~27 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 1280.0x720.0"
+    },
+    {
+      "line": 1447,
+      "text": "2026-11-14T08:37:39.9450536Z Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "line": 1449,
+      "text": "2026-11-14T08:37:39.9455592Z ]\" derived an Offset (Offset(1016.0, 214.0)) that would not hit test on the specified widget."
+    },
+    {
+      "line": 1451,
+      "text": "2026-11-14T08:37:39.9456735Z The finder corresponds to this RenderBox: RenderSemanticsAnnotations#9b81b relayoutBoundary=up21"
+    },
+    {
+      "line": 1594,
+      "text": "2026-11-14T08:37:40.0316309Z 01:45 +666 ~27 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 740.0x840.0"
+    },
+    {
+      "line": 1596,
+      "text": "2026-11-14T08:37:40.0317030Z Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "line": 1598,
+      "text": "2026-11-14T08:37:40.0325617Z ]\" derived an Offset (Offset(594.0, 88.0)) that would not hit test on the specified widget."
+    },
+    {
+      "line": 1600,
+      "text": "2026-11-14T08:37:40.0326785Z The finder corresponds to this RenderBox: RenderSemanticsAnnotations#c75e6 relayoutBoundary=up8"
+    },
+    {
+      "line": 1744,
+      "text": "2026-11-14T08:37:40.0714695Z 01:45 +668 ~27 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/design/connect_four_visual_test.dart: Connect Four layout 1200.0x896.0"
+    },
+    {
+      "line": 1746,
+      "text": "2026-11-14T08:37:40.1369518Z Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "line": 1748,
+      "text": "2026-11-14T08:37:40.1378375Z ]\" derived an Offset (Offset(952.0, 302.0)) that would not hit test on the specified widget."
+    },
+    {
+      "line": 1750,
+      "text": "2026-11-14T08:37:40.1379789Z The finder corresponds to this RenderBox: RenderSemanticsAnnotations#54ca8 relayoutBoundary=up21"
+    }
+  ]
+}

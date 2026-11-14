@@ -1,0 +1,140 @@
+{
+  "artifact": 14117811208,
+  "native": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "host": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "zip_bytes": 296547,
+  "zip_sha256": "b1d4bb894083344f4a862fe2412df260759018b030378e06646c5247b68933cb",
+  "all_crc": true,
+  "entries": [
+    {
+      "entry": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "8437032eba00ec29231f4a3595b69f89e77a6606eb72610a01fa8dd4db240c20"
+    },
+    {
+      "entry": "HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "50ab94d7189e4db4fe67d64928681bbff4cb969dc9f12a87648e4c59bed3c749"
+    },
+    {
+      "entry": "NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "b47270f245fb95ba1f7bad0019838eae0626d97c5c3bdd7c201f2eed775e0aba"
+    },
+    {
+      "entry": "NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "2c829d9c0061b5c19b11693dd29b9b6f972270753bb16f023c1d20978cffe184"
+    },
+    {
+      "entry": "dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495"
+    },
+    {
+      "entry": "godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+    },
+    {
+      "entry": "import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf"
+    },
+    {
+      "entry": "project-validation.log",
+      "bytes": 6138,
+      "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7"
+    },
+    {
+      "entry": "quiz-authority-contract.log",
+      "bytes": 1829,
+      "sha256": "13c2e7773efb5ec23b7125b6eda2ef466f8573cd4aec32c7e226f45cb52b8194"
+    },
+    {
+      "entry": "quiz-pair/authority/lifecycle.json",
+      "bytes": 52,
+      "sha256": "9bb07b3153da3652986e4875f366b72ddfb43564a7974afe112e9cb115820523"
+    },
+    {
+      "entry": "quiz-pair/authority/native-result.json",
+      "bytes": 109,
+      "sha256": "0e97a4ebecdb297f5a6affb5c407922b02694466c52a007a7d3b2b5ceff4f6a5"
+    },
+    {
+      "entry": "quiz-pair/authority/private-test-control.json",
+      "bytes": 134,
+      "sha256": "a88d974aa431970645871fac18feab679a1c30fed8634bc60db067b3a89f6b69"
+    },
+    {
+      "entry": "quiz-pair/authority/public-state.json",
+      "bytes": 845,
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9"
+    },
+    {
+      "entry": "quiz-pair/authority/request.json",
+      "bytes": 133,
+      "sha256": "8ba57832e43c887006a2b277873c3cb3fe862e50c601c7b1b3b818fa92274439"
+    },
+    {
+      "entry": "quiz-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 4378,
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d"
+    },
+    {
+      "entry": "quiz-pair/dart-authority.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "entry": "quiz-pair/godot-runtime.log",
+      "bytes": 1552,
+      "sha256": "466889ebd72f2d462e7b760bd47ec02d8471be9db0c1623006c7b91910f69551"
+    },
+    {
+      "entry": "quiz-pair/native/quiz-dart-jokers.png",
+      "bytes": 100524,
+      "sha256": "28c1e25a9111ac165a12f582935a48d78918d02bfa7f89672d5326951cb03f02"
+    },
+    {
+      "entry": "quiz-pair/native/quiz-dart-jokers.layout.json",
+      "bytes": 4718,
+      "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6"
+    },
+    {
+      "entry": "quiz-pair/native/quiz-dart-question.layout.json",
+      "bytes": 4526,
+      "sha256": "ac623b4cf0fa6226c0ff2a7cd543ffbb99f6674346ae73973b59fab2ece9315d"
+    },
+    {
+      "entry": "quiz-pair/native/quiz-dart-question.png",
+      "bytes": 87325,
+      "sha256": "cce5f4054782ddc4d7f46557b4a7e140ba93d183bacc4639005db99505f46d27"
+    },
+    {
+      "entry": "quiz-pair/native/quiz-dart-selected-phone.layout.json",
+      "bytes": 4692,
+      "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42"
+    },
+    {
+      "entry": "quiz-pair/native/quiz-dart-selected-phone.png",
+      "bytes": 84888,
+      "sha256": "ab2692939435fde6f70d77d07329e78c7aaad2dc6938cc2bfc09f961222c066f"
+    },
+    {
+      "entry": "quiz-pair/native/quiz-runtime-report.json",
+      "bytes": 9118,
+      "sha256": "b33e5bce16e3d590c750b4004509a47e6460c5569cee2df3bb5fd4cf0d6fe44f"
+    },
+    {
+      "entry": "quiz-pair/pair-result.json",
+      "bytes": 4123,
+      "sha256": "fdadccae619c54873a2c5fc46e5ff86e8c47967a7ef921f40ec3285d1864510a"
+    },
+    {
+      "entry": "quiz-pair/source-identity.json",
+      "bytes": 265,
+      "sha256": "f6795a6045a620efc2efacf546909da40dc5e8cccdf80465de9ad945c11e8954"
+    }
+  ]
+}

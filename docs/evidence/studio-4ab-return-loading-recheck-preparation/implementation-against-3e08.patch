@@ -1,0 +1,301 @@
+--- a/.github/probes/creative_android_probe.py
++++ b/.github/probes/creative_android_probe.py
+@@ -369,7 +369,8 @@
+ 
+ 
+ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None,
+-                timeout: float = 225, exact: bool = False) -> list[dict]:
++                timeout: float = 225, exact: bool = False, *,
++                reject_captions: tuple[str, ...] = ()) -> list[dict]:
+     deadline = time.monotonic() + timeout
+     if source_path is None:
+         snapshot = capture(out, tag)
+@@ -378,6 +379,7 @@
+         source = source_path
+     image = Image.open(source).convert('RGB')
+     result = []
++    rejected_captions = {normalized(caption) for caption in reject_captions if caption}
+     # White UI letters on dark glass can disappear among the detailed 3D
+     # background. A second read separates their contrast, without changing
+     # any screenshot used as evidence or inventing a control coordinate.
+@@ -451,7 +453,8 @@
+             for start in range(len(words)):
+                 for end in range(start+1,min(len(words),start+8)+1):
+                     span=words[start:end]
+-                    if normalized(' '.join(word['text'] for word in span)) == wanted:
++                    span_text = normalized(' '.join(word['text'] for word in span))
++                    if span_text == wanted or span_text in rejected_captions:
+                         spans.append(span)
+             for span in spans:
+                 x0=min(int(word['left']) for word in span)/scale
+@@ -460,6 +463,25 @@
+                 y1=max(int(word['top'])+int(word['height']) for word in span)/scale
+                 result.append({'text':' '.join(word['text'] for word in span),
+                                'bounds':[x0,y0,x1,y1],'variant':variant})
++        if rejected_captions:
++            # Only an explicitly opted-in, actually observed complete caption
++            # rejects this frame. Do not spend the remaining return budget on
++            # more OCR variants of an already identified launch cover.
++            rejected = [line for line in result
++                        if normalized(line['text']) in rejected_captions and
++                        0 <= line['bounds'][0] < line['bounds'][2] <= image.width and
++                        0 <= line['bounds'][1] < line['bounds'][3] <= image.height]
++            if rejected:
++                (out / (tag + '-ocr.json')).write_text(
++                    json.dumps(result, indent=2, ensure_ascii=False))
++                (out / (tag + '-ocr-rejected.json')).write_text(json.dumps({
++                    'status': 'REJECTED_FRAME', 'source': source.name,
++                    'source_sha256': digest(source), 'surface': list(image.size),
++                    'variant': variant, 'observed_captions': rejected,
++                    'scope': 'Negative current-frame evidence only; no input or positive acceptance',
++                }, indent=2, ensure_ascii=False) + '\n')
++                raise RuntimeError('Rejected captured Flutter frame: observed caption ' +
++                                   rejected[0]['text'])
+         if wanted and any(wanted == normalized(line['text']) if exact
+                           else wanted in normalized(line['text']) for line in result):
+             break
+--- a/.github/probes/lumo_studio_surfaces_android_probe.py
++++ b/.github/probes/lumo_studio_surfaces_android_probe.py
+@@ -110,7 +110,8 @@
+                     matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
+                     if not matches:
+                         lines = probe.image_lines(out, name + '-caption-' + str(len(found)), wanted,
+-                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()))
++                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()),
++                            reject_captions=('Die Spielwelt wird geöffnet',))
+                         matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
+                     valid = []
+                     for line in matches:
+--- a/.github/workflows/lumo-studio-4ab-ocr-recheck.yml
++++ b/.github/workflows/lumo-studio-4ab-ocr-recheck.yml
+@@ -19,6 +19,16 @@
+       - tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json
+       - tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json
+       - tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png
++      - tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json
++      - tools/android_qa/tests/replay_flutter_loading_frame_ocr.py
++      - tools/android_qa/tests/test_flutter_loading_frame_rejection.py
+   workflow_dispatch:
+ 
+ permissions:
+@@ -31,7 +41,7 @@
+ 
+ jobs:
+   ocr-regression:
+-    name: Original Android captions and read-only Cards readiness contracts
++    name: Original Android captions, Cards readiness and loading-frame contracts
+     runs-on: ubuntu-24.04
+     timeout-minutes: 12
+     steps:
+@@ -58,6 +68,8 @@
+           .ocr-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_native_caption_ocr.py -v 2>&1 | tee ocr-regression/original-caption-replay.log
+           .ocr-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_cards_layout_readiness.py -v 2>&1 | tee ocr-regression/cards-layout-readiness.log
+           .ocr-venv/bin/python -B -m unittest discover -s scripts/tests -p test_studio_4ab_recheck.py -v 2>&1 | tee ocr-regression/source-binding-counterexamples.log
++          .ocr-venv/bin/python -B tools/android_qa/tests/replay_flutter_loading_frame_ocr.py -v 2>&1 | tee ocr-regression/loading-frame-original-ocr.log
++          .ocr-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_flutter_loading_frame_rejection.py -v 2>&1 | tee ocr-regression/loading-frame-boundaries.log
+       - uses: actions/upload-artifact@v4
+         if: always()
+         with:
+--- a/scripts/recheck_studio_4ab.py
++++ b/scripts/recheck_studio_4ab.py
+@@ -3,8 +3,8 @@
+ 
+ This is a diagnostic on an existing binary, never a build, publication or replacement
+ for the original Studio workflow. Metadata comes from authenticated GitHub read calls.
+-The modernization tour is unchanged. The Studio surface reader has one explicitly
+-hash-pinned read-only correction; its remaining runtime gates are preserved.
++The modernization tour is unchanged. The helper and Studio reader have explicitly
++hash-pinned read-only corrections; all positive runtime gates are preserved.
+ """
+ from __future__ import annotations
+ 
+@@ -23,13 +23,31 @@
+ import zipfile
+ 
+ 
++RETURN_FILE_HASHES = (
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv', 'e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78'),
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png', '4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880'),
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv', '6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e'),
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png', 'bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9'),
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png', '8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71'),
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv', '8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56'),
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png', 'c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf'),
++    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json', '31fa110427af3528835df32174a07acb71cc7e3bd86f94fab1213752204daee0'),
++    ('tools/android_qa/tests/replay_flutter_loading_frame_ocr.py', '4c8f154a259ce22b734977ef5c2dd7257d8ed4968cf370abf8dd62a09e853d81'),
++    ('tools/android_qa/tests/test_flutter_loading_frame_rejection.py', '4cb4ba9c25293f46534ff5b90ee712f866f6f12d23ee58b3db32d39844390529'),
++)
++
++
+ @dataclass(frozen=True)
+ class Expected:
+     host: str = "4ab96666f954baf258422d6ed277fc297b7ddeef"
+     native: str = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+-    qa_basis: str = "a446f3c1a320ad5297e17606727d801c5e993ce1"
++    qa_basis: str = "3e08c7953b84aed6fff30e9e55665de75f79ec77"
++    basis_helper_sha256: str = "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
++    approved_helper_sha256: str = "910f834e5e593d2800e67e928fdb10328dd6710cb2e669132fc9f4dc2fb7660b"
++    basis_surfaces_sha256: str = "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
++    approved_return_files: tuple[tuple[str, str], ...] = RETURN_FILE_HASHES
+     original_surfaces_sha256: str = "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6"
+-    approved_surfaces_sha256: str = "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
++    approved_surfaces_sha256: str = "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+     run: int = 43530667812
+     build_job: int = 132247240154
+     artifact: int = 14089507933
+@@ -67,7 +85,9 @@
+     "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+     "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+ })
+-ALLOWLIST = OCR_FILES | BINDER_FILES | CARDS_FILES
++HELPER_PATH = ".github/probes/creative_android_probe.py"
++RETURN_FILES = frozenset(path for path, _digest in RETURN_FILE_HASHES)
++ALLOWLIST = OCR_FILES | BINDER_FILES | CARDS_FILES | RETURN_FILES
+ TOURS = (
+     ".github/probes/modernization_android_tour.py",
+     SURFACES_PATH,
+@@ -193,18 +213,28 @@
+     qa_report, qa_tree = source_checkout(qa, expected_qa, runtime_roots)
+     product_report, product_tree = source_checkout(candidate, expected.host)
+     require(git(qa, "merge-base", expected.qa_basis, expected_qa).decode().strip() == expected.qa_basis,
+-            "QA source does not descend from the exact reviewed a446 basis")
++            "QA source does not descend from the exact reviewed 3e08 basis")
+     basis_tree = git_tree(qa, expected.qa_basis)
+     changed = {name for name in qa_tree.keys() | product_tree.keys()
+                if qa_tree.get(name) != product_tree.get(name)}
+     require(changed == ALLOWLIST,
+-            f"QA delta differs from the exact sixteen reviewed paths: unexpected={sorted(changed - ALLOWLIST)}, missing={sorted(ALLOWLIST - changed)}")
++            f"QA delta differs from the exact twenty-six reviewed paths: unexpected={sorted(changed - ALLOWLIST)}, missing={sorted(ALLOWLIST - changed)}")
+     for name in ALLOWLIST:
+-        require(qa_tree.get(name, {}).get("mode") in {"100644", "100755"},
+-                f"Allowed QA file is missing or not regular: {name}")
+-    for name in OCR_FILES:
++        require(qa_tree.get(name, {}).get("mode") == "100644",
++                f"Allowed QA file is missing or its reviewed 100644 mode changed: {name}")
++    for name in (OCR_FILES | CARDS_FILES) - {HELPER_PATH, SURFACES_PATH}:
+         require(qa_tree[name] == basis_tree.get(name),
+-                f"Previously reviewed a446 OCR source or fixture changed: {name}")
++                f"Previously reviewed 3e08 OCR/Cards source or fixture changed: {name}")
++    require(hashlib.sha256(git(qa, "show", f"{expected.qa_basis}:{HELPER_PATH}")).hexdigest()
++            == expected.basis_helper_sha256, "Exact 3e08 helper basis differs")
++    require(sha256(qa / HELPER_PATH) == expected.approved_helper_sha256,
++            "Helper bytes differ from the exact approved loading-frame correction")
++    approved_return = dict(expected.approved_return_files)
++    require(len(expected.approved_return_files) == len(RETURN_FILES)
++            and set(approved_return) == RETURN_FILES, "Explicit return-fixture hash roster differs")
++    for name, approved_hash in approved_return.items():
++        require(sha256(qa / name) == approved_hash,
++                f"Return replay/test/fixture differs from the exact reviewed bytes: {name}")
+     for root in (qa, candidate):
+         require(read_json(root / "config/godot-source.json").get("revision") == expected.native,
+                 "Actual checkout native pin changed")
+@@ -212,8 +242,9 @@
+         require(match is not None and match[1] == "0.13.7+2019", "Actual checkout version changed")
+     require(TOURS[0] in product_tree and qa_tree[TOURS[0]] == product_tree[TOURS[0]],
+             "The original modernization tour changed")
+-    require(SURFACES_PATH in product_tree and basis_tree.get(SURFACES_PATH) == product_tree[SURFACES_PATH],
+-            "The a446 surface-reader basis differs from the original product reader")
++    require(SURFACES_PATH in product_tree and
++            hashlib.sha256(git(qa, "show", f"{expected.qa_basis}:{SURFACES_PATH}")).hexdigest()
++            == expected.basis_surfaces_sha256, "The exact 3e08 surface-reader basis differs")
+     require(sha256(candidate / SURFACES_PATH) == expected.original_surfaces_sha256,
+             "Original Studio surface-reader bytes differ from the reviewed baseline")
+     require(sha256(qa / SURFACES_PATH) == expected.approved_surfaces_sha256,
+@@ -221,8 +252,12 @@
+     return {
+         "qa": qa_report, "product": product_report,
+         "qa_basis": expected.qa_basis,
+-        "tour_execution_scope": "Modernization unchanged; Studio surface reader bound to the exact approved read-only correction",
++        "tour_execution_scope": "Modernization unchanged; Studio read-only readiness and loading-frame correction exactly hash-bound",
++        "helper_binding": {"path": HELPER_PATH, "basis_sha256": expected.basis_helper_sha256,
++                           "approved_sha256": expected.approved_helper_sha256},
++        "return_fixture_binding": approved_return,
+         "surface_reader_binding": {"path": SURFACES_PATH,
++                                   "basis_sha256": expected.basis_surfaces_sha256,
+                                    "original_sha256": expected.original_surfaces_sha256,
+                                    "approved_sha256": expected.approved_surfaces_sha256},
+         "unchanged_other_git_entries": len((qa_tree.keys() | product_tree.keys()) - changed),
+--- a/scripts/tests/test_studio_4ab_recheck.py
++++ b/scripts/tests/test_studio_4ab_recheck.py
+@@ -74,13 +74,23 @@
+             put(self.qa / name, ("# reviewed QA-only fixture " + name + "\n").encode())
+             command(self.qa, "add", "--", name)
+         command(self.qa, "commit", "-qm", "Synthetic original nine-path QA basis")
+-        self.expected = replace(self.expected, qa_basis=command(self.qa, "rev-parse", "HEAD"))
+         for name in MODULE.CARDS_FILES:
+             put(self.qa / name, ("# reviewed Cards-only fixture " + name + "\n").encode())
+             command(self.qa, "add", "--", name)
++        command(self.qa, "commit", "-qm", "Synthetic reviewed sixteen-path 3e08 basis")
+         self.expected = replace(self.expected,
+-                                approved_surfaces_sha256=MODULE.sha256(self.qa / MODULE.SURFACES_PATH))
+-        command(self.qa, "commit", "-qm", "Synthetic exact QA delta")
++                                qa_basis=command(self.qa, "rev-parse", "HEAD"),
++                                basis_helper_sha256=MODULE.sha256(self.qa / MODULE.HELPER_PATH),
++                                basis_surfaces_sha256=MODULE.sha256(self.qa / MODULE.SURFACES_PATH))
++        for name in MODULE.RETURN_FILES | {MODULE.HELPER_PATH, MODULE.SURFACES_PATH}:
++            put(self.qa / name, ("# reviewed return-only fixture " + name + "\n").encode())
++            command(self.qa, "add", "--", name)
++        self.expected = replace(self.expected,
++                                approved_helper_sha256=MODULE.sha256(self.qa / MODULE.HELPER_PATH),
++                                approved_surfaces_sha256=MODULE.sha256(self.qa / MODULE.SURFACES_PATH),
++                                approved_return_files=tuple((name, MODULE.sha256(self.qa / name))
++                                                            for name in sorted(MODULE.RETURN_FILES)))
++        command(self.qa, "commit", "-qm", "Synthetic exact twenty-six-path QA delta")
+         self.qa_head = command(self.qa, "rev-parse", "HEAD")
+         self.product = self.qa / "candidate-source"
+         subprocess.run(["git", "clone", "-q", "--no-hardlinks", str(base), str(self.product)], check=True)
+@@ -89,9 +99,9 @@
+     def verify(self):
+         return MODULE.verify_sources(self.qa, self.product, self.qa_head, self.runtime, self.expected)
+ 
+-    def test_exact_sixteen_file_delta_and_real_worktree_pass(self):
++    def test_exact_twenty_six_file_delta_and_real_worktree_pass(self):
+         result = self.verify()
+-        self.assertEqual(len(result["reviewed_delta"]), 16)
++        self.assertEqual(len(result["reviewed_delta"]), 26)
+         self.assertEqual(result["product"]["head"], self.expected.host)
+         self.assertEqual(result["qa"]["head"], self.qa_head)
+         self.assertTrue(result["qa"]["tracked_source_clean"])
+@@ -102,14 +112,27 @@
+         self.assertEqual(result["surface_reader_binding"]["approved_sha256"],
+                          self.expected.approved_surfaces_sha256)
+ 
+-    def test_committed_surface_change_cannot_use_the_reviewed_path_as_a_blanket_exception(self):
+-        # A clean committed file still fails when it is not the exact reviewed correction.
+-        put(self.qa / MODULE.SURFACES_PATH, "# unrelated clean committed surface change\n")
+-        command(self.qa, "add", "--", MODULE.SURFACES_PATH)
+-        command(self.qa, "commit", "-qm", "Tampered allowed surface-reader path")
+-        self.qa_head = command(self.qa, "rev-parse", "HEAD")
+-        with self.assertRaisesRegex(RuntimeError, "exact approved read-only correction"):
+-            self.verify()
++    def test_committed_reviewed_paths_cannot_authorize_wrong_source_or_fixture_bytes(self):
++        # Even clean commits on explicitly allowed paths must have reviewed bytes.
++        cases = [(MODULE.SURFACES_PATH, "exact approved read-only correction"),
++                 (MODULE.HELPER_PATH, "exact approved loading-frame correction"),
++                 ("tools/android_qa/tests/test_flutter_loading_frame_rejection.py",
++                  "exact reviewed bytes"),
++                 ("tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
++                  "exact reviewed bytes")]
++        for name, message in cases:
++            with self.subTest(path=name):
++                original = (self.qa / name).read_bytes()
++                put(self.qa / name, b"# unrelated clean committed modification\n")
++                command(self.qa, "add", "--", name)
++                command(self.qa, "commit", "-qm", "Tampered explicitly allowed source path")
++                self.qa_head = command(self.qa, "rev-parse", "HEAD")
++                with self.assertRaisesRegex(RuntimeError, message):
++                    self.verify()
++                put(self.qa / name, original)
++                command(self.qa, "add", "--", name)
++                command(self.qa, "commit", "-qm", "Restore reviewed bytes for next counterexample")
++                self.qa_head = command(self.qa, "rev-parse", "HEAD")
+ 
+     def test_product_change_outside_allowlist_is_rejected(self):
+         put(self.qa / "lib/product.dart", "void main() { throw 1; }\n")

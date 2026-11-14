@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "b7210db3f53361987fd33592de438fd7984d991a",
+  "run_id": 43618076296,
+  "run_attempt": 1,
+  "job_id": 132517423810,
+  "scope": "docs-only current Flutter job evidence; no binary artifact, source mutation or speech acceptance",
+  "file_count": 13,
+  "total_bytes": 268759,
+  "entries": [
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/README.md",
+      "bytes": 4198,
+      "sha256": "88193b4f0c7446c38b674e6f298613260f04f080333124a7bf5e0bbaecdc2f9f",
+      "git_blob_sha": "c63c24c158691a2794e1a704285aaee1eae4b2a3",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/README.md",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/review.json",
+      "bytes": 8098,
+      "sha256": "2d36412606cbd5ac713d523630f968fc55178c0ec99614d17554125456212d31",
+      "git_blob_sha": "5072013c6979230ee1ec07e309b138fca3755358",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/review.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/original-flutter-job.log",
+      "bytes": 120661,
+      "sha256": "4192247ed86ddb17fa3a5d558eee665acbbb4f408fcc6e199ab8e9e1699bbab7",
+      "git_blob_sha": "bf0e50d174f18f5b2f1891cf71bf8bbf4d9c212b",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/original-flutter-job.log",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/run-initial-original.json",
+      "bytes": 13692,
+      "sha256": "1a7805106b7798c796e245b66f703fa955c52d6a0cbd5557d5977c27ff6bee5f",
+      "git_blob_sha": "61f774a84c83bf3c13b6a47aa3022b5d0ee9d20c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/run-initial-original.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/jobs-initial-original.json",
+      "bytes": 8887,
+      "sha256": "26018ead9de7bcc7406b2e01c2b783b04b8506ac7d8f268290e3c8d9abbc37b0",
+      "git_blob_sha": "29627d529dd86cd23f65a5460ba53d7beab57251",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/jobs-initial-original.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/run-terminal-original.json",
+      "bytes": 13695,
+      "sha256": "2f48ea7155bd11b4ce66a2913b869d8e6a470f200bd42da78f1788f1c6e0026c",
+      "git_blob_sha": "5b112d32f1180cc2c543149718fe0f8d1884345d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/run-terminal-original.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/jobs-terminal-original.json",
+      "bytes": 9709,
+      "sha256": "b07569c23933375b00452b900f112639828a8dd3afea81abf72e164b3df225f6",
+      "git_blob_sha": "3abb4270df2f37864849ed39b73cab896383b2a4",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/jobs-terminal-original.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/artifacts-terminal-original.json",
+      "bytes": 2257,
+      "sha256": "43e9407ad31025ea2b5afa6d6690cfc73480d7e4bc1ef53b096463d266194415",
+      "git_blob_sha": "77a8fb5bf01c1ff18ca33d2b0631acd41b397396",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/artifacts-terminal-original.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/workflow-at-b721.yml",
+      "bytes": 7651,
+      "sha256": "b4c04ffd59a131a0535ddfcd53f99887adfe77dfc73de6516d3126da787edcef",
+      "git_blob_sha": "829b819945d980e2082f478c1ddccea9463e3fa5",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/workflow-at-b721.yml",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/full-flutter-runner-at-b721.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob_sha": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/full-flutter-runner-at-b721.py",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/full-flutter-summary-from-original-job.json",
+      "bytes": 4614,
+      "sha256": "33d7880820a4951bd70a10b8d3a9a945c443c2f14632de58a11312eda25e18e5",
+      "git_blob_sha": "a4845a2adec1caf0c6b5e9f329fcf1930ec67073",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/full-flutter-summary-from-original-job.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/analyzer-observations.json",
+      "bytes": 67345,
+      "sha256": "4ecdc174e1319176f5d122e95c6c5962a2b35bb77b665dcdb1983f6e9ceccbae",
+      "git_blob_sha": "934a573d97ad5f13ba1a2eb12bc7d93af19930b0",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/analyzer-observations.json",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/host-b721-flutter-acceptance-20261114/download-and-source-proof.json",
+      "bytes": 1469,
+      "sha256": "b838dbcc0570e3930a0b17d7287c3b1cc09b9b32a87266d21fba79f4e3dee9a0",
+      "git_blob_sha": "c1dba3da5df79c615ae93c2475d918578dcf6702",
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-b721-flutter-acceptance-20261114/download-and-source-proof.json",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "manifest_target": "docs/evidence/host-b721-flutter-acceptance-20261114/upload-manifest.json"
+}

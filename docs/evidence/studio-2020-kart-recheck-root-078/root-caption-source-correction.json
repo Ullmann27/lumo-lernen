@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "checked_at": "2026-11-14T10:30:57.731364+00:00",
+  "applies_to_review": "docs/evidence/studio-2020-unified-078-failure-originals/review-root.json",
+  "prior_commit": "5e394b9ffff1f817d008067a2397fbe35bca0a8b",
+  "correction": "The root image finding quoted the faint visible cue as Tippe zum Überspringen. The exact bound native source says Tippen zum Überspringen. This spelling correction does not change the observed presence of the preview, the failure, or any runtime result.",
+  "exact_caption": "Tippen zum Überspringen",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "source_path": "scripts/games/kart_island.gd",
+  "source_sha256": "11cc762f98c7520d31d15bae16fc3dfcd2e6cde82bc2746fd71043dad379c37c",
+  "source_git_blob": "8319609143cc6de2b2f618a4c262cf1903fd290c",
+  "actual_probe_caption_matches_source": true
+}

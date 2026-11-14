@@ -1,0 +1,7418 @@
+{
+  "artifact": 14097214798,
+  "zip_bytes": 148289539,
+  "zip_sha256": "35c55b50a6ae1616651b75922b6d84fc3ca8d5d9373f1b94d18b9e44ebd332cc",
+  "crc_pass": true,
+  "members": [
+    {
+      "member": "01_erster_start.png",
+      "bytes": 201138,
+      "crc32": "b74c89e9"
+    },
+    {
+      "member": "07_home_after_onboarding-render-candidate-1.png",
+      "bytes": 21099,
+      "crc32": "c54e10b3"
+    },
+    {
+      "member": "07_home_after_onboarding-render-candidate-2.png",
+      "bytes": 21099,
+      "crc32": "c54e10b3"
+    },
+    {
+      "member": "07_home_after_onboarding-render-readiness.json",
+      "bytes": 1336,
+      "crc32": "cc3c7304"
+    },
+    {
+      "member": "07_home_after_onboarding.png",
+      "bytes": 1478448,
+      "crc32": "426b2af8"
+    },
+    {
+      "member": "08_games_after_navigation.png",
+      "bytes": 870153,
+      "crc32": "7b2e40ca"
+    },
+    {
+      "member": "10_lernen-render-readiness.json",
+      "bytes": 528,
+      "crc32": "72dc4ff9"
+    },
+    {
+      "member": "10_lernen.png",
+      "bytes": 1893481,
+      "crc32": "1f089235"
+    },
+    {
+      "member": "10_start-render-readiness.json",
+      "bytes": 525,
+      "crc32": "c983b1b4"
+    },
+    {
+      "member": "10_start.png",
+      "bytes": 3102080,
+      "crc32": "5136e178"
+    },
+    {
+      "member": "11_atelier_hub-render-readiness.json",
+      "bytes": 538,
+      "crc32": "816fcd69"
+    },
+    {
+      "member": "11_atelier_hub.png",
+      "bytes": 468738,
+      "crc32": "aa536262"
+    },
+    {
+      "member": "12_atelier_beispiel-render-readiness.json",
+      "bytes": 548,
+      "crc32": "aab0d756"
+    },
+    {
+      "member": "12_atelier_beispiel.png",
+      "bytes": 347127,
+      "crc32": "b7788836"
+    },
+    {
+      "member": "13_atelier_zehnerbruecke-render-readiness.json",
+      "bytes": 557,
+      "crc32": "db4cb59b"
+    },
+    {
+      "member": "13_atelier_zehnerbruecke.png",
+      "bytes": 679307,
+      "crc32": "7313b536"
+    },
+    {
+      "member": "20_spiele-render-readiness.json",
+      "bytes": 528,
+      "crc32": "4be93060"
+    },
+    {
+      "member": "20_spiele.png",
+      "bytes": 1936083,
+      "crc32": "0c3dfdf7"
+    },
+    {
+      "member": "21_kart_premium_start.png",
+      "bytes": 884944,
+      "crc32": "08665207"
+    },
+    {
+      "member": "21_kart_race_frame_check.json",
+      "bytes": 1475,
+      "crc32": "757152d5"
+    },
+    {
+      "member": "21_kart_real_touches.json",
+      "bytes": 104,
+      "crc32": "f42bfe32"
+    },
+    {
+      "member": "21_lumo_kart_12s.png",
+      "bytes": 2663317,
+      "crc32": "2503ff2a"
+    },
+    {
+      "member": "21_lumo_kart_20s.png",
+      "bytes": 886534,
+      "crc32": "bc934e53"
+    },
+    {
+      "member": "21_lumo_kart_pause.png",
+      "bytes": 818555,
+      "crc32": "a8b27d06"
+    },
+    {
+      "member": "21_lumo_kart_real_race.png",
+      "bytes": 1931044,
+      "crc32": "0e49d205"
+    },
+    {
+      "member": "21_pause_first-session.cfg",
+      "bytes": 2015,
+      "crc32": "45421862"
+    },
+    {
+      "member": "21_pause_resume-0-ocr-contrast.tsv",
+      "bytes": 2071,
+      "crc32": "76781781"
+    },
+    {
+      "member": "21_pause_resume-0-ocr.json",
+      "bytes": 1561,
+      "crc32": "55244a2b"
+    },
+    {
+      "member": "21_pause_resume-0.png",
+      "bytes": 818237,
+      "crc32": "0e10110e"
+    },
+    {
+      "member": "21_pause_second-session.cfg",
+      "bytes": 2015,
+      "crc32": "45421862"
+    },
+    {
+      "member": "21_pause_title-0-ocr-components.json",
+      "bytes": 6239,
+      "crc32": "bd83496c"
+    },
+    {
+      "member": "21_pause_title-0-ocr-contrast.tsv",
+      "bytes": 8141,
+      "crc32": "410b5bbe"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-0.png",
+      "bytes": 35306,
+      "crc32": "e839c27c"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-0.tsv",
+      "bytes": 111,
+      "crc32": "2d3cd5ff"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-1.png",
+      "bytes": 17419,
+      "crc32": "36e28005"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-1.tsv",
+      "bytes": 111,
+      "crc32": "960afd72"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-10.png",
+      "bytes": 4251,
+      "crc32": "f15ba96f"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-10.tsv",
+      "bytes": 222,
+      "crc32": "42f21712"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-11.png",
+      "bytes": 4823,
+      "crc32": "e16e33d6"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-11.tsv",
+      "bytes": 222,
+      "crc32": "e0a5e05c"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-12.png",
+      "bytes": 4945,
+      "crc32": "0e9f520b"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-12.tsv",
+      "bytes": 222,
+      "crc32": "c6b5225e"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-13.png",
+      "bytes": 1614,
+      "crc32": "6ba5b41b"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-13.tsv",
+      "bytes": 109,
+      "crc32": "8c6156a2"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-14.png",
+      "bytes": 3847,
+      "crc32": "5bee6b62"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-14.tsv",
+      "bytes": 222,
+      "crc32": "26c3c861"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-15.png",
+      "bytes": 3419,
+      "crc32": "a8baf8dc"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-15.tsv",
+      "bytes": 222,
+      "crc32": "1dfdab0c"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-2.png",
+      "bytes": 10063,
+      "crc32": "a08ca542"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-2.tsv",
+      "bytes": 228,
+      "crc32": "386311df"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-3.png",
+      "bytes": 5178,
+      "crc32": "481a585c"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-3.tsv",
+      "bytes": 110,
+      "crc32": "0ce6d6e5"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-4.png",
+      "bytes": 20728,
+      "crc32": "9acc4b4b"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-4.tsv",
+      "bytes": 232,
+      "crc32": "c71f116f"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-5.png",
+      "bytes": 10850,
+      "crc32": "1b171bb1"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-5.tsv",
+      "bytes": 227,
+      "crc32": "e7f815c9"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-6.png",
+      "bytes": 10017,
+      "crc32": "17af75ed"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-6.tsv",
+      "bytes": 222,
+      "crc32": "9c6f231b"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-7.png",
+      "bytes": 4779,
+      "crc32": "886e7c9b"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-7.tsv",
+      "bytes": 279,
+      "crc32": "12a2ea2d"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-8.png",
+      "bytes": 4810,
+      "crc32": "2129bc81"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-8.tsv",
+      "bytes": 227,
+      "crc32": "85f1d0a5"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-9.png",
+      "bytes": 467,
+      "crc32": "283afcbf"
+    },
+    {
+      "member": "21_pause_title-0-ocr-gold-component-9.tsv",
+      "bytes": 259,
+      "crc32": "e03e20cb"
+    },
+    {
+      "member": "21_pause_title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 2517,
+      "crc32": "87c0040a"
+    },
+    {
+      "member": "21_pause_title-0-ocr-navy-latin.tsv",
+      "bytes": 4540,
+      "crc32": "ee292593"
+    },
+    {
+      "member": "21_pause_title-0-ocr-raw.tsv",
+      "bytes": 5807,
+      "crc32": "8facbf60"
+    },
+    {
+      "member": "21_pause_title-0-ocr-teal-text-1x.tsv",
+      "bytes": 8658,
+      "crc32": "0a279775"
+    },
+    {
+      "member": "21_pause_title-0-ocr-tiles.json",
+      "bytes": 4854,
+      "crc32": "b4cbdc63"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 56836,
+      "crc32": "1f144b45"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 2768,
+      "crc32": "b05f95de"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 39270,
+      "crc32": "0f9cf5a2"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1341,
+      "crc32": "b85de5a6"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 142449,
+      "crc32": "3fd2df27"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 4896,
+      "crc32": "e0dae160"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 64790,
+      "crc32": "069c3236"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1142,
+      "crc32": "fdcb573b"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 74578,
+      "crc32": "2d7a93fe"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1751,
+      "crc32": "cf92b008"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 75148,
+      "crc32": "201e380d"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 3654,
+      "crc32": "c7cf3512"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-0.png",
+      "bytes": 48957,
+      "crc32": "606bde96"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 2098,
+      "crc32": "fb02c606"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-1.png",
+      "bytes": 28608,
+      "crc32": "97ace5c8"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1157,
+      "crc32": "1daef188"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-2.png",
+      "bytes": 121673,
+      "crc32": "4d80ca40"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 3491,
+      "crc32": "eeff737b"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-3.png",
+      "bytes": 48845,
+      "crc32": "b5315d3a"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 1030,
+      "crc32": "36c22e00"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-4.png",
+      "bytes": 53451,
+      "crc32": "a330bf44"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 971,
+      "crc32": "66fb66c6"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-5.png",
+      "bytes": 62932,
+      "crc32": "fde4819e"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 3047,
+      "crc32": "3f2d4384"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-latin.tsv",
+      "bytes": 7979,
+      "crc32": "79985d79"
+    },
+    {
+      "member": "21_pause_title-0-ocr-white-text.tsv",
+      "bytes": 7864,
+      "crc32": "25b206f7"
+    },
+    {
+      "member": "21_pause_title-0.png",
+      "bytes": 1721084,
+      "crc32": "752bb810"
+    },
+    {
+      "member": "21_pause_title-0-ocr.json",
+      "bytes": 33443,
+      "crc32": "4db79c62"
+    },
+    {
+      "member": "21_pause_title-1-ocr-contrast.tsv",
+      "bytes": 2071,
+      "crc32": "76781781"
+    },
+    {
+      "member": "21_pause_title-1-ocr.json",
+      "bytes": 1425,
+      "crc32": "05ce4506"
+    },
+    {
+      "member": "21_pause_title-1.png",
+      "bytes": 818490,
+      "crc32": "2b5b6ee7"
+    },
+    {
+      "member": "21_race_after_gas_poll_0-session.cfg",
+      "bytes": 2040,
+      "crc32": "619e8860"
+    },
+    {
+      "member": "21_race_after_gas_pulse_0-session.cfg",
+      "bytes": 2032,
+      "crc32": "cc1428f8"
+    },
+    {
+      "member": "21_race_after_gas_pulse_1-session.cfg",
+      "bytes": 2032,
+      "crc32": "cc1428f8"
+    },
+    {
+      "member": "21_race_after_gas_pulse_2-session.cfg",
+      "bytes": 2032,
+      "crc32": "cc1428f8"
+    },
+    {
+      "member": "21_race_before_gas.png",
+      "bytes": 1982158,
+      "crc32": "d7dacdb1"
+    },
+    {
+      "member": "21_race_drive_telemetry.json",
+      "bytes": 989,
+      "crc32": "14ebd11d"
+    },
+    {
+      "member": "21_race_driving_late_0.png",
+      "bytes": 1920455,
+      "crc32": "e551a87e"
+    },
+    {
+      "member": "21_race_driving_late_1.png",
+      "bytes": 2039057,
+      "crc32": "5edadd4e"
+    },
+    {
+      "member": "21_race_driving_late_2.png",
+      "bytes": 1969375,
+      "crc32": "b4ab6c7a"
+    },
+    {
+      "member": "21_race_driving_mid_0.png",
+      "bytes": 1967878,
+      "crc32": "46cf9f8d"
+    },
+    {
+      "member": "21_race_driving_mid_1.png",
+      "bytes": 2033601,
+      "crc32": "0b4cfb17"
+    },
+    {
+      "member": "21_race_driving_mid_2.png",
+      "bytes": 1992212,
+      "crc32": "6bb4803c"
+    },
+    {
+      "member": "21_race_hud.png",
+      "bytes": 1981772,
+      "crc32": "4b7286e6"
+    },
+    {
+      "member": "21_race_hud_0-focused-hud.json",
+      "bytes": 127,
+      "crc32": "756b6b42"
+    },
+    {
+      "member": "21_race_hud_0.png",
+      "bytes": 1962664,
+      "crc32": "2e0f9fcb"
+    },
+    {
+      "member": "21_race_hud_1-focused-hud.json",
+      "bytes": 128,
+      "crc32": "d1a5c592"
+    },
+    {
+      "member": "21_race_hud_1.png",
+      "bytes": 2065807,
+      "crc32": "4a7616a0"
+    },
+    {
+      "member": "21_race_hud_2-focused-hud.json",
+      "bytes": 128,
+      "crc32": "d1a5c592"
+    },
+    {
+      "member": "21_race_hud_2.png",
+      "bytes": 2087141,
+      "crc32": "1426f5b7"
+    },
+    {
+      "member": "21_race_hud_3-focused-hud.json",
+      "bytes": 128,
+      "crc32": "f800487e"
+    },
+    {
+      "member": "21_race_hud_3.png",
+      "bytes": 2004558,
+      "crc32": "9876c87d"
+    },
+    {
+      "member": "21_race_hud_4-gas-ocr-contrast.tsv",
+      "bytes": 10222,
+      "crc32": "a4a54b63"
+    },
+    {
+      "member": "21_race_hud_4-gas-ocr.json",
+      "bytes": 7781,
+      "crc32": "0e36aeba"
+    },
+    {
+      "member": "21_race_hud_4.png",
+      "bytes": 1981772,
+      "crc32": "4b7286e6"
+    },
+    {
+      "member": "21_race_running_0-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_10-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_1-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_11-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_12-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_13-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_14-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_15-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_16-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_17-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_18-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_19-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_2-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_20-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_21-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_22-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_23-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_24-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_25-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_26-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_27-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_28-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_29-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_3-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_30-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_31-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_32-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_33-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_34-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_35-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_36-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_37-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_38-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_39-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_4-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_40-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_41-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_42-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_43-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_44-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_45-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_46-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_47-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_48-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_49-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_5-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_50-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_51-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_52-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_53-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_54-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_55-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_56-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_57-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_58-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_6-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_59-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_60-session.cfg",
+      "bytes": 2032,
+      "crc32": "cc1428f8"
+    },
+    {
+      "member": "21_race_running_7-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_8-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_race_running_9-session.cfg",
+      "bytes": 1876,
+      "crc32": "f181c75c"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-components.json",
+      "bytes": 2836,
+      "crc32": "62b83739"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-contrast.tsv",
+      "bytes": 5759,
+      "crc32": "a421ecd5"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-0.png",
+      "bytes": 26068,
+      "crc32": "bd0dd664"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-1.png",
+      "bytes": 12145,
+      "crc32": "309794eb"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-0.tsv",
+      "bytes": 422,
+      "crc32": "0577e7cd"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-1.tsv",
+      "bytes": 231,
+      "crc32": "edf29727"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-2.png",
+      "bytes": 2890,
+      "crc32": "ce587c78"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-2.tsv",
+      "bytes": 109,
+      "crc32": "a5563f3a"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-3.png",
+      "bytes": 2153,
+      "crc32": "d8915d44"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-3.tsv",
+      "bytes": 109,
+      "crc32": "a1a3ef07"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-4.png",
+      "bytes": 2189,
+      "crc32": "804dd520"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-4.tsv",
+      "bytes": 109,
+      "crc32": "a1a3ef07"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-5.png",
+      "bytes": 3944,
+      "crc32": "4ccdc8d2"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-gold-component-5.tsv",
+      "bytes": 287,
+      "crc32": "c25428d4"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-navy-latin-1x.tsv",
+      "bytes": 2029,
+      "crc32": "3e7a0664"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-navy-latin.tsv",
+      "bytes": 2468,
+      "crc32": "6b7244e0"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-raw.tsv",
+      "bytes": 4821,
+      "crc32": "09c11ab4"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-teal-text-1x.tsv",
+      "bytes": 5271,
+      "crc32": "9da073e0"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-tiles.json",
+      "bytes": 5223,
+      "crc32": "c3bbcf13"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 27002,
+      "crc32": "5bbd834f"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1226,
+      "crc32": "fed1c6da"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 20138,
+      "crc32": "f505de7b"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 481,
+      "crc32": "7d611f1b"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 33844,
+      "crc32": "8ed8f6f6"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1478,
+      "crc32": "2a9b3b3f"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 40160,
+      "crc32": "f7219075"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 30149,
+      "crc32": "60169fdc"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1780,
+      "crc32": "17b8bf7f"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1051,
+      "crc32": "be0197df"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 19018,
+      "crc32": "8c9944ff"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 881,
+      "crc32": "db6e35e7"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-0.png",
+      "bytes": 26417,
+      "crc32": "95504b7c"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1231,
+      "crc32": "7af05e16"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-1.png",
+      "bytes": 18546,
+      "crc32": "d5f52cee"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 481,
+      "crc32": "d091cb0f"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-2.png",
+      "bytes": 28200,
+      "crc32": "21115dc4"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1220,
+      "crc32": "c0e6f5a0"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-3.png",
+      "bytes": 31367,
+      "crc32": "bb9ad6b3"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 851,
+      "crc32": "43512288"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-4.png",
+      "bytes": 29416,
+      "crc32": "7853f18b"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1051,
+      "crc32": "6e565ad4"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-5.png",
+      "bytes": 16117,
+      "crc32": "ec712060"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 419,
+      "crc32": "79b9cd07"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-latin.tsv",
+      "bytes": 3214,
+      "crc32": "0f5bad15"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr-white-text.tsv",
+      "bytes": 3295,
+      "crc32": "b0e39785"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0-ocr.json",
+      "bytes": 19464,
+      "crc32": "1b280379"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-0.png",
+      "bytes": 755691,
+      "crc32": "1a65753f"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-1-ocr-contrast.tsv",
+      "bytes": 4544,
+      "crc32": "6f68137e"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-1-ocr.json",
+      "bytes": 3454,
+      "crc32": "8e7b4307"
+    },
+    {
+      "member": "21_stage_driver-landing-restored-1.png",
+      "bytes": 884981,
+      "crc32": "7e767620"
+    },
+    {
+      "member": "21_stage_driver-open-0-ocr-contrast.tsv",
+      "bytes": 4904,
+      "crc32": "a665c215"
+    },
+    {
+      "member": "21_stage_driver-open-0-ocr.json",
+      "bytes": 3586,
+      "crc32": "91b35861"
+    },
+    {
+      "member": "21_stage_driver-open-0.png",
+      "bytes": 884766,
+      "crc32": "2f6e9b01"
+    },
+    {
+      "member": "21_stage_driver-open-1-ocr-contrast.tsv",
+      "bytes": 4214,
+      "crc32": "b7690594"
+    },
+    {
+      "member": "21_stage_driver-open-1-ocr.json",
+      "bytes": 3198,
+      "crc32": "7590f331"
+    },
+    {
+      "member": "21_stage_driver-open-1.png",
+      "bytes": 884363,
+      "crc32": "9783e3f1"
+    },
+    {
+      "member": "21_stage_driver-open-surface-readiness.json",
+      "bytes": 2743,
+      "crc32": "1ec1cb60"
+    },
+    {
+      "member": "21_stage_driver-return-0.png",
+      "bytes": 755747,
+      "crc32": "024d1e6f"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-components.json",
+      "bytes": 3608,
+      "crc32": "66a41355"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-contrast.tsv",
+      "bytes": 4639,
+      "crc32": "3a18130b"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-0.png",
+      "bytes": 19436,
+      "crc32": "f0cfa0a6"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-0.tsv",
+      "bytes": 281,
+      "crc32": "2d35f73b"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-1.png",
+      "bytes": 3603,
+      "crc32": "6709bb3d"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-1.tsv",
+      "bytes": 109,
+      "crc32": "5100d7d2"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-2.png",
+      "bytes": 2156,
+      "crc32": "9b0bdbc5"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-3.png",
+      "bytes": 3203,
+      "crc32": "561fe0dd"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-2.tsv",
+      "bytes": 222,
+      "crc32": "0372393e"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-3.tsv",
+      "bytes": 109,
+      "crc32": "a5563f3a"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-4.png",
+      "bytes": 10349,
+      "crc32": "ceec41b8"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-4.tsv",
+      "bytes": 109,
+      "crc32": "9d1ab5b1"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-5.png",
+      "bytes": 1962,
+      "crc32": "278310df"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-5.tsv",
+      "bytes": 221,
+      "crc32": "6e6d7ad1"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-6.png",
+      "bytes": 4211,
+      "crc32": "ac1a4e17"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-6.tsv",
+      "bytes": 221,
+      "crc32": "6b597d07"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-7.png",
+      "bytes": 5325,
+      "crc32": "0de676b3"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-gold-component-7.tsv",
+      "bytes": 226,
+      "crc32": "f4c4f399"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-navy-latin-1x.tsv",
+      "bytes": 2251,
+      "crc32": "919a971a"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-navy-latin.tsv",
+      "bytes": 3125,
+      "crc32": "a9f0930d"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-raw.tsv",
+      "bytes": 5240,
+      "crc32": "5faa060d"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-teal-text-1x.tsv",
+      "bytes": 5884,
+      "crc32": "d2daf276"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-tiles.json",
+      "bytes": 5227,
+      "crc32": "4d933790"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 33570,
+      "crc32": "31c0fd1c"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1333,
+      "crc32": "4c6b208e"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 27041,
+      "crc32": "bc8b180a"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1228,
+      "crc32": "edd37735"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 42315,
+      "crc32": "ac25e949"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1226,
+      "crc32": "7d5a9351"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 39859,
+      "crc32": "b582b2f9"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 986,
+      "crc32": "c5e9976e"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 33560,
+      "crc32": "719e7df4"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1299,
+      "crc32": "7c0e713f"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 26379,
+      "crc32": "9f24fa27"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-0.png",
+      "bytes": 32070,
+      "crc32": "b685e12d"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 785,
+      "crc32": "402472e3"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1297,
+      "crc32": "6b4d696b"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-1.png",
+      "bytes": 25785,
+      "crc32": "ed8dc65d"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1266,
+      "crc32": "e132daf2"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-2.png",
+      "bytes": 31194,
+      "crc32": "31d8c843"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 943,
+      "crc32": "134310c1"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-3.png",
+      "bytes": 32992,
+      "crc32": "5fe33e69"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 814,
+      "crc32": "51b3ff35"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-4.png",
+      "bytes": 29096,
+      "crc32": "c2793d49"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1066,
+      "crc32": "f83ee9df"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-5.png",
+      "bytes": 21172,
+      "crc32": "7fa851bf"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 628,
+      "crc32": "bd18fd89"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-latin.tsv",
+      "bytes": 3926,
+      "crc32": "96215d58"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr-white-text.tsv",
+      "bytes": 3924,
+      "crc32": "a78cee0b"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0-ocr.json",
+      "bytes": 21606,
+      "crc32": "4bad390f"
+    },
+    {
+      "member": "21_stage_driver-section-visible-0.png",
+      "bytes": 884602,
+      "crc32": "74951bb3"
+    },
+    {
+      "member": "21_stage_driver-section-visible-1-ocr-contrast.tsv",
+      "bytes": 5394,
+      "crc32": "0fee6661"
+    },
+    {
+      "member": "21_stage_driver-section-visible-1-ocr.json",
+      "bytes": 4369,
+      "crc32": "6ff67d3f"
+    },
+    {
+      "member": "21_stage_driver-section-visible-1.png",
+      "bytes": 755942,
+      "crc32": "ca86fdf0"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-components.json",
+      "bytes": 2841,
+      "crc32": "0cc477cb"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-contrast.tsv",
+      "bytes": 5013,
+      "crc32": "93206d37"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-0.png",
+      "bytes": 27208,
+      "crc32": "b86290d7"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-0.tsv",
+      "bytes": 112,
+      "crc32": "005bd329"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-1.png",
+      "bytes": 2890,
+      "crc32": "ce587c78"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-1.tsv",
+      "bytes": 109,
+      "crc32": "a5563f3a"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-2.png",
+      "bytes": 2153,
+      "crc32": "d8915d44"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-2.tsv",
+      "bytes": 109,
+      "crc32": "a1a3ef07"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-3.tsv",
+      "bytes": 109,
+      "crc32": "a1a3ef07"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-4.png",
+      "bytes": 4366,
+      "crc32": "b158ba05"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-4.tsv",
+      "bytes": 220,
+      "crc32": "34ce94d4"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-3.png",
+      "bytes": 2189,
+      "crc32": "804dd520"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-5.png",
+      "bytes": 4875,
+      "crc32": "15c163e3"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-gold-component-5.tsv",
+      "bytes": 222,
+      "crc32": "afb1e355"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-navy-latin-1x.tsv",
+      "bytes": 2455,
+      "crc32": "a48d266f"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-navy-latin.tsv",
+      "bytes": 1810,
+      "crc32": "133f1b86"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-raw.tsv",
+      "bytes": 3368,
+      "crc32": "9c5dcbf8"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-teal-text-1x.tsv",
+      "bytes": 4983,
+      "crc32": "69b69503"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-tiles.json",
+      "bytes": 5221,
+      "crc32": "2908f44e"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 30254,
+      "crc32": "667f50ed"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1506,
+      "crc32": "616825d2"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 28860,
+      "crc32": "bd7948aa"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 714,
+      "crc32": "819653ff"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 27814,
+      "crc32": "1acfe0e8"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1407,
+      "crc32": "8e4e680c"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 40731,
+      "crc32": "b9f0e803"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1704,
+      "crc32": "3b25cfd6"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 36928,
+      "crc32": "4872f0b8"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1337,
+      "crc32": "13e32cb5"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 29709,
+      "crc32": "4562924e"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 1202,
+      "crc32": "5657f26e"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-0.png",
+      "bytes": 28867,
+      "crc32": "f7ad787b"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1326,
+      "crc32": "ec19b893"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-1.png",
+      "bytes": 28377,
+      "crc32": "c30ca44a"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 714,
+      "crc32": "ea4d6db5"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-3.png",
+      "bytes": 30950,
+      "crc32": "4fb27ee2"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 849,
+      "crc32": "1c5a790c"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-2.png",
+      "bytes": 22431,
+      "crc32": "1f191060"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 977,
+      "crc32": "a9b83824"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-4.png",
+      "bytes": 34990,
+      "crc32": "14095e95"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1321,
+      "crc32": "4ecdb587"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-5.png",
+      "bytes": 25109,
+      "crc32": "97a61d0a"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 682,
+      "crc32": "18c68c76"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-latin.tsv",
+      "bytes": 3351,
+      "crc32": "77706281"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr-white-text.tsv",
+      "bytes": 3352,
+      "crc32": "398a7447"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0-ocr.json",
+      "bytes": 17541,
+      "crc32": "6ff7afaa"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-0.png",
+      "bytes": 766150,
+      "crc32": "29482da4"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-1-ocr-contrast.tsv",
+      "bytes": 4623,
+      "crc32": "b3918a2f"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-1-ocr.json",
+      "bytes": 3323,
+      "crc32": "5f6821a0"
+    },
+    {
+      "member": "21_stage_garage-landing-restored-1.png",
+      "bytes": 884917,
+      "crc32": "c5a97aab"
+    },
+    {
+      "member": "21_stage_garage-open-0-ocr.json",
+      "bytes": 3578,
+      "crc32": "f51dfb6b"
+    },
+    {
+      "member": "21_stage_garage-open-0.png",
+      "bytes": 885172,
+      "crc32": "e02b2d54"
+    },
+    {
+      "member": "21_stage_garage-open-1-ocr-contrast.tsv",
+      "bytes": 4547,
+      "crc32": "859919bf"
+    },
+    {
+      "member": "21_stage_garage-open-0-ocr-contrast.tsv",
+      "bytes": 4763,
+      "crc32": "6b30fb6d"
+    },
+    {
+      "member": "21_stage_garage-open-1-ocr.json",
+      "bytes": 3450,
+      "crc32": "804caed5"
+    },
+    {
+      "member": "21_stage_garage-open-1.png",
+      "bytes": 885260,
+      "crc32": "0773ded9"
+    },
+    {
+      "member": "21_stage_garage-open-surface-readiness.json",
+      "bytes": 2743,
+      "crc32": "65c28e0c"
+    },
+    {
+      "member": "21_stage_garage-return-0.png",
+      "bytes": 765915,
+      "crc32": "4609873d"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-contrast.tsv",
+      "bytes": 4349,
+      "crc32": "c30547b8"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-components.json",
+      "bytes": 3610,
+      "crc32": "5444aed8"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-0.png",
+      "bytes": 19436,
+      "crc32": "f0cfa0a6"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-0.tsv",
+      "bytes": 281,
+      "crc32": "2d35f73b"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-1.png",
+      "bytes": 3603,
+      "crc32": "6709bb3d"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-1.tsv",
+      "bytes": 109,
+      "crc32": "5100d7d2"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-2.png",
+      "bytes": 2175,
+      "crc32": "937d2bb7"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-2.tsv",
+      "bytes": 222,
+      "crc32": "0372393e"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-3.png",
+      "bytes": 3203,
+      "crc32": "561fe0dd"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-3.tsv",
+      "bytes": 109,
+      "crc32": "a5563f3a"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-4.png",
+      "bytes": 10315,
+      "crc32": "0850b76f"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-4.tsv",
+      "bytes": 285,
+      "crc32": "2d2152df"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-5.png",
+      "bytes": 1962,
+      "crc32": "278310df"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-5.tsv",
+      "bytes": 221,
+      "crc32": "6e6d7ad1"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-6.png",
+      "bytes": 4216,
+      "crc32": "1beaca19"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-6.tsv",
+      "bytes": 221,
+      "crc32": "85a9639a"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-7.png",
+      "bytes": 5363,
+      "crc32": "9251765e"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-gold-component-7.tsv",
+      "bytes": 226,
+      "crc32": "f45b8f12"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-navy-latin-1x.tsv",
+      "bytes": 1977,
+      "crc32": "c006a610"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-navy-latin.tsv",
+      "bytes": 3332,
+      "crc32": "8687c166"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-raw.tsv",
+      "bytes": 4449,
+      "crc32": "f16af870"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-teal-text-1x.tsv",
+      "bytes": 5278,
+      "crc32": "d57a6d5a"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-tiles.json",
+      "bytes": 5226,
+      "crc32": "272462b7"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 33750,
+      "crc32": "44276b96"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1296,
+      "crc32": "a7980a4f"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 27041,
+      "crc32": "bc8b180a"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1228,
+      "crc32": "edd37735"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 42925,
+      "crc32": "5e30b748"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1226,
+      "crc32": "49f976ae"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 40495,
+      "crc32": "c36f334f"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 986,
+      "crc32": "c5e9976e"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 33358,
+      "crc32": "9ceebb14"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1248,
+      "crc32": "b39da9a0"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 26248,
+      "crc32": "5d777c5b"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 785,
+      "crc32": "420242f1"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-0.png",
+      "bytes": 32274,
+      "crc32": "93007c3e"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1297,
+      "crc32": "83dccc49"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-1.png",
+      "bytes": 25785,
+      "crc32": "ed8dc65d"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1266,
+      "crc32": "e132daf2"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-2.png",
+      "bytes": 30770,
+      "crc32": "1849bfd4"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 940,
+      "crc32": "b2afe6f3"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-3.png",
+      "bytes": 33041,
+      "crc32": "3a857b85"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 814,
+      "crc32": "51b3ff35"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-4.png",
+      "bytes": 28553,
+      "crc32": "60dd42a8"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1203,
+      "crc32": "05d10c8d"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-5.png",
+      "bytes": 21293,
+      "crc32": "9e9d1104"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 765,
+      "crc32": "490a959c"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-latin.tsv",
+      "bytes": 3792,
+      "crc32": "5f7e4830"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr-white-text.tsv",
+      "bytes": 3783,
+      "crc32": "79901b02"
+    },
+    {
+      "member": "21_stage_garage-section-visible-1-ocr-raw.tsv",
+      "bytes": 3686,
+      "crc32": "c600d556"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0-ocr.json",
+      "bytes": 19558,
+      "crc32": "62c6b43a"
+    },
+    {
+      "member": "21_stage_garage-section-visible-0.png",
+      "bytes": 885077,
+      "crc32": "ba94d646"
+    },
+    {
+      "member": "21_stage_garage-section-visible-1-ocr-contrast.tsv",
+      "bytes": 5390,
+      "crc32": "210cef45"
+    },
+    {
+      "member": "21_stage_garage-section-visible-1-ocr-white-text.tsv",
+      "bytes": 3294,
+      "crc32": "426e8706"
+    },
+    {
+      "member": "21_stage_garage-section-visible-1-ocr.json",
+      "bytes": 9460,
+      "crc32": "8529d205"
+    },
+    {
+      "member": "21_stage_garage-section-visible-1.png",
+      "bytes": 766982,
+      "crc32": "42342b88"
+    },
+    {
+      "member": "21_stage_mode_cup-0-ocr-contrast.tsv",
+      "bytes": 4347,
+      "crc32": "ec7202ad"
+    },
+    {
+      "member": "21_stage_mode_cup-0-ocr.json",
+      "bytes": 3459,
+      "crc32": "adedc9c8"
+    },
+    {
+      "member": "21_stage_mode_cup-0.png",
+      "bytes": 887601,
+      "crc32": "4a524f98"
+    },
+    {
+      "member": "21_stage_mode_cup-1-ocr-contrast.tsv",
+      "bytes": 4878,
+      "crc32": "596eef5f"
+    },
+    {
+      "member": "21_stage_mode_cup-1-ocr.json",
+      "bytes": 3714,
+      "crc32": "ee9b7d9b"
+    },
+    {
+      "member": "21_stage_mode_cup-1.png",
+      "bytes": 884123,
+      "crc32": "452222a9"
+    },
+    {
+      "member": "21_stage_mode_cup-surface-readiness.json",
+      "bytes": 2741,
+      "crc32": "5a7db3af"
+    },
+    {
+      "member": "21_stage_navigation.json",
+      "bytes": 707,
+      "crc32": "95f0446e"
+    },
+    {
+      "member": "23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 467,
+      "crc32": "7f658039"
+    },
+    {
+      "member": "23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+      "bytes": 6344,
+      "crc32": "c556defd"
+    },
+    {
+      "member": "23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+      "bytes": 4992,
+      "crc32": "a303361e"
+    },
+    {
+      "member": "23_zurueck_in_flutter-flutter-visible-0.png",
+      "bytes": 1928575,
+      "crc32": "b2a80385"
+    },
+    {
+      "member": "23_zurueck_in_flutter.png",
+      "bytes": 1928559,
+      "crc32": "896384be"
+    },
+    {
+      "member": "24_lernen_nach_kart.png",
+      "bytes": 1893539,
+      "crc32": "6d8dc3e4"
+    },
+    {
+      "member": "25_start_nach_kart.png",
+      "bytes": 2810336,
+      "crc32": "99bedc4c"
+    },
+    {
+      "member": "26_neustart.png",
+      "bytes": 3102057,
+      "crc32": "82b76346"
+    },
+    {
+      "member": "30_fold_aussen.png",
+      "bytes": 2563189,
+      "crc32": "beb1fe2b"
+    },
+    {
+      "member": "30_quer.png",
+      "bytes": 1826916,
+      "crc32": "a5dacf79"
+    },
+    {
+      "member": "30_fold_offen.png",
+      "bytes": 4267495,
+      "crc32": "488a2e12"
+    },
+    {
+      "member": "after-kart-preferences.xml",
+      "bytes": 2011,
+      "crc32": "62bcc272"
+    },
+    {
+      "member": "after-restart-preferences.xml",
+      "bytes": 2011,
+      "crc32": "4b51570d"
+    },
+    {
+      "member": "android-release.txt",
+      "bytes": 3,
+      "crc32": "980c7d1d"
+    },
+    {
+      "member": "android-sdk.txt",
+      "bytes": 3,
+      "crc32": "9b88a973"
+    },
+    {
+      "member": "atelier-after-return.xml",
+      "bytes": 33089,
+      "crc32": "cb5bac2e"
+    },
+    {
+      "member": "android-emulator-version.txt",
+      "bytes": 655,
+      "crc32": "1a0e9259"
+    },
+    {
+      "member": "atelier-build--1-0.xml",
+      "bytes": 21301,
+      "crc32": "2894eca7"
+    },
+    {
+      "member": "atelier-enter-bridge--1-0.xml",
+      "bytes": 23563,
+      "crc32": "e9c65072"
+    },
+    {
+      "member": "atelier-home-entry--1-0.xml",
+      "bytes": 31792,
+      "crc32": "7f2c54b1"
+    },
+    {
+      "member": "atelier-home-entry--1-1.xml",
+      "bytes": 31799,
+      "crc32": "e761f415"
+    },
+    {
+      "member": "atelier-home-entry--1-10.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry--1-11.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry--1-12.xml",
+      "bytes": 31792,
+      "crc32": "b57679f4"
+    },
+    {
+      "member": "atelier-home-entry--1-13.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry--1-14.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry--1-15.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry--1-16.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry--1-2.xml",
+      "bytes": 31799,
+      "crc32": "e761f415"
+    },
+    {
+      "member": "atelier-home-entry--1-17.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry--1-18.xml",
+      "bytes": 31792,
+      "crc32": "b57679f4"
+    },
+    {
+      "member": "atelier-home-entry--1-3.xml",
+      "bytes": 31799,
+      "crc32": "e761f415"
+    },
+    {
+      "member": "atelier-home-entry--1-4.xml",
+      "bytes": 31799,
+      "crc32": "e761f415"
+    },
+    {
+      "member": "atelier-home-entry--1-5.xml",
+      "bytes": 31792,
+      "crc32": "8f98f660"
+    },
+    {
+      "member": "atelier-home-entry--1-6.xml",
+      "bytes": 31792,
+      "crc32": "7f2c54b1"
+    },
+    {
+      "member": "atelier-home-entry--1-7.xml",
+      "bytes": 31792,
+      "crc32": "7f2c54b1"
+    },
+    {
+      "member": "atelier-home-entry--1-8.xml",
+      "bytes": 31792,
+      "crc32": "7f2c54b1"
+    },
+    {
+      "member": "atelier-home-entry--1-9.xml",
+      "bytes": 31792,
+      "crc32": "8f98f660"
+    },
+    {
+      "member": "atelier-home-entry-1-0.xml",
+      "bytes": 31792,
+      "crc32": "45c2db25"
+    },
+    {
+      "member": "atelier-home-entry-1-1.xml",
+      "bytes": 35346,
+      "crc32": "feee929f"
+    },
+    {
+      "member": "atelier-home-entry-1-3.xml",
+      "bytes": 29541,
+      "crc32": "a40f839a"
+    },
+    {
+      "member": "atelier-home-entry-1-2.xml",
+      "bytes": 33098,
+      "crc32": "9fb43658"
+    },
+    {
+      "member": "atelier-home-entry-1-4.xml",
+      "bytes": 32614,
+      "crc32": "028ef81c"
+    },
+    {
+      "member": "atelier-hub-0.xml",
+      "bytes": 23563,
+      "crc32": "e9c65072"
+    },
+    {
+      "member": "atelier-model-check-0.xml",
+      "bytes": 24439,
+      "crc32": "60707852"
+    },
+    {
+      "member": "atelier-real-ten-frame-0.xml",
+      "bytes": 24439,
+      "crc32": "60707852"
+    },
+    {
+      "member": "atelier-topic-list-0.xml",
+      "bytes": 23563,
+      "crc32": "e9c65072"
+    },
+    {
+      "member": "atelier-worked-example-0.xml",
+      "bytes": 21301,
+      "crc32": "2894eca7"
+    },
+    {
+      "member": "before-kart-preferences.xml",
+      "bytes": 1646,
+      "crc32": "efff2d05"
+    },
+    {
+      "member": "build-metadata/artifact.json",
+      "bytes": 806,
+      "crc32": "26dc746b"
+    },
+    {
+      "member": "build-metadata/build-job.json",
+      "bytes": 10144,
+      "crc32": "ada94276"
+    },
+    {
+      "member": "build-metadata/run.json",
+      "bytes": 14516,
+      "crc32": "64557592"
+    },
+    {
+      "member": "cold-start-launch.txt",
+      "bytes": 547,
+      "crc32": "86784534"
+    },
+    {
+      "member": "fatal-logcat.txt",
+      "bytes": 0,
+      "crc32": "00000000"
+    },
+    {
+      "member": "home-to-games-0.xml",
+      "bytes": 31792,
+      "crc32": "7f2c54b1"
+    },
+    {
+      "member": "install.txt",
+      "bytes": 181,
+      "crc32": "a6d7ae4f"
+    },
+    {
+      "member": "installed-package-uid.txt",
+      "bytes": 59,
+      "crc32": "efd16759"
+    },
+    {
+      "member": "installed-package.txt",
+      "bytes": 8744,
+      "crc32": "68cdcef1"
+    },
+    {
+      "member": "lernen-after-kart.xml",
+      "bytes": 31333,
+      "crc32": "a08681f6"
+    },
+    {
+      "member": "lernen-before-kart.xml",
+      "bytes": 31335,
+      "crc32": "cdec2b85"
+    },
+    {
+      "member": "logcat.txt",
+      "bytes": 2000100,
+      "crc32": "81732d68"
+    },
+    {
+      "member": "mesa-renderer.txt",
+      "bytes": 1739,
+      "crc32": "9a425857"
+    },
+    {
+      "member": "nav-lernen-6--1-0.xml",
+      "bytes": 33089,
+      "crc32": "cb5bac2e"
+    },
+    {
+      "member": "nav-lernen-after-kart-6--1-0.xml",
+      "bytes": 28122,
+      "crc32": "7b0238a4"
+    },
+    {
+      "member": "nav-spiele-7--1-0.xml",
+      "bytes": 31335,
+      "crc32": "cdec2b85"
+    },
+    {
+      "member": "nav-start-5--1-0.xml",
+      "bytes": 28121,
+      "crc32": "87eb0c7e"
+    },
+    {
+      "member": "nextgen/00a_voice_local_model_assent-render-readiness.json",
+      "bytes": 566,
+      "crc32": "c51071ae"
+    },
+    {
+      "member": "nav-start-after-kart-5--1-0.xml",
+      "bytes": 31333,
+      "crc32": "a08681f6"
+    },
+    {
+      "member": "nextgen/00a_voice_local_model_assent.png",
+      "bytes": 568630,
+      "crc32": "1c031e7e"
+    },
+    {
+      "member": "nextgen/00b_voice_local_model_enabled-render-readiness.json",
+      "bytes": 568,
+      "crc32": "325c2cad"
+    },
+    {
+      "member": "nextgen/00b_voice_local_model_enabled.png",
+      "bytes": 1297482,
+      "crc32": "e6cfcbf3"
+    },
+    {
+      "member": "nextgen/01_learning_flutter_before-render-readiness.json",
+      "bytes": 562,
+      "crc32": "522e986a"
+    },
+    {
+      "member": "nextgen/01_learning_flutter_before.png",
+      "bytes": 1908827,
+      "crc32": "fb08aa32"
+    },
+    {
+      "member": "nextgen/02_learning_native_eight_plus_five.png",
+      "bytes": 553717,
+      "crc32": "400c8094"
+    },
+    {
+      "member": "nextgen/03_learning_native_ten_and_three.png",
+      "bytes": 569423,
+      "crc32": "4a3debe6"
+    },
+    {
+      "member": "nextgen/04_learning_native_thirteen.png",
+      "bytes": 583228,
+      "crc32": "9d0a1567"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-0.xml",
+      "bytes": 23588,
+      "crc32": "0231ca14"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 7325,
+      "crc32": "b8a662dc"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr.json",
+      "bytes": 5023,
+      "crc32": "21d1c1c9"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-candidate-1.png",
+      "bytes": 1509036,
+      "crc32": "94ba42b8"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr-contrast.tsv",
+      "bytes": 7325,
+      "crc32": "b8a662dc"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr.json",
+      "bytes": 5023,
+      "crc32": "21d1c1c9"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-candidate-2.png",
+      "bytes": 1509036,
+      "crc32": "94ba42b8"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "bytes": 2623,
+      "crc32": "cea3ff5e"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1509036,
+      "crc32": "94ba42b8"
+    },
+    {
+      "member": "nextgen/10_cards_flutter_round-render-candidate-1.png",
+      "bytes": 23088,
+      "crc32": "5c40a89d"
+    },
+    {
+      "member": "nextgen/10_cards_flutter_round.png",
+      "bytes": 1589116,
+      "crc32": "f52dae32"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-00-after-layout.json",
+      "bytes": 1322,
+      "crc32": "d75f868b"
+    },
+    {
+      "member": "nextgen/10_cards_flutter_round-render-readiness.json",
+      "bytes": 1325,
+      "crc32": "446f6c84"
+    },
+    {
+      "member": "nextgen/10_cards_flutter_round-render-candidate-2.png",
+      "bytes": 23088,
+      "crc32": "5c40a89d"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-00-before-layout.json",
+      "bytes": 1322,
+      "crc32": "d75f868b"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-00-ocr-contrast.tsv",
+      "bytes": 5218,
+      "crc32": "287e03f9"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-00-ocr.json",
+      "bytes": 3944,
+      "crc32": "5126043d"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-00.png",
+      "bytes": 946460,
+      "crc32": "877e441a"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-01-after-layout.json",
+      "bytes": 1322,
+      "crc32": "d75f868b"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "bytes": 1322,
+      "crc32": "d75f868b"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-01-ocr-contrast.tsv",
+      "bytes": 5217,
+      "crc32": "88e127ab"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-01-ocr.json",
+      "bytes": 3943,
+      "crc32": "5e16ce9d"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-01.png",
+      "bytes": 947036,
+      "crc32": "5a5e2c91"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 33231,
+      "crc32": "3194fe7c"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 947036,
+      "crc32": "5a5e2c91"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-01-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-02-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-03-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-04-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-05-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-06-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-07-after-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-07-before-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-07-ocr-contrast.tsv",
+      "bytes": 6198,
+      "crc32": "c0769193"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-07-ocr.json",
+      "bytes": 4971,
+      "crc32": "8d888dad"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-07.png",
+      "bytes": 935465,
+      "crc32": "b07fdc2e"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-08-after-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-08-before-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-08-ocr-contrast.tsv",
+      "bytes": 6198,
+      "crc32": "c0769193"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-08-ocr.json",
+      "bytes": 4971,
+      "crc32": "8d888dad"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-08.png",
+      "bytes": 935465,
+      "crc32": "b07fdc2e"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw.png",
+      "bytes": 935465,
+      "crc32": "b07fdc2e"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-00-after-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-00-before-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "bytes": 51939,
+      "crc32": "df609d6b"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-00-ocr-contrast.tsv",
+      "bytes": 6241,
+      "crc32": "795a7df5"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-00-ocr.json",
+      "bytes": 4972,
+      "crc32": "2d2b7536"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-00.png",
+      "bytes": 935583,
+      "crc32": "4183c6d4"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-01-after-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-01-before-layout.json",
+      "bytes": 1322,
+      "crc32": "5da65d94"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-01-ocr-contrast.tsv",
+      "bytes": 6241,
+      "crc32": "795a7df5"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-01-ocr.json",
+      "bytes": 4972,
+      "crc32": "2d2b7536"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-check-01.png",
+      "bytes": 935583,
+      "crc32": "4183c6d4"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-evidence.json",
+      "bytes": 33867,
+      "crc32": "1800d46b"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw.png",
+      "bytes": 935583,
+      "crc32": "4183c6d4"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-01-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-03-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-02-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-04-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-05-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-06-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-07-before-layout.json",
+      "bytes": 113,
+      "crc32": "2b76e139"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-08-after-layout.json",
+      "bytes": 1324,
+      "crc32": "3d205bc5"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-08-before-layout.json",
+      "bytes": 1324,
+      "crc32": "3d205bc5"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-08-ocr-contrast.tsv",
+      "bytes": 5734,
+      "crc32": "d169dc82"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-08-ocr.json",
+      "bytes": 4591,
+      "crc32": "efbc1c8b"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-08.png",
+      "bytes": 928967,
+      "crc32": "e80c485b"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-09-after-layout.json",
+      "bytes": 1324,
+      "crc32": "3d205bc5"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-09-before-layout.json",
+      "bytes": 1324,
+      "crc32": "3d205bc5"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-09-ocr-contrast.tsv",
+      "bytes": 5734,
+      "crc32": "d169dc82"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-09-ocr.json",
+      "bytes": 4591,
+      "crc32": "efbc1c8b"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-09.png",
+      "bytes": 928967,
+      "crc32": "e80c485b"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-evidence.json",
+      "bytes": 59068,
+      "crc32": "844b807f"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 928967,
+      "crc32": "e80c485b"
+    },
+    {
+      "member": "nextgen/13_cards_native_pause.png",
+      "bytes": 814994,
+      "crc32": "41beaceb"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 5978,
+      "crc32": "64f38cd1"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-rejected.json",
+      "bytes": 713,
+      "crc32": "3fe1f42a"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr.json",
+      "bytes": 4489,
+      "crc32": "f83ca04e"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "bytes": 2674027,
+      "crc32": "325b81db"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-2-caption-0-ocr-contrast.tsv",
+      "bytes": 1441,
+      "crc32": "1b838d89"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-2-caption-0-ocr.json",
+      "bytes": 989,
+      "crc32": "75304c53"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-2.png",
+      "bytes": 529926,
+      "crc32": "5d8d9d7f"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-3-caption-0-ocr-contrast.tsv",
+      "bytes": 1441,
+      "crc32": "b63405c5"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-3-caption-0-ocr.json",
+      "bytes": 989,
+      "crc32": "75304c53"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-3.png",
+      "bytes": 525779,
+      "crc32": "aad6f0e4"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "bytes": 2571,
+      "crc32": "4ac1a3a0"
+    },
+    {
+      "member": "nextgen/15_cards_reopened_same_round.png",
+      "bytes": 929069,
+      "crc32": "568661ad"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round.xml",
+      "bytes": 33379,
+      "crc32": "44a89ed6"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round.png",
+      "bytes": 525779,
+      "crc32": "aad6f0e4"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 1440,
+      "crc32": "ec85d5c1"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-1-caption-0-ocr.json",
+      "bytes": 988,
+      "crc32": "bed8de1c"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-1.png",
+      "bytes": 471632,
+      "crc32": "d5b3a8fd"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-2-caption-0-ocr-contrast.tsv",
+      "bytes": 1442,
+      "crc32": "a8db774d"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-2-caption-0-ocr.json",
+      "bytes": 990,
+      "crc32": "22608e87"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-candidate-2.png",
+      "bytes": 530250,
+      "crc32": "5af390e9"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "bytes": 2005,
+      "crc32": "68a238bd"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return.png",
+      "bytes": 530250,
+      "crc32": "5af390e9"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return.xml",
+      "bytes": 33814,
+      "crc32": "82e4ae8d"
+    },
+    {
+      "member": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "crc32": "17c22e63"
+    },
+    {
+      "member": "nextgen/cards-after-native-preferences.xml",
+      "bytes": 5979,
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-authority-processes-after-idle.txt",
+      "bytes": 11210,
+      "crc32": "54d6d01f"
+    },
+    {
+      "member": "nextgen/cards-authority-processes-before-idle.txt",
+      "bytes": 11388,
+      "crc32": "ba20e844"
+    },
+    {
+      "member": "nextgen/cards-authority-services-after-idle.txt",
+      "bytes": 3349,
+      "crc32": "d1a29283"
+    },
+    {
+      "member": "nextgen/cards-authority-services-before-idle.txt",
+      "bytes": 3346,
+      "crc32": "4301d508"
+    },
+    {
+      "member": "nextgen/cards-before-native-preferences.xml",
+      "bytes": 5980,
+      "crc32": "977a6c8b"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-0.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-1.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-10.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-2.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-3.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-4.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-5.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-6.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-7.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-8.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter-resume-10--1-9.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-flutter.xml",
+      "bytes": 28873,
+      "crc32": "05fce466"
+    },
+    {
+      "member": "nextgen/cards-games-tab-7--1-0.xml",
+      "bytes": 27947,
+      "crc32": "1b04fb2b"
+    },
+    {
+      "member": "nextgen/cards-initial-readiness.json",
+      "bytes": 493,
+      "crc32": "b6a460b6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-001.json",
+      "bytes": 629,
+      "crc32": "74ff57c9"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-001.txt",
+      "bytes": 80,
+      "crc32": "60d4d084"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-002.json",
+      "bytes": 629,
+      "crc32": "ff56dae6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-002.txt",
+      "bytes": 80,
+      "crc32": "579b0720"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-003.json",
+      "bytes": 629,
+      "crc32": "268b6771"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-003.txt",
+      "bytes": 80,
+      "crc32": "29f1e275"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-004.json",
+      "bytes": 629,
+      "crc32": "a715ec74"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-004.txt",
+      "bytes": 80,
+      "crc32": "24522432"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-005.json",
+      "bytes": 629,
+      "crc32": "1e5e77c2"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-005.txt",
+      "bytes": 80,
+      "crc32": "77837bb8"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-006.json",
+      "bytes": 629,
+      "crc32": "c7818871"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-006.txt",
+      "bytes": 80,
+      "crc32": "aa31afe6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-007.json",
+      "bytes": 629,
+      "crc32": "19455ddf"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-007.txt",
+      "bytes": 80,
+      "crc32": "84c25c73"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-008.json",
+      "bytes": 629,
+      "crc32": "8aa49be6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-008.txt",
+      "bytes": 80,
+      "crc32": "aebf265e"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-009.json",
+      "bytes": 629,
+      "crc32": "3dc9853b"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-009.txt",
+      "bytes": 80,
+      "crc32": "9ed55b20"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-010.json",
+      "bytes": 629,
+      "crc32": "3ff3efdd"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-010.txt",
+      "bytes": 80,
+      "crc32": "cce0371a"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-011.json",
+      "bytes": 629,
+      "crc32": "d6795a94"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-011.txt",
+      "bytes": 80,
+      "crc32": "fa302e1c"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-012.json",
+      "bytes": 629,
+      "crc32": "f86df5e9"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-012.txt",
+      "bytes": 80,
+      "crc32": "625ebf50"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-013.json",
+      "bytes": 627,
+      "crc32": "2ef1a075"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-013.txt",
+      "bytes": 80,
+      "crc32": "d7f0dc40"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-014.txt",
+      "bytes": 80,
+      "crc32": "d1ef59f4"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-015.json",
+      "bytes": 627,
+      "crc32": "8a079a20"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-014.json",
+      "bytes": 629,
+      "crc32": "48526289"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-015.txt",
+      "bytes": 80,
+      "crc32": "2c422afc"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-016.json",
+      "bytes": 629,
+      "crc32": "c33cd1c5"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-016.txt",
+      "bytes": 80,
+      "crc32": "b1b20f72"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-017.json",
+      "bytes": 626,
+      "crc32": "dc7e906c"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-017.txt",
+      "bytes": 80,
+      "crc32": "09a5ef04"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-018.json",
+      "bytes": 629,
+      "crc32": "6a8ba1df"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-018.txt",
+      "bytes": 80,
+      "crc32": "031cd9b4"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-019.json",
+      "bytes": 629,
+      "crc32": "95057790"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-019.txt",
+      "bytes": 80,
+      "crc32": "d446e12e"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-020.json",
+      "bytes": 629,
+      "crc32": "daddb45a"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-020.txt",
+      "bytes": 80,
+      "crc32": "03af7660"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-021.json",
+      "bytes": 629,
+      "crc32": "c2fb2386"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-021.txt",
+      "bytes": 80,
+      "crc32": "576135fc"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-022.json",
+      "bytes": 629,
+      "crc32": "560847f2"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-022.txt",
+      "bytes": 80,
+      "crc32": "6502997a"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-023.json",
+      "bytes": 629,
+      "crc32": "9cea5e63"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-023.txt",
+      "bytes": 80,
+      "crc32": "9b778466"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-024.json",
+      "bytes": 629,
+      "crc32": "1724b0d1"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-024.txt",
+      "bytes": 80,
+      "crc32": "d4125717"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-025.json",
+      "bytes": 629,
+      "crc32": "281bf8e6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-025.txt",
+      "bytes": 80,
+      "crc32": "8a2ecf71"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-026.json",
+      "bytes": 627,
+      "crc32": "6f9e1520"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-026.txt",
+      "bytes": 80,
+      "crc32": "aa012f57"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-027.json",
+      "bytes": 629,
+      "crc32": "5c6c17b7"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-029.json",
+      "bytes": 629,
+      "crc32": "7bff4ac9"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-027.txt",
+      "bytes": 80,
+      "crc32": "161f52e6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-028.json",
+      "bytes": 628,
+      "crc32": "c33c6661"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-028.txt",
+      "bytes": 80,
+      "crc32": "bf43f8e6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-029.txt",
+      "bytes": 80,
+      "crc32": "ddd904c3"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-030.json",
+      "bytes": 627,
+      "crc32": "f6882597"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-030.txt",
+      "bytes": 80,
+      "crc32": "2df934c7"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-031.json",
+      "bytes": 629,
+      "crc32": "0f605608"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-031.txt",
+      "bytes": 80,
+      "crc32": "eb9206d6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-032.json",
+      "bytes": 629,
+      "crc32": "7192ae4e"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-032.txt",
+      "bytes": 80,
+      "crc32": "f875ab26"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-033.json",
+      "bytes": 627,
+      "crc32": "de871168"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-033.txt",
+      "bytes": 80,
+      "crc32": "c2dfb57c"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-034.json",
+      "bytes": 627,
+      "crc32": "22ec0441"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-034.txt",
+      "bytes": 80,
+      "crc32": "6857a2d1"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-035.json",
+      "bytes": 629,
+      "crc32": "ae0d1dca"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-037.json",
+      "bytes": 628,
+      "crc32": "70ca7b31"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-035.txt",
+      "bytes": 80,
+      "crc32": "80aa3b76"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-036.json",
+      "bytes": 629,
+      "crc32": "aacd94ea"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-036.txt",
+      "bytes": 80,
+      "crc32": "84e7a3c6"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-037.txt",
+      "bytes": 80,
+      "crc32": "d11973cd"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-038.json",
+      "bytes": 628,
+      "crc32": "07f373db"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-038.txt",
+      "bytes": 80,
+      "crc32": "9ba114aa"
+    },
+    {
+      "member": "nextgen/cards-mailbox-001-state.json",
+      "bytes": 2028,
+      "crc32": "75898603"
+    },
+    {
+      "member": "nextgen/cards-mailbox-002-state.json",
+      "bytes": 1646,
+      "crc32": "104c86a6"
+    },
+    {
+      "member": "nextgen/cards-mailbox-003-state.json",
+      "bytes": 1646,
+      "crc32": "104c86a6"
+    },
+    {
+      "member": "nextgen/cards-mailbox-004-state.json",
+      "bytes": 1646,
+      "crc32": "104c86a6"
+    },
+    {
+      "member": "nextgen/cards-mailbox-005-state.json",
+      "bytes": 1646,
+      "crc32": "104c86a6"
+    },
+    {
+      "member": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "crc32": "2cd07355"
+    },
+    {
+      "member": "nextgen/cards-mailbox-007-state.json",
+      "bytes": 1756,
+      "crc32": "ed4d626c"
+    },
+    {
+      "member": "nextgen/cards-mailbox-008-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-009-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-013-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-010-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-011-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-012-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-014-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-015-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-016-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-017-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-018-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-019-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-020-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-021-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-022-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-023-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-024-state.json",
+      "bytes": 1748,
+      "crc32": "b908ef80"
+    },
+    {
+      "member": "nextgen/cards-mailbox-025-request.json",
+      "bytes": 103,
+      "crc32": "e2940a55"
+    },
+    {
+      "member": "nextgen/cards-mailbox-026-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-027-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-028-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-029-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-030-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-031-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-032-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-033-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-034-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-035-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-036-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-037-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-038-state.json",
+      "bytes": 2028,
+      "crc32": "93e07175"
+    },
+    {
+      "member": "nextgen/cards-mailbox-039-state.json",
+      "bytes": 2032,
+      "crc32": "b3cf48f9"
+    },
+    {
+      "member": "nextgen/cards-mailbox-040-state.json",
+      "bytes": 2032,
+      "crc32": "b3cf48f9"
+    },
+    {
+      "member": "nextgen/cards-native-back-0-ocr-contrast.tsv",
+      "bytes": 3870,
+      "crc32": "f5a044e9"
+    },
+    {
+      "member": "nextgen/cards-native-back-0-ocr.json",
+      "bytes": 2671,
+      "crc32": "d3fa1e54"
+    },
+    {
+      "member": "nextgen/cards-native-back-0.png",
+      "bytes": 814712,
+      "crc32": "fc4b64bf"
+    },
+    {
+      "member": "nextgen/cards-native-back-1-ocr-contrast.tsv",
+      "bytes": 3870,
+      "crc32": "f5a044e9"
+    },
+    {
+      "member": "nextgen/cards-native-back-1-ocr.json",
+      "bytes": 2671,
+      "crc32": "d3fa1e54"
+    },
+    {
+      "member": "nextgen/cards-native-back-1.png",
+      "bytes": 814712,
+      "crc32": "fc4b64bf"
+    },
+    {
+      "member": "nextgen/cards-native-back-surface-readiness.json",
+      "bytes": 2749,
+      "crc32": "0d03be6a"
+    },
+    {
+      "member": "nextgen/cards-native-draw-0-ocr-contrast.tsv",
+      "bytes": 5217,
+      "crc32": "88e127ab"
+    },
+    {
+      "member": "nextgen/cards-native-draw-0-ocr.json",
+      "bytes": 3945,
+      "crc32": "858381c3"
+    },
+    {
+      "member": "nextgen/cards-native-draw-0.png",
+      "bytes": 947036,
+      "crc32": "5a5e2c91"
+    },
+    {
+      "member": "nextgen/cards-native-draw-1-ocr-contrast.tsv",
+      "bytes": 5217,
+      "crc32": "88e127ab"
+    },
+    {
+      "member": "nextgen/cards-native-draw-1-ocr.json",
+      "bytes": 3945,
+      "crc32": "858381c3"
+    },
+    {
+      "member": "nextgen/cards-native-draw-1.png",
+      "bytes": 947036,
+      "crc32": "5a5e2c91"
+    },
+    {
+      "member": "nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2756,
+      "crc32": "836364f3"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-0.xml",
+      "bytes": 29740,
+      "crc32": "20a73252"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-1.xml",
+      "bytes": 29740,
+      "crc32": "b17e9834"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-10.xml",
+      "bytes": 29740,
+      "crc32": "30ce216a"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-11.xml",
+      "bytes": 29740,
+      "crc32": "fdd5b360"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-12.xml",
+      "bytes": 29740,
+      "crc32": "fd89ae36"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-13.xml",
+      "bytes": 29740,
+      "crc32": "43891865"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-14.xml",
+      "bytes": 29740,
+      "crc32": "1fd656b3"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-15.xml",
+      "bytes": 29740,
+      "crc32": "76e8f9bb"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-16.xml",
+      "bytes": 29740,
+      "crc32": "413aae34"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-2.xml",
+      "bytes": 29740,
+      "crc32": "859f2d06"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-3.xml",
+      "bytes": 29740,
+      "crc32": "a8f58762"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-4.xml",
+      "bytes": 29740,
+      "crc32": "c147fcdd"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-5.xml",
+      "bytes": 29740,
+      "crc32": "47b92c93"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-6.xml",
+      "bytes": 29740,
+      "crc32": "859f2d06"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-7.xml",
+      "bytes": 29740,
+      "crc32": "d840373c"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-8.xml",
+      "bytes": 29740,
+      "crc32": "b17e9834"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19--1-9.xml",
+      "bytes": 29740,
+      "crc32": "cef2f2fb"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-0.xml",
+      "bytes": 29740,
+      "crc32": "413aae34"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-1.xml",
+      "bytes": 29740,
+      "crc32": "f183961a"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-10.xml",
+      "bytes": 29740,
+      "crc32": "6c500450"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-11.xml",
+      "bytes": 29740,
+      "crc32": "e17f83de"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-12.xml",
+      "bytes": 29740,
+      "crc32": "0b4e1a91"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-13.xml",
+      "bytes": 29740,
+      "crc32": "be5d3791"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-14.xml",
+      "bytes": 29740,
+      "crc32": "e402b160"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-15.xml",
+      "bytes": 29740,
+      "crc32": "1fd656b3"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-16.xml",
+      "bytes": 29740,
+      "crc32": "fd89ae36"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-3.xml",
+      "bytes": 29740,
+      "crc32": "0a5771c9"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-2.xml",
+      "bytes": 29740,
+      "crc32": "76e8f9bb"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-4.xml",
+      "bytes": 29740,
+      "crc32": "0a5771c9"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-5.xml",
+      "bytes": 29740,
+      "crc32": "fd89ae36"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-6.xml",
+      "bytes": 29740,
+      "crc32": "d3b1966e"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-7.xml",
+      "bytes": 29740,
+      "crc32": "e17f83de"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-8.xml",
+      "bytes": 29740,
+      "crc32": "4e8fa012"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-1-9.xml",
+      "bytes": 29740,
+      "crc32": "c871705c"
+    },
+    {
+      "member": "nextgen/cards-native-entry-19-missing.png",
+      "bytes": 1589022,
+      "crc32": "c2bf9a52"
+    },
+    {
+      "member": "nextgen/cards-native-entry-2--1-0.xml",
+      "bytes": 29740,
+      "crc32": "32bcfcd7"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-0-ocr-contrast.tsv",
+      "bytes": 6241,
+      "crc32": "795a7df5"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-0-ocr.json",
+      "bytes": 4974,
+      "crc32": "66c49219"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-0.png",
+      "bytes": 935583,
+      "crc32": "4183c6d4"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-1-ocr-contrast.tsv",
+      "bytes": 6241,
+      "crc32": "795a7df5"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-1-ocr.json",
+      "bytes": 4974,
+      "crc32": "66c49219"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-1.png",
+      "bytes": 935583,
+      "crc32": "4183c6d4"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-surface-readiness.json",
+      "bytes": 2768,
+      "crc32": "e19e626e"
+    },
+    {
+      "member": "nextgen/cards-native-pause-0-ocr-contrast.tsv",
+      "bytes": 5734,
+      "crc32": "d169dc82"
+    },
+    {
+      "member": "nextgen/cards-native-pause-0-ocr.json",
+      "bytes": 4591,
+      "crc32": "efbc1c8b"
+    },
+    {
+      "member": "nextgen/cards-native-pause-0.png",
+      "bytes": 928967,
+      "crc32": "e80c485b"
+    },
+    {
+      "member": "nextgen/cards-native-pause-1-ocr-contrast.tsv",
+      "bytes": 5734,
+      "crc32": "d169dc82"
+    },
+    {
+      "member": "nextgen/cards-native-pause-1-ocr.json",
+      "bytes": 4591,
+      "crc32": "efbc1c8b"
+    },
+    {
+      "member": "nextgen/cards-native-pause-1.png",
+      "bytes": 928967,
+      "crc32": "e80c485b"
+    },
+    {
+      "member": "nextgen/cards-native-pause-surface-readiness.json",
+      "bytes": 2754,
+      "crc32": "d585dbb3"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-components.json",
+      "bytes": 1561,
+      "crc32": "60e0c839"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-contrast.tsv",
+      "bytes": 6639,
+      "crc32": "58634dc9"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-gold-component-0.png",
+      "bytes": 17432,
+      "crc32": "9e70d69c"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-gold-component-0.tsv",
+      "bytes": 110,
+      "crc32": "5cd9adb8"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-gold-component-1.png",
+      "bytes": 5639,
+      "crc32": "4ace73e2"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-gold-component-1.tsv",
+      "bytes": 222,
+      "crc32": "237507e8"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-gold-component-2.png",
+      "bytes": 1940,
+      "crc32": "b5b52fe9"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-gold-component-2.tsv",
+      "bytes": 221,
+      "crc32": "23d8c19a"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 6341,
+      "crc32": "3986e84e"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 6130,
+      "crc32": "fe8775cf"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-raw.tsv",
+      "bytes": 7781,
+      "crc32": "100ccb29"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-teal-text-1x.tsv",
+      "bytes": 6809,
+      "crc32": "571d5b7d"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-tiles.json",
+      "bytes": 4905,
+      "crc32": "92f880f7"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 64590,
+      "crc32": "96cf61ba"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1628,
+      "crc32": "cb684fcb"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 53174,
+      "crc32": "805821fa"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 748,
+      "crc32": "94f9e432"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 74267,
+      "crc32": "ee5cea86"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 2699,
+      "crc32": "a31fb630"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 68064,
+      "crc32": "b8e58636"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1983,
+      "crc32": "89f0811f"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 64433,
+      "crc32": "902b69d1"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 2556,
+      "crc32": "f00d1164"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 47959,
+      "crc32": "0fd8a4a1"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 2017,
+      "crc32": "02176fb5"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-0.png",
+      "bytes": 41457,
+      "crc32": "e1c39cd3"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-1.png",
+      "bytes": 40835,
+      "crc32": "bdba0d60"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1396,
+      "crc32": "479e3ac3"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 882,
+      "crc32": "e1ad76b7"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-2.png",
+      "bytes": 53239,
+      "crc32": "cfbf0119"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1989,
+      "crc32": "21a3453e"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-3.png",
+      "bytes": 50322,
+      "crc32": "ad20a7de"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 1397,
+      "crc32": "b673234d"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-4.png",
+      "bytes": 45891,
+      "crc32": "f91492e4"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 2890,
+      "crc32": "1865fae6"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-5.png",
+      "bytes": 34788,
+      "crc32": "25f79b22"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 858,
+      "crc32": "897598c0"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-latin.tsv",
+      "bytes": 4530,
+      "crc32": "0f98e7a8"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr-white-text.tsv",
+      "bytes": 4454,
+      "crc32": "41b4a0a7"
+    },
+    {
+      "member": "nextgen/cards-native-title-0-ocr.json",
+      "bytes": 30460,
+      "crc32": "01099808"
+    },
+    {
+      "member": "nextgen/cards-native-title-0.png",
+      "bytes": 2669240,
+      "crc32": "dce41907"
+    },
+    {
+      "member": "nextgen/cards-native-title-1-ocr-contrast.tsv",
+      "bytes": 5218,
+      "crc32": "287e03f9"
+    },
+    {
+      "member": "nextgen/cards-native-title-1-ocr.json",
+      "bytes": 3955,
+      "crc32": "1266aae4"
+    },
+    {
+      "member": "nextgen/cards-native-title-1.png",
+      "bytes": 946460,
+      "crc32": "877e441a"
+    },
+    {
+      "member": "nextgen/cards-paused-flutter-controls.xml",
+      "bytes": 33814,
+      "crc32": "1b0ac289"
+    },
+    {
+      "member": "nextgen/cards-portal-46--1-0.xml",
+      "bytes": 24801,
+      "crc32": "d79adddb"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-0.xml",
+      "bytes": 31587,
+      "crc32": "281ffba7"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-1.xml",
+      "bytes": 31587,
+      "crc32": "4b6bdc12"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-10.xml",
+      "bytes": 31587,
+      "crc32": "eab924cf"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-11.xml",
+      "bytes": 31587,
+      "crc32": "c939e898"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-12.xml",
+      "bytes": 31587,
+      "crc32": "90d88230"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-13.xml",
+      "bytes": 31587,
+      "crc32": "34bdfc94"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-14.xml",
+      "bytes": 31587,
+      "crc32": "d9eb75d5"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-15.xml",
+      "bytes": 31587,
+      "crc32": "9a873db4"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-16.xml",
+      "bytes": 31587,
+      "crc32": "10b8b18d"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-2.xml",
+      "bytes": 31587,
+      "crc32": "b9f32be5"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-3.xml",
+      "bytes": 31587,
+      "crc32": "a26d7817"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-4.xml",
+      "bytes": 31587,
+      "crc32": "2c394483"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-5.xml",
+      "bytes": 31587,
+      "crc32": "758cf176"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-6.xml",
+      "bytes": 31587,
+      "crc32": "90d88230"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-7.xml",
+      "bytes": 31587,
+      "crc32": "f127773d"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-8.xml",
+      "bytes": 31587,
+      "crc32": "3ee24310"
+    },
+    {
+      "member": "nextgen/cards-reopen-19--1-9.xml",
+      "bytes": 31587,
+      "crc32": "be1afd75"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-0.xml",
+      "bytes": 31587,
+      "crc32": "10b8b18d"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-1.xml",
+      "bytes": 31587,
+      "crc32": "748da4a4"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-10.xml",
+      "bytes": 31587,
+      "crc32": "16bbb582"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-11.xml",
+      "bytes": 31587,
+      "crc32": "0b1de67b"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-12.xml",
+      "bytes": 31587,
+      "crc32": "ca4f54a3"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-13.xml",
+      "bytes": 31587,
+      "crc32": "a293e796"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-14.xml",
+      "bytes": 31587,
+      "crc32": "72b5a4af"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-16.xml",
+      "bytes": 31587,
+      "crc32": "3b31dad3"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-2.xml",
+      "bytes": 31587,
+      "crc32": "2d668b8b"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-3.xml",
+      "bytes": 31587,
+      "crc32": "913f290d"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-15.xml",
+      "bytes": 31587,
+      "crc32": "0b1de67b"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-4.xml",
+      "bytes": 31587,
+      "crc32": "fb78c8b9"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-6.xml",
+      "bytes": 31587,
+      "crc32": "2d668b8b"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-5.xml",
+      "bytes": 31587,
+      "crc32": "fb78c8b9"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-7.xml",
+      "bytes": 31587,
+      "crc32": "78398d08"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-8.xml",
+      "bytes": 31587,
+      "crc32": "ca4f54a3"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-1-9.xml",
+      "bytes": 31587,
+      "crc32": "2d668b8b"
+    },
+    {
+      "member": "nextgen/cards-reopen-19-missing.png",
+      "bytes": 1651692,
+      "crc32": "4d19019b"
+    },
+    {
+      "member": "nextgen/cards-reopen-2--1-0.xml",
+      "bytes": 31587,
+      "crc32": "3c59f87c"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-0-ocr-contrast.tsv",
+      "bytes": 5693,
+      "crc32": "6a860cb9"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-0.png",
+      "bytes": 929069,
+      "crc32": "568661ad"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-0-ocr.json",
+      "bytes": 4591,
+      "crc32": "07ff4641"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-1-ocr-contrast.tsv",
+      "bytes": 5693,
+      "crc32": "6a860cb9"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-1-ocr.json",
+      "bytes": 4591,
+      "crc32": "07ff4641"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-1.png",
+      "bytes": 929069,
+      "crc32": "568661ad"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-surface-readiness.json",
+      "bytes": 2753,
+      "crc32": "bdafc514"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-components.json",
+      "bytes": 460,
+      "crc32": "938a010f"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-contrast.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "crc32": "663a60c7"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-raw.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-teal-text-1x.tsv",
+      "bytes": 280,
+      "crc32": "a9d263ba"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-tiles.json",
+      "bytes": 2495,
+      "crc32": "51912e5d"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-0.png",
+      "bytes": 12086,
+      "crc32": "218036cf"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-1.png",
+      "bytes": 12086,
+      "crc32": "218036cf"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-2.png",
+      "bytes": 12567,
+      "crc32": "2740cc55"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "crc32": "26bf25d5"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-3.png",
+      "bytes": 12567,
+      "crc32": "2740cc55"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "crc32": "26bf25d5"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-4.png",
+      "bytes": 12086,
+      "crc32": "218036cf"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-5.png",
+      "bytes": 12086,
+      "crc32": "218036cf"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-latin.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr.json",
+      "bytes": 135,
+      "crc32": "b270d9df"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0.png",
+      "bytes": 17718,
+      "crc32": "434056ba"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-0-ocr-white-text.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-components.json",
+      "bytes": 2329,
+      "crc32": "29e841af"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-contrast.tsv",
+      "bytes": 6933,
+      "crc32": "86eed55a"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-0.png",
+      "bytes": 13680,
+      "crc32": "90653b25"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-0.tsv",
+      "bytes": 229,
+      "crc32": "575756e4"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-2.tsv",
+      "bytes": 222,
+      "crc32": "61ac0974"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-2.png",
+      "bytes": 6585,
+      "crc32": "06deb067"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-1.png",
+      "bytes": 5034,
+      "crc32": "8bf873e7"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-1.tsv",
+      "bytes": 222,
+      "crc32": "d9a63d05"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-3.png",
+      "bytes": 4788,
+      "crc32": "dd6ad1bb"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-3.tsv",
+      "bytes": 222,
+      "crc32": "cbe1a3e5"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-4.png",
+      "bytes": 3911,
+      "crc32": "5296e168"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-navy-latin.tsv",
+      "bytes": 4751,
+      "crc32": "c389d37f"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-navy-latin-1x.tsv",
+      "bytes": 4153,
+      "crc32": "35846e11"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-gold-component-4.tsv",
+      "bytes": 221,
+      "crc32": "9e4fe01b"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-raw.tsv",
+      "bytes": 4678,
+      "crc32": "493ea2fd"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-teal-text-1x.tsv",
+      "bytes": 8037,
+      "crc32": "2e005a39"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-tiles.json",
+      "bytes": 4936,
+      "crc32": "d40f2710"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-0.png",
+      "bytes": 66359,
+      "crc32": "be143f1c"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1898,
+      "crc32": "b5869bc4"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-1.png",
+      "bytes": 67393,
+      "crc32": "b4e6d456"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1417,
+      "crc32": "9f11c6b9"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-2.png",
+      "bytes": 83190,
+      "crc32": "706905de"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 3138,
+      "crc32": "01fe39a5"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-3.png",
+      "bytes": 78240,
+      "crc32": "f19fb4bd"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 3170,
+      "crc32": "6212de32"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-4.png",
+      "bytes": 76633,
+      "crc32": "1e7f6ade"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 5555,
+      "crc32": "2b41dffb"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 4372,
+      "crc32": "c02f6c8c"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-dim-tile-5.png",
+      "bytes": 75275,
+      "crc32": "0d140abe"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-0.png",
+      "bytes": 51238,
+      "crc32": "8216341a"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-0.tsv",
+      "bytes": 1292,
+      "crc32": "a897f49e"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-1.png",
+      "bytes": 56581,
+      "crc32": "9d42ac36"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-1.tsv",
+      "bytes": 979,
+      "crc32": "324ac797"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-2.png",
+      "bytes": 67472,
+      "crc32": "d4efba5f"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-2.tsv",
+      "bytes": 2155,
+      "crc32": "1d1f4b81"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-3.png",
+      "bytes": 67367,
+      "crc32": "a38827fd"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-3.tsv",
+      "bytes": 2447,
+      "crc32": "908aae04"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-4.png",
+      "bytes": 63717,
+      "crc32": "3b571614"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-4.tsv",
+      "bytes": 2808,
+      "crc32": "71e403c6"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-5.png",
+      "bytes": 64510,
+      "crc32": "84500af3"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin-tile-5.tsv",
+      "bytes": 2980,
+      "crc32": "20ed349c"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-text.tsv",
+      "bytes": 8338,
+      "crc32": "c4d367cd"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr.json",
+      "bytes": 33092,
+      "crc32": "44280e44"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1.png",
+      "bytes": 3198373,
+      "crc32": "0a8c5dca"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-1-ocr-white-latin.tsv",
+      "bytes": 8358,
+      "crc32": "9073674f"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-2-ocr-contrast.tsv",
+      "bytes": 5693,
+      "crc32": "6a860cb9"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-2-ocr.json",
+      "bytes": 4603,
+      "crc32": "63576721"
+    },
+    {
+      "member": "nextgen/cards-save-005-preferences.xml",
+      "bytes": 5980,
+      "crc32": "977a6c8b"
+    },
+    {
+      "member": "nextgen/cards-reopened-title-2.png",
+      "bytes": 929069,
+      "crc32": "568661ad"
+    },
+    {
+      "member": "nextgen/cards-save-001-preferences.xml",
+      "bytes": 5979,
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-save-019-preferences.xml",
+      "bytes": 5979,
+      "crc32": "eb301eba"
+    },
+    {
+      "member": "nextgen/cards-save-024-preferences.xml",
+      "bytes": 5979,
+      "crc32": "eb301eba"
+    },
+    {
+      "member": "nextgen/cards-save-038-preferences.xml",
+      "bytes": 5979,
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-save-039-preferences.xml",
+      "bytes": 5979,
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-save-040-preferences.xml",
+      "bytes": 5979,
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-solo-12--1-0.xml",
+      "bytes": 15461,
+      "crc32": "c655c0dd"
+    },
+    {
+      "member": "nextgen/guided-answer-six-1--1-0.xml",
+      "bytes": 28021,
+      "crc32": "573dd802"
+    },
+    {
+      "member": "nextgen/guided-bridge-actual-target.json",
+      "bytes": 242,
+      "crc32": "4e02e864"
+    },
+    {
+      "member": "nextgen/guided-bridge-observed-0.xml",
+      "bytes": 19137,
+      "crc32": "87321994"
+    },
+    {
+      "member": "nextgen/guided-bridge-card.xml",
+      "bytes": 19137,
+      "crc32": "87321994"
+    },
+    {
+      "member": "nextgen/guided-current-example.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/guided-example-6--1-0.xml",
+      "bytes": 27627,
+      "crc32": "463120e9"
+    },
+    {
+      "member": "nextgen/guided-foundation.xml",
+      "bytes": 28021,
+      "crc32": "573dd802"
+    },
+    {
+      "member": "nextgen/guided-greeting.xml",
+      "bytes": 25016,
+      "crc32": "20e55a0c"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-1.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-0.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-10.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-11.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-12.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-13.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-14.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-15.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-16.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-2.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-3.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-4.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-5.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-6.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-7.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-8.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19--1-9.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-hub-19-1-0.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/guided-next-6--1-0.xml",
+      "bytes": 25016,
+      "crc32": "20e55a0c"
+    },
+    {
+      "member": "nextgen/guided-hub-19-1-1.xml",
+      "bytes": 27947,
+      "crc32": "742bd739"
+    },
+    {
+      "member": "nextgen/guided-tools-27--1-0.xml",
+      "bytes": 28012,
+      "crc32": "684b53bd"
+    },
+    {
+      "member": "nextgen/guided-tools-open.xml",
+      "bytes": 27077,
+      "crc32": "de165332"
+    },
+    {
+      "member": "nextgen/learning-after-native-preferences.xml",
+      "bytes": 2757,
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/learning-back-0-ocr-contrast.tsv",
+      "bytes": 3364,
+      "crc32": "a9d5dda7"
+    },
+    {
+      "member": "nextgen/learning-back-0-ocr.json",
+      "bytes": 2202,
+      "crc32": "05afca4d"
+    },
+    {
+      "member": "nextgen/learning-back-0.png",
+      "bytes": 581809,
+      "crc32": "6bb9758e"
+    },
+    {
+      "member": "nextgen/learning-back-1-ocr-contrast.tsv",
+      "bytes": 3308,
+      "crc32": "d76f5833"
+    },
+    {
+      "member": "nextgen/learning-back-1-ocr.json",
+      "bytes": 2078,
+      "crc32": "7f201e1e"
+    },
+    {
+      "member": "nextgen/learning-back-1.png",
+      "bytes": 580783,
+      "crc32": "b8b03548"
+    },
+    {
+      "member": "nextgen/learning-back-surface-readiness.json",
+      "bytes": 2755,
+      "crc32": "4b2b949d"
+    },
+    {
+      "member": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2757,
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/learning-complete-0-ocr-contrast.tsv",
+      "bytes": 3537,
+      "crc32": "06eeca94"
+    },
+    {
+      "member": "nextgen/learning-complete-0-ocr.json",
+      "bytes": 2325,
+      "crc32": "b5d9775f"
+    },
+    {
+      "member": "nextgen/learning-complete-0.png",
+      "bytes": 579315,
+      "crc32": "45331eb3"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-components.json",
+      "bytes": 2116,
+      "crc32": "8f7bceee"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "bytes": 3052,
+      "crc32": "4e7ae904"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-gold-component-0.png",
+      "bytes": 15435,
+      "crc32": "170d5526"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-gold-component-0.tsv",
+      "bytes": 322,
+      "crc32": "2884a8b1"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-raw.tsv",
+      "bytes": 3220,
+      "crc32": "35bfa12c"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "crc32": "663a60c7"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "bytes": 4111,
+      "crc32": "cce78c46"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "bytes": 2577,
+      "crc32": "153c4f3a"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "bytes": 2695,
+      "crc32": "15db1ae5"
+    },
+    {
+      "member": "nextgen/learning-move-1-0-ocr.json",
+      "bytes": 9737,
+      "crc32": "3cb15929"
+    },
+    {
+      "member": "nextgen/learning-move-1-0.png",
+      "bytes": 556361,
+      "crc32": "a0e88da6"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-components.json",
+      "bytes": 2116,
+      "crc32": "47cfd18d"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-contrast.tsv",
+      "bytes": 3190,
+      "crc32": "47b14417"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-gold-component-0.png",
+      "bytes": 15435,
+      "crc32": "170d5526"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-gold-component-0.tsv",
+      "bytes": 322,
+      "crc32": "2884a8b1"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "crc32": "663a60c7"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-raw.tsv",
+      "bytes": 2792,
+      "crc32": "b9c3ebcb"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-teal-text-1x.tsv",
+      "bytes": 4110,
+      "crc32": "4df0b631"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-white-latin.tsv",
+      "bytes": 2751,
+      "crc32": "561971cc"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr-white-text.tsv",
+      "bytes": 2868,
+      "crc32": "55117641"
+    },
+    {
+      "member": "nextgen/learning-move-1-1-ocr.json",
+      "bytes": 10126,
+      "crc32": "5f8f301b"
+    },
+    {
+      "member": "nextgen/learning-move-1-1.png",
+      "bytes": 557010,
+      "crc32": "6a93abd0"
+    },
+    {
+      "member": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 2766,
+      "crc32": "45d8bdfd"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-components.json",
+      "bytes": 6220,
+      "crc32": "fb0d53cd"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-contrast.tsv",
+      "bytes": 3211,
+      "crc32": "cd44e08f"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-0.png",
+      "bytes": 32516,
+      "crc32": "c0b55191"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-1.png",
+      "bytes": 5467,
+      "crc32": "50198e4b"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-1.tsv",
+      "bytes": 226,
+      "crc32": "b4d26f5b"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-0.tsv",
+      "bytes": 111,
+      "crc32": "a4771cc8"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-10.png",
+      "bytes": 1370,
+      "crc32": "249b0927"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-10.tsv",
+      "bytes": 226,
+      "crc32": "89bdc580"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-11.png",
+      "bytes": 1320,
+      "crc32": "63c50e7b"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-11.tsv",
+      "bytes": 226,
+      "crc32": "d8b4237d"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-12.tsv",
+      "bytes": 226,
+      "crc32": "4a956452"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-12.png",
+      "bytes": 1460,
+      "crc32": "fa9ab449"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-13.png",
+      "bytes": 1495,
+      "crc32": "e749bac2"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-13.tsv",
+      "bytes": 226,
+      "crc32": "c66430b8"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-14.png",
+      "bytes": 1307,
+      "crc32": "e28ccb11"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-14.tsv",
+      "bytes": 226,
+      "crc32": "85178622"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-15.png",
+      "bytes": 1476,
+      "crc32": "49f24645"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-15.tsv",
+      "bytes": 226,
+      "crc32": "b23a2a12"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-2.png",
+      "bytes": 4124,
+      "crc32": "c5d2234b"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-2.tsv",
+      "bytes": 227,
+      "crc32": "823d133c"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-3.png",
+      "bytes": 15946,
+      "crc32": "3298b4bd"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-3.tsv",
+      "bytes": 296,
+      "crc32": "6a788fab"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-4.png",
+      "bytes": 5610,
+      "crc32": "612dc95d"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-4.tsv",
+      "bytes": 110,
+      "crc32": "0c503686"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-5.png",
+      "bytes": 4876,
+      "crc32": "73b51106"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-5.tsv",
+      "bytes": 226,
+      "crc32": "ae1a8f2a"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-6.png",
+      "bytes": 8570,
+      "crc32": "47bc339c"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-6.tsv",
+      "bytes": 263,
+      "crc32": "f1a7c11a"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-7.png",
+      "bytes": 5024,
+      "crc32": "7ac6c547"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-7.tsv",
+      "bytes": 228,
+      "crc32": "cac54543"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-8.png",
+      "bytes": 30815,
+      "crc32": "7b347d44"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-8.tsv",
+      "bytes": 236,
+      "crc32": "4bf3ef1e"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-9.png",
+      "bytes": 1315,
+      "crc32": "3f864382"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-gold-component-9.tsv",
+      "bytes": 226,
+      "crc32": "924d20e4"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "crc32": "663a60c7"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-navy-latin.tsv",
+      "bytes": 376,
+      "crc32": "da0d9c08"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-raw.tsv",
+      "bytes": 2635,
+      "crc32": "e4d18b26"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-teal-text-1x.tsv",
+      "bytes": 4125,
+      "crc32": "fe419105"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-tiles.json",
+      "bytes": 5145,
+      "crc32": "f023afe1"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 58178,
+      "crc32": "e46eb0e5"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1566,
+      "crc32": "f9173919"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 31116,
+      "crc32": "b6ba325c"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1048,
+      "crc32": "e313bfe2"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 48118,
+      "crc32": "9dfcfe74"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1354,
+      "crc32": "6ea2a053"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 31163,
+      "crc32": "ebff0f30"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 871,
+      "crc32": "e3ace449"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 29760,
+      "crc32": "b55b6196"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 781,
+      "crc32": "3bda4e3a"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21193,
+      "crc32": "d4dcec51"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 385,
+      "crc32": "418e9796"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-0.png",
+      "bytes": 55517,
+      "crc32": "0347cdc0"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-1.png",
+      "bytes": 26334,
+      "crc32": "7d2a57f6"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 2518,
+      "crc32": "52793c5e"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "crc32": "c81eb82b"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-2.png",
+      "bytes": 47804,
+      "crc32": "fb0c02d7"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1005,
+      "crc32": "dffd998d"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-3.png",
+      "bytes": 30097,
+      "crc32": "524a992b"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 705,
+      "crc32": "7fb8c8f6"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-4.png",
+      "bytes": 31789,
+      "crc32": "5198c936"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 987,
+      "crc32": "29d0eb6d"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-5.png",
+      "bytes": 19433,
+      "crc32": "4717c046"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 385,
+      "crc32": "49480c40"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-latin.tsv",
+      "bytes": 2927,
+      "crc32": "8b16c26f"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr-white-text.tsv",
+      "bytes": 2927,
+      "crc32": "d4a36b51"
+    },
+    {
+      "member": "nextgen/learning-move-2-0-ocr.json",
+      "bytes": 10329,
+      "crc32": "71beab39"
+    },
+    {
+      "member": "nextgen/learning-move-2-1-ocr-contrast.tsv",
+      "bytes": 2825,
+      "crc32": "1ffd0045"
+    },
+    {
+      "member": "nextgen/learning-move-2-0.png",
+      "bytes": 554350,
+      "crc32": "11526508"
+    },
+    {
+      "member": "nextgen/learning-move-2-1-ocr-raw.tsv",
+      "bytes": 2717,
+      "crc32": "9e8d5da7"
+    },
+    {
+      "member": "nextgen/learning-move-2-1-ocr-white-text.tsv",
+      "bytes": 4073,
+      "crc32": "e07709d9"
+    },
+    {
+      "member": "nextgen/learning-move-2-1-ocr.json",
+      "bytes": 6442,
+      "crc32": "d4cbd9da"
+    },
+    {
+      "member": "nextgen/learning-move-2-1.png",
+      "bytes": 557911,
+      "crc32": "afab18d7"
+    },
+    {
+      "member": "nextgen/learning-move-2-2-ocr-contrast.tsv",
+      "bytes": 3258,
+      "crc32": "0080f1a1"
+    },
+    {
+      "member": "nextgen/learning-move-2-2-ocr-white-text.tsv",
+      "bytes": 3671,
+      "crc32": "48ee9e5a"
+    },
+    {
+      "member": "nextgen/learning-move-2-2-ocr-raw.tsv",
+      "bytes": 2762,
+      "crc32": "fb8ff307"
+    },
+    {
+      "member": "nextgen/learning-move-2-2-ocr.json",
+      "bytes": 6692,
+      "crc32": "fe1c5f06"
+    },
+    {
+      "member": "nextgen/learning-move-2-2.png",
+      "bytes": 557650,
+      "crc32": "a54be07c"
+    },
+    {
+      "member": "nextgen/learning-move-2-surface-readiness.json",
+      "bytes": 3560,
+      "crc32": "c313b515"
+    },
+    {
+      "member": "nextgen/learning-move-3-0-ocr-contrast.tsv",
+      "bytes": 2857,
+      "crc32": "7485e57b"
+    },
+    {
+      "member": "nextgen/learning-move-3-0-ocr-raw.tsv",
+      "bytes": 3068,
+      "crc32": "b080336a"
+    },
+    {
+      "member": "nextgen/learning-move-3-0-ocr-white-text.tsv",
+      "bytes": 4385,
+      "crc32": "92c28145"
+    },
+    {
+      "member": "nextgen/learning-move-3-0-ocr.json",
+      "bytes": 6503,
+      "crc32": "0a0a002f"
+    },
+    {
+      "member": "nextgen/learning-move-3-0.png",
+      "bytes": 569791,
+      "crc32": "9e080102"
+    },
+    {
+      "member": "nextgen/learning-move-3-1-ocr-contrast.tsv",
+      "bytes": 3133,
+      "crc32": "4f6ce6e7"
+    },
+    {
+      "member": "nextgen/learning-move-3-1-ocr-raw.tsv",
+      "bytes": 3129,
+      "crc32": "510efc50"
+    },
+    {
+      "member": "nextgen/learning-move-3-1-ocr-white-text.tsv",
+      "bytes": 4525,
+      "crc32": "421aafa1"
+    },
+    {
+      "member": "nextgen/learning-move-3-1-ocr.json",
+      "bytes": 7000,
+      "crc32": "30d2d627"
+    },
+    {
+      "member": "nextgen/learning-move-3-1.png",
+      "bytes": 568363,
+      "crc32": "7105fc85"
+    },
+    {
+      "member": "nextgen/learning-move-3-surface-readiness.json",
+      "bytes": 2766,
+      "crc32": "e4d11f44"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-components.json",
+      "bytes": 6224,
+      "crc32": "cd3607d5"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-contrast.tsv",
+      "bytes": 3068,
+      "crc32": "f168d38b"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-0.png",
+      "bytes": 31641,
+      "crc32": "a5d94984"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-0.tsv",
+      "bytes": 111,
+      "crc32": "a4771cc8"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-1.png",
+      "bytes": 44643,
+      "crc32": "ff5ac431"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-10.png",
+      "bytes": 1315,
+      "crc32": "3f864382"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-10.tsv",
+      "bytes": 226,
+      "crc32": "924d20e4"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-11.png",
+      "bytes": 1370,
+      "crc32": "249b0927"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-1.tsv",
+      "bytes": 111,
+      "crc32": "a4771cc8"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-11.tsv",
+      "bytes": 226,
+      "crc32": "89bdc580"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-12.tsv",
+      "bytes": 226,
+      "crc32": "d8b4237d"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-12.png",
+      "bytes": 1320,
+      "crc32": "63c50e7b"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-13.png",
+      "bytes": 1460,
+      "crc32": "fa9ab449"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-13.tsv",
+      "bytes": 226,
+      "crc32": "4a956452"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-14.png",
+      "bytes": 1495,
+      "crc32": "e749bac2"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-14.tsv",
+      "bytes": 226,
+      "crc32": "c66430b8"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-15.png",
+      "bytes": 1307,
+      "crc32": "e28ccb11"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-15.tsv",
+      "bytes": 226,
+      "crc32": "85178622"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-2.png",
+      "bytes": 5513,
+      "crc32": "a6a83567"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-2.tsv",
+      "bytes": 226,
+      "crc32": "fb14b2ee"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-3.png",
+      "bytes": 3887,
+      "crc32": "d7d7accb"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-3.tsv",
+      "bytes": 227,
+      "crc32": "8bc6f421"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-4.png",
+      "bytes": 15589,
+      "crc32": "b03658d7"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-4.tsv",
+      "bytes": 298,
+      "crc32": "2ce1c10f"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-5.png",
+      "bytes": 5591,
+      "crc32": "dc07effa"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-5.tsv",
+      "bytes": 110,
+      "crc32": "0c503686"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-6.png",
+      "bytes": 4857,
+      "crc32": "d934d05f"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-7.png",
+      "bytes": 8553,
+      "crc32": "c9a9571d"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-6.tsv",
+      "bytes": 226,
+      "crc32": "a73dd19d"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-7.tsv",
+      "bytes": 263,
+      "crc32": "c4efb192"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-8.png",
+      "bytes": 5051,
+      "crc32": "a088d52e"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-8.tsv",
+      "bytes": 228,
+      "crc32": "95876a9d"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-9.png",
+      "bytes": 27343,
+      "crc32": "643b1cc4"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-gold-component-9.tsv",
+      "bytes": 236,
+      "crc32": "e9599bdc"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "crc32": "663a60c7"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-navy-latin.tsv",
+      "bytes": 246,
+      "crc32": "9941b121"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-raw.tsv",
+      "bytes": 2855,
+      "crc32": "97cd1639"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-teal-text-1x.tsv",
+      "bytes": 4810,
+      "crc32": "d44247d3"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-tiles.json",
+      "bytes": 5170,
+      "crc32": "35adc26c"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 58136,
+      "crc32": "9cc39d35"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1674,
+      "crc32": "c50bd8c4"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 31572,
+      "crc32": "440f6e5d"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1048,
+      "crc32": "3c31b6a6"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 49616,
+      "crc32": "66e9d2e1"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1944,
+      "crc32": "d60f3b6d"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 31163,
+      "crc32": "ebff0f30"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 871,
+      "crc32": "e3ace449"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 30775,
+      "crc32": "27957828"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21193,
+      "crc32": "d4dcec51"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 385,
+      "crc32": "418e9796"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 782,
+      "crc32": "e1aa9be0"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-0.png",
+      "bytes": 55989,
+      "crc32": "3e693262"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1770,
+      "crc32": "f72391e4"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-1.png",
+      "bytes": 26652,
+      "crc32": "72b19267"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "crc32": "2ed86464"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-2.png",
+      "bytes": 48548,
+      "crc32": "b79f9bcb"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-3.png",
+      "bytes": 30097,
+      "crc32": "524a992b"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 705,
+      "crc32": "7fb8c8f6"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-4.png",
+      "bytes": 33030,
+      "crc32": "c3535a70"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1395,
+      "crc32": "53e562ea"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 988,
+      "crc32": "ec9c4555"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-5.png",
+      "bytes": 19433,
+      "crc32": "4717c046"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 385,
+      "crc32": "49480c40"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-latin.tsv",
+      "bytes": 3320,
+      "crc32": "6854651a"
+    },
+    {
+      "member": "nextgen/learning-move-4-1-ocr-contrast.tsv",
+      "bytes": 2735,
+      "crc32": "92c94718"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr-white-text.tsv",
+      "bytes": 3400,
+      "crc32": "2b61a4ed"
+    },
+    {
+      "member": "nextgen/learning-move-4-0-ocr.json",
+      "bytes": 10861,
+      "crc32": "bed0cfcc"
+    },
+    {
+      "member": "nextgen/learning-move-4-0.png",
+      "bytes": 553706,
+      "crc32": "ea53d632"
+    },
+    {
+      "member": "nextgen/learning-move-4-1.png",
+      "bytes": 557357,
+      "crc32": "7df97345"
+    },
+    {
+      "member": "nextgen/learning-move-4-1-ocr-raw.tsv",
+      "bytes": 3154,
+      "crc32": "c9a398c9"
+    },
+    {
+      "member": "nextgen/learning-move-4-1-ocr-white-text.tsv",
+      "bytes": 4174,
+      "crc32": "3e8b10f1"
+    },
+    {
+      "member": "nextgen/learning-move-4-1-ocr.json",
+      "bytes": 6824,
+      "crc32": "6c452384"
+    },
+    {
+      "member": "nextgen/learning-move-4-2-ocr-white-text.tsv",
+      "bytes": 4347,
+      "crc32": "c4fd1831"
+    },
+    {
+      "member": "nextgen/learning-move-4-2-ocr.json",
+      "bytes": 6722,
+      "crc32": "5dfeec59"
+    },
+    {
+      "member": "nextgen/learning-move-4-2-ocr-contrast.tsv",
+      "bytes": 3295,
+      "crc32": "08c59a2e"
+    },
+    {
+      "member": "nextgen/learning-move-4-2-ocr-raw.tsv",
+      "bytes": 2859,
+      "crc32": "8c7d25b6"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-contrast.tsv",
+      "bytes": 3257,
+      "crc32": "3e8da5f8"
+    },
+    {
+      "member": "nextgen/learning-move-4-2.png",
+      "bytes": 556971,
+      "crc32": "a05ae679"
+    },
+    {
+      "member": "nextgen/learning-move-4-surface-readiness.json",
+      "bytes": 3558,
+      "crc32": "188daa74"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-components.json",
+      "bytes": 6224,
+      "crc32": "d392c3c1"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-1.tsv",
+      "bytes": 111,
+      "crc32": "a4771cc8"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-0.png",
+      "bytes": 44643,
+      "crc32": "ff5ac431"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-0.tsv",
+      "bytes": 111,
+      "crc32": "a4771cc8"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-1.png",
+      "bytes": 33500,
+      "crc32": "22e68112"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-10.png",
+      "bytes": 1315,
+      "crc32": "3f864382"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-10.tsv",
+      "bytes": 226,
+      "crc32": "924d20e4"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-11.png",
+      "bytes": 1370,
+      "crc32": "249b0927"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-11.tsv",
+      "bytes": 226,
+      "crc32": "89bdc580"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-12.png",
+      "bytes": 1320,
+      "crc32": "63c50e7b"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-12.tsv",
+      "bytes": 226,
+      "crc32": "d8b4237d"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-13.png",
+      "bytes": 1460,
+      "crc32": "fa9ab449"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-13.tsv",
+      "bytes": 226,
+      "crc32": "4a956452"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-15.tsv",
+      "bytes": 226,
+      "crc32": "85178622"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-14.png",
+      "bytes": 1495,
+      "crc32": "e749bac2"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-14.tsv",
+      "bytes": 226,
+      "crc32": "c66430b8"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-15.png",
+      "bytes": 1307,
+      "crc32": "e28ccb11"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-3.png",
+      "bytes": 4061,
+      "crc32": "1025a3f1"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-3.tsv",
+      "bytes": 226,
+      "crc32": "19ff428c"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-2.png",
+      "bytes": 4950,
+      "crc32": "be8d319f"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-2.tsv",
+      "bytes": 227,
+      "crc32": "21efd235"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-5.tsv",
+      "bytes": 110,
+      "crc32": "0c503686"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-4.png",
+      "bytes": 15345,
+      "crc32": "b3057126"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-4.tsv",
+      "bytes": 301,
+      "crc32": "dbcc6256"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-5.png",
+      "bytes": 5578,
+      "crc32": "e9f7128a"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-6.png",
+      "bytes": 4761,
+      "crc32": "a5130d3b"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-6.tsv",
+      "bytes": 227,
+      "crc32": "abb1e938"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-7.png",
+      "bytes": 48717,
+      "crc32": "9e64089a"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-7.tsv",
+      "bytes": 235,
+      "crc32": "9193e963"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-8.png",
+      "bytes": 8658,
+      "crc32": "f9bb9a5a"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-8.tsv",
+      "bytes": 261,
+      "crc32": "02d5043c"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-9.png",
+      "bytes": 5022,
+      "crc32": "0aa231fd"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-gold-component-9.tsv",
+      "bytes": 229,
+      "crc32": "7e50892a"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-navy-latin-1x.tsv",
+      "bytes": 233,
+      "crc32": "b94d8617"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-navy-latin.tsv",
+      "bytes": 237,
+      "crc32": "8c329174"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-raw.tsv",
+      "bytes": 2886,
+      "crc32": "1e639df7"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-teal-text-1x.tsv",
+      "bytes": 5831,
+      "crc32": "5cfc164c"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-tiles.json",
+      "bytes": 5169,
+      "crc32": "5f19f70a"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 59615,
+      "crc32": "66d4e67d"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1355,
+      "crc32": "76ad1e65"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 31534,
+      "crc32": "34e9262b"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1048,
+      "crc32": "e1c21d6d"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 50000,
+      "crc32": "8416575f"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 31163,
+      "crc32": "ebff0f30"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1256,
+      "crc32": "612c94be"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 871,
+      "crc32": "e3ace449"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 30775,
+      "crc32": "27957828"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 782,
+      "crc32": "e1aa9be0"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 21193,
+      "crc32": "d4dcec51"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 385,
+      "crc32": "418e9796"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-0.png",
+      "bytes": 56223,
+      "crc32": "c489050e"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1763,
+      "crc32": "87648f7d"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-1.png",
+      "bytes": 26711,
+      "crc32": "d62dcd13"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 576,
+      "crc32": "95973faa"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-2.png",
+      "bytes": 47592,
+      "crc32": "899868da"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1627,
+      "crc32": "4903c29a"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-3.png",
+      "bytes": 30097,
+      "crc32": "524a992b"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 705,
+      "crc32": "7fb8c8f6"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-4.png",
+      "bytes": 33030,
+      "crc32": "c3535a70"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 988,
+      "crc32": "ec9c4555"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-5.png",
+      "bytes": 19433,
+      "crc32": "4717c046"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 385,
+      "crc32": "49480c40"
+    },
+    {
+      "member": "nextgen/learning-move-5-0.png",
+      "bytes": 554869,
+      "crc32": "7439d4d4"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-latin.tsv",
+      "bytes": 3078,
+      "crc32": "53c11ecf"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr-white-text.tsv",
+      "bytes": 3074,
+      "crc32": "ec217972"
+    },
+    {
+      "member": "nextgen/learning-move-5-0-ocr.json",
+      "bytes": 11535,
+      "crc32": "01c48cdb"
+    },
+    {
+      "member": "nextgen/learning-move-5-1-ocr-contrast.tsv",
+      "bytes": 3024,
+      "crc32": "03ad37fd"
+    },
+    {
+      "member": "nextgen/learning-move-5-1-ocr-raw.tsv",
+      "bytes": 2895,
+      "crc32": "6f6e8cde"
+    },
+    {
+      "member": "nextgen/learning-move-5-1-ocr-white-text.tsv",
+      "bytes": 3450,
+      "crc32": "43dc533e"
+    },
+    {
+      "member": "nextgen/learning-move-5-1-ocr.json",
+      "bytes": 5941,
+      "crc32": "b72b1686"
+    },
+    {
+      "member": "nextgen/learning-move-5-2-ocr-white-text.tsv",
+      "bytes": 3353,
+      "crc32": "34c4bbe2"
+    },
+    {
+      "member": "nextgen/learning-move-5-1.png",
+      "bytes": 558735,
+      "crc32": "68f9cf68"
+    },
+    {
+      "member": "nextgen/learning-move-5-2-ocr-contrast.tsv",
+      "bytes": 3160,
+      "crc32": "9f56b0b5"
+    },
+    {
+      "member": "nextgen/learning-move-5-2-ocr-raw.tsv",
+      "bytes": 3137,
+      "crc32": "28ce4f5b"
+    },
+    {
+      "member": "nextgen/learning-move-5-2-ocr.json",
+      "bytes": 6310,
+      "crc32": "f4ee1b0a"
+    },
+    {
+      "member": "nextgen/learning-move-5-2.png",
+      "bytes": 558416,
+      "crc32": "930aaed4"
+    },
+    {
+      "member": "nextgen/learning-move-5-surface-readiness.json",
+      "bytes": 3560,
+      "crc32": "bf6ce915"
+    },
+    {
+      "member": "nextgen/learning-movement-logcat.txt",
+      "bytes": 2603,
+      "crc32": "5a3733c7"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-0.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-1.xml",
+      "bytes": 26778,
+      "crc32": "1305fb87"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-10.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-11.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-12.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-13.xml",
+      "bytes": 26778,
+      "crc32": "17cebd09"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-14.xml",
+      "bytes": 26778,
+      "crc32": "17cebd09"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-15.xml",
+      "bytes": 26778,
+      "crc32": "8c1758b4"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-16.xml",
+      "bytes": 26778,
+      "crc32": "17cebd09"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-3.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-4.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-2.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-5.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-6.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-7.xml",
+      "bytes": 26778,
+      "crc32": "cf4f32c7"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-8.xml",
+      "bytes": 26778,
+      "crc32": "847f6e89"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27--1-9.xml",
+      "bytes": 26778,
+      "crc32": "cf4f32c7"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27-1-0.xml",
+      "bytes": 26778,
+      "crc32": "17cebd09"
+    },
+    {
+      "member": "nextgen/learning-native-entry-27-1-1.xml",
+      "bytes": 23588,
+      "crc32": "feaf3586"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-components.json",
+      "bytes": 462,
+      "crc32": "a787a91c"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-contrast.tsv",
+      "bytes": 414,
+      "crc32": "52125fd9"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "crc32": "52c6252c"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "crc32": "95a69067"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-raw.tsv",
+      "bytes": 415,
+      "crc32": "dc4d2e28"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-teal-text-1x.tsv",
+      "bytes": 410,
+      "crc32": "b64ad8c5"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-tiles.json",
+      "bytes": 4731,
+      "crc32": "613ebc18"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "crc32": "b246cbf0"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 8237,
+      "crc32": "3913864b"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 283,
+      "crc32": "ccba3042"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 4839,
+      "crc32": "d636dcc5"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 5271,
+      "crc32": "c93fc841"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 113,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 5271,
+      "crc32": "c93fc841"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 113,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 6783,
+      "crc32": "d92f76f6"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 282,
+      "crc32": "5b411a9c"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 4839,
+      "crc32": "d636dcc5"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "crc32": "b246cbf0"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "crc32": "b246cbf0"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-0.png",
+      "bytes": 7886,
+      "crc32": "0897ef9e"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 282,
+      "crc32": "bbd4d820"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-1.png",
+      "bytes": 4839,
+      "crc32": "d636dcc5"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-2.png",
+      "bytes": 5271,
+      "crc32": "c93fc841"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "crc32": "4daa8ac1"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-3.png",
+      "bytes": 5271,
+      "crc32": "c93fc841"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-5.png",
+      "bytes": 4839,
+      "crc32": "d636dcc5"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "crc32": "b246cbf0"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-4.png",
+      "bytes": 6845,
+      "crc32": "2cfc06e1"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 288,
+      "crc32": "b14d8e0f"
+    },
+    {
+      "member": "nextgen/learning-native-title-0.png",
+      "bytes": 17789,
+      "crc32": "f1957b48"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-latin.tsv",
+      "bytes": 449,
+      "crc32": "5ab3f4da"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr-white-text.tsv",
+      "bytes": 414,
+      "crc32": "5f52f6cf"
+    },
+    {
+      "member": "nextgen/learning-native-title-0-ocr.json",
+      "bytes": 1291,
+      "crc32": "8e4416a1"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "crc32": "0a492342"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-components.json",
+      "bytes": 462,
+      "crc32": "361e2d60"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-contrast.tsv",
+      "bytes": 423,
+      "crc32": "14522bc4"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "crc32": "663a60c7"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-raw.tsv",
+      "bytes": 424,
+      "crc32": "3f663b42"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-teal-text-1x.tsv",
+      "bytes": 363,
+      "crc32": "747c4cad"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-tiles.json",
+      "bytes": 4795,
+      "crc32": "bb23cb00"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-0.png",
+      "bytes": 15413,
+      "crc32": "f24296b9"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-2.png",
+      "bytes": 12942,
+      "crc32": "4dd984cd"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 286,
+      "crc32": "a13b3bf4"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-1.png",
+      "bytes": 12315,
+      "crc32": "90005820"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-3.png",
+      "bytes": 13027,
+      "crc32": "716881e6"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 113,
+      "crc32": "26bf25d5"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 113,
+      "crc32": "26bf25d5"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-4.png",
+      "bytes": 14008,
+      "crc32": "7a61d3a9"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-5.png",
+      "bytes": 12342,
+      "crc32": "780d0c2f"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 287,
+      "crc32": "fc380bc0"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-0.png",
+      "bytes": 15138,
+      "crc32": "470f1983"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-0.tsv",
+      "bytes": 248,
+      "crc32": "2e0b2233"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-1.png",
+      "bytes": 12289,
+      "crc32": "06c2fc66"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-2.png",
+      "bytes": 12914,
+      "crc32": "7675edd7"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "crc32": "26bf25d5"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-3.png",
+      "bytes": 12974,
+      "crc32": "eac172a2"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-4.png",
+      "bytes": 14054,
+      "crc32": "4450c68e"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-4.tsv",
+      "bytes": 287,
+      "crc32": "6ee7d34e"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "crc32": "26bf25d5"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-5.png",
+      "bytes": 12317,
+      "crc32": "82ddc71c"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "crc32": "855cc177"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-latin.tsv",
+      "bytes": 422,
+      "crc32": "ced94324"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr-white-text.tsv",
+      "bytes": 423,
+      "crc32": "a6d76978"
+    },
+    {
+      "member": "nextgen/learning-native-title-1-ocr.json",
+      "bytes": 1280,
+      "crc32": "20bd9b62"
+    },
+    {
+      "member": "nextgen/learning-native-title-1.png",
+      "bytes": 21198,
+      "crc32": "24b2a4b2"
+    },
+    {
+      "member": "nextgen/learning-native-title-2-ocr-contrast.tsv",
+      "bytes": 3093,
+      "crc32": "93f0c1b0"
+    },
+    {
+      "member": "nextgen/learning-native-title-2-ocr.json",
+      "bytes": 2190,
+      "crc32": "c1b88787"
+    },
+    {
+      "member": "nextgen/learning-native-title-2.png",
+      "bytes": 553614,
+      "crc32": "e756de63"
+    },
+    {
+      "member": "nextgen/learning-return-academy.xml",
+      "bytes": 27947,
+      "crc32": "1b04fb2b"
+    },
+    {
+      "member": "nextgen/learning-return-hub.xml",
+      "bytes": 19137,
+      "crc32": "e81d3586"
+    },
+    {
+      "member": "nextgen/learning-return-navigation.xml",
+      "bytes": 27947,
+      "crc32": "1b04fb2b"
+    },
+    {
+      "member": "nextgen/learning-speech-logcat.txt",
+      "bytes": 2726,
+      "crc32": "b5673647"
+    },
+    {
+      "member": "nextgen/learning-ten-filled-0.png",
+      "bytes": 568080,
+      "crc32": "2883a252"
+    },
+    {
+      "member": "nextgen/learning-tab-6--1-0.xml",
+      "bytes": 25843,
+      "crc32": "3daed055"
+    },
+    {
+      "member": "nextgen/learning-ten-filled-0-ocr-contrast.tsv",
+      "bytes": 4572,
+      "crc32": "858b788e"
+    },
+    {
+      "member": "nextgen/learning-ten-filled-0-ocr.json",
+      "bytes": 3196,
+      "crc32": "a36e9f25"
+    },
+    {
+      "member": "nextgen/logcat.txt",
+      "bytes": 2404832,
+      "crc32": "977e3fd4"
+    },
+    {
+      "member": "nextgen/native-surfaces-result.json",
+      "bytes": 226643,
+      "crc32": "ec3aaaea"
+    },
+    {
+      "member": "nextgen/ocr-work.png",
+      "bytes": 60386,
+      "crc32": "9091ebb6"
+    },
+    {
+      "member": "nextgen/rooted-emulator.json",
+      "bytes": 1553,
+      "crc32": "856f887f"
+    },
+    {
+      "member": "nextgen/uiautomator-config.json",
+      "bytes": 189,
+      "crc32": "bc079679"
+    },
+    {
+      "member": "nextgen/voice-games-entry-7--1-0.xml",
+      "bytes": 28472,
+      "crc32": "9f594900"
+    },
+    {
+      "member": "nextgen/voice-license-confirm-23--1-0.xml",
+      "bytes": 33371,
+      "crc32": "ef77bd49"
+    },
+    {
+      "member": "nextgen/voice-license-checkbox-145--1-0.xml",
+      "bytes": 33374,
+      "crc32": "f6b7d289"
+    },
+    {
+      "member": "nextgen/voice-license-observed-preferences.xml",
+      "bytes": 2757,
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/voice-license-dialog.xml",
+      "bytes": 33374,
+      "crc32": "f6b7d289"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-0.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-1.xml",
+      "bytes": 26817,
+      "crc32": "bff1307b"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-10.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-11.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-12.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-13.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-14.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-15.xml",
+      "bytes": 26817,
+      "crc32": "f130b104"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-2.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-16.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-3.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-4.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-5.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-6.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-7.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-8.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-0.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27--1-9.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-1.xml",
+      "bytes": 26824,
+      "crc32": "b389e01c"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-10.xml",
+      "bytes": 28530,
+      "crc32": "5d0ba2c6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-11.xml",
+      "bytes": 30532,
+      "crc32": "9f49b5da"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-12.xml",
+      "bytes": 28930,
+      "crc32": "0253ae63"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-13.xml",
+      "bytes": 27684,
+      "crc32": "0e563202"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-14.xml",
+      "bytes": 25198,
+      "crc32": "38e6f35c"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-15.xml",
+      "bytes": 26699,
+      "crc32": "e9527007"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-16.xml",
+      "bytes": 25420,
+      "crc32": "4423bb30"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-2.xml",
+      "bytes": 25080,
+      "crc32": "824a8d08"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-3.xml",
+      "bytes": 25605,
+      "crc32": "7cf9548d"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-4.xml",
+      "bytes": 26871,
+      "crc32": "c2a201c0"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-5.xml",
+      "bytes": 28601,
+      "crc32": "216391f6"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-6.xml",
+      "bytes": 26417,
+      "crc32": "ae070ffa"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-7.xml",
+      "bytes": 25093,
+      "crc32": "7ecb0430"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-8.xml",
+      "bytes": 28123,
+      "crc32": "b3b8c17e"
+    },
+    {
+      "member": "nextgen/voice-license-open-27-1-9.xml",
+      "bytes": 27824,
+      "crc32": "b9783587"
+    },
+    {
+      "member": "nextgen/voice-setting-calmMode-preferences.xml",
+      "bytes": 2757,
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/voice-setting-autoReadEnabled-preferences.xml",
+      "bytes": 2757,
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/voice-setting-voiceEnabled-preferences.xml",
+      "bytes": 2757,
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/voice-settings-after-preferences.xml",
+      "bytes": 2757,
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/voice-settings-before-preferences.xml",
+      "bytes": 2011,
+      "crc32": "4b51570d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-0.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-10.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-1.xml",
+      "bytes": 24809,
+      "crc32": "4922e937"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-11.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-12.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-13.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-14.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-15.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-16.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-2.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-3.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-4.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-5.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-6.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-7.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-8.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13--1-9.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13-1-0.xml",
+      "bytes": 24801,
+      "crc32": "b2ea4e4d"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13-1-1.xml",
+      "bytes": 22973,
+      "crc32": "3bdb2ad7"
+    },
+    {
+      "member": "nextgen/voice-settings-entry-13-1-2.xml",
+      "bytes": 24292,
+      "crc32": "e04a57a6"
+    },
+    {
+      "member": "nextgen/voice-settings-open.xml",
+      "bytes": 26817,
+      "crc32": "f32e7fb6"
+    },
+    {
+      "member": "ocr-work.png",
+      "bytes": 199846,
+      "crc32": "fe28e0c4"
+    },
+    {
+      "member": "onboard-age-next-0.xml",
+      "bytes": 24077,
+      "crc32": "bb1dadfc"
+    },
+    {
+      "member": "onboard-games-Spiele-0.xml",
+      "bytes": 28121,
+      "crc32": "87eb0c7e"
+    },
+    {
+      "member": "onboard-grade-save-0.xml",
+      "bytes": 23271,
+      "crc32": "efe9430e"
+    },
+    {
+      "member": "onboard-home-0.xml",
+      "bytes": 31794,
+      "crc32": "f48e682a"
+    },
+    {
+      "member": "onboard-ime-before-dismiss.xml",
+      "bytes": 95939,
+      "crc32": "d44f936b"
+    },
+    {
+      "member": "onboard-name-written-1-0.xml",
+      "bytes": 95978,
+      "crc32": "b3fa570a"
+    },
+    {
+      "member": "onboard-name-next-0.xml",
+      "bytes": 22771,
+      "crc32": "73438bb2"
+    },
+    {
+      "member": "onboard-name-written-2-0.xml",
+      "bytes": 95918,
+      "crc32": "cf1972e3"
+    },
+    {
+      "member": "onboard-name-written-3-0.xml",
+      "bytes": 95921,
+      "crc32": "15474a66"
+    },
+    {
+      "member": "onboard-name-written-4-0.xml",
+      "bytes": 95922,
+      "crc32": "d2aaa3c9"
+    },
+    {
+      "member": "onboard-name-written-5-0.xml",
+      "bytes": 95925,
+      "crc32": "8ce0a108"
+    },
+    {
+      "member": "onboard-name-written-6-0.xml",
+      "bytes": 95931,
+      "crc32": "53a85fc4"
+    },
+    {
+      "member": "onboard-name-written-7-0.xml",
+      "bytes": 95932,
+      "crc32": "bbe7b85c"
+    },
+    {
+      "member": "onboard-name-written-8-0.xml",
+      "bytes": 95939,
+      "crc32": "d44f936b"
+    },
+    {
+      "member": "onboard-name.xml",
+      "bytes": 22785,
+      "crc32": "6924d46c"
+    },
+    {
+      "member": "onboard-welcome--1-0.xml",
+      "bytes": 22445,
+      "crc32": "dbc5fbfe"
+    },
+    {
+      "member": "open-kart-47-1-0.xml",
+      "bytes": 28124,
+      "crc32": "edc6000d"
+    },
+    {
+      "member": "recheck/after.json",
+      "bytes": 16655,
+      "crc32": "208d049a"
+    },
+    {
+      "member": "recheck/before.json",
+      "bytes": 16655,
+      "crc32": "208d049a"
+    },
+    {
+      "member": "recheck/preflight.json",
+      "bytes": 17136,
+      "crc32": "f72dc379"
+    },
+    {
+      "member": "recheck/result.json",
+      "bytes": 3124,
+      "crc32": "0058e9c3"
+    },
+    {
+      "member": "restart-0.xml",
+      "bytes": 31793,
+      "crc32": "7289904e"
+    },
+    {
+      "member": "rooted-emulator.json",
+      "bytes": 1544,
+      "crc32": "aa7e2b0d"
+    },
+    {
+      "member": "restart-after-kart-launch.txt",
+      "bytes": 547,
+      "crc32": "2251a64d"
+    },
+    {
+      "member": "start-after-kart-0.xml",
+      "bytes": 33087,
+      "crc32": "a939012e"
+    },
+    {
+      "member": "start-after-kart-1.xml",
+      "bytes": 33077,
+      "crc32": "458cb464"
+    },
+    {
+      "member": "start-after-kart-2.xml",
+      "bytes": 35370,
+      "crc32": "fb9ac598"
+    },
+    {
+      "member": "start-after-kart-3.xml",
+      "bytes": 33671,
+      "crc32": "95696ec3"
+    },
+    {
+      "member": "tesseract-installed-languages.txt",
+      "bytes": 87,
+      "crc32": "d3854710"
+    },
+    {
+      "member": "tesseract-version.txt",
+      "bytes": 502,
+      "crc32": "1281cc5c"
+    },
+    {
+      "member": "tour-result.json",
+      "bytes": 9770,
+      "crc32": "e4ed9364"
+    },
+    {
+      "member": "tested-apk-sha256.txt",
+      "bytes": 108,
+      "crc32": "428a6d65"
+    },
+    {
+      "member": "uiautomator-config.json",
+      "bytes": 189,
+      "crc32": "bc079679"
+    },
+    {
+      "member": "xvfb.log",
+      "bytes": 4696,
+      "crc32": "ef9e06c9"
+    }
+  ]
+}

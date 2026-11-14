@@ -1,0 +1,16 @@
+test_opt_in_skips_actual_observed_cue_before_reporting_start (__main__.PreviewSkipTests.test_opt_in_skips_actual_observed_cue_before_reporting_start) ... FAIL
+
+======================================================================
+FAIL: test_opt_in_skips_actual_observed_cue_before_reporting_start (__main__.PreviewSkipTests.test_opt_in_skips_actual_observed_cue_before_reporting_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/patched/tools/android_qa/tests/test_kart_preview_skip.py", line 161, in test_opt_in_skips_actual_observed_cue_before_reporting_start
+    self.probe.native_tap.assert_called_once()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 928, in assert_called_once
+    raise AssertionError(msg)
+AssertionError: Expected 'mock' to have been called once. Called 0 times.
+
+----------------------------------------------------------------------
+Ran 1 test in 0.023s
+
+FAILED (failures=1)

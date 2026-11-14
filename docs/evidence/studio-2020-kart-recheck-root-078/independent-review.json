@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T10:47:49.348817+00:00",
+  "verdict": "NO_ADDITIONAL_CONCRETE_SOURCE_OR_WORKFLOW_BLOCKER_FOUND",
+  "blocking_issue": false,
+  "scope": "Unabhängige Leseprüfung der fünf eingefrorenen QA-Dateien und genau ein ausdrücklich angeforderter synthetischer Journal-/Binder-Abgleich. Keine produktive Änderung, kein Androidlauf und keine Gitmutation.",
+  "product_host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "original_failed_unified_run": 43580229005,
+  "original_failed_tour_job": 132408947901,
+  "expected_original_apk": {
+    "bytes": 333778826,
+    "sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe"
+  },
+  "expected_original_pck": {
+    "bytes": 74691068,
+    "sha256": "aafe4afc0c5c38656b08b86ec382762d0af6b1ae7116b1187db4f2b04bb949a3"
+  },
+  "source_manifest": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/source-upload-manifest.json",
+    "bytes": 2504,
+    "sha256": "1042540ea5c764782da577e822fa80d590004199bdab0dd2a321ae85a2d5cae4",
+    "git_blob_sha": "8cc98eeaf94359df06887591a35e812885707b31"
+  },
+  "reviewed_sources": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+    },
+    {
+      "path": "scripts/recheck_studio_078_kart.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/recheck_studio_078_kart.py",
+      "bytes": 24511,
+      "sha256": "f495aea0e3c6073bdba675ac53d5f79376583f9f293c3ebe2891c1a7737619ce",
+      "git_blob_sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77"
+    },
+    {
+      "path": "scripts/tests/test_studio_078_kart_recheck.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/tests/test_studio_078_kart_recheck.py",
+      "bytes": 17326,
+      "sha256": "8dba66a1f1408912a154ec5e05705adb131833b37e17a15ecace1f68ec5fd1c9",
+      "git_blob_sha": "b1130cfce0731b9aa5c3e80531aa9c4eddf675cb"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-078-kart-recheck.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/.github/workflows/lumo-studio-078-kart-recheck.yml",
+      "bytes": 6633,
+      "sha256": "529f317a2f05d537f4206138169a76657cf9970e27fcdb45ba66b87a49b354df",
+      "git_blob_sha": "503c4f4350fdccf58054d2c146e96603af5726c5"
+    }
+  ],
+  "findings": [
+    {
+      "area": "Aktuelle Hinweisbeobachtung",
+      "finding": "Der direkte unveränderte native_tap-Aufruf verwendet frische vollständige Bilder und normalisiert die gewünschte Caption selbst. Das frühe verblasste Originalbild bleibt ausschließlich Kontext; es kann die spätere Beobachtung nicht vorab verwerfen. Kein eigener zusätzlicher OCR-/Wartealgorithmus wurde eingeführt."
+    },
+    {
+      "area": "Bild/Text/Touch-Vertrag",
+      "finding": "V2 liest beide letzten gültigen Helper-Beobachtungen samt tatsächlichen OCR-JSONs und fordert exakten normalisierten Text und die jeweiligen Bounds. cue verweist auf die letzte Beobachtung. Der Binder prüft zwei verschiedene Bilddateinamen, Größe/SHA, die Bindung der Zielgeometrie, den Touch innerhalb finaler Bounds, Originalreadiness, finale Original-OCR-Zeilen, Nachbildhash und identisches Laufzeitjournal. Der Wunschtext ersetzt keinen beobachteten OCR-Eintrag."
+    },
+    {
+      "area": "Unveränderte Grenzen",
+      "finding": "Opt-in bleibt standardmäßig aus. Der zusätzliche Ablauf erhält nur die verbleibende ursprüngliche 55-s-Startfrist; fehlender Text, abgelaufene Frist oder fehlende Belege dürfen keinen Gegenprüfungs-PASS liefern. Der 150-s-Rennlaufvertrag ist unverändert. Die neue maximal 10-s-Fehleraufnahme folgt erst seinem endgültigen Scheitern und kann keinen verspäteten Erfolg erzeugen."
+    },
+    {
+      "area": "Produkt und Arbeitsverzeichnis",
+      "finding": "Der QA-Prozess wird aus dem getrennten sauberen Produktcheckout mit exakt 078 gestartet. Die unveränderte ursprüngliche APK-Prüfung liest dort HEAD, pubspec und Nativepin. Die QA-Hilfsimporte stammen vom QA-Checkout, dessen gesamter Unterschied zum Produkt auf exakt die fünf aufgeführten QA-Dateien beschränkt und vor/nach dem Lauf an tatsächliche Gitblobs und Dateimodi gebunden wird."
+    },
+    {
+      "area": "Artefakt und Laufzeit",
+      "finding": "Der Binder fordert das ursprüngliche fehlgeschlagene Run-Attempt 1, den erfolgreichen Originalbuilder, den fehlgeschlagenen Originaltourjob und genau das ursprüngliche Kandidatenartefakt. Tatsächliche APK- und eingebettete PCK-Bytes werden an feste Größen/Hashes gebunden; Herkunft, ABI, Versions- und Signaturbericht bleiben Pflicht. Alle 18 vorhandenen harten Tourgates müssen genau einmal erfolgreich sein, zusätzlich der beobachtete Skip. Keine neue APK-Erzeugung oder Veröffentlichung im Workflow."
+    },
+    {
+      "area": "Workflow",
+      "finding": "QA-checkout fetch-depth 2 reicht für den vorgesehenen direkten Kindcommit von 078; der separate Produktcheckout bleibt auf dem festen Original-SHA. Emulatoraktion und API35-Konfiguration sind festgelegt, der gesamte Binder läuft in einer einzigen geprüften Action-Scriptzeile. Read-only-Rechte, immer ausgeführter Belegupload und kein automatischer Retry/Release sind erhalten."
+    }
+  ],
+  "performed_paired_contract": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/kart-intro-recheck-independent-review-078-20261114/paired-journal-contract.json",
+    "bytes": 13217,
+    "sha256": "78fff1cc0d4017ffdaf097adced8854d65b34a6348e0374d5edb96ae99a7be80",
+    "git_blob_sha": "285457921d326c95200059f59bb7f07fc5d8eb4a"
+  },
+  "paired_contract_result": {
+    "status": "PASS",
+    "readiness_frames": 3,
+    "valid_cue_witnesses": 2,
+    "synthetic_adb_touches": 1,
+    "simulated_seconds": 9.3,
+    "python_elapsed_seconds": 0.08515762198658194,
+    "all_five_sources_unchanged": true
+  },
+  "existing_logs_read_not_rerun": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/red-v1-actual-helper.log",
+      "bytes": 1869,
+      "sha256": "936a4fc4322b01a8963bd33895711609eb3b4e67043ad8069338f8afe7084ceb",
+      "git_blob_sha": "cbaf1b9ca5b4ce559e503fcacb11a6dee2ba304c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/green-v2-contracts.log",
+      "bytes": 3747,
+      "sha256": "5b0f69369a1469abe91480df53185ada14a260ea99c93acedf060612b46e7b7e",
+      "git_blob_sha": "842beb79564f20d3565cab5339da3f4df867f8a8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/evidence/execution.json",
+      "bytes": 7700,
+      "sha256": "116a453c010e7125f0eed5b8dbe45bc0f48115500aac39e7171433ea0990f496",
+      "git_blob_sha": "d278af085b76d1bf5064db5970d398f4f9122d08"
+    }
+  ],
+  "owner_test_results_scope": "Cs existierende zwei roten v1-Gegenfälle und 23/23 v2-Verträge wurden aus den tatsächlichen Logs gelesen, nicht wiederholt. Roots gemeldete 24 Vertragsfälle wurden nicht eigenständig neu ausgeführt; dessen vollständiger Testquelltext wurde gelesen.",
+  "limits": [
+    "Der ausgeführte Paarungstest verdoppelt Raster-, TSV-, Uhr- und ADB-Transport. Seine 9,3 Sekunden sind simuliert; keine Bild-, Tesseract- oder Androidleistungsmessung.",
+    "Das Original-078-Introbild wurde im getrennten Bildreview tatsächlich betrachtet. Roots vollständiger Offline-OCR-Replay verwendete lokal 5.5.0/ENG und ist kein Nachweis der späteren CI-Konfiguration 5.3.4/deu+eng.",
+    "Ob die echte aktuelle Caption rechtzeitig zweimal klar erfasst wird, der Touch die Vorschau beendet und anschließend sämtliche Renn-/Save-/Rückkehrgates bestehen, bleibt bis zum echten Gegenlauf offen.",
+    "Keine physische Fold7-, FPS-, vollständige Studio- oder Releasefreigabe. Der ursprüngliche fehlgeschlagene Unified-Lauf wird nicht umetikettiert.",
+    "Keine Testsuite erneut ausgeführt; nur der ausdrücklich angeforderte gepaarte Einzelvertrag. Keine Änderung an den fünf geprüften Quellen oder aktiven Produktdateien."
+  ]
+}

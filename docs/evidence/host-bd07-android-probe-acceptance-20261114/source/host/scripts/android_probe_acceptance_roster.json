@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "groups": {
+    "c4-navigation": {
+      "directory": "scripts/tests",
+      "pattern": "test_studio_c4_navigation.py",
+      "expected_ids": [
+        "test_studio_c4_navigation.CurrentC4HubNavigation.test_changed_foreground_after_fresh_ui_read_prevents_tap",
+        "test_studio_c4_navigation.CurrentC4HubNavigation.test_changed_scroll_viewport_is_never_used_for_input",
+        "test_studio_c4_navigation.CurrentC4HubNavigation.test_changed_tile_between_capture_and_confirmation_is_never_tapped",
+        "test_studio_c4_navigation.CurrentC4HubNavigation.test_failed_swipe_keeps_attempt_unconfirmed_and_stops",
+        "test_studio_c4_navigation.CurrentC4HubNavigation.test_original_top_to_visible_replay_records_scroll_and_fresh_confirmed_tap",
+        "test_studio_c4_navigation.CurrentC4HubNavigation.test_original_visible_caption_resolves_only_its_current_interactive_tile",
+        "test_studio_c4_navigation.CurrentFlutterNavigation.test_ambiguous_target_and_unknown_page_are_rejected",
+        "test_studio_c4_navigation.CurrentFlutterNavigation.test_both_actual_failure_pages_require_showcase_back_instead_of_hidden_tabs",
+        "test_studio_c4_navigation.CurrentFlutterNavigation.test_both_original_paused_cards_pages_require_their_visible_exit",
+        "test_studio_c4_navigation.CurrentFlutterNavigation.test_hidden_disabled_foreign_and_undersized_back_controls_cannot_pass",
+        "test_studio_c4_navigation.CurrentFlutterNavigation.test_original_home_and_hub_are_distinct_current_routes"
+      ]
+    },
+    "kart-preview": {
+      "directory": "tools/android_qa/tests",
+      "pattern": "test_kart_preview_skip.py",
+      "expected_ids": [
+        "test_kart_preview_skip.OriginalGatePreservationTests.test_exact078_identity_session_hud_and_driving_contracts_are_unchanged",
+        "test_kart_preview_skip.OriginalGatePreservationTests.test_main_preserves_all_original_pause_save_return_and_learning_checks",
+        "test_kart_preview_skip.OriginalGatePreservationTests.test_running_gate_only_adds_diagnostic_after_its_original_terminal_condition",
+        "test_kart_preview_skip.PreviewSkipTests.test_actual_helper_cannot_touch_after_original_deadline",
+        "test_kart_preview_skip.PreviewSkipTests.test_actual_helper_normalizes_wanted_and_keeps_exact_observed_span",
+        "test_kart_preview_skip.PreviewSkipTests.test_actual_helper_observes_fade_then_two_fresh_exact_frames",
+        "test_kart_preview_skip.PreviewSkipTests.test_changed_touch_witness_cannot_report_success",
+        "test_kart_preview_skip.PreviewSkipTests.test_existing55s_deadline_is_not_restarted_after_slow_race_capture",
+        "test_kart_preview_skip.PreviewSkipTests.test_expired_initial_budget_cannot_sample_or_touch",
+        "test_kart_preview_skip.PreviewSkipTests.test_faded_preview_yields_to_fresh_frames_without_general_ocr_fallbacks",
+        "test_kart_preview_skip.PreviewSkipTests.test_failed_timeout_capture_preserves_original_clock_failure",
+        "test_kart_preview_skip.PreviewSkipTests.test_late_after_capture_cannot_report_success",
+        "test_kart_preview_skip.PreviewSkipTests.test_late_touch_helper_result_cannot_report_success",
+        "test_kart_preview_skip.PreviewSkipTests.test_legacy_default_sends_no_added_touch_or_ocr",
+        "test_kart_preview_skip.PreviewSkipTests.test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch",
+        "test_kart_preview_skip.PreviewSkipTests.test_missing_original_ocr_journal_cannot_report_success",
+        "test_kart_preview_skip.PreviewSkipTests.test_one_frame_or_failed_touch_journal_never_reports_success",
+        "test_kart_preview_skip.PreviewSkipTests.test_opt_in_skips_actual_observed_cue_before_reporting_start",
+        "test_kart_preview_skip.PreviewSkipTests.test_other_exact_captions_keep_the_existing_general_reader",
+        "test_kart_preview_skip.PreviewSkipTests.test_partial_or_different_caption_never_authorizes_skip",
+        "test_kart_preview_skip.PreviewSkipTests.test_remaining_budget_is_passed_to_unmodified_two_frame_touch_helper",
+        "test_kart_preview_skip.PreviewSkipTests.test_running_clock_still_requires_countdown_over_and_full_elapsed_second",
+        "test_kart_preview_skip.PreviewSkipTests.test_timeout_captures_current_frame_after_failure_without_new_state_acceptance",
+        "test_kart_preview_skip.PreviewSkipTests.test_wrong_actual_ocr_words_or_bounds_cannot_report_success",
+        "test_kart_preview_skip.PreviewSkipTests.test_wrong_foreground_is_rejected_before_input"
+      ]
+    },
+    "creative-originals": {
+      "directory": "tools/android_qa/tests",
+      "pattern": "test_creative_caption_originals.py",
+      "expected_ids": [
+        "test_creative_caption_originals.CreativeCaptionGuards.test_existing_treasure_modal_and_missing_hud_still_reject",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_expired_budget_never_starts_a_tesseract_process",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_failed_variant_returns_no_partial_inventory_and_leaves_no_worker",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_kart_missing_cue_keeps_two_original_variants_without_fallback",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_late_modal_variant_cannot_be_hidden_by_first_positive_hud",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_low_confidence_return_does_not_bypass_existing_minimum",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_negative_caption_retains_precedence_over_target_search",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_other_target_keeps_original_first_reader",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_parallel_inventory_finishing_after_deadline_cannot_return",
+        "test_creative_caption_originals.CreativeCaptionGuards.test_wrong_return_caption_is_not_replaced_by_requested_text",
+        "test_creative_caption_originals.CreativeOriginalPixels.test_original_jump_first",
+        "test_creative_caption_originals.CreativeOriginalPixels.test_original_jump_last",
+        "test_creative_caption_originals.CreativeOriginalPixels.test_original_pause_with_visible_background_hud_cannot_complete",
+        "test_creative_caption_originals.CreativeOriginalPixels.test_original_treasure_first",
+        "test_creative_caption_originals.CreativeOriginalPixels.test_original_treasure_last"
+      ]
+    }
+  },
+  "scope": "Exact reviewed offline test roster for original Android observation failures. Every listed case must execute and pass without skipped or expected-failing tests."
+}

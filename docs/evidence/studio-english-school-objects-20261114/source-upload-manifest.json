@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T14:53:57.226064+00:00",
+  "native_base": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "host_base": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "state": "Final local source freeze; actual new Dart producer and Android execution pending",
+  "git_ref_mutated": false,
+  "scope": "Nine changed files; four unchanged probe fixtures in the separate host-probe manifest",
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/learning/english_vocabulary.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/native/scripts/learning/english_vocabulary.gd",
+      "bytes": 2849,
+      "sha256": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+      "git_blob_sha": "fa8debed147eceea108acc98ac318ac1362cf8eb",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/native/scripts/learning/english_vocabulary.gd",
+      "baseline_sha256": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+      "baseline_git_blob_sha": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/learning/english_object_gallery.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/native/scripts/learning/english_object_gallery.gd",
+      "bytes": 13988,
+      "sha256": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+      "git_blob_sha": "1bc459bc88d10f48aa918014eedbb91071cd98a7",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/native/scripts/learning/english_object_gallery.gd",
+      "baseline_sha256": "7c1eba4dadb6bfea6935da0031e1416536c9e60055721eed893a0e2f593afaf7",
+      "baseline_git_blob_sha": "401864874d7dc5fc9a97e057d1a49bdf894b9e0b"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/learning/learning_world.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/native/scripts/learning/learning_world.gd",
+      "bytes": 62477,
+      "sha256": "a6e03b3040c498a92c6475ab4bd5a85da07344ac901b0c368fd2f616224b2218",
+      "git_blob_sha": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/native/scripts/learning/learning_world.gd",
+      "baseline_sha256": "3078e3aaba4bf5a811ddc5878370cdf945ddf8313c0cba6d4f9089e1c4062c6d",
+      "baseline_git_blob_sha": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72"
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "path": "scripts/tests/learning_english_regression.gd",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/native/scripts/tests/learning_english_regression.gd",
+      "bytes": 33455,
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "git_blob_sha": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/native/scripts/tests/learning_english_regression.gd",
+      "baseline_sha256": "f9a64251022db5f2e8b8647f17ff0402dac08094e91cceaf0cc301b8193ba4f9",
+      "baseline_git_blob_sha": "64dece9ec9619c6bf527c6398feef90b9e1a5298"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+      "git_blob_sha": "4469849b204f91fab3e645604e11922e29cb594c",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/host/lib/domain/tutoring/native_english_vocabulary.dart",
+      "baseline_sha256": "66f07be4fb2d573b411f8bda97330edad46003929640bf36a0ede74c2d43102a",
+      "baseline_git_blob_sha": "e79e6342f017dd59ebfd4bbb7adad215057e0545"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tool/check_native_english_activity.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/tool/check_native_english_activity.dart",
+      "bytes": 12610,
+      "sha256": "59c89f50faf62be0f06c3d7c35f4c7d517ec67c73f059779a57767951569997a",
+      "git_blob_sha": "2d304dfbf89e7be2cd123808b8a3352d7622e87b",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/host/tool/check_native_english_activity.dart",
+      "baseline_sha256": "b812765a787a5553cd472271a4eb4ed13b2f5b6e72d8c1721408bfbcb3c28bb8",
+      "baseline_git_blob_sha": "85a96d92e0eac2c1d9f6791820d8990d816fdc48"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/test/tutoring/native_english_activity_test.dart",
+      "bytes": 7686,
+      "sha256": "3f0f0c9c331c23fd1f8372349a941976657c10d450c629092d86ec59dacc396c",
+      "git_blob_sha": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/host/test/tutoring/native_english_activity_test.dart",
+      "baseline_sha256": "cf115557354b01a7d873654a74fa2c5e52860df1a8baf967df126d2a712a8114",
+      "baseline_git_blob_sha": "70cacfce15bdd374d582c570b49c2a865cee63d6"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": ".github/probes/lumo_english_objects_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/.github/probes/lumo_english_objects_android_probe.py",
+      "bytes": 55089,
+      "sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+      "git_blob_sha": "ee4e1d59c43a6e27c464208e26eedc694a516df9",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/host/.github/probes/lumo_english_objects_android_probe.py",
+      "baseline_sha256": "bb0fbb24159b38942bf2002062c825640a5b9e0bea9304cc6e5a3e704152c0e6",
+      "baseline_git_blob_sha": "88e16570561053c275e6c7051585b7c3e1197117"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "tools/android_qa/tests/test_english_objects_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/prepared/host/tools/android_qa/tests/test_english_objects_android_probe.py",
+      "bytes": 20503,
+      "sha256": "ecd76b3da990e5477cadd77223782ca7af853a0f8e4753b67a9008c83c460d8c",
+      "git_blob_sha": "19f640b0f534837eb53be1e401f471a6a9e280d5",
+      "mode": "100644",
+      "baseline_local_path": "/workspace/scratch/5987865ae883/qa/studio-english-school-objects-9f2e-20261114/baseline/host/tools/android_qa/tests/test_english_objects_android_probe.py",
+      "baseline_sha256": "f8bd1bad5dee391e73f4585f703dd3087231e5210ed6d9724ac3e82f06a40b42",
+      "baseline_git_blob_sha": "6ba4764d740a91bb540ea824fee22a793d369279"
+    }
+  ]
+}

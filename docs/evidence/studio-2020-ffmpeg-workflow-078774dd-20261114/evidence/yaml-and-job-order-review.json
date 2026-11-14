@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "checked_at": "2026-11-14T11:04:46.991787+00:00",
+  "base_host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "path": ".github/workflows/lumo-studio-2020.yml",
+  "baseline": {
+    "bytes": 58576,
+    "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab",
+    "git_blob": "4987a607fd3bb1531eff243500ed05cfec50ec57"
+  },
+  "patched": {
+    "bytes": 58784,
+    "sha256": "c333c4d33c37fd1f08bfce9b750f348e2ecd8fb16f3c25a6adc7543f546d30a6",
+    "git_blob": "bc1d497ab87a5211c13b0cafeb2a6e5493fe04d4"
+  },
+  "parser": {
+    "library": "PyYAML",
+    "version": "6.0.3",
+    "loader": "BaseLoader",
+    "scope": "YAML syntax and composed structure; scalars remain strings, not a GitHub runtime or shell execution"
+  },
+  "yaml_parse": "PASS",
+  "parsed_change_location": {
+    "job": "verify-and-build",
+    "step_index_zero_based": 30,
+    "step_name": "Require actual gameplay gates on the exact pinned native source",
+    "property": "run"
+  },
+  "same_step_count": true,
+  "all_other_composed_nodes_equal": true,
+  "inverse_run_exact": true,
+  "dependency_preflight_precedes_all_native_commands": true,
+  "ordered_commands": [
+    "set -euo pipefail",
+    "sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 ffmpeg",
+    "native_logs=\"$GITHUB_WORKSPACE/acceptance-native\"",
+    "mkdir -p \"$native_logs/user-data/godot/app_userdata/Lumo 3D\"",
+    "command -v ffmpeg",
+    "command -v ffprobe",
+    "ffmpeg -version 2>&1 | tee \"$native_logs/ffmpeg-version.txt\"",
+    "ffprobe -version 2>&1 | tee \"$native_logs/ffprobe-version.txt\"",
+    "git init \"$native_source\"",
+    "python3 tools/validate_project.py",
+    "bash tools/validate_project.sh",
+    "bash tools/validate_2014.sh",
+    "bash tools/validate_technical_art.sh",
+    "bash tools/validate_action_stage.sh",
+    "bash tools/validate_nextgen.sh",
+    "bash tools/validate_studio.sh"
+  ],
+  "all_other_jobs_needs_permissions_strategy_and_budgets_unchanged": true,
+  "runtime_install_or_version_execution": false
+}

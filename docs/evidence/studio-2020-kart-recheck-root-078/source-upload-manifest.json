@@ -1,0 +1,52 @@
+{
+  "base_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+    },
+    {
+      "path": "scripts/recheck_studio_078_kart.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/recheck_studio_078_kart.py",
+      "bytes": 24511,
+      "sha256": "f495aea0e3c6073bdba675ac53d5f79376583f9f293c3ebe2891c1a7737619ce",
+      "git_blob_sha": "ea18b9e94c2f1cf34eb5f1e0ee6e1050e6f9ab77"
+    },
+    {
+      "path": "scripts/tests/test_studio_078_kart_recheck.py",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/scripts/tests/test_studio_078_kart_recheck.py",
+      "bytes": 17326,
+      "sha256": "8dba66a1f1408912a154ec5e05705adb131833b37e17a15ecace1f68ec5fd1c9",
+      "git_blob_sha": "b1130cfce0731b9aa5c3e80531aa9c4eddf675cb"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-078-kart-recheck.yml",
+      "mode": "100644",
+      "type": "blob",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-kart-intro-recheck-078/root/.github/workflows/lumo-studio-078-kart-recheck.yml",
+      "bytes": 6633,
+      "sha256": "529f317a2f05d537f4206138169a76657cf9970e27fcdb45ba66b87a49b354df",
+      "git_blob_sha": "503c4f4350fdccf58054d2c146e96603af5726c5"
+    }
+  ],
+  "changes": "exactly five QA files; unchanged original APK and all other product entries",
+  "probe_source_revision": "followup-v2; supersedes static initial-cue v1 before any QA ref or CI launch"
+}

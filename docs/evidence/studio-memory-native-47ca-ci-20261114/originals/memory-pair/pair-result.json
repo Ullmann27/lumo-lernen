@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "success": true,
+  "capture_requested": true,
+  "scope": "Run actual Memory rules and Godot input with explicitly bounded QA adapters.\n\nThe production controller/session and original dealer run in Dart. Godot uses\nreal ScreenTouch events and renderer geometry. Disk transport, deterministic\nclock, private test deck plan and reward ledger are QA adapters. This does not\nprove Android Binder, SharedPreferences, physical-device timing or frame rate.\n",
+  "source_before": {
+    "native": {
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274"
+    },
+    "host": {
+      "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+    }
+  },
+  "versions": {
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "dart": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\""
+  },
+  "commands": {
+    "dart": [
+      "dart",
+      "/home/runner/work/lumo-godot/lumo-godot/host-source/tools/android_qa/memory_native_authority.dart",
+      "/home/runner/work/lumo-godot/lumo-godot/authority-evidence/memory-pair/authority"
+    ],
+    "godot": [
+      "godot",
+      "--path",
+      "/home/runner/work/lumo-godot/lumo-godot/native-source",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--fixed-fps",
+      "60",
+      "--disable-vsync",
+      "--script",
+      "res://scripts/tests/memory_table_runtime.gd",
+      "--",
+      "--capture"
+    ]
+  },
+  "checks": 243,
+  "inputs": 57,
+  "requests": 19,
+  "captures": 8,
+  "motion_frames": 12,
+  "durable_returns": 3,
+  "qa_award_calls": 1,
+  "qa_stars": 2,
+  "qa_xp": 16,
+  "source_after": {
+    "native": {
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274"
+    },
+    "host": {
+      "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+    }
+  },
+  "elapsed_wall_seconds": 98.013,
+  "process_exit_codes": {
+    "DartAuthority": 0,
+    "GodotMemory": 0
+  },
+  "evidence": [
+    {
+      "path": "authority/authority-result.json",
+      "bytes": 43958,
+      "sha256": "54d258495c393f5883f8c5d05a3ef6a03250e17b3b15e0d8d75e9d1757a81486"
+    },
+    {
+      "path": "authority/input.json",
+      "bytes": 44,
+      "sha256": "11a47515d57a6acedbba91f739e3e435d84b1a6cda991d944ad94f009a76e909"
+    },
+    {
+      "path": "authority/native-result.json",
+      "bytes": 16487,
+      "sha256": "6513b8490062fb81c6bab99d2341166ff26f1406aa5d4abb8c5a5f8181ed4f80"
+    },
+    {
+      "path": "authority/other-child.json",
+      "bytes": 52,
+      "sha256": "03b54b31f843366d751d73a74dbf00be5c56b1b4a272232bee9ba3c59b3471f2"
+    },
+    {
+      "path": "authority/paid-reopen-before-round.json",
+      "bytes": 806,
+      "sha256": "a5ebe72eb299f636031d93720f9ffdba38482bccc9289b917a4cb518bc1b8479"
+    },
+    {
+      "path": "authority/private-test-control.json",
+      "bytes": 165,
+      "sha256": "deb52df913e3605d21678240123a401ec946e333100c109f947f8100fe992a8b"
+    },
+    {
+      "path": "authority/public-state.json",
+      "bytes": 1054,
+      "sha256": "cae5ec991519a93a258b208ffe7caf508c0df92246e779fe82caf9776dd94c37"
+    },
+    {
+      "path": "authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 770,
+      "sha256": "b1faff56f84eb76ab6e8b52801a515eb97d3f02d84d01262e21cb5ca8316fc9b"
+    },
+    {
+      "path": "authority/stats-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 83,
+      "sha256": "cc538b5b72f794aa0bef462530c32fea0c6771dda152857c0084981c7cba82ca"
+    },
+    {
+      "path": "authority/step-receipt.json",
+      "bytes": 141,
+      "sha256": "bdd5899510b7abcb44cfcd54061affefc3e11cc4655e96136d197fa85685bd20"
+    },
+    {
+      "path": "authority/unfinished-reopen-before-round.json",
+      "bytes": 698,
+      "sha256": "cc7f252210b077169f46b14cb6d29cd9b64787171f80b857ecb72a91f77f7d45"
+    },
+    {
+      "path": "authority/wallet.json",
+      "bytes": 134,
+      "sha256": "14ddc3f5096f0305607cd7cecca229993b12dfa7c03c08e6ddbc4b0b34ffe506"
+    },
+    {
+      "path": "dart-authority.log",
+      "bytes": 95,
+      "sha256": "d323cd94dae4d968f732d4d6ccb716dc2030c4924056c850687df94967ff0b23"
+    },
+    {
+      "path": "godot-runtime.log",
+      "bytes": 1163,
+      "sha256": "2542a0d5d96bcd64bfe62cda5ca2eda54bce50bd951d15253c8fa6cc29487d8f"
+    },
+    {
+      "path": "native/01-memory-real-hidden.layout.json",
+      "bytes": 7965,
+      "sha256": "a34d0862d5e26ab0ba54794ed0b4cd190dc8000f9e7e5aca5b018c7684d6326c"
+    },
+    {
+      "path": "native/01-memory-real-hidden.png",
+      "bytes": 101718,
+      "sha256": "925d8730f6e8efc1fcb888f094a7df3ab01f2b9482f83ef9717279345f767af7"
+    },
+    {
+      "path": "native/02-memory-real-face.layout.json",
+      "bytes": 7968,
+      "sha256": "f0123f02a5ba4b3aa88f190c1cc540d0af3a8acf88d984cd1fdc4bb5c1eb8066"
+    },
+    {
+      "path": "native/02-memory-real-face.png",
+      "bytes": 137048,
+      "sha256": "9998289485bbcdea8ead24e257237d09ef82ede98b4b3ff4eb9c8d813b2d409b"
+    },
+    {
+      "path": "native/03-memory-real-paused.layout.json",
+      "bytes": 8045,
+      "sha256": "c19c3980e4e1259da3b73bac906d79cbd8de6b3c01b83c11ebcb2992a14e39bb"
+    },
+    {
+      "path": "native/03-memory-real-paused.png",
+      "bytes": 52851,
+      "sha256": "b7edc981fb904cb8b56663ef26d6a7ae343757d3a65264f8bb03cfd15a66cf68"
+    },
+    {
+      "path": "native/04-memory-real-reopened.layout.json",
+      "bytes": 8045,
+      "sha256": "13fe548f250ad630ff94e5a82012f0d14ee8d0f1ae1fcf39abef4cb8f6af1dab"
+    },
+    {
+      "path": "native/04-memory-real-reopened.png",
+      "bytes": 52891,
+      "sha256": "a99264d13091d49baf897fd05f99ebbf2eefabe706363a598b1d0968e682678d"
+    },
+    {
+      "path": "native/05-memory-real-bot-first.layout.json",
+      "bytes": 8054,
+      "sha256": "0e25c79269245c3d1e09fd90e2ee19fb2e9d19445a19ae1758f41183f7a6dff7"
+    },
+    {
+      "path": "native/05-memory-real-bot-first.png",
+      "bytes": 128086,
+      "sha256": "a24c57107edfb85f45738c26734895631ae3ba83315480eec88218f212f25297"
+    },
+    {
+      "path": "native/06-memory-real-bot-second.layout.json",
+      "bytes": 8057,
+      "sha256": "366784f84c07414cb843cd3b1778c969f87e870d4c9026bc3c43b7745c95220b"
+    },
+    {
+      "path": "native/06-memory-real-bot-second.png",
+      "bytes": 160052,
+      "sha256": "577dea2a2d773af23a5be2a5392c5c2fd64cfb413782947cd715268098d24fce"
+    },
+    {
+      "path": "native/07-memory-real-win.layout.json",
+      "bytes": 8048,
+      "sha256": "c5174f400e73f203262554a5d188dc36cacb1803d3360909117f3dcc66814c93"
+    },
+    {
+      "path": "native/07-memory-real-win.png",
+      "bytes": 66227,
+      "sha256": "7c224189d4e1e064704a9f2c15e56accb6cb5cbd6289ebc29eb799b045a8f75b"
+    },
+    {
+      "path": "native/08-memory-real-paid-reopen.layout.json",
+      "bytes": 7967,
+      "sha256": "91d39fdccbbd8bff697aa751d5eca6409d5d2d2991c18273bc6b9c651e77d487"
+    },
+    {
+      "path": "native/08-memory-real-paid-reopen.png",
+      "bytes": 101633,
+      "sha256": "7be3a95e1688d9d24648198c9a4a73e9cbb9be0585a6f2347ffec2bc48723ce9"
+    },
+    {
+      "path": "native/memory-runtime-report.json",
+      "bytes": 19438,
+      "sha256": "af049b84e9592279b2d48fbbb2925fd2688cc47471c45a8419602b75d71d41bd"
+    },
+    {
+      "path": "native/motion-00.png",
+      "bytes": 101285,
+      "sha256": "a3c31660363757456acba9a44d4bc907874a4802e560223e524e13be84a57a3a"
+    },
+    {
+      "path": "native/motion-01.png",
+      "bytes": 103273,
+      "sha256": "27128a75472634fd84ad3caf82f719a7901e234542e89792220fd8426237ab83"
+    },
+    {
+      "path": "native/motion-02.png",
+      "bytes": 102129,
+      "sha256": "fa4066fe5a7247ee811e1f2b64e40ecca58c6ef4521ab0b199e3293d62896124"
+    },
+    {
+      "path": "native/motion-03.png",
+      "bytes": 102530,
+      "sha256": "b7f9e91ed0c234baa031771a2d1328dfdd38490f3165ec4f6e27e0fcb9875eeb"
+    },
+    {
+      "path": "native/motion-04.png",
+      "bytes": 107350,
+      "sha256": "8b8003ad00ce1ef9c90195ccc683fc9686c1b044c60c14532767f8e3d1a3f81d"
+    },
+    {
+      "path": "native/motion-05.png",
+      "bytes": 122809,
+      "sha256": "413a113112d077f24dc3b6719e37717a5d98072ba12b9339e3b746874fcb9ebd"
+    },
+    {
+      "path": "native/motion-06.png",
+      "bytes": 132797,
+      "sha256": "2285b988d0c60f6d501a5f8b354ec62377927196d01eaf6cbcbc6f613d24aeda"
+    },
+    {
+      "path": "native/motion-07.png",
+      "bytes": 136501,
+      "sha256": "95a664a9a7dda0fbba57178e1b7e6391c848daf49ac5115515478ae12e8241e5"
+    },
+    {
+      "path": "native/motion-08.png",
+      "bytes": 137422,
+      "sha256": "7ea551866c2860764686b1261b3da2d988f7cd93226cbaf543f9abbf916f0c95"
+    },
+    {
+      "path": "native/motion-09.png",
+      "bytes": 136792,
+      "sha256": "d7602432962b518c4411c254e60a2525c852b1d281a7d7a50f8d1829d2ffce53"
+    },
+    {
+      "path": "native/motion-10.png",
+      "bytes": 136989,
+      "sha256": "4ade6eba0f9b240babfeac4444f713c2b99340b6213e62273443a2b2f85f1d7c"
+    },
+    {
+      "path": "native/motion-11.png",
+      "bytes": 137003,
+      "sha256": "32976fa0acdfe5728f16117b05563ec3abf630cef5dbc91f8c6ea9b09133c154"
+    },
+    {
+      "path": "source-identity.json",
+      "bytes": 265,
+      "sha256": "8d6ec21c2d8ac57fa956c1b48b7b233d05b9f756f717668cac46fca026288984"
+    }
+  ]
+}

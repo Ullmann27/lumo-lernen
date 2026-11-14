@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "native_revision": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "source_mp4_sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+  "strict_video_audio_decode_exit_code": 0,
+  "decoded_video_frames": 148,
+  "recorded_fps": 24,
+  "duration_seconds": 6.166667,
+  "physical_device_fps_measured": false,
+  "audio_heard": false,
+  "phoneme_lipsync_proven": false,
+  "runtime_states": {
+    "idle": {
+      "rows": 87,
+      "audible": 0,
+      "jaw_max": 0.0,
+      "blink_max": 0.954545454545413
+    },
+    "playing": {
+      "rows": 50,
+      "audible": 40,
+      "jaw_max": 0.699060499668121,
+      "blink_max": 0.952380952380968
+    },
+    "completed": {
+      "rows": 7,
+      "audible": 0,
+      "jaw_max": 0.0,
+      "blink_max": 0.0
+    }
+  },
+  "reviewed_frames": [
+    {
+      "source_frame": 0,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-01.png",
+      "sha256": "28f991ab6a56f5f3d5372adaccd6a3677a830b32b4b06db8cfc178f6f68d1156",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 15,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-02.png",
+      "sha256": "9b7c206daae511d69729f963a1b75cb705ba5237b3a5d8664203fde9ca1707ee",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 23,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-03.png",
+      "sha256": "0a9418d843d170ca714c6b8ff462595a5478a4ce170d4cdd9e353479b4d7c5ab",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 27,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-04.png",
+      "sha256": "5d4714fc520997de3dd261d2d6682a674f584e8e7ff2bf4ba0281d21807044a0",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 31,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-05.png",
+      "sha256": "7bf170cd41875ce4188720bd4b9d89f26588c0f3feffdb62a29ea7b1ca7126e7",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 35,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-06.png",
+      "sha256": "a424b30d45c91417b95a10350c671218fa3d0293152a10cd11d22931f38bbffa",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 39,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-07.png",
+      "sha256": "9fbf9565e9c95f35be17f6d40a80d74ea038f1ae8401364c16ba8e4642ad63f3",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 43,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-08.png",
+      "sha256": "85e8d4cbe2e6fdde0e9aa6b0b22c6a24253d22fd432be9018aba567fd06df9fb",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 47,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-09.png",
+      "sha256": "45767bb541a6e87e7ef6a77a7004f38837abc3c3da0080fa7db127db9d6dc780",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 52,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-10.png",
+      "sha256": "b1cd54b1f2bd9cd8c3820fd8fef1b0cacb50a20083eeda64dfeae7f225534db8",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 63,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-11.png",
+      "sha256": "8e699390e7d6b0de97da0094e9e48ca269c8e78f381d2c6a41b914e8fbea0e65",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 79,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-12.png",
+      "sha256": "66e8c7b75ecfbb8c6c2134f5fa939c25f00b1f3f32932a6c2f50793d1c76226a",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 95,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-13.png",
+      "sha256": "d891ce271555bee61ca9f1fc039d61f898f43b080d4ef342b3fcc3addaedb356",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 111,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-14.png",
+      "sha256": "8a0fff24c794904bc7f443e2dc65edec49da6a72601fc3f4fbd368d7cfda85ed",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 127,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-15.png",
+      "sha256": "1eaa8301387ac82784d6635da885d5be89a2ab9a296187886f7a50a5f09743b8",
+      "personally_opened": true
+    },
+    {
+      "source_frame": 147,
+      "path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/movie-review/frame-16.png",
+      "sha256": "81264952b7f740feebf38cbd25abc68d839214f550e950df4c5daa6e85880baf",
+      "personally_opened": true
+    }
+  ],
+  "findings": "All 16 selected frames personally opened. Initial lesson overview, explanatory arm/head pose and facial close-up are visible. Gaze and eyelid state vary; jaw motion is subtle at this scale and the actual numeric envelope/jaw data is reported separately. Muted/stopped labelled frames show a closed mouth. Final selected frame 147 is dark after the capture ends. Muzzle and eye contours remain visibly faceted; this is not phoneme-specific lip sync and no listening test was performed."
+}

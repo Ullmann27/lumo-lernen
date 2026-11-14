@@ -1,0 +1,11 @@
+--- before/scripts/verify_studio_delivery.py
++++ after/scripts/verify_studio_delivery.py
+@@ -86,7 +86,7 @@
+         'muted', 'gaze_left', 'stopped')
+ } | {
+     f'{TREASURE_TITLE_CAPTURE_PROBE}/treasure-title-{profile}.png'
+-    for profile in ('landscape', 'compact', 'portrait', 'fold')
++    for profile in ('landscape', 'compact', 'portrait', 'fold', 'landscape-cutout')
+ })
+ 
+ 

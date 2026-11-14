@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "baseline_native": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "scope": "One test-only original/derived GLB identity correction; no product or gate change.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/patched/scripts/tests/lumo_attention_landing_regression.gd",
+      "target": "scripts/tests/lumo_attention_landing_regression.gd",
+      "bytes": 9389,
+      "sha256": "84789b1e8d4404a637481b5df0f099a7fa4d7fe437dc4a48b35c1c1735a81e53",
+      "git_blob_sha": "38c094550554cc806ec65a9d6b32bd8c78fdd561",
+      "mode": "100644",
+      "baseline_blob": "dce46931a81eef51cc2251d4de29d87c493b567b",
+      "baseline_sha256": "7c56887fd79b6f18514922104ce97f5239f10f6d5208c73fed99d337839f50ea"
+    }
+  ],
+  "total_bytes": 9389
+}

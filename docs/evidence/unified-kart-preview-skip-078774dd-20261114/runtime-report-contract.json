@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "opt_in_cli": "--skip-observed-kart-preview",
+  "default": false,
+  "source_paths": [
+    ".github/probes/modernization_android_tour.py",
+    "tools/android_qa/tests/test_kart_preview_skip.py"
+  ],
+  "result_path": "tour-result.json",
+  "result_location": "steps[step == start-kart-race].preview_skip",
+  "standalone_report": "21_kart_preview_skip.json",
+  "required_isolated_status": "TOUCH_SENT",
+  "required_scope": "OBSERVED_UI_TOUCH_ONLY",
+  "unobserved_status": "CUE_NOT_OBSERVED",
+  "unobserved_scope": "NOT_ISOLATED",
+  "required_runtime_fields": {
+    "caption": "Tippen zum Überspringen",
+    "cue": {
+      "source": "21_lumo_kart_real_race.png",
+      "source_sha256": "actual original SHA-256",
+      "observed_matches": "Actual image_lines OCR rows: text and bounds, never fabricated requested text"
+    },
+    "foreground_before_touch": "Actual foreground() response containing LumoGameActivity",
+    "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json",
+    "readiness": "Unchanged native_tap journal object, copied verbatim as parsed JSON",
+    "touch": "Actual readiness.touch [x,y]",
+    "after_capture": "Actual capture() metadata for21_kart_preview_after_touch.png",
+    "deadline_policy": "original race-world-ready55s",
+    "elapsed_seconds": "Actual monotonic elapsed time"
+  },
+  "readiness_required_fields": {
+    "status": "TOUCH_SENT",
+    "label": "Tippen zum Überspringen",
+    "exact_caption_required": true,
+    "orientation_policy": "landscape",
+    "frames": "At least two actual capture entries with target observations; final target stable_observed_target=true",
+    "frames[*].source": "Current raw PNG filename",
+    "frames[*].source_sha256": "SHA-256 of same PNG bytes",
+    "frames[*].pixels": "Actual raw screenshot dimensions",
+    "frames[*].acceptable_for_target_sampling": true,
+    "frames[*].target": "Existing native_surface_readiness.target_observation result",
+    "final_observed_bounds": "Existing last target bounds",
+    "touch": "Existing ADB120ms touch coordinates",
+    "elapsed_seconds": "Unchanged helper timing"
+  },
+  "input_log": "21_kart_real_touches.json adds preview-skip only after actual TOUCH_SENT readiness and bounded after-capture. Existing premium-start row retained.",
+  "countercheck_rule": "TOUCH_SENT is only UI-action evidence. All original HARD_STEPS, saved countdown<=0/elapsed>=1, real driving, pause, save, return and identity checks must still pass. CUE_NOT_OBSERVED is NOT_ISOLATED and cannot pass the independent recheck.",
+  "timeout_diagnostic": {
+    "png": "21_race_running_timeout.png",
+    "json": "21_race_running_timeout.json",
+    "status": "GATE_ALREADY_FAILED",
+    "capture_budget_seconds": 10,
+    "scope": "Pure after-failure capture. Original150s gate already failed; no extra state read, input, new success or acceptance-time extension."
+  }
+}

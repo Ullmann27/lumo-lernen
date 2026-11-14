@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "commit": "218eb65fdbe73da4267410e85808cf73479741f7",
+  "files": [
+    {
+      "path": "docs/evidence/studio-2020-host-078-flutter-originals/verified-original-archive-index.json",
+      "sha": "0d3d6ec31cd21d8e2b51ad00a0df3e13865583ae",
+      "bytes": 87231,
+      "sha256": "9a064a1e3cca2bd2b2a3c4416d24fb70cc091e1ffe49e98cb93353285f6eefe9",
+      "readback_exact": true,
+      "readback_api": "Contents API"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-flutter-originals/acceptance-summary.json",
+      "sha": "92122aa59172f992b199bfda2f43b32a9c55f985",
+      "bytes": 2118,
+      "sha256": "1fadf1dd65cf6faedc0655fbdca6a5467c03205c3c431bd045a8b5c1844779b0",
+      "readback_exact": true,
+      "readback_api": "Contents API"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-flutter-originals/flutter-machine.jsonl",
+      "sha": "9b8bc9e8749607fd1579655c9f61a1506a5df358",
+      "bytes": 1721904,
+      "sha256": "52ab3b06fa5afd4997466abf64455051843aa6aba677a8dc4bcb6f5736a9bbf3",
+      "readback_exact": true,
+      "readback_api": "Git blob API (Contents API >1MiB gives empty content)"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-flutter-originals/independent-results-review.json",
+      "sha": "da98a36e1c9621f9545c89eddc91ed94f84c2662",
+      "bytes": 3421,
+      "sha256": "a74f3882bd2e604b7281c246a6de8f84c431df2f1f430350f47e37e539bd48c8",
+      "readback_exact": true,
+      "readback_api": "Contents API"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-flutter-originals/README.md",
+      "sha": "5fab6e346a3b2811536c9248e7ab7be11bf2f96c",
+      "bytes": 1477,
+      "sha256": "eaac07c95e6b3a9b1c68506a6162342f4793bbd138a54b37c1f755d7f26f9499",
+      "readback_exact": true,
+      "readback_api": "Contents API"
+    },
+    {
+      "path": "docs/evidence/studio-2020-post-1500-readbacks/github-c4-images-proof.json",
+      "sha": "8594bc7c31760dc4ad1a79ee1266a751e85eec03",
+      "bytes": 3588,
+      "sha256": "51f368564e6f374dbdb9ca5c24d34914598d161d8fdb710719b42fe558d175de",
+      "readback_exact": true,
+      "readback_api": "Contents API"
+    },
+    {
+      "path": "docs/evidence/studio-2020-post-1500-readbacks/github-129-commit-checkpoint.json",
+      "sha": "ed089e152aba0a70f7900543377f8c0ba388b404",
+      "bytes": 3425,
+      "sha256": "10cd182deb83d2674979bee2672947b0363fd4d63d22729b7d146f9151805e31",
+      "readback_exact": true,
+      "readback_api": "Contents API"
+    }
+  ]
+}

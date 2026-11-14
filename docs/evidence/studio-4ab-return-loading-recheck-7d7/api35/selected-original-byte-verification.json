@@ -1,0 +1,349 @@
+{
+  "artifact": 14097214798,
+  "zip_sha256": "35c55b50a6ae1616651b75922b6d84fc3ca8d5d9373f1b94d18b9e44ebd332cc",
+  "files": [
+    {
+      "member": "nextgen/04_learning_native_thirteen.png",
+      "bytes": 583228,
+      "sha256": "dfc0674027001e6e2bb6abff5dc6686dd9ce5851669c91e11c4c3680923768c4",
+      "crc32": "9d0a1567"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "bytes": 2623,
+      "sha256": "bbed3112d5494582db184dfb95e33fbe9fc4526556e91843ea9b80846326a2f8",
+      "crc32": "cea3ff5e"
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1509036,
+      "sha256": "ec53e692479e972ee10b12f3c04cbde70407a74abaa6d3901804b6b802fb8f90",
+      "crc32": "94ba42b8"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 33231,
+      "sha256": "6164b5f089aef7ec423173cfe6a8726f13d07f4aaa1f03040bd504d0aa273b65",
+      "crc32": "3194fe7c"
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 947036,
+      "sha256": "81564098b64415252495ab4d35a69dbe81ce5ee89b1fc4e4144e0739befe716e",
+      "crc32": "5a5e2c91"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "bytes": 51939,
+      "sha256": "ba4cc5960ccd32197db5dd4e3de6bd5f1b8d33dcaf1f8af7be80f3c2b50a4bf6",
+      "crc32": "df609d6b"
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw.png",
+      "bytes": 935465,
+      "sha256": "dfe4750f0cabce5727aabff2482d767619c6a871c5796947a0014e7bf8e8281d",
+      "crc32": "b07fdc2e"
+    },
+    {
+      "member": "nextgen/12a_cards_real_table_before_late_draw-face-evidence.json",
+      "bytes": 33867,
+      "sha256": "5f2f64f77a1d9cca316bbed56cb19544538bf1a9e1cdcdd12c10f1bd19660cc7",
+      "crc32": "1800d46b"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-evidence.json",
+      "bytes": 59068,
+      "sha256": "e2466a39af4f8502e3d9d328a5ec52fcb1f2d1fb852f1881d00f5f1dd5bfcf45",
+      "crc32": "844b807f"
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 928967,
+      "sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+      "crc32": "e80c485b"
+    },
+    {
+      "member": "nextgen/13_cards_native_pause.png",
+      "bytes": 814994,
+      "sha256": "b7e0d89f37a20ba32f35abaab10b3273fac9f5e61d1593604e5fc5f35e919d0e",
+      "crc32": "41beaceb"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 5978,
+      "sha256": "39b51343f4904d628446881ab78c9edb9a4045ef0a32cdeb39641478fb66cd48",
+      "crc32": "64f38cd1"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-rejected.json",
+      "bytes": 713,
+      "sha256": "5263b602092f1b73eb7226b1ea13e36af560bb15eb6c4e8dafe210277f3a051a",
+      "crc32": "3fe1f42a"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr.json",
+      "bytes": 4489,
+      "sha256": "15af46fe8d760caca8157876e8e4b8188d8c7508cae12434986aa98597f0bbad",
+      "crc32": "f83ca04e"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "bytes": 2674027,
+      "sha256": "a98ff0758347d551426607d0671b77b7d1b71244c322794068347009f7e06dc6",
+      "crc32": "325b81db"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "bytes": 2571,
+      "sha256": "1047a73d7c9590c386e66daf05ad523a686d95b5c177b30193aa4426f3186750",
+      "crc32": "4ac1a3a0"
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round.png",
+      "bytes": 525779,
+      "sha256": "6c29bf13e6a1d178418b368ce1537fc6e8c74218703910e84c35d20b6c8d6172",
+      "crc32": "aad6f0e4"
+    },
+    {
+      "member": "nextgen/15_cards_reopened_same_round.png",
+      "bytes": 929069,
+      "sha256": "8b0b382f7ecd92be14fa6555637d04147bbd4b9fd5f5f7119d218ee41bbc811f",
+      "crc32": "568661ad"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "bytes": 2005,
+      "sha256": "2c870d95e56b485fcb15209a7098019c390a527df89e9619c2b6d0db886ce860",
+      "crc32": "68a238bd"
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return.png",
+      "bytes": 530250,
+      "sha256": "0520355ab9d7663daeff751a5cad57198be4f510fff54cdbdff9712cc39238f3",
+      "crc32": "5af390e9"
+    },
+    {
+      "member": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "crc32": "17c22e63"
+    },
+    {
+      "member": "nextgen/cards-after-native-preferences.xml",
+      "bytes": 5979,
+      "sha256": "a98911f6fff9e4c2c7a322dba399febf64d692228fdf61fb57b109ce99a23b7b",
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-before-native-preferences.xml",
+      "bytes": 5980,
+      "sha256": "b5d9a8ae007052e5495a3d39574ba64182d236b23304d6aa35a17b3292884f0a",
+      "crc32": "977a6c8b"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-001.json",
+      "bytes": 629,
+      "sha256": "c295f2259b8d9bd33d517086e8c8396b41f2d33d7d4ce05479266d0c317e40c2",
+      "crc32": "74ff57c9"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-001.txt",
+      "bytes": 80,
+      "sha256": "3d6f7a0eef039598e7a231e9979c02c8ebd495bf4e43e912d0c50c1d62be6600",
+      "crc32": "60d4d084"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-020.json",
+      "bytes": 629,
+      "sha256": "a7137eb806e9b80fd52160d9ca67284612611cb75eeca8079004e5e590c3f20f",
+      "crc32": "daddb45a"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-020.txt",
+      "bytes": 80,
+      "sha256": "207bfe8c0c550d34971c6b99b8d5e9cf1381cfeb3dd9916efaf30cb1a44629ff",
+      "crc32": "03af7660"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-038.json",
+      "bytes": 628,
+      "sha256": "554657e20a52fa41f5b027fcdc682198a7ef83ce4a83772364c7a1d7cd3ac19a",
+      "crc32": "07f373db"
+    },
+    {
+      "member": "nextgen/cards-lifecycle-038.txt",
+      "bytes": 80,
+      "sha256": "403cec876372b6afec77628072782b128b7fbf6187373ada4e6a98eec34cd083",
+      "crc32": "9ba114aa"
+    },
+    {
+      "member": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "sha256": "719044f169835f3c7723cb74335c652e99656b14e12926d8a43e3b702ea32867",
+      "crc32": "2cd07355"
+    },
+    {
+      "member": "nextgen/cards-mailbox-025-request.json",
+      "bytes": 103,
+      "sha256": "f948b87924ce349067365fddcfdfca797e9cbc5bbf778f214a8bc354fd42e865",
+      "crc32": "e2940a55"
+    },
+    {
+      "member": "nextgen/cards-native-back-surface-readiness.json",
+      "bytes": 2749,
+      "sha256": "9fc082c498eca0112d4c827b03a946563f9b877cb477317780333d2d486b80cb",
+      "crc32": "0d03be6a"
+    },
+    {
+      "member": "nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2756,
+      "sha256": "f0fe922f158161207b7e29ee1a735c49e5473595d5ae7208effa6e76b4a51eb0",
+      "crc32": "836364f3"
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-surface-readiness.json",
+      "bytes": 2768,
+      "sha256": "ec60f0d7a64e757d18e1467d1280ab0716b55ea17a58776d1900dd27c5dabdb0",
+      "crc32": "e19e626e"
+    },
+    {
+      "member": "nextgen/cards-native-pause-surface-readiness.json",
+      "bytes": 2754,
+      "sha256": "379c2dc8f3a540a7675dc083a6b63135158193584ec39f372f9649a8ef0279eb",
+      "crc32": "d585dbb3"
+    },
+    {
+      "member": "nextgen/cards-reopened-back-surface-readiness.json",
+      "bytes": 2753,
+      "sha256": "52ac5a280d23895fcf6b0e9b215d7b48bb29b3bb00ef9f32103637bee9bbd1d9",
+      "crc32": "bdafc514"
+    },
+    {
+      "member": "nextgen/cards-save-001-preferences.xml",
+      "bytes": 5979,
+      "sha256": "a98911f6fff9e4c2c7a322dba399febf64d692228fdf61fb57b109ce99a23b7b",
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-save-005-preferences.xml",
+      "bytes": 5980,
+      "sha256": "b5d9a8ae007052e5495a3d39574ba64182d236b23304d6aa35a17b3292884f0a",
+      "crc32": "977a6c8b"
+    },
+    {
+      "member": "nextgen/cards-save-019-preferences.xml",
+      "bytes": 5979,
+      "sha256": "6447348b557e39ae9f56e5206304a9d41be29ca00095657bb2a4fd1063f7ba0f",
+      "crc32": "eb301eba"
+    },
+    {
+      "member": "nextgen/cards-save-024-preferences.xml",
+      "bytes": 5979,
+      "sha256": "6447348b557e39ae9f56e5206304a9d41be29ca00095657bb2a4fd1063f7ba0f",
+      "crc32": "eb301eba"
+    },
+    {
+      "member": "nextgen/cards-save-038-preferences.xml",
+      "bytes": 5979,
+      "sha256": "a98911f6fff9e4c2c7a322dba399febf64d692228fdf61fb57b109ce99a23b7b",
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-save-039-preferences.xml",
+      "bytes": 5979,
+      "sha256": "a98911f6fff9e4c2c7a322dba399febf64d692228fdf61fb57b109ce99a23b7b",
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/cards-save-040-preferences.xml",
+      "bytes": 5979,
+      "sha256": "a98911f6fff9e4c2c7a322dba399febf64d692228fdf61fb57b109ce99a23b7b",
+      "crc32": "b70b45d2"
+    },
+    {
+      "member": "nextgen/learning-after-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "9d76eaa90342677ce1da1287d8ca8f35b940f77e0a694a15ca099ad591d99144",
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "9d76eaa90342677ce1da1287d8ca8f35b940f77e0a694a15ca099ad591d99144",
+      "crc32": "15ec6366"
+    },
+    {
+      "member": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "ab6d1c66e06a02d268fdf20e5d782ceab1385c7450193fb0ffe6a68fd9642c0a",
+      "crc32": "45d8bdfd"
+    },
+    {
+      "member": "nextgen/learning-move-2-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "bd603acfcc582ac5a4bf856ebc1e73a1fb912ae3892605fb5efbc647f9541c4e",
+      "crc32": "c313b515"
+    },
+    {
+      "member": "nextgen/learning-move-3-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "013907af08a737ff500f83c08cec4e4640c5cdf5d6721b6db67185b0b1b89700",
+      "crc32": "e4d11f44"
+    },
+    {
+      "member": "nextgen/learning-move-4-surface-readiness.json",
+      "bytes": 3558,
+      "sha256": "2f4508a67e7d31b52e87c1527793160c4335314c8db914e6f471cc68de409888",
+      "crc32": "188daa74"
+    },
+    {
+      "member": "nextgen/learning-move-5-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "e6c48e53c572b31334303efb9ad8c560506d1217b6feeee0e083689c0e0b0d12",
+      "crc32": "bf6ce915"
+    },
+    {
+      "member": "nextgen/learning-movement-logcat.txt",
+      "bytes": 2603,
+      "sha256": "4f47903b6ebddf18c91b91771962420d5e122afb78ac546d4861efb15856d5fe",
+      "crc32": "5a3733c7"
+    },
+    {
+      "member": "nextgen/learning-speech-logcat.txt",
+      "bytes": 2726,
+      "sha256": "c25f33f074d658702de3c5e5c9cb154942850f096dc1a3d36e7ea9da629ac0d4",
+      "crc32": "b5673647"
+    },
+    {
+      "member": "nextgen/native-surfaces-result.json",
+      "bytes": 226643,
+      "sha256": "ff94e5bb55f137a0df5ab19d016b11edf836e9d297dfb21e934718bb0a72325c",
+      "crc32": "ec3aaaea"
+    },
+    {
+      "member": "recheck/after.json",
+      "bytes": 16655,
+      "sha256": "74ca9c20c86debc003bb08119858018c4da74dd751da27d1ad56ed7af71044ef",
+      "crc32": "208d049a"
+    },
+    {
+      "member": "recheck/before.json",
+      "bytes": 16655,
+      "sha256": "74ca9c20c86debc003bb08119858018c4da74dd751da27d1ad56ed7af71044ef",
+      "crc32": "208d049a"
+    },
+    {
+      "member": "recheck/result.json",
+      "bytes": 3124,
+      "sha256": "aef87b0658750beac527c45dfb24c0ee3849bb556872b0e85860ada38b80e172",
+      "crc32": "0058e9c3"
+    },
+    {
+      "member": "tour-result.json",
+      "bytes": 9770,
+      "sha256": "a7e92d07fc67e24cc033215ddd0c26b953c1519bfe0c2440252bf6672f58bc91",
+      "crc32": "e4ed9364"
+    }
+  ],
+  "total_bytes": 10944204
+}

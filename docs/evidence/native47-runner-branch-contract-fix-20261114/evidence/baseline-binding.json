@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "native_source": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "native_tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc8ccfd0cbb5175f3ac952abb8a4aaf519602c4b",
+      "size": 19875,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/dc8ccfd0cbb5175f3ac952abb8a4aaf519602c4b",
+      "local_source": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/.github/workflows/lumo-studio-2020.yml",
+      "sha256": "138b905645ed6c93fdd9195a14a3d63b77cdf1f53bf2b9438e2098d77332cd1a",
+      "local_filesystem_mode": "0o644"
+    },
+    {
+      "path": "tools/run_godot_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c23859ece2d62101d000d7a89556fda5d3fe4105",
+      "size": 2934,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/c23859ece2d62101d000d7a89556fda5d3fe4105",
+      "local_source": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/tools/run_godot_probe.py",
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "local_filesystem_mode": "0o644"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d",
+      "size": 48638,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/ea34d0d0b459f478af662ede47e472111ca9ae8d",
+      "local_source": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/tools/tests/test_nextgen_runner.py",
+      "sha256": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+      "local_filesystem_mode": "0o644"
+    },
+    {
+      "path": "tools/validate_nextgen.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bf5e8e129fa8c3d7872fb92d21046c1ef7f87e9e",
+      "size": 5035,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/bf5e8e129fa8c3d7872fb92d21046c1ef7f87e9e",
+      "local_source": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/tools/validate_nextgen.sh",
+      "sha256": "34472fbe2e552f1332418d5544e33626b9343e5894589c31951472f2e0ead5e6",
+      "local_filesystem_mode": "0o644"
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "542e22df76ae8773d3c7de064a560a977fc9a033",
+      "size": 25425,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/542e22df76ae8773d3c7de064a560a977fc9a033",
+      "local_source": "/workspace/scratch/5987865ae883/qa/native-nextgen-completion-integration-20261114/assembled-native/tools/validate_studio.sh",
+      "sha256": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+      "local_filesystem_mode": "0o644"
+    }
+  ],
+  "only_changed_path": "tools/tests/test_nextgen_runner.py",
+  "inverse_replacement_exact": true,
+  "note": "Private five-file test runtime; repository blobs validated. Recovered validate_nextgen.sh mode is restored to Git 100755 only in these private copies."
+}

@@ -1,0 +1,214 @@
+{
+	"attempts": 0,
+	"background_depth": [
+		29.5917053222656,
+		56.6678237915039
+	],
+	"complete": false,
+	"controls": [
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"text": "1"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				86.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				86.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"text": "2"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				146.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				146.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"text": "3"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				206.0,
+				777.0,
+				89.0,
+				52.0
+			],
+			"rect_px": [
+				206.0,
+				777.0,
+				89.0,
+				52.0
+			],
+			"text": "Hinweis"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				303.0,
+				777.0,
+				58.0,
+				52.0
+			],
+			"rect_px": [
+				303.0,
+				777.0,
+				58.0,
+				52.0
+			],
+			"text": "Neu"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				837.0,
+				153.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				837.0,
+				153.0,
+				52.0
+			],
+			"text": "Schritt anhören"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				187.0,
+				837.0,
+				125.0,
+				52.0
+			],
+			"rect_px": [
+				187.0,
+				837.0,
+				125.0,
+				52.0
+			],
+			"text": "Zur Aufgabe"
+		}
+	],
+	"density": 1.0,
+	"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+	"footer_px": [
+		12.0,
+		735.0,
+		388.0,
+		168.0
+	],
+	"foreground_far_depth": 20.2539577484131,
+	"header_px": [
+		12.0,
+		12.0,
+		388.0,
+		125.0
+	],
+	"hint_level": 0,
+	"lumo_px": [
+		27.4000301361084,
+		204.981201171875,
+		150.787612915039,
+		257.590240478516
+	],
+	"name": "english-school-bag-412x915-start",
+	"objects": [
+		{
+			"bounds_px": [
+				252.578979492188,
+				211.124008178711,
+				132.021026611328,
+				148.592361450195
+			],
+			"spatial_48dp_target_px": [
+				294.589477539062,
+				236.4189453125,
+				48.0,
+				48.0
+			],
+			"triangles": 1488,
+			"word": "school bag"
+		},
+		{
+			"bounds_px": [
+				252.578979492188,
+				379.606475830078,
+				132.021026611328,
+				117.059753417969
+			],
+			"spatial_48dp_target_px": [
+				294.589477539062,
+				373.368804931641,
+				48.0,
+				48.0
+			],
+			"triangles": 1448,
+			"word": "rubber"
+		},
+		{
+			"bounds_px": [
+				252.578979492188,
+				513.784851074219,
+				132.021026611328,
+				153.234008789062
+			],
+			"spatial_48dp_target_px": [
+				294.589477539062,
+				543.435852050781,
+				48.0,
+				48.0
+			],
+			"triangles": 2188,
+			"word": "desk"
+		}
+	],
+	"objects_order": [
+		"school bag",
+		"rubber",
+		"desk"
+	],
+	"observation_source": "platform_fixture",
+	"stage_px": [
+		16.0,
+		145.0,
+		380.0,
+		582.0
+	],
+	"status": "Tippe den Gegenstand oder seine Zahl an.",
+	"title": "Englisch · school bag",
+	"window_px": [
+		412,
+		915
+	],
+	"word": "school bag"
+}

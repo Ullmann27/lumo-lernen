@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_studio_jump_orientation",
+    "scripts.tests.test_studio_creative_android_probe",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/jump/patched",
+  "exit_code": 0,
+  "elapsed_seconds": 0.9345250129699707
+}

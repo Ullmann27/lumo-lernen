@@ -1,0 +1,519 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_BOUND_EVIDENCE_NEW_FULL_CI_PENDING",
+  "base_evidence_commit": "d8d26d54114f2428c1cec85d9a04de58d92347c7",
+  "base_evidence_tree": "b97a1665a1fc37ab900a5ecf65adf0c96d998388",
+  "candidate": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "candidate_run": 43549076631,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/artifact-metadata.json",
+      "repository_path": "docs/evidence/studio-c081-host-compile/artifact-metadata.json",
+      "mode": "100644",
+      "bytes": 763,
+      "sha256": "155725432b352f0ed541b8c7c83c87e9eda4aa30560cbde70bb186334d8db104",
+      "git_blob": "6508ec22ec226515c65b23360fa14329a62d5f5c",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/completed-job-metadata.json",
+      "repository_path": "docs/evidence/studio-c081-host-compile/completed-job-metadata.json",
+      "mode": "100644",
+      "bytes": 2006,
+      "sha256": "fb369908289fbb78bc8969415e23fd29cb77f54f9787df26fefdd9c614ce7274",
+      "git_blob": "c654bb94037ad04a8b6e2fe671409ca25f3ebfd4",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/original-artifact.zip",
+      "repository_path": "docs/evidence/studio-c081-host-compile/original-artifact.zip",
+      "mode": "100644",
+      "bytes": 5392,
+      "sha256": "4d10b9d78de2b758710fc98646a1df841163c6c82d47f91f831ebe233d2e49c4",
+      "git_blob": "5dee2f147587b488a0ff9583017fa9320e03d0a0",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/original-binding.json",
+      "repository_path": "docs/evidence/studio-c081-host-compile/original-binding.json",
+      "mode": "100644",
+      "bytes": 1263,
+      "sha256": "c7dbff4409fbe32a8a395bfc29393fda15987cad7baca0fb0bf0e049770bc3c8",
+      "git_blob": "24084531344fb6ec67c4b175d917ccfc1ffb26c6",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/original-job.log",
+      "repository_path": "docs/evidence/studio-c081-host-compile/original-job.log",
+      "mode": "100644",
+      "bytes": 236122,
+      "sha256": "82345b53bb7c5e4b88bd751539d76aa322635761a551170caa5ff8c948b3bcfc",
+      "git_blob": "a6777ba308d3ced83917488355481e37a727f60a",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/cards-authority-registry.log",
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/cards-authority-registry.log",
+      "mode": "100644",
+      "bytes": 1325,
+      "sha256": "f70128eb351789ced7b8393ce269a324b6674e5028059a97d70c5b1652d04fdc",
+      "git_blob": "8f5eaaf05c7330ce8bd5642a4ad11e2542beb143",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/compile.log",
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/compile.log",
+      "mode": "100644",
+      "bytes": 33778,
+      "sha256": "b5d0ced85eb22a4147d9989a52d7d1b2951799d9eb789fabf3351e37dbc5b724",
+      "git_blob": "50584ba25d25b5d02f1fd24411d02b181cfce8a3",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/flutter-version.txt",
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/flutter-version.txt",
+      "mode": "100644",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/result.json",
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/result.json",
+      "mode": "100644",
+      "bytes": 2769,
+      "sha256": "238257a7cc1aeb796f0bda54e4bd55105c4ca5c14783772b5cc4d91838070f17",
+      "git_blob": "38cb384c74352052c13d58a8f34e04c4ee236ac1",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/originals/source-sha.txt",
+      "repository_path": "docs/evidence/studio-c081-host-compile/originals/source-sha.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "ddd6fcef95a98a889d812e94b73acd4c7ca266632201e4504901e472f9f90cc7",
+      "git_blob": "1196f0815ac3abe8e57a3a679333568ae229208f",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/review.json",
+      "repository_path": "docs/evidence/studio-c081-host-compile/review.json",
+      "mode": "100644",
+      "bytes": 12526,
+      "sha256": "162b24bc09911b30e4a40eba98af0f68618ac221871d9643d043de2bdb1a9361",
+      "git_blob": "6c56ac14cc32fe441e7e104f5401af914f371ab1",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/tool-log-transfer-binding.json",
+      "repository_path": "docs/evidence/studio-c081-host-compile/tool-log-transfer-binding.json",
+      "mode": "100644",
+      "bytes": 248,
+      "sha256": "f47c37dcd0ae27f6bc8971e625dc765b931edae78dd13193255fcdb84ad280cf",
+      "git_blob": "f01e953c3cdf0733e995d69ddb2ee6fffa3b61a0",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/host-compile/upload-manifest.json",
+      "repository_path": "docs/evidence/studio-c081-host-compile/upload-manifest.json",
+      "mode": "100644",
+      "bytes": 5244,
+      "sha256": "a8e564b40b4544c42df6833c0020561b028ae8f5694e3d23bd18af43702495c7",
+      "git_blob": "abf98c1a92ef596328a39ffa6f36e8696ddfb972",
+      "package": "c081-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/README.md",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/README.md",
+      "mode": "100644",
+      "bytes": 1861,
+      "sha256": "ec54ddc705c0de240178894c014935790ece8351a85d38ef22d23d0ebbc8b4b1",
+      "git_blob": "6c8a51a27110243014651d11af4775f9806d9343",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/creative_android_probe.py",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 59166,
+      "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "git_blob": "d377cee88da237025fd5bb57b6555451bf3f36a8",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/lumo_free_voice_android_probe.py",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/.github/probes/lumo_free_voice_android_probe.py",
+      "mode": "100644",
+      "bytes": 18897,
+      "sha256": "c1450522e9f0144ee37824400bac551602e183d55c518dbd74559028ad115664",
+      "git_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/baseline/scripts/tests/test_android_voice_scroll.py",
+      "mode": "100644",
+      "bytes": 7778,
+      "sha256": "abb6822c5bc721c97b210222433d273618f5e5b9ef0ebfea8a35025c0e9e794a",
+      "git_blob": "c207e73d0c865a60067acb21e124762a4235ae32",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/green-seven-contracts-execution.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts-execution.json",
+      "mode": "100644",
+      "bytes": 469,
+      "sha256": "545229d1ff774bda484a539e294057d438b3f9252bb7b60d577a186208926cca",
+      "git_blob": "bcd965a4f1ab5036fd511c8bedbb86ead8f0e43d",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/green-seven-contracts.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/green-seven-contracts.log",
+      "mode": "100644",
+      "bytes": 1443,
+      "sha256": "085d48391f1732c0bf8a50ead6249531618670d11a8e77bb1cdd903fe83d0677",
+      "git_blob": "6c84d54123aff466f30d044b2175041bd37242f9",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/independent-review.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/independent-review.json",
+      "mode": "100644",
+      "bytes": 2740,
+      "sha256": "33d32fbdcab28b833a5f05521235458a44aba91795c50ceaf568932162d42e51",
+      "git_blob": "1a08e7a400aecb4ed65ba56e7e9d84aea46fe0fb",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/patch-against-exact-c081.diff",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/patch-against-exact-c081.diff",
+      "mode": "100644",
+      "bytes": 1017,
+      "sha256": "a0de0ee4f4ab821e38fddf6284c902558acf4279da6dea1d9700b16bf9737742",
+      "git_blob": "962f4c39f3973e551de85ab26f9213bcba4321a5",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/red-original-c081-execution.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081-execution.json",
+      "mode": "100644",
+      "bytes": 510,
+      "sha256": "4a1c132e25612b05a7f7effa8d6003dac9e0502ea80633cd9665f75a82d679f2",
+      "git_blob": "191eab35839b6aca1c105bd4af3cc77ff3818328",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/red-original-c081.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/red-original-c081.log",
+      "mode": "100644",
+      "bytes": 4096,
+      "sha256": "3eeb05b85602307472bdbc57c882f6155287cea6a63a07bf97d9e6e9cad346de",
+      "git_blob": "3d3013ff6d2c0c40f6f06caeb9894268b98fe552",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/root-local-integration.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/root-local-integration.json",
+      "mode": "100644",
+      "bytes": 372,
+      "sha256": "eb52c935b8634464814cd62ed91b5e507a6092a1fae1bc5bc7bebe7a62142aa8",
+      "git_blob": "8539448c97e25e909adb981f81bbe1adfc9c06f9",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/source-binding.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-binding.json",
+      "mode": "100644",
+      "bytes": 3070,
+      "sha256": "4455013e84bc401ac7048ff96fbe0f8fc2196215e4ea3627a2f42fcd7c3322d1",
+      "git_blob": "1f9e54351762dab2007d552c7050ac8e7a7b5e50",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 1531,
+      "sha256": "84869ef116dfa6987547939e8350b4d27f5f5aa34e58c21ce5950ad1772aaf1c",
+      "git_blob": "9b684c86d75bff581d6b52926cf97629be1fa5a7",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/original-job.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-job.log",
+      "mode": "100644",
+      "bytes": 218809,
+      "sha256": "1dbd60250899aabe46c8d58b8350e59631b4678809b2b97747ba2569cecffacd",
+      "git_blob": "a7ce01e9b516845313d2801fd890caa5a5635e2f",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/source-transfer-binding.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/source-transfer-binding.json",
+      "mode": "100644",
+      "bytes": 505,
+      "sha256": "f6f3d3296a65cb95ca886ba1917ab94e225d5bca034b662cca2ee0bc0266c778",
+      "git_blob": "35ea4a4b308601ff2edbb1abb8748ce8917721eb",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/completed-jobs-metadata.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/completed-jobs-metadata.json",
+      "mode": "100644",
+      "bytes": 10299,
+      "sha256": "9de33c8d3814a4f0b7612325878897cdd942f2eff1f5f666be0463b0b0e4444e",
+      "git_blob": "29b657a7a2837a495984acf67544e5fd2fdb3d11",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/run-completed-metadata.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/run-completed-metadata.json",
+      "mode": "100644",
+      "bytes": 14777,
+      "sha256": "d4edee71c34d7a6e3bd244b3c8d8ba4b46b6d1987a4369115ed8ad6f5e7c2e57",
+      "git_blob": "1aebb0f40a238e7890cb749ad89b9f3f25dacd2d",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/unified-completed-jobs.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/unified-completed-jobs.json",
+      "mode": "100644",
+      "bytes": 9644,
+      "sha256": "7a8d6eea7b781db6f6f265cb6207feae4227156cc3fb0c74c038eb52dd32b8e5",
+      "git_blob": "daef37f48c78b1a5b90cbd76db3610f1fd3fedb2",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/full-flutter-original-summary.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/full-flutter-original-summary.json",
+      "mode": "100644",
+      "bytes": 4562,
+      "sha256": "1545ef741d4c09c235aafba54819c27423b8d0a6eba2e7aa904ad7e834c9f4b5",
+      "git_blob": "dcc9e6584f3ba0514eba6ac403a784f05c1763dc",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/original-two-failures.txt",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/original-two-failures.txt",
+      "mode": "100644",
+      "bytes": 3357,
+      "sha256": "cc84496ede88e98e81f8f3d46b839df9bf8bf8d4e203a4b1f015b1f381d5cef2",
+      "git_blob": "ee442de8ad81610cb257db2848f7b9515c7c3311",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/build-contract-failure/review.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/original-ci/review.json",
+      "mode": "100644",
+      "bytes": 3719,
+      "sha256": "f12026631357684ac8cf4df091c8369b234af225fcd31050b4434ffcb946449e",
+      "git_blob": "8f2b34ee9fd7f86847efa52850fed482fad4f207",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/evidence-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/evidence-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 10181,
+      "sha256": "38a0f44deae7799e87defb911d839427b6763ebb9ded9b02b7fa167f6de04ce9",
+      "git_blob": "afbb7c3fbd02f1e076783bde3cfba08d90175095",
+      "package": "c081-red-green-originals"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/all-android-probe-contracts.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-android-probe-contracts.log",
+      "mode": "100644",
+      "bytes": 162212,
+      "sha256": "02144370f74f098580d9c5a911069c0c82f338ca2bed83ec8249c32f79ffae92",
+      "git_blob": "fa481793fc438149060e11202b24418731f55746",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm-result.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm-result.json",
+      "mode": "100644",
+      "bytes": 13193,
+      "sha256": "a7dd13b0e4849d3388ef39b00cd96a7c8b8c71aa3a8041d352fb92d37e651097",
+      "git_blob": "e62f15d74ac0fc74d21caf8901b43fdbad1be023",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts-existing-jvm.log",
+      "mode": "100644",
+      "bytes": 90148,
+      "sha256": "0113b8caa750ce7b58dd047f39bc98d3a1c268c0eaed5c248200435fd93dadc4",
+      "git_blob": "6e99d7f22c3ffbb24b13aa1128ee664a2d87b152",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/all-build-preservation-contracts.log",
+      "mode": "100644",
+      "bytes": 87711,
+      "sha256": "594cf001c58078a63436d5023e7bf166c95b60a4daaf5630144e6f724c1c83d6",
+      "git_blob": "c6ffa8cb5a1b857c1ccbf11f9b9eeb487bbeacee",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/android-group-result.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/android-group-result.json",
+      "mode": "100644",
+      "bytes": 850,
+      "sha256": "264095dd8a95e09ee5ba45dc70391569cf33fb56cfae2a4ddb51684bb87000ea",
+      "git_blob": "624d8a7af617bef996d26379ed0878d7711c6fb0",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/android-tesseract-languages.log",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/android-tesseract-languages.log",
+      "mode": "100644",
+      "bytes": 109,
+      "sha256": "464d07e2a4302a06245020f134fe5ace55fd3387a242cdf6789c5642343e541c",
+      "git_blob": "6f805e3dd00e5783143aa652ad1c11ee37614cbb",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/existing-toolchain-readonly.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/existing-toolchain-readonly.json",
+      "mode": "100644",
+      "bytes": 3854,
+      "sha256": "7e01d820591033623372f74c71a98651e55f522ee0c28fa8fe1714549285a505",
+      "git_blob": "5852a4392f4f261bb3e57687ad9bbc303dd84640",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/results.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/results.json",
+      "mode": "100644",
+      "bytes": 730,
+      "sha256": "0a02ce3b57c64562052ffbc955ef5048cc9da9ee3e0fa74965fc1156fd0ca590",
+      "git_blob": "914338c6db45b78c39852a9dc67678932cba9b5c",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/root-harness-first-attempt-error.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/root-harness-first-attempt-error.json",
+      "mode": "100644",
+      "bytes": 265,
+      "sha256": "2e13f78c7f4f71e40217bb1c9c300aef3a11477555ebe681a20cf0618cbe933b",
+      "git_blob": "c15e2855fbc410d1b023732d063003e774627b38",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/full-local-groups/source-manifest-readback.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/full-local-groups/source-manifest-readback.json",
+      "mode": "100644",
+      "bytes": 6407,
+      "sha256": "afee739a558677851630e1f5b03f05705fd2464b32c59ad041251c53c0b8164e",
+      "git_blob": "e4b86e5f9b78d5234a31713bf80b837456c140ad",
+      "package": "root-complete-local-contracts"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/github-checkpoint.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-checkpoint.json",
+      "mode": "100644",
+      "bytes": 596,
+      "sha256": "edb1361119978f59ad4d0ff22086454da197987353b814c6e227b6120f4e1674",
+      "git_blob": "91d592b16eda19027afc9777e8201a62015d9561",
+      "package": "root-published-source-proof"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/github-created-commit.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-created-commit.json",
+      "mode": "100644",
+      "bytes": 166,
+      "sha256": "3c3eb19a8c94b273dbad16cf4e961192ff4e03b8cf5c8c69f416dd998dc37c38",
+      "git_blob": "fed5296e713096830cae9476499794501accb4e0",
+      "package": "root-published-source-proof"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/github-created-tree.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-created-tree.json",
+      "mode": "100644",
+      "bytes": 293,
+      "sha256": "23567ac78ee4ec8bdb920c91f03cc0038715d15f506e8a60fb67ba110f8f0783",
+      "git_blob": "4efdff7dab972a8498e47dfde25c194ae08dc03f",
+      "package": "root-published-source-proof"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/github-tree-verification.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/github-tree-verification.json",
+      "mode": "100644",
+      "bytes": 648,
+      "sha256": "f976303b71822d23e176cb02af1629de453fca7ffa0f4226a602970c455b3bcd",
+      "git_blob": "ae68239acd80e88b9c950f2293141d5d9509cb07",
+      "package": "root-published-source-proof"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/new-studio-run.json",
+      "repository_path": "docs/evidence/studio-c081-voice-scroll-contract-fix/new-studio-run.json",
+      "mode": "100644",
+      "bytes": 305,
+      "sha256": "a1832971e621a374a39793230aeddd0cdbf41e7e195d9671b2361e55a5020ade",
+      "git_blob": "ac4b322b9d27760ece5778908358227ecb1d3366",
+      "package": "root-published-source-proof"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/native803-duplicate-check-20261114/current-public-stream.json",
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/current-public-stream.json",
+      "mode": "100644",
+      "bytes": 778,
+      "sha256": "8bd6c817b797cc18884c94b4e106bddfc343225550c7490989264392c90ab295",
+      "git_blob": "8f2d5765062fef1ce6afdaaff060abb9a5eda2b2",
+      "package": "native-archive-current-retrievability"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/native803-duplicate-check-20261114/current-release-original.json",
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/current-release-original.json",
+      "mode": "100644",
+      "bytes": 7888,
+      "sha256": "02623692540d8db75e7a0aa3e26fc59af2c07fd362a82c3041bb61fbf49be4a0",
+      "git_blob": "2177b9b4bd7938a657f6e4f6fcf04028bff2d0d3",
+      "package": "native-archive-current-retrievability"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/native803-duplicate-check-20261114/independent-local-copy-review.json",
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/independent-local-copy-review.json",
+      "mode": "100644",
+      "bytes": 3072,
+      "sha256": "e8f16948a82d5179d7746a35897efc99aa6f93452bffbdf7feff5a73f08b96df",
+      "git_blob": "1d81d86e0947c9004e2bef1815d8bd005cf4a1c6",
+      "package": "native-archive-current-retrievability"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/native803-duplicate-check-20261114/retained-evidence-check.json",
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/retained-evidence-check.json",
+      "mode": "100644",
+      "bytes": 28335,
+      "sha256": "80130ba6ad9f4b91e06cc500a83742a20e0b5591047802ccc5d1038f7953e752",
+      "git_blob": "5ad99f87d3dc553c82723cbf9a59fa4c936a2c56",
+      "package": "native-archive-current-retrievability"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/native803-duplicate-check-20261114/root-local-duplicate-cleanup.json",
+      "repository_path": "docs/evidence/native803-duplicate-check-20261114/root-local-duplicate-cleanup.json",
+      "mode": "100644",
+      "bytes": 1183,
+      "sha256": "5f56e055bb96dca64260cd2bd6b59fa4938149bfff8430598b177b6d39fe3c04",
+      "git_blob": "a34dcbc112d97c6e53593c6ba763407484ca42d4",
+      "package": "native-archive-current-retrievability"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/README.md",
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/README.md",
+      "mode": "100644",
+      "bytes": 3646,
+      "sha256": "c8142230548260e336bb2804616778b008b1a939175e2d5fd442ebb55feb69c2",
+      "git_blob": "22a8bab2a18783db9f14139d1c07f0866fafb1ba",
+      "package": "collection"
+    }
+  ],
+  "file_count": 56,
+  "total_bytes": 1092990,
+  "contains_product_source_installation": false,
+  "contains_apk": false,
+  "additional_manifest_path": "docs/evidence/studio-86445-contract-followup-20261114/upload-manifest.json"
+}

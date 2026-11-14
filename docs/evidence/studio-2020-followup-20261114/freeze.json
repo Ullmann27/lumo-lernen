@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "frozen_utc": "2026-11-14T06:18:37.794159+00:00",
+  "scope": "Only the ten authorized frozen documentation inputs and this package metadata; no runtime source installation.",
+  "input_manifest_count": 10,
+  "input_file_rows": 145,
+  "input_file_bytes": 14767980,
+  "input_manifests": [
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-evidence-upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-facial-import-8be3--canonical-evidence-upload-manifest.json",
+      "bytes": 6867,
+      "sha256": "63b61854b38475d9c1127360c826c922703f159f483734a140cd76fd990ab93f",
+      "rows": 16
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence-upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/attention-landing-8be3-contract-fix-20261114--evidence-upload-manifest.json",
+      "bytes": 7728,
+      "sha256": "d1a921c1cd847606ebe455f0e817219d9b662d9eaac1c568b3ef1cba3096ef13",
+      "rows": 17
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-native-8be3-observation-20261114/evidence-upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-native-8be3-observation-20261114--evidence-upload-manifest.json",
+      "bytes": 11996,
+      "sha256": "f76be0e31d6f32092fe3727c6a464bace52e93eda53c778c97f28af8081c0690",
+      "rows": 25
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/evidence-upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-facial-movie-8be3--evidence-upload-manifest.json",
+      "bytes": 29822,
+      "sha256": "63b4e4d8aa932b2ab0c5ef142d4edc23fdd14bd2fa4bf743086eae5f2b8a2eb4",
+      "rows": 61
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-independent-review-20261114/evidence-upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-facial-movie-independent-review-20261114--evidence-upload-manifest.json",
+      "bytes": 1057,
+      "sha256": "3fc146a79eb002e8d00bcc3bbbaa61444f9058bcb8a80ab206ce3c1cb3c0407e",
+      "rows": 2
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence-upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-c4-delivery-86445--evidence-upload-manifest.json",
+      "bytes": 4739,
+      "sha256": "d76968735e16fae153e3f72c4f1eaccffb69ed4466b7d3a43458379f590d88da",
+      "rows": 11
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-86445/evidence-upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-artifact-originals-86445--evidence-upload-manifest.json",
+      "bytes": 3024,
+      "sha256": "b395690915aefc727e97de54eb8e186f5f8977d522609191a630dbbc916ca14f",
+      "rows": 7
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-artifact-originals-independent-review-20261114/upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-artifact-originals-independent-review-20261114--upload-manifest.json",
+      "bytes": 473,
+      "sha256": "5ce301c7b02debf1fccb66cb346a748cb80a370b9fc5f2f87bae3f55f10e5544",
+      "rows": 1
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-final-host-workflow-review-20261114/upload-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-final-host-workflow-review-20261114--upload-manifest.json",
+      "bytes": 548,
+      "sha256": "f3c29098720e968a6e34d341466658d96586a708320cf034fcc791e8365a8bea",
+      "rows": 1
+    },
+    {
+      "original": "/workspace/scratch/5987865ae883/qa/studio-2020-host-fixture-blobs-20261114/checkpoint-manifest.json",
+      "snapshot_target": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-host-fixture-blobs-20261114--checkpoint-manifest.json",
+      "bytes": 1593,
+      "sha256": "dfcdd1530e655516b17a1eab870bd9c128c35f2e74f9bf144fef95b0758f6ce2",
+      "rows": 4
+    }
+  ],
+  "input_file_verification_sha256": "31e8ec3bd11eb68742d110b343d3acb3028a6ba653531e901920efa2ad2011c0",
+  "product_target_count": 0,
+  "targets_docs_only": true,
+  "historical_source_snapshots": "Manifested .gd/.yml/.import and replay-script originals are inert documentation snapshots under docs/evidence only, not deployed product files.",
+  "failed_original_native": {
+    "sha": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+    "run": 43561885899,
+    "attempt": 1,
+    "conclusion": "failure",
+    "gameplay": "failure: original attention/landing model binding",
+    "studio": "failure: MovieMaker dimensions",
+    "skipped": [
+      "new-worlds",
+      "bundle-evidence",
+      "archive-evidence"
+    ],
+    "additional_stage2_run": 43561889426
+  },
+  "followup_native": {
+    "sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "run": 43565059832,
+    "attempt": 1,
+    "status": "in_progress",
+    "conclusion": null,
+    "source_updated_at": "2026-11-14T06:11:04Z",
+    "original_metadata_sha256": "732fa1a94bf8e14060d3e71fcd473ac855816c64598dafd685746f9b595bce31",
+    "acceptance_claimed": false
+  },
+  "targeted_corrections": [
+    "Canonical Godot 4.6.3 import defaults with an actual unchanged second import",
+    "Separate unchanged original-model identity from the intentional facial derivative",
+    "Capture-only MovieMaker size initialization with original red/green diagnostics"
+  ],
+  "independent_contract_packages": [
+    "C4 publisher verifier: 29 synthetic contracts",
+    "Original-artifact verifier: 20 synthetic contracts"
+  ],
+  "tests_or_renders_executed_for_packaging": 0,
+  "new_android2020_pass_claimed": false,
+  "physical_fold7_measurement_claimed": false,
+  "new_full_native_pass_claimed": false,
+  "git_operations_authorized": [
+    "create_blob"
+  ],
+  "git_tree_commit_ref_pr_operations": 0,
+  "excluded": "Root-owned mutable integration files and operative source-upload manifests are not selected. No new APK or full original ZIP is added."
+}
