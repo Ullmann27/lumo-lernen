@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "images": [
+    {
+      "path": "captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "width": 1080,
+      "height": 2400,
+      "bytes": 1141701,
+      "sha256": "bc1a5465f83736f8c0db00a7188075a02503f6d33eecaf58e2ece62d813e1a45",
+      "native_layout": {
+        "path": "captures/cards_safe_area_regression/android35_portrait-paused.layout.json",
+        "bytes": 1277,
+        "sha256": "7cfb1db2f98e577dc0b96c999ca2cd9e1b68531a1d1f888d14fda1df9b529fe8"
+      }
+    },
+    {
+      "path": "captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "width": 1080,
+      "height": 2400,
+      "bytes": 1272865,
+      "sha256": "ae53121f34679850bd86163c6a1f3245accd8369710cd5815efd7a6c12145a8d",
+      "native_layout": {
+        "path": "captures/cards_safe_area_regression/android35_portrait-playing.layout.json",
+        "bytes": 1277,
+        "sha256": "7e4e06a8c4ee09a8d981034ee1c9d90052555a20856ba79cc317c642c238a882"
+      }
+    },
+    {
+      "path": "captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "width": 2400,
+      "height": 1080,
+      "bytes": 1002653,
+      "sha256": "e97b23764222326565d07e46023869467c2333861c4f9e19223a9b6eaf4fb93b",
+      "native_layout": {
+        "path": "captures/cards_safe_area_regression/landscape_cutout_fixture-playing.layout.json",
+        "bytes": 1956,
+        "sha256": "ba2749dc1c3f1f9a2597db84897b74552792c33691e0a99d632acfc8230140e5"
+      }
+    },
+    {
+      "path": "captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "width": 2400,
+      "height": 1080,
+      "bytes": 2485274,
+      "sha256": "0e0e0040124469e8623ff89ef54e844acc38e5fddec2e8cbc7305cbcb400e501"
+    },
+    {
+      "path": "captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "width": 2400,
+      "height": 1080,
+      "bytes": 1856548,
+      "sha256": "8c94d9a9c9e6c28ce6b79b1cda72aa779d88ff34853c29c2bd75356e00aca268"
+    },
+    {
+      "path": "captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "width": 2400,
+      "height": 1080,
+      "bytes": 479273,
+      "sha256": "2b19eec98a3806cb9762097c012ad43c573f94af8f101acb6284952ae2115bcf"
+    },
+    {
+      "path": "captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "width": 2400,
+      "height": 1080,
+      "bytes": 2622823,
+      "sha256": "67022a1221c4d738db085960e349d1eeec09d33e6f5a293414f0f9f3452c6101"
+    }
+  ],
+  "reports": [
+    {
+      "path": "captures/cards_safe_area_regression/cards-safe-area.json",
+      "bytes": 67395,
+      "sha256": "3ce4a63cf02a0ee2524dd8a18e059f0a0f346877e8fd29785f66783a6f28a315"
+    },
+    {
+      "path": "captures/mobile_safe_area_regression/mobile-safe-area.json",
+      "bytes": 12521,
+      "sha256": "8c9bab0e55ddfd1d74a34ba8d352f8168b76fc46a4857f478a30615fb7d62f2c"
+    }
+  ]
+}

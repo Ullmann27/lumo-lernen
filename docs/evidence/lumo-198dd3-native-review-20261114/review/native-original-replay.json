@@ -1,0 +1,1001 @@
+{
+  "schema": 1,
+  "kind": "new_read_only_native_original_replay",
+  "status": "PASS",
+  "host": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43630328343,
+  "run_attempt": 1,
+  "job_id": 132556738917,
+  "artifact_id": 14131310614,
+  "canonical_reader_git_blob": "28601267bc5d317244598b4304314bbd77107e0f",
+  "canonical_native_replay": {
+    "source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+    "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+    "core_modes": 52,
+    "mode_logs": [
+      {
+        "path": "learning_world_regression-headless.log",
+        "marker": "[LearningWorld] PASS",
+        "bytes": 10599,
+        "sha256": "4e500ed41f1c9bee1b586b2141e4c7646f660b8dcb5da8311db95babab7ca1cb"
+      },
+      {
+        "path": "learning_sharing_regression-headless.log",
+        "marker": "[LearningSharing] PASS",
+        "bytes": 1482,
+        "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340"
+      },
+      {
+        "path": "learning_studio_regression-headless.log",
+        "marker": "[LearningStudio] PASS",
+        "bytes": 1801,
+        "sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b"
+      },
+      {
+        "path": "learning_host_payload_regression-headless.log",
+        "marker": "[LearningHostPayload] PASS",
+        "bytes": 561,
+        "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6"
+      },
+      {
+        "path": "puzzle_rotation_regression-headless.log",
+        "marker": "[PuzzleRotation] PASS",
+        "bytes": 571,
+        "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9"
+      },
+      {
+        "path": "puzzle_menu_lifecycle_regression-headless.log",
+        "marker": "[PuzzleMenuLifecycle] PASS",
+        "bytes": 3084,
+        "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98"
+      },
+      {
+        "path": "treasure_exploration_regression-headless.log",
+        "marker": "[TreasureExploration] PASS",
+        "bytes": 589,
+        "sha256": "6303eda4f9dfbf0eae58630858cdd5ec5cf1dfd19767d484bf72b3001d713b5e"
+      },
+      {
+        "path": "jump_nextgen_regression-headless.log",
+        "marker": "[JumpNextgen] PASS",
+        "bytes": 1997,
+        "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444"
+      },
+      {
+        "path": "jump_expeditions_regression-headless.log",
+        "marker": "[JumpExpeditions] PASS",
+        "bytes": 2760,
+        "sha256": "f5b49f003ab7a8245417454a5ff22351f71ae3209ea5b1882951805f5ffe92f9"
+      },
+      {
+        "path": "lumo_teacher_pose_regression-headless.log",
+        "marker": "[LumoTeacherPose] PASS",
+        "bytes": 589,
+        "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629"
+      },
+      {
+        "path": "lumo_studio_motion_regression-headless.log",
+        "marker": "[LumoStudioMotion] PASS",
+        "bytes": 603,
+        "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b"
+      },
+      {
+        "path": "lumo_65bone_walk_gait_regression-headless.log",
+        "marker": "[LumoGait] PASS",
+        "bytes": 572,
+        "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e"
+      },
+      {
+        "path": "lumo_original_jump_visual_regression-headless.log",
+        "marker": "[JumpOriginalLumo] PASS",
+        "bytes": 691,
+        "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43"
+      },
+      {
+        "path": "bauwelt_identity_2013_regression-headless.log",
+        "marker": "[BauweltIdentity2013] PASS",
+        "bytes": 586,
+        "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886"
+      },
+      {
+        "path": "build_frontier_regression-headless.log",
+        "marker": "[BuildFrontier] PASS",
+        "bytes": 617,
+        "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b"
+      },
+      {
+        "path": "build_transform_regression-headless.log",
+        "marker": "[BuildTransform] PASS",
+        "bytes": 565,
+        "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993"
+      },
+      {
+        "path": "build_nextgen_play_regression-headless.log",
+        "marker": "[BuildNextgen] PASS",
+        "bytes": 687,
+        "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654"
+      },
+      {
+        "path": "build_settlement_regression-headless.log",
+        "marker": "[Settlement] PASS",
+        "bytes": 537,
+        "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09"
+      },
+      {
+        "path": "build_settlement_play_regression-headless.log",
+        "marker": "[SettlementPlay] PASS",
+        "bytes": 2069,
+        "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a"
+      },
+      {
+        "path": "build_village_economy_regression-headless.log",
+        "marker": "[VillageEconomy] PASS",
+        "bytes": 628,
+        "sha256": "54d5d0caa2d8d20a57ec8e7e6a3eadddf6331f19c4b7273acf1b5588546c26fb"
+      },
+      {
+        "path": "build_village_art_regression-headless.log",
+        "marker": " checks / 0 failures",
+        "bytes": 507,
+        "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8"
+      },
+      {
+        "path": "build_village_scene_regression-headless.log",
+        "marker": "[VillageScene] PASS",
+        "bytes": 846,
+        "sha256": "496c7238579af90e13d5dd5180edbd23b0eb0d44380b3c4b2c37adb7881a0d19"
+      },
+      {
+        "path": "creative_nextgen_environment_regression-headless.log",
+        "marker": "[CreativeNextgenEnvironment] PASS",
+        "bytes": 592,
+        "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e"
+      },
+      {
+        "path": "kart_nextgen_garage_regression-headless.log",
+        "marker": "[NextGenGarage] PASS",
+        "bytes": 734,
+        "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab"
+      },
+      {
+        "path": "kart_track_pass_regression-headless.log",
+        "marker": "[KartTrackPass] PASS",
+        "bytes": 1076,
+        "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955"
+      },
+      {
+        "path": "cards_table_regression-headless.log",
+        "marker": "CARDS_TABLE_RUNTIME_PASS",
+        "bytes": 583,
+        "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab"
+      },
+      {
+        "path": "cards_safe_area_android_contract-headless.log",
+        "marker": "CARDS_ANDROID_INSETS_PASS",
+        "bytes": 553,
+        "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04"
+      },
+      {
+        "path": "cards_safe_area_regression-headless.log",
+        "marker": "CARDS_SAFE_AREA_PASS",
+        "bytes": 532,
+        "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177"
+      },
+      {
+        "path": "mobile_safe_area_regression-headless.log",
+        "marker": "MOBILE_SAFE_AREA_PASS",
+        "bytes": 8427,
+        "sha256": "6c74afd2f8332dc71222c0d4c0b1d28a3a2537fde42edc7dc9e581f770cf4532"
+      },
+      {
+        "path": "rhythm_tour_regression-headless.log",
+        "marker": "[RhythmTour] PASS",
+        "bytes": 582,
+        "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b"
+      },
+      {
+        "path": "rhythm_tour_play_regression-headless.log",
+        "marker": "[RhythmTourPlay] PASS",
+        "bytes": 600,
+        "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9"
+      },
+      {
+        "path": "learning_world_capture-rendered.log",
+        "marker": "[LearningCapture] PASS",
+        "bytes": 8466,
+        "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd"
+      },
+      {
+        "path": "learning_sharing_capture-rendered.log",
+        "marker": "[LearningSharingCapture] PASS",
+        "bytes": 3506,
+        "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e"
+      },
+      {
+        "path": "lumo_studio_motion_capture-rendered.log",
+        "marker": "[LumoStudioCapture] PASS",
+        "bytes": 1202,
+        "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669"
+      },
+      {
+        "path": "puzzle_rotation_regression-rendered.log",
+        "marker": "[PuzzleRotation] PASS",
+        "bytes": 1218,
+        "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871"
+      },
+      {
+        "path": "puzzle_menu_lifecycle_regression-rendered.log",
+        "marker": "[PuzzleMenuLifecycle] PASS",
+        "bytes": 3733,
+        "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c"
+      },
+      {
+        "path": "treasure_exploration_regression-rendered.log",
+        "marker": "[TreasureExploration] PASS",
+        "bytes": 1236,
+        "sha256": "d3ab6703a5a6d829268ef78107f2ae5a7a7c05be21eaf44bceb9c4c04d4adbba"
+      },
+      {
+        "path": "jump_nextgen_capture-rendered.log",
+        "marker": "[JumpNextgenCapture] PASS",
+        "bytes": 1727,
+        "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3"
+      },
+      {
+        "path": "build_nextgen_play_regression-rendered.log",
+        "marker": "[BuildNextgen] PASS",
+        "bytes": 1334,
+        "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6"
+      },
+      {
+        "path": "build_settlement_play_regression-rendered.log",
+        "marker": "[SettlementPlay] PASS",
+        "bytes": 2716,
+        "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127"
+      },
+      {
+        "path": "build_village_scene_regression-rendered.log",
+        "marker": "[VillageScene] PASS",
+        "bytes": 1493,
+        "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648"
+      },
+      {
+        "path": "creative_nextgen_environment_regression-rendered.log",
+        "marker": "[CreativeNextgenEnvironment] PASS",
+        "bytes": 1239,
+        "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e"
+      },
+      {
+        "path": "kart_nextgen_garage_regression-rendered.log",
+        "marker": "[NextGenGarage] PASS",
+        "bytes": 1383,
+        "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5"
+      },
+      {
+        "path": "cards_table_capture-rendered.log",
+        "marker": "CARDS_TABLE_RENDER_PASS",
+        "bytes": 1162,
+        "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4"
+      },
+      {
+        "path": "cards_safe_area_regression-rendered.log",
+        "marker": "CARDS_SAFE_AREA_PASS",
+        "bytes": 1179,
+        "sha256": "e4b86d0d3e105c298176539d00c4ec5e53cc78931acfbae24f0bf1eff5f3eefe"
+      },
+      {
+        "path": "mobile_safe_area_regression-rendered.log",
+        "marker": "MOBILE_SAFE_AREA_PASS",
+        "bytes": 9355,
+        "sha256": "5003340bbb23abca9197bda4e9587071fe6c208e2d3199e8f88aaf3c8cc09d4e"
+      },
+      {
+        "path": "rhythm_tour_play_regression-rendered.log",
+        "marker": "[RhythmTourPlay] PASS",
+        "bytes": 1247,
+        "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9"
+      },
+      {
+        "path": "kart_player_full_route_regression-rendered.log",
+        "marker": "[PlayerFullRoute] PASS",
+        "bytes": 21732,
+        "sha256": "3809da94b67f39eec73a0809f2169c6755a85f467ed92a69798382c4500514da"
+      },
+      {
+        "path": "lumo_facial_regression-headless.log",
+        "marker": "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false",
+        "bytes": 633,
+        "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b"
+      },
+      {
+        "path": "lumo_facial_capture-rendered.log",
+        "marker": "LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true",
+        "bytes": 1847,
+        "sha256": "638f7ea2971c7b7f1a0dfc2dc75b71e5b7983f76791a26043b75a298347ae5c1"
+      },
+      {
+        "path": "connect_four_visual_capture-rendered.log",
+        "marker": "CONNECT_FOUR_VISUAL_PASS",
+        "bytes": 1176,
+        "sha256": "1cc3d59bbf0a2f7fa7680ad0d70bdcbfb1c6690cb88edf523b344f9d18afaaae"
+      },
+      {
+        "path": "treasure_title_contrast_regression-rendered.log",
+        "marker": "[TreasureTitleContrast] PASS",
+        "bytes": 3669,
+        "sha256": "e715acf96478f26498f6fef6acbb0a04fb41680ef43b154addcdade4003a04f4"
+      }
+    ],
+    "complete_runner_log": {
+      "bytes": 118542,
+      "sha256": "d016fd247623947a7b059110cf7b6258e0ee6f53f0c74a811082e220657ff985"
+    },
+    "original_rosters": {
+      "renderer-images.json": {
+        "bytes": 5737,
+        "sha256": "e73f945858abb44c92cae3a6ea2546f82830ddf7af9fa2c33cba7f9c06dc9929"
+      },
+      "village-images.json": {
+        "bytes": 1010,
+        "sha256": "0be9fe2ffb4d2e96d659c2e2cb417f9b274d771f42f0f8054de7723b065392bd"
+      },
+      "puzzle-menu-images.json": {
+        "bytes": 1488,
+        "sha256": "5ac80728613b48fbd1529782fb52922c6b74cc011b293af19a051bc0214ce4fa"
+      },
+      "safe-area-images.json": {
+        "bytes": 2878,
+        "sha256": "4d57310265cc8da48c4fe22f82b24b8119707ede9179cbfe68198db9ba35a69d"
+      },
+      "studio-2020-images.json": {
+        "bytes": 13986,
+        "sha256": "4a5be1151a48a0774a4d78d34815d0e0c4bc60e50b278b9b3823a65532952814"
+      }
+    },
+    "scope": "Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim"
+  },
+  "additional_original_log_marker_replay": {
+    "legacy": {
+      "source_runner": "tools/validate_project.sh",
+      "expected_probes": 19,
+      "matched_probes": 19,
+      "original_log": {
+        "path": "legacy-gameplay.log",
+        "bytes": 220576,
+        "sha256": "7bd33815a48f7b1439da1ac920357e3ad18e9def5524ebb5df932b7df5209abd",
+        "git_blob": "e44c67ec0b3f14fe66d644285978d381da08678f"
+      },
+      "markers": [
+        {
+          "required_source_pattern": "\\[KartTests\\] PASS",
+          "original_lines": [
+            "[KartTests] PASS: 8000 shared Jump questions; no Kart learning state; free steering; real full race; brake/drift; pause; save/resume; one award"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[HostBridgeTests\\] PASS",
+          "original_lines": [
+            "[HostBridgeTests] PASS: actual JNI integer ACK, strict rejection, reward dedup/backup, return",
+            "[HostBridgeTests] PASS: native options, lifecycle save/pause, Back, resume identity, reward retry/once, games/learn return, fresh restart",
+            "[HostBridgeTests] PASS: jump native reward, question pause, save/resume identity, Back to games"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[JumpTests\\] PASS",
+          "original_lines": [
+            "[JumpTests] PASS: full twelve-island adventure, collisions, jump, three learning stops, save/resume"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[LumoGait\\] PASS",
+          "original_lines": [
+            "[LumoGait] PASS walk/run foot planting, idle settle, teleport, airborne"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[LumoRenderKit\\] PASS",
+          "original_lines": [
+            "[LumoRenderKit] PASS one tier, Kart far unchanged, creative preset identical, Wolkeninseln tiers"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[LumoEnvironmentApply\\] PASS",
+          "original_lines": [
+            "[LumoEnvironmentApply] PASS creative_night/wolkeninseln/bauwelt_day/puzzle_atelier/rhythm_party/treasure_day"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[CreativePresets\\] PASS",
+          "original_lines": [
+            "[CreativePresets] PASS describe/configure/apply, bauwelt_day/puzzle_atelier/rhythm_party/treasure_day, MultiMesh batches"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartRaceBridge\\] PASS",
+          "original_lines": [
+            "[KartRaceBridge] PASS: no learning data, stable pause/return/resume ID, one reward, solved int, failed ACK keeps save, star cup without tasks, legacy learning-cup save finishes"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartPhysics\\] PASS",
+          "original_lines": [
+            "[KartPhysics] PASS: rail walls on every course at full turbo, sliding contact, blue/orange drift tiers, wrong-way warning, reverse line and jump-ahead give no lap, GAS/BREMSE pedals with reverse, on-screen pad, forward-facing boost chevrons, and a physical Wolkenweg split route"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartJump\\] PASS",
+          "original_lines": [
+            "[KartJump] PASS: take-off, flight, landing turbo, cloud rescue past the gap, ordered checkpoints across the jump, rival arc, no ramp elsewhere"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartTouchTests\\] PASS",
+          "original_lines": [
+            "[KartTouchTests] PASS: real two-finger GUI, window Back countdown/race pause, touch resume, simultaneous steering+BREMSE, release outside, no learning panel, scaled safe areas"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartLandingFit\\] PASS",
+          "original_lines": [
+            "[KartLandingFit] PASS: all five choices readable above START on 4 Android sizes"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[LumoCharacterTests\\] PASS",
+          "original_lines": [
+            "[LumoCharacterTests] PASS: attached torso, proportionate visemes, expressions, live idle"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartWorldTests\\] PASS",
+          "original_lines": [
+            "[KartWorldTests] PASS: colours, spatial culling batches, transforms, background shadows"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartPauseLayoutTests\\] PASS",
+          "original_lines": [
+            "[KartPauseLayoutTests] PASS: actual compact/Fold matrix, safe-area controls, pause/results layout and touch navigation"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartVehicle\\] Geometry/colours",
+          "original_lines": [
+            "[KartVehicle] Geometry/colours, shadows, animations, effects, LOD and hysteresis passed"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[KartAI\\] PASS",
+          "original_lines": [
+            "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[GarageTargets\\] PASS",
+          "original_lines": [
+            "[GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp"
+          ]
+        },
+        {
+          "required_source_pattern": "\\[CompactKartSelection\\] PASS",
+          "original_lines": [
+            "[CompactKartSelection] PASS 355 checks; 6/6 cases; renderer=headless"
+          ]
+        }
+      ]
+    },
+    "2014": {
+      "source_runner": "tools/validate_2014.sh",
+      "expected_probes": 18,
+      "matched_probes": 18,
+      "probes": [
+        {
+          "name": "kart_loop_contact_regression",
+          "mode": "headless",
+          "marker": "[LoopContact] PASS",
+          "original_lines": [
+            "[LoopContact] PASS: uniform physical travel, inversion and continuous road joins"
+          ],
+          "original_log": {
+            "path": "2014/kart_loop_contact_regression.log",
+            "bytes": 674,
+            "sha256": "e61e28086e56d00d9ad94780105b6de81bd76e3a9e8091afac83e36e0659ff99",
+            "git_blob": "23aa034e4c55608a9b0865e5a5308ce80c72b499"
+          }
+        },
+        {
+          "name": "kart_racecraft_regression",
+          "mode": "headless",
+          "marker": "[KartRacecraft] PASS",
+          "original_lines": [
+            "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+          ],
+          "original_log": {
+            "path": "2014/kart_racecraft_regression.log",
+            "bytes": 800,
+            "sha256": "9f3c09f6ce7e23d0124152ea17ca325a94c96239dd32844ed5cd15ad5f4b06ca",
+            "git_blob": "f6268e3fc9bdce1936b7650d0088291a7f479dbd"
+          }
+        },
+        {
+          "name": "kart_rival_drift_items_regression",
+          "mode": "headless",
+          "marker": "[KartRivalDrift] PASS",
+          "original_lines": [
+            "[KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+          ],
+          "original_log": {
+            "path": "2014/kart_rival_drift_items_regression.log",
+            "bytes": 801,
+            "sha256": "10c252679249e6a2b0527afd06b80773179ec3b258e38793f4db8828ada89a46",
+            "git_blob": "39416d13f12b83b416bd12f5ba468319a952e68f"
+          }
+        },
+        {
+          "name": "kart_full_field_regression",
+          "mode": "headless",
+          "marker": "[KartFullField] PASS",
+          "original_lines": [
+            "[KartFullField] PASS: continuous field two-lap drive with bounded movement"
+          ],
+          "original_log": {
+            "path": "2014/kart_full_field_regression.log",
+            "bytes": 83861,
+            "sha256": "56433bbc1b73c813582108bdefe2cb8da7142801d0b448b486e8e554f4d3d27a",
+            "git_blob": "a3e24ca0296ccddbfb0e4c6189a141409dd9dc73"
+          }
+        },
+        {
+          "name": "kart_sonnenhafen_generation_regression",
+          "mode": "headless",
+          "marker": "[SonnenhafenGeneration] PASS",
+          "original_lines": [
+            "[SonnenhafenGeneration] PASS: LOW/HIGH scenery, clear road, other tracks untouched"
+          ],
+          "original_log": {
+            "path": "2014/kart_sonnenhafen_generation_regression.log",
+            "bytes": 552,
+            "sha256": "a25509ce894804614d69e35f9b898757f4b4605ac64db8d2c2a98c79658eee60",
+            "git_blob": "969af661d4414a4178223f335f008aff9ce27a18"
+          }
+        },
+        {
+          "name": "kart_stunt_continuity_regression",
+          "mode": "rendered",
+          "marker": "[StuntContinuity] PASS",
+          "original_lines": [
+            "[StuntContinuity] PASS: continuous player contact and real AI loop traversal"
+          ],
+          "original_log": {
+            "path": "2014/kart_stunt_continuity_regression.log",
+            "bytes": 1736,
+            "sha256": "85c63f5ad63181ce3721ba59b3c323069fde62b5a9b10d686cc11ab4cbb999ac",
+            "git_blob": "091528b48ee9b84bf2b6e0bab767db5e13b68c14"
+          }
+        },
+        {
+          "name": "kart_player_full_route_regression",
+          "mode": "rendered",
+          "marker": "[PlayerFullRoute] PASS",
+          "original_lines": [
+            "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+          ],
+          "original_log": {
+            "path": "2014/kart_player_full_route_regression.log",
+            "bytes": 21732,
+            "sha256": "83bf07146a12afaaed106592e8104daf366100777341737bdb7234c8cce1f072",
+            "git_blob": "5cfab738108fdce0aa8493dd381792c85358d35b"
+          }
+        },
+        {
+          "name": "kart_rival_flight_regression",
+          "mode": "rendered",
+          "marker": "[RivalFlight] PASS",
+          "original_lines": [
+            "[RivalFlight] PASS: launch-speed physics, real misses, safe snapshots and automatic ramps"
+          ],
+          "original_log": {
+            "path": "2014/kart_rival_flight_regression.log",
+            "bytes": 1875,
+            "sha256": "1484928d83c45a8c154d99850a0065e92fc12e181fcd94e15434bfd01f666ce0",
+            "git_blob": "4bd72efa0cb9437a2399cdf56c0962da84763ad2"
+          }
+        },
+        {
+          "name": "kart_harbor_attraction_regression",
+          "mode": "rendered",
+          "marker": "[HarborAttraction] PASS",
+          "original_lines": [
+            "[HarborAttraction] PASS: LOW/HIGH placement, upright travel, pass-by, rearm, pause, reduced motion, distance culling"
+          ],
+          "original_log": {
+            "path": "2014/kart_harbor_attraction_regression.log",
+            "bytes": 1656,
+            "sha256": "00a5c14f0534e154c87619cb3ad1c4427dad6ceb531e290f2ef00e70d5dd9bd3",
+            "git_blob": "76af4dfa9432e64978941636b76fdfce06b4e9e9"
+          }
+        },
+        {
+          "name": "kart_harbor_race_hook_regression",
+          "mode": "rendered",
+          "marker": "[HarborRaceHook] PASS",
+          "original_lines": [
+            "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+          ],
+          "original_log": {
+            "path": "2014/kart_harbor_race_hook_regression.log",
+            "bytes": 1375,
+            "sha256": "698a79a5cd09890b222b963b9203aeb09c1983b2ebeb7e6f23bf84ae8c8afdc0",
+            "git_blob": "eff887b2fa6452e09964c0e0df2ff396a3f5ba3b"
+          }
+        },
+        {
+          "name": "kart_zauberwald_library_regression",
+          "mode": "rendered",
+          "marker": "[ZauberwaldLibrary] PASS",
+          "original_lines": [
+            "[ZauberwaldLibrary] PASS checks=601"
+          ],
+          "original_log": {
+            "path": "2014/kart_zauberwald_library_regression.log",
+            "bytes": 1320,
+            "sha256": "83bb911a70a054f7cd068868a401a911b2a16308b0cf6915c23e8e2c2e4ad50d",
+            "git_blob": "f6814ef940b3d2966dcb1a5c534d7e8278715d5e"
+          }
+        },
+        {
+          "name": "jump_extras_regression",
+          "mode": "headless",
+          "marker": "[JumpExtras] PASS",
+          "original_lines": [
+            "[JumpExtras] PASS 12 checks: live platforms, pause, bounce and star resume"
+          ],
+          "original_log": {
+            "path": "2014/jump_extras_regression.log",
+            "bytes": 705,
+            "sha256": "1df7f22d7ec1ae874a104b9617ddbb322adef2a86a260e12d3bd81a12f721a1a",
+            "git_blob": "1b493aebed43b649a3a3dac208ea9b3a940923e5"
+          }
+        },
+        {
+          "name": "build_sandbox_tools_regression",
+          "mode": "headless",
+          "marker": "[BauweltSandboxTools] PASS",
+          "original_lines": [
+            "[BauweltSandboxTools] PASS larger world, atomic fill/copy/mirror, undo and save"
+          ],
+          "original_log": {
+            "path": "2014/build_sandbox_tools_regression.log",
+            "bytes": 541,
+            "sha256": "b27faaf614cae03d325f41790f146c441a5a71ee1c7a025e255dd1a8a2fa810a",
+            "git_blob": "b27ea60acdbc5f9abb0d39cfd09ebf485e1b7a73"
+          }
+        },
+        {
+          "name": "build_sandbox_ui_regression",
+          "mode": "rendered",
+          "marker": "[BauweltSandboxUI] PASS",
+          "original_lines": [
+            "[BauweltSandboxUI] PASS 48dp tools, point workflow and atomic undo"
+          ],
+          "original_log": {
+            "path": "2014/build_sandbox_ui_regression.log",
+            "bytes": 1269,
+            "sha256": "df12e6cd24264f30e4b81b215caff309e233d3e0c2cf4c42e70bfe9f65070c82",
+            "git_blob": "d594496761a4316408ef5ac9d79bf5ed674a61af"
+          }
+        },
+        {
+          "name": "creative_touch_layout_regression",
+          "mode": "rendered",
+          "marker": "[CreativeTouchLayout] PASS",
+          "original_lines": [
+            "[CreativeTouchLayout] PASS 304 checks: transformed dp, portrait, Fold and density"
+          ],
+          "original_log": {
+            "path": "2014/creative_touch_layout_regression.log",
+            "bytes": 1574,
+            "sha256": "943713b7b7afc8cf32c07c362a1046f0c2ee7e8776cbf1ccaf6af2b8352ce172",
+            "git_blob": "4ba2a2be2331afe02bc2284a42f7cdf82ec4b2be"
+          }
+        },
+        {
+          "name": "puzzle_expansion_regression",
+          "mode": "rendered",
+          "marker": "[PuzzleExpansion] PASS",
+          "original_lines": [
+            "[PuzzleExpansion] PASS 1103 checks: all motifs/counts, saves and two played rounds"
+          ],
+          "original_log": {
+            "path": "2014/puzzle_expansion_regression.log",
+            "bytes": 1191,
+            "sha256": "15e66dba4f57135ff127300eff8f6457f9a837ebe383a2528b3d3a32ce5075f4",
+            "git_blob": "b0f395b600d31ae84837ece90b1127c9338580a3"
+          }
+        },
+        {
+          "name": "kart_garage_3d_touch_regression",
+          "mode": "rendered",
+          "marker": "[Garage3DTouch] PASS",
+          "original_lines": [
+            "[Garage3DTouch] PASS 27 checks: native input, legacy ray, pointer ownership"
+          ],
+          "original_log": {
+            "path": "2014/kart_garage_3d_touch_regression.log",
+            "bytes": 1450,
+            "sha256": "161b5f226b561a428284f95d6077fc113d03fc0004bc1d416346dffd0369817d",
+            "git_blob": "5592150945f9567ea56b0266780d89e9d47805ef"
+          }
+        },
+        {
+          "name": "kart_menu_depth_2013_regression",
+          "mode": "rendered",
+          "marker": "[MenuDepth] PASS",
+          "original_lines": [
+            "[MenuDepth] PASS: 41 checks"
+          ],
+          "original_log": {
+            "path": "2014/kart_menu_depth_2013_regression.log",
+            "bytes": 1327,
+            "sha256": "789bda61f625564b69ebc54e63183ab5b8915f40a8a78d28d9443fb8780f5155",
+            "git_blob": "f774a415ccd2b3678f2c46d9db1e6f6c33b9a3fd"
+          }
+        }
+      ]
+    },
+    "technical-art": {
+      "source_runner": "tools/validate_technical_art.sh",
+      "expected_probes": 8,
+      "matched_probes": 8,
+      "probes": [
+        {
+          "name": "kart_sonnenhafen_streetfronts_world_regression",
+          "mode": "headless",
+          "marker": "[StreetfrontsWorld] PASS",
+          "original_lines": [
+            "[StreetfrontsWorld] PASS: integrated opaque kit, hard geometry budget, complete road clearance"
+          ],
+          "original_log": {
+            "path": "technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+            "bytes": 1149,
+            "sha256": "bd6d21fd57a6d22d7af0dc64baad93520df68c1b6f05e455c8134ef6c52771e6",
+            "git_blob": "a7591c587dfb1424e54887705ec7edf20fe254fe"
+          }
+        },
+        {
+          "name": "kart_sonnenhafen_streetfronts_regression",
+          "mode": "rendered",
+          "marker": "[Streetfronts] PASS",
+          "original_lines": [
+            "[Streetfronts] PASS: opaque materials, actual geometry budgets, spatial cells, optional GL motion"
+          ],
+          "original_log": {
+            "path": "technical-art/kart_sonnenhafen_streetfronts_regression.log",
+            "bytes": 1661,
+            "sha256": "d36e9e933970ad56bb374bfd132e0d0571a0e23e1f302e4c483fbc2abadae749",
+            "git_blob": "c8448dfca3bac975a693e37a2a36ed603594d8ac"
+          }
+        },
+        {
+          "name": "kart_harbor_race_hook_regression",
+          "mode": "rendered",
+          "marker": "[HarborRaceHook] PASS",
+          "original_lines": [
+            "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+          ],
+          "original_log": {
+            "path": "technical-art/kart_harbor_race_hook_regression.log",
+            "bytes": 1383,
+            "sha256": "67dc0b1eb329385bf9ec27bf1220b1410f5556b386f695a043461ffc17feedb1",
+            "git_blob": "a450261eff56a74b3f5746ca09212b2be014d3a5"
+          }
+        },
+        {
+          "name": "lumo_attention_landing_regression",
+          "mode": "headless",
+          "marker": "\"failures\":0",
+          "original_lines": [
+            "[LumoAttentionLanding] {\"android_test\":false,\"checks\":1846,\"display\":\"headless\",\"facial_model_verified\":true,\"failures\":0,\"fps_measured\":false,\"godot\":\"4.6.3-stable (official)\",\"landing_peak\":0.573351026912431,\"model_load_kind\":\"imported_packed_scene\",\"model_path\":\"res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb\",\"model_sha256\":\"e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524\",\"original_model_path\":\"res://assets/characters/lumo_animated/Lumo-Animated-Mobile.glb\",\"original_model_sha256\":\"3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5\",\"original_model_unchanged\":true,\"worst_hand_contact_mm\":1.14512140862644}"
+          ],
+          "original_log": {
+            "path": "technical-art/lumo_attention_landing_regression.log",
+            "bytes": 1129,
+            "sha256": "5b3a48c81fa1cfbdf4b9e88d82a48c8d6647e01fe92b573617fc3cddd590fc94",
+            "git_blob": "dc9e0bec52792ac63c329df7f9576d69558153b1"
+          }
+        },
+        {
+          "name": "lumo_kart_tick_cadence_regression",
+          "mode": "headless",
+          "marker": "[LumoKartTickCadence] PASS",
+          "original_lines": [
+            "[LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration"
+          ],
+          "original_log": {
+            "path": "technical-art/lumo_kart_tick_cadence_regression.log",
+            "bytes": 2099,
+            "sha256": "999c3f18cb45b3d42739d99ccd38c00cdf51092820fda5c2152334101faca732",
+            "git_blob": "fed36758621adb82581992b68ce6531ccd70cfd0"
+          }
+        },
+        {
+          "name": "lumo_gesture_contact_regression",
+          "mode": "headless",
+          "marker": "[LumoGestureContact] PASS",
+          "original_lines": [
+            "[LumoGestureContact] PASS checks=200 failures=0"
+          ],
+          "original_log": {
+            "path": "technical-art/lumo_gesture_contact_regression.log",
+            "bytes": 1234,
+            "sha256": "a7207c9fb6bb60d8c96ecebce774c4ba916eac53ab11eb8b90b792193505cd52",
+            "git_blob": "d6d36b2438ad14ef7a15b2f5dc036e1f6319f987"
+          }
+        },
+        {
+          "name": "kart_garage_presentation_regression",
+          "mode": "rendered",
+          "marker": "[GaragePresentation] PASS",
+          "original_lines": [
+            "[GaragePresentation] PASS 66 checks"
+          ],
+          "original_log": {
+            "path": "technical-art/kart_garage_presentation_regression.log",
+            "bytes": 1502,
+            "sha256": "ba5e0cdba9674ea37191b8f44d513df91fc5c53f7cf85fd5af6716e68ae36f7a",
+            "git_blob": "0a175d9fa70ce7b90c8141031964707b0db0c08a"
+          }
+        },
+        {
+          "name": "kart_air_trick_regression",
+          "mode": "headless",
+          "marker": "[AirTrick] PASS",
+          "original_lines": [
+            "[AirTrick] PASS: 20 checks"
+          ],
+          "original_log": {
+            "path": "technical-art/kart_air_trick_regression.log",
+            "bytes": 496,
+            "sha256": "daf7039e71f62ed3fc00ec3f6d8663c42f83f63cb1ed6b27329ee8c0d9b2eff2",
+            "git_blob": "924424a86975e6d00c90a28e8e95a45f994a80a8"
+          }
+        }
+      ]
+    },
+    "action-stage": {
+      "source_runner": "tools/validate_action_stage.sh",
+      "expected_probes": 5,
+      "matched_probes": 5,
+      "probes": [
+        {
+          "name": "kart_lasso_regression",
+          "mode": "headless",
+          "marker": "[KartLasso] PASS",
+          "original_lines": [
+            "[KartLasso] PASS: 34 assertions; 70 m/s sweeps, counterplay, bounded hold, equal rival rules"
+          ],
+          "original_log": {
+            "path": "action-stage/kart_lasso_regression.log",
+            "bytes": 562,
+            "sha256": "1d727cef9d8c4c8b13a22c5efca13914f33cc39c8513da90b8ca8fae4cecb856",
+            "git_blob": "e6ba2a413e64c56f2b1d7f265c8b9ff78568bd6d"
+          }
+        },
+        {
+          "name": "kart_lasso_production_regression",
+          "mode": "headless",
+          "marker": "[KartLassoProduction] PASS",
+          "original_lines": [
+            "[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild"
+          ],
+          "original_log": {
+            "path": "action-stage/kart_lasso_production_regression.log",
+            "bytes": 1033,
+            "sha256": "af9d18f16e90a44c8fd2548fffea8dfc0fa2fcc50eeed870e79e131c67ec8ac2",
+            "git_blob": "67209cc162132325a8b0f2cbff0195b747f923b0"
+          }
+        },
+        {
+          "name": "kart_spatial_menu_regression",
+          "mode": "rendered",
+          "marker": "[SpatialMenu] PASS",
+          "original_lines": [
+            "[SpatialMenu] PASS 594 checks; 5/5 cases; renderer=X11"
+          ],
+          "original_log": {
+            "path": "action-stage/kart_spatial_menu_regression.log",
+            "bytes": 5529,
+            "sha256": "56c4d95b440f60194ffc28e6534c80e4e631678d8d43d280bb2581c1a423a0bc",
+            "git_blob": "dcba940d8efddfb2d0d6ec59bb60d1a2b9238237"
+          }
+        },
+        {
+          "name": "kart_roadside_action_regression",
+          "mode": "rendered",
+          "marker": "[RoadsideAction] PASS",
+          "original_lines": [
+            "[RoadsideAction] PASS: 183 assertions; two new drivable ramps at 20.5/48/70 m/s, visible fair encounter plans"
+          ],
+          "original_log": {
+            "path": "action-stage/kart_roadside_action_regression.log",
+            "bytes": 1798,
+            "sha256": "e582b58303683f6228689e133b1306e2d56bd35138051cce6c81e9ff91a9d57f",
+            "git_blob": "13ac62ee26294c5309ef5bae50bc24a83eea88b1"
+          }
+        },
+        {
+          "name": "kart_menu_flow_regression",
+          "mode": "rendered",
+          "marker": "[KartMenuFlow] PASS",
+          "original_lines": [
+            "[KartMenuFlow] PASS: direct selected Cup start inside compact Android safe insets",
+            "[KartMenuFlow] PASS: five direct sections; 1280x720,800x480,640x320; safe controls >=44px"
+          ],
+          "original_log": {
+            "path": "action-stage/kart_menu_flow_regression.log",
+            "bytes": 3675,
+            "sha256": "b2c789a4f2d251a056ece8698005830de32934d0cd4ac9869ed693154dc1c58b",
+            "git_blob": "85f2e02cec72570545b2092a5cba27ca68a800f8"
+          }
+        }
+      ]
+    }
+  },
+  "static_project": {
+    "counts": {
+      "pass": 117,
+      "warn": 7,
+      "fail": 0
+    },
+    "warnings": [
+      "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)"
+    ],
+    "original": {
+      "path": "project.log",
+      "bytes": 6131,
+      "sha256": "2d6b03148c37199f78d2a55916dfa91b1f73a2362123270cc9e54b23622afe75",
+      "git_blob": "6832ded5fe2577ae0c0a69bcc5d1fa658f727577"
+    }
+  },
+  "source_before": {
+    "host": {
+      "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+      "clean": true
+    },
+    "native": {
+      "head": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+      "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+      "clean": true
+    }
+  },
+  "source_after": {
+    "host": {
+      "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+      "clean": true
+    },
+    "native": {
+      "head": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+      "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+      "clean": true
+    }
+  },
+  "original_file_count": 4307,
+  "all_original_bytes_unchanged": true,
+  "archive_bytes": 176214573,
+  "archive_sha256": "b6e4853252a7e9941388c989b6d8ed61c325fc0da373b1419300e391f7263dc3",
+  "all_archive_crc_checked": true,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow": "13.0.0",
+  "replay_seconds": 13.014780521392822,
+  "local_evaluator_note": "The first local wrapper overescaped the summary regex after canonical and older-marker checks. Only that evaluator regex was corrected; original project.log was unchanged; this receipt is the completed read-only replay.",
+  "scope": "Existing immutable original evidence only; existing Native raster/movie reader plus source-derived older-log marker replay. No product test, Godot engine, Android execution, new movie decoding, human visual review or device FPS assertion."
+}

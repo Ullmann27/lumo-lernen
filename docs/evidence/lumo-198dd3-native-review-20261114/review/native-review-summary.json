@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "kind": "new_independent_native_original_review_summary",
+  "status": "PASS_WITH_DOCUMENTED_STATIC_WARNINGS",
+  "host": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "host_tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+  "native_tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+  "run_id": 43630328343,
+  "run_attempt": 1,
+  "job_id": 132556738917,
+  "artifact_id": 14131310614,
+  "archive": {
+    "zip_bytes": 176214573,
+    "zip_sha256": "b6e4853252a7e9941388c989b6d8ed61c325fc0da373b1419300e391f7263dc3",
+    "all_zip_member_crc_checks": true,
+    "file_count": 4307,
+    "expanded_bytes": 458206927
+  },
+  "producer_steps": {
+    "native_start": "2026-11-14T19:32:52Z",
+    "native_success": "2026-11-14T20:29:15Z",
+    "upload_complete": "2026-11-14T20:29:28Z"
+  },
+  "canonical_current_native_modes": 52,
+  "separate_source_derived_original_marker_counts": {
+    "legacy": 19,
+    "2014": 18,
+    "technical-art": 8,
+    "action-stage": 5
+  },
+  "expected_original_probe_invocations_across_groups": 102,
+  "static_project": {
+    "counts": {
+      "pass": 117,
+      "warn": 7,
+      "fail": 0
+    },
+    "warnings": [
+      "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder",
+      "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)"
+    ],
+    "original": {
+      "path": "project.log",
+      "bytes": 6131,
+      "sha256": "2d6b03148c37199f78d2a55916dfa91b1f73a2362123270cc9e54b23622afe75",
+      "git_blob": "6832ded5fe2577ae0c0a69bcc5d1fa658f727577"
+    }
+  },
+  "roster_image_counts": {
+    "renderer-images.json": 24,
+    "village-images.json": 4,
+    "puzzle-menu-images.json": 6,
+    "safe-area-images.json": 7,
+    "studio-2020-images.json": 17
+  },
+  "nextgen_png_files": 128,
+  "studio2020": {
+    "sidecars": 3,
+    "movies": 1,
+    "c4_visual_checks": 303,
+    "c4_visual_errors": 0,
+    "documented_engine_input_events": 30,
+    "treasure_checks": 3351,
+    "treasure_failures": 0,
+    "treasure_profile_states": 10,
+    "facial_runtime_rows": 144,
+    "original_ffprobe_video_frames": 148,
+    "recording_rate": "24/1",
+    "device_fps_measured": false,
+    "local_new_movie_decode": false,
+    "audio_heard_by_reviewer": false
+  },
+  "human_visual_review": {
+    "agent": "/root/lumo_gameplay",
+    "images": [
+      {
+        "original": {
+          "path": "nextgen/captures/lumo_facial_capture/teacher_scene.png",
+          "bytes": 113407,
+          "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+          "git_blob": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+          "crc32": "6ae79747"
+        },
+        "observed": "640x640: task and syllables legible; visible original character and lower controls."
+      },
+      {
+        "original": {
+          "path": "nextgen/captures/connect_four_visual_capture/c4-paused-small.png",
+          "bytes": 29411,
+          "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+          "git_blob": "7806e7f57e122d27342bbd6342325cf96b96ef55",
+          "crc32": "3a9d0686"
+        },
+        "observed": "640x360: readable paused status, resume and new-round controls; the pause intentionally overlays the board."
+      },
+      {
+        "original": {
+          "path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+          "bytes": 2623222,
+          "sha256": "57006ca96e57e0065fc036cbe17960744861a56fcc42ed1641a10297aafee58e",
+          "git_blob": "e79457171f5cd409e066a44e7a8ff20962f052f6",
+          "crc32": "174afc29"
+        },
+        "observed": "2400x1080: visible world and character, readable header/hint/navigation and visible joystick/action controls."
+      }
+    ],
+    "scope": "Only these three individual original images were actually viewed; no complete graphic/Android/device-FPS acceptance."
+  },
+  "root_independent_review": {
+    "file": "root-native-original-review.json",
+    "bytes": 18755,
+    "sha256": "053a592431faf8a33113beb065ebe391d2e4a9c52eabb2fadb27b33177ec6a7c",
+    "scope": "Separate Root review including 98 original files and three actual image views, as documented in the exact attached Root receipt."
+  },
+  "originals_unchanged_after_replay": true,
+  "checkouts_clean_after_replay": true,
+  "limits": [
+    "Read-only original evidence replay; no new product test, engine run, Android test or renderer.",
+    "The evidence checkpoint preserves the explicit selected subset and complete newly generated inventory; it does not contain every archive payload.",
+    "Complete archive artifact 14131310614 is required to replay all original raster/movie bytes.",
+    "Seven real static warnings remain, with a separate pinned-source reachability review.",
+    "The initial local wrapper summary-regex escape mistake and its correction are documented separately; original evidence was never changed.",
+    "This native result is not the overall seven-gate candidate approval or publication."
+  ]
+}

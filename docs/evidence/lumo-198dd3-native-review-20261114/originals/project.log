@@ -1,0 +1,129 @@
+validate_project.py - root = /home/runner/work/_temp/lumo-native-acceptance
+============================================================
+[PASS] project: project.godot
+[PASS] dir: scenes/app/
+[PASS] dir: scenes/hub/
+[PASS] dir: scenes/characters/
+[PASS] dir: scenes/games/
+[PASS] dir: scripts/app/
+[PASS] dir: scripts/camera/
+[PASS] dir: scripts/characters/
+[PASS] dir: scripts/hub/
+[PASS] dir: scripts/systems/
+[PASS] dir: scripts/ui/
+[PASS] dir: assets/manifests/
+[PASS] dir: assets/models/
+[PASS] dir: assets/materials/
+[PASS] dir: assets/textures/
+[PASS] dir: assets/shaders/
+[PASS] dir: tools/
+[PASS] scene: scenes/app/boot.tscn
+[PASS] scene: scenes/app/intro_3d.tscn
+[PASS] scene: scenes/app/home_3d.tscn
+[PASS] scene: scenes/app/loading_screen.tscn
+[PASS] scene: scenes/hub/hub_portal.tscn
+[PASS] scene: scenes/hub/star_field.tscn
+[PASS] scene: scenes/characters/lumo_companion.tscn
+[PASS] scene: scenes/default_env.tres
+[PASS] script: scripts/app/app_boot.gd
+[PASS] script: scripts/app/scene_router.gd
+[PASS] script: scripts/app/mobile_runtime.gd
+[PASS] script: scripts/app/intro_controller.gd
+[PASS] script: scripts/app/home_controller.gd
+[PASS] script: scripts/camera/mobile_touch_camera.gd
+[PASS] script: scripts/characters/lumo_companion.gd
+[PASS] script: scripts/hub/portal_interaction.gd
+[PASS] script: scripts/hub/star_field.gd
+[PASS] script: scripts/systems/performance_manager.gd
+[PASS] script: scripts/systems/asset_loader.gd
+[PASS] script: scripts/systems/event_bus.gd
+[PASS] script: scripts/systems/settings_store.gd
+[PASS] script: scripts/systems/audio_manager.gd
+[PASS] script: scripts/ui/mobile_safe_area.gd
+[PASS] autoload: EventBus
+[PASS] autoload: PerformanceManager
+[PASS] autoload: SceneRouter
+[PASS] autoload: MobileRuntime
+[PASS] autoload: AssetLoader
+[PASS] autoload: SettingsStore
+[PASS] autoload: AudioManager
+[PASS] manifest: valid JSON, 6 model entries
+[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder
+[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder
+[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder
+[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder
+[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder
+[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder
+[PASS] asset-pack: present: assets/generated/lumo3d_assets
+[PASS] asset-pack-manifest: valid JSON, 175 assets in counts
+[PASS] asset-pack-png-count: 176 PNG files
+[PASS] asset-pack-category: textures/albedo: 12 PNGs
+[PASS] asset-pack-category: textures/normal: 12 PNGs
+[PASS] asset-pack-category: textures/emission: 23 PNGs
+[PASS] asset-pack-category: particles: 32 PNGs
+[PASS] asset-pack-category: billboards: 28 PNGs
+[PASS] asset-pack-category: portals: 20 PNGs
+[PASS] asset-pack-category: sky_gradients: 12 PNGs
+[PASS] asset-pack-category: ui_panels: 16 PNGs
+[PASS] asset-pack-category: masks: 20 PNGs
+[PASS] generated-material: mat_grass_magic.tres
+[PASS] generated-material: mat_stone_warm.tres
+[PASS] generated-material: mat_wood_warm.tres
+[PASS] generated-material: mat_hologrid_cyan.tres
+[PASS] generated-material: mat_crystal_floor.tres
+[PASS] generated-material: mat_portal_learn.tres
+[PASS] generated-material: mat_portal_games.tres
+[PASS] generated-material: mat_portal_parent.tres
+[PASS] generated-material: mat_sky_backdrop.tres
+[PASS] generated-material: mat_billboard_crystal.tres
+[PASS] generated-material: mat_billboard_book.tres
+[PASS] generated-material: mat_particle_gold.tres
+[PASS] central-manifest: textures: 12 IDs
+[PASS] central-manifest: normal_maps: 12 IDs
+[PASS] central-manifest: emission_maps: 23 IDs
+[PASS] central-manifest: particles: 32 IDs
+[PASS] central-manifest: billboards: 28 IDs
+[PASS] central-manifest: portals: 20 IDs
+[PASS] central-manifest: sky: 12 IDs
+[PASS] central-manifest: ui: 16 IDs
+[PASS] central-manifest: masks: 20 IDs
+[PASS] central-manifest: materials: 13 IDs
+[PASS] home-island-material: home_controller references generated island material
+[PASS] home-sky: home_controller references mat_sky_backdrop
+[PASS] home-billboards: home_controller references billboard materials
+[PASS] home-portal-materials: all 3 portal materials wired
+[PASS] portal-content: scenes/games/star_collect.tscn
+[PASS] portal-content: scenes/games/learn_card.tscn
+[PASS] portal-content: scenes/games/parent_settings.tscn
+[PASS] portal-content: scripts/games/star_collect_game.gd
+[PASS] portal-content: scripts/games/learn_card.gd
+[PASS] portal-content: scripts/games/parent_settings.gd
+[PASS] lumo-reference: 10 PNG sheets in reference/
+[PASS] lumo-reference-manifest: lumo_reference_manifest.json valide
+[PASS] lumo-system: scenes/characters/lumo/lumo_character.tscn
+[PASS] lumo-system: scenes/characters/lumo/lumo_showcase.tscn
+[PASS] lumo-system: scripts/characters/lumo/lumo_character_controller.gd
+[PASS] lumo-system: scripts/characters/lumo/lumo_behavior_controller.gd
+[PASS] lumo-system: scripts/characters/lumo/lumo_animation_state.gd
+[PASS] lumo-system: scripts/characters/lumo/lumo_eye_system.gd
+[PASS] lumo-system: scripts/characters/lumo/lumo_mouth_system.gd
+[PASS] lumo-system: scripts/characters/lumo/lumo_reference_board.gd
+[PASS] lumo-system: scripts/app/showcase_controller.gd
+[PASS] no-flutter: absent: pubspec.yaml
+[PASS] no-flutter: absent: lib/main.dart
+[PASS] tool: tools/build_web.sh
+[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)
+[PASS] tool: tools/build_android.sh
+[PASS] tool: tools/setup_android_keystore.sh
+[PASS] tool: tools/install_android.sh
+[PASS] tool: tools/logcat_lumo.sh
+[PASS] tool: tools/serve_web.py
+[PASS] tool: tools/fetch_assets.py
+[PASS] tool: tools/validate_project.py
+[PASS] docs: CLAUDE.md enthaelt 'mobile'
+[PASS] docs: CLAUDE.md enthaelt 'boot'
+[PASS] docs: CLAUDE.md enthaelt 'home'
+[PASS] docs: CLAUDE.md enthaelt 'performance'
+============================================================
+SUMMARY: 117 PASS / 7 WARN / 0 FAIL
+RESULT: PASS (7 warnings)

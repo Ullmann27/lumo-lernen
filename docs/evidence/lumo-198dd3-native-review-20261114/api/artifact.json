@@ -1,0 +1,19 @@
+{
+  "id": 14131310614,
+  "name": "lumo-candidate-pinned-native-gameplay",
+  "size_in_bytes": 176214573,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14131310614",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14131310614/zip",
+  "expired": false,
+  "created_at": "2026-11-14T20:29:28Z",
+  "expires_at": "2026-12-14T20:29:16Z",
+  "updated_at": "2026-11-14T20:29:28Z",
+  "digest": "sha256:b6e4853252a7e9941388c989b6d8ed61c325fc0da373b1419300e391f7263dc3",
+  "workflow_run": {
+    "id": 43630328343,
+    "repository_id": 1222433959,
+    "head_repository_id": 1222433959,
+    "head_branch": "integration/lumo-agent-execution-20261114",
+    "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848"
+  }
+}

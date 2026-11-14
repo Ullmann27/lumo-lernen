@@ -1,0 +1,286 @@
+{
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "searched_gd": 503,
+  "searched_tscn": 30,
+  "additional_files": [
+    "project.godot",
+    "assets/manifests/assets.json"
+  ],
+  "hits": [
+    {
+      "file": "scripts/characters/lumo/lumo_character_controller.gd",
+      "line": 13,
+      "text": "## Visual durch ein echtes lumo_fox.glb ersetzen - die API bleibt"
+    },
+    {
+      "file": "scripts/characters/lumo_companion.gd",
+      "line": 1,
+      "text": "## LumoCompanion - Platzhalter aus Primitiven, bis lumo_fox.glb existiert."
+    },
+    {
+      "file": "scripts/characters/lumo_companion.gd",
+      "line": 5,
+      "text": "## entfernen und ein GLB via AssetLoader.get_model(\"lumo_fox\") als Kind"
+    },
+    {
+      "file": "scripts/hub/portal_interaction.gd",
+      "line": 24,
+      "text": "\t\"learn\": \"mat_portal_learn\","
+    },
+    {
+      "file": "scripts/hub/portal_interaction.gd",
+      "line": 25,
+      "text": "\t\"games\": \"mat_portal_games\","
+    },
+    {
+      "file": "scripts/hub/portal_interaction.gd",
+      "line": 26,
+      "text": "\t\"parent\": \"mat_portal_parent\","
+    },
+    {
+      "file": "scripts/hub/portal_interaction.gd",
+      "line": 69,
+      "text": "\t\tvar mat_id: String = PORTAL_MATERIAL_IDS.get(portal_type, \"mat_portal_learn\")"
+    },
+    {
+      "file": "scripts/systems/asset_loader.gd",
+      "line": 4,
+      "text": "##   AssetLoader.get_model(id)     -> Node3D (nie null, Magenta-Placeholder)"
+    },
+    {
+      "file": "scripts/systems/asset_loader.gd",
+      "line": 14,
+      "text": "##   - get_model() gibt IMMER einen Node zurueck (nie null)"
+    },
+    {
+      "file": "scripts/systems/asset_loader.gd",
+      "line": 57,
+      "text": "func get_model(id: String) -> Node3D:"
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 4,
+      "text": "    \"lumo_fox\": \"res://assets/models/lumo_fox.glb\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 5,
+      "text": "    \"hub_island\": \"res://assets/models/hub_island.glb\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 6,
+      "text": "    \"portal_learn\": \"res://assets/models/portal_learn.glb\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 7,
+      "text": "    \"portal_games\": \"res://assets/models/portal_games.glb\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 8,
+      "text": "    \"portal_parent\": \"res://assets/models/portal_parent.glb\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 9,
+      "text": "    \"star_collectible\": \"res://assets/models/star_collectible.glb\""
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 18,
+      "text": "    \"mat_portal_learn\": \"res://assets/materials/generated/mat_portal_learn.tres\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 19,
+      "text": "    \"mat_portal_games\": \"res://assets/materials/generated/mat_portal_games.tres\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 20,
+      "text": "    \"mat_portal_parent\": \"res://assets/materials/generated/mat_portal_parent.tres\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 28,
+      "text": "    \"lumo_fox\": {"
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 32,
+      "text": "    \"hub_island\": {"
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 36,
+      "text": "    \"portal_learn\": {"
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 40,
+      "text": "    \"portal_games\": {"
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 44,
+      "text": "    \"portal_parent\": {"
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 48,
+      "text": "    \"star_collectible\": {"
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 85,
+      "text": "    \"lumo_emi_portal_learn_01\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_learn_01_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 86,
+      "text": "    \"lumo_emi_portal_learn_02\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_learn_02_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 87,
+      "text": "    \"lumo_emi_portal_learn_03\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_learn_03_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 88,
+      "text": "    \"lumo_emi_portal_learn_04\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_learn_04_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 89,
+      "text": "    \"lumo_emi_portal_learn_05\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_learn_05_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 90,
+      "text": "    \"lumo_emi_portal_games_01\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_games_01_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 91,
+      "text": "    \"lumo_emi_portal_games_02\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_games_02_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 92,
+      "text": "    \"lumo_emi_portal_games_03\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_games_03_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 93,
+      "text": "    \"lumo_emi_portal_games_04\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_games_04_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 94,
+      "text": "    \"lumo_emi_portal_games_05\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_games_05_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 95,
+      "text": "    \"lumo_emi_portal_parent_01\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_parent_01_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 96,
+      "text": "    \"lumo_emi_portal_parent_02\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_parent_02_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 97,
+      "text": "    \"lumo_emi_portal_parent_03\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_parent_03_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 98,
+      "text": "    \"lumo_emi_portal_parent_04\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_parent_04_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 99,
+      "text": "    \"lumo_emi_portal_parent_05\": \"res://assets/generated/lumo3d_assets/textures/emission/portal_parent_05_emission.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 171,
+      "text": "    \"lumo_portal_portal_learn_01\": \"res://assets/generated/lumo3d_assets/portals/portal_learn_01.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 172,
+      "text": "    \"lumo_portal_portal_learn_02\": \"res://assets/generated/lumo3d_assets/portals/portal_learn_02.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 173,
+      "text": "    \"lumo_portal_portal_learn_03\": \"res://assets/generated/lumo3d_assets/portals/portal_learn_03.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 174,
+      "text": "    \"lumo_portal_portal_learn_04\": \"res://assets/generated/lumo3d_assets/portals/portal_learn_04.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 175,
+      "text": "    \"lumo_portal_portal_learn_05\": \"res://assets/generated/lumo3d_assets/portals/portal_learn_05.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 176,
+      "text": "    \"lumo_portal_portal_games_01\": \"res://assets/generated/lumo3d_assets/portals/portal_games_01.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 177,
+      "text": "    \"lumo_portal_portal_games_02\": \"res://assets/generated/lumo3d_assets/portals/portal_games_02.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 178,
+      "text": "    \"lumo_portal_portal_games_03\": \"res://assets/generated/lumo3d_assets/portals/portal_games_03.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 179,
+      "text": "    \"lumo_portal_portal_games_04\": \"res://assets/generated/lumo3d_assets/portals/portal_games_04.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 180,
+      "text": "    \"lumo_portal_portal_games_05\": \"res://assets/generated/lumo3d_assets/portals/portal_games_05.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 181,
+      "text": "    \"lumo_portal_portal_parent_01\": \"res://assets/generated/lumo3d_assets/portals/portal_parent_01.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 182,
+      "text": "    \"lumo_portal_portal_parent_02\": \"res://assets/generated/lumo3d_assets/portals/portal_parent_02.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 183,
+      "text": "    \"lumo_portal_portal_parent_03\": \"res://assets/generated/lumo3d_assets/portals/portal_parent_03.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 184,
+      "text": "    \"lumo_portal_portal_parent_04\": \"res://assets/generated/lumo3d_assets/portals/portal_parent_04.png\","
+    },
+    {
+      "file": "assets/manifests/assets.json",
+      "line": 185,
+      "text": "    \"lumo_portal_portal_parent_05\": \"res://assets/generated/lumo3d_assets/portals/portal_parent_05.png\","
+    }
+  ]
+}

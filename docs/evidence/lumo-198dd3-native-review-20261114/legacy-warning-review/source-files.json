@@ -1,0 +1,53 @@
+{
+  "host": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "files": [
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "bytes": 17671,
+      "git_sha": "9027d1106287c1c295a94ebcf3828e5dcac35b7b",
+      "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "bytes": 12712,
+      "git_sha": "0621cafe29b703d29f7b067991a90c8ceac84ba6",
+      "sha256": "6808e0ab858907aec1b1e149b53184aa3ad72d1a214ce4d252a8ddc91c01f5e2"
+    },
+    {
+      "path": "tools/auto_install/ConnectFourGameActivity.kt",
+      "bytes": 7355,
+      "git_sha": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10336,
+      "git_sha": "dd95361b132c7a73b372a3225c75e645be07e1b7",
+      "sha256": "900e533784109cecc11e0da27cb7ae1e6909de74e58a9119c030b91e8956085f"
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "bytes": 8826,
+      "git_sha": "83d6421d0fe26848962c8a2433b0b78182596261",
+      "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f"
+    },
+    {
+      "path": "scripts/build_unified_apk.sh",
+      "bytes": 4563,
+      "git_sha": "44f6957c904d074e5a0ce2c604b50ad546c1ecf0",
+      "sha256": "fe3abd93e2b7c24403df25a41897588bedb2fdaf0ab83d9f1785ab83650094b5"
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "bytes": 10377,
+      "git_sha": "a1615455b5ea6251926d5037900e025d46971c18",
+      "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129"
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "bytes": 8567,
+      "git_sha": "00915781968bb61f5d1ce1923529fb14a35cce19",
+      "sha256": "fcef35e68e8487fa16357161adec6550b9c3c8c0c7bb8f84574ef7963f8a3fcc"
+    }
+  ]
+}
