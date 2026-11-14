@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "success": false,
+  "scope": "Real production Dart bank/controller/session and Godot input with an explicit QA disk transport and award ledger. No Android/device performance claim.",
+  "capture_requested": true,
+  "source_before": {
+    "native": {
+      "commit": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "tree": "8e29d5a15a424b42f27184a763adce8b2aa71b13"
+    },
+    "host": {
+      "commit": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+      "tree": "5095d79fd8bb37c52d8690b4ab460d1bc2b91938"
+    }
+  },
+  "versions": {
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "dart": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\""
+  },
+  "commands": {
+    "dart": [
+      "dart",
+      "/home/runner/work/lumo-godot/lumo-godot/host-source/tools/android_qa/quiz_native_authority.dart",
+      "/home/runner/work/lumo-godot/lumo-godot/authority-evidence/quiz-pair/authority"
+    ],
+    "godot": [
+      "godot",
+      "--path",
+      "/home/runner/work/lumo-godot/lumo-godot/native-source",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://scripts/tests/quiz_studio_runtime.gd",
+      "--",
+      "--capture"
+    ]
+  },
+  "error": "RuntimeError: Godot emitted a script or engine error",
+  "elapsed_wall_seconds": 24.265,
+  "process_exit_codes": {
+    "DartAuthority": -15,
+    "GodotQuiz": -15
+  },
+  "evidence": [
+    {
+      "path": "authority/lifecycle.json",
+      "bytes": 52,
+      "sha256": "9bb07b3153da3652986e4875f366b72ddfb43564a7974afe112e9cb115820523"
+    },
+    {
+      "path": "authority/native-result.json",
+      "bytes": 109,
+      "sha256": "0e97a4ebecdb297f5a6affb5c407922b02694466c52a007a7d3b2b5ceff4f6a5"
+    },
+    {
+      "path": "authority/private-test-control.json",
+      "bytes": 134,
+      "sha256": "a88d974aa431970645871fac18feab679a1c30fed8634bc60db067b3a89f6b69"
+    },
+    {
+      "path": "authority/public-state.json",
+      "bytes": 845,
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9"
+    },
+    {
+      "path": "authority/request.json",
+      "bytes": 133,
+      "sha256": "8ba57832e43c887006a2b277873c3cb3fe862e50c601c7b1b3b818fa92274439"
+    },
+    {
+      "path": "authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 4378,
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d"
+    },
+    {
+      "path": "dart-authority.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "godot-runtime.log",
+      "bytes": 1552,
+      "sha256": "466889ebd72f2d462e7b760bd47ec02d8471be9db0c1623006c7b91910f69551"
+    },
+    {
+      "path": "native/quiz-dart-jokers.layout.json",
+      "bytes": 4718,
+      "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6"
+    },
+    {
+      "path": "native/quiz-dart-jokers.png",
+      "bytes": 100524,
+      "sha256": "28c1e25a9111ac165a12f582935a48d78918d02bfa7f89672d5326951cb03f02"
+    },
+    {
+      "path": "native/quiz-dart-question.layout.json",
+      "bytes": 4526,
+      "sha256": "ac623b4cf0fa6226c0ff2a7cd543ffbb99f6674346ae73973b59fab2ece9315d"
+    },
+    {
+      "path": "native/quiz-dart-question.png",
+      "bytes": 87325,
+      "sha256": "cce5f4054782ddc4d7f46557b4a7e140ba93d183bacc4639005db99505f46d27"
+    },
+    {
+      "path": "native/quiz-dart-selected-phone.layout.json",
+      "bytes": 4692,
+      "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42"
+    },
+    {
+      "path": "native/quiz-dart-selected-phone.png",
+      "bytes": 84888,
+      "sha256": "ab2692939435fde6f70d77d07329e78c7aaad2dc6938cc2bfc09f961222c066f"
+    },
+    {
+      "path": "native/quiz-runtime-report.json",
+      "bytes": 9118,
+      "sha256": "b33e5bce16e3d590c750b4004509a47e6460c5569cee2df3bb5fd4cf0d6fe44f"
+    },
+    {
+      "path": "source-identity.json",
+      "bytes": 265,
+      "sha256": "f6795a6045a620efc2efacf546909da40dc5e8cccdf80465de9ad945c11e8954"
+    }
+  ]
+}

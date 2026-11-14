@@ -1,0 +1,31 @@
+{
+  "native_baseline": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "scope": "Recovered Native344 project with exact9f2e Quiz/model/scene inputs and additive QA; not claimed whole clean9f2e checkout",
+  "files": [
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "sha256": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+      "bytes": 32033
+    },
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "sha256": "ce34f190c5ed90b0f81c0999fcd94559f0a47dd1c43475cdc602f5e53186cdb5",
+      "bytes": 40188
+    },
+    {
+      "path": "scenes/games/quiz_studio.tscn",
+      "sha256": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+      "bytes": 193
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "bytes": 11313
+    },
+    {
+      "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+      "bytes": 8408740
+    }
+  ]
+}

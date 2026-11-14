@@ -1,0 +1,138 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[Mobile] runtime ready screen:(960, 540) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+ERROR: [QuizStudioRuntime] JSON hidden option is disabled: jokers-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:565)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] JSON hidden option does not disclose its answer/audience caption: jokers-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:566)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Intent guard refuses the same JSON hidden integer: jokers-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:568)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] JSON hidden option is disabled: jokers-layout.json:3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:565)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] JSON hidden option does not disclose its answer/audience caption: jokers-layout.json:3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:566)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Intent guard refuses the same JSON hidden integer: jokers-layout.json:3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:568)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Actual hidden-option touch cannot submit jokers-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _disabled_original_touch (res://scripts/tests/quiz_studio_runtime.gd:527)
+       [2] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] JSON hidden option is disabled: selected-phone-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:565)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] JSON hidden option does not disclose its answer/audience caption: selected-phone-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:566)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Intent guard refuses the same JSON hidden integer: selected-phone-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:568)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] JSON hidden option is disabled: selected-phone-layout.json:3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:565)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] JSON hidden option does not disclose its answer/audience caption: selected-phone-layout.json:3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:566)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Intent guard refuses the same JSON hidden integer: selected-phone-layout.json:3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:568)
+       [2] _profile (res://scripts/tests/quiz_studio_runtime.gd:373)
+       [3] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [4] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Actual hidden-option touch cannot submit selected-phone-layout.json:2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _disabled_original_touch (res://scripts/tests/quiz_studio_runtime.gd:527)
+       [2] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Original nullable-explanation reveal reaches the actual settled presenter
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:581)
+       [2] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [3] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Absent explanation renders the verdict without null text or invented prose
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:583)
+       [2] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [3] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+ERROR: [QuizStudioRuntime] Actual acknowledged nullable reveal permits the next question
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/quiz_studio_runtime.gd:84)
+       [1] _original_json_contracts (res://scripts/tests/quiz_studio_runtime.gd:584)
+       [2] _frames (res://scripts/tests/quiz_studio_runtime.gd:127)
+       [3] _frame (res://scripts/tests/quiz_studio_runtime.gd:122)
+[QuizStudioFixture] FAIL checks=207 captures=9

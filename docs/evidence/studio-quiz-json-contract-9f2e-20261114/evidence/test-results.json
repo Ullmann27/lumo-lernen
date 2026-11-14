@@ -1,0 +1,389 @@
+{
+  "schema": 1,
+  "original_ci": {
+    "run_id": 43603969762,
+    "job_id": 132474493736,
+    "native": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+    "host": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+    "artifact_id": 14117811208,
+    "artifact_sha256": "b1d4bb894083344f4a862fe2412df260759018b030378e06646c5247b68933cb"
+  },
+  "runs": [
+    {
+      "name": "red-original-render-v2",
+      "is_final": false,
+      "run": {
+        "exit_code": 1,
+        "elapsed_seconds": 22.731699725999533,
+        "display": 109,
+        "project": "/tmp/lumo-quiz-settled-startup-d5b1",
+        "godot_arguments": [
+          "--resolution",
+          "960x540",
+          "--disable-vsync",
+          "--script",
+          "res://scripts/tests/quiz_studio_runtime.gd",
+          "--",
+          "--fixture",
+          "--capture"
+        ],
+        "timed_out": false,
+        "scope": "Local software renderer; not physical Android performance"
+      },
+      "checks": 207,
+      "failures": [
+        "JSON hidden option is disabled: jokers-layout.json:2",
+        "JSON hidden option does not disclose its answer/audience caption: jokers-layout.json:2",
+        "Intent guard refuses the same JSON hidden integer: jokers-layout.json:2",
+        "JSON hidden option is disabled: jokers-layout.json:3",
+        "JSON hidden option does not disclose its answer/audience caption: jokers-layout.json:3",
+        "Intent guard refuses the same JSON hidden integer: jokers-layout.json:3",
+        "Actual hidden-option touch cannot submit jokers-layout.json:2",
+        "JSON hidden option is disabled: selected-phone-layout.json:2",
+        "JSON hidden option does not disclose its answer/audience caption: selected-phone-layout.json:2",
+        "Intent guard refuses the same JSON hidden integer: selected-phone-layout.json:2",
+        "JSON hidden option is disabled: selected-phone-layout.json:3",
+        "JSON hidden option does not disclose its answer/audience caption: selected-phone-layout.json:3",
+        "Intent guard refuses the same JSON hidden integer: selected-phone-layout.json:3",
+        "Actual hidden-option touch cannot submit selected-phone-layout.json:2",
+        "Original nullable-explanation reveal reaches the actual settled presenter",
+        "Absent explanation renders the verdict without null text or invented prose",
+        "Actual acknowledged nullable reveal permits the next question"
+      ],
+      "capture_count": 9,
+      "report": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-v2/captures/quiz-runtime-report.json",
+        "bytes": 23118,
+        "sha256": "d314a99fc6862a3e3bbc41884f82bb401b8569f6590d39a7da8abce781c756c5",
+        "git_blob_sha": "86905054595c3082540607886cc8b58732e1c344"
+      },
+      "godot_log": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-v2/godot.log",
+        "bytes": 10119,
+        "sha256": "5136b8b622284f10ee8566b7fa24e7f535ba16cb84d82f8682d3979954b32fc3",
+        "git_blob_sha": "f2fae24294170ae10bd450962ba31e6d6d8f4386"
+      },
+      "original_json_cases": [
+        {
+          "actual_captions": [
+            "C  Mit den Augen  ·  Publikum: 11 %",
+            "D  Mit den Füßen  ·  Publikum: 7 %"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "jokers-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6"
+        },
+        {
+          "actual_captions": [
+            "C  Mit den Augen  ·  Publikum: 11 %",
+            "D  Mit den Füßen  ·  Publikum: 7 %"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "selected-phone-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42"
+        },
+        {
+          "ack": 5,
+          "actual_feedback": "",
+          "authority_ready": false,
+          "file": "public-state.json",
+          "record_revision": 6,
+          "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+          "source_question": "e_sk_body_3"
+        }
+      ]
+    },
+    {
+      "name": "green-corrected-render",
+      "is_final": false,
+      "run": {
+        "exit_code": 0,
+        "elapsed_seconds": 30.726804009999796,
+        "display": 109,
+        "project": "/tmp/lumo-quiz-settled-startup-d5b1",
+        "godot_arguments": [
+          "--resolution",
+          "960x540",
+          "--disable-vsync",
+          "--script",
+          "res://scripts/tests/quiz_studio_runtime.gd",
+          "--",
+          "--fixture",
+          "--capture"
+        ],
+        "timed_out": false,
+        "scope": "Local software renderer; not physical Android performance"
+      },
+      "checks": 214,
+      "failures": [],
+      "capture_count": 10,
+      "report": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render/captures/quiz-runtime-report.json",
+        "bytes": 24010,
+        "sha256": "4b66f778ecbce1f623b0f13ebdf8437789718a003c57447604ef42c889d30165",
+        "git_blob_sha": "e0557d1663cfcb21109268212779d64b3c0295cf"
+      },
+      "godot_log": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render/godot.log",
+        "bytes": 1066,
+        "sha256": "cc854304ae3e8428c9c132a5c3bf82eb55ab9ba8141dbf090cb65be26135bb38",
+        "git_blob_sha": "2f9d09a6572cd2569f584f6a79d070faee521637"
+      },
+      "original_json_cases": [
+        {
+          "actual_captions": [
+            "C  Ausgeblendet",
+            "D  Ausgeblendet"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "jokers-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6"
+        },
+        {
+          "actual_captions": [
+            "C  Ausgeblendet",
+            "D  Ausgeblendet"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "selected-phone-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42"
+        },
+        {
+          "ack": 5,
+          "actual_feedback": "Richtig!",
+          "authority_ready": true,
+          "file": "public-state.json",
+          "record_revision": 6,
+          "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+          "source_question": "e_sk_body_3"
+        }
+      ]
+    },
+    {
+      "name": "red-original-render-final-v2",
+      "is_final": true,
+      "run": {
+        "exit_code": 1,
+        "elapsed_seconds": 37.19781879400034,
+        "display": 109,
+        "project": "/tmp/lumo-quiz-settled-startup-d5b1",
+        "godot_arguments": [
+          "--resolution",
+          "960x540",
+          "--disable-vsync",
+          "--script",
+          "res://scripts/tests/quiz_studio_runtime.gd",
+          "--",
+          "--fixture",
+          "--capture"
+        ],
+        "timed_out": false,
+        "scope": "Local software renderer; not physical Android performance"
+      },
+      "checks": 208,
+      "failures": [
+        "JSON hidden option is disabled: jokers-layout.json:2",
+        "JSON hidden option does not disclose its answer/audience caption: jokers-layout.json:2",
+        "Intent guard refuses the same JSON hidden integer: jokers-layout.json:2",
+        "JSON hidden option is disabled: jokers-layout.json:3",
+        "JSON hidden option does not disclose its answer/audience caption: jokers-layout.json:3",
+        "Intent guard refuses the same JSON hidden integer: jokers-layout.json:3",
+        "Actual hidden-option touch cannot submit jokers-layout.json:2",
+        "JSON hidden option is disabled: selected-phone-layout.json:2",
+        "JSON hidden option does not disclose its answer/audience caption: selected-phone-layout.json:2",
+        "Intent guard refuses the same JSON hidden integer: selected-phone-layout.json:2",
+        "JSON hidden option is disabled: selected-phone-layout.json:3",
+        "JSON hidden option does not disclose its answer/audience caption: selected-phone-layout.json:3",
+        "Intent guard refuses the same JSON hidden integer: selected-phone-layout.json:3",
+        "Actual hidden-option touch cannot submit selected-phone-layout.json:2",
+        "Original nullable-explanation reveal reaches the actual settled presenter",
+        "Absent explanation renders the verdict without null text or invented prose",
+        "Actual acknowledged nullable reveal permits the next question"
+      ],
+      "capture_count": 9,
+      "report": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final-v2/captures/quiz-runtime-report.json",
+        "bytes": 23118,
+        "sha256": "ad96105d480c2ead9793e39a0acb798872f74016856fb32bde5ebe9d6b06eca3",
+        "git_blob_sha": "d33338402a69ab0ce4d6fc06ae0ff9f7c2fa8c60"
+      },
+      "godot_log": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final-v2/godot.log",
+        "bytes": 10119,
+        "sha256": "88224ef00f21ca13ed563a278f468e652e0003758cfc89e921ec75dc420476f0",
+        "git_blob_sha": "be5f7ffd335ac61c44bad727410a26320cacf752"
+      },
+      "original_json_cases": [
+        {
+          "actual_captions": [
+            "C  Mit den Augen  ·  Publikum: 11 %",
+            "D  Mit den Füßen  ·  Publikum: 7 %"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "jokers-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6"
+        },
+        {
+          "actual_captions": [
+            "C  Mit den Augen  ·  Publikum: 11 %",
+            "D  Mit den Füßen  ·  Publikum: 7 %"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "selected-phone-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42"
+        },
+        {
+          "ack": 5,
+          "actual_feedback": "",
+          "authority_ready": false,
+          "file": "public-state.json",
+          "record_revision": 6,
+          "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+          "source_question": "e_sk_body_3"
+        }
+      ]
+    },
+    {
+      "name": "green-corrected-render-final-v2",
+      "is_final": true,
+      "run": {
+        "exit_code": 0,
+        "elapsed_seconds": 46.85953794099987,
+        "display": 109,
+        "project": "/tmp/lumo-quiz-settled-startup-d5b1",
+        "godot_arguments": [
+          "--resolution",
+          "960x540",
+          "--disable-vsync",
+          "--script",
+          "res://scripts/tests/quiz_studio_runtime.gd",
+          "--",
+          "--fixture",
+          "--capture"
+        ],
+        "timed_out": false,
+        "scope": "Local software renderer; not physical Android performance"
+      },
+      "checks": 215,
+      "failures": [],
+      "capture_count": 10,
+      "report": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-runtime-report.json",
+        "bytes": 24010,
+        "sha256": "26bb29671433fd28772149f30850c81614c9b700da11f322209425df0961d598",
+        "git_blob_sha": "2790d857582756012b472efedb51c199dc4228d7"
+      },
+      "godot_log": {
+        "source_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/godot.log",
+        "bytes": 1066,
+        "sha256": "57e7e9a779b123c4765425463f93f5b5f13c0492caadc3137a7c21fe906689ce",
+        "git_blob_sha": "d845ae1e481a97b6dc6971b7571118aa896321aa"
+      },
+      "original_json_cases": [
+        {
+          "actual_captions": [
+            "C  Ausgeblendet",
+            "D  Ausgeblendet"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "jokers-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6"
+        },
+        {
+          "actual_captions": [
+            "C  Ausgeblendet",
+            "D  Ausgeblendet"
+          ],
+          "actual_disabled": [
+            true,
+            true
+          ],
+          "file": "selected-phone-layout.json",
+          "hidden": [
+            2.0,
+            3.0
+          ],
+          "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42"
+        },
+        {
+          "ack": 5,
+          "actual_feedback": "Richtig!",
+          "authority_ready": true,
+          "file": "public-state.json",
+          "record_revision": 6,
+          "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+          "source_question": "e_sk_body_3"
+        }
+      ]
+    }
+  ],
+  "fixture_only": true,
+  "new_paired_dart_execution": false,
+  "new_android_execution": false,
+  "historical_setup_failures": [
+    {
+      "directory": "red-original-render",
+      "cause": "QA GDScript inferred Variant at local bad variable, before any product check; fixed to explicit Dictionary. Original log and source preserved."
+    },
+    {
+      "directories": [
+        "red-original-render-final",
+        "green-corrected-render-final"
+      ],
+      "cause": "Orchestration pre-created the output directory that the existing renderer helper requires to be absent. FileExistsError before Godot started. Not a product/test assertion result; logs retained."
+    }
+  ],
+  "historical_visual_fixture_issue": {
+    "test_sha256": "5abbd94b53c379caa0bac17db70bd0e8f1243e9d50edd1478812b87c01be162b",
+    "issue": "Old completed Node3D hidden but its CanvasLayer UI still visible behind original-JSON replay. Corrected solely by hiding original_table.ui plus assertion. Final frames independently opened."
+  }
+}

@@ -1,0 +1,227 @@
+--- a/scripts/games/quiz/quiz_studio.gd
++++ b/scripts/games/quiz/quiz_studio.gd
+@@ -191,7 +191,7 @@
+ 	if value.get("selected") != null and not _integer(value.selected, 0, 3):
+ 		return false
+ 	if bool(value.revealed):
+-		if not _integer(value.get("correctIndex"), 0, 3) or not _text(value.get("explanation"), 2000, true):
++		if not _integer(value.get("correctIndex"), 0, 3) or (value.get("explanation") != null and not _text(value.explanation, 2000, true)):
+ 			return false
+ 	elif value.get("correctIndex") != null or value.get("explanation") != null:
+ 		# A premature answer must never become visible even if a bridge is faulty.
+@@ -267,10 +267,20 @@
+ 	return true
+ 
+ 
++func _option_hidden(option: int) -> bool:
++	# JSON numbers are floats in Godot. _valid_state already requires unique
++	# whole indices; compare their validated integer values without changing
++	# the authoritative state or its original numeric representation.
++	for hidden in _state.hidden:
++		if int(hidden) == option:
++			return true
++	return false
++
++
+ func _allowed(action: String, extras: Dictionary) -> bool:
+ 	match action:
+ 		"select":
+-			return bool(_state.canSelect) and extras.size() == 1 and _integer(extras.get("option"), 0, 3) and int(extras.option) not in _state.hidden
++			return bool(_state.canSelect) and extras.size() == 1 and _integer(extras.get("option"), 0, 3) and not _option_hidden(int(extras.option))
+ 		"reveal":
+ 			return bool(_state.canReveal) and extras.is_empty()
+ 		"next":
+@@ -655,7 +665,7 @@
+ 	progress.text = "Frage %d von %d · %s · Stufe %d" % [int(_state.number), int(_state.total), str(_state.questionSubject), int(_state.grade)]
+ 	prompt.text = str(_state.prompt)
+ 	for i in range(4):
+-		var option_hidden: bool = i in _state.hidden
++		var option_hidden: bool = _option_hidden(i)
+ 		var caption: String = LETTERS[i] + "  " + ("Ausgeblendet" if option_hidden else str(_state.options[i]))
+ 		if _state.audience is Array and not option_hidden:
+ 			caption += "  ·  Publikum: %d %%" % int(_state.audience[i])
+@@ -678,7 +688,8 @@
+ 	feedback.text = ""
+ 	if revealed:
+ 		var verdict: String = "Richtig!" if _state.selected == _state.correctIndex else "Die richtige Antwort ist " + LETTERS[int(_state.correctIndex)] + "."
+-		feedback.text = verdict + "\n" + str(_state.explanation)
++		var explanation: String = _state.explanation if _state.explanation is String else ""
++		feedback.text = verdict + ("\n" + explanation if not explanation.is_empty() else "")
+ 	hint.text = "Lumos Tipp: " + str(_state.hint) if _state.hint != null else ""
+ 	hint.visible = hint.visible and not hint.text.is_empty()
+ 	status.text = "Anfrage gesendet. Speichern wird bestätigt …" if waiting else "Gesichert: %d Sterne" % int(_state.securedStars)
+--- a/scripts/tests/quiz_studio_runtime.gd
++++ b/scripts/tests/quiz_studio_runtime.gd
+@@ -4,6 +4,7 @@
+ ## production Dart quiz_native_authority.dart process and its isolated directory.
+ const SCENE := "res://scenes/games/quiz_studio.tscn"
+ const FIXTURE_TOKEN := "b1111111111111111111111111111111"
++const ORIGINAL_JSON := "res://scripts/tests/fixtures/quiz_9f2e/"
+ var table
+ var bridge
+ var output := ""
+@@ -21,6 +22,7 @@
+ var previous_mouse_emulation := false
+ var previous_touch_emulation := false
+ var source_before: Dictionary = {}
++var original_json_cases: Array[Dictionary] = []
+ 
+ class FixtureBridge extends RefCounted:
+ 	var value: Dictionary = {}
+@@ -504,6 +506,108 @@
+ 	return await _until(func(): return int(table._state.ack) > previous_ack and table._pending == 0, "Production Dart accepted and persisted " + label)
+ 
+ 
++func _disabled_original_touch(control: Button, label: String) -> void:
++	# Deliberately attempt a physical touch on a disabled answer. This verifies
++	# the real Control path, independently of the request-permission predicate.
++	if not await _swipe_to(control):
++		return
++	var rect := _physical(control)
++	var count: int = bridge.requests.size()
++	for pressed in [true, false]:
++		var event := InputEventScreenTouch.new()
++		event.index = 0
++		event.position = rect.get_center()
++		event.pressed = pressed
++		Input.parse_input_event(event)
++		inputs.append({"frame": frames, "kind": "screen_touch", "label": label,
++			"pressed": pressed, "position": [event.position.x, event.position.y],
++			"rect_px": [rect.position.x, rect.position.y, rect.size.x, rect.size.y],
++			"scope": "Original JSON fixture: hidden option must not submit"})
++		await _frame()
++	_check(bridge.requests.size() == count, "Actual hidden-option touch cannot submit " + label)
++
++
++func _original_json_contracts() -> void:
++	# The four files below are byte-identical 9f2e/c0ca CI originals. The
++	# renderer consumes their JSON numbers/nulls through its normal bridge.
++	# This local replay is an explicit fixture, not another production-Dart run.
++	var original_table = table
++	var original_bridge = bridge
++	var host_bridge := root.get_node("HostBridge")
++	var previous_options: Dictionary = host_bridge._options.duplicate(true)
++	original_table.visible = false
++	original_table.ui.hide()
++	original_table.set_process(false)
++	_check(not original_table.ui.is_visible_in_tree(), "Completed fixture CanvasLayer controls are excluded from original-JSON replay")
++	var jokers := _read(ORIGINAL_JSON + "jokers-layout.json")
++	var selected := _read(ORIGINAL_JSON + "selected-phone-layout.json")
++	var revealed := _read(ORIGINAL_JSON + "public-state.json")
++	var saved := _read(ORIGINAL_JSON + "durable-round.json")
++	_check(saved.questions[0].id == "e_sk_body_3" and saved.questions[0].explanation == null,
++		"Actual production question has an optional absent explanation")
++	_check(revealed.roundId == saved.id and int(revealed.recordRevision) == int(saved.revision)
++		and bool(revealed.revealed) and int(revealed.ack) == 5 and int(revealed.rejected) == 0
++		and saved.actions.back().action == "reveal", "Original reveal has a durable positive Dart acknowledgement")
++	bridge = FixtureBridge.new()
++	bridge.value = jokers.state.duplicate(true)
++	host_bridge._options = {"game": "quiz", "tableToken": str(revealed.token), "displayDensity": 1.0}
++	table = load(SCENE).instantiate()
++	table._host = bridge
++	root.add_child(table)
++	await _frames(8)
++	for row in [{"name": "jokers-layout.json", "record": jokers, "size": Vector2i(960, 540), "capture": "quiz-json-hidden-landscape"},
++		{"name": "selected-phone-layout.json", "record": selected, "size": Vector2i(412, 915), "capture": "quiz-json-hidden-phone"}]:
++		bridge.value = row.record.state.duplicate(true)
++		table._poll_state()
++		await _profile(row.size)
++		_check(table._authority_ready and table._state == row.record.state,
++			"Original JSON state is accepted without changing its numeric representation: " + row.name)
++		for hidden in row.record.state.hidden:
++			var option := int(hidden)
++			_check(table.answer_buttons[option].disabled, "JSON hidden option is disabled: " + row.name + ":" + str(option))
++			_check(table.answer_labels[option].text == table.LETTERS[option] + "  Ausgeblendet",
++				"JSON hidden option does not disclose its answer/audience caption: " + row.name + ":" + str(option))
++			_check(not table._allowed("select", {"option": option}),
++				"Intent guard refuses the same JSON hidden integer: " + row.name + ":" + str(option))
++		_check(not table.answer_buttons[0].disabled and not table.answer_buttons[1].disabled,
++			"The two remaining actual answers stay available")
++		await _snapshot(row.capture)
++		for hidden in row.record.state.hidden:
++			await _disabled_original_touch(table.answer_buttons[int(hidden)], row.name + ":" + str(int(hidden)))
++		original_json_cases.append({"file": row.name, "sha256": FileAccess.get_sha256(ORIGINAL_JSON + row.name),
++			"hidden": row.record.state.hidden, "actual_disabled": [table.answer_buttons[2].disabled, table.answer_buttons[3].disabled],
++			"actual_captions": [table.answer_labels[2].text, table.answer_labels[3].text]})
++	bridge.value = revealed.duplicate(true)
++	table._poll_state()
++	await _frames(8)
++	_check(table._authority_ready and table._state == revealed and table._pending == 0,
++		"Original nullable-explanation reveal reaches the actual settled presenter")
++	_check(table.feedback.text == "Richtig!", "Absent explanation renders the verdict without null text or invented prose")
++	_check(not table.next_button.disabled, "Actual acknowledged nullable reveal permits the next question")
++	if table._authority_ready:
++		await _profile(Vector2i(640, 360))
++		await _swipe_to(table.next_button)
++		await _snapshot("quiz-json-null-explanation")
++	for invalid in [42, false, [], {}]:
++		var bad := revealed.duplicate(true)
++		bad.revision = int(revealed.revision) + 1
++		bad.explanation = invalid
++		_check(not table.apply_state(bad), "Non-string non-null explanation remains invalid: " + JSON.stringify(invalid))
++	for invalid in [[2.5], ["2"], [2, 2.0], [4]]:
++		var bad: Dictionary = selected.state.duplicate(true)
++		bad.revision = int(revealed.revision) + 1
++		bad.hidden = invalid
++		_check(not table.apply_state(bad), "Hidden values must remain unique valid whole indices: " + JSON.stringify(invalid))
++	original_json_cases.append({"file": "public-state.json", "sha256": FileAccess.get_sha256(ORIGINAL_JSON + "public-state.json"),
++		"source_question": str(saved.questions[0].id), "actual_feedback": table.feedback.text,
++		"authority_ready": table._authority_ready, "ack": int(revealed.ack), "record_revision": int(revealed.recordRevision)})
++	table.queue_free()
++	await _frames(3)
++	table = original_table
++	bridge = original_bridge
++	host_bridge._options = previous_options
++
++
+ func _authority_contracts() -> void:
+ 	await _profile(Vector2i(960, 540))
+ 	await _snapshot("quiz-dart-question")
+@@ -514,6 +618,10 @@
+ 		if not await _authority_action(table.joker_buttons[joker], "joker " + str(joker)):
+ 			return
+ 	_check(table._state.usedJokers.size() == 3 and table._state.hidden.size() == 2 and table._state.audience is Array and table._state.hint is String, "Three actual production jokers publish their distinct effects")
++	for hidden in table._state.hidden:
++		var option := int(hidden)
++		_check(table.answer_buttons[option].disabled and table.answer_labels[option].text == table.LETTERS[option] + "  Ausgeblendet"
++			and not table._allowed("select", {"option": option}), "Actual Dart hidden option is both concealed and non-actionable")
+ 	await _snapshot("quiz-dart-jokers")
+ 	for question in range(1, 21):
+ 		# The authority atomically writes public state and the private QA oracle
+@@ -537,6 +645,8 @@
+ 		if not await _authority_action(table.reveal_button, "reveal question %d" % question):
+ 			return
+ 		_check(table._state.revealed and int(table._state.correctIndex) == correct, "Production result reveals actual answer")
++		if table._state.explanation == null:
++			_check(table.feedback.text == "Richtig!", "Actual nullable production explanation does not invent feedback text")
+ 		if question == 1:
+ 			await _profile(Vector2i(640, 360))
+ 			await _swipe_to(table.next_button)
+@@ -587,7 +697,7 @@
+ 		"source_before": source_before, "source_after": source_after,
+ 		"display_driver": DisplayServer.get_name(), "rendering_method": RenderingServer.get_current_rendering_method(),
+ 		"video_adapter": RenderingServer.get_video_adapter_name(),
+-		"captures": captures, "inputs": inputs, "states": state_trace,
++		"captures": captures, "inputs": inputs, "states": state_trace, "original_json_cases": original_json_cases,
+ 		"requests": bridge.requests if is_instance_valid(bridge) else [],
+ 		"scope": "New original Godot presenter and real ScreenTouch/ScreenDrag; fixture acknowledgements are not a production Dart/save result" if fixture else "Original production Dart controller/session/question bank and disk persistence through a declared QA transport. The award callback is a QA ledger, not AppState/SharedPreferences. No Android Binder/device performance acceptance."}
+ 	_write(output + "/quiz-runtime-report.json", report)
+@@ -606,7 +716,9 @@
+ func _source_hashes() -> Dictionary:
+ 	var hashes := {}
+ 	for path in [SCENE, "res://scripts/games/quiz/quiz_studio.gd", "res://scripts/tests/quiz_studio_runtime.gd",
+-		"res://scripts/characters/lumo/lumo_rigged_actor.gd", "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb"]:
++		"res://scripts/characters/lumo/lumo_rigged_actor.gd", "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
++		ORIGINAL_JSON + "public-state.json", ORIGINAL_JSON + "jokers-layout.json",
++		ORIGINAL_JSON + "selected-phone-layout.json", ORIGINAL_JSON + "durable-round.json"]:
+ 		_check(FileAccess.file_exists(path), "Actual source exists " + path)
+ 		hashes[path] = FileAccess.get_sha256(path)
+ 	return hashes
+@@ -664,6 +776,7 @@
+ 	_check(table.get_node("StudioArch").mesh is TorusMesh and table.get_node("StudioPodium").mesh is CylinderMesh and table._lights.size() == 20, "Actual studio meshes and twenty authoritative question lamps")
+ 	if fixture:
+ 		await _fixture_contracts()
++		await _original_json_contracts()
+ 	else:
+ 		await _authority_contracts()
+ 	await _finish()

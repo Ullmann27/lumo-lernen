@@ -1,0 +1,49 @@
+{
+  "started_utc": "2026-11-14T14:32:22.055694+00:00",
+  "completed_utc": "2026-11-14T14:32:44.119480+00:00",
+  "exit_code": 1,
+  "elapsed_seconds": 22.0638056329999,
+  "command": [
+    "python",
+    "/workspace/scratch/5987865ae883/qa/studio-quiz-native-recovery-20261114/baseline/native/tools/run_local_renderer.py",
+    "--display",
+    "109",
+    "--output",
+    "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final",
+    "--timeout",
+    "180",
+    "--project",
+    "/tmp/lumo-quiz-settled-startup-d5b1",
+    "--",
+    "--resolution",
+    "960x540",
+    "--disable-vsync",
+    "--script",
+    "res://scripts/tests/quiz_studio_runtime.gd",
+    "--",
+    "--fixture",
+    "--capture"
+  ],
+  "capture_directory": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final/captures",
+  "source_before": {
+    "scripts/games/quiz/quiz_studio.gd": {
+      "bytes": 32033,
+      "sha256": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29"
+    },
+    "scripts/tests/quiz_studio_runtime.gd": {
+      "bytes": 40358,
+      "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948"
+    }
+  },
+  "source_after": {
+    "scripts/games/quiz/quiz_studio.gd": {
+      "bytes": 32033,
+      "sha256": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29"
+    },
+    "scripts/tests/quiz_studio_runtime.gd": {
+      "bytes": 40358,
+      "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948"
+    }
+  },
+  "scope": "Real Godot software renderer with declared local fixture transport; no Dart process or Android run"
+}
