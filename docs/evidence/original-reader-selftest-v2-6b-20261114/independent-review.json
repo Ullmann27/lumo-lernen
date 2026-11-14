@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "status": "PASS_27_SOURCE_AND_TRANSPORT_SELFTESTS",
+  "run_id": 43623818731,
+  "attempt": 1,
+  "job_id": 132535143662,
+  "workflow_source": "98a8919ffe3544702bc509978b8d16b8f47ff7ab",
+  "accepted_app_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "actual_test_suites": [
+    {
+      "tests": 24,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.077
+    },
+    {
+      "tests": 3,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.017
+    }
+  ],
+  "syntax": {
+    "bash_blocks": 11,
+    "python_heredocs": 6,
+    "python_files": 4,
+    "unchanged_original_publisher_steps": 7
+  },
+  "driver_blob": "3c81457f029952ea4125bdb20da9e89a4f15d3b8",
+  "reader_workflow_blob": "fd0cfaba2b3eb4b9d275b5d7dc2f5b682586b116",
+  "reader_workflow_sha256": "94ac85d99cff42c48450ebdb43bbb1b0669b4382c2ba47994243eb7293a9f6ea",
+  "png_exporter_blob": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+  "png_tests_blob": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
+  "scope": "Prepared reader safeguards only. Synthetic 2x2 test PNGs and fixture receipts stay inside unit tests and are never product screenshots.",
+  "independent_source_review": {
+    "reviewer": "godot_integration",
+    "finding": "No concrete integration error or PASS bypass found. Exporter reads only exact indexed original bytes; no image creation or editing. Main APK source stays6b; Android C4 move/bot result is not a victory claim; desktop victory is labelled desktop.",
+    "limits": [
+      "The compressed original download budget does not guarantee total extraction space; archive/member expansion bounds remain enforced.",
+      "A failed early reader replay may prevent complete after-snapshots; no failed path produces a PASS receipt.",
+      "The eight expected original image identities, complete unique parts, bytes and hashes plus final transport marker must be verified before recording an actual view."
+    ]
+  },
+  "original_main_contracts": {
+    "log_blob": "2cfa8579566aab6adcceaac040ffa54eb7a3914a",
+    "tests": 963,
+    "seconds": 243.977,
+    "failed": 0,
+    "skipped": 0,
+    "root_read": true
+  },
+  "actual_original_reader_run_started": false,
+  "publisher_started": false
+}

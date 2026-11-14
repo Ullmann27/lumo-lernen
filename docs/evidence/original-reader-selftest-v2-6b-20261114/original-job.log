@@ -1,0 +1,378 @@
+﻿2026-11-14T17:56:39.5801913Z Current runner version: '2.338.2'
+2026-11-14T17:56:39.5825741Z ##[group]Runner Image Provisioner
+2026-11-14T17:56:39.5826666Z Hosted Compute Agent
+2026-11-14T17:56:39.5827237Z Version: 20261103.629
+2026-11-14T17:56:39.5827878Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T17:56:39.5828630Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T17:56:39.5829280Z Worker ID: {2588f94a-e614-4b12-8097-757147973b84}
+2026-11-14T17:56:39.5830046Z Region: us-east-1
+2026-11-14T17:56:39.5830594Z Cloud: AWS
+2026-11-14T17:56:39.5831126Z ##[endgroup]
+2026-11-14T17:56:39.5832784Z ##[group]Operating System
+2026-11-14T17:56:39.5833395Z Ubuntu
+2026-11-14T17:56:39.5833934Z 24.04.5
+2026-11-14T17:56:39.5834423Z LTS
+2026-11-14T17:56:39.5834967Z ##[endgroup]
+2026-11-14T17:56:39.5835804Z ##[group]Runner Image
+2026-11-14T17:56:39.5836422Z Image: ubuntu-24.04
+2026-11-14T17:56:39.5837005Z Version: 20261111.127.1
+2026-11-14T17:56:39.5838291Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T17:56:39.5839880Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+2026-11-14T17:56:39.5840792Z ##[endgroup]
+2026-11-14T17:56:39.5841959Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T17:56:39.5844276Z Actions: read
+2026-11-14T17:56:39.5844869Z Contents: read
+2026-11-14T17:56:39.5845656Z Metadata: read
+2026-11-14T17:56:39.5846264Z ##[endgroup]
+2026-11-14T17:56:39.5848685Z Secret source: Actions
+2026-11-14T17:56:39.5849605Z Cache mode: write
+2026-11-14T17:56:39.5850322Z Prepare workflow directory
+2026-11-14T17:56:39.7163024Z Prepare all required actions
+2026-11-14T17:56:39.7200303Z Getting action download info
+2026-11-14T17:56:39.8590838Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T17:56:41.5040885Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T17:56:41.8373348Z Complete job name: reader-selftest
+2026-11-14T17:56:42.0021267Z ##[group]Run actions/checkout@v4
+2026-11-14T17:56:42.0021978Z with:
+2026-11-14T17:56:42.0022428Z   ref: 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T17:56:42.0022998Z   persist-credentials: false
+2026-11-14T17:56:42.0023484Z   repository: Ullmann27/lumo-lernen
+2026-11-14T17:56:42.0026976Z   token: ***
+2026-11-14T17:56:42.0027472Z   ssh-strict: true
+2026-11-14T17:56:42.0027889Z   ssh-user: git
+2026-11-14T17:56:42.0028301Z   clean: true
+2026-11-14T17:56:42.0028721Z   sparse-checkout-cone-mode: true
+2026-11-14T17:56:42.0029195Z   fetch-depth: 1
+2026-11-14T17:56:42.0029642Z   fetch-tags: false
+2026-11-14T17:56:42.0030103Z   show-progress: true
+2026-11-14T17:56:42.0030544Z   lfs: false
+2026-11-14T17:56:42.0030937Z   submodules: false
+2026-11-14T17:56:42.0031352Z   set-safe-directory: true
+2026-11-14T17:56:42.0031866Z   allow-unsafe-pr-checkout: false
+2026-11-14T17:56:42.0032514Z env:
+2026-11-14T17:56:42.0032912Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T17:56:42.0033473Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T17:56:42.0033953Z ##[endgroup]
+2026-11-14T17:56:44.2629695Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T17:56:44.2630950Z ##[group]Getting Git version info
+2026-11-14T17:56:44.2631351Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T17:56:44.2631968Z [command]/usr/bin/git version
+2026-11-14T17:56:44.5422170Z git version 2.56.1
+2026-11-14T17:56:44.5433427Z ##[endgroup]
+2026-11-14T17:56:44.5442027Z Temporarily overriding HOME='/home/runner/work/_temp/7cd2456a-3f99-495c-a1ab-07ba7445607a' before making global git config changes
+2026-11-14T17:56:44.5442816Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T17:56:44.5444920Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T17:56:44.6050078Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T17:56:44.6052444Z ##[group]Initializing the repository
+2026-11-14T17:56:44.6055018Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T17:56:44.6538478Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T17:56:44.6539005Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T17:56:44.6539550Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T17:56:44.6540147Z hint: call:
+2026-11-14T17:56:44.6540377Z hint:
+2026-11-14T17:56:44.6540688Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T17:56:44.6540974Z hint:
+2026-11-14T17:56:44.6541301Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T17:56:44.6541731Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T17:56:44.6542050Z hint:
+2026-11-14T17:56:44.6542289Z hint: 	git branch -m <name>
+2026-11-14T17:56:44.6542520Z hint:
+2026-11-14T17:56:44.6542907Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T17:56:44.6547427Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T17:56:44.6554147Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T17:56:44.6602496Z ##[endgroup]
+2026-11-14T17:56:44.6603190Z ##[group]Disabling automatic garbage collection
+2026-11-14T17:56:44.6606214Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T17:56:44.6630802Z ##[endgroup]
+2026-11-14T17:56:44.6631343Z ##[group]Setting up auth
+2026-11-14T17:56:44.6631902Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T17:56:44.6656618Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T17:56:45.0541673Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T17:56:45.0562839Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T17:56:45.0709306Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T17:56:45.0729706Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T17:56:45.0872508Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T17:56:45.0895164Z ##[endgroup]
+2026-11-14T17:56:45.0896003Z ##[group]Fetching the repository
+2026-11-14T17:56:45.0907130Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T17:56:53.7659117Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T17:56:53.7659712Z  * branch            6b3047b7979dfb86d837e74a21b0fd890e4f9e66 -> FETCH_HEAD
+2026-11-14T17:56:53.7673334Z ##[endgroup]
+2026-11-14T17:56:53.7674020Z ##[group]Determining the checkout info
+2026-11-14T17:56:53.7674639Z ##[endgroup]
+2026-11-14T17:56:53.7675027Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T17:56:53.7756475Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T17:56:53.7757658Z ##[group]Checking out the ref
+2026-11-14T17:56:53.7768189Z [command]/usr/bin/git checkout --progress --force 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T17:56:54.8096975Z Updating files:  65% (3255/4975)
+2026-11-14T17:56:54.8387429Z Updating files:  66% (3284/4975)
+2026-11-14T17:56:54.8626478Z Updating files:  67% (3334/4975)
+2026-11-14T17:56:54.8804797Z Updating files:  68% (3383/4975)
+2026-11-14T17:56:54.8828222Z Updating files:  69% (3433/4975)
+2026-11-14T17:56:54.8853940Z Updating files:  70% (3483/4975)
+2026-11-14T17:56:54.8877997Z Updating files:  71% (3533/4975)
+2026-11-14T17:56:54.8908870Z Updating files:  72% (3582/4975)
+2026-11-14T17:56:54.8948499Z Updating files:  73% (3632/4975)
+2026-11-14T17:56:54.8979670Z Updating files:  74% (3682/4975)
+2026-11-14T17:56:54.9011314Z Updating files:  75% (3732/4975)
+2026-11-14T17:56:54.9039890Z Updating files:  76% (3781/4975)
+2026-11-14T17:56:54.9066819Z Updating files:  77% (3831/4975)
+2026-11-14T17:56:54.9084066Z Updating files:  78% (3881/4975)
+2026-11-14T17:56:54.9099228Z Updating files:  79% (3931/4975)
+2026-11-14T17:56:54.9235590Z Updating files:  80% (3980/4975)
+2026-11-14T17:56:54.9260222Z Updating files:  81% (4030/4975)
+2026-11-14T17:56:54.9289286Z Updating files:  82% (4080/4975)
+2026-11-14T17:56:54.9306699Z Updating files:  83% (4130/4975)
+2026-11-14T17:56:54.9324290Z Updating files:  84% (4179/4975)
+2026-11-14T17:56:54.9339755Z Updating files:  85% (4229/4975)
+2026-11-14T17:56:54.9354490Z Updating files:  86% (4279/4975)
+2026-11-14T17:56:54.9372728Z Updating files:  87% (4329/4975)
+2026-11-14T17:56:54.9388012Z Updating files:  88% (4378/4975)
+2026-11-14T17:56:54.9403532Z Updating files:  89% (4428/4975)
+2026-11-14T17:56:54.9419347Z Updating files:  90% (4478/4975)
+2026-11-14T17:56:54.9450810Z Updating files:  91% (4528/4975)
+2026-11-14T17:56:54.9863567Z Updating files:  92% (4577/4975)
+2026-11-14T17:56:55.0066918Z Updating files:  93% (4627/4975)
+2026-11-14T17:56:55.0226075Z Updating files:  94% (4677/4975)
+2026-11-14T17:56:55.0416481Z Updating files:  95% (4727/4975)
+2026-11-14T17:56:55.0449926Z Updating files:  96% (4776/4975)
+2026-11-14T17:56:55.0594099Z Updating files:  97% (4826/4975)
+2026-11-14T17:56:55.0618265Z Updating files:  98% (4876/4975)
+2026-11-14T17:56:55.0637570Z Updating files:  99% (4926/4975)
+2026-11-14T17:56:55.0638059Z Updating files: 100% (4975/4975)
+2026-11-14T17:56:55.0638365Z Updating files: 100% (4975/4975), done.
+2026-11-14T17:56:55.0702857Z Note: switching to '6b3047b7979dfb86d837e74a21b0fd890e4f9e66'.
+2026-11-14T17:56:55.0703244Z 
+2026-11-14T17:56:55.0703710Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T17:56:55.0704172Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T17:56:55.0704582Z state without impacting any branches by switching back to a branch.
+2026-11-14T17:56:55.0704804Z 
+2026-11-14T17:56:55.0704990Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T17:56:55.0705523Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T17:56:55.0705762Z 
+2026-11-14T17:56:55.0705894Z   git switch -c <new-branch-name>
+2026-11-14T17:56:55.0706069Z 
+2026-11-14T17:56:55.0706167Z Or undo this operation with:
+2026-11-14T17:56:55.0706333Z 
+2026-11-14T17:56:55.0706404Z   git switch -
+2026-11-14T17:56:55.0706564Z 
+2026-11-14T17:56:55.0706761Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T17:56:55.0706996Z 
+2026-11-14T17:56:55.0707234Z HEAD is now at 6b3047b ci(lumo): verify the actual Safari reward dismissal and full integrated APK
+2026-11-14T17:56:55.0810447Z ##[endgroup]
+2026-11-14T17:56:55.0813113Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T17:56:55.0832718Z 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T17:56:55.0839600Z ##[group]Removing auth
+2026-11-14T17:56:55.0842431Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T17:56:55.0865671Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T17:56:55.1021693Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T17:56:55.1041049Z http.https://github.com/.extraheader
+2026-11-14T17:56:55.1046208Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T17:56:55.1067305Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T17:56:55.1214257Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T17:56:55.1233260Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T17:56:55.1382897Z ##[endgroup]
+2026-11-14T17:56:55.1957805Z ##[group]Run set -euo pipefail
+2026-11-14T17:56:55.1958107Z [36;1mset -euo pipefail[0m
+2026-11-14T17:56:55.1958337Z [36;1mmkdir -p publication/reader-replay/code[0m
+2026-11-14T17:56:55.1958562Z [36;1mpython3 -B - <<'PY'[0m
+2026-11-14T17:56:55.1958781Z [36;1mimport base64, hashlib, json, os, subprocess[0m
+2026-11-14T17:56:55.1959007Z [36;1mfrom pathlib import Path[0m
+2026-11-14T17:56:55.1959190Z [36;1mbindings = {[0m
+2026-11-14T17:56:55.1959438Z [36;1m    "original_replay.py": "3c81457f029952ea4125bdb20da9e89a4f15d3b8",[0m
+2026-11-14T17:56:55.1959810Z [36;1m    "test_original_replay.py": "11c5ad2de2ce556a66273c776da2947ad23de8cd",[0m
+2026-11-14T17:56:55.1960199Z [36;1m    "original_png_transport.py": "88388945e5e31eaefb2dad69f400b93f65a6b94a",[0m
+2026-11-14T17:56:55.1960591Z [36;1m    "test_original_png_transport.py": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",[0m
+2026-11-14T17:56:55.1961025Z [36;1m    "review-workflow.yml": "fd0cfaba2b3eb4b9d275b5d7dc2f5b682586b116",[0m
+2026-11-14T17:56:55.1961390Z [36;1m    "publisher-reviewed.yml": "c4a901a649f49b80cd16e22ece3c40b1a3cbd12d",[0m
+2026-11-14T17:56:55.1961673Z [36;1m}[0m
+2026-11-14T17:56:55.1961859Z [36;1mroot = Path("publication/reader-replay/code")[0m
+2026-11-14T17:56:55.1962111Z [36;1mfor name, expected in bindings.items():[0m
+2026-11-14T17:56:55.1962464Z [36;1m    raw = subprocess.check_output(["gh", "api", "repos/Ullmann27/lumo-lernen/git/blobs/" + expected])[0m
+2026-11-14T17:56:55.1962811Z [36;1m    item = json.loads(raw)[0m
+2026-11-14T17:56:55.1963065Z [36;1m    assert item["sha"] == expected and item["encoding"] == "base64"[0m
+2026-11-14T17:56:55.1963430Z [36;1m    content = base64.b64decode("".join(item["content"].split()), validate=True)[0m
+2026-11-14T17:56:55.1963860Z [36;1m    assert hashlib.sha1(b"blob " + str(len(content)).encode() + b"\0" + content).hexdigest() == expected[0m
+2026-11-14T17:56:55.1964194Z [36;1m    content.decode("utf-8")[0m
+2026-11-14T17:56:55.1964412Z [36;1m    with (root / name).open("xb") as handle:[0m
+2026-11-14T17:56:55.1964633Z [36;1m        handle.write(content)[0m
+2026-11-14T17:56:55.1965117Z [36;1m    print("BOUND_READER_SOURCE " + json.dumps({"path": name, "git_blob": expected, "bytes": len(content), "sha256": hashlib.sha256(content).hexdigest()}, sort_keys=True))[0m
+2026-11-14T17:56:55.1965759Z [36;1mPY[0m
+2026-11-14T17:56:55.1965983Z [36;1mpython3 -m venv "$RUNNER_TEMP/lumo-original-replay-python"[0m
+2026-11-14T17:56:55.1966486Z [36;1m"$RUNNER_TEMP/lumo-original-replay-python/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0 PyYAML==6.0.3[0m
+2026-11-14T17:56:55.1967016Z [36;1mprintf '%s\n' "$RUNNER_TEMP/lumo-original-replay-python/bin" >> "$GITHUB_PATH"[0m
+2026-11-14T17:56:55.5124396Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T17:56:55.5124798Z env:
+2026-11-14T17:56:55.5125036Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T17:56:55.5125523Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T17:56:55.5127948Z   GH_TOKEN: ***
+2026-11-14T17:56:55.5128125Z ##[endgroup]
+2026-11-14T17:56:59.8470136Z BOUND_READER_SOURCE {"bytes": 19877, "git_blob": "3c81457f029952ea4125bdb20da9e89a4f15d3b8", "path": "original_replay.py", "sha256": "ac1cdb7cb10e1bb6ebfb8cf5e17333ede4c6c6bf702548cba6b361d94397011e"}
+2026-11-14T17:56:59.8471246Z BOUND_READER_SOURCE {"bytes": 9292, "git_blob": "11c5ad2de2ce556a66273c776da2947ad23de8cd", "path": "test_original_replay.py", "sha256": "a0e8b60079c6138c56c0e9c08951d71e0f5bf33f3e5fa545c39df626c494cf97"}
+2026-11-14T17:56:59.8472165Z BOUND_READER_SOURCE {"bytes": 8713, "git_blob": "88388945e5e31eaefb2dad69f400b93f65a6b94a", "path": "original_png_transport.py", "sha256": "39d0e2dba3ac3f1352b652963a246020d3938f1ab265f5aa7725ad467aa8e30a"}
+2026-11-14T17:56:59.8473348Z BOUND_READER_SOURCE {"bytes": 7061, "git_blob": "313fdb2c57f018cf251be00b6171fccb3c2bfa67", "path": "test_original_png_transport.py", "sha256": "fb7a8ca75ad1148f02c088bf4fc5f235b2863546367dca04f3d3012c0cadec0c"}
+2026-11-14T17:56:59.8474386Z BOUND_READER_SOURCE {"bytes": 29605, "git_blob": "fd0cfaba2b3eb4b9d275b5d7dc2f5b682586b116", "path": "review-workflow.yml", "sha256": "94ac85d99cff42c48450ebdb43bbb1b0669b4382c2ba47994243eb7293a9f6ea"}
+2026-11-14T17:56:59.8475391Z BOUND_READER_SOURCE {"bytes": 30052, "git_blob": "c4a901a649f49b80cd16e22ece3c40b1a3cbd12d", "path": "publisher-reviewed.yml", "sha256": "1227146ea19a3665ec44789824d716677cc96301de7048bd17b487265a5072d9"}
+2026-11-14T17:57:03.5691048Z Collecting Pillow==12.3.0
+2026-11-14T17:57:03.6468866Z   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-14T17:57:03.6926259Z Collecting PyYAML==6.0.3
+2026-11-14T17:57:03.7134119Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-14T17:57:03.7449517Z Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-14T17:57:03.8948134Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 48.1 MB/s eta 0:00:00
+2026-11-14T17:57:03.9246027Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-14T17:57:03.9292173Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 238.0 MB/s eta 0:00:00
+2026-11-14T17:57:03.9501149Z Installing collected packages: PyYAML, Pillow
+2026-11-14T17:57:04.2162130Z Successfully installed Pillow-12.3.0 PyYAML-6.0.3
+2026-11-14T17:57:04.2981601Z ##[group]Run set -euo pipefail
+2026-11-14T17:57:04.2981870Z [36;1mset -euo pipefail[0m
+2026-11-14T17:57:04.2982057Z [36;1mpython3 -B - <<'PY'[0m
+2026-11-14T17:57:04.2982259Z [36;1mimport ast, json, re, subprocess[0m
+2026-11-14T17:57:04.2982496Z [36;1mfrom pathlib import Path[0m
+2026-11-14T17:57:04.2982732Z [36;1mimport yaml[0m
+2026-11-14T17:57:04.2982936Z [36;1mroot = Path("publication/reader-replay/code")[0m
+2026-11-14T17:57:04.2983231Z [36;1mworkflow_text = (root / "review-workflow.yml").read_text()[0m
+2026-11-14T17:57:04.2983558Z [36;1mworkflow = yaml.load(workflow_text, Loader=yaml.BaseLoader)[0m
+2026-11-14T17:57:04.2983957Z [36;1mpublisher = yaml.load((root / "publisher-reviewed.yml").read_text(), Loader=yaml.BaseLoader)[0m
+2026-11-14T17:57:04.2984356Z [36;1massert set(workflow["jobs"]) == {"read-current-originals"}[0m
+2026-11-14T17:57:04.2984655Z [36;1mjob = workflow["jobs"]["read-current-originals"][0m
+2026-11-14T17:57:04.2985011Z [36;1massert job["permissions"] == {"actions": "read", "contents": "read"}[0m
+2026-11-14T17:57:04.2985592Z [36;1massert workflow["on"]["push"]["branches"] == ["qa/lumo-original-replay-6b-20261114"][0m
+2026-11-14T17:57:04.2986032Z [36;1massert workflow["on"]["push"]["paths"] == [".github/workflows/lumo-original-replay-6b.yml"][0m
+2026-11-14T17:57:04.2986442Z [36;1massert job["env"]["SOURCE_SHA"] == "6b3047b7979dfb86d837e74a21b0fd890e4f9e66"[0m
+2026-11-14T17:57:04.2986777Z [36;1massert job["env"]["ACCEPTANCE_RUN"] == "43616038272"[0m
+2026-11-14T17:57:04.2987048Z [36;1massert job["env"]["ACCEPTANCE_ATTEMPT"] == "1"[0m
+2026-11-14T17:57:04.2987304Z [36;1massert job["env"]["GIT_OPTIONAL_LOCKS"] == "0"[0m
+2026-11-14T17:57:04.2987582Z [36;1massert job["env"]["PYTHONDONTWRITEBYTECODE"] == "1"[0m
+2026-11-14T17:57:04.2988058Z [36;1massert not re.search(r"contents: write|gh api --method (?:POST|PATCH|PUT|DELETE)|gh release|git push|continue-on-error", workflow_text)[0m
+2026-11-14T17:57:04.2988487Z [36;1msteps = job["steps"][0m
+2026-11-14T17:57:04.2988774Z [36;1moriginal_steps = publisher["jobs"]["publish-verified-test-apk"]["steps"][:7][0m
+2026-11-14T17:57:04.2989092Z [36;1massert len(original_steps) == 7[0m
+2026-11-14T17:57:04.2989392Z [36;1mfor original in original_steps:[0m
+2026-11-14T17:57:04.2989694Z [36;1m    matching = [step for step in steps if step.get("name") == original.get("name")][0m
+2026-11-14T17:57:04.2990138Z [36;1m    assert matching == [original], "Existing readonly publisher step changed: " + original["name"][0m
+2026-11-14T17:57:04.2990610Z [36;1mnative = [step for step in steps if step.get("with", {}).get("repository") == "Ullmann27/lumo-godot"][0m
+2026-11-14T17:57:04.2990948Z [36;1massert len(native) == 1[0m
+2026-11-14T17:57:04.2991243Z [36;1massert native[0]["with"]["ref"] == "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"[0m
+2026-11-14T17:57:04.2991540Z [36;1mbash_blocks = python_blocks = 0[0m
+2026-11-14T17:57:04.2991770Z [36;1mfor number, step in enumerate(steps, 1):[0m
+2026-11-14T17:57:04.2992003Z [36;1m    if "run" not in step:[0m
+2026-11-14T17:57:04.2992197Z [36;1m        continue[0m
+2026-11-14T17:57:04.2992389Z [36;1m    script = step["run"][0m
+2026-11-14T17:57:04.2992658Z [36;1m    subprocess.run(["bash", "-n"], input=script, text=True, check=True)[0m
+2026-11-14T17:57:04.2992940Z [36;1m    bash_blocks += 1[0m
+2026-11-14T17:57:04.2993286Z [36;1m    for part, block in enumerate(re.findall(r"<<'PY'\n(.*?)\nPY(?:\n|$)", script, re.S), 1):[0m
+2026-11-14T17:57:04.2993684Z [36;1m        ast.parse(block, filename=f"workflow-step-{number}-python-{part}.py")[0m
+2026-11-14T17:57:04.2993975Z [36;1m        python_blocks += 1[0m
+2026-11-14T17:57:04.2994372Z [36;1mfor filename in ("original_replay.py", "test_original_replay.py", "original_png_transport.py", "test_original_png_transport.py"):[0m
+2026-11-14T17:57:04.2994853Z [36;1m    ast.parse((root / filename).read_text(), filename=filename)[0m
+2026-11-14T17:57:04.2995451Z [36;1mresult = {"status": "PASS_STATIC_SOURCE_AND_SYNTAX", "bash_blocks": bash_blocks,[0m
+2026-11-14T17:57:04.2995844Z [36;1m          "python_heredocs": python_blocks, "standalone_python_files": 4,[0m
+2026-11-14T17:57:04.2996206Z [36;1m          "original_publisher_steps_unchanged": 7, "write_permissions": False,[0m
+2026-11-14T17:57:04.2996527Z [36;1m          "original_acceptance_executed": False}[0m
+2026-11-14T17:57:04.2996863Z [36;1mwith Path("publication/reader-replay/syntax-result.json").open("x") as handle:[0m
+2026-11-14T17:57:04.2997249Z [36;1m    handle.write(json.dumps(result, indent=2, sort_keys=True) + "\n")[0m
+2026-11-14T17:57:04.2997612Z [36;1mprint("ORIGINAL_READER_SYNTAX " + json.dumps(result, sort_keys=True))[0m
+2026-11-14T17:57:04.2997879Z [36;1mPY[0m
+2026-11-14T17:57:04.2998252Z [36;1mpython3 -B publication/reader-replay/code/test_original_replay.py 2>&1 | tee publication/reader-replay/selftests.original.log[0m
+2026-11-14T17:57:04.2998898Z [36;1mpython3 -B publication/reader-replay/code/test_original_png_transport.py 2>&1 | tee publication/reader-replay/png-selftests.original.log[0m
+2026-11-14T17:57:04.3027541Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T17:57:04.3027803Z env:
+2026-11-14T17:57:04.3027962Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T17:57:04.3028158Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T17:57:04.3028348Z ##[endgroup]
+2026-11-14T17:57:04.3751726Z ORIGINAL_READER_SYNTAX {"bash_blocks": 11, "original_acceptance_executed": false, "original_publisher_steps_unchanged": 7, "python_heredocs": 6, "standalone_python_files": 4, "status": "PASS_STATIC_SOURCE_AND_SYNTAX", "write_permissions": false}
+2026-11-14T17:57:04.4935866Z test_absolute_path_is_rejected (__main__.ArchiveTests.test_absolute_path_is_rejected) ... ok
+2026-11-14T17:57:04.4939564Z test_backslash_path_is_rejected (__main__.ArchiveTests.test_backslash_path_is_rejected) ... ok
+2026-11-14T17:57:04.4942154Z test_boolean_cannot_replace_api_byte_count (__main__.ArchiveTests.test_boolean_cannot_replace_api_byte_count) ... ok
+2026-11-14T17:57:04.4947709Z test_corrupt_member_crc_rejected_even_with_matching_archive_api_hash (__main__.ArchiveTests.test_corrupt_member_crc_rejected_even_with_matching_archive_api_hash) ... ok
+2026-11-14T17:57:04.4950031Z test_directory_payload_is_rejected (__main__.ArchiveTests.test_directory_payload_is_rejected) ... ok
+2026-11-14T17:57:04.4952119Z test_drive_path_is_rejected (__main__.ArchiveTests.test_drive_path_is_rejected) ... ok
+2026-11-14T17:57:04.4955681Z test_duplicate_paths_are_rejected (__main__.ArchiveTests.test_duplicate_paths_are_rejected) ... ok
+2026-11-14T17:57:04.4959252Z test_existing_extraction_is_not_overwritten (__main__.ArchiveTests.test_existing_extraction_is_not_overwritten) ... ok
+2026-11-14T17:57:04.4962855Z test_file_directory_parent_collision_is_rejected (__main__.ArchiveTests.test_file_directory_parent_collision_is_rejected) ... ok
+2026-11-14T17:57:04.4975085Z test_inventory_detects_changed_added_and_removed_originals (__main__.ArchiveTests.test_inventory_detects_changed_added_and_removed_originals) ... ok
+2026-11-14T17:57:04.4981755Z test_noncanonical_dot_and_separator_paths_are_rejected (__main__.ArchiveTests.test_noncanonical_dot_and_separator_paths_are_rejected) ... ok
+2026-11-14T17:57:04.4984496Z test_symlink_member_is_rejected (__main__.ArchiveTests.test_symlink_member_is_rejected) ... ok
+2026-11-14T17:57:04.4987607Z test_traversal_path_is_rejected (__main__.ArchiveTests.test_traversal_path_is_rejected) ... ok
+2026-11-14T17:57:04.4997434Z test_valid_original_bytes_and_all_members_are_preserved (__main__.ArchiveTests.test_valid_original_bytes_and_all_members_are_preserved) ... ok
+2026-11-14T17:57:04.5000047Z test_wrong_api_digest_is_rejected_before_extracting (__main__.ArchiveTests.test_wrong_api_digest_is_rejected_before_extracting) ... ok
+2026-11-14T17:57:04.5002152Z test_wrong_api_size_is_rejected_before_extracting (__main__.ArchiveTests.test_wrong_api_size_is_rejected_before_extracting) ... ok
+2026-11-14T17:57:04.5006450Z test_duplicate_keys_are_rejected (__main__.JsonTests.test_duplicate_keys_are_rejected) ... ok
+2026-11-14T17:57:04.5007066Z test_nonfinite_number_is_rejected (__main__.JsonTests.test_nonfinite_number_is_rejected) ... ok
+2026-11-14T17:57:04.5119625Z test_changed_executable_mode_is_rejected (__main__.SourceTests.test_changed_executable_mode_is_rejected) ... diff --git a/proof.txt b/proof.txt
+2026-11-14T17:57:04.5120109Z old mode 100644
+2026-11-14T17:57:04.5120266Z new mode 100755
+2026-11-14T17:57:04.5127211Z ok
+2026-11-14T17:57:04.5227409Z test_changed_source_bytes_are_rejected (__main__.SourceTests.test_changed_source_bytes_are_rejected) ... diff --git a/proof.txt b/proof.txt
+2026-11-14T17:57:04.5227886Z index 402aa01..f17f3fe 100644
+2026-11-14T17:57:04.5228077Z --- a/proof.txt
+2026-11-14T17:57:04.5228261Z +++ b/proof.txt
+2026-11-14T17:57:04.5228402Z @@ -1 +1 @@
+2026-11-14T17:57:04.5228548Z -committed original
+2026-11-14T17:57:04.5228705Z +changed source
+2026-11-14T17:57:04.5235242Z ok
+2026-11-14T17:57:04.5398408Z test_clean_materialized_source_and_index_are_unchanged (__main__.SourceTests.test_clean_materialized_source_and_index_are_unchanged) ... ok
+2026-11-14T17:57:04.5491207Z test_foreign_head_is_rejected (__main__.SourceTests.test_foreign_head_is_rejected) ... ok
+2026-11-14T17:57:04.5582128Z test_foreign_tree_is_rejected (__main__.SourceTests.test_foreign_tree_is_rejected) ... ok
+2026-11-14T17:57:04.5689846Z test_staged_changed_source_is_rejected (__main__.SourceTests.test_staged_changed_source_is_rejected) ... diff --git a/proof.txt b/proof.txt
+2026-11-14T17:57:04.5690352Z index 402aa01..07d44e5 100644
+2026-11-14T17:57:04.5690537Z --- a/proof.txt
+2026-11-14T17:57:04.5690692Z +++ b/proof.txt
+2026-11-14T17:57:04.5690844Z @@ -1 +1 @@
+2026-11-14T17:57:04.5690987Z -committed original
+2026-11-14T17:57:04.5691144Z +staged change
+2026-11-14T17:57:04.5706009Z ok
+2026-11-14T17:57:04.5706161Z 
+2026-11-14T17:57:04.5706335Z ----------------------------------------------------------------------
+2026-11-14T17:57:04.5706664Z Ran 24 tests in 0.077s
+2026-11-14T17:57:04.5706786Z 
+2026-11-14T17:57:04.5706888Z OK
+2026-11-14T17:57:04.6476399Z test_authenticated_report_cannot_select_an_outside_file (__main__.OriginalPngTransportTests.test_authenticated_report_cannot_select_an_outside_file) ... ok
+2026-11-14T17:57:04.6497094Z test_modified_original_png_is_rejected_before_any_image_is_emitted (__main__.OriginalPngTransportTests.test_modified_original_png_is_rejected_before_any_image_is_emitted) ... ok
+2026-11-14T17:57:04.6558827Z test_selects_accepted_dynamic_ids_and_real_last_drive_frames_without_changes (__main__.OriginalPngTransportTests.test_selects_accepted_dynamic_ids_and_real_last_drive_frames_without_changes) ... ok
+2026-11-14T17:57:04.6559339Z 
+2026-11-14T17:57:04.6559459Z ----------------------------------------------------------------------
+2026-11-14T17:57:04.6559717Z Ran 3 tests in 0.017s
+2026-11-14T17:57:04.6559820Z 
+2026-11-14T17:57:04.6559886Z OK
+2026-11-14T17:57:04.6837191Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T17:57:04.6837417Z with:
+2026-11-14T17:57:04.6837610Z   name: lumo-original-reader-selftest-43623818731-1
+2026-11-14T17:57:04.6837875Z   path: publication/reader-replay/
+2026-11-14T17:57:04.6838082Z   include-hidden-files: true
+2026-11-14T17:57:04.6838277Z   if-no-files-found: error
+2026-11-14T17:57:04.6838474Z   retention-days: 90
+2026-11-14T17:57:04.6838643Z   compression-level: 6
+2026-11-14T17:57:04.6838809Z   overwrite: false
+2026-11-14T17:57:04.6838956Z env:
+2026-11-14T17:57:04.6839101Z   GIT_OPTIONAL_LOCKS: 0
+2026-11-14T17:57:04.6839281Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T17:57:04.6839462Z ##[endgroup]
+2026-11-14T17:57:04.8066986Z (node:2397) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T17:57:04.8067722Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T17:57:04.8114263Z With the provided path, there will be 9 files uploaded
+2026-11-14T17:57:04.8117591Z Artifact name is valid!
+2026-11-14T17:57:04.8117953Z Root directory input is valid!
+2026-11-14T17:57:05.1266384Z Beginning upload of artifact content to blob storage
+2026-11-14T17:57:05.1917854Z (node:2397) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T17:57:05.2261872Z Uploaded bytes 30901
+2026-11-14T17:57:05.2416915Z Finished uploading artifact content to blob storage!
+2026-11-14T17:57:05.2417402Z SHA256 digest of uploaded artifact zip is c527c3f014e3ab785e853263389b5af50e478ed23f1e700e1d29584c67e1339b
+2026-11-14T17:57:05.2418641Z Finalizing artifact upload
+2026-11-14T17:57:05.5492986Z Artifact lumo-original-reader-selftest-43623818731-1.zip successfully finalized. Artifact ID 14124889304
+2026-11-14T17:57:05.5493816Z Artifact lumo-original-reader-selftest-43623818731-1 has been successfully uploaded! Final size is 30901 bytes. Artifact ID is 14124889304
+2026-11-14T17:57:05.5497839Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43623818731/artifacts/14124889304
+2026-11-14T17:57:05.5881774Z Post job cleanup.
+2026-11-14T17:57:05.6480992Z [command]/usr/bin/git version
+2026-11-14T17:57:05.6506938Z git version 2.56.1
+2026-11-14T17:57:05.6530621Z Temporarily overriding HOME='/home/runner/work/_temp/ee28c6d5-738d-43a0-99af-712ae85f5c8a' before making global git config changes
+2026-11-14T17:57:05.6531418Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T17:57:05.6535982Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T17:57:05.6561386Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T17:57:05.6583579Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T17:57:05.6740140Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T17:57:05.6760807Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T17:57:05.6910393Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T17:57:05.6931500Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T17:57:05.7173806Z Cleaning up orphan processes
+2026-11-14T17:57:05.7396505Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
