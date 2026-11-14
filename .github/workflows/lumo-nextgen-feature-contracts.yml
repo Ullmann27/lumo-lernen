@@ -26,8 +26,9 @@ jobs:
       - name: Capture exact source and install the existing capture font
         run: |
           set -euo pipefail
-          mkdir -p feature-evidence
+          mkdir -p feature-evidence .ci-results
           git rev-parse HEAD > feature-evidence/HOST-SOURCE.txt
+          git rev-parse HEAD > .ci-results/source-sha.txt
           flutter --version > feature-evidence/flutter-version.txt
           sudo apt-get -o Acquire::Retries=2 update -qq
           sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
@@ -41,8 +42,20 @@ jobs:
       - name: Run actual Dart learning and table authorities
         run: |
           set -euo pipefail
-          dart run tool/check_native_english_activity.dart 2>&1 | tee feature-evidence/english-authority.log
+          dart run tool/check_native_english_activity.dart --out feature-evidence/english-activity.json 2>&1 | tee feature-evidence/english-authority.log
           dart run tools/android_qa/quiz_round_contract.dart 2>&1 | tee feature-evidence/quiz-authority.log
+      - name: Recheck the observed Quiz UI and reward failures
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/table_games_wallet_profile_test.dart \
+            test/quiz_native_roundtrip_lifecycle_test.dart \
+            test/quiz_play_extensions_test.dart \
+            test/quiz_category_lock_lifetime_test.dart \
+            test/quiz_show_live_ladder_lockin_test.dart \
+            test/quiz_premium_stage_layout_test.dart \
+            test/quiz_premium_stage_visual_capture_test.dart \
+            2>&1 | tee feature-evidence/quiz-observed-regressions.log
       - name: Run the complete Flutter suite and every enabled capture
         run: python3 scripts/run_full_flutter_acceptance.py --output feature-evidence/full-flutter
       - name: Verify tracked source remains exact
@@ -51,7 +64,9 @@ jobs:
         if: always()
         with:
           name: lumo-nextgen-feature-flutter-evidence
-          path: feature-evidence/
+          path: |
+            feature-evidence/
+            .ci-results/quiz-premium-stage/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30

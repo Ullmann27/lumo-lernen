@@ -52,7 +52,8 @@ class _QuizShowContentState extends State<QuizShowContent>
   bool _locking = false,
       _loading = true,
       _saving = false,
-      _nativeOpening = false;
+      _nativeOpening = false,
+      _nativePreparing = false;
   String? _preferSubject, _loadError, _error;
 
   bool _currentOwner() =>
@@ -320,10 +321,9 @@ class _QuizShowContentState extends State<QuizShowContent>
     }
   }
 
-  Future<void> _openNative() async {
-    if (!_available || _locking) return;
-    _cancelLockIn();
-    setState(() => _nativeOpening = true);
+  Future<void> _openNative({bool reportFailure = false}) async {
+    if (!_available || _locking || _nativePreparing) return;
+    setState(() => _nativePreparing = true);
     final session = QuizTableSession(
       controller: _controller!,
       transport: const NativeMethodTableTransport(),
@@ -334,34 +334,53 @@ class _QuizShowContentState extends State<QuizShowContent>
     );
     _nativeSession = session;
     try {
-      await _music.stop();
+      // The saved Flutter round stays usable until native authority confirms
+      // availability. A missing native plugin must not cover its touch targets.
       await session.open();
-      if (_currentOwner())
+      if (!_currentOwner()) return;
+      _cancelLockIn();
+      setState(() => _nativeOpening = true);
+      await _music.stop();
+      if (_currentOwner()) {
         await launchLumo3D(
           context,
           scene: 'quiz',
           appState: widget.appState,
           tableToken: session.token,
         );
+      }
     } catch (_) {
-      // The existing Flutter presentation uses the same saved Dart controller.
-      if (_currentOwner())
-        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
-          const SnackBar(
-            content: Text(
+      if (reportFailure && _currentOwner()) {
+        await showDialog<void>(
+          context: context,
+          builder: (dialogContext) => AlertDialog(
+            title: const Text('Hier weiterspielen'),
+            content: const Text(
               'Das 3D-Studio ist gerade nicht verfügbar. '
-              'Du kannst deine gespeicherte Runde hier fortsetzen.',
+              'Deine gespeicherte Quizrunde kannst du hier fortsetzen.',
             ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                style: TextButton.styleFrom(
+                  minimumSize: const Size(48, 48),
+                ),
+                child: const Text('Weiterspielen'),
+              ),
+            ],
           ),
         );
+      }
     } finally {
       await session.close();
       _nativeSession = null;
-      if (mounted)
+      if (mounted) {
         setState(() {
           _nativeOpening = false;
+          _nativePreparing = false;
           _syncSubject();
         });
+      }
       if (_currentOwner() && !_state.gameOver) unawaited(_music.resume());
     }
   }
@@ -443,8 +462,8 @@ class _QuizShowContentState extends State<QuizShowContent>
           if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)
             IconButton(
               tooltip: '3D-Quizstudio öffnen',
-              onPressed: _available && !_locking
-                  ? () => unawaited(_openNative())
+              onPressed: _available && !_locking && !_nativePreparing
+                  ? () => unawaited(_openNative(reportFailure: true))
                   : null,
               constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
               icon: const Icon(Icons.view_in_ar),

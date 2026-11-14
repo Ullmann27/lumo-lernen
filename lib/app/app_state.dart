@@ -57,18 +57,22 @@ class _PendingRewardWrite {
     this.xp = 0,
     this.cardsWon,
     this.resultId,
+    this.quizMilestone = false,
   });
   final int stars;
   final int xp;
   final bool? cardsWon;
   final String? resultId;
+  final bool quizMilestone;
 
   Future<RewardWallet> persist(RewardWalletRepository wallet) =>
       cardsWon != null
           ? wallet.awardLumoCardsResult(won: cardsWon!, resultId: resultId)
-          : resultId == null
-              ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
-              : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp);
+          : quizMilestone
+              ? wallet.awardQuizResult(resultId: resultId!, stars: stars)
+              : resultId == null
+                  ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
+                  : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp);
 }
 
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
@@ -1354,7 +1358,8 @@ class LumoAppState extends ChangeNotifier {
     await flushRewards();
     guard();
     _rewardWrites.add(_PendingRewardWrite(
-        stars: stars, xp: xp, resultId: resultId));
+        stars: stars, xp: xp, resultId: resultId,
+        quizMilestone: game == 'quiz'));
     await _beginRewardDrain();
     guard();
   }

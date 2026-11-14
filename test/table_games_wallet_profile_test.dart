@@ -102,6 +102,57 @@ void main() {
     if (release != null && !release.isCompleted) release.complete();
   });
 
+  test('Generic game result cannot bypass its original cap through a Quiz ID', () async {
+    final account = await _account();
+    final id = _resultId('quiz', account.lease, 80);
+    await expectLater(
+      account.wallet.awardGameResult(resultId: id, stars: 5000, xp: 0),
+      throwsArgumentError,
+    );
+    expect((await store.durableWallet()).toJson(), _initialWallet.toJson());
+  });
+
+  test('Quiz wallet rejects non-milestones and foreign game identities', () async {
+    final account = await _account();
+    final before = (await store.getAll())['flutter.lumo_reward_wallet_v1'];
+    for (final amount in [0, 49, 100, 201, 5001]) {
+      await expectLater(
+        account.wallet.awardQuizResult(
+          resultId: _resultId('quiz', account.lease, 81), stars: amount),
+        throwsArgumentError,
+      );
+    }
+    for (final id in ['', 'quiz:invalid', _resultId('memory', account.lease, 82)]) {
+      await expectLater(
+        account.wallet.awardQuizResult(resultId: id, stars: 5000),
+        throwsArgumentError,
+      );
+    }
+    expect((await store.getAll())['flutter.lumo_reward_wallet_v1'], before);
+  });
+
+  test('Failed 5000-star write retries once with its same durable result ID', () async {
+    final account = await _account();
+    final id = _resultId('quiz', account.lease, 83);
+    store.failNextWalletWrite = true;
+    await expectLater(
+      account.app.recordQuizShowResult(lease: account.lease, resultId: id, stars: 5000),
+      throwsStateError,
+    );
+    expect(account.app.hasPendingRewards, isTrue);
+    expect((await store.durableWallet()).toJson(), _initialWallet.toJson());
+    await account.app.retryRewards();
+    await account.app.recordQuizShowResult(lease: account.lease, resultId: id, stars: 5000);
+    final saved = await store.durableWallet();
+    expect(saved.stars, 5007);
+    expect(saved.totalEarnedStars, 5019);
+    expect(saved.xp, 40);
+    expect(saved.streak, 3);
+    expect(saved.lumoCardsWinStreak, 2);
+    expect(saved.gameResultIds, [id]);
+    expect(account.app.hasPendingRewards, isFalse);
+  });
+
   // These amounts are independent snapshots of the existing Memory contract.
   const amounts = <String, (int pairs, int won, int draw, int lost)>{
     'leicht': (4, 2, 1, 1),
