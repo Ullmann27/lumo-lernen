@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "notices": [
+    {
+      "source": "host",
+      "path": "assets/fonts/OFL.txt",
+      "bytes": 4385,
+      "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+      "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293"
+    },
+    {
+      "source": "native",
+      "path": "assets/fonts/Nunito-LICENSE.txt",
+      "bytes": 4385,
+      "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+      "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293"
+    },
+    {
+      "source": "native",
+      "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+      "bytes": 1640,
+      "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+      "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7"
+    },
+    {
+      "source": "native",
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "bytes": 2626,
+      "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+      "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216"
+    },
+    {
+      "source": "native",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1582,
+      "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+      "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c"
+    }
+  ]
+}
