@@ -22,7 +22,7 @@ class EmbeddedAndroidTest(unittest.TestCase):
             gradle.write_text('android { namespace = "dev.ullmann.lumo.lumo_lernen"\n defaultConfig { applicationId = "dev.ullmann.lumo.lumo_lernen.coachpreview" } }')
             templates = root / 'tools/auto_install'
             templates.mkdir(parents=True)
-            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'CardsAuthorityRegistry.java', 'ConnectFourBridge.kt', 'ConnectFourAuthorityService.kt', 'ConnectFourGameActivity.kt'):
+            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'CardsAuthorityRegistry.java', 'ConnectFourBridge.kt', 'ConnectFourAuthorityService.kt', 'ConnectFourGameActivity.kt', 'TableGamesBridge.kt', 'TableAuthorityService.kt', 'TableGameActivity.kt', 'TableGameIntent.java'):
                 (templates / filename).write_text((ROOT / 'tools/auto_install' / filename).read_text())
             # Upgrade a host already prepared by the old script. Existing app
             # rules and its reflected plugin rule must survive the JNI fix.
@@ -45,13 +45,13 @@ class EmbeddedAndroidTest(unittest.TestCase):
             doc = ET.parse(manifest).getroot()
             attr = lambda name: '{http://schemas.android.com/apk/res/android}' + name
             activities = doc.findall('application/activity')
-            self.assertEqual(len(activities), 3)
+            self.assertEqual(len(activities), 4)
             engine = activities[1]
             self.assertEqual(engine.get(attr('exported')), 'false')
             self.assertEqual(engine.get(attr('process')), ':lumo_game')
             self.assertEqual(engine.get(attr('resizeableActivity')), 'true')
             services = doc.findall('application/service')
-            self.assertEqual(len(services), 2)
+            self.assertEqual(len(services), 3)
             self.assertEqual(services[0].get(attr('name')), 'dev.ullmann.lumo.lumo_lernen.CardsAuthorityService')
             self.assertEqual(services[0].get(attr('exported')), 'false')
             self.assertIsNone(services[0].get(attr('process')), 'Authority must share the Dart main process')
@@ -64,6 +64,24 @@ class EmbeddedAndroidTest(unittest.TestCase):
             self.assertEqual(services[1].get(attr('exported')), 'false')
             self.assertIsNone(services[1].get(attr('process')))
             self.assertIn('-keep class dev.ullmann.lumo.lumo_lernen.ConnectFourHostPlugin { *; }', rules.read_text())
+            table = activities[3]
+            self.assertEqual(table.get(attr('name')), 'dev.ullmann.lumo.lumo_lernen.TableGameActivity')
+            self.assertEqual(table.get(attr('exported')), 'false')
+            self.assertEqual(table.get(attr('process')), ':lumo_game')
+            self.assertEqual(table.get(attr('screenOrientation')), 'sensor')
+            self.assertEqual(table.get(attr('resizeableActivity')), 'true')
+            self.assertEqual(table.get(attr('configChanges')), engine.get(attr('configChanges')))
+            self.assertEqual(services[2].get(attr('name')), 'dev.ullmann.lumo.lumo_lernen.TableAuthorityService')
+            self.assertEqual(services[2].get(attr('exported')), 'false')
+            self.assertIsNone(services[2].get(attr('process')), 'Table authority must share the Dart main process')
+            self.assertEqual(rules.read_text().count('-keep class dev.ullmann.lumo.lumo_lernen.TableGamesHostPlugin { *; }'), 1)
+            for name in ('TableGamesBridge.kt', 'TableAuthorityService.kt', 'TableGameActivity.kt'):
+                generated = main / 'kotlin/dev/ullmann/lumo/lumo_lernen' / name
+                self.assertTrue(generated.is_file())
+                self.assertTrue(generated.read_text().startswith('package dev.ullmann.lumo.lumo_lernen\n'))
+            table_intent = main / 'java/dev/ullmann/lumo/lumo_lernen/TableGameIntent.java'
+            self.assertTrue(table_intent.is_file())
+            self.assertTrue(table_intent.read_text().startswith('package dev.ullmann.lumo.lumo_lernen;\n'))
             self.assertFalse(doc.findall('uses-permission'), 'No new background/wake/network permissions')
             service_file = main / 'kotlin/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.kt'
             self.assertTrue(service_file.is_file())

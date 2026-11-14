@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -6,6 +10,11 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_sound.dart';
 import 'quiz_show_music.dart';
+import 'quiz_show_round.dart';
+import 'quiz_show_repository.dart';
+import 'quiz_table_session.dart';
+import '../lumo3d/lumo3d_launcher.dart';
+import '../lumo3d/native_method_table_transport.dart';
 import 'quiz_studio_scene.dart';
 import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
@@ -30,40 +39,146 @@ class QuizShowContent extends StatefulWidget {
   State<QuizShowContent> createState() => _QuizShowContentState();
 }
 
-class _QuizShowContentState extends State<QuizShowContent> {
-  static const _engine = QuizShowEngine();
+class _QuizShowContentState extends State<QuizShowContent>
+    with WidgetsBindingObserver {
   static const _bank = QuizQuestionBank();
-  late QuizShowState _state;
+  QuizRoundController? _controller;
+  LearningProfileLease? _owner;
+  QuizTableSession? _nativeSession;
+  QuizShowState get _state => _controller!.state;
   late QuizShowMusic _music;
   Timer? _lockTimer;
   int _roundGeneration = 0;
-  bool _locking = false;
-  String? _preferSubject;
+  bool _locking = false,
+      _loading = true,
+      _saving = false,
+      _nativeOpening = false;
+  String? _preferSubject, _loadError, _error;
+
+  bool _currentOwner() =>
+      mounted &&
+      _owner != null &&
+      !widget.appState.resetting &&
+      widget.appState.canUseLearningLease(_owner!) &&
+      widget.appState.profileGeneration == _owner!.generation &&
+      widget.appState.school.cachedActiveStudentId ==
+          (_owner!.logStudentId == 'self' ? null : _owner!.studentId);
+  bool get _available =>
+      _controller != null &&
+      _currentOwner() &&
+      !_loading &&
+      !_saving &&
+      !_nativeOpening &&
+      _error == null;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _music = QuizShowMusic(
+      enabled: widget.appState.state.settings.soundEnabled,
+    );
     if (widget.appState.state.settings.soundEnabled) {
       unawaited(LumoSound.instance.init());
     }
-    _music =
-        QuizShowMusic(enabled: widget.appState.state.settings.soundEnabled);
-    _startNewGame();
-    unawaited(_music.start());
+    unawaited(_initializeRound());
+  }
+
+  Future<void> _initializeRound() async {
+    if (mounted)
+      setState(() {
+        _loading = true;
+        _loadError = null;
+      });
+    try {
+      final owner = await widget.appState.captureLearningProfile();
+      if (!mounted) return;
+      _owner = owner;
+      if (!_currentOwner()) throw StateError('Kinderprofil hat gewechselt');
+      final grade = widget.appState.state.grade;
+      final controller = await QuizRoundController.open(
+        owner: sha256.convert(utf8.encode(owner.studentId)).toString(),
+        grade: grade,
+        store: QuizRoundRepository(),
+        canUseProfile: _currentOwner,
+        seed: widget.previewQuestionSeed,
+        makeQuestions: (subject, seed) => _bank.generateGameQuestions(
+          grade: grade,
+          random: math.Random(seed),
+          preferSubject: subject == 'alle' ? null : subject,
+        ),
+        award: (id, stars) => widget.appState.recordQuizShowResult(
+          lease: owner,
+          resultId: id,
+          stars: stars,
+        ),
+      );
+      if (!_currentOwner()) {
+        controller.dispose();
+        return;
+      }
+      _controller = controller;
+      controller.addListener(_roundChanged);
+      setState(() {
+        _loading = false;
+        _loadError = null;
+        _syncSubject();
+      });
+      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+        await _openNative();
+      } else if (!_state.gameOver) {
+        unawaited(_music.start());
+      }
+    } catch (_) {
+      if (mounted)
+        setState(() {
+          _loading = false;
+          _loadError =
+              'Deine Quizrunde konnte nicht sicher geladen werden. '
+              'Die vorhandenen Daten bleiben erhalten.';
+        });
+    }
+  }
+
+  void _syncSubject() {
+    final subject = _controller?.round.subject;
+    _preferSubject = subject == 'alle' ? null : subject;
+  }
+
+  void _roundChanged() {
+    if (_currentOwner()) setState(_syncSubject);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      _cancelLockIn();
+      unawaited(_music.pauseForLockIn());
+      if (mounted) setState(() {});
+    } else if (!_nativeOpening &&
+        _controller != null &&
+        _currentOwner() &&
+        !_state.gameOver &&
+        _error == null) {
+      unawaited(_music.resume());
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _cancelLockIn();
+    unawaited(_nativeSession?.close());
+    _controller?.removeListener(_roundChanged);
+    _controller?.dispose();
     unawaited(_music.dispose());
     super.dispose();
   }
 
   void _playEffect(SoundEffect effect) {
-    // Child's audio-off setting also controls quiz SFX. Never start the
-    // audioplayers plugin when sound is disabled (including test captures).
-    if (!widget.appState.state.settings.soundEnabled) return;
-    unawaited(LumoSound.instance.play(effect));
+    if (widget.appState.state.settings.soundEnabled) {
+      unawaited(LumoSound.instance.play(effect));
+    }
   }
 
   void _cancelLockIn() {
@@ -73,68 +188,87 @@ class _QuizShowContentState extends State<QuizShowContent> {
     _roundGeneration++;
   }
 
-  void _startNewGame() {
-    // Category changes and restarts both replace the entire question set.
-    // Its previous answer animation must not lock or resolve this new round.
-    _cancelLockIn();
-    final questions = _bank.generateGameQuestions(
-      grade: widget.appState.state.grade,
-      random: math.Random(
-          widget.previewQuestionSeed ?? DateTime.now().millisecondsSinceEpoch),
-      preferSubject: _preferSubject,
-    );
-    _state = _engine.start(questions: questions);
+  Future<bool> _action(
+    Future<bool> Function(QuizRoundController) action,
+  ) async {
+    if (!_available) return false;
+    setState(() => _saving = true);
+    try {
+      final changed = await action(_controller!);
+      if (!_currentOwner()) return false;
+      return changed;
+    } catch (_) {
+      if (mounted)
+        setState(() {
+          _error =
+              'Speichern noch nicht bestätigt. Deine Runde bleibt erhalten.';
+        });
+      return false;
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
+  }
+
+  Future<void> _retrySave() async {
+    if (_controller == null || !_currentOwner() || _saving || _nativeOpening)
+      return;
+    setState(() => _saving = true);
+    try {
+      await _controller!.settleReward();
+      if (_currentOwner()) setState(() => _error = null);
+    } catch (_) {
+      if (mounted)
+        setState(() {
+          _error = 'Speichern noch nicht bestätigt. Bitte erneut versuchen.';
+        });
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 
   void _select(int index) {
     if (_locking) return;
-    final next = _engine.selectAnswer(_state, index);
-    if (next.selectedOption != _state.selectedOption) {
-      _playEffect(SoundEffect.click);
-    }
-    setState(() => _state = next);
+    unawaited(
+      _action((c) => c.select(index)).then((changed) {
+        if (changed && _currentOwner()) _playEffect(SoundEffect.click);
+      }),
+    );
   }
 
   void _reveal() {
-    if (_locking ||
+    if (!_available ||
+        _locking ||
         _state.revealed ||
         _state.gameOver ||
-        _state.selectedOption == null) {
+        _state.selectedOption == null)
       return;
-    }
     setState(() => _locking = true);
     _playEffect(SoundEffect.click);
     unawaited(_music.pauseForLockIn());
     _lockTimer?.cancel();
     final generation = _roundGeneration;
-    final reduced = MediaQuery.disableAnimationsOf(context);
+    final reduced =
+        MediaQuery.disableAnimationsOf(context) ||
+        widget.appState.state.settings.reduceAnimations ||
+        widget.appState.state.settings.calmMode;
     _lockTimer = Timer(Duration(milliseconds: reduced ? 750 : 1600), () {
-      if (!mounted || !_locking || generation != _roundGeneration) return;
+      if (!mounted ||
+          !_locking ||
+          generation != _roundGeneration ||
+          !_currentOwner())
+        return;
       _lockTimer = null;
       setState(() => _locking = false);
-      _resolveAnswer();
+      unawaited(_resolveAnswer());
     });
   }
 
-  void _resolveAnswer() {
+  Future<void> _resolveAnswer() async {
+    if (!_available) return;
     final before = _state;
-    final selected = before.selectedOption;
-    if (selected == null || before.revealed || before.gameOver) return;
-    final correct = selected == before.currentQuestion.correctIndex;
-
-    setState(() {
-      final wasGameOver = _state.gameOver;
-      final next = _engine.reveal(_state);
-      _state = next;
-
-      // Die Engine liefert die Auszahlung nur beim ersten Spielende.
-      // Dadurch werden Sterne weder bei Meilensteinen doppelt gebucht noch
-      // beim erneuten Rendern des Ergebnisbildschirms nochmals vergeben.
-      if (!wasGameOver && next.gameOver && next.awardedStars > 0) {
-        widget.appState.addStars(next.awardedStars);
-      }
-    });
-
+    final correct =
+        before.selectedOption == before.currentQuestion.correctIndex;
+    if (!await _action((c) => c.reveal()) || !_currentOwner()) return;
     if (!correct) {
       _playEffect(SoundEffect.error);
     } else if (_state.won || _state.securedStars > before.securedStars) {
@@ -145,28 +279,133 @@ class _QuizShowContentState extends State<QuizShowContent> {
 
   void _next() {
     if (_locking) return;
-    unawaited(_music.resume());
-    _playEffect(SoundEffect.click);
-    setState(() => _state = _engine.nextQuestion(_state));
+    unawaited(
+      _action((c) => c.next()).then((changed) {
+        if (changed && _currentOwner()) {
+          _playEffect(SoundEffect.click);
+          unawaited(_music.resume());
+        }
+      }),
+    );
   }
 
   void _joker(QuizJoker joker) {
     if (_locking) return;
-    final next = _engine.useJoker(_state, joker);
-    if (next.usedJokers.length > _state.usedJokers.length) {
-      _playEffect(SoundEffect.click);
-    }
-    setState(() => _state = next);
+    unawaited(
+      _action((c) => c.joker(joker)).then((changed) {
+        if (changed && _currentOwner()) _playEffect(SoundEffect.click);
+      }),
+    );
   }
 
   void _restart() {
-    _playEffect(SoundEffect.click);
-    setState(_startNewGame);
-    unawaited(_music.start());
+    unawaited(_restartRound());
+  }
+
+  void _changeSubject(String? subject) {
+    if (_preferSubject != subject)
+      unawaited(_restartRound(subject: subject ?? 'alle'));
+  }
+
+  Future<void> _restartRound({String? subject}) async {
+    if (!_available) return;
+    _cancelLockIn();
+    final changed = await _action((c) async {
+      await c.restart(subject: subject, seed: widget.previewQuestionSeed);
+      return true;
+    });
+    if (changed && _currentOwner()) {
+      _playEffect(SoundEffect.click);
+      unawaited(_music.start());
+    }
+  }
+
+  Future<void> _openNative() async {
+    if (!_available || _locking) return;
+    _cancelLockIn();
+    setState(() => _nativeOpening = true);
+    final session = QuizTableSession(
+      controller: _controller!,
+      transport: const NativeMethodTableTransport(),
+      reduceMotion:
+          widget.appState.state.settings.reduceAnimations ||
+          widget.appState.state.settings.calmMode ||
+          MediaQuery.disableAnimationsOf(context),
+    );
+    _nativeSession = session;
+    try {
+      await _music.stop();
+      await session.open();
+      if (_currentOwner())
+        await launchLumo3D(
+          context,
+          scene: 'quiz',
+          appState: widget.appState,
+          tableToken: session.token,
+        );
+    } catch (_) {
+      // The existing Flutter presentation uses the same saved Dart controller.
+      if (_currentOwner())
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Das 3D-Studio ist gerade nicht verfügbar. '
+              'Du kannst deine gespeicherte Runde hier fortsetzen.',
+            ),
+          ),
+        );
+    } finally {
+      await session.close();
+      _nativeSession = null;
+      if (mounted)
+        setState(() {
+          _nativeOpening = false;
+          _syncSubject();
+        });
+      if (_currentOwner() && !_state.gameOver) unawaited(_music.resume());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_loading ||
+        _loadError != null ||
+        _controller == null ||
+        (_owner != null && !_currentOwner())) {
+      return Scaffold(
+        backgroundColor: LumoVisualTokens.night,
+        appBar: AppBar(title: const Text('Wer wird Lumo-Meister?')),
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (_loading) const CircularProgressIndicator(),
+                  const SizedBox(height: 16),
+                  Text(
+                    _loading
+                        ? 'Deine Quizrunde wird geladen …'
+                        : (_loadError ??
+                              'Das Kinderprofil hat gewechselt. Bitte zur Spielewelt zurückkehren.'),
+                    textAlign: TextAlign.center,
+                  ),
+                  if (!_loading && _controller == null)
+                    TextButton(
+                      onPressed: () => unawaited(_initializeRound()),
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(48, 48),
+                      ),
+                      child: const Text('Erneut versuchen'),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
     final q = _state.currentQuestion;
     return Scaffold(
       backgroundColor: LumoVisualTokens.night,
@@ -181,9 +420,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.w900,
               color: Colors.white,
-              shadows: [
-                Shadow(color: Color(0xAA19B7FF), blurRadius: 12),
-              ],
+              shadows: [Shadow(color: Color(0xAA19B7FF), blurRadius: 12)],
             ),
           ),
         ),
@@ -202,7 +439,17 @@ class _QuizShowContentState extends State<QuizShowContent> {
             ),
           ),
         ),
-        actions: const [
+        actions: [
+          if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)
+            IconButton(
+              tooltip: '3D-Quizstudio öffnen',
+              onPressed: _available && !_locking
+                  ? () => unawaited(_openNative())
+                  : null,
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+              icon: const Icon(Icons.view_in_ar),
+            ),
+
           Padding(
             padding: EdgeInsets.only(right: 13),
             child: Icon(Icons.star_rounded, color: Color(0xFFFFDA77), size: 27),
@@ -229,12 +476,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
                       child: GestureDetector(
                         key: ValueKey('quiz-category-${entry.$3}'),
                         onTap: () {
-                          if (_preferSubject == entry.$1) return;
-                          setState(() {
-                            _preferSubject = entry.$1;
-                            _startNewGame();
-                          });
-                          unawaited(_music.start());
+                          _changeSubject(entry.$1);
                         },
                         child: Container(
                           constraints: const BoxConstraints(minHeight: 48),
@@ -250,14 +492,17 @@ class _QuizShowContentState extends State<QuizShowContent> {
                                   : const Color(0x66E8C45A),
                             ),
                           ),
-                          child: Text(entry.$2,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white)),
+                          child: Text(
+                            entry.$2,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 13,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -268,35 +513,85 @@ class _QuizShowContentState extends State<QuizShowContent> {
           ),
         ),
       ),
-      body: LumoSceneBackground(
-        scene: LumoScene.tests,
-        dimmed: true,
-        showPlaceholderLabel: false,
-        child: SafeArea(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final card = _QuizCard(
-                state: _state,
-                question: q,
-                onSelect: _select,
-                onReveal: _reveal,
-                onNext: _next,
-                onRestart: _restart,
-                onJoker: _joker,
-                locking: _locking,
-              );
-              return SingleChildScrollView(
-                padding: EdgeInsets.all(constraints.maxWidth < 400 ? 10 : 18),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 880),
-                    child: card,
+      body: Stack(
+        children: [
+          AbsorbPointer(
+            absorbing: _saving || _nativeOpening || _error != null,
+            child: LumoSceneBackground(
+              scene: LumoScene.tests,
+              dimmed: true,
+              showPlaceholderLabel: false,
+              child: SafeArea(
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final card = _QuizCard(
+                      state: _state,
+                      question: q,
+                      onSelect: _select,
+                      onReveal: _reveal,
+                      onNext: _next,
+                      onRestart: _restart,
+                      onJoker: _joker,
+                      locking:
+                          _locking ||
+                          _saving ||
+                          _nativeOpening ||
+                          _error != null,
+                    );
+                    return SingleChildScrollView(
+                      padding: EdgeInsets.all(
+                        constraints.maxWidth < 400 ? 10 : 18,
+                      ),
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 880),
+                          child: card,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+          if (_nativeOpening)
+            const Positioned.fill(
+              child: ColoredBox(
+                color: Color(0xE6071432),
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            ),
+          if (_error != null)
+            Positioned(
+              left: 12,
+              right: 12,
+              bottom: 12,
+              child: SafeArea(
+                child: Material(
+                  color: const Color(0xFF17334F),
+                  borderRadius: BorderRadius.circular(16),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(_error!, textAlign: TextAlign.center),
+                        TextButton(
+                          onPressed: _saving
+                              ? null
+                              : () => unawaited(_retrySave()),
+                          style: TextButton.styleFrom(
+                            minimumSize: const Size(48, 48),
+                          ),
+                          child: const Text('Erneut versuchen'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              );
-            },
-          ),
-        ),
+              ),
+            ),
+        ],
       ),
     );
   }

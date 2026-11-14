@@ -138,6 +138,22 @@ def prepare(root: Path):
     c4_service.set(attr('name'), c4_service_name)
     c4_service.set(attr('exported'), 'false')
     c4_service.attrib.pop(attr('process'), None)
+    # Memory and Quiz keep their own private transport and Dart authority.
+    table_name = namespace + '.TableGameActivity'
+    table = next((a for a in app.findall('activity') if a.get(attr('name')) == table_name), None)
+    if table is None:
+        table = ET.SubElement(app, 'activity')
+    table.attrib.update(activity.attrib)
+    table.set(attr('name'), table_name)
+    table.set(attr('screenOrientation'), 'sensor')
+    table_service_name = namespace + '.TableAuthorityService'
+    table_service = next((entry for entry in app.findall('service')
+                          if entry.get(attr('name')) == table_service_name), None)
+    if table_service is None:
+        table_service = ET.SubElement(app, 'service')
+    table_service.set(attr('name'), table_service_name)
+    table_service.set(attr('exported'), 'false')
+    table_service.attrib.pop(attr('process'), None)
     main_activity = next((a for a in app.findall('activity') if (a.get(attr('name')) or '').endswith('MainActivity')), None)
     if main_activity is not None:
         main_activity.set(attr('resizeableActivity'), 'true')
@@ -157,13 +173,16 @@ def prepare(root: Path):
     gradle.write_text(text)
     target = main / 'kotlin' / Path(*namespace.split('.'))
     target.mkdir(parents=True, exist_ok=True)
-    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'ConnectFourBridge.kt', 'ConnectFourAuthorityService.kt', 'ConnectFourGameActivity.kt'):
+    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'ConnectFourBridge.kt', 'ConnectFourAuthorityService.kt', 'ConnectFourGameActivity.kt', 'TableGamesBridge.kt', 'TableAuthorityService.kt', 'TableGameActivity.kt'):
         source = (root / 'tools/auto_install' / filename).read_text()
         (target / filename).write_text(re.sub(r'^package [^\n]+', f'package {namespace}', source, count=1))
     java_target = main / 'java' / Path(*namespace.split('.'))
     java_target.mkdir(parents=True, exist_ok=True)
     source = (root / 'tools/auto_install/CardsAuthorityRegistry.java').read_text()
     (java_target / 'CardsAuthorityRegistry.java').write_text(
+        re.sub(r'^package [^\n]+', f'package {namespace};', source, count=1))
+    source = (root / 'tools/auto_install/TableGameIntent.java').read_text()
+    (java_target / 'TableGameIntent.java').write_text(
         re.sub(r'^package [^\n]+', f'package {namespace};', source, count=1))
     resources = main / 'res/values'
     resources.mkdir(parents=True, exist_ok=True)
@@ -178,6 +197,8 @@ def prepare(root: Path):
     rules = root / 'android/app/proguard-rules.pro'
     existing = rules.read_text() if rules.exists() else ''
     required_rules = (
+        ('Memory and Quiz Godot methods are reflected in their isolated Activity.',
+         '-keep class ' + namespace + '.TableGamesHostPlugin { *; }'),
         ('C4 Godot methods are reflected in its isolated Activity.',
          '-keep class ' + namespace + '.ConnectFourHostPlugin { *; }'),
         ('Godot registers the host methods through reflection.',
