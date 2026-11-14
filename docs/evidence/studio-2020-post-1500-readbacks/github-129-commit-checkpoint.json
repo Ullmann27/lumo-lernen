@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "proof": {
+    "schema": 1,
+    "parent": "35a38e0f6ae77ccfaf326de39e108f56b82fa62d",
+    "parent_tree": "136e87a42fa6637bc0ae3555464c8f88161bd8a8",
+    "tree": "99c6505f3fac8744a2262e94c97d9262d179f023",
+    "parent_leaves": 6532,
+    "new_leaves": 6661,
+    "new_entries": 7646,
+    "new_files": 129,
+    "unchanged_parent_leaves": 6532,
+    "all_other_mode_type_sha_preserved": true,
+    "groups": {
+      "studio-2020-host-ae394-ci-failure-20261114": 6,
+      "studio-2020-ci-corrections-20261114": 13,
+      "studio-2020-host-1453-c4-originals": 1,
+      "studio-2020-ci-corrections-1453c7fd": 30,
+      "studio-2020-host-078-c4-originals": 16,
+      "studio-2020-c4-root-proof-20261114": 39,
+      "studio-2020-host-1453-ci-20261114": 14,
+      "studio-2020-078774dd-precision-review": 10
+    },
+    "scope": "Evidence only: historical ae394/1453 failures, exact corrections/reviews, actual078 C4 success and nine original PNGs; no APK or Android acceptance."
+  },
+  "commit": {
+    "sha": "1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+    "node_id": "C_kwDOSNzcp9oAKDE1MDBjNGU1ZGM1YjE4YjQ0ZWFmZDgwNWNjNTlhMDdmMGRmYTVmMmI",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T09:34:50Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T09:34:50Z"
+    },
+    "tree": {
+      "sha": "99c6505f3fac8744a2262e94c97d9262d179f023",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/99c6505f3fac8744a2262e94c97d9262d179f023"
+    },
+    "message": "docs: retain actual C4 failures, repairs and 078 swipe acceptance\n\nPreserve ae394 and1453 original failure logs and exact correction reviews.\nRecord078 twelve passing widget regressions, source-bound archive, nine\noriginal PNG captures and the actual manual image reviews. Keep every\npre-existing evidence leaf unchanged and document local setup limits.\n\nThis is evidence only. FullFlutter, Android, update, Creative and APK\nacceptance remain separate; no Main or product-branch update.",
+    "parents": [
+      {
+        "sha": "35a38e0f6ae77ccfaf326de39e108f56b82fa62d",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/35a38e0f6ae77ccfaf326de39e108f56b82fa62d",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/35a38e0f6ae77ccfaf326de39e108f56b82fa62d"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "node_id": "REF_kwDOSNzcp9oAOXJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby00YWI5NjY2Ni1ldmlkZW5jZS0yMDI2MTExNA",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "object": {
+      "sha": "1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b"
+    }
+  }
+}
