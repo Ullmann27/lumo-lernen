@@ -7,8 +7,13 @@ class MemoryTurnScheduler {
   MemoryTurnScheduler({
     int Function()? milliseconds,
     Timer Function(Duration, void Function())? createTimer,
-  }) : _milliseconds = milliseconds ?? (() => DateTime.now().millisecondsSinceEpoch),
+  }) : _milliseconds = milliseconds ?? _monotonicClock(),
        _createTimer = createTimer ?? ((delay, action) => Timer(delay, action));
+
+  static int Function() _monotonicClock() {
+    final clock = Stopwatch()..start();
+    return () => clock.elapsedMilliseconds;
+  }
   final int Function() _milliseconds;
   final Timer Function(Duration, void Function()) _createTimer;
   Timer? _timer;

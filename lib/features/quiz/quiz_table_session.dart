@@ -26,6 +26,8 @@ class QuizTableSession {
   final DateTime Function() _now;
   Timer? _timer;
   bool _open = false,
+      _opening = false,
+      _closed = false,
       _busy = false,
       _active = false,
       _paused = false,
@@ -83,33 +85,47 @@ class QuizTableSession {
     };
   }
 
+  /// A session token is single-use. A cancelled setup must never reopen it.
   Future<void> open({bool automaticPolling = true}) async {
-    if (_open || !controller.canUseProfile())
+    if (_open || _opening || _closed || !controller.canUseProfile()) {
       throw StateError('Quiz nicht verfügbar');
-    await controller.settleReward();
-    if (!controller.canUseProfile())
-      throw StateError('Kinderprofil hat gewechselt');
-    _open = true;
+    }
+    _opening = true;
+    var transportStarted = false;
     try {
+      await controller.settleReward();
+      if (_closed || !controller.canUseProfile()) {
+        throw StateError('Quizverbindung wurde geschlossen');
+      }
+      _open = true;
+      transportStarted = true;
       await transport.open(token, view);
+      if (_closed || !_open || !controller.canUseProfile()) {
+        throw StateError('Quizverbindung wurde geschlossen');
+      }
+      if (automaticPolling) {
+        _timer = Timer.periodic(
+          const Duration(milliseconds: 100),
+          (_) => unawaited(pump()),
+        );
+      }
     } catch (_) {
       _open = false;
-      // A host may durably accept Open before its platform reply is lost.
-      // Close this exact token even when the local open flag was never set.
-      try {
-        await transport.close(token);
-      } catch (_) {}
+      _closed = true;
+      _active = false;
+      _paused = true;
+      _timer?.cancel();
+      _timer = null;
+      // The host can finish accepting an Open after an earlier Close. Clean
+      // that late acceptance using this exact immutable token once it returns.
+      if (transportStarted) {
+        try {
+          await transport.close(token);
+        } catch (_) {}
+      }
       rethrow;
-    }
-    if (!controller.canUseProfile()) {
-      await close();
-      throw StateError('Kinderprofil hat gewechselt');
-    }
-    if (automaticPolling) {
-      _timer = Timer.periodic(
-        const Duration(milliseconds: 100),
-        (_) => unawaited(pump()),
-      );
+    } finally {
+      _opening = false;
     }
   }
 
@@ -245,14 +261,18 @@ class QuizTableSession {
   }
 
   Future<void> close() async {
-    if (!_open) return;
+    // Invalidate pending setup even before transport.open has been called.
+    _closed = true;
+    final wasOpen = _open;
     _open = false;
     _active = false;
     _paused = true;
     _timer?.cancel();
     _timer = null;
-    try {
-      await transport.close(token);
-    } catch (_) {}
+    if (wasOpen) {
+      try {
+        await transport.close(token);
+      } catch (_) {}
+    }
   }
 }

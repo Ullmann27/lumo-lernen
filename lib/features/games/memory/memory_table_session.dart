@@ -33,6 +33,8 @@ class MemoryTableSession {
   late final int Function() _monotonic;
   Timer? _timer;
   bool _open = false;
+  bool _opening = false;
+  int _generation = 0;
   bool _busy = false;
   bool _active = false;
   bool _exit = false;
@@ -63,27 +65,38 @@ class MemoryTableSession {
   };
 
   Future<void> open({bool automaticPolling = true}) async {
-    if (_open || _closing != null || !controller.canUseProfile()) {
+    if (_open || _opening || _closing != null || !controller.canUseProfile()) {
       throw StateError('Memory-Verbindung nicht verfügbar');
     }
-    await controller.settleReward();
-    if (!controller.canUseProfile()) throw StateError('Kinderprofil hat gewechselt');
-    _open = true;
-    _lastTick = _monotonic();
+    _opening = true;
+    final generation = ++_generation;
     try {
-      await transport.open(token, view);
-    } catch (_) {
-      _open = false;
-      // A reply may be lost after Open was committed. Clean only our token.
-      try { await transport.close(token); } catch (_) {}
-      rethrow;
-    }
-    if (!controller.canUseProfile()) {
-      await close(persist: false);
-      throw StateError('Kinderprofil hat gewechselt');
-    }
-    if (automaticPolling) {
-      _timer = Timer.periodic(const Duration(milliseconds: 100), (_) => unawaited(pump()));
+      await controller.settleReward();
+      if (generation != _generation || _closing != null || !controller.canUseProfile()) {
+        throw StateError('Memory-Verbindungsaufbau wurde beendet');
+      }
+      _open = true;
+      _lastTick = _monotonic();
+      try {
+        await transport.open(token, view);
+      } catch (_) {
+        _open = false;
+        // A reply may be lost after Open was committed. Clean only our token.
+        try { await transport.close(token); } catch (_) {}
+        rethrow;
+      }
+      if (generation != _generation || _closing != null || !_open || !controller.canUseProfile()) {
+        // Close may have completed before this delayed native Open arrived.
+        // Its exact-token cleanup must run again; never revive its timer.
+        _open = false;
+        try { await transport.close(token); } catch (_) {}
+        throw StateError('Memory-Verbindungsaufbau wurde beendet');
+      }
+      if (automaticPolling) {
+        _timer = Timer.periodic(const Duration(milliseconds: 100), (_) => unawaited(pump()));
+      }
+    } finally {
+      _opening = false;
     }
   }
 
@@ -228,6 +241,7 @@ class MemoryTableSession {
 
   Future<void> close({bool persist = true}) {
     if (_closing != null) return _closing!;
+    _generation++;
     final wasOpen = _open;
     _open = false;
     _active = false;

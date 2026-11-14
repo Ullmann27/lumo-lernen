@@ -56,6 +56,18 @@ jobs:
             test/quiz_premium_stage_layout_test.dart \
             test/quiz_premium_stage_visual_capture_test.dart \
             2>&1 | tee feature-evidence/quiz-observed-regressions.log
+      - name: Recheck actual Memory UI and unchanged profile/statistics behavior
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/games/memory_native_entry_test.dart \
+            test/games/memory_screen_test.dart \
+            test/games/memory_theme_pack_test.dart \
+            test/games/memory_2027_stage_test.dart \
+            test/games/memory_match_feedback_test.dart \
+            test/games/memory_controls_hittest_test.dart \
+            test/games/memory_profile_storage_test.dart \
+            2>&1 | tee feature-evidence/memory-ui-regression.log
       - name: Run the complete Flutter suite and every enabled capture
         run: python3 scripts/run_full_flutter_acceptance.py --output feature-evidence/full-flutter
       - name: Verify tracked source remains exact
@@ -113,12 +125,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          ref: ${{ github.sha }}
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.44.9'
           channel: stable
           cache: true
-      - name: Run independent pure Dart Memory persistence and timing contracts
+      - name: Run real Quiz and Memory persistence, lifecycle and timing contracts
         run: |
           set -euo pipefail
           mkdir -p memory-feature-evidence
@@ -129,6 +142,9 @@ jobs:
             memory_exit=1
           fi
           if ! dart tools/android_qa/memory_turn_scheduler_contract.dart 2>&1 | tee memory-feature-evidence/memory-scheduler.log; then
+            memory_exit=1
+          fi
+          if ! dart tools/android_qa/quiz_round_contract.dart 2>&1 | tee memory-feature-evidence/quiz-round.log; then
             memory_exit=1
           fi
           exit "$memory_exit"

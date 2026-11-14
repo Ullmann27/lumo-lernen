@@ -59,15 +59,21 @@ class ContractMemoryTransport implements NativeTableTransport {
   final List<String> closed = [];
   bool failOpenAfterWrite = false;
   bool failPublish = false;
+  Completer<void>? openGate;
+  Completer<void>? openEntered;
+  int polls = 0;
   @override
   Future<void> open(String token, Map<String, Object?> value) async {
     expect(state == null, 'one active table');
     expect(value['token'] == token, 'open token');
+    openEntered?.complete();
+    if (openGate != null) await openGate!.future;
     state = Map.from(value);
     if (failOpenAfterWrite) throw StateError('open reply lost');
   }
   @override
   Future<Map<String, dynamic>> poll(String token) async {
+    polls++;
     expect(state?['token'] == token, 'poll owns exact token');
     return Map.from(box);
   }
@@ -86,6 +92,21 @@ class ContractMemoryTransport implements NativeTableTransport {
   Future<void> close(String token) async {
     closed.add(token);
     if (state?['token'] == token) state = null;
+  }
+}
+
+class BlockedMemoryReadStore extends ContractMemoryStore {
+  Completer<void>? gate;
+  final entered = Completer<void>();
+  @override
+  Future<String?> readRound() async {
+    final blocked = gate;
+    if (blocked != null) {
+      gate = null;
+      entered.complete();
+      await blocked.future;
+    }
+    return super.readRound();
   }
 }
 
@@ -530,6 +551,50 @@ Future<void> main(List<String> args) async {
     expect(s.view['exit']==true && s.view['ack']==1,'only accepted exit');
     expect(MemoryRound.read(store.round!,catalog,owner).paused,'pause saved before return');
     await s.close();c.dispose();
+  });
+
+  await test('close during reward/read await prevents any late native Open', () async {
+    final store=BlockedMemoryReadStore();
+    final c=await open(store);
+    final t=ContractMemoryTransport();
+    final s=MemoryTableSession(controller:c,transport:t);
+    final gate=Completer<void>();store.gate=gate;
+    final result=s.open(automaticPolling:false).then((_)=>false,onError:(Object _,StackTrace __)=>true);
+    await store.entered.future;
+    await s.close(persist:false);
+    gate.complete();
+    expect(await result,'closed opening reports cancellation');
+    expect(!s.isOpen && t.state==null && t.closed.isEmpty,'transport never opened after pre-open close');
+    c.dispose();
+  });
+
+  await test('close before delayed native Open reply cleans exact token again and refuses later polls', () async {
+    final c=await open(ContractMemoryStore());
+    final gate=Completer<void>();
+    final t=ContractMemoryTransport()..openGate=gate..openEntered=Completer<void>();
+    final s=MemoryTableSession(controller:c,transport:t);
+    final result=s.open(automaticPolling:false).then((_)=>false,onError:(Object _,StackTrace __)=>true);
+    await t.openEntered!.future;
+    await s.close(persist:false);
+    gate.complete();
+    expect(await result,'late committed native open reports cancellation');
+    expect(!s.isOpen && t.state==null,'late native slot is closed');
+    expect(t.closed.length==2 && t.closed.every((token)=>token==s.token),'only exact owned token cleanup');
+    await s.pump();
+    equal(t.polls,0,'closed opening refuses subsequent poll');
+    c.dispose();
+  });
+
+  await test('a second Open cannot race a pending first preparation', () async {
+    final store=BlockedMemoryReadStore();final c=await open(store);
+    final t=ContractMemoryTransport();final s=MemoryTableSession(controller:c,transport:t);
+    final gate=Completer<void>();store.gate=gate;
+    final first=s.open(automaticPolling:false).then((_)=>false,onError:(Object _,StackTrace __)=>true);
+    await store.entered.future;
+    await rejects(()=>s.open(automaticPolling:false),'second simultaneous open refused');
+    await s.close(persist:false);gate.complete();
+    expect(await first,'first opening remained cancelled');
+    expect(t.state==null,'no late authority');c.dispose();
   });
 
   final outIndex=args.indexOf('--out');

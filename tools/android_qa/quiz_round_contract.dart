@@ -34,6 +34,7 @@ class MemoryStore implements QuizRoundStore {
   final Map<String, String> data = {};
   bool failBefore = false, failAfter = false;
   void Function()? duringSave;
+  Completer<void>? beforeSave, saveEntered;
   int writes = 0;
   @override
   Future<QuizRound?> load(String owner, bool Function() current) async {
@@ -43,6 +44,13 @@ class MemoryStore implements QuizRoundStore {
   }
   @override
   Future<void> save(QuizRound next, QuizRound? previous, bool Function() current) async {
+    if (!current()) throw StateError('profile');
+    final entered = saveEntered;
+    saveEntered = null;
+    if (entered != null && !entered.isCompleted) entered.complete();
+    final blocker = beforeSave;
+    beforeSave = null;
+    if (blocker != null) await blocker.future;
     if (!current()) throw StateError('profile');
     final old = data[next.owner];
     if (old != (previous == null ? null : jsonEncode(previous.toJson()))) {
@@ -86,19 +94,31 @@ class Harness {
 class Transport implements NativeTableTransport {
   Map<String, dynamic> box = {};
   Map<String, Object?>? published;
-  int closes = 0;
+  int closes = 0, opens = 0, polls = 0;
+  bool active = false;
+  Completer<void>? beforeOpenReply, openEntered;
+  final List<String> closedTokens = [];
   bool failOpenAfterAccept = false;
   @override
   Future<void> open(String token, Map<String, Object?> state) async {
+    opens++;
+    final entered = openEntered;
+    openEntered = null;
+    if (entered != null && !entered.isCompleted) entered.complete();
+    final blocker = beforeOpenReply;
+    beforeOpenReply = null;
+    if (blocker != null) await blocker.future;
+    // A real async host operation may accept after an earlier Close call.
     published = state;
+    active = true;
     if (failOpenAfterAccept) throw StateError('accepted open but lost reply');
   }
   @override
-  Future<Map<String, dynamic>> poll(String token) async => box;
+  Future<Map<String, dynamic>> poll(String token) async { polls++; return box; }
   @override
   Future<void> publish(String token, Map<String, Object?> state) async { published = state; }
   @override
-  Future<void> close(String token) async { closes++; }
+  Future<void> close(String token) async { closes++; closedTokens.add(token); active = false; }
 }
 
 class Studio {
@@ -316,6 +336,63 @@ Future<void> main() async {
     final id=s.game.c.round.id;await s.send('subject',{'subject':'Sachunterricht'});
     check(s.game.c.round.id!=id && s.game.c.round.subject=='Sachunterricht','new result-screen subject');
     await s.session.close();
+  });
+
+  await test('close during controller setup cannot open or reopen a Quiz token', () async {
+    final h = Harness(); await h.open();
+    final gate = Completer<void>(), entered = Completer<void>();
+    h.storage.beforeSave = gate; h.storage.saveEntered = entered;
+    final pendingMove = h.c.select(1);
+    await entered.future;
+    final t = Transport();
+    final session = QuizTableSession(controller: h.c, transport: t);
+    final opening = session.open(automaticPolling: false);
+    final cancelled = rejects(() => opening);
+    await session.close();
+    gate.complete();
+    await pendingMove; await cancelled;
+    check(!session.isOpen && t.opens == 0 && t.closes == 0 && !t.active,
+      'closed setup never allocates a platform session');
+    await session.pump();
+    check(t.polls == 0, 'closed setup never polls');
+    await rejects(() => session.open(automaticPolling: false));
+    check(t.opens == 0, 'terminal token cannot be reopened by a late caller');
+    h.c.dispose();
+  });
+  await test('close during a late accepted native Open cleans only its own token', () async {
+    final h = Harness(); await h.open();
+    final gate = Completer<void>(), entered = Completer<void>();
+    final t = Transport()..beforeOpenReply = gate..openEntered = entered;
+    final session = QuizTableSession(controller: h.c, transport: t);
+    final opening = session.open(automaticPolling: false);
+    final cancelled = rejects(() => opening);
+    await entered.future;
+    await session.close();
+    check(!session.isOpen && !t.active, 'close takes effect while Open is pending');
+    gate.complete(); await cancelled;
+    check(!session.isOpen && !t.active && t.opens == 1 && t.closes == 2,
+      'late platform acceptance is closed after its eventual reply');
+    check(t.closedTokens.every((token) => token == session.token),
+      'late cleanup cannot close another session');
+    await session.pump(); check(t.polls == 0, 'no post-close authority polling');
+    await session.close(); check(t.closes == 2, 'idempotent later close');
+    h.c.dispose();
+  });
+  await test('simultaneous Quiz open rejects while controller setup is pending', () async {
+    final h = Harness(); await h.open();
+    final gate = Completer<void>(), entered = Completer<void>();
+    h.storage.beforeSave = gate; h.storage.saveEntered = entered;
+    final pendingMove = h.c.select(2); await entered.future;
+    final t = Transport();
+    final session = QuizTableSession(controller: h.c, transport: t);
+    final first = session.open(automaticPolling: false);
+    await rejects(() => session.open(automaticPolling: false));
+    check(t.opens == 0, 'parallel request cannot bypass the pending controller');
+    gate.complete(); await pendingMove; await first;
+    check(session.isOpen && t.active && t.opens == 1, 'only the original open completes');
+    await session.close();
+    check(!session.isOpen && !t.active && t.closes == 1, 'one exact active token closed');
+    h.c.dispose();
   });
   print('[QuizRoundContract] ${failed==0?'PASS':'FAIL'} cases=$passed failed=$failed checks=$checks skips=0');
   exitCode=failed==0?0:1;

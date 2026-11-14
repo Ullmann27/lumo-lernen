@@ -1,38 +1,39 @@
-## New Memory authority checkpoint — 14 November 2026
-
-The source-only feature now includes nine explicit Memory core/adapter/contract files. The existing visible Memory screen remains unchanged until its dedicated widget and native integration work is verified. Existing published dealer, motif set, opponent choices, difficulty/reward formulas and per-child statistics keys are preserved. A separate durable round journal, profile-bound compare-and-swap, idempotent rewards, foreground timing and public-only table state prepare the real 3D presenter. Confirmed completed rounds start a new same-setting round on reopening; unfinished or unsettled completed rounds are retained. The original profile-storage widget tests are unchanged.
-
-These new Memory sources have not executed before this commit. A new independent CI job runs both pure Dart persistence/gameplay and scheduler contracts so failures are retained even while the full Flutter suite runs. No old lost local Memory result is reused.
-
-The preceding exact Host `bdd86f289a165ea5140a01607d78fcf4c31c98c6` passed source acceptance run43597316639: 2,595 full Flutter tests, zero failures/skips, 546 generated PNGs; focused46-test regression and actual Android compilation also passed. Its original343,010,045-byte ZIP is SHA256 `22eebaca28f20260013060cf9d31503370b1f157c4bb075f2f94076bcae6adae`; all591 ZIP members passed local CRC verification. These previous-head results do not certify the newly added Memory code.
-
-Native English/Quiz source is separately committed as `e4e5ce03e644a2f23b01a96f1d340a882a1798c4` in [draft PR182](https://github.com/Ullmann27/lumo-godot/pull/182). New joint authority and renderer runs are pending. Neither feature branch exports an approved combined APK; Main and the Studio candidate remain unchanged.
-
----
-
 # English, Memory and Quiz feature integration
 
-This development branch starts at `ae1ba5e68438e0acc89b4df92650d28c9328bed4`.
-It is separate from the Studio 2020 candidate and does not change protected Main.
+Status: source development on 14 November 2026. This branch starts at Studio Host ae1ba5e68438e0acc89b4df92650d28c9328bed4. Protected Main and the separate Studio 2020 candidate are unchanged. Neither this source branch nor its Native counterpart has an approved combined APK.
 
-## Product scope
+## Current product changes
 
-- English object activities reuse the current learning entry point, current per-child help record and existing return path.
-- Quiz retains the existing rules and rewards. Its shared Dart controller persists each owned round before acknowledging native input; the prepared Godot scene and Flutter are designed to render that same saved round.
-- The Memory Android transport and existing-rule wallet adapter are included. The new Memory controller, Flutter UI and native table remain outside this commit because their final source bytes could not be retrieved after the local executor disconnected.
-- The private Android table channel binds game, token, child, round, revision and intent sequence. The renderer cannot submit rewards or answers on behalf of the authoritative game engine.
-- The existing writing trainer, journal, speech data, child profiles and previously stored wallet data have no migration in this change.
+English object activities reuse the existing learning entry point, per-child help record and return path. The Native gallery contains movable, real 3D objects for ten current vocabulary activities. The writing trainer, journal, speech data, child profiles and existing wallet data have no migration in this work. Pronunciation audio and installed Android behavior for the new gallery remain separate acceptance requirements.
 
-## Acceptance boundary
+Quiz retains the existing rules, question bank and milestone rewards. Its shared Dart controller persists each owned round before acknowledging Native input. Flutter and the new Godot scene render that authoritative round. Native preparation keeps Flutter answers usable; an unavailable optional renderer does not cover controls with a snackbar. The ordinary wallet limit remains unchanged; the dedicated Quiz settlement path validates the allowed round identifier and exact milestone amount, serializes the update and deduplicates retries.
 
-The previous Native344 images and receipt do not cover these additions. The receipt is deliberately pending on this branch. It must not authorize an APK export or publication.
+The actual Memory screen now uses the shared persistent controller and attempts the real Android table entry. Optional Native preparation keeps Flutter cards usable; a real Flutter turn cancels a delayed automatic launch. Original visual widget sections, motif dealer, opponent behavior, reward formulas and per-child statistics keys are preserved. Unfinished rounds resume under their original identifier; confirmed completed and rewarded rounds start a fresh round with the same settings when reopened. An unsettled completed round is retained until its reward acknowledgement succeeds.
 
-`LUMO Nextgen feature source acceptance` runs the actual locked Flutter toolchain, the complete existing Flutter suite with captures, the new English/Quiz Dart contracts, genuine Android Kotlin/Java compilation and table transport contracts. It does not build or publish an APK.
+The Memory scheduler uses a monotonic Stopwatch in production, so a gap between Flutter frames cannot extend a visible-card delay. Tests can supply an explicit clock. Six new widget scenarios cover absent Native support, delayed availability, unfinished-round resume, lifecycle pause, profile isolation and elapsed time without an intermediate frame. These new scenarios have not executed before this source checkpoint.
 
-Native scenes and their exact source pin, current renderer review, installed Android interaction, update preservation and physical-device performance are separate required acceptance steps. Local disk-transport roundtrips replace only the Android transport boundary and do not constitute an installed-APK or measured-Fold7 result.
+The private Android table channel binds game, token, child, round, revision and intent sequence. The renderer cannot supply rewards or choose the authoritative answer. Both new table sessions now invalidate pending setup on close, reject a parallel open, recheck ownership after asynchronous setup and clean up only their own token if native acceptance arrives late. Three additional real Completer-controlled cases per authority cover those close/open races. The 2,500 ms lease and persistence acknowledgement requirements are unchanged.
 
-No local dependency recovery is used. Flutter dependency resolution and Flutter execution take place in the explicitly scoped GitHub workflow.
+## Actual preceding evidence
 
-## Executor outage boundary
+| Exact source | Actual observation | Scope |
+| --- | --- | --- |
+| Host bdd86f289a165ea5140a01607d78fcf4c31c98c6 | [Run 43597316639](https://github.com/Ullmann27/lumo-lernen/actions/runs/43597316639) passed: 2,595 complete-suite Flutter tests, zero failures or skips; 546 generated PNGs; separate 46-test Quiz regression; Android class compilation and 28 transport contracts. | This predecessor does not certify the later Memory changes. Generated PNG count does not mean all images were manually reviewed. |
+| Host 50f2a0edf87a0e22f24345d8504f4d83e803bf37 | [Run 43599036990](https://github.com/Ullmann27/lumo-lernen/actions/runs/43599036990) completed successfully in all three jobs. Its freshly read full Flutter log records 2,595 passes, zero failures/skips and 546 PNGs. The Memory round contract passed 24 cases/1,664 checks and the scheduler passed 7 cases/13 checks, zero skips. | These results precede the current UI hookup, monotonic clock and close/open corrections. They do not certify the new source delta. |
+| Native e4e5ce03e644a2f23b01a96f1d340a882a1798c4 | [Run 43598637301](https://github.com/Ullmann27/lumo-godot/actions/runs/43598637301) produced 10 English renderer PNGs and 1,115 successful Godot checks using the actual Dart producer. All ten images were individually reviewed. | The complete job failed at the following Quiz pair step. Its valid paused initial round did not satisfy the immediate-play gate. A visible Resume interaction is being added to the test; no deadline is relaxed. |
 
-At 2026-11-14 approximately 12:30 UTC the local development environment became unavailable. This Git commit contains only the 31 source files whose complete UTF-8 contents were uploaded and read back through GitHub. It does not contain the local English/Memory/Quiz native additions or the new Memory host implementation. The unfinished local Quiz renderer is unconfirmed. English render review and Memory roundtrip observations remain scoped to their recorded local source hashes and are not relabeled as current-commit acceptance. Native integration and current APK acceptance remain blocked until the exact source files can be recovered and verified.
+The original Host bdd86 Flutter ZIP is 343,010,045 bytes, SHA256 22eebaca28f20260013060cf9d31503370b1f157c4bb075f2f94076bcae6adae; all 591 ZIP members passed local CRC verification. Independent event parsing distinguished 2,595 actual tests from loading and setup/teardown events. Host50f2 artifact metadata reports 343,097,020 bytes and SHA256 b3471a32a7eaed519fe2be1daceb7931cdfad89c0c4dcb917a3042c30c423869; those archive bytes have not yet been downloaded for local verification.
+
+The earlier Host1a903 failure remains recorded: 17 Quiz-related Flutter failures. Later green runs do not replace that negative evidence. Native work is tracked in [draft PR182](https://github.com/Ullmann27/lumo-godot/pull/182); Host work is tracked in [draft PR503](https://github.com/Ullmann27/lumo-lernen/pull/503).
+
+## Required validation for this delta
+
+LUMO Nextgen feature source acceptance runs the exact checked-out source through the existing locked Flutter toolchain, all Flutter source analysis, focused Quiz and Memory widget regressions, the complete existing Flutter suite with captures, actual Android Kotlin/Java compilation and private transport contracts. A separate fast job executes both table authorities and the Memory scheduler, retaining each result even if another fails. This workflow does not export or publish an APK.
+
+The Native source pin, new current renderer review, actual Dart/Godot pair, installed Android input and return, per-child persistence, update preservation and device measurements remain independent gates. Desktop file-transport roundtrips replace only the Android transport boundary; they do not prove installed-APK behavior, physical Fold7 frame rate, heat or input latency. The previous Native344 renderer receipt does not authorize these additions.
+
+## Recovery and reproducibility
+
+The local executor became unavailable around 12:30 UTC on 14 November. The first feature checkpoint preserved only 31 complete, read-back source files. The Native344 baseline was subsequently restored from an immutable source archive, with all 2,237 file bytes and Git blob identities checked. New Native and Memory work was reconstructed on that verified baseline. Earlier lost uncommitted implementations and tests are not represented as current evidence.
+
+Local Flutter dependency recovery is not used. Flutter dependency resolution and execution take place in the explicitly scoped GitHub workflow. Every feature ref update uses an explicit file manifest, full text readback, recursive tree comparison and an expected-head lease. Main remains protected.
