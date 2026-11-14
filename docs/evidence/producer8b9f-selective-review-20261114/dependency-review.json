@@ -1,0 +1,1086 @@
+{
+  "schema": 1,
+  "relative_dart_imports": [
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/app_settings.dart",
+      "resolved": "lib/core/app_settings.dart",
+      "status": "current_target",
+      "blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../domain/games/memory_board.dart",
+      "resolved": "lib/domain/games/memory_board.dart",
+      "status": "current_target",
+      "blob": "74435a040137742c1b02163f1d5f045aa5f11395"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/daily_mission_repository.dart",
+      "resolved": "lib/core/daily_mission_repository.dart",
+      "status": "current_target",
+      "blob": "27552ef41a43dec4b8ad175b4132a5fe5ceaef15"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/learning_profile_engine.dart",
+      "resolved": "lib/core/learning_profile_engine.dart",
+      "status": "current_target",
+      "blob": "aafcd2dd5b2a400f04b58518351e4fb152237f26"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/learning_journey.dart",
+      "resolved": "lib/core/learning_journey.dart",
+      "status": "current_target",
+      "blob": "d189bdae1c1efc7bc58680b84665fb0ce6dbf5bf"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../domain/learning_intelligence/scene_memory.dart",
+      "resolved": "lib/domain/learning_intelligence/scene_memory.dart",
+      "status": "current_target",
+      "blob": "f25df893d947608ffec97a9ca18fd5f115ce9a88"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../domain/learning_intelligence/lesson_scene_engine.dart",
+      "resolved": "lib/domain/learning_intelligence/lesson_scene_engine.dart",
+      "status": "current_target",
+      "blob": "06bb91fac7e601a71672b24c8d37b1b742c02f22"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../domain/learning_intelligence/learning_scene_contract.dart",
+      "resolved": "lib/domain/learning_intelligence/learning_scene_contract.dart",
+      "status": "current_target",
+      "blob": "368fd5baf2bd85a5949d6dc3298c90b089059930"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/legacy_learning_data.dart",
+      "resolved": "lib/core/legacy_learning_data.dart",
+      "status": "current_target",
+      "blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/lumo_cosmos.dart",
+      "resolved": "lib/core/lumo_cosmos.dart",
+      "status": "current_target",
+      "blob": "632d4d31aeaaf6baaa1e04d8f8c9afe640d737e0"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/progress_repository.dart",
+      "resolved": "lib/core/progress_repository.dart",
+      "status": "current_target",
+      "blob": "d41e9f90c9297188f8a924dfa04ce822d09126ee"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/profile_repository.dart",
+      "resolved": "lib/core/profile_repository.dart",
+      "status": "current_target",
+      "blob": "35cfa44b277284cdb1310b778760367a331b5ebe"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/recommendation_engine.dart",
+      "resolved": "lib/core/recommendation_engine.dart",
+      "status": "current_target",
+      "blob": "22e9f026396150725e3e9d0f37ce5b97af3cf3c6"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/attempt_log_repository.dart",
+      "resolved": "lib/core/attempt_log_repository.dart",
+      "status": "current_target",
+      "blob": "67331c548d922b72d9c5180672ce0e8d2bd2a8a7"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/error_breakdown_repository.dart",
+      "resolved": "lib/core/error_breakdown_repository.dart",
+      "status": "current_target",
+      "blob": "14ce9a5d422e21c552ea8c802f0ca156dc440c35"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/lumo_error_log.dart",
+      "resolved": "lib/core/lumo_error_log.dart",
+      "status": "current_target",
+      "blob": "73d15b0ce0a2c7e520d4b53bb6531f53bb37bd55"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/reward_wallet_repository.dart",
+      "resolved": "lib/core/reward_wallet_repository.dart",
+      "status": "producer_selected",
+      "blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/school_repository.dart",
+      "resolved": "lib/core/school_repository.dart",
+      "status": "current_target",
+      "blob": "91e2bd74c742eddd877b111740a54550f05fe511"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../domain/school/attempt.dart",
+      "resolved": "lib/domain/school/attempt.dart",
+      "status": "current_target",
+      "blob": "aa8d56f8d15b4bcf99734e6f662e31408dbd5e08"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../domain/school/competency.dart",
+      "resolved": "lib/domain/school/competency.dart",
+      "status": "current_target",
+      "blob": "a5045a52f80164b99280af7866f4cc291729a938"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/scanned_work_analysis.dart",
+      "resolved": "lib/core/scanned_work_analysis.dart",
+      "status": "current_target",
+      "blob": "9e0a49d05500484e6d60e7243ae1e721b60ded7d"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../core/settings_repository.dart",
+      "resolved": "lib/core/settings_repository.dart",
+      "status": "current_target",
+      "blob": "0607f6fcc0f581204628d163a62dcd2916ac9e21"
+    },
+    {
+      "from": "lib/app/app_state.dart",
+      "directive": "import",
+      "uri": "../widgets/fox/lumo_companion_requests.dart",
+      "resolved": "lib/widgets/fox/lumo_companion_requests.dart",
+      "status": "current_target",
+      "blob": "1dfa57ad9a23da6e37138970fbfa9cb5d431c93f"
+    },
+    {
+      "from": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "directive": "import",
+      "uri": "../learning/lumo_learning_domain.dart",
+      "resolved": "lib/domain/learning/lumo_learning_domain.dart",
+      "status": "current_target",
+      "blob": "fb08dc6572828d21d94ca96844994797aaa68bd6"
+    },
+    {
+      "from": "lib/domain/tutoring/native_learning_activity.dart",
+      "directive": "import",
+      "uri": "guided_lesson_catalog.dart",
+      "resolved": "lib/domain/tutoring/guided_lesson_catalog.dart",
+      "status": "current_target",
+      "blob": "ddecbdbd033adbafca495a678ed66b2a1f11b251"
+    },
+    {
+      "from": "lib/domain/tutoring/native_learning_activity.dart",
+      "directive": "import",
+      "uri": "native_english_vocabulary.dart",
+      "resolved": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "status": "producer_selected",
+      "blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545"
+    },
+    {
+      "from": "lib/domain/tutoring/native_learning_activity.dart",
+      "directive": "import",
+      "uri": "../learning/lumo_learning_domain.dart",
+      "resolved": "lib/domain/learning/lumo_learning_domain.dart",
+      "status": "current_target",
+      "blob": "fb08dc6572828d21d94ca96844994797aaa68bd6"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../../app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../../core/lumo_voice.dart",
+      "resolved": "lib/core/lumo_voice.dart",
+      "status": "current_target",
+      "blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../../domain/games/memory_board.dart",
+      "resolved": "lib/domain/games/memory_board.dart",
+      "status": "current_target",
+      "blob": "74435a040137742c1b02163f1d5f045aa5f11395"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../../theme/lumo_visual_tokens.dart",
+      "resolved": "lib/theme/lumo_visual_tokens.dart",
+      "status": "current_target",
+      "blob": "bb6052fc7095a709655065043400fb40132988fd"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../../widgets/design/lumo_design_system.dart",
+      "resolved": "lib/widgets/design/lumo_design_system.dart",
+      "status": "current_target",
+      "blob": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../../widgets/fox/lumo_character.dart",
+      "resolved": "lib/widgets/fox/lumo_character.dart",
+      "status": "current_target",
+      "blob": "c6084fab450b08867cee138c9eb384bb1d20eced"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "lumo_memory_stage.dart",
+      "resolved": "lib/features/games/memory/lumo_memory_stage.dart",
+      "status": "current_target",
+      "blob": "4682e23db2451191eff53f3491ce42471cd5da84"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "lumo_memory_garden.dart",
+      "resolved": "lib/features/games/memory/lumo_memory_garden.dart",
+      "status": "current_target",
+      "blob": "c4ea38d8c79df8dcd13aa940e153f8223cc9e00c"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../shared/lumo_game_pause_scope.dart",
+      "resolved": "lib/features/games/shared/lumo_game_pause_scope.dart",
+      "status": "current_target",
+      "blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../lumo3d/lumo3d_launcher.dart",
+      "resolved": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "status": "producer_selected",
+      "blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "../../lumo3d/native_method_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_method_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "6c160054a74531b22e817bb284b7860421d2a7f1"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "memory_flutter_adapter.dart",
+      "resolved": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "status": "producer_selected",
+      "blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "memory_round.dart",
+      "resolved": "lib/features/games/memory/memory_round.dart",
+      "status": "producer_selected",
+      "blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "memory_table_session.dart",
+      "resolved": "lib/features/games/memory/memory_table_session.dart",
+      "status": "producer_selected",
+      "blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+    },
+    {
+      "from": "lib/features/games/memory/lumo_memory_game.dart",
+      "directive": "import",
+      "uri": "memory_turn_scheduler.dart",
+      "resolved": "lib/features/games/memory/memory_turn_scheduler.dart",
+      "status": "producer_selected",
+      "blob": "d3b3f41227594f6a78723a344ab7eec110190de1"
+    },
+    {
+      "from": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "directive": "import",
+      "uri": "../../../domain/games/memory_board.dart",
+      "resolved": "lib/domain/games/memory_board.dart",
+      "status": "current_target",
+      "blob": "74435a040137742c1b02163f1d5f045aa5f11395"
+    },
+    {
+      "from": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "directive": "import",
+      "uri": "memory_round.dart",
+      "resolved": "lib/features/games/memory/memory_round.dart",
+      "status": "producer_selected",
+      "blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "from": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "directive": "import",
+      "uri": "memory_rules.dart",
+      "resolved": "lib/features/games/memory/memory_rules.dart",
+      "status": "producer_selected",
+      "blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "from": "lib/features/games/memory/memory_round.dart",
+      "directive": "import",
+      "uri": "memory_rules.dart",
+      "resolved": "lib/features/games/memory/memory_rules.dart",
+      "status": "producer_selected",
+      "blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "from": "lib/features/games/memory/memory_table_session.dart",
+      "directive": "import",
+      "uri": "../../lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "lib/features/games/memory/memory_table_session.dart",
+      "directive": "import",
+      "uri": "memory_round.dart",
+      "resolved": "lib/features/games/memory/memory_round.dart",
+      "status": "producer_selected",
+      "blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "from": "lib/features/games/memory/memory_table_session.dart",
+      "directive": "import",
+      "uri": "memory_rules.dart",
+      "resolved": "lib/features/games/memory/memory_rules.dart",
+      "status": "producer_selected",
+      "blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "from": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "directive": "import",
+      "uri": "../../app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "directive": "import",
+      "uri": "../../core/legacy_learning_data.dart",
+      "resolved": "lib/core/legacy_learning_data.dart",
+      "status": "current_target",
+      "blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1"
+    },
+    {
+      "from": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "directive": "import",
+      "uri": "../../core/native_profile_key_repository.dart",
+      "resolved": "lib/core/native_profile_key_repository.dart",
+      "status": "current_target",
+      "blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98"
+    },
+    {
+      "from": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "directive": "import",
+      "uri": "../../core/reward_wallet_repository.dart",
+      "resolved": "lib/core/reward_wallet_repository.dart",
+      "status": "producer_selected",
+      "blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "from": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "directive": "import",
+      "uri": "../../core/lumo_voice.dart",
+      "resolved": "lib/core/lumo_voice.dart",
+      "status": "current_target",
+      "blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08"
+    },
+    {
+      "from": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "directive": "import",
+      "uri": "../../domain/tutoring/native_learning_activity.dart",
+      "resolved": "lib/domain/tutoring/native_learning_activity.dart",
+      "status": "producer_selected",
+      "blob": "f8bfc0af97806255ec8b72d89963c2831e250089"
+    },
+    {
+      "from": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "directive": "import",
+      "uri": "lumo_game_entry_overlay.dart",
+      "resolved": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "status": "current_target",
+      "blob": "fe23f1ad8ceb3f8c26d378b475e1f3d946929b36"
+    },
+    {
+      "from": "lib/features/lumo3d/native_method_table_transport.dart",
+      "directive": "import",
+      "uri": "native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../../app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../../core/lumo_sound.dart",
+      "resolved": "lib/core/lumo_sound.dart",
+      "status": "current_target",
+      "blob": "032ed16b4d8d416eb746d538942b59667bc44724"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "quiz_show_music.dart",
+      "resolved": "lib/features/quiz/quiz_show_music.dart",
+      "status": "current_target",
+      "blob": "b9816f3e0d7a55e530a9d61f38fe003257d388b5"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "quiz_show_round.dart",
+      "resolved": "lib/features/quiz/quiz_show_round.dart",
+      "status": "producer_selected",
+      "blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "quiz_show_repository.dart",
+      "resolved": "lib/features/quiz/quiz_show_repository.dart",
+      "status": "producer_selected",
+      "blob": "0c2b7dc207809bbcabed4180e7423b8cd8080117"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "quiz_table_session.dart",
+      "resolved": "lib/features/quiz/quiz_table_session.dart",
+      "status": "producer_selected",
+      "blob": "a5e23633de431c9b4777dad39df4a7758badefb7"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../lumo3d/lumo3d_launcher.dart",
+      "resolved": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "status": "producer_selected",
+      "blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../lumo3d/native_method_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_method_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "6c160054a74531b22e817bb284b7860421d2a7f1"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "quiz_studio_scene.dart",
+      "resolved": "lib/features/quiz/quiz_studio_scene.dart",
+      "status": "current_target",
+      "blob": "60372646f88ee3ef54550ffe270cdc77403c4458"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../../app/app_theme.dart",
+      "resolved": "lib/app/app_theme.dart",
+      "status": "current_target",
+      "blob": "fbca41aca3bf0f5e199175fe7285aec5a2e84db9"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../../domain/quiz/quiz_question_bank.dart",
+      "resolved": "lib/domain/quiz/quiz_question_bank.dart",
+      "status": "current_target",
+      "blob": "fd44406b37548ea1f5a83724068a798c65555cab"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../../domain/quiz/quiz_show.dart",
+      "resolved": "lib/domain/quiz/quiz_show.dart",
+      "status": "producer_selected",
+      "blob": "a1246a1602c27961e5a705f523e14f409900f8db"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../../theme/lumo_visual_tokens.dart",
+      "resolved": "lib/theme/lumo_visual_tokens.dart",
+      "status": "current_target",
+      "blob": "bb6052fc7095a709655065043400fb40132988fd"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_content.dart",
+      "directive": "import",
+      "uri": "../../widgets/design/lumo_design_system.dart",
+      "resolved": "lib/widgets/design/lumo_design_system.dart",
+      "status": "current_target",
+      "blob": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_repository.dart",
+      "directive": "import",
+      "uri": "../../core/legacy_learning_data.dart",
+      "resolved": "lib/core/legacy_learning_data.dart",
+      "status": "current_target",
+      "blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_repository.dart",
+      "directive": "import",
+      "uri": "quiz_show_round.dart",
+      "resolved": "lib/features/quiz/quiz_show_round.dart",
+      "status": "producer_selected",
+      "blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+    },
+    {
+      "from": "lib/features/quiz/quiz_show_round.dart",
+      "directive": "import",
+      "uri": "../../domain/quiz/quiz_show.dart",
+      "resolved": "lib/domain/quiz/quiz_show.dart",
+      "status": "producer_selected",
+      "blob": "a1246a1602c27961e5a705f523e14f409900f8db"
+    },
+    {
+      "from": "lib/features/quiz/quiz_table_session.dart",
+      "directive": "import",
+      "uri": "../../domain/quiz/quiz_show.dart",
+      "resolved": "lib/domain/quiz/quiz_show.dart",
+      "status": "producer_selected",
+      "blob": "a1246a1602c27961e5a705f523e14f409900f8db"
+    },
+    {
+      "from": "lib/features/quiz/quiz_table_session.dart",
+      "directive": "import",
+      "uri": "../lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "lib/features/quiz/quiz_table_session.dart",
+      "directive": "import",
+      "uri": "quiz_show_round.dart",
+      "resolved": "lib/features/quiz/quiz_show_round.dart",
+      "status": "producer_selected",
+      "blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+    },
+    {
+      "from": "test/games/memory_native_entry_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "test/games/memory_native_entry_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/app_settings.dart",
+      "resolved": "lib/core/app_settings.dart",
+      "status": "current_target",
+      "blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3"
+    },
+    {
+      "from": "test/games/memory_native_entry_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/domain/games/memory_board.dart",
+      "resolved": "lib/domain/games/memory_board.dart",
+      "status": "current_target",
+      "blob": "74435a040137742c1b02163f1d5f045aa5f11395"
+    },
+    {
+      "from": "test/games/memory_native_entry_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/games/memory/lumo_memory_game.dart",
+      "resolved": "lib/features/games/memory/lumo_memory_game.dart",
+      "status": "producer_selected",
+      "blob": "aec0446cc1bb5a1ff6b3469c0c9606c45bfda64e"
+    },
+    {
+      "from": "test/games/memory_native_entry_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "resolved": "lib/core/reward_wallet_repository.dart",
+      "status": "producer_selected",
+      "blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/domain/quiz/quiz_question_bank.dart",
+      "resolved": "lib/domain/quiz/quiz_question_bank.dart",
+      "status": "current_target",
+      "blob": "fd44406b37548ea1f5a83724068a798c65555cab"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/lumo3d/native_method_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_method_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "6c160054a74531b22e817bb284b7860421d2a7f1"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/quiz/quiz_show_content.dart",
+      "resolved": "lib/features/quiz/quiz_show_content.dart",
+      "status": "producer_selected",
+      "blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/quiz/quiz_show_repository.dart",
+      "resolved": "lib/features/quiz/quiz_show_repository.dart",
+      "status": "producer_selected",
+      "blob": "0c2b7dc207809bbcabed4180e7423b8cd8080117"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/quiz/quiz_show_round.dart",
+      "resolved": "lib/features/quiz/quiz_show_round.dart",
+      "status": "producer_selected",
+      "blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+    },
+    {
+      "from": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/quiz/quiz_table_session.dart",
+      "resolved": "lib/features/quiz/quiz_table_session.dart",
+      "status": "producer_selected",
+      "blob": "a5e23633de431c9b4777dad39df4a7758badefb7"
+    },
+    {
+      "from": "test/reward_wallet_queue_zone_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "resolved": "lib/core/reward_wallet_repository.dart",
+      "status": "producer_selected",
+      "blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "from": "test/table_games_launcher_binding_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "test/table_games_launcher_binding_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "resolved": "lib/core/reward_wallet_repository.dart",
+      "status": "producer_selected",
+      "blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "from": "test/table_games_launcher_binding_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart",
+      "resolved": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "status": "producer_selected",
+      "blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca"
+    },
+    {
+      "from": "test/table_games_wallet_profile_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "test/table_games_wallet_profile_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/reward_wallet_repository.dart",
+      "resolved": "lib/core/reward_wallet_repository.dart",
+      "status": "producer_selected",
+      "blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/app/app_state.dart",
+      "resolved": "lib/app/app_state.dart",
+      "status": "producer_selected",
+      "blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/app_settings.dart",
+      "resolved": "lib/core/app_settings.dart",
+      "status": "current_target",
+      "blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/lumo_voice.dart",
+      "resolved": "lib/core/lumo_voice.dart",
+      "status": "current_target",
+      "blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/core/school_exercise_generator.dart",
+      "resolved": "lib/core/school_exercise_generator.dart",
+      "status": "current_target",
+      "blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/domain/learning/lumo_learning_domain.dart",
+      "resolved": "lib/domain/learning/lumo_learning_domain.dart",
+      "status": "current_target",
+      "blob": "fb08dc6572828d21d94ca96844994797aaa68bd6"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/domain/tutoring/native_english_vocabulary.dart",
+      "resolved": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "status": "producer_selected",
+      "blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/domain/tutoring/native_learning_activity.dart",
+      "resolved": "lib/domain/tutoring/native_learning_activity.dart",
+      "status": "producer_selected",
+      "blob": "f8bfc0af97806255ec8b72d89963c2831e250089"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart",
+      "resolved": "lib/features/learning/adapters/legacy_lumo_task_adapter.dart",
+      "status": "current_target",
+      "blob": "f23b67f5b7c34c4d8518cbced2dd56f97d7ddb41"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart",
+      "resolved": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "status": "producer_selected",
+      "blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca"
+    },
+    {
+      "from": "test/tutoring/native_english_activity_test.dart",
+      "directive": "import",
+      "uri": "../../tool/check_native_english_activity.dart",
+      "resolved": "tool/check_native_english_activity.dart",
+      "status": "producer_selected",
+      "blob": "85a96d92e0eac2c1d9f6791820d8990d816fdc48"
+    },
+    {
+      "from": "tool/check_native_english_activity.dart",
+      "directive": "import",
+      "uri": "../lib/core/school_exercise_generator.dart",
+      "resolved": "lib/core/school_exercise_generator.dart",
+      "status": "current_target",
+      "blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+    },
+    {
+      "from": "tool/check_native_english_activity.dart",
+      "directive": "import",
+      "uri": "../lib/domain/learning/lumo_learning_domain.dart",
+      "resolved": "lib/domain/learning/lumo_learning_domain.dart",
+      "status": "current_target",
+      "blob": "fb08dc6572828d21d94ca96844994797aaa68bd6"
+    },
+    {
+      "from": "tool/check_native_english_activity.dart",
+      "directive": "import",
+      "uri": "../lib/domain/tutoring/native_english_vocabulary.dart",
+      "resolved": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "status": "producer_selected",
+      "blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545"
+    },
+    {
+      "from": "tool/check_native_english_activity.dart",
+      "directive": "import",
+      "uri": "../lib/domain/tutoring/native_learning_activity.dart",
+      "resolved": "lib/domain/tutoring/native_learning_activity.dart",
+      "status": "producer_selected",
+      "blob": "f8bfc0af97806255ec8b72d89963c2831e250089"
+    },
+    {
+      "from": "tool/check_native_english_activity.dart",
+      "directive": "import",
+      "uri": "../lib/features/learning/adapters/legacy_lumo_task_adapter.dart",
+      "resolved": "lib/features/learning/adapters/legacy_lumo_task_adapter.dart",
+      "status": "current_target",
+      "blob": "f23b67f5b7c34c4d8518cbced2dd56f97d7ddb41"
+    },
+    {
+      "from": "tools/android_qa/memory_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/features/games/memory/memory_rules.dart",
+      "resolved": "lib/features/games/memory/memory_rules.dart",
+      "status": "producer_selected",
+      "blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "from": "tools/android_qa/memory_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/features/games/memory/memory_round.dart",
+      "resolved": "lib/features/games/memory/memory_round.dart",
+      "status": "producer_selected",
+      "blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "from": "tools/android_qa/memory_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/features/games/memory/memory_table_session.dart",
+      "resolved": "lib/features/games/memory/memory_table_session.dart",
+      "status": "producer_selected",
+      "blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+    },
+    {
+      "from": "tools/android_qa/memory_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/features/lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "tools/android_qa/memory_native_authority.dart",
+      "directive": "import",
+      "uri": "memory_original_board_fixture.dart",
+      "resolved": "tools/android_qa/memory_original_board_fixture.dart",
+      "status": "producer_selected",
+      "blob": "8ff63ccb88f3352967de9c64d4d007facf16c06f"
+    },
+    {
+      "from": "tools/android_qa/memory_original_opponent_fixture.dart",
+      "directive": "import",
+      "uri": "memory_original_board_fixture.dart",
+      "resolved": "tools/android_qa/memory_original_board_fixture.dart",
+      "status": "producer_selected",
+      "blob": "8ff63ccb88f3352967de9c64d4d007facf16c06f"
+    },
+    {
+      "from": "tools/android_qa/memory_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/games/memory/memory_rules.dart",
+      "resolved": "lib/features/games/memory/memory_rules.dart",
+      "status": "producer_selected",
+      "blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+    },
+    {
+      "from": "tools/android_qa/memory_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/games/memory/memory_round.dart",
+      "resolved": "lib/features/games/memory/memory_round.dart",
+      "status": "producer_selected",
+      "blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+    },
+    {
+      "from": "tools/android_qa/memory_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/games/memory/memory_table_session.dart",
+      "resolved": "lib/features/games/memory/memory_table_session.dart",
+      "status": "producer_selected",
+      "blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+    },
+    {
+      "from": "tools/android_qa/memory_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "tools/android_qa/memory_round_contract.dart",
+      "directive": "import",
+      "uri": "memory_original_board_fixture.dart",
+      "resolved": "tools/android_qa/memory_original_board_fixture.dart",
+      "status": "producer_selected",
+      "blob": "8ff63ccb88f3352967de9c64d4d007facf16c06f"
+    },
+    {
+      "from": "tools/android_qa/memory_round_contract.dart",
+      "directive": "import",
+      "uri": "memory_original_opponent_fixture.dart",
+      "resolved": "tools/android_qa/memory_original_opponent_fixture.dart",
+      "status": "producer_selected",
+      "blob": "65c8e0d24f28043b0bcfbb71c4c61cc8c1ba708e"
+    },
+    {
+      "from": "tools/android_qa/memory_turn_scheduler_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/games/memory/memory_turn_scheduler.dart",
+      "resolved": "lib/features/games/memory/memory_turn_scheduler.dart",
+      "status": "producer_selected",
+      "blob": "d3b3f41227594f6a78723a344ab7eec110190de1"
+    },
+    {
+      "from": "tools/android_qa/quiz_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/domain/quiz/quiz_question_bank.dart",
+      "resolved": "lib/domain/quiz/quiz_question_bank.dart",
+      "status": "current_target",
+      "blob": "fd44406b37548ea1f5a83724068a798c65555cab"
+    },
+    {
+      "from": "tools/android_qa/quiz_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/features/lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "tools/android_qa/quiz_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/features/quiz/quiz_show_round.dart",
+      "resolved": "lib/features/quiz/quiz_show_round.dart",
+      "status": "producer_selected",
+      "blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+    },
+    {
+      "from": "tools/android_qa/quiz_native_authority.dart",
+      "directive": "import",
+      "uri": "../../lib/features/quiz/quiz_table_session.dart",
+      "resolved": "lib/features/quiz/quiz_table_session.dart",
+      "status": "producer_selected",
+      "blob": "a5e23633de431c9b4777dad39df4a7758badefb7"
+    },
+    {
+      "from": "tools/android_qa/quiz_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/domain/quiz/quiz_question_bank.dart",
+      "resolved": "lib/domain/quiz/quiz_question_bank.dart",
+      "status": "current_target",
+      "blob": "fd44406b37548ea1f5a83724068a798c65555cab"
+    },
+    {
+      "from": "tools/android_qa/quiz_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/domain/quiz/quiz_show.dart",
+      "resolved": "lib/domain/quiz/quiz_show.dart",
+      "status": "producer_selected",
+      "blob": "a1246a1602c27961e5a705f523e14f409900f8db"
+    },
+    {
+      "from": "tools/android_qa/quiz_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/lumo3d/native_table_transport.dart",
+      "resolved": "lib/features/lumo3d/native_table_transport.dart",
+      "status": "producer_selected",
+      "blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+    },
+    {
+      "from": "tools/android_qa/quiz_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/quiz/quiz_show_round.dart",
+      "resolved": "lib/features/quiz/quiz_show_round.dart",
+      "status": "producer_selected",
+      "blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+    },
+    {
+      "from": "tools/android_qa/quiz_round_contract.dart",
+      "directive": "import",
+      "uri": "../../lib/features/quiz/quiz_table_session.dart",
+      "resolved": "lib/features/quiz/quiz_table_session.dart",
+      "status": "producer_selected",
+      "blob": "a5e23633de431c9b4777dad39df4a7758badefb7"
+    }
+  ],
+  "missing_relative_imports": [],
+  "external_package_names": [
+    "crypto",
+    "flutter",
+    "flutter_test",
+    "shared_preferences",
+    "shared_preferences_platform_interface"
+  ],
+  "limit": "Static path closure only; no dependency resolver, Dart analyzer, test or runtime invoked. pubspec and lock remain target files."
+}

@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "host_target": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "host_producer": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+  "four_collisions": {
+    "lib/features/lumo3d/lumo3d_launcher.dart": {
+      "preserve": [
+        "livingVillage opt-in equality guard",
+        "settlement payload livingVillage=true and settlementMode=settlement",
+        "learning/build/settlement licensed local speech parameters and existing return ACK handling"
+      ],
+      "add_only": [
+        "optional tableToken",
+        "memory/quiz iff token guard, non-null appState and exact 32 lowercase hex validation",
+        "tableToken payload"
+      ]
+    },
+    "tools/auto_install/MainActivity.kt": {
+      "preserve": [
+        "invalid_village rejection before launch",
+        "settlement allowlist and explicit mode payload",
+        "learning/build/settlement offline-speech release/voice parameters",
+        "Cards and C4 authority validation and existing caller-return machinery"
+      ],
+      "add_only": [
+        "TableGamesBridge attach/detach",
+        "memory/quiz plus reviewed English kind/subject allowlists",
+        "live table authority validation before caller-return session",
+        "private TableGameActivity selection"
+      ]
+    },
+    "scripts/tests/test_embedded_android.py": {
+      "preserve": [
+        "complete EmbeddedCardsWindowTest class",
+        "complete WINDOW_ADAPTERS dictionary and all actual Cards lifecycle/window expectations",
+        "all existing non-table installer and APK manifest assertions"
+      ],
+      "add_only": [
+        "new Table activity/service template and manifest assertions",
+        "exact expected additional private Activity/Service counts"
+      ]
+    },
+    "scripts/compile_android_host.sh": {
+      "preserve": [
+        "current real Kotlin/Java compilation and evidence construction",
+        "all currently required lifecycle/Cards/offline-speech class checks"
+      ],
+      "add_only": [
+        "TableGameActivity, TableGamesHostPlugin, TableGamesBridge, TableAuthorityService and TableGameIntent actual bytecode checks"
+      ],
+      "explicit_difference": "Producer base already checks C4 and LumoSpeechEnvelope classes which current target script does not enumerate. Do not silently substitute the whole producer script. Additional old-feature assertions, if desired, require an explicit reviewed decision; no class or product file is missing solely because of this list difference."
+    }
+  },
+  "observed_patches": [
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "comparison": "target",
+      "file": "comparisons/lib__features__lumo3d__lumo3d_launcher.dart.base-to-target.patch",
+      "bytes": 1832,
+      "sha256": "8f4d6e8d3c5aa9768728384886f0428be30b4fb3b81e1afe5e998f15d8c41ce7",
+      "git_blob": "4af2f2bd036d93fd2417da46c9dbb05aea27134b"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "comparison": "producer",
+      "file": "comparisons/lib__features__lumo3d__lumo3d_launcher.dart.base-to-producer.patch",
+      "bytes": 1286,
+      "sha256": "0f6c434a0e33bc789ed953b9195b59fff7805ee5897f6cfa56c2041112c59d6e",
+      "git_blob": "07ee4c55a0290be738b678022fcb0c69dd83b183"
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "comparison": "target",
+      "file": "comparisons/scripts__compile_android_host.sh.base-to-target.patch",
+      "bytes": 1160,
+      "sha256": "c5b154580a53ad6646948fe6546c24487d731069fab7b20f427a6d482cb55abb",
+      "git_blob": "a0881b5ef8148b58e2a0905e432b6dd72e5e6336"
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "comparison": "producer",
+      "file": "comparisons/scripts__compile_android_host.sh.base-to-producer.patch",
+      "bytes": 1320,
+      "sha256": "67cfb1d422bf6926665935880bb0fba3da72c3bf08d6bbf3cf02592963b63b8e",
+      "git_blob": "4003344b8902e4d878677302879cff91cf769ae4"
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "comparison": "target",
+      "file": "comparisons/scripts__tests__test_embedded_android.py.base-to-target.patch",
+      "bytes": 15824,
+      "sha256": "5472c3d93ba2b6de28f66777d0bf6334723ff1136c588d1c5f0bbba1afff3c0a",
+      "git_blob": "ddffb8fa689e7c12cdcbf12e5e5a967794431bef"
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "comparison": "producer",
+      "file": "comparisons/scripts__tests__test_embedded_android.py.base-to-producer.patch",
+      "bytes": 4376,
+      "sha256": "d912f988e24f4bca99873f7af21bf826336ae57011852ea8f2e0613a50b226d8",
+      "git_blob": "995fc6ed4c37be52c6dc552cd513e6e6f6f23466"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "comparison": "target",
+      "file": "comparisons/tools__auto_install__MainActivity.kt.base-to-target.patch",
+      "bytes": 3495,
+      "sha256": "5c80a3b70c4a64d54e9aacf231237b46c5b5f03e1b6a5b7842940aec12b45985",
+      "git_blob": "4af909c834ef478961fff57afb9ec197ebf908e0"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "comparison": "producer",
+      "file": "comparisons/tools__auto_install__MainActivity.kt.base-to-producer.patch",
+      "bytes": 5021,
+      "sha256": "205eab293a489be24d954e8ffd823cad511b9a27d64861d22ea219945ae6b8dc",
+      "git_blob": "8254d8e600554ed16fbf36801ae98bb0ffc1f83a"
+    }
+  ],
+  "protected_cards_ast_nodes": [
+    {
+      "definition": "EmbeddedCardsWindowTest",
+      "normalized_ast_sha256": "2af279033203f75692b806f9cc25cd6d7c1ea8121b5668c7b40bea53e3b1995d",
+      "start_line": 97,
+      "end_line": 171
+    },
+    {
+      "definition": "WINDOW_ADAPTERS",
+      "normalized_ast_sha256": "64a0369bc006ea7bf4b1a1aa98a1b87b202604f2056aa8e4c979af031a99fc2c",
+      "start_line": 174,
+      "end_line": 408
+    }
+  ],
+  "no_merged_sources_or_patch_application": true
+}

@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "status": "FROZEN_HISTORICAL_SOURCE_AND_ORIGINAL_CI_REVIEW",
+  "created_utc": "2026-11-14T15:05:53.145863+00:00",
+  "targets": {
+    "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "host_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+    "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00"
+  },
+  "producers": {
+    "host_pr": 503,
+    "host_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+    "host_tree": "ccd45e1ae122ce1b1997e6fa6feb948dc39dccaf",
+    "host_base": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+    "native_pr": 182,
+    "native_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+    "native_tree": "8e29d5a15a424b42f27184a763adce8b2aa71b13",
+    "native_base": "34421df83566dd4773420cc2a225887956459435"
+  },
+  "integration_ready": false,
+  "host_relevant_paths": 43,
+  "native_relevant_paths": 30,
+  "host_three_way_paths": 4,
+  "native_three_way_paths": 2,
+  "independent_review": "independent-native-review/review.json",
+  "key_files": [
+    {
+      "path": "selective-integration-manifest.json",
+      "bytes": 61224,
+      "sha256": "bf027c1ec023878d5d401c11a78ec913d163d0b835ab27345f8a3a57e2566c81",
+      "git_blob": "2d8f0f3761b65358011dca7a5caed54deb20acf8"
+    },
+    {
+      "path": "ci-observations.json",
+      "bytes": 23120,
+      "sha256": "02f7d7d848514fd54d94aa62b8337572ab08947e266326fb12ccf296a76ffed7",
+      "git_blob": "70d332fe8ea21cfadbfb16b395d949379413562b"
+    },
+    {
+      "path": "collision-review.json",
+      "bytes": 5837,
+      "sha256": "c2733f431a37580bc071be435d62d5bba5a984969b72a37f8902f8402bd8b916",
+      "git_blob": "dbed736a2c35932de4d8336ec78706ede2ee96c1"
+    },
+    {
+      "path": "dependency-review.json",
+      "bytes": 42121,
+      "sha256": "7ee3d0aa7b495e0a1cf71a4166f4f0291976adc6a3da0bddc69726161eb1811d",
+      "git_blob": "012ae5b33045a4b305c41f3d73b0db19aaa86ed3"
+    },
+    {
+      "path": "whole-tree-preservation-contract.json",
+      "bytes": 1447,
+      "sha256": "e26a2677dc8625670f93d90e8ec70e20b2ca42393bb3665a8d998e1cf3f4c4e5",
+      "git_blob": "f01f5dbb54e3f79713fe93e0a275a9f67bfd5939"
+    },
+    {
+      "path": "independent-native-review/review.json",
+      "bytes": 11695,
+      "sha256": "16e33e7b7d8c7af9f1816734a43298de203f005c377c3115b99c4391c20f0566",
+      "git_blob": "64aba8a7b4811b66f0ed22f1ff5dbb41150b46ca"
+    }
+  ],
+  "decision": "Unapplied selective proposal. Exact old Host8b Memory full-suite failure and Native9f/c0ca Quiz failure remain blockers for those exact source pairs. New505/47ca is a separate follow-up. No candidate acceptance.",
+  "deliberate_non_materialization": [
+    "342924933-byte Host8b original Flutter Actions ZIP: original artifact metadata/digest only; external Actions artifact remains full original.",
+    "Native13 original PNG paths: exact Gitblob equality with current Host assets is recorded; image bytes not downloaded or visually reviewed.",
+    "No APK or other large runtime archive."
+  ],
+  "bound_sources_not_edited": true,
+  "tests_or_engines_or_remote_mutations": false,
+  "archive_binding": "../producer-pr503-pr182-selective-review-20261114.archive-binding.json"
+}

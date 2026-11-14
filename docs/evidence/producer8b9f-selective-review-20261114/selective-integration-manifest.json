@@ -1,0 +1,1260 @@
+{
+  "schema": 1,
+  "kind": "UNAPPLIED_SELECTIVE_INTEGRATION_PROPOSAL",
+  "created_utc": "2026-11-14T14:48:12.278147+00:00",
+  "integration_ready": false,
+  "targets": {
+    "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "host_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+    "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00"
+  },
+  "producers": {
+    "host_pr": 503,
+    "host_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+    "host_tree": "ccd45e1ae122ce1b1997e6fa6feb948dc39dccaf",
+    "host_base": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+    "native_pr": 182,
+    "native_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+    "native_tree": "8e29d5a15a424b42f27184a763adce8b2aa71b13",
+    "native_base": "34421df83566dd4773420cc2a225887956459435"
+  },
+  "host_counts": {
+    "excluded": 4,
+    "base_equal_change_after_producer_qualification": 8,
+    "new_path_after_producer_qualification": 31,
+    "three_way_hunks_required_after_producer_qualification": 4
+  },
+  "host_files": [
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "4b57d6c54de6cb7047efca47a7ef722c6278a7fe",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "disposition": "excluded",
+      "reason": "Producer-only source acceptance workflow; retain as evidence and gate reference, not an automatic workflow import.",
+      "source": "originals/host-producer-delta.json"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "eda1235e5975c21885fba87ac1512927769a878a",
+      "producer_base_blob": "bea1a0e7ee59565c34aff3e453ad0154d2d3bc18",
+      "current_0b7_blob": "28979e437797b723a3f5a514734f1a118ef8f4d3",
+      "disposition": "excluded",
+      "reason": "Producer branch permission/exclusion; not a product requirement.",
+      "source": "originals/host-producer-delta.json"
+    },
+    {
+      "path": "config/studio-2020-visual-review.json",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "8626624dca0035447e8e86874ef39b262c36de86",
+      "producer_base_blob": "2fa78d07d6fabfefb053848b678c01d46184048c",
+      "current_0b7_blob": null,
+      "disposition": "excluded",
+      "reason": "Foreign pending visual receipt; must not replace the current source-bound receipt.",
+      "source": "originals/host-producer-delta.json"
+    },
+    {
+      "path": "docs/NEXTGEN_FEATURE_20261114.md",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "f3a110664531015817266100e1038c02322eaccb",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "disposition": "excluded",
+      "reason": "Producer narrative; preserved in the original compare, not a product dependency.",
+      "source": "originals/host-producer-delta.json"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+      "producer_base_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "current_0b7_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "source": "original-source/host-producer/lib/app/app_state.dart",
+      "source_identity": {
+        "bytes": 57118,
+        "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+        "git_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 54663,
+        "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+        "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+      }
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5",
+      "producer_base_blob": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+      "current_0b7_blob": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+      "source": "original-source/host-producer/lib/core/reward_wallet_repository.dart",
+      "source_identity": {
+        "bytes": 14366,
+        "sha256": "9a3b669a055b3764d42e58c0511ecfb7c03cd99ea42aa757ab2f77be9fd91045",
+        "git_blob": "27e912f89e96905d40cebd98be1cc6632a0e4fe5"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 13187,
+        "sha256": "b9a89763484ef701cb68b8b306cc946a82e412bc6f588a8bd1c97c87b370f01f",
+        "git_blob": "63a3d4c4fe6c5c9249f3531e685cc541646747ee"
+      }
+    },
+    {
+      "path": "lib/domain/quiz/quiz_show.dart",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "a1246a1602c27961e5a705f523e14f409900f8db",
+      "producer_base_blob": "ce3fda0842c32b242b25acac51e716acdcaeae87",
+      "current_0b7_blob": "ce3fda0842c32b242b25acac51e716acdcaeae87",
+      "source": "original-source/host-producer/lib/domain/quiz/quiz_show.dart",
+      "source_identity": {
+        "bytes": 8874,
+        "sha256": "912736e2264178ac24f274651699602cd5d34bd185c2acf6eb50dbbd5464d0da",
+        "git_blob": "a1246a1602c27961e5a705f523e14f409900f8db"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 8767,
+        "sha256": "e950665c9386204c1f6f4bb9e4b7a9ac9f239304d9b42c3fea8d06d842ea8c4b",
+        "git_blob": "ce3fda0842c32b242b25acac51e716acdcaeae87"
+      }
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/domain/tutoring/native_english_vocabulary.dart",
+      "source_identity": {
+        "bytes": 2941,
+        "sha256": "66f07be4fb2d573b411f8bda97330edad46003929640bf36a0ede74c2d43102a",
+        "git_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "producer_base_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "current_0b7_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "source": "original-source/host-producer/lib/domain/tutoring/native_learning_activity.dart",
+      "source_identity": {
+        "bytes": 7587,
+        "sha256": "1c067ad052a5cabaeeadb6730d15a7618cbeafe1b5c8b83eed9af770c94035d2",
+        "git_blob": "f8bfc0af97806255ec8b72d89963c2831e250089"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 7307,
+        "sha256": "eafc477d639b59a1d5215a8934c1088e4563d84aaffc2795e57b7299085632ed",
+        "git_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "aec0446cc1bb5a1ff6b3469c0c9606c45bfda64e",
+      "producer_base_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06",
+      "current_0b7_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06",
+      "source": "original-source/host-producer/lib/features/games/memory/lumo_memory_game.dart",
+      "source_identity": {
+        "bytes": 52529,
+        "sha256": "fa2ec3a8ae7c55fb14fe5fb78572c2a3e5dff3fcd7830b088fe45f02a2513e1c",
+        "git_blob": "aec0446cc1bb5a1ff6b3469c0c9606c45bfda64e"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 52550,
+        "sha256": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4",
+        "git_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06"
+      }
+    },
+    {
+      "path": "lib/features/games/memory/memory_flutter_adapter.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/games/memory/memory_flutter_adapter.dart",
+      "source_identity": {
+        "bytes": 2146,
+        "sha256": "cb233ad8d2e04fe896bc6ea9eed1bcc2ded1fce453cdaca1bc23b3bac7ba2a8b",
+        "git_blob": "bae1a23231002a095c04e26f8dbdd2d1eaad2f2a"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/games/memory/memory_round.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/games/memory/memory_round.dart",
+      "source_identity": {
+        "bytes": 14257,
+        "sha256": "d5ca6deecddb7d734d70e3909a70760602fb29c447ec985784f8ab0d798baf5c",
+        "git_blob": "472ab584531a4db5aebe3de91f8b87faa859e05c"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/games/memory/memory_rules.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/games/memory/memory_rules.dart",
+      "source_identity": {
+        "bytes": 14413,
+        "sha256": "0e8ccb76df51394d732ace433b1f15f295775aca7f34fefb81d5ece8d906dc90",
+        "git_blob": "b866d4c53c2e506e3088ba460ee7f828e3d797ce"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/games/memory/memory_table_session.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/games/memory/memory_table_session.dart",
+      "source_identity": {
+        "bytes": 9373,
+        "sha256": "08fb0ae23a3ed5c532072e411102dd9ef9f2a5f430d1de954d1de42da5328b64",
+        "git_blob": "1ea0737097ab024d4e91fbbf645a241af9001f9c"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/games/memory/memory_turn_scheduler.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "d3b3f41227594f6a78723a344ab7eec110190de1",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/games/memory/memory_turn_scheduler.dart",
+      "source_identity": {
+        "bytes": 1675,
+        "sha256": "eb59de38e44f1ad434d5a52b2cb873c53eceda596a8b5dba7b5efe8a2cbc195d",
+        "git_blob": "d3b3f41227594f6a78723a344ab7eec110190de1"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "producer_base_blob": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+      "current_0b7_blob": "f34753575463af153ac72efaf93dd485ba3f30e1",
+      "source": "original-source/host-producer/lib/features/lumo3d/lumo3d_launcher.dart",
+      "source_identity": {
+        "bytes": 10634,
+        "sha256": "79af6bc42ee5d08004b93b543fc6b7013c646a7c18605ab6184b70ee658d1ddc",
+        "git_blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "three_way_hunks_required_after_producer_qualification",
+      "current_identity": {
+        "bytes": 10640,
+        "sha256": "14b5cc7147fe001faf3c299d6bfa787b3eed1da07a6f848e688f3a947258407b",
+        "git_blob": "f34753575463af153ac72efaf93dd485ba3f30e1"
+      },
+      "producer_base_identity": {
+        "bytes": 10316,
+        "sha256": "a385e88006fba6a4f6126e0eceb57dc2185ebf0c34149746d369ae0c790ea732",
+        "git_blob": "b9eff2d23c35d01e6df674cad909c5c495a87bde"
+      },
+      "preservation_contract": {
+        "preserve": [
+          "livingVillage opt-in equality guard",
+          "settlement payload livingVillage=true and settlementMode=settlement",
+          "learning/build/settlement licensed local speech parameters and existing return ACK handling"
+        ],
+        "add_only": [
+          "optional tableToken",
+          "memory/quiz iff token guard, non-null appState and exact 32 lowercase hex validation",
+          "tableToken payload"
+        ]
+      }
+    },
+    {
+      "path": "lib/features/lumo3d/native_method_table_transport.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "6c160054a74531b22e817bb284b7860421d2a7f1",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/lumo3d/native_method_table_transport.dart",
+      "source_identity": {
+        "bytes": 1677,
+        "sha256": "5edeffb1f9748d4739ac92bdb89a3683ffbfd1386caaa7a39249343e0d15eee5",
+        "git_blob": "6c160054a74531b22e817bb284b7860421d2a7f1"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/lumo3d/native_table_transport.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/lumo3d/native_table_transport.dart",
+      "source_identity": {
+        "bytes": 502,
+        "sha256": "dcd4826bb7903e575220537dd0b477d32d8fee810bf5523eb3c33c51df324ae1",
+        "git_blob": "9f1bc6efe1c11f74d75c9025b0b6a5140e822cc2"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407",
+      "producer_base_blob": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de",
+      "current_0b7_blob": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de",
+      "source": "original-source/host-producer/lib/features/quiz/quiz_show_content.dart",
+      "source_identity": {
+        "bytes": 62121,
+        "sha256": "9ae4b83ee78bd13c85b033921826d7813da6a54277faa62787c785f3a24eac45",
+        "git_blob": "98d7d59c6053785eddb3db48b2673a41e2b8c407"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 52217,
+        "sha256": "1c95ed40a9bd31ced69f40e298c7b771d183d9a37519bfbce2f397872871d393",
+        "git_blob": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de"
+      }
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_repository.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "0c2b7dc207809bbcabed4180e7423b8cd8080117",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/quiz/quiz_show_repository.dart",
+      "source_identity": {
+        "bytes": 1371,
+        "sha256": "509973ae13ac25a0010578832b170dd52ccafd317d2f2805a194892fe78b381b",
+        "git_blob": "0c2b7dc207809bbcabed4180e7423b8cd8080117"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_round.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/quiz/quiz_show_round.dart",
+      "source_identity": {
+        "bytes": 14125,
+        "sha256": "ed036809b409b44d72cfbd6be275ff64a949a8701f31891c46131034fa758676",
+        "git_blob": "6606300c19972195b4cf7fcee4810835a3c5ddcc"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "lib/features/quiz/quiz_table_session.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "a5e23633de431c9b4777dad39df4a7758badefb7",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/lib/features/quiz/quiz_table_session.dart",
+      "source_identity": {
+        "bytes": 8689,
+        "sha256": "94711cbc566b3863b0660569ddb68f9b728b3705a4c0e2fa67b84a19fba38ea5",
+        "git_blob": "a5e23633de431c9b4777dad39df4a7758badefb7"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/compile_android_host.sh",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "c5138523453d4e185f6af46f96e15478888075de",
+      "producer_base_blob": "002eb5a6177d92ab2bc7d53078823283d6b48ead",
+      "current_0b7_blob": "58eb1fe98d31155aceda49721092122b85fd4e6b",
+      "source": "original-source/host-producer/scripts/compile_android_host.sh",
+      "source_identity": {
+        "bytes": 3499,
+        "sha256": "42ad647a647183845ae2ec48dfd778166d6c36f7828b2e1f06b51b4756bf1419",
+        "git_blob": "c5138523453d4e185f6af46f96e15478888075de"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "three_way_hunks_required_after_producer_qualification",
+      "current_identity": {
+        "bytes": 3231,
+        "sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4",
+        "git_blob": "58eb1fe98d31155aceda49721092122b85fd4e6b"
+      },
+      "producer_base_identity": {
+        "bytes": 3354,
+        "sha256": "5263daebef5cd69d3950ef642eaba011b8da960083f2cec276b287c3461407a7",
+        "git_blob": "002eb5a6177d92ab2bc7d53078823283d6b48ead"
+      },
+      "preservation_contract": {
+        "preserve": [
+          "current real Kotlin/Java compilation and evidence construction",
+          "all currently required lifecycle/Cards/offline-speech class checks"
+        ],
+        "add_only": [
+          "TableGameActivity, TableGamesHostPlugin, TableGamesBridge, TableAuthorityService and TableGameIntent actual bytecode checks"
+        ],
+        "explicit_difference": "Producer base already checks C4 and LumoSpeechEnvelope classes which current target script does not enumerate. Do not silently substitute the whole producer script. Additional old-feature assertions, if desired, require an explicit reviewed decision; no class or product file is missing solely because of this list difference."
+      }
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b",
+      "producer_base_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "current_0b7_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "source": "original-source/host-producer/scripts/prepare_embedded_games.py",
+      "source_identity": {
+        "bytes": 11694,
+        "sha256": "e31d0aadd76633b98182a4d2093d838adf9603c46c8ad191561d045d4a0d333e",
+        "git_blob": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 10377,
+        "sha256": "694c115184bd6464ff8e7a3e0bd078e58f5f37d47739ac1d7675827c2f21e129",
+        "git_blob": "a1615455b5ea6251926d5037900e025d46971c18"
+      }
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "4e049e6fe75a82c38d105384f37e16ad8715ee95",
+      "producer_base_blob": "6ad0e520940b6e576324fff7615c2cf5c400bf8f",
+      "current_0b7_blob": "7639755789f4e5abbfa0743173532cd2b2b29f49",
+      "source": "original-source/host-producer/scripts/tests/test_embedded_android.py",
+      "source_identity": {
+        "bytes": 8401,
+        "sha256": "d079eabb434afe38b1892b2ee2e25964617b084f7aa4499bc9c1a029868024ad",
+        "git_blob": "4e049e6fe75a82c38d105384f37e16ad8715ee95"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "three_way_hunks_required_after_producer_qualification",
+      "current_identity": {
+        "bytes": 21985,
+        "sha256": "81aedfe4a6316ffdabe409f90c1272a7ff78c6584271348c5207d353cedea5f4",
+        "git_blob": "7639755789f4e5abbfa0743173532cd2b2b29f49"
+      },
+      "producer_base_identity": {
+        "bytes": 6750,
+        "sha256": "3dd23569d8c75422dbfe42f69c30aa9538b481db42b3be0dd33eb85804da9f1a",
+        "git_blob": "6ad0e520940b6e576324fff7615c2cf5c400bf8f"
+      },
+      "preservation_contract": {
+        "preserve": [
+          "complete EmbeddedCardsWindowTest class",
+          "complete WINDOW_ADAPTERS dictionary and all actual Cards lifecycle/window expectations",
+          "all existing non-table installer and APK manifest assertions"
+        ],
+        "add_only": [
+          "new Table activity/service template and manifest assertions",
+          "exact expected additional private Activity/Service counts"
+        ]
+      }
+    },
+    {
+      "path": "scripts/tests/test_game_return_contract.py",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "8b42456eb737d0e0e6aceb8b460e0a5182c73f7d",
+      "producer_base_blob": "186cecdca050b1e16e24996480ccb005b580ec57",
+      "current_0b7_blob": "186cecdca050b1e16e24996480ccb005b580ec57",
+      "source": "original-source/host-producer/scripts/tests/test_game_return_contract.py",
+      "source_identity": {
+        "bytes": 17234,
+        "sha256": "69549f16163550e60aa10e4a3ef97aed00803d820a3ccfe4befa4bee0d0599fe",
+        "git_blob": "8b42456eb737d0e0e6aceb8b460e0a5182c73f7d"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "base_equal_change_after_producer_qualification",
+      "current_identity": {
+        "bytes": 17104,
+        "sha256": "1e61af9b6e1b69a0271b13c07f77ceb75f8a879f4a589da29dceb9d0ff56f5b7",
+        "git_blob": "186cecdca050b1e16e24996480ccb005b580ec57"
+      }
+    },
+    {
+      "path": "scripts/tests/test_table_games_native_contract.py",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "1379b936394dba8f70137657e9f91f68b5a9bee2",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/scripts/tests/test_table_games_native_contract.py",
+      "source_identity": {
+        "bytes": 15542,
+        "sha256": "a789650b477ded58f3dad9611e6ba187b04f368b488d588902958cefad1478b5",
+        "git_blob": "1379b936394dba8f70137657e9f91f68b5a9bee2"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "test/games/memory_native_entry_test.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "eeb25b267ac05f8256b677428c364d97b5ae1648",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/test/games/memory_native_entry_test.dart",
+      "source_identity": {
+        "bytes": 15014,
+        "sha256": "7bdc82668c385d1b99a68ee1e5e471d25c778500b09fd4a7f769a4c76b46eee5",
+        "git_blob": "eeb25b267ac05f8256b677428c364d97b5ae1648"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "92e220331786a78b21bf800e98a3d927c9b2711a",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/test/quiz_native_roundtrip_lifecycle_test.dart",
+      "source_identity": {
+        "bytes": 14514,
+        "sha256": "3436faf0dfdc0ba386f2881c057b265b2419aacaff53892d106dac70270b57de",
+        "git_blob": "92e220331786a78b21bf800e98a3d927c9b2711a"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "test/reward_wallet_queue_zone_test.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/test/reward_wallet_queue_zone_test.dart",
+      "source_identity": {
+        "bytes": 9797,
+        "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347",
+        "git_blob": "00e67e64c5a15ceb9cd8479408d9638e0745b6e3"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "test/table_games_launcher_binding_test.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "705e90212916b784136a33088a4dbedaf7f0f8e2",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/test/table_games_launcher_binding_test.dart",
+      "source_identity": {
+        "bytes": 10384,
+        "sha256": "ccc6299e38586ffcc86e787a8c194b85218118e2dc637bb4dda7b57a59c16ef1",
+        "git_blob": "705e90212916b784136a33088a4dbedaf7f0f8e2"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "test/table_games_wallet_profile_test.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "2646c037d575b068a697e99c574ace047aaa57a3",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/test/table_games_wallet_profile_test.dart",
+      "source_identity": {
+        "bytes": 12489,
+        "sha256": "1d15b4610b84c3432cac20446be22f47884af749472fae45570c273a0aab9f3b",
+        "git_blob": "2646c037d575b068a697e99c574ace047aaa57a3"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "70cacfce15bdd374d582c570b49c2a865cee63d6",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/test/tutoring/native_english_activity_test.dart",
+      "source_identity": {
+        "bytes": 7588,
+        "sha256": "cf115557354b01a7d873654a74fa2c5e52860df1a8baf967df126d2a712a8114",
+        "git_blob": "70cacfce15bdd374d582c570b49c2a865cee63d6"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tool/check_native_english_activity.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "85a96d92e0eac2c1d9f6791820d8990d816fdc48",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tool/check_native_english_activity.dart",
+      "source_identity": {
+        "bytes": 9307,
+        "sha256": "b812765a787a5553cd472271a4eb4ed13b2f5b6e72d8c1721408bfbcb3c28bb8",
+        "git_blob": "85a96d92e0eac2c1d9f6791820d8990d816fdc48"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/jvm/TableGameIntentContract.java",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "194fdaa97578ef6ca0d434cd9ec0066f20be6818",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/jvm/TableGameIntentContract.java",
+      "source_identity": {
+        "bytes": 5526,
+        "sha256": "0323a6a6301c649c57f50921dba94c5dc8e45bcf55f7207d24848c930199cf84",
+        "git_blob": "194fdaa97578ef6ca0d434cd9ec0066f20be6818"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/memory_native_authority.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "1126cbb3c26c7f4f4b48eb58910cdb30d73d1f0d",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/memory_native_authority.dart",
+      "source_identity": {
+        "bytes": 15449,
+        "sha256": "e3de35b76215e65923d7f45787f2b1351e9bc08c791741c016d8cc9ed4fecf9b",
+        "git_blob": "1126cbb3c26c7f4f4b48eb58910cdb30d73d1f0d"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/memory_original_board_fixture.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "8ff63ccb88f3352967de9c64d4d007facf16c06f",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/memory_original_board_fixture.dart",
+      "source_identity": {
+        "bytes": 5487,
+        "sha256": "a8e682e1d45aff51f01a9814fecc5c899dd796f87307067e198e85770f800e41",
+        "git_blob": "8ff63ccb88f3352967de9c64d4d007facf16c06f"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/memory_original_opponent_fixture.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "65c8e0d24f28043b0bcfbb71c4c61cc8c1ba708e",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/memory_original_opponent_fixture.dart",
+      "source_identity": {
+        "bytes": 2170,
+        "sha256": "773f51601c329d7cbc13cd00d60a9c49360d0846b530b216a101c2e2c0edea99",
+        "git_blob": "65c8e0d24f28043b0bcfbb71c4c61cc8c1ba708e"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/memory_round_contract.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "6a06883ce1f8a03205b914d30a2dfd55acb96597",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/memory_round_contract.dart",
+      "source_identity": {
+        "bytes": 31437,
+        "sha256": "c09c429647aec943fe5934013fef594a5b2bb4f31b7241d8beef32d0983003f2",
+        "git_blob": "6a06883ce1f8a03205b914d30a2dfd55acb96597"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/memory_turn_scheduler_contract.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "6414c553eec694508363d8bff55affee5489827f",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/memory_turn_scheduler_contract.dart",
+      "source_identity": {
+        "bytes": 4580,
+        "sha256": "0126d1fa8e6e4bbd053bb5fd4ca752e4c41f5fca17cce4e0b925ea8013db253e",
+        "git_blob": "6414c553eec694508363d8bff55affee5489827f"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/quiz_native_authority.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "7ded270bb685306e74faa024043ec9638f0cc8d1",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/quiz_native_authority.dart",
+      "source_identity": {
+        "bytes": 5561,
+        "sha256": "c17053575ab585f637806927c433ad7b82db3d6782321d09d6b475e8d3b65a34",
+        "git_blob": "7ded270bb685306e74faa024043ec9638f0cc8d1"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/android_qa/quiz_round_contract.dart",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "cc25a01bba32ffab5eef37483e4697927db70081",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/android_qa/quiz_round_contract.dart",
+      "source_identity": {
+        "bytes": 20965,
+        "sha256": "4792c6067ea30588c77c2f3e423d4457fc93f64f93d43a14302d7eeec098239b",
+        "git_blob": "cc25a01bba32ffab5eef37483e4697927db70081"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "producer_status": "modified",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065",
+      "producer_base_blob": "ed589d9bbc5a99e7b37e606bc45cf932b5ce9257",
+      "current_0b7_blob": "0d78214087b9f1b7115a1f090aa4c05bdc1a87fe",
+      "source": "original-source/host-producer/tools/auto_install/MainActivity.kt",
+      "source_identity": {
+        "bytes": 18497,
+        "sha256": "92e44f39ba00fc0cb5893ca426bbc082c8d9244a694bd0d479b534ba94a448ee",
+        "git_blob": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065"
+      },
+      "materialization": "direct_immutable_raw_file_read",
+      "disposition": "three_way_hunks_required_after_producer_qualification",
+      "current_identity": {
+        "bytes": 18356,
+        "sha256": "5a375bca191a12ae09d7480f6c21ce39d1097e35112dd5ca65ca1043e54433a1",
+        "git_blob": "0d78214087b9f1b7115a1f090aa4c05bdc1a87fe"
+      },
+      "producer_base_identity": {
+        "bytes": 17568,
+        "sha256": "79e7b8f58cb841c9a3a120429860d0c329656300164b67416c7a38ab8e51f758",
+        "git_blob": "ed589d9bbc5a99e7b37e606bc45cf932b5ce9257"
+      },
+      "preservation_contract": {
+        "preserve": [
+          "invalid_village rejection before launch",
+          "settlement allowlist and explicit mode payload",
+          "learning/build/settlement offline-speech release/voice parameters",
+          "Cards and C4 authority validation and existing caller-return machinery"
+        ],
+        "add_only": [
+          "TableGamesBridge attach/detach",
+          "memory/quiz plus reviewed English kind/subject allowlists",
+          "live table authority validation before caller-return session",
+          "private TableGameActivity selection"
+        ]
+      }
+    },
+    {
+      "path": "tools/auto_install/TableAuthorityService.kt",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/auto_install/TableAuthorityService.kt",
+      "source_identity": {
+        "bytes": 1945,
+        "sha256": "06a8b6323a6f76820e452b276649d262f245102d041c4b9207eaf0c2b0695ea0",
+        "git_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/auto_install/TableGameActivity.kt",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/auto_install/TableGameActivity.kt",
+      "source_identity": {
+        "bytes": 6633,
+        "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+        "git_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/auto_install/TableGameIntent.java",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/auto_install/TableGameIntent.java",
+      "source_identity": {
+        "bytes": 3205,
+        "sha256": "6d2af8dd20002c93311f0a823ea24eec3113bac13c10857e6bc3d2b701f3c77f",
+        "git_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/auto_install/TableGamesBridge.kt",
+      "producer_status": "added",
+      "producer_head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "producer_blob": "4b25e208043ac9cd939e98eb955ef6a850315461",
+      "producer_base_blob": null,
+      "current_0b7_blob": null,
+      "source": "original-source/host-producer/tools/auto_install/TableGamesBridge.kt",
+      "source_identity": {
+        "bytes": 8236,
+        "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+        "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461"
+      },
+      "materialization": "complete_new_file_from_original_compare_patch_verified_against_published_git_blob",
+      "disposition": "new_path_after_producer_qualification"
+    }
+  ],
+  "native_files": [
+    {
+      "path": ".github/workflows/lumo-nextgen-authority-check.yml",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "7f9f0e525ec6634480fab1eca4719e9792fb2f13",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "excluded_workflow_or_narrative"
+    },
+    {
+      "path": "assets/games/memory/face_bunny.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "2140631f2cc9d10491f0a4616719f25c36049998",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/face_bunny.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/face_giraffe.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "7432d7a2c53feb86d431b8edcae90df4bc071947",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/face_giraffe.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/face_panda.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "e9177d1e5ffb5e232f486ba115a798575c10636e",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/face_panda.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/face_penguin.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "318ffc63727522827ad171b93df68442354140da",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/face_penguin.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/fox_avatar.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "2528db26b4288d89e905c03ec1015ac7b8798538",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/fox/fox_avatar.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/logo_memory.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "38a3672792aa20e590f81e8161b2dc631e13b05b",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/logo_memory.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/sticker_chest.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "507a33d7b443d6523331f74a144649999f16d38b",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/sticker_chest.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/sticker_flag.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "c37bb7269c79e04104f2fe6af3898d169fe60027",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/sticker_flag.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/sticker_lantern.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "3894c3e8a8025e4fc53902b8c0ddf54934c05ccc",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/sticker_lantern.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/sticker_mushroom.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "368b2495abb9832164669e925a3d0bba9f1fc3c0",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/sticker_mushroom.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/sticker_note.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "465ab7c46a206b6dd3b5f6dc0f7bdd09ec649c8b",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/sticker_note.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/sticker_rock.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "0e9f6c3fd4bbc008d5ed37b1d9df5ad783dadf82",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/sticker_rock.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "assets/games/memory/sticker_star.png",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "01f9e8984090e85420db84cf69da3d0d0fe27aeb",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_asset_reuses_current_original_host_blob",
+      "same_original_host_path": "assets/lumo_design/memory/sticker_star.png",
+      "no_image_download_or_visual_review": true
+    },
+    {
+      "path": "docs/nextgen-english-quiz-source-20261114.md",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "d5b6d3b4633a3cbfd6ed917a2023489595e8b0b9",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "excluded_workflow_or_narrative"
+    },
+    {
+      "path": "scenes/games/memory_table.tscn",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "95a6a9f9055b3df6dc31e6c36e7cc38e10fb04c8",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scenes/games/quiz_studio.tscn",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "7b674ff774f5cd05120472949dffc1b5c37cea8a",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/app/scene_router.gd",
+      "producer_status": "modified",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "09b5b8119729e0a5556a18acf9497f31962cb343",
+      "producer_base_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "current_baf_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "base_equal_native_change_after_producer_qualification"
+    },
+    {
+      "path": "scripts/games/memory/memory_table.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "9c998e33aee127453a67d25a6e020638472b8387",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/games/quiz/quiz_studio.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "573af4e6c55dd44b8832f588545300d18309c89d",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "401864874d7dc5fc9a97e057d1a49bdf894b9e0b",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/learning/english_vocabulary.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/learning/learning_activity.gd",
+      "producer_status": "modified",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "245a966e00259c2d0189c932c40374d855a4b0bc",
+      "producer_base_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe",
+      "current_baf_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe",
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "base_equal_native_change_after_producer_qualification"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "producer_status": "modified",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72",
+      "producer_base_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890",
+      "current_baf_blob": "c3b1bc8c73cd764724464d8d2fe0413bdba62a96",
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "native_three_way_review_required"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "producer_status": "modified",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "00a30115ce7669e57e8ceec1251047773f3da1f4",
+      "producer_base_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb",
+      "current_baf_blob": "1845617ed2659dd377f433209799b12ddf310deb",
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "native_three_way_review_required"
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "64dece9ec9619c6bf527c6398feef90b9e1a5298",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/tests/memory_table_regression.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "b9122337e25e9a529e4e8602a0c5e8e3e680f831",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/tests/memory_table_runtime.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "f4fc0d96b5b67e91969dac610bdc5c550f590640",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "scripts/tests/quiz_studio_runtime.gd",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "59cf4a16d2e53b65a97277574c6866db5a5929fb",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/run_memory_native_authority.py",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "54103c9ee0cd4070b808273dca48a169883a1ec5",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/run_quiz_native_authority.py",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "5f02cec5a8eb9f2d0addd43fcfa1cd5717ff63b8",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    },
+    {
+      "path": "tools/tests/test_memory_native_pair_evidence.py",
+      "producer_status": "added",
+      "producer_head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+      "producer_blob": "f61c72a6691b186d6682c7407c50394a7b132091",
+      "producer_base_blob": null,
+      "current_baf_blob": null,
+      "original_compare": "originals/native-producer-delta.json",
+      "disposition": "new_native_path_after_producer_qualification"
+    }
+  ],
+  "blocking_observations": [
+    "Host 8b source acceptance 43604481767 failed in complete Flutter suite: 2606 passed, one Memory complete 12-pair game failure, zero skips. Focused successes do not qualify the whole source.",
+    "Native 9f2 actual pair run 43603969762 failed in Quiz reveal question 1. English and Memory jobs succeeded separately.",
+    "Native pair run used Host c0ca5265eb4159e6848317da5f49edabaa75bfa0, not latest 8b and not integration target 0b7.",
+    "No new combined Host/Native test, current Android APK or original-image review was performed by this preparation."
+  ],
+  "next_qualification_gates": [
+    "Producer resolves actual Memory full-suite failure while preserving complete-game reward/persistence/restart assertions; latest complete suite must pass on the actual selected source.",
+    "Producer resolves actual Quiz reveal failure and validates the paired renderer/authority on exact published Host and Native sources; working-copy claims are not source deliverables.",
+    "Apply only an independently reviewed explicit source map after qualification; retain all listed target protections and reconcile the four shared host files.",
+    "Run current full Python/JVM and Flutter acceptance plus the real new Dart Memory/Quiz/English contracts on the combined snapshot; existing standalone Native pair gates are not automatically part of our current C4 workflow.",
+    "Retain and execute current Native52/17, Dream, Discovery, Village, C4, Cards, speech and return gates; add original Memory/Quiz/English renderer and exact APK device tests before any common delivery approval.",
+    "Bind original source/APK/PCK/owner/save/return evidence and separately inspect current images; no transferred desktop success or physical-device/FPS claim."
+  ],
+  "no_new_dependency_or_pin_change_proposed": true,
+  "no_source_integration_tests_or_remote_mutations": true,
+  "snapshot_scope": "Historical exact 8b09/9f2 review, superseded heads separately reviewed; not current latest-head assertion.",
+  "independent_native_review": {
+    "path": "independent-native-review/review.json",
+    "bytes": 11695,
+    "sha256": "16e33e7b7d8c7af9f1816734a43298de203f005c377c3115b99c4391c20f0566",
+    "git_blob": "64aba8a7b4811b66f0ed22f1ff5dbb41150b46ca"
+  }
+}

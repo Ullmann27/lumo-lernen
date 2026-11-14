@@ -1,0 +1,416 @@
+{
+  "schema": 1,
+  "prepared_utc": "2026-11-14T14:49:49.397289+00:00",
+  "scope": "Existing real GitHub CI originals only; no local tests, renderer, Android execution, CI rerun or integration.",
+  "host_latest": {
+    "head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+    "run_id": 43604481767,
+    "attempt": 1,
+    "run_result": "failure",
+    "metadata": [
+      {
+        "path": "originals/host-current-feature-run-terminal.json",
+        "bytes": 13137,
+        "sha256": "8b3ff28f9f07ce54c1630d3f37c475796f61e2c4cc6a52ecede2c4464877a407"
+      },
+      {
+        "path": "originals/host-current-feature-jobs-terminal.json",
+        "bytes": 9488,
+        "sha256": "658773c718ff51a6d3a83139a365fb5265beb6c41aeb2ce3b0a1869b16bf7f19"
+      }
+    ],
+    "android_compile": {
+      "job_id": 132476057492,
+      "result": "success",
+      "marker": {
+        "path": "originals/jobs/host-current-compile-job-log.log",
+        "bytes": 246737,
+        "sha256": "7842eecc1258fb4c0d60574f3e28593df71bb970be7c2c4276785b2877775c54",
+        "first_line": 1754,
+        "last_line": 1754,
+        "slice_bytes": 157,
+        "slice_sha256": "214b070830c2e0571ea1baa5b7ca799807a51c1b3f6cfff51e77a5d9a3e4ccdc",
+        "original_text": "2026-11-14T14:25:36.8497395Z [AndroidHostCompile] PASS: actual Kotlin/Java bytecode for native lifecycle, Cards/C4/Memory/Quiz IPC and local speech envelope\n"
+      },
+      "private_table_contracts": {
+        "path": "originals/jobs/host-current-compile-job-log.log",
+        "bytes": 246737,
+        "sha256": "7842eecc1258fb4c0d60574f3e28593df71bb970be7c2c4276785b2877775c54",
+        "first_line": 1797,
+        "last_line": 1797,
+        "slice_bytes": 53,
+        "slice_sha256": "2faaacbe5c69eaf6b4e0ce07affa12bfdd9022d5b1999b21c6b266e9f7f81a9e",
+        "original_text": "2026-11-14T14:25:52.7964116Z Ran 28 tests in 15.731s\n"
+      },
+      "limit": "Actual Android Kotlin/Java bytecode and 28 JVM-boundary contracts; no installed device run."
+    },
+    "memory_source_contracts": {
+      "job_id": 132476057725,
+      "result": "success",
+      "memory": {
+        "path": "originals/jobs/host-current-memory-job-log.log",
+        "bytes": 34458,
+        "sha256": "4e0cf1b321f0b9720de5c76701660d4370af35638c8d75f1e019e22f6f4a7ff9",
+        "first_line": 322,
+        "last_line": 322,
+        "slice_bytes": 277,
+        "slice_sha256": "279432b02d01d1cc0552fb3f42b6464ecafaaee8d043877ba470dd0d6b7516f3",
+        "original_text": "2026-11-14T14:22:35.8599570Z MEMORY_ROUND_CONTRACT {\"status\":\"PASS\",\"cases\":30,\"passed\":30,\"failed\":[],\"checks\":1694,\"skipped\":0,\"scope\":\"Production Dart authorities; original dealer and original opponent fixture; synthetic storage and lifecycle transport; no Android claim.\"}\n"
+      },
+      "scheduler": {
+        "path": "originals/jobs/host-current-memory-job-log.log",
+        "bytes": 34458,
+        "sha256": "4e0cf1b321f0b9720de5c76701660d4370af35638c8d75f1e019e22f6f4a7ff9",
+        "first_line": 330,
+        "last_line": 330,
+        "slice_bytes": 272,
+        "slice_sha256": "c864ec79cc6dcac640aede21c3fe8b15a1428a78d6ec45d06d9a8e2d03d830ea",
+        "original_text": "2026-11-14T14:22:36.0539545Z MEMORY_TURN_SCHEDULER {\"status\":\"PASS\",\"cases\":7,\"passed\":7,\"failed\":[],\"checks\":13,\"skipped\":0,\"scope\":\"Actual production scheduler; one real Dart event-loop Timer plus deterministic delayed-callback and clock boundaries; no Android claim.\"}\n"
+      },
+      "quiz": {
+        "path": "originals/jobs/host-current-memory-job-log.log",
+        "bytes": 34458,
+        "sha256": "4e0cf1b321f0b9720de5c76701660d4370af35638c8d75f1e019e22f6f4a7ff9",
+        "first_line": 359,
+        "last_line": 359,
+        "slice_bytes": 92,
+        "slice_sha256": "e9b599415afd3d6abc39b593fe0034f5e76978a065fdf18f8f576b60475a70bf",
+        "original_text": "2026-11-14T14:22:36.4865938Z [QuizRoundContract] PASS cases=28 failed=0 checks=1786 skips=0\n"
+      }
+    },
+    "flutter": {
+      "job_id": 132476057738,
+      "result": "failure",
+      "complete_suite_original_summary": {
+        "status": "FAIL",
+        "passed": 2606,
+        "failed": [
+          "Memory complete 12-pair game rewards once, persists, and restarts"
+        ],
+        "skipped": [],
+        "capture_error_files": [],
+        "flutter_exit_code": 1,
+        "runner_completed_successfully": false,
+        "runner_errors": [],
+        "scope": [
+          "complete Flutter suite; capture outputs recorded below"
+        ],
+        "capture_png_counts": {
+          "LUMO_TUTORING_CAPTURE_DIR": {
+            "directory": "tutoring",
+            "pngs": 6
+          },
+          "LUMO_RIG_STRESS": {
+            "directory": "rig-stress",
+            "pngs": 27
+          },
+          "LUMO_CARDS_OPPONENT_CAPTURE": {
+            "directory": "cards-opponents",
+            "pngs": 4
+          },
+          "LUMO_STREAM_E_CAPTURE": {
+            "directory": "cards-memory",
+            "pngs": 8
+          },
+          "LUMO_NAVIGATION_CAPTURES": {
+            "directory": "navigation",
+            "pngs": 26
+          },
+          "LUMO_GUIDED_CAPTURE_DIR": {
+            "directory": "guided-learning",
+            "pngs": 170
+          },
+          "LUMO_VISUAL_CAPTURE_DIR": {
+            "directory": "reasoning",
+            "pngs": 15
+          },
+          "LUMO_TOUR_DIR": {
+            "directory": "tour",
+            "pngs": 62
+          },
+          "LUMO_FLUTTER_GAMES_CAPTURE": {
+            "directory": "games",
+            "pngs": 16
+          },
+          "LUMO_LEARNING_CAPTURE_DIR": {
+            "directory": "learning-adventure",
+            "pngs": 80
+          },
+          "LUMO_COMPANION_CAPTURE_DIR": {
+            "directory": "companion",
+            "pngs": 6
+          },
+          "LUMO_SPATIAL_CAPTURES": {
+            "directory": "reading",
+            "pngs": 12
+          },
+          "LUMO_CAPTURE_DIR": {
+            "directory": "modernization",
+            "pngs": 42
+          },
+          "LUMO_CARD_FACE_EXPORT_DIR": {
+            "directory": "card-face-exports",
+            "pngs": 56
+          },
+          "LUMO_NEXTGEN_READING_CAPTURES": {
+            "directory": "nextgen-reading",
+            "pngs": 6
+          },
+          "LUMO_READING_CAPTURES": {
+            "directory": "reading-passages",
+            "pngs": 3
+          },
+          "LUMO_ASSISTED_LEARNING_CAPTURES": {
+            "directory": "assisted-learning",
+            "pngs": 2
+          },
+          "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+            "directory": "native-profiles",
+            "pngs": 4
+          }
+        },
+        "capture_file_outputs": {
+          "LUMO_CARDS_CUP_CAPTURE": {
+            "path": "cards-cup/trophy.png",
+            "created": true
+          }
+        },
+        "rendered_png_count": 546
+      },
+      "summary_marker": {
+        "path": "originals/jobs/host-current-flutter-job-log.log",
+        "bytes": 117688,
+        "sha256": "736998d6dd5801f63b214c6db7934ddaecec6a7d2d650bace7d3c36449aac37a",
+        "first_line": 811,
+        "last_line": 811,
+        "slice_bytes": 1755,
+        "slice_sha256": "934451a16e4be425e0d77cd326be5411ed30f6220b6521b45db96495d231671d",
+        "original_text": "2026-11-14T14:31:10.5872591Z {\"status\": \"FAIL\", \"passed\": 2606, \"failed\": [\"Memory complete 12-pair game rewards once, persists, and restarts\"], \"skipped\": [], \"capture_error_files\": [], \"flutter_exit_code\": 1, \"runner_completed_successfully\": false, \"runner_errors\": [], \"scope\": [\"complete Flutter suite; capture outputs recorded below\"], \"capture_png_counts\": {\"LUMO_TUTORING_CAPTURE_DIR\": {\"directory\": \"tutoring\", \"pngs\": 6}, \"LUMO_RIG_STRESS\": {\"directory\": \"rig-stress\", \"pngs\": 27}, \"LUMO_CARDS_OPPONENT_CAPTURE\": {\"directory\": \"cards-opponents\", \"pngs\": 4}, \"LUMO_STREAM_E_CAPTURE\": {\"directory\": \"cards-memory\", \"pngs\": 8}, \"LUMO_NAVIGATION_CAPTURES\": {\"directory\": \"navigation\", \"pngs\": 26}, \"LUMO_GUIDED_CAPTURE_DIR\": {\"directory\": \"guided-learning\", \"pngs\": 170}, \"LUMO_VISUAL_CAPTURE_DIR\": {\"directory\": \"reasoning\", \"pngs\": 15}, \"LUMO_TOUR_DIR\": {\"directory\": \"tour\", \"pngs\": 62}, \"LUMO_FLUTTER_GAMES_CAPTURE\": {\"directory\": \"games\", \"pngs\": 16}, \"LUMO_LEARNING_CAPTURE_DIR\": {\"directory\": \"learning-adventure\", \"pngs\": 80}, \"LUMO_COMPANION_CAPTURE_DIR\": {\"directory\": \"companion\", \"pngs\": 6}, \"LUMO_SPATIAL_CAPTURES\": {\"directory\": \"reading\", \"pngs\": 12}, \"LUMO_CAPTURE_DIR\": {\"directory\": \"modernization\", \"pngs\": 42}, \"LUMO_CARD_FACE_EXPORT_DIR\": {\"directory\": \"card-face-exports\", \"pngs\": 56}, \"LUMO_NEXTGEN_READING_CAPTURES\": {\"directory\": \"nextgen-reading\", \"pngs\": 6}, \"LUMO_READING_CAPTURES\": {\"directory\": \"reading-passages\", \"pngs\": 3}, \"LUMO_ASSISTED_LEARNING_CAPTURES\": {\"directory\": \"assisted-learning\", \"pngs\": 2}, \"LUMO_NATIVE_PROFILE_CAPTURE_DIR\": {\"directory\": \"native-profiles\", \"pngs\": 4}}, \"capture_file_outputs\": {\"LUMO_CARDS_CUP_CAPTURE\": {\"path\": \"cards-cup/trophy.png\", \"created\": true}}, \"rendered_png_count\": 546}\n"
+      },
+      "focused_successes": [
+        {
+          "suite": "wallet/transaction/original Memory profiles",
+          "tests": 30
+        },
+        {
+          "suite": "Quiz observed regression set",
+          "tests": 46
+        },
+        {
+          "suite": "Memory UI regression set",
+          "tests": 29
+        }
+      ],
+      "final_tracked_source_check": "skipped after failed complete suite; no post-failure tracked-source cleanliness assertion from this job"
+    }
+  },
+  "host_same_head_independent_failure": {
+    "run_id": 43604484826,
+    "attempt": 1,
+    "job_id": 132476067212,
+    "head": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+    "result": "failure",
+    "first_failure_utc": "2026-11-14T14:24:32.1719044Z",
+    "test": "Memory complete 12-pair game rewards once, persists, and restarts",
+    "location": "test/games/game_round_regression_test.dart:191",
+    "observation": "Expected exactly one text widget Du hast gewonnen!, observed zero.",
+    "original_stack": {
+      "path": "originals/jobs/host-current-living-job-log.log",
+      "bytes": 665151,
+      "sha256": "5b572b070e04ce68946eaf209a99d66e8c3e0add2b49c186feba4309f408a12c",
+      "first_line": 935,
+      "last_line": 959,
+      "slice_bytes": 2729,
+      "slice_sha256": "ea26a588b13f599b995224650a1012b2652a94f32a5dac0c58ce498eb39c9175",
+      "original_text": "2026-11-14T14:24:32.1719044Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\n2026-11-14T14:24:32.1720147Z The following TestFailure was thrown running a test:\n2026-11-14T14:24:32.1720962Z Expected: exactly one matching candidate\n2026-11-14T14:24:32.1721713Z   Actual: _TextWidgetFinder:<Found 0 widgets with text \"Du hast gewonnen!\": []>\n2026-11-14T14:24:32.1722507Z    Which: means none were found but one was expected\n2026-11-14T14:24:32.1722939Z \n2026-11-14T14:24:32.1723246Z When the exception was thrown, this was the stack:\n2026-11-14T14:24:32.1724200Z #4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/game_round_regression_test.dart:191:5)\n2026-11-14T14:24:32.1725048Z <asynchronous suspension>\n2026-11-14T14:24:32.1725892Z #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n2026-11-14T14:24:32.1726702Z <asynchronous suspension>\n2026-11-14T14:24:32.1727394Z #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n2026-11-14T14:24:32.1728122Z <asynchronous suspension>\n2026-11-14T14:24:32.1728619Z <asynchronous suspension>\n2026-11-14T14:24:32.1729099Z (elided one frame from package:stack_trace)\n2026-11-14T14:24:32.1729479Z \n2026-11-14T14:24:32.1729841Z This was caught by the test expectation on the following line:\n2026-11-14T14:24:32.1730697Z   file:///home/runner/work/lumo-lernen/lumo-lernen/test/games/game_round_regression_test.dart line 191\n2026-11-14T14:24:32.1731475Z The test description was:\n2026-11-14T14:24:32.1732031Z   Memory complete 12-pair game rewards once, persists, and restarts\n2026-11-14T14:24:32.1733010Z ════════════════════════════════════════════════════════════════════════════════════════════════════\n2026-11-14T14:24:32.1734165Z 00:55 +230 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/daily_mission_module_progress_test.dart: real Plus bis 10 counts a corrected helped task once\n2026-11-14T14:24:32.1738658Z 00:55 +230 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/games/game_round_regression_test.dart: Memory complete 12-pair game rewards once, persists, and restarts [E]\n2026-11-14T14:24:32.1761081Z   Test failed. See exception logs above.\n2026-11-14T14:24:32.1771059Z   The test description was: Memory complete 12-pair game rewards once, persists, and restarts\n"
+    },
+    "actual_finish": {
+      "path": "originals/jobs/host-current-living-job-log.log",
+      "bytes": 665151,
+      "sha256": "5b572b070e04ce68946eaf209a99d66e8c3e0add2b49c186feba4309f408a12c",
+      "first_line": 3713,
+      "last_line": 3718,
+      "slice_bytes": 529,
+      "slice_sha256": "3a1f99379105ed62016bc42a74ea4532099224ffe7894f8b910ff1e10f8fb888",
+      "original_text": "2026-11-14T14:31:24.8137618Z 07:47 +2410 ~196 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/widget_test.dart: (tearDownAll)\n2026-11-14T14:31:24.8555259Z 07:48 +2410 ~196 -1: Some tests failed.\n2026-11-14T14:31:24.8560020Z \n2026-11-14T14:31:24.8560205Z Failing tests:\n2026-11-14T14:31:24.8561045Z   /home/runner/work/lumo-lernen/lumo-lernen/test/games/game_round_regression_test.dart: Memory complete 12-pair game rewards once, persists, and restarts\n2026-11-14T14:31:24.9672561Z ##[error]Process completed with exit code 1.\n"
+    },
+    "passed": 2410,
+    "skipped": 196,
+    "failed": 1,
+    "unchanged_test_source": {
+      "path": "original-source/host-producer/test/games/game_round_regression_test.dart",
+      "bytes": 11117,
+      "sha256": "fb8d8deb83095273a6195539a1267903b0f0e56c9ab31e9d53dc864c018e238a"
+    },
+    "test_git_blob": "8c626ae023d54c33b72b80d8cb167d98258a34be",
+    "test_is_identical_to_target_0b7": true,
+    "root_cause_limit": "Missing win dialog is directly proven. No new causal product/test repair is inferred or executed; the producer is handling this original failure."
+  },
+  "host_change_review": {
+    "run_id": 43604484774,
+    "job_id": 132476116386,
+    "result": "cancelled",
+    "metadata": {
+      "path": "originals/host-current-review-jobs-terminal.json",
+      "bytes": 5463,
+      "sha256": "a8fc74c6998a2c42d5e1b63ae397c6fc7fc65c87a5c78f5fafd46a794157bfdc"
+    },
+    "no_completion_or_success_claim": true
+  },
+  "host_previous_c0ca": {
+    "head": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+    "run_id": 43603088266,
+    "attempt": 1,
+    "flutter_job_id": 132471835633,
+    "result": "failure",
+    "passed": 25,
+    "failed": 4,
+    "failed_stage": "Focused actual Memory UI and original profile/statistics group; full suite was not reached.",
+    "first_failure": "Null check operator used on a null value at memory_profile_storage_test.dart:130:48.",
+    "remaining_failures": [
+      "missing memory-diff-profi",
+      "missing memory-diff-mittel",
+      "missing memory-diff-leicht"
+    ],
+    "originals": [
+      {
+        "path": "originals/host-previous-feature-jobs.json",
+        "bytes": 9270,
+        "sha256": "f900e103da96189184a8ab12d3b684d5252a745804dc8bc3d4d1e56ac69c9726"
+      },
+      {
+        "path": "originals/jobs/host-previous-flutter-job-log.log",
+        "bytes": 116873,
+        "sha256": "94e5fdb22b2b5e60b6f8bbe73783b1b80f1e69e26c4a6b128993217cf3a873f7"
+      }
+    ],
+    "limit": "Preserved historical failure; latest focused successes do not rewrite it or qualify the latest failing full suite."
+  },
+  "native_latest_pair": {
+    "head": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+    "run_id": 43603969762,
+    "attempt": 1,
+    "paired_host": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+    "overall_result": "failure",
+    "metadata": {
+      "path": "originals/native-current-feature-jobs.json",
+      "bytes": 13303,
+      "sha256": "5f25e2172f5a0279f950265bd9a89f2f9f9edbecf9c2cb8b5f9db0e3b20231d8"
+    },
+    "workflow": {
+      "path": "originals/workflows/native-current-feature-workflow.yml",
+      "bytes": 9280,
+      "sha256": "f2d520bae3160b12d515bb1c4993f5d209d71032b85c6ea35880c0b4e49accae"
+    },
+    "english": {
+      "job_id": 132474493698,
+      "result": "success",
+      "dart_marker": {
+        "path": "originals/jobs/native-english-job-log.log",
+        "bytes": 303434,
+        "sha256": "f06e68aa00fc37d39a56cba81116e3fcd4515ccbf5f4742587b3222d6fac33a4",
+        "first_line": 3136,
+        "last_line": 3136,
+        "slice_bytes": 74,
+        "slice_sha256": "7afe7f7aa86662c3c3c1a5017d73c33a05d1749724eb50c5de8d8772cdcd7422",
+        "original_text": "2026-11-14T14:18:20.5211026Z NATIVE_ENGLISH_DART_PASS cases=8 checks=1060\n"
+      },
+      "renderer_marker": {
+        "path": "originals/jobs/native-english-job-log.log",
+        "bytes": 303434,
+        "sha256": "f06e68aa00fc37d39a56cba81116e3fcd4515ccbf5f4742587b3222d6fac33a4",
+        "first_line": 3212,
+        "last_line": 3212,
+        "slice_bytes": 127,
+        "slice_sha256": "5000eba5c31ce8029199635a931663451dc12d23300341a8aab0b40ccb9e9bfd",
+        "original_text": "2026-11-14T14:22:44.1390528Z LEARNING_ENGLISH_PASS checks=3299 captures=10 input_events=98 fixture=actual_dart_producer_report\n"
+      }
+    },
+    "memory": {
+      "job_id": 132474493500,
+      "result": "success",
+      "presenter_is_present": true,
+      "renderer_marker": {
+        "path": "originals/jobs/native-memory-job-log.log",
+        "bytes": 309421,
+        "sha256": "2709ad0df6e05d3f31af7cbc141611a4da0e2e70af39ad9297591945756ae0e5",
+        "first_line": 3236,
+        "last_line": 3236,
+        "slice_bytes": 69,
+        "slice_sha256": "3260ddbc0553fd36d600847ab4817e4f40be999ae826caa26f0820e92f60a45f",
+        "original_text": "2026-11-14T14:19:50.6804972Z MEMORY_VIEW_PASS checks=7020 captures=8\n"
+      },
+      "runtime_marker": {
+        "path": "originals/jobs/native-memory-job-log.log",
+        "bytes": 309421,
+        "sha256": "2709ad0df6e05d3f31af7cbc141611a4da0e2e70af39ad9297591945756ae0e5",
+        "first_line": 3270,
+        "last_line": 3270,
+        "slice_bytes": 90,
+        "slice_sha256": "c9c817e97f378335b540824f75f560805c1dc1bda3b79a585e75f145752c20a9",
+        "original_text": "2026-11-14T14:21:20.0349671Z [GodotMemory] [MemoryTableRuntime] PASS checks=244 inputs=57\n"
+      },
+      "pair_marker": {
+        "path": "originals/jobs/native-memory-job-log.log",
+        "bytes": 309421,
+        "sha256": "2709ad0df6e05d3f31af7cbc141611a4da0e2e70af39ad9297591945756ae0e5",
+        "first_line": 3271,
+        "last_line": 3271,
+        "slice_bytes": 53,
+        "slice_sha256": "56742c2cd89e90d2ef89ff81ca50e5d4aa36ae2badaef88287ca138e30ec719c",
+        "original_text": "2026-11-14T14:21:20.3551945Z [MemoryNativePair] PASS\n"
+      }
+    },
+    "quiz": {
+      "job_id": 132474493736,
+      "result": "failure",
+      "first_failure_utc": "2026-11-14T14:18:53.0584757Z",
+      "observation": "QuizStudioRuntime failed the condition labelled Production Dart accepted and persisted reveal question 1.",
+      "original_stack_and_finish": {
+        "path": "originals/jobs/native-quiz-job-log.log",
+        "bytes": 300902,
+        "sha256": "5e57055fdf778de5cf53fbec27e7201dbc22a82170b734b89747b6fc53e9b6d6",
+        "first_line": 3194,
+        "last_line": 3203,
+        "slice_bytes": 930,
+        "slice_sha256": "9a8d2de6e47ff10c495ea0f6db9077de63c98407b3332a4f6004797766c7efbc",
+        "original_text": "2026-11-14T14:18:53.0584757Z [GodotQuiz] ERROR: [QuizStudioRuntime] Production Dart accepted and persisted reveal question 1\n2026-11-14T14:18:53.0585598Z [GodotQuiz]    at: push_error (core/variant/variant_utility.cpp:1024)\n2026-11-14T14:18:53.0586156Z [GodotQuiz]    GDScript backtrace (most recent call first):\n2026-11-14T14:18:53.0586885Z [GodotQuiz]        [0] _check (res://scripts/tests/quiz_studio_runtime.gd:82)\n2026-11-14T14:18:53.0587471Z [GodotQuiz]        [1] _until (res://scripts/tests/quiz_studio_runtime.gd:134)\n2026-11-14T14:18:53.0588045Z [GodotQuiz]        [2] _frame (res://scripts/tests/quiz_studio_runtime.gd:120)\n2026-11-14T14:18:53.0909830Z RuntimeError: Godot emitted a script or engine error\n2026-11-14T14:18:53.0982922Z [GodotQuiz] [QuizStudioRuntime] FAIL checks=62 captures=3\n2026-11-14T14:18:53.1503099Z [QuizNativePair] FAIL\n2026-11-14T14:18:53.1600529Z ##[error]Process completed with exit code 1.\n"
+      },
+      "actual_checks_before_failure": 62,
+      "captures_reported": 3,
+      "producer_later_explanation": "Updated PR body states allowed null explanation e_sk_body_3 was rejected, with a separate 50:50 presentation problem and unpublished fixes. This is separately labelled producer narrative, not a new passing source/run."
+    },
+    "limits": [
+      "Actual desktop Dart/Godot processes with QA transport; no installed Android APK, global production-wallet or physical FPS approval.",
+      "Success does not certify Host8b or target Host0b7/Nativebaf.",
+      "This review did not download or visually approve the renderer capture archives."
+    ]
+  },
+  "fresh_head_read": {
+    "host": {
+      "path": "originals/connector/host-pr503-refresh-normalized.json",
+      "bytes": 6045,
+      "sha256": "9de7b4714e351661303df6762eac59b9760915cc6e5baf7f8084164dfd88deb0"
+    },
+    "native": {
+      "path": "originals/connector/native-pr182-refresh-normalized.json",
+      "bytes": 5238,
+      "sha256": "62641eaf1376609c1a4edf6e31b4d978d88737e865d002a6a2a53e82096dcfe2"
+    },
+    "same_heads": true,
+    "format_note": "Fresh responses are serialized complete connector get_pr_info results, not asserted raw REST byte strings. Earlier raw REST originals are preserved separately.",
+    "producer_bodies_updated_utc": [
+      "2026-11-14T14:33:13Z",
+      "2026-11-14T14:33:14Z"
+    ],
+    "transport_note": "Two later generic fetch requests to the PR endpoints returned INVALID_ARGUMENT HTTP400; those complete error wrappers are preserved. Purpose-built read-only get_pr_info completed."
+  },
+  "large_originals_not_downloaded": [
+    {
+      "artifact_id": 14117248948,
+      "bytes": 342924933,
+      "sha256": "e2688f4ef747b4c43cd31f886bf17c859200ce4a23631c858ac9fcafe402fe8f",
+      "location": "Original GitHub Actions artifact; metadata retained, no local complete archive claimed."
+    }
+  ]
+}
