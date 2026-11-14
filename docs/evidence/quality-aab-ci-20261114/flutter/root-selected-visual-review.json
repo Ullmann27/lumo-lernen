@@ -1,0 +1,56 @@
+{
+  "recorded_at_utc": "2026-11-14T12:06:25.157403+00:00",
+  "host_source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "run_id": 43590864772,
+  "run_attempt": 1,
+  "artifact_id": 14112921501,
+  "images": [
+    {
+      "path": "navigation/home-phone.png",
+      "bytes": 1533892,
+      "sha256": "832d28b48425c3c612e6fb2b03d600c6e64a161eaa2063b5c07ca0e4f9bfe796",
+      "dimensions": [
+        720,
+        1600
+      ],
+      "actually_opened_with_view_image": true,
+      "observation_de": "Startseite mit originalem 3D-Fuchs, Begrüßung, Loslernen und Lern-/Spiel-Kacheln sowie unterer Navigation. In diesem sichtbaren Ausschnitt sind die Haupttexte und Hauptaktionen lesbar. Das ist eine statische Flutter-Testaufnahme, kein Nachweis von Touch oder Android-FPS."
+    },
+    {
+      "path": "modernization/journal_phone.png",
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d",
+      "dimensions": [
+        824,
+        1830
+      ],
+      "actually_opened_with_view_image": true,
+      "observation_de": "Leerer Journalzustand mit Überschrift, Plus-Aktion und vollständig sichtbarer Schaltfläche Jetzt schreiben. Bestehender Journalinhalt wurde nicht verändert. Kein Nachweis für Speichern eines echten Tagebucheintrags."
+    },
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "bytes": 131666,
+      "sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d",
+      "dimensions": [
+        824,
+        1830
+      ],
+      "actually_opened_with_view_image": true,
+      "observation_de": "Schreibcoach mit Aufgabenanzeige, Sprachsymbol, Schriftkategorien, Schreibfläche sowie Löschen und Lumo zeigt. In der dekorativen runden Fläche links neben dem Auftrag ist ein rechteckiges Zeichen sichtbar; Ursache und Darstellung auf Android sind aus dieser Flutter-Testaufnahme nicht belegt. Das bestehende geschützte Modul wurde für diese Prüfung nicht geändert."
+    },
+    {
+      "path": "modernization/schreibaufgabe_phone.png",
+      "bytes": 372820,
+      "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b",
+      "dimensions": [
+        824,
+        1830
+      ],
+      "actually_opened_with_view_image": true,
+      "observation_de": "Schreibaufgabe zum Buchstaben B mit zwei Beispielen, originalem Fuchs, gut sichtbarer Schaltfläche Jetzt mit dem Finger schreiben und Andere Aufgabe. Der gezeigte Zustand enthält keinen tatsächlich ausgeführten Schreibversuch."
+    }
+  ],
+  "visually_reviewed_images": 4,
+  "total_artifact_pngs": 546,
+  "scope": "Selected actual original image inspection only. No claim that all 546 images were visually reviewed, or that static images prove operation or physical-device performance."
+}

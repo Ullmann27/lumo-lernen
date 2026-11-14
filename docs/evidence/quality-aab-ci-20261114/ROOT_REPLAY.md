@@ -1,0 +1,13 @@
+# Independent reviews of frozen Lumo candidate aab09275
+
+Recorded 2026-11-14. Host `aab09275ec6b5808de9be539ca4e1a7e70921249`; native `e2d15dbc5f3709306decb139eeb70a1cf30c0b73`; actual workflow run `43590864772`, attempt 1. This evidence branch does not change the frozen candidate or production main.
+
+## Completed original-artifact reviews
+
+- Desktop runtime artifact 14112302039: 399 unchanged original files, 259 PNGs (250 recorded frames plus nine stills), actual Dart and Godot exit 0, 170 native checks and zero errors. Return-recovery 21 and wisp 14 markers are present in actual logs. Source snapshots are byte-identical and bound to both pinned Git trees. Detailed independent image review and the small-landscape end-modal coverage gap are in `../c4-runtime-aab092-20261114/`. The old recording exercises resume after a win; it does not demonstrate both lower end-modal actions. This is a coverage gap, not proof of a broken action.
+- Learning audit artifact 14112501631: original 212132-byte ZIP, SHA-256 `068f04b773940da6bf8b4ba327890da3899aeffc8fc4716b07479651542d8800`, is stored under `learning-audit/original-artifact.zip`. Root replayed the exact committed delivery verifier against its seven original files: 236 families, 7552 samples, zero structural issues. All originals and the host checkout/index remained unchanged. This is not semantic, pedagogical, or official curriculum approval.
+- Full Flutter artifact 14112921501: original 332468295-byte ZIP SHA-256 `a974e111cdf46bf0f34ec3ffda9c27f0e67432c2805d10e7fd5aa2755dc31d1d`. Root verified CRC and exact identities of all 548 members and replayed the committed acceptance parser on the original machine log: 2586 passing visible tests, zero failures, zero skipped tests, terminal done success, and 546 PNGs. The new cumulative exact-topic math test is explicitly present and successful. Source and index plus both original report files are unchanged. `flutter/original-machine-reports.zip` is a clearly identified storage-only repack of the two byte-exact original reports; it is not the whole original artifact. Four actual original images were visually reviewed; the other 542 are not claimed as visually approved.
+
+## Remaining acceptance
+
+At this checkpoint the full native gameplay gate is running. Native52, full Return/Dream stages, new APK identity, device tour, update preservation and final delivery have not yet been independently accepted. These reports do not establish physical-device 60 FPS, Play Console acceptance, a Play-signed AAB, or a public immutable APK release. Publication-access limitations remain recorded separately.

@@ -1,0 +1,2757 @@
+{
+  "recorded_at_utc": "2026-11-14T11:58:17.517240+00:00",
+  "artifact_id": 14112921501,
+  "run_id": 43590864772,
+  "run_attempt": 1,
+  "candidate_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "archive_bytes": 332468295,
+  "archive_sha256": "a974e111cdf46bf0f34ec3ffda9c27f0e67432c2805d10e7fd5aa2755dc31d1d",
+  "crc_verified": true,
+  "archive_path": "/home/agent/lumo-aab-flutter-2708/artifact.zip",
+  "original_directory": "/home/agent/lumo-aab-flutter-2708/originals",
+  "members": [
+    {
+      "path": "acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "d2bf7e3bf34dffc419e7fa58166574b7a654a7d172e7cc31862c30326087a27e"
+    },
+    {
+      "path": "assisted-learning/independent-review.png",
+      "bytes": 77980,
+      "sha256": "5dd2f063ab2def0f2f6a65f7a1d1793584a0b1eb59e6ab05693d6286406fc10d"
+    },
+    {
+      "path": "assisted-learning/independent-strength.png",
+      "bytes": 78693,
+      "sha256": "22e6ecdf8355bf94268dcadcbc5d02d90f88dc7446666cb2583044a472c7f147"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_0.png",
+      "bytes": 38894,
+      "sha256": "cd3c68fb3835cd263ea060bcd9a810343f0b5871c294fe32760b6e30291fe786"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_1.png",
+      "bytes": 37532,
+      "sha256": "b917de2f9273f1a61c25aa09a5f6ccd1af140bf47eb6cf760acfa34fc23d2ad1"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_2.png",
+      "bytes": 38820,
+      "sha256": "b4ffa7b70119255991380bd861c4f431541d5f46aee4d9498871bafbb229b931"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_3.png",
+      "bytes": 39403,
+      "sha256": "da2bef82502ecb65bef10734d21cd6773c93951dd76035b46f28c30e5cabfbc8"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_4.png",
+      "bytes": 38310,
+      "sha256": "abd1c236c7bbe60c47d1595904d74d19bd1ad58d12a50208f91e287f84afb943"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_5.png",
+      "bytes": 39119,
+      "sha256": "1bff5e4e2b3e581941904638766ea1eabd005251b452c67605fbcedbd4cdefa4"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_6.png",
+      "bytes": 39537,
+      "sha256": "f86b415b1fb414b84192f7ae79e1d0216f46e128c95b1bf92eeb7ab183157c0b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_7.png",
+      "bytes": 38330,
+      "sha256": "3133ccaff6c26a140a5da2ae84b969ab00b4bdbbd4b0585d26fd4969db8415b2"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_8.png",
+      "bytes": 39522,
+      "sha256": "50c88f51bc2fe23f3b8a8259e29428ea89fc7dc3780a4049d4f5ea7e09e2e523"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_9.png",
+      "bytes": 39541,
+      "sha256": "4440ee7938b08da7aa0ef127ff2905d4ca34857a3017199d13e1d451565cc8be"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_draw_two.png",
+      "bytes": 39116,
+      "sha256": "16dcc9c55e9aab1bb7768d51a8b8bcb9b9e7dd1941796b1a5c7bb9e96026c39a"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_reverse.png",
+      "bytes": 43627,
+      "sha256": "ce2701d50fa345f5d70b604a63b0472e294f70c499d4d26bdc1b7b0d19ca03e7"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_skip.png",
+      "bytes": 40078,
+      "sha256": "2d9060bb0c2cb08615a28f646493ef7bb59bf29a5c41ae589a5a7166cb6723ce"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_think_pause.png",
+      "bytes": 40547,
+      "sha256": "015eb18a009b307008a3b10ae80c9aca60771f4254a1e96e2b2363ac5f7ab181"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_0.png",
+      "bytes": 35970,
+      "sha256": "59ce645b64d9c41946f84f20b92b73791b46899f67a7bbb856098a894ca1ef01"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_1.png",
+      "bytes": 34715,
+      "sha256": "70688a98b70a99ef3a84bebda4bc0d8bfb0b4b2709c8fcf7f8175ba88686e893"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_2.png",
+      "bytes": 35818,
+      "sha256": "60a57bdbdc9b3caca4ed6d2cdcc322b4b03261eac1a254b52eab28e6f27ce379"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_3.png",
+      "bytes": 36306,
+      "sha256": "af2695c57b43f1f24af720c34131d41493318b5195a9ec26894639b0ea4a37af"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_4.png",
+      "bytes": 35244,
+      "sha256": "ca78fe99e2339eca495839dbdc48810ff6fd7fb5a53ac6dd34a1939ded64489d"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_5.png",
+      "bytes": 36083,
+      "sha256": "676b25c7481696c97f20aaceefeb491191ded524c0d9feefd9a67225f9d9dec0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_6.png",
+      "bytes": 36526,
+      "sha256": "4489a5afb62a9cab7df575ef20b6e7a809314b6b4cbfc0841f8a2023f07cc22a"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_7.png",
+      "bytes": 35332,
+      "sha256": "4a0892e9096adfe7e3f5ab6575583093b45649d876a2abd1a80de36df8b8738f"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_8.png",
+      "bytes": 36503,
+      "sha256": "8afb6fe616a47a4ba74bd2eff2a0799393cc3dd4f0f28326f23200c85d566bba"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_9.png",
+      "bytes": 36475,
+      "sha256": "2df7820e20c26fccb709a37b065832fd68074db3e19fcd8da5ef12eebf499bac"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_draw_two.png",
+      "bytes": 36647,
+      "sha256": "14cb029fe8c3e5d05a34e77cf9e52982da1533c83bdc81894ff63f3bfb8c6560"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_reverse.png",
+      "bytes": 40949,
+      "sha256": "f49d37121e971b45e1e608926cbff1fca34167232121e9cf011de669426f1b38"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_skip.png",
+      "bytes": 37459,
+      "sha256": "d6765df3cf56e1e8167b82ab5d37a443f58fb8f64c569fc7d91f14cf8c27a007"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_0.png",
+      "bytes": 34036,
+      "sha256": "a5985e3598c2af32c8da2e4beda57c7b293b5026c21bddd03a8ccf76a0c9bb5b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_1.png",
+      "bytes": 32487,
+      "sha256": "849b5eef67c048357cc90fe8419d40437d9bc300bf8c539dd0ee6ea3ddffeda3"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_2.png",
+      "bytes": 33782,
+      "sha256": "b37d727d30b6cb303daceb08522d6a28c5cd1bc0e289be2f7adbf0f9a68b44a1"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_think_pause.png",
+      "bytes": 37686,
+      "sha256": "ebd9859fb52059a74041e525ec24dd63707589beb395b62867b4a4b5343f7eed"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_3.png",
+      "bytes": 34445,
+      "sha256": "b94d59b70dd5eec3d0c3ed2432c509217d2a2c6ca1bd6b404b50b273f646ea57"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_4.png",
+      "bytes": 33285,
+      "sha256": "717697f6746ee9164dce96639019d2d81cf4267933462ba519413e7e31a190e0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_5.png",
+      "bytes": 34022,
+      "sha256": "afd13a0999c5f38bb60653f16bb678249ac707206a584614c627fbbe986440f5"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_6.png",
+      "bytes": 34579,
+      "sha256": "61b0da7685ba6c1ff6e75c6c5078f201d50dbaf21815cf2e4bef388ab759607e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_draw_two.png",
+      "bytes": 33899,
+      "sha256": "0c3bfa18c30a087e9edcd78a1f6b21dc769670cbcfd84b6541c93d1c95ab3a5f"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_7.png",
+      "bytes": 33216,
+      "sha256": "9304d72531ef2b25d5b0338db73ceefcd3b55fda00a82a6e53c033c3e7df2e7f"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_8.png",
+      "bytes": 34624,
+      "sha256": "5c90b4a735a2bfce19f5b7b228f3691f18f4e6a8815da4720ac393dafb6ef7af"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_9.png",
+      "bytes": 34627,
+      "sha256": "9dfccc9b7ad984325afaa3f4f26e7bba2b196fd4d2d72faa9f6ca6d43595c2d6"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_reverse.png",
+      "bytes": 38717,
+      "sha256": "bcdbf592927ee7381762ddd80fab31eec6bcca7d8768a657af85b9ab6177cc5b"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_skip.png",
+      "bytes": 35357,
+      "sha256": "83ba97cba9e390aec70c4271f27234bcf1827bddf2638c5bca530961d3e5a40e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_think_pause.png",
+      "bytes": 35207,
+      "sha256": "c2a0c288007eb1b3e6afd3e4be2a35b257d7445b244051bfe9e4c5b2980dd58e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_0.png",
+      "bytes": 37677,
+      "sha256": "4d5b52e25d13cb7b14ea21f01bf403c39de5d1fdecec9acbb9051555e0e279e2"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_1.png",
+      "bytes": 36146,
+      "sha256": "80afb014b4f6e50f00f54d5e4df4eb1bc3a0ade06b4343f984841e7d4d4df79e"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_2.png",
+      "bytes": 37438,
+      "sha256": "4c7e2cf8e509e56c15de9b271804365fc5b024f6c5cdad90d6ef4c02168e8096"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_3.png",
+      "bytes": 38071,
+      "sha256": "b498e6e85d6418fe96c2f7ab7356b773a7f01facff7a994397d4a28b48fd2b8f"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_4.png",
+      "bytes": 36809,
+      "sha256": "38a3c2862d6410eb82080138552b7d154f31c742ee476592bc4726220962a120"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_5.png",
+      "bytes": 37779,
+      "sha256": "f1e101a0ab4243cb49022b53c80824013d6decf9b772e843a3978c05bd8dbdf1"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_6.png",
+      "bytes": 38220,
+      "sha256": "88430ef2467dc1f22024b2fb7eaabc9decc6b04cc6d7fc02cb9754370f2053ee"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_7.png",
+      "bytes": 36888,
+      "sha256": "33f0de47c76e9f7db6e25064c2f97a25c60b6de5cfd262f1fed02af87f66c83f"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_8.png",
+      "bytes": 38238,
+      "sha256": "d7cb28bf4bd570437c933eef97a7ced7cdd51cf5b1eee9de34d22b71f92fa3f6"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_9.png",
+      "bytes": 38205,
+      "sha256": "086125d14dca82b508632fdeac41fc8437c88b5a46080034c79a18cc89abbdb2"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_draw_two.png",
+      "bytes": 38290,
+      "sha256": "587e6ce000c2a0442b611c06e9f0493a8467d9f92388717bfc0c6e5f89bf0bab"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_reverse.png",
+      "bytes": 42791,
+      "sha256": "32ed7ba2019ffe43c04dd10a9c802fbe7444ac18c06c4b46c78602c3e59efeeb"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_skip.png",
+      "bytes": 39288,
+      "sha256": "e833e8962fe19258c8a5dd0d38f7e9596ee9d164b15e29621252528c5647a9e0"
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_think_pause.png",
+      "bytes": 39963,
+      "sha256": "532a54bd3dc3bbf1730954bfc7efcb29ecde118eb3972850adf2e741d4cdd405"
+    },
+    {
+      "path": "cards-cup/trophy.png",
+      "bytes": 114224,
+      "sha256": "2980ad5282394c84465073427f2f3f99a64e7adb89f8ce648e6e5bd704ad56c4"
+    },
+    {
+      "path": "cards-memory/cards_overview_fold.png",
+      "bytes": 757959,
+      "sha256": "ea91732fff08fd4543358eaf813433c127bdbe6a846ad9082616adbba78d7ca3"
+    },
+    {
+      "path": "cards-memory/cards_overview_landscape.png",
+      "bytes": 545610,
+      "sha256": "ce0f8a8dbc7a229f130d89afff6e7ef1fb86c36c7fc18a7a95c7731246de63d8"
+    },
+    {
+      "path": "cards-memory/cards_overview_phone.png",
+      "bytes": 575163,
+      "sha256": "40782edc901b24c8edd1598901e4c2fe550d1435a4a22b7342c0a48e5b853adb"
+    },
+    {
+      "path": "cards-memory/memory_flipped_phone.png",
+      "bytes": 596968,
+      "sha256": "013e9a8281061dbee3f7e46ff3f2c94eccaa9439beda19377b6c7f6d0e9c16a7"
+    },
+    {
+      "path": "cards-memory/memory_matched_phone.png",
+      "bytes": 583339,
+      "sha256": "6ef39975aef1e941d54efc45a97efe4a56926d741b16ee896d43e9b509a3ffe0"
+    },
+    {
+      "path": "cards-memory/memory_overview_fold.png",
+      "bytes": 704006,
+      "sha256": "47cd9fe20fdbcc0feaac565db3527583b0cfef7f1e45c8f19ae581a671e7f349"
+    },
+    {
+      "path": "cards-memory/memory_overview_leicht.png",
+      "bytes": 571834,
+      "sha256": "4c860d87b761a38e748678ad825701b4c8e6011ff4965184656a825af114662c"
+    },
+    {
+      "path": "cards-memory/memory_overview_phone.png",
+      "bytes": 610082,
+      "sha256": "4ee1e9c8b515e25387fb015dfa0ba58127a7ee5edf5265fe47b08767831d1105"
+    },
+    {
+      "path": "cards-opponents/cards_board_fold.png",
+      "bytes": 757959,
+      "sha256": "ea91732fff08fd4543358eaf813433c127bdbe6a846ad9082616adbba78d7ca3"
+    },
+    {
+      "path": "cards-opponents/cards_board_phone.png",
+      "bytes": 575163,
+      "sha256": "40782edc901b24c8edd1598901e4c2fe550d1435a4a22b7342c0a48e5b853adb"
+    },
+    {
+      "path": "cards-opponents/cards_opponent_fold.png",
+      "bytes": 167225,
+      "sha256": "4cf9541cfcb02d372889f3cbd4977e47f7f545b253e9f110a597279704b3c771"
+    },
+    {
+      "path": "cards-opponents/cards_opponent_phone.png",
+      "bytes": 147429,
+      "sha256": "c85e74aad3c0ae5c041146e1285157882b0e289e3d0358e7caeaf3ba6f277775"
+    },
+    {
+      "path": "companion/fold-target-actual-help.png",
+      "bytes": 784865,
+      "sha256": "9224aaeb90df8b992c51725a5c95ab76c63f291114f1ab0feed6e2c33070e9a5"
+    },
+    {
+      "path": "companion/fold-target-alternative-help.png",
+      "bytes": 784540,
+      "sha256": "953579153440bc7c9f225f31533ff8ae22aa8114b085a2720cf80825ec39d148"
+    },
+    {
+      "path": "companion/fold-target-task.png",
+      "bytes": 795936,
+      "sha256": "d6c4a549a34f0ec7c08581c491c92d860174e71cb6bdbb6c3d5cc8f4108ac730"
+    },
+    {
+      "path": "companion/phone-360x800-actual-help.png",
+      "bytes": 325661,
+      "sha256": "6ca74d8ac2a243569fa63e0ae8fffb53d5e5732308c75a7b765376c6ce938230"
+    },
+    {
+      "path": "companion/phone-360x800-alternative-help.png",
+      "bytes": 285886,
+      "sha256": "e19d95eeff5690217189a9a4ce04fbfa9c3e591db4f73b0cae2ef2b762d023b5"
+    },
+    {
+      "path": "companion/phone-360x800-task.png",
+      "bytes": 332993,
+      "sha256": "fa21279522d166a514dfd23f3ceea5a9a05ee16774eaf0bd1c4fed8343b92c3e"
+    },
+    {
+      "path": "flutter-machine.jsonl",
+      "bytes": 1746442,
+      "sha256": "f512742a954ae2d2711c69739b361f821b9ac02bd268a4b4bd8b14b5dcea434c"
+    },
+    {
+      "path": "games/cards_jump_fold.png",
+      "bytes": 58188,
+      "sha256": "53d8b222063f726c2f3a20f4fe828c9314d8e7cdc6f87f9e41d96e962196d6eb"
+    },
+    {
+      "path": "games/cards_jump_phone.png",
+      "bytes": 56243,
+      "sha256": "efc4cf11fb5e85ee82b91e76ab5c660a1c972e040e8bd4d1adb378a715e96121"
+    },
+    {
+      "path": "games/cards_overview_fold.png",
+      "bytes": 758022,
+      "sha256": "42a90e4560a92e0f6280288b23c1cdc07ecd9f6d88123785a93af69544c552a3"
+    },
+    {
+      "path": "games/cards_overview_phone.png",
+      "bytes": 575301,
+      "sha256": "b5a5b4e47768d654f8f7285c7a5ebf1de96e8fe7f899ac7fe1d8ab746923c5e8"
+    },
+    {
+      "path": "games/cards_summary_fold.png",
+      "bytes": 273111,
+      "sha256": "44f57b27d817839a2ea3acd980c6992d7d6aecbc716568086ff49e1bafb7c858"
+    },
+    {
+      "path": "games/cards_summary_phone.png",
+      "bytes": 223771,
+      "sha256": "1c88902becff9dd3e2fe4342fc72c7abf9ee4058fc03f1ceb0269c1ea3cfeefb"
+    },
+    {
+      "path": "games/connect_overview_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466"
+    },
+    {
+      "path": "games/connect_overview_phone.png",
+      "bytes": 550975,
+      "sha256": "1acbe35fa11eefe64a7a98a1436b81526e2552ee2daa490c6b1264f06aff80ba"
+    },
+    {
+      "path": "games/connect_winglow_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466"
+    },
+    {
+      "path": "games/connect_winglow_phone.png",
+      "bytes": 275822,
+      "sha256": "57e3f388827b727d2deae33fd0009bbdb25c3ccb89fa5a79f44cc42d984dce05"
+    },
+    {
+      "path": "games/memory_combo_fold.png",
+      "bytes": 762130,
+      "sha256": "8e642be238f3b23e6b67d376a162d01b12641e17159b63fd2071eb76ca25defb"
+    },
+    {
+      "path": "games/memory_combo_phone.png",
+      "bytes": 565894,
+      "sha256": "a455da7b12242522cda09769d9f5411f42588458b5d1cd5629d70db387d68411"
+    },
+    {
+      "path": "games/memory_overview_fold.png",
+      "bytes": 704006,
+      "sha256": "47cd9fe20fdbcc0feaac565db3527583b0cfef7f1e45c8f19ae581a671e7f349"
+    },
+    {
+      "path": "games/memory_overview_phone.png",
+      "bytes": 610082,
+      "sha256": "4ee1e9c8b515e25387fb015dfa0ba58127a7ee5edf5265fe47b08767831d1105"
+    },
+    {
+      "path": "games/quiz_overview_fold.png",
+      "bytes": 913490,
+      "sha256": "56a1238543e98e3cd9caf7bf3c2ce1d26986bd4a6396d0bffd0dd1121041e9c3"
+    },
+    {
+      "path": "games/quiz_overview_phone.png",
+      "bytes": 715193,
+      "sha256": "09e92ad6b3aa53499ec6759b73f2fd55ed8050a7924d7cee4515f7201d261b32"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0000.png",
+      "bytes": 680227,
+      "sha256": "3a9a12d3eec25dc6b1ae6c98ecf3af98fc0168eb039063c519c54c93d0bab823"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0001.png",
+      "bytes": 681481,
+      "sha256": "b158acf8268dbc9169f22be6c9fbd17f543c7d1a0051e876fc85661fd296eb3e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0002.png",
+      "bytes": 688038,
+      "sha256": "79d7e43e4cd458a7983f487c24d5d83fa824cc003712b2f517d51aa1afdcb178"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0003.png",
+      "bytes": 682196,
+      "sha256": "a7e9bcc1d2b28efaa2768092938ff0ab99268ee39fbd350099884a441c2a2c24"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0004.png",
+      "bytes": 680790,
+      "sha256": "1e4c31b6e556726860e762d5099c688def2d4709ac2f8183d282b3ff687a4994"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0005.png",
+      "bytes": 679546,
+      "sha256": "290e2f39ee91e764a8bb3bec773d968248d0baacbdcf52e8b16f4fbca7f69d1c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0006.png",
+      "bytes": 679657,
+      "sha256": "e745f991bf38c96c034d4a29d4dec28ec2225a3a36b1c63915800103f69abe60"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0007.png",
+      "bytes": 680010,
+      "sha256": "4162be3e34bc63091760be34ba9784de81cab6dc9e6f4dfec0080c0f9ce0a66e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0008.png",
+      "bytes": 680108,
+      "sha256": "9e0aa172c715601832762dacd8c2b02bd8b46c55f3b0bdfd4480342bdd4bb12d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0009.png",
+      "bytes": 679804,
+      "sha256": "65d30367d2917b358cbc0b36c2e3e5c2c1586b4ad447ed2bc6840c7e1fb7652c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0010.png",
+      "bytes": 680075,
+      "sha256": "ca2657ce2040d5381ea09af180da54744530c389a0d456a2189d4778a45e9e28"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0011.png",
+      "bytes": 680627,
+      "sha256": "fdb876ab820f6bc80a3c4261c2fe4f01192bd55a50d73c90ca595dd2a7ced850"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0012.png",
+      "bytes": 680015,
+      "sha256": "3d296db4bf16aadf58948f7b15b9435163a1a68069d6157fe178161f09bc6ed3"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0013.png",
+      "bytes": 680355,
+      "sha256": "e41bf107b1be35ad5a65eec7434cba1a46b3d77c53fdf19fa40786bf14b04d49"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0014.png",
+      "bytes": 680255,
+      "sha256": "77b12be145a9de4ecde77a02a572ad324265ab599cf2944232394d8b534d50d8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0015.png",
+      "bytes": 679705,
+      "sha256": "450fd8c140e14a7a2469dd040bbcdb24c3e6e8b0d68a32aa408ad7211c6ce57c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0016.png",
+      "bytes": 680273,
+      "sha256": "9723d0afdb111dbd47b1cac0d9509f6a67f0dd45276e30cc5d9526bc94496705"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0017.png",
+      "bytes": 680279,
+      "sha256": "b3dc3637b2098be829b4fd325e0b591e62b6a45d97c23649e2a02384eb58a31f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0018.png",
+      "bytes": 679994,
+      "sha256": "4ede88a75c01b6a69e780ffb338fbd53f99c35329695ab86aa295343e8e22c49"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0019.png",
+      "bytes": 679814,
+      "sha256": "a983ad890fa3aa5c468cf2c98f28c1e1878f9809e2d8aec2233503582fb2b600"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0020.png",
+      "bytes": 679884,
+      "sha256": "782ac04bb8919fd74f314b43c15ca1d1f7e3c44be7fcd52e2b193807136ebb3a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0021.png",
+      "bytes": 679648,
+      "sha256": "9d131ec76fb08462edca523839ec7797c266755ff4d5c831392eac4797915caa"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0022.png",
+      "bytes": 679261,
+      "sha256": "bcabf7ba5a825175afb72a3a9ae5d01568000959ca9540c2dd7a3c1f90421ea4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0023.png",
+      "bytes": 679761,
+      "sha256": "33cf2ad9531fbf1910f3c644ba238551743b67e87a6827510f553486ab9822e2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0024.png",
+      "bytes": 679924,
+      "sha256": "c9ccaeae7227802342a7273b97ac178a57bb6741559fa49356d6118f95f1b3c9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0025.png",
+      "bytes": 679799,
+      "sha256": "ed89211484769ca053aff7feb1e4d045478caf6177231b6c1752dbf414a760ce"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0026.png",
+      "bytes": 679779,
+      "sha256": "7221012992dd6f5d230da603b4aee4fa5a23411768bdc7743a7062275d6f8c57"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0027.png",
+      "bytes": 679609,
+      "sha256": "a36558ccdde54fbb88a1158f3f8b01c3ab7b8206e42e1e41a7162d483bb0d885"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0028.png",
+      "bytes": 679416,
+      "sha256": "41a8a9d7341414f3abae015e40145b64bd561d00bce4ee0a50572a8c52478bd6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0029.png",
+      "bytes": 679034,
+      "sha256": "c18a67d79884e31c2f0db89ea1ad2b4a6037240fce185d393d2cbd5018de39eb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0030.png",
+      "bytes": 678857,
+      "sha256": "48d1162cd5e9ebd4c6992989c0d0ed6b809b95bb33f2c3b131ebec58c6ea23bf"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0031.png",
+      "bytes": 678970,
+      "sha256": "03969edfed8ab9c93ca417250865c5f63691f68f14c8e3e17594985e6fdac3e8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0032.png",
+      "bytes": 679181,
+      "sha256": "b0d74e9275ade1400f5297c636524b067744aeb6bec4437356a065118d31f643"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0034.png",
+      "bytes": 679778,
+      "sha256": "f2f07e0a70eca603f9b8a70a884a917f8c6cf49afb384409bbd230051dea5f5d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0033.png",
+      "bytes": 679502,
+      "sha256": "f25d413cb999bb02242a25db7a38634afdddefff26e9af9e4470ed63822940c9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0035.png",
+      "bytes": 679130,
+      "sha256": "55da43f00dadda62cd2f5aae521c1e4447a74d07e44d91e2c24ad57fa90a3813"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0036.png",
+      "bytes": 679512,
+      "sha256": "d4fec82a323106692881e25447ed8412f2b205277188c4d71d43d400afd97299"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0037.png",
+      "bytes": 679393,
+      "sha256": "577d6375d6ae3fed236d6f6891e8f4b125982363e6ddfb59c90b24754a77b662"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0038.png",
+      "bytes": 679425,
+      "sha256": "f52006a437a921444cf9e3fe508344942437f0b3172e08b80a09ac8b63960998"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0039.png",
+      "bytes": 679653,
+      "sha256": "23ebd3780fb3e18df14daa7d7c53922fe7b6ab65022fac97b55d31af8032a02f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0040.png",
+      "bytes": 679493,
+      "sha256": "8a5c4948e2c06f8f7d1cd27f5a88eba927616969256b95a09eb476a55894af91"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0041.png",
+      "bytes": 679179,
+      "sha256": "f2aad4a4773d0bc421c9abd55adb7150bde975670bd166bddbf79e5345b16254"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0042.png",
+      "bytes": 679199,
+      "sha256": "fc62be9216ab3529dac3257bf19b35a2545cfb000a3f4a2e98b384d9be5f8cc4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0043.png",
+      "bytes": 679002,
+      "sha256": "1d0dd69e7d1acea57210bba0d27b7455630a893003b103cd87e28acc710da61f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0044.png",
+      "bytes": 679468,
+      "sha256": "ff368f05ae14e28445e2effc936a8430f62f349bdd7b0591d5c97004d75b9783"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0045.png",
+      "bytes": 679057,
+      "sha256": "bc4df788cb6d132798bb90f076d042d5e200d0780f6dae8ce091f335fe289baa"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0046.png",
+      "bytes": 679014,
+      "sha256": "aad5914fcb00fbfaf44f20df5daf23166f5e16acbc1228662f77f942eb46c333"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0047.png",
+      "bytes": 679502,
+      "sha256": "02e9c4551c7256b7dcfa30209198eb66a32cc1726c563e12f0c47dea4e47243a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0048.png",
+      "bytes": 679707,
+      "sha256": "3fc48be68d79d3a5f79bf1d7df207be0211c87a68de63364f0992ad7e646b0e0"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0049.png",
+      "bytes": 679697,
+      "sha256": "f7925b979b50c259494266caa4687c4b231c26a4f971f98174558332efc83ca6"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0050.png",
+      "bytes": 679483,
+      "sha256": "f41ad71f8e7be009a327584a703ef573021ab505596b8e919595076324714def"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0051.png",
+      "bytes": 679679,
+      "sha256": "d6c47dafb2ea531448b432ddf70fa969404381607d8191b90d130241e370fe08"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0052.png",
+      "bytes": 679438,
+      "sha256": "4606e171d5a5b8304c0600800b9de2e8e71542ee34e3b891e5ef197b33d6cca5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0053.png",
+      "bytes": 679339,
+      "sha256": "e61fe11ad64358a8b2a66516ecaeda7ac5f97764234de7c38f22d31e76f34401"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0054.png",
+      "bytes": 679655,
+      "sha256": "17fb073f347775d056d8d42e5705decac5c273875e004c4fa2c9b5db7ffcc36f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0055.png",
+      "bytes": 679226,
+      "sha256": "d02bca7797362d16e6cefb0de747999ad40f0099a72147612ef692833d34ff2f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0056.png",
+      "bytes": 679146,
+      "sha256": "f9b45f8baa6b648fc5a20741c40b019a85b3760cacf5d4af840b8f86a08a3256"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0057.png",
+      "bytes": 679355,
+      "sha256": "92b016caece6aeadad0a85c6eb83ea0a9296acc3d6f5167784e49fd4b86d7f38"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0058.png",
+      "bytes": 681330,
+      "sha256": "01d82503007c5061bdfd53fe81932b728c7fcc4d6860270fbe62b384f720c3f8"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0059.png",
+      "bytes": 681220,
+      "sha256": "b279f209e1d5a38234055822a4e5ca4f4aae4b0ede3dcdcf8c0d637119715a37"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0060.png",
+      "bytes": 681313,
+      "sha256": "1d17339a859d770cb87e996ff3f43c17d0abe8f1b35ee4a762a1a5a1c862cd53"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0061.png",
+      "bytes": 681303,
+      "sha256": "79cb2634dff60cca567d3ffeba269ac3f9ca35ace28574c0fdf11625cb70585e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0063.png",
+      "bytes": 681705,
+      "sha256": "880b4d70295de980f60cbe3bd7df0875fcdf7715c40c17f6ca2080ddb2468c82"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0064.png",
+      "bytes": 681455,
+      "sha256": "5a13e915bdfc50557924b72c970c3ddc48c20f292d5879aad1ce4f89af39d1ab"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0065.png",
+      "bytes": 682195,
+      "sha256": "1f14fa10067e3a7931e4fb8216516ffdf5b6a1e4c1d030ab43c27c97e8df14b2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0062.png",
+      "bytes": 681636,
+      "sha256": "edc94bdf59d2f43c858074a858dcda2865752ecec8919d7b356264d869c24b99"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0066.png",
+      "bytes": 681344,
+      "sha256": "8626f59afba02ebc9eade1bf14983b761b66ef8d4500d544f6183d1c92164501"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0067.png",
+      "bytes": 681003,
+      "sha256": "3bbb0a2571aa91d10340353dc3907c91016a3aeb51c96d43d9426798c73dd9d1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0068.png",
+      "bytes": 681536,
+      "sha256": "8bc68c5f01cdcb35c1d28cff5a03dac47922942f3c8e30fc3570d4e362db568c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0069.png",
+      "bytes": 681743,
+      "sha256": "bf1c2889496571a23fe54cf3460496ea3bf9971d8723195f4a57c49801b142ee"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0070.png",
+      "bytes": 681538,
+      "sha256": "1aee8b3443a76f264dd9aeca70371756ee92d36ccf0c879b49919206b950b882"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0071.png",
+      "bytes": 681546,
+      "sha256": "84f95b6fffda31dfc5b602cc0756e6a980adb0641642336fdc9bdce1f10b92cd"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0072.png",
+      "bytes": 681833,
+      "sha256": "668c7339900a2d2e6c13f88f77c46f972fd9fa708e3de54c30591edb704ddf10"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0073.png",
+      "bytes": 682417,
+      "sha256": "eaa5704420628608ba9544081f062cc52f14d03db2e4fa863464d6ff2438cf2a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0074.png",
+      "bytes": 682256,
+      "sha256": "2df9dce6ac171c69d8543308e91dbe06c85a206dc151e99bfe24a9ac49f5392a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0075.png",
+      "bytes": 682088,
+      "sha256": "def4c2f5588efad0fe2853dd6ede34109a12a5e7dbc8bca16e4bbcc00c73e24b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0076.png",
+      "bytes": 682199,
+      "sha256": "71cadc514a01e9f2092a96f2681546e02aa41ade4e78ca2c2a12ffd9a15beae5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0077.png",
+      "bytes": 681530,
+      "sha256": "457a2485d49ba76d01240db7f57a30b8d4ffba94175b3140362b715984879aae"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0078.png",
+      "bytes": 682064,
+      "sha256": "bcd1973506d95f898757e27b864548599e34c94e4a28d37cc300a9805f9ada5b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0079.png",
+      "bytes": 682190,
+      "sha256": "6254299d2ff417a52312555353dfa5ac49aeabd7643ac1891938d2e455767276"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0080.png",
+      "bytes": 680583,
+      "sha256": "4297aaa71f5e69b4e002f0b8c4548fa2e984b3e8415c9159269b4ac4c8fc4643"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0081.png",
+      "bytes": 681156,
+      "sha256": "07e02435fd3eb31ff1f2d0a02f7224342d061b15aeb3bb94f05585964ac27b8b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0082.png",
+      "bytes": 681790,
+      "sha256": "b85ea3f72d36bcf34e1c7fa7359211584900a5a520daf5aa018e3b4ad1b2fb50"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0083.png",
+      "bytes": 681567,
+      "sha256": "fe59ce7090ec931e27e4be4a458ecf00e35708043529aca33e26b472e8b8cd5a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0084.png",
+      "bytes": 681141,
+      "sha256": "a3112e5e04e1771677860dcda34711c8163001415ccd9b95c6a8664ab8e3b61b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0085.png",
+      "bytes": 681367,
+      "sha256": "c5c108bbf307f57b3ed9bca5daa249482f3fc4fc6d664351c4b21827b7432b66"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0086.png",
+      "bytes": 681797,
+      "sha256": "2f244a7ef5440f49086fd03798a2250a862929892daccade09c9f12d77ca5eda"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0087.png",
+      "bytes": 681210,
+      "sha256": "a571eba95ac9b9ee6d7a249213d96263a548f3bab3a96be3832fbc067bfce95d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0088.png",
+      "bytes": 681114,
+      "sha256": "0b14f90fce721a9c30dd7d54d7e6e3f2a251e11a64a604a4634e43a5b14b008d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0089.png",
+      "bytes": 681346,
+      "sha256": "df640ac14e16db19490148da4ae9b73443255d01b9f817abd8d766705511eae1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0090.png",
+      "bytes": 681301,
+      "sha256": "8bb00f4ddcd78994bf5bdc6b24dfb2c8ea971fec5b0be8b2e2809064b05b365c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0091.png",
+      "bytes": 681502,
+      "sha256": "6ca549b140fb9dfd8b93622dc3e2ad9a19254b0d5fbc968104e1d2ad27e53da1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0092.png",
+      "bytes": 681150,
+      "sha256": "02ce45f31adf48b0c1650c9cae33acdf23962029b2d735fd6cd19025917d5386"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0093.png",
+      "bytes": 680989,
+      "sha256": "4ab213c76a247d93bba3713deea9ab7d14f25de92ff7ce970085e0cf0831021b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0094.png",
+      "bytes": 681096,
+      "sha256": "4de38870663071c1ec603721a1fc02d4ee2682c7aa77a2bda19c77cc84dfffd4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0095.png",
+      "bytes": 680996,
+      "sha256": "38505bec55875f70cd047b8ab1a038908d5532ee2f2f399a198a2f859bbb986c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0096.png",
+      "bytes": 681828,
+      "sha256": "0c35184d11d3c3a5d5d93cd199e856200728824298a36015bb0215cfc621d9ab"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0097.png",
+      "bytes": 681975,
+      "sha256": "3d8bb5e6120a2b60d70f95d3dcf24c660599b50c0fb6a9196591645d0fa2b539"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0098.png",
+      "bytes": 681748,
+      "sha256": "2f4d31fea635145529a43a902b00664d2cc9b6e0acc2a521851d7163aa20f610"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0099.png",
+      "bytes": 681846,
+      "sha256": "0ba15c66217f1d9cc87356f2d66cb80b3afed57f66ddc168733e31cb38d2a3b7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0100.png",
+      "bytes": 681886,
+      "sha256": "d1a0e16079e9b6fc8ea58c441ff0161efee889d37c5000eedb4e9fabd2602ba5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0101.png",
+      "bytes": 681758,
+      "sha256": "dc3a963ed440475cc76e29653fed5cae20702d96938e4a4d1c82432fafb98e76"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0102.png",
+      "bytes": 681680,
+      "sha256": "bac5cde999cc94ed19e02e2bc30df6673737cbefd7b5032b525ba60745ab832f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0103.png",
+      "bytes": 681243,
+      "sha256": "b808628401cf350cbea39b38c47b628698a499aa6c52a7f7b98cb202399b77dc"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0104.png",
+      "bytes": 681383,
+      "sha256": "e83f79dcf094ba4cb5f7027f99c8e6cb4ddfa0ba2a97c2630b249b169ab48651"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0105.png",
+      "bytes": 681282,
+      "sha256": "58b563bc95c9605211dfaa009e9bc4bbabbe5b36a3f1235b6b3d7d729c743aa9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0106.png",
+      "bytes": 681356,
+      "sha256": "0ca7ba8d23d6c619027dc67beb29d2583a88aac5535ed042df53097fa79734b2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0107.png",
+      "bytes": 681222,
+      "sha256": "5089cc944ef46f015d27f0f70345598d8c56bf14fa91a449be3b8022eb323dba"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0108.png",
+      "bytes": 681162,
+      "sha256": "45d3b73d1cb45be7af07d8f3a656d067f0dc94c138e0b1f91e11eafec1f8ef09"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0109.png",
+      "bytes": 681079,
+      "sha256": "6b94c842178b2d14b3afced7d1bfe5a79001c2a74e00efc18b47fed86a33881a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0110.png",
+      "bytes": 681556,
+      "sha256": "8a21e5b76b12c4be210676bdbd1deb5d841d763db1f51b365d9c755387ba10e7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0111.png",
+      "bytes": 681443,
+      "sha256": "a60f18d9b50566ee802c1a81a005972bfc4a30a7c95482d71fb5e57c0335f0e2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0112.png",
+      "bytes": 681467,
+      "sha256": "393f60064b5bc17df8e605d61eff2a7f24d4420983d4ebd9daf8a0506f0c1d86"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0113.png",
+      "bytes": 681127,
+      "sha256": "fa457b105b9e0f97300ab73a868a7a40af4d027a8380b595ea23b4350cde445d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0115.png",
+      "bytes": 680636,
+      "sha256": "f371e2142463acb33b2ca2231905b2971833fca235f26ce1bceafbbdc01cf140"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0114.png",
+      "bytes": 681068,
+      "sha256": "b0a55db67a12d8e7516653383a968efc024999a9c262ffe8a06b906b93c30561"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0116.png",
+      "bytes": 680976,
+      "sha256": "4abdebcd4c0ac96110a52ec4e7f941b8133b73963523afc1a08bc86fb87f790e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0117.png",
+      "bytes": 681487,
+      "sha256": "f129a5b5c324fc834ce55e5ac0214ed5fea1557d374722d683dc1168a2433f88"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0118.png",
+      "bytes": 681432,
+      "sha256": "67062e9ee8aa459a8ff83b8c3bc1122d64431927fd80b06b39cd1519337c6732"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0119.png",
+      "bytes": 680549,
+      "sha256": "acb0e7debc7a6b6fe9890f6636e26909e605d219cb420ddcc55ce118d65a82bd"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0120.png",
+      "bytes": 681133,
+      "sha256": "4b3a36fc1646dc38f0f69add72c5ea859c6e7017ef9a84e9a76602cdf7854d81"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0121.png",
+      "bytes": 681404,
+      "sha256": "b194aa8a10a1d9174fc754d4410654eefa68db4eb2d5545244d3367886254ad2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0122.png",
+      "bytes": 681077,
+      "sha256": "eea183cf45ca052d83762ca4a4fe8ece7d16eb91560ed837c48a2ef70098a69a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0123.png",
+      "bytes": 681416,
+      "sha256": "01cee749e7e5ae37b551a9538568da8b4cd134a67caa381e67e436d4504cf30b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0124.png",
+      "bytes": 681757,
+      "sha256": "97d91b14dcbfe46338cc11997189a0d2202df363d091822f9cfa1ef5a00d44b9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0125.png",
+      "bytes": 681833,
+      "sha256": "2b4a3b480286bce7e00fb98961b59638f63a185d1c86796b7100e1cfe22c63d7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0126.png",
+      "bytes": 681536,
+      "sha256": "88920cf8041220a7989aa35d5a80db6706bee1988101fc4727ca8f603e90276d"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0127.png",
+      "bytes": 681387,
+      "sha256": "ba8cedfa8c2e674bf0ff76c14f9844968eb82b42e01918e81fb15a1df4b634bb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0128.png",
+      "bytes": 680807,
+      "sha256": "b2881fd43eedb47ec815ee0e92627a698ebaaa80d02dd5279163ccfcf2bdbe59"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0129.png",
+      "bytes": 681071,
+      "sha256": "d20d36d2e31117229e97307130375f17078ed13249e6d1bef4e2b648f923952b"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0130.png",
+      "bytes": 681340,
+      "sha256": "50b632cf537e770895ef926b0e1ea764205df95ea130fab99f996ff0f623ee71"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0131.png",
+      "bytes": 679819,
+      "sha256": "0c97c7b1c0eb908943f7061363d988c73dbe8720199f20340bc4a75424f5420c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0132.png",
+      "bytes": 681129,
+      "sha256": "6beb426069aa5eae609b5b277b692c04d40c1b194293d216063141b36303f65f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0133.png",
+      "bytes": 680880,
+      "sha256": "ab8beaba325e056adb5191586ede176bd572873ad86dafcd5291a23584e175b2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0134.png",
+      "bytes": 681392,
+      "sha256": "8f587fe816bdfcd5e94b82750865a6682538dd071bf72a3408bd80459be098c1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0135.png",
+      "bytes": 681710,
+      "sha256": "3ec6af9da71d6e8cba3ba931ba8bb3c41d0ae6c1c6aa646c2f409e7a296a35b4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0136.png",
+      "bytes": 681188,
+      "sha256": "37ef61d0e5ecd7db6b3c559ca2782e87b4a4711ff181c52bf12ad0f3ee0b8189"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0137.png",
+      "bytes": 681097,
+      "sha256": "260272ac3592a8d91d4d4c79af0d6853353fda1d871fb91d9009adce0c636ab5"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0138.png",
+      "bytes": 681087,
+      "sha256": "c78ed388c491ca006d055ce670dba0661040740da32e6af63dedadb7af6e4e7c"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0139.png",
+      "bytes": 681638,
+      "sha256": "19427cb9c799ff7afedd51dbd166b42ad24f6dde877b72bd9abf83138c9637b2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0140.png",
+      "bytes": 681406,
+      "sha256": "27ed4620af8c15fbfce5b08501d56309bf7425538e2431b5ff427526bcde1d56"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0141.png",
+      "bytes": 681056,
+      "sha256": "96d301beff69724aed19027d68a60e3d01863ab0de6f59ea9a0f218889894a99"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0142.png",
+      "bytes": 681124,
+      "sha256": "0bca8cd63613ffdc265118dce54e36b39ed3c964e0453b98bcc1cde599b17c0e"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0143.png",
+      "bytes": 681227,
+      "sha256": "1befd1141766c5fac3837c7d45e533dab1151fcd79e4779458c57dfa40d8b2b1"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0144.png",
+      "bytes": 681442,
+      "sha256": "b7c678f82a014401bf8a2cb944cbbfa8c22e1326703375cbfedc3309eae454e7"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0145.png",
+      "bytes": 681079,
+      "sha256": "8d877e29bde285eca762778303be5eebad45d6657069353c9ec9f4b1ba048018"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0146.png",
+      "bytes": 680802,
+      "sha256": "5e9c583580bfa8b5c4bcf385b9a3a6989dc55e29eae43bf2d5774cf0fe6122db"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0147.png",
+      "bytes": 681264,
+      "sha256": "b207a7ad67f0fc3fd2ff1e4c3a85b7bc776382406ae6d014b214b607e0672799"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0148.png",
+      "bytes": 681256,
+      "sha256": "6a5b19516ff55b267907e70be87487ec7d994afca5e571c52117e537803f435a"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0149.png",
+      "bytes": 680843,
+      "sha256": "47fbb1eade259e690b8bdd72ce3508ebf5f2b4e656c89ede92f40a77c1c9bf65"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0150.png",
+      "bytes": 680795,
+      "sha256": "9b8694508783621b52c80d81c4da43f6efb73e2d1f0041bc42c47573de019269"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0151.png",
+      "bytes": 681038,
+      "sha256": "fe35bde242be45472e4915a14c7a5ad25510f5e49d266d4ab3215d798c231003"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0152.png",
+      "bytes": 680860,
+      "sha256": "eb95a7b0d154ec3b4ecf0c15dbfb39006562cb837c0ef1ba3e9b69723c6fbde9"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0153.png",
+      "bytes": 681051,
+      "sha256": "27da2fb810035b88def294788a46ea22e6985bc3c86c82e413ce6c2aa3f93a1f"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0154.png",
+      "bytes": 681572,
+      "sha256": "9f78e076d7a0be8eb062a35d68d9dd70442f872370ac50ace7cf435317484de4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0155.png",
+      "bytes": 681159,
+      "sha256": "fb148e3bf90d3378e823dc28c5131f96ef8dc2516ab17541441a7ce30b070f54"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0156.png",
+      "bytes": 681273,
+      "sha256": "57a355f8cb55c5e977366697b67c0df464821750268a7ebc5a743195ee769537"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0158.png",
+      "bytes": 681107,
+      "sha256": "a335fe429026d81b462a0ceeed16069c9bf35df3b43d855f6ff76706fe852be2"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0159.png",
+      "bytes": 681413,
+      "sha256": "61c43d5186edda88748b72428bcc5fadbbb701bba7e661c9d3f2db747598adbb"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0157.png",
+      "bytes": 681672,
+      "sha256": "55dc560091ca5dd7cafa6434b8fdb19bc4857372148340520a89a00903b1c9d4"
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0160.png",
+      "bytes": 679801,
+      "sha256": "aa1fde629f9484d4259a8102b7792f57c02092d5f678db9b91e718cf221c6de2"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-bridge_ten-example.png",
+      "bytes": 707695,
+      "sha256": "d95f26a3c2a12c439bbc1c96d65ec7651d048b88e1668e6ece103f8e86704da8"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-equal_groups-example.png",
+      "bytes": 678756,
+      "sha256": "e7b6b1a32de3665c76c80b1bda1f43711053dfd62e412665cb2ec0fdeca515fb"
+    },
+    {
+      "path": "guided-learning/fold-target-actual-subtract_ten-example.png",
+      "bytes": 700909,
+      "sha256": "f951c488770092dab4ace2a1830d92ce123149b027704eb7e19d3a74d88b92c7"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-adult-confirmation.png",
+      "bytes": 147016,
+      "sha256": "017d60687dfee16488214ce23a38916fc79694b8b6151421c80e65d413b6c8ba"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-bridge_ten-example.png",
+      "bytes": 310283,
+      "sha256": "c475f2f87cd2d09cb1c53ed093968a0017d95bbf5e990fb034d0a229bf80752a"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-discovery-hub.png",
+      "bytes": 380691,
+      "sha256": "9edbbe13e149281467a21bdb1e32f8e5d4397abd9415c5bd7c17e29216053536"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-equal_groups-example.png",
+      "bytes": 287602,
+      "sha256": "9630fa5d5b4c13f186fe95cb733c87889c62a8e727070c2768add153e08449f5"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-parent-permission.png",
+      "bytes": 287086,
+      "sha256": "19368cc5a379293b1d3a75379352d57c3443a52bc14158d95313cb004ae16f7b"
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-subtract_ten-example.png",
+      "bytes": 309976,
+      "sha256": "d54d74b4f5893947e1910ee8bad2b3e11855a0a3deb89f90767a8f9caa08b84b"
+    },
+    {
+      "path": "learning-adventure/artikel-fold-2176x1812-density-225.png",
+      "bytes": 682272,
+      "sha256": "92b83cee34616e57dd2b7956066b3d0b4c285db2a175b09efe070ac8fbeb616e"
+    },
+    {
+      "path": "learning-adventure/artikel-landscape-640x360.png",
+      "bytes": 205722,
+      "sha256": "2224875a97e78eb1b1dc57eae6a16dca9e0bb2299012761a27fc14cf5086cb93"
+    },
+    {
+      "path": "learning-adventure/artikel-wide-1280x720.png",
+      "bytes": 766878,
+      "sha256": "1c6ba7fa0ce4a684a0db0035473ab9ab0d721e5818303ef38cd5e2d7d5fb6430"
+    },
+    {
+      "path": "learning-adventure/artikel-phone-360x800.png",
+      "bytes": 291376,
+      "sha256": "aad9ad56a7ff2de0f766ab9cd3986c90c263cf039a56c14acd66a96dd22e1155"
+    },
+    {
+      "path": "learning-adventure/brueche-fold-2176x1812-density-225.png",
+      "bytes": 689181,
+      "sha256": "8ac76b4537340a924713fb3bd1ac20532d3b558f3d7075a83805d432e09603bb"
+    },
+    {
+      "path": "learning-adventure/brueche-landscape-640x360.png",
+      "bytes": 227059,
+      "sha256": "bb62e817c55edd48c23af0a0452c1d37a64d54f469b7105d6c59bd485fe3f3e2"
+    },
+    {
+      "path": "learning-adventure/brueche-phone-360x800.png",
+      "bytes": 309746,
+      "sha256": "542164efaea497f767d71b8e50ea4d3d4f8234e0120677386fd15f8a411d58ff"
+    },
+    {
+      "path": "learning-adventure/brueche-wide-1280x720.png",
+      "bytes": 792925,
+      "sha256": "2f87c3770921dd0dce43011d01502c4cac6bf1bf7cbf6b81cc8a7b49cf8dbd94"
+    },
+    {
+      "path": "learning-adventure/einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 745525,
+      "sha256": "2e893864a59de0f80a1a4056040d922f75d96f757b52c46f839897f59847d48f"
+    },
+    {
+      "path": "learning-adventure/einmaleins-landscape-640x360.png",
+      "bytes": 240792,
+      "sha256": "6261759a7121ff4434b0c6ff27209c4ee6573496a920e872e203443cc6bf4359"
+    },
+    {
+      "path": "learning-adventure/einmaleins-phone-360x800.png",
+      "bytes": 330567,
+      "sha256": "2bbc2c65af71f5fc433291e29d1114a51831032e9f11a89c4981a0c29fa9e9cc"
+    },
+    {
+      "path": "learning-adventure/einmaleins-wide-1280x720.png",
+      "bytes": 844021,
+      "sha256": "496b39ff566619952360ec2dfd32d7e1febb3c4a9d5b2f34147609e6753e1956"
+    },
+    {
+      "path": "learning-adventure/farben-fold-2176x1812-density-225.png",
+      "bytes": 675168,
+      "sha256": "04dd7bfa39676e8f72a21d6cc2062ad051117866fd300782cc433e614ed28bff"
+    },
+    {
+      "path": "learning-adventure/farben-landscape-640x360.png",
+      "bytes": 210537,
+      "sha256": "b5d07c0e8d44b092bf911964389fa90bb5e5b910f0ef8a61741417418299e989"
+    },
+    {
+      "path": "learning-adventure/farben-phone-360x800.png",
+      "bytes": 314594,
+      "sha256": "fcc939b04ce1b95daf72853674cfb9ceabf33607a49c64b23a71bf1668e78e78"
+    },
+    {
+      "path": "learning-adventure/farben-wide-1280x720.png",
+      "bytes": 781544,
+      "sha256": "068997c5086ddd5ff7179a41c6ce5beac6e8a354410ee07f31c0454eca3c34fc"
+    },
+    {
+      "path": "learning-adventure/formen-fold-2176x1812-density-225.png",
+      "bytes": 682279,
+      "sha256": "067f4a34706f10b5d7b897539a5795d8cc665ca9d42e1d8228279e1a1a478bd7"
+    },
+    {
+      "path": "learning-adventure/formen-landscape-640x360.png",
+      "bytes": 244453,
+      "sha256": "1aac47a11983f5d73a4563aed2ad99663b4f69ab7d934042409399fdca256106"
+    },
+    {
+      "path": "learning-adventure/formen-phone-360x800.png",
+      "bytes": 302666,
+      "sha256": "97735d8682caa802cdb5814193ee5c26700d04f1f7a3e064118b0406e977b5d4"
+    },
+    {
+      "path": "learning-adventure/formen-wide-1280x720.png",
+      "bytes": 782013,
+      "sha256": "c155420385e7cb0012ea79f436fdda387669f406dc66ced59f98a4f609bda045"
+    },
+    {
+      "path": "learning-adventure/geld-fold-2176x1812-density-225.png",
+      "bytes": 788568,
+      "sha256": "7833cd48c2cd6e141dc9fe2a68aa2a09cccf5d63690b39dee351d04dda876887"
+    },
+    {
+      "path": "learning-adventure/geld-landscape-640x360.png",
+      "bytes": 256368,
+      "sha256": "8204dffc7a8382340e88243902742de7a8521fb2b62ed7a14f595cf4d5ef2398"
+    },
+    {
+      "path": "learning-adventure/geld-phone-360x800.png",
+      "bytes": 332026,
+      "sha256": "79f89beb24cf9fb2030d1ba164ffbd78ed1dcd116218b2af8cd93d7455ab98a5"
+    },
+    {
+      "path": "learning-adventure/geld-wide-1280x720.png",
+      "bytes": 803050,
+      "sha256": "d11ac2aa000c5cf7638f15aeb88083b35c4327c8f2c316340d5d2c1c1ce1a52d"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 772169,
+      "sha256": "6556817196c716c3c2123283ab728d5f5a2e03ffc1108187f99a9e6d2d0dd9a1"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-landscape-640x360.png",
+      "bytes": 241739,
+      "sha256": "1b5819ed72f9d729482f10f04af7dcce9c300db0b011b61dbea59ba458ac6b93"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-phone-360x800.png",
+      "bytes": 305370,
+      "sha256": "261dc0d96593f3b75343ae12f699d3f3e109949580e2ea55997d57b8fa14e1b3"
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-wide-1280x720.png",
+      "bytes": 844691,
+      "sha256": "22eef92acc5369fbfcaf4b449e0509758dcc664b1cc9baae9c746472af0b8ee0"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-fold-2176x1812-density-225.png",
+      "bytes": 706334,
+      "sha256": "6e3b7de008761ba53e16aa0dcc8c7670b86c4997e95d42b8137b7109a5bf5279"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-landscape-640x360.png",
+      "bytes": 230447,
+      "sha256": "5cb33e10e15dd637c159f63920314722b0ca133d55bb9238fbeb4b5bd5ff5a3e"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-phone-360x800.png",
+      "bytes": 321828,
+      "sha256": "0013e9e391f41488edf5c2fd64f1852d06d2fca0a833e33bae512f11f77b060c"
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-wide-1280x720.png",
+      "bytes": 805606,
+      "sha256": "f0e9229b69b2e7a3f211057a5357986dbab38df8110256fe90fbbc13054cbe9a"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-fold-2176x1812-density-225.png",
+      "bytes": 691448,
+      "sha256": "05c969ea8a765827b3849ed22d3d09a77379c61b8b8f8316c98fcb02adff79f2"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-landscape-640x360.png",
+      "bytes": 212979,
+      "sha256": "7453ded7262773d165e9d91a825b5dff6efc1de31853b8c17ca2fef976ee3b02"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-phone-360x800.png",
+      "bytes": 303602,
+      "sha256": "6f27fed1b04245e0038c667564b98961a41fd3ea849878181d8747cb905fc6e4"
+    },
+    {
+      "path": "learning-adventure/mehrzahl-wide-1280x720.png",
+      "bytes": 783213,
+      "sha256": "b69530fe492f417b3255f516f52fa958e2f4f267a6bf94d0ac886bb4968f5fa2"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 806681,
+      "sha256": "cab42cd0677178a5bf15b04699be445f6732e1f7e9758ac47d67d03f07f56806"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-landscape-640x360.png",
+      "bytes": 277383,
+      "sha256": "a0b5f961fab4b6cf5661fad525d5c3c1eb50fa63bec8d761b41361433fd5f620"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-phone-360x800.png",
+      "bytes": 344251,
+      "sha256": "10a9fac1430a415ebefc7c15084f4b79db7d1602bef03e73a70a41abbe9da8ee"
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-wide-1280x720.png",
+      "bytes": 866585,
+      "sha256": "9ac2bc52c8f59b252454484c817c4670f0dec5436210f3ae6a327a6109527848"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "bytes": 795608,
+      "sha256": "cffc5ec7fdc432de6a45adcf0df108fafe23ee76df8c8be9ab7b214e812eeab4"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-landscape-640x360.png",
+      "bytes": 275063,
+      "sha256": "71767c50a071a377cd7ee87e6e3db9cc426880c770391b99b421c0c39a272f4d"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-phone-360x800.png",
+      "bytes": 331801,
+      "sha256": "4b119933dfb56f3f7bb128ddc9caf239c64f8de05db02caf78b29387df3268d1"
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-wide-1280x720.png",
+      "bytes": 841027,
+      "sha256": "24b6c402f4f115d6f3ac7e215a589c04eba4f59d826d1f4c7a7c4f0824ec922e"
+    },
+    {
+      "path": "learning-adventure/tiere-fold-2176x1812-density-225.png",
+      "bytes": 675928,
+      "sha256": "bc46f123079650ed69a683201027d2a049adcab71187e5aafbb7d1d8615c0aaf"
+    },
+    {
+      "path": "learning-adventure/tiere-landscape-640x360.png",
+      "bytes": 230622,
+      "sha256": "7497c73ff89d3fdb08dfe2aa0b15f575c5d5013429418cabf704eae691118639"
+    },
+    {
+      "path": "learning-adventure/tiere-phone-360x800.png",
+      "bytes": 294104,
+      "sha256": "2abb81f0292a84d92d4882b78297d94dc9b8b6d848555b37e5a6a95f84badeb1"
+    },
+    {
+      "path": "learning-adventure/tiere-wide-1280x720.png",
+      "bytes": 802541,
+      "sha256": "60ad47b338701b8a82cb91cd1b48d4a86968a1408fa988f275e2e58549b1763f"
+    },
+    {
+      "path": "learning-adventure/uhr-fold-2176x1812-density-225.png",
+      "bytes": 683221,
+      "sha256": "6dbe48e665374fdd4e44ba887f8ee3327e33b0e4ea428c2b5132d642df968895"
+    },
+    {
+      "path": "learning-adventure/uhr-landscape-640x360.png",
+      "bytes": 248467,
+      "sha256": "fa9d81f565dd55b8f379db5e4aa6977424dbf6783fc7d811ac3c75b7812e7cfe"
+    },
+    {
+      "path": "learning-adventure/uhr-phone-360x800.png",
+      "bytes": 309114,
+      "sha256": "8f30dfe93dd01315e81ce168e7bd5a86c93dae773297bb1d1541362055dc4d42"
+    },
+    {
+      "path": "learning-adventure/uhr-wide-1280x720.png",
+      "bytes": 789715,
+      "sha256": "275ee133de92ec690618684b86f1efdea58f2ab51b8e21ccbdfe3b7d42717ac3"
+    },
+    {
+      "path": "learning-adventure/verkehr-fold-2176x1812-density-225.png",
+      "bytes": 745840,
+      "sha256": "3ba18dea4bc4e6d002fcaa5abb2bf5b57672145e9e93aee4f9214a3f5af8ef36"
+    },
+    {
+      "path": "learning-adventure/verkehr-landscape-640x360.png",
+      "bytes": 227762,
+      "sha256": "3bb6d7ea22fad98bebf753d77a4539a129c3822196902e95d739188a1097f3ab"
+    },
+    {
+      "path": "learning-adventure/verkehr-phone-360x800.png",
+      "bytes": 311949,
+      "sha256": "c3de8f66bd48ba27bc22fdf8dd80295e241e216aaf13539e5c383948eba9ff46"
+    },
+    {
+      "path": "learning-adventure/verkehr-wide-1280x720.png",
+      "bytes": 798445,
+      "sha256": "69ab013d760a4cb7960fc9fb582b44152ed1ced82e075a507583bff2df6faea4"
+    },
+    {
+      "path": "learning-adventure/wetter-fold-2176x1812-density-225.png",
+      "bytes": 719357,
+      "sha256": "0c8e7ba97c7568351be4deaf4513c0096f89ce19af372f8d661cd0b31e17d60a"
+    },
+    {
+      "path": "learning-adventure/wetter-landscape-640x360.png",
+      "bytes": 214848,
+      "sha256": "2558141dd8b26171ac04dfbf232674ca760355c784c71b60c70342c565c512e2"
+    },
+    {
+      "path": "learning-adventure/wetter-phone-360x800.png",
+      "bytes": 305861,
+      "sha256": "de5f51598b6f681dc8f0e5bcb3f909fd14d9de75f3050976895be4771ca8a470"
+    },
+    {
+      "path": "learning-adventure/wetter-wide-1280x720.png",
+      "bytes": 804689,
+      "sha256": "d22fb044bbfe835c5c3c7ad1220da8531e4953f2bd66e50febb6e3f0921a8dab"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-fold-2176x1812-density-225.png",
+      "bytes": 611404,
+      "sha256": "2a595b4f9ae0420cfb7d8b45e43e5c22c5468e6675db56c60921fe1401c19801"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-landscape-640x360.png",
+      "bytes": 183965,
+      "sha256": "00f949080de955d3c2d15c23a7d28d4d495dea46626649f71548159c51c9aba0"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-phone-360x800.png",
+      "bytes": 204317,
+      "sha256": "1caee9b71556105db36281f5f1493b9f15bd3ae1922bb083fcd6eff45edea83b"
+    },
+    {
+      "path": "learning-adventure/wort-diktat-wide-1280x720.png",
+      "bytes": 713952,
+      "sha256": "b36cfcd4ec5c609c835bfe77991e0060983d96f80e9fc0fa76875cf663a62ba1"
+    },
+    {
+      "path": "learning-adventure/wortarten-fold-2176x1812-density-225.png",
+      "bytes": 711791,
+      "sha256": "39ab3dad5059ce36159b682cd1026d933baab9e0803411bf7078c08750f20253"
+    },
+    {
+      "path": "learning-adventure/wortarten-landscape-640x360.png",
+      "bytes": 236791,
+      "sha256": "517785a137d9ac1217fb6ceb8c2e3e99d54234987ea7ea0cd3454af947f71581"
+    },
+    {
+      "path": "learning-adventure/wortarten-phone-360x800.png",
+      "bytes": 302353,
+      "sha256": "044c9d28ca226b4d2e463c9aed8cb95dcae587c3677ba11eb86bbb3525073f3d"
+    },
+    {
+      "path": "learning-adventure/wortarten-wide-1280x720.png",
+      "bytes": 845947,
+      "sha256": "10f5590ead416e762e01be2e5ddd0c1f530bb6969217bd52850113b13df233a1"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 791164,
+      "sha256": "bfc051ee13a16da940d6bb781dc0d0ac9db3eacf75707ddd6af0ef4635a3089d"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-landscape-640x360.png",
+      "bytes": 274868,
+      "sha256": "f4ad957785134e704ee5f7b03549e54213c21a9b40af470aa446ffca1fb985a4"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-phone-360x800.png",
+      "bytes": 333885,
+      "sha256": "badde711fac9d582ce74c74f7a765f4d164cb8e14371a28ad45849d4301aa07d"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-fold-2176x1812-density-225.png",
+      "bytes": 880714,
+      "sha256": "df5bcabf8ec07ff78252c59755cb5a80989fb59a8c30b7a5efcadb7ebd5eb9da"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-wide-1280x720.png",
+      "bytes": 860454,
+      "sha256": "a065feab7987af887d1aca16fb1db7d96eb7c504e436201ebf00671a7a0e057d"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-landscape-640x360.png",
+      "bytes": 267611,
+      "sha256": "8076060968c292d886e586ed1f509662babdcbb3c275f993cd56bdd3fe91beb3"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-phone-360x800.png",
+      "bytes": 342681,
+      "sha256": "3181ad0122d9ca7aafb06985c9d407a5bbbb3ba0f5b69f30b2a8b205af58c46b"
+    },
+    {
+      "path": "learning-adventure/zeitformen-fold-2176x1812-density-225.png",
+      "bytes": 769012,
+      "sha256": "1f5e2297932be3ec34086061e3a869be7ce01103aea209dfc1c9d9ad6636f72b"
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-wide-1280x720.png",
+      "bytes": 958642,
+      "sha256": "f3c21503df89baef6a2302b18bffeefba45cd65d9367ccfa1b825438b633be6d"
+    },
+    {
+      "path": "learning-adventure/zeitformen-landscape-640x360.png",
+      "bytes": 216658,
+      "sha256": "a3569d91f28a41d55d93d902dd78997fcf6a0135cf2efe133dd1a09e5f2cb4c7"
+    },
+    {
+      "path": "learning-adventure/zeitformen-phone-360x800.png",
+      "bytes": 314148,
+      "sha256": "614f0b2705d3efbbaa2a1f18eaeafaa6f37d481c81510e9f27f2fdb7c31b9e1e"
+    },
+    {
+      "path": "learning-adventure/zeitformen-wide-1280x720.png",
+      "bytes": 791278,
+      "sha256": "39f6196b7027db662df82d8a926eb5a48303951df95ffa6763f7e55eb519e9a5"
+    },
+    {
+      "path": "modernization/achievements_fold-cover.png",
+      "bytes": 692042,
+      "sha256": "84c50d3df7c7b057bafa237e673b6a71b07ba34465bb07d18e79f7a9473e2be8"
+    },
+    {
+      "path": "modernization/achievements_fold-open.png",
+      "bytes": 986908,
+      "sha256": "f463e2c6720b8a3817d4b415dd882cb72f806ec151c82f4071f5dee171b88d43"
+    },
+    {
+      "path": "modernization/achievements_phone.png",
+      "bytes": 822071,
+      "sha256": "b883ab24760c235cad25788ca08dc218f52281266bf2c26854e8605f258d12b1"
+    },
+    {
+      "path": "modernization/foto_lektion_fold-cover.png",
+      "bytes": 1229380,
+      "sha256": "e229d4ca74b2e1a6437e19307c561cea1920a04400af19aa5dbfcf186deeccbc"
+    },
+    {
+      "path": "modernization/foto_lektion_fold-open.png",
+      "bytes": 2169731,
+      "sha256": "c8081122a5a6c7000f10352df5e1cf56f124781c74ddf41b0bb9ce8e833a3b2a"
+    },
+    {
+      "path": "modernization/foto_lektion_phone.png",
+      "bytes": 1506221,
+      "sha256": "b176c65640aa90367b68664063b591015e65c83c0fe715bfc088931abdd8d4f6"
+    },
+    {
+      "path": "modernization/journal_fold-cover.png",
+      "bytes": 1313410,
+      "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054"
+    },
+    {
+      "path": "modernization/journal_fold-open.png",
+      "bytes": 2348916,
+      "sha256": "21f03e9387a686d1d3b9623d74b23ffca9a42b34c4792fb8f4fbd0b9e32979c3"
+    },
+    {
+      "path": "modernization/journal_phone.png",
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d"
+    },
+    {
+      "path": "modernization/lumo_magic_fold-cover.png",
+      "bytes": 1175811,
+      "sha256": "23dd9dab1af8e21635941a20fbb65e60d14f78ec34b404d26c703d38c950a6bc"
+    },
+    {
+      "path": "modernization/lumo_magic_fold-open.png",
+      "bytes": 2040460,
+      "sha256": "058e07d76ac1a4b6205d91b0ed1e126e0e018627e102ff77078207351480f87a"
+    },
+    {
+      "path": "modernization/lumo_magic_phone.png",
+      "bytes": 1459721,
+      "sha256": "ccbe9114201902ba2bc75f876b4c8fdc42f8a4e959cf48c8a9da26a353731586"
+    },
+    {
+      "path": "modernization/lumo_quest_fold-cover.png",
+      "bytes": 855842,
+      "sha256": "2f6bb64832fcfdd5e81dc8195dc94a59df3aaa9ffcba9685a2604c6a214df986"
+    },
+    {
+      "path": "modernization/lumo_quest_fold-open.png",
+      "bytes": 1538204,
+      "sha256": "c26ab28647581ae98cf68d1e5849162dc0cf03ad038891669f09558c4fe133e1"
+    },
+    {
+      "path": "modernization/lumo_quest_phone.png",
+      "bytes": 1181846,
+      "sha256": "9fe6e43d0dd9dd58f981d6add36325eadd110fa9a643ff647b72b4f53916fe26"
+    },
+    {
+      "path": "modernization/lumo_welt_fold-cover.png",
+      "bytes": 774121,
+      "sha256": "7b0c3e614ebb276a11814d801b2ab548dcb781ed73443ba2cb586793d71f9dc0"
+    },
+    {
+      "path": "modernization/lumo_welt_fold-open.png",
+      "bytes": 1135928,
+      "sha256": "3230ac08b9d7428611f542c586fbbb94cc78dce59f5c65b1920a1c8fa407a5ca"
+    },
+    {
+      "path": "modernization/reading_buddy_fold-cover.png",
+      "bytes": 700926,
+      "sha256": "222c0352db3b2ec3a25037b42f594837181fad4dcb5747d68e6aa18a0b951737"
+    },
+    {
+      "path": "modernization/lumo_welt_phone.png",
+      "bytes": 881813,
+      "sha256": "d68921ae22d8285cd1f847f86252f9ee426f18f27628747313ff1ad238cd3441"
+    },
+    {
+      "path": "modernization/reading_buddy_fold-open.png",
+      "bytes": 1056781,
+      "sha256": "8c553d8941f75c3896f18941691a504d6be7e81498f8bc221d9e5be5ee90401d"
+    },
+    {
+      "path": "modernization/reading_buddy_phone.png",
+      "bytes": 824343,
+      "sha256": "0bc9f2901eb7bf26cd0ac79f2752b5e9a52e11c15470a8a83389f4bc1fe30f23"
+    },
+    {
+      "path": "modernization/rechentricks_fold-cover.png",
+      "bytes": 957403,
+      "sha256": "756254a8f333eeca54a546fb05b75a9750a35b77d14882746fef9f458bd25b90"
+    },
+    {
+      "path": "modernization/rechentricks_fold-open.png",
+      "bytes": 1533696,
+      "sha256": "79639deca82eab8f9924423e4ce6bf485629644fbc00c997e644e44c2fddadb3"
+    },
+    {
+      "path": "modernization/rechentricks_phone.png",
+      "bytes": 1184203,
+      "sha256": "dc9b747301963ffa3e8abe16ddd880c2fcfef06eaec1bd5e650dfd118ce7c66b"
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-cover.png",
+      "bytes": 331307,
+      "sha256": "d37e9d9d238bb8edca618d71c8b1aaf3c63fa56f31f50651b26a8374a8f05e19"
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-open.png",
+      "bytes": 495048,
+      "sha256": "7fd42c976ac55b61164474cc1ba1ed54f3c177a90032a7f7a1e143efb461d87a"
+    },
+    {
+      "path": "modernization/schreibaufgabe_phone.png",
+      "bytes": 372820,
+      "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b"
+    },
+    {
+      "path": "modernization/schreibcoach_fold-cover.png",
+      "bytes": 118039,
+      "sha256": "d2b56a09428c4d199d5979418858583b6907b4ff1bfada793bdc3c35bc5bbbdb"
+    },
+    {
+      "path": "modernization/schreibcoach_fold-open.png",
+      "bytes": 175408,
+      "sha256": "5bd9fe0f9d7374a700f7a8b1b1da45d0bd9d93104c85e9e83a3fd1d8fc20b7eb"
+    },
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "bytes": 131666,
+      "sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d"
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_geuebt.png",
+      "bytes": 448685,
+      "sha256": "443107e75ca5dccb62aac20bd1fcf19ae53d2e55e843a053c62ce5b9ab76a6d9"
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_leer.png",
+      "bytes": 384350,
+      "sha256": "061d8e9fcbc45579382126fc671eed3e20e64644b02d2a19ea64b94c172e01dd"
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_geuebt.png",
+      "bytes": 667884,
+      "sha256": "188a30d90e523428c5fb8f69a754307c442dfb4fe263f4bb05d212c41107418f"
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_leer.png",
+      "bytes": 643243,
+      "sha256": "9a78b135d805762bf213c71854fa279793b19dbce2ffc31e3fc33b6337a5367f"
+    },
+    {
+      "path": "modernization/trainer_B_phone_leer.png",
+      "bytes": 489085,
+      "sha256": "386f180138813ebb38bdbe6167b1e2f3b7573f2aebc7eea12c69018d4c479387"
+    },
+    {
+      "path": "modernization/trainer_B_phone_geuebt.png",
+      "bytes": 558344,
+      "sha256": "b29974e44e52d0055de6d9dd17bacbab02ecefa546ccfcfe13d5c505b4060fc6"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_geuebt.png",
+      "bytes": 429285,
+      "sha256": "44dd0054530f0971915838edf4bdf081ed305c8947f5ece34268ea0ed0a96462"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_leer.png",
+      "bytes": 358743,
+      "sha256": "2f4eb9af583a401782f63011d5c80fa0cacabfacbb964cdc6279889b66273206"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_geuebt.png",
+      "bytes": 635561,
+      "sha256": "fa4a4fd1878ae502b22b8bd85676ec7007d69b82948c710f3c06f7906d42fccc"
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_leer.png",
+      "bytes": 599242,
+      "sha256": "4784592e8dcaaad29d60b78e85941651a392eccc8a758140b5313eee0fd304f5"
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_geuebt.png",
+      "bytes": 533225,
+      "sha256": "7dbd13e6b812a74f4c86bdb334a68c6703ff15ed8a5eb9aa4c2bd76be031a68f"
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_leer.png",
+      "bytes": 457713,
+      "sha256": "79c215c448a5717c48b287fc3c99812d37e91f76f1f75063417ad25bcd36d23d"
+    },
+    {
+      "path": "native-profiles/native_profiles_adult_confirmation.png",
+      "bytes": 84459,
+      "sha256": "b0ce2a541659ba0e7e163918dabbdbf0bc41427c67f1bc452f802f60de041319"
+    },
+    {
+      "path": "native-profiles/native_profiles_fold.png",
+      "bytes": 87637,
+      "sha256": "39501c1f6a594c8c2da4c18c2f308faea947fe80f8fedc5ac08992fe2c420d89"
+    },
+    {
+      "path": "native-profiles/native_profiles_parent_entry.png",
+      "bytes": 400140,
+      "sha256": "853898e710bb3d76576e5062b4982154c9125a0f25a50d04d597af7959fea81e"
+    },
+    {
+      "path": "native-profiles/native_profiles_phone.png",
+      "bytes": 89923,
+      "sha256": "cbf1ed4054071c9ed40c71e0a0287aee81e9c80e2e32ebc21bd8a77e9e2708e2"
+    },
+    {
+      "path": "navigation/english-task-fold.png",
+      "bytes": 1516919,
+      "sha256": "24a15adbdb6fa740c649b2f3d2df3c378f597de5c7b5bff1ae0eb2884fcc8b05"
+    },
+    {
+      "path": "navigation/english-task-phone.png",
+      "bytes": 1183347,
+      "sha256": "ebc8b11694cd6f2b618fe1b074bdffb127f704966558f70ccbe0bc80e67d93c2"
+    },
+    {
+      "path": "navigation/english-topics-fold.png",
+      "bytes": 1099050,
+      "sha256": "3c376a91dd00979136cff1d38c62d00faf09763e9dcc59f7c2466973d4355b14"
+    },
+    {
+      "path": "navigation/english-topics-phone.png",
+      "bytes": 870470,
+      "sha256": "5c999f4b0975b9dfdb6066f238b9b023b20f0a763e86bfa1e36e0b6c594dea22"
+    },
+    {
+      "path": "navigation/games-fold.png",
+      "bytes": 1152828,
+      "sha256": "ece54c828dc40812927041385adb63afa73101705517d9541eab841898aafec7"
+    },
+    {
+      "path": "navigation/games-phone.png",
+      "bytes": 853856,
+      "sha256": "a2508540d748148f024a73354b05019850c2701b3adc3fb05f242f404d71d7c6"
+    },
+    {
+      "path": "navigation/german-task-fold.png",
+      "bytes": 1521184,
+      "sha256": "764078f7cd9709c8183cd920116a3ec54b4c122f925c968cd5882f7f227475c2"
+    },
+    {
+      "path": "navigation/german-task-phone.png",
+      "bytes": 1186144,
+      "sha256": "568262b1c04ab39b97cf0af17feb4fdfb1636c80f46b78cf536db745a6e9fbcc"
+    },
+    {
+      "path": "navigation/german-topics-fold.png",
+      "bytes": 1100443,
+      "sha256": "9727044f401f290e3cf73392bcd82bd93506f86cd225bbb024405ca676cfc05d"
+    },
+    {
+      "path": "navigation/german-topics-phone.png",
+      "bytes": 874057,
+      "sha256": "25c4b6f63b4116d4b17f9f653492880205ca2f79f4df483e77d9ae519572a784"
+    },
+    {
+      "path": "navigation/home-fold.png",
+      "bytes": 1637570,
+      "sha256": "ced9fe4ac198b3839131e7fe193bf498d13feffd7a5faacb5a0d6dc358544813"
+    },
+    {
+      "path": "navigation/home-phone.png",
+      "bytes": 1533892,
+      "sha256": "832d28b48425c3c612e6fb2b03d600c6e64a161eaa2063b5c07ca0e4f9bfe796"
+    },
+    {
+      "path": "navigation/learning-entry-fold.png",
+      "bytes": 1019130,
+      "sha256": "f3e0413860a9085cd6b634b0de454eeae5f6b18e6051ea168208fde66f1272ba"
+    },
+    {
+      "path": "navigation/learning-entry-phone.png",
+      "bytes": 937007,
+      "sha256": "7c44de49741646c3236baf5976c8dc2260d1a179ee9964abd40e7d2e03b35dd4"
+    },
+    {
+      "path": "navigation/math-task-fold.png",
+      "bytes": 1522392,
+      "sha256": "7d5023c0993f1dbafda6b5dde633294bce3407337d62309638a30af594e933b9"
+    },
+    {
+      "path": "navigation/math-task-phone.png",
+      "bytes": 1214626,
+      "sha256": "df7ae7a20b9fedaa1b97dabbbbe28d8feae5c1aa2622aeb4e913bc622235fe39"
+    },
+    {
+      "path": "navigation/math-topics-fold.png",
+      "bytes": 1103503,
+      "sha256": "661bbceef27dbaa622c0f5d4b0d385e1769238a0cd4d404d17c9adcef5ff2848"
+    },
+    {
+      "path": "navigation/math-topics-phone.png",
+      "bytes": 874073,
+      "sha256": "fa9e4e72d40adcc3c46dac9daf4895ad018c9fc2b5a2aa62630de7ed97bc75e7"
+    },
+    {
+      "path": "navigation/modern-grade-4-fold.png",
+      "bytes": 1017969,
+      "sha256": "8f4fa6d75c12fd021ee3f796f0503a2b825ce79353706b569c5f016e3c9843d2"
+    },
+    {
+      "path": "navigation/modern-grade-4-phone.png",
+      "bytes": 944831,
+      "sha256": "3332c3a86b021b1d3f6a00e0839a24f2c84a14357d9efcf42433a508f8806742"
+    },
+    {
+      "path": "navigation/modern-tools-fold.png",
+      "bytes": 1176159,
+      "sha256": "25b0527bab56e0ea4bd3b354cdbe51a71ae6313ec6ae1f1351e9cc1c9f4fc5c1"
+    },
+    {
+      "path": "navigation/modern-tools-phone.png",
+      "bytes": 1049825,
+      "sha256": "51ec8af1395b1b21eb3b975d7cb0b101ed375ed29172492bc5e79fe41a377c99"
+    },
+    {
+      "path": "navigation/science-task-fold.png",
+      "bytes": 1521648,
+      "sha256": "e7fdc55e819128383e0afb08b1256c56f60749e71807ffeacec26d461dbbe366"
+    },
+    {
+      "path": "navigation/science-task-phone.png",
+      "bytes": 1196685,
+      "sha256": "a68d5cfe09178ad2dd2c5b890c105a0c0c25cb8227675a5b4d8620e02e0e1015"
+    },
+    {
+      "path": "navigation/science-topics-fold.png",
+      "bytes": 1104576,
+      "sha256": "22f30e253b6ff56cf2835e90fa5defd40cc5fa77f639c3b410daf89e8c622a01"
+    },
+    {
+      "path": "navigation/science-topics-phone.png",
+      "bytes": 872886,
+      "sha256": "f11bfb9a4fb3104c985e6b550a1d0738cb1a78ac93f6e9b25ba0eed53a85ab0e"
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-explanation.png",
+      "bytes": 269660,
+      "sha256": "aacfe4ae3b85f145e37bd9b5667616f3c64c3216326ee1ade9d2507355b4f0a9"
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-question.png",
+      "bytes": 316142,
+      "sha256": "e5eb1832f5c35875a0270657091534f4caa3ff68038fb04d03b7394735c7e32f"
+    },
+    {
+      "path": "nextgen-reading/fold-open-explanation.png",
+      "bytes": 323541,
+      "sha256": "56bf98fbb43032c8512d54da1a7220be21fb3ea183449a14bfd6d68e71bb76aa"
+    },
+    {
+      "path": "nextgen-reading/phone-explanation.png",
+      "bytes": 250544,
+      "sha256": "7f1bff6dee7c72f264b125dbed7607704683459dc41402ae74b67ed2de1b79e8"
+    },
+    {
+      "path": "nextgen-reading/fold-open-question.png",
+      "bytes": 310020,
+      "sha256": "81bbef022163a4f6a1545707b26893a0c9a95cb20d427518f2c17b8c24edb8d8"
+    },
+    {
+      "path": "nextgen-reading/phone-question.png",
+      "bytes": 236105,
+      "sha256": "525116ae1a9b602fc624c9b9ea71e78443f8a3fe2ccde29d1a95cc17b9aa8039"
+    },
+    {
+      "path": "reading/home-fold-cover.png",
+      "bytes": 953812,
+      "sha256": "1388bb8a411b0dbde11d365ccc75b206ae1240575f76bf8803fe35d9acc40fb2"
+    },
+    {
+      "path": "reading/home-fold-open.png",
+      "bytes": 1775720,
+      "sha256": "6a597cff1e70f4f09df71b938c45ad723d3c75192c5a40c7a028790e60c8e348"
+    },
+    {
+      "path": "reading/home-phone.png",
+      "bytes": 1134577,
+      "sha256": "45c4450841acb611bd89809d2c6a6a8a0c41d323a31777139a2c0edb7165f512"
+    },
+    {
+      "path": "reading/reading-fold-cover.png",
+      "bytes": 895473,
+      "sha256": "57bfd322b76c643c4e52e96721ba31be02872e0329c6672550ad47413385ad64"
+    },
+    {
+      "path": "reading/reading-fold-open.png",
+      "bytes": 1483640,
+      "sha256": "2621e447aaba4df9310a364d7d3628541b811d9036f334b78b026add749b27c0"
+    },
+    {
+      "path": "reading/reading-phone.png",
+      "bytes": 1094115,
+      "sha256": "8106d67ced4499cb135665f261f31800c8859e40213db7360d910686a40af6a0"
+    },
+    {
+      "path": "reading/retry-fold-cover.png",
+      "bytes": 658882,
+      "sha256": "3d86e91d39ce0a6abdadd3dd013e1cbb68457d1c843846d6d0921e37fd744db0"
+    },
+    {
+      "path": "reading/retry-fold-open.png",
+      "bytes": 1058515,
+      "sha256": "aa933b8fc7166911ced91e7d0e5b4bceaa7b0651984e542d6724acb66a6683db"
+    },
+    {
+      "path": "reading/retry-phone.png",
+      "bytes": 798473,
+      "sha256": "ccc2187752e55e1e1a48f94f87dddf4e5373c8534b072ed121145788f457c65f"
+    },
+    {
+      "path": "reading/subjects-fold-cover.png",
+      "bytes": 949779,
+      "sha256": "fbe67a226fc860cce7c930f6777920b58b55b81dbefb9051be0823ceba809c29"
+    },
+    {
+      "path": "reading/subjects-fold-open.png",
+      "bytes": 1329043,
+      "sha256": "1ac0815c98f3c2b5a52c62b47723273f5ad14eff05fde2e2891e4d5949f8268d"
+    },
+    {
+      "path": "reading/subjects-phone.png",
+      "bytes": 1128320,
+      "sha256": "9e777c6f987d522bbbddb58a55d7922c5ea5559afa8241aeb1c4a9df5d2bf424"
+    },
+    {
+      "path": "reading-passages/reading-fold.png",
+      "bytes": 570542,
+      "sha256": "97dc448514b84616ec16c2167c27868adb65948d7209709fce7b9a336b3c71ba"
+    },
+    {
+      "path": "reading-passages/reading-landscape.png",
+      "bytes": 244975,
+      "sha256": "074e25137bb3746d63ae6713a9cf72a52973ae03076411b43ffaea2d1d4dfda9"
+    },
+    {
+      "path": "reading-passages/reading-phone.png",
+      "bytes": 289963,
+      "sha256": "80d434d326d1439f42522bd48ceda53a3fef3a283711c00bb52072787243a108"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-01-oeffnen.png",
+      "bytes": 786548,
+      "sha256": "2f685bc3b67b66a25379fe91044601350887c38b4de3bb5b70522cd386dd95b7"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-02-erste-frage.png",
+      "bytes": 491494,
+      "sha256": "20915c43463a4101b83e46a376cb1ef7c41b4f288ca7169afc5d9a5651d71c73"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-01-start.png",
+      "bytes": 767770,
+      "sha256": "cc3cc25eac4e37599884c467993f86e6211340036c240353abf747e62d771717"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-02-bereich.png",
+      "bytes": 705987,
+      "sha256": "7a9eaf9212ce041919597968dfb68e6623d088002451c6aec9e8de73f5d7a74a"
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-03-raetsel.png",
+      "bytes": 667616,
+      "sha256": "e9ff94bcfe5000fa384e4a5569e47b7bac880322e1b18f295899a75c4fc684a5"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-01-oeffnen.png",
+      "bytes": 1387610,
+      "sha256": "b932c31b4439763c0f9958a73b8382d919c3fcbca3084791c3284ffefdfe9574"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-02-erste-frage.png",
+      "bytes": 773429,
+      "sha256": "944976411c67598b275079241c57910fc7631833fcf573999a0042da0f1c416c"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-01-start.png",
+      "bytes": 1373671,
+      "sha256": "d9a8911a22c879253b4522f00455aebfbfe426925fd7bac1a473fd2d033107a5"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-02-bereich.png",
+      "bytes": 1217783,
+      "sha256": "3ba3f877b0b6aca052ddbd7465933292f40cbb5c5d8481fe14263742f4a4db20"
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-03-raetsel.png",
+      "bytes": 1248771,
+      "sha256": "bdb33c50a73c94d0e5a5167f9267feb3ba4c1990fb6e594593730e1222e7b11b"
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-01-oeffnen.png",
+      "bytes": 955653,
+      "sha256": "1089b488b12b5e690006dfd1d5a14d50a015cd7f337ddc703a6ca352c000e91f"
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-02-erste-frage.png",
+      "bytes": 580784,
+      "sha256": "caedfd0ad25778b45a19becd60c28330840050115d6cf9179301524e165c9e11"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-01-start.png",
+      "bytes": 938448,
+      "sha256": "dc7de967b580c3834711db1d68123520798e40378811da26a7e64d8e8a20549b"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-02-bereich.png",
+      "bytes": 843920,
+      "sha256": "73c0c43660a3a3db72fc0fb12fd4bce7087c742e04f9f4d4a4253f271ff0d832"
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-03-raetsel.png",
+      "bytes": 786960,
+      "sha256": "c6d4db4c69870342933726b382aee985b1fe802d858642d6365410e8389733ca"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-rest.png",
+      "bytes": 163873,
+      "sha256": "ebd76e3939a718b73ae0441b7f47943b9d0433795827dfebdb403c6bb0e79db5"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-a.png",
+      "bytes": 165295,
+      "sha256": "4f5f10747f60a71bb08cf1e7acfe97046885c2d371e20d6e2a187e7556bf165a"
+    },
+    {
+      "path": "rig-stress/fox_book_point-rest.png",
+      "bytes": 181287,
+      "sha256": "03c5bd7acf7cb575d33506ee01e5477b6c2f1750ff3483ea3949a347aff50081"
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-b.png",
+      "bytes": 164402,
+      "sha256": "35c8945d425a07ecaf8bcfa6fb166e2fc50c86664662b9a6d3f0a9395f8d2348"
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-a.png",
+      "bytes": 183525,
+      "sha256": "51b52c6ff4ab6bbecf12e2821abadebf7423764fd669860db183878493611ac0"
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-b.png",
+      "bytes": 181586,
+      "sha256": "84abf646f33932d7cce70c198152995927603eb7f82d17cf86e7f6e11bf8097e"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-rest.png",
+      "bytes": 212818,
+      "sha256": "8384ac004268b161cf6818a542a1ad67fc0f6c7e5b78efe0e40a172314425243"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-a.png",
+      "bytes": 213462,
+      "sha256": "9fc2026c640c65071e59c17b36a0d99449a6ae20929cde0069bb3b716d103c91"
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-b.png",
+      "bytes": 213902,
+      "sha256": "1963bf23b96fad989aa20264cd92e4258d4db34be07056fe41ca3eea1e39f73c"
+    },
+    {
+      "path": "rig-stress/fox_cheer-rest.png",
+      "bytes": 149909,
+      "sha256": "7bb312641318a4bddbb82da1859cbab9b68a36c5748df1e3fb25118b774f3a14"
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-a.png",
+      "bytes": 150608,
+      "sha256": "cd2cb386af2af539e0214b31ec82dd50428a331c67d1306a9d143c2b277a0b32"
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-b.png",
+      "bytes": 150852,
+      "sha256": "65e6c0c6be5077d15df62e97eb3ab8708817022a49bdbd3ae4ea4381a47e9a7e"
+    },
+    {
+      "path": "rig-stress/fox_point_side-rest.png",
+      "bytes": 160699,
+      "sha256": "860b1cb1c06396b2e3c472b8423388f9c0ba01b82eca08a8ae38d40387b83727"
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-a.png",
+      "bytes": 162817,
+      "sha256": "96e0a62e7d0c49efcd96909af3b1c2922a39674746a5e7d3d05f2f5bd0134b90"
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-b.png",
+      "bytes": 160606,
+      "sha256": "0a82a5df500e0b0b58fa60a853ba13c543d6816f69d57573526be84905ec7857"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-rest.png",
+      "bytes": 156432,
+      "sha256": "9469500d6e74a3072b16d6daefcec29e42791d105220ce7adbf06f81886fb626"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-a.png",
+      "bytes": 158778,
+      "sha256": "7478080eb0b4184149a650d3af4c12b86880ec0c712861881c4c03afc9453bf9"
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-b.png",
+      "bytes": 155706,
+      "sha256": "e3c72c6be690ca56192498aa954fb308f57c52db248ceba12cc4661833554447"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-rest.png",
+      "bytes": 152875,
+      "sha256": "3966d695524aae98d2d8c27b2663905aab2b04a422a632311252a801ac5ddd5d"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-a.png",
+      "bytes": 153993,
+      "sha256": "c8d055275d60174e856ff14a915d898c723ba68308d8a572946039c01bc25dfc"
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-b.png",
+      "bytes": 153498,
+      "sha256": "68b154a9cd2c9179dd213fdbea99c19c66ea890b625034fe64eb1d7655b2d353"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-rest.png",
+      "bytes": 157113,
+      "sha256": "629c26b38e20af87aa9d8e942bdef61808d59d746014c3b808fe05a6b91c433b"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-a.png",
+      "bytes": 157377,
+      "sha256": "6e94dbfadf2c3b0e9738d0ff9407da02577f2f6ce0686c520556ec6fd7c5766d"
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-b.png",
+      "bytes": 158763,
+      "sha256": "b5e13e37055dc06e78ec2a3960a7e793692079ad336b2760536d55e27685006e"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-rest.png",
+      "bytes": 170727,
+      "sha256": "a41841850317401be100d222cd8fe5f1d46f2c99c225b67013e8f027f7e78b14"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-a.png",
+      "bytes": 171788,
+      "sha256": "b44fcc1e71865429f5855036b2748901af5af0b3241d1fdfab810daa57040219"
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-b.png",
+      "bytes": 172277,
+      "sha256": "0ece90d5b9c1c201068e022578ce446af336fa18d17f6f2018c82fa3e59827cf"
+    },
+    {
+      "path": "tour/fold_01_start.png",
+      "bytes": 1417762,
+      "sha256": "4a4c848df41f1de961e616c9f962ef2bdd7d424d409f883684b73e0787ac26d7"
+    },
+    {
+      "path": "tour/fold_02_anleitung_matrix.png",
+      "bytes": 1217783,
+      "sha256": "3ba3f877b0b6aca052ddbd7465933292f40cbb5c5d8481fe14263742f4a4db20"
+    },
+    {
+      "path": "tour/fold_02_anleitung_memory.png",
+      "bytes": 1136486,
+      "sha256": "881af1c8c23044297f23d7fe6cd3a4a38107b62523ed5f92e8578085bdbba907"
+    },
+    {
+      "path": "tour/fold_02_anleitung_numbers.png",
+      "bytes": 1272046,
+      "sha256": "aa9d158508838d84d6ef0d7832951f68268eb760b2dc95b53105f6a43fdea367"
+    },
+    {
+      "path": "tour/fold_02_anleitung_oddone.png",
+      "bytes": 1261683,
+      "sha256": "662daecd06d5e1cadee6982085749788b9fae4b5c27b3a005cdb8e35d12956db"
+    },
+    {
+      "path": "tour/fold_02_anleitung_rotation.png",
+      "bytes": 1237242,
+      "sha256": "f9452faadd44e5c73f5341002b3932b4af8b0b89fd22f774f491befba2c725c1"
+    },
+    {
+      "path": "tour/fold_02_anleitung_series.png",
+      "bytes": 1252078,
+      "sha256": "3eb226ac818384a6e2e004dc0d574a1ee8316165fe982c9ba45bbca34a083524"
+    },
+    {
+      "path": "tour/fold_03_raetsel_matrix.png",
+      "bytes": 1228404,
+      "sha256": "eddbcd7601443c85fa3592adb6c3cda5661dc2acac9d2e1fece13b2f879c7af0"
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory.png",
+      "bytes": 1231083,
+      "sha256": "4b18cbf442b00606b53bfcb8d715522228ffb51078a07ef9fc9e5c7fac05f04c"
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory_zeigen.png",
+      "bytes": 1229542,
+      "sha256": "378483418b213df14ed3be4070e6e20a770e204e74159184a1b550702da8d03a"
+    },
+    {
+      "path": "tour/fold_03_raetsel_numbers.png",
+      "bytes": 1259822,
+      "sha256": "e3abea9e8ce036f6345781bb4f8da1be43f91f4661eae08109a9a79fd362431c"
+    },
+    {
+      "path": "tour/fold_03_raetsel_rotation.png",
+      "bytes": 1235090,
+      "sha256": "fffff6c89a227941fe80f5d7a0887580ab1537aba860a156de58e3c132530710"
+    },
+    {
+      "path": "tour/fold_03_raetsel_series.png",
+      "bytes": 1260651,
+      "sha256": "22517f248870a3ea290df3c137f75be9f91b76de24bea3a2a55d004a0c78ce39"
+    },
+    {
+      "path": "tour/fold_04_ergebnis.png",
+      "bytes": 1102222,
+      "sha256": "8f246ca3ab8ae5fe1c1ea1867fd9cb7f5c6d0f48b1bf0c6f16df61df0b43f8fa"
+    },
+    {
+      "path": "tour/fold_04_ergebnis_komplett.png",
+      "bytes": 1085922,
+      "sha256": "fc562d9d9b258875abb4f636b1d1938091c17adaaf2c28dab4874fec50499681"
+    },
+    {
+      "path": "tour/fold_05_rueckblick.png",
+      "bytes": 1095885,
+      "sha256": "001e65c95aed0978045988ecb9448807f188d93035f4764f958544843c45a329"
+    },
+    {
+      "path": "tour/fold_05_rueckblick_drehen.png",
+      "bytes": 1042440,
+      "sha256": "5af362945da623e3311a07f86087b03a515d934312d50541ba34e36fb753d239"
+    },
+    {
+      "path": "tour/fold_05_rueckblick_loesung.png",
+      "bytes": 1082883,
+      "sha256": "55f026801c2a0a57b2d14e7f769dbc101fef1e881f9fc58e699b22fa717ef7b9"
+    },
+    {
+      "path": "tour/fold_06_tests_seite.png",
+      "bytes": 1059453,
+      "sha256": "43980fba0b2e316720cd8bba3e3738c6649519f87558f63df3ca108914c56a40"
+    },
+    {
+      "path": "tour/fold_03_raetsel_oddone.png",
+      "bytes": 1327305,
+      "sha256": "b2aaeff3a04d654197bb178b437a310466361d66e6af74a6c2e0fbc418a871f6"
+    },
+    {
+      "path": "tour/fold_games.png",
+      "bytes": 519816,
+      "sha256": "08c1676147a9b75a1c501f9fe9d896ebf54aa9ddc22d9d5c42ee8f5ab7697564"
+    },
+    {
+      "path": "tour/fold_learn.png",
+      "bytes": 463066,
+      "sha256": "ed9710a0733362139c439acf9b2e2056824143ab8a5a3ab6f632508a93969bb2"
+    },
+    {
+      "path": "tour/fold_home.png",
+      "bytes": 847138,
+      "sha256": "6428026a3b4e2196b0e3793042ba9b59a30203b7bcfdaac62f750adfa1c93fc9"
+    },
+    {
+      "path": "tour/fold_profile.png",
+      "bytes": 668928,
+      "sha256": "c73f65878b96973899a74efa121cf16a7eb39b8768a200f05415f85f1223ba34"
+    },
+    {
+      "path": "tour/fold_rewards.png",
+      "bytes": 517157,
+      "sha256": "2a865ebfbf147009d172339b735a6e27e7d47ba1af9856e779897722ad46d44e"
+    },
+    {
+      "path": "tour/fold_tests.png",
+      "bytes": 633186,
+      "sha256": "35bfa7348611276c827e31eb546749cf1d0e9d60382905b44d21bfd0760e5cac"
+    },
+    {
+      "path": "tour/phone_01_start.png",
+      "bytes": 962676,
+      "sha256": "d771197db05e71594b2a1ad049da200d0c0e94ed165934b48cc3f9fb9e9b10f6"
+    },
+    {
+      "path": "tour/phone_02_anleitung_matrix.png",
+      "bytes": 843920,
+      "sha256": "73c0c43660a3a3db72fc0fb12fd4bce7087c742e04f9f4d4a4253f271ff0d832"
+    },
+    {
+      "path": "tour/phone_02_anleitung_memory.png",
+      "bytes": 771065,
+      "sha256": "64c22d65cb879df634d77b11b352e41d54d3a3699b3fcb3783d4c843eda5f7ef"
+    },
+    {
+      "path": "tour/phone_02_anleitung_numbers.png",
+      "bytes": 870762,
+      "sha256": "1d15694931653173759b69babbd462d44cbce5cf50a977499316fffad9e4c566"
+    },
+    {
+      "path": "tour/phone_02_anleitung_oddone.png",
+      "bytes": 856534,
+      "sha256": "54cbf30ab50652f193ba0ad104527e9c0e4325517da07f072bbea1109891b286"
+    },
+    {
+      "path": "tour/phone_02_anleitung_rotation.png",
+      "bytes": 839306,
+      "sha256": "e8887224395a54e71952183b5b2afcb6878fa45c87810afbd88094b4c2526caa"
+    },
+    {
+      "path": "tour/phone_03_raetsel_matrix.png",
+      "bytes": 776876,
+      "sha256": "6fcb508e184ba82113b904d564c054cfe823d9bb4bb0dc8ccf8e82fc77a027ad"
+    },
+    {
+      "path": "tour/phone_02_anleitung_series.png",
+      "bytes": 853804,
+      "sha256": "e2b1da18b91e724e087f0b5afe3854fe6e0242aec7f6f4251b107118ae986d62"
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory.png",
+      "bytes": 805998,
+      "sha256": "debf532c2f715e3890ac31431deeefd4ef468ab51d42adbaadd390831dbf8797"
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory_zeigen.png",
+      "bytes": 801173,
+      "sha256": "8c7a97a9972c765182da04f226a9553c4b5bf3d6c4973ee2117aaf0ef0a01fcb"
+    },
+    {
+      "path": "tour/phone_03_raetsel_numbers.png",
+      "bytes": 842666,
+      "sha256": "5af3a1e1eace4e2aeaf27c82d9a3bbb42cc1a98a25518f90098215f67b458be9"
+    },
+    {
+      "path": "tour/phone_03_raetsel_oddone.png",
+      "bytes": 890956,
+      "sha256": "0bf48b2369c231d499ea06de7711ef55d1c7e44cf8b7e253766d9d85d76bf8a5"
+    },
+    {
+      "path": "tour/phone_03_raetsel_rotation.png",
+      "bytes": 862829,
+      "sha256": "5a5bd7348189c4191ff09c01356be0a8ee9c05d6f507084edac9de29cfae9ace"
+    },
+    {
+      "path": "tour/phone_03_raetsel_series.png",
+      "bytes": 803309,
+      "sha256": "1f213802a8240c6ef90c1ad28ed665de822b7173f52d303a50fc4a25dd9b1612"
+    },
+    {
+      "path": "tour/phone_04_ergebnis.png",
+      "bytes": 813934,
+      "sha256": "812c9e4e42fb69058eea78a6cf2c82f389e7b1be02f4cc72ca5c77a9263b60b2"
+    },
+    {
+      "path": "tour/phone_04_ergebnis_komplett.png",
+      "bytes": 737080,
+      "sha256": "31bcc58800e2ba95988153d7d0b7f1f0c405d89b9aeb55e6018a1d836df60c8f"
+    },
+    {
+      "path": "tour/phone_05_rueckblick.png",
+      "bytes": 853307,
+      "sha256": "f961ca813945d3b941185102d48f6dbed3fc0042c1490f4a9b5c39e43920a23b"
+    },
+    {
+      "path": "tour/phone_05_rueckblick_drehen.png",
+      "bytes": 798646,
+      "sha256": "fcf441dc45ed98b5d12dab2d4d58e635eb1127dadd16954d33f0a55dea23ba77"
+    },
+    {
+      "path": "tour/phone_05_rueckblick_loesung.png",
+      "bytes": 821758,
+      "sha256": "1b35b0be4f3f2b8367402749927e948175b532c0800975871433226e0c3fab47"
+    },
+    {
+      "path": "tour/phone_06_tests_seite.png",
+      "bytes": 827850,
+      "sha256": "24502b996ee7e18251fbf879c206d40bb4c5bfea2eb7036d2a8e5f3ec1dd7773"
+    },
+    {
+      "path": "tour/phone_games.png",
+      "bytes": 344456,
+      "sha256": "bfc75faf54364374b9caaaf6083158383bd3e93859a28157664d018a865b9ca2"
+    },
+    {
+      "path": "tour/phone_home.png",
+      "bytes": 566778,
+      "sha256": "0b6ad8358741b09d864117bfec3d6953305e4e67cf2f91b5e6ec237145a211db"
+    },
+    {
+      "path": "tour/phone_learn.png",
+      "bytes": 388358,
+      "sha256": "e2a33abeed005654eed1167c3f3e752d7308e9a1f7b608377b5e4c73d999ab03"
+    },
+    {
+      "path": "tour/phone_profile.png",
+      "bytes": 488879,
+      "sha256": "7d17c5fef873b87aef94cb896cf17b6d30fa9047ac517561010124365b5d7478"
+    },
+    {
+      "path": "tour/phone_rewards.png",
+      "bytes": 421569,
+      "sha256": "ba37e63d74e6a8f88f12eaeeb05db89c94cacea37ceabe950f843f5a670840fe"
+    },
+    {
+      "path": "tour/quer_01_start.png",
+      "bytes": 784968,
+      "sha256": "dea7d8c540b4cc4d77216009683f9106641835a0acfa13d5a0693250d52f1be9"
+    },
+    {
+      "path": "tour/phone_tests.png",
+      "bytes": 478481,
+      "sha256": "ae97eea3fb13751b25f24d9daf3732b47f239a21271c0767cc5fc902cd03f7e4"
+    },
+    {
+      "path": "tour/quer_03_raetsel_matrix.png",
+      "bytes": 687610,
+      "sha256": "23350152e0446f61fe10092245f4e4a2a4877c7d20fbbed23174ba3b8a9ac9b8"
+    },
+    {
+      "path": "tour/quer_03_raetsel_rotation.png",
+      "bytes": 668905,
+      "sha256": "fe3ac79c08afc256d046831dd59e5d822cce7247b354022e74297ba72f945fd1"
+    },
+    {
+      "path": "tour/quer_04_ergebnis.png",
+      "bytes": 666482,
+      "sha256": "d528a666ef1b0581673c3c7cf79dffe8cef3315801f6957946cae26de90f37ee"
+    },
+    {
+      "path": "tour/reference-phone_games.png",
+      "bytes": 284058,
+      "sha256": "df83dd5719878466ef8ab132326a179fedf2236c7291d9725e6df7e1bbcb30a9"
+    },
+    {
+      "path": "tour/reference-phone_home.png",
+      "bytes": 463001,
+      "sha256": "5e7d3004bad44f674f426113c9f3926e30031f2a6cb1247eeb837917999959f1"
+    },
+    {
+      "path": "tour/reference-phone_learn.png",
+      "bytes": 298656,
+      "sha256": "085d59a2b170b3f3fe3b75c50ebd617a25c29644318b9f8f36aa29183bebab82"
+    },
+    {
+      "path": "tour/reference-phone_profile.png",
+      "bytes": 381162,
+      "sha256": "08a84e25a8c868f111f8c23acad980058edc3949dc82ef3237708812903823d5"
+    },
+    {
+      "path": "tour/reference-phone_rewards.png",
+      "bytes": 342499,
+      "sha256": "9d4a170289feb374d62cb80772b5533e3ff055076e4346abf8e9058ba31d4ae3"
+    },
+    {
+      "path": "tour/reference-phone_tests.png",
+      "bytes": 350908,
+      "sha256": "1b1db0b8a50065bbb8b53ad50831208a3aaa8df587728230a8559ce4bd79ece4"
+    },
+    {
+      "path": "tutoring/fold-target-actual-opened-course.png",
+      "bytes": 777596,
+      "sha256": "b8636e4a5c29ca099bb554af172dc69e879b92e74414982ab03949cc7f737788"
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-card.png",
+      "bytes": 734968,
+      "sha256": "af72d650e8ec993bc2745595de8e96bda1d06d2590aa86d4655cbb362a75651a"
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-reason.png",
+      "bytes": 771806,
+      "sha256": "aebf3a7b058150ba50a18b079cc427bacb208878053ce2120ed630dbf69c1a89"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-opened-course.png",
+      "bytes": 313838,
+      "sha256": "af8ce17c393333c7240aa21b34423369885f8428affb385f0c43ac6474e29aef"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-card.png",
+      "bytes": 264129,
+      "sha256": "3e6e13a5103faed74aed3c58e6db1282190a667023d6a91d1c04885d8d199017"
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-reason.png",
+      "bytes": 373236,
+      "sha256": "58485bf7ce4529b313f36e6c383b06bc2ff801513d7101c058bae82ee86f0858"
+    }
+  ],
+  "download_url_persisted": false,
+  "all_members_extracted": false,
+  "scope": "Actual original archive identity, CRC and per-member byte identities; extraction status is explicit. No application execution or release approval."
+}

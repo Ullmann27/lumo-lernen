@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "artifact_id": 14112302039,
+  "archive": {
+    "archive_bytes": 22153295,
+    "archive_sha256": "77a8c42b2674c1a5de875b9ded796fd17f6778dbf2aa4a4f9f893ab62614962f"
+  },
+  "source_binding": {
+    "host": {
+      "commit": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+      "tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+      "recorded_files": 447,
+      "all_recorded_paths_modes_blobs_sizes_match_exact_remote_tree": true,
+      "before_after_bytes_identical": true
+    },
+    "native": {
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+      "recorded_files": 1256,
+      "all_recorded_paths_modes_blobs_sizes_match_exact_remote_tree": true,
+      "before_after_bytes_identical": true
+    }
+  },
+  "original_source_snapshots": {
+    "byte_identical": true,
+    "bytes": 476939,
+    "sha256": "5fa239ea3c69f1f77fd9ad784d05ea5fbf41683f5165a5c193734ddb67d7351c",
+    "git_blob": "4941e1a13aa70c2805dcb1f8bf7bff97abd9ce56"
+  },
+  "manifest": {
+    "bytes": 55426,
+    "sha256": "54b328ac3896b94a0a9acd5319b85f4a4ca18ef458ca61240da1c99954089f41",
+    "git_blob": "e381c171308bf47aac403bb1a269b83e2322d87b"
+  },
+  "image_hash_verification": {
+    "total": 259,
+    "named_stills": 9,
+    "sequence_frames": 250,
+    "all_original_sha256_bytes_and_png_dimensions_match": true,
+    "exact_contiguous_frame_roster": true
+  },
+  "runtime_observations": {
+    "passed": true,
+    "exit_codes": {
+      "dart": 0,
+      "godot": 0
+    },
+    "native_checks": 170,
+    "native_errors": 0,
+    "observed_moving_frames": 90,
+    "observed_winning_frames": 43,
+    "recording_format_fps": 24,
+    "device_fps_claim": false,
+    "backend": "production Dart controller with test SharedPreferences and local file transport",
+    "android_binder_or_disk_claim": false,
+    "started_utc": "2026-11-14T11:38:21.256408+00:00",
+    "completed_utc": "2026-11-14T11:39:14.060322+00:00"
+  },
+  "separate_original_probe_markers": {
+    "return-recovery.log": {
+      "exact_marker": "CONNECT_FOUR_RETURN_PASS checks=21",
+      "count": 1,
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+      "git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    "wisps.log": {
+      "exact_marker": "[TreasureWisp] PASS checks=14",
+      "count": 1,
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39",
+      "git_blob": "a9af201e589b4813f21814579f5112b87e66b46a"
+    }
+  },
+  "all_original_files_unchanged_during_review": true,
+  "original_file_count": 399,
+  "scope": "Read-only verification of downloaded original metadata, hashes, reported observations and exact remote Git tree bindings. No new test, engine, Android, FPS or input run."
+}

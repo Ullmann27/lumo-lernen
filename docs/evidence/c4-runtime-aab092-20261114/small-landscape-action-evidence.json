@@ -1,0 +1,396 @@
+{
+  "schema": 1,
+  "subject": "Whether both lower winning-modal actions were actually scrolled into view and activated at 640x360",
+  "conclusion": "Not demonstrated by these exact original reports and probe source. Actual small-landscape scrolling and activation were performed only for resume_button (Brett ansehen). This is a specific coverage gap, not proof that restart or mode switching is broken.",
+  "scope": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "run": 43590864772,
+    "attempt": 1,
+    "artifact": 14112302039,
+    "only_existing_reports_and_exact_probe_read": true,
+    "new_images_opened": 0,
+    "new_tests_run": 0,
+    "engine_started": false,
+    "files_changed": false,
+    "refs_updated": false
+  },
+  "originals": [
+    {
+      "name": "native-result.json",
+      "path": "/home/agent/lumo-runtime-aab092-14112302039/original/runtime/native-result.json",
+      "bytes": 73209,
+      "sha256": "0c8fa201f8d2fb65762518ea7faaa6c6b7c24c6767ae067873d9ee6b195b36cd"
+    },
+    {
+      "name": "dart-result.json",
+      "path": "/home/agent/lumo-runtime-aab092-14112302039/original/runtime/dart-result.json",
+      "bytes": 20386,
+      "sha256": "ab870fe33e2c7883aee91720c37725ff00f0f2a0ead828aa7413bf4990f386b2"
+    },
+    {
+      "name": "connect_four_small_landscape.layout.json",
+      "path": "/home/agent/lumo-runtime-aab092-14112302039/original/runtime/connect_four_small_landscape.layout.json",
+      "bytes": 19743,
+      "sha256": "c0d4e0772508bf5e42971bc71334a33a9e8f2ce67292cd2feb03a97b3dbbff48"
+    }
+  ],
+  "source": {
+    "repository": "Ullmann27/lumo-godot",
+    "ref": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "path": "scripts/tests/connect_four_runtime_regression.gd",
+    "blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99",
+    "bytes": 14782,
+    "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+    "line_bindings": [
+      {
+        "lines": [
+          96,
+          128
+        ],
+        "meaning": "_tap verifies an exposed target and injects ScreenTouch press/release, recording label and snapshot revision."
+      },
+      {
+        "lines": [
+          131,
+          172
+        ],
+        "meaning": "_reveal_menu_button injects bounded ScreenDrag input until its supplied target is inside the scroll clip."
+      },
+      {
+        "lines": [
+          231,
+          236
+        ],
+        "meaning": "The earlier mode_button tap occurs at 960x540 before the filmed two-player round; it does not test either lower small-landscape winning-modal action."
+      },
+      {
+        "lines": [
+          271,
+          278
+        ],
+        "meaning": "record is disabled before the profile sequence; the third profile is 640x360 at density 1 with top/bottom inset 24."
+      },
+      {
+        "lines": [
+          287,
+          296
+        ],
+        "meaning": "For each profile, open menu, reveal resume_button only, capture, then tap resume_button only. The source explicitly states no restart is invoked."
+      },
+      {
+        "lines": [
+          57,
+          73
+        ],
+        "meaning": "The film-frame counter advances only while record is true; all later profile inputs carry the unchanged frame value 250."
+      }
+    ]
+  },
+  "native": {
+    "passed": true,
+    "checks": 170,
+    "errors": [],
+    "target_count": 23,
+    "input_count": 54,
+    "index_convention": "zero-based JSON-array indices",
+    "small_landscape_inputs": [
+      {
+        "index": 36,
+        "frame": 250,
+        "label": "small_landscape menu in real safe area",
+        "pressed": true,
+        "screen_px": [
+          583,
+          64
+        ],
+        "snapshot_revision": 28
+      },
+      {
+        "index": 37,
+        "frame": 250,
+        "label": "small_landscape menu in real safe area",
+        "pressed": false,
+        "screen_px": [
+          583,
+          64
+        ],
+        "snapshot_revision": 28
+      },
+      {
+        "index": 38,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          186.375
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 39,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          183.25
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 40,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          180.125
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 41,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          177
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 42,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          173.875
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 43,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          170.75
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 44,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          167.625
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 45,
+        "drag": true,
+        "frame": 250,
+        "label": "Actual menu scroll",
+        "screen_px": [
+          316,
+          164.5
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 46,
+        "frame": 250,
+        "label": "small_landscape actual visible resume",
+        "pressed": true,
+        "screen_px": [
+          316,
+          172
+        ],
+        "snapshot_revision": 29
+      },
+      {
+        "index": 47,
+        "frame": 250,
+        "label": "small_landscape actual visible resume",
+        "pressed": false,
+        "screen_px": [
+          316,
+          172
+        ],
+        "snapshot_revision": 29
+      }
+    ],
+    "small_landscape_targets": [
+      {
+        "index": 18,
+        "label": "small_landscape menu in real safe area",
+        "rect_px": [
+          546,
+          38,
+          74,
+          52
+        ],
+        "size_dp": [
+          74,
+          52
+        ]
+      },
+      {
+        "index": 19,
+        "label": "small_landscape actual visible resume",
+        "rect_px": [
+          22,
+          146,
+          588,
+          52
+        ],
+        "size_dp": [
+          588,
+          52
+        ]
+      }
+    ],
+    "recorded_position_frame_range": [
+      0,
+      249
+    ],
+    "film_frames": 250,
+    "fps_format_is_recording_metadata_only": 24,
+    "all_later_profile_inputs_keep_frame_250": true
+  },
+  "capture_layout": {
+    "viewport_px": [
+      640,
+      360
+    ],
+    "window_px": [
+      640,
+      360
+    ],
+    "density": 1,
+    "safe_rect": [
+      0,
+      24,
+      640,
+      312
+    ],
+    "phase": "won",
+    "paused": true,
+    "revision": 29,
+    "ack": 19,
+    "layout_sequence": 20,
+    "buttons": [
+      {
+        "clipped": false,
+        "enabled": true,
+        "hit_rect_px": [
+          22,
+          146,
+          588,
+          52
+        ],
+        "id": "resume",
+        "rect_px": [
+          22,
+          146,
+          588,
+          52
+        ],
+        "text": "Brett ansehen",
+        "visible": true
+      },
+      {
+        "clipped": true,
+        "enabled": true,
+        "hit_rect_px": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "id": "restart",
+        "rect_px": [
+          22,
+          206,
+          588,
+          52
+        ],
+        "text": "Neue Runde",
+        "visible": true
+      },
+      {
+        "clipped": true,
+        "enabled": true,
+        "hit_rect_px": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "id": "mode",
+        "rect_px": [
+          22,
+          266,
+          588,
+          52
+        ],
+        "text": "Gegen Lumo spielen",
+        "visible": true
+      }
+    ],
+    "interpretation": "At the captured scroll position only resume is fully exposed. restart and mode are node-visible/enabled but recorded as clipped with empty effective hit rectangles. This does not establish their reachability after a further scroll."
+  },
+  "dart_confirmation": {
+    "before": {
+      "revision": 29,
+      "ack": 19,
+      "recordRevision": 12,
+      "roundId": "7a7e9ad70411c49a94e5ec9fac7440e0",
+      "phase": "won",
+      "paused": true,
+      "twoPlayers": true,
+      "columns": [
+        0,
+        6,
+        1,
+        6,
+        2,
+        5,
+        3
+      ]
+    },
+    "after": {
+      "revision": 30,
+      "ack": 20,
+      "recordRevision": 12,
+      "roundId": "7a7e9ad70411c49a94e5ec9fac7440e0",
+      "phase": "won",
+      "paused": false,
+      "twoPlayers": true,
+      "columns": [
+        0,
+        6,
+        1,
+        6,
+        2,
+        5,
+        3
+      ]
+    },
+    "interpretation": "Only paused changes from true to false with ACK/revision progression. Both states retain phase won, the same roundId, twoPlayers=true and all seven moves. No restart or switch to Lumo is demonstrated here.",
+    "after_win_all_states_remain_same_won_two_player_round": true
+  },
+  "retained_limits": [
+    "No inference of button reachability from a still image or generic successful checks.",
+    "No inference from a different viewport or earlier mode change.",
+    "No Android or measured FPS approval."
+  ]
+}
