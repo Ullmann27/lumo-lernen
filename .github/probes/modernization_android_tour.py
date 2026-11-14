@@ -375,12 +375,18 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
 
 
 def _stage_kart_scroll_recovery(kart: str = 'gecko_velo'):
-    """Scroll only within a twice observed current list, including clipped gaps."""
+    """Reuse a hash-bound current list, retaining the original word recovery."""
     previous, swipes = None, 0
 
-    def recovery(frame, lines, source, *, deadline, previous_missing_frame):
+    def recovery(frame, lines, source, *, deadline, previous_missing_frame, current=None):
         nonlocal previous, swipes
-        current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)
+        if current is None:
+            current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)
+        garage_evidence.demand(current['source_sha256'] == frame['source_sha256'],
+                               'Observed vehicle-list proof belongs to a different current screenshot')
+        # Keep the caller's proof intact when the original TSV fallback adds
+        # its separate word-source provenance to the scrolling observation.
+        current = dict(current)
         if not current['visible_cards']:
             # Preserve the original whole-word Boru recovery. Component OCR
             # has a different coordinate/source contract and is never passed
@@ -455,6 +461,7 @@ def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:
             touch['frames'].append(frame)
             if not frame['acceptable_for_target_sampling']:
                 previous, previous_viewport, previous_missing_frame = None, None, None
+                time.sleep(min(1.5, max(0, deadline - time.monotonic())))
             else:
                 remaining = deadline - time.monotonic()
                 if remaining <= 0:
@@ -470,9 +477,11 @@ def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:
                     if time.monotonic() >= deadline:
                         break
                     report = recovery(frame, lines, source, deadline=deadline,
-                                      previous_missing_frame=previous_missing_frame)
+                                      previous_missing_frame=previous_missing_frame, current=current)
                     frame['missing_caption_recovery'] = report
                     previous_missing_frame = None if report['status'] == 'SWIPE_SENT' else frame
+                    if report['status'] == 'SWIPE_SENT':
+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
                 else:
                     previous_missing_frame = None
                     if (previous_viewport is None or
@@ -498,7 +507,6 @@ def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:
                         time.sleep(min(1.5, max(0, deadline - time.monotonic())))
                         return {'kart': kart, 'caption': label, 'touch': touch['touch'],
                                 'readiness': journal.name, 'scope': touch['scope']}
-            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
         raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)
     except Exception as error:
         touch.update(status='FAIL', error=str(error))

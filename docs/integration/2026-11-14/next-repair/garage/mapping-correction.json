@@ -1,0 +1,6 @@
+{
+  "stage": "Local tree prediction before any Git API blob/tree/commit/ref operation",
+  "reason": "Mapping uses path/before_blob; initial planner expected repository_path/preimage. Undefined destination was rejected by strict predictor.",
+  "preserved_plan_dir": "/tmp/lumo-next-repair-garage-api-chunks-20261114",
+  "source_bytes_changed": false
+}

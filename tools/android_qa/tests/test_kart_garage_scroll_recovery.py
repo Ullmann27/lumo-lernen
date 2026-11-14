@@ -171,6 +171,19 @@ class OriginalGarageViewportTests(unittest.TestCase):
                 evidence.stage_garage_scroll_observation(frame, lines, source=source)
 
 
+def scroll_recovery_from_validated_observations():
+    """Retain the real current-frame analysis before the private decision step."""
+    decide = tour._stage_kart_scroll_recovery()
+
+    def observe_then_decide(frame, lines, source, *, deadline, previous_missing_frame):
+        current = tour.garage_evidence.stage_garage_scroll_observation(
+            frame, lines, source=source)
+        return decide(frame, lines, source, deadline=deadline,
+                      previous_missing_frame=previous_missing_frame, current=current)
+
+    return observe_then_decide
+
+
 class ObservedGarageScrollBoundaryTests(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
@@ -189,7 +202,7 @@ class ObservedGarageScrollBoundaryTests(unittest.TestCase):
         main, main_lines, main_source = self.observation('main', 2, 'old-layout')
         updated, updated_lines, updated_source = self.observation('update', 2, 'new-layout-first')
         current, current_lines, current_source = self.observation('update', 2, 'new-layout-second')
-        callback = tour._stage_kart_scroll_recovery()
+        callback = scroll_recovery_from_validated_observations()
         with patch.object(tour.base, 'adb') as adb, \
                 patch.object(tour.time, 'monotonic', return_value=0):
             first = callback(main, main_lines, main_source, deadline=10,
@@ -210,7 +223,7 @@ class ObservedGarageScrollBoundaryTests(unittest.TestCase):
         frame, lines, source = self.observation('main', 2, 'before-gap')
         after, after_lines, after_source = self.observation('main', 2, 'after-gap')
         last, last_lines, last_source = self.observation('main', 2, 'current-pair')
-        callback = tour._stage_kart_scroll_recovery()
+        callback = scroll_recovery_from_validated_observations()
         with patch.object(tour.base, 'adb') as adb, \
                 patch.object(tour.time, 'monotonic', return_value=0):
             callback(frame, lines, source, deadline=10, previous_missing_frame=None)
@@ -231,7 +244,7 @@ class ObservedGarageScrollBoundaryTests(unittest.TestCase):
             current_frame = dict(frame, source=current.name)
             empty_word_observation(Path(folder), previous.stem, lines)
             empty_word_observation(Path(folder), current.stem, lines)
-            callback = tour._stage_kart_scroll_recovery()
+            callback = scroll_recovery_from_validated_observations()
             with patch.object(tour.base, 'adb') as adb, \
                     patch.object(tour.time, 'monotonic', return_value=0):
                 callback(frame, lines, previous, deadline=10, previous_missing_frame=None)
@@ -243,7 +256,7 @@ class ObservedGarageScrollBoundaryTests(unittest.TestCase):
     def test_expired_deadline_refuses_an_otherwise_stable_real_scroll(self):
         frame, lines, source = self.observation('main', 2, 'first')
         current, current_lines, current_source = self.observation('main', 2, 'second')
-        callback = tour._stage_kart_scroll_recovery()
+        callback = scroll_recovery_from_validated_observations()
         with patch.object(tour.base, 'adb') as adb, \
                 patch.object(tour.time, 'monotonic', return_value=0):
             callback(frame, lines, source, deadline=10, previous_missing_frame=None)
@@ -254,7 +267,7 @@ class ObservedGarageScrollBoundaryTests(unittest.TestCase):
     def test_deadline_expiring_during_real_pixel_analysis_prevents_input(self):
         frame, lines, source = self.observation('main', 2, 'first')
         current, current_lines, current_source = self.observation('main', 2, 'second')
-        callback = tour._stage_kart_scroll_recovery()
+        callback = scroll_recovery_from_validated_observations()
         clock = [0.0]
         original = tour.garage_evidence.stage_garage_scroll_observation
 
@@ -270,6 +283,63 @@ class ObservedGarageScrollBoundaryTests(unittest.TestCase):
                     self.assertRaises((RuntimeError, TimeoutError)):
                 callback(current, current_lines, current_source, deadline=10, previous_missing_frame=frame)
         adb.assert_not_called()
+
+
+    def test_a_validated_list_from_another_current_png_cannot_authorize_recovery(self):
+        main, lines, source = self.observation('main', 2, 'first-layout')
+        changed, _, changed_source = self.observation('update', 2, 'different-layout')
+        proof = tour.garage_evidence.stage_garage_scroll_observation(
+            main, lines, source=source)
+        decide = tour._stage_kart_scroll_recovery()
+        with patch.object(tour.base, 'adb') as adb, \
+                self.assertRaisesRegex(RuntimeError, 'different current screenshot'):
+            decide(changed, lines, changed_source, deadline=10,
+                   previous_missing_frame=None, current=proof)
+        adb.assert_not_called()
+
+
+    def test_cached_current_frame_keeps_the_original_boru_words_and_pair(self):
+        # Two uniquely named copies are controlled replay observations, not
+        # a newly observed Android return, card selection or race.
+        originals = Path(__file__).parent / 'fixtures/kart-scroll-3d91'
+        original_tag = '21_stage_select_gecko_velo-2'
+        original_frame = json.loads((originals /
+            '21_stage_select_gecko_velo-surface-readiness.json').read_text())['frames'][2]
+        lines = json.loads((originals / (original_tag + '-ocr.json')).read_text())
+        decide = tour._stage_kart_scroll_recovery()
+        analyze = tour.garage_evidence.stage_garage_scroll_observation
+        previous = None
+        with patch.object(tour.base, 'adb') as adb, \
+                patch.object(tour.time, 'monotonic', return_value=0), \
+                patch.object(tour.garage_evidence, 'stage_garage_scroll_observation',
+                             wraps=analyze) as analyses:
+            for number in (1, 2):
+                tag = f'cached-boru-original-{number}'
+                for original in originals.glob(original_tag + '*'):
+                    shutil.copyfile(original, self.out / (tag + original.name[len(original_tag):]))
+                source = self.out / (tag + '.png')
+                frame = dict(original_frame, source=source.name)
+                current = tour.garage_evidence.stage_garage_scroll_observation(
+                    frame, lines, source=source)
+                self.assertEqual(current['visible_cards'], [])
+                result = decide(frame, lines, source, deadline=10,
+                                previous_missing_frame=previous, current=current)
+                self.assertNotIn('caption_source', current)
+                self.assertEqual(result['caption_source'], 'original_tsv_word_sequences')
+                self.assertEqual(result['card']['text'], 'Boru Rally')
+                self.assertEqual(result['card']['bounds'], [314.5, 593.0, 511.0, 629.0])
+                self.assertEqual(len(result['ocr_sources']), 7)
+                self.assertEqual(result['status'],
+                    'WAITING_FOR_SECOND_LIST_FRAME' if number == 1 else 'SWIPE_SENT')
+                if number == 1:
+                    adb.assert_not_called()
+                previous = frame
+            # Each frame has one complete line analysis and the retained,
+            # distinct word-enriched analysis; no duplicate initial analysis.
+            self.assertEqual(analyses.call_count, 4)
+            adb.assert_called_once_with('shell', 'input', 'swipe',
+                *map(str, result['gesture']), '650', timeout=10)
+        self.assertEqual(result['direction'], 'backward')
 
 
 class GarageExactTargetTests(unittest.TestCase):
@@ -440,6 +510,114 @@ class GarageSelectionObservationTests(unittest.TestCase):
                 self.assertEqual(journal['status'], 'TOUCH_SENT')
                 self.assertEqual([frame['target']['stable_observed_target']
                                   for frame in journal['frames'] if 'target' in frame], [False, True])
+
+    def test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis(self):
+        # Controlled producer/clock replay, not measured Android throughput.
+        # Both the normal budget and a deliberately tight budget must still
+        # require four fresh frames: two list observations, then two targets.
+        for timeout, final_pause in ((150, 1.5), (5, .5)):
+            with self.subTest(timeout=timeout):
+                replay = GarageObservationReplay(self.out, [('main', 2), ('main', 2),
+                                                            ('main', 0), ('main', 0)])
+                pauses = []
+
+                def settle(seconds):
+                    pauses.append((replay.capture_count, len(replay.inputs), seconds))
+                    replay.sleep(seconds)
+
+                analyze = tour.garage_evidence.stage_garage_scroll_observation
+                with replay.installed(), \
+                        patch.object(tour.garage_evidence, 'stage_garage_scroll_observation',
+                                     wraps=analyze) as analyses, \
+                        patch.object(tour.time, 'sleep', side_effect=settle):
+                    result = tour._select_stage_kart(self.out, 'comet', timeout=timeout)
+                self.assertEqual(replay.capture_count, 4)
+                self.assertEqual(replay.ocr_count, 4)
+                self.assertEqual(analyses.call_count, 4)
+                sources = [call.kwargs['source'].name for call in analyses.call_args_list]
+                self.assertEqual(len(set(sources)), 4)
+                self.assertEqual([event['after_capture'] for event in replay.inputs], [2, 4])
+                self.assertEqual([event['args'][7] for event in replay.inputs], ['650', '120'])
+                self.assertEqual(pauses, [(2, 1, 1.5), (4, 2, final_pause)])
+                self.assertTrue(all(call['kwargs'].get('all_caption_regions') is True
+                                    and call['kwargs'].get('exact') is True
+                                    for call in replay.ocr_calls))
+                journal = json.loads((self.out / result['readiness']).read_text())
+                self.assertEqual(journal['status'], 'TOUCH_SENT')
+                self.assertEqual(journal['frames'][0]['missing_caption_recovery']['status'],
+                                 'WAITING_FOR_SECOND_LIST_FRAME')
+                self.assertEqual(journal['frames'][1]['missing_caption_recovery']['status'],
+                                 'SWIPE_SENT')
+                self.assertEqual([frame['target']['stable_observed_target']
+                                  for frame in journal['frames'] if 'target' in frame], [False, True])
+
+    def test_incomplete_surfaces_keep_the_bounded_pause_without_ocr_or_input(self):
+        for pixels, color in (((2400, 1080), (0, 0, 0)),
+                              ((1080, 2400), (30, 50, 70))):
+            with self.subTest(pixels=pixels):
+                replay = GarageObservationReplay(self.out, [('main', 0)] * 3)
+                capture = replay.capture
+                pauses = []
+
+                def incomplete_first(*args, **kwargs):
+                    snapshot = capture(*args, **kwargs)
+                    if replay.capture_count == 1:
+                        # Deliberate negative input in the temporary replay,
+                        # never a replacement for an archived original PNG.
+                        with Image.new('RGB', pixels, color) as incomplete:
+                            incomplete.save(self.out / snapshot['file'])
+                    return snapshot
+
+                def settle(seconds):
+                    pauses.append((replay.capture_count, len(replay.inputs), seconds))
+                    replay.sleep(seconds)
+
+                replay.capture = incomplete_first
+                with replay.installed(), patch.object(tour.time, 'sleep', side_effect=settle):
+                    result = tour._select_stage_kart(self.out, 'comet')
+                self.assertEqual(replay.capture_count, 3)
+                self.assertEqual(replay.ocr_count, 2)
+                self.assertEqual([event['after_capture'] for event in replay.inputs], [3])
+                self.assertEqual(pauses, [(1, 0, 1.5), (3, 1, 1.5)])
+                journal = json.loads((self.out / result['readiness']).read_text())
+                self.assertFalse(journal['frames'][0]['acceptable_for_target_sampling'])
+                self.assertNotIn('kart_list', journal['frames'][0])
+                self.assertEqual([frame['target']['stable_observed_target']
+                                  for frame in journal['frames'] if 'target' in frame], [False, True])
+
+    def test_png_change_after_list_analysis_still_prevents_the_real_scroll(self):
+        replay = GarageObservationReplay(self.out, [('main', 2), ('main', 2)])
+        _, _, replacement = original_observation('update', 2)
+        analyze = tour.garage_evidence.stage_garage_scroll_observation
+
+        def analyze_then_replace(*args, **kwargs):
+            result = analyze(*args, **kwargs)
+            if replay.capture_count == 2:
+                shutil.copyfile(replacement, kwargs['source'])
+            return result
+
+        with replay.installed(), \
+                patch.object(tour.garage_evidence, 'stage_garage_scroll_observation',
+                             side_effect=analyze_then_replace), \
+                self.assertRaisesRegex(RuntimeError, 'changed before gesture'):
+            tour._select_stage_kart(self.out, 'gecko_velo')
+        self.assertFalse(replay.inputs)
+        journal = json.loads((self.out / '21_stage_select_gecko_velo-surface-readiness.json').read_text())
+        self.assertEqual(journal['status'], 'FAIL')
+
+    def test_faster_observation_does_not_allow_a_sixth_list_gesture_or_a_guessed_tap(self):
+        replay = GarageObservationReplay(self.out, [('main', 2)])
+        with replay.installed(), \
+                self.assertRaisesRegex(RuntimeError, 'after five observed list gestures'):
+            tour._select_stage_kart(self.out, 'gecko_velo')
+        self.assertEqual(replay.capture_count, 12)
+        self.assertEqual(len(replay.inputs), 5)
+        self.assertTrue(all(event['args'][7] == '650' for event in replay.inputs))
+        self.assertTrue(all(event['args'][3:5] != event['args'][5:7]
+                            for event in replay.inputs))
+        journal = json.loads((self.out / '21_stage_select_gecko_velo-surface-readiness.json').read_text())
+        self.assertEqual(journal['status'], 'FAIL')
+        self.assertNotIn('touch', journal)
 
     def test_one_old_complete_frame_and_one_new_frame_do_not_form_a_stable_target_pair(self):
         replay = GarageObservationReplay(self.out, [('main', 0), ('main', 2),

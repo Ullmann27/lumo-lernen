@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "started_at": "2026-11-14T19:49:01.517570+00:00",
+  "finished_at": "2026-11-14T19:53:01.909500+00:00",
+  "process_exit": null,
+  "runner_error": "TimeoutExpired(['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', '-B', '-m', 'unittest', '-v', 'test_kart_garage_evidence', 'test_kart_garage_scroll_recovery', 'test_kart_scroll_word_evidence', 'test_kart_driver_word_evidence', 'test_kart_continue_caption', 'test_native_surface_readiness'], 239.99985906400252)",
+  "wall_seconds": 240.0817513740003,
+  "unittest_count": null,
+  "unittest_seconds": null,
+  "terminal_ok": false,
+  "inline_ok_count": 51,
+  "sources_unchanged": true,
+  "bound_files": 75,
+  "streams": {
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "stderr": {
+      "bytes": 10838,
+      "sha256": "54d685838a6c1e3f0abd71941b42d5660da42effd297d8223f3bf2ba8110278c",
+      "git_blob": "96f5258163ee4fab5717b4d5d8bf9bf992837c71"
+    }
+  },
+  "result_scope": "Local controlled regression contracts; no Android or live throughput acceptance"
+}

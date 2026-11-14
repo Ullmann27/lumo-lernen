@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "definition_comparison": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "before_definitions": 37,
+      "after_definitions": 37,
+      "changed_existing_definitions": [
+        "_stage_kart_scroll_recovery",
+        "_stage_kart_scroll_recovery.recovery",
+        "_select_stage_kart"
+      ],
+      "new_definitions": [],
+      "all_old_definition_names_retained": true,
+      "old_test_assertion_calls_retained": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "before_definitions": 48,
+      "after_definitions": 48,
+      "changed_existing_definitions": [
+        "GarageObservedScrollTests",
+        "GarageObservedScrollTests.test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot"
+      ],
+      "new_definitions": [],
+      "all_old_definition_names_retained": true,
+      "old_test_assertion_calls_retained": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "before_definitions": 45,
+      "after_definitions": 54,
+      "changed_existing_definitions": [
+        "ObservedGarageScrollBoundaryTests",
+        "ObservedGarageScrollBoundaryTests.test_a_new_horizontal_layout_requires_its_own_second_current_observation",
+        "ObservedGarageScrollBoundaryTests.test_a_missing_intervening_frame_cannot_reuse_the_prior_scroll_observation",
+        "ObservedGarageScrollBoundaryTests.test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unchanged",
+        "ObservedGarageScrollBoundaryTests.test_expired_deadline_refuses_an_otherwise_stable_real_scroll",
+        "ObservedGarageScrollBoundaryTests.test_deadline_expiring_during_real_pixel_analysis_prevents_input",
+        "GarageSelectionObservationTests"
+      ],
+      "new_definitions": [
+        "scroll_recovery_from_validated_observations",
+        "scroll_recovery_from_validated_observations.observe_then_decide",
+        "ObservedGarageScrollBoundaryTests.test_a_validated_list_from_another_current_png_cannot_authorize_recovery",
+        "ObservedGarageScrollBoundaryTests.test_cached_current_frame_keeps_the_original_boru_words_and_pair",
+        "GarageSelectionObservationTests.test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis",
+        "GarageSelectionObservationTests.test_incomplete_surfaces_keep_the_bounded_pause_without_ocr_or_input",
+        "GarageSelectionObservationTests.test_png_change_after_list_analysis_still_prevents_the_real_scroll",
+        "GarageSelectionObservationTests.test_png_change_after_list_analysis_still_prevents_the_real_scroll.analyze_then_replace",
+        "GarageSelectionObservationTests.test_faster_observation_does_not_allow_a_sixth_list_gesture_or_a_guessed_tap"
+      ],
+      "all_old_definition_names_retained": true,
+      "old_test_assertion_calls_retained": true
+    }
+  ],
+  "unchanged_behavior": [
+    "Boru original TSV fallback block and words_stable comparison byte-identical",
+    "Standalone Weiterfahren caption requirement retained",
+    "150-second selector limit and existing per-operation deadline checks retained",
+    "Two current distinct frame names and both file rehashes before scrolling retained",
+    "Maximum five list gestures and exact full-caption target selection retained",
+    "All old test methods and assertion expressions retained"
+  ],
+  "new_behavior": [
+    "Caller can supply the same already-validated list observation; exact source_sha256 equality is mandatory before reuse",
+    "Caller proof is shallow-copied before word-source metadata is added",
+    "Complete untouched observations no longer receive an unconditional 1.5-second sleep; bounded settling remains after rejected surfaces and actual inputs"
+  ],
+  "new_tests": {
+    "producer_methods": 5,
+    "combined_boru_cached_path_method": 1,
+    "old_word_test_source_unchanged": true
+  },
+  "test_execution_at_freeze": false,
+  "historical_boundary": "Producer commit describes run43628848768; no producer pass or prior update timeout is claimed for active7ac. No current7ac timeout has been observed."
+}

@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_BEFORE_AUTHORIZED_ONCE_ONLY_CONTRACT_RUN",
+  "created_at": "2026-11-14T19:46:57.067425+00:00",
+  "base_host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "base_tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "producer": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "producer_parent": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 78635,
+        "sha256": "7d2034119f06846ede165ec039dfab54e31aafd02a5e05c7fef02d9a75f31bf1",
+        "git_blob": "d3b7ac74926e57de9b80afac8c431a7e4e6183ff"
+      },
+      "after": {
+        "bytes": 79210,
+        "sha256": "e52e39270f976e8d9e90c6fbf7a64133474dd1fa12115c2c9aef26e2b69ebe5a",
+        "git_blob": "c89d9284c76b25b20eb50d1dcb260d0b91d3007f"
+      },
+      "producer_after": {
+        "bytes": 77078,
+        "sha256": "56ca9ec28c1599e5efeb56044580c55b8214aa247e6b9f445af2a47f41d71cbc",
+        "git_blob": "f8c266c672632aa086b11e695fb1883a063e2123"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 31326,
+        "sha256": "cad2a5b39eeb118b3419aca07ad9bee1356d20af3af4c1bca8dde611d13a48b0",
+        "git_blob": "84469b5d3ba41c68b4d193396a444fe2192b55f1"
+      },
+      "after": {
+        "bytes": 31394,
+        "sha256": "03a5508a572c2446e1a8c1c96889ec1e7cbcb47787dc9205bd416b17edbc213d",
+        "git_blob": "a2257b5bbe4e61e4c560441a570410c56baf517c"
+      },
+      "producer_after": {
+        "bytes": 31366,
+        "sha256": "74141d7e9b15a82927e0261b359b82890c4239b14afea5b2661fa71911fb8f4a",
+        "git_blob": "20f856522493f5fdfc41d147de70bb096a2938fa"
+      }
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 27545,
+        "sha256": "c6a88af95fab0bd5d1ac0dd41b42a985cc72051d19e803ed766ef0e793d4bec9",
+        "git_blob": "4abc7df8a9ebef448c85a9cfb1789e5bcaf638bf"
+      },
+      "after": {
+        "bytes": 38164,
+        "sha256": "1e5e629efd384cb2addc05c973317b94a25198da947501bb4b76949bf34d9e27",
+        "git_blob": "f4a1f3b262ebced3ebd823d07748ecaee7834cac"
+      },
+      "producer_after": {
+        "bytes": 34511,
+        "sha256": "08a35511622b134bda11b1c9da4b09c12d52f73a74c41a96bcd472645ef280b0",
+        "git_blob": "3da90d30a2c602e800fda9b6165e335eb039afb7"
+      }
+    }
+  ],
+  "source_count": 3,
+  "active_ref_or_checkout_changed": false,
+  "test_execution_at_freeze": false
+}
