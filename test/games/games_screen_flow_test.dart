@@ -294,11 +294,17 @@ void main() {
     LumoVoice.instance.isEnabled = false;
     await tester.pumpWidget(
         MaterialApp(home: LumoConnectFourScreen(appState: app, seed: 1)));
+    await _waitForConnectTurn(tester, 'Initial game before native opt-in');
+    expect(openCalls, 0,
+        reason: 'Opening Vier Gewinnt must never force a fragile 3D handoff');
+    final nativeButton = find.byKey(const ValueKey('connect-open-native'));
+    expect(nativeButton, findsOneWidget);
+    await tester.tap(nativeButton);
     for (var frame = 0; frame < 50 && openCalls == 0; frame++) {
       await tester.pump(const Duration(milliseconds: 100));
     }
     expect(openCalls, 1,
-        reason: 'The actual Android route must request the native table');
+        reason: 'Explicit 3D selection must request the native table');
     expect(_playableConnectColumns(tester), isEmpty);
     await tester.pump(const Duration(seconds: 1));
     expect(_playableConnectColumns(tester), isEmpty,
