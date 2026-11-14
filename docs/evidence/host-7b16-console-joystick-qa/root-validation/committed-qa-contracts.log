@@ -1,0 +1,68 @@
+test_real_new_diagnostic_export_binds_probe_and_preserves_all_original_bytes (scripts.tests.test_console_joystick_workflow.ConsoleJoystickExportTests.test_real_new_diagnostic_export_binds_probe_and_preserves_all_original_bytes) ... ok
+test_changed_workflow_branch_source_attempt_or_missing_job_stays_failure (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_changed_workflow_branch_source_attempt_or_missing_job_stays_failure) ... ok
+test_creative_cli_keeps_old_default_and_only_accepts_exact_creative_routes (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_creative_cli_keeps_old_default_and_only_accepts_exact_creative_routes) ... usage: python3 -m unittest [-h] --qa-source QA_SOURCE --candidate-source
+                           CANDIDATE_SOURCE --native-source NATIVE_SOURCE
+                           --candidate-metadata-dir CANDIDATE_METADATA_DIR
+                           --qa-metadata-dir QA_METADATA_DIR --apk APK
+                           --provenance PROVENANCE --sums SUMS --out OUT
+                           --expected-qa-source EXPECTED_QA_SOURCE
+                           --expected-qa-run EXPECTED_QA_RUN
+                           --expected-qa-attempt EXPECTED_QA_ATTEMPT
+                           [--qa-job-name {unchanged-apk-creative-api35,unchanged-apk-console-joystick-creative-api35}]
+python3 -m unittest: error: argument --qa-job-name: invalid choice: 'unchanged-apk-console-joystick-api37-host' (choose from unchanged-apk-creative-api35, unchanged-apk-console-joystick-creative-api35)
+ok
+test_four_exact_jobs_bind_new_workflow_without_repeating_api35_or_update (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_four_exact_jobs_bind_new_workflow_without_repeating_api35_or_update) ... ok
+test_new_creative_context_rechecks_new_route_before_inputs (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_new_creative_context_rechecks_new_route_before_inputs) ... ERROR
+test_old_routes_keep_exact_original_bindings (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_old_routes_keep_exact_original_bindings) ... ok
+test_exact_internal_branch_base_and_event_are_required (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_exact_internal_branch_base_and_event_are_required) ... ok
+test_four_cases_preserve_actual_hardware_and_unchanged_wrapper_calls (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_four_cases_preserve_actual_hardware_and_unchanged_wrapper_calls) ... ok
+test_full_console_discovery_and_portrait_contracts_are_mandatory (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_full_console_discovery_and_portrait_contracts_are_mandatory) ... ok
+test_old_auto_trigger_exclusions_affect_only_the_exact_new_branch (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_old_auto_trigger_exclusions_affect_only_the_exact_new_branch) ... ok
+test_prepare_runs_before_emulator_and_retains_receipt_if_launch_never_happens (scripts.tests.test_console_joystick_workflow.ConsoleJoystickWorkflowTests.test_prepare_runs_before_emulator_and_retains_receipt_if_launch_never_happens) ... ok
+test_verify_unchanged_apk_diagnostic (unittest.loader._FailedTest.test_verify_unchanged_apk_diagnostic) ... ERROR
+
+======================================================================
+ERROR: test_new_creative_context_rechecks_new_route_before_inputs (scripts.tests.test_console_joystick_workflow.ConsoleJoystickRouteTests.test_new_creative_context_rechecks_new_route_before_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/test_console_joystick_workflow.py", line 155, in test_new_creative_context_rechecks_new_route_before_inputs
+    from scripts.tests.test_unchanged_creative_diagnostic import TourContextContracts
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/test_unchanged_creative_diagnostic.py", line 20, in <module>
+    from scripts.tests.test_verify_unchanged_apk_diagnostic import (
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/test_verify_unchanged_apk_diagnostic.py", line 38, in <module>
+    tour = diagnostic.load_module('diagnostic_test_tour', ROOT / '.github/probes/modernization_android_tour.py')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/verify_unchanged_apk_diagnostic.py", line 129, in load_module
+    spec.loader.exec_module(module)
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/probes/modernization_android_tour.py", line 38, in <module>
+    import creative_android_probe as probe  # noqa: E402  (pinned live helpers)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/probes/creative_android_probe.py", line 39, in <module>
+    import pr207_android_smoke as base
+ModuleNotFoundError: No module named 'pr207_android_smoke'
+
+======================================================================
+ERROR: test_verify_unchanged_apk_diagnostic (unittest.loader._FailedTest.test_verify_unchanged_apk_diagnostic)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verify_unchanged_apk_diagnostic
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/test_verify_unchanged_apk_diagnostic.py", line 38, in <module>
+    tour = diagnostic.load_module('diagnostic_test_tour', ROOT / '.github/probes/modernization_android_tour.py')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/verify_unchanged_apk_diagnostic.py", line 129, in load_module
+    spec.loader.exec_module(module)
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/probes/modernization_android_tour.py", line 38, in <module>
+    import creative_android_probe as probe  # noqa: E402  (pinned live helpers)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/probes/creative_android_probe.py", line 39, in <module>
+    import pr207_android_smoke as base
+ModuleNotFoundError: No module named 'pr207_android_smoke'
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.105s
+
+FAILED (errors=2)
