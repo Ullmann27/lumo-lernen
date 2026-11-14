@@ -81,6 +81,8 @@ void main() {
       for (final column in [3, 2, 3, 2, 4, 5]) {
         final control = find.byKey(ValueKey('connect-column-$column'));
         await tester.ensureVisible(control);
+        await tester.pump();
+        expect(control.hitTestable(), findsOneWidget);
         await tester.tap(control);
         await _waitForPlayableBoard(tester);
       }

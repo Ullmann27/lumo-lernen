@@ -1,0 +1,73 @@
+--- a/test/design/connect_four_visual_test.dart
++++ b/test/design/connect_four_visual_test.dart
+@@ -81,6 +81,8 @@
+       for (final column in [3, 2, 3, 2, 4, 5]) {
+         final control = find.byKey(ValueKey('connect-column-$column'));
+         await tester.ensureVisible(control);
++        await tester.pump();
++        expect(control.hitTestable(), findsOneWidget);
+         await tester.tap(control);
+         await _waitForPlayableBoard(tester);
+       }
+--- a/test/games/connect_four_scroll_alignment_test.dart
++++ b/test/games/connect_four_scroll_alignment_test.dart
+@@ -51,8 +51,13 @@
+         final viewport = tester.getRect(scroll);
+         final target = tester.getRect(control);
+         expect(control.hitTestable(), findsOneWidget);
+-        expect(target.width, greaterThanOrEqualTo(48));
+-        expect(target.height, greaterThanOrEqualTo(48));
++        final targetSize = tester.getSize(control);
++        expect(targetSize.width, greaterThanOrEqualTo(48));
++        expect(targetSize.height, greaterThanOrEqualTo(48));
++        // Global-coordinate subtraction permits only arithmetic roundoff;
++        // the actual RenderBox must still provide a full 48dp touch target.
++        expect(target.width, closeTo(targetSize.width, 1e-9));
++        expect(target.height, closeTo(targetSize.height, 1e-9));
+         expect(target.left, greaterThanOrEqualTo(viewport.left - .01));
+         expect(target.right, lessThanOrEqualTo(viewport.right + .01));
+         Rect? previous;
+--- a/test/games/games_screen_flow_test.dart
++++ b/test/games/games_screen_flow_test.dart
+@@ -196,6 +196,8 @@
+           reason: 'Turn $turns must be playable or show the actual result. '
+               '${_connectState(tester)}');
+       await tester.ensureVisible(enabled.first);
++      await tester.pump();
++      expect(enabled.first.hitTestable(), findsOneWidget);
+       await tester.tap(enabled.first);
+       await tester.pump(const Duration(milliseconds: 1000));
+       await tester.pump(const Duration(milliseconds: 600));
+@@ -206,8 +208,8 @@
+       // deadline so a stuck animation still fails this complete-game test.
+       for (var frame = 0; frame < 30; frame++) {
+         if (find.byType(AlertDialog).evaluate().isNotEmpty ||
+-            buttons.any((f) =>
+-                tester.widget<IconButton>(f).onPressed != null)) {
++            buttons
++                .any((f) => tester.widget<IconButton>(f).onPressed != null)) {
+           break;
+         }
+         await tester.pump(const Duration(milliseconds: 100));
+@@ -221,6 +223,10 @@
+     await tester.tap(find.text('Nochmal!'));
+     await tester.pump();
+     await _waitForConnectTurn(tester, 'Replay after the completed game');
++    await tester.ensureVisible(find.byKey(const ValueKey('connect-column-0')));
++    await tester.pump();
++    expect(find.byKey(const ValueKey('connect-column-0')).hitTestable(),
++        findsOneWidget);
+     await tester.tap(find.byKey(const ValueKey('connect-column-0')));
+     await tester.tap(find.byTooltip('Pausieren / Zurück'));
+     await tester.pump();
+@@ -290,6 +296,10 @@
+         MissingPluginException('Delayed Flutter fallback fixture'));
+     await _waitForConnectTurn(tester, 'Fallback after delayed native refusal');
+     expect(find.text('Spiel pausiert'), findsNothing);
++    await tester.ensureVisible(find.byKey(const ValueKey('connect-column-0')));
++    await tester.pump();
++    expect(find.byKey(const ValueKey('connect-column-0')).hitTestable(),
++        findsOneWidget);
+     await tester.tap(find.byKey(const ValueKey('connect-column-0')));
+     await tester.pump();
+     expect(
