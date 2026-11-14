@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "run_id": 43612493152,
+  "attempt": 1,
+  "qa_source": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+  "original_artifact_id": 14120899896,
+  "original_artifact_sha256": "4f05de0dd69fb5d3e75cbac059ae18b72d5a0f89608b42eb7a4f409850b31cc4",
+  "readiness_blob": "1b7de5fe5748c63cd5391dec763a7cefebe0165e",
+  "images": [
+    {
+      "path": "update2017/originals/update/21_stage_select_gecko_velo-4.png",
+      "bytes": 773290,
+      "sha256": "7647accb13ba56b5448b3cad8d3f710b08f69cd139419b72341f86b54a30d79f",
+      "git_blob": "63e76b904414ac482f484661a0d3d9acc0c3a016",
+      "actually_viewed": true
+    },
+    {
+      "path": "update2017/originals/update/21_stage_select_gecko_velo-5.png",
+      "bytes": 774581,
+      "sha256": "7e8bf5b64621ea1fd2b604343906aa0377ef99ef8f35a5cf5f18394786aa8e8d",
+      "git_blob": "32257f8fc728546b36b90f5cabf19254bbfbad09",
+      "actually_viewed": true
+    }
+  ],
+  "observed": "Both original frames show clipped Comet/Gecko captions at the scroll viewport boundaries and a complete matching five-row cyan statistics block in the current Karts/workshop context. The original journal records WAITING_FOR_SECOND_LIST_FRAME then SWIPE_SENT number3 from [538,527] to [538,454]; vehicle identity is not inferred from that block. Subsequent original frames6/7 provide the exact stable Gecko Velo caption and the saved actual new race independently confirms gecko_velo.",
+  "not_claimed": "No new run, no new native selection injection, no separate Village or Connect Four acceptance.",
+  "additional_images_to_prior_review": 2,
+  "total_distinct_original_images_actually_viewed": 15
+}
