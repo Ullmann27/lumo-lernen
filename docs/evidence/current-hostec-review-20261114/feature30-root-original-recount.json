@@ -1,0 +1,82 @@
+{
+  "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "run": 43633918165,
+  "attempt": 1,
+  "job": 132566422728,
+  "artifact": 14129211522,
+  "artifact_bytes": 1173118,
+  "sha256": "b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50",
+  "pass": 30,
+  "fail": 0,
+  "skip": 0,
+  "source_files": 4999,
+  "source_preservation": {
+    "tracked_files": 4999,
+    "before_after_differences": [
+      "phase"
+    ],
+    "all_recorded_blob_ids_match_actual_bytes": true,
+    "before_after_file_records_identical": true,
+    "index_bytes_identical": true,
+    "index_sha256": "a34366f62f56a570d8dfff5ed7f534ed22b1c07dffa568ee3323638a55e4b3ab",
+    "before_after_git_status_empty": true
+  },
+  "original_summary": "7f817e45ed1a7b9c07263a4cf55455e0be4ce588",
+  "original_jsonl": "b0380c1c09b86bb6eddc34952c35bec505408a43",
+  "evidence_commit": "5a82d73b42dc5b840f73e605d4f847525e6ee5f2",
+  "root_original_event_recount": true,
+  "delayed_safari": [
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+      "result": "success",
+      "skipped": false
+    }
+  ],
+  "original_non_event_stdout_lines": [
+    7,
+    8,
+    9,
+    10,
+    62,
+    63
+  ],
+  "scope": "Actual focused 30 cases; do not add this count to the overlapping full Flutter suite.",
+  "framework_events_excluded": 5,
+  "framework_events_note": "Three loading events, one setUpAll and one tearDownAll; all successful and hidden."
+}
