@@ -1,0 +1,82 @@
+name: LUMO 20 independent wiring and regression control passes
+on:
+  push:
+    branches: [repair/lumo-2020-exhaustive-wiring-20261114]
+  pull_request:
+    branches: [integration/lumo-live-connections-20261114]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  experience-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Immutable Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Kontrollgang 01 · Startbildschirm und Navigation
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/home_navigation_progress_test.dart
+      - name: Kontrollgang 02 · Animation, Bewegung, Sichtbarkeit
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/lumo_scene_atmosphere_test.dart
+      - name: Kontrollgang 03 · 3D-Menü – echter Flutter-zu-Android-Start
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/native_3d_hub_entry_test.dart
+      - name: Kontrollgang 04 · Alle 11 Spielrouten
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/spielwelt_routing_test.dart
+      - name: Kontrollgang 05 · Dorfwirtschaft und Kindkontext
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/dorfwirtschaft_portal_test.dart
+      - name: Kontrollgang 06 · Vier Gewinnt – Native-Opt-in und Return
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/connect_four_native_route_test.dart
+      - name: Kontrollgang 07 · Vier Gewinnt – vollständiger Spielablauf
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/games_screen_flow_test.dart
+      - name: Kontrollgang 08 · Vier Gewinnt – Fold/Touchtasten
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/connect_four_fold_controls_test.dart
+      - name: Kontrollgang 09 · Lumo Cards – spielbarer Tisch
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/lumo_cards_session_ui_test.dart
+      - name: Kontrollgang 10 · Memory – Profil und Speicher
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/memory_profile_storage_test.dart
+  learning-data-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Immutable Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Kontrollgang 11 · Exakte Klassen-/Fach-/Themenwahl
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/learning_selection_integration_test.dart
+      - name: Kontrollgang 12 · Mathe – exakte Aufgabenwahl
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/math_exact_topic_selection_test.dart
+      - name: Kontrollgang 13 · Lehrplan – alle Klassen und Fächer
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/learning/volksschule_all_subjects_access_test.dart
+      - name: Kontrollgang 14 · Schreiben – Zeigergesten
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/shape_trace_gesture_regression_test.dart
+      - name: Kontrollgang 15 · Schreibfläche – kein Scrollen/Zweitfinger
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/lumo_ink_surface_regression_test.dart
+      - name: Kontrollgang 16 · Lesen und Schreiben
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/reading_writing_content_test.dart
+      - name: Kontrollgang 17 · Fotolernen – echter Aufgabenablauf
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/photo_lesson_practice_test.dart
+      - name: Kontrollgang 18 · Lokale Stimme und Original-Assets
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/lumo_free_voice_test.dart
+      - name: Kontrollgang 19 · Kinderprofile – sichere Speicherung
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/profile_repository_storage_hardening_test.dart
+      - name: Kontrollgang 20 · Update, Installationsweg und Identität
+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/app_update_distribution_test.dart
+      - name: Historical release identity checks
+        run: python3 -m unittest scripts.tests.test_candidate_2011_pin -v
+      - name: Analyze all current production Flutter code
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
