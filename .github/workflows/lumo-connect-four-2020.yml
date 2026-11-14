@@ -174,7 +174,7 @@ jobs:
       github.head_ref == 'integration/lumo-live-connections-20261114' ||
       github.head_ref == 'repair/lumo-single-apk-20261114'))
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     outputs:
       candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
       candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
