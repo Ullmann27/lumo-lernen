@@ -11,7 +11,6 @@ import copy
 import hashlib
 import json
 from pathlib import Path
-import shutil
 import subprocess
 import tempfile
 from types import SimpleNamespace
@@ -64,9 +63,18 @@ def video_packets(path: Path) -> dict:
 class StudioJumpDecodeOriginalTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # Exercise the binary itself, not shutil.which(). A preceding test can
+        # temporarily replace shell discovery, but the real decoder must work.
+        # Missing or broken executables are still a hard test failure.
         for executable in ('ffmpeg', 'ffprobe'):
-            if shutil.which(executable) is None:
-                raise RuntimeError(f'{executable} is required for the original MP4 regression')
+            try:
+                subprocess.run([executable, '-version'], stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE, timeout=10, check=True)
+            except (OSError, subprocess.TimeoutExpired,
+                    subprocess.CalledProcessError) as error:
+                raise RuntimeError(
+                    f'{executable} is required for the original MP4 regression'
+                ) from error
         if hashlib.sha256(MOVIE.read_bytes()).hexdigest() != MOVIE_SHA256:
             raise AssertionError('The actual PR483 MP4 must remain byte-identical')
         cls.decode = staticmethod(actual_decode_block())
