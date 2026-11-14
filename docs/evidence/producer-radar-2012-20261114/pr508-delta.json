@@ -1,0 +1,555 @@
+{
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85...1aeb6879221aa08291f712faef353e0efedd12cc",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/compare/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85...1aeb6879221aa08291f712faef353e0efedd12cc",
+  "permalink_url": "https://github.com/Ullmann27/lumo-lernen/compare/Ullmann27:c19e88c...Ullmann27:1aeb687",
+  "diff_url": "https://github.com/Ullmann27/lumo-lernen/compare/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85...1aeb6879221aa08291f712faef353e0efedd12cc.diff",
+  "patch_url": "https://github.com/Ullmann27/lumo-lernen/compare/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85...1aeb6879221aa08291f712faef353e0efedd12cc.patch",
+  "base_commit": {
+    "sha": "c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+    "node_id": "C_kwDOSNzcp9oAKGMxOWU4OGNlNGQ0YTA5OWQ2MTQ4N2RlMTJkZGQ1YzNiM2ZhM2NkODU",
+    "commit": {
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:36:32Z"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:36:32Z"
+      },
+      "message": "fix(c4): disable all Flutter controls throughout pending native Activity handoff",
+      "tree": {
+        "sha": "77960fb66aa750e0c599253ae65ed626069137d9",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/77960fb66aa750e0c599253ae65ed626069137d9"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+    "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85/comments",
+    "author": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "5b46ce134852ab384aac053be6d02df28bba6f25",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/5b46ce134852ab384aac053be6d02df28bba6f25",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/5b46ce134852ab384aac053be6d02df28bba6f25"
+      }
+    ]
+  },
+  "merge_base_commit": {
+    "sha": "c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+    "node_id": "C_kwDOSNzcp9oAKGMxOWU4OGNlNGQ0YTA5OWQ2MTQ4N2RlMTJkZGQ1YzNiM2ZhM2NkODU",
+    "commit": {
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:36:32Z"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:36:32Z"
+      },
+      "message": "fix(c4): disable all Flutter controls throughout pending native Activity handoff",
+      "tree": {
+        "sha": "77960fb66aa750e0c599253ae65ed626069137d9",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/77960fb66aa750e0c599253ae65ed626069137d9"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+    "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85/comments",
+    "author": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "5b46ce134852ab384aac053be6d02df28bba6f25",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/5b46ce134852ab384aac053be6d02df28bba6f25",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/5b46ce134852ab384aac053be6d02df28bba6f25"
+      }
+    ]
+  },
+  "status": "ahead",
+  "ahead_by": 4,
+  "behind_by": 0,
+  "total_commits": 4,
+  "commits": [
+    {
+      "sha": "40f1c0de3afd741f6020a1ca96e95086b29d090a",
+      "node_id": "C_kwDOSNzcp9oAKDQwZjFjMGRlM2FmZDc0MWY2MDIwYTFjYTk2ZTk1MDg2YjI5ZDA5MGE",
+      "commit": {
+        "author": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:39:58Z"
+        },
+        "committer": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:39:58Z"
+        },
+        "message": "test(c4): pump handoff frame before asserting temporarily disabled Flutter controls",
+        "tree": {
+          "sha": "44253685504231955379b9ffacf7b7b1a6f5a8d4",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/44253685504231955379b9ffacf7b7b1a6f5a8d4"
+        },
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/40f1c0de3afd741f6020a1ca96e95086b29d090a",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/40f1c0de3afd741f6020a1ca96e95086b29d090a",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/40f1c0de3afd741f6020a1ca96e95086b29d090a",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/40f1c0de3afd741f6020a1ca96e95086b29d090a/comments",
+      "author": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85",
+          "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/c19e88ce4d4a099d61487de12ddd5c3b3fa3cd85"
+        }
+      ]
+    },
+    {
+      "sha": "22597d508df76a3c2e4e6fcdf60c48fe62bd9c59",
+      "node_id": "C_kwDOSNzcp9oAKDIyNTk3ZDUwOGRmNzZhM2MyZTRlNmZjZGY2MGM0OGZlNjJiZDljNTk",
+      "commit": {
+        "author": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:59:02Z"
+        },
+        "committer": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:59:02Z"
+        },
+        "message": "test(c4): enforce explicit native opt-in on both original route-return display sizes",
+        "tree": {
+          "sha": "5eb283c233b3e13b367e8fc48fdbe419212d5aff",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/5eb283c233b3e13b367e8fc48fdbe419212d5aff"
+        },
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/22597d508df76a3c2e4e6fcdf60c48fe62bd9c59",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/22597d508df76a3c2e4e6fcdf60c48fe62bd9c59",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/22597d508df76a3c2e4e6fcdf60c48fe62bd9c59",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/22597d508df76a3c2e4e6fcdf60c48fe62bd9c59/comments",
+      "author": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "40f1c0de3afd741f6020a1ca96e95086b29d090a",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/40f1c0de3afd741f6020a1ca96e95086b29d090a",
+          "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/40f1c0de3afd741f6020a1ca96e95086b29d090a"
+        }
+      ]
+    },
+    {
+      "sha": "f449a35c8279851ee9e24893114e9e1e629caddc",
+      "node_id": "C_kwDOSNzcp9oAKGY0NDlhMzVjODI3OTg1MWVlOWUyNDg5MzExNGU5ZTFlNjI5Y2FkZGM",
+      "commit": {
+        "author": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:59:17Z"
+        },
+        "committer": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:59:17Z"
+        },
+        "message": "ci(c4): include actual 320px/Fold native-free return navigation in mandatory 20-gate sweep",
+        "tree": {
+          "sha": "f8493d2b396451e63030396dea0d86dccc136c92",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/f8493d2b396451e63030396dea0d86dccc136c92"
+        },
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/f449a35c8279851ee9e24893114e9e1e629caddc",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/f449a35c8279851ee9e24893114e9e1e629caddc",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/f449a35c8279851ee9e24893114e9e1e629caddc",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/f449a35c8279851ee9e24893114e9e1e629caddc/comments",
+      "author": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "22597d508df76a3c2e4e6fcdf60c48fe62bd9c59",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/22597d508df76a3c2e4e6fcdf60c48fe62bd9c59",
+          "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/22597d508df76a3c2e4e6fcdf60c48fe62bd9c59"
+        }
+      ]
+    },
+    {
+      "sha": "1aeb6879221aa08291f712faef353e0efedd12cc",
+      "node_id": "C_kwDOSNzcp9oAKDFhZWI2ODc5MjIxYWEwODI5MWY3MTJmYWVmMzUzZTBlZmVkZDEyY2M",
+      "commit": {
+        "author": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T20:02:21Z"
+        },
+        "committer": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T20:02:21Z"
+        },
+        "message": "fix(ui): use bundled Nunito font for the actual 3D games entry across Fold capture and Android",
+        "tree": {
+          "sha": "1d9487fa3b058ff6af90a5d33ae05034b94b1840",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/1d9487fa3b058ff6af90a5d33ae05034b94b1840"
+        },
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/1aeb6879221aa08291f712faef353e0efedd12cc",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/1aeb6879221aa08291f712faef353e0efedd12cc",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/1aeb6879221aa08291f712faef353e0efedd12cc",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/1aeb6879221aa08291f712faef353e0efedd12cc/comments",
+      "author": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "f449a35c8279851ee9e24893114e9e1e629caddc",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/f449a35c8279851ee9e24893114e9e1e629caddc",
+          "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/f449a35c8279851ee9e24893114e9e1e629caddc"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "fc18d8c5deb2720716233e99eef79a443a5f923e",
+      "filename": ".github/workflows/lumo-20-wiring-control-passes.yml",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/1aeb6879221aa08291f712faef353e0efedd12cc/.github%2Fworkflows%2Flumo-20-wiring-control-passes.yml",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/1aeb6879221aa08291f712faef353e0efedd12cc/.github%2Fworkflows%2Flumo-20-wiring-control-passes.yml",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/.github%2Fworkflows%2Flumo-20-wiring-control-passes.yml?ref=1aeb6879221aa08291f712faef353e0efedd12cc",
+      "patch": "@@ -33,7 +33,7 @@ jobs:\n       - name: Kontrollgang 05 · Dorfwirtschaft und Kindkontext\n         run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/dorfwirtschaft_portal_test.dart\n       - name: Kontrollgang 06 · Vier Gewinnt – Native-Opt-in und Return\n-        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/connect_four_native_route_test.dart\n+        run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/connect_four_native_route_test.dart test/games/connect_four_navigation_test.dart\n       - name: Kontrollgang 07 · Vier Gewinnt – vollständiger Spielablauf\n         run: flutter test --no-pub --reporter=expanded --timeout=60s test/games/games_screen_flow_test.dart\n       - name: Kontrollgang 08 · Vier Gewinnt – Fold/Touchtasten"
+    },
+    {
+      "sha": "ac3e83d06306d15962e4cc7ca0bd8598429c3ab4",
+      "filename": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 0,
+      "changes": 5,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/1aeb6879221aa08291f712faef353e0efedd12cc/lib%2Ffeatures%2Fgames%2Fspielwelt%2Fspielwelt_hub.dart",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/1aeb6879221aa08291f712faef353e0efedd12cc/lib%2Ffeatures%2Fgames%2Fspielwelt%2Fspielwelt_hub.dart",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/lib%2Ffeatures%2Fgames%2Fspielwelt%2Fspielwelt_hub.dart?ref=1aeb6879221aa08291f712faef353e0efedd12cc",
+      "patch": "@@ -368,6 +368,11 @@ class _SpielweltHubState extends State<SpielweltHub> {\n                             'Magische 3D-Spielewelt betreten',\n                             maxLines: 1,\n                             overflow: TextOverflow.ellipsis,\n+                            style: TextStyle(\n+                              fontFamily: 'Nunito',\n+                              fontWeight: FontWeight.w900,\n+                              fontSize: 14,\n+                            ),\n                           ),\n                           style: OutlinedButton.styleFrom(\n                             foregroundColor: const Color(0xFFFFE7A0),"
+    },
+    {
+      "sha": "5607de8ddeeb54b1cbb77372c0ee3926f57ff374",
+      "filename": "test/games/connect_four_navigation_test.dart",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 2,
+      "changes": 6,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/1aeb6879221aa08291f712faef353e0efedd12cc/test%2Fgames%2Fconnect_four_navigation_test.dart",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/1aeb6879221aa08291f712faef353e0efedd12cc/test%2Fgames%2Fconnect_four_navigation_test.dart",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/test%2Fgames%2Fconnect_four_navigation_test.dart?ref=1aeb6879221aa08291f712faef353e0efedd12cc",
+      "patch": "@@ -71,7 +71,8 @@ void main() {\n \n       await tester.tap(find.text('Spielauswahl'));\n       await settle();\n-      expect(nativeAttempts, 1);\n+      expect(nativeAttempts, 0,\n+          reason: 'Entering a Flutter round must not launch the native 3D view');\n       expect(find.text('Spiel pausiert'), findsNothing);\n       expect(find.byType(LumoConnectFourScreen), findsOneWidget);\n       await tapVisible(find.byKey(const ValueKey('connect-mode-true')));\n@@ -105,7 +106,8 @@ void main() {\n \n       await tester.tap(find.text('Spielauswahl'));\n       await settle();\n-      expect(nativeAttempts, 2);\n+      expect(nativeAttempts, 0,\n+          reason: 'Reopening the saved Flutter round must remain native-free');\n       expect(find.text('Spiel pausiert'), findsNothing);\n       expect(\n         tester"
+    },
+    {
+      "sha": "6263bb89d2bdc9cd303eaeadc71a58c58062d5aa",
+      "filename": "test/games/games_screen_flow_test.dart",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 0,
+      "changes": 3,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/1aeb6879221aa08291f712faef353e0efedd12cc/test%2Fgames%2Fgames_screen_flow_test.dart",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/1aeb6879221aa08291f712faef353e0efedd12cc/test%2Fgames%2Fgames_screen_flow_test.dart",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/test%2Fgames%2Fgames_screen_flow_test.dart?ref=1aeb6879221aa08291f712faef353e0efedd12cc",
+      "patch": "@@ -300,6 +300,9 @@ void main() {\n     final nativeButton = find.byKey(const ValueKey('connect-open-native'));\n     expect(nativeButton, findsOneWidget);\n     await tester.tap(nativeButton);\n+    // A direct tap sends input immediately; a frame is required to rebuild\n+    // the disabled column buttons before checking their visible state.\n+    await tester.pump();\n     for (var frame = 0; frame < 50 && openCalls == 0; frame++) {\n       await tester.pump(const Duration(milliseconds: 100));\n     }"
+    }
+  ]
+}

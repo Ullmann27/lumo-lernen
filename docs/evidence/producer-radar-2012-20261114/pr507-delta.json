@@ -1,0 +1,297 @@
+{
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304...8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/compare/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304...8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+  "permalink_url": "https://github.com/Ullmann27/lumo-lernen/compare/Ullmann27:0d7e6e5...Ullmann27:8e64f27",
+  "diff_url": "https://github.com/Ullmann27/lumo-lernen/compare/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304...8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11.diff",
+  "patch_url": "https://github.com/Ullmann27/lumo-lernen/compare/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304...8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11.patch",
+  "base_commit": {
+    "sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "node_id": "C_kwDOSNzcp9oAKDBkN2U2ZTVlZmIxZmU4Y2QyZTlhN2Y5MmNkZDQwMzRiODExNzMzMDQ",
+    "commit": {
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:39:20Z"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:39:20Z"
+      },
+      "message": "fix(memory): cast guarded readback confirmation calls\n\nUse the explicitly checked confirmation interface at both call sites. This fixes the actual Dart 3.12.2 compiler errors from Feature run 43632642356 without changing storage guards, interfaces, tests or recovery behavior.",
+      "tree": {
+        "sha": "380c3e4b864a1b5fb9bc396541758defa5012630",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/380c3e4b864a1b5fb9bc396541758defa5012630"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304/comments",
+    "author": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/e2db0d60af51266caa9b54ffd08eb0947ae99ac6"
+      }
+    ]
+  },
+  "merge_base_commit": {
+    "sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "node_id": "C_kwDOSNzcp9oAKDBkN2U2ZTVlZmIxZmU4Y2QyZTlhN2Y5MmNkZDQwMzRiODExNzMzMDQ",
+    "commit": {
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:39:20Z"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T19:39:20Z"
+      },
+      "message": "fix(memory): cast guarded readback confirmation calls\n\nUse the explicitly checked confirmation interface at both call sites. This fixes the actual Dart 3.12.2 compiler errors from Feature run 43632642356 without changing storage guards, interfaces, tests or recovery behavior.",
+      "tree": {
+        "sha": "380c3e4b864a1b5fb9bc396541758defa5012630",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/380c3e4b864a1b5fb9bc396541758defa5012630"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+    "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304/comments",
+    "author": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/e2db0d60af51266caa9b54ffd08eb0947ae99ac6",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/e2db0d60af51266caa9b54ffd08eb0947ae99ac6"
+      }
+    ]
+  },
+  "status": "ahead",
+  "ahead_by": 1,
+  "behind_by": 0,
+  "total_commits": 1,
+  "commits": [
+    {
+      "sha": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+      "node_id": "C_kwDOSNzcp9oAKDhlNjRmMjdjODZlMTcwNGZhNjVkZmU5ZWY5YzhiMjIxN2Y5ZjBhMTE",
+      "commit": {
+        "author": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:50:55Z"
+        },
+        "committer": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:50:55Z"
+        },
+        "message": "test(storage): verify explicit ACKs and isolate deferred profile writes\n\nPreserve the existing wallet queue, caller-zone, balance and result-ID checks while requiring one extra identical positive dedup ACK without another reward emission. Separate Memory load confirmation from ordered user writes and always drain deferred test gates in their widget-test zone. Only three existing test files change; production sources remain identical to 0d7e. Actual fresh CI remains required.",
+        "tree": {
+          "sha": "84b2103328a1b385a0d3c7c1b17f7d7329252da0",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/84b2103328a1b385a0d3c7c1b17f7d7329252da0"
+        },
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11/comments",
+      "author": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304",
+          "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/0d7e6e5efb1fe8cd2e9a7f92cdd4034b81173304"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "3da940a91cf02aae13083693e8f702d1bbc55fc5",
+      "filename": "test/games/memory_profile_storage_test.dart",
+      "status": "modified",
+      "additions": 87,
+      "deletions": 42,
+      "changes": 129,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11/test%2Fgames%2Fmemory_profile_storage_test.dart",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11/test%2Fgames%2Fmemory_profile_storage_test.dart",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/test%2Fgames%2Fmemory_profile_storage_test.dart?ref=8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+      "patch": "@@ -158,38 +158,64 @@ void main() {\n \n   testWidgets('Delayed old-child write cannot overwrite the newly selected child',\n       (tester) async {\n+    const aRaw = '{\"difficulty\":\"leicht\",\"best\":{\"leicht\":7}}';\n+    const bRaw = '{\"difficulty\":\"mittel\",\"best\":{\"mittel\":11}}';\n     final store = _DeferredStore({\n       'lumo_memory_v2': _legacy,\n-      _key(_a): '{\"difficulty\":\"leicht\",\"best\":{\"leicht\":7}}',\n-      _key(_b): '{\"difficulty\":\"mittel\",\"best\":{\"mittel\":11}}',\n+      _key(_a): aRaw,\n+      _key(_b): bRaw,\n     });\n     SharedPreferencesStorePlatform.instance = store;\n     final app = await _app();\n     addTearDown(app.dispose);\n     addTearDown(() => tester.binding.setSurfaceSize(null));\n-    await _open(tester, app);\n     final gate = Completer<void>();\n-    store.blockedKey = 'flutter.${_key(_a)}';\n-    store.gate = gate;\n-    await _choose(tester, MemoryDifficulty.profi);\n-    expect(store.writes, hasLength(1));\n-    await app.school.setActiveStudent(_b);\n-    await tester.pump();\n-    expect(_backs(), findsNothing);\n-    expect(find.textContaining('Dein Rekord:'), findsNothing);\n-    await _open(tester, app);\n-    expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);\n-    await _choose(tester, MemoryDifficulty.knifflig);\n-    gate.complete();\n-    await tester.pump();\n-    await tester.pump();\n-    final disk = await store.disk();\n-    expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),\n-        {'difficulty': 'profi', 'best': {'leicht': 7}});\n-    expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),\n-        {'difficulty': 'knifflig', 'best': {'mittel': 11}});\n-    expect(disk['flutter.lumo_memory_v2'], _legacy);\n-    await tester.pumpWidget(const SizedBox.shrink());\n+    try {\n+      await _open(tester, app);\n+      expect(store.writes, [(key: 'flutter.${_key(_a)}', value: aRaw)],\n+          reason: 'Loading existing stats requires its own exact same-value ACK');\n+      final writesBeforeChoice = store.writes.length;\n+      store.blockedKey = 'flutter.${_key(_a)}';\n+      store.gate = gate;\n+      await _choose(tester, MemoryDifficulty.profi);\n+      final pending = store.writes.skip(writesBeforeChoice).toList();\n+      expect(pending, hasLength(1));\n+      expect(pending.single,\n+          (key: 'flutter.${_key(_a)}',\n+           value: jsonEncode({'difficulty': 'profi', 'best': {'leicht': 7}})));\n+      expect((await store.disk())['flutter.${_key(_a)}'], aRaw,\n+          reason: 'The held user write has not been acknowledged');\n+      await app.school.setActiveStudent(_b);\n+      await tester.pump();\n+      expect(_backs(), findsNothing);\n+      expect(find.textContaining('Dein Rekord:'), findsNothing);\n+      await _open(tester, app);\n+      expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);\n+      await _choose(tester, MemoryDifficulty.knifflig);\n+      gate.complete();\n+      await tester.pump();\n+      await tester.pump();\n+      expect(store.writes.skip(writesBeforeChoice).toList(), [\n+        (key: 'flutter.${_key(_a)}',\n+         value: jsonEncode({'difficulty': 'profi', 'best': {'leicht': 7}})),\n+        (key: 'flutter.${_key(_b)}', value: bRaw),\n+        (key: 'flutter.${_key(_b)}',\n+         value: jsonEncode({'difficulty': 'knifflig', 'best': {'mittel': 11}})),\n+      ], reason: 'Each child keeps its captured payload; B has a separate load ACK');\n+      final disk = await store.disk();\n+      expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),\n+          {'difficulty': 'profi', 'best': {'leicht': 7}});\n+      expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),\n+          {'difficulty': 'knifflig', 'best': {'mittel': 11}});\n+      expect(disk['flutter.lumo_memory_v2'], _legacy);\n+    } finally {\n+      // A failed assertion must not strand this owner's real serial write in\n+      // this WidgetTester zone and prevent later tests from opening the child.\n+      if (!gate.isCompleted) gate.complete();\n+      await tester.idle();\n+      await tester.pumpWidget(const SizedBox.shrink());\n+      await tester.idle();\n+    }\n   });\n \n   testWidgets('Delayed identity load cannot expose old best after profile switch',\n@@ -219,29 +245,48 @@ void main() {\n \n   testWidgets('Pending successive choices retain captured snapshots and final order',\n       (tester) async {\n-    final store = _DeferredStore({\n-      _key(_a): '{\"difficulty\":\"leicht\",\"best\":{\"leicht\":7}}',\n-    });\n+    const aRaw = '{\"difficulty\":\"leicht\",\"best\":{\"leicht\":7}}';\n+    final store = _DeferredStore({_key(_a): aRaw});\n     SharedPreferencesStorePlatform.instance = store;\n     final app = await _app();\n     addTearDown(app.dispose);\n     addTearDown(() => tester.binding.setSurfaceSize(null));\n-    await _open(tester, app);\n     final gate = Completer<void>();\n-    store.blockedKey = 'flutter.${_key(_a)}';\n-    store.gate = gate;\n-    await _choose(tester, MemoryDifficulty.mittel);\n-    await _choose(tester, MemoryDifficulty.profi);\n-    expect(store.writes, hasLength(1), reason: 'Second write waits for the first');\n-    expect(jsonDecode(store.writes.single.value)['difficulty'], 'mittel');\n-    gate.complete();\n-    await tester.pump();\n-    await tester.pump();\n-    expect(store.writes, hasLength(2));\n-    expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');\n-    expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),\n-        {'difficulty': 'profi', 'best': {'leicht': 7}});\n-    await tester.pumpWidget(const SizedBox.shrink());\n+    try {\n+      await _open(tester, app);\n+      expect(store.writes, [(key: 'flutter.${_key(_a)}', value: aRaw)],\n+          reason: 'The initial positive stats ACK is distinct from user choices');\n+      final writesBeforeChoice = store.writes.length;\n+      store.blockedKey = 'flutter.${_key(_a)}';\n+      store.gate = gate;\n+      await _choose(tester, MemoryDifficulty.mittel);\n+      await _choose(tester, MemoryDifficulty.profi);\n+      final pending = store.writes.skip(writesBeforeChoice).toList();\n+      expect(pending, hasLength(1), reason: 'Second write waits for the first');\n+      expect(pending.single,\n+          (key: 'flutter.${_key(_a)}',\n+           value: jsonEncode({'difficulty': 'mittel', 'best': {'leicht': 7}})));\n+      expect((await store.disk())['flutter.${_key(_a)}'], aRaw,\n+          reason: 'Neither queued choice may commit before the held ACK');\n+      gate.complete();\n+      await tester.pump();\n+      await tester.pump();\n+      final choices = store.writes.skip(writesBeforeChoice).toList();\n+      expect(choices, hasLength(2));\n+      expect(choices, [\n+        (key: 'flutter.${_key(_a)}',\n+         value: jsonEncode({'difficulty': 'mittel', 'best': {'leicht': 7}})),\n+        (key: 'flutter.${_key(_a)}',\n+         value: jsonEncode({'difficulty': 'profi', 'best': {'leicht': 7}})),\n+      ]);\n+      expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),\n+          {'difficulty': 'profi', 'best': {'leicht': 7}});\n+    } finally {\n+      if (!gate.isCompleted) gate.complete();\n+      await tester.idle();\n+      await tester.pumpWidget(const SizedBox.shrink());\n+      await tester.idle();\n+    }\n   });\n \n   testWidgets('Unreadable existing child stats are preserved instead of reset',"
+    },
+    {
+      "sha": "b90f1a40bbe2cf7a1d415689e3d4ad22f2dd5341",
+      "filename": "test/reward_wallet_queue_zone_test.dart",
+      "status": "modified",
+      "additions": 39,
+      "deletions": 15,
+      "changes": 54,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11/test%2Freward_wallet_queue_zone_test.dart",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11/test%2Freward_wallet_queue_zone_test.dart",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/test%2Freward_wallet_queue_zone_test.dart?ref=8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+      "patch": "@@ -211,13 +211,24 @@ void main() {\n     expect(retried.stars, 2);\n     expect(retried.xp, 16);\n     expect(retried.gameResultIds, ['retry-round']);\n-    await wallet.awardGameResult(\n-      resultId: 'retry-round',\n-      stars: 2,\n-      xp: 16,\n-    );\n-    expect(store.writes, hasLength(2));\n-    expect(await store.persisted(), retried.toJson());\n+    expect(store.writes, [retried.toJson(), retried.toJson()]);\n+    final replayEvents = <RewardWallet>[];\n+    final replaySubscription = wallet.changes.listen(replayEvents.add);\n+    try {\n+      final replay = await wallet.awardGameResult(\n+        resultId: 'retry-round',\n+        stars: 2,\n+        xp: 16,\n+      );\n+      await Future<void>.delayed(Duration.zero);\n+      expect(replay.toJson(), retried.toJson());\n+      expect(store.writes,\n+          [retried.toJson(), retried.toJson(), retried.toJson()]);\n+      expect(replayEvents, isEmpty);\n+      expect(await store.persisted(), retried.toJson());\n+    } finally {\n+      await replaySubscription.cancel();\n+    }\n   });\n \n   test('An older completion cannot release a younger pending durable write',\n@@ -282,14 +293,27 @@ void main() {\n     expect(wallet.snapshot.totalEarnedStars, 10);\n     expect(wallet.snapshot.xp, 80);\n     expect(await store.persisted(), wallet.snapshot.toJson());\n+    final writesBeforeReplay = List<Map<String, dynamic>>.of(store.writes);\n+    expect(writesBeforeReplay, hasLength(3));\n+    final confirmed = wallet.snapshot.toJson();\n     final reopened = RewardWalletRepository();\n-    final replay = await reopened.awardGameResult(\n-      resultId: 'second',\n-      stars: 5,\n-      xp: 40,\n-    );\n-    expect(replay.stars, 10);\n-    expect(replay.gameResultIds, ['first', 'second', 'third']);\n-    expect(store.writes, hasLength(3));\n+    final replayEvents = <RewardWallet>[];\n+    final replaySubscription = reopened.changes.listen(replayEvents.add);\n+    try {\n+      final replay = await reopened.awardGameResult(\n+        resultId: 'second',\n+        stars: 5,\n+        xp: 40,\n+      );\n+      await Future<void>.delayed(Duration.zero);\n+      expect(replay.stars, 10);\n+      expect(replay.gameResultIds, ['first', 'second', 'third']);\n+      expect(replay.toJson(), confirmed);\n+      expect(store.writes, [...writesBeforeReplay, confirmed]);\n+      expect(await store.persisted(), confirmed);\n+      expect(replayEvents, isEmpty);\n+    } finally {\n+      await replaySubscription.cancel();\n+    }\n   });\n }"
+    },
+    {
+      "sha": "a818134e16fadb009d6d00a1e61e0c5676f29b6a",
+      "filename": "test/reward_wallet_transaction_test.dart",
+      "status": "modified",
+      "additions": 13,
+      "deletions": 2,
+      "changes": 15,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11/test%2Freward_wallet_transaction_test.dart",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11/test%2Freward_wallet_transaction_test.dart",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/test%2Freward_wallet_transaction_test.dart?ref=8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+      "patch": "@@ -204,9 +204,20 @@ void main() {\n       expect(savedAward['stars'], 9);\n       expect(savedAward['xp'], 25);\n       expect(savedAward['gameResultIds'], ['race-1']);\n-      await wallet.awardGameResult(resultId: 'race-1', stars: 6, xp: 20);\n-      expect(wallet.snapshot.stars, 9);\n       expect(store.writtenSnapshots, hasLength(4));\n+      final writesBeforeReplay =\n+          List<Map<String, dynamic>>.of(store.writtenSnapshots);\n+      await Future<void>.delayed(Duration.zero);\n+      final emissionsBeforeReplay = List<RewardWallet>.of(emitted);\n+      final replay =\n+          await wallet.awardGameResult(resultId: 'race-1', stars: 6, xp: 20);\n+      await Future<void>.delayed(Duration.zero);\n+      expect(wallet.snapshot.stars, 9);\n+      expect(wallet.snapshot.toJson(), savedAward);\n+      expect(replay.toJson(), savedAward);\n+      expect(store.writtenSnapshots, [...writesBeforeReplay, savedAward]);\n+      expect(await store.persistedWallet(), savedAward);\n+      expect(emitted, emissionsBeforeReplay);\n       await subscription.cancel();\n     });\n   }"
+    }
+  ]
+}

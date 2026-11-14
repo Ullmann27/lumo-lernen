@@ -1,0 +1,67 @@
+{
+  "first_failed_step": {
+    "name": "Verify all build and preservation contracts",
+    "status": "completed",
+    "conclusion": "failure",
+    "number": 20,
+    "started_at": "2026-11-14T19:51:05Z",
+    "completed_at": "2026-11-14T19:56:15Z"
+  },
+  "setup_error": "ERROR: setUpClass (test_speech_envelope_contract.SpeechEnvelopeContractTest)",
+  "complete_contract_log_locations": {
+    "error": [
+      {
+        "line": 1033,
+        "original_text": "ERROR: setUpClass (test_speech_envelope_contract.SpeechEnvelopeContractTest)"
+      }
+    ],
+    "count": [
+      {
+        "line": 1064,
+        "original_text": "Ran 921 tests in 309.572s"
+      }
+    ],
+    "result": [
+      {
+        "line": 1066,
+        "original_text": "FAILED (errors=1)"
+      }
+    ]
+  },
+  "complete_build_log_locations": {
+    "error": [
+      {
+        "line": 2725,
+        "original_text": "2026-11-14T19:56:15.5252479Z ERROR: setUpClass (test_speech_envelope_contract.SpeechEnvelopeContractTest)"
+      }
+    ],
+    "count": [
+      {
+        "line": 2756,
+        "original_text": "2026-11-14T19:56:15.5271285Z Ran 921 tests in 309.572s"
+      }
+    ],
+    "result": [
+      {
+        "line": 2758,
+        "original_text": "2026-11-14T19:56:15.5271617Z FAILED (errors=1)"
+      }
+    ],
+    "exit_one": [
+      {
+        "line": 2826,
+        "original_text": "2026-11-14T19:56:15.6260194Z ##[error]Process completed with exit code 1."
+      }
+    ]
+  },
+  "reported_compile_errors": [
+    "LumoLearningSpeech.kt:31 optJSONObject",
+    "LumoLearningSpeech.kt:103 LumoOfflineSpeechEngine.PRESET",
+    "LumoLearningSpeech.kt:104 LumoOfflineSpeechEngine.SAMPLE_RATE",
+    "LumoLearningSpeech.kt:138 LumoOfflineSpeechBridge.synthesizeEnglishLesson",
+    "LumoLearningSpeech.kt:224 optJSONObject",
+    "LumoLearningSpeech.kt:244 type inference"
+  ],
+  "test_count_claim": "The original states Ran 921 and FAILED(errors=1); no all-pass count is inferred.",
+  "repair_scope": "Root owns the separately checkpointed Speech-fixture repair. This catalog preserves the actual failed old source unchanged."
+}

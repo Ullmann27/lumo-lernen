@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "FROZEN_TERMINAL_FAILURE",
+  "run_id": 43632790204,
+  "attempt": 1,
+  "host": "7ac736fdbd042769592e88de0f9849632242316d",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "mapping": {
+    "path": "/tmp/host7ac-terminal-publication-catalog-20261114/mapping.json",
+    "bytes": 30344,
+    "sha256": "0219ec53aab9ec56c5a17c603ee7765afe08b36e98d89bbe5b56255e755a0dbc",
+    "git_blob": "bee0e84c70a187fe7e9d9fbc11d5a56cc9efb03d"
+  },
+  "manifest": {
+    "bytes": 836,
+    "sha256": "3271bb9cdb081ce0f773aa91c36d5ce053a18662fe23175d2d7dab0c2b16f3df",
+    "git_blob": "59552adbf955528ad97151d389281fb579820607"
+  },
+  "archive": {
+    "path": "/tmp/host7ac-terminal-publication-catalog-20261114/compact-originals.tar.gz",
+    "bytes": 581920,
+    "sha256": "13ca059b7af9061dfeda758024727a112c84adc68692aa196fa0d92f1eb28507",
+    "git_blob": "917de201a3ec06f60279d52d19529188b4c68aaf"
+  },
+  "archive_members": 34,
+  "mapped_original_files": 30,
+  "actual_results": {
+    "run": "FAILURE",
+    "runtime": "SUCCESS",
+    "host_compile": "SUCCESS",
+    "full_flutter": "2686 visible success, 583 hidden success, zero errors/failures/skips",
+    "build_contracts": "Ran 921; FAILED(errors=1) in SpeechEnvelopeContractTest.setUpClass",
+    "downstream_jobs": "four SKIPPED",
+    "apk_native_build_android_update_delivery": "not reached"
+  },
+  "scope": "Existing exact originals only; no download, product test, CI/ref/source mutation. Large original ZIPs stay separately hashed in mapping.json."
+}
