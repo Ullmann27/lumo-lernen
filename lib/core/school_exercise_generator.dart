@@ -288,6 +288,8 @@ class ExerciseFactory {
     required String subject,
     required String unit,
     bool currentGradeOnly = false,
+    Map<String, int> weakSkills = const <String, int>{},
+    String? childName,
   }) {
     if (grade < 1 || grade > 4) {
       throw ArgumentError.value(grade, 'grade', 'Expected class 1 through 4');
@@ -302,7 +304,13 @@ class ExerciseFactory {
       throw ArgumentError.value(
         unit, 'unit', 'Topic is not available in the selected subject and grade');
     }
-    final task = next(grade: grade, subject: subject, unit: unit);
+    final task = next(
+      grade: grade,
+      subject: subject,
+      unit: unit,
+      weakSkills: weakSkills,
+      childName: childName,
+    );
     if (task.grade != grade || task.subject != subject || task.unit != unit) {
       throw StateError('Generator changed an explicit grade, subject or unit');
     }

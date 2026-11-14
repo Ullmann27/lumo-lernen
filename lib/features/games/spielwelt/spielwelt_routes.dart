@@ -191,8 +191,8 @@ class SpielweltRoutes {
     'rhythm',
     'treasure',
     'build',
-    'kart',
     'village',
+    'kart',
     'connectFour',
     'quizShow',
   ];

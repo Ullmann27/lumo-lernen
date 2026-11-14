@@ -116,7 +116,18 @@ class WorkflowTests(unittest.TestCase):
                 self.assertEqual(expected.count(command),1)
                 expected=expected.replace(command,
                                           command+' 2>&1 | tee "$native_logs/nextgen-runner.log"')
-            with self.subTest(step=name): self.assertEqual(step(build,name),expected)
+            actual=step(build,name)
+            if name == 'Require actual gameplay gates on the exact pinned native source':
+                # Keep the original gate byte-for-byte and require the added
+                # current-source renderer acceptance as a separate mandatory line.
+                # Neither gate may be omitted, skipped or masked by "|| true".
+                live='          LUMO_LIVE_LOG_DIR="$native_logs/live-connections" bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-connections-runner.log"'
+                self.assertEqual(actual.count(live),1)
+                self.assertIn('set -euo pipefail',actual)
+                self.assertNotIn('|| true',actual)
+                self.assertLess(actual.index('LUMO_NEXTGEN_LOG_DIR='),actual.index(live))
+                actual=actual.replace('\n'+live,'')
+            with self.subTest(step=name): self.assertEqual(actual,expected)
         self.assertNotIn('continue-on-error',self.workflow)
 
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):

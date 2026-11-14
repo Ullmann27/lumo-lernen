@@ -15,7 +15,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'repair/lumo-2020-one-apk-20261114' ||
-      github.head_ref == 'repair/lumo-2020-village-hook-20261114')
+      github.head_ref == 'repair/lumo-2020-village-hook-20261114' ||
+      github.head_ref == 'repair/lumo-2020-exact-learning-20261114')
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
@@ -117,7 +118,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'repair/lumo-2020-one-apk-20261114' ||
-      github.head_ref == 'repair/lumo-2020-village-hook-20261114'))
+      github.head_ref == 'repair/lumo-2020-village-hook-20261114' ||
+      github.head_ref == 'repair/lumo-2020-exact-learning-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -175,7 +177,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'repair/lumo-2020-one-apk-20261114' ||
-      github.head_ref == 'repair/lumo-2020-village-hook-20261114'))
+      github.head_ref == 'repair/lumo-2020-village-hook-20261114' ||
+      github.head_ref == 'repair/lumo-2020-exact-learning-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 90
     outputs:
@@ -757,7 +760,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'repair/lumo-2020-one-apk-20261114' ||
-      github.head_ref == 'repair/lumo-2020-village-hook-20261114') &&
+      github.head_ref == 'repair/lumo-2020-village-hook-20261114' ||
+      github.head_ref == 'repair/lumo-2020-exact-learning-20261114') &&
       needs.verify-and-build.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.connect-four-runtime.result == 'success' &&
