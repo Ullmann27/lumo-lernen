@@ -1,0 +1,14 @@
+Four actual workflow Bash blocks and four embedded Python blocks compile.
+test_absent_archive_creates_and_complete_archive_only_verifies (__main__.ArchiveContracts.test_absent_archive_creates_and_complete_archive_only_verifies) ... ok
+test_actual_completed_original_metadata_passes (__main__.ArchiveContracts.test_actual_completed_original_metadata_passes) ... ok
+test_foreign_incomplete_or_non_prerelease_asset_set_is_rejected (__main__.ArchiveContracts.test_foreign_incomplete_or_non_prerelease_asset_set_is_rejected) ... ok
+test_foreign_source_in_run_job_or_artifact_is_rejected (__main__.ArchiveContracts.test_foreign_source_in_run_job_or_artifact_is_rejected) ... ok
+test_missing_or_relabelled_creative_job_is_rejected (__main__.ArchiveContracts.test_missing_or_relabelled_creative_job_is_rejected) ... ok
+test_partial_or_foreign_tag_never_permits_replacement (__main__.ArchiveContracts.test_partial_or_foreign_tag_never_permits_replacement) ... ok
+test_wrong_attempt_repository_or_relabelled_success_is_rejected (__main__.ArchiveContracts.test_wrong_attempt_repository_or_relabelled_success_is_rejected) ... ok
+test_wrong_original_artifact_identity_size_digest_or_expiry_is_rejected (__main__.ArchiveContracts.test_wrong_original_artifact_identity_size_digest_or_expiry_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.006s
+
+OK

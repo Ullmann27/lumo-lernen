@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "status": "FROZEN_PREPARED_NOT_EXECUTED_ON_GITHUB",
+  "prepared_at_utc": "2026-11-14T02:01:57.448029+00:00",
+  "workflow": {
+    "path": ".github/workflows/lumo-studio-failed-creative-archive.yml",
+    "bytes": 16016,
+    "sha256": "b6966c352799e2716998eb7eb972f90710d817fdd865a51e417527f7651db929",
+    "git_blob_sha1": "062afa388a63c9af93945b837e305e478002a3de",
+    "mode": "100644"
+  },
+  "new_branch": "chatgpt/lumo-studio-evidence-archive-20261114",
+  "source_baseline": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_reference": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "source_artifact": {
+    "id": 14092241868,
+    "run_id": 43530667812,
+    "attempt": 1,
+    "job_id": 132269951369,
+    "job_conclusion": "failure",
+    "bytes": 526570745,
+    "sha256": "bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40"
+  },
+  "upstream_reference": {
+    "repository": "Ullmann27/lumo-godot",
+    "commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+    "path": ".github/workflows/lumo-studio-2019.yml",
+    "git_blob_sha1": "a004e56f149d2496962b65fbb5daf638421f41e1",
+    "bytes": 19740,
+    "sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b"
+  },
+  "local_validation": {
+    "contracts": {
+      "tests": 8,
+      "passed": 8,
+      "skipped": 0,
+      "seconds": 0.006,
+      "log": "validation/contract-checks.log"
+    },
+    "bash_run_blocks": 4,
+    "python_blocks_compiled": 4,
+    "actionlint": {
+      "version": "1.7.12",
+      "exit_code": 0,
+      "shellcheck_executed": false,
+      "execution": "validation/actionlint-execution.json"
+    },
+    "independent_review": "archive-workflow-independent-review.json"
+  },
+  "pending": [
+    "Root-controlled commit and push on the separate archive branch.",
+    "Actual original ZIP download in CI and all-member CRC/source checks.",
+    "Actual prerelease creation or validation of an already complete identical archive.",
+    "Public tokenless download, cmp and SHA256 equality."
+  ],
+  "boundaries": [
+    "No current product, test, normal workflow or CI gate changed.",
+    "No Git refs or releases mutated locally.",
+    "No local original ZIP deleted, copied or modified.",
+    "Archive preserves failed test evidence and never grants product acceptance.",
+    "Platform immutable value is observed, not assumed."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    "-shellcheck=",
+    ".github/workflows/lumo-studio-failed-creative-archive.yml"
+  ],
+  "exit_code": 0,
+  "seconds": 0.010859917994821444,
+  "workflow_sha256": "b6966c352799e2716998eb7eb972f90710d817fdd865a51e417527f7651db929",
+  "shellcheck_executed": false,
+  "bash_syntax": "All four actual run blocks checked separately by contract_checks.py"
+}
