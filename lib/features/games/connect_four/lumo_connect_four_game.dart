@@ -23,6 +23,8 @@ const _columnTouchSize = 48.0;
 const _boardPadding = 10.0;
 const _boardBorderWidth = 2.4;
 const _boardContentInset = _boardPadding + _boardBorderWidth;
+const _minimumBoardWidth =
+    ConnectFourEngine.columns * _columnTouchSize + _boardContentInset * 2;
 
 class LumoConnectFourScreen extends StatefulWidget {
   const LumoConnectFourScreen({super.key, required this.appState, this.seed});
@@ -499,13 +501,20 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
           SafeArea(
             child: LayoutBuilder(builder: (context, constraints) {
               final wide = constraints.maxWidth > constraints.maxHeight;
+              // Use the edge space before making a phone board scroll.
+              final horizontalPadding = wide
+                  ? 20.0
+                  : math.min(
+                      12.0,
+                      math.max(0.0,
+                          (constraints.maxWidth - _minimumBoardWidth) / 2));
               return Column(children: [
                 _header(),
                 if (!wide) _modes(),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: wide ? 20 : 12, vertical: 8),
+                        horizontal: horizontalPadding, vertical: 8),
                     child: wide
                         ? Row(children: [
                             Expanded(flex: 3, child: _playArea()),
@@ -859,10 +868,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                 tableExtra);
         final fittedWidth =
             math.min(constraints.maxWidth, availableHeight * 7 / 6);
-        final width = math.max(
-            fittedWidth,
-            ConnectFourEngine.columns * _columnTouchSize +
-                _boardContentInset * 2);
+        final width = math.max(fittedWidth, _minimumBoardWidth);
         final boardHeight = math.min(availableHeight, width * 6 / 7);
         // Board wells and their 48dp controls share one coordinate system.
         // On narrow/short displays they scroll together; only the well spacing
@@ -951,135 +957,141 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         ]),
       );
 
-  Widget _board() => RepaintBoundary(
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Positioned(
-              top: 16,
-              right: -12,
-              bottom: -10,
-              width: 16,
-              child: IgnorePointer(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.horizontal(
-                        right: Radius.circular(10)),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xFF0A4A86), Color(0xFF041226)],
-                    ),
-                    border: Border.all(color: const Color(0x6648D0F0)),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 12,
-              right: -8,
-              bottom: -14,
-              height: 16,
-              child: IgnorePointer(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(12)),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xFF0C3A6A), Color(0xFF030A18)],
+  Widget _board() => Center(
+        child: SizedBox.expand(
+          child: RepaintBoundary(
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(
+                  top: 16,
+                  right: -12,
+                  bottom: -10,
+                  width: 16,
+                  child: IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.horizontal(
+                            right: Radius.circular(10)),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xFF0A4A86), Color(0xFF041226)],
+                        ),
+                        border: Border.all(color: const Color(0x6648D0F0)),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(_boardPadding),
-              decoration: BoxDecoration(
-                color: const Color(0xE0081636),
-                borderRadius: BorderRadius.circular(26),
-                border: Border.all(
-                    color: const Color(0xFF8AF0FF), width: _boardBorderWidth),
-                boxShadow: const [
-                  BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
-                  BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
-                  BoxShadow(
-                      color: Color(0x90051633),
-                      blurRadius: 14,
-                      offset: Offset(0, 8)),
-                ],
-              ),
-              child: LayoutBuilder(builder: (context, constraints) {
-                final w = constraints.maxWidth / 7;
-                final h = constraints.maxHeight / 6;
-                final diameter = math.min(w, h) * .80;
-                return GestureDetector(
-                  key: const ValueKey('connect-board-tap-area'),
-                  behavior: HitTestBehavior.opaque,
-                  onTapUp: (details) =>
-                      _tapColumn((details.localPosition.dx / w).floor()),
-                  child: Stack(clipBehavior: Clip.none, children: [
-                    for (var r = 0; r < 6; r++)
-                      for (var c = 0; c < 7; c++)
-                        Positioned(
-                          left: c * w + (w - diameter) / 2,
-                          top: r * h + (h - diameter) / 2,
-                          width: diameter,
-                          height: diameter,
-                          child: Semantics(
-                            key: ValueKey('connect-cell-$r-$c'),
-                            label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
-                                '${_game.at(r, c).name}',
-                            child: _disc(
-                              _fallPosition == (row: r, column: c)
-                                  ? ConnectPiece.empty
-                                  : _game.at(r, c),
-                              winner: _game.winningLine
-                                  .contains((row: r, column: c)),
-                              replayFocus: _winReplayIndex != null &&
-                                  _winReplayIndex! < _game.winningLine.length &&
-                                  _game.winningLine[_winReplayIndex!] ==
-                                      (row: r, column: c),
+                Positioned(
+                  left: 12,
+                  right: -8,
+                  bottom: -14,
+                  height: 16,
+                  child: IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(12)),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xFF0C3A6A), Color(0xFF030A18)],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(_boardPadding),
+                  decoration: BoxDecoration(
+                    color: const Color(0xE0081636),
+                    borderRadius: BorderRadius.circular(26),
+                    border: Border.all(
+                        color: const Color(0xFF8AF0FF),
+                        width: _boardBorderWidth),
+                    boxShadow: const [
+                      BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
+                      BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
+                      BoxShadow(
+                          color: Color(0x90051633),
+                          blurRadius: 14,
+                          offset: Offset(0, 8)),
+                    ],
+                  ),
+                  child: LayoutBuilder(builder: (context, constraints) {
+                    final w = constraints.maxWidth / 7;
+                    final h = constraints.maxHeight / 6;
+                    final diameter = math.min(w, h) * .80;
+                    return GestureDetector(
+                      key: const ValueKey('connect-board-tap-area'),
+                      behavior: HitTestBehavior.opaque,
+                      onTapUp: (details) =>
+                          _tapColumn((details.localPosition.dx / w).floor()),
+                      child: Stack(clipBehavior: Clip.none, children: [
+                        for (var r = 0; r < 6; r++)
+                          for (var c = 0; c < 7; c++)
+                            Positioned(
+                              left: c * w + (w - diameter) / 2,
+                              top: r * h + (h - diameter) / 2,
+                              width: diameter,
+                              height: diameter,
+                              child: Semantics(
+                                key: ValueKey('connect-cell-$r-$c'),
+                                label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
+                                    '${_game.at(r, c).name}',
+                                child: _disc(
+                                  _fallPosition == (row: r, column: c)
+                                      ? ConnectPiece.empty
+                                      : _game.at(r, c),
+                                  winner: _game.winningLine
+                                      .contains((row: r, column: c)),
+                                  replayFocus: _winReplayIndex != null &&
+                                      _winReplayIndex! <
+                                          _game.winningLine.length &&
+                                      _game.winningLine[_winReplayIndex!] ==
+                                          (row: r, column: c),
+                                ),
+                              ),
+                            ),
+                        if (_fallPosition case final position?)
+                          AnimatedBuilder(
+                            animation: _fall,
+                            builder: (context, _) {
+                              final progress = Curves.bounceOut
+                                  .transform(_fall.value.clamp(0, 1));
+                              final top = -diameter +
+                                  (position.row * h +
+                                          (h - diameter) / 2 +
+                                          diameter) *
+                                      progress;
+                              return Positioned(
+                                left: position.column * w + (w - diameter) / 2,
+                                top: top,
+                                width: diameter,
+                                height: diameter,
+                                child: _disc(_fallPiece),
+                              );
+                            },
+                          ),
+                        const Positioned.fill(
+                          child: IgnorePointer(
+                            child: CustomPaint(
+                              painter: LumoConnectFourGlassPlate(
+                                columns: ConnectFourEngine.columns,
+                                rows: ConnectFourEngine.rows,
+                                diameterFactor: .80,
+                              ),
                             ),
                           ),
                         ),
-                    if (_fallPosition case final position?)
-                      AnimatedBuilder(
-                        animation: _fall,
-                        builder: (context, _) {
-                          final progress = Curves.bounceOut
-                              .transform(_fall.value.clamp(0, 1));
-                          final top = -diameter +
-                              (position.row * h +
-                                      (h - diameter) / 2 +
-                                      diameter) *
-                                  progress;
-                          return Positioned(
-                            left: position.column * w + (w - diameter) / 2,
-                            top: top,
-                            width: diameter,
-                            height: diameter,
-                            child: _disc(_fallPiece),
-                          );
-                        },
-                      ),
-                    const Positioned.fill(
-                      child: IgnorePointer(
-                        child: CustomPaint(
-                          painter: LumoConnectFourGlassPlate(
-                            columns: ConnectFourEngine.columns,
-                            rows: ConnectFourEngine.rows,
-                            diameterFactor: .80,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                );
-              }),
+                      ]),
+                    );
+                  }),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       );
 
