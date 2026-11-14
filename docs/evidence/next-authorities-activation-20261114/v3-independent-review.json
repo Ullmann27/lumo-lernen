@@ -1,0 +1,371 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_workflow_source_review",
+  "created_utc": "2026-11-14T17:40:25Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "reviewer": "flutter_integration",
+  "outcome": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "scope": "Exact immutable V2-to-V3 workflow delta and the added speech execution chain; no execution acceptance.",
+  "original_bindings": {
+    "workflow": {
+      "path": ".github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 64401,
+      "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+      "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b"
+    },
+    "complete_18_member_pack": {
+      "bytes": 231503,
+      "sha256": "d3c9e5f9fecba6f2b7303a7f95635b00a1242793afd7237959f3285f96fc6dca",
+      "git_blob": "26dfc81412126388d10530ce4f7dd5d18c822ebc"
+    },
+    "source_freeze": {
+      "bytes": 3629,
+      "sha256": "9c1e7f5005d094e31f452c352e88a116ba02b859eac8dbea838e9fe7ba26d5af",
+      "git_blob": "9a7644957b87a7b1f9b25a34281086e3abee9a1e"
+    },
+    "manifest": {
+      "bytes": 4401,
+      "sha256": "fa68de4fefd55ee7332b75a7905ec688eb6bbe8b35a25849fd8c05dce8f47d68",
+      "git_blob": "bf91452b94cabfdf4f7a024ca6e828749582f948"
+    },
+    "exact_patch": {
+      "bytes": 8869,
+      "sha256": "d419f7d7299d975e56f65e0b984f36b642466d5f46ca4b672518aee08dfe01fc",
+      "git_blob": "d6b50cf6746f19b172e1cd5be86e8e00bab9dd86"
+    },
+    "speech_freeze": {
+      "git_blob": "b789addc1af8f5cc43439780513ebb9e9a889534",
+      "sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+      "bytes": 9728
+    },
+    "speech_test_roster": {
+      "git_blob": "29ad22a2cf518e1bc84cf77a60a37f9882896eb8",
+      "sha256": "5fc92e99093f9e7affb0d3f976b3a6c0610c44d666508f581c4b8e381fb3bd30",
+      "bytes": 3944
+    }
+  },
+  "verification_method": {
+    "transport": "Complete immutable GitHub blob UTF-8 reads, retained in function store.",
+    "hashing": "Independent UTF-8 byte length, SHA256 and Git blob SHA1 for the five original blobs and all eighteen pack members.",
+    "exact_diff": {
+      "v2": {
+        "bytes": 56951,
+        "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+        "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+      },
+      "v3": {
+        "bytes": 64401,
+        "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+        "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b"
+      },
+      "patch": {
+        "bytes": 8869,
+        "sha256": "d419f7d7299d975e56f65e0b984f36b642466d5f46ca4b672518aee08dfe01fc",
+        "git_blob": "d6b50cf6746f19b172e1cd5be86e8e00bab9dd86"
+      },
+      "hunks": 1,
+      "old_start": 616,
+      "old_count": 11,
+      "new_start": 616,
+      "new_count": 114,
+      "insertions": 105,
+      "deletions": 2,
+      "patch_applies_byte_exact": true,
+      "reverse_three_edits_restore_v2": true
+    },
+    "actual_source_crosscheck": [
+      {
+        "path": "scripts/compile_android_host.sh",
+        "bytes": 3386,
+        "sha256": "eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8",
+        "git_blob": "48893609d274834c58f7b6eceb63b0b5ec86951f",
+        "byte_equal_to_authorized_speech_freeze": true
+      },
+      {
+        "path": "scripts/run_speech_jvm_contracts.py",
+        "bytes": 19493,
+        "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+        "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24",
+        "byte_equal_to_authorized_speech_freeze": true
+      },
+      {
+        "path": "scripts/tests/test_speech_jvm_runner.py",
+        "bytes": 14569,
+        "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+        "git_blob": "4358a2540c65c19701b39d582465089672f884e5",
+        "byte_equal_to_authorized_speech_freeze": true
+      }
+    ],
+    "contained_speech_freeze_and_roster_byte_equal_to_own_published_originals": true,
+    "product_code_imported_or_executed": false
+  },
+  "findings": [
+    {
+      "id": "delta",
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The one hunk has 105 inserted and 2 removed lines. Applying it to the full V2 produces the full V3 byte-for-byte. Removing the two added steps and reversing only the compile SHA256/Gitblob replacements restores the entire 56,951-byte V2. No change to the five groups, 35-minute job budget, seven Flutter suites, package/source guards, Native pairing, renderer gates or final upload."
+    },
+    {
+      "id": "compile_before_speech",
+      "workflow_lines": [
+        614,
+        623
+      ],
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The real compile helper is SHA256-checked and bound to HEAD:scripts/compile_android_host.sh before invocation from host-source. It is the exact 48893609 helper from the thirteen-source freeze, whose sole additive required-class change is LumoSpeechEnvelope. set -euo pipefail retains failure from the helper through tee. Both following speech steps use the ordinary success-gated matrix condition, with no continue-on-error or retry."
+    },
+    {
+      "id": "source_and_import_binding",
+      "workflow_lines": [
+        624,
+        664
+      ],
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The nineteen-method recorder requires the actual pushed Host HEAD, hashes the compile helper, runner and test module, checks their HEAD blobs, rejects final-path symlinks, retains original bytes and checks copies. It verifies the imported test module and its RUNNER resolve to these exact current Host paths. The three complete source copies equal the authorized speech freeze."
+    },
+    {
+      "id": "nineteen_observed_cases",
+      "workflow_lines": [
+        660,
+        703
+      ],
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The recorder loads the actual fixed test module and records startTest and addSuccess identities. Success requires nineteen unique loaded methods in SpeechJvmRunnerTest, testsRun=19, actual starts and successful completions exactly equal the loaded list, wasSuccessful, no loader errors, and zero failures, errors, skips, expected failures and unexpected successes. Loader-only, partial, duplicated, skipped and unsuccessful outcomes cannot satisfy those conditions. The exact source contains the nineteen methods documented in the preserved roster."
+    },
+    {
+      "id": "nineteen_original_failure_evidence",
+      "workflow_lines": [
+        628,
+        711
+      ],
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The Python invocation writes original stdout and stderr separately. The shell captures its actual exit code without masking it, stores it, prints both original streams and requires zero. Normal unittest failure/error/skip traces are retained in result.json. An import, source check or uncaught exception before that report still fails the process; its stderr and actual exit survive, without a synthetic result or success marker."
+    },
+    {
+      "id": "unchanged_real_jvm_runner",
+      "workflow_lines": [
+        713,
+        726
+      ],
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The next step requires a fresh host-compile-evidence/speech directory, rechecks the unchanged 9d17f343 runner SHA256 and HEAD blob, and invokes it exactly once with --repo-root \"$PWD\" --output host-compile-evidence/speech. pipefail preserves a nonzero runner exit; exactly one final PASS marker is additionally required. The runner first verifies a PASS compile report for the same actual Host and all four actual speech classes, including their build/app paths, byte sizes, hashes and JVM magic."
+    },
+    {
+      "id": "jvm_failure_and_toolchain_boundaries",
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The unchanged runner uses the one observed existing wrapper distribution, verifies compiler/standard-library bytecode and all JAR identities, resolves its actual JDK offline, and requires java plus javac. It sets REQUIRE_ALL_TESTS=true. Its 120-second resolution, 300-second Java and 420-second Kotlin process deadlines, timeout TERM/KILL handling, raw child logs and exit codes remain intact. The two fixed groups require eleven/eight actual cases, unique IDs, zero failures/errors/skips/expected failures/unexpected successes and each original marker exactly once. It compares tracked speech sources and compiler libraries before/after. Exceptions produce FAIL and nonzero exit; no compiler download, skip fallback or mutation retry was introduced."
+    },
+    {
+      "id": "always_evidence_and_old_gates",
+      "workflow_lines": [
+        727,
+        733,
+        896,
+        946
+      ],
+      "verdict": "ACCEPTED_SOURCE_SCOPE",
+      "detail": "The existing always-copy of the entire compile evidence directory follows both new steps and remains gated only by the correct group and successful Prepare. New nineteen-method evidence is already under the prepared external evidence root. The retained package/source after-guards and fixed runner.temp/run/attempt/group always-upload remain byte-identical to V2. Ordinary test or runner failures retain available originals and cannot reach the final success result."
+    }
+  ],
+  "actual_method_rosters": [
+    {
+      "path": "scripts/tests/test_speech_jvm_runner.py",
+      "methods": [
+        "test_missing_distribution_cannot_bootstrap_or_use_global_gradle",
+        "test_pull_request_binds_actual_head_instead_of_synthetic_merge",
+        "test_foreign_or_missing_pull_request_payload_cannot_supply_sources",
+        "test_ambiguous_cached_distribution_is_rejected",
+        "test_nonstandard_wrapper_cache_is_rejected",
+        "test_invalid_compiler_class_is_rejected",
+        "test_two_compiler_versions_are_rejected",
+        "test_offline_command_uses_observed_distribution_not_wrapper",
+        "test_missing_jdk_refuses_inherited_skip_policy",
+        "test_resolved_jdk_and_strict_policy_override_inherited_environment",
+        "test_complete_declared_rosters_have_positive_controls",
+        "test_partial_or_duplicate_test_roster_cannot_pass",
+        "test_skip_expected_failure_or_error_is_not_success",
+        "test_missing_duplicate_and_unexecuted_markers_fail_closed",
+        "test_compile_source_and_class_bytes_must_both_match",
+        "test_foreign_class_path_cannot_satisfy_compile_binding",
+        "test_deadline_retains_original_output_and_never_reports_success",
+        "test_child_records_skip_as_failure_without_claiming_jvm_execution",
+        "test_broad_discovery_does_not_collect_dedicated_jvm_modules"
+      ],
+      "execution": "NOT_RUN_SOURCE_ROSTER_ONLY"
+    },
+    {
+      "path": "scripts/speech_contracts/test_english_lesson_speech.py",
+      "methods": [
+        "test_existing_german_engine_contract",
+        "test_english_word_tags_and_input_bound",
+        "test_join_preserves_pcm_and_exact_gap",
+        "test_malformed_wave_formats_refused",
+        "test_total_envelope_duration_bound",
+        "test_language_order_identity_and_no_result_cache",
+        "test_cancel_before_first_inference",
+        "test_cancel_between_inferences",
+        "test_cancel_before_join",
+        "test_cancel_after_join_before_return",
+        "test_interrupted_worker_never_starts_inference"
+      ],
+      "execution": "NOT_RUN_SOURCE_ROSTER_ONLY"
+    },
+    {
+      "path": "scripts/speech_contracts/test_learning_english_speech_lifecycle.py",
+      "methods": [
+        "test_original_seventeen_lifecycle_assertions",
+        "test_original_twenty_three_envelope_assertions",
+        "test_host_descriptor_owns_word_and_language",
+        "test_malformed_current_lesson_refused",
+        "test_parent_guards_and_old_german_signature",
+        "test_one_player_real_position_and_pcm_gap",
+        "test_late_results_after_pause_replace_and_destroy",
+        "test_wrong_result_word_locale_identity_refused"
+      ],
+      "execution": "NOT_RUN_SOURCE_ROSTER_ONLY"
+    }
+  ],
+  "checked_members": [
+    {
+      "path": "before/.github/workflows/lumo-next-table-authorities.yml",
+      "mode": "100644",
+      "bytes": 56951,
+      "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+      "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+    },
+    {
+      "path": "contract-delta.json",
+      "mode": "100644",
+      "bytes": 7437,
+      "sha256": "c737eae737c53165af9bd4bc32c0b7b92311c6965775f04cc98e6dc3b945050d",
+      "git_blob": "212571cd1b30e9357cbf8b6144f86db54f32a88a"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-next-table-authorities.yml",
+      "mode": "100644",
+      "bytes": 64401,
+      "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e",
+      "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b"
+    },
+    {
+      "path": "handoff.json",
+      "mode": "100644",
+      "bytes": 1414,
+      "sha256": "5d012ed08e8fcb7566e0baa5447b36a466d0e60f2894ea3d5e49b9001c240a75",
+      "git_blob": "9beecafcd3d6e4164d847c484aa37f86de9b7b83"
+    },
+    {
+      "path": "integration.patch",
+      "mode": "100644",
+      "bytes": 8869,
+      "sha256": "d419f7d7299d975e56f65e0b984f36b642466d5f46ca4b672518aee08dfe01fc",
+      "git_blob": "d6b50cf6746f19b172e1cd5be86e8e00bab9dd86"
+    },
+    {
+      "path": "manifest.json",
+      "mode": "100644",
+      "bytes": 4401,
+      "sha256": "fa68de4fefd55ee7332b75a7905ec688eb6bbe8b35a25849fd8c05dce8f47d68",
+      "git_blob": "bf91452b94cabfdf4f7a024ca6e828749582f948"
+    },
+    {
+      "path": "originals/scripts/compile_android_host.sh",
+      "mode": "100644",
+      "bytes": 3386,
+      "sha256": "eaa36179179a172f1dff6bc49cf1917813e0143f6beed8a04b2c1a49071618f8",
+      "git_blob": "48893609d274834c58f7b6eceb63b0b5ec86951f"
+    },
+    {
+      "path": "originals/scripts/run_speech_jvm_contracts.py",
+      "mode": "100644",
+      "bytes": 19493,
+      "sha256": "c411f05b1635ad107363387e7f2f46a5be8d061a3cab8d265cc0c6792b037b23",
+      "git_blob": "9d17f343b16d80bddb861cf26cfeae9e38994f24"
+    },
+    {
+      "path": "originals/scripts/tests/test_speech_jvm_runner.py",
+      "mode": "100644",
+      "bytes": 14569,
+      "sha256": "5b4161a58a3280fe0b70ae0cddca57e58411a04c1a475ad5c9c55ecbb63f2276",
+      "git_blob": "4358a2540c65c19701b39d582465089672f884e5"
+    },
+    {
+      "path": "originals/speech-source-freeze.json",
+      "mode": "100644",
+      "bytes": 9728,
+      "sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d",
+      "git_blob": "b789addc1af8f5cc43439780513ebb9e9a889534"
+    },
+    {
+      "path": "originals/speech-test-contract.json",
+      "mode": "100644",
+      "bytes": 3944,
+      "sha256": "5fc92e99093f9e7affb0d3f976b3a6c0610c44d666508f581c4b8e381fb3bd30",
+      "git_blob": "29ad22a2cf518e1bc84cf77a60a37f9882896eb8"
+    },
+    {
+      "path": "originals/v2/qualification-contract.json",
+      "mode": "100644",
+      "bytes": 8490,
+      "sha256": "a398957ba94e9c1fc5decf364cf75716123797654c87445c8af8dd1e9a1b6fe8",
+      "git_blob": "738d6f2ab7d821caea7b0de556ead507ffce3c7a"
+    },
+    {
+      "path": "originals/v2/source-freeze.json",
+      "mode": "100644",
+      "bytes": 1642,
+      "sha256": "703d612e4b0a4e33da962046e0d671d57608353217d0b3af911a0da787f94f74",
+      "git_blob": "c89452efcba1e9985e6e19eceb7fc234491c77cc"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "bytes": 1875,
+      "sha256": "e3a69287171131af6597b2a0263083fe286c2baf70c87f905158ac531283e396",
+      "git_blob": "572b1044b519fb753a80b7fb1369b56ac1494a56"
+    },
+    {
+      "path": "roundtrip.json",
+      "mode": "100644",
+      "bytes": 4182,
+      "sha256": "afd63e55fe031ed72b4d88a7de23a26c20168f081bf23938e89a1e91d1490375",
+      "git_blob": "96818cc70687fbf13a9e6483bae3b457f0ad54fe"
+    },
+    {
+      "path": "SHA256SUMS",
+      "mode": "100644",
+      "bytes": 1658,
+      "sha256": "a3aa5a4ee8a0395b5a1627b8a0edbcf652c016f9290c78cea3f8f9439f8ce9d1",
+      "git_blob": "72f3b88e81ce07b4b5e583aa4ec50377d5e8bb92"
+    },
+    {
+      "path": "source-freeze.json",
+      "mode": "100644",
+      "bytes": 3629,
+      "sha256": "9c1e7f5005d094e31f452c352e88a116ba02b859eac8dbea838e9fe7ba26d5af",
+      "git_blob": "9a7644957b87a7b1f9b25a34281086e3abee9a1e"
+    },
+    {
+      "path": "static-self-review.json",
+      "mode": "100644",
+      "bytes": 2195,
+      "sha256": "b250c32d7c191fcb8f1ca284e1e9d8b78b4021dd0c57183d496552b310c10f93",
+      "git_blob": "86f9a224a60ca3c90afc20ed94933f70ae947d86"
+    }
+  ],
+  "execution_and_limits": {
+    "tests_run_by_this_review": 0,
+    "imports_run_by_this_review": 0,
+    "lint_or_syntax_execution_by_this_review": false,
+    "compile_jvm_flutter_engine_android_execution_by_this_review": false,
+    "source_tree_ref_ci_release_mutations": false,
+    "authorized_output_action": "Create only this immutable review blob and fully read it back.",
+    "future_host_binding": "The actual workflow push github.sha; no earlier Host result is substituted.",
+    "native_head": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+    "native_tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+    "distinct_proof_scopes": "Nineteen orchestration methods use declared synthetic boundaries. Eleven Java/eight Kotlin contracts and historical 23/17 assertions remain separate real JVM executions still to be observed. No model inference, heard audio, device playback, APK or release acceptance follows from this source review.",
+    "interruption_limit": "Available originals on ordinary failures are preserved by the workflow. No claim of artifact completion after an externally killed runner is made.",
+    "root_reported_lint": "Any separately performed Root lint belongs to its own original evidence and is not a test result of this review."
+  },
+  "conclusion": "No concrete blocker in the exact V3 source delta. The new speech sequence is bound to the real compile, current committed sources and actual observed case outcomes. Required executions remain separate gates."
+}

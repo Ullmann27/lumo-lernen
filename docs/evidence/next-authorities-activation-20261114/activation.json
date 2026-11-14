@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "QUALIFICATION_ACTIVATION_SOURCE_RECORD",
+  "prepared_utc": "2026-11-14 17:48:30 UTC",
+  "source_parent": {
+    "head": "649ff4ed08bdc552716f2533429c063af49781e6",
+    "tree": "e4c3d260e14644260dd8de4dcf2f8328d257e238"
+  },
+  "execution_identity": "The actual GitHub push commit github.sha; this document does not predeclare a test result or the self-referential commit SHA.",
+  "native": {
+    "head": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+    "tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00"
+  },
+  "workflow": {
+    "path": ".github/workflows/lumo-next-table-authorities.yml",
+    "bytes": 64401,
+    "git_blob": "6a08dfb852cbec128db96aaa84add2bc69a7194b",
+    "sha256": "9dbda2369930ed77275cb3adc401fedc58538ebe21736f7e29b68dad23ab6f9e"
+  },
+  "frozen_speech_sources": {
+    "count": 13,
+    "freeze_blob": "b789addc1af8f5cc43439780513ebb9e9a889534",
+    "freeze_sha256": "f76320fd641973128624523375c899a9910b86b9b14c692decf79bb4355da99d"
+  },
+  "independent_source_review_blob": "8b6b9e40ef46f606b526bd61d5d34b3c25a83601",
+  "syntax": {
+    "run": 43622916726,
+    "attempt": 1,
+    "job": 132532339786,
+    "head": "ce50999f91b17dd4b9efd4284c9b48b3eb074b4e",
+    "actionlint_exit": 0,
+    "python_blocks": {
+      "qualification": 9,
+      "lint": 2
+    },
+    "original_pack_blob": "f816d0230f2d5eb28c97a340fb0511f3bb99818b",
+    "scope": "Actual exact workflow and embedded Python syntax, not functional acceptance."
+  },
+  "prior_incomplete_coverage": {
+    "run": 43622349704,
+    "preserved_pack_blob": "855e3320b877b560ef2d3d3e24a36aaff9531d20",
+    "diagnosis": "First collector omitted the redirected speech-recorder heredoc; original successful Actionlint result remains separated from corrected complete AST coverage."
+  },
+  "requested_groups": [
+    "memory",
+    "quiz",
+    "english",
+    "android-host-compile",
+    "flutter-contracts"
+  ],
+  "execution_budget_minutes_per_group": 35,
+  "source_changes_in_activation": 0,
+  "active_apk_candidate_unchanged": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+  "test_outcomes": "PENDING actual five-group execution; no earlier producer, local or old-Host result transferred."
+}
