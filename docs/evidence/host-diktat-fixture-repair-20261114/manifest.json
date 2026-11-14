@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1650,
+      "sha256": "47b80334dd93b4c699b8465ff86d647e46830439a99ebf5d651d6fcd9c588ede",
+      "git_blob": "90769eb207c13b786a20da362d80dc3676009c99"
+    },
+    {
+      "path": "before/test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "bytes": 20825,
+      "sha256": "e648cbb6d83d0a386f6dda15128950ad3974881fe439d270383fa18c25300ca1",
+      "git_blob": "c794b4239d1d402b3084a67ba49ea81d28d8d4a3"
+    },
+    {
+      "path": "diagnosis.json",
+      "bytes": 2262,
+      "sha256": "09c892254cdfd52acf30364e83108bd416a608e97355b1817d201e79ff111a61",
+      "git_blob": "a31aba138ea5a59913f6345eceec38e8b10b5ab5"
+    },
+    {
+      "path": "final-source/test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "bytes": 21107,
+      "sha256": "e0eced5d27a8e2606816a4cc83d39edc2047f906b035f2d3e9e50c8c8fd45849",
+      "git_blob": "c1123ff353e10308d454449fe9eccf4df5ff1b64"
+    },
+    {
+      "path": "original-contract-source/lib/features/learning_modules/learning_module_registry.dart",
+      "bytes": 4664,
+      "sha256": "a8c272577b4ff6d33bfe5c97327243d36ffdc77b1b2cf7d5a5fa5f05b0eec890",
+      "git_blob": "201bd14851ea86c1ac46c8459b586f258024d8a3"
+    },
+    {
+      "path": "original-contract-source/lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 26157,
+      "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e",
+      "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c"
+    },
+    {
+      "path": "original-contract-source/lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 2434,
+      "sha256": "659f2e062d7df7ee354d84ec94e0f598de6bddc1137d0042e7a67ea12509ddbd",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420"
+    },
+    {
+      "path": "original-contract-source/lib/widgets/design/lumo_learning_module_frame.dart",
+      "bytes": 36398,
+      "sha256": "d4be5baa82cc4c7982f3ca6d42d3a4a3448bb708b3ba89b350de7663ca824598",
+      "git_blob": "bae52b67c11f9dafcf30516e228384218d7cc60e"
+    },
+    {
+      "path": "original-contract-source/test/lumo_ink_surface_regression_test.dart",
+      "bytes": 2704,
+      "sha256": "c030f7e2ee6e6a1a07da6201691c7c88518e0c87005fccd44aa2a3a671f42a39",
+      "git_blob": "0583484e930700c73460ca8d21d0e109401dd145"
+    },
+    {
+      "path": "original-contract-source/test/wort_diktat_gesture_regression_test.dart",
+      "bytes": 12858,
+      "sha256": "0e34bcbdbcd3cfcd2a690c49935753bda9cb7b5c2b283507f2caf722841671e6",
+      "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17"
+    },
+    {
+      "path": "originals/archive-readback.json",
+      "bytes": 4072,
+      "sha256": "2b7f67aedb75f8835bb96db5a92c72de95ee61c2b8207880ac0a43eeee003337",
+      "git_blob": "e93db3cc735bf0ab159bb7ba12473cdd42008390"
+    },
+    {
+      "path": "originals/complete-ci-original-pack.tar.gz",
+      "bytes": 239473,
+      "sha256": "0a2705bbd775c8b13440d5a97bd996124dbd1f64d3fe2c99038a00be011c5047",
+      "git_blob": "631be08b87b281c72f469a1eacf12be4d5f9f09d"
+    },
+    {
+      "path": "originals/source-binding.json",
+      "bytes": 2041,
+      "sha256": "2d5b62b8de7d136501a7c325b8adbb96df27086708ad198be7b94c48f26cf7da",
+      "git_blob": "77b2d10a20abc8e9cd913e0118a3d87f1bbc3c3e"
+    },
+    {
+      "path": "originals/three-failure-events.jsonl",
+      "bytes": 7327,
+      "sha256": "a35e6efd6b9102110a849877b85566d68172923e4e87eb0ff5bfc6c5e49f1e3e",
+      "git_blob": "7d3a09950a4b7752cdd652b39054a901a5c1658c"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 1321,
+      "sha256": "6c77ce97c69fa792bc6013ff05bb3c615b77afead80ccd03d1198a7ef6c6b361",
+      "git_blob": "237a1f9be240145558af4f2f103c4c3921b91eac"
+    },
+    {
+      "path": "read-only-checkout-after.json",
+      "bytes": 376,
+      "sha256": "ec4868c22107b50ff9a1acc57c73314fba51faf281c4dfb19cff4a6425c029e7",
+      "git_blob": "a594d8a22308965057cbef4a09d64879abd3e1ac"
+    },
+    {
+      "path": "read-only-checkout-before.json",
+      "bytes": 376,
+      "sha256": "ec4868c22107b50ff9a1acc57c73314fba51faf281c4dfb19cff4a6425c029e7",
+      "git_blob": "a594d8a22308965057cbef4a09d64879abd3e1ac"
+    },
+    {
+      "path": "repair.patch",
+      "bytes": 1534,
+      "sha256": "7d8c8d1cfad8e97892118463d80bdf87a5429e8c78daeab80779661e32fd1ef9",
+      "git_blob": "ec8b5dfe408a564c878b78d753f18a4a77dc3b6a"
+    },
+    {
+      "path": "source-dependencies.json",
+      "bytes": 3381,
+      "sha256": "3bfac37bcd17135052656b9eeb6c1d1d73ce2c577b73cea3e258df67e0da3433",
+      "git_blob": "ae7844b8560e22d678531822677b4c9fd92d7245"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 1641,
+      "sha256": "ed127ce0e7fe6fbc24d452b39ee007b8bbd249858dae72cfd0898fb844b7fef6",
+      "git_blob": "e33c1a6d6ea02d279d2067631b03c0c00571cd20"
+    },
+    {
+      "path": "test-inventory.json",
+      "bytes": 18484,
+      "sha256": "58f5d3d7f31f10df1de489da648139b2c1e322af9df97b440e67e0243d7a25e2",
+      "git_blob": "9c12d5a2ed124f60dc3fa36271890b000fc1553b"
+    }
+  ],
+  "all_bytes_read_back": true,
+  "excluded_self_referential_files": [
+    "manifest.json",
+    "handoff.json"
+  ]
+}

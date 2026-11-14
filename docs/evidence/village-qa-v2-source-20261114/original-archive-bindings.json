@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "source-freeze-v2.json",
+      "bytes": 6758,
+      "sha256": "f65135ab34e78226e7b3a6a4efdb88378fa85c206063f329667ca72d22d60e37",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/source-freeze-v2.json"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2708,
+      "sha256": "d4b0c7d0ab5624d85e738992f124184870afb17ace024c8ce6b81c9f4603447d",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/handoff.json"
+    },
+    {
+      "path": "qa-originals.tar.gz",
+      "bytes": 198102,
+      "sha256": "6def2018e44d0c63551fad151fdf2b7f8c7c2c01470b39f54e8c5eef763abcca",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "deadline-v2.patch",
+      "bytes": 4476,
+      "sha256": "827fba7c58cafc8c689578b1d57edcb165dbafb6cb4dc6047c5e9aec32e05a87",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-proposal-a118-20261114/deadline-v2.patch"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 13944,
+      "sha256": "b941a9d21836038b0fdbb1baf43a11cd39d10d358fd93e220173bd119bc1dd3f",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-v2-independent-review-20261114/review.json"
+    },
+    {
+      "path": "root-base-binding.json",
+      "bytes": 2471,
+      "sha256": "ee938482e7d15d74add4a89fa9ee969c62e48a3051de0628b89b49dad0c9dc13",
+      "source": "/tmp/lumo-root-recovery-1105/village-qa-root-base-binding.json"
+    },
+    {
+      "path": "root-archive-review.json",
+      "bytes": 246,
+      "sha256": "a71a0e958251fd326ffe6282634d65d2150402e684a9afd9353238fcd3d1d4b4",
+      "source": "/tmp/lumo-root-recovery-1105/village-qa-root-archive-review.json"
+    }
+  ]
+}

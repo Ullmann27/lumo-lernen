@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T13:17:02.219397+00:00",
+  "scope": "INDEPENDENT_READ_ONLY_SOURCE_REVIEW",
+  "outcome": "NO_CONCRETE_SOURCE_BLOCKER_IDENTIFIED",
+  "freeze": {
+    "path": "/tmp/host-pr493-flutter-return-integration-146b-20261114/source-freeze.json",
+    "bytes": 1306,
+    "sha256": "4b5f7a62a11cafa3c85d783855b00fd6ab9239734f669d757fb3976726f90082",
+    "git_blob": "ab5ee177441354854e3d750bc526665b50169500"
+  },
+  "sources": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "mode": "100644",
+      "bytes": 10716,
+      "sha256": "4e60efb31942c5d0ce1054024140b282f10042dffd7827f876986c925ab7c99a",
+      "git_blob": "37ef806cd79e06273950753bd1442d05472f7106"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "mode": "100644",
+      "bytes": 11092,
+      "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+      "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+    }
+  ],
+  "base_claim_in_pack": {
+    "commit": "146b5199d0a6d5e2d158e7be15db6d226ed18204",
+    "tree": "09cf7b51d98ebcefd9e3c6af09c1be52439d03ad"
+  },
+  "additional_independent_base_binding": "The two prior files and shared contract equal the already independently checked published bb97 checkout bytes; no new network or Git mutation was used.",
+  "production_full_byte_reconstruction": true,
+  "only_production_additions": [
+    "Probe.wait_for_flutter_control",
+    "one games_ready observer call in return_to_flutter"
+  ],
+  "existing_deadline_tests_byte_equal_after_removing_exact_four_additive_lines": true,
+  "shared_flutter_target_contract": {
+    "bytes": 36130,
+    "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+    "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+  },
+  "findings": [
+    "One existing Leave touch is followed by observation only; the added method never sends input.",
+    "Each observed hierarchy, captured frame, density/target evaluation and final evidence write must finish before the local deadline; equality is rejected. The global900-second remaining() checks remain mandatory.",
+    "Existing pause caption blocks destination acceptance. Exact app package, enabled/clickable/bounds/minimum/ambiguity rules are delegated to the unchanged actual Flutter target contract.",
+    "Current PNG hash is checked before observer acceptance; tampering propagates failure.",
+    "The ready observation is not used as touch authorization: the next existing flutter_touch still captures its own two fresh observations.",
+    "Only the new observer and one caller line are added; all previous production source bytes are recoverable exactly by removing those two additions."
+  ],
+  "new_test_methods_read": [
+    "test_one_leave_tap_waits_for_delayed_games_before_fresh_portal_touch",
+    "test_permanent_pause_fails_without_repeating_leave_or_opening_a_route",
+    "test_invalid_destinations_never_authorize_input",
+    "test_ready_observation_is_not_reused_as_a_portal_touch_authorization",
+    "test_exact_deadline_rejects_late_hierarchy_frame_and_density",
+    "test_evidence_write_cannot_turn_an_expired_observation_into_success",
+    "test_global_deadline_remains_mandatory",
+    "test_current_frame_integrity_failure_is_not_retried_or_accepted"
+  ],
+  "new_test_method_count": 8,
+  "tests_executed": false,
+  "device_or_download": false,
+  "subject_source_edits": false,
+  "limits": [
+    "All new device boundaries in the added tests are explicitly synthetic.",
+    "No runtime or Android PASS is claimed; original device outcomes remain independent.",
+    "A ready evidence file may already exist if its write overruns the local deadline, but the method then writes failure and raises, never returning games_ready to the caller."
+  ]
+}

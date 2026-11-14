@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1711,
+      "sha256": "5a890936d225c7460bd49cef965beebb0fadbc48b279aa95ca8f40e67e261346",
+      "git_blob": "dec2623826b8cbc9a2546a9b67e2012993d21370"
+    },
+    {
+      "path": "actionlint-process-result.json",
+      "bytes": 706,
+      "sha256": "7c6ae235efb47574903654fbb67f68229ba0b69fe302d6461a2ded2fe0ee00fd",
+      "git_blob": "673aaf182678044800d9e2d10127f7dc89947a07"
+    },
+    {
+      "path": "actionlint.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "actionlint.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "after-source.json",
+      "bytes": 1366107,
+      "sha256": "bec1580183b6d99baccb3a99dd1d616fbd547d5e2ca7ef5aa3cd4c7bbf8b4f1e",
+      "git_blob": "7bbd11e40c8da945b1eef18ce52a48b4ec82512c"
+    },
+    {
+      "path": "after.commit.txt",
+      "bytes": 350,
+      "sha256": "09de804138558d67b90936e88e8162fb7874c13fe310de813a535f43cc862fe7",
+      "git_blob": "37abf22763cec6abd2cd3cdb68a6a6f0d1b81aaf"
+    },
+    {
+      "path": "after.index-flags.nul",
+      "bytes": 287699,
+      "sha256": "575a0f0181e32e38b4425eb121ce891f6285b4f1b6d654f7b60f4abd39b8d4c2",
+      "git_blob": "d83b06a170acc472dd1f1fdbd942be1dc8e49323"
+    },
+    {
+      "path": "after.index-stage.nul",
+      "bytes": 501779,
+      "sha256": "e35d2bcf6d1fd069daa80e0f4a5efb2842e9f8ebd16ef8cd72422bdda329cd78",
+      "git_blob": "e779de317ec3be410f4ac3237371ac501ea5e197"
+    },
+    {
+      "path": "after.index.bin",
+      "bytes": 578419,
+      "sha256": "295cb672714edbe7c4b7eec55d1be26a3c493098ed9a05a2ab20d8a2c8892124",
+      "git_blob": "f3362e9aedfe3611c1e17eb20cbc799793ac7791"
+    },
+    {
+      "path": "after.status.nul",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "after.tree.nul",
+      "bytes": 515159,
+      "sha256": "a14bcb62dd2f8de0c2ff4e578271586bf7a5e84458b22a55c322e9ea317000d8",
+      "git_blob": "14809823aeb14036296f866e483e219275f97b5d"
+    },
+    {
+      "path": "before-source.json",
+      "bytes": 1366107,
+      "sha256": "bec1580183b6d99baccb3a99dd1d616fbd547d5e2ca7ef5aa3cd4c7bbf8b4f1e",
+      "git_blob": "7bbd11e40c8da945b1eef18ce52a48b4ec82512c"
+    },
+    {
+      "path": "before.commit.txt",
+      "bytes": 350,
+      "sha256": "09de804138558d67b90936e88e8162fb7874c13fe310de813a535f43cc862fe7",
+      "git_blob": "37abf22763cec6abd2cd3cdb68a6a6f0d1b81aaf"
+    },
+    {
+      "path": "before.index-flags.nul",
+      "bytes": 287699,
+      "sha256": "575a0f0181e32e38b4425eb121ce891f6285b4f1b6d654f7b60f4abd39b8d4c2",
+      "git_blob": "d83b06a170acc472dd1f1fdbd942be1dc8e49323"
+    },
+    {
+      "path": "before.index-stage.nul",
+      "bytes": 501779,
+      "sha256": "e35d2bcf6d1fd069daa80e0f4a5efb2842e9f8ebd16ef8cd72422bdda329cd78",
+      "git_blob": "e779de317ec3be410f4ac3237371ac501ea5e197"
+    },
+    {
+      "path": "before.index.bin",
+      "bytes": 578419,
+      "sha256": "295cb672714edbe7c4b7eec55d1be26a3c493098ed9a05a2ab20d8a2c8892124",
+      "git_blob": "f3362e9aedfe3611c1e17eb20cbc799793ac7791"
+    },
+    {
+      "path": "before.status.nul",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "before.tree.nul",
+      "bytes": 515159,
+      "sha256": "a14bcb62dd2f8de0c2ff4e578271586bf7a5e84458b22a55c322e9ea317000d8",
+      "git_blob": "14809823aeb14036296f866e483e219275f97b5d"
+    },
+    {
+      "path": "checkout-preparation.json",
+      "bytes": 3475,
+      "sha256": "faf002acc8054b7e242b33f5b8b6912984120594976049b8194a14e29d0b9b17",
+      "git_blob": "3b29d8d393ae63af9a38cfde0fa25ca6163b67d7"
+    },
+    {
+      "path": "environment.json",
+      "bytes": 933,
+      "sha256": "95207c01c37fa5fa887d249d553e507f069982af884292b9542fade2ca4be97a",
+      "git_blob": "186882311dd0a3ebd8c73cea2486372329e6abf9"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3125,
+      "sha256": "819a60f8fea7854748a2c2191e63acdc43949a7af78e8e8b68499e9995b5347f",
+      "git_blob": "a8b0c2b2cee41d479c43b086de9396c621e84749"
+    },
+    {
+      "path": "input-sources/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+      "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+    },
+    {
+      "path": "input-sources/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+    },
+    {
+      "path": "input-sources/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "input-sources/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 86764,
+      "sha256": "baf14a20e411ff725a50a9c058148f8c029273e018c64fec398ea8bbf160e6a0",
+      "git_blob": "12ca0d0ce5298ebe9e07511db9320f012f013687"
+    },
+    {
+      "path": "input-sources/scripts/verify_connect_four_candidate.py",
+      "bytes": 11403,
+      "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea",
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be"
+    },
+    {
+      "path": "input-sources/scripts/verify_connect_four_delivery.py",
+      "bytes": 67003,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+    },
+    {
+      "path": "published-originals/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+      "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+    },
+    {
+      "path": "published-originals/raw-manifest.json",
+      "bytes": 518,
+      "sha256": "a57c3b2a83a6335d8534525c66689e73130fb93f954ff5ea91c5944012db8d0e",
+      "git_blob": "9b49728e0b31037f2822a82458658c76c268ac21"
+    },
+    {
+      "path": "published-originals/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 86764,
+      "sha256": "baf14a20e411ff725a50a9c058148f8c029273e018c64fec398ea8bbf160e6a0",
+      "git_blob": "12ca0d0ce5298ebe9e07511db9320f012f013687"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2377,
+      "sha256": "e819f2c6d07b7bd7cc531cfc497f0f7ca702adb81d87bf8336e42362be5158e8",
+      "git_blob": "4a8b9cf7945b0617ae637c4ff73a0907994bb39d"
+    },
+    {
+      "path": "run_gate.py",
+      "bytes": 6573,
+      "sha256": "d4273e431137ad83b79f22a48a2e64260b2e40b2d83cebbf60790d35a32e0dbb",
+      "git_blob": "93d86df5d5707bf7e33c2c1a4cf7f086e591d111"
+    },
+    {
+      "path": "unittest-process-result.json",
+      "bytes": 733,
+      "sha256": "3aa339225075d8439e3c8a1ca258ba0b514cc6eca759609033442f11c00aefb8",
+      "git_blob": "97969c013807759563775e6900d662d687dcf4dd"
+    },
+    {
+      "path": "unittest.stderr.log",
+      "bytes": 15776,
+      "sha256": "d78d2dc8610e66263e0a32a228b969c78bcb6cd7c348b79e27fc88be8e2512c1",
+      "git_blob": "b984f2ebaebea79e686417eb1ec48bcc61d94a41"
+    },
+    {
+      "path": "unittest.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    }
+  ]
+}

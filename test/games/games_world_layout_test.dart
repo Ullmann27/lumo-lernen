@@ -11,7 +11,7 @@ import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  testWidgets('Spielewelt zeigt die vier Spiele und Lumo Kart', (tester) async {
+  testWidgets('Spielewelt zeigt alle elf Spiele einschließlich Dorfwirtschaft', (tester) async {
     await tester.binding.setSurfaceSize(const Size(392, 2800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final handle = tester.ensureSemantics();
@@ -36,6 +36,7 @@ void main() {
       'Rhythm',
       'Schatzsuche',
       'Bauwelt',
+      'Dorfwirtschaft',
       'Lumo Kart',
     ]) {
       expect(find.text(title), findsWidgets, reason: title);
@@ -75,6 +76,7 @@ void main() {
       'rhythm',
       'treasure',
       'build',
+      'village',
       'kart',
       'connectFour',
       'quizShow',
@@ -94,7 +96,7 @@ void main() {
   });
 
 
-  testWidgets('Fold7 open portrait and tablet keep the tile hub with all ten games', (tester) async {
+  testWidgets('Fold7 open portrait and tablet keep the tile hub with all eleven games', (tester) async {
     for (final size in const [Size(690, 829), Size(768, 1024), Size(1024, 768)]) {
       await tester.binding.setSurfaceSize(size);
       final app = LumoAppState();
@@ -111,7 +113,7 @@ void main() {
       expect(find.text('Auf ins Abenteuer!'), findsOneWidget, reason: '$size');
       for (final identity in const [
         'memory', 'cards', 'puzzle', 'jumpRun', 'rhythm',
-        'treasure', 'build', 'kart', 'connectFour', 'quizShow',
+        'treasure', 'build', 'village', 'kart', 'connectFour', 'quizShow',
       ]) {
         expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
             reason: '$size $identity');

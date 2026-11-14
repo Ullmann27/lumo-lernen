@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "head": "ad623b8a149caf5e4339fd544cef4c4736c0d218",
+  "tree": "af2e6f6d68f64c1274d9355bdc52b523489d83a1",
+  "status": "PASS",
+  "results": [
+    {
+      "name": "original-deadline-counterexample",
+      "argv": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=5s",
+        "60s",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/tmp/lumo-root-recovery-1105/check_village_deadline_original.py"
+      ],
+      "started_at_utc": "2026-11-14T12:18:48.674656+00:00",
+      "finished_at_utc": "2026-11-14T12:18:48.838522+00:00",
+      "elapsed_seconds": 0.16385888299555518,
+      "returncode": 0,
+      "expected_result_observed": true
+    },
+    {
+      "name": "village-34",
+      "argv": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=5s",
+        "240s",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_village_android_evidence.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-14T12:18:48.838658+00:00",
+      "finished_at_utc": "2026-11-14T12:18:59.721721+00:00",
+      "elapsed_seconds": 10.88312760097324,
+      "returncode": 0,
+      "expected_result_observed": true
+    }
+  ],
+  "new_source_verifier_methods_run": 34,
+  "new_source_skips": 0,
+  "original_control_methods_run": 3,
+  "original_expected_failing_subtests": 4,
+  "tracked_source_entries": 4353,
+  "materialized_source_entries": 1850,
+  "explicit_sparse_entries": 2503,
+  "source_index_and_untracked_inventory_unchanged": true,
+  "widget_runs": 0,
+  "android_device_runs": 0,
+  "scope": "Exact ad623b8: 31 original Village evidence cases plus3 real deadline-method cases on synthetic inputs. The original immutable producer probe is separately expected to fail both late and boundary cases for60/90-second local budgets; no device or renderer success is inferred."
+}

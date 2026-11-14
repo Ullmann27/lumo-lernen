@@ -1,0 +1,432 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T11:33:55.494090+00:00",
+  "reviewer": "pipeline_repair",
+  "kind": "Independent source-only review; no tests, compiler, device, CI or Git writes.",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_IN_REVIEWED_EIGHT_FILE_COMBINATION",
+  "base": {
+    "commit": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+    "tree": "10234debe8d5f2f9577ac28aa05ae99322d9190f"
+  },
+  "producer": {
+    "pr": 502,
+    "head": "c3f44ea7acdfe2ee8be68e8c37ad5fa25f2a1e23",
+    "tree": "7341eecf3d036c1cfba660f5a38f38500bd56f84",
+    "parent": "ac9c2d4d9717e9930e5f0ac1930dbb0f5fdb6a46",
+    "compare_base": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22"
+  },
+  "v1_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/source-freeze.json",
+    "bytes": 11328,
+    "sha256": "5850bd374da9bcdf74507e8929af8741d55b6a40caea54b2cb65af496d08d24b",
+    "git_blob": "2ec292cf5576eab62c6efb184138534600cd4507"
+  },
+  "v2_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/source-freeze.json",
+    "bytes": 14307,
+    "sha256": "d7c589bd86b20a9af277fd3b31f619ab072003461900ec74b8a6ce8a37c1a92b",
+    "git_blob": "d253afcc257eabd89ee13cacc7bb17c6910974b3"
+  },
+  "v2_patch": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/v1-to-v2.patch",
+    "bytes": 12465,
+    "sha256": "e84d49b9089fd15b605d395839b64e465a5c50b8c8fb480b3c7ba1ebf7cab89b",
+    "git_blob": "1f362eca0dcc7219a462c41e44b26ac6e15bd328"
+  },
+  "reviewed_sources": [
+    {
+      "repository_path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/final-source/lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "selection": "v2_repair",
+      "identity": {
+        "bytes": 26157,
+        "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e",
+        "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c"
+      },
+      "base_32e7_identity": {
+        "bytes": 24729,
+        "sha256": "2adba6d041e46a6c2643b4d752dfbec836ea2fe0f680d9838ac2d2d1717d3d5d",
+        "git_blob": "814fc2191015e6c9f6c1f6e96232405a26cc9027"
+      }
+    },
+    {
+      "repository_path": "lib/features/live/lumo_live_pro_screen.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/final-source/lib/features/live/lumo_live_pro_screen.dart",
+      "selection": "v2_repair",
+      "identity": {
+        "bytes": 29612,
+        "sha256": "47a5142a9e9957bda0160dfa51c5bf5bf1b0b2f15ff14d5c566d0fa99003fa8f",
+        "git_blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15"
+      },
+      "base_32e7_identity": {
+        "bytes": 29312,
+        "sha256": "1bb632d590782bcf0014831fb92332a083cc8da65a45b709d7cd0fc3a58e13a5",
+        "git_blob": "6ed89441742e6ca2603d128dfbee3f7b3b161707"
+      }
+    },
+    {
+      "repository_path": "lib/widgets/profile_screen.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/final-source/lib/widgets/profile_screen.dart",
+      "selection": "unchanged_v1",
+      "identity": {
+        "bytes": 34479,
+        "sha256": "2dd0c89a1570b0bcf8dce029ed2ff56f7cd3bee3ac05c8545a26c4dd6c6a357c",
+        "git_blob": "5cc989e2258cf5123d306f01ca268d007a4de105"
+      },
+      "base_32e7_identity": {
+        "bytes": 34300,
+        "sha256": "7e8676b83e8a54f8862dfbf1cdaf7581c0697325399ab3454b61b16297e818c7",
+        "git_blob": "56980b0c3867e52df7011fd968f1a50423bbd467"
+      }
+    },
+    {
+      "repository_path": "test/wort_diktat_gesture_regression_test.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/final-source/test/wort_diktat_gesture_regression_test.dart",
+      "selection": "v2_repair",
+      "identity": {
+        "bytes": 12858,
+        "sha256": "0e34bcbdbcd3cfcd2a690c49935753bda9cb7b5c2b283507f2caf722841671e6",
+        "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17"
+      },
+      "base_32e7_identity": null
+    },
+    {
+      "repository_path": "test/feature_permission_regression_test.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-v2-20261114/final-source/test/feature_permission_regression_test.dart",
+      "selection": "v2_repair",
+      "identity": {
+        "bytes": 18339,
+        "sha256": "7747fa4e0cc1bac081ffced3e28daad51d8613ff0e6cc49f24a4419876894064",
+        "git_blob": "613aad5272caacc668908baa9b899469e7caec17"
+      },
+      "base_32e7_identity": {
+        "bytes": 3727,
+        "sha256": "7a6f30d70747ecce49cd5fe80cb277ca0dc1eaa7adc27f967f375ad1826cdcbb",
+        "git_blob": "b5d5a14cfe3513afd4e911358506cb666e452140"
+      }
+    },
+    {
+      "repository_path": "test/profile_screen_test.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/final-source/test/profile_screen_test.dart",
+      "selection": "unchanged_v1",
+      "identity": {
+        "bytes": 5106,
+        "sha256": "cc86d988992ff8a12ae58fdcb10e4fcbd82a81976ce09f0c068fff6f1bedb3f7",
+        "git_blob": "f741789b917858aa0f8ec141395b4d8115470a14"
+      },
+      "base_32e7_identity": {
+        "bytes": 2990,
+        "sha256": "510e33265cd5e4573737d9ebecee1af6451309255153f755fc2dbfc1cce4a26d",
+        "git_blob": "d142202b7d1154fa6666401e68b7a8447435744c"
+      }
+    },
+    {
+      "repository_path": "pubspec.yaml",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/final-source/pubspec.yaml",
+      "selection": "unchanged_v1",
+      "identity": {
+        "bytes": 2718,
+        "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+        "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+      },
+      "base_32e7_identity": {
+        "bytes": 2675,
+        "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+        "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+      }
+    },
+    {
+      "repository_path": "pubspec.lock",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/final-source/pubspec.lock",
+      "selection": "unchanged_v1",
+      "identity": {
+        "bytes": 24469,
+        "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+        "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+      },
+      "base_32e7_identity": {
+        "bytes": 24467,
+        "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+        "git_blob": "7843602e3d858660dc52d95587983858803976a5"
+      }
+    }
+  ],
+  "direct_v1_v2_byte_comparison": [
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "original_v1_bytes_equal": true,
+      "v1_identity": {
+        "bytes": 26048,
+        "sha256": "dfed43007709824f7043093e02feaa923e680d12bc4fed7c760d3061d1046f12",
+        "git_blob": "429580f71de6b5d60a7378140d5f6db469fd0a2a"
+      },
+      "v2_identity": {
+        "bytes": 26157,
+        "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e",
+        "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c"
+      },
+      "line_opcodes": [
+        [
+          "insert",
+          150,
+          150,
+          150,
+          152
+        ]
+      ]
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "original_v1_bytes_equal": true,
+      "v1_identity": {
+        "bytes": 28962,
+        "sha256": "4013c9fa36615c9618b51670a1a11c30ea37341431f084ce8776d148420e6893",
+        "git_blob": "27e0ecdb93ac5eff674c73fc7dadcb5262a60d7d"
+      },
+      "v2_identity": {
+        "bytes": 29612,
+        "sha256": "47a5142a9e9957bda0160dfa51c5bf5bf1b0b2f15ff14d5c566d0fa99003fa8f",
+        "git_blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15"
+      },
+      "line_opcodes": [
+        [
+          "replace",
+          88,
+          89,
+          88,
+          90
+        ],
+        [
+          "replace",
+          219,
+          221,
+          220,
+          223
+        ],
+        [
+          "insert",
+          228,
+          228,
+          230,
+          231
+        ],
+        [
+          "replace",
+          362,
+          363,
+          365,
+          368
+        ],
+        [
+          "insert",
+          365,
+          365,
+          370,
+          371
+        ],
+        [
+          "replace",
+          380,
+          381,
+          386,
+          387
+        ],
+        [
+          "replace",
+          382,
+          384,
+          388,
+          393
+        ],
+        [
+          "replace",
+          386,
+          387,
+          395,
+          399
+        ]
+      ]
+    },
+    {
+      "path": "test/feature_permission_regression_test.dart",
+      "original_v1_bytes_equal": true,
+      "v1_identity": {
+        "bytes": 13917,
+        "sha256": "3ea97057bd0ada76f48b8aebdc7742a7680f94483fb7507603ccada0db65ad21",
+        "git_blob": "55bc542d4bc7d230aaf74b3baab021740d5a914d"
+      },
+      "v2_identity": {
+        "bytes": 18339,
+        "sha256": "7747fa4e0cc1bac081ffced3e28daad51d8613ff0e6cc49f24a4419876894064",
+        "git_blob": "613aad5272caacc668908baa9b899469e7caec17"
+      },
+      "line_opcodes": [
+        [
+          "insert",
+          310,
+          310,
+          310,
+          416
+        ]
+      ]
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "original_v1_bytes_equal": true,
+      "v1_identity": {
+        "bytes": 9507,
+        "sha256": "b7aa00464087f453497bba8575a8bcbba7f7a538cb8b0b18e94140c4579f31fa",
+        "git_blob": "1747317cf3e7004464140e0c78f53b247c7e4cd0"
+      },
+      "v2_identity": {
+        "bytes": 12858,
+        "sha256": "0e34bcbdbcd3cfcd2a690c49935753bda9cb7b5c2b283507f2caf722841671e6",
+        "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17"
+      },
+      "line_opcodes": [
+        [
+          "insert",
+          203,
+          203,
+          203,
+          288
+        ]
+      ]
+    }
+  ],
+  "original_findings_and_final_resolution": [
+    {
+      "id": "CROSS_ROW_POINTER_OWNERSHIP",
+      "v1_finding": "Each unchanged InkSurface owns one local pointer, while the screen held one global active row/stroke. A second down in another row replaced that global stroke before the first pointer ended. This was a source-derived flow, not an executed failure replay.",
+      "v2_resolution": "The single early return when _activeRow is non-null retains the first screen contact. Existing row checks reject other-row updates and end/cancel events. An ignored contact cannot become active after owner release because it has no new down; a new down after release can own a row.",
+      "regression_review": "Two actual widget gesture sequences cover foreign-up-first and owner-up-first, exact saved/preview offsets, continuation, preservation after foreign motion, later fresh contact and unchanged finish behavior.",
+      "ink_surface_changed": false
+    },
+    {
+      "id": "STALE_CAMERA_ERROR_CONTEXT",
+      "v1_finding": "Success responses checked the captured LearningProfileLease, but catch checked only mounted/mode revision. A late exception after a profile/lease change could report in the new context. The boolean finally also lacked an explicit operation identity. No image/reward leak was asserted.",
+      "v2_resolution": "A unique Object owns the pending capture; serialization remains until it settles. Catch requires that same operation plus the captured current lease and mode revision. Finally may release only the identical operation. Lease invalidation blocks content but intentionally permits its settled operation to release its own busy state.",
+      "speech_review": "Only the two camera-response calls pass owner. _speak checks that owner before setting the message and again after settings loading before speech; existing mode revision and voice setting checks remain. Other callers retain owner=null behavior.",
+      "regression_review": "Three widget cases make the original picker fail after a real profile change, lease reset or mode round trip. They assert no stale error/photo/reward/microphone effect, preserved busy ownership, release on settlement, and a subsequent fresh failure that must still be shown."
+    }
+  ],
+  "additional_v1_review": [
+    "The photo action opens the actual camera through ImagePicker only after the existing parental camera gate and current lease/mode checks. It presents the real returned file; microphone answer entry requires a captured photo. Capture itself adds no reward.",
+    "Existing parental permission helper and AppState lease implementation are not modified. The eight-file proposal does not modify the journal, writing trainer, InkSurface or speech/PCM modules.",
+    "Profile avatar becomes an actual semantic button that calls the existing settings section. Its new widget assertion retains an actual tap and a minimum 48-unit target.",
+    "pubspec.lock changes only image_picker_platform_interface from transitive to direct dev dependency; package version/content hash remain unchanged. No runtime package replacement is proposed."
+  ],
+  "preserved_regressions": {
+    "existing_test_lines_in_two_v2_files": "All retained byte-for-byte; independent line comparison contains only insertions.",
+    "new_widget_cases_statically_counted": 5,
+    "combined_declared_case_count": 22,
+    "actual_discovery_or_execution": "NOT_RUN",
+    "unchanged_v1_profile_pubspec_lock": true
+  },
+  "directly_byte_bound_dependencies": [
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/dependency-source/lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 2434,
+      "sha256": "659f2e062d7df7ee354d84ec94e0f598de6bddc1137d0042e7a67ea12509ddbd",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/dependency-source/lib/app/app_state.dart",
+      "bytes": 54663,
+      "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+      "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+    },
+    {
+      "path": "lib/core/lumo_feature_permissions.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/dependency-source/lib/core/lumo_feature_permissions.dart",
+      "bytes": 1182,
+      "sha256": "dbc18aa8a923e72f9f173609407cb92e08fc665f1d24c8dd1f60ec695bc4ac65",
+      "git_blob": "1f7d10536def0389ed5e45b7df659ab83987e0de"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_progress.dart",
+      "reviewed_file": "/workspace/scratch/b3485b7bb989/host-pr502-product-integration-32e7-20261114/dependency-source/lib/features/learning_modules/learning_module_progress.dart",
+      "bytes": 19947,
+      "sha256": "4009a426eb6c4fc626bf184cf8e233550c7c3de44a12a0655f77b18893a5e39b",
+      "git_blob": "b48854f40a5df977635227635e88724c833e70a0"
+    }
+  ],
+  "protected_dependency_metadata_only": [
+    {
+      "path": "lib/core/app_settings.dart",
+      "mode": "100644",
+      "git_blob": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "bytes": 11518
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "mode": "100644",
+      "git_blob": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "bytes": 6130
+    },
+    {
+      "path": "lib/core/lumo_brain.dart",
+      "mode": "100644",
+      "git_blob": "47dd9462cdc7852a287c10a4738064012864256b",
+      "bytes": 46810
+    },
+    {
+      "path": "lib/core/lumo_voice.dart",
+      "mode": "100644",
+      "git_blob": "22e7ebaa40c270fe3d0a76d22294ad3667745b08",
+      "bytes": 25712
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "mode": "100644",
+      "git_blob": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "bytes": 28949
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "mode": "100644",
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "bytes": 3696
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "mode": "100644",
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "bytes": 33174
+    },
+    {
+      "path": "lib/widgets/lumo_mirror.dart",
+      "mode": "100644",
+      "git_blob": "14863ad233150c9ed36b58fea895acd7a224ca1e",
+      "bytes": 15150
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "mode": "100644",
+      "git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2",
+      "bytes": 8921
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "mode": "100644",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "bytes": 4697
+    }
+  ],
+  "scope_limits": [
+    "This review inspects sources and proposed regression behavior only; it is not a passing widget/compiler/Android result.",
+    "The five new cases and the 17 retained cases still require their authorized post-checkpoint execution.",
+    "Post-settings speech ownership is source-reviewed; voice-disabled widget fixtures do not independently prove Android speech delivery.",
+    "Four dependency payloads were directly read and hash-bound. The other protected paths are recorded by original blob metadata and excluded from the complete proposed delta; no full behavioral review of those modules is claimed.",
+    "The V1 sources and freezes are preserved unchanged; V2 source identities are new local repair identities and are not labelled producer-identical."
+  ],
+  "mutations": {
+    "source": false,
+    "worktree": false,
+    "git_index_or_ref": false,
+    "tests": false,
+    "new_ci_or_device": false
+  }
+}

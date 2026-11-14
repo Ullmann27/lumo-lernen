@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_RUN",
+  "pack": "/workspace/scratch/b3485b7bb989/host-79c7-diktat-progress-fixture-repair-20261114",
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 1641,
+    "sha256": "ed127ce0e7fe6fbc24d452b39ee007b8bbd249858dae72cfd0898fb844b7fef6",
+    "git_blob": "e33c1a6d6ea02d279d2067631b03c0c00571cd20"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 5204,
+    "sha256": "95cf43a414b1965eea5a440fe68f772a7d14b78ce8c97a27ceaa726897a12f02",
+    "git_blob": "7927fb3cec1e00449390fa41e0adfd2a9f307ba1"
+  },
+  "target_parent": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+  "changed_source_count": 1,
+  "changed_source": {
+    "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+    "bytes": 21107,
+    "sha256": "e0eced5d27a8e2606816a4cc83d39edc2047f906b035f2d3e9e50c8c8fd45849",
+    "git_blob": "c1123ff353e10308d454449fe9eccf4df5ff1b64"
+  },
+  "authentic_red": {
+    "run_id": 43601673844,
+    "job_id": 132468566278,
+    "artifact_id": 14117615115,
+    "completed_flutter_exit": 1,
+    "failed_tests": 3
+  },
+  "next_authorized_step": "Root source checkpoint; then one run of the entire existing test file with full original streams and source/index pre/post binding.",
+  "product_modified": false,
+  "active_refs_or_ci_modified": false,
+  "tests_or_product_imports_executed": false,
+  "publisher_v1_modified": false
+}

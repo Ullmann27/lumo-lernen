@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "frozen_at_utc": "2026-11-14T13:43:57.853280+00:00",
+  "scope": "Exactly two documentation-only prepend changes; full original historical bytes preserved",
+  "host_parent": "68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697",
+  "host_base_tree": "ecd5df0797c2b4102f2c7bbc30146f3061d713ce",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "files": [
+    {
+      "path": "STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 15553,
+        "sha256": "fb2d6bb7bd099d5c2d6eaf2497411e1b6749d9726b7fc8581a97c8f7d185a294",
+        "git_blob": "f9e60663c3f504a6e87d837a970474600d132f5d"
+      },
+      "after": {
+        "bytes": 21600,
+        "sha256": "fa3cc8a7741ca7a6618caf2c0197e8ff231dc0ea912c24d1b8e6b6c36cab7fb5",
+        "git_blob": "c8a4221d49c67980553eba9954ffa4f678ee4ffe"
+      },
+      "prefix_bytes": 6047,
+      "historical_suffix_offset": 6047,
+      "historical_suffix_bytes_identical": true,
+      "independently_reviewed_body_sha256": "16eb3add78cf1ab8627e819d1bf422f0722054a992df37321e8bcc5054a18c89"
+    },
+    {
+      "path": "CONTINUE.md",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 24784,
+        "sha256": "dcfc45b996be831e29efa23dc82b618f60cbef07afc9cf0f2496ae0dcb216402",
+        "git_blob": "87a0b8fe25e45de326c78cdfb361e10bff240767"
+      },
+      "after": {
+        "bytes": 30675,
+        "sha256": "321ccfb22bc77ef35a58be4609a03f76358a11450840a06990db7c9e5a604498",
+        "git_blob": "e73c17ac0a5c72b95e0a8cc4b8c7311edcbdb241"
+      },
+      "prefix_bytes": 5891,
+      "historical_suffix_offset": 5891,
+      "historical_suffix_bytes_identical": true,
+      "independently_reviewed_body_sha256": "f8c6ad657ecaad6b34742a667a033e404a7e7495074d66a1643a10d3d8c355df"
+    }
+  ],
+  "patch_sha256": "0b22b3b8ccdf42b269189ae85da5ea5ab30f1ecbb6c794b501436175f8f6295b",
+  "section_peer_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-final-activation-docs-20261114/originals/independent-section-review/review.json",
+    "sha256": "c9090855b7b02c10de0c18ad545269805a0e033a8c1cb3d536da53d559ceb397",
+    "scope": "Two body sections only; final identity headers and historical suffix checks are separately bound here."
+  },
+  "native_run_observation": {
+    "run_id": 43600806315,
+    "attempt": 1,
+    "job_id": 132464933411,
+    "status": "in_progress",
+    "source": "Root actual activation handoff; no parallel CI poll by this reviewer",
+    "final_renderer_acceptance": "OPEN"
+  },
+  "host_pin_tests": "No PASS asserted in these documents; separate ongoing Root/Pipeline source-bound execution",
+  "historical_run_43589206933": "Android failed, unpublished; unchanged",
+  "source_workflow_pin_or_remote_mutation": false
+}

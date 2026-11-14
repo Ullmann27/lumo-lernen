@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "parent": "ad623b8a149caf5e4339fd544cef4c4736c0d218",
+  "tree": "af2e6f6d68f64c1274d9355bdc52b523489d83a1",
+  "sourceFiles": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "expected": "e33ae242ad70efe73ec923ec2fba87cb8e0af632",
+      "actual": "e33ae242ad70efe73ec923ec2fba87cb8e0af632",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "expected": "67ae17290e898a995003f065ce3a7c97202509ab",
+      "actual": "67ae17290e898a995003f065ce3a7c97202509ab",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "expected": "1fdbf66634b4e932e922b785ad8419f898373d8b",
+      "actual": "1fdbf66634b4e932e922b785ad8419f898373d8b",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "expected": "aaa033cdf4cc3a453f26382ae2ae94c7eed71cc5",
+      "actual": "aaa033cdf4cc3a453f26382ae2ae94c7eed71cc5",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "expected": "3ac2a960cdad4589ea18067a4f03f4fd5281f313",
+      "actual": "3ac2a960cdad4589ea18067a4f03f4fd5281f313",
+      "mode": "100644"
+    }
+  ],
+  "all_bound": true
+}

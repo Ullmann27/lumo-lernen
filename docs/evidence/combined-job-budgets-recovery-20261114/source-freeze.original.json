@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ONLY_NOT_RUN",
+  "base": {
+    "head": "e168f6ae96c4a1a50fb7c4313963425d0b15a1eb",
+    "tree": "522b84e760dd8526429c0ba031628236457cb4e0"
+  },
+  "source_files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before": {
+        "bytes": 49102,
+        "sha256": "cb65111034d95d63475de7d556f7d16f6217365119251de6a076a2caf1b78f1c",
+        "git_blob": "152295fba33a15be64185921b00c71f1b7319dd6"
+      },
+      "after": {
+        "bytes": 49103,
+        "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e",
+        "git_blob": "2110d672ede7c80819fe3ff365339936b5406d8c"
+      }
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 86756,
+        "sha256": "58b7436afff9760d25ff01c0ef7a1fd0f5861da25a5cb31722199d25bcb0d560",
+        "git_blob": "bd568dbc81f73b4c12fe60dd07c189a241ee06be"
+      },
+      "after": {
+        "bytes": 86764,
+        "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88",
+        "git_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16"
+      }
+    }
+  ],
+  "changes": {
+    "verify_and_build_minutes": [
+      90,
+      120
+    ],
+    "android_c4_minutes": [
+      65,
+      80
+    ],
+    "existing_budget_assertions_updated": 2,
+    "test_method_renamed_to_clarify_unchanged_probe_budgets": 1
+  },
+  "all_other_source_bytes_unchanged": true,
+  "individual_probe_deadlines_unchanged": true,
+  "native_pin_unchanged": true,
+  "actual_tests_run": 0,
+  "independent_budget_review_sha256": "af4e8dfd9bae68ca2ddd34376b685cb7213e7881d2b54b9312abee23a96bb698",
+  "basis": "Actual current base reaches APK start at62m32; historical APK completion segment7m28 and separately measured Discovery19m05 sum illustratively to89m05. This is not a measured combined duration or worst-case guarantee. Village retains its own900s global budget."
+}

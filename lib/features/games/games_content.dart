@@ -179,7 +179,7 @@ class _GamesContentState extends State<GamesContent> {
     }
   }
 
-  Future<void> _launch3D(String scene) async {
+  Future<void> _launch3D(String scene, {bool livingVillage = false}) async {
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
@@ -188,6 +188,7 @@ class _GamesContentState extends State<GamesContent> {
       final launched = await launchLumo3D(
         context,
         scene: scene,
+        livingVillage: livingVillage,
         grade: _kartGrade ?? state.grade,
         subject: _kartSubject ??
             (state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik'),
@@ -440,7 +441,11 @@ class _GamesContentState extends State<GamesContent> {
   List<SpielweltPortal> _portals() {
     return [
       for (final route in SpielweltRoutes.all)
-        if (route.identity == 'connectFour')
+        if (route.identity == 'village')
+          SpielweltPortal.village(
+            onOpen: () => _launch3D('settlement', livingVillage: true),
+          )
+        else if (route.identity == 'connectFour')
           SpielweltPortal.connectFour(onOpen: _launchConnectFour)
         else if (route.identity == 'quizShow')
           SpielweltPortal.quizShow(onOpen: _launchLumoMeister)
@@ -491,7 +496,7 @@ class _GamesContentState extends State<GamesContent> {
               ])
             : CustomScrollView(
                 slivers: [
-                  // One familiar game grid: all ten existing routes remain
+                  // Keep every established portal; the living economy has its own entry.
                   // available, with original Lumo artwork and clear toy icons.
                   SliverToBoxAdapter(
                     child: SpielweltHub(

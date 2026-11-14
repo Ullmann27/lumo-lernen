@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "status": "17_PASS_ZERO_FAILURE_ZERO_SKIP",
+  "pack": "/workspace/scratch/b3485b7bb989/host-cfa4725-diktat-progress-validation-20261114",
+  "head": "cfa4725263f15e9cc3f75d8f6dfae0949fbb86ab",
+  "tree": "d0fedc2ceeb02e7eefea61b2667195a43f14bdf6",
+  "summary": {
+    "path": "summary.json",
+    "bytes": 3833,
+    "sha256": "2f2ae40c8b0264e88c0aa650c2bf20ee75f10b96c0cad60e031db675ab0fbbbf",
+    "git_blob": "2491350d668448cad0e3d6eabf2967a6c1643384"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 6883,
+    "sha256": "be2968b5d464cc7044f69721d2e3e1325dc81f97ad960fdd97e960f56e22a59b",
+    "git_blob": "09f51970fccc51add8fda6e5cfd1b5310617b820"
+  },
+  "raw_stdout": {
+    "path": "flutter-machine.stdout.jsonl",
+    "bytes": 10997,
+    "sha256": "c21fafc262708b9fc86316530976d5bf2d171870ead7ddfe454bb546ef6a6c2c",
+    "git_blob": "bbf184d0d541e41877c62d2e3aeda0c009e87dd6"
+  },
+  "raw_stderr": {
+    "path": "flutter.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "test_result": {
+    "path": "test-result.json",
+    "bytes": 15148,
+    "sha256": "39ee4909957b0364741bddb11074ec8f9d5be5f9311577098573b5f39d431788",
+    "git_blob": "77b0ce77c1196df4816930df2e35cc69922878d4"
+  },
+  "source_unchanged": true,
+  "child_exit_code": 0,
+  "test_invocations": 1,
+  "device_or_full_suite_claim": false
+}

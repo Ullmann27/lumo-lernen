@@ -1,0 +1,250 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-11-14T11:18:12.256158+00:00",
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 140944,
+    "sha256": "5d018e972a805e0cd0f1b5873b14fdc7e532fa20ad04525e55d5a4bff0f09ff4",
+    "git_blob": "2356537526cf4f593e695e9492b1a4a58d5c6e6e"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 8747,
+    "sha256": "11a8b2dc6107471ffc7233dc2e35a6bc5bb47cce4b9d1ccea0bbff38761995a7",
+    "git_blob": "4f666debab0494486f1198631dde3738c6e2f44f"
+  },
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 11328,
+    "sha256": "5850bd374da9bcdf74507e8929af8741d55b6a40caea54b2cb65af496d08d24b",
+    "git_blob": "2ec292cf5576eab62c6efb184138534600cd4507"
+  },
+  "full_member_readback": true,
+  "member_count": 37,
+  "total_original_bytes": 630028,
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 4825,
+      "sha256": "d12a132cb8518e1a40531534cad4761c81f94566ae58c6bae9fe810772102664",
+      "git_blob": "e8af341fe5e98a53deb5df8958e0654053fd1324"
+    },
+    {
+      "path": "assemble_source_freeze.py",
+      "bytes": 11283,
+      "sha256": "26b9d8f72276f36399e45ce6d7b9ca35f568f2fde18ce7a2fb9df0368dcc2603",
+      "git_blob": "5af9fa57d4e555ea9759f09f01b00215ab137461"
+    },
+    {
+      "path": "assembly-history/assemble_source_freeze-v1.py",
+      "bytes": 11283,
+      "sha256": "242607639e475ab45d1e9b54ef9ecc12e1f52d7eb3aae97e3b1ec3ed2fc676ec",
+      "git_blob": "509551a0a3b8228a306c40cacbda162c0be83fe7"
+    },
+    {
+      "path": "assembly-history/v1-failure.json",
+      "bytes": 428,
+      "sha256": "668cb64141f9f73dfaae22112d9f94c8b681b230c801bbe190c8223d66f027c4",
+      "git_blob": "9a2170051fbb3b545775f46bfd93c603e9c56ffb"
+    },
+    {
+      "path": "assembly-history/v1-failure.log",
+      "bytes": 295,
+      "sha256": "978731ca5661e5607452a9c8825ed88d39c08ddc2dc39619e27bfcf4b15baaea",
+      "git_blob": "d3c315ed38841605ca2753b46c4b78bbdb1c2545"
+    },
+    {
+      "path": "assembly-history/v2-readback.json",
+      "bytes": 1758,
+      "sha256": "4020ee02dd87eb752cf3cfd3a67e59d17917f7328c3825a9325637e0b3c137f0",
+      "git_blob": "e5b850cdaa647190f75da95509ad31b2b9727fec"
+    },
+    {
+      "path": "assembly-history/v2-readback.log",
+      "bytes": 1463,
+      "sha256": "bddb209e25320727a7bd3b6ea2de9983fdcc8a040fffbd7b94a57141e4357d16",
+      "git_blob": "b9a3ef64ce0823ab1a985ece93b179bc5acba48e"
+    },
+    {
+      "path": "base-tree-binding.json",
+      "bytes": 9229,
+      "sha256": "47521e4f8cc423c7bb1dd3a472aecbedd79fa4cacab07c865892ef7ef6c0d564",
+      "git_blob": "5cdd1381df745c64d06447891ba328c66c650459"
+    },
+    {
+      "path": "dependency-source/lib/app/app_state.dart",
+      "bytes": 54663,
+      "sha256": "50b9d9e4c7ecaf2a5e9cc24d99f1b2ee49e0bf50318a0c6c28cabacda2028efd",
+      "git_blob": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045"
+    },
+    {
+      "path": "dependency-source/lib/core/lumo_feature_permissions.dart",
+      "bytes": 1182,
+      "sha256": "dbc18aa8a923e72f9f173609407cb92e08fc665f1d24c8dd1f60ec695bc4ac65",
+      "git_blob": "1f7d10536def0389ed5e45b7df659ab83987e0de"
+    },
+    {
+      "path": "dependency-source/lib/features/learning_modules/learning_module_progress.dart",
+      "bytes": 19947,
+      "sha256": "4009a426eb6c4fc626bf184cf8e233550c7c3de44a12a0655f77b18893a5e39b",
+      "git_blob": "b48854f40a5df977635227635e88724c833e70a0"
+    },
+    {
+      "path": "dependency-source/lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 2434,
+      "sha256": "659f2e062d7df7ee354d84ec94e0f598de6bddc1137d0042e7a67ea12509ddbd",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420"
+    },
+    {
+      "path": "final-source/lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 26048,
+      "sha256": "dfed43007709824f7043093e02feaa923e680d12bc4fed7c760d3061d1046f12",
+      "git_blob": "429580f71de6b5d60a7378140d5f6db469fd0a2a"
+    },
+    {
+      "path": "final-source/lib/features/live/lumo_live_pro_screen.dart",
+      "bytes": 28962,
+      "sha256": "4013c9fa36615c9618b51670a1a11c30ea37341431f084ce8776d148420e6893",
+      "git_blob": "27e0ecdb93ac5eff674c73fc7dadcb5262a60d7d"
+    },
+    {
+      "path": "final-source/lib/widgets/profile_screen.dart",
+      "bytes": 34479,
+      "sha256": "2dd0c89a1570b0bcf8dce029ed2ff56f7cd3bee3ac05c8545a26c4dd6c6a357c",
+      "git_blob": "5cc989e2258cf5123d306f01ca268d007a4de105"
+    },
+    {
+      "path": "final-source/pubspec.lock",
+      "bytes": 24469,
+      "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1"
+    },
+    {
+      "path": "final-source/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "final-source/test/feature_permission_regression_test.dart",
+      "bytes": 13917,
+      "sha256": "3ea97057bd0ada76f48b8aebdc7742a7680f94483fb7507603ccada0db65ad21",
+      "git_blob": "55bc542d4bc7d230aaf74b3baab021740d5a914d"
+    },
+    {
+      "path": "final-source/test/profile_screen_test.dart",
+      "bytes": 5106,
+      "sha256": "cc86d988992ff8a12ae58fdcb10e4fcbd82a81976ce09f0c068fff6f1bedb3f7",
+      "git_blob": "f741789b917858aa0f8ec141395b4d8115470a14"
+    },
+    {
+      "path": "final-source/test/wort_diktat_gesture_regression_test.dart",
+      "bytes": 9507,
+      "sha256": "b7aa00464087f453497bba8575a8bcbba7f7a538cb8b0b18e94140c4579f31fa",
+      "git_blob": "1747317cf3e7004464140e0c78f53b247c7e4cd0"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 13829,
+      "sha256": "b20e2cf0d0f5f398e453879683a3e6aed87b92ddd5c4a61ae384a34d5e8a84e4",
+      "git_blob": "c3f94599c2d29613f9268c44959eb35702ca7d29"
+    },
+    {
+      "path": "integration-input.json",
+      "bytes": 10826,
+      "sha256": "ab76f47152f04dc3a5549b56de1ff1cd7efe3dddfee3c0b09b2709d5db49e3d4",
+      "git_blob": "54a40d9b817a4c0dddfd34847747f866e76467e8"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 44408,
+      "sha256": "f6c6cd4923bde1a6d01982945d6e8064e5ea80c259b9af6bee67af50d095d9f6",
+      "git_blob": "7c87817e919e41c8da2e2bf81f4e69d3c0a078e2"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 8747,
+      "sha256": "11a8b2dc6107471ffc7233dc2e35a6bc5bb47cce4b9d1ccea0bbff38761995a7",
+      "git_blob": "4f666debab0494486f1198631dde3738c6e2f44f"
+    },
+    {
+      "path": "materialization-readback-input.json",
+      "bytes": 5160,
+      "sha256": "527b41259d16ea521375e2ad102cebac510aa4149e722d13b52c080d608be10e",
+      "git_blob": "debd0f37e572af777afab97869db5576cf9aa8d8"
+    },
+    {
+      "path": "original-source/lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 24729,
+      "sha256": "2adba6d041e46a6c2643b4d752dfbec836ea2fe0f680d9838ac2d2d1717d3d5d",
+      "git_blob": "814fc2191015e6c9f6c1f6e96232405a26cc9027"
+    },
+    {
+      "path": "original-source/lib/features/live/lumo_live_pro_screen.dart",
+      "bytes": 29312,
+      "sha256": "1bb632d590782bcf0014831fb92332a083cc8da65a45b709d7cd0fc3a58e13a5",
+      "git_blob": "6ed89441742e6ca2603d128dfbee3f7b3b161707"
+    },
+    {
+      "path": "original-source/lib/widgets/profile_screen.dart",
+      "bytes": 34300,
+      "sha256": "7e8676b83e8a54f8862dfbf1cdaf7581c0697325399ab3454b61b16297e818c7",
+      "git_blob": "56980b0c3867e52df7011fd968f1a50423bbd467"
+    },
+    {
+      "path": "original-source/pubspec.lock",
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob": "7843602e3d858660dc52d95587983858803976a5"
+    },
+    {
+      "path": "original-source/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+    },
+    {
+      "path": "original-source/test/feature_permission_regression_test.dart",
+      "bytes": 3727,
+      "sha256": "7a6f30d70747ecce49cd5fe80cb277ca0dc1eaa7adc27f967f375ad1826cdcbb",
+      "git_blob": "b5d5a14cfe3513afd4e911358506cb666e452140"
+    },
+    {
+      "path": "original-source/test/profile_screen_test.dart",
+      "bytes": 2990,
+      "sha256": "510e33265cd5e4573737d9ebecee1af6451309255153f755fc2dbfc1cce4a26d",
+      "git_blob": "d142202b7d1154fa6666401e68b7a8447435744c"
+    },
+    {
+      "path": "originals/host32-commit.json",
+      "bytes": 1250,
+      "sha256": "84cffc5d609c1ed32d65805587ab6ff35fde8b5a267fcd2ca7a3506d059835cf",
+      "git_blob": "ee2b9163d4816cf5cededc3f708fdf8f5c446e41"
+    },
+    {
+      "path": "originals/preserved-api-index.json",
+      "bytes": 10772,
+      "sha256": "ecbf397ab969162d9936884790d37c8c1b894fffa7d818af0ae00571ba5216af",
+      "git_blob": "98f9ae6674f833bfe38e258974f1ee5e6de79e66"
+    },
+    {
+      "path": "originals/producer502-cf259-to-c3f44-compare.json",
+      "bytes": 125987,
+      "sha256": "18532012bd88b1a0d0190efe722bc55d37a2dd2115f7a96572b12b40da379dd2",
+      "git_blob": "f8882aabf277b6081cf433fe007dac4e9eeb1844"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 11525,
+      "sha256": "81ba1b0357826e285622acca2e2fea81c6830eef0715f8efd2f50eb79d6f7bbc",
+      "git_blob": "e9d66997e03ad121a820e13e0ce39f21b21a1a69"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 11328,
+      "sha256": "5850bd374da9bcdf74507e8929af8741d55b6a40caea54b2cb65af496d08d24b",
+      "git_blob": "2ec292cf5576eab62c6efb184138534600cd4507"
+    }
+  ],
+  "scope": "Lossless source/evidence archive verification only; no product test or engine run."
+}

@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "kind": "terminal_original_review",
+  "run": 43589206933,
+  "attempt": 1,
+  "host": "3d91bd8355a539c3c2413760959684cd3fee985a",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "conclusion": "FAIL",
+  "android_c4": {
+    "job": 132447694895,
+    "first_error_line": 2178,
+    "first_error_time": "2026-11-14T12:37:12.8387179Z",
+    "error": "RuntimeError: No currently visible vehicle card in the actual left list",
+    "actual_tour_result": "selected-originals/main/tour-result.json",
+    "race_running_hud_drive_pause": "NOT_REACHED",
+    "c4_probe": "NOT_REACHED",
+    "fatal_crashes": 0,
+    "apk_sha256": "ae235e3268b2bf70f3caca537c18e98e5600e1941823f195705871d6a2e4741c"
+  },
+  "update": {
+    "job": 132447694898,
+    "first_failure_line": 2695,
+    "first_failure_time": "2026-11-14T12:39:16.8648093Z",
+    "error": "[LumoUpdate] FAIL No currently visible vehicle card in the actual left list",
+    "scope": "Full original job log read; update artifact payload not yet downloaded; no final preservation PASS claimed"
+  },
+  "final_jobs": {
+    "verify-c4-candidate": "SKIPPED",
+    "prepare-c4-delivery": "SKIPPED"
+  },
+  "original_image_review": {
+    "actually_opened": [
+      "selected-originals/main/21_stage_select_gecko_velo-0.png",
+      "selected-originals/main/21_stage_select_gecko_velo-2.png"
+    ],
+    "observations": [
+      "Frame 0 visibly shows the Comet card in the left vehicle list.",
+      "Frame 2 visibly shows the Boru Rally caption in the left list after the recorded swipe; Gecko Velo is not visibly identified.",
+      "Frame 2 raw OCR combines decoration with the caption; the exact-line scroll-card matcher rejects this composite."
+    ],
+    "composite_line": {
+      "text": "ire ! Boru Rally",
+      "bounds": [
+        180.5,
+        561.0,
+        511.0,
+        629.0
+      ],
+      "variant": "raw"
+    },
+    "word_originals": [
+      {
+        "level": "5",
+        "page_num": "1",
+        "block_num": "15",
+        "par_num": "1",
+        "line_num": "1",
+        "word_num": "3",
+        "left": "629",
+        "top": "1186",
+        "width": "173",
+        "height": "56",
+        "conf": "94.942535",
+        "text": "Boru"
+      },
+      {
+        "level": "5",
+        "page_num": "1",
+        "block_num": "15",
+        "par_num": "1",
+        "line_num": "1",
+        "word_num": "4",
+        "left": "833",
+        "top": "1186",
+        "width": "189",
+        "height": "72",
+        "conf": "94.942535",
+        "text": "Rally"
+      }
+    ],
+    "scale": 2,
+    "exact_combined_word_bounds": [
+      314.5,
+      593,
+      511,
+      629
+    ],
+    "tsv_sha256": "23af4eb6e08d9e9666633e2bec70ec641b692efa5a2a0bf870f9136d46b9409f",
+    "scope": "Image/text observation only. No target choice, scroll repair, gameplay completion, visual approval or rerun claimed."
+  },
+  "limitations": [
+    "Actual requested Gecko Velo caption and saved selection remain unproven.",
+    "The potential future word-span repair has not been executed on Android.",
+    "No whole candidate/ARM64/Flutter archive downloaded.",
+    "This pack does not replace earlier Runtime/Compile originals already committed separately."
+  ],
+  "source_comparison": {
+    "actual_0411_head": "0411b62f59425bc4f36226ca59e9ed5ef901709a",
+    "tree": "6a439dddafaaf7319cfabe28a2149e8de8c363df",
+    "same_helper_blob": "c5103456e98baa696ec6cac8b6bb8af863d19f5b",
+    "same_tour_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+  },
+  "new_tests_or_device_runs": 0
+}

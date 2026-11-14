@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "kind": "static_two_file_preservation",
+  "exact_source_files": 2,
+  "changed_lines": {
+    "workflow": 1,
+    "delivery_test_expectations": 2
+  },
+  "only_target_job": "verify-and-build",
+  "budget_before_minutes": 120,
+  "budget_after_minutes": 150,
+  "all_other_workflow_bytes_identical": true,
+  "all_other_test_bytes_identical": true,
+  "test_ast_identical_after_masking_two_budget_literals": true,
+  "existing_methods": 71,
+  "all_method_names_preserved": true,
+  "synthetic_120_005s_logs_unchanged": true,
+  "android80_unchanged": true,
+  "individual_deadlines_pins_branch_guards_unchanged": true,
+  "tests_run": false,
+  "actionlint_run": false,
+  "current37_timeout_claim": false,
+  "patch_identity": {
+    "bytes": 1879,
+    "sha256": "02c2e1ab09cac8d76b259377efdd61cb131f9d9d01f5702c3d4ad06b77f87d99",
+    "git_blob": "aa0fc7239e9f93c8fdbc1aacc631c088b9a24699"
+  }
+}

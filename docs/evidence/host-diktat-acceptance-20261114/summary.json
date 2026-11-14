@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_sha": "cfa4725263f15e9cc3f75d8f6dfae0949fbb86ab",
+  "host_tree": "d0fedc2ceeb02e7eefea61b2667195a43f14bdf6",
+  "parent_sha": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+  "source_checkpoint_and_original_repair_freeze": "ed127ce0e7fe6fbc24d452b39ee007b8bbd249858dae72cfd0898fb844b7fef6",
+  "test_file": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+  "exact_existing_visible_cases": 17,
+  "passed": 17,
+  "failed": 0,
+  "skipped": 0,
+  "child_exit_code": 0,
+  "duration_seconds": 59.55156570100007,
+  "machine_final_success": true,
+  "source_and_index_unchanged": true,
+  "indexed_paths": 4475,
+  "materialized_paths": 2342,
+  "missing_sparse_paths": 2133,
+  "package_count": 104,
+  "all_original_case_names_preserved": true,
+  "test_names": [
+    "d2_artikel real registry answer persists its exact subject and topic",
+    "d2_mehrzahl real registry answer persists its exact subject and topic",
+    "d3_wortarten real registry answer persists its exact subject and topic",
+    "d3_zeitformen real registry answer persists its exact subject and topic",
+    "d1_woerter real registry answer persists its exact subject and topic",
+    "s1_tiere real registry answer persists its exact subject and topic",
+    "s1_farben real registry answer persists its exact subject and topic",
+    "s2_jahreszeiten real registry answer persists its exact subject and topic",
+    "s2_wetter real registry answer persists its exact subject and topic",
+    "s2_verkehr real registry answer persists its exact subject and topic",
+    "visible noun determines right and wrong articles and only right advances Daily",
+    "article wallet rejection blocks Back and task change; duplicate retries save one answer",
+    "article learning-save rejection retries existing counters without another reward",
+    "pending wrong article rejects a second answer until learning storage finishes",
+    "saved article feedback waits for foreground before showing the next word",
+    "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+    "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily"
+  ],
+  "stdout": {
+    "bytes": 10997,
+    "sha256": "c21fafc262708b9fc86316530976d5bf2d171870ead7ddfe454bb546ef6a6c2c",
+    "git_blob": "bbf184d0d541e41877c62d2e3aeda0c009e87dd6"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "attempts": {
+    "flutter_test_invocations": 1,
+    "pub_resolution_invocations": 0,
+    "autosave_once_exit": 0,
+    "initial_checkout_materialization_failed_before_tests": true,
+    "initial_checkout_failure": "GIT_NO_LAZY_FETCH=1 prevented a required promisor object from being read; original checkout remained clean on bb97. The authorized ordinary Git read then materialized the source and switched cleanly to cfa.",
+    "test_retry": false
+  },
+  "authentic_red_reference": {
+    "run_id": 43601673844,
+    "attempt": 1,
+    "host_sha": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+    "job_id": 132468566278,
+    "artifact_id": 14117615115,
+    "flutter_exit": 1,
+    "failures": 3,
+    "machine_sha256": "8f1c5d846724ede4a93fc59db33cfc31d3331fd006671e2c2ce5365f27b27fae",
+    "complete_original_compact_archive_sha256": "0a2705bbd775c8b13440d5a97bd996124dbd1f64d3fe2c99038a00be011c5047"
+  },
+  "limits": [
+    "Exactly one existing Flutter test file executed locally; no full suite duplicate.",
+    "Original failed CI evidence retained unchanged.",
+    "No Android, native, APK, performance or complete candidate acceptance.",
+    "No active candidate branch/ref/workflow was changed by this validation."
+  ]
+}

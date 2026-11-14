@@ -1,0 +1,29 @@
+{
+  "original_blob": "97434207488900ac8f9364d5120f163cbc3ff0d5",
+  "original_sha256": "941176f413db24b78471bb2e374f7366236615d1599745e35afbf3bd92d3d59d",
+  "actual_methods_run": 3,
+  "expected_failing_methods": 2,
+  "actual_failing_subtests": 4,
+  "errors": 0,
+  "skips": 0,
+  "timely_case_passed": true,
+  "expected_original_defect_confirmed": true,
+  "failures": [
+    {
+      "test": "test_village_android_evidence.VillageProcessDeadlineTests.test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return (native=False, timeout=60)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lumo-root-recovery-1105/host-village/tools/android_qa/tests/test_village_android_evidence.py\", line 419, in test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return\n    with self.assertRaisesRegex(TimeoutError, 'at or after its observation deadline'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: TimeoutError not raised\n"
+    },
+    {
+      "test": "test_village_android_evidence.VillageProcessDeadlineTests.test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return (native=True, timeout=90)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lumo-root-recovery-1105/host-village/tools/android_qa/tests/test_village_android_evidence.py\", line 419, in test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return\n    with self.assertRaisesRegex(TimeoutError, 'at or after its observation deadline'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: TimeoutError not raised\n"
+    },
+    {
+      "test": "test_village_android_evidence.VillageProcessDeadlineTests.test_late_process_arrival_is_rejected_while_global_budget_remains (native=False, timeout=60)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lumo-root-recovery-1105/host-village/tools/android_qa/tests/test_village_android_evidence.py\", line 408, in test_late_process_arrival_is_rejected_while_global_budget_remains\n    with self.assertRaisesRegex(TimeoutError, 'at or after its observation deadline'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: TimeoutError not raised\n"
+    },
+    {
+      "test": "test_village_android_evidence.VillageProcessDeadlineTests.test_late_process_arrival_is_rejected_while_global_budget_remains (native=True, timeout=90)",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/lumo-root-recovery-1105/host-village/tools/android_qa/tests/test_village_android_evidence.py\", line 408, in test_late_process_arrival_is_rejected_while_global_budget_remains\n    with self.assertRaisesRegex(TimeoutError, 'at or after its observation deadline'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: TimeoutError not raised\n"
+    }
+  ]
+}

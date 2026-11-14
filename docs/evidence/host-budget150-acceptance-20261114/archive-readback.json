@@ -1,0 +1,190 @@
+{
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 1711,
+      "sha256": "5a890936d225c7460bd49cef965beebb0fadbc48b279aa95ca8f40e67e261346"
+    },
+    {
+      "path": "actionlint-process-result.json",
+      "bytes": 706,
+      "sha256": "7c6ae235efb47574903654fbb67f68229ba0b69fe302d6461a2ded2fe0ee00fd"
+    },
+    {
+      "path": "actionlint.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actionlint.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-source.json",
+      "bytes": 1366107,
+      "sha256": "bec1580183b6d99baccb3a99dd1d616fbd547d5e2ca7ef5aa3cd4c7bbf8b4f1e"
+    },
+    {
+      "path": "after.commit.txt",
+      "bytes": 350,
+      "sha256": "09de804138558d67b90936e88e8162fb7874c13fe310de813a535f43cc862fe7"
+    },
+    {
+      "path": "after.index-flags.nul",
+      "bytes": 287699,
+      "sha256": "575a0f0181e32e38b4425eb121ce891f6285b4f1b6d654f7b60f4abd39b8d4c2"
+    },
+    {
+      "path": "after.index-stage.nul",
+      "bytes": 501779,
+      "sha256": "e35d2bcf6d1fd069daa80e0f4a5efb2842e9f8ebd16ef8cd72422bdda329cd78"
+    },
+    {
+      "path": "after.index.bin",
+      "bytes": 578419,
+      "sha256": "295cb672714edbe7c4b7eec55d1be26a3c493098ed9a05a2ab20d8a2c8892124"
+    },
+    {
+      "path": "after.status.nul",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after.tree.nul",
+      "bytes": 515159,
+      "sha256": "a14bcb62dd2f8de0c2ff4e578271586bf7a5e84458b22a55c322e9ea317000d8"
+    },
+    {
+      "path": "before-source.json",
+      "bytes": 1366107,
+      "sha256": "bec1580183b6d99baccb3a99dd1d616fbd547d5e2ca7ef5aa3cd4c7bbf8b4f1e"
+    },
+    {
+      "path": "before.commit.txt",
+      "bytes": 350,
+      "sha256": "09de804138558d67b90936e88e8162fb7874c13fe310de813a535f43cc862fe7"
+    },
+    {
+      "path": "before.index-flags.nul",
+      "bytes": 287699,
+      "sha256": "575a0f0181e32e38b4425eb121ce891f6285b4f1b6d654f7b60f4abd39b8d4c2"
+    },
+    {
+      "path": "before.index-stage.nul",
+      "bytes": 501779,
+      "sha256": "e35d2bcf6d1fd069daa80e0f4a5efb2842e9f8ebd16ef8cd72422bdda329cd78"
+    },
+    {
+      "path": "before.index.bin",
+      "bytes": 578419,
+      "sha256": "295cb672714edbe7c4b7eec55d1be26a3c493098ed9a05a2ab20d8a2c8892124"
+    },
+    {
+      "path": "before.status.nul",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before.tree.nul",
+      "bytes": 515159,
+      "sha256": "a14bcb62dd2f8de0c2ff4e578271586bf7a5e84458b22a55c322e9ea317000d8"
+    },
+    {
+      "path": "checkout-preparation.json",
+      "bytes": 3475,
+      "sha256": "faf002acc8054b7e242b33f5b8b6912984120594976049b8194a14e29d0b9b17"
+    },
+    {
+      "path": "environment.json",
+      "bytes": 933,
+      "sha256": "95207c01c37fa5fa887d249d553e507f069982af884292b9542fade2ca4be97a"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3125,
+      "sha256": "819a60f8fea7854748a2c2191e63acdc43949a7af78e8e8b68499e9995b5347f"
+    },
+    {
+      "path": "input-sources/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226"
+    },
+    {
+      "path": "input-sources/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "path": "input-sources/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1"
+    },
+    {
+      "path": "input-sources/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 86764,
+      "sha256": "baf14a20e411ff725a50a9c058148f8c029273e018c64fec398ea8bbf160e6a0"
+    },
+    {
+      "path": "input-sources/scripts/verify_connect_four_candidate.py",
+      "bytes": 11403,
+      "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea"
+    },
+    {
+      "path": "input-sources/scripts/verify_connect_four_delivery.py",
+      "bytes": 67003,
+      "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18"
+    },
+    {
+      "path": "published-originals/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226"
+    },
+    {
+      "path": "published-originals/raw-manifest.json",
+      "bytes": 518,
+      "sha256": "a57c3b2a83a6335d8534525c66689e73130fb93f954ff5ea91c5944012db8d0e"
+    },
+    {
+      "path": "published-originals/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 86764,
+      "sha256": "baf14a20e411ff725a50a9c058148f8c029273e018c64fec398ea8bbf160e6a0"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2377,
+      "sha256": "e819f2c6d07b7bd7cc531cfc497f0f7ca702adb81d87bf8336e42362be5158e8"
+    },
+    {
+      "path": "run_gate.py",
+      "bytes": 6573,
+      "sha256": "d4273e431137ad83b79f22a48a2e64260b2e40b2d83cebbf60790d35a32e0dbb"
+    },
+    {
+      "path": "unittest-process-result.json",
+      "bytes": 733,
+      "sha256": "3aa339225075d8439e3c8a1ca258ba0b514cc6eca759609033442f11c00aefb8"
+    },
+    {
+      "path": "unittest.stderr.log",
+      "bytes": 15776,
+      "sha256": "d78d2dc8610e66263e0a32a228b969c78bcb6cd7c348b79e27fc88be8e2512c1"
+    },
+    {
+      "path": "unittest.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 7856,
+      "sha256": "5c7d460764bf0b60edd0305744719651e58c912d9ad13009e2db0b36bab2c077"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 3264,
+      "sha256": "b48983c8a2638bbc5d85c5d12c52a6106d19dd9c687e8d94867e857bf17500cc"
+    }
+  ],
+  "all_originals_byte_equal": true
+}

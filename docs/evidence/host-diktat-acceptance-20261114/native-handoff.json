@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "repository": "Ullmann27/lumo-godot",
+  "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "run_id": 43600806315,
+  "attempt": 1,
+  "job_id": 132464933411,
+  "artifact_id": 14116698243,
+  "workflow": ".github/workflows/lumo-discovery-connections.yml",
+  "branch": "integration/lumo-discovery-bd-20261114",
+  "event": "push",
+  "parent_source": "4d2cbb6ea235c7bf519aa5f3873a16f6b177be2b",
+  "run_conclusion": "success",
+  "job_conclusion": "success",
+  "all_steps_success": true,
+  "technical_original_acceptance": "PASS",
+  "groups": {
+    "python": {
+      "methods": 47,
+      "groups": [
+        12,
+        24,
+        11
+      ],
+      "skips": 0
+    },
+    "existing_headless": {
+      "modes": 4,
+      "checks": [
+        21,
+        14,
+        92,
+        5347
+      ]
+    },
+    "dream": {
+      "modes": 5,
+      "pngs": 7,
+      "reports": 2
+    },
+    "discovery": {
+      "modes": 10,
+      "pngs": 38,
+      "reports": 2
+    },
+    "village": {
+      "modes": 3,
+      "headless_checks": [
+        339,
+        42
+      ],
+      "rendered_checks": 46,
+      "pngs": 2
+    },
+    "mobile": {
+      "mode": "rendered",
+      "checks": 428,
+      "controls": 15,
+      "safe_area_pngs": 4,
+      "minimap_pngs": 9,
+      "layouts": 7,
+      "hint_transitions": 2,
+      "historical_380": "The 380-check result belongs only to the earlier local 4d2cbb6 headless validation, not this CI run."
+    }
+  },
+  "integrity": {
+    "zip": {
+      "bytes": 66871509,
+      "sha256": "cc04dd13121a2663cf5c6ae3f21e0da8f1105c566fa13fe59fd9c66f038d49db"
+    },
+    "zip_members": 1516,
+    "all_crc_sha_and_local_readbacks": true,
+    "fully_decoded_pngs": 60,
+    "tracked_entries_bound_to_actual_api_tree": 3689,
+    "head_tree_index_tracked_before_after_unchanged": true,
+    "originals_unchanged_by_replay": true,
+    "new_engine_invocations": 0,
+    "new_test_suite_invocations": 0
+  },
+  "reports": [
+    {
+      "path": "verification/archive-verification.json",
+      "bytes": 473095,
+      "sha256": "a241f7844cc7631e405fb457e61ea928927c1b830a72bdac5e03706d9cc8c87b"
+    },
+    {
+      "path": "verification/original-replay.json",
+      "bytes": 86206,
+      "sha256": "1a47baf54ffeeffc444334de3439622f97c61b4599cc735ea049f36efd9eeac9"
+    },
+    {
+      "path": "analysis/verification-invocation.json",
+      "bytes": 1520,
+      "sha256": "a00e11903696dbfac07089e9be8e79ba6ce38e603f5b6ecb792e40e454e68f5b"
+    },
+    {
+      "path": "root-review-candidates-15.json",
+      "bytes": 9299,
+      "sha256": "b89114ebbd23a00b7707dbde39aaa4ee713b2857dd39953893baae5a72f229cf"
+    },
+    {
+      "path": "root-review-candidates-60.json",
+      "bytes": 35463,
+      "sha256": "164e5aa9596fd134a50209be1b74d207a26dc7a6b3e05ff1047e996f42511701"
+    },
+    {
+      "path": "timings.json",
+      "bytes": 5349,
+      "sha256": "7f9bc8759c7bbb843ca7bfad003c0b74022bc695ce442176ee1dab4c161c9634"
+    },
+    {
+      "path": "jobs/job-132464933411.log",
+      "bytes": 381313,
+      "sha256": "a0ceed015bcd4fa417e7ae82555a4ed463b58e6b4c659a802a09868c21775402"
+    },
+    {
+      "path": "transfer-history.json",
+      "bytes": 1210,
+      "sha256": "b38d1083d376bee37ac5b81dded018db2cde18f85b7359a9fe5504a906f68189"
+    },
+    {
+      "path": "original-retention.json",
+      "bytes": 1235,
+      "sha256": "34859980d21106d61286ddf55629f5f85fab14f17b0a8ce507bd3c659f50aa78"
+    }
+  ],
+  "final_original_api_directory": "snapshots/20261114T140219Z",
+  "source_identity_directory": "source-identity",
+  "bound_reader_sources": "frozen-source/manifest.json",
+  "replay_method": "Unchanged hash-bound Dream and strict Discovery readers use write=False. The exact workflow Village/Mobile Python is retained separately; minimal documented read-only adapters compare original JSON and remap only the archived absolute capture prefix. All original bytes are rehashed after replay.",
+  "visual_review": "Root reviews original images separately. This collector makes no visual-review assertion.",
+  "scope": "Successful exact separate Native Discovery/Dream/Village/Mobile desktop-renderer CI. No Android, device FPS, complete52/17, Host build, APK, release or publication acceptance."
+}

@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_activation_sections_review",
+  "created_at_utc": "2026-11-14T13:41:31.862Z",
+  "scope": "Only STATUS.body.md and CONTINUE.body.md prepared sections; no tests, edits, CI queries or full-document assembly.",
+  "inputs": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-final-activation-docs-20261114/sections/STATUS.body.md",
+      "bytes": 4710,
+      "sha256": "16eb3add78cf1ab8627e819d1bf422f0722054a992df37321e8bcc5054a18c89",
+      "git_blob": "ffa26809a810ba4c995f7b7f03b7dea867ba89e4"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-final-activation-docs-20261114/sections/CONTINUE.body.md",
+      "bytes": 5074,
+      "sha256": "f8c6ad657ecaad6b34742a667a033e404a7e7495074d66a1643a10d3d8c355df",
+      "git_blob": "d171e1be5d97a223c360245a094dc711929c4a74"
+    }
+  ],
+  "decision": "NO_CONCRETE_BLOCKER_IN_REQUESTED_SCOPE",
+  "findings": [
+    {
+      "check": "Historical test sources remain separate",
+      "result": "The text assigns 88 Pipeline/Delivery to 0411, Math/Dart and nine widgets to bb97, the actual 70-method Kart test plus separate old Boru RED to a8a9, and 36 C4 methods to adb88. It does not relabel any result as new combined Android acceptance."
+    },
+    {
+      "check": "Owned 70 and 36 original evidence",
+      "result": "The 70/36 counts, named commit identities, no-skip conclusions and old Boru RED agree with the separate actual raw-run handoffs previously frozen by pipeline_repair. The 36 run retains its real Pillow deprecation warning in the original log; these sections make no zero-warning assertion."
+    },
+    {
+      "check": "Historical failed candidate",
+      "result": "Both sections retain run 43589206933 as Android-failed and unpublished, with downstream stages unexecuted. They require a new exact-source C4 workflow and do not approve the predecessor APK."
+    },
+    {
+      "check": "Current functional gates",
+      "result": "52 native modes / 17 rasters, separate Dream and Discovery 10/38/2, same candidate APK for Main/Village/C4, preservation and final verification remain requirements. The text describes 120/80 as outer budgets and preserves individual probe deadlines."
+    },
+    {
+      "check": "C4 and Kart fix boundaries",
+      "result": "The description matches the known-word/TSV scroll-anchor fallback and the no-input 30-second Flutter-return observation. Existing ambiguity, image freshness, stability, touch/scroll limits, later two fresh portal reads and global 900-second boundary are retained."
+    },
+    {
+      "check": "Delivery and new source identity",
+      "result": "Delivery is accurately described as a read-only verified bundle preparation. No new release or APK acceptance is claimed; final Native pin and full current-source outcome remain pending Root activation."
+    },
+    {
+      "check": "Widget proof boundary",
+      "result": "The text explicitly separates static images/mocked native bridge from actual Android entry/return, audio, FPS and accessibility. It preserves the first adapter failure with unknown child exit separately from the later successful nine-case run."
+    }
+  ],
+  "limits": [
+    "This review independently checks only the two supplied section bytes and their source separation against available original handoffs and already reviewed workflow. It does not rerun or visually inspect Flutter widget captures.",
+    "Detailed bb97 Dart/widget counts and image descriptions are attributed to the dedicated Flutter/Root original evidence; they were not independently re-executed here.",
+    "The later assembled STATUS.md/CONTINUE.md and appended old document bytes have not been supplied to this section review and require their own byte-preservation check."
+  ],
+  "tests_run": false,
+  "source_changes": false,
+  "ci_queries": false
+}
