@@ -26,6 +26,14 @@ Der Visualtest behält alle fünf bisherigen Formate, die Fuchsgrenzen und die s
 
 Der erweiterte Foldtest prüft 320 × 740, 360 × 800, 640 × 360 sowie 320 × 480 mit doppelter Textskalierung. Er verwendet tatsächliche Pointerwischer in beide Richtungen. Vor und nach dem Scrollen müssen Brett- und Knopfmitten übereinstimmen. Die getesteten Endspalten müssen eine vollständig exponierte Fläche von mindestens 48 × 48 dp haben. Der Zweispielermodus wird ausdrücklich geprüft; nach den beiden manuellen Taps müssen exakt ein Kinderstein und anschließend zusätzlich ein Goldstein vorhanden sein. Ein automatisch gezogener Botstein darf diese Beobachtung nicht ersetzen. Diese vier Fixtures enthalten keine Safe-Area-Insets und stellen keine allgemeine Geräteabnahme dar.
 
+## Tatsächlicher Folgelauf und präzise Größenmessung
+
+Der [Folgelauf 43579548170](https://github.com/Ullmann27/lumo-lernen/actions/runs/43579548170) am Commit `1453c7fd09cc91ee04dcddc2631dfd6028a37d56` kompilierte den Android-Host erneut erfolgreich. Der vorgeschaltete C4-Schritt führte tatsächlich alle drei Spielablauftests und alle fünf bisherigen Visualtests erfolgreich aus. Damit wurden die ursprünglichen C4-Fehler in diesem engen Lauf behoben; fünf neue Original-Framebuffer wurden erzeugt.
+
+Die vier zusätzlichen Foldfälle stoppten jeweils an der neuen Größenassertion: `getRect(...).width` ergab `47.99999999999997`. Diese API subtrahiert transformierte globale Eckpunkte. Für die strikte lokale Mindestgröße verwendet der Test jetzt `getSize(...)`, das direkt die RenderBox-Größe liefert. Die Bedingung bleibt **mindestens 48 dp**, ohne Absenkung. Die globale X-Zuordnung und die separat geprüfte vollständig exponierte Fläche bleiben unverändert. Die Produktdatei wird für diese Messkorrektur nicht verändert.
+
+Das Originalartefakt 14107945718 dieses fehlgeschlagenen Laufs wurde vollständig gelesen: 2.080.118 Bytes, SHA256 `f459f562ca26a2eafb2d8c66bfc3dd6efb7d32786367aa588f01fb8b5fe19a28`, zehn CRC-geprüfte ZIP-Einträge, exakt gebundener Host- und Native-Quellstand, fünf PNGs. Es belegt acht bestandene Tests und vier zu diesem Zeitpunkt fehlgeschlagene neue Tests. Es ist kein vollständiger Flutter-, Wisch-, Android- oder APK-Nachweis. Der folgende Lauf muss die noch offenen Wischprüfungen ausführen und sämtliche nachfolgenden Gates bestehen.
+
 ## Erhaltene Gates und tatsächlicher Prüfstand
 
 Der vorhandene Workflow erhält vor der vollständigen Suite nur zwei zusätzliche Schritte: die drei konkret betroffenen Testdateien früh ausführen und deren originale Ausgabe, Bilder, Quellstände sowie Exitcodes archivieren. Alle bisherigen Schritte, Bedingungen, Rechte und Zeitbudgets sind nach vollständigem YAML-Strukturvergleich unverändert. Sowohl ein Flutterfehler als auch ein Fehler beim Schreiben des Originalprotokolls lässt den neuen Schritt fehlschlagen. Die vollständige Suite und alle Android-, Update-, Creative- und Publishergates bleiben verpflichtend.

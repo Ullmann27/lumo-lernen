@@ -31,11 +31,14 @@ Future<void> _ready(WidgetTester tester) async {
 
 void _alignedTouchTargets(WidgetTester tester) {
   for (var column = 0; column < 7; column++) {
-    final control =
-        tester.getRect(find.byKey(ValueKey('connect-column-$column')));
+    final finder = find.byKey(ValueKey('connect-column-$column'));
+    final control = tester.getRect(finder);
+    final hitSize = tester.getSize(finder);
     final cell = tester.getRect(find.byKey(ValueKey('connect-cell-5-$column')));
-    expect(control.width, greaterThanOrEqualTo(48));
-    expect(control.height, greaterThanOrEqualTo(48));
+    // RenderBox.size preserves the strict local 48dp constraint. Subtracting
+    // transformed global edges can instead yield 47.99999999999997.
+    expect(hitSize.width, greaterThanOrEqualTo(48));
+    expect(hitSize.height, greaterThanOrEqualTo(48));
     expect(control.center.dx, closeTo(cell.center.dx, .1),
         reason: 'Column $column must remain under its own board cells.');
   }
