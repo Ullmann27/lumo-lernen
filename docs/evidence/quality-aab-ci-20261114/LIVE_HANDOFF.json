@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14T13:07:37Z",
+  "recorded_at_utc": "2026-11-14 13:13:26 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -25,15 +25,15 @@
     "id": 43590864772,
     "attempt": 1,
     "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772",
-    "status_at_last_read": "in_progress",
-    "last_read_utc": "2026-11-14T13:07:37Z",
+    "status_at_last_read": "completed",
+    "last_read_utc": "2026-11-14T13:12:00Z",
     "job": 132436033818,
     "job_started_utc": "2026-11-14T11:40:59Z",
-    "current_step_at_last_read": "Require actual Dream gates on the exact pinned native source",
-    "step_started_utc": "2026-11-14T13:07:12Z",
+    "current_step_at_last_read": null,
+    "step_started_utc": null,
     "old_comparable_step_seconds": 2639,
     "old_timing_is_not_current_success_or_eta": true,
-    "last_observed_at_utc": "2026-11-14T13:07:37Z",
+    "last_observed_at_utc": "2026-11-14T13:12:00Z",
     "jobs_snapshot": [
       {
         "id": 132435073772,
@@ -56,20 +56,47 @@
       {
         "id": 132436033818,
         "name": "verify-and-build",
-        "status": "in_progress",
-        "conclusion": null,
+        "status": "completed",
+        "conclusion": "cancelled",
         "started_at": "2026-11-14T11:40:59Z",
-        "completed_at": null,
-        "active_steps": [
-          {
-            "name": "Require actual Dream gates on the exact pinned native source",
-            "status": "in_progress",
-            "conclusion": null,
-            "number": 33,
-            "started_at": "2026-11-14T13:07:12Z",
-            "completed_at": null
-          }
-        ]
+        "completed_at": "2026-11-14T13:11:15Z",
+        "active_steps": []
+      },
+      {
+        "id": 132457986535,
+        "name": "update-2020-from-2017",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-11-14T13:11:15Z",
+        "completed_at": "2026-11-14T13:11:15Z",
+        "active_steps": []
+      },
+      {
+        "id": 132457986998,
+        "name": "verify-c4-candidate",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-11-14T13:11:15Z",
+        "completed_at": "2026-11-14T13:11:15Z",
+        "active_steps": []
+      },
+      {
+        "id": 132457987163,
+        "name": "android-c4",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-11-14T13:11:15Z",
+        "completed_at": "2026-11-14T13:11:15Z",
+        "active_steps": []
+      },
+      {
+        "id": 132457987742,
+        "name": "prepare-c4-delivery",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-11-14T13:11:16Z",
+        "completed_at": "2026-11-14T13:11:15Z",
+        "active_steps": []
       }
     ],
     "active_log_read": {
@@ -85,7 +112,68 @@
       "completed_at": "2026-11-14T13:07:12Z",
       "conclusion": "success",
       "originals_not_yet_reviewed": true
-    }
+    },
+    "conclusion": "cancelled",
+    "completed_at": "2026-11-14T13:11:15Z",
+    "explicit_timeout_observation": {
+      "schema": 1,
+      "recorded_at_utc": "2026-11-14 13:13:26 UTC",
+      "source": "GitHub public job annotation expanded in actual CUA browser; no authentication or mutation",
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/job/132436033818",
+      "run_id": 43590864772,
+      "job_id": 132436033818,
+      "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+      "job_annotation_exact": "The job has exceeded the maximum execution time of 1h30m0s",
+      "step_annotation_exact": "The operation was canceled.",
+      "step": "Build unified real Android APK",
+      "observed_ui_duration": "1h 30m 16s",
+      "joblog_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+      "interpretation": "The displayed service annotation explicitly identifies the job-wide 90-minute limit. Native and Dream steps completed success. APK build was interrupted; dependent Android/update/final/delivery jobs were skipped. No new APK success is claimed.",
+      "changes_allowed_for_next_attempt": "Only increase the verify-and-build job budget after exact-byte, existing-contract and independent review; retain all tests, source pins, signatures, downstream checks and permissions."
+    },
+    "original_job_log_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+    "native_steps": [
+      {
+        "name": "Require actual gameplay gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-14T12:03:05Z",
+        "completed_at": "2026-11-14T13:07:12Z"
+      },
+      {
+        "name": "Require acknowledged Connect Four return retry",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 32,
+        "started_at": "2026-11-14T13:07:12Z",
+        "completed_at": "2026-11-14T13:07:12Z"
+      },
+      {
+        "name": "Require actual Dream gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33,
+        "started_at": "2026-11-14T13:07:12Z",
+        "completed_at": "2026-11-14T13:08:29Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 34,
+        "started_at": "2026-11-14T13:08:29Z",
+        "completed_at": "2026-11-14T13:08:45Z"
+      },
+      {
+        "name": "Build unified real Android APK",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "number": 35,
+        "started_at": "2026-11-14T13:08:45Z",
+        "completed_at": "2026-11-14T13:11:12Z"
+      }
+    ]
   },
   "completed_original_evidence": {
     "desktop_runtime": {
@@ -680,7 +768,7 @@
     "current_attempt": "r3"
   },
   "remaining": [
-    "Native52, mandatory Return21 and Dream5/7/2 actual results",
+    "Read and preserve the actual successful Native52/Return21/Dream5/7/2 originals; native original archive is now downloaded once by ReleaseLead",
     "Fresh signed ARM64 candidate identity/provenance and signature evidence",
     "Real API35 C4 tour and 2017-to-2020 preservation results",
     "Final candidate and delivery gates",
@@ -711,7 +799,7 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "24b487fdccb7212f17037cd78225fd51b1d7ebc2",
+    "prior_head": "3efb29ceac12ab7e4b82c5928ba8c250f2f63aae",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
@@ -741,5 +829,11 @@
       "active_exec_session": 87960,
       "actual_start_output": "Watch mode active; checking at most once every 120s. Nothing new to save on work/lumo-play-quality-20261114."
     }
+  },
+  "next_repair": {
+    "scope": "Only verify-and-build timeout-minutes90 to150, preparation only",
+    "reason": "Actual public job annotation explicitly says maximum1h30m0s exceeded",
+    "all_existing_gates_preserved": true,
+    "activated": false
   }
 }

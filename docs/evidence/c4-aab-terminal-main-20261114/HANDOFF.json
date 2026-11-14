@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "base_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "kind": "current_main_terminal_original_evidence",
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-aab-terminal-main-20261114/original-main-job-132436033818.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66"
+    },
+    {
+      "path": "docs/evidence/c4-aab-terminal-main-20261114/original-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1941e7015daf9398fdd068c02ea32348960fce2"
+    },
+    {
+      "path": "docs/evidence/c4-aab-terminal-main-20261114/original-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5cd407c42116838c116be051b1242d3a70ea119"
+    },
+    {
+      "path": "docs/evidence/c4-aab-terminal-main-20261114/original-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65c06a5934467aec4d601d3b9afe5ebd47d69c34"
+    },
+    {
+      "path": "docs/evidence/c4-aab-terminal-main-20261114/terminal-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34888855a01aeb2a150edfb2403b64d552174b80"
+    }
+  ]
+}
