@@ -1,0 +1,129 @@
+{
+  "base_host": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "upstream": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "checks": [
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "against": "1e22",
+      "original_blob": "c5103456e98baa696ec6cac8b6bb8af863d19f5b",
+      "candidate_blob": "09da24805ad89446eacfe2593d8f0a1b34adcdf4",
+      "all_other_functions_and_classes_byte_preserved": true,
+      "unchanged_definitions": [
+        "demand",
+        "normalize",
+        "require_resumed_progress",
+        "require_selected_race",
+        "selected_race_readiness",
+        "stage_cup_target_observation",
+        "stage_driver_target_observation",
+        "stage_driver_word_observations"
+      ],
+      "changed_existing_definitions": [
+        "stage_garage_scroll_observation"
+      ]
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "against": "057",
+      "original_blob": "bc71fd6556418bd71a99b24af047ea0f7e51d7c3",
+      "candidate_blob": "09da24805ad89446eacfe2593d8f0a1b34adcdf4",
+      "all_other_functions_and_classes_byte_preserved": true,
+      "unchanged_definitions": [
+        "demand",
+        "normalize",
+        "require_resumed_progress",
+        "require_selected_race",
+        "selected_race_readiness",
+        "stage_cup_target_observation",
+        "stage_driver_target_observation",
+        "stage_driver_word_observations",
+        "stage_garage_word_observations"
+      ],
+      "changed_existing_definitions": [
+        "stage_garage_scroll_observation"
+      ]
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "against": "1e22",
+      "original_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+      "candidate_blob": "f20bf864576f2474b563da29d2d718557702679c",
+      "all_other_functions_and_classes_byte_preserved": true,
+      "unchanged_definitions": [
+        "RaceSession",
+        "_atelier_roundtrip",
+        "_confirm_stage_selection",
+        "_continue_actual_race",
+        "_inspect_spatial_kart_menu",
+        "_pause_actual_race",
+        "_previous_kart_race_id",
+        "_read_garage_footer",
+        "_return_stage_kart_menu",
+        "_screencap",
+        "_select_stage_driver",
+        "_select_stage_kart",
+        "_shot",
+        "_simplify",
+        "_stage_cup_text",
+        "_start_actual_embedded_race",
+        "alive",
+        "diagnostic_logcat_context",
+        "drive_with_gas",
+        "find_gas",
+        "godot_alive",
+        "labels",
+        "log_images",
+        "logcat_fatal",
+        "main",
+        "try_tap",
+        "verify_apk_identity",
+        "wait_race_hud",
+        "wait_race_running"
+      ],
+      "changed_existing_definitions": [
+        "_stage_kart_scroll_recovery"
+      ]
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "against": "057",
+      "original_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521",
+      "candidate_blob": "f20bf864576f2474b563da29d2d718557702679c",
+      "all_other_functions_and_classes_byte_preserved": true,
+      "unchanged_definitions": [
+        "RaceSession",
+        "_atelier_roundtrip",
+        "_confirm_stage_selection",
+        "_continue_actual_race",
+        "_inspect_spatial_kart_menu",
+        "_pause_actual_race",
+        "_previous_kart_race_id",
+        "_read_garage_footer",
+        "_return_stage_kart_menu",
+        "_screencap",
+        "_select_stage_driver",
+        "_select_stage_kart",
+        "_shot",
+        "_simplify",
+        "_stage_cup_text",
+        "_start_actual_embedded_race",
+        "alive",
+        "diagnostic_logcat_context",
+        "drive_with_gas",
+        "find_gas",
+        "godot_alive",
+        "labels",
+        "log_images",
+        "logcat_fatal",
+        "main",
+        "try_tap",
+        "verify_apk_identity",
+        "wait_race_hud",
+        "wait_race_running"
+      ],
+      "changed_existing_definitions": [
+        "_stage_kart_scroll_recovery"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "schema": 1,
+  "host": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run_id": 43596913210,
+  "attempt": 1,
+  "status": "ORIGINAL_FAILED_DEVICE_OBSERVATIONS_NOT_ACCEPTANCE",
+  "logs_evidence_commit": "b979e7f435d1e131863bcad56df07855c43b2a38",
+  "series": {
+    "android": {
+      "job_id": 132484382995,
+      "artifact_id": 14119041396,
+      "archive_bytes": 52608076,
+      "archive_sha256": "85a2772ba860e8b5b03cb1a5b3ea35ee32cf40c66305be700144a2b11df70296",
+      "original_error": "No currently visible vehicle card in the actual left list",
+      "files": [
+        {
+          "file": "21_stage_select_gecko_velo-surface-readiness.json",
+          "archive_path": "main/21_stage_select_gecko_velo-surface-readiness.json",
+          "bytes": 3833,
+          "sha256": "e72b8aab506d8809518d4784a8d4438c7965d55dcb87a3d496792c1ae9573533"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0.png",
+          "archive_path": "main/21_stage_select_gecko_velo-0.png",
+          "bytes": 788919,
+          "sha256": "2c5214fe0ae35668c6e547dabcf14772a6e06101e52edd5e13bf01e99c7ab290"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr.json",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr.json",
+          "bytes": 21121,
+          "sha256": "13ef269552bed5dff28779b596017efaf6b211fef6ac25d789bdbe3999c5d33b"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+          "bytes": 4628,
+          "sha256": "e1bd46c18953ebc44992f0ffd3320dea492efb379d25a891512b113a60facf78"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+          "bytes": 3386,
+          "sha256": "b1234628331c48da59e3711ec63d21de7993865cfc2d562c216b4a72abc6bbd4"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+          "bytes": 3828,
+          "sha256": "16219d0a245affb4d92b3ee97f3701762333ed1f3c42cb7080efbf4cba9301e6"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-raw.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+          "bytes": 5219,
+          "sha256": "e681d68e9e7b6036c2f621857400c0770dc3d7881d075f9965d804427cebb2dc"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+          "bytes": 5000,
+          "sha256": "dfdbec66c9c479e327bcc7f32a725b01ab28544b3401ab733b5433ce0b037aba"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+          "bytes": 2933,
+          "sha256": "2ba70db0ecb04946393389ca08861f074e252414b2beb31d3b45e7b76bddd950"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+          "bytes": 2968,
+          "sha256": "4400830fcdffd836af7d07141d94bd960491bf8b60733d6fd2f85e4bac61eaed"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1.png",
+          "archive_path": "main/21_stage_select_gecko_velo-1.png",
+          "bytes": 792428,
+          "sha256": "72b7daf2f72af853c02f32eae564aa35d1619313d33682ab5a5462eb4e0e98ec"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr.json",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr.json",
+          "bytes": 20512,
+          "sha256": "e03329c988e841bf0b119547e87f847ded67bd59ad84fd6722f9e810c57e20f9"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+          "bytes": 4860,
+          "sha256": "25cc97cee82d2cac632769a6f7b9c14124d970c1aa9b2936708c9e49cb6d6ff7"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+          "bytes": 2452,
+          "sha256": "37001f717359686469a8bc922eff09fe1db44594d56e04a8f93ab254472516e1"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+          "bytes": 3059,
+          "sha256": "3105a42a6d7cfc2419790c12f5205554f2c17339160eadc65119b2c0819f8268"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-raw.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+          "bytes": 4423,
+          "sha256": "c12267287b4dbbaa7b566ac68131ec64a770f93e06b1a72464f13396ba7b43c3"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+          "bytes": 5652,
+          "sha256": "1fee5bc6b6fe9981cc1d89520d12221cb8769c137e0a0f27a1d6ddf40019f089"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+          "bytes": 3485,
+          "sha256": "a9e4d551122f41cb56c7945622a611c64442994f3ddcfb3b5ac41956424ffc33"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+          "bytes": 3521,
+          "sha256": "d1a027012b0b452e5654314a05db64c4f42f0a5fb7a06571f959b993d700d8d3"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2.png",
+          "archive_path": "main/21_stage_select_gecko_velo-2.png",
+          "bytes": 784389,
+          "sha256": "33ff8013d1541f6c1d0367caba494a4f8cd29578cd2d6c783d636d75386a6549"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr.json",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr.json",
+          "bytes": 20046,
+          "sha256": "5dff830cd46daf8c3cd83d9d10629fc528adb0f41ebefc5df9b0c6885b242be0"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+          "bytes": 5488,
+          "sha256": "bdab95b03e080bef08ba949a5d2d442f384b311e2db71bb7ed9c02422108133f"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+          "bytes": 2666,
+          "sha256": "9d4895b3e25c25f8c59436e8672498e19e0376134933e47a419d76cb67447513"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+          "bytes": 3671,
+          "sha256": "00cc8d631ece747ac8aff38c38dcb37d8f6e63634885cc2d06cacceacd215db7"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-raw.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+          "bytes": 3901,
+          "sha256": "208227fa84300a4db3562b36c62e3380277bc76afc8a2db2034b5964700b64bb"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+          "bytes": 5782,
+          "sha256": "e404018db4dce416def45f5e0e34fb834c6f7ce243b2791950e5b0496386e559"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+          "bytes": 3341,
+          "sha256": "c849d024c34b76e5fc99e595365cf30de926439c611d68b2d358583304383f26"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+          "archive_path": "main/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+          "bytes": 3376,
+          "sha256": "2472e42b87d5fc632d7c22c9e6e365ecbc318f426b1c1c5b60076492c9c8e2b1"
+        }
+      ]
+    },
+    "update": {
+      "job_id": 132484382954,
+      "artifact_id": 14118638414,
+      "archive_bytes": 60621212,
+      "archive_sha256": "6e1665739388ff4f1b0405ff7e994eec2a14bdb50bdedcbf5891d2cce059e0ae",
+      "original_error": "No currently visible vehicle card in the actual left list",
+      "files": [
+        {
+          "file": "21_stage_select_gecko_velo-surface-readiness.json",
+          "archive_path": "21_stage_select_gecko_velo-surface-readiness.json",
+          "bytes": 3841,
+          "sha256": "1dbea82afb7e57c2ee80b34aa0fba5bb7f58c37fc9df39a109c6a9b2a58e8057"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0.png",
+          "archive_path": "21_stage_select_gecko_velo-0.png",
+          "bytes": 766876,
+          "sha256": "22b2311774c6fdd87c331c52eef39eb9bced9d99aab5723bf7ed4164fe42c0a4"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr.json",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr.json",
+          "bytes": 20989,
+          "sha256": "f56cebfefebedfe9ca488a48bc0bb7e27dee09ca1ad8a9ee144e5953ddb9557d"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+          "bytes": 5759,
+          "sha256": "93f5acb925446f77ed8237dd5871d2d1289e94323b635a991216123f61014bc5"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+          "bytes": 2748,
+          "sha256": "65358e66e8be1c7e5b97303b70ce80189c2c07811cf9a298c5a0f9b613473be2"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+          "bytes": 2754,
+          "sha256": "d84aace947677cdfb78f286ab1593f302a72dbd3963207120ac4b533aa27c204"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-raw.tsv",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr-raw.tsv",
+          "bytes": 3849,
+          "sha256": "1d2c438fb2d56bb52ad2251525bc67f41fe670b981bfc196c65026eba06ae837"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+          "bytes": 6138,
+          "sha256": "73ea9ba109d701320900e20b300824c8d83273a1cce79ffa5a15f897e7ba303c"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+          "bytes": 3283,
+          "sha256": "126072f1a8ce19726e9a250048e983297ccf2f960925a2179bdb58ccfd7a1235"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+          "archive_path": "21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+          "bytes": 3294,
+          "sha256": "f7f6787d957834d13ba938e3dc29792bf2850273c574937af84063accf4b938b"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1.png",
+          "archive_path": "21_stage_select_gecko_velo-1.png",
+          "bytes": 769329,
+          "sha256": "04263acffae479dbb9f2d4238fa5a641388656b45ed6742411438f6aeb59c3ca"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr.json",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr.json",
+          "bytes": 19640,
+          "sha256": "27063254a1d5afd5f3d2761c165736986226636bd1712892d6d760c963ce815d"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+          "bytes": 5438,
+          "sha256": "9e8ddd78520916a4666389a5f7c5791004d12e8a9c30f36cb73650b452c69576"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+          "bytes": 2382,
+          "sha256": "a18d4d702f945ec934e2d8e73568eda569273ec31a38b94729df8e247d8e40a3"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+          "bytes": 2190,
+          "sha256": "41a1554eff49416bd08a717765caf4bbe4a78dff4cf67fe67e125f8f302d5c5f"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-raw.tsv",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr-raw.tsv",
+          "bytes": 4098,
+          "sha256": "d2b97355fb5e50e207c5dcf379645d3a78ad793e38df9003f34132e9c8668fc6"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+          "bytes": 5364,
+          "sha256": "691d6ecaa8554b28668f01ebd32902a31f2217de01a5fe5247d4b9ac1fc23717"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+          "bytes": 3383,
+          "sha256": "51a99d5d19a566e7165cd52ce45694fefc64bfbc9ff4d1f2c48645f7c57b8374"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+          "archive_path": "21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+          "bytes": 3347,
+          "sha256": "88a25fdf5dcdaebecc509918b6e1f8380bc230383b25fbf1f42c3ab78adcf2f8"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2.png",
+          "archive_path": "21_stage_select_gecko_velo-2.png",
+          "bytes": 760982,
+          "sha256": "b3ce33bfffbca15d696adada0045f8edd52ff2db30c85f0b4f20fac084f3627f"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr.json",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr.json",
+          "bytes": 20942,
+          "sha256": "a35786b91d34cc190ea4f397b2d7f6e2a330fd39a83698899a577bcf0d053c93"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+          "bytes": 6459,
+          "sha256": "a2f7cf5ce3f0386e678078ce0d0acb5effdc13a3d3747625fcb08c0b17e4493e"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+          "bytes": 3247,
+          "sha256": "0ee3c5fb05aa214599f1a8ad24486e20535202259777269b1880628e47891ed0"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+          "bytes": 2504,
+          "sha256": "f38d49916292aefe2a3d1988127ecdc3c998090366a80afea0ae081d402e808a"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-raw.tsv",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr-raw.tsv",
+          "bytes": 3774,
+          "sha256": "6863367eb3d2e3c9f3fde416793cc1864c9ea7556fe39b2d3dc7a24e3af8a410"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+          "bytes": 5396,
+          "sha256": "bb40d564bcb51fda10ff3c1c82a1eeb738ecbaf3669946c05e31308eb6796976"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+          "bytes": 3460,
+          "sha256": "7313c5e15c1ed2619889a3edc47354da896d39d8ad2646cfc7c893ab960dbd58"
+        },
+        {
+          "file": "21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+          "archive_path": "21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+          "bytes": 3568,
+          "sha256": "628807f5d882e060f192c9b9bee0e2f52f9e1c4317e5b44a183e2f020d4561c9"
+        }
+      ]
+    }
+  },
+  "scope": "Six unchanged original PNGs, six original OCR JSON files, two original surface journals, and the seven original whole-frame OCR TSV variants for each frame. Other artifact members remain in the QA original archives."
+}
