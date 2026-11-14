@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "kind": "independent-read-only-ci-time-budget-review",
+  "date_utc": "2026-11-14",
+  "repository": "Ullmann27/lumo-lernen",
+  "base": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "inspected_checkout": "/workspace/scratch/2708c7907f28/lumo-budget-150-2708",
+  "observed_head": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "observed_status": " M .github/workflows/lumo-connect-four-2020.yml\n M scripts/tests/test_connect_four_delivery.py\n",
+  "changes": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "old_bytes": 47632,
+      "new_bytes": 47633,
+      "old_sha256": "5b53838ce50eafa9f4cae38f1a69acb227edb15d1b36c99201dcde60314d01e4",
+      "new_sha256": "37a200af022777ab2fc3432186415e1e195084e7f2a8a8389a0ee095ce3ebfbd",
+      "old_blob": "a0bf885564ec322b3d830bcc661d0417926fbb2d",
+      "new_blob": "581e072ac61b9073aa49eff75e7abed5bb2c334b",
+      "changed_line": 181,
+      "expected_old_line_matches": true,
+      "every_other_byte_identical": true
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "old_bytes": 67475,
+      "new_bytes": 67476,
+      "old_sha256": "d7bcf66b0b95802004c2f63d8487035d569386909e3bb7afb56a8b71739a4c36",
+      "new_sha256": "a0932224245e13dde39d44a0a67db9620da6da1d6e86a6e68667a6da6319968b",
+      "old_blob": "cbc7d6c5f1544bd29af56226c93a8f1b53e049eb",
+      "new_blob": "99b24136fce85e038452a7a815f42bda9b30a280",
+      "changed_line": 552,
+      "expected_old_line_matches": true,
+      "every_other_byte_identical": true
+    }
+  ],
+  "findings": [
+    "The checkout HEAD is exactly the frozen aab09275ec6b5808de9be539ca4e1a7e70921249 base.",
+    "The complete tracked diff contains only the two requested files, with one replaced line in each and no observed untracked files.",
+    "Workflow line 181 changes verify-and-build timeout-minutes from 90 to 150.",
+    "Existing test line 552 changes only the expected literal from 90 to 150; the self.assertIn assertion and its build-job scope remain unchanged.",
+    "After substituting those exact two lines into the baseline bytes, each entire resulting file equals the current file byte for byte. Every other guard, job, step, source pin, trigger, assertion and artifact condition in these files is therefore preserved.",
+    "The change provides 60 additional minutes of outer job allowance; it does not disable a gate or change application source."
+  ],
+  "conclusion": {
+    "static_blocker_found": false,
+    "review_status": "No blocker found in the exact two-line delta."
+  },
+  "timeout_context": {
+    "reported_by": "Root via parent task",
+    "text": "The job has exceeded the maximum execution time of 1h30m0s",
+    "independently_read_original_ci_log_by_this_reviewer": false
+  },
+  "scope_limits": [
+    "Source review only; this reviewer did not run tests, an engine, a renderer, a build, or a CI job.",
+    "Passing tests and completion within 150 minutes are not claimed by this review; the parent owns the existing affected Python suite.",
+    "No source edit, commit, ref, product pin or publication was performed."
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "kind": "c4_verify_and_build_total_budget_only_review",
+  "base": {
+    "repository": "Ullmann27/lumo-lernen",
+    "commit": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "native_commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+  },
+  "confirmed_reason": {
+    "run_id": 43590864772,
+    "run_attempt": 1,
+    "job_id": 132436033818,
+    "observed_by": "Root independently read the original public GitHub job annotation",
+    "annotation": "The job has exceeded the maximum execution time of 1h30m0s",
+    "apk_step_annotation": "The operation was canceled.",
+    "limit": "The annotation and original terminal logs are separately retained by Root/ReleaseLead; this reviewer does not derive the cause from elapsed wall time alone."
+  },
+  "patch_scope": "Exactly two existing numeric values: verify-and-build timeout 90→150 minutes and its existing assertIn expectation. All remaining bytes of both files equal aab. No product, native, branch, source, acceptance, permission, threshold or other-job changes.",
+  "patch_files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "before": {
+        "bytes": 47632,
+        "sha256": "5b53838ce50eafa9f4cae38f1a69acb227edb15d1b36c99201dcde60314d01e4",
+        "git_blob": "a0bf885564ec322b3d830bcc661d0417926fbb2d"
+      },
+      "after": {
+        "bytes": 47633,
+        "sha256": "37a200af022777ab2fc3432186415e1e195084e7f2a8a8389a0ee095ce3ebfbd",
+        "git_blob": "581e072ac61b9073aa49eff75e7abed5bb2c334b"
+      },
+      "remote_sha": "581e072ac61b9073aa49eff75e7abed5bb2c334b"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "before": {
+        "bytes": 67475,
+        "sha256": "d7bcf66b0b95802004c2f63d8487035d569386909e3bb7afb56a8b71739a4c36",
+        "git_blob": "cbc7d6c5f1544bd29af56226c93a8f1b53e049eb"
+      },
+      "after": {
+        "bytes": 67476,
+        "sha256": "a0932224245e13dde39d44a0a67db9620da6da1d6e86a6e68667a6da6319968b",
+        "git_blob": "99b24136fce85e038452a7a815f42bda9b30a280"
+      },
+      "remote_sha": "99b24136fce85e038452a7a815f42bda9b30a280"
+    }
+  ],
+  "executed_validation": {
+    "command": "python3 -B -m unittest scripts.tests.test_connect_four_delivery -v",
+    "python": "3.12.14",
+    "first_attempt": {
+      "result": "FAILED (errors=4)",
+      "tests": 58,
+      "passed": 54,
+      "cause": "Sparse checkout omitted unchanged tools/android_qa; four ModuleNotFoundError errors while importing connect_four_android_evidence.",
+      "original_log": "docs/evidence/c4-job-budget-150-20261114/delivery-contract.stdout.log"
+    },
+    "environment_correction": "git sparse-checkout add tools/android_qa materialized unchanged tracked aab files; no source or test edits between attempts.",
+    "final_attempt": {
+      "result": "OK",
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "unittest_elapsed_seconds": 2.233,
+      "process_elapsed_seconds": 2.5427985629999057,
+      "original_log": "docs/evidence/c4-job-budget-150-20261114/complete-source/delivery-contract.stdout.log"
+    },
+    "source_identity_before_after_equal": true
+  },
+  "independent_review": {
+    "path": "docs/evidence/c4-job-budget-150-20261114/independent-source-review.json",
+    "git_blob": "2e2f6a3a5163ab918fd4ddcc199b683c4fc53042",
+    "sha256": "c07bc09d8f6d0b74fb86a47118fdd871e66afb36a38ffea3a40f27202f785df7",
+    "bytes": 3110,
+    "verdict": "No static blocker; exact two replacements and all remaining complete-file bytes preserved.",
+    "executed_tests": false
+  },
+  "limitations": [
+    "Existing offline contract suite only. No new CI run, engine, Flutter, Android or APK execution by this patch task.",
+    "No new Actionlint execution claimed in the recovered environment.",
+    "150 minutes increases the outer job budget; a completed full run remains required and is not guaranteed by this patch.",
+    "No remote ref update, workflow trigger, publication or release approval by this reviewer."
+  ],
+  "evidence_files": [
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/delivery-contract.stdout.log",
+      "bytes": 21251,
+      "sha256": "fc970ab1cb63735b1ed7d1c6dd7127e40053038af7e56a8efe0ed46e64a4490d",
+      "git_blob": "120546a6cb0bde282c07b6eb49b75bc6a9efc3c5"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/validation.json",
+      "bytes": 2447,
+      "sha256": "c6c2387ad1875ef5eddca2856ffd2789cb20d719be4f8faf17775c84a30787e7",
+      "git_blob": "b601526557ef61bd661b3d5ac96dc53ec147dd65"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/complete-source/delivery-contract.stdout.log",
+      "bytes": 12773,
+      "sha256": "e4f38d82f5749e31518bb0eea42ec9c62f2818d68ef17a2727db63bb41fa2098",
+      "git_blob": "7af374bba4593dbe85083d7b08dbf079f36788b1"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/complete-source/validation.json",
+      "bytes": 4118,
+      "sha256": "2d09c492b589723795a83af4061ffabdb03d38b832a0bb116022f73ce0e8fc82",
+      "git_blob": "2b806db4d844ba3917fea9a416537be9219d3604"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/budget-only.diff",
+      "bytes": 1501,
+      "sha256": "9b10b54c6123eaca324dfb7d1caf4b3f3b2d777a59001ac294f0d10ea5260d6d",
+      "git_blob": "6ee96efe1493799ef9b32ddd046efaf536b63b0c"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/final-source-status.txt",
+      "bytes": 95,
+      "sha256": "50ed11eaf33e01cc2f0b3caa731070c202eb21f3099659d5f84c914ae534abf3",
+      "git_blob": "ba3372b492d7491a3ad987d629412d09018639c0"
+    }
+  ],
+  "patch_tree_entries": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "581e072ac61b9073aa49eff75e7abed5bb2c334b"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99b24136fce85e038452a7a815f42bda9b30a280"
+    }
+  ],
+  "evidence_tree_entries": [
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/delivery-contract.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "120546a6cb0bde282c07b6eb49b75bc6a9efc3c5"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/validation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b601526557ef61bd661b3d5ac96dc53ec147dd65"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/complete-source/delivery-contract.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7af374bba4593dbe85083d7b08dbf079f36788b1"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/complete-source/validation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b806db4d844ba3917fea9a416537be9219d3604"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/budget-only.diff",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ee96efe1493799ef9b32ddd046efaf536b63b0c"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/final-source-status.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba3372b492d7491a3ad987d629412d09018639c0"
+    },
+    {
+      "path": "docs/evidence/c4-job-budget-150-20261114/independent-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e2f6a3a5163ab918fd4ddcc199b683c4fc53042"
+    }
+  ]
+}

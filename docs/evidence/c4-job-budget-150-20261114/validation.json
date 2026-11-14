@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "kind": "c4_main_budget_only_local_contract_validation",
+  "source_commit": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "source_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "scripts.tests.test_connect_four_delivery",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/2708c7907f28/lumo-budget-150-2708",
+  "started_utc": "2026-11-14T13:19:44.922356+00:00",
+  "elapsed_seconds": 2.029308922999917,
+  "exit_code": 1,
+  "before": {
+    ".github/workflows/lumo-connect-four-2020.yml": {
+      "bytes": 47633,
+      "sha256": "37a200af022777ab2fc3432186415e1e195084e7f2a8a8389a0ee095ce3ebfbd",
+      "git_blob": "581e072ac61b9073aa49eff75e7abed5bb2c334b"
+    },
+    "scripts/tests/test_connect_four_delivery.py": {
+      "bytes": 67476,
+      "sha256": "a0932224245e13dde39d44a0a67db9620da6da1d6e86a6e68667a6da6319968b",
+      "git_blob": "99b24136fce85e038452a7a815f42bda9b30a280"
+    },
+    "scripts/verify_connect_four_delivery.py": {
+      "bytes": 57147,
+      "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a",
+      "git_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b"
+    }
+  },
+  "after": {
+    ".github/workflows/lumo-connect-four-2020.yml": {
+      "bytes": 47633,
+      "sha256": "37a200af022777ab2fc3432186415e1e195084e7f2a8a8389a0ee095ce3ebfbd",
+      "git_blob": "581e072ac61b9073aa49eff75e7abed5bb2c334b"
+    },
+    "scripts/tests/test_connect_four_delivery.py": {
+      "bytes": 67476,
+      "sha256": "a0932224245e13dde39d44a0a67db9620da6da1d6e86a6e68667a6da6319968b",
+      "git_blob": "99b24136fce85e038452a7a815f42bda9b30a280"
+    },
+    "scripts/verify_connect_four_delivery.py": {
+      "bytes": 57147,
+      "sha256": "f1237d9f4e48ed0cf3253b67768d1d4aad947be32da2158be7df6b1f8cb6dc2a",
+      "git_blob": "18fdff098115570b69fc43ccfe6a3d573605e55b"
+    }
+  },
+  "source_files_unchanged_during_validation": true,
+  "original_stdout": {
+    "bytes": 21251,
+    "sha256": "fc970ab1cb63735b1ed7d1c6dd7127e40053038af7e56a8efe0ed46e64a4490d",
+    "git_blob": "120546a6cb0bde282c07b6eb49b75bc6a9efc3c5"
+  },
+  "scope": "Existing offline delivery counterexamples and workflow contracts only; no engine, Flutter, Android, APK or CI rerun. Other product and native sources unchanged."
+}
