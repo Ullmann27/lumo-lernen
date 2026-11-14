@@ -1,0 +1,94 @@
+name: Read only - fixed LUMO original artifact audit
+
+on:
+  push:
+    branches: [audit/lumo-originals-9de-20261114]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-original-artifacts-9de
+  cancel-in-progress: false
+
+jobs:
+  read-original-artifacts:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/audit/lumo-originals-9de-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Read the exact reviewed auditor and frozen manifest
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+          path: audit-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/audits/lumo_original_artifacts.py
+            /.github/audits/lumo-original-artifacts.json
+            /.github/workflows/lumo-originals-9de-audit.yml
+      - name: Read the actual immutable host verifier checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 9deaa3f24561bc65caba898585c0c00f1c77162b
+          path: host-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /tools/android_qa/
+            /tools/qa/
+            /.github/probes/
+            /.github/workflows/lumo-connect-four-2020.yml
+            /tools/audit_learning_tasks_all_grades.dart
+            /lib/core/school_exercise_generator.dart
+            /test/learning/learning_exact_selection_test.dart
+            /config/godot-source.json
+            /pubspec.yaml
+            /pubspec.lock
+      - name: Read the actual immutable native raster verifier checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          repository: Ullmann27/lumo-godot
+          ref: bebf7bba48f09afc834469db0ea3c5541a184f55
+          path: native-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/
+            /scripts/
+            /scenes/
+            /project.godot
+      - name: Prepare only the existing image reader and compile the audit source
+        run: |
+          set -euo pipefail
+          python3 -m venv .audit-python
+          .audit-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .audit-python/bin/python - <<'PY'
+          from pathlib import Path
+          path = Path('audit-source/.github/audits/lumo_original_artifacts.py')
+          compile(path.read_bytes(), str(path), 'exec')
+          PY
+      - name: Read exact original archive bytes and replay existing evidence readers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          .audit-python/bin/python -B audit-source/.github/audits/lumo_original_artifacts.py \
+            --host-source "$GITHUB_WORKSPACE/host-source" \
+            --native-source "$GITHUB_WORKSPACE/native-source" \
+            --manifest "$GITHUB_WORKSPACE/audit-source/.github/audits/lumo-original-artifacts.json" \
+            --out "$GITHUB_WORKSPACE/audit-evidence"
+      - name: Preserve exact exports and the complete audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-original-artifact-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: audit-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

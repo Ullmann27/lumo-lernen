@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "phase": "diagnostic",
+  "source": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43622794130,
+  "run_attempt": 1,
+  "archives": [
+    {
+      "kind": "diagnostic",
+      "artifact_id": 14125007260,
+      "name": "diagnostic-only-51ec-c4-bounded-return",
+      "bytes": 60443265,
+      "sha256": "c8076e4b9a744d635a49e86c5a4d9c89a6979c0f42ca0f7a7a6368d26e494657",
+      "job_id": 132531971385,
+      "job_name": "unchanged-apk-preferences-diagnostic",
+      "exports": [
+        {
+          "path": "main/21_stage_select_gecko_velo-0.png",
+          "media": "png",
+          "required": true
+        },
+        {
+          "path": "main/21_stage_select_gecko_velo-8.png",
+          "media": "png",
+          "required": true
+        },
+        {
+          "path": "main/21_stage_select_gecko_velo-9.png",
+          "media": "png",
+          "required": true
+        },
+        {
+          "path": "main/21_stage_select_gecko_velo-0-ocr.json",
+          "media": "json",
+          "required": true
+        },
+        {
+          "path": "main/21_stage_select_gecko_velo-8-ocr.json",
+          "media": "json",
+          "required": true
+        }
+      ]
+    },
+    {
+      "kind": "diagnostic_live",
+      "artifact_id": 14125395704,
+      "name": "diagnostic-only-51ec-c4-bounded-return-live-log",
+      "bytes": 426,
+      "sha256": "3c4d7c053d0f53e171c6ceaa4a341d4e89b6cf2d5125c7406aa08708a180c0e3",
+      "job_id": 132531971385,
+      "job_name": "unchanged-apk-preferences-diagnostic",
+      "exports": []
+    }
+  ],
+  "candidate": null
+}
