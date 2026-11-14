@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "at_utc": "2026-11-14 18:58:49 UTC",
+  "source_checkpoint": "df9536ebf82fe070c0e068533448f3dd5b273406",
+  "preflight_checkpoint": "8166e50ef81a3c23de353d22a32b481609cae2b8",
+  "independent_review_commit": "297cc6724da7eef9a16fee45e628ce6f583a9958",
+  "independent_review_blob": "ab644d0901f51d57cfa7b9ea3a8737d6127344e4",
+  "root_read_full_independent_review": true,
+  "all_eight_exact_source_blobs_match_review": true,
+  "root_read_full_original_35_and_4_logs": true,
+  "root_checked_complete_tree": true,
+  "activation_branch": "qa/lumo-village-return-6b-20261114",
+  "activation_is_diagnostic_only": true,
+  "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "new_current_host_acceptance": {
+    "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "run": 43628840534,
+    "attempt": 1,
+    "required_independently": true
+  },
+  "scope": "Next non-skipped commit starts exactly the isolated unchanged-APK API35 diagnosis. No new source or assertions; only these review/evidence additions. No real device pass or release claimed."
+}

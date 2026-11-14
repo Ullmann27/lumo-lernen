@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "scope": "Read existing unchanged API snapshots and candidate provenance inside the original Update report; no APK or artifact download or fresh signature invocation.",
+  "originals": {
+    "run": {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/android-14125719765/originals/metadata/run.json",
+      "bytes": 13250,
+      "sha256": "1c265dff0753ffbb895eddbc60ab9a565b28fb6aad8b507ca6ad4a40a7229509",
+      "git_blob": "50931893f6e664afa1a44cc1640f66ef335861e6"
+    },
+    "jobs": {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/android-14125719765/originals/metadata/jobs.json",
+      "bytes": 21404,
+      "sha256": "30e8ec708727392ec9c0f58986de2a96c84404f49f38ae73909aa8fdb2a89a66",
+      "git_blob": "d2bf6282f815a8a5acbb594f9d235b8a940086f0"
+    },
+    "artifacts": {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/android-14125719765/originals/metadata/artifacts.json",
+      "bytes": 8265,
+      "sha256": "a868ec8aab706427c23e073dcbf987ea3495f0b693100c3f22f839aba360b57c",
+      "git_blob": "ccd9fb94982c974a699be68b613504bdab2599d5"
+    },
+    "update_result": {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/update-14125789358/originals/update-result.json",
+      "bytes": 43816,
+      "sha256": "0c0a84da4180df1086776cebde159131b20ac2ef5ec6730be8db47b78cc55f7c",
+      "git_blob": "f200a737b5d1991c4f9ed010cf3df4200f8a2d6d"
+    }
+  },
+  "constants_match_existing_originals": true,
+  "constants": {
+    "HOST": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "HOST_TREE": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "NATIVE": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "BUILD_RUN": 43616038272,
+    "BUILD_JOB": 132512734271,
+    "BUILD_ATTEMPT": 1,
+    "ARTIFACT_ID": 14125990109,
+    "ARTIFACT_BYTES": 665918783,
+    "ARTIFACT_DIGEST": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+    "APK_BYTES": 334516947,
+    "APK_SHA256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "PCK_BYTES": 75401304,
+    "PCK_SHA256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4"
+  },
+  "candidate_identity": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "abis": [
+      "x86_64"
+    ],
+    "bytes": 334516947,
+    "sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+      "engine": "4.6.3",
+      "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+      "bytes": 75401304
+    },
+    "flutter_source_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tracked_source_clean": true
+  },
+  "original_artifact": {
+    "id": 14125990109,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyNTk5MDEwOQ==",
+    "name": "lumo-connect-four-2020-candidate",
+    "size_in_bytes": 665918783,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125990109",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14125990109/zip",
+    "expired": false,
+    "digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+    "created_at": "2026-11-14T18:02:09Z",
+    "updated_at": "2026-11-14T18:02:09Z",
+    "expires_at": "2026-12-14T18:02:00Z",
+    "workflow_run": {
+      "id": 43616038272,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66"
+    }
+  },
+  "original_build": {
+    "id": 132512734271,
+    "run_id": 43616038272,
+    "run_attempt": 1,
+    "head_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "status": "completed",
+    "conclusion": "success",
+    "name": "verify-and-build"
+  },
+  "required_build_steps": [
+    {
+      "name": "Build unified real Android APK",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 37,
+      "started_at": "2026-11-14T17:55:59Z",
+      "completed_at": "2026-11-14T18:01:51Z"
+    },
+    {
+      "name": "Verify APK archive and collect reproducible source hashes",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 38,
+      "started_at": "2026-11-14T18:01:51Z",
+      "completed_at": "2026-11-14T18:02:00Z"
+    },
+    {
+      "name": "Upload exact candidate (no release or synthetic screenshots)",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 39,
+      "started_at": "2026-11-14T18:02:00Z",
+      "completed_at": "2026-11-14T18:02:10Z"
+    }
+  ],
+  "archive_limit": "The combined candidate ZIP was not downloaded by this reviewer; metadata digest and size are confirmed. The runtime verifier separately hashes actual APK and embedded PCK bytes."
+}
