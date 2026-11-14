@@ -126,9 +126,14 @@ after a temporary execution-environment outage. Python 3.12.14 and OpenJDK
 
 The release lead executed the 28 verifier/preparation tests successfully; the
 builder worker executed the 15 orchestration and nine icon tests successfully.
-The combined focused total is 52. Root independently reran the initial
-27 tests before the additional invalid-keystore case was added. The final source
-files matched Git blobs 054324b3f9ba8b7dc269e42a20b9c91a8717b27a,
+The combined focused total is 52. Root independently integrated the exact final
+source blobs and reran all 52 together: 10.622 seconds, exit 0, no skips.
+The first root attempt lacked the original fox PNG because of the sparse
+checkout; restoring its exact committed bytes resolved those nine fixture
+setup errors without a code or test change. Both original outputs and the
+source-blob manifest are preserved in
+[the root verification evidence](../evidence/play-aab-local-20261114/root-independent-result.json).
+The final verifier source files matched Git blobs 054324b3f9ba8b7dc269e42a20b9c91a8717b27a,
 d6078bf64dde4fb25cce78635d81e7f4e0114b60,
 da1aa45e530e6dfa32886df740095c3eea3c1ae2 and
 6db74c257d67f193a96f4b759e09550100e081ff.
