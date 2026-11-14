@@ -1,0 +1,112 @@
+{
+  "observed_at": "2026-11-14T20:49:00Z",
+  "current_source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "current_native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "host_prs": [
+    507,
+    508,
+    502,
+    493,
+    485,
+    494,
+    477
+  ],
+  "native_prs": [
+    182,
+    183,
+    184
+  ],
+  "read_only": true,
+  "no_current_build_cancelled": true,
+  "host_findings": {
+    "already_included_or_extended": [
+      {
+        "pr": 502,
+        "head": "eb59c2f6c35361e50c3d9e474a2c7a366b7a35ab",
+        "finding": "Existing input/camera/profile fixes already in current source. Compared original blobs: current dictation additionally rejects a second active writing contact; current Live retains capture operation ownership, captured-profile error guard and mode-revision Safari callbacks. Replacing whole files would remove those protections. Profile and pubspec/lock identical. Remaining Magic/Story differences are removed unused import/constant."
+      },
+      {
+        "pr": 493,
+        "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+        "finding": "Compared C4 product file: shared horizontal board/control coordinate system and 48dp pitch already implemented; diff mainly names/formatting plus an explicit same-width SizedBox. New QA observer timing changes are separate, not a missing corresponding current product feature."
+      }
+    ],
+    "new_uncompleted": [
+      {
+        "pr": 507,
+        "head": "8e64f27c86e1704fa65dfe9ef9c8b2217f9f0a11",
+        "run": 43634307306,
+        "flutter_job": 132567623144,
+        "observed_conclusion": "failure",
+        "failed_step": "Run the complete Flutter suite and every enabled capture",
+        "finding": "New native Memory authority files do not exist in current source; depends on Studio28462/Native29080 union. Product changes include wallet confirmations and paused C4 retry. Exact source full-suite acceptance is not successful; no blanket import."
+      },
+      {
+        "pr": 508,
+        "head": "1aeb6879221aa08291f712faef353e0efedd12cc",
+        "controls_run": 43635322803,
+        "controls_conclusion": "success",
+        "main_run": 43635322819,
+        "main_conclusion": null,
+        "finding": "Four genuinely new product files connect a native games hub and switch native C4 entry to explicit opt-in. Current source has neither this hub entry nor this opt-in behavior. The inspected PR has no C4 Android-probe change; its existing device probe taps only the portal on initial entry and reopening, then awaits Native. It has no explicit 'In 3D weiterspielen' touch. This is a static integration gap requiring actual corrected device evidence, not a claimed observed Android failure.",
+        "source_blobs": [
+          {
+            "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+            "proposed": "7c01be0c899a7c90b25b61ae17ecd4dd7d855487",
+            "current": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96"
+          },
+          {
+            "path": "lib/features/games/games_content.dart",
+            "proposed": "dceef2af05226ba4310df1546f96282e9600c4c4",
+            "current": "166ee19435146a9d42c69eeadd71754dac88d9d7"
+          },
+          {
+            "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+            "proposed": "ac3e83d06306d15962e4cc7ca0bd8598429c3ab4",
+            "current": "597defa53a3959a3b1fa95f1e495b91a9ce47af5"
+          },
+          {
+            "path": "tools/auto_install/MainActivity.kt",
+            "proposed": "36256a89da42a3fe84f90e9505dd36e40d37db44",
+            "current": "dfaa6c4a748ae95aa81cba164dc8bea4c9c04c9b"
+          }
+        ]
+      }
+    ],
+    "evidence_only": {
+      "pr": 477,
+      "head": "5110f15b5002727c53725340f794e35a12366f20",
+      "source_change_claim": false
+    },
+    "scope_limit": "This is a fixed read-only audit of named draft heads while current ec/847 acceptance continues. It is not acceptance of these branches or a claim that all future producer changes are integrated.",
+    "collector": {
+      "pr": 485,
+      "head": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+      "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+      "main_run": 43637785992,
+      "status": "failure",
+      "ahead": 26,
+      "behind": 68,
+      "merge_base": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+      "complete_tree_read": true,
+      "product_differences": 41,
+      "failed_jobs": [
+        {
+          "id": 132579589188,
+          "name": "verify-and-build",
+          "failed_steps": [
+            {
+              "number": 13,
+              "name": "Full Flutter regression suite including every capture"
+            },
+            {
+              "number": 21,
+              "name": "Preserve the complete original script contracts for PCM delivery replay"
+            }
+          ]
+        }
+      ],
+      "not_accepted": true
+    }
+  }
+}

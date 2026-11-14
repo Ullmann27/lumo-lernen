@@ -1,0 +1,76 @@
+{
+  "commit": "0d5fc7e4b67474ddd9d70218edfc3ab376c69781",
+  "tree": "79d441ad70e7765d6e7426787c1430441d15d533",
+  "old_files_unchanged": 5170,
+  "added_files": 193,
+  "total_files": 5363,
+  "all_additions_within_new_prefix": true,
+  "readme": "e8129fcfa53e40c2aefdbc91260424ed17e8ce97",
+  "manifest": "aca27a5e72eb150d9c8549531761a27fdfe7107c",
+  "replay": "c80750b31d229bc58bc586f9a42ad41d3bca560d",
+  "read_by_root": true,
+  "current_ec_acceptance": false,
+  "actual_replay": {
+    "qa_source": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "run": 43634531860,
+    "artifact": 14130249406,
+    "c4": {
+      "actual_bot_responses": 2,
+      "actual_child_drops": 2,
+      "api": 35,
+      "binding": {
+        "candidate_artifact_digest": "sha256:1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+        "candidate_artifact_id": 14125990109,
+        "host_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+        "native_source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "run_attempt": 1,
+        "run_id": 43616038272,
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+      },
+      "native_returns": 2,
+      "observations": 25,
+      "original_files": 1515,
+      "same_round_reopened": true,
+      "scope": "C4 candidate device test only; no release, physical ARM64, API37 or FPS acceptance",
+      "status": "PASS",
+      "versionCode": 2020
+    },
+    "village": {
+      "android_api": 35,
+      "frame_sha256": "377a4a0ba5075308cefa0aa8c278b0e5dad995bc27bc513298fcfd7d568916e8",
+      "host_pid": 6350,
+      "native_pid": 6686,
+      "native_process_ended": true,
+      "profile_and_learning_unchanged": true,
+      "raw_report_sha256": "4e2cb2b6237c4c642a9ffb8b43ef5407d268b03afd26db1984104a921f0af191",
+      "return_scene": "games",
+      "save_path": "user://lumo_settlement_f89423f887c29f8dc3d91cab3984651515f53449c4296cc241dce9393530d79e_1_village.json",
+      "scene": "res://scenes/creative/build_settlement_world.tscn",
+      "status": "PASS"
+    },
+    "preservation": {
+      "all_original_bytes_and_modes_unchanged": true,
+      "all_reader_bytes_and_modes_unchanged": true,
+      "original_files": 2875
+    },
+    "elapsed_seconds": 15.115754067002854,
+    "new_device_engine_or_capture_runs": 0,
+    "scope": "Independent original replay of the separate QA3cae diagnostic on unchanged APK6b."
+  },
+  "root_opened_images": [
+    "c4/return-first-flutter.png",
+    "c4/return-first-to-games-00-frame.png",
+    "c4/return-first-games-001-frame.png",
+    "c4/child-second-confirmed-003.png",
+    "c4/reopened-009.png"
+  ],
+  "scope_limits": [
+    "Separate older 6b APK diagnosis, not new ec APK acceptance.",
+    "No new local APK/signature verification or physical device run.",
+    "Root read complete source-tree deltas, original reader report, manifest and README; Root did not independently rerun all readers or visually open every PNG."
+  ]
+}
