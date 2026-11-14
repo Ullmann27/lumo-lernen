@@ -1,0 +1,162 @@
+name: Diagnostic only - old 74a APK C4 return
+
+on:
+  push:
+    branches: [diagnostic/lumo-c4-return-74a-20261114]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: diagnostic-only-c4-return-74a
+  cancel-in-progress: false
+
+jobs:
+  old-apk-return-diagnostic:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/diagnostic/lumo-c4-return-74a-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Unchanged original app source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 74a0f421a0650308eb7f73ae1c60b6d8ecd2fe0a
+          path: app-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /config/godot-source.json
+            /pubspec.yaml
+      - name: Unchanged reviewed observer source and its parent
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 6f42fa8c0f18ea27dac90d7799ca06a1f9f0614a
+          path: qa-source
+          fetch-depth: 2
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/probes/
+            /scripts/
+            /tools/android_qa/
+            /config/godot-source.json
+            /pubspec.yaml
+      - name: Read original build metadata and exact diagnostic driver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p tour/metadata candidate/dist
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43582902189" > tour/metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43582902189/attempts/1/jobs?per_page=100" > tour/metadata/jobs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43582902189/artifacts?per_page=100" > tour/metadata/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > tour/metadata/diagnostic-run.json
+          gh api "repos/$GITHUB_REPOSITORY/contents/.github/diagnostics/lumo_c4_return_74a.py?ref=$GITHUB_SHA" > tour/metadata/driver-source.json
+          python3 - <<'PY'
+          import base64, hashlib, json, os
+          from pathlib import Path
+          record = json.loads(Path('tour/metadata/driver-source.json').read_text())
+          assert record['type'] == 'file' and record['path'] == '.github/diagnostics/lumo_c4_return_74a.py'
+          assert record['encoding'] == 'base64'
+          data = base64.b64decode(record['content'])
+          assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest() == record['sha']
+          path = Path(os.environ['RUNNER_TEMP']) / 'lumo_c4_return_74a.py'
+          path.write_bytes(data)
+          print('Diagnostic driver Git blob:', record['sha'])
+          PY
+      - name: Download the original artifact and verify its exact bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/14112410201/zip" > "$RUNNER_TEMP/lumo-c4-old-candidate.zip"
+          python3 - <<'PY'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+          path = Path(os.environ['RUNNER_TEMP']) / 'lumo-c4-old-candidate.zip'
+          assert path.stat().st_size == 665175297
+          with path.open('rb') as stream:
+              digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+          assert digest == '99d94c2fecb609fa4bf80905ad5b7adf24e7740d664e48ba456836fe73d5532a'
+          members = ('x86_64/Lumo-Lernen-Neu.apk', 'x86_64/BUILD-PROVENANCE.json', 'ANDROID-TOUR-SHA256SUMS.txt')
+          with zipfile.ZipFile(path) as archive:
+              assert len(archive.namelist()) == len(set(archive.namelist()))
+              for name in members:
+                  info = archive.getinfo(name)
+                  assert not info.is_dir() and (info.external_attr >> 16) & 0o170000 != 0o120000
+                  archive.extract(info, 'candidate/dist')
+          Path('tour/original-artifact-download.json').write_text(json.dumps({
+              'artifact_id':14112410201, 'run_id':43582902189, 'run_attempt':1,
+              'apk_source':'74a0f421a0650308eb7f73ae1c60b6d8ecd2fe0a',
+              'archive_bytes':path.stat().st_size, 'archive_sha256':digest,
+              'extracted_members':members, 'zip_crc_checked':True,
+              'diagnostic_only':True}, indent=2)+'\n')
+          PY
+      - name: Install the same live UI and render readers
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Diagnostic main tour and actual C4 return on the unchanged old APK
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        env:
+          LUMO_NATIVE_STAGE_MENU: '1'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+            adb shell getprop ro.build.version.release > tour/android-release.txt
+            "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+            .probe-venv/bin/python -B "$RUNNER_TEMP/lumo_c4_return_74a.py" --app-source "$GITHUB_WORKSPACE/app-source" --qa-source "$GITHUB_WORKSPACE/qa-source" --apk "$GITHUB_WORKSPACE/candidate/dist/x86_64/Lumo-Lernen-Neu.apk" --provenance "$GITHUB_WORKSPACE/candidate/dist/x86_64/BUILD-PROVENANCE.json" --sums "$GITHUB_WORKSPACE/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt" --metadata "$GITHUB_WORKSPACE/tour/metadata" --out "$GITHUB_WORKSPACE/tour"
+      - name: Preserve all original diagnostic evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostic-only-old-74a-c4-return
+          path: tour/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
