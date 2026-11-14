@@ -16,6 +16,7 @@ import time
 CAPTURE_DIRECTORIES = {
     'LUMO_VILLAGE_CAPTURES': 'village',
     'LUMO_1989_CARD_CAPTURES': 'home-premium',
+    'LUMO_NEXTGEN_CAPTURES': 'home-nextgen',
     'LUMO_TUTORING_CAPTURE_DIR': 'tutoring',
     'LUMO_RIG_STRESS': 'rig-stress',
     'LUMO_CARDS_OPPONENT_CAPTURE': 'cards-opponents',

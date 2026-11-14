@@ -446,6 +446,7 @@ jobs:
           mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
           cd "$native_source"
           LUMO_LIVE_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/live" bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-runner.log"
+          LUMO_DISCOVERY_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/discovery" bash tools/validate_discovery_connections.sh 2>&1 | tee "$native_logs/discovery-runner.log"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
