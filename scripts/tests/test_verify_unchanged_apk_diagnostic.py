@@ -206,6 +206,8 @@ class ApkContracts(unittest.TestCase):
         (self.candidate / 'config/godot-source.json').write_text(json.dumps({
             'repository': 'https://github.com/Ullmann27/lumo-godot.git', 'revision': diagnostic.NATIVE}))
         (self.candidate / 'pubspec.yaml').write_text('version: 0.13.7+2019\n')
+        self.qa_pin = self.root / 'synthetic-qa-godot-source.json'
+        self.qa_pin.write_bytes((self.candidate / 'config/godot-source.json').read_bytes())
         self.apk = self.root / 'synthetic.apk'
         self.pck = b'Explicitly synthetic PCK bytes, not a native render or APK build.'
         with zipfile.ZipFile(self.apk, 'w', compression=zipfile.ZIP_STORED) as archive:
@@ -317,24 +319,28 @@ class ApkContracts(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'Actual embedded PCK bytes differ'):
                 self.verify()
 
-    def test_full_preflight_keeps_qa_run_and_apk_source_separate(self):
+    def bind_full_preflight(self):
         candidate_metadata_dir, qa_metadata_dir = self.root / 'build-meta', self.root / 'qa-meta'
-        candidate_metadata_dir.mkdir()
-        qa_metadata_dir.mkdir()
+        candidate_metadata_dir.mkdir(exist_ok=True)
+        qa_metadata_dir.mkdir(exist_ok=True)
         for name, value in zip(('run.json', 'jobs.json', 'artifacts.json'), candidate_metadata()):
             (candidate_metadata_dir / name).write_text(json.dumps(value))
         for name, value in zip(('run.json', 'jobs.json'), qa_metadata()):
             (qa_metadata_dir / name).write_text(json.dumps(value))
 
         def synthetic_checkout(path, source, tree):
-            # Only Git identity is synthetic. Inputs, original helper bytes,
-            # the existing APK verifier and embedded ZIP reads remain real.
+            # Git identity and the historical QA pin are explicit fixtures.
+            # Original helper bytes, APK verification and ZIP reads remain real.
             expected = (QA_SOURCE, QA_TREE) if path == ROOT else (diagnostic.HOST, diagnostic.HOST_TREE)
             self.assertEqual((source, tree), expected)
             return {'path': str(path), 'commit': source, 'tree': tree, 'tracked_source_clean': True}
 
+        def fixture_path(path):
+            # Do not bind a fixed historical APK test to today's native pin.
+            return self.qa_pin if path == ROOT / 'config/godot-source.json' else path
+
         def synthetic_committed_file(path, relative):
-            data = (path / relative).read_bytes()
+            data = fixture_path(path / relative).read_bytes()
             return {'path': relative, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
                     'git_blob': hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()}
 
@@ -343,10 +349,15 @@ class ApkContracts(unittest.TestCase):
             expected_qa_source=QA_SOURCE, expected_qa_run=QA_RUN, expected_qa_attempt=1,
             qa_job_name=diagnostic.QA_JOBS[0], apk=self.apk,
             provenance=self.provenance_path, sums=self.sums_path)
+        read_json = diagnostic.read_json
         with patch.object(diagnostic, 'source_identity', side_effect=synthetic_checkout), \
                 patch.object(diagnostic, 'committed_file', side_effect=synthetic_committed_file), \
+                patch.object(diagnostic, 'read_json', side_effect=lambda path: read_json(fixture_path(path))), \
                 patch.object(diagnostic, 'load_module', side_effect=[creative, tour]):
-            result = diagnostic.bind(args)
+            return diagnostic.bind(args)
+
+    def test_full_preflight_keeps_qa_run_and_apk_source_separate(self):
+        result = self.bind_full_preflight()
         self.assertEqual(result['diagnostic_qa']['source'], QA_SOURCE)
         self.assertEqual(result['candidate_build']['host_source'], diagnostic.HOST)
         self.assertEqual(result['candidate_build']['run_conclusion'], 'failure')
@@ -355,6 +366,21 @@ class ApkContracts(unittest.TestCase):
         self.assertEqual(len(result['input_hashes']), 7)
         self.assertEqual(result['status'], 'BOUND')
         self.assertIn('no Android or release acceptance', result['scope'])
+
+    def test_full_preflight_rejects_wrong_native_pin_in_either_checkout(self):
+        for path in (self.qa_pin, self.candidate / 'config/godot-source.json'):
+            original = path.read_text()
+            for key, wrong in (('revision', 'f' * 40),
+                               ('repository', 'https://github.com/example/wrong-native.git')):
+                with self.subTest(checkout=path.parent.name, field=key):
+                    changed = json.loads(original)
+                    changed[key] = wrong
+                    path.write_text(json.dumps(changed))
+                    try:
+                        with self.assertRaisesRegex(RuntimeError, 'Source checkout native pin differs'):
+                            self.bind_full_preflight()
+                    finally:
+                        path.write_text(original)
 
 
 class OutputContracts(unittest.TestCase):
