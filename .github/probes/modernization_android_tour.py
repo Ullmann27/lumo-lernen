@@ -402,7 +402,20 @@ def _select_stage_driver(out: Path, timeout: float = 150) -> dict:
                 # Read every full-frame variant. Stopping at the first exact
                 # Lumo could find only the logo and miss the actual card.
                 lines = probe.image_lines(out, name, source_path=source, timeout=remaining)
-                scoped = garage_evidence.stage_driver_target_observation(frame, lines)
+                try:
+                    scoped = garage_evidence.stage_driver_target_observation(frame, lines)
+                except RuntimeError as error:
+                    if str(error) not in (
+                            'No exact Lumo driver caption in the observed left-hand list',
+                            'Ambiguous Lumo driver captions in the observed list'):
+                        raise
+                    # The existing TSV retains the exact word when OCR joined
+                    # the adjacent fox icon into a larger text-line rectangle.
+                    words = garage_evidence.stage_driver_word_observations(out, name, lines)
+                    scoped = garage_evidence.stage_driver_target_observation(
+                        frame, lines, caption_words=words['words'])
+                    scoped.update(caption_source='original_tsv_words',
+                                  line_ocr_error=str(error), ocr_sources=words['sources'])
                 frame['driver_region'] = scoped
                 observed = probe.target_observation(frame, scoped['target']['bounds'], previous)
                 frame['target'] = observed

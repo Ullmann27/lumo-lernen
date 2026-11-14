@@ -5,7 +5,11 @@ validators never create a selection, race, elapsed time or driving progress.
 """
 from __future__ import annotations
 
+import csv
+import hashlib
+import io
 import math
+from pathlib import Path
 import unicodedata
 
 
@@ -114,7 +118,51 @@ def stage_cup_target_observation(frame: dict, lines: list[dict]) -> dict:
             'scope': 'Observed cup button; the new native race must still confirm mode cup'}
 
 
-def stage_driver_target_observation(frame: dict, lines: list[dict]) -> dict:
+def stage_driver_word_observations(out: Path, tag: str, lines: list[dict]) -> dict:
+    """Read exact words from this frame's existing full-frame OCR outputs.
+
+    The fox icon can share an OCR line with its caption. Use the real word
+    rectangle, never the icon-plus-caption line rectangle or estimated bounds.
+    Scales match creative_android_probe.image_lines; its confidence floor and
+    all seven original variants remain unchanged.
+    """
+    scales = {'contrast': 2, 'raw': 2, 'white-text': 2, 'white-latin': 2,
+              'navy-latin': 2, 'navy-latin-1x': 1, 'teal-text-1x': 1}
+    demand(Path(tag).name == tag, 'Invalid current driver OCR tag')
+    variants = list(dict.fromkeys(row.get('variant') for row in lines))
+    demand(variants and all(variant in scales for variant in variants),
+           'Original driver OCR variants are required for word observations')
+    words, sources = [], []
+    for variant in variants:
+        source = out / f'{tag}-ocr-{variant}.tsv'
+        demand(source.is_file(), 'Original current-frame driver TSV is missing')
+        raw = source.read_bytes()
+        sources.append({'file': source.name, 'sha256': hashlib.sha256(raw).hexdigest(),
+                        'bytes': len(raw), 'scale': scales[variant]})
+        reader = csv.DictReader(io.StringIO(raw.decode('utf-8')), delimiter='\t',
+                                quoting=csv.QUOTE_NONE)
+        demand({'level', 'text', 'conf', 'left', 'top', 'width', 'height'} <=
+               set(reader.fieldnames or ()), 'Invalid original driver TSV columns')
+        for word in reader:
+            caption = unicodedata.normalize('NFKC', word['text']).strip().casefold()
+            if word['level'] != '5' or caption != 'lumo':
+                continue
+            confidence = float(word['conf'])
+            demand(math.isfinite(confidence), 'Nonfinite original driver OCR confidence')
+            if confidence < 15:
+                continue
+            scale = scales[variant]
+            left, top, width, height = (int(word[key]) for key in
+                                       ('left', 'top', 'width', 'height'))
+            words.append({'text': word['text'], 'variant': variant,
+                          'bounds': [left / scale, top / scale,
+                                     (left + width) / scale, (top + height) / scale],
+                          'source_tsv': source.name})
+    return {'words': words, 'sources': sources}
+
+
+def stage_driver_target_observation(frame: dict, lines: list[dict], *,
+                                    caption_words: list[dict] | None = None) -> dict:
     """Locate the real Lumo card below the tabs, never the identical brand.
 
     The current landscape driver list is left-aligned, below Fahrer/Karts and
@@ -137,6 +185,9 @@ def stage_driver_target_observation(frame: dict, lines: list[dict]) -> dict:
             footers.append(row)
         elif normalize(row['text']) == 'lumo':
             captions.append(row)
+    if caption_words is not None:
+        captions = [row for row in caption_words if
+                    unicodedata.normalize('NFKC', row['text']).strip().casefold() == 'lumo']
     demand({'fahrer', 'karts'} <= observed_tabs and footers,
            'Actual Fahrer/Karts tabs and menu/start footer required before driver selection')
     for row in headers + footers + captions:

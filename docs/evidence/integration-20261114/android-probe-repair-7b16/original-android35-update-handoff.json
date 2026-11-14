@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "at": "2026-11-14T02:54:21.004763+00:00",
+  "scope": "Actual API35 and 2017-to-2019 update failures on 7b16; separate from API37, Creative and later local repair.",
+  "host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "host_tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+  "native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "run_id": 43540111465,
+  "attempt": 1,
+  "api35_status": "FAILURE",
+  "update_status": "FAILURE",
+  "overall_workflow_final_not_claimed_by_this_pack": true,
+  "reviews": [
+    {
+      "scope": "api35",
+      "path": "api35/review.json",
+      "sha256": "659ed54cae91906cae4b76d862e67d074cddf6c9c2914e2133ef532763a387ee"
+    },
+    {
+      "scope": "update",
+      "path": "update/review.json",
+      "sha256": "7f334a2c3504427ebbf3a69edf1572c8066343d857ac037b6e7b205cf73cdc72"
+    }
+  ],
+  "actual_abi": "x86_64",
+  "actual_apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+  "actual_pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d",
+  "baseline_metadata": "baseline-originals/baseline-binding.json",
+  "candidate_metadata": "build-binding/candidate-artifact.json",
+  "candidate_archive_not_locally_saved": "648,186,489 bytes exceeds known artifact connector limit; identities are bound by the complete build log and actual device-job validators.",
+  "repair_handoff": "../host-7b16-driver-word-repair/source-freeze.json",
+  "repair_source_freeze_sha256": "b7c8bd2391e0467318ae0f208389d73f54e4f1d69ba8518184b311648fb5ad20",
+  "no_green_transfer": true
+}
