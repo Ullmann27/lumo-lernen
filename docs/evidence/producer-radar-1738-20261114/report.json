@@ -1,0 +1,924 @@
+{
+  "schema": 1,
+  "status": "ONE_READ_ONLY_INCREMENT_COMPLETED_NO_NEW_PRODUCT_DELTA",
+  "frozen_utc": "2026-11-14T17:40:57.376Z",
+  "query_window": {
+    "baseline": "Preserved Root radar at 2026-11-14 17:07 UTC",
+    "started_utc": "2026-11-14T17:38:01.518Z",
+    "list_and_closed_pr_reads_completed_utc": "2026-11-14T17:38:03.144Z",
+    "compare": "One adaptive exact-commit compare read after the three inventory responses; exact tool-time was not recorded separately."
+  },
+  "scope": {
+    "repositories": [
+      "Ullmann27/lumo-lernen",
+      "Ullmann27/lumo-godot"
+    ],
+    "open_prs": "First 100 per repository, page=1, state=open, sort=updated, direction=desc",
+    "additional_closed_pr": "Ullmann27/lumo-lernen#503",
+    "not_claimed": "No complete open-PR history, second-page coverage, 72-hour coverage, release inventory, Main verification, CI qualification or artifact replay."
+  },
+  "baseline": {
+    "repository": "Ullmann27/lumo-lernen",
+    "bytes": 51835,
+    "sha256": "9c3a79327e0855aee32c8ae170cb0cb4760397f542d29b61a98736485b0f5d78",
+    "git_blob": "d9a017bc7fb74a7d7c7e967cd14a2a8db5f8a888",
+    "kind": "Root-derived 200-PR mapping from preserved complete original API strings with their own byte/SHA bindings"
+  },
+  "originals": [
+    {
+      "path": "originals/host-open-pulls.original.json",
+      "bytes": 1801402,
+      "sha256": "39e7d74408d03c8d7aded5232e29ba5a795df559992fd02989d8eb22097782db",
+      "git_blob": "96318fe21e887e62227ed1e64cfa56dfb73f141c",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls?state=open&sort=updated&direction=desc&per_page=100&page=1",
+      "observed_utc": "2026-11-14T17:38:03.144Z",
+      "immutable_evidence_repository": "Ullmann27/lumo-lernen"
+    },
+    {
+      "path": "originals/native-open-pulls.original.json",
+      "bytes": 1762127,
+      "sha256": "157ce704f1b59ab2663fec5070bf697c90f070147f4472bdd9f614d4d3f03073",
+      "git_blob": "f722fd12e9ab0b2f0700424e838f4ba8e1402cfb",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/pulls?state=open&sort=updated&direction=desc&per_page=100&page=1",
+      "observed_utc": "2026-11-14T17:38:03.144Z",
+      "immutable_evidence_repository": "Ullmann27/lumo-lernen"
+    },
+    {
+      "path": "originals/host-pr503.original.json",
+      "bytes": 21026,
+      "sha256": "2285403ed96e256ba69b31680c877b85793d5916b3ad99e259d0b29333e264be",
+      "git_blob": "f94be24e7a957ead8321607aac4e7fcfb6c69780",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls/503",
+      "observed_utc": "2026-11-14T17:38:03.144Z",
+      "immutable_evidence_repository": "Ullmann27/lumo-lernen"
+    },
+    {
+      "path": "originals/host-pr477-90fd-to-5910-compare.original.json",
+      "bytes": 888801,
+      "sha256": "2cf99417f2ba0717c1b0215d9c630002a4ecc67cc77f144d4b4279ece1deccb2",
+      "git_blob": "220a1feeb83f59cf509971758892152ab2313eb8",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/90fd18d98520a610f7a650e1ea4dfe3142495d47...5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+      "observed_utc": null,
+      "immutable_evidence_repository": "Ullmann27/lumo-lernen"
+    }
+  ],
+  "exact_head_comparison": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "before_count": 100,
+      "after_count": 100,
+      "new_in_page": [],
+      "absent_from_page": [],
+      "new_heads": [
+        {
+          "number": 477,
+          "before": {
+            "number": 477,
+            "head": "90fd18d98520a610f7a650e1ea4dfe3142495d47",
+            "updated_at": "2026-11-14T17:05:53Z",
+            "title": "Belege für Studio 4ab: 2.514 Flutter-Tests und Android-Hostkompilierung"
+          },
+          "after": {
+            "number": 477,
+            "title": "Belege für Studio 4ab: 2.514 Flutter-Tests und Android-Hostkompilierung",
+            "state": "open",
+            "draft": true,
+            "head": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+            "ref": "chatgpt/lumo-studio-4ab96666-evidence-20261114",
+            "base": "chatgpt/lumo-studio-20261113",
+            "updated_at": "2026-11-14T17:36:11Z",
+            "created_at": "2026-11-14T00:29:38Z",
+            "closed_at": null,
+            "merged_at": null,
+            "body_length": 5898
+          }
+        }
+      ],
+      "metadata_only": [
+        {
+          "number": 494,
+          "head": "b7210db3f53361987fd33592de438fd7984d991a",
+          "before_updated_at": "2026-11-14T17:06:45Z",
+          "after_updated_at": "2026-11-14T17:35:04Z",
+          "title_changed": false
+        },
+        {
+          "number": 493,
+          "head": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+          "before_updated_at": "2026-11-14T17:00:58Z",
+          "after_updated_at": "2026-11-14T17:10:51Z",
+          "title_changed": false
+        }
+      ],
+      "unchanged_count": 97
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "before_count": 100,
+      "after_count": 100,
+      "new_in_page": [],
+      "absent_from_page": [],
+      "new_heads": [],
+      "metadata_only": [],
+      "unchanged_count": 100
+    }
+  ],
+  "sole_new_head": {
+    "repository": "Ullmann27/lumo-lernen",
+    "pr": 477,
+    "before": "90fd18d98520a610f7a650e1ea4dfe3142495d47",
+    "after": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+    "compare_status": "ahead",
+    "total_commits": 2,
+    "commits": [
+      {
+        "head": "99c9fc48013163ba356644b456fc00d2273c2965",
+        "tree": "d124005853438fc4f77125970d42204a76c47e63",
+        "parents": [
+          "90fd18d98520a610f7a650e1ea4dfe3142495d47"
+        ],
+        "committer_utc": "2026-11-14T17:11:02Z",
+        "message": "docs: bind actual b721 Flutter and Android speech source gates\n\nPreserve the current 2,608-pass Flutter original and all 214 analyzer observations, plus the actual Android compile and 11 Java / 8 Kotlin speech contract originals. Include the leased development-only Studio fast-forward proof after all three Feature jobs and 618 script tests passed.\n\nAdd 44 reviewed evidence files without altering 8,118 existing leaves. Android APK, lifecycle, update and performance approvals remain separate."
+      },
+      {
+        "head": "5910fa9d3867af79b1f7771b5ce84e9ac5c4f1f0",
+        "tree": "dcf5bd0be5e7d433a189462255c4571a07098fa5",
+        "parents": [
+          "99c9fc48013163ba356644b456fc00d2273c2965"
+        ],
+        "committer_utc": "2026-11-14T17:23:22Z",
+        "message": "docs: preserve exact b721 Studio authority and compile originals\n\nAdd current English, Quiz, Memory and Android-host compile evidence for Studio run 43619285124. All three actual authority jobs and compilation succeeded. Preserve 6 Quiz and 19 Memory image observations made before the local environment failed; the 17 new English images remain explicitly unreviewed.\n\nKeep interrupted Memory supplementary verification and incomplete payload archival visible. Root fully re-read and hash-verified all 35 UTF-8 files without using the unavailable local environment. Preserve all 8,162 earlier leaves; no product or Main changes."
+      }
+    ],
+    "changed_path_count": 79,
+    "all_status_added": true,
+    "all_paths_under_docs_evidence": true,
+    "compare_path_count_below_300_cap": true,
+    "folders": {
+      "docs/evidence/host-b721-flutter-acceptance-20261114": 14,
+      "docs/evidence/native29080-evidence-combined125-20261114": 1,
+      "docs/evidence/studio-b721-acceptance44-evidence-20261114": 1,
+      "docs/evidence/studio-b721-hostcompile-remote-20261114": 8,
+      "docs/evidence/studio-b721-memory-authority-20261114": 11,
+      "docs/evidence/studio-b721-promotion-20261114": 4,
+      "docs/evidence/studio-host-b721-english-authority-20261114": 8,
+      "docs/evidence/studio-host-b721-quiz-ci-20261114": 7,
+      "docs/evidence/studio-host-b721-speech-ci-20261114": 25
+    },
+    "paths": [
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/README.md",
+        "status": "added",
+        "git_blob": "c63c24c158691a2794e1a704285aaee1eae4b2a3",
+        "additions": 42,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/analyzer-observations.json",
+        "status": "added",
+        "git_blob": "934a573d97ad5f13ba1a2eb12bc7d93af19930b0",
+        "additions": 1555,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/artifacts-terminal-original.json",
+        "status": "added",
+        "git_blob": "77a8fb5bf01c1ff18ca33d2b0631acd41b397396",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/download-and-source-proof.json",
+        "status": "added",
+        "git_blob": "c1dba3da5df79c615ae93c2475d918578dcf6702",
+        "additions": 31,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/full-flutter-runner-at-b721.py",
+        "status": "added",
+        "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+        "additions": 159,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/full-flutter-summary-from-original-job.json",
+        "status": "added",
+        "git_blob": "a4845a2adec1caf0c6b5e9f329fcf1930ec67073",
+        "additions": 106,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/jobs-initial-original.json",
+        "status": "added",
+        "git_blob": "29627d529dd86cd23f65a5460ba53d7beab57251",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/jobs-terminal-original.json",
+        "status": "added",
+        "git_blob": "3abb4270df2f37864849ed39b73cab896383b2a4",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/original-flutter-job.log",
+        "status": "added",
+        "git_blob": "bf0e50d174f18f5b2f1891cf71bf8bbf4d9c212b",
+        "additions": 935,
+        "deletions": 0,
+        "full_patch_in_compare": false,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/review.json",
+        "status": "added",
+        "git_blob": "5072013c6979230ee1ec07e309b138fca3755358",
+        "additions": 208,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/run-initial-original.json",
+        "status": "added",
+        "git_blob": "61f774a84c83bf3c13b6a47aa3022b5d0ee9d20c",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/run-terminal-original.json",
+        "status": "added",
+        "git_blob": "5b112d32f1180cc2c543149718fe0f8d1884345d",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/upload-manifest.json",
+        "status": "added",
+        "git_blob": "a206abb2130ff919791aca63e77445ab5e3c54c6",
+        "additions": 131,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/host-b721-flutter-acceptance-20261114/workflow-at-b721.yml",
+        "status": "added",
+        "git_blob": "829b819945d980e2082f478c1ddccea9463e3fa5",
+        "additions": 172,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/native29080-evidence-combined125-20261114/commit-proof.json",
+        "status": "added",
+        "git_blob": "d08c882cc73e0067d4072673109d9780f014b05b",
+        "additions": 26,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-acceptance44-evidence-20261114/commit-proof.json",
+        "status": "added",
+        "git_blob": "46139462814995704f77b830fa1bc03ec04b9933",
+        "additions": 28,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/README.md",
+        "status": "added",
+        "git_blob": "36aa06dd239ddc1c236fa4b8e5248b1aaa81278b",
+        "additions": 11,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/artifact-metadata-original.json",
+        "status": "added",
+        "git_blob": "28dd33c8ea24498bf1c736ebed60b3d4b26040c8",
+        "additions": 23,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/evidence-upload-manifest.json",
+        "status": "added",
+        "git_blob": "ded66fb219320611581b1ebfe798d7752ffdac02",
+        "additions": 74,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/hostcompile-original-job.log",
+        "status": "added",
+        "git_blob": "ab88b2f7d4606259ae064605bfe062830c014525",
+        "additions": 1841,
+        "deletions": 0,
+        "full_patch_in_compare": false,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/job-terminal-original.json",
+        "status": "added",
+        "git_blob": "a36736d81ae9c2dca8c9acdd6876fbd26236e3d6",
+        "additions": 82,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/original-artifact-binding.json",
+        "status": "added",
+        "git_blob": "55433c497d28d176bb4f0b7592c31ebe96a29b85",
+        "additions": 19,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/review.json",
+        "status": "added",
+        "git_blob": "0e55cfeded6a67ef5f2fe51b1e8f607c1b158165",
+        "additions": 44,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-hostcompile-remote-20261114/source-tree-binding.json",
+        "status": "added",
+        "git_blob": "2c72b951d1df1fb0fc7d4e123a766fa2f4182115",
+        "additions": 22,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/README.md",
+        "status": "added",
+        "git_blob": "19511eb0eb17db3f2b4a0efa8d77c999fd318f4f",
+        "additions": 28,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/archive-verification-observed.json",
+        "status": "added",
+        "git_blob": "333ce5a5ec7e69de213a7561349417b6c9096af6",
+        "additions": 20,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/artifacts-at-memory-completion.json",
+        "status": "added",
+        "git_blob": "2e9f2a918fe37cee986769de195e130051f447b3",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/environment-interruption.json",
+        "status": "added",
+        "git_blob": "8ffaf2c317d57b6dd501e37594e23b5f4225a6ee",
+        "additions": 21,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/evidence-upload-manifest.json",
+        "status": "added",
+        "git_blob": "5dc4026ac58f8616cd0a7180639cef459e9b1890",
+        "additions": 91,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/jobs-at-memory-completion.json",
+        "status": "added",
+        "git_blob": "66a70d84a747e32a1ce2439451ef22b71d819b92",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/journal-read-review.json",
+        "status": "added",
+        "git_blob": "9d770c0cbbc50370e7a5fb3b1530a3e5c34237ca",
+        "additions": 313,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/original-job.log",
+        "status": "added",
+        "git_blob": "dde92d3f9bed1d00524a0b02ec8ce5e133d86859",
+        "additions": 3370,
+        "deletions": 0,
+        "full_patch_in_compare": false,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/run-at-memory-completion.json",
+        "status": "added",
+        "git_blob": "14d3e6744b608e2849d4817aec0cd92d5f089a45",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/visual-review-games_worlds.json",
+        "status": "added",
+        "git_blob": "afb5992f94773576311d87ab8762cf1bc0286c37",
+        "additions": 274,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-memory-authority-20261114/workflow-original.yml",
+        "status": "added",
+        "git_blob": "2684ac3cf034fdcd5c71570182396f0664979735",
+        "additions": 1304,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-promotion-20261114/evidence-upload-manifest.json",
+        "status": "added",
+        "git_blob": "5180ed5b5f63780e13aa21f477ace1dc283f19e1",
+        "additions": 41,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-promotion-20261114/feature-jobs-final.json",
+        "status": "added",
+        "git_blob": "f5592d44adcf924afcf13bb99034d1a4d5cc83fd",
+        "additions": 393,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-promotion-20261114/feature-run-final.json",
+        "status": "added",
+        "git_blob": "406fb8b57cbd953ac3cb7ff61304226c6c90ad88",
+        "additions": 248,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-b721-promotion-20261114/promotion-proof.json",
+        "status": "added",
+        "git_blob": "53978e59d02a203b3e3b38c48ff8b098038a796c",
+        "additions": 35,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/README.md",
+        "status": "added",
+        "git_blob": "8e97117c8389f8d6d941ec360866b84241c3d7a8",
+        "additions": 23,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/artifacts-at-english-completion-original.json",
+        "status": "added",
+        "git_blob": "31a8b0a4fa55aa3a9a93778ff8ffe4de9f249d10",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/jobs-at-english-completion-original.json",
+        "status": "added",
+        "git_blob": "db56aa5aea1eeffad1c33606c55d6db08795789b",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/original-english-job.log",
+        "status": "added",
+        "git_blob": "d68bd68bfb9a8a0c0afda90f1376c5feb3d1d80c",
+        "additions": 3348,
+        "deletions": 0,
+        "full_patch_in_compare": false,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/review.json",
+        "status": "added",
+        "git_blob": "1625ac0837957fd26f791e63dd2577cb5960d079",
+        "additions": 341,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/run-at-english-completion-original.json",
+        "status": "added",
+        "git_blob": "14d3e6744b608e2849d4817aec0cd92d5f089a45",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/upload-manifest.json",
+        "status": "added",
+        "git_blob": "8da3a93dba87d230e48477d00181d716456fba83",
+        "additions": 78,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-english-authority-20261114/terminal-log-only/workflow-at-b721.yml",
+        "status": "added",
+        "git_blob": "2684ac3cf034fdcd5c71570182396f0664979735",
+        "additions": 1304,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/README.md",
+        "status": "added",
+        "git_blob": "71addc9ac8a194b6d8d3ef73754ae34a4df924b2",
+        "additions": 44,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/artifacts-at-quiz-terminal-original.json",
+        "status": "added",
+        "git_blob": "643cf893d2a23d5e459b11d8b7ce82dcc0bf9600",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/image-review.json",
+        "status": "added",
+        "git_blob": "347168135b10f535c43a63c3d7b2ca5151125bcc",
+        "additions": 195,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/jobs-quiz-terminal-original.json",
+        "status": "added",
+        "git_blob": "1502faec00f44a847e62e352ff48dae1289a6f6b",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/quiz-original-job.log",
+        "status": "added",
+        "git_blob": "f687a1c19276b82236a0ea7179947951051680f3",
+        "additions": 3299,
+        "deletions": 0,
+        "full_patch_in_compare": false,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/remote-review-upload-manifest.json",
+        "status": "added",
+        "git_blob": "b1376f90aae1fc055138eb6eb1c7a772411aebad",
+        "additions": 98,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-quiz-ci-20261114/review.json",
+        "status": "added",
+        "git_blob": "999fe9018542528ba8b0d0f9efa9537635629eae",
+        "additions": 168,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/README.md",
+        "status": "added",
+        "git_blob": "fec9b953a4bee140ef9dead786a4c7dab870c68f",
+        "additions": 33,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/artifacts-terminal-original.json",
+        "status": "added",
+        "git_blob": "7f799860323742cc2ff2b4fc3bfbfdc928753aaa",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/ci-source-comparison.json",
+        "status": "added",
+        "git_blob": "1056d514720d31ed424470cf272d74f07cdd665c",
+        "additions": 130,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/evidence-upload-manifest.json",
+        "status": "added",
+        "git_blob": "bfac98b55f13e1db41c052648b0430a3fc192408",
+        "additions": 204,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/hostcompile-original-job.log",
+        "status": "added",
+        "git_blob": "8dab820f420c92330b72ee155b86c296b9870247",
+        "additions": 1911,
+        "deletions": 0,
+        "full_patch_in_compare": false,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-165426-original.json",
+        "status": "added",
+        "git_blob": "e73fd46d7f6f623c7023ec45e8c5c3bdbc622c66",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-165627-original.json",
+        "status": "added",
+        "git_blob": "29627d529dd86cd23f65a5460ba53d7beab57251",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-165849-original.json",
+        "status": "added",
+        "git_blob": "95e070f7999e75fe819cd34d8ff30145eecaaf89",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/jobs-terminal-original.json",
+        "status": "added",
+        "git_blob": "2e30316c09f176f5b06773aef537a8ca225a41dd",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/original-artifact-binding.json",
+        "status": "added",
+        "git_blob": "63d62e3f3ad2e254ddc21dbde153252200e4a07a",
+        "additions": 119,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/cards-authority-registry.log",
+        "status": "added",
+        "git_blob": "b66455a29bdeab5cafbd3313e5b722d8a70f9b02",
+        "additions": 13,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/compile.log",
+        "status": "added",
+        "git_blob": "27e570a3f21a194c11ff78f0216c399c10d8c3c6",
+        "additions": 327,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/flutter-version.txt",
+        "status": "added",
+        "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+        "additions": 4,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/result.json",
+        "status": "added",
+        "git_blob": "e03e969bce913e43a7069d27bd8c223df734584e",
+        "additions": 135,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/source-sha.txt",
+        "status": "added",
+        "git_blob": "736c55be82243a7ebe0c7a7c4c2ecb4d3e73c570",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/resolved-toolchain.json",
+        "status": "added",
+        "git_blob": "d2f2f0e24bfa6554e14dac47e8f08e261d28aba5",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/result.json",
+        "status": "added",
+        "git_blob": "d3d2ab7e9be66b08dae147d4041b65933e69a237",
+        "additions": 1436,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.json",
+        "status": "added",
+        "git_blob": "5af2255c23b340a608068059672ee3e53bb26ecd",
+        "additions": 24,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_english_lesson_speech.log",
+        "status": "added",
+        "git_blob": "ffcb93a949a7a16a6a85736763b2f1c5c7ff328a",
+        "additions": 28,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.json",
+        "status": "added",
+        "git_blob": "9b0d584d1a595ae6d27d4930bec34bc5fc1e4930",
+        "additions": 21,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/test_learning_english_speech_lifecycle.log",
+        "status": "added",
+        "git_blob": "68d22fc01f704ba25f707128fa72ab972743a0dc",
+        "additions": 23,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/speech/toolchain-original.log",
+        "status": "added",
+        "git_blob": "cd2b9f3f13b2c0d47999ecd8fd56b9ac408c103f",
+        "additions": 2,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/originals/table-native-contracts.log",
+        "status": "added",
+        "git_blob": "375760df15431bc607e4504946f11dcfc1fca936",
+        "additions": 61,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/review.json",
+        "status": "added",
+        "git_blob": "47f7222de314f389f8084ea6979a2264e86a2e7b",
+        "additions": 349,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      },
+      {
+        "path": "docs/evidence/studio-host-b721-speech-ci-20261114/run-initial-original.json",
+        "status": "added",
+        "git_blob": "61f774a84c83bf3c13b6a47aa3022b5d0ee9d20c",
+        "additions": 1,
+        "deletions": 0,
+        "full_patch_in_compare": true,
+        "classification": "added_documentary_evidence_not_an_active_source_path"
+      }
+    ],
+    "runtime_product_or_active_test_or_active_workflow_paths": [],
+    "review_scope": "Original compare metadata, all 79 path/blob/status entries, both commit identities and descriptive commit messages. Six large joblogs have no patch in the compare; their contents were not downloaded or reviewed. No added documentary result was transferred into Root qualification.",
+    "decision": "No source integration. Preserve this newly published documentary delta as provenance only."
+  },
+  "same_head_metadata_updates": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "pr": 494,
+      "head": "b7210db3f53361987fd33592de438fd7984d991a",
+      "before_updated_at": "2026-11-14T17:06:45Z",
+      "after_updated_at": "2026-11-14T17:35:04Z"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "pr": 493,
+      "head": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+      "before_updated_at": "2026-11-14T17:00:58Z",
+      "after_updated_at": "2026-11-14T17:10:51Z"
+    }
+  ],
+  "metadata_limit": "The baseline provides head/title/updated_at, not old body text. Same-head classification means no new head; it does not invent which comment/body field caused updated_at.",
+  "closed_pr503": {
+    "head": "b7210db3f53361987fd33592de438fd7984d991a",
+    "state": "closed",
+    "merged": true,
+    "merged_at": "2026-11-14T17:06:30Z",
+    "closed_at": "2026-11-14T17:06:30Z",
+    "updated_at": "2026-11-14T17:06:30Z",
+    "merge_commit_sha": "b7210db3f53361987fd33592de438fd7984d991a",
+    "relation_to_cutoff": "Current original reports closure/merge at 17:06:30 UTC, before the 17:07 baseline."
+  },
+  "no_result_transfer": true,
+  "actions": {
+    "read_only_api_inventory_calls": 3,
+    "adaptive_read_only_compare_calls": 1,
+    "artifact_exports": 0,
+    "ci_status_calls": 0,
+    "tests": 0,
+    "engine_runs": 0,
+    "source_edits": 0,
+    "trees_or_refs_or_commits": 0
+  },
+  "original_retention": "All returned UTF-8 JSON strings retained verbatim in the function store with JSON parse validation and SHA256/Gitblob identity. No local filesystem materialization is claimed while executor remains unavailable."
+}
