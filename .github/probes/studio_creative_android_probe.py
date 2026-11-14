@@ -49,6 +49,102 @@ def require(condition: bool, message: str) -> None:
         raise RuntimeError(message)
 
 
+def treasure_position(saved: dict) -> list[float]:
+    position = saved.get('position')
+    require(isinstance(position, list) and len(position) == 3
+            and all(type(value) in (int, float) and math.isfinite(value) for value in position),
+            'Treasure position must contain three finite coordinates')
+    return position
+
+
+def approach_treasure(before: dict, move, checkpoint, journal: Path,
+                      *, timeout_seconds: float = 900) -> tuple[dict, list[list[float]]]:
+    """Reach the original first-clue radius using observed, read-only save feedback.
+
+    Input duration is wall time; the engine's speed is per simulation second.
+    Twelve segments remain the limit. Their duration follows actual progress,
+    with a six-second single hold and sixty-second cumulative hold ceiling.
+    The Linux deadline also interrupts a stalled OCR/save subprocess. No caller
+    may replace an existing alarm, and the previous signal handler is restored.
+    """
+    require(0 < timeout_seconds <= 900 and math.isfinite(timeout_seconds),
+            'Invalid Treasure wall-clock budget')
+    require(signal.getitimer(signal.ITIMER_REAL) == (0.0, 0.0),
+            'Treasure cannot replace an existing alarm')
+    current = before
+    positions = [treasure_position(before)]
+    distance = math.hypot(positions[-1][0] + 12, positions[-1][2] + 8)
+    started = time.monotonic()
+    evidence = {'status': 'MOVING', 'scope': 'First clue approach, not a game completion or FPS test',
+                'target_world_xz': [-12, -8], 'required_distance': 3.4,
+                'limits': {'segments': 12, 'single_hold_ms': 6000,
+                           'total_hold_ms': 60000, 'wall_seconds': timeout_seconds},
+                'initial_readback': before,
+                'observations': [{'position': positions[-1], 'distance': distance}],
+                'inputs': []}
+    previous_handler = signal.getsignal(signal.SIGALRM)
+
+    def expired(_signum, _frame):
+        raise TimeoutError('Treasure wall-clock budget exhausted')
+
+    signal.signal(signal.SIGALRM, expired)
+    signal.setitimer(signal.ITIMER_REAL, timeout_seconds)
+    total_held = 0
+    rate = None
+    try:
+        for _ in range(12):
+            if distance < 3.4:
+                break
+            require(time.monotonic() - started < timeout_seconds,
+                    'Treasure wall-clock budget exhausted')
+            duration = 1500 if rate is None else math.ceil((distance - 2.8) / rate)
+            duration = min(6000, max(220, duration))
+            duration = min(duration, 60000 - total_held)
+            require(duration >= 220, 'Treasure held-input budget exhausted before reaching first clue')
+            position = positions[-1]
+            direction = [-12 - position[0], -8 - position[2]]
+            event = {'axis_direction': direction, 'hold_ms': duration,
+                     'measured_progress_units_per_ms': rate,
+                     'before_distance': distance, 'started_after_seconds': time.monotonic() - started}
+            evidence['inputs'].append(event)
+            write(journal, evidence)
+            move(direction, duration)
+            total_held += duration
+            previous_discoveries = set(current.get('discoveries', []))
+            current = checkpoint()
+            evidence['last_readback'] = current
+            new_position = treasure_position(current)
+            new_distance = math.hypot(new_position[0] + 12, new_position[2] + 8)
+            movement = math.dist(position, new_position)
+            progress = distance - new_distance
+            event.update(after_distance=new_distance, movement=movement, progress=progress)
+            evidence['observations'].append({'position': new_position, 'distance': new_distance})
+            for key in ('result_id', 'version', 'chapter', 'solved_clues', 'wrong_attempts',
+                        'streak', 'best_streak'):
+                require(current.get(key) == before.get(key),
+                        'Treasure ' + key + ' changed during movement')
+            require(previous_discoveries <= set(current.get('discoveries', [])),
+                    'Treasure prior discoveries changed during movement')
+            require(movement > .2 and progress > .2,
+                    'Real joystick segment made no verified progress toward the first clue')
+            positions.append(new_position)
+            distance = new_distance
+            rate = progress / duration
+            write(journal, evidence)
+        require(distance < 3.4,
+                'Treasure segment budget exhausted before reaching first clue')
+        evidence['status'] = 'TARGET_REACHED'
+        return current, positions
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous_handler)
+        evidence.update(elapsed_seconds=time.monotonic() - started, total_held_ms=total_held)
+        write(journal, evidence)
+
+
 def verify_candidate_metadata(run: dict, artifacts: dict, jobs: dict, expected: dict) -> dict:
     host, native, run_id = (expected.get(key) for key in ('host_source', 'native_source', 'build_run'))
     require(all(isinstance(value, str) and re.fullmatch(r'[a-f0-9]{40}', value)
@@ -475,11 +571,11 @@ class Tour:
         finally:
             self.context = {}
 
-    def native(self, label, tap=False, exact=False):
+    def native(self, label, tap=False, exact=False, *, orientation='landscape'):
         self.probe.native_text(self.out, label, self.tag('native-' + self.probe.normalized(label)),
-                               tap=tap, exact=exact)
+                               tap=tap, exact=exact, orientation=orientation)
 
-    def observe(self, label, exact=False):
+    def observe(self, label, exact=False, *, orientation='landscape'):
         previous = None
         for _ in range(3):
             path, shot = self.shot('observe-' + self.probe.normalized(label))
@@ -490,7 +586,7 @@ class Tour:
                         else self.probe.normalized(label) in self.probe.normalized(x['text']))]
             require(bool(matches), 'Caption absent from actual screenshot: ' + label)
             found = min(matches, key=lambda x: len(x['text']))
-            frame = self.probe.inspect_surface(path, orientation='landscape')
+            frame = self.probe.inspect_surface(path, orientation=orientation)
             observed = self.probe.target_observation(frame, found['bounds'], previous)
             if observed['stable_observed_target']:
                 return {**found, 'capture': shot, 'stable': observed}
@@ -512,6 +608,18 @@ class Tour:
         point = [target['center'][i] + axis[i] / length * target['diameter'] * .36 for i in range(2)]
         self.touch(point, {**target, 'axis_direction': axis,
                           'input': 'Single real pointer; no simultaneous jump'}, milliseconds)
+
+
+    def move_treasure_stick(self, axis, milliseconds):
+        # The approach controller alone permits longer, bounded real holds.
+        # Jump and every existing move_stick caller retain their original cap.
+        length = math.hypot(*axis)
+        require(length > 0 and math.isfinite(length) and 220 <= milliseconds <= 6000,
+                'Invalid bounded Treasure stick gesture')
+        target = self.current_stick()
+        point = [target['center'][i] + axis[i] / length * target['diameter'] * .36 for i in range(2)]
+        self.touch(point, {**target, 'axis_direction': axis,
+                          'input': 'Single real pointer; readback-controlled Treasure hold'}, milliseconds)
 
     def portal(self, title):
         for direction in (-1, 1):
@@ -564,8 +672,9 @@ class Tour:
         self.native(header)
         self.shot('entered-' + self.probe.normalized(title))
 
-    def leave(self, label='Zur Spielewelt', already_pause=False):
-        self.probe.leave(self.out, self.tag('leave'), already_menu=already_pause, return_label=label)
+    def leave(self, label='Zur Spielewelt', already_pause=False, *, orientation='landscape'):
+        self.probe.leave(self.out, self.tag('leave'), already_menu=already_pause,
+                         return_label=label, orientation=orientation)
         # A true foreground + current Flutter accessibility AND visible text
         # avoids accepting the last native buffer as a Flutter return image.
         tag = self.tag('flutter-return')
@@ -683,9 +792,50 @@ class Tour:
         for label in ('12 Teile', '24 Teile', '48 Teile', '96 Teile'):
             self.native(label, tap=True)
         self.native('6 Teile')
-        self.native('Bild:', tap=True)  # Source default0 -> actual selected motif1.
+        motif_captions = (
+            'Bild: Lumos Mondschloss', 'Bild: Candy Cloud Circuit', 'Bild: Volcano Night Run',
+            'Bild: Leuchtturm-Bucht', 'Bild: Blütenwiese',
+        )
+        target_caption = motif_captions[1]
+        caption_by_text = {self.probe.normalized(caption): caption for caption in motif_captions}
+        selection_path = self.out / (self.tag('puzzle-motif-selection') + '.json')
+        selection = {'status': 'OBSERVING', 'target_motif': 1, 'target_caption': target_caption,
+                     'observations': [], 'actual_caption_touches': [],
+                     'scope': 'Fresh visible motif captions and original guarded input; no default assumption or save write'}
+        visited = set()
+        try:
+            # One complete observed menu cycle is the limit, not an assumed number of taps.
+            for _ in range(len(motif_captions)):
+                path, shot = self.shot('puzzle-motif-current')
+                lines = self.probe.image_lines(self.out, path.stem, self.probe.normalized('Bild:'),
+                                               source_path=path, timeout=60)
+                observed = {caption_by_text[self.probe.normalized(line['text'])] for line in lines
+                            if self.probe.normalized(line['text']) in caption_by_text}
+                require(len(observed) == 1, 'Actual puzzle menu motif caption is missing, unknown or ambiguous')
+                current = observed.pop()
+                selection['observations'].append({'caption': current, 'capture': shot,
+                    'ocr_matches': [line for line in lines if self.probe.normalized(line['text']) ==
+                                    self.probe.normalized(current)]})
+                if current == target_caption:
+                    selection['status'] = 'TARGET_OBSERVED'
+                    break
+                require(current not in visited, 'Actual puzzle motif did not advance or repeated before the target')
+                visited.add(current)
+                # The original two-frame touch guard must freshly locate this exact current caption.
+                self.native(current, tap=True, exact=True)
+                selection['actual_caption_touches'].append(current)
+            require(selection['status'] == 'TARGET_OBSERVED',
+                    'Candy Cloud Circuit was not observed within one bounded motif cycle')
+        except Exception as error:
+            selection.update(status='FAIL', error=str(error))
+            raise
+        finally:
+            write(selection_path, selection)
         for label in ('Modus: Bilderpuzzle', 'Modus: Drehpuzzle', 'Modus: Bilderpuzzle'):
             self.native(label, tap=True)
+        selection['confirmation_before_start'] = self.observe(target_caption, exact=True)
+        selection['status'] = 'TARGET_CONFIRMED_BEFORE_START'
+        write(selection_path, selection)
         self.native('Neues Puzzle beginnen', tap=True, exact=True)
         before = self.pause_save('puzzle')
         require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,
@@ -720,22 +870,13 @@ class Tour:
     def treasure(self):
         self.enter('Schatzsuche', 'LUMOS STERNENSCHATZ')
         before = self.pause_save('treasure')
-        current, positions = before, [before['position']]
-        for _ in range(12):
-            x, _, z = current['position']
-            direction = [-12 - x, -8 - z]
-            distance = math.hypot(*direction)
-            if distance < 3.4:
-                break
-            duration = round(min(1500, max(220, (distance - 2.8) / 6 * 1000)))
-            self.move_stick(direction, duration)
+
+        def checkpoint():
             time.sleep(.3)
-            current = self.pause_save('treasure')
-            positions.append(current['position'])
-            require(math.dist(positions[-2], positions[-1]) > .2,
-                    'Real joystick segment did not change the persisted player position')
-        else:
-            raise RuntimeError('First clue remained unreachable after bounded genuine movement')
+            return self.pause_save('treasure')
+
+        current, positions = approach_treasure(before, self.move_treasure_stick, checkpoint,
+                                               self.out / 'treasure-approach.json')
         require(math.dist(before['position'], current['position']) > 3,
                 'Treasure movement not established by actual saved positions')
         self.native('ANSEHEN', tap=True, exact=True)
@@ -773,10 +914,10 @@ class Tour:
 
     def jump(self):
         self.enter('Jump & Run', 'Halten = höher springen')
-        self.native('Pause', tap=True, exact=True)
+        self.native('Pause', tap=True, exact=True, orientation='responsive')
         initial = self.jump_save()
-        self.native('Weiterspielen', tap=True, exact=True)
-        jump_target = self.observe('SPRINGEN', exact=True)
+        self.native('Weiterspielen', tap=True, exact=True, orientation='responsive')
+        jump_target = self.observe('SPRINGEN', exact=True, orientation='responsive')
         remote = '/sdcard/lumo-studio-creative-jump.mp4'
         log = (self.out / 'jump-screenrecord.log').open('wb')
         started = time.monotonic()
@@ -797,7 +938,7 @@ class Tour:
                 time.sleep(.8)
             for duration in (80, 650):
                 # Re-read the actual caption before each independent press.
-                target = self.observe('SPRINGEN', exact=True)
+                target = self.observe('SPRINGEN', exact=True, orientation='responsive')
                 rect = target['bounds']
                 at = time.monotonic() - started
                 self.touch([(rect[0] + rect[2]) / 2, (rect[1] + rect[3]) / 2], target, duration)
@@ -841,17 +982,19 @@ class Tour:
             subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(second), '-i', str(movie),
                             '-frames:v', '1', str(target)], check=True, capture_output=True, timeout=30)
             samples.append({'file': target.name, 'sha256': sha(target), 'requested_seconds': second})
-        self.native('Pause', tap=True, exact=True)
+        self.native('Pause', tap=True, exact=True, orientation='responsive')
         saved = self.jump_save()
         require(initial['result_id'] == saved['result_id'], 'Jump session identity changed during input recording')
         self.shot('jump-paused-after-real-input')
-        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True)
+        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True,
+                   orientation='responsive')
         # Production restores checkpoints directly into its genuine pause
         # modal and changes the HUD sentence; do not tap a covered Pause.
         self.enter('Jump & Run', 'Kleine Pause')
         resumed = self.jump_save()
         resume_equal(saved, resumed, tuple(saved))
-        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True)
+        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True,
+                   orientation='responsive')
         return {'status': 'INPUTS_RECORDED_SAVE_RESUMED', 'video': movie.name,
                 'sha256': sha(movie), 'fully_decoded': True, 'samples': samples,
                 'separate_pointer_actions': record['actions'], 'checkpoint_resume': True,

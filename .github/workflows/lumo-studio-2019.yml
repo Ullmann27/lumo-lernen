@@ -181,11 +181,31 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
           python3 -m venv .ci-python
           .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           command -v rg
           .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
+      - name: Replay the four actual failed native captions with real OCR
+        run: |
+          set -euo pipefail
+          mkdir -p .ci-results
+          tesseract --version > .ci-results/ocr-version.txt 2>&1
+          tesseract --list-langs 2>&1 | tee .ci-results/ocr-languages.txt
+          grep -Fxq 'deu' .ci-results/ocr-languages.txt
+          grep -Fxq 'eng' .ci-results/ocr-languages.txt
+          .ci-python/bin/python -B -m unittest discover -s tools/android_qa/tests -p replay_native_caption_ocr.py -v 2>&1 | tee .ci-results/native-caption-replay.log
+      - name: Preserve the actual native-caption reader regression
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-studio-2019-caption-ocr-regression
+          path: |
+            .ci-results/native-caption-replay.log
+            .ci-results/ocr-version.txt
+            .ci-results/ocr-languages.txt
+          if-no-files-found: error
+          retention-days: 30
       - name: Install verified Gradle for the real build-contract probe
         run: |
           set -euo pipefail
