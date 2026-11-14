@@ -1,0 +1,262 @@
+name: Lumo feature connections focused Flutter contracts
+
+on:
+  push:
+    branches: [integration/lumo-feature-connections-20261114]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-feature-connections-20261114
+  cancel-in-progress: false
+
+jobs:
+  feature-widget-contracts:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/integration/lumo-feature-connections-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EXPECTED_SOURCE_SHA: ${{ github.sha }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      GIT_OPTIONAL_LOCKS: '0'
+      CI: 'true'
+      BOT: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - name: Checkout the exact feature push
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Bind original source and lock bytes before setup
+        id: bind
+        shell: bash
+        run: |
+          set -euo pipefail
+          export FEATURE_EVIDENCE_DIR="$RUNNER_TEMP/lumo-feature-connections-evidence"
+          export FEATURE_PYTHON_DIR="$RUNNER_TEMP/lumo-feature-connections-python"
+          mkdir "$FEATURE_EVIDENCE_DIR"
+          printf '%s\n' "FEATURE_EVIDENCE_DIR=$FEATURE_EVIDENCE_DIR" "FEATURE_PYTHON_DIR=$FEATURE_PYTHON_DIR" >> "$GITHUB_ENV"
+          cat > "$FEATURE_EVIDENCE_DIR/source_snapshot.py" <<'PY'
+          import hashlib, json, os, stat, subprocess, sys
+          from pathlib import Path
+
+          phase = sys.argv[1]
+          if phase not in ("before", "after"):
+              raise SystemExit("Unknown source snapshot phase")
+          output = Path(os.environ["FEATURE_EVIDENCE_DIR"])
+          def git(*args):
+              return subprocess.check_output(["git", *args])
+          def sha(data):
+              return hashlib.sha256(data).hexdigest()
+          head = git("rev-parse", "HEAD").decode().strip()
+          tree = git("rev-parse", "HEAD^{tree}").decode().strip()
+          index = git("ls-files", "--stage", "-z")
+          status = git("status", "--porcelain=v1", "--untracked-files=no")
+          (output / f"git-status-{phase}.txt").write_bytes(status)
+          (output / f"git-index-{phase}.original").write_bytes(index)
+          files, errors = [], []
+          for entry in index.split(b"\0"):
+              if not entry:
+                  continue
+              metadata, raw_path = entry.split(b"\t", 1)
+              mode, blob, stage = metadata.decode("ascii").split()
+              path = Path(os.fsdecode(raw_path))
+              try:
+                  observed = path.lstat()
+                  if mode == "120000" and stat.S_ISLNK(observed.st_mode):
+                      data = os.fsencode(os.readlink(path))
+                  elif mode in ("100644", "100755") and stat.S_ISREG(observed.st_mode):
+                      data = path.read_bytes()
+                      expected_executable = mode == "100755"
+                      if bool(observed.st_mode & 0o111) != expected_executable:
+                          errors.append(f"Tracked executable mode changed: {path}")
+                  else:
+                      raise ValueError("Unexpected tracked file type")
+                  actual_blob = hashlib.sha1(
+                      b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+                  if stage != "0" or actual_blob != blob:
+                      errors.append(f"Tracked bytes or stage changed: {path}")
+                  files.append({"path": str(path), "mode": mode, "blob": blob,
+                                "actual_blob": actual_blob, "bytes": len(data),
+                                "sha256": sha(data)})
+              except (OSError, ValueError) as exc:
+                  errors.append(f"{path}: {type(exc).__name__}: {exc}")
+          if head != os.environ["EXPECTED_SOURCE_SHA"]:
+              errors.append("Checkout differs from the original push SHA")
+          if status:
+              errors.append("Tracked checkout is not clean")
+          report = {
+              "schema": 1, "phase": phase, "head": head, "tree": tree,
+              "expected_source_sha": os.environ["EXPECTED_SOURCE_SHA"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "ref": os.environ["GITHUB_REF"],
+              "workflow": os.environ["GITHUB_WORKFLOW"],
+              "index_sha256": sha(index), "files": files, "errors": errors,
+          }
+          if phase == "after":
+              before = json.loads((output / "source-before.json").read_text())
+              for field in ("head", "tree", "index_sha256", "files"):
+                  if report[field] != before[field]:
+                      errors.append(f"Before/after source mismatch: {field}")
+          (output / f"source-{phase}.json").write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+          print(json.dumps({"phase": phase, "head": head,
+                            "tracked_files": len(files), "errors": errors}))
+          raise SystemExit(1 if errors else 0)
+          PY
+          python3 "$FEATURE_EVIDENCE_DIR/source_snapshot.py" before
+
+      - name: Install the repository Flutter version
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Prepare fonts, Pillow and the immutable locked packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          bash -euo pipefail -c '
+            sudo apt-get -o Acquire::Retries=2 update -qq
+            sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+            test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+            python3 -m venv "$FEATURE_PYTHON_DIR"
+            "$FEATURE_PYTHON_DIR/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0
+            flutter pub get --enforce-lockfile
+            flutter --version --machine
+            dart --version
+          ' > "$FEATURE_EVIDENCE_DIR/setup.stdout.log" 2> "$FEATURE_EVIDENCE_DIR/setup.stderr.log"
+          result=$?
+          set -e
+          printf '{"exit_code":%s}\n' "$result" > "$FEATURE_EVIDENCE_DIR/setup-result.json"
+          cat "$FEATURE_EVIDENCE_DIR/setup.stdout.log"
+          cat "$FEATURE_EVIDENCE_DIR/setup.stderr.log" >&2
+          exit "$result"
+
+      - name: Bind the six original test assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$FEATURE_PYTHON_DIR/bin/python" - <<'PY' > "$FEATURE_EVIDENCE_DIR/assets.stdout.log" 2> "$FEATURE_EVIDENCE_DIR/assets.stderr.log"
+          import hashlib, json
+          from pathlib import Path
+          from PIL import Image
+
+          expected = {
+              "assets/lumo_design/fox/fox_avatar.png": "2528db26b4288d89e905c03ec1015ac7b8798538",
+              "assets/lumo_design/fox/fox_book_point.png": "0ee53bec6758833d2d3f64e0ca12a2a208878c0b",
+              "assets/fonts/Nunito-Regular.ttf": "4ed809463fcba2afd71553075412a6d7e74dcedf",
+              "assets/fonts/Nunito-Bold.ttf": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb",
+              "assets/fonts/Nunito-ExtraBold.ttf": "d3168c268b0f8c20edc534be678ab53300ba0828",
+              "assets/fonts/Nunito-Black.ttf": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",
+          }
+          observed = []
+          for name, expected_blob in expected.items():
+              path = Path(name)
+              data = path.read_bytes()
+              blob = hashlib.sha1(
+                  b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+              if blob != expected_blob:
+                  raise SystemExit(f"Original test asset differs: {name}")
+              if path.suffix == ".png":
+                  with Image.open(path) as picture:
+                      if picture.format != "PNG":
+                          raise SystemExit(f"Original asset is not PNG: {name}")
+                      picture.verify()
+              observed.append({"path": name, "bytes": len(data), "git_blob": blob,
+                               "sha256": hashlib.sha256(data).hexdigest()})
+          print(json.dumps({"original_assets": observed}, indent=2))
+          PY
+
+      - name: Execute exactly the 22 feature widget cases
+        id: flutter
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          flutter test --no-pub --machine --timeout=60s --concurrency=2 \
+            test/wort_diktat_gesture_regression_test.dart \
+            test/feature_permission_regression_test.dart \
+            test/profile_screen_test.dart \
+            > "$FEATURE_EVIDENCE_DIR/flutter.stdout.jsonl" \
+            2> "$FEATURE_EVIDENCE_DIR/flutter.stderr.log"
+          result=$?
+          set -e
+          printf '{"exit_code":%s}\n' "$result" > "$FEATURE_EVIDENCE_DIR/flutter-result.json"
+          cat "$FEATURE_EVIDENCE_DIR/flutter.stdout.jsonl"
+          cat "$FEATURE_EVIDENCE_DIR/flutter.stderr.log" >&2
+          exit "$result"
+
+      - name: Require completed tests, zero skips and the exact case count
+        if: always() && steps.flutter.outcome != 'skipped'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+
+          sys.path.insert(0, str(Path("scripts").resolve()))
+          from run_full_flutter_acceptance import summarize
+
+          output = Path(os.environ["FEATURE_EVIDENCE_DIR"])
+          result_path = output / "flutter-result.json"
+          raw_path = output / "flutter.stdout.jsonl"
+          events, non_event_lines = [], []
+          if raw_path.is_file():
+              for number, line in enumerate(raw_path.read_text().splitlines(), 1):
+                  try:
+                      event = json.loads(line)
+                  except json.JSONDecodeError:
+                      non_event_lines.append(number)
+                      continue
+                  if isinstance(event, dict):
+                      events.append(event)
+                  else:
+                      non_event_lines.append(number)
+          exit_code = json.loads(result_path.read_text())["exit_code"] if result_path.is_file() else 125
+          report = summarize(events, exit_code, [])
+          event_errors = [event for event in events if event.get("type") == "error"]
+          report.update({
+              "source_sha": os.environ["EXPECTED_SOURCE_SHA"],
+              "scope": ["test/wort_diktat_gesture_regression_test.dart",
+                        "test/feature_permission_regression_test.dart",
+                        "test/profile_screen_test.dart"],
+              "expected_cases": 22, "event_errors": event_errors,
+              "non_event_stdout_lines": non_event_lines,
+              "raw_stdout": raw_path.name, "raw_stderr": "flutter.stderr.log",
+          })
+          if report["passed"] != 22 or event_errors:
+              report["status"] = "FAIL"
+          (output / "feature-test-summary.json").write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+          print(json.dumps(report, ensure_ascii=False))
+          raise SystemExit(0 if report["status"] == "PASS" else 1)
+          PY
+
+      - name: Require identical source and lock bytes after the attempt
+        if: always() && steps.bind.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$FEATURE_EVIDENCE_DIR/source_snapshot.py" after
+
+      - name: Preserve complete original logs and source stamps
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-feature-connections-${{ github.sha }}-attempt-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lumo-feature-connections-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

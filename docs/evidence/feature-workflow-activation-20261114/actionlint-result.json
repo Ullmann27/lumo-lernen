@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/final-source/.github/workflows/lumo-feature-connections.yml"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 0.005837,
+  "source_sha256_before_after": "7e63176552cd978bde34aa15f23fec998799d998e8c6ae4dced249269140c3ae",
+  "source_unchanged": true,
+  "tool_sha256": "c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "product_tests": "NOT_RUN",
+  "ci_start": false
+}

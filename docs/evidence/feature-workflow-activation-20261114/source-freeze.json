@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "status": "FROZEN_WORKFLOW_SOURCE_PENDING_STATIC_LINT_AND_PEER_REVIEW",
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "integration/lumo-feature-connections-20261114",
+  "workflow": ".github/workflows/lumo-feature-connections.yml",
+  "product_checkpoint_supplied_by_root": {
+    "sha": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95",
+    "parent": "3d91bd8355a539c3c2413760959684cd3fee985a"
+  },
+  "source": {
+    "path": ".github/workflows/lumo-feature-connections.yml",
+    "mode": "100644",
+    "before": null,
+    "after": {
+      "bytes": 11982,
+      "sha256": "7e63176552cd978bde34aa15f23fec998799d998e8c6ae4dced249269140c3ae",
+      "git_blob": "41dec34d4e04a07f006c62bba8c00f6937fb48a5"
+    }
+  },
+  "references": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "head": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+      "bytes": 43922,
+      "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa",
+      "git_blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af"
+    },
+    {
+      "path": ".github/workflows/android-debug-apk.yml",
+      "head": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+      "bytes": 11066,
+      "sha256": "1b656f8140c0d7845cf48e963e2b011319b12a0041ad6fe483155bcfa7f4c17c",
+      "git_blob": "31a75d48c6ca8d3b2bf03c84d950142bfdc756cd"
+    },
+    {
+      "path": ".github/workflows/release-apk.yml",
+      "head": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+      "bytes": 21983,
+      "sha256": "d8703a8f193c51540691aa2d7bbca873c579d3eb041da730ba86a467cc44e8ba",
+      "git_blob": "7db04919bdc8777389a8538c32202b9b77a4d4db"
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "head": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+      "bytes": 82301,
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096",
+      "git_blob": "28979e437797b723a3f5a514734f1a118ef8f4d3"
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "head": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    }
+  ],
+  "v2_product_freeze_sha256": "d7c589bd86b20a9af277fd3b31f619ab072003461900ec74b8a6ce8a37c1a92b",
+  "local_preflight": {
+    "path": "../host-pr502-flutter-preflight-20261114/preflight.json",
+    "sha256": "305b261a216a5cbfdff0842fd3d1c0a79a171d7bc0e9603039d5e1ec8a9ac72c",
+    "packages_missing": 99,
+    "original_assets_missing": 6,
+    "flutter_invoked": false
+  },
+  "execution": {
+    "local_widget_tests": "NOT_RUN",
+    "package_downloads": "NONE",
+    "workflow_activation": "NONE",
+    "git_changes": "NONE"
+  },
+  "contract": {
+    "test_files": [
+      "test/wort_diktat_gesture_regression_test.dart",
+      "test/feature_permission_regression_test.dart",
+      "test/profile_screen_test.dart"
+    ],
+    "expected_cases": 22,
+    "expected_skips": 0,
+    "flutter_version": "3.44.9",
+    "pillow": "12.3.0",
+    "pub_resolution": "flutter pub get --enforce-lockfile",
+    "timeout_minutes": 20,
+    "per_test_timeout": "60s",
+    "test_concurrency": 2
+  },
+  "security_scope": {
+    "events": [
+      "exact branch push"
+    ],
+    "permissions": {
+      "contents": "read"
+    },
+    "checkout": "github.sha",
+    "persist_credentials": false,
+    "no_pull_request_event": true,
+    "no_workflow_dispatch": true,
+    "no_apk_build": true,
+    "no_release": true,
+    "all_evidence_and_venv_in_runner_temp": true
+  },
+  "side_effect_review": "The checked three broad workflow push allowlists do not include this new exact branch. This new workflow defines no PR trigger; it does not edit any existing allowlist.",
+  "evidence": {
+    "before_after": "All tracked bytes, observed modes, index content, HEAD/tree and specifically included pubspec files; untracked runtime files are not accepted as source.",
+    "stdout_stderr": "Setup, assets, Flutter stdout/stderr retained without filtering; actual Flutter exit recorded.",
+    "test_summary": "Uses existing summarize() on original machine events, requires exactly 22 passing non-hidden cases, no failures/skips, completed runner, no error events.",
+    "upload": "always; includes failed-job logs and original source stamps"
+  }
+}

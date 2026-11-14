@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "status": "REVIEWED_WORKFLOW_ACTIVATED_WIDGET_RESULT_PENDING",
+  "product_parent": "a118409930ecdf605743382051e88f7e0898b8e9",
+  "workflow_blob": "41dec34d4e04a07f006c62bba8c00f6937fb48a5",
+  "actual_static_validation": "One successful Actionlint invocation; no repeat.",
+  "independent_review_sha256": "0b19d886ac40fd0576c7488e68fb316b8126a697af370538337b39e3ef268aed",
+  "root_review": "Read the complete workflow source and confirmed exact branch/event/checkout, read-only permissions, immutable source and lock checks, original streams, existing summarizer and mandatory22 non-skipped cases. Independently round-tripped all18 original archive members.",
+  "actual_widget_result": "PENDING_FIRST_RUN",
+  "changes_to_product_source": 0,
+  "changes_to_native_pin": 0,
+  "changes_to_active_c4_branch": 0,
+  "main_changed": false
+}

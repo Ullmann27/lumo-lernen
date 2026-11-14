@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-11-14T11:41:30.266368+00:00",
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 50690,
+    "sha256": "38a15e727021b41274fbb83d14d62aec890df09dd7a77591c3fa8819c3c71cb2",
+    "git_blob": "b7a1383241030a3cb29acb2d3e2c91c3f8ca3499"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 4203,
+    "sha256": "bf2661b88003568419f3d3e6cc6c554040d25091e029cbd33268e8cdeb28e6cc",
+    "git_blob": "18bb269c8aa3acdcb0029b6cea587eb991356756"
+  },
+  "full_readback": true,
+  "member_count": 18,
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 3445,
+      "sha256": "6228d8542569599bb972303a8b5fe9bacd880ebbbb73096efa711b1b3e8ca345",
+      "git_blob": "a27a6cd0184653299c51884ce39b4c3bca0e523f"
+    },
+    {
+      "path": "actionlint-result.json",
+      "bytes": 714,
+      "sha256": "f835c20a9f9f421a8070cc4fdccb66b16e2684628de6f19e90f1850e6b8ca812",
+      "git_blob": "16bb2defb28043de2b3899daa3846f138f6410b6"
+    },
+    {
+      "path": "actionlint.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "actionlint.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "final-source/.github/workflows/lumo-feature-connections.yml",
+      "bytes": 11982,
+      "sha256": "7e63176552cd978bde34aa15f23fec998799d998e8c6ae4dced249269140c3ae",
+      "git_blob": "41dec34d4e04a07f006c62bba8c00f6937fb48a5"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1906,
+      "sha256": "e0f2bcaa5381c4176163bfc72e453b320448a49ff75d85ff963523d908ec11a4",
+      "git_blob": "78ff6d495eb029867c809f736ab9fe761e9a5577"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 4203,
+      "sha256": "bf2661b88003568419f3d3e6cc6c554040d25091e029cbd33268e8cdeb28e6cc",
+      "git_blob": "18bb269c8aa3acdcb0029b6cea587eb991356756"
+    },
+    {
+      "path": "preflight/dart.version.original.txt",
+      "bytes": 7,
+      "sha256": "657062bd6c016c431fe7658173ba3611697eeb21357fd82faef0b7d21a491c3f",
+      "git_blob": "8531a3b7ee7e007afb605e6ff0089d0ed1fc5af3"
+    },
+    {
+      "path": "preflight/flutter.version.original.json",
+      "bytes": 559,
+      "sha256": "de4f76979b458fcab585006c27960ecd0bdb87565bc698ba064ed7d67f4fdeb1",
+      "git_blob": "ed65e7e080e20317fea7d629aa91e4ba0c933570"
+    },
+    {
+      "path": "preflight/package_config.original.json",
+      "bytes": 20319,
+      "sha256": "b89b7a11a2232e089570a1f31a9cffce25c8d5fefc01da998d4ca821d45776e9",
+      "git_blob": "1ebbc6000ef0ceedb339cdefacc2d9555d3e4398"
+    },
+    {
+      "path": "preflight/preflight.json",
+      "bytes": 52907,
+      "sha256": "305b261a216a5cbfdff0842fd3d1c0a79a171d7bc0e9603039d5e1ec8a9ac72c",
+      "git_blob": "17a67db6b331154b353cbc936a6f8f5c6a595e6a"
+    },
+    {
+      "path": "reference-source/.github/workflows/android-debug-apk.yml",
+      "bytes": 11066,
+      "sha256": "1b656f8140c0d7845cf48e963e2b011319b12a0041ad6fe483155bcfa7f4c17c",
+      "git_blob": "31a75d48c6ca8d3b2bf03c84d950142bfdc756cd"
+    },
+    {
+      "path": "reference-source/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 43922,
+      "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa",
+      "git_blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af"
+    },
+    {
+      "path": "reference-source/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82301,
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096",
+      "git_blob": "28979e437797b723a3f5a514734f1a118ef8f4d3"
+    },
+    {
+      "path": "reference-source/.github/workflows/release-apk.yml",
+      "bytes": 21983,
+      "sha256": "d8703a8f193c51540691aa2d7bbca873c579d3eb041da730ba86a467cc44e8ba",
+      "git_blob": "7db04919bdc8777389a8538c32202b9b77a4d4db"
+    },
+    {
+      "path": "reference-source/scripts/run_full_flutter_acceptance.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 4387,
+      "sha256": "67aa517d6d58772c8d525d05816208a9294db6f2d436aa3022a3923fba3afe65",
+      "git_blob": "7b0f6ddf7f6911c290a12ccd4b42f673e837b313"
+    },
+    {
+      "path": "workflow.patch",
+      "bytes": 12548,
+      "sha256": "18e260e091863c411f152fe2d8dcc7a165785ca4614ac7670dba0a699a405531",
+      "git_blob": "1cecd2fcc2456283d8cb4bcad06097b0fc27c35d"
+    }
+  ],
+  "actual_product_tests": "NOT_RUN",
+  "ci_activated": false
+}

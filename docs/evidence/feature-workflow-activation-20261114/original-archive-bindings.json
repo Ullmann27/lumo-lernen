@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "workflow-originals.tar.gz",
+      "bytes": 50690,
+      "sha256": "38a15e727021b41274fbb83d14d62aec890df09dd7a77591c3fa8819c3c71cb2",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 4387,
+      "sha256": "67aa517d6d58772c8d525d05816208a9294db6f2d436aa3022a3923fba3afe65",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/source-freeze.json"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1906,
+      "sha256": "e0f2bcaa5381c4176163bfc72e453b320448a49ff75d85ff963523d908ec11a4",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/handoff.json"
+    },
+    {
+      "path": "archive-binding.json",
+      "bytes": 4792,
+      "sha256": "4ecb819ee9631f36719cfa9ad472ae1ef38f9c269bd154446668dfc067f8317a",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/archive-binding.json"
+    },
+    {
+      "path": "actionlint-result.json",
+      "bytes": 714,
+      "sha256": "f835c20a9f9f421a8070cc4fdccb66b16e2684628de6f19e90f1850e6b8ca812",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/actionlint-result.json"
+    },
+    {
+      "path": "actionlint.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/actionlint.stdout.log"
+    },
+    {
+      "path": "actionlint.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/actionlint.stderr.log"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 6701,
+      "sha256": "0b19d886ac40fd0576c7488e68fb316b8126a697af370538337b39e3ef268aed",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-independent-review-20261114/review.json"
+    },
+    {
+      "path": "independent-manifest.json",
+      "bytes": 268,
+      "sha256": "c303f6d031421f53bf87f908cd013ed4e0875d9854d4ade79a754b7e7fb67c8a",
+      "source": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-independent-review-20261114/manifest.json"
+    }
+  ]
+}
