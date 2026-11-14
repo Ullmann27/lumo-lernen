@@ -1,3 +1,19 @@
+# Separater Folgeanschluss: vorhandene native 3D-Spielewelt
+
+Der Quellcheckpoint `1735ef3e9010f2d28b9dbff087a03730bdc6ca8a` verbindet die vorhandene native Spielewelt über einen sichtbaren 56 dp-Einstieg mit Flutter. Er basiert auf Host `0b7bacadd3cdc45d22a8e038c5df50ba8b739d62` und behält Native `baf148b03a7a32c6ad9f737d731f900eb9113ea1` unverändert.
+
+Diese Aktivierung gehört ausschließlich zu `integration/lumo-next-hub-20261114`. Der vollständige C4-/APK-Lauf 43604903064 bleibt auf seinem aktuellen 0b7-Stand. Die zwei neuen Fokusjobs führen den Original-Einstiegstest, die vorhandenen Dorf-/Spielrouten und eine echte Kotlin-/Java-Kompilierung auf der neuen kombinierten Quelle aus. Bei Erstellung dieser Aktivierung sind deren tatsächliche Ergebnisse noch offen.
+
+Änderungsumfang: drei Produktdateien, ein originaler aussagekräftiger Flutter-Test und ein isolierter Workflow mit Lesezugriff. Die bestehenden elf Kacheln, Profile, Datenformate, Schreibtrainer, Journal, C4-Autorität, alten Releasepins und bestehende vollständige Abnahme werden erhalten. Die Android-Datei enthält genau ein zusätzliches Allowlist-Element `games`; alle anderen Bytes ihrer aktuellen Integrationsbasis sind erhalten.
+
+Die sechs bestandenen Producer-Fokustests und dessen Android-Kompilierung gehören nur zu 5259bfe. Der eigene Sourcecheckpoint ist getrennt belegt. Die vorhandenen nativen Boot-/Hub-/Rückkehrdateien wurden unabhängig blobgenau bestätigt. PR505s verändertes C4-Startverhalten bleibt wegen seiner drei tatsächlichen aktuellen Regressionen ausgeschlossen.
+
+Originalquellen, Fehlerlogs, Patch, Erhaltungsprüfung und Herkunft: `docs/evidence/next-hub-connection-20261114/`. Keine neue APK- oder Gerätefreigabe ist mit diesem Fokuslauf verbunden.
+
+---
+
+## Unveränderter vorheriger Integrationsstand
+
 # Diktat progress fixture repaired and checked — 2026-11-14
 
 This documentation/evidence-only activation follows Host

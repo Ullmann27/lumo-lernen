@@ -1,3 +1,17 @@
+# Fortsetzung: separaten Hub-Anschluss tatsächlich qualifizieren
+
+Aktueller Folge-Quellcheckpoint: `1735ef3e9010f2d28b9dbff087a03730bdc6ca8a`, Tree `7a7f92e16d2157dfe8f87b5cc26815ae06c8f000`. Dieser Branch erhält die 0b7-Quelle und ergänzt ausschließlich den bestehenden Flutter→Android→Godot-Spielwelteinstieg.
+
+Der automatisch gestartete Workflow `lumo-native-3d-hub-entry-qa.yml` muss auf dem tatsächlichen Aktivierungscommit geprüft werden. Beide Jobs müssen abgeschlossen und erfolgreich sein. Die originalen Maschinenereignisse, deren tatsächlicher Exitcode, die Analyzer-Ausgabe, die echten Androidklassen und Quellen vor/nach den Prüfungen müssen an denselben Head gebunden bleiben. Ein erfolgreicher Fokuslauf ersetzt keine vollständige APK-/Android-/Updateprüfung.
+
+Die aktuelle vollständige Auslieferung bleibt gesondert an Host 0b7 / Native baf, PR 485 und Run 43604903064 / Versuch 1 gebunden. Den laufenden Kandidaten nicht mit diesem Folgestand verwechseln. Die neue Games-Route ist dort noch nicht enthalten.
+
+Memory-/Quiz-/Englisch-Nachträge sind anhand ihrer eigenen exakten Producerstände weiterzuprüfen. Echte rote Hosttests bleiben offen, auch wenn native Paarläufe grün sind. Der C4-Opt-in-Patch aus PR505 wurde nicht übernommen. Alte Releases und der geschützte Main bleiben unverändert.
+
+---
+
+## Unveränderte vorherige Fortsetzung
+
 # Diktat progress fixture repaired and checked — 2026-11-14
 
 This documentation/evidence-only activation follows Host
