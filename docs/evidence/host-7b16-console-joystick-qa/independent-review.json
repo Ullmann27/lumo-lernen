@@ -1,0 +1,287 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T06:07:59.991571+00:00",
+  "reviewer": "flutter_integration",
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "scope": "Read-only independent source review; no tests, emulator, downloads, source writes, staging, commits, refs, or launch performed. Only this review artifact was written.",
+  "parent": {
+    "sha": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+    "tree": "5a938c9bb82e3f966babd86adb26aceb0ae5f759"
+  },
+  "producer_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/source-freeze.json",
+    "bytes": 3732,
+    "sha256": "c94f7ff6e074bb5030a2305c2056efb2f74b3a3e537ec0ee7734371da6479718",
+    "git_blob": "5b63b2ccf52897d112d6d0d245dee6896c52f3b2"
+  },
+  "root_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/root-finalization/source-freeze.json",
+    "bytes": 3218,
+    "sha256": "93103a25a02aa6b2c3b190c55302a0ee52e4d8d58ca9c9a1250fec39ebb10c2b",
+    "git_blob": "46abedfe157c03100b03368e5992e08d39752199"
+  },
+  "root_deltas": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/root-finalization/lumo-console-joystick-7b16.yml.root.diff",
+      "bytes": 2323,
+      "sha256": "6741d473436cc842cde61a7b7ae5de2797f00da8b9b7ec217020524aafd7d546",
+      "git_blob": "3da13d1313398c6fe3f29fcee9571e0825fc7aa2"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/root-finalization/test_console_joystick_workflow.py.root.diff",
+      "bytes": 1346,
+      "sha256": "700f9aa8a1f914e5993a62b865d22b62efda8f1ed2eb937056952151c154ce82",
+      "git_blob": "511ecf9fb587380e8e72e83355316e5d46975a90"
+    }
+  ],
+  "reviewed_files": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/workflows/lumo-1966-cards-route-kart-qa.yml",
+      "bytes": 2329,
+      "sha256": "704c549da21e793e21a2c3cfa956677ff54cb8a07b9e67e169cf96c813a66372",
+      "git_blob": "84107edac617293584fa3a2500a610c1df19c213"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/workflows/lumo-astra-script-recovery.yml",
+      "bytes": 2058,
+      "sha256": "45abdc96b1df9d825f6fd506e5d2d6a77e6f773c202a017b44abfb796d8f6b06",
+      "git_blob": "7f8299a81a88c45644270df042e75093d032f9ca"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/workflows/lumo-console-joystick-7b16.yml",
+      "bytes": 24911,
+      "sha256": "ce286833614ab5c460e37b1b386532ea139f27ec374413bd95ccb14d7bd884b9",
+      "git_blob": "557c5a34a11d4b8deb93dffd6951c33f0165f128"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82297,
+      "sha256": "1e630ea2dca9e5e9fddec5c78fe8843a13a3672e433c98328de3ff8e4349513b",
+      "git_blob": "779fedd9de021c9cd8bd23e445c007fc23b7fd92"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/export_creative_evidence_parts.py",
+      "bytes": 13043,
+      "sha256": "1c2bf607417adfc189bd186c3e5b029f13c8f57965f90f68ad32399f76e008eb",
+      "git_blob": "5a784a687890e387434ad237472b6f0037227d1e"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/run_unchanged_creative_diagnostic.py",
+      "bytes": 10223,
+      "sha256": "d2b7c27cea0b1dc728b2b7eedf44eb835db6e44b734756e224f27f255fb7486a",
+      "git_blob": "cf74c37272cdf803a2faf6a2d71da4c9cba75ec3"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/tests/test_console_joystick_workflow.py",
+      "bytes": 18789,
+      "sha256": "bab87f0e5caab8afab5bf21e7ace661ec7c58f982e5b97ef3643f4b8f446e1fe",
+      "git_blob": "1aa100515b521702097c07deab672f811a65519b"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-jump-joystick-repair-7b16/scripts/verify_unchanged_apk_diagnostic.py",
+      "bytes": 20548,
+      "sha256": "0073fb00badce28bd97eeb4986b4e8457a2aa92e159044f3d6436796aace474b",
+      "git_blob": "0087ef8b7a0e361462029f942b9a0481edc785e4"
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50",
+      "bytes": 7218,
+      "git_blob": "b413b6b605d387e3ebbb3c29d79f4245c08ece02",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "scripts/android_console_transport.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "d0344469bdb68cc2927ffac7f715dd52c73c6730fd7e56fd946f486f2d931cca",
+      "bytes": 20839,
+      "git_blob": "6b72da4c3c49891d70d1f6bc51339dc3efb9559f",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f",
+      "bytes": 51307,
+      "git_blob": "54438587d4f18ed3496205fd0c043ce8c3cf332f",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "3e3cde21409f1ee8e64a4124a1842df75b6a72eab0ac65576442fb5072308bf2",
+      "bytes": 39331,
+      "git_blob": "d2ed8be4315a3ff1872ad40698276eafb21ddc58",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "4265f4c83bbf3bdd9d3d6fbaa744faa968829c6e8f8eb5281d8b0e604e0bb5ee",
+      "bytes": 21702,
+      "git_blob": "29c7a3cf3684ecdb50f3aa166f5491c58587260f",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "211cad7c3712255a14907b062e77c5accc36e0c4e5a91ff87cdc25f392f980b4",
+      "bytes": 9486,
+      "git_blob": "f017808bc88c0262f27bdfe7a73ebbb686479eeb",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "2fcc421ed63eff79a1c089f10d6054caec46c9b9a3b96b226dca082b3a2daa33",
+      "bytes": 71883,
+      "git_blob": "60c6341da4b249fe142a1289599ad02475326c33",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "a8246afe23edf8de01929af91839bc204e72a55187c84d6ed48ae3c5446541b0",
+      "bytes": 79134,
+      "git_blob": "cdd56d07f476526cf1b77c9f14a12bd10f8992d2",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec",
+      "bytes": 50962,
+      "git_blob": "f22376dbb33464ce6591fbcd7e2c9b95d8947159",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "e31118906b577cdb1bca5312d47d227378786b273de13b559847339cd79744c2",
+      "bytes": 61575,
+      "git_blob": "2daf7b3c84495a60aef2bf4459cab697549bca88",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "config/diagnostic-baselines/android37-7b16.json",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "4bff2aad1a8420118be47cb0679c211c83b2b99b5526321f9b338fcb8645c32f",
+      "bytes": 1953,
+      "git_blob": "98be937c27d9dd1ff67911360804012ba57815e7",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "config/godot-source.json",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "dfcacccb96d5a4b730e3df7b834aa5e78a69a0cf48122ec8242dfcb377caf7cb",
+      "bytes": 145,
+      "git_blob": "916d839f8edbbf8362ba7709b9d5bba714eb6b1b",
+      "not_changed_by_reviewed_patch": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "bytes": 2675,
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "not_changed_by_reviewed_patch": true
+    }
+  ],
+  "function_ast_comparison": {
+    "scripts/verify_unchanged_apk_diagnostic.py": {
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "unchanged_count": 16
+    },
+    "scripts/run_unchanged_creative_diagnostic.py": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        "main",
+        "prepare",
+        "validate_tour_context"
+      ],
+      "unchanged_count": 2
+    },
+    "scripts/export_creative_evidence_parts.py": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        "export_parts"
+      ],
+      "unchanged_count": 7
+    }
+  },
+  "findings": [
+    {
+      "id": "four_cases",
+      "result": "Three API37 renderer jobs plus one complete Creative API35 job depend on the required contracts. No API35-main or 2017-update job is repeated."
+    },
+    {
+      "id": "console_handoff",
+      "result": "All three API37 cases prepare the private socket before emulator launch, copy the original prepare.json and command output into tour/framework-start, export the same exact path via GITHUB_ENV, and pass it to shell-serial. Existing prepare-adapter, begin, root-overlap and EXIT-finish logic remain byte unchanged."
+    },
+    {
+      "id": "creative_root_delta",
+      "result": "Only the unused Creative console prepare block and shell-serial option were removed. The original Creative emulator-options are byte identical; the final new test explicitly forbids all three console markers in Creative."
+    },
+    {
+      "id": "source_identity",
+      "result": "Both devices and Creative bind the actual PR head rather than merge SHA. Existing candidate artifact 14093773196/run43540111465/attempt1, source7b16, Native17f5, APK/PCK bytes and successful-build requirements remain mandatory; overall original run failure is not rewritten."
+    },
+    {
+      "id": "routing",
+      "result": "Binder gains four exact job routes under the new exact workflow/branch. Every preexisting binder function AST is identical. Creative runner keeps old default and rechecks selected job against original metadata; exporter emits schema2/probe_source_sha for the new diagnostic only."
+    },
+    {
+      "id": "strict_ci",
+      "result": "The exact unfiltered 86 Console tests including three real AF_UNIX methods and all seven portrait tests are required with explicit count and OK/no-skip checks. The full committed-source preflight remains in the actual CI command."
+    },
+    {
+      "id": "old_workflows",
+      "result": "Only the exact new diagnostic branch is excluded from three old auto-trigger workflows. Existing branch/fork constraints and unrelated candidates are retained; no release/publish action is added."
+    },
+    {
+      "id": "artifacts",
+      "result": "Full original tour/Creative uploads remain always-on. Eight additional bounded Creative parts retain hidden files and require successful export; metadata/read failures propagate, and no device result is inferred from transport."
+    }
+  ],
+  "validation_read_not_run": {
+    "producer_result": {
+      "path": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/validation/final-local-result.json",
+      "bytes": 2623,
+      "sha256": "0e9d88d9fd1c4f64d56a7551f7d83b2a677be5e7f709906a0023b256c9c6303e",
+      "git_blob": "ff488ef434a33950fb3f3ad49f3b840ccbff55be"
+    },
+    "producer_raw_log": {
+      "path": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/validation/final-local-contracts.log",
+      "bytes": 27543,
+      "sha256": "aeb0e7d685bc02fd3da358e2335401d513bfc7ea451d6d7b38697a95c1ba1508",
+      "git_blob": "0e5d854bf21a54ccf55d1d246054805223a2adcf"
+    },
+    "producer_actionlint_result": {
+      "path": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/validation/actionlint-result.json",
+      "bytes": 1448,
+      "sha256": "6fccd4d185dddb4e7e0fd10548be0a445a3e4f902d2482e9e28b41a7b474385f",
+      "git_blob": "7aa0da30568374b19eaadf8fbc65b0bf8b9b159d"
+    },
+    "reported": {
+      "local_selected": 125,
+      "errors": 0,
+      "failures": 0,
+      "skips": 0,
+      "not_executed_committed_case": 1
+    },
+    "root_delta": "Independently read and source-bound; this reviewer did not rerun tests or actionlint."
+  },
+  "open_runtime_boundaries": [
+    "No actual success of Android37.2.13 QEMU SO_PEERCRED/exact argv or init-console identity/survival has been proved by this review; strict new device gates remain necessary.",
+    "No local success is claimed for the three AF_UNIX cases previously blocked by EPERM; they remain mandatory in CI.",
+    "The original full committed-source local preflight failure remains preserved and is not relabeled as PASS.",
+    "This review does not prove Jump movement completion, audio, FPS, APK release, or overall Android acceptance."
+  ]
+}

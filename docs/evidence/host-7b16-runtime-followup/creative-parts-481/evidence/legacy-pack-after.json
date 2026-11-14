@@ -1,0 +1,82 @@
+[
+  {
+    "path": "README.md",
+    "bytes": 6316,
+    "sha256": "802e8696b43a59348379f911546dcd6d9872103a1e7b3c66c81c98f887b427c8"
+  },
+  {
+    "path": "SHA256SUMS",
+    "bytes": 1402,
+    "sha256": "d45b48d743eade0987644bea68a4b26db573cb86ef246de09749dd8ea1f891dc"
+  },
+  {
+    "path": "evidence/focused-test-result.json",
+    "bytes": 424,
+    "sha256": "c47bd34dff9dd2a27757fea05a974bcb5e243ca0ab10ea32bf6c9c236f895a58"
+  },
+  {
+    "path": "evidence/focused-tests.log",
+    "bytes": 1521,
+    "sha256": "db34a5f004abfced974b91a6e1dbf04a5ac658285deb87b65761f85e2332faff"
+  },
+  {
+    "path": "evidence/source-after.json",
+    "bytes": 1339,
+    "sha256": "4fbd1ba39b1f4b28c67436d5e1f72193ffc0ce01a9b2fc9f94b26730cc7ec3bc"
+  },
+  {
+    "path": "evidence/source-before.json",
+    "bytes": 1339,
+    "sha256": "4fbd1ba39b1f4b28c67436d5e1f72193ffc0ce01a9b2fc9f94b26730cc7ec3bc"
+  },
+  {
+    "path": "handoff.json",
+    "bytes": 1391,
+    "sha256": "9100e02a5136718648e3c7d83f9cf8d32c20a74b414a3d99d6519f129818455c"
+  },
+  {
+    "path": "manifest.json",
+    "bytes": 2452,
+    "sha256": "71a10c3f0b1f29346e015033f23e8e33645bd9f89afda027b72f6fa3015e666e"
+  },
+  {
+    "path": "self-review.json",
+    "bytes": 1339,
+    "sha256": "1913dcd5cb0a01557a960b3ffa702e7ade92fa4e7b801c378c51ec6c14d1d251"
+  },
+  {
+    "path": "source-contract/checked_memory_collector.py",
+    "bytes": 15859,
+    "sha256": "9d7b07d27657b9c9a62c7027393419006480bc3d28848cfabe6811be21a6204e"
+  },
+  {
+    "path": "source-contract/export_creative_evidence_parts.py",
+    "bytes": 12658,
+    "sha256": "290c1d5aa61fa490508312b4c254fb37c045e5e5babcfed26530e496c8a0ded7"
+  },
+  {
+    "path": "source-contract/lumo-kart-graphics-2019.yml",
+    "bytes": 61366,
+    "sha256": "1356506d64a8777d7aeddeaf78de47f4aceb8aaa3c0fdd07d5166da2fb53f800"
+  },
+  {
+    "path": "source-contract/manifest.json",
+    "bytes": 1282,
+    "sha256": "c1bbf9ff2ff4dd7cb436fff50a77b371ae5f86bbd2ce901a925cde796d28d1ab"
+  },
+  {
+    "path": "source-freeze.json",
+    "bytes": 1232,
+    "sha256": "89310a2ed7648f23470804561be5f379f02028013d2d5de3b9465f52d7e6a730"
+  },
+  {
+    "path": "test_verify_creative_parts.py",
+    "bytes": 10446,
+    "sha256": "495b931b41d9b1c5cdac106e70e6e3c25b6c61c9dbba6a755facce6d501fd641"
+  },
+  {
+    "path": "verify_creative_parts.py",
+    "bytes": 18989,
+    "sha256": "ac7868ea0a72ee39297d7242b7a140d986e158daa5c59325548c06844e262baf"
+  }
+]

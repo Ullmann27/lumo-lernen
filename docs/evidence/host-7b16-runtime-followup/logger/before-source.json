@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-14T03:57:14.264671+00:00",
+  "head": "76443d3969856bfbba0e5b19231917f1743cf2a6",
+  "tree": "a648b206aba761fc96d0d0c95085981f6da53568",
+  "files": [
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 29916,
+      "sha256": "0b501e19f4aaa56c69c593a3fdbcacce508ef55dd255671e059651b1e8e0b190"
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "bytes": 20361,
+      "sha256": "c71acb91a77285699b8bb70a8e4846f41363e378171707e2c06eae9367b55e60"
+    },
+    {
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 6772,
+      "sha256": "c94033c7d3568ca7e432891d72dfe1a00be982166301815bb4b15f335891239d"
+    },
+    {
+      "path": "scripts/tests/test_verify_android_runtime_anr.py",
+      "bytes": 24164,
+      "sha256": "afe8e382f58a4a579ac2b25fb49fdf22f7297db0b0d1ceb88264841ee3703046"
+    },
+    {
+      "path": "scripts/tests/test_android_framework_ready.py",
+      "bytes": 19723,
+      "sha256": "b44b891fbedb5bd8e34b1507e069017c1350f1e7232aa43d0c2207df22247e5d"
+    },
+    {
+      "path": "scripts/tests/test_android_framework_ready_android17.py",
+      "bytes": 10171,
+      "sha256": "944ac3c8940b0deccc7d0258903f732c61362f5925e8aea8d441407d6a1a7ce6"
+    }
+  ],
+  "scope": "Frozen pre-edit sources. Root and sibling agents own disjoint source paths; no commit/ref/index action."
+}

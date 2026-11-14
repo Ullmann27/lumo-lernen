@@ -1,0 +1,10 @@
+{
+  "full_check_exit": 2,
+  "findings": 1198,
+  "file_count": 49,
+  "all_raw_tsv": true,
+  "other_diagnostics": [],
+  "source_check_exit": 0,
+  "source_diagnostics": "",
+  "handling": "Preserve byte-identical original TSV empty trailing column; no fixture alteration."
+}

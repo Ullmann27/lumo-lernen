@@ -1,0 +1,20 @@
+test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger) ... ERROR
+
+======================================================================
+ERROR: test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/test_android_runtime_device_logger.py", line 218, in test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger
+    result = self.complete()
+             ^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/test_android_runtime_device_logger.py", line 209, in complete
+    self.start()
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/test_android_runtime_device_logger.py", line 206, in start
+    return ANR.begin(self.framework, self.out, self.serial, preserve_through_adb_root=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: begin() got an unexpected keyword argument 'preserve_through_adb_root'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+FAILED (errors=1)

@@ -1,0 +1,45 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_console_joystick_workflow",
+    "scripts.tests.test_verify_unchanged_apk_diagnostic",
+    "scripts.tests.test_unchanged_creative_diagnostic",
+    "scripts.tests.test_creative_evidence_parts",
+    "scripts.tests.test_unchanged_apk_followup",
+    "scripts.tests.test_runtime_followup_workflow",
+    "scripts.tests.test_studio_creative_android_probe",
+    "scripts.tests.test_studio_creative_runtime_repair",
+    "scripts.tests.test_studio_creative_7b_repair",
+    "scripts.tests.test_studio_joystick_portrait"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/host-console-joystick-qa-20261114/test-view",
+  "returncode": 1,
+  "seconds": 1.9964384639897617,
+  "final_source_hashes_before": {
+    "final-source/scripts/verify_unchanged_apk_diagnostic.py": "0073fb00badce28bd97eeb4986b4e8457a2aa92e159044f3d6436796aace474b",
+    "final-source/scripts/run_unchanged_creative_diagnostic.py": "d2b7c27cea0b1dc728b2b7eedf44eb835db6e44b734756e224f27f255fb7486a",
+    "final-source/scripts/export_creative_evidence_parts.py": "1c2bf607417adfc189bd186c3e5b029f13c8f57965f90f68ad32399f76e008eb",
+    "final-source/scripts/tests/test_console_joystick_workflow.py": "b9bc23d0681e0363dc933ad8fa5466a934fce9aed1e8479617af427ea12a92cd",
+    "final-source/.github/workflows/lumo-astra-script-recovery.yml": "45abdc96b1df9d825f6fd506e5d2d6a77e6f773c202a017b44abfb796d8f6b06",
+    "final-source/.github/workflows/lumo-console-joystick-7b16.yml": "154ac06426ec0d54c978b81d633513d16f02df86f0b636d45a9e81b95278a6f4",
+    "final-source/.github/workflows/lumo-1966-cards-route-kart-qa.yml": "704c549da21e793e21a2c3cfa956677ff54cb8a07b9e67e169cf96c813a66372",
+    "final-source/.github/workflows/lumo-unified-integration-2026.yml": "1e630ea2dca9e5e9fddec5c78fe8843a13a3672e433c98328de3ff8e4349513b"
+  },
+  "final_source_hashes_after": {
+    "final-source/scripts/verify_unchanged_apk_diagnostic.py": "0073fb00badce28bd97eeb4986b4e8457a2aa92e159044f3d6436796aace474b",
+    "final-source/scripts/run_unchanged_creative_diagnostic.py": "d2b7c27cea0b1dc728b2b7eedf44eb835db6e44b734756e224f27f255fb7486a",
+    "final-source/scripts/export_creative_evidence_parts.py": "1c2bf607417adfc189bd186c3e5b029f13c8f57965f90f68ad32399f76e008eb",
+    "final-source/scripts/tests/test_console_joystick_workflow.py": "b9bc23d0681e0363dc933ad8fa5466a934fce9aed1e8479617af427ea12a92cd",
+    "final-source/.github/workflows/lumo-astra-script-recovery.yml": "45abdc96b1df9d825f6fd506e5d2d6a77e6f773c202a017b44abfb796d8f6b06",
+    "final-source/.github/workflows/lumo-console-joystick-7b16.yml": "154ac06426ec0d54c978b81d633513d16f02df86f0b636d45a9e81b95278a6f4",
+    "final-source/.github/workflows/lumo-1966-cards-route-kart-qa.yml": "704c549da21e793e21a2c3cfa956677ff54cb8a07b9e67e169cf96c813a66372",
+    "final-source/.github/workflows/lumo-unified-integration-2026.yml": "1e630ea2dca9e5e9fddec5c78fe8843a13a3672e433c98328de3ff8e4349513b"
+  },
+  "unchanged": true,
+  "root_worktree_tracked_status_after": "",
+  "scope": "Local explicit contracts only; full real-AF_UNIX 86-case gate remains mandatory in new CI."
+}

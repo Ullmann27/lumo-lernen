@@ -1,0 +1,47 @@
+{
+  "results": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "scripts.tests.test_runtime_followup_workflow"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+      "exit_code": 0,
+      "elapsed_seconds": 0.315,
+      "log": "workflow-contracts.log",
+      "log_sha256": "8018dcccc27c73a54a1b5e9989e73edf699082acd3c827ae1f955a913acdef67",
+      "log_bytes": 1653
+    },
+    {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-android-runtime-7b16-followup.yml"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+      "exit_code": 0,
+      "elapsed_seconds": 0.0189,
+      "log": "actionlint.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "scripts/run_unchanged_apk_diagnostic.sh"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+      "exit_code": 0,
+      "elapsed_seconds": 0.0021,
+      "log": "wrapper-syntax.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0
+    }
+  ],
+  "sources_unchanged": true,
+  "scope": "Actual workflow condition and embedded Python report executed against explicit synthetic inputs. No emulator, APK build, backend launch or test rerun of the frozen logger suite."
+}

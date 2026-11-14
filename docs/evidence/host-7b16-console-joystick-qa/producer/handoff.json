@@ -1,0 +1,55 @@
+{
+  "candidate_native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "candidate_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "cases": [
+    "api37-host",
+    "api37-swiftshader",
+    "api37-swangle",
+    "creative-api35"
+  ],
+  "limits": [
+    "No local complete committed-source preflight claim: original strict Git check is preserved and required in CI.",
+    "No local real-AF_UNIX success claimed; all three methods remain mandatory in CI.",
+    "No emulator/APK/device invocation, publication or visual/FPS claim."
+  ],
+  "new_branch": "qa/lumo-console-joystick-7b16-20261114",
+  "new_workflow": ".github/workflows/lumo-console-joystick-7b16.yml",
+  "patches": {
+    "auto-trigger-exclusions.patch": "4fb8ac4e08b18ec1589920f1b5cbdd746b7061b32f9a2d0e92712f476930a704",
+    "qa-hookup.patch": "7c8c2bf3a1bb8f1cfd146c4057413c552e7694c91a9bb634aeccad6bd59824a1"
+  },
+  "paths": [
+    ".github/workflows/lumo-1966-cards-route-kart-qa.yml",
+    ".github/workflows/lumo-astra-script-recovery.yml",
+    ".github/workflows/lumo-console-joystick-7b16.yml",
+    ".github/workflows/lumo-unified-integration-2026.yml",
+    "scripts/export_creative_evidence_parts.py",
+    "scripts/run_unchanged_creative_diagnostic.py",
+    "scripts/tests/test_console_joystick_workflow.py",
+    "scripts/verify_unchanged_apk_diagnostic.py"
+  ],
+  "required_pr_base": "integration/lumo-connections-20261113",
+  "root_worktree_tracked_clean_after": true,
+  "schema": 1,
+  "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+  "source_freeze_sha256": "c94f7ff6e074bb5030a2305c2056efb2f74b3a3e537ec0ee7734371da6479718",
+  "status": "FROZEN",
+  "test_view": "Excluded auxiliary scratch test tree; do not add to repository.",
+  "tree": "5a938c9bb82e3f966babd86adb26aceb0ae5f759",
+  "validation": {
+    "actionlint_workflows": 4,
+    "errors": 0,
+    "failures": 0,
+    "local_selected_tests": 125,
+    "log": "validation/final-local-contracts.log",
+    "mandatory_console_ci_count": 86,
+    "mandatory_portrait_count": 7,
+    "mandatory_real_unix_ci_count": 3,
+    "new_tests": 11,
+    "not_executed_local": [
+      "scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate"
+    ],
+    "original_local_setup_errors": "validation/focused-contracts.log",
+    "skips": 0
+  }
+}

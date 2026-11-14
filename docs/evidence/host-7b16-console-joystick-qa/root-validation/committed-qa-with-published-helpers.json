@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "head": "5ed1016ba18e2646bb13d31b29e4c3b3bcebc9b4",
+  "tree": "d213657d83e82faa66ad9b83f8a246aa9e645fb8",
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_console_joystick_workflow",
+    "scripts.tests.test_verify_unchanged_apk_diagnostic.ApkContracts.test_full_preflight_keeps_qa_run_and_apk_source_separate"
+  ],
+  "started_at": "2026-11-14T06:14:39.261996+00:00",
+  "finished_at": "2026-11-14T06:14:39.610015+00:00",
+  "returncode": 0,
+  "log_sha256": "06cc2793f08e4c34c7cf878434f0a21e874587e92e18cb1fd382c44b28b4d9f4",
+  "git_status": "",
+  "environment_fix": {
+    "materialized_published_helpers": [
+      {
+        "path": "scripts/probes/pr207_android_smoke.py",
+        "blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+        "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e"
+      },
+      {
+        "path": "scripts/probes/pr207_android_ui_probe.py",
+        "blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+        "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4"
+      }
+    ],
+    "source_or_test_changes": false
+  },
+  "previous_attempt": "committed-qa-contracts.json",
+  "scope": "Final Root workflow contracts and genuine committed-helper preflight; no device run"
+}

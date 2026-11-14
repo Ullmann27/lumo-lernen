@@ -1,0 +1,253 @@
+name: LUMO unchanged 7b16 Creative Android diagnostic
+on:
+  pull_request:
+    branches: [integration/lumo-connections-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-creative-7b16-diagnostic-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+  SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+  CANDIDATE_SOURCE: 7b16f2f5ab16f3d913ee170aefd9807c87216260
+  NATIVE_SOURCE: 17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845
+jobs:
+  creative-android:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'qa/lumo-creative-7b16-20261114') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'qa/lumo-creative-7b16-20261114'))
+    name: unchanged-apk-creative-api35
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ env.SOURCE_SHA }}
+      - name: Read the unchanged candidate source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ env.CANDIDATE_SOURCE }}
+          path: candidate-source
+          sparse-checkout: |
+            config
+            .github/probes
+            lib/features/games/spielwelt
+      - name: Read the exact native scene sources
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: ${{ env.NATIVE_SOURCE }}
+          persist-credentials: false
+          path: native-source
+          sparse-checkout: |
+            scripts/games
+            scripts/creative
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install the original OCR and disposable display dependencies
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ffmpeg
+          python3 -m venv .creative-venv
+          .creative-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+      - name: Verify repaired observations and distinct source contracts
+        env:
+          PYTHONPATH: ${{ github.workspace }}/tools/android_qa/tests
+        run: |
+          set -euo pipefail
+          mkdir -p creative
+          .creative-venv/bin/python -B -m unittest -v \
+            scripts.tests.test_verify_unchanged_apk_diagnostic \
+            scripts.tests.test_unchanged_creative_diagnostic \
+            scripts.tests.test_creative_evidence_parts \
+            scripts.tests.test_studio_creative_android_probe \
+            scripts.tests.test_studio_creative_runtime_repair \
+            scripts.tests.test_studio_creative_7b_repair \
+            2>&1 | tee creative/local-contracts.log
+          if grep -Eq '^OK \(skipped=|^FAILED.*skipped=' creative/local-contracts.log; then
+            echo 'The Creative diagnostic does not accept skipped contracts.' >&2
+            exit 1
+          fi
+      - name: Retain original build metadata and this separate QA run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test "$(git -C candidate-source rev-parse HEAD)" = "$CANDIDATE_SOURCE"
+          test "$(git -C native-source rev-parse HEAD)" = "$NATIVE_SOURCE"
+          mkdir -p creative/metadata creative/qa-metadata
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43540111465" > creative/metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43540111465/artifacts?per_page=100" > creative/metadata/artifacts.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43540111465/jobs?per_page=100" > creative/metadata/jobs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > creative/qa-metadata/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > creative/qa-metadata/jobs.json
+          git -C candidate-source rev-parse HEAD > creative/apk-source-sha.txt
+          git rev-parse HEAD > creative/probe-source-sha.txt
+          git -C native-source rev-parse HEAD > creative/native-source-sha.txt
+      - name: Download the unchanged successful-build candidate
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '14093773196'
+          run-id: '43540111465'
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: candidate/dist/
+      - name: Enable disposable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start the original software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          mkdir -p creative
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > creative/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > creative/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' creative/mesa-renderer.txt
+      - name: Observe actual Jump Build Puzzle Treasure inputs on the unchanged APK
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .creative-venv/bin/python -B scripts/run_unchanged_creative_diagnostic.py --qa-source . --candidate-source candidate-source --native-source native-source --candidate-metadata-dir creative/metadata --qa-metadata-dir creative/qa-metadata --expected-qa-source "$SOURCE_SHA" --expected-qa-run "$GITHUB_RUN_ID" --expected-qa-attempt "$GITHUB_RUN_ATTEMPT" --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out creative/tour
+      - name: Preserve actual creative Android evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-android
+          path: creative/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
+      - name: Export complete creative evidence into bounded additional parts
+        id: creative-parts
+        if: always()
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          python3 -B scripts/export_creative_evidence_parts.py \
+            --source creative \
+            --output "$RUNNER_TEMP/lumo-creative-evidence-parts" \
+            --repository "$GITHUB_REPOSITORY" \
+            --workflow-path .github/workflows/lumo-creative-7b16-diagnostic.yml \
+            --source-sha "$SOURCE_SHA" \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --github-output "$GITHUB_OUTPUT"
+      - name: Preserve complete creative evidence part 01
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_01 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-01
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-01/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 02
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_02 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-02
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-02/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 03
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_03 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-03
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-03/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 04
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_04 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-04
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-04/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 05
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_05 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-05
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-05/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 06
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_06 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-06
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-06/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 07
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_07 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-07
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-07/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve complete creative evidence part 08
+        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_08 == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-creative-7b16-diagnostic-creative-part-08
+          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-08/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 30
+          compression-level: 0

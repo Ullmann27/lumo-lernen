@@ -1,0 +1,935 @@
+--- /dev/null
++++ b/.github/workflows/lumo-console-joystick-7b16.yml
+@@ -0,0 +1,513 @@
++name: LUMO unchanged 7b16 Console and Joystick diagnostic
++on:
++  pull_request:
++    branches: [integration/lumo-connections-20261113]
++  workflow_dispatch:
++permissions:
++  contents: read
++  actions: read
++concurrency:
++  group: lumo-console-joystick-7b16-${{ github.head_ref || github.ref_name }}
++  cancel-in-progress: false
++env:
++  PYTHONDONTWRITEBYTECODE: '1'
++  QA_SOURCE: ${{ github.event.pull_request.head.sha || github.sha }}
++  SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
++  CANDIDATE_SOURCE: 7b16f2f5ab16f3d913ee170aefd9807c87216260
++  NATIVE_SOURCE: 17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845
++jobs:
++  probe-contracts:
++    if: >-
++      github.repository == 'Ullmann27/lumo-lernen' &&
++      ((github.event_name == 'pull_request' &&
++      github.event.pull_request.head.repo.full_name == github.repository &&
++      github.event.pull_request.base.ref == 'integration/lumo-connections-20261113' &&
++      github.head_ref == 'qa/lumo-console-joystick-7b16-20261114') ||
++      (github.event_name == 'workflow_dispatch' &&
++      github.ref_name == 'qa/lumo-console-joystick-7b16-20261114'))
++    name: console-joystick-probe-contracts
++    runs-on: ubuntu-latest
++    timeout-minutes: 12
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ env.QA_SOURCE }}
++      - name: Read the exact upstream action for the existing adapter contracts
++        uses: actions/checkout@v4
++        with:
++          repository: ReactiveCircus/android-emulator-runner
++          ref: a421e43855164a8197daf9d8d40fe71c6996bb0d
++          path: runner-actions/android-emulator-runner
++          persist-credentials: false
++      - name: Verify repaired observations and strict diagnostic bindings
++        env:
++          LUMO_ACTION_TEST_SOURCE: ${{ github.workspace }}/runner-actions/android-emulator-runner
++          PYTHONPATH: ${{ github.workspace }}/tools/android_qa/tests
++        run: |
++          set -euo pipefail
++          python3 -m venv .probe-venv
++          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
++          bash -n scripts/run_unchanged_apk_diagnostic.sh
++          .probe-venv/bin/python -B -m unittest -v \
++            scripts.tests.test_android_console_transport \
++            scripts.tests.test_android_runtime_device_logger \
++            scripts.tests.test_runtime_logcat_sections \
++            scripts.tests.test_android_framework_ready \
++            scripts.tests.test_verify_android_runtime_anr \
++            2>&1 | tee console-contracts.log
++          grep -Eq '^Ran 86 tests in ' console-contracts.log
++          grep -Fx 'OK' console-contracts.log
++          .probe-venv/bin/python -B -m unittest -v scripts.tests.test_studio_joystick_portrait \
++            2>&1 | tee joystick-contracts.log
++          grep -Eq '^Ran 7 tests in ' joystick-contracts.log
++          grep -Fx 'OK' joystick-contracts.log
++          .probe-venv/bin/python -B -m unittest -v \
++            scripts.tests.test_android_framework_ready_android17 \
++            scripts.tests.test_android37_cli22 \
++            scripts.tests.test_runtime_followup_workflow \
++            scripts.tests.test_unchanged_apk_followup \
++            scripts.tests.test_console_joystick_workflow \
++            tools.android_qa.tests.test_nextgen_speech_logcat_recovery \
++            tools.android_qa.tests.test_studio_speech_logcat_recovery \
++            scripts.tests.test_verify_unchanged_apk_diagnostic \
++            tools.android_qa.tests.test_kart_garage_evidence \
++            tools.android_qa.tests.test_kart_driver_word_evidence \
++            2>&1 | tee diagnostic-contracts.log
++          if grep -Eq '^OK \(skipped=|^FAILED.*skipped=' diagnostic-contracts.log; then
++            echo 'The diagnostic contract gate does not accept skipped tests.' >&2
++            exit 1
++          fi
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: lumo-console-joystick-7b16-probe-contracts
++          path: |
++            diagnostic-contracts.log
++            console-contracts.log
++            joystick-contracts.log
++          if-no-files-found: error
++          retention-days: 30
++
++  android-diagnostic:
++    needs: [probe-contracts]
++    name: unchanged-apk-console-joystick-${{ matrix.case }}
++    strategy:
++      fail-fast: false
++      matrix:
++        include:
++          - case: api37-host
++            api: 37
++            renderer: host
++            minutes: 65
++          - case: api37-swiftshader
++            api: 37
++            renderer: swiftshader
++            minutes: 65
++          - case: api37-swangle
++            api: 37
++            renderer: swangle
++            minutes: 65
++    runs-on: ubuntu-latest
++    timeout-minutes: ${{ matrix.minutes }}
++    steps:
++      - name: Checkout the actual repaired probe source
++        uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ env.QA_SOURCE }}
++      - name: Checkout the unchanged APK source independently
++        uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: 7b16f2f5ab16f3d913ee170aefd9807c87216260
++          path: candidate-source
++          sparse-checkout-cone-mode: false
++          sparse-checkout: |
++            /config/godot-source.json
++            /pubspec.yaml
++      - name: Checkout the exact upstream Android17 action
++        if: matrix.api == 37
++        uses: actions/checkout@v4
++        with:
++          repository: ReactiveCircus/android-emulator-runner
++          ref: a421e43855164a8197daf9d8d40fe71c6996bb0d
++          path: runner-actions/android-emulator-runner
++          persist-credentials: false
++      - name: Download the original successful build artifact without rebuilding
++        uses: actions/download-artifact@v4
++        with:
++          artifact-ids: '14093773196'
++          merge-multiple: true
++          run-id: 43540111465
++          github-token: ${{ github.token }}
++          path: candidate/dist/
++      - name: Install the unchanged live UI reader dependencies
++        timeout-minutes: 8
++        run: |
++          set -euo pipefail
++          mkdir -p tour
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
++          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
++          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
++          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
++          python3 -m venv .probe-venv
++          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
++      - name: Save authentic candidate and diagnostic API metadata separately
++        env:
++          GH_TOKEN: ${{ github.token }}
++        run: |
++          set -euo pipefail
++          mkdir -p tour/binding-inputs/candidate tour/binding-inputs/qa
++          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43540111465' > tour/binding-inputs/candidate/run.json
++          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43540111465/jobs?per_page=100' > tour/binding-inputs/candidate/jobs.json
++          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43540111465/artifacts?per_page=100' > tour/binding-inputs/candidate/artifacts.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > tour/binding-inputs/qa/run.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > tour/binding-inputs/qa/jobs.json
++          git rev-parse HEAD > tour/probe-source-sha.txt
++          git -C candidate-source rev-parse HEAD > tour/apk-source-sha.txt
++      - name: Bind both sources, exact build job, artifact, APK and actual embedded PCK
++        env:
++          DIAGNOSTIC_JOB_NAME: unchanged-apk-console-joystick-${{ matrix.case }}
++        run: |
++          set -euo pipefail
++          .probe-venv/bin/python scripts/verify_unchanged_apk_diagnostic.py \
++            --qa-source "$GITHUB_WORKSPACE" \
++            --candidate-source "$GITHUB_WORKSPACE/candidate-source" \
++            --candidate-metadata-dir "$GITHUB_WORKSPACE/tour/binding-inputs/candidate" \
++            --qa-metadata-dir "$GITHUB_WORKSPACE/tour/binding-inputs/qa" \
++            --expected-qa-source "$QA_SOURCE" \
++            --expected-qa-run "$GITHUB_RUN_ID" \
++            --expected-qa-attempt "$GITHUB_RUN_ATTEMPT" \
++            --qa-job-name "$DIAGNOSTIC_JOB_NAME" \
++            --apk "$GITHUB_WORKSPACE/candidate/dist/x86_64/Lumo-Lernen-Neu.apk" \
++            --provenance "$GITHUB_WORKSPACE/candidate/dist/x86_64/BUILD-PROVENANCE.json" \
++            --sums "$GITHUB_WORKSPACE/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt" \
++            --out "$GITHUB_WORKSPACE/tour/candidate-and-probe-binding.json"
++      - name: Enable the same disposable KVM emulator
++        run: |
++          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
++          sudo udevadm control --reload-rules
++          sudo udevadm trigger --name-match=kvm
++          sudo udevadm settle
++          sudo chmod a+rw /dev/kvm
++      - name: Start the same software display for both renderer cases
++        env:
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++        run: |
++          set -euo pipefail
++          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
++          for attempt in $(seq 1 20); do
++            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
++            sleep 0.25
++          done
++          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
++      - name: Preserve the original tools and install the same verified official CLI22
++        if: matrix.api == 37
++        timeout-minutes: 15
++        run: python3 scripts/prepare_android37_cli22.py prepare --action-dir runner-actions/android-emulator-runner --out tour/framework-start/cli22
++      - name: Bind the actual new observer and the unchanged original APK separately
++        if: matrix.api == 37
++        run: |
++          set -euo pipefail
++          python3 scripts/prepare_android37_emulator_action.py \
++            --action-dir runner-actions/android-emulator-runner --out tour/framework-start \
++            --probe-source "$QA_SOURCE" \
++            --workflow .github/workflows/lumo-console-joystick-7b16.yml \
++            --context unchanged-apk-diagnostic \
++            --apk-source "$CANDIDATE_SOURCE" --native-source "$NATIVE_SOURCE"
++          node --check runner-actions/android-emulator-runner/lib/emulator-manager.js
++      - name: Prepare the private init-console channel before emulator launch
++        env:
++          LUMO_ANDROID_CONSOLE_SOCKET: ${{ runner.temp }}/lumo-serial-${{ github.run_id }}-${{ github.run_attempt }}/console.sock
++        run: |
++          set -euo pipefail
++          mkdir -p tour/framework-start
++          python3 -B scripts/android_console_transport.py prepare --socket "$LUMO_ANDROID_CONSOLE_SOCKET" > tour/framework-start/console-prepare-command.json
++          cp -- "$(dirname -- "$LUMO_ANDROID_CONSOLE_SOCKET")/prepare.json" tour/framework-start/console-prepare.json
++          printf 'LUMO_ANDROID_CONSOLE_SOCKET=%s\n' "$LUMO_ANDROID_CONSOLE_SOCKET" >> "$GITHUB_ENV"
++      - name: Run the Android17 renderer comparison with continuous ANR observation
++        if: matrix.api == 37
++        uses: ./runner-actions/android-emulator-runner
++        env:
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++        with:
++          api-level: '37.0'
++          target: google_apis
++          arch: x86_64
++          profile: pixel_5
++          cores: 2
++          ram-size: 4096M
++          heap-size: 512M
++          disable-animations: true
++          emulator-boot-timeout: 300
++          emulator-port: 5554
++          # This GPU option is the only active emulator-configuration difference
++          # between the three API37 jobs. All use the same strict observers.
++          emulator-options: -no-window -accel on -gpu ${{ matrix.renderer }} -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none -shell-serial unix:${{ env.LUMO_ANDROID_CONSOLE_SOCKET }},server,nowait
++          pre-emulator-launch-script: |
++            python3 "$GITHUB_WORKSPACE/scripts/prepare_android37_cli22.py" inspect --out "$GITHUB_WORKSPACE/tour/framework-start/cli22" --phase before-boot
++            python3 "$GITHUB_WORKSPACE/scripts/android_framework_ready.py" start --out "$GITHUB_WORKSPACE/tour/framework-start" --serial emulator-5554 --monitor-seconds 3600
++          script: bash "$GITHUB_WORKSPACE/scripts/run_unchanged_apk_diagnostic.sh" "${{ matrix.case }}"
++      - name: Preserve generated Android17 hardware even after a failed guard or tour
++        if: always() && matrix.api == 37
++        run: |
++          if [ -f tour/framework-start/cli22/prepared.json ]; then
++            python3 scripts/prepare_android37_cli22.py inspect --out tour/framework-start/cli22 --phase after-action
++          fi
++      - name: Close any remaining startup monitor after action cleanup
++        if: always() && matrix.api == 37
++        run: python3 scripts/android_framework_ready.py stop --out tour/framework-start --serial emulator-5554 --allow-not-started
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: lumo-console-joystick-7b16-${{ matrix.case }}
++          path: tour/
++          if-no-files-found: error
++          retention-days: 30
++  creative-android:
++    needs: [probe-contracts]
++    name: unchanged-apk-console-joystick-creative-api35
++    runs-on: ubuntu-latest
++    timeout-minutes: 65
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ env.SOURCE_SHA }}
++      - name: Read the unchanged candidate source
++        uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++          ref: ${{ env.CANDIDATE_SOURCE }}
++          path: candidate-source
++          sparse-checkout: |
++            config
++            .github/probes
++            lib/features/games/spielwelt
++      - name: Read the exact native scene sources
++        uses: actions/checkout@v4
++        with:
++          repository: Ullmann27/lumo-godot
++          ref: ${{ env.NATIVE_SOURCE }}
++          persist-credentials: false
++          path: native-source
++          sparse-checkout: |
++            scripts/games
++            scripts/creative
++      - uses: actions/setup-java@v4
++        with:
++          distribution: temurin
++          java-version: '17'
++      - name: Install the original OCR and disposable display dependencies
++        timeout-minutes: 8
++        run: |
++          set -euo pipefail
++          sudo apt-get -o Acquire::Retries=2 update -qq
++          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ffmpeg
++          python3 -m venv .creative-venv
++          .creative-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
++      - name: Verify repaired observations and distinct source contracts
++        env:
++          PYTHONPATH: ${{ github.workspace }}/tools/android_qa/tests
++        run: |
++          set -euo pipefail
++          mkdir -p creative
++          .creative-venv/bin/python -B -m unittest -v \
++            scripts.tests.test_verify_unchanged_apk_diagnostic \
++            scripts.tests.test_unchanged_creative_diagnostic \
++            scripts.tests.test_creative_evidence_parts \
++            scripts.tests.test_studio_creative_android_probe \
++            scripts.tests.test_studio_creative_runtime_repair \
++            scripts.tests.test_studio_creative_7b_repair \
++            2>&1 | tee creative/local-contracts.log
++          if grep -Eq '^OK \(skipped=|^FAILED.*skipped=' creative/local-contracts.log; then
++            echo 'The Creative diagnostic does not accept skipped contracts.' >&2
++            exit 1
++          fi
++      - name: Retain original build metadata and this separate QA run
++        env:
++          GH_TOKEN: ${{ github.token }}
++        run: |
++          set -euo pipefail
++          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
++          test "$(git -C candidate-source rev-parse HEAD)" = "$CANDIDATE_SOURCE"
++          test "$(git -C native-source rev-parse HEAD)" = "$NATIVE_SOURCE"
++          mkdir -p creative/metadata creative/qa-metadata
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43540111465" > creative/metadata/run.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43540111465/artifacts?per_page=100" > creative/metadata/artifacts.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/43540111465/jobs?per_page=100" > creative/metadata/jobs.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > creative/qa-metadata/run.json
++          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > creative/qa-metadata/jobs.json
++          git -C candidate-source rev-parse HEAD > creative/apk-source-sha.txt
++          git rev-parse HEAD > creative/probe-source-sha.txt
++          git -C native-source rev-parse HEAD > creative/native-source-sha.txt
++      - name: Download the unchanged successful-build candidate
++        uses: actions/download-artifact@v4
++        with:
++          artifact-ids: '14093773196'
++          run-id: '43540111465'
++          github-token: ${{ github.token }}
++          merge-multiple: true
++          path: candidate/dist/
++      - name: Enable disposable emulator KVM
++        run: |
++          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
++          sudo udevadm control --reload-rules
++          sudo udevadm trigger --name-match=kvm
++          sudo udevadm settle
++          sudo chmod a+rw /dev/kvm
++      - name: Start the original software display
++        env:
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++        run: |
++          set -euo pipefail
++          mkdir -p creative
++          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > creative/xvfb.log 2>&1 &
++          for attempt in $(seq 1 20); do
++            if glxinfo -B > creative/mesa-renderer.txt 2>&1; then break; fi
++            sleep 0.25
++          done
++          grep -i 'OpenGL renderer string' creative/mesa-renderer.txt
++      - name: Prepare the private init-console channel before emulator launch
++        env:
++          LUMO_ANDROID_CONSOLE_SOCKET: ${{ runner.temp }}/lumo-serial-${{ github.run_id }}-${{ github.run_attempt }}/console.sock
++        run: |
++          set -euo pipefail
++          mkdir -p creative/console-preparation
++          python3 -B scripts/android_console_transport.py prepare --socket "$LUMO_ANDROID_CONSOLE_SOCKET" > creative/console-preparation/console-prepare-command.json
++          cp -- "$(dirname -- "$LUMO_ANDROID_CONSOLE_SOCKET")/prepare.json" creative/console-preparation/console-prepare.json
++          printf 'LUMO_ANDROID_CONSOLE_SOCKET=%s\n' "$LUMO_ANDROID_CONSOLE_SOCKET" >> "$GITHUB_ENV"
++      - name: Observe actual Jump Build Puzzle Treasure inputs on the unchanged APK
++        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
++        env:
++          DISPLAY: ':99'
++          LIBGL_ALWAYS_SOFTWARE: 'true'
++          GALLIUM_DRIVER: llvmpipe
++          LP_NUM_THREADS: '2'
++        with:
++          api-level: 35
++          target: google_apis
++          arch: x86_64
++          profile: pixel_5
++          emulator-build: '14472402'
++          ram-size: 3072M
++          heap-size: 512M
++          disable-animations: true
++          emulator-boot-timeout: 300
++          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none -shell-serial unix:${{ env.LUMO_ANDROID_CONSOLE_SOCKET }},server,nowait
++          script: .creative-venv/bin/python -B scripts/run_unchanged_creative_diagnostic.py --qa-source . --candidate-source candidate-source --native-source native-source --candidate-metadata-dir creative/metadata --qa-metadata-dir creative/qa-metadata --expected-qa-source "$SOURCE_SHA" --expected-qa-run "$GITHUB_RUN_ID" --expected-qa-attempt "$GITHUB_RUN_ATTEMPT" --qa-job-name unchanged-apk-console-joystick-creative-api35 --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out creative/tour
++      - name: Preserve actual creative Android evidence on success or failure
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-android
++          path: creative/
++          if-no-files-found: error
++          retention-days: 30
++          compression-level: 6
++      - name: Export complete creative evidence into bounded additional parts
++        id: creative-parts
++        if: always()
++        run: |
++          set -euo pipefail
++          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
++          python3 -B scripts/export_creative_evidence_parts.py \
++            --source creative \
++            --output "$RUNNER_TEMP/lumo-creative-evidence-parts" \
++            --repository "$GITHUB_REPOSITORY" \
++            --workflow-path .github/workflows/lumo-console-joystick-7b16.yml \
++            --source-sha "$SOURCE_SHA" \
++            --run-id "$GITHUB_RUN_ID" \
++            --run-attempt "$GITHUB_RUN_ATTEMPT" \
++            --github-output "$GITHUB_OUTPUT"
++      - name: Preserve complete creative evidence part 01
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_01 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-01
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-01/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
++      - name: Preserve complete creative evidence part 02
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_02 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-02
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-02/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
++      - name: Preserve complete creative evidence part 03
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_03 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-03
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-03/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
++      - name: Preserve complete creative evidence part 04
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_04 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-04
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-04/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
++      - name: Preserve complete creative evidence part 05
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_05 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-05
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-05/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
++      - name: Preserve complete creative evidence part 06
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_06 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-06
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-06/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
++      - name: Preserve complete creative evidence part 07
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_07 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-07
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-07/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
++      - name: Preserve complete creative evidence part 08
++        if: always() && steps.creative-parts.outcome == 'success' && steps.creative-parts.outputs.part_08 == 'true'
++        uses: actions/upload-artifact@v4
++        with:
++          name: lumo-console-joystick-7b16-creative-part-08
++          path: ${{ runner.temp }}/lumo-creative-evidence-parts/part-08/
++          if-no-files-found: error
++          include-hidden-files: true
++          retention-days: 30
++          compression-level: 0
+--- a/scripts/export_creative_evidence_parts.py
++++ b/scripts/export_creative_evidence_parts.py
+@@ -26,10 +26,12 @@
+ MAX_INDEX_BYTES = 4 * 1024 * 1024
+ MAX_PART_MANIFEST_BYTES = 16 * 1024
+ DIAGNOSTIC_WORKFLOW = ".github/workflows/lumo-creative-7b16-diagnostic.yml"
++CONSOLE_JOYSTICK_WORKFLOW = ".github/workflows/lumo-console-joystick-7b16.yml"
+ WORKFLOWS = (
+     ".github/workflows/lumo-kart-graphics-2019.yml",
+     ".github/workflows/lumo-studio-2019.yml",
+     DIAGNOSTIC_WORKFLOW,
++    CONSOLE_JOYSTICK_WORKFLOW,
+ )
+ 
+ 
+@@ -151,7 +153,7 @@
+     sizes = {path: signature[3] for path, signature in signatures.items()}
+     groups = plan_parts(sizes, max_part_bytes)
+     assigned = {path: number for number, group in enumerate(groups, 1) for path in group}
+-    diagnostic = workflow_path == DIAGNOSTIC_WORKFLOW
++    diagnostic = workflow_path in (DIAGNOSTIC_WORKFLOW, CONSOLE_JOYSTICK_WORKFLOW)
+     source_key = "probe_source_sha" if diagnostic else "host_source_sha"
+     index = {
+         "schema": 2 if diagnostic else 1,
+--- a/scripts/run_unchanged_creative_diagnostic.py
++++ b/scripts/run_unchanged_creative_diagnostic.py
+@@ -63,7 +63,7 @@
+     common.require(isinstance(context, dict) and context.get('schema') == 1
+                    and context.get('status') == 'BOUND',
+                    'A completed, separately bound Creative preflight is required')
+-    common.require(args.qa_job_name == common.CREATIVE_QA_JOB
++    common.require(args.qa_job_name in common.CREATIVE_QA_JOBS
+                    and args.qa_source == args.probe_source == ROOT
+                    and args.candidate_source != ROOT
+                    and args.native_source not in (ROOT, args.candidate_source),
+@@ -83,7 +83,7 @@
+     qa = common.verify_qa(
+         data['qa/run.json'], data['qa/jobs.json'], source=args.expected_qa_source,
+         run_id=args.expected_qa_run, attempt=args.expected_qa_attempt,
+-        job_name=common.CREATIVE_QA_JOB)
++        job_name=args.qa_job_name)
+     common.require(context.get('diagnostic_qa') == qa,
+                    'Creative QA report belongs to another job, attempt or source')
+     creative = common.load_module(
+@@ -143,7 +143,9 @@
+         common.require(not value.is_symlink(), 'Diagnostic inputs must not be symlinks')
+         setattr(args, key, value.resolve())
+     common.require(not args.out.exists(), 'Refusing to reuse a Creative tour directory')
+-    args.qa_job_name = common.CREATIVE_QA_JOB
++    args.qa_job_name = getattr(args, 'qa_job_name', common.CREATIVE_QA_JOB)
++    common.require(args.qa_job_name in common.CREATIVE_QA_JOBS,
++                   'Unsupported Creative diagnostic job name')
+     args.probe_source = args.qa_source
+     args.metadata_dir = args.candidate_metadata_dir
+     args.expected_source = common.HOST
+@@ -184,6 +186,8 @@
+     parser.add_argument('--expected-qa-source', required=True)
+     parser.add_argument('--expected-qa-run', type=int, required=True)
+     parser.add_argument('--expected-qa-attempt', type=int, required=True)
++    parser.add_argument('--qa-job-name', choices=common.CREATIVE_QA_JOBS,
++                        default=common.CREATIVE_QA_JOB)
+     args = parser.parse_args(argv)
+     try:
+         creative = prepare(args)
+--- /dev/null
++++ b/scripts/tests/test_console_joystick_workflow.py
+@@ -0,0 +1,327 @@
++"""Exact isolated Console/Joystick routing and retained transport contracts.
++
++Metadata and tiny exporter files are explicitly synthetic. The prepare shell
++step executes the actual transport CLI without starting a socket or emulator.
++These tests do not establish Android, renderer or runtime-ANR acceptance.
++"""
++from __future__ import annotations
++
++import copy
++import hashlib
++import importlib.util
++import json
++import os
++from pathlib import Path
++import re
++import subprocess
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++
++ROOT = Path(__file__).resolve().parents[2]
++WORKFLOW = '.github/workflows/lumo-console-joystick-7b16.yml'
++BRANCH = 'qa/lumo-console-joystick-7b16-20261114'
++OLD_RUNTIME = '.github/workflows/lumo-android-runtime-7b16-followup.yml'
++OLD_CREATIVE = '.github/workflows/lumo-creative-7b16-diagnostic.yml'
++SOURCE, TREE, RUN = 'a' * 40, 'b' * 40, 900001
++
++
++def load(name, path):
++    spec = importlib.util.spec_from_file_location(name, ROOT / path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++common = load('console_joystick_binding', 'scripts/verify_unchanged_apk_diagnostic.py')
++creative = load('console_joystick_creative', 'scripts/run_unchanged_creative_diagnostic.py')
++exporter = load('console_joystick_exporter', 'scripts/export_creative_evidence_parts.py')
++
++
++def original_metadata():
++    run = {'id': RUN, 'head_sha': SOURCE, 'run_attempt': 1,
++           'status': 'in_progress', 'conclusion': None, 'path': WORKFLOW,
++           'head_branch': BRANCH,
++           'repository': {'id': common.REPOSITORY_ID, 'full_name': common.REPOSITORY},
++           'head_commit': {'id': SOURCE, 'tree_id': TREE}}
++    rows = [{'id': 900100 + i, 'run_id': RUN, 'head_sha': SOURCE,
++             'run_attempt': 1, 'name': name, 'status': 'in_progress', 'conclusion': None}
++            for i, name in enumerate(common.CONSOLE_JOYSTICK_QA_JOBS)]
++    return run, {'total_count': len(rows), 'jobs': rows}
++
++
++def verify(run, jobs, name):
++    return common.verify_qa(run, jobs, source=SOURCE, run_id=RUN, attempt=1, job_name=name)
++
++
++def job(text, name):
++    return re.search(r'^  ' + re.escape(name) + r':\n(.*?)(?=^  [a-z][\w-]*:\n|\Z)',
++                     text, re.M | re.S)[1]
++
++
++def step(text, name):
++    return text.split('      - name: ' + name + '\n', 1)[1].split('\n      - ', 1)[0]
++
++
++def condition(value, values):
++    expression = value.replace('&&', 'and').replace('||', 'or').replace('\n', ' ')
++    for key in sorted(values, key=len, reverse=True):
++        expression = expression.replace(key, repr(values[key]))
++    return eval(expression, {'__builtins__': {}}, {})
++
++
++class ConsoleJoystickRouteTests(unittest.TestCase):
++    def test_four_exact_jobs_bind_new_workflow_without_repeating_api35_or_update(self):
++        expected = (
++            'unchanged-apk-console-joystick-api37-host',
++            'unchanged-apk-console-joystick-api37-swiftshader',
++            'unchanged-apk-console-joystick-api37-swangle',
++            'unchanged-apk-console-joystick-creative-api35',
++        )
++        self.assertEqual(common.CONSOLE_JOYSTICK_QA_JOBS, expected)
++        for name in expected:
++            value = verify(*original_metadata(), name)
++            self.assertEqual((value['workflow_path'], value['branch']), (WORKFLOW, BRANCH))
++            self.assertEqual(value['job_name'], name)
++            self.assertNotEqual(value['source'], common.HOST)
++            self.assertIsNone(value['job_conclusion'])
++        for case in ('api35', 'update2017', 'api37-angle', 'api37-swangle-extra'):
++            with self.subTest(case=case), self.assertRaises(RuntimeError):
++                verify(*original_metadata(), 'unchanged-apk-console-joystick-' + case)
++
++    def test_old_routes_keep_exact_original_bindings(self):
++        for names, workflow, branch in (
++            (common.QA_JOBS, common.QA_WORKFLOW, common.QA_BRANCH),
++            (common.FOLLOWUP_QA_JOBS, common.FOLLOWUP_QA_WORKFLOW, common.FOLLOWUP_QA_BRANCH),
++            ((common.CREATIVE_QA_JOB,), common.CREATIVE_QA_WORKFLOW, common.CREATIVE_QA_BRANCH),
++        ):
++            for name in names:
++                self.assertEqual(common.QA_ROUTES[name], (workflow, branch))
++                run, jobs = original_metadata()
++                jobs['jobs'][0]['name'] = name
++                with self.subTest(name=name), self.assertRaises(RuntimeError):
++                    verify(run, jobs, name)
++
++    def test_changed_workflow_branch_source_attempt_or_missing_job_stays_failure(self):
++        name = common.CONSOLE_JOYSTICK_QA_JOBS[0]
++        for key, wrong in (('path', OLD_RUNTIME), ('path', OLD_CREATIVE),
++                           ('head_branch', common.FOLLOWUP_QA_BRANCH),
++                           ('head_branch', BRANCH + '-suffix'), ('head_branch', 'main'),
++                           ('head_sha', common.HOST), ('run_attempt', 2)):
++            run, jobs = original_metadata()
++            run[key] = wrong
++            with self.subTest(field=key, value=wrong), self.assertRaises(RuntimeError):
++                verify(run, jobs, name)
++        for problem in ('missing', 'duplicate', 'wrong-attempt'):
++            run, jobs = original_metadata()
++            if problem == 'missing':
++                jobs['jobs'].pop(0)
++            elif problem == 'duplicate':
++                extra = copy.deepcopy(jobs['jobs'][0])
++                extra['id'] += 100
++                jobs['jobs'].append(extra)
++            else:
++                jobs['jobs'][0]['run_attempt'] = 2
++            jobs['total_count'] = len(jobs['jobs'])
++            with self.subTest(problem=problem), self.assertRaises(RuntimeError):
++                verify(run, jobs, name)
++
++    def test_creative_cli_keeps_old_default_and_only_accepts_exact_creative_routes(self):
++        arguments = []
++        for flag in ('qa-source', 'candidate-source', 'native-source', 'candidate-metadata-dir',
++                     'qa-metadata-dir', 'apk', 'provenance', 'sums', 'out'):
++            arguments.extend(('--' + flag, '/explicit/synthetic/' + flag))
++        arguments.extend(('--expected-qa-source', SOURCE, '--expected-qa-run', str(RUN),
++                          '--expected-qa-attempt', '1'))
++        fake = unittest.mock.Mock()
++        fake.Tour.return_value.run.return_value = 0
++        for name in (None, common.CONSOLE_JOYSTICK_CREATIVE_JOB):
++            with patch.object(creative, 'prepare', return_value=fake) as prepare:
++                actual = arguments + ([] if name is None else ['--qa-job-name', name])
++                self.assertEqual(creative.main(actual), 0)
++                self.assertEqual(prepare.call_args.args[0].qa_job_name,
++                                 common.CREATIVE_QA_JOB if name is None else name)
++        with patch.object(creative, 'prepare') as prepare, \
++                self.assertRaises(SystemExit) as failure:
++            creative.main(arguments + ['--qa-job-name', common.CONSOLE_JOYSTICK_QA_JOBS[0]])
++        self.assertEqual(failure.exception.code, 2)
++        prepare.assert_not_called()
++
++    def test_new_creative_context_rechecks_new_route_before_inputs(self):
++        # Reuse the existing explicit source/metadata doubles and actual guard;
++        # no device or APK verifier is replaced by a positive runtime result.
++        from scripts.tests.test_unchanged_creative_diagnostic import TourContextContracts
++        case = TourContextContracts('test_complete_context_returns_only_the_separate_qa_head')
++        case.setUp()
++        try:
++            args, context = case.args, case.context
++            new_name = common.CONSOLE_JOYSTICK_CREATIVE_JOB
++            run_path = args.qa_metadata_dir / 'run.json'
++            jobs_path = args.qa_metadata_dir / 'jobs.json'
++            run = json.loads(run_path.read_bytes())
++            jobs = json.loads(jobs_path.read_bytes())
++            run.update(path=WORKFLOW, head_branch=BRANCH)
++            jobs['jobs'][0]['name'] = new_name
++            run_path.write_text(json.dumps(run))
++            jobs_path.write_text(json.dumps(jobs))
++            args.qa_job_name = new_name
++            context['diagnostic_qa'] = verify(run, jobs, new_name)
++            for key, path in (('qa/run.json', run_path), ('qa/jobs.json', jobs_path)):
++                context['input_hashes'][key] = {'path': str(path), 'bytes': path.stat().st_size,
++                                               'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
++            case.save()
++            self.assertEqual(case.verify(), SOURCE)
++            args.qa_job_name = common.CREATIVE_QA_JOB
++            with self.assertRaises(RuntimeError):
++                case.verify()
++        finally:
++            case.doCleanups()
++
++
++class ConsoleJoystickWorkflowTests(unittest.TestCase):
++    def setUp(self):
++        self.text = (ROOT / WORKFLOW).read_text()
++
++    def test_exact_internal_branch_base_and_event_are_required(self):
++        block = job(self.text, 'probe-contracts')
++        expression = block.split('    if: >-\n', 1)[1].split('\n    name:', 1)[0]
++        values = {'github.repository': 'Ullmann27/lumo-lernen',
++                  'github.event_name': 'pull_request',
++                  'github.event.pull_request.head.repo.full_name': 'Ullmann27/lumo-lernen',
++                  'github.event.pull_request.base.ref': 'integration/lumo-connections-20261113',
++                  'github.head_ref': BRANCH, 'github.ref_name': '900/merge'}
++        self.assertTrue(condition(expression, values))
++        self.assertTrue(condition(expression, {**values, 'github.event_name': 'workflow_dispatch',
++                                              'github.head_ref': '', 'github.ref_name': BRANCH}))
++        for key, value in (('github.repository', 'foreign/fork'),
++                           ('github.event.pull_request.head.repo.full_name', 'foreign/fork'),
++                           ('github.event.pull_request.base.ref', 'main'),
++                           ('github.head_ref', BRANCH + '-extra'), ('github.event_name', 'push')):
++            self.assertFalse(condition(expression, {**values, key: value}))
++
++    def test_four_cases_preserve_actual_hardware_and_unchanged_wrapper_calls(self):
++        cases = re.findall(r'^          - case: (\S+)\n            api: (\d+)\n'
++                           r'            renderer: (\S+)\n            minutes: (\d+)$', self.text, re.M)
++        self.assertEqual(cases, [('api37-host', '37', 'host', '65'),
++                                 ('api37-swiftshader', '37', 'swiftshader', '65'),
++                                 ('api37-swangle', '37', 'swangle', '65')])
++        self.assertEqual(re.findall(r'^  ([\w-]+):$', self.text, re.M)[-3:],
++                         ['probe-contracts', 'android-diagnostic', 'creative-android'])
++        for name in ('android-diagnostic', 'creative-android'):
++            self.assertIn('    needs: [probe-contracts]', job(self.text, name))
++        for title, old_path in (
++            ('Run the Android17 renderer comparison with continuous ANR observation', OLD_RUNTIME),
++            ('Observe actual Jump Build Puzzle Treasure inputs on the unchanged APK', OLD_CREATIVE),
++        ):
++            actual = step(self.text, title).split('        with:\n', 1)[1]
++            original = step((ROOT / old_path).read_text(), title).split('        with:\n', 1)[1]
++            actual = actual.replace(' -shell-serial unix:${{ env.LUMO_ANDROID_CONSOLE_SOCKET }},server,nowait', '')
++            actual = actual.replace(' --qa-job-name unchanged-apk-console-joystick-creative-api35', '')
++            self.assertEqual(actual, original)
++        self.assertNotIn('continue-on-error:', self.text)
++        self.assertNotIn('flutter build', self.text)
++
++    def test_full_console_discovery_and_portrait_contracts_are_mandatory(self):
++        text = job(self.text, 'probe-contracts')
++        group = text.split('.probe-venv/bin/python -B -m unittest -v \\\n', 1)[1]
++        group = group.split('2>&1 | tee console-contracts.log', 1)[0]
++        self.assertEqual(re.findall(r'scripts\.tests\.(\w+)', group), [
++            'test_android_console_transport', 'test_android_runtime_device_logger',
++            'test_runtime_logcat_sections', 'test_android_framework_ready',
++            'test_verify_android_runtime_anr'])
++        for name, count in (('console', 86), ('joystick', 7)):
++            self.assertIn(f"grep -Eq '^Ran {count} tests in ' {name}-contracts.log", text)
++            self.assertIn(f"grep -Fx 'OK' {name}-contracts.log", text)
++        self.assertNotIn('excluded', text)
++        self.assertNotIn('test_synthetic_pipe', text)
++        self.assertIn('scripts.tests.test_studio_joystick_portrait', text)
++
++    def test_prepare_runs_before_emulator_and_retains_receipt_if_launch_never_happens(self):
++        for job_name, directory in (('android-diagnostic', 'tour/framework-start'),
++                                    ('creative-android', 'creative/console-preparation')):
++            block = job(self.text, job_name)
++            title = 'Prepare the private init-console channel before emulator launch'
++            prepare = step(block, title)
++            self.assertLess(block.index(title), block.index('          emulator-options:'))
++            self.assertIn('LUMO_ANDROID_CONSOLE_SOCKET: ${{ runner.temp }}/lumo-serial-${{ github.run_id }}-${{ github.run_attempt }}/console.sock', prepare)
++            self.assertIn('-shell-serial unix:${{ env.LUMO_ANDROID_CONSOLE_SOCKET }},server,nowait', block)
++            command = '\n'.join(line[10:] for line in prepare.split('        run: |\n', 1)[1].splitlines())
++            with tempfile.TemporaryDirectory(prefix='lumo-cj-') as folder:
++                root = Path(folder)
++                runtime = root / 'scripts/android_console_transport.py'
++                runtime.parent.mkdir()
++                runtime.write_bytes((ROOT / 'scripts/android_console_transport.py').read_bytes())
++                socket_path = root / 'lumo-serial-900001-1/console.sock'
++                env_file = root / 'github-env'
++                environment = {**os.environ, 'RUNNER_TEMP': str(root), 'GITHUB_RUN_ID': str(RUN),
++                               'GITHUB_RUN_ATTEMPT': '1', 'GITHUB_ENV': str(env_file),
++                               'LUMO_ANDROID_CONSOLE_SOCKET': str(socket_path),
++                               'PYTHONDONTWRITEBYTECODE': '1'}
++                result = subprocess.run(['bash', '-c', command], cwd=root, env=environment,
++                                        capture_output=True, timeout=10)
++                self.assertEqual(result.returncode, 0, result.stderr.decode())
++                receipt = socket_path.parent / 'prepare.json'
++                retained = root / directory / 'console-prepare.json'
++                self.assertEqual(receipt.read_bytes(), retained.read_bytes())
++                self.assertEqual(json.loads(retained.read_bytes())['emulator_option'],
++                                 'unix:' + str(socket_path) + ',server,nowait')
++                self.assertEqual(env_file.read_text(), 'LUMO_ANDROID_CONSOLE_SOCKET=' + str(socket_path) + '\n')
++                self.assertFalse(socket_path.exists(), 'No emulator or console socket was started by this fixture')
++                retry = subprocess.run(['bash', '-c', command], cwd=root, env=environment,
++                                       capture_output=True, timeout=10)
++                self.assertNotEqual(retry.returncode, 0)
++                self.assertEqual(receipt.read_bytes(), retained.read_bytes())
++
++    def test_old_auto_trigger_exclusions_affect_only_the_exact_new_branch(self):
++        for path, name in (
++            ('.github/workflows/lumo-unified-integration-2026.yml', 'verify-and-build'),
++            ('.github/workflows/lumo-astra-script-recovery.yml', 'full-app-script-regression'),
++            ('.github/workflows/lumo-1966-cards-route-kart-qa.yml', 'cards-route-and-probe'),
++        ):
++            text = job((ROOT / path).read_text(), name)
++            expression = text.split('    if: >-\n', 1)[1].split('\n    runs-on:', 1)[0]
++            for head, ref, expected in ((BRANCH, '900/merge', False), ('', BRANCH, False),
++                                        ('some-existing-work', '900/merge', True),
++                                        (BRANCH + '-other', '900/merge', True)):
++                self.assertEqual(condition(expression, {'github.head_ref': head, 'github.ref_name': ref}), expected)
++
++
++class ConsoleJoystickExportTests(unittest.TestCase):
++    def test_real_new_diagnostic_export_binds_probe_and_preserves_all_original_bytes(self):
++        with tempfile.TemporaryDirectory() as folder:
++            root = Path(folder)
++            source = root / 'creative'
++            source.mkdir()
++            data = {'failure.json': b'{"status":"FAIL"}\n', '.original.log': b'full original failure\n'}
++            for name, payload in data.items():
++                (source / name).write_bytes(payload)
++            output = root / 'parts'
++            result = exporter.export_parts(source, output, repository=common.REPOSITORY,
++                                            workflow_path=WORKFLOW, source_sha=SOURCE,
++                                            run_id=RUN, run_attempt=1)
++            self.assertEqual(result['part_count'], 1)
++            index_bytes = (output / 'part-01/export-index.json').read_bytes()
++            index = json.loads(index_bytes)
++            self.assertEqual(index['schema'], 2)
++            self.assertEqual(index['binding'], {'repository': common.REPOSITORY, 'workflow_path': WORKFLOW,
++                                                'probe_source_sha': SOURCE, 'run_id': RUN, 'run_attempt': 1})
++            self.assertNotIn('host_source_sha', index['binding'])
++            self.assertEqual(index['limits']['part_payload_bytes'], 256 * 1024 * 1024)
++            self.assertEqual(index['limits']['max_parts'], 8)
++            self.assertEqual(index['file_count'], 2)
++            for row in index['files']:
++                payload = data[row['path']]
++                self.assertEqual((output / 'part-01/originals' / row['path']).read_bytes(), payload)
++                self.assertEqual(row['sha256'], hashlib.sha256(payload).hexdigest())
++            part = json.loads((output / 'part-01/part.json').read_bytes())
++            self.assertEqual(part['index_sha256'], hashlib.sha256(index_bytes).hexdigest())
++            with self.assertRaises(ValueError):
++                exporter.export_parts(source, root / 'wrong', repository=common.REPOSITORY,
++                                      workflow_path=WORKFLOW + '-suffix', source_sha=SOURCE,
++                                      run_id=RUN, run_attempt=1)
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- a/scripts/verify_unchanged_apk_diagnostic.py
++++ b/scripts/verify_unchanged_apk_diagnostic.py
+@@ -59,10 +59,22 @@
+     'unchanged-apk-followup-api37-swiftshader', 'unchanged-apk-followup-api37-swangle',
+     'unchanged-apk-followup-update2017',
+ )
++CONSOLE_JOYSTICK_QA_WORKFLOW = '.github/workflows/lumo-console-joystick-7b16.yml'
++CONSOLE_JOYSTICK_QA_BRANCH = 'qa/lumo-console-joystick-7b16-20261114'
++CONSOLE_JOYSTICK_CREATIVE_JOB = 'unchanged-apk-console-joystick-creative-api35'
++CONSOLE_JOYSTICK_QA_JOBS = (
++    'unchanged-apk-console-joystick-api37-host',
++    'unchanged-apk-console-joystick-api37-swiftshader',
++    'unchanged-apk-console-joystick-api37-swangle',
++    CONSOLE_JOYSTICK_CREATIVE_JOB,
++)
++CREATIVE_QA_JOBS = (CREATIVE_QA_JOB, CONSOLE_JOYSTICK_CREATIVE_JOB)
+ QA_ROUTES = {name: (QA_WORKFLOW, QA_BRANCH) for name in QA_JOBS}
+ QA_ROUTES[CREATIVE_QA_JOB] = (CREATIVE_QA_WORKFLOW, CREATIVE_QA_BRANCH)
+ QA_ROUTES.update({name: (FOLLOWUP_QA_WORKFLOW, FOLLOWUP_QA_BRANCH)
+                   for name in FOLLOWUP_QA_JOBS})
++QA_ROUTES.update({name: (CONSOLE_JOYSTICK_QA_WORKFLOW, CONSOLE_JOYSTICK_QA_BRANCH)
++                  for name in CONSOLE_JOYSTICK_QA_JOBS})
+ BUILD_STEPS = (
+     'Build unified real Android APK',
+     'Verify APK archive and collect reproducible source hashes',

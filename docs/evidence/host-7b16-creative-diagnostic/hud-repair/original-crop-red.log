@@ -1,0 +1,41 @@
+test_first_update_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_first_update_original_recovers_all_three_hud_features) ... Actual raster update-0: 'Foaeaansrr fF a | *» ™8 ASPFs fF | rr  &§'
+FAIL
+test_last_update_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_last_update_original_recovers_all_three_hud_features) ... Actual raster update-17: 'Foaeaeasrr fF a | *» ™8@ ASPs fF | rr  &§'
+FAIL
+test_api37_first_attempt_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_api37_first_attempt_original_recovers_all_three_hud_features) ... Actual raster api37-host-20: 'Foaeaeasrr fF a | *» ™8@ ASPs fF | rr  &§'
+FAIL
+
+======================================================================
+FAIL: test_first_update_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_first_update_original_recovers_all_three_hud_features)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_focused_race_hud_current.py", line 38, in test_first_update_original_recovers_all_three_hud_features
+    self.assert_actual_hud('update-0')
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_focused_race_hud_current.py", line 35, in assert_actual_hud
+    self.assertTrue(focused_race_hud_visible(actual), actual)
+AssertionError: False is not true : Foaeaansrr fF a | *» ™8 ASPFs fF | rr  &§
+
+======================================================================
+FAIL: test_last_update_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_last_update_original_recovers_all_three_hud_features)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_focused_race_hud_current.py", line 41, in test_last_update_original_recovers_all_three_hud_features
+    self.assert_actual_hud('update-17')
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_focused_race_hud_current.py", line 35, in assert_actual_hud
+    self.assertTrue(focused_race_hud_visible(actual), actual)
+AssertionError: False is not true : Foaeaeasrr fF a | *» ™8@ ASPs fF | rr  &§
+
+======================================================================
+FAIL: test_api37_first_attempt_original_recovers_all_three_hud_features (test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_api37_first_attempt_original_recovers_all_three_hud_features)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_focused_race_hud_current.py", line 44, in test_api37_first_attempt_original_recovers_all_three_hud_features
+    self.assert_actual_hud('api37-host-20')
+  File "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_focused_race_hud_current.py", line 35, in assert_actual_hud
+    self.assertTrue(focused_race_hud_visible(actual), actual)
+AssertionError: False is not true : Foaeaeasrr fF a | *» ™8@ ASPs fF | rr  &§
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.886s
+
+FAILED (failures=3)

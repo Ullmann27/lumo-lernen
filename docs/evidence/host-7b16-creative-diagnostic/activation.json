@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T04:25:15.388775+00:00",
+  "status": "READY_FOR_SEPARATE_DEVICE_DIAGNOSTIC",
+  "qa_branch": "qa/lumo-creative-7b16-20261114",
+  "qa_workflow": ".github/workflows/lumo-creative-7b16-diagnostic.yml",
+  "qa_job": "unchanged-apk-creative-api35",
+  "actual_apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+  "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "original_build_run": 43540111465,
+  "original_build_artifact": 14093773196,
+  "preflight_contracts": {
+    "schema": 1,
+    "status": "PASS",
+    "tests": 139,
+    "errors": 0,
+    "skips": 0,
+    "elapsed_seconds": 26.007,
+    "local_commit": "de66f7fc219852388a65e047ce9b2a2fc8926b42",
+    "source_tree": "db1dc6f956b0e75f60a8ed382b5e10a55649bcf5",
+    "remote_checkpoint": "843321d073e887291f7707f5545d538b29722a02",
+    "tracked_and_untracked_clean_after": true,
+    "full_original_preflight_test": "PASS against actually committed helper bytes",
+    "log_sha256": "fbad592e356bb43a7063cefaab57a1496815770845e8307ce27e60d6b6d903e9",
+    "scope": "Local source/metadata/original-raster contracts only; no Android or release acceptance.",
+    "command": "PYTHONPATH=tools/android_qa/tests TESSDATA_PREFIX=<original deu+eng OCR runtime> python3 -B -m unittest -v scripts.tests.test_verify_unchanged_apk_diagnostic scripts.tests.test_unchanged_creative_diagnostic scripts.tests.test_creative_evidence_parts scripts.tests.test_studio_creative_android_probe scripts.tests.test_studio_creative_runtime_repair scripts.tests.test_studio_creative_7b_repair test_flutter_loading_frame_rejection test_flutter_loading_frame_source_binding test_focused_race_hud_current test_focused_race_hud test_cards_layout_readiness test_studio_cards_layout"
+  },
+  "current_device_result": "NOT_STARTED",
+  "historical_qa_pr480": "Unchanged immutable61c94; original overall FAIL retained.",
+  "scope": "Activate committed repaired observers against unchanged APK. No new APK build or release. Successful functional contracts still require full recorded Jump-motion review."
+}

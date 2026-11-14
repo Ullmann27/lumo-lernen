@@ -65,6 +65,9 @@ class SyntheticRecorder:
             "package-read": "package:/system/framework/framework-res.apk",
             "window-read": "Physical size: 1080x2340",
             "window-state": self.window_state(sample),
+            "input-state": sample.get("input_dump", "Input Dispatcher State:\n"
+                                      + "  DispatchEnabled: " + ("false" if sample.get("input_disabled") else "true") + "\n"
+                                      + "  DispatchFrozen: " + ("true" if sample.get("input_frozen") else "false") + "\n"),
             "events-anr": sample.get("anr_events", "--------- beginning of events\n"),
             "unlock-keyguard": "",
         }
@@ -74,6 +77,7 @@ class SyntheticRecorder:
         if sample.get("settings_failure"):
             values["settings-read"] = ""
         failed = ((sample.get("settings_failure") and name == "settings-read")
+                  or (sample.get("input_failure") and name == "input-state")
                   or (sample.get("unlock_failure") and name == "unlock-keyguard"))
         timed_out = sample.get("timeout_command") == name
         return {"returncode": 20 if failed or timed_out else 0, "timed_out": timed_out,

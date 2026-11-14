@@ -1,0 +1,112 @@
+{
+  "all_apk_binder_functions_ast_equal": true,
+  "scope": "Exact Git/blob/local byte binding. The three explicit route additions do not change runtime begin/finish, adapter or device behavior.",
+  "source": "21f7fbe6d378003d46b6d266eff9fdb91bc398b9",
+  "tree": "5a938c9bb82e3f966babd86adb26aceb0ae5f759",
+  "unchanged_runtime_dependencies": [
+    {
+      "bytes": 7218,
+      "changed_in_final_source": false,
+      "git_blob": "b413b6b605d387e3ebbb3c29d79f4245c08ece02",
+      "path": "scripts/run_unchanged_apk_diagnostic.sh",
+      "same_published_input_and_test_view": true,
+      "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+    },
+    {
+      "bytes": 20839,
+      "changed_in_final_source": false,
+      "git_blob": "6b72da4c3c49891d70d1f6bc51339dc3efb9559f",
+      "path": "scripts/android_console_transport.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "d0344469bdb68cc2927ffac7f715dd52c73c6730fd7e56fd946f486f2d931cca"
+    },
+    {
+      "bytes": 51307,
+      "changed_in_final_source": false,
+      "git_blob": "54438587d4f18ed3496205fd0c043ce8c3cf332f",
+      "path": "scripts/android_framework_ready.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f"
+    },
+    {
+      "bytes": 39331,
+      "changed_in_final_source": false,
+      "git_blob": "d2ed8be4315a3ff1872ad40698276eafb21ddc58",
+      "path": "scripts/verify_android_runtime_anr.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "3e3cde21409f1ee8e64a4124a1842df75b6a72eab0ac65576442fb5072308bf2"
+    },
+    {
+      "bytes": 21702,
+      "changed_in_final_source": false,
+      "git_blob": "29c7a3cf3684ecdb50f3aa166f5491c58587260f",
+      "path": "scripts/prepare_android37_cli22.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "4265f4c83bbf3bdd9d3d6fbaa744faa968829c6e8f8eb5281d8b0e604e0bb5ee"
+    },
+    {
+      "bytes": 9486,
+      "changed_in_final_source": false,
+      "git_blob": "f017808bc88c0262f27bdfe7a73ebbb686479eeb",
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "211cad7c3712255a14907b062e77c5accc36e0c4e5a91ff87cdc25f392f980b4"
+    },
+    {
+      "bytes": 71883,
+      "changed_in_final_source": false,
+      "git_blob": "60c6341da4b249fe142a1289599ad02475326c33",
+      "path": ".github/probes/modernization_android_tour.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "2fcc421ed63eff79a1c089f10d6054caec46c9b9a3b96b226dca082b3a2daa33"
+    },
+    {
+      "bytes": 79134,
+      "changed_in_final_source": false,
+      "git_blob": "cdd56d07f476526cf1b77c9f14a12bd10f8992d2",
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "a8246afe23edf8de01929af91839bc204e72a55187c84d6ed48ae3c5446541b0"
+    },
+    {
+      "bytes": 50962,
+      "changed_in_final_source": false,
+      "git_blob": "f22376dbb33464ce6591fbcd7e2c9b95d8947159",
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec"
+    },
+    {
+      "bytes": 61575,
+      "changed_in_final_source": false,
+      "git_blob": "2daf7b3c84495a60aef2bf4459cab697549bca88",
+      "path": ".github/probes/creative_android_probe.py",
+      "same_published_input_and_test_view": true,
+      "sha256": "e31118906b577cdb1bca5312d47d227378786b273de13b559847339cd79744c2"
+    },
+    {
+      "bytes": 1953,
+      "changed_in_final_source": false,
+      "git_blob": "98be937c27d9dd1ff67911360804012ba57815e7",
+      "path": "config/diagnostic-baselines/android37-7b16.json",
+      "same_published_input_and_test_view": true,
+      "sha256": "4bff2aad1a8420118be47cb0679c211c83b2b99b5526321f9b338fcb8645c32f"
+    },
+    {
+      "bytes": 145,
+      "changed_in_final_source": false,
+      "git_blob": "916d839f8edbbf8362ba7709b9d5bba714eb6b1b",
+      "path": "config/godot-source.json",
+      "same_published_input_and_test_view": true,
+      "sha256": "dfcacccb96d5a4b730e3df7b834aa5e78a69a0cf48122ec8242dfcb377caf7cb"
+    },
+    {
+      "bytes": 2675,
+      "changed_in_final_source": false,
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "path": "pubspec.yaml",
+      "same_published_input_and_test_view": true,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+    }
+  ]
+}
