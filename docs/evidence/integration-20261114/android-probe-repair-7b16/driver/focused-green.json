@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_kart_driver_word_evidence",
+    "test_kart_garage_evidence"
+  ],
+  "exit": 0,
+  "elapsed_seconds": 2.631498898001155,
+  "at": "2026-11-14T02:48:48.808610+00:00",
+  "log_sha256": "7f1b18cc88f44b769952657b3e663e02fc60d7e419bc420c526265729adfcae0",
+  "helper_sha256": "c8c167ce1b59023248b0aba18ba80c96c4c781e55cb0806eddf5252a2e8336bf",
+  "caller_sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba",
+  "test_sha256": "b80b3aa4eb38b289319e32dae9fa6476aa1b3badb77c497246314953230928fd"
+}

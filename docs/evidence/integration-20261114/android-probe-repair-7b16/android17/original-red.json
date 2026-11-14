@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_android_framework_ready_android17.ActualAndroid17WindowTests.test_four_original_windows_recognize_actual_fields_but_need_dispatch_observation",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "exit_code": 1,
+  "elapsed_seconds": 0.09328141300647985,
+  "guard_sha256": "9c4131396884ec87f574fd1466501991bd9d94b8442da8eb00a131cf8df43045",
+  "raw_log_sha256": "eb862c88c89e26fa54f05fb82129e9d9034100881e03f0a2080a02d2be9d5cf8",
+  "scope": "Original actual parser, unchanged from 7b16; same four unmodified ANR-free window/event captures. Expected rejection of currently unrecognized keyguard fields; no Android execution."
+}
