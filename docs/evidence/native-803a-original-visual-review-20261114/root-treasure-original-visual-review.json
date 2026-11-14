@@ -1,0 +1,70 @@
+{
+  "recorded_at_utc": "2026-11-14T10:27:21.803707+00:00",
+  "host_source": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "native_source": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "artifact_id": 14109232711,
+  "artifact_zip_sha256": "286d623267d1eb59de9ed5933e3308a29a5868c8beff1323b037e64f2ed357f9",
+  "scope": "Root visually opened these five original Treasure PNGs in the preceding work segment. This record adds their hashes and dimensions; it is not a new render or an Android device test. Child separately reviewed all 17 required originals.",
+  "images": [
+    {
+      "original_path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "bytes": 2718159,
+      "sha256": "dcab2aece457e63187ab94e10740b53fdbb34e1c3bde2b2f9675ddd77d418996",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "visually_opened_by_root": true
+    },
+    {
+      "original_path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "bytes": 323987,
+      "sha256": "c5a00d642424f9f06bc24419bf1778e599eba243094429d8a1bbd86deb51362a",
+      "pixels": [
+        640,
+        320
+      ],
+      "visually_opened_by_root": true
+    },
+    {
+      "original_path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "bytes": 2101554,
+      "sha256": "353e88d8274e58ad740cfdcbc1dc15c396c435b768aac28f4e4b0f7d678e0ae8",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "visually_opened_by_root": true
+    },
+    {
+      "original_path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "bytes": 4225366,
+      "sha256": "b1a0d1b406169acc502af8ab049b2b0053cb18a0d93abab6d75a7e132061cc76",
+      "pixels": [
+        2176,
+        1812
+      ],
+      "visually_opened_by_root": true
+    },
+    {
+      "original_path": "nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "bytes": 2622435,
+      "sha256": "c4b4b4ea47fa4a0499c4ddc889826c45c7a4c1b5e9aed0cce0fe54a9b9b34da5",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "visually_opened_by_root": true
+    }
+  ],
+  "observations": [
+    "No observed avatar/control overlap or clipped hint text across these five captured states.",
+    "Original orange-and-white fox with blue goggles and navy clothing is visible from the back in these captures.",
+    "Portrait title is ellipsized to LUMOS STER…; the counter wraps 0 / above 3 in landscape, fold and portrait. These remain bounded readability observations, not demonstrated functional blockers.",
+    "Compact and landscape-cutout states use the intended Hint button."
+  ],
+  "limits": [
+    "Still images cannot establish frame rate, thermal stability, audio, lip sync, complete gameplay, all devices or Nintendo-level quality.",
+    "Desktop Linux/X11 rendering with Android layout fixtures is not physical Android evidence."
+  ]
+}

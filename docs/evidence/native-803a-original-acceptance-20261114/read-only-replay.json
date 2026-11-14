@@ -1,0 +1,705 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "scope": "Independent read-only replay of the original 52 native mode logs and 17 Studio2020 PNGs/3 sidecars/1 facial movie proofs. No engine rerun, Android-device, device-FPS, or full APK/workflow acceptance claim.",
+  "started_utc": "2026-11-14T10:10:24.573651+00:00",
+  "completed_utc": "2026-11-14T10:10:26.613454+00:00",
+  "python_version": "3.12.14",
+  "source": {
+    "native_commit": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+    "native_tree": "5b5992487e60ae805d708965f1500954c6b0556d",
+    "engine": "4.6.3.stable.official.7d41c59c4"
+  },
+  "verifier_git_blobs": {
+    "host_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "host_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "native_commit": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+    "files": {
+      "host/scripts/verify_connect_four_delivery.py": "4eb75fded1c5aaaf84537c181e3f405b356799d8",
+      "native/tools/verify_studio_2020_rasters.py": "b60c3360730f0db73f91324cbaed3a8806fd141e",
+      "native/tools/verify_village_rasters.py": "7c9522903db13f9bd0917ef2768ddbc08e624b1d",
+      "native/tools/validate_nextgen.sh": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+    }
+  },
+  "mode_count": 52,
+  "mode_proofs": [
+    {
+      "path": "learning_world_regression-headless.log",
+      "marker": "[LearningWorld] PASS",
+      "bytes": 10599,
+      "sha256": "63d6dfe55ad0fa205abedfcfcceb4068e305f41fab57269daf8b8a0dcaf36838"
+    },
+    {
+      "path": "learning_sharing_regression-headless.log",
+      "marker": "[LearningSharing] PASS",
+      "bytes": 1482,
+      "sha256": "c97f5e3de4f7f795e626defb0a18c239c8f06d0e13198e802d1fb5ac8804d340"
+    },
+    {
+      "path": "learning_studio_regression-headless.log",
+      "marker": "[LearningStudio] PASS",
+      "bytes": 1801,
+      "sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b"
+    },
+    {
+      "path": "learning_host_payload_regression-headless.log",
+      "marker": "[LearningHostPayload] PASS",
+      "bytes": 561,
+      "sha256": "36c68f542c61752654355a9cc359c81d89d9a7c01f1aa3367a0bcf7fa67b33b6"
+    },
+    {
+      "path": "puzzle_rotation_regression-headless.log",
+      "marker": "[PuzzleRotation] PASS",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9"
+    },
+    {
+      "path": "puzzle_menu_lifecycle_regression-headless.log",
+      "marker": "[PuzzleMenuLifecycle] PASS",
+      "bytes": 3084,
+      "sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98"
+    },
+    {
+      "path": "treasure_exploration_regression-headless.log",
+      "marker": "[TreasureExploration] PASS",
+      "bytes": 589,
+      "sha256": "02d20b766c253672fea75aa6cc8744460cb1134dd54beeb4d73fa6b743825b76"
+    },
+    {
+      "path": "jump_nextgen_regression-headless.log",
+      "marker": "[JumpNextgen] PASS",
+      "bytes": 1997,
+      "sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444"
+    },
+    {
+      "path": "jump_expeditions_regression-headless.log",
+      "marker": "[JumpExpeditions] PASS",
+      "bytes": 2760,
+      "sha256": "f5b49f003ab7a8245417454a5ff22351f71ae3209ea5b1882951805f5ffe92f9"
+    },
+    {
+      "path": "lumo_teacher_pose_regression-headless.log",
+      "marker": "[LumoTeacherPose] PASS",
+      "bytes": 589,
+      "sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629"
+    },
+    {
+      "path": "lumo_studio_motion_regression-headless.log",
+      "marker": "[LumoStudioMotion] PASS",
+      "bytes": 603,
+      "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b"
+    },
+    {
+      "path": "lumo_65bone_walk_gait_regression-headless.log",
+      "marker": "[LumoGait] PASS",
+      "bytes": 572,
+      "sha256": "86bc5e72882422903d6ead6054ef38169ec8126efc8cf46c255353e41d08e78e"
+    },
+    {
+      "path": "lumo_original_jump_visual_regression-headless.log",
+      "marker": "[JumpOriginalLumo] PASS",
+      "bytes": 691,
+      "sha256": "73b437ce767d4a0fb73acc9c1db08b351e22b207d4fe68e8c93081948b920f43"
+    },
+    {
+      "path": "bauwelt_identity_2013_regression-headless.log",
+      "marker": "[BauweltIdentity2013] PASS",
+      "bytes": 586,
+      "sha256": "43460fe46162fb0a1f96253f6dd8be84d96f7ba7ed80efc91a16358ee0b7b886"
+    },
+    {
+      "path": "build_frontier_regression-headless.log",
+      "marker": "[BuildFrontier] PASS",
+      "bytes": 617,
+      "sha256": "308eaa91651df8283c82cb991ff6e0421a37a5b0f06e8ed4bf6d3c3deede910b"
+    },
+    {
+      "path": "build_transform_regression-headless.log",
+      "marker": "[BuildTransform] PASS",
+      "bytes": 565,
+      "sha256": "3cab191ff67916f9cc576d136303b98f46ba5079b32c3c4a93fd93c5192ce993"
+    },
+    {
+      "path": "build_nextgen_play_regression-headless.log",
+      "marker": "[BuildNextgen] PASS",
+      "bytes": 687,
+      "sha256": "2c8f4beab40d012483a875b7471f3a4f10c8306575d2e9afc9349d47dd5cc654"
+    },
+    {
+      "path": "build_settlement_regression-headless.log",
+      "marker": "[Settlement] PASS",
+      "bytes": 537,
+      "sha256": "faa89fbcc8f29a9f1ad7e1bfbe13a0f2e12daef573c4502bc6b178c1e8fb5e09"
+    },
+    {
+      "path": "build_settlement_play_regression-headless.log",
+      "marker": "[SettlementPlay] PASS",
+      "bytes": 2069,
+      "sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a"
+    },
+    {
+      "path": "build_village_economy_regression-headless.log",
+      "marker": "[VillageEconomy] PASS",
+      "bytes": 628,
+      "sha256": "54d5d0caa2d8d20a57ec8e7e6a3eadddf6331f19c4b7273acf1b5588546c26fb"
+    },
+    {
+      "path": "build_village_art_regression-headless.log",
+      "marker": " checks / 0 failures",
+      "bytes": 507,
+      "sha256": "7cd0e559889ced1ae6133b57d3279d5281d1d0dd086f8415338c9ebfedf528f8"
+    },
+    {
+      "path": "build_village_scene_regression-headless.log",
+      "marker": "[VillageScene] PASS",
+      "bytes": 846,
+      "sha256": "496c7238579af90e13d5dd5180edbd23b0eb0d44380b3c4b2c37adb7881a0d19"
+    },
+    {
+      "path": "creative_nextgen_environment_regression-headless.log",
+      "marker": "[CreativeNextgenEnvironment] PASS",
+      "bytes": 592,
+      "sha256": "c9ef21f1da4f1f5f3fd5b2c07eccc18d17663f4eee091014b88755101711587e"
+    },
+    {
+      "path": "kart_nextgen_garage_regression-headless.log",
+      "marker": "[NextGenGarage] PASS",
+      "bytes": 734,
+      "sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab"
+    },
+    {
+      "path": "kart_track_pass_regression-headless.log",
+      "marker": "[KartTrackPass] PASS",
+      "bytes": 1076,
+      "sha256": "338f3ad36a3ea657013ebc496ccf30b0a16e8705c3e5f9bd683de7a171a44955"
+    },
+    {
+      "path": "cards_table_regression-headless.log",
+      "marker": "CARDS_TABLE_RUNTIME_PASS",
+      "bytes": 583,
+      "sha256": "41e0d2c8c51d40fc256c9db46563e4aa7ed3b6e02377714507f53bde680292ab"
+    },
+    {
+      "path": "cards_safe_area_android_contract-headless.log",
+      "marker": "CARDS_ANDROID_INSETS_PASS",
+      "bytes": 553,
+      "sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04"
+    },
+    {
+      "path": "cards_safe_area_regression-headless.log",
+      "marker": "CARDS_SAFE_AREA_PASS",
+      "bytes": 532,
+      "sha256": "19957f04f78da618bffec97d55a52efd1874963a011808c113fbd7cf4a8b9177"
+    },
+    {
+      "path": "mobile_safe_area_regression-headless.log",
+      "marker": "MOBILE_SAFE_AREA_PASS",
+      "bytes": 8427,
+      "sha256": "1b06016a17c43409730846c5d9f3bb7fc0dc7bbca236dc7dac5750e361d6a41c"
+    },
+    {
+      "path": "rhythm_tour_regression-headless.log",
+      "marker": "[RhythmTour] PASS",
+      "bytes": 582,
+      "sha256": "36554a86f4e83f79940b77fb886d4b1c96a9dd2481db9540b8697fdabfa4493b"
+    },
+    {
+      "path": "rhythm_tour_play_regression-headless.log",
+      "marker": "[RhythmTourPlay] PASS",
+      "bytes": 600,
+      "sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9"
+    },
+    {
+      "path": "learning_world_capture-rendered.log",
+      "marker": "[LearningCapture] PASS",
+      "bytes": 8466,
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd"
+    },
+    {
+      "path": "learning_sharing_capture-rendered.log",
+      "marker": "[LearningSharingCapture] PASS",
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e"
+    },
+    {
+      "path": "lumo_studio_motion_capture-rendered.log",
+      "marker": "[LumoStudioCapture] PASS",
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669"
+    },
+    {
+      "path": "puzzle_rotation_regression-rendered.log",
+      "marker": "[PuzzleRotation] PASS",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871"
+    },
+    {
+      "path": "puzzle_menu_lifecycle_regression-rendered.log",
+      "marker": "[PuzzleMenuLifecycle] PASS",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c"
+    },
+    {
+      "path": "treasure_exploration_regression-rendered.log",
+      "marker": "[TreasureExploration] PASS",
+      "bytes": 1236,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a"
+    },
+    {
+      "path": "jump_nextgen_capture-rendered.log",
+      "marker": "[JumpNextgenCapture] PASS",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3"
+    },
+    {
+      "path": "build_nextgen_play_regression-rendered.log",
+      "marker": "[BuildNextgen] PASS",
+      "bytes": 1334,
+      "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6"
+    },
+    {
+      "path": "build_settlement_play_regression-rendered.log",
+      "marker": "[SettlementPlay] PASS",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127"
+    },
+    {
+      "path": "build_village_scene_regression-rendered.log",
+      "marker": "[VillageScene] PASS",
+      "bytes": 1493,
+      "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648"
+    },
+    {
+      "path": "creative_nextgen_environment_regression-rendered.log",
+      "marker": "[CreativeNextgenEnvironment] PASS",
+      "bytes": 1239,
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e"
+    },
+    {
+      "path": "kart_nextgen_garage_regression-rendered.log",
+      "marker": "[NextGenGarage] PASS",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5"
+    },
+    {
+      "path": "cards_table_capture-rendered.log",
+      "marker": "CARDS_TABLE_RENDER_PASS",
+      "bytes": 1162,
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4"
+    },
+    {
+      "path": "cards_safe_area_regression-rendered.log",
+      "marker": "CARDS_SAFE_AREA_PASS",
+      "bytes": 1179,
+      "sha256": "e4b86d0d3e105c298176539d00c4ec5e53cc78931acfbae24f0bf1eff5f3eefe"
+    },
+    {
+      "path": "mobile_safe_area_regression-rendered.log",
+      "marker": "MOBILE_SAFE_AREA_PASS",
+      "bytes": 9355,
+      "sha256": "9f6dfe308004b2d7e044bcab08982b7d203c3ef5e7969d6faaa067d86363bd6d"
+    },
+    {
+      "path": "rhythm_tour_play_regression-rendered.log",
+      "marker": "[RhythmTourPlay] PASS",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9"
+    },
+    {
+      "path": "kart_player_full_route_regression-rendered.log",
+      "marker": "[PlayerFullRoute] PASS",
+      "bytes": 21732,
+      "sha256": "0865094aca3ca0ae6eda5509b001078ca5d9998dc03ebde17be90fc30a2bbc35"
+    },
+    {
+      "path": "lumo_facial_regression-headless.log",
+      "marker": "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false",
+      "bytes": 633,
+      "sha256": "8a3ba1eef6bead880d8965bbdda6a3277f2be445063aa84d6c6652e11312a22b"
+    },
+    {
+      "path": "lumo_facial_capture-rendered.log",
+      "marker": "LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true",
+      "bytes": 1847,
+      "sha256": "c93a595dea0cda09d0bb4517e04d89687160195e36c36cce1985b4168b9e7726"
+    },
+    {
+      "path": "connect_four_visual_capture-rendered.log",
+      "marker": "CONNECT_FOUR_VISUAL_PASS",
+      "bytes": 1176,
+      "sha256": "1cc3d59bbf0a2f7fa7680ad0d70bdcbfb1c6690cb88edf523b344f9d18afaaae"
+    },
+    {
+      "path": "treasure_title_contrast_regression-rendered.log",
+      "marker": "[TreasureTitleContrast] PASS",
+      "bytes": 3669,
+      "sha256": "e715acf96478f26498f6fef6acbb0a04fb41680ef43b154addcdade4003a04f4"
+    }
+  ],
+  "original_runner": {
+    "bytes": 118542,
+    "sha256": "a94384d26aba2f6ae215ffdd5955881cbad8fa07538e059ea5c9f834e83f25ca"
+  },
+  "original_studio_manifest": {
+    "bytes": 13986,
+    "sha256": "b4b616916d36086fe106842457dfd20368ce6f9b3ed07c30c7eac96167ba81aa"
+  },
+  "studio_images": [
+    {
+      "path": "captures/lumo_facial_capture/audio_jaw.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/lumo_facial_capture/blink.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/lumo_facial_capture/blink_intermediate.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/lumo_facial_capture/gaze_left.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/lumo_facial_capture/muted.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/lumo_facial_capture/neutral.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/lumo_facial_capture/stopped.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/lumo_facial_capture/teacher_scene.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "facial_runtime": {
+        "path": "captures/lumo_facial_capture/runtime-frames.json",
+        "bytes": 83168,
+        "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+      },
+      "facial_movie": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+        "proof": {
+          "path": "captures/lumo_facial_capture/movie.json",
+          "bytes": 1201,
+          "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+        }
+      }
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "width": 960,
+      "height": 540,
+      "bytes": 82028,
+      "sha256": "05368af4f64863cacfdcd9ce1889e3df8b083f9dc8aa5f0d3fdff91a197846d4",
+      "connect_four_visual_state": {
+        "path": "captures/connect_four_visual_capture/visual-state.json",
+        "bytes": 172226,
+        "sha256": "0e70fd6f8920665e96233fc018f63905df9fdbba6bb036ba3793aa0bcb1fcfbd"
+      }
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-paused-small.png",
+      "width": 640,
+      "height": 360,
+      "bytes": 29411,
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "connect_four_visual_state": {
+        "path": "captures/connect_four_visual_capture/visual-state.json",
+        "bytes": 172226,
+        "sha256": "0e70fd6f8920665e96233fc018f63905df9fdbba6bb036ba3793aa0bcb1fcfbd"
+      }
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-playing-phone.png",
+      "width": 412,
+      "height": 915,
+      "bytes": 67672,
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "connect_four_visual_state": {
+        "path": "captures/connect_four_visual_capture/visual-state.json",
+        "bytes": 172226,
+        "sha256": "0e70fd6f8920665e96233fc018f63905df9fdbba6bb036ba3793aa0bcb1fcfbd"
+      }
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-win-landscape.png",
+      "width": 960,
+      "height": 540,
+      "bytes": 83992,
+      "sha256": "b36497e14dd06e06b070d6b83bddf2114bccc916ff278fe9f11af2a03a748b41",
+      "connect_four_visual_state": {
+        "path": "captures/connect_four_visual_capture/visual-state.json",
+        "bytes": 172226,
+        "sha256": "0e70fd6f8920665e96233fc018f63905df9fdbba6bb036ba3793aa0bcb1fcfbd"
+      }
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "width": 640,
+      "height": 320,
+      "bytes": 323987,
+      "sha256": "c5a00d642424f9f06bc24419bf1778e599eba243094429d8a1bbd86deb51362a",
+      "treasure_title_report": {
+        "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+        "bytes": 30551,
+        "sha256": "64cb938aa6b7ccf12efbb03ae0c0f20813e370ac0f0fceacc82a53bf5fbac3c9"
+      }
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "width": 2176,
+      "height": 1812,
+      "bytes": 4225366,
+      "sha256": "b1a0d1b406169acc502af8ab049b2b0053cb18a0d93abab6d75a7e132061cc76",
+      "treasure_title_report": {
+        "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+        "bytes": 30551,
+        "sha256": "64cb938aa6b7ccf12efbb03ae0c0f20813e370ac0f0fceacc82a53bf5fbac3c9"
+      }
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "width": 2400,
+      "height": 1080,
+      "bytes": 2622435,
+      "sha256": "c4b4b4ea47fa4a0499c4ddc889826c45c7a4c1b5e9aed0cce0fe54a9b9b34da5",
+      "treasure_title_report": {
+        "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+        "bytes": 30551,
+        "sha256": "64cb938aa6b7ccf12efbb03ae0c0f20813e370ac0f0fceacc82a53bf5fbac3c9"
+      }
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2718159,
+      "sha256": "dcab2aece457e63187ab94e10740b53fdbb34e1c3bde2b2f9675ddd77d418996",
+      "treasure_title_report": {
+        "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+        "bytes": 30551,
+        "sha256": "64cb938aa6b7ccf12efbb03ae0c0f20813e370ac0f0fceacc82a53bf5fbac3c9"
+      }
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "width": 1080,
+      "height": 2400,
+      "bytes": 2101554,
+      "sha256": "353e88d8274e58ad740cfdcbc1dc15c396c435b768aac28f4e4b0f7d678e0ae8",
+      "treasure_title_report": {
+        "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+        "bytes": 30551,
+        "sha256": "64cb938aa6b7ccf12efbb03ae0c0f20813e370ac0f0fceacc82a53bf5fbac3c9"
+      }
+    }
+  ],
+  "studio_reports": [
+    {
+      "path": "captures/lumo_facial_capture/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+    },
+    {
+      "path": "captures/connect_four_visual_capture/visual-state.json",
+      "bytes": 172226,
+      "sha256": "0e70fd6f8920665e96233fc018f63905df9fdbba6bb036ba3793aa0bcb1fcfbd"
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-report.json",
+      "bytes": 30551,
+      "sha256": "64cb938aa6b7ccf12efbb03ae0c0f20813e370ac0f0fceacc82a53bf5fbac3c9"
+    }
+  ],
+  "studio_movies": [
+    {
+      "encoded": {
+        "path": "captures/lumo_facial_capture/facial-runtime.mp4",
+        "bytes": 1067731,
+        "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0"
+      },
+      "source_avi": {
+        "path": "captures/lumo_facial_capture/facial-runtime.avi",
+        "bytes": 7678592,
+        "sha256": "e12b636171923d8668692a3c4039dfa4e995e4a5721667fceef1bd177e19c166"
+      },
+      "proof": {
+        "path": "captures/lumo_facial_capture/movie.json",
+        "bytes": 1201,
+        "sha256": "4f6a60edcf6885b42344ba79fc15e9c7e43fd90cc1c80af13133949f9ade18e8"
+      },
+      "ffprobe": {
+        "path": "captures/lumo_facial_capture/movie-ffprobe.json",
+        "bytes": 4564,
+        "sha256": "7546245065dd56d02b818e90f101af8a8d803fbecf0d8e6ab44aba4609fe2fd0"
+      },
+      "logs": [
+        {
+          "path": "captures/lumo_facial_capture/movie-encode.log",
+          "bytes": 6110,
+          "sha256": "91a581624443d5304d6002abf401fa526e0daf17c1b2f641c603ea9298055c67"
+        },
+        {
+          "path": "captures/lumo_facial_capture/movie-decode.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "original_input_preservation": {
+    "files": 4289,
+    "total_bytes": 455213200,
+    "canonical_inventory_sha256_before": "b73cf77d2d25d72ba91b9e745b118f53f31321972a5ce99a5248fa7988bfe24b",
+    "canonical_inventory_sha256_after": "b73cf77d2d25d72ba91b9e745b118f53f31321972a5ce99a5248fa7988bfe24b",
+    "all_original_files_identical": true
+  },
+  "full_host_checked_native_function_executed": false,
+  "used_original_host_functions": [
+    "checked_native_results",
+    "checked_native_runner_log",
+    "checked_native_extension"
+  ],
+  "additional_source_checks": "Original source/clean/engine stamps compared to the exact independently retrieved GitHub commit/tree; original verifier file blobs checked before loading."
+}

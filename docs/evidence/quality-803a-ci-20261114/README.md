@@ -1,6 +1,6 @@
 # Original acceptance evidence for candidate 803a
 
-Evidence checkpoint prepared at 2026-11-14 09:36:25 UTC. The candidate is **803a4e960ffb804a46b6d09417731c031f00f680**, tree **744986f046f6ec65ebe314f62243187a8a0a64c0**, version **0.13.8+2020**, native **0e26153f0e58cc05739e72923b4c563a4cf380b8**. This evidence-only checkpoint does not change the candidate branch.
+Evidence checkpoint updated at 2026-11-14 10:28:17 UTC. The earlier 09:36 checkpoint is retained in Git history. The candidate is **803a4e960ffb804a46b6d09417731c031f00f680**, tree **744986f046f6ec65ebe314f62243187a8a0a64c0**, version **0.13.8+2020**, native **0e26153f0e58cc05739e72923b4c563a4cf380b8**. This evidence-only checkpoint does not change the candidate branch.
 
 ## Actual completed results
 
@@ -13,12 +13,22 @@ Evidence checkpoint prepared at 2026-11-14 09:36:25 UTC. The candidate is **803a
 
 All three auxiliary raw logs were retrieved after their jobs completed and retained without rewriting. Final JSON manifests supersede earlier intermediate blobs.
 
-## Still running at this checkpoint
+## Completed original native acceptance and actual APK
 
-The main job has passed full Flutter, build/preservation scripts and Android QA regression. Its current step is the **actual pinned native gameplay gates**. No completed 52-mode/17-raster result, new APK, Android C4 tour, 2017→2020 preservation tour, final candidate acceptance or public release is claimed here. This section must be updated from original terminal evidence, not inferred from preceding passes.
+The main verify-and-build job132399130204 completed successfully at 10:13:01 UTC. The complete original 1,812,037-byte job log and final metadata are retained here, including the actual checkout803a, 872 build/preservation contracts and929 Android QA contracts. Its original native step ran from09:22:30 to10:06:29 UTC and completed all **52 ordered validation modes**, with17 bound PNGs,3 sidecars and1 facial movie proof record. These are validation modes, not52 distinct games.
+
+The [independent native evidence replay](../native-803a-original-acceptance-20261114/README.md) ran the exact803a/0e261 checkers against artifact14109232711 and passed. All4,289 extracted original files were byte-identical before and after replay. The original rendered Treasure report records3,351 checks,zero failures and10 fresh/restored observations across5 layout profiles under Linux/X11/Mesa llvmpipe. Android inset/density boundaries are explicitly fixtures. The [original-image review](../native-803a-original-visual-review-20261114/visual-review.md) opened all17 original PNGs; this evidence checkpoint retains those unchanged images and both original movie binaries. Root also opened the5 original Treasure captures and recorded hashes and bounded observations. Portrait title truncation and a wrapped discovery counter remain visible readability details. No movie re-encoding, new audio judgment or physical-device/FPS result is asserted by this replay.
+
+A genuine ARM64 coachpreview APK was built and is independently downloaded. Original artifact14109995147 is330,999,378 bytes with ZIP SHA256 `4042322c815dac4d1829ff80b2f1889db4104d557e38b408fcd71a40b7706ccc`. The APK itself is330,988,965 bytes with SHA256 **`6c380ea99a0ee9119b3179b36df714336936247654216cec1f2188f34a96f164`**. Root recomputed both hashes and matched them to the successful CI result. Original APK verification, source provenance, version, native pin and hash files are retained under `actual-arm64-artifact/`.
+
+Its actual package is `dev.ullmann.lumo.lumo_lernen.coachpreview`, version0.13.8/code2020, minSdk24/targetSdk36, ABIarm64-v8a. The CI verifier confirms ELF16-KiB and resources.arsc alignment and the expected signing certificate. Root's independent check binds the exact downloaded bytes to that result; it is not a second signature-verifier execution. This is a family/coachpreview APK, not a Play-signed AAB or canonical Play package.
+
+## Android gates still running at this evidence update
+
+The separately required jobs `android-c4`132415120342 and `update-2020-from-2017`132415120397 remain in progress in the actual APK tour and preserved in-place upgrade. No terminal Android, final candidate/delivery, public release, audible playback or physical-device-performance acceptance is claimed. The saved job snapshot identifies the exact observed state.
 
 ## Parallel base update and actual Play limits
 
-The integration branch advanced independently to 2b586530db4f2cb20c28f426e2549342316151bf. Its separate resolved merge and 19 diagnostic tests are preserved at [81289b390f1aacf49a888e2055aac94d98d0697e](https://github.com/Ullmann27/lumo-lernen/commit/81289b390f1aacf49a888e2055aac94d98d0697e). Those added UI changes have no new Flutter execution because cached external dependencies were lost locally. They are not part of this803a acceptance and have not been pushed to the candidate branch.
+The integration branch advanced independently to 2b586530db4f2cb20c28f426e2549342316151bf. Its separate resolved merge and 19 diagnostic tests are preserved at [81289b390f1aacf49a888e2055aac94d98d0697e](https://github.com/Ullmann27/lumo-lernen/commit/81289b390f1aacf49a888e2055aac94d98d0697e). The merged next source plus native C4-return fix is separately prepared at [faaf9d906bd72c2ffe9ab677c76355fe538cddfe](https://github.com/Ullmann27/lumo-lernen/commit/faaf9d906bd72c2ffe9ab677c76355fe538cddfe). Its119 targeted host contracts and action/shell syntax passed. The unchanged11-method/24-invocation shell regression now rejects all three previously demonstrated false-positive cases. The genuine native regression's independent red/green evidence is at [556faff3076baa93bcaf33980d11c99077a50d33](https://github.com/Ullmann27/lumo-godot/commit/556faff3076baa93bcaf33980d11c99077a50d33). Full Flutter/native/APK/Android acceptance of that next source is still required. It is outside this803a acceptance and has not moved the candidate branch.
 
 See the candidate's [Play/SDK audit](https://github.com/Ullmann27/lumo-lernen/blob/803a4e960ffb804a46b6d09417731c031f00f680/docs/evidence/play-data-audit-20261114-2708/README.md) for actual privacy/reporting/operator/retention gaps. No provided Play upload signing key, signed AAB, Play Console acceptance, physical 16-KiB device result or measured stable 60 FPS is claimed. The original handwriting trainer, journal, profiles and fox assets are preserved by the source changes and still require the planned final Android preservation run.
