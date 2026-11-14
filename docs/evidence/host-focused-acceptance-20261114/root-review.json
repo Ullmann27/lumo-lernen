@@ -1,0 +1,129 @@
+{
+  "reviewed_at": "2026-11-14T13:24:44.551226+00:00",
+  "current_host": "adb88bef880861e23b451166c04ee7d28c96a95d",
+  "math": {
+    "schema": 1,
+    "frozen_at_utc": "2026-11-14T13:22:44.410438+00:00",
+    "source": {
+      "head": "bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7",
+      "tree": "e2db771277ed3d181ed34410a7a736252bcdf0df",
+      "materialized_count": 2327,
+      "logical_index_count": 4383,
+      "source_tree_index_status_unchanged": true,
+      "logical_index_sha256": "75b7b03e7565f43882a3b16e7303171642b4043da14529f6efd3bb31c619c843",
+      "raw_index_sha256": "cdb4d87689ca6cd3480737f76013145dcb9bfb32a7eeaed5152a7c6461e0205d"
+    },
+    "original_red": {
+      "source": "0411b62f59425bc4f36226ca59e9ed5ef901709a",
+      "exit_code": 1,
+      "cases": 3,
+      "actual_failures": 3,
+      "elapsed_seconds": 1.114
+    },
+    "current_dart": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": 29845,
+      "template_calls": 3955,
+      "factory_calls": 4640,
+      "cumulative_topic_count": 145,
+      "failure_count": 0,
+      "elapsed_seconds": 2.726
+    },
+    "strict_pub_resolution": {
+      "argv": [
+        "/workspace/scratch/b3485b7bb989/toolchains/flutter-3.44.9/flutter/bin/flutter",
+        "pub",
+        "get",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/b3485b7bb989/math491-bb97-validation-checkout",
+      "elapsed_seconds": 499.368,
+      "exit_code": 0,
+      "timed_out": false,
+      "before": {
+        "pubspec.yaml": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+        "pubspec.lock": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea"
+      },
+      "after": {
+        "pubspec.yaml": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+        "pubspec.lock": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea"
+      },
+      "source_manifests_unchanged": true
+    },
+    "included_source_paths": [
+      "lib/core/adventure/adventure_word_data.dart",
+      "lib/core/adventure/lumo_adventure_tasks.dart",
+      "lib/core/english_vocabulary_extensions.dart",
+      "lib/core/german_curriculum_extensions.dart",
+      "lib/core/german_task_templates.dart",
+      "lib/core/math_task_templates.dart",
+      "lib/core/primary_school_word_data.dart",
+      "lib/core/reading_comprehension_data.dart",
+      "lib/core/school_exercise_generator.dart",
+      "lib/core/science_quality_extension.dart",
+      "lib/core/science_task_data.dart",
+      "lib/core/shape_question_data.dart",
+      "lib/core/spelling_context_data.dart",
+      "test/math_exact_topic_selection_test.dart",
+      "test/support/math_exact_topic_selection_contract.dart",
+      "pubspec.yaml",
+      "pubspec.lock"
+    ],
+    "limits": [
+      "Pure Dart production generator validation; no widget, Android, renderer, audio or semantic product acceptance.",
+      "This pack binds only bb97 and its isolated old-source RED. Later Host heads are not substituted.",
+      "The first separate widget attempt has an evidence-adapter failure with unavailable child exit code; it is outside this Dart/pub result and remains preserved in the ongoing widget evidence folder.",
+      "Toolchain and package payloads are not copied; official version, archive checksum, actual extraction/version receipts and resolved package directories are retained."
+    ]
+  },
+  "c4_navigation": {
+    "schema": 1,
+    "kind": "actual_single_authorized_C4_targeted_validation",
+    "created_at": "2026-11-14T13:22:22.725066+00:00",
+    "head": "adb88bef880861e23b451166c04ee7d28c96a95d",
+    "tree": "f027cfbefe935835b6b80f34843e2b5297816cee",
+    "status": "PASS",
+    "methods": 36,
+    "module_counts": {
+      "test_connect_four_android_evidence": 17,
+      "test_connect_four_probe_deadlines": 11,
+      "test_connect_four_flutter_navigation": 8
+    },
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "exit_code": 0,
+    "unittest_seconds": 42.439,
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "stderr": {
+      "bytes": 6836,
+      "sha256": "1432d6c7f051a6acdcfd072ca12f2ef2ebc0517f7442f42855ebe6491042aca1",
+      "git_blob": "d83c60eb2ef7a800d2f0cf3154fbdd1370506527"
+    },
+    "result": {
+      "bytes": 2168,
+      "sha256": "8832730c4fbb32c12106bc1746fa7f50313236b68a0a9adab70815c5f20991b1",
+      "git_blob": "fe711883bb933aada12c20cfab1a55b3a2467459"
+    },
+    "source_unchanged": true,
+    "tracked_count": 4421,
+    "materialized_count": 629,
+    "sparse_absent_count": 3792,
+    "source_freeze_sha256": "4b5f7a62a11cafa3c85d783855b00fd6ab9239734f669d757fb3976726f90082",
+    "nonfailure_original_diagnostics": [
+      "test_complete_synthetic_observation_replay (test_connect_four_android_evidence.CompleteEvidenceTests.test_complete_synthetic_observation_replay) ... /tmp/host-adb88-c4-navigation-targeted-validation-20261114/checkout/tools/android_qa/connect_four_android_evidence.py:339: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead."
+    ],
+    "scope_limit": "Synthetic unit/contract cases only; no new device/CI acceptance and no product mutation."
+  },
+  "root_archive_readbacks": {
+    "math_members": 51,
+    "c4_members": 13,
+    "all_original_bytes_equal": true
+  },
+  "scope": "Checkpoint of actual already-completed source-bound validations only. No reruns for packaging. Widget, renderer and fresh final APK acceptance remain pending. First widget adapter failure remains separate."
+}
