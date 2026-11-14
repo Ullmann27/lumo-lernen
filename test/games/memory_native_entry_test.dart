@@ -157,6 +157,36 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
+  testWidgets('Two immediate real card taps keep their order through durable saves',
+      (tester) async {
+    final app = await _app();
+    addTearDown(app.dispose);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await _open(tester, app, _Unavailable());
+    final initial = await _round(app);
+    final cards = (initial['rules'] as Map)['cards'] as List;
+    final partner = cards.indexOf(cards[0],1);
+    expect(partner,greaterThan(0));
+    await tester.tap(find.byKey(const ValueKey('memory-card-0')));
+    await tester.tap(find.byKey(ValueKey('memory-card-$partner')));
+    for (var i = 0; i < 50; i++) {
+      await tester.pump(const Duration(milliseconds:10));
+      if (((await _round(app))['revision'] as int) >= (initial['revision'] as int)+2) break;
+    }
+    final selected = (await _round(app))['rules'] as Map;
+    expect(selected['phase'],'resolve');
+    expect(selected['kindMoves'],1);
+    expect((selected['faceUp'] as List).where((value) => value == true),hasLength(2));
+    await tester.pump(const Duration(milliseconds:850));
+    await tester.pump();
+    final matched = (await _round(app))['rules'] as Map;
+    expect(matched['kindPairs'],1);
+    expect(matched['turn'],'kind');
+    expect((matched['matched'] as List).where((value) => value == true),hasLength(2));
+    expect(tester.takeException(),isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets('An unfinished round reopens paused with the same card and explicit Resume',
       (tester) async {
     final app = await _app();

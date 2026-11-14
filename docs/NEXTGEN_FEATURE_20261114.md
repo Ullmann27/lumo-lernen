@@ -10,9 +10,17 @@ Quiz retains the existing rules, question bank and milestone rewards. Its shared
 
 The actual Memory screen now uses the shared persistent controller and attempts the real Android table entry. Optional Native preparation keeps Flutter cards usable; a real Flutter turn cancels a delayed automatic launch. Original visual widget sections, motif dealer, opponent behavior, reward formulas and per-child statistics keys are preserved. Unfinished rounds resume under their original identifier; confirmed completed and rewarded rounds start a fresh round with the same settings when reopened. An unsettled completed round is retained until its reward acknowledgement succeeds.
 
-The Memory scheduler uses a monotonic Stopwatch in production, so a gap between Flutter frames cannot extend a visible-card delay. Tests can supply an explicit clock. Six new widget scenarios cover absent Native support, delayed availability, unfinished-round resume, lifecycle pause, profile isolation and elapsed time without an intermediate frame. These new scenarios have not executed before this source checkpoint.
+The Memory scheduler uses a monotonic Stopwatch in production, so a gap between Flutter frames cannot extend a visible-card delay. Tests can supply an explicit clock. Seven new widget scenarios cover absent Native support, delayed availability, unfinished-round resume, lifecycle pause, profile isolation and elapsed time without an intermediate frame, and two immediate real card taps. These new scenarios have not executed before this source checkpoint.
 
 The private Android table channel binds game, token, child, round, revision and intent sequence. The renderer cannot supply rewards or choose the authoritative answer. Both new table sessions now invalidate pending setup on close, reject a parallel open, recheck ownership after asynchronous setup and clean up only their own token if native acceptance arrives late. Three additional real Completer-controlled cases per authority cover those close/open races. The 2,500 ms lease and persistence acknowledgement requirements are unchanged.
+
+## Correction after the first actual Memory screen run
+
+Exact Host ddc9d89ef1bb6fc37315fd4aff0da166ce213b67 failed its focused Memory UI step in run43600938811: 13 passes and 14 failures, then the complete Flutter suite was skipped. Its separate actual authority job passed Memory27 cases/1,675 checks, scheduler7 cases/13 checks and Quiz28 cases/1,786 checks. Actual Android compilation passed. These positive core results do not erase the widget failure.
+
+The new correction releases an idle completed owner-queue tail without removing any newer pending write. It retains at most two actual card selections in order while each durable save finishes. An explicit screen setup may configure a never touched, unpaused round; normal reopen, begun rounds, deliberate pauses and unsettled rewards stay protected. Three additional pure contracts and one additional widget scenario cover these boundaries. Existing tests were not loosened or removed. The new 30-case Memory contract and seven new widget scenarios require fresh CI execution.
+
+The real Memory Dart/Godot pair driver is now included. Its disk transport, deterministic clock, private test deck plan and award ledger are explicit QA adapters. It does not install Android or write a production child's save. Actual pair execution remains pending.
 
 ## Actual preceding evidence
 

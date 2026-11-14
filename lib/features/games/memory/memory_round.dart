@@ -118,6 +118,7 @@ class MemoryRoundController {
     String? difficulty,
     String? pack,
     int? seed,
+    bool configureUnplayed = false,
   }) async {
     if (!RegExp(r'^[a-f0-9]{64}$').hasMatch(owner) ||
         (difficulty != null && !memoryDifficulties.contains(difficulty)) ||
@@ -137,7 +138,25 @@ class MemoryRoundController {
         // Corrupt/private foreign rounds are never replaced with defaults.
         controller._round = MemoryRound.read(raw, catalog, owner);
         controller.restored = true;
-        if (controller._round.rules.complete && controller._round.rewarded) {
+        final rules = controller._round.rules;
+        final unplayed = rules.phase == 'select' && rules.turn == 'kind' &&
+            rules.kindMoves == 0 && rules.kindPairs == 0 && rules.lumoPairs == 0 &&
+            rules.known.isEmpty && rules.faceUp.every((v) => !v) &&
+            rules.matched.every((v) => !v);
+        if (configureUnplayed && !controller._round.paused && unplayed &&
+            (difficulty != null || pack != null || seed != null)) {
+          // Explicit entry settings may configure a board before its first
+          // touch. They never replace a begun, paused or unsettled round.
+          final previous = controller._round;
+          final next = MemoryRound(
+            owner: owner, id: MemoryRound.newId(), revision: previous.revision + 1,
+            rules: MemoryRules.start(catalog,
+                seed == null ? MemoryRandom.restore(rules.random.toJson()) : MemoryRandom(seed),
+                difficulty ?? rules.difficulty, pack ?? 'alle'),
+          );
+          await controller._commit(next);
+          controller.restored = false;
+        } else if (rules.complete && controller._round.rewarded) {
           // The existing screen starts another game after a settled finish.
           // Never discard a finish whose wallet/round receipt is unresolved.
           // Retain the child's pack, difficulty, bests and random stream.
@@ -150,7 +169,7 @@ class MemoryRoundController {
           );
           await controller._commit(next);
           controller.restored = false;
-        } else if (!controller._round.paused) {
+        } else if (!controller._round.paused && !unplayed) {
           await controller._commit(controller._round.copy(catalog, paused: true));
         }
       } else {
@@ -174,7 +193,15 @@ class MemoryRoundController {
     final operation = previous.then<T>((_) => action());
     // A failed operation remains visible to its caller, but does not poison
     // the owner's later explicit retry or a new screen's read.
-    _ownerWrites[owner] = operation.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    late final Future<void> tail;
+    void release() {
+      // Only the last completed tail can leave the map. A newer queued write
+      // must still wait for its actual predecessor, even after screen dispose.
+      if (identical(_ownerWrites[owner], tail)) _ownerWrites.remove(owner);
+    }
+    tail = operation.then<void>((_) => release(),
+        onError: (Object _, StackTrace __) => release());
+    _ownerWrites[owner] = tail;
     return operation;
   }
 

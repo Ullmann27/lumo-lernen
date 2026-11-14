@@ -62,6 +62,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   final _lumo = LumoCharacterController();
   Future<void> _actions = Future<void>.value();
   int _pendingActions = 0;
+  int _queuedFlips = 0;
   int _generation = 0;
   bool _profileChanged = false;
   bool _loading = true;
@@ -136,6 +137,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
         difficulty: widget.difficulty?.name,
         pack: widget.pack?.name,
         seed: widget.seed,
+        configureUnplayed: widget.seed != null || widget.difficulty != null || widget.pack != null,
         award: (id, difficulty, kind, lumo) => _statsApp.recordMemoryResult(
           lease: owner, resultId: id, difficulty: difficulty,
           kindPairs: kind, lumoPairs: lumo,
@@ -321,10 +323,15 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen>
   }
 
   void _tapCard(int index) {
-    if (!_canPlay || _clock.value || _busy || !_game.state.canFlip) return;
+    if (!_canPlay || _clock.value || !_game.state.canFlip || _queuedFlips >= 2) return;
+    final round = _game.round.id;
+    _queuedFlips++;
     unawaited(_run(() async {
+      // Keep at most the two real card choices. The authority validates them
+      // in order after each durable save; stale round/pause input is refused.
+      if (_clock.value || _game.round.id != round) return;
       if (await _game.flip(index)) await HapticFeedback.lightImpact();
-    }));
+    }).whenComplete(() => _queuedFlips--));
   }
 
   void _restart({MemoryDifficulty? difficulty, MemoryThemePack? pack}) {

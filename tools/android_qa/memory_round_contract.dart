@@ -148,11 +148,13 @@ Future<MemoryRoundController> open(
   String difficulty = 'leicht',
   String pack = 'alle',
   int seed = 73,
+  bool configureUnplayed = false,
   bool Function()? current,
   MemoryAward? award,
 }) => MemoryRoundController.open(
   owner: child, catalog: catalog, store: store, difficulty: difficulty,
-  pack: pack, seed: seed, canUseProfile: current ?? () => true,
+  pack: pack, seed: seed, configureUnplayed: configureUnplayed,
+  canUseProfile: current ?? () => true,
   award: award ?? (id, level, kind, lumo) async {},
 );
 
@@ -291,6 +293,84 @@ Future<void> main(List<String> args) async {
     equal(store.legacy,legacy,'no unowned migration');
     expect(!await restored.flip(1),'paused touch refused');
     restored.dispose();
+  });
+
+  await test('explicit entry setup configures only a never touched unpaused board', () async {
+    final store = ContractMemoryStore();
+    final first = await open(store, seed:4);
+    final oldId = first.round.id;
+    first.dispose();
+    final configured = await open(store, seed:9, difficulty:'profi', pack:'garten',
+        configureUnplayed:true);
+    expect(configured.round.id != oldId, 'explicit setup creates its own new round ID');
+    equal(configured.state.cards,
+        catalog.deal('profi',math.Random(9),'garten'), 'exact requested original seeded dealer');
+    expect(!configured.round.paused && !configured.restored, 'new unplayed board is ready');
+    expect(store.stats == null && store.legacy == '{"old":"preserve"}',
+        'setup does not replace statistics or unowned data');
+    final configuredId = configured.round.id;
+    final configuredRules = configured.state.toJson();
+    configured.dispose();
+    final restored = await open(store, seed:999, difficulty:'leicht', pack:'alle');
+    equal(restored.round.id,configuredId,'ordinary reopening retains the existing round');
+    equal(restored.state.toJson(),configuredRules,'ordinary reopening retains every rule field');
+    expect(!restored.round.paused,'never played unpaused board remains directly available');
+    restored.dispose();
+  });
+
+  await test('explicit entry setup cannot replace a begun or deliberately paused board', () async {
+    for (final touch in [true,false]) {
+      final store = ContractMemoryStore();
+      final first = await open(store,seed:4);
+      if (touch) {
+        expect(await first.flip(0),'real first card is durably accepted');
+      } else {
+        await first.setPaused(true);
+      }
+      final id = first.round.id;
+      final rules = first.state.toJson();
+      final raw = store.round;
+      first.dispose();
+      final restored = await open(store, seed:9, difficulty:'profi', pack:'garten',
+          configureUnplayed:true);
+      equal(restored.round.id,id,'explicit setup cannot discard the owned round');
+      equal(restored.state.toJson(),rules,'all private progress and RNG state survive');
+      expect(restored.round.paused,'explicit Resume remains necessary');
+      if (!touch) equal(store.round,raw,'already paused record stays byte-identical');
+      restored.dispose();
+    }
+  });
+
+  await test('an idle owner queue releases the completed originating microtask zone', () async {
+    final callbacks = <void Function()>[];
+    final store = ContractMemoryStore();
+    MemoryRoundController? first;
+    Object? firstError;
+    runZoned(() {
+      unawaited(open(store).then<void>((value) { first = value; },
+          onError:(Object error,StackTrace stack) { firstError = error; }));
+    },zoneSpecification:ZoneSpecification(
+      scheduleMicrotask:(self,parent,zone,callback) {
+        callbacks.add(() => zone.run(callback));
+      },
+    ));
+    void drain() {
+      var budget = 1000;
+      while (callbacks.isNotEmpty && budget-- > 0) callbacks.removeAt(0)();
+      expect(callbacks.isEmpty,'bounded originating zone drain');
+    }
+    drain();
+    expect(firstError == null && first != null,'first real controller fully opened');
+    first!.dispose();
+    // Stop pumping the old zone, as happens after an independent widget case.
+    // A new real controller must not schedule work on its completed predecessor.
+    final next = open(store);
+    await Future<void>.delayed(Duration.zero);
+    final usedOldZone = callbacks.isNotEmpty;
+    drain();
+    final restored = await next;
+    restored.dispose();
+    expect(!usedOldZone,'idle owner does not retain a completed Future from another zone');
   });
 
   await test('random continuity survives save and restart', () async {
