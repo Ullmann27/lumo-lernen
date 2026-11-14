@@ -108,7 +108,7 @@ class RewardWalletRepository {
   Future<RewardWallet>? _loadFuture;
   // Every balance change shares this queue. A failed transaction cannot roll
   // back a later lesson reward, reset, or another completed game.
-  Future<void> _mutations = Future<void>.value();
+  Future<void>? _mutations;
   final _controller = StreamController<RewardWallet>.broadcast();
 
   /// Stream, der bei jeder Aenderung den neuen Wallet-Stand emittiert.
@@ -297,14 +297,24 @@ class RewardWalletRepository {
   Future<RewardWallet> _transaction(
     Future<RewardWallet> Function(RewardWallet current) operation,
   ) {
-    final pending = _mutations.then((_) async {
+    // An idle queue starts in the actual caller's zone. Keep a live
+    // predecessor until all of its writes have completed.
+    final previous = _mutations ?? Future<void>.value();
+    final pending = previous.then((_) async {
       await load();
       return operation(_wallet);
     });
-    // A failed operation is reported to its caller but must not poison the
-    // queue: later rewards and replay of the failed native event still run.
-    _mutations =
-        pending.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    late final Future<void> tail;
+    void release() {
+      // A younger transaction may already own the queue.
+      if (identical(_mutations, tail)) _mutations = null;
+    }
+
+    // Preserve the original result/error for the caller, but release an idle
+    // tail on either outcome so it cannot retain a completed caller's zone.
+    tail = pending.then<void>((_) => release(),
+        onError: (Object _, StackTrace __) => release());
+    _mutations = tail;
     return pending;
   }
 

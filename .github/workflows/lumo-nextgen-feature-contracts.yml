@@ -39,6 +39,14 @@ jobs:
         run: |
           set -euo pipefail
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee feature-evidence/flutter-analyze.log
+      - name: Recheck durable wallet queues across caller zones and actual Memory profiles
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/reward_wallet_queue_zone_test.dart \
+            test/reward_wallet_transaction_test.dart \
+            test/games/memory_profile_storage_test.dart \
+            2>&1 | tee feature-evidence/wallet-zone-profile-regression.log
       - name: Run actual Dart learning and table authorities
         run: |
           set -euo pipefail
