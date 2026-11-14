@@ -1,0 +1,89 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 132567231226,
+      "run_id": 43634176264,
+      "workflow_name": "Test LUMO ec original reader and accepted PNG selection",
+      "head_branch": "qa/lumo-original-replay-selftest-ec-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43634176264",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAe3Z9q-g",
+      "head_sha": "58cb9ca32f2c6c11b8b0df136f131a6911a4a5b1",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132567231226",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43634176264/job/132567231226",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T19:49:34Z",
+      "started_at": "2026-11-14T19:49:35Z",
+      "completed_at": "2026-11-14T19:50:01Z",
+      "name": "reader-selftest",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:49:36Z",
+          "completed_at": "2026-11-14T19:49:38Z"
+        },
+        {
+          "name": "Check out the accepted host for read-only helper tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:49:38Z",
+          "completed_at": "2026-11-14T19:49:50Z"
+        },
+        {
+          "name": "Load exact prepared sources and fixed reader dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:49:50Z",
+          "completed_at": "2026-11-14T19:49:58Z"
+        },
+        {
+          "name": "Check actual workflow syntax and original archive and PNG safeguards",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:49:58Z",
+          "completed_at": "2026-11-14T19:49:59Z"
+        },
+        {
+          "name": "Preserve actual selftest originals",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T19:49:59Z",
+          "completed_at": "2026-11-14T19:49:59Z"
+        },
+        {
+          "name": "Post Check out the accepted host for read-only helper tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T19:49:59Z",
+          "completed_at": "2026-11-14T19:50:00Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T19:50:00Z",
+          "completed_at": "2026-11-14T19:50:00Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132567231226",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000019083,
+      "runner_name": "GitHub Actions 1000019083",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

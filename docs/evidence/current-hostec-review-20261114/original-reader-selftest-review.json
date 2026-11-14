@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "source": {
+    "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "native_run": 43613299144,
+    "main_run": 43633922088,
+    "feature_run": 43633918165,
+    "attempt": 1
+  },
+  "prepared": {
+    "commit": "99faf8deee4b43594965ed7b9e172919fe6ef6aa",
+    "tree": "660864f7b96bf2e19de8d6c1d5becd3fd3138749",
+    "parent": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "branch": "checkpoint/lumo-original-replay-ec-20261114",
+    "workflow_blob": "ed72f394fb7674a3e7ac960235c22cee82450477",
+    "driver_blob": "72406f6f995b0c85414c8c8560ca563273071921",
+    "selftest_blob": "b9dc0875c4394ba5f66262c19c52fabe3ae4832e",
+    "complete_original_replay_activated": false
+  },
+  "selftest": {
+    "commit": "58cb9ca32f2c6c11b8b0df136f131a6911a4a5b1",
+    "tree": "660864f7b96bf2e19de8d6c1d5becd3fd3138749",
+    "branch": "qa/lumo-original-replay-selftest-ec-20261114",
+    "parents": [
+      "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "99faf8deee4b43594965ed7b9e172919fe6ef6aa"
+    ],
+    "run": 43634176264,
+    "attempt": 1
+  },
+  "actual_run_source": "58cb9ca32f2c6c11b8b0df136f131a6911a4a5b1",
+  "actual_job": 132567231226,
+  "conclusion": "success",
+  "tests": 27,
+  "failures": 0,
+  "skips": 0,
+  "ran": [
+    {
+      "tests": 24,
+      "seconds": 0.079
+    },
+    {
+      "tests": 3,
+      "seconds": 0.017
+    }
+  ],
+  "original_label_count": 27,
+  "inline_ok": 24,
+  "standalone_ok": 3,
+  "original_bound_sources": [
+    {
+      "bytes": 19877,
+      "git_blob": "72406f6f995b0c85414c8c8560ca563273071921",
+      "path": "original_replay.py",
+      "sha256": "4fcacaff7c1ed55c70284c5d8bb03525bd29acca5417f4d1f03882298fd8a471"
+    },
+    {
+      "bytes": 9292,
+      "git_blob": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+      "path": "test_original_replay.py",
+      "sha256": "a0e8b60079c6138c56c0e9c08951d71e0f5bf33f3e5fa545c39df626c494cf97"
+    },
+    {
+      "bytes": 8713,
+      "git_blob": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+      "path": "original_png_transport.py",
+      "sha256": "39d0e2dba3ac3f1352b652963a246020d3938f1ab265f5aa7725ad467aa8e30a"
+    },
+    {
+      "bytes": 7061,
+      "git_blob": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
+      "path": "test_original_png_transport.py",
+      "sha256": "fb7a8ca75ad1148f02c088bf4fc5f235b2863546367dca04f3d3012c0cadec0c"
+    },
+    {
+      "bytes": 29605,
+      "git_blob": "ed72f394fb7674a3e7ac960235c22cee82450477",
+      "path": "review-workflow.yml",
+      "sha256": "d267f3be558384674195fc098eecb01839d55f50f20bb225eb0fd3850714e9e6"
+    },
+    {
+      "bytes": 30052,
+      "git_blob": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+      "path": "publisher-reviewed.yml",
+      "sha256": "d8419d37fccba50d4b4e6185b7b7b25c898624caee14deb21b0e699e1a153fc6"
+    }
+  ],
+  "syntax": {
+    "bash_blocks": 11,
+    "original_acceptance_executed": false,
+    "original_publisher_steps_unchanged": 7,
+    "python_heredocs": 6,
+    "standalone_python_files": 4,
+    "status": "PASS_STATIC_SOURCE_AND_SYNTAX",
+    "write_permissions": false
+  },
+  "driver_semantic_change": "Only exact source, tree, main run and descriptive docstring differ from the reviewed 04 reader.",
+  "scope": "Original actual CI selftest only; no full APK archive replay, Android tour, renderer or publication executed.",
+  "full_original_replay": "BLOCKED until all seven current main jobs succeed",
+  "publisher": "BLOCKED until current complete original acceptance"
+}

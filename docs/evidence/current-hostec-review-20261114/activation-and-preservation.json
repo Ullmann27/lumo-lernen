@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+  "native_run": 43613299144,
+  "main_run": 43633922088,
+  "feature_run": 43633918165,
+  "attempt": 1,
+  "branch": "integration/lumo-live-connections-20261114",
+  "pr": 497,
+  "files": 4999,
+  "patch": "d04ac2596fdd383dc49b1a111d9f6d699bd7cb76",
+  "patch_tree": "f8ba0328cc65a8bf22f5b935ada8891772d62aab",
+  "source_review": "docs/evidence/live-integration-20261114/c4-return-observation-04a8e850/root-activation-review.json",
+  "main_unchanged": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+  "producer": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "previous04_run": {
+    "run": 43628840534,
+    "conclusion": "cancelled",
+    "reason": "Existing cancel-in-progress:true for the same integration branch after the new source push"
+  },
+  "diagnosis91_evidence": {
+    "commit": "8a45f0028cb46be3d050c7d9cad5d4513423ce25",
+    "tree": "5ab6c0811d43b16eed166b3a651f3134aa34050e",
+    "artifact": 14128089386,
+    "source": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+    "apk_source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66"
+  },
+  "release_created": false,
+  "protected_source_files_preserved": true
+}
