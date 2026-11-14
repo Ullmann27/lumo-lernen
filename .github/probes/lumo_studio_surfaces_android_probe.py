@@ -110,7 +110,8 @@ def capture_returned_flutter(out: Path, tag: str, captions: list[str], *, timeou
                     matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
                     if not matches:
                         lines = probe.image_lines(out, name + '-caption-' + str(len(found)), wanted,
-                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()))
+                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()),
+                            reject_captions=('Die Spielwelt wird geöffnet',))
                         matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
                     valid = []
                     for line in matches:

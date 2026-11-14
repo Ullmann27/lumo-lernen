@@ -369,7 +369,8 @@ def read_component_caption(source: Path, out: Path, tag: str, wanted: str, comma
 
 
 def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None = None,
-                timeout: float = 225, exact: bool = False) -> list[dict]:
+                timeout: float = 225, exact: bool = False, *,
+                reject_captions: tuple[str, ...] = ()) -> list[dict]:
     deadline = time.monotonic() + timeout
     if source_path is None:
         snapshot = capture(out, tag)
@@ -378,6 +379,7 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
         source = source_path
     image = Image.open(source).convert('RGB')
     result = []
+    rejected_captions = {normalized(caption) for caption in reject_captions if caption}
     # White UI letters on dark glass can disappear among the detailed 3D
     # background. A second read separates their contrast, without changing
     # any screenshot used as evidence or inventing a control coordinate.
@@ -451,7 +453,8 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
             for start in range(len(words)):
                 for end in range(start+1,min(len(words),start+8)+1):
                     span=words[start:end]
-                    if normalized(' '.join(word['text'] for word in span)) == wanted:
+                    span_text = normalized(' '.join(word['text'] for word in span))
+                    if span_text == wanted or span_text in rejected_captions:
                         spans.append(span)
             for span in spans:
                 x0=min(int(word['left']) for word in span)/scale
@@ -460,6 +463,25 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
                 y1=max(int(word['top'])+int(word['height']) for word in span)/scale
                 result.append({'text':' '.join(word['text'] for word in span),
                                'bounds':[x0,y0,x1,y1],'variant':variant})
+        if rejected_captions:
+            # Only an explicitly opted-in, actually observed complete caption
+            # rejects this frame. Do not spend the remaining return budget on
+            # more OCR variants of an already identified launch cover.
+            rejected = [line for line in result
+                        if normalized(line['text']) in rejected_captions and
+                        0 <= line['bounds'][0] < line['bounds'][2] <= image.width and
+                        0 <= line['bounds'][1] < line['bounds'][3] <= image.height]
+            if rejected:
+                (out / (tag + '-ocr.json')).write_text(
+                    json.dumps(result, indent=2, ensure_ascii=False))
+                (out / (tag + '-ocr-rejected.json')).write_text(json.dumps({
+                    'status': 'REJECTED_FRAME', 'source': source.name,
+                    'source_sha256': digest(source), 'surface': list(image.size),
+                    'variant': variant, 'observed_captions': rejected,
+                    'scope': 'Negative current-frame evidence only; no input or positive acceptance',
+                }, indent=2, ensure_ascii=False) + '\n')
+                raise RuntimeError('Rejected captured Flutter frame: observed caption ' +
+                                   rejected[0]['text'])
         if wanted and any(wanted == normalized(line['text']) if exact
                           else wanted in normalized(line['text']) for line in result):
             break

@@ -3,8 +3,8 @@
 
 This is a diagnostic on an existing binary, never a build, publication or replacement
 for the original Studio workflow. Metadata comes from authenticated GitHub read calls.
-The modernization tour is unchanged. The Studio surface reader has one explicitly
-hash-pinned read-only correction; its remaining runtime gates are preserved.
+The modernization tour is unchanged. The helper and Studio reader have explicitly
+hash-pinned read-only corrections; all positive runtime gates are preserved.
 """
 from __future__ import annotations
 
@@ -23,13 +23,31 @@ import sys
 import zipfile
 
 
+RETURN_FILE_HASHES = (
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv', 'e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png', '4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv', '6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png', 'bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png', '8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv', '8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png', 'c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf'),
+    ('tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json', '31fa110427af3528835df32174a07acb71cc7e3bd86f94fab1213752204daee0'),
+    ('tools/android_qa/tests/replay_flutter_loading_frame_ocr.py', '4c8f154a259ce22b734977ef5c2dd7257d8ed4968cf370abf8dd62a09e853d81'),
+    ('tools/android_qa/tests/test_flutter_loading_frame_rejection.py', '4cb4ba9c25293f46534ff5b90ee712f866f6f12d23ee58b3db32d39844390529'),
+)
+
+
 @dataclass(frozen=True)
 class Expected:
     host: str = "4ab96666f954baf258422d6ed277fc297b7ddeef"
     native: str = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
-    qa_basis: str = "a446f3c1a320ad5297e17606727d801c5e993ce1"
+    qa_basis: str = "3e08c7953b84aed6fff30e9e55665de75f79ec77"
+    basis_helper_sha256: str = "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+    approved_helper_sha256: str = "910f834e5e593d2800e67e928fdb10328dd6710cb2e669132fc9f4dc2fb7660b"
+    basis_surfaces_sha256: str = "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+    approved_return_files: tuple[tuple[str, str], ...] = RETURN_FILE_HASHES
     original_surfaces_sha256: str = "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6"
-    approved_surfaces_sha256: str = "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+    approved_surfaces_sha256: str = "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
     run: int = 43530667812
     build_job: int = 132247240154
     artifact: int = 14089507933
@@ -67,7 +85,9 @@ CARDS_FILES = frozenset({
     "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
     "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
 })
-ALLOWLIST = OCR_FILES | BINDER_FILES | CARDS_FILES
+HELPER_PATH = ".github/probes/creative_android_probe.py"
+RETURN_FILES = frozenset(path for path, _digest in RETURN_FILE_HASHES)
+ALLOWLIST = OCR_FILES | BINDER_FILES | CARDS_FILES | RETURN_FILES
 TOURS = (
     ".github/probes/modernization_android_tour.py",
     SURFACES_PATH,
@@ -193,18 +213,28 @@ def verify_sources(qa: Path, candidate: Path, expected_qa: str, runtime_roots: t
     qa_report, qa_tree = source_checkout(qa, expected_qa, runtime_roots)
     product_report, product_tree = source_checkout(candidate, expected.host)
     require(git(qa, "merge-base", expected.qa_basis, expected_qa).decode().strip() == expected.qa_basis,
-            "QA source does not descend from the exact reviewed a446 basis")
+            "QA source does not descend from the exact reviewed 3e08 basis")
     basis_tree = git_tree(qa, expected.qa_basis)
     changed = {name for name in qa_tree.keys() | product_tree.keys()
                if qa_tree.get(name) != product_tree.get(name)}
     require(changed == ALLOWLIST,
-            f"QA delta differs from the exact sixteen reviewed paths: unexpected={sorted(changed - ALLOWLIST)}, missing={sorted(ALLOWLIST - changed)}")
+            f"QA delta differs from the exact twenty-six reviewed paths: unexpected={sorted(changed - ALLOWLIST)}, missing={sorted(ALLOWLIST - changed)}")
     for name in ALLOWLIST:
-        require(qa_tree.get(name, {}).get("mode") in {"100644", "100755"},
-                f"Allowed QA file is missing or not regular: {name}")
-    for name in OCR_FILES:
+        require(qa_tree.get(name, {}).get("mode") == "100644",
+                f"Allowed QA file is missing or its reviewed 100644 mode changed: {name}")
+    for name in (OCR_FILES | CARDS_FILES) - {HELPER_PATH, SURFACES_PATH}:
         require(qa_tree[name] == basis_tree.get(name),
-                f"Previously reviewed a446 OCR source or fixture changed: {name}")
+                f"Previously reviewed 3e08 OCR/Cards source or fixture changed: {name}")
+    require(hashlib.sha256(git(qa, "show", f"{expected.qa_basis}:{HELPER_PATH}")).hexdigest()
+            == expected.basis_helper_sha256, "Exact 3e08 helper basis differs")
+    require(sha256(qa / HELPER_PATH) == expected.approved_helper_sha256,
+            "Helper bytes differ from the exact approved loading-frame correction")
+    approved_return = dict(expected.approved_return_files)
+    require(len(expected.approved_return_files) == len(RETURN_FILES)
+            and set(approved_return) == RETURN_FILES, "Explicit return-fixture hash roster differs")
+    for name, approved_hash in approved_return.items():
+        require(sha256(qa / name) == approved_hash,
+                f"Return replay/test/fixture differs from the exact reviewed bytes: {name}")
     for root in (qa, candidate):
         require(read_json(root / "config/godot-source.json").get("revision") == expected.native,
                 "Actual checkout native pin changed")
@@ -212,8 +242,9 @@ def verify_sources(qa: Path, candidate: Path, expected_qa: str, runtime_roots: t
         require(match is not None and match[1] == "0.13.7+2019", "Actual checkout version changed")
     require(TOURS[0] in product_tree and qa_tree[TOURS[0]] == product_tree[TOURS[0]],
             "The original modernization tour changed")
-    require(SURFACES_PATH in product_tree and basis_tree.get(SURFACES_PATH) == product_tree[SURFACES_PATH],
-            "The a446 surface-reader basis differs from the original product reader")
+    require(SURFACES_PATH in product_tree and
+            hashlib.sha256(git(qa, "show", f"{expected.qa_basis}:{SURFACES_PATH}")).hexdigest()
+            == expected.basis_surfaces_sha256, "The exact 3e08 surface-reader basis differs")
     require(sha256(candidate / SURFACES_PATH) == expected.original_surfaces_sha256,
             "Original Studio surface-reader bytes differ from the reviewed baseline")
     require(sha256(qa / SURFACES_PATH) == expected.approved_surfaces_sha256,
@@ -221,8 +252,12 @@ def verify_sources(qa: Path, candidate: Path, expected_qa: str, runtime_roots: t
     return {
         "qa": qa_report, "product": product_report,
         "qa_basis": expected.qa_basis,
-        "tour_execution_scope": "Modernization unchanged; Studio surface reader bound to the exact approved read-only correction",
+        "tour_execution_scope": "Modernization unchanged; Studio read-only readiness and loading-frame correction exactly hash-bound",
+        "helper_binding": {"path": HELPER_PATH, "basis_sha256": expected.basis_helper_sha256,
+                           "approved_sha256": expected.approved_helper_sha256},
+        "return_fixture_binding": approved_return,
         "surface_reader_binding": {"path": SURFACES_PATH,
+                                   "basis_sha256": expected.basis_surfaces_sha256,
                                    "original_sha256": expected.original_surfaces_sha256,
                                    "approved_sha256": expected.approved_surfaces_sha256},
         "unchanged_other_git_entries": len((qa_tree.keys() | product_tree.keys()) - changed),

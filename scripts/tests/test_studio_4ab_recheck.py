@@ -74,13 +74,23 @@ class GitBindingTests(unittest.TestCase):
             put(self.qa / name, ("# reviewed QA-only fixture " + name + "\n").encode())
             command(self.qa, "add", "--", name)
         command(self.qa, "commit", "-qm", "Synthetic original nine-path QA basis")
-        self.expected = replace(self.expected, qa_basis=command(self.qa, "rev-parse", "HEAD"))
         for name in MODULE.CARDS_FILES:
             put(self.qa / name, ("# reviewed Cards-only fixture " + name + "\n").encode())
             command(self.qa, "add", "--", name)
+        command(self.qa, "commit", "-qm", "Synthetic reviewed sixteen-path 3e08 basis")
         self.expected = replace(self.expected,
-                                approved_surfaces_sha256=MODULE.sha256(self.qa / MODULE.SURFACES_PATH))
-        command(self.qa, "commit", "-qm", "Synthetic exact QA delta")
+                                qa_basis=command(self.qa, "rev-parse", "HEAD"),
+                                basis_helper_sha256=MODULE.sha256(self.qa / MODULE.HELPER_PATH),
+                                basis_surfaces_sha256=MODULE.sha256(self.qa / MODULE.SURFACES_PATH))
+        for name in MODULE.RETURN_FILES | {MODULE.HELPER_PATH, MODULE.SURFACES_PATH}:
+            put(self.qa / name, ("# reviewed return-only fixture " + name + "\n").encode())
+            command(self.qa, "add", "--", name)
+        self.expected = replace(self.expected,
+                                approved_helper_sha256=MODULE.sha256(self.qa / MODULE.HELPER_PATH),
+                                approved_surfaces_sha256=MODULE.sha256(self.qa / MODULE.SURFACES_PATH),
+                                approved_return_files=tuple((name, MODULE.sha256(self.qa / name))
+                                                            for name in sorted(MODULE.RETURN_FILES)))
+        command(self.qa, "commit", "-qm", "Synthetic exact twenty-six-path QA delta")
         self.qa_head = command(self.qa, "rev-parse", "HEAD")
         self.product = self.qa / "candidate-source"
         subprocess.run(["git", "clone", "-q", "--no-hardlinks", str(base), str(self.product)], check=True)
@@ -89,9 +99,9 @@ class GitBindingTests(unittest.TestCase):
     def verify(self):
         return MODULE.verify_sources(self.qa, self.product, self.qa_head, self.runtime, self.expected)
 
-    def test_exact_sixteen_file_delta_and_real_worktree_pass(self):
+    def test_exact_twenty_six_file_delta_and_real_worktree_pass(self):
         result = self.verify()
-        self.assertEqual(len(result["reviewed_delta"]), 16)
+        self.assertEqual(len(result["reviewed_delta"]), 26)
         self.assertEqual(result["product"]["head"], self.expected.host)
         self.assertEqual(result["qa"]["head"], self.qa_head)
         self.assertTrue(result["qa"]["tracked_source_clean"])
@@ -102,14 +112,27 @@ class GitBindingTests(unittest.TestCase):
         self.assertEqual(result["surface_reader_binding"]["approved_sha256"],
                          self.expected.approved_surfaces_sha256)
 
-    def test_committed_surface_change_cannot_use_the_reviewed_path_as_a_blanket_exception(self):
-        # A clean committed file still fails when it is not the exact reviewed correction.
-        put(self.qa / MODULE.SURFACES_PATH, "# unrelated clean committed surface change\n")
-        command(self.qa, "add", "--", MODULE.SURFACES_PATH)
-        command(self.qa, "commit", "-qm", "Tampered allowed surface-reader path")
-        self.qa_head = command(self.qa, "rev-parse", "HEAD")
-        with self.assertRaisesRegex(RuntimeError, "exact approved read-only correction"):
-            self.verify()
+    def test_committed_reviewed_paths_cannot_authorize_wrong_source_or_fixture_bytes(self):
+        # Even clean commits on explicitly allowed paths must have reviewed bytes.
+        cases = [(MODULE.SURFACES_PATH, "exact approved read-only correction"),
+                 (MODULE.HELPER_PATH, "exact approved loading-frame correction"),
+                 ("tools/android_qa/tests/test_flutter_loading_frame_rejection.py",
+                  "exact reviewed bytes"),
+                 ("tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
+                  "exact reviewed bytes")]
+        for name, message in cases:
+            with self.subTest(path=name):
+                original = (self.qa / name).read_bytes()
+                put(self.qa / name, b"# unrelated clean committed modification\n")
+                command(self.qa, "add", "--", name)
+                command(self.qa, "commit", "-qm", "Tampered explicitly allowed source path")
+                self.qa_head = command(self.qa, "rev-parse", "HEAD")
+                with self.assertRaisesRegex(RuntimeError, message):
+                    self.verify()
+                put(self.qa / name, original)
+                command(self.qa, "add", "--", name)
+                command(self.qa, "commit", "-qm", "Restore reviewed bytes for next counterexample")
+                self.qa_head = command(self.qa, "rev-parse", "HEAD")
 
     def test_product_change_outside_allowlist_is_rejected(self):
         put(self.qa / "lib/product.dart", "void main() { throw 1; }\n")
