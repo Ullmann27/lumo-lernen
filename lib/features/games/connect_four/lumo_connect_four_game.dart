@@ -19,6 +19,12 @@ const _cyan = Color(0xFF53DDFD);
 const _gold = Color(0xFFFFD166);
 const _ink = Color(0xFF071A3D);
 const _panel = Color(0xEB0C2C58);
+const _columnTouchSize = 48.0;
+const _boardPadding = 10.0;
+const _boardBorderWidth = 2.4;
+const _boardContentInset = _boardPadding + _boardBorderWidth;
+const _minimumBoardWidth =
+    ConnectFourEngine.columns * _columnTouchSize + _boardContentInset * 2;
 
 class LumoConnectFourScreen extends StatefulWidget {
   const LumoConnectFourScreen({super.key, required this.appState, this.seed});
@@ -495,13 +501,20 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
           SafeArea(
             child: LayoutBuilder(builder: (context, constraints) {
               final wide = constraints.maxWidth > constraints.maxHeight;
+              // Use the edge space before making a phone board scroll.
+              final horizontalPadding = wide
+                  ? 20.0
+                  : math.min(
+                      12.0,
+                      math.max(0.0,
+                          (constraints.maxWidth - _minimumBoardWidth) / 2));
               return Column(children: [
                 _header(),
                 if (!wide) _modes(),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: wide ? 20 : 12, vertical: 8),
+                        horizontal: horizontalPadding, vertical: 8),
                     child: wide
                         ? Row(children: [
                             Expanded(flex: 3, child: _playArea()),
@@ -846,108 +859,106 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
 
   Widget _playArea() => LayoutBuilder(builder: (context, constraints) {
         const tableExtra = 28.0;
-        final availableHeight =
-            math.max(0.0, constraints.maxHeight - 56 - tableExtra);
-        final width = math.min(constraints.maxWidth, availableHeight * 7 / 6);
+        const controlsGap = 8.0;
+        final availableHeight = math.max(
+            0.0,
+            constraints.maxHeight -
+                _columnTouchSize -
+                controlsGap -
+                tableExtra);
+        final fittedWidth =
+            math.min(constraints.maxWidth, availableHeight * 7 / 6);
+        final width = math.max(fittedWidth, _minimumBoardWidth);
+        final boardHeight = math.min(availableHeight, width * 6 / 7);
+        // Board wells and their 48dp controls share one coordinate system.
+        // On narrow/short displays they scroll together; only the well spacing
+        // changes with the available height, never the column hit targets.
         return Align(
           alignment: Alignment.topCenter,
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            SizedBox(
-              width: width,
-              height: width * 6 / 7 + tableExtra,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    left: -18,
-                    right: -18,
-                    bottom: 0,
-                    height: width * 6 / 7 * 0.42 + tableExtra,
-                    child: const IgnorePointer(
-                      child: CustomPaint(
-                        painter: LumoConnectFourTablePedestal(),
-                        child: SizedBox.expand(),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: width * 6 / 7,
-                    child: _board(),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
-            SizedBox(
-              width: width,
-              child: _columnControls(maxWidth: width),
-            ),
-          ]),
-        );
-      });
-
-  Widget _columnControls({double maxWidth = 560}) => Center(
-        // On an outer Fold display (or a small phone with large text), seven
-        // minimum 48dp touch targets cannot always fit side-by-side.
-        // Keep every real column control accessible by horizontal scrolling
-        // instead of compressing its hit target or overflowing the viewport.
-        child: SizedBox(
-          width: maxWidth,
-          child: SingleChildScrollView(
-            key: const ValueKey('connect-column-scroll'),
-            scrollDirection: Axis.horizontal,
-            child: SizedBox(
-              width:
-                  math.max(maxWidth, ConnectFourEngine.columns * 48.0 + 24.0),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Row(children: [
-                  for (var c = 0; c < ConnectFourEngine.columns; c++)
-                    Expanded(
-                      child: LumoPressable(
-                        enabled: !_busy && !_clock.value,
-                        radius: 12,
-                        child: IconButton(
-                          key: ValueKey('connect-column-$c'),
-                          tooltip: 'Stein in Spalte ${c + 1}',
-                          style: IconButton.styleFrom(
-                            backgroundColor: _panel,
-                            minimumSize: const Size(48, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: BorderSide(
-                                  color: _cyan.withValues(alpha: .5)),
+          child: SizedBox(
+            width: math.min(constraints.maxWidth, width),
+            child: SingleChildScrollView(
+              key: const ValueKey('connect-column-scroll'),
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                width: width,
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  SizedBox(
+                    height: boardHeight + tableExtra,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Positioned(
+                          left: -18,
+                          right: -18,
+                          bottom: 0,
+                          height: boardHeight * 0.42 + tableExtra,
+                          child: const IgnorePointer(
+                            child: CustomPaint(
+                              painter: LumoConnectFourTablePedestal(),
+                              child: SizedBox.expand(),
                             ),
                           ),
-                          onPressed: !_busy &&
-                                  !_clock.value &&
-                                  _game.phase == ConnectPhase.playing &&
-                                  _game.validColumns.contains(c)
-                              ? () => _tapColumn(c)
-                              : null,
-                          icon: Icon(Icons.arrow_downward_rounded,
-                              size: 24,
-                              color: _busy
-                                  ? Colors.white24
-                                  : _game.turn == ConnectPiece.child
-                                      ? _cyan
-                                      : _gold),
                         ),
-                      ),
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: boardHeight,
+                          child: _board(),
+                        ),
+                      ],
                     ),
+                  ),
+                  const SizedBox(height: controlsGap),
+                  _columnControls(),
                 ]),
               ),
             ),
           ),
-        ),
+        );
+      });
+
+  Widget _columnControls() => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: _boardContentInset),
+        child: Row(children: [
+          for (var c = 0; c < ConnectFourEngine.columns; c++)
+            Expanded(
+              child: LumoPressable(
+                enabled: !_busy && !_clock.value,
+                radius: 12,
+                child: IconButton(
+                  key: ValueKey('connect-column-$c'),
+                  tooltip: 'Stein in Spalte ${c + 1}',
+                  style: IconButton.styleFrom(
+                    backgroundColor: _panel,
+                    minimumSize: const Size.square(_columnTouchSize),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(color: _cyan.withValues(alpha: .5)),
+                    ),
+                  ),
+                  onPressed: !_busy &&
+                          !_clock.value &&
+                          _game.phase == ConnectPhase.playing &&
+                          _game.validColumns.contains(c)
+                      ? () => _tapColumn(c)
+                      : null,
+                  icon: Icon(Icons.arrow_downward_rounded,
+                      size: 24,
+                      color: _busy
+                          ? Colors.white24
+                          : _game.turn == ConnectPiece.child
+                              ? _cyan
+                              : _gold),
+                ),
+              ),
+            ),
+        ]),
       );
 
   Widget _board() => Center(
-        child: AspectRatio(
-          aspectRatio: 7 / 6,
+        child: SizedBox.expand(
           child: RepaintBoundary(
             child: Stack(
               clipBehavior: Clip.none,
@@ -992,12 +1003,13 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(_boardPadding),
                   decoration: BoxDecoration(
                     color: const Color(0xE0081636),
                     borderRadius: BorderRadius.circular(26),
-                    border:
-                        Border.all(color: const Color(0xFF8AF0FF), width: 2.4),
+                    border: Border.all(
+                        color: const Color(0xFF8AF0FF),
+                        width: _boardBorderWidth),
                     boxShadow: const [
                       BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
                       BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
