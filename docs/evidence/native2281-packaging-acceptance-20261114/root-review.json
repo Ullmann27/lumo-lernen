@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T15:48:24.722Z",
+  "reviewer": "/root",
+  "native_source": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "native_tree": "d7e0128afbda641cb92e29c41a8839d901ef5b43",
+  "actual_reader_reviewed": "inspect_pack_notices.gd",
+  "reader_checks": [
+    "A separate minimal project has none of the three resource paths before the actual PCK is loaded.",
+    "The same Godot4.6.3 reader loads both actual PCK files, records the entire pack SHA256, and reads member bytes directly.",
+    "Every new extracted member was independently hashed by Root against its exact original source digest.",
+    "All 127 technical archive members were compared in full against their frozen on-disk bytes by Root."
+  ],
+  "old_fresh_export": {
+    "source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "bytes": 75401288,
+    "sha256": "73ec41411b51126577a40d292afac6ec4b3d8c2876c379c2fbad6da896f99592",
+    "notice_count": 0
+  },
+  "new_fresh_export": {
+    "bytes": 75406004,
+    "sha256": "bc373d93072ee5b6e2f6cc885e1bd904911dd11f96bf3e645c79f661ab772929",
+    "notice_count": 3,
+    "all_original_bytes_equal": true
+  },
+  "technical_archive": {
+    "bytes": 4470581,
+    "members": 127,
+    "sha256": "903f68016cbf7cbb0b1f2484f1cbdc9258ba461a55dc17527f257fe9fa645152"
+  },
+  "limits": [
+    "The old local export is not claimed to be a historical shipped APK artifact.",
+    "This review adds no device/gameplay/render/FPS acceptance.",
+    "The two full PCKs remain locally intact; the technical archive explicitly excludes those payloads."
+  ]
+}

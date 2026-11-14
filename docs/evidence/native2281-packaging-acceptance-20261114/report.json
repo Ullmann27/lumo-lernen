@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "status": "QUALIFIED_ANDROID_PCK_NOTICE_PACKAGING",
+  "created_utc": "2026-11-14T15:46:39.754734+00:00",
+  "repository": "Ullmann27/lumo-godot",
+  "engine": {
+    "path": "/opt/godot/4.6.3/Godot_v4.6.3-stable_linux.x86_64",
+    "bytes": 138981968,
+    "sha256": "f64d4ed19fc9df9440321653fcc80df8c6e365ba7b6de0a29e2cfa9fa71bfeb3",
+    "version_command": [
+      "/opt/godot/4.6.3/Godot_v4.6.3-stable_linux.x86_64",
+      "--version"
+    ],
+    "version_stdout": "4.6.3.stable.official.7d41c59c4\n",
+    "version_stderr": "",
+    "version_exit_code": 0
+  },
+  "source_before": {
+    "head": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+    "tracked_count": 3689
+  },
+  "source_after": {
+    "head": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+    "tree": "d7e0128afbda641cb92e29c41a8839d901ef5b43",
+    "tracked_count": 3703
+  },
+  "exact_source_delta": "actual-source-delta.json",
+  "source_delta": {
+    "three_entries_match_original_freeze": true,
+    "remaining_base_entries_unchanged": 3686,
+    "added_evidence_documents": 14
+  },
+  "actual_exports": [
+    {
+      "case": "before-baf",
+      "head": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+      "tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+      "pack": {
+        "bytes": 75401288,
+        "sha256": "73ec41411b51126577a40d292afac6ec4b3d8c2876c379c2fbad6da896f99592",
+        "git_blob": "04e909072278f6cd2d459d92770fd03b51dbb8bd"
+      },
+      "source_index_and_all_tracked_bytes_modes_unchanged": true,
+      "generated_uid_files": 357,
+      "generated_files_retained_and_archived": true,
+      "import": {
+        "exit_code": 0,
+        "timed_out": false,
+        "original_streams_verified": true,
+        "elapsed_seconds": 59.314538,
+        "error_warning_leak_matches": []
+      },
+      "export": {
+        "exit_code": 0,
+        "timed_out": false,
+        "original_streams_verified": true,
+        "elapsed_seconds": 11.922835,
+        "error_warning_leak_matches": []
+      },
+      "inspection_exit": 0,
+      "paths": {
+        "logs": "before-baf",
+        "qualification": "before-baf/qualification.json",
+        "inspection": "before-baf/inspection/pack-notices.json",
+        "before": "before-baf/before/snapshot.json",
+        "after": "before-baf/after/snapshot.json"
+      }
+    },
+    {
+      "case": "after-2281",
+      "head": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+      "tree": "d7e0128afbda641cb92e29c41a8839d901ef5b43",
+      "pack": {
+        "bytes": 75406004,
+        "sha256": "bc373d93072ee5b6e2f6cc885e1bd904911dd11f96bf3e645c79f661ab772929",
+        "git_blob": "492ea5c501074843a29a0c1ad86ab95834ff485e"
+      },
+      "source_index_and_all_tracked_bytes_modes_unchanged": true,
+      "generated_uid_files": 357,
+      "generated_files_retained_and_archived": true,
+      "import": {
+        "exit_code": 0,
+        "timed_out": false,
+        "original_streams_verified": true,
+        "elapsed_seconds": 44.617318,
+        "error_warning_leak_matches": []
+      },
+      "export": {
+        "exit_code": 0,
+        "timed_out": false,
+        "original_streams_verified": true,
+        "elapsed_seconds": 19.192538,
+        "error_warning_leak_matches": []
+      },
+      "inspection_exit": 0,
+      "paths": {
+        "logs": "after-2281",
+        "qualification": "after-2281/qualification.json",
+        "inspection": "after-2281/inspection/pack-notices.json",
+        "before": "after-2281/before/snapshot.json",
+        "after": "after-2281/after/snapshot.json"
+      }
+    }
+  ],
+  "observed_notice_membership": {
+    "fresh_baf_export": {
+      "assets/characters/lumo_facial/ATTRIBUTION.md": false,
+      "assets/characters/lumo_animated/ATTRIBUTION.md": false,
+      "THIRD_PARTY_NOTICES.md": false
+    },
+    "fresh_2281_export": {
+      "assets/characters/lumo_facial/ATTRIBUTION.md": {
+        "present": true,
+        "byte_equal": true,
+        "bytes": 2626,
+        "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+        "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216"
+      },
+      "assets/characters/lumo_animated/ATTRIBUTION.md": {
+        "present": true,
+        "byte_equal": true,
+        "bytes": 1640,
+        "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+        "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7"
+      },
+      "THIRD_PARTY_NOTICES.md": {
+        "present": true,
+        "byte_equal": true,
+        "bytes": 1582,
+        "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+        "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c"
+      }
+    }
+  },
+  "method": "One original import and one Android --export-pack per exact source; original process streams retained. Same unmodified inspector loads each actual PCK through Godot4.6.3 into a separate minimal project that has none of the three resource paths before loading, then reads original bytes without ResourceLoader conversion. Independent Python byte comparison is recorded for the new PCK.",
+  "limits": [
+    "These are fresh source-bound PCK exports. Neither is claimed to be the already published or installed historical C4 APK/PCK.",
+    "No APK installation, Android runtime, game, renderer, FPS, release or complete 52/17 regression result is inferred.",
+    "No project/source change, cleanup, remote Git/ref/CI mutation or hidden engine retry.",
+    "The packaging fix concerns the Android preset; no Web/Linux packaging qualification was performed.",
+    "Complete PCK files remain at the exact local paths in excluded-pck-originals.json and are not duplicated in the compact technical proof."
+  ]
+}
