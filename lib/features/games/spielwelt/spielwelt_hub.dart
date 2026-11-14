@@ -368,6 +368,11 @@ class _SpielweltHubState extends State<SpielweltHub> {
                             'Magische 3D-Spielewelt betreten',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w900,
+                              fontSize: 14,
+                            ),
                           ),
                           style: OutlinedButton.styleFrom(
                             foregroundColor: const Color(0xFFFFE7A0),
