@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "recorded_utc": "2026-11-14 13:38:12 UTC",
-  "status": "IN_PROGRESS_NOT_A_RELEASE_APPROVAL",
+  "recorded_utc": "2026-11-14 15:03:29 UTC",
+  "status": "BLOCKED_ANDROID_CURRENT_AND_UPDATE_FAILED",
   "host": {
     "repository": "Ullmann27/lumo-lernen",
     "head": "1e22d2455937e2640d1e44e153d290746f3afe49",
@@ -19,15 +19,70 @@
     "id": 43596913210,
     "attempt": 1,
     "workflow": ".github/workflows/lumo-connect-four-2020.yml",
-    "status": "in_progress",
+    "status": "completed",
     "passed_jobs": [
       "connect-four-runtime",
-      "android-host-compile"
+      "android-host-compile",
+      "verify-and-build"
     ],
     "main_job": 132454178537,
-    "main_active_step": 31,
+    "main_active_step": null,
     "native_main_started_at": "2026-11-14T13:19:58Z",
-    "observed_utc": "2026-11-14 13:36:29 UTC"
+    "observed_utc": "2026-11-14 15:03:29 UTC",
+    "main_status": "completed",
+    "main_conclusion": "success",
+    "main_completed_at": "2026-11-14T14:53:43Z",
+    "android_job": 132484382995,
+    "update_job": 132484382954,
+    "android_status": "completed",
+    "update_status": "completed",
+    "jobs": [
+      {
+        "id": 132453271437,
+        "name": "connect-four-runtime",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 132453271671,
+        "name": "android-host-compile",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 132454178537,
+        "name": "verify-and-build",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 132484382954,
+        "name": "update-2020-from-2017",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 132484382995,
+        "name": "android-c4",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 132486880104,
+        "name": "verify-c4-candidate",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 132486881001,
+        "name": "prepare-c4-delivery",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ],
+    "conclusion": "failure",
+    "android_conclusion": "failure",
+    "update_conclusion": "failure"
   },
   "full_flutter": {
     "passed": 2627,
@@ -120,14 +175,233 @@
     "activation_reason": "Use a real source-to-publisher existing-ref update so the added workflow path is the actual push diff; do not assume branch creation alone dispatched the push workflow. This connector already produced actual push run43596910763 when central ref advanced to1e22."
   },
   "required_next": [
-    "Finish all seven current acceptance jobs successfully.",
-    "Review exact original APK, real API35 C4 and direct Village return, data-preserving update from2017, and original delivery replay.",
-    "Freshly verify source/run/attempt/open PR and tag/release vacancy.",
-    "After all gates: create delivery/lumo-live-2020-20261114 at accepted Host1e22; then fast-forward with expected_sha1e22 to prepared9448 (force=false). Observe the actual push publisher run. No source changes or old publisher commits.",
-    "Inspect actual publication receipts and unauthenticated public APK bytes before returning the single .apk URL."
+    "Read the two original terminal Android job logs and failure artifacts; identify the actual first failure in each.",
+    "Correct the concrete issue without weakening acceptance or altering protected learning/journal/writing behavior.",
+    "Rerun the required exact-source acceptance on the corrected candidate; all seven successful jobs and original delivery replay remain mandatory.",
+    "Keep the existing publisher9448 inactive; it is not authorized to publish this failed run.",
+    "Rebind and reverify any future publisher only after corrected exact-source acceptance succeeds, with new actual run/attempt facts.",
+    "Verify immutable release and unauthenticated public APK bytes before returning any single .apk URL."
   ],
   "signing_scope": "Existing stable test certificate; no Play-production signing or physical-device60FPS approval.",
   "existing_main_modified": false,
-  "apk_built": false,
-  "public_release_created": false
+  "apk_built": true,
+  "public_release_created": false,
+  "native_current_artifact": {
+    "id": 14118079396,
+    "bytes": 226400623,
+    "sha256": "ff250719d53ed02c3e13900c4771975bbf8661e74059b9757133891f96804457",
+    "run": 43596913210,
+    "attempt": 1,
+    "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "native_step34": {
+      "started": "2026-11-14T14:24:28Z",
+      "completed": "2026-11-14T14:44:55Z",
+      "conclusion": "success",
+      "seconds": 1227
+    },
+    "upload_completed": "2026-11-14T14:45:14Z",
+    "original_verification_owner": "godot_integration",
+    "original_verification_status": "in_progress",
+    "archive_integrity": {
+      "downloaded_once": true,
+      "zip_files": 6074,
+      "uncompressed_bytes": 588336682,
+      "png_count": 188,
+      "crc_passed": true,
+      "safe_paths": true,
+      "no_duplicates": true
+    },
+    "original_end_markers": {
+      "nextgen": "52 probes /17 raster frames",
+      "return_checks": 21,
+      "dream": "5 probes /7 PNG /2 reports",
+      "live": "9 probes /7 PNG",
+      "discovery": "10 probes /38 PNG",
+      "jump": "[JumpOriginalLumo] PASS: original65-boneGLB visible, grounded, moving, paused and resumed",
+      "project": "117PASS /7WARN /0FAIL"
+    },
+    "source_binding_review": {
+      "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+      "tree": "1c2b5da7a4485cb8b911adcac2b567481cf902b5",
+      "nextgen_and_dream_dirty_stamps_empty": true,
+      "dream_reader_git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    "replay_status": "PASS_UNCHANGED_READERS_AND_EXACT_ORIGINAL_MANIFESTS",
+    "root_original_readback_pending": false,
+    "root_local_replay_reports_read": true,
+    "durable_native_replay_checkpoint": "PENDING_AGENT_ARCHIVAL",
+    "replay_environment": {
+      "python": "CPython3.12.14",
+      "pillow": "13.0.0",
+      "original_CI_pillow": "12.3.0",
+      "ci_version_actual_log_line": "Pillow ready12.3.0 at13:17:04.7703971Z",
+      "new_engine_or_renderer_runs": 0
+    },
+    "post_replay_integrity": {
+      "all6074_file_hashes_unchanged": true,
+      "total_original_bytes": 588336682,
+      "all188_pngs_fully_decoded": true,
+      "engine_or_leak_errors_in119_original_logs": 0
+    }
+  },
+  "current_arm64_apk": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "arm64-v8a"
+    ],
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true,
+    "bytes": 331354629,
+    "sha256": "44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+      "engine": "4.6.3",
+      "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+      "bytes": 75403096
+    },
+    "offlineVoice": {
+      "profile": "lumo-free-supertonic-de-v1",
+      "preset": "F2",
+      "speakerId": 1,
+      "sampleRate": 44100,
+      "onnxruntimeVersion": "1.23.1",
+      "clipCount": 155,
+      "modelSha256": {
+        "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+        "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+        "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+        "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+        "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+        "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+        "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+      },
+      "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+      "scope": "Actual APK package validation, not audible playback acceptance"
+    }
+  },
+  "current_x86_apk": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2020,
+    "versionName": "0.13.8",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "x86_64"
+    ],
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true,
+    "bytes": 334507298,
+    "sha256": "e65662ccc91366177a80bf6c6d43d364d9908836eb50bbe43625725d6010ab4b",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+      "engine": "4.6.3",
+      "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+      "bytes": 75403096
+    },
+    "offlineVoice": {
+      "profile": "lumo-free-supertonic-de-v1",
+      "preset": "F2",
+      "speakerId": 1,
+      "sampleRate": 44100,
+      "onnxruntimeVersion": "1.23.1",
+      "clipCount": 155,
+      "modelSha256": {
+        "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+        "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+        "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+        "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+        "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+        "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+        "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+      },
+      "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+      "scope": "Actual APK package validation, not audible playback acceptance"
+    }
+  },
+  "apk_original_log": {
+    "git_blob": "511fdb28b35703da777e38f6eda83722c4ca9d17",
+    "root_read": true,
+    "decoded_characters": 1936824,
+    "line_count": 15883,
+    "structured_apk_reports": 4
+  },
+  "apk_original_local_bytes_verification": {
+    "status": "PASS",
+    "artifact": 14118379876,
+    "archive_bytes": 331365042,
+    "archive_sha256": "e02bf416b5adf2d081de573dc2dd04b7d50a004b1bc8b33d91982f99ebfa8c4c",
+    "actual_apk_bytes": 331354629,
+    "actual_apk_sha256": "44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd",
+    "outer_zip_crc_pass": true,
+    "inner_apk_crc_pass": true,
+    "actual_embedded_pck_matches": true,
+    "actual_build_provenance_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tracked_source_clean": true,
+    "all_original_verification_fields_equal_CI": true,
+    "local_apksigner_rerun": false,
+    "signature_basis": "Actual original CI verifier on byte-identical APK; publisher will rerun apksigner fresh."
+  },
+  "native_warning_callgraph": {
+    "branch": "evidence/lumo-e9a9-warnings-callgraph-909ddb52fe7b",
+    "commit": "bca73b31e277be2a4797594b495ce8130b914f65",
+    "tree": "06c4418148326708d1319f198ce7f3d6a2aa40c3",
+    "review_blob": "321ca4ab23c9b81b22cfe2ca92ebbf001d65a27a",
+    "manifest_blob": "94a111879025a4c7425ba9bc7670d9448e13afad",
+    "root_read_complete": true,
+    "limits": "117 PASS / 7 WARN / 0 FAIL. Six missing unused model-manifest targets; direct web script executable bit absent, actual workflow calls bash. Standalone Home/ReadingHub/four reading games/Stars use legacy primitive Lumo. Exact current embedded graph bypasses those routes; Jump retains conditional fallback, actual original-rig test pending artifact. Not an Android acceptance."
+  },
+  "update_test_scope_source_review": {
+    "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "reviewed_files": [
+      ".github/probes/lumo_2020_update_android_probe.py",
+      ".github/probes/lumo_2003_update_android_probe.py",
+      "tools/android_qa/update_preservation.py",
+      "tools/android_qa/kart_tour_evidence.py"
+    ],
+    "requires": "Real baseline learning answer with earned stars and XP, same Android installation identity after install -r, approved2017→2020 independentEvidence migration, exact existing profile and learning-prefix values after offline Kart/restart/fold.",
+    "limit": "Journal/writing prefixes are compared if present. The baseline scripted journey does not explicitly create nonempty journal or writing content; inspect actual baseline prefs before asserting that specific persisted-content proof.",
+    "runtime_status": "PENDING_REAL_ANDROID_JOB"
+  },
+  "root_flutter_village_visual_review": {
+    "file": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/village/village-fold-wide-min.png",
+    "bytes": 555532,
+    "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+    "size": [
+      640,
+      829
+    ],
+    "review": "Root visually inspected original selected Flutter portal capture: two game-card columns at640px, full single-line Dorfwirtschaft label, no occluding avatar/button. This is a scrolled games-portal widget capture, not Android runtime or the native village scene.",
+    "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "run": 43596913210,
+    "artifact_id": 14115282912
+  },
+  "root_jump_visual_review": {
+    "artifact": 14118079396,
+    "path": "nextgen/captures/jump_nextgen_capture/jump_1280x720_ready.png",
+    "bytes": 753443,
+    "sha256": "c9b742bb31da8f8572c2b7e535e91ce0055f46a91798ac3e567c5061080f82ba",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "observation": "Root viewed unchanged original: rear-view orange-tail/ears and dark-blue-clothed character on first island; path, movement control, jump, Pause and Spiele visible. Face/glasses not judged from this rear view; original rig identity independently checked by exact source and headless probe. Not Android or motion evidence."
+  },
+  "failure_cause": "UNKNOWN_PENDING_ORIGINAL_TERMINAL_LOGS",
+  "apk_local_evidence": {
+    "commit": "a52891114797a3860d14d0fe3ecec946b72750e1",
+    "tree": "a233f2b8587f06b447760fcbd91d5111606f0015",
+    "branch": "evidence/lumo-live-android-1e22d245-20261114",
+    "manifest_blob": "0f3b0ed2a4dbd82466cff2a8079f9fde8a27b4d0",
+    "verification_blob": "3e1626010817ea4465ef6f6a2265aa0326b9b41b",
+    "provenance_blob": "51ae2b9b3304f2cd3b4ae9a0d635d132b4f6d018"
+  }
 }
