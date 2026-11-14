@@ -1,0 +1,25 @@
+{
+  "commit": "7136fd69d7343d6be1ff2171c26fa9d496665fda",
+  "tree": "e30bf5e130b41e8ca5588163d1e86de57b5ce6e3",
+  "local_read_only_source": "/tmp/lumo-root-recovery-1105/host-c4",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "git_blob": "d56118529b7493e819262e61427d627c01ee0753",
+      "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+      "bytes": 45539
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "git_blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff",
+      "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+      "bytes": 56951
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "git_blob": "a91e25120489d21fc409930d893f52b31448aea3",
+      "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+      "bytes": 66711
+    }
+  ]
+}

@@ -456,6 +456,42 @@ jobs:
           python3 -c 'from PIL import Image; print("Pinned-native Dream raster verification ready")'
           LUMO_DREAM_LOG_DIR="$dream_logs" LUMO_EXPECTED_NATIVE_SHA="$native_revision" \
             bash tools/validate_dream_connections.sh 2>&1 | tee "$native_logs/dream-runner.log"
+      - name: Require actual Discovery gates on the exact pinned native source
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          GIT_OPTIONAL_LOCKS: '0'
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          native_source="$RUNNER_TEMP/lumo-native-acceptance"
+          native_logs="$GITHUB_WORKSPACE/acceptance-native"
+          discovery_logs="$native_logs/discovery"
+          native_tree="$(git -C "$native_source" rev-parse "$native_revision^{tree}")"
+          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+          test "$(git -C "$native_source" rev-parse 'HEAD^{tree}')" = "$native_tree"
+          test -z "$(git -C "$native_source" status --porcelain --untracked-files=no)"
+          test ! -e "$discovery_logs" && test ! -L "$discovery_logs"
+          bind_native_discovery_helper() {
+            local name="$1" blob="$2" sha="$3"
+            test ! -L "$native_source/tools/$name"
+            test "$(git -C "$native_source" rev-parse "$native_revision:tools/$name")" = "$blob"
+            test "$(git -C "$native_source" hash-object "tools/$name")" = "$blob"
+            printf '%s  %s\n' "$sha" "$native_source/tools/$name" | sha256sum -c -
+          }
+          bind_native_discovery_helper verify_discovery_connections.py c00ca9873106c974d66282cddfdcfaf5eb3bbebc 5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf
+          bind_native_discovery_helper collect_discovery_connections.py 1ebdec66300dfb87bf9287d194525d3c374c8aee bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83
+          bind_native_discovery_helper verify_discovery_rasters.py 219e691fc8aa119cc80221b3db6c77e63caf8bfe 55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da
+          bind_native_discovery_helper verify_dream_rasters.py da8eed7d6383fcbc82a03596518a5fcc3b9a00c5 f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d
+          bind_native_discovery_helper run_godot_probe.py c23859ece2d62101d000d7a89556fda5d3fe4105 e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13
+          cd "$native_source"
+          python3 -c 'from PIL import Image; print("Pinned-native Discovery raster verification ready")'
+          LUMO_EXPECTED_NATIVE_SHA="$native_revision" LUMO_EXPECTED_NATIVE_TREE="$native_tree" \
+            python3 tools/collect_discovery_connections.py --project "$native_source" --output "$discovery_logs" \
+              --expected-native-sha "$native_revision" --expected-native-tree "$native_tree" --godot "$(command -v godot)" \
+            2>&1 | tee "$native_logs/discovery-collector.log"
+          test "$(grep -Fxc '[DiscoveryOriginals] PASS 10 exact probes, 38 decoded PNGs and 2 original reports' "$native_logs/discovery-collector.log")" = 1
       - uses: actions/upload-artifact@v4
         if: always()
         with:

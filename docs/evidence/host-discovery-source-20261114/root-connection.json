@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "status": "HOST_SOURCE_CHECKPOINT_TESTS_NOT_RUN",
+  "parent": "7136fd69d7343d6be1ff2171c26fa9d496665fda",
+  "new_source_changes": 3,
+  "existing_delivery_tests_preserved": 56,
+  "new_delivery_cases": 13,
+  "planned_total_delivery_cases": 69,
+  "actual_delivery_tests": "NOT_RUN",
+  "actual_actionlint": "NOT_RUN",
+  "root_review": "Read complete36-line workflow insertion and complete delivery/test diff. All existing56 test methods and78 definitions remain AST-identical;13 new boundary cases are additive. Exact Native reader/collector plus three original helpers are bound before import and rehashed after pure replay. No concrete source blocker identified.",
+  "independent_review_sha256": "f1253ea033d1175f7414c73af5fe839143378b399f3d3d258ed17610881c3633",
+  "native_ci_pending": {
+    "head": "c3008e6bba3909f422da127ba8d711f9bd821a33",
+    "run_id": 43592406370,
+    "result": "PENDING"
+  },
+  "new_native_pin_set": false,
+  "current_native_pin": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "active_c4_branch_changed": false,
+  "main_changed": false,
+  "next_required": "Run69 delivery cases plus11 existing pipeline cases and one Actionlint on exact new host checkpoint. Change native pin only after its actual complete separate acceptance."
+}

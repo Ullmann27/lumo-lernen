@@ -711,6 +711,246 @@ class DreamOriginalBoundaryTests(unittest.TestCase):
             self.check(effect=mutate)
 
 
+class DiscoveryRequiredStepTests(unittest.TestCase):
+    def test_missing_duplicate_skipped_or_failed_discovery_step_blocks_successful_build(self):
+        binding, run, pull, jobs, _ = fixture()
+        build = next(row for row in jobs['jobs'] if row['name'] == 'verify-and-build')
+        original = copy.deepcopy(build['steps'])
+        step = next(row for row in original if row['name'] == delivery.DISCOVERY_STEP)
+        cases = [[row for row in original if row['name'] != delivery.DISCOVERY_STEP], original+[step]]
+        for result in ('skipped', 'failure', 'cancelled'):
+            cases.append([{**row, 'conclusion': result} if row['name'] == delivery.DISCOVERY_STEP else row
+                          for row in original])
+        for changed in cases:
+            build['steps'] = changed
+            with self.subTest(steps=changed), self.assertRaises(ValueError):
+                delivery.checked_jobs(run, jobs, pull, binding, 999)
+
+    def test_new_workflow_step_binds_every_helper_after_full52_and_dream_without_budget_change(self):
+        text = (ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
+        build = job_block(text, 'verify-and-build')
+        begin = build.index('      - name: '+delivery.DISCOVERY_STEP+'\n')
+        end = build.index('      - uses: actions/upload-artifact@v4\n', begin)
+        step = build[begin:end]
+        self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), build.index('      - name: '+delivery.DREAM_STEP))
+        self.assertLess(build.index('bash tools/validate_dream_connections.sh'), begin)
+        self.assertLess(end, build.index('      - name: Build unified real Android APK'))
+        self.assertIn('    timeout-minutes: 90\n', build)
+        for wanted in ('set -euo pipefail', 'export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"',
+                       'native_source="$RUNNER_TEMP/lumo-native-acceptance"',
+                       'native_logs="$GITHUB_WORKSPACE/acceptance-native"',
+                       'discovery_logs="$native_logs/discovery"',
+                       'test ! -e "$discovery_logs" && test ! -L "$discovery_logs"',
+                       'rev-parse HEAD)" = "$native_revision"', "rev-parse 'HEAD^{tree}'",
+                       '--expected-native-sha "$native_revision"', '--expected-native-tree "$native_tree"',
+                       'LUMO_EXPECTED_NATIVE_SHA="$native_revision"',
+                       'LUMO_EXPECTED_NATIVE_TREE="$native_tree"',
+                       'tee "$native_logs/discovery-collector.log"'):
+            self.assertIn(wanted, step)
+        self.assertLess(step.index('export PATH='), step.index('cd "$native_source"'))
+        self.assertLess(step.index('cd "$native_source"'), step.index('from PIL import Image'))
+        for name, (sha, blob) in delivery.DISCOVERY_HELPERS.items():
+            self.assertIn(name, step); self.assertIn(sha, step); self.assertIn(blob, step)
+            self.assertLess(step.index(blob), step.index('python3 tools/collect_discovery_connections.py'))
+        for bad in ('continue-on-error', '|| true', 'if: always()', 'git fetch', 'git checkout',
+                    'mkdir "$discovery_logs"'):
+            self.assertNotIn(bad, step)
+        upload = build[end:build.index('      - name: Build unified real Android APK')]
+        self.assertIn('name: lumo-candidate-pinned-native-gameplay', upload)
+        self.assertIn('path: acceptance-native/', upload)
+
+
+class DiscoveryOriginalBoundaryTests(unittest.TestCase):
+    """Synthetic byte transport tests; the separately pinned real Native decoder is stubbed."""
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.base = Path(self.temp.name)
+        self.logs, self.source = self.base/'originals', self.base/'native-source'
+        self.root = self.logs/'discovery'; self.root.mkdir(parents=True)
+        (self.source/'tools').mkdir(parents=True)
+        self.index = self.source/'synthetic-index'
+        self.index.write_bytes(b'Explicit synthetic index; no Git or engine run.\n')
+        self.helper_bindings = {}
+        self.helper_bytes = {}
+        self.references = []
+        for name in delivery.DISCOVERY_HELPERS:
+            data = ('# Explicit synthetic helper boundary, never executed: '+name+'\n').encode()
+            (self.source/'tools'/name).write_bytes(data)
+            row = self.member('helpers/'+name, data)
+            self.helper_bindings[name] = (row['sha256'], row['git_blob'])
+            self.helper_bytes[name] = data
+        helper_rows = list(self.references)
+        probes = []
+        for number in range(10):
+            row = self.member('logs/synthetic-'+str(number)+'.log')
+            row['runner'] = self.member('logs/synthetic-'+str(number)+'.runner.log')
+            probes.append(row)
+        pngs = [self.member('captures/synthetic-'+str(i)+'.png') for i in range(38)]
+        reports = [self.member('captures/synthetic-'+str(i)+'.json') for i in range(2)]
+        self.member('source-commit.raw'); self.member('source-index-before.bin'); self.member('source-index-after.bin')
+        self.original = {'schema': 1, 'contract': 'discovery-originals-10-38-2',
+                         'native_source': 'b'*40, 'native_tree': 'c'*40,
+                         'probe_count': 10, 'png_count': 38, 'report_count': 2,
+                         'probes': probes, 'original_pngs': pngs, 'original_reports': reports,
+                         'bound_helpers': helper_rows, 'originals': self.references,
+                         'physical_android_fps_measured': False, 'complete_native52_acceptance': False}
+        self.manifest = self.root/'discovery-acceptance.json'
+        self.manifest.write_text(json.dumps(self.original))
+        self.runner = self.logs/'discovery-collector.log'
+        self.runner.write_text(delivery.DISCOVERY_PASS+'\n')
+
+    def member(self, name, data=None):
+        data = data if data is not None else ('Explicit synthetic original: '+name+'\n').encode()
+        path = self.root/name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data)
+        row = {'path': name, **delivery.record(path),
+               'git_blob': hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()}
+        self.references.append(copy.deepcopy(row))
+        return row
+
+    def check(self, *, fresh=None, effect=None, foreign=None, real_constants=False):
+        def git(command, **kwargs):
+            self.assertEqual(kwargs['cwd'], self.source)
+            self.assertEqual(kwargs['env']['GIT_OPTIONAL_LOCKS'], '0')
+            args = command[1:]
+            if args == ['rev-parse', 'HEAD']:
+                return (foreign if foreign and foreign != 'dirty' else 'b'*40)+'\n'
+            if args == ['rev-parse', 'HEAD^{tree}']: return 'c'*40+'\n'
+            if args == ['status', '--porcelain', '--untracked-files=no']:
+                return ' M tools/changed.py\n' if foreign == 'dirty' else ''
+            if args == ['rev-parse', '--git-path', 'index']: return 'synthetic-index\n'
+            if len(args) == 2 and args[0] == 'rev-parse' and args[1].startswith('b'*40+':tools/'):
+                return self.helper_bindings[args[1].split('/')[-1]][1]+'\n'
+            raise AssertionError('Unexpected real-source command: '+repr(command))
+        self.replay = mock.Mock(return_value=self.original if fresh is None else fresh, side_effect=effect)
+        self.loader = mock.Mock(return_value=SimpleNamespace(verify=self.replay))
+        constants = delivery.DISCOVERY_HELPERS if real_constants else self.helper_bindings
+        with mock.patch.object(delivery, 'DISCOVERY_HELPERS', constants), \
+             mock.patch.object(delivery.subprocess, 'check_output', side_effect=git), \
+             mock.patch.object(delivery, 'native_module', self.loader):
+            value = delivery.checked_native_discovery(self.logs, self.source, 'b'*40, 'c'*40)
+        self.loader.assert_called_once_with(self.source, 'verify_discovery_connections.py')
+        self.replay.assert_called_once_with(self.root, expected_native_sha='b'*40,
+                                           expected_native_tree='c'*40, write=False)
+        return value
+
+    def test_real_reader_and_collector_bindings_are_not_synthetic_fixtures(self):
+        self.assertEqual(delivery.DISCOVERY_HELPERS['verify_discovery_connections.py'],
+                         ('5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf',
+                          'c00ca9873106c974d66282cddfdcfaf5eb3bbebc'))
+        self.assertEqual(delivery.DISCOVERY_HELPERS['collect_discovery_connections.py'],
+                         ('bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83',
+                          '1ebdec66300dfb87bf9287d194525d3c374c8aee'))
+        with self.assertRaises(ValueError): self.check(real_constants=True)
+        self.loader.assert_not_called()
+
+    def test_complete_original_transport_uses_exact_pure_native_replay_without_writes(self):
+        before = {p.relative_to(self.base).as_posix(): p.read_bytes() for p in self.base.rglob('*') if p.is_file()}
+        result = self.check()
+        self.assertEqual((result['probe_modes'], result['png_count'], result['report_count']), (10, 38, 2))
+        self.assertEqual(result['source'], 'b'*40); self.assertEqual(result['tree'], 'c'*40)
+        self.assertEqual(result['recomputed_evidence'], self.original)
+        self.assertEqual(before, {p.relative_to(self.base).as_posix(): p.read_bytes()
+                                  for p in self.base.rglob('*') if p.is_file()})
+
+    def test_foreign_or_dirty_native_checkout_is_rejected_before_import(self):
+        for foreign in ('d'*40, 'dirty'):
+            with self.subTest(foreign=foreign), self.assertRaises(ValueError): self.check(foreign=foreign)
+            self.loader.assert_not_called()
+
+    def test_changed_missing_or_uncommitted_reader_collector_and_original_helpers_fail(self):
+        for name, data in self.helper_bytes.items():
+            for path in (self.source/'tools'/name, self.root/'helpers'/name):
+                path.write_bytes(data+b'changed')
+                with self.subTest(path=path), self.assertRaises(ValueError): self.check()
+                self.loader.assert_not_called()
+                path.unlink()
+                with self.subTest(missing=path), self.assertRaises(ValueError): self.check()
+                self.loader.assert_not_called()
+                path.write_bytes(data)
+        name = 'collect_discovery_connections.py'
+        sha, blob = self.helper_bindings[name]
+        self.helper_bindings[name] = (sha, 'd'*40)
+        with self.assertRaises(ValueError): self.check()
+        self.loader.assert_not_called()
+        self.helper_bindings[name] = (sha, blob)
+
+    def test_foreign_reduced_and_overclaimed_manifests_cannot_authorize_delivery(self):
+        changes = [{'native_source': 'd'*40}, {'native_tree': 'd'*40}, {'contract': 'old-discovery'},
+                   {'probe_count': True}, {'probe_count': 9}, {'png_count': 37}, {'report_count': 1},
+                   {'probes': self.original['probes'][:-1]},
+                   {'original_pngs': self.original['original_pngs'][:-1]},
+                   {'original_reports': self.original['original_reports'][:-1]},
+                   {'physical_android_fps_measured': True}, {'complete_native52_acceptance': True}]
+        for change in changes:
+            changed = {**self.original, **change}; self.manifest.write_text(json.dumps(changed))
+            with self.subTest(change=change), self.assertRaises(ValueError): self.check(fresh=changed)
+        self.manifest.write_text(json.dumps(self.original))
+
+    def test_changed_missing_or_symlinked_original_payload_fails_before_native_replay(self):
+        path = self.root/self.original['original_pngs'][0]['path']; data = path.read_bytes()
+        path.write_bytes(data+b'changed')
+        with self.assertRaises(ValueError): self.check()
+        self.loader.assert_not_called()
+        path.unlink()
+        with self.assertRaises(ValueError): self.check()
+        path.symlink_to(self.runner)
+        with self.assertRaises(ValueError): self.check()
+        self.loader.assert_not_called()
+        path.unlink(); path.write_bytes(data)
+
+    def test_duplicate_unsafe_and_false_original_hash_records_fail(self):
+        for value in ('../outside', '/absolute', './captures/first.png', 'captures/../outside', 'a\\b'):
+            changed = copy.deepcopy(self.original); changed['originals'][0]['path'] = value
+            self.manifest.write_text(json.dumps(changed))
+            with self.subTest(path=value), self.assertRaises(ValueError): self.check(fresh=changed)
+            self.loader.assert_not_called()
+        for field, value in (('git_blob', 'f'*40), ('bytes', True), ('sha256', 'f'*64)):
+            changed = copy.deepcopy(self.original); changed['originals'][0][field] = value
+            self.manifest.write_text(json.dumps(changed))
+            with self.subTest(field=field), self.assertRaises(ValueError): self.check(fresh=changed)
+        changed = copy.deepcopy(self.original); changed['originals'].append(changed['originals'][0])
+        self.manifest.write_text(json.dumps(changed))
+        with self.assertRaisesRegex(ValueError, 'Duplicate Discovery'): self.check(fresh=changed)
+
+    def test_categorized_proof_or_wrapper_cannot_escape_the_complete_index(self):
+        for change in ('png', 'runner', 'helpers'):
+            changed = copy.deepcopy(self.original)
+            if change == 'png': changed['original_pngs'][0]['path'] = 'captures/unindexed.png'
+            elif change == 'runner': changed['probes'][0]['runner']['path'] = 'logs/unindexed.runner.log'
+            else: changed['bound_helpers'].pop()
+            self.manifest.write_text(json.dumps(changed))
+            with self.subTest(change=change), self.assertRaises(ValueError): self.check(fresh=changed)
+            self.loader.assert_not_called()
+
+    def test_unique_collection_pass_cannot_hide_late_leak_timeout_or_failure(self):
+        original = self.runner.read_bytes()
+        for data in (b'', original+original, original+b'ERROR: retained resource\n',
+                     original+b'ObjectDB instances leaked at exit\n',
+                     original+b'[ProbeRunner] timeout after 420s\n',
+                     original+b'Traceback (most recent call last):\n',
+                     original+b'[DiscoveryOriginals] FAIL: renderer\n'):
+            self.runner.write_bytes(data)
+            with self.subTest(data=data[-80:]), self.assertRaises(ValueError): self.check()
+            self.loader.assert_not_called()
+        self.runner.write_bytes(original)
+
+    def test_fresh_native_decoder_failure_or_difference_is_not_overridden(self):
+        with self.assertRaisesRegex(ValueError, 'actual corrupt PNG'):
+            self.check(effect=ValueError('actual corrupt PNG'))
+        with self.assertRaises(ValueError):
+            self.check(fresh={**self.original, 'new': 'not the original manifest'})
+
+    def test_even_same_value_rewrites_or_index_mutation_by_replay_are_rejected(self):
+        for target in (self.manifest, self.index, self.source/'tools/collect_discovery_connections.py'):
+            original = target.read_bytes()
+            def mutate(*args, **kwargs):
+                target.write_bytes(original+b'\n')
+                return self.original
+            with self.subTest(target=target), self.assertRaisesRegex(ValueError, 'changed original evidence'):
+                self.check(effect=mutate)
+            target.write_bytes(original)
+
+
 class OriginalBundleTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)

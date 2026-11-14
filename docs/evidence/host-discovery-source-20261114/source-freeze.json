@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY",
+  "created_at": "2026-11-14T11:59:31.894865+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "7136fd69d7343d6be1ff2171c26fa9d496665fda",
+  "base_tree": "e30bf5e130b41e8ca5588163d1e86de57b5ce6e3",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before": {
+        "bytes": 45539,
+        "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+        "git_blob": "d56118529b7493e819262e61427d627c01ee0753"
+      },
+      "after": {
+        "bytes": 48514,
+        "sha256": "b98c9fd932ea56f33f17dcd73fe1c8841901ea1882598682dddb798b58cc26e8",
+        "git_blob": "e33ae242ad70efe73ec923ec2fba87cb8e0af632"
+      },
+      "storage_path": "final-source/.github/workflows/lumo-connect-four-2020.yml"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 56951,
+        "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+        "git_blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff"
+      },
+      "after": {
+        "bytes": 66477,
+        "sha256": "331f1e907f898ee50473e7fb9ca9279669a4005be5eb96605f90e414f8bd4f76",
+        "git_blob": "1fdbf66634b4e932e922b785ad8419f898373d8b"
+      },
+      "storage_path": "final-source/scripts/verify_connect_four_delivery.py"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 66711,
+        "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+        "git_blob": "a91e25120489d21fc409930d893f52b31448aea3"
+      },
+      "after": {
+        "bytes": 82309,
+        "sha256": "0a4ae03274aa1a669525780f628af4d794b929414916f6d9a7530d8339f3cce4",
+        "git_blob": "3ac2a960cdad4589ea18067a4f03f4fd5281f313"
+      },
+      "storage_path": "final-source/scripts/tests/test_connect_four_delivery.py"
+    }
+  ],
+  "bound_native_helpers": [
+    {
+      "path": "tools/collect_discovery_connections.py",
+      "bytes": 9979,
+      "sha256": "bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83",
+      "git_blob": "1ebdec66300dfb87bf9287d194525d3c374c8aee"
+    },
+    {
+      "path": "tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "git_blob": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+    },
+    {
+      "path": "tools/verify_discovery_connections.py",
+      "bytes": 23700,
+      "sha256": "5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf",
+      "git_blob": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc"
+    },
+    {
+      "path": "tools/verify_discovery_rasters.py",
+      "bytes": 11528,
+      "sha256": "55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da",
+      "git_blob": "219e691fc8aa119cc80221b3db6c77e63caf8bfe"
+    },
+    {
+      "path": "tools/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    }
+  ],
+  "existing_delivery_tests_preserved": 56,
+  "new_delivery_tests": 13,
+  "total_delivery_tests": 69,
+  "tests_executed": false,
+  "actionlint_executed": false,
+  "native_pin_changed": false,
+  "budgets_changed": false,
+  "git_mutations": 0,
+  "ci_actions": 0
+}

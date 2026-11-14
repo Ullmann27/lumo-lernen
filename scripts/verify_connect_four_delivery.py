@@ -59,6 +59,23 @@ DREAM_RUNNER_MARKERS = (
     '[DreamRasterRoster] PASS 7 actual PNG files and 2 original reports',
     '[LumoDreamConnections] PASS 5 original probes and 7 verified renderer PNGs',
 )
+DISCOVERY_STEP = 'Require actual Discovery gates on the exact pinned native source'
+DISCOVERY_PASS = '[DiscoveryOriginals] PASS 10 exact probes, 38 decoded PNGs and 2 original reports'
+DISCOVERY_HELPERS = {
+    'verify_discovery_connections.py': (
+        '5edab9f77acaa4114281b74166eec3dbf306eb5b574f677c03190a379081dfaf',
+        'c00ca9873106c974d66282cddfdcfaf5eb3bbebc'),
+    'collect_discovery_connections.py': (
+        'bfc9f32c8287849047e9f7babf400c107d790aecb21a45be16d45fa7302a3f83',
+        '1ebdec66300dfb87bf9287d194525d3c374c8aee'),
+    'verify_discovery_rasters.py': (
+        '55591b4478d2074135ea4950fb00200d68a3f9bede286b39642d7fc17aa586da',
+        '219e691fc8aa119cc80221b3db6c77e63caf8bfe'),
+    'verify_dream_rasters.py': (DREAM_VERIFIER_SHA256, DREAM_VERIFIER_BLOB),
+    'run_godot_probe.py': (
+        'e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13',
+        'c23859ece2d62101d000d7a89556fda5d3fe4105'),
+}
 REQUIRED_STEPS = {
     'connect-four-runtime': (
         'Import the exact configured native source in its own directory',
@@ -77,6 +94,7 @@ REQUIRED_STEPS = {
         'Code-level Android probe regression with verified image dependencies',
         'Require actual gameplay gates on the exact pinned native source',
         DREAM_STEP,
+        DISCOVERY_STEP,
         'Build unified real Android APK',
         'Verify APK archive and collect reproducible source hashes',
         'Upload exact candidate (no release or synthetic screenshots)',
@@ -531,9 +549,10 @@ def checked_native(logs: Path, source: Path, revision: str) -> dict:
     before = checked_native_extension(root, source, revision, tree)
     rosters['studio-2020-images.json'] = before
     dream = checked_native_dream(logs, source, revision, tree)
+    discovery = checked_native_discovery(logs, source, revision, tree)
     return {'source': revision, 'tree': tree, 'core_modes': 52, 'mode_logs': proofs,
             'complete_runner_log': runner_record,
-            'original_rosters': rosters, 'dream': dream,
+            'original_rosters': rosters, 'dream': dream, 'discovery': discovery,
             'scope': 'Actual pinned-source desktop engine and raster/movie proofs; no device FPS/audio claim'}
 
 
@@ -632,6 +651,134 @@ def checked_native_dream(logs: Path, source: Path, revision: str, tree: str) -> 
             'original_files': {'dream/'+path: identity for path, identity in originals.items()},
             'recomputed_evidence': fresh,
             'scope': 'Five additional pinned-source desktop Dream probes and seven decoded original PNGs; no human visual receipt, Android or FPS claim'}
+
+
+def checked_native_discovery(logs: Path, source: Path, revision: str, tree: str) -> dict:
+    """Recheck the exact committed Discovery collector/reader and all originals."""
+    git_env = {**os.environ, 'GIT_OPTIONAL_LOCKS': '0'}
+    def git(*args):
+        return subprocess.check_output(['git', *args], cwd=source, text=True, env=git_env).strip()
+
+    def source_state():
+        head, actual_tree = git('rev-parse', 'HEAD'), git('rev-parse', 'HEAD^{tree}')
+        require(head == revision and actual_tree == tree,
+                'Discovery replay checkout differs from the actual candidate Native pin/tree')
+        require(git('status', '--porcelain', '--untracked-files=no') == '',
+                'Discovery replay Native tracked source/index is dirty')
+        index = Path(git('rev-parse', '--git-path', 'index'))
+        if not index.is_absolute():
+            index = source/index
+        return {'source': head, 'tree': actual_tree, 'index': record(index)}
+
+    def original_path(root, relative):
+        require(type(relative) is str and relative and '\\' not in relative and
+                all(ord(c) >= 32 and ord(c) != 127 for c in relative), 'Invalid Discovery original path')
+        name = PurePosixPath(relative)
+        require(name.parts and not name.is_absolute() and '..' not in name.parts and
+                str(name) == relative and relative != '.', 'Unsafe Discovery original path')
+        path = root
+        for part in name.parts:
+            path = path/part
+            require(not path.is_symlink(), 'Symlink Discovery original path')
+        return regular(path)
+
+    before_source = source_state()
+    root = logs/'discovery'
+    require(root.is_dir(), 'Original Discovery directory required')
+    for ancestor in (root, *root.parents):
+        require(not ancestor.is_symlink(), 'Symlink Discovery evidence ancestor')
+    helpers = {}
+    # All imported checkout helpers and the actual collector are fixed before
+    # importing the Native verifier. Artifact copies are hash-bound evidence.
+    for name, (sha, blob) in DISCOVERY_HELPERS.items():
+        helper = original_path(source, 'tools/'+name)
+        preserved = original_path(root, 'helpers/'+name)
+        raw = helper.read_bytes()
+        helper_blob = hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+        helper_record = record(helper)
+        require(helper_record['sha256'] == sha and record(preserved) == helper_record
+                and helper_blob == blob and git('rev-parse', revision+':tools/'+name) == blob,
+                'Discovery collector/helper differs from its approved committed original: '+name)
+        helpers[name] = {'git_blob': blob, **helper_record,
+                         'source_path': 'tools/'+name, 'preserved_path': 'discovery/helpers/'+name}
+
+    manifest = original_path(root, 'discovery-acceptance.json')
+    manifest_record = record(manifest)
+    original = read(manifest)
+    require(type(original) is dict and type(original.get('schema')) is int and original['schema'] == 1
+            and original.get('contract') == 'discovery-originals-10-38-2'
+            and original.get('native_source') == revision and original.get('native_tree') == tree,
+            'Original Discovery manifest belongs to another source/contract')
+    for count, key, wanted in (('probe_count', 'probes', 10), ('png_count', 'original_pngs', 38),
+                               ('report_count', 'original_reports', 2)):
+        require(type(original.get(count)) is int and original[count] == wanted
+                and type(original.get(key)) is list and len(original[key]) == wanted,
+                'Incomplete original Discovery '+key)
+    require(original.get('physical_android_fps_measured') is False
+            and original.get('complete_native52_acceptance') is False,
+            'Discovery originals must not claim device FPS or replace full52 acceptance')
+    references = original.get('originals')
+    require(type(references) is list and references, 'Missing complete Discovery original byte index')
+    originals = {}
+    for row in references:
+        require(type(row) is dict and type(row.get('path')) is str, 'Invalid Discovery original record')
+        relative = row['path']
+        require(relative not in originals, 'Duplicate Discovery original path')
+        path = original_path(root, relative)
+        expected = {'bytes': row.get('bytes'), 'sha256': row.get('sha256')}
+        require(type(expected['bytes']) is int and expected['bytes'] >= 0
+                and type(expected['sha256']) is str and re.fullmatch('[a-f0-9]{64}', expected['sha256'])
+                and record(path) == expected, 'Changed or missing Discovery original: '+relative)
+        data = path.read_bytes()
+        require(row.get('git_blob') == hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest(),
+                'Discovery original Git-blob identity mismatch: '+relative)
+        originals[relative] = expected
+    groups = [original['original_pngs'], original['original_reports'], original['probes']]
+    bound_helpers = original.get('bound_helpers')
+    require(type(bound_helpers) is list and
+            {row.get('path') for row in bound_helpers if type(row) is dict} ==
+            {'helpers/'+name for name in DISCOVERY_HELPERS} and len(bound_helpers) == 5,
+            'Discovery manifest lacks its exact five bound helper originals')
+    groups.append(bound_helpers)
+    for group in groups:
+        seen = set()
+        for row in group:
+            require(type(row) is dict and type(row.get('path')) is str and row['path'] not in seen,
+                    'Invalid or duplicate categorized Discovery record')
+            seen.add(row['path'])
+            require(originals.get(row['path']) == {'bytes': row.get('bytes'), 'sha256': row.get('sha256')},
+                    'Discovery categorized record is missing from the complete original index')
+    for probe in original['probes']:
+        runner = probe.get('runner')
+        require(type(runner) is dict and type(runner.get('path')) is str
+                and originals.get(runner['path']) == {'bytes': runner.get('bytes'), 'sha256': runner.get('sha256')},
+                'Discovery original wrapper transcript is not byte-indexed')
+
+    runner = original_path(logs, 'discovery-collector.log')
+    runner_record = record(runner)
+    text = runner.read_bytes().decode('utf-8')
+    require(text.splitlines().count(DISCOVERY_PASS) == 1 and not ERROR_LINE.search(text)
+            and not re.search(r'\[ProbeRunner\] (?:FAIL|timeout)|\[DiscoveryOriginals\] FAIL|'
+                              r'Traceback \(most recent call last\)|Segmentation fault|core dumped', text),
+            'Original Discovery collection failed or lacks its exact unique ending')
+    verifier = native_module(source, 'verify_discovery_connections.py')
+    fresh = verifier.verify(root, expected_native_sha=revision, expected_native_tree=tree, write=False)
+    require(fresh == original, 'Current read-only Discovery replay differs from the original manifest')
+    require(record(manifest) == manifest_record and record(runner) == runner_record
+            and all(record(original_path(root, name)) == value for name, value in originals.items())
+            and all(record(original_path(source, row['source_path'])) ==
+                    {'bytes': row['bytes'], 'sha256': row['sha256']}
+                    and record(original_path(logs, row['preserved_path'])) ==
+                    {'bytes': row['bytes'], 'sha256': row['sha256']} for row in helpers.values())
+            and source_state() == before_source,
+            'Discovery replay changed original evidence, helper source or Native index')
+    return {'status': 'PASS', 'source': revision, 'tree': tree,
+            'probe_modes': 10, 'png_count': 38, 'report_count': 2,
+            'helpers': helpers, 'original_manifest': {'path': 'discovery/discovery-acceptance.json', **manifest_record},
+            'complete_runner_log': {'path': 'discovery-collector.log', **runner_record},
+            'original_files': {'discovery/'+path: value for path, value in originals.items()},
+            'recomputed_evidence': fresh,
+            'scope': 'Ten additional exact-source desktop Discovery probes, 38 decoded PNGs and two original reports; full52/Dream remain separate, no human visual, Android or FPS claim'}
 
 
 def checked_additional_native_logs(runtime: Path) -> dict:
@@ -764,6 +911,7 @@ def prepare(args) -> dict:
         'All current Flutter/build contracts, the current 236-family/7552-sample structural learning audit, '
         '52 native modes with 17 additional face/C4/treasure rasters and movie, '
         'five additional Dream modes with seven original renderer PNGs and two reports, '
+        'ten additional Discovery modes with 38 original renderer PNGs and two reports, '
         'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return and 2017→2020 preservation '
         'passed and their originals were rechecked before this new version was published.\n'
         'The learning audit is not semantic or official curriculum approval. '
