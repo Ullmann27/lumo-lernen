@@ -1,0 +1,34 @@
+{
+  "base_commit": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "base_tree": "afd7246580623609abdc8e5b7754aa2bd2e2fd2e",
+  "producer_base_commit": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+  "producer_state": "uncommitted workspace snapshot read directly after environment restart",
+  "source_files": [
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "sha256": "44f1840fe49e5584f3d6444b6052ffc7d2a6d5223ab9900a51125ff3594e9dab"
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "sha256": "0a07c63a7181b5e1ad380ae0b78b37643bb59ba33e88c0db33242d47108d2c06"
+    },
+    {
+      "path": "test/lumo_ink_surface_motion_regression_test.dart",
+      "sha256": "7067721cb9d57f484640f78bc220503d31a5712c7f264eb927ccedc00bcd821a"
+    },
+    {
+      "path": "test/legacy_letter_repaint_regression_test.dart",
+      "sha256": "6477f04c1827ac2d5f11c93bee8c73567371910b5c05a3733f91fe8596a7f978"
+    },
+    {
+      "path": "test/shape_trace_gesture_regression_test.dart",
+      "sha256": "fbaddce634c58257cc9c91d822f9166cea3537d70ef22acf804d8fb8221f6082"
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "sha256": "0d07a22a17486bc84b7c5355274201f37942821bd5ae7551b4620a7a5347986e"
+    }
+  ],
+  "exact_checkpoint_flutter_status": "not run",
+  "additional_edit": "Flexible and centered text for the two older letter-route action labels"
+}
