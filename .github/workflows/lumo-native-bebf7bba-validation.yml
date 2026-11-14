@@ -1,0 +1,106 @@
+name: LUMO pinned native bebf7bba validation
+
+# Independent early evidence; the complete Host acceptance remains mandatory.
+on:
+  push:
+    branches: [validation/lumo-native-bebf7bba-20261114]
+    paths:
+      - .github/workflows/lumo-native-bebf7bba-validation.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-native-bebf7bba-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  native-52-modes:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.ref == 'refs/heads/validation/lumo-native-bebf7bba-20261114'
+    runs-on: ubuntu-latest
+    # Preserve the complete collection budget used by the existing native job.
+    timeout-minutes: 70
+    defaults:
+      run:
+        shell: bash
+        working-directory: native-source
+    env:
+      NATIVE_REVISION: bebf7bba48f09afc834469db0ea3c5541a184f55
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      LUMO_VALIDATION_LOG_DIR: ${{ github.workspace }}/native-validation
+    steps:
+      - name: Check out only the frozen native source
+        id: native
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: bebf7bba48f09afc834469db0ea3c5541a184f55
+          path: native-source
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Bind the clean source, runner and diagnostic workflow
+        run: |
+          set -euo pipefail
+          mkdir -p "$LUMO_VALIDATION_LOG_DIR"
+          test "$(git rev-parse HEAD)" = "$NATIVE_REVISION"
+          git rev-parse HEAD > "$LUMO_VALIDATION_LOG_DIR/source-sha.txt"
+          git rev-parse 'HEAD^{tree}' > "$LUMO_VALIDATION_LOG_DIR/source-tree.txt"
+          git status --porcelain --untracked-files=no > "$LUMO_VALIDATION_LOG_DIR/source-before-dirty.txt"
+          test ! -s "$LUMO_VALIDATION_LOG_DIR/source-before-dirty.txt"
+          git hash-object tools/validate_nextgen.sh > "$LUMO_VALIDATION_LOG_DIR/runner-blob.txt"
+          test "$(cat "$LUMO_VALIDATION_LOG_DIR/runner-blob.txt")" = 3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946
+          printf '%s\n' "$GITHUB_SHA" > "$LUMO_VALIDATION_LOG_DIR/workflow-sha.txt"
+          printf '%s\n' 'Independent pinned-native 52-mode validation; not Host, APK or Android acceptance.' > "$LUMO_VALIDATION_LOG_DIR/scope.txt"
+      - name: Install the verified engine, software renderer and raster/movie dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 ffmpeg python3-venv
+          python3 -m venv "$RUNNER_TEMP/lumo-native-python"
+          "$RUNNER_TEMP/lumo-native-python/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0
+          echo "$RUNNER_TEMP/lumo-native-python/bin" >> "$GITHUB_PATH"
+          command -v ffmpeg
+          command -v ffprobe
+          curl -fL --retry 3 -o "$RUNNER_TEMP/godot.zip" https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip
+          printf '%s  %s\n' d0bc2113065e481c9c2c2b2c37daa4e8be3fe9e27f0ab9ab0b6096e9a37907f3 "$RUNNER_TEMP/godot.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot-bin"
+          ln -s "$RUNNER_TEMP/godot-bin/Godot_v4.6.3-stable_linux.x86_64" "$RUNNER_TEMP/godot-bin/godot"
+          echo "$RUNNER_TEMP/godot-bin" >> "$GITHUB_PATH"
+      - name: Import the exact production project and reject engine errors
+        run: |
+          set -euo pipefail
+          godot --version | tee "$LUMO_VALIDATION_LOG_DIR/engine.txt"
+          grep -Fx '4.6.3.stable.official.7d41c59c4' "$LUMO_VALIDATION_LOG_DIR/engine.txt"
+          export XDG_DATA_HOME="$LUMO_VALIDATION_LOG_DIR/user-data"
+          export XDG_CONFIG_HOME="$LUMO_VALIDATION_LOG_DIR/user-config"
+          export XDG_CACHE_HOME="$LUMO_VALIDATION_LOG_DIR/user-cache"
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          python3 -c 'from PIL import Image; print("Pinned-native raster verification ready")'
+          python3 tools/validate_project.py 2>&1 | tee "$LUMO_VALIDATION_LOG_DIR/project-validation.log"
+          godot --headless --editor --import --quit 2>&1 | tee "$LUMO_VALIDATION_LOG_DIR/import.log"
+          if grep -qE 'SCRIPT ERROR|Parse Error|ERROR:' "$LUMO_VALIDATION_LOG_DIR/import.log"; then exit 1; fi
+      - name: Run all 52 existing modes and all 17 bound Studio rasters/movie/sidecars
+        run: |
+          set -euo pipefail
+          LUMO_NEXTGEN_LOG_DIR="$LUMO_VALIDATION_LOG_DIR/nextgen" bash tools/validate_nextgen.sh 2>&1 | tee "$LUMO_VALIDATION_LOG_DIR/nextgen-runner.log"
+          grep -Fx '[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars' "$LUMO_VALIDATION_LOG_DIR/nextgen-runner.log"
+      - name: Preserve and verify the unchanged tracked native source after execution
+        if: always() && steps.native.outcome == 'success'
+        run: |
+          set -euo pipefail
+          mkdir -p "$LUMO_VALIDATION_LOG_DIR"
+          git rev-parse HEAD > "$LUMO_VALIDATION_LOG_DIR/source-after-sha.txt"
+          git status --porcelain --untracked-files=no > "$LUMO_VALIDATION_LOG_DIR/source-after-dirty.txt"
+          test "$(cat "$LUMO_VALIDATION_LOG_DIR/source-after-sha.txt")" = "$NATIVE_REVISION"
+          test ! -s "$LUMO_VALIDATION_LOG_DIR/source-after-dirty.txt"
+      - name: Preserve every original probe log, raster, movie and sidecar
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-native-bebf7bba-validation
+          path: native-validation/
+          if-no-files-found: error
+          retention-days: 30
