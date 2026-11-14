@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "status": "FROZEN_FAILURE_ONLY_DIAGNOSTIC_ATTACHMENT",
+  "source_freeze": {
+    "path": "source-freeze-v1.json",
+    "bytes": 2314,
+    "sha256": "fa4fed0d92fec95a802f001a7a14f4018028f077f7821ef1191be5a2af50e592",
+    "git_blob": "60f29a65bf3af6f85c75a6d4a4f973b75732f49d"
+  },
+  "patch": {
+    "path": "failure-diagnostics.patch",
+    "bytes": 10019,
+    "sha256": "69ffba1382873075133c7fdeb7878f2ef01aa1c93825c260ceec7023e9e2f061",
+    "git_blob": "4759bd9855d841de7bab34cc0105918f40527d5d"
+  },
+  "validation": {
+    "path": "validation/result.json",
+    "bytes": 17660,
+    "sha256": "aaa084502d25c9bc41eee230028fee4cb5ea873e1d67c1e03c667c945204d397",
+    "git_blob": "6a756d8878f9360c86013f39d02b0e2965872b54"
+  },
+  "original_red": "Original framework has no launch_failure_diagnostics result for any of the three actual Exit1 frames; targeted test records three KeyError errors.",
+  "focused_green": "9/9 focused tests PASS, zero skips; local Python child processes test original byte capture, nonzero return, timeouts, byte limits, identity, refusal to overwrite and unchanged exception propagation.",
+  "existing_definitions_changed": [
+    "start_device_log"
+  ],
+  "existing_definitions_unchanged": 27,
+  "scope": "Only CONSOLE.start failure triggers six fixed read-only ADB commands for the same validated session path. The same original exception is re-raised. No device launch/continuity success can result.",
+  "budgets": {
+    "external_command_total_seconds": 8,
+    "per_command_seconds": 2,
+    "raw_per_command_bytes": 65536,
+    "raw_total_bytes": 262144,
+    "cleanup_reserved_within_total_seconds": 0.2
+  },
+  "limitations": [
+    "No actual adb/device execution was performed locally.",
+    "Captured bytes at timeout or byte cap are explicitly incomplete original prefixes.",
+    "The time budget bounds external command observation and termination; bounded local evidence serialization follows it.",
+    "Missing files/nonzero commands/storage or spawn failures stay visible; unavailable return codes remain null.",
+    "A later original device attempt is necessary to identify the true inner launch Exit1."
+  ],
+  "parser_dependency": {
+    "pack": "/tmp/host-pr483-console-start-repair-20261114",
+    "source_freeze_sha256": "02789a5706c5dce70a70f33d30af2100a6904d4cb2307c348bd9ef1c5903d675"
+  }
+}

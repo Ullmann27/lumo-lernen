@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T07:03:24.438548+00:00",
+  "status": "NO_CONCRETE_BLOCKER_IN_FAILURE_ONLY_DIAGNOSTIC_SCOPE",
+  "scope": "Independent source/byte/AST review only; no tests, adb, device, network, worktree or git operation",
+  "reviewed_freeze": {
+    "path": "/tmp/host-pr483-console-launch-diagnostics-20261114/source-freeze-v1.json",
+    "bytes": 2314,
+    "sha256": "fa4fed0d92fec95a802f001a7a14f4018028f077f7821ef1191be5a2af50e592"
+  },
+  "reviewed_patch": {
+    "path": "/tmp/host-pr483-console-launch-diagnostics-20261114/failure-diagnostics.patch",
+    "bytes": 10019,
+    "sha256": "69ffba1382873075133c7fdeb7878f2ef01aa1c93825c260ceec7023e9e2f061"
+  },
+  "reviewed_handoff": {
+    "path": "/tmp/host-pr483-console-launch-diagnostics-20261114/handoff.json",
+    "bytes": 2345,
+    "sha256": "ba2ed603c72392566a71e2ccd99ae1cfa9445b0ea31c141f0e1e4fd6195f884e"
+  },
+  "files": [
+    {
+      "path": "/tmp/host-pr483-console-launch-diagnostics-20261114/final-source/scripts/android_framework_ready.py",
+      "bytes": 60360,
+      "sha256": "a9c8b2d8e7eeb0c93eb81250a308a272cfa09f035fd2659b28620bcb0095d921"
+    },
+    {
+      "path": "/tmp/host-pr483-console-launch-diagnostics-20261114/final-source/scripts/tests/test_console_launch_failure_diagnostics.py",
+      "bytes": 10759,
+      "sha256": "dc38bd39ff52331939fc1ebaae96ac8d23593ab6fe2adb003d3efe9918f2cd0d"
+    }
+  ],
+  "before_framework": {
+    "path": "/tmp/host-pr483-console-launch-diagnostics-20261114/before-source/scripts/android_framework_ready.py",
+    "bytes": 51307,
+    "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f"
+  },
+  "changed_existing_definitions": [
+    "start_device_log"
+  ],
+  "new_definitions": [
+    "_launch_failure_read",
+    "collect_launch_failure"
+  ],
+  "unchanged_existing_definitions": 27,
+  "findings": [
+    {
+      "subject": "Exception and acceptance boundary",
+      "finding": "Collection occurs only if CONSOLE.start did not produce console_launch; the original exception object is re-raised. Collector errors attach INCOMPLETE metadata. No path changes launch status to PASS."
+    },
+    {
+      "subject": "Read-only identity boundary",
+      "finding": "The remote UUID path and emulator serial are strictly validated; exactly five file reads and one bounded state read use the same session. Symlinks/nonregular remote paths are rejected; no root, launch, logcat-clear, kill or restart command is introduced on the device."
+    },
+    {
+      "subject": "Raw stream and bounded collection",
+      "finding": "stdout/stderr are kept as original binary prefixes with separate hashes and actual returncodes. Per-command 2 s / 64 KiB and aggregate 8 s / 256 KiB are explicit; timeout, cap, spawn, storage and incomplete EOF are recorded, never accepted as complete launch evidence."
+    },
+    {
+      "subject": "Original acceptance gates",
+      "finding": "All 27 other existing definitions are AST-identical, including launch scripts, actual UID/process/cgroup/survival checks, marker/prefix/ANR rules. The successful launch/root path is unchanged."
+    },
+    {
+      "subject": "Reported test evidence",
+      "finding": "Author logs bind nine focused green methods and original missing-diagnostic errors to frozen source; reviewed without rerunning. The three actual Exit1 console transcripts remain failures."
+    }
+  ],
+  "limits": [
+    "Actual inner device program Exit1 is still undiagnosed until a later real run yields readable launch/session originals",
+    "Permission/missing-file/nonzero/limited reads remain diagnostic failures or incomplete evidence",
+    "Local evidence serialization follows the separately bounded external-command collection period",
+    "No emulator launch, logger continuity or Android acceptance is granted"
+  ]
+}

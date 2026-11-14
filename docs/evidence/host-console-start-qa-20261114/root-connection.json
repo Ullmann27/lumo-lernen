@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T07:13:26.268012+00:00",
+  "base_head": "7e2ab20f6f323c66a1e02de3550d73ef31b2037e",
+  "base_tree": "b9d21ad6c3fd3588ea1906549afaa516a95874b4",
+  "branch": "qa/lumo-console-start-7b16-20261114",
+  "status": "SOURCES_CONNECTED_BEFORE_FINAL_COMMITTED_SOURCE_CHECK",
+  "source_paths": [
+    ".github/workflows/lumo-1966-cards-route-kart-qa.yml",
+    ".github/workflows/lumo-astra-script-recovery.yml",
+    ".github/workflows/lumo-console-start-7b16.yml",
+    ".github/workflows/lumo-unified-integration-2026.yml",
+    "scripts/android_console_transport.py",
+    "scripts/android_framework_ready.py",
+    "scripts/tests/fixtures/console_launch_pr483/host/command.stdin",
+    "scripts/tests/fixtures/console_launch_pr483/host/config.json",
+    "scripts/tests/fixtures/console_launch_pr483/host/finished.json",
+    "scripts/tests/fixtures/console_launch_pr483/host/program.sh",
+    "scripts/tests/fixtures/console_launch_pr483/host/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr483/provenance.json",
+    "scripts/tests/fixtures/console_launch_pr483/swangle/command.stdin",
+    "scripts/tests/fixtures/console_launch_pr483/swangle/config.json",
+    "scripts/tests/fixtures/console_launch_pr483/swangle/finished.json",
+    "scripts/tests/fixtures/console_launch_pr483/swangle/program.sh",
+    "scripts/tests/fixtures/console_launch_pr483/swangle/transcript.stdout",
+    "scripts/tests/fixtures/console_launch_pr483/swiftshader/command.stdin",
+    "scripts/tests/fixtures/console_launch_pr483/swiftshader/config.json",
+    "scripts/tests/fixtures/console_launch_pr483/swiftshader/finished.json",
+    "scripts/tests/fixtures/console_launch_pr483/swiftshader/program.sh",
+    "scripts/tests/fixtures/console_launch_pr483/swiftshader/transcript.stdout",
+    "scripts/tests/test_console_launch_failure_diagnostics.py",
+    "scripts/tests/test_console_launch_originals.py",
+    "scripts/tests/test_console_start_workflow.py",
+    "scripts/verify_unchanged_apk_diagnostic.py"
+  ],
+  "packs": [
+    {
+      "pack": "host-pr483-console-start-repair-20261114",
+      "freeze": "02789a5706c5dce70a70f33d30af2100a6904d4cb2307c348bd9ef1c5903d675",
+      "archive_sha256": "b12ad6b9d8b99948a030980461301592cd49618d288d10e54cd58cd530266bb8",
+      "archive_bytes": 3159986,
+      "all_members_verified": 204,
+      "manifest_sha256": "12a02262066307b0011c028d958f7813d83149fcd5027480615a4fb3ab32fac3"
+    },
+    {
+      "pack": "host-pr483-console-launch-diagnostics-20261114",
+      "freeze": "fa4fed0d92fec95a802f001a7a14f4018028f077f7821ef1191be5a2af50e592",
+      "archive_sha256": "f63059a360e2cf231bb498e09b5a8d8bf2cb9e60f72f822d171e386dff5a086b",
+      "archive_bytes": 114486,
+      "all_members_verified": 54,
+      "manifest_sha256": "42c74cba88000a2af3fb803856c8f35b20e06471332766905d27787dd443e9cd"
+    },
+    {
+      "pack": "host-console-start-qa-20261114",
+      "freeze": "40ba0de9295f911b0b3316738a21235656b0e2847b82bcc9fd8c57a4dadf77ec",
+      "archive_sha256": "371eb5118a98327c4204d9df5f230ff3bb4c0b5c74165b86ff1942263d95c8e6",
+      "archive_bytes": 91741,
+      "all_members_verified": 28,
+      "manifest_sha256": "07e1c1b791024c78268320e5192b7c2d1fa0f9f67a193819ea551892529c4514"
+    }
+  ],
+  "unchanged_apk_host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "unchanged_apk_native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "old_pr_483_branch_and_run_untouched": true,
+  "runtime_limit": "Original console launch Exit 1 remains a failure; this follow-up preserves acceptance gates and collects missing original failure outputs.",
+  "original_fixture_preservation": {
+    "whitespace_findings": 92,
+    "all_findings_within_byte_original_console_fixtures": true,
+    "implementation_diff_check_exit": 0,
+    "original_fixture_bytes_not_rewritten": true
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T06:56:57.765611+00:00",
+  "status": "SOURCE_FROZEN_BEFORE_FOCUSED_TESTS",
+  "base_head": "7e2ab20f6f323c66a1e02de3550d73ef31b2037e",
+  "base_tree": "b9d21ad6c3fd3588ea1906549afaa516a95874b4",
+  "files": [
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 60360,
+      "sha256": "a9c8b2d8e7eeb0c93eb81250a308a272cfa09f035fd2659b28620bcb0095d921",
+      "git_blob": "5aaa8eb7a25629445a18ab444679ff5b6532658e"
+    },
+    {
+      "path": "scripts/tests/test_console_launch_failure_diagnostics.py",
+      "bytes": 10759,
+      "sha256": "dc38bd39ff52331939fc1ebaae96ac8d23593ab6fe2adb003d3efe9918f2cd0d",
+      "git_blob": "c6f77f7de636eb49c5882f0af5de1738127c4d9e"
+    }
+  ],
+  "before_framework": {
+    "bytes": 51307,
+    "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f",
+    "git_blob": "54438587d4f18ed3496205fd0c043ce8c3cf332f"
+  },
+  "changed_existing_definitions": [
+    "start_device_log"
+  ],
+  "unchanged_definition_count": 27,
+  "new_definitions": [
+    "_launch_failure_read",
+    "collect_launch_failure"
+  ],
+  "patch": {
+    "bytes": 10019,
+    "sha256": "69ffba1382873075133c7fdeb7878f2ef01aa1c93825c260ceec7023e9e2f061",
+    "git_blob": "4759bd9855d841de7bab34cc0105918f40527d5d"
+  },
+  "parser_dependency": {
+    "freeze_path": "/tmp/host-pr483-console-start-repair-20261114/source-freeze-parser-v1.json",
+    "freeze_sha256": "02789a5706c5dce70a70f33d30af2100a6904d4cb2307c348bd9ef1c5903d675",
+    "source_sha256": "6e7c6572f2482f232880facb2b9b28cac5cf281eb98643fcf818812700557785"
+  },
+  "limits": {
+    "commands": 6,
+    "total_external_command_seconds": 8.0,
+    "per_command_seconds": 2.0,
+    "raw_bytes_per_command": 65536,
+    "raw_bytes_total": 262144,
+    "cleanup_reserved_seconds": 0.2
+  },
+  "preserved": [
+    "device_logger_launch and device_logger_script byte/AST unchanged",
+    "All original Socket/QEMU/UID/cgroup/Prefix/ANR acceptance gates",
+    "Same original exception re-raised even if diagnostic collection fails",
+    "No root/reconnect/clear/restart/launch command",
+    "Failed/nonzero/limited diagnostics never produce acceptance"
+  ],
+  "test_scope": "New local synthetic child-process tests plus three original failed transcript cases; no Android run or launch success"
+}

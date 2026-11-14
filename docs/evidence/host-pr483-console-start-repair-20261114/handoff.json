@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "status": "FROZEN_PARSER_REPAIR_INNER_LAUNCH_EXIT1_REMAINS_OPEN",
+  "diagnosis": {
+    "path": "diagnosis.json",
+    "bytes": 6074,
+    "sha256": "af13c8b4be4b3ae7fa3de83b0895ba9e51a7e95364077b1b6202fc92c6ccbecf",
+    "git_blob": "08a33c376bc6477324e567d71a5d14630bbd6f89"
+  },
+  "source_freeze": {
+    "path": "source-freeze-parser-v1.json",
+    "bytes": 5989,
+    "sha256": "02789a5706c5dce70a70f33d30af2100a6904d4cb2307c348bd9ef1c5903d675",
+    "git_blob": "950ff9583f66f17d004d4c09cdbded3236e8f553"
+  },
+  "patch": {
+    "path": "parser-repair.patch",
+    "bytes": 799,
+    "sha256": "541cbcf50b7e154c26cc2dec17db7d674700e730931f10e18aaaf23247c07d07",
+    "git_blob": "ee2e1581350a2118ce825c82ae8926e712b5faf4"
+  },
+  "validation": {
+    "path": "parser-validation/result.json",
+    "bytes": 17819,
+    "sha256": "0a144b24938b31efc40dac3515be46566e80defd6cc66a3673abe045e9a43a94",
+    "git_blob": "9606c530274bd9bfaf45fb67bb17a68d481a0feb"
+  },
+  "original_red": "Old parser failed all three real nonzero transcript rejection subcases.",
+  "focused_green": "15 tests PASS, zero skips: 7 new plus 8 existing local parser/identity contracts.",
+  "next_step": "Separate failure-only launch-original diagnostic pack; a new device attempt is required to identify the actual Exit1 command.",
+  "no_device_success_claim": true
+}
