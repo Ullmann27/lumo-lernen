@@ -475,6 +475,7 @@ jobs:
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_connect_four_android_probe.py' -v
+          .probe-venv/bin/python -m unittest discover -s scripts/tests -p test_studio_c4_navigation.py -v
           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
       - name: Enable accelerated disposable emulator
         run: |
@@ -742,7 +743,7 @@ jobs:
           artifact-ids: ${{ needs.verify-and-build.outputs.candidate-artifact-id }}
           merge-multiple: true
           path: candidate/dist/
-      - name: Install original live UI helpers and verify the nine creative contracts
+      - name: Install live UI helpers and verify original-media and input contracts
         timeout-minutes: 8
         run: |
           set -euo pipefail
@@ -752,6 +753,8 @@ jobs:
           .creative-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           .creative-venv/bin/python .github/probes/studio_creative_android_probe.py --studio-version 2020 --candidate-source . --metadata-dir creative/metadata --verify-metadata-only --expected-source "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --out creative
           .creative-venv/bin/python -m unittest discover -s scripts/tests -p test_studio_creative_android_probe.py -v 2>&1 | tee creative/local-contracts.log
+          .creative-venv/bin/python -m unittest discover -s scripts/tests -p test_studio_treasure_movement.py -v 2>&1 | tee creative/treasure-controller-contracts.log
+          .creative-venv/bin/python -m unittest discover -s scripts/tests -p test_studio_creative_clock_calibration.py -v 2>&1 | tee creative/original-clock-calibration-contracts.log
       - name: Enable disposable emulator KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules

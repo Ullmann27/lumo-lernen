@@ -53,6 +53,48 @@ def require(condition, message):
         raise RuntimeError(message)
 
 
+def flutter_hub_navigation_target(nodes, size, density):
+    """Resolve only the currently visible Flutter route and its real control.
+
+    Cards returns first to its own showcase. That page has a distinct Back
+    button, not the main navigation tabs. Never search or swipe for a hidden
+    tab while this intermediate route is still current.
+    """
+    require(len(size) == 2 and size[0] > 0 and size[1] > 0 and density > 0,
+            'Actual navigation viewport and density required')
+    own = [n for n in nodes if n.get('package') == PACKAGE]
+
+    def labels(node):
+        return {line.strip() for field in ('text', 'content-desc')
+                for line in node.get(field, '').splitlines() if line.strip()}
+
+    visible = set().union(*(labels(n) for n in own)) if own else set()
+    if 'Spiel pausiert' in visible:
+        action, caption = 'leave_paused_game', 'Zur Spieleauswahl'
+    elif 'LUMO CARDS' in visible:
+        action, caption = 'leave_cards_showcase', 'Zur Spielwelt zurück'
+    elif 'Lumo Spielewelt' in visible:
+        return {'action': 'hub_ready'}
+    elif 'Spielen' in visible or 'Spiele' in visible:
+        action = 'open_games_tab'
+        caption = 'Spielen' if 'Spielen' in visible else 'Spiele'
+    else:
+        return None
+    candidates = {}
+    for node in own:
+        if caption not in labels(node) or node.get('clickable') != 'true' or node.get('enabled', 'true') != 'true':
+            continue
+        match = re.fullmatch(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', node.get('bounds', ''))
+        if not match:
+            continue
+        rect = tuple(map(int, match.groups()))
+        if (0 <= rect[0] < rect[2] <= size[0] and 0 <= rect[1] < rect[3] <= size[1] and
+                rect[2] - rect[0] >= 48 * density and rect[3] - rect[1] >= 48 * density):
+            candidates[rect] = {'action': action, 'caption': caption, 'bounds': list(rect)}
+    require(len(candidates) <= 1, 'Ambiguous actual Flutter navigation control')
+    return next(iter(candidates.values()), None)
+
+
 def sha(path):
     digest = hashlib.sha256()
     with Path(path).open('rb') as stream:
@@ -416,11 +458,34 @@ class AndroidProbe:
         self.adb('shell','input','tap',*[str(x) for x in point])
 
     def navigate(self):
-        nodes=self.live.live_nodes(self.out,self.tag('starting-flutter'))
-        labels=self.tour.labels(nodes)
-        if any('Spiel pausiert' in x for x in labels):
-            self.surfaces.tap_flutter(self.out,['Zur Spieleauswahl'],'c4-leave-other-pause')
-        self.surfaces.tap_flutter(self.out,['Spielen','Spiele'],'c4-games-tab')
+        from PIL import Image
+        deadline=time.monotonic()+30
+        ready=False
+        while time.monotonic()<deadline:
+            if 'MainActivity' not in self.surfaces.resumed_activity():
+                time.sleep(.3)
+                continue
+            tag=self.tag('actual-flutter-navigation')
+            nodes=self.live.live_nodes(self.out,tag)
+            shot=self.probe.capture(self.out,tag,timeout=max(.01,deadline-time.monotonic()))
+            with Image.open(self.out/shot['file']) as im:size=im.size
+            target=flutter_hub_navigation_target(nodes,size,self.density)
+            write(self.out/(tag+'-route.json'),{'target':target,'capture':shot,'density':self.density})
+            confirmed=self.live.live_nodes(self.out,tag+'-confirmed')
+            if target!=flutter_hub_navigation_target(confirmed,size,self.density):
+                continue
+            require('MainActivity' in self.surfaces.resumed_activity(),'Flutter navigation activity changed during observation')
+            require(time.monotonic()<deadline,'Flutter navigation observation exceeded its deadline')
+            if target and target['action']=='hub_ready':
+                ready=True
+                break
+            if target:
+                r=target['bounds'];point=[round((r[0]+r[2])/2),round((r[1]+r[3])/2)]
+                self.events.append({'kind':'actual_flutter_navigation_touch','target':target,'capture':shot,'point':point})
+                write(self.out/'input-events.json',self.events)
+                self.adb('shell','input','tap',*[str(v) for v in point],timeout=max(.01,deadline-time.monotonic()))
+            time.sleep(.3)
+        require(ready,'Actual Flutter game hub was not reached before its deadline')
         for direction in (1,-1):
             for attempt in range(11):
                 tag=self.tag('actual-c4-hub');nodes=self.live.live_nodes(self.out,tag)

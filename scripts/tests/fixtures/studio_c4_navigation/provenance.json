@@ -1,0 +1,56 @@
+{
+  "source": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+  "native": "34421df83566dd4773420cc2a225887956459435",
+  "run": 43592240598,
+  "scope": "Original failed Android navigation XML. Pure replay does not establish new live Android success.",
+  "files": [
+    {
+      "file": "api35-paused.xml",
+      "archive_member": "connect-four/0001-starting-flutter.xml",
+      "artifact_id": 14115708726,
+      "artifact_sha256": "7b28e7b76d6d04b22f85397db26a4320173c6fcda7a48b2ca6ccf7cc10151772",
+      "bytes": 34244,
+      "sha256": "ac47cdf55d8d8f9db8d266d9f1a0734b4d01dc780dbbd511f770595a7fe72b90"
+    },
+    {
+      "file": "api35-showcase.xml",
+      "archive_member": "connect-four/c4-games-tab-7-1-0.xml",
+      "artifact_id": 14115708726,
+      "artifact_sha256": "7b28e7b76d6d04b22f85397db26a4320173c6fcda7a48b2ca6ccf7cc10151772",
+      "bytes": 15889,
+      "sha256": "9ec7b4a5e1653ee8597f05e0e3a46f7661b35b15b6feada1879b406865e051be"
+    },
+    {
+      "file": "api35-home.xml",
+      "archive_member": "home-to-games-0.xml",
+      "artifact_id": 14115708726,
+      "artifact_sha256": "7b28e7b76d6d04b22f85397db26a4320173c6fcda7a48b2ca6ccf7cc10151772",
+      "bytes": 32222,
+      "sha256": "f0b5578b948a839e2fbf018ce982b17ad2645abea2932e26a892eb1b8cc4f52b"
+    },
+    {
+      "file": "api35-hub.xml",
+      "archive_member": "onboard-games-Spiele-0.xml",
+      "artifact_id": 14115708726,
+      "artifact_sha256": "7b28e7b76d6d04b22f85397db26a4320173c6fcda7a48b2ca6ccf7cc10151772",
+      "bytes": 28551,
+      "sha256": "fa7a6e746ed13a0f325b2d9da0639e221f06a41ee5b953d7f77ce1517ba4472a"
+    },
+    {
+      "file": "api37-paused.xml",
+      "archive_member": "connect-four/0001-starting-flutter.xml",
+      "artifact_id": 14116755654,
+      "artifact_sha256": "b84adc9bf2809354bf0848154f0fdadd078480da0da39f24a5344cb8a6b832be",
+      "bytes": 35172,
+      "sha256": "995714f918e1b1f7e2a366a339baee5d6b1714a35aabe0ac24c73db84360b996"
+    },
+    {
+      "file": "api37-showcase.xml",
+      "archive_member": "connect-four/c4-games-tab-7-1-0.xml",
+      "artifact_id": 14116755654,
+      "artifact_sha256": "b84adc9bf2809354bf0848154f0fdadd078480da0da39f24a5344cb8a6b832be",
+      "bytes": 16801,
+      "sha256": "5acfb1348da462257433d03c761a16eaab6adedfb1235d1c3aa318f895495588"
+    }
+  ]
+}

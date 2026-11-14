@@ -49,6 +49,32 @@ def require(condition: bool, message: str) -> None:
         raise RuntimeError(message)
 
 
+def decode_actual_movie(movie: Path, log: Path) -> None:
+    """Decode every original video frame without rounding its input time base.
+
+    A null muxer otherwise chooses a nominal-rate clock and can report duplicate
+    output DTS for distinct, valid screenrecord timestamps. Preserve that clock
+    and every frame; actual decoder errors still fail with their complete log.
+    """
+    decode = subprocess.run(
+        ['ffmpeg', '-hide_banner', '-nostdin', '-loglevel', 'error', '-i', str(movie),
+         '-map', '0:v:0', '-fps_mode', 'passthrough', '-enc_time_base', '-1',
+         '-f', 'null', '-'], capture_output=True, timeout=120)
+    log.write_bytes(decode.stdout + decode.stderr)
+    require(decode.returncode == 0 and not decode.stderr.strip(),
+            'Actual Jump MP4 failed full decode')
+
+
+def treasure_playing_captions(lines: list[dict]) -> bool:
+    """Observed HUD plus absence of each known modal, never a game-state write."""
+    captions = [' '.join(str(line.get('text', '')).casefold().split()) for line in lines]
+    modal = ('weiter erkunden', 'dein abenteuer wartet', 'zur spielewelt',
+             'dein abenteuer-rucksack', 'dein nächster hinweis')
+    return (any('rucksack' in text for text in captions)
+            and any('ansehen' in text for text in captions)
+            and not any(blocked in text for text in captions for blocked in modal))
+
+
 def treasure_position(saved: dict) -> list[float]:
     position = saved.get('position')
     require(isinstance(position, list) and len(position) == 3
@@ -92,7 +118,7 @@ def approach_treasure(before: dict, move, checkpoint, journal: Path,
     total_held = 0
     rate = None
     try:
-        for _ in range(12):
+        for segment in range(12):
             if distance < 3.4:
                 break
             require(time.monotonic() - started < timeout_seconds,
@@ -125,8 +151,15 @@ def approach_treasure(before: dict, move, checkpoint, journal: Path,
                         'Treasure ' + key + ' changed during movement')
             require(previous_discoveries <= set(current.get('discoveries', [])),
                     'Treasure prior discoveries changed during movement')
-            require(movement > .2 and progress > .2,
+            # One small, correctly directed first step is an unresolved
+            # calibration. It is not a successful movement/quest result. The
+            # next real hold still needs the original .2 movement and progress;
+            # zero/away motion, identity changes and all budgets still fail.
+            calibration = segment == 0 and movement > 0 and progress > 0
+            require((movement > .2 and progress > .2) or calibration,
                     'Real joystick segment made no verified progress toward the first clue')
+            event['acceptance'] = ('CALIBRATION_ONLY' if movement <= .2 or progress <= .2
+                                   else 'MEASURED_PROGRESS')
             positions.append(new_position)
             distance = new_distance
             rate = progress / duration
@@ -631,10 +664,56 @@ class Tour:
         length = math.hypot(*axis)
         require(length > 0 and math.isfinite(length) and 220 <= milliseconds <= 6000,
                 'Invalid bounded Treasure stick gesture')
-        target = self.current_stick()
+        target = self.current_treasure_stick()
         point = [target['center'][i] + axis[i] / length * target['diameter'] * .36 for i in range(2)]
         self.touch(point, {**target, 'axis_direction': axis,
                           'input': 'Single real pointer; readback-controlled Treasure hold'}, milliseconds)
+
+    def current_treasure_stick(self):
+        """Read two current playable frames before deriving the actual ring."""
+        deadline = time.monotonic() + 60
+        previous = None
+        observations = []
+        journal = self.out / (self.tag('treasure-playable-frames') + '.json')
+        try:
+            for _ in range(6):
+                remaining = deadline - time.monotonic()
+                require(remaining > 0, 'Treasure playable-frame deadline exhausted')
+                tag = self.tag('treasure-playable-frame')
+                shot = self.probe.capture(self.out, tag, timeout=remaining)
+                path = self.out / shot['file']
+                remaining = deadline - time.monotonic()
+                require(remaining > 0, 'Treasure playable-frame deadline exhausted')
+                lines = self.probe.image_lines(self.out, tag, source_path=path,
+                                               timeout=min(20, remaining))
+                playing = treasure_playing_captions(lines)
+                row = {'capture': shot, 'captions': lines, 'visible_playing_hud': playing}
+                observations.append(row)
+                write(journal, {'status': 'OBSERVING', 'observations': observations})
+                if not playing:
+                    previous = None
+                    time.sleep(min(.5, max(0, deadline - time.monotonic())))
+                    continue
+                target = stick_target(read_image(path))
+                frame = self.probe.inspect_surface(path, orientation='landscape')
+                current = self.probe.target_observation(frame, target['bounds'], previous)
+                row['target_observation'] = current
+                foreground = self.base.foreground()
+                require(PACKAGE in foreground and 'LumoGameActivity' in foreground,
+                        'Treasure native activity changed before actual stick input')
+                require(time.monotonic() < deadline, 'Treasure playable-frame deadline exhausted')
+                if current['stable_observed_target']:
+                    write(journal, {'status': 'PLAYABLE_FRAMES_OBSERVED',
+                                    'observations': observations, 'foreground': foreground,
+                                    'scope': 'Current pixels and ring, not engine physics telemetry'})
+                    return {**target, 'capture': shot, 'stable': current,
+                            'playable_frame_journal': journal.name}
+                previous = current
+                time.sleep(min(.5, max(0, deadline - time.monotonic())))
+            raise RuntimeError('Treasure did not expose two stable playable frames')
+        except Exception as error:
+            write(journal, {'status': 'FAIL', 'error': str(error), 'observations': observations})
+            raise
 
     def portal(self, title):
         for direction in (-1, 1):
@@ -1047,10 +1126,7 @@ class Tour:
             self.raw_adb('pull', remote, str(self.out / 'jump-actual-android.mp4'), timeout=90)
             write(self.out / 'jump-recording.json', record)
         movie = self.out / 'jump-actual-android.mp4'
-        decode = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(movie), '-f', 'null', '-'],
-                                capture_output=True, timeout=120)
-        (self.out / 'jump-full-decode.log').write_bytes(decode.stdout + decode.stderr)
-        require(decode.returncode == 0 and not decode.stderr.strip(), 'Actual Jump MP4 failed full decode')
+        decode_actual_movie(movie, self.out / 'jump-full-decode.log')
         media = subprocess.run(['ffprobe', '-v', 'error', '-show_streams', '-show_format',
                                 '-of', 'json', str(movie)], check=True, capture_output=True, timeout=30)
         (self.out / 'jump-media.json').write_bytes(media.stdout)
