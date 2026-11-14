@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "source": {
+    "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "native_run": 43613299144,
+    "main_run": 43633922088,
+    "feature_run": 43633918165,
+    "attempt": 1
+  },
+  "full_original_replay": {
+    "checkpoint": {
+      "commit": "99faf8deee4b43594965ed7b9e172919fe6ef6aa",
+      "tree": "660864f7b96bf2e19de8d6c1d5becd3fd3138749",
+      "parent": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "branch": "checkpoint/lumo-original-replay-ec-20261114",
+      "workflow_blob": "ed72f394fb7674a3e7ac960235c22cee82450477",
+      "driver_blob": "72406f6f995b0c85414c8c8560ca563273071921",
+      "selftest_blob": "b9dc0875c4394ba5f66262c19c52fabe3ae4832e",
+      "complete_original_replay_activated": false
+    },
+    "branch": "qa/lumo-original-replay-ec-20261114",
+    "required_before_activation": "All seven exact current main jobs successful; same current Host/Native/source PR heads; original artifact metadata complete.",
+    "activation": "Create a non-skip merge commit with exact current Host as first parent and prepared checkpoint as second parent, tree exactly the prepared tree; then create the dedicated QA branch and observe the actual workflow run.",
+    "selftest_run": 43634176264,
+    "selftest_tests": 27,
+    "selftest_result": "PASS"
+  },
+  "publication": {
+    "checkpoint": {
+      "commit": "1e7835f5d84634048199a7cd8e56c2e97e4cf351",
+      "tree": "a78e7669927e796db95320d2e8d5f2999dbe2523",
+      "parent": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+      "branch": "checkpoint/lumo-live-publisher-ec936873-20261114",
+      "workflow_blob": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+      "activation": false
+    },
+    "branch": "delivery/lumo-live-2020-20261114",
+    "required_before_activation": "Successful exact main run, additional Native and Feature originals, actual complete original replay and source/APK/Android/update proof; fresh full release/tag vacancy.",
+    "activation": "Create a non-skip merge commit with exact current Host as first parent and prepared publisher as second parent, retain exactly the tested prepared tree, then observe its actual dedicated workflow. All existing fresh guards and unauthenticated public byte verification remain mandatory."
+  },
+  "prior_preparations": "All 04 and 6b reader/publisher preparations remain historical and inactive.",
+  "release_created": false
+}

@@ -1,0 +1,293 @@
+{
+  "source": {
+    "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "native_run": 43613299144,
+    "main_run": 43633922088,
+    "feature_run": 43633918165,
+    "attempt": 1
+  },
+  "checkpoint": {
+    "commit": "1e7835f5d84634048199a7cd8e56c2e97e4cf351",
+    "tree": "a78e7669927e796db95320d2e8d5f2999dbe2523",
+    "parent": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "branch": "checkpoint/lumo-live-publisher-ec936873-20261114",
+    "workflow_blob": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+    "activation": false
+  },
+  "tree_proof": {
+    "base_files": 4999,
+    "prepared_files": 5041,
+    "added": [
+      {
+        "path": ".github/workflows/lumo-live-2020-publish.yml",
+        "sha": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/README.md",
+        "sha": "65d979269f2e11e51706a80a7a0bab5adc6f2b67",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/actionlint.original.log",
+        "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/additional-acceptance-bindings.json",
+        "sha": "27c0903c941264c8e9af42d4b3613e43126e327f",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/additional-guard-cli.original.log",
+        "sha": "766435781d6498881f1948ed69f5fb1b0520f33e",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/additional-guard-original-metadata-replay.json",
+        "sha": "4f0c1e16c86313b61db00b9275390be4a7c2fbe5",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/additional-guard-tests.original.log",
+        "sha": "d895ce841fdb751ef37ab8ea01773b17a001bca8",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/binding-only.diff",
+        "sha": "673eae892745f717ed5cb611493e16573a9c12a6",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/compare_reader_sources.py",
+        "sha": "ed4a271a60c49a2a3bd817c4fb015376152cd088",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/exact-source-before-after.json",
+        "sha": "8ccb067186b6bb3f7cf78ac8b54c13b0f0ee6f10",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/lumo-live-2020-publish.yml",
+        "sha": "ecbf779ab2e5ce2776fce6418e9419ce013f9b82",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/manifest.json",
+        "sha": "835a6df49acc0462981baaaeac0a5a5e71ba6fe7",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-metadata/feature-artifacts.json",
+        "sha": "b00e445dc5a5047323c0034f53f0df8e661a10d0",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-metadata/feature-jobs.json",
+        "sha": "f7a4f998d63c996675b97eaefcd9d501c5ebe8de",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-metadata/feature-run.json",
+        "sha": "5a2808a1cc4e10e3c9dced22a8e7cd9c2c5113a8",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-metadata/native-artifacts.json",
+        "sha": "479d635be000e8ffef39ba35210fd24132146da3",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-metadata/native-jobs.json",
+        "sha": "78725497521bb795734f5b13b0b3f6b02e607937",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-metadata/native-run.json",
+        "sha": "dc545732b22d29744e1eac3440a84d03daf9845c",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-reviewed-additional-verifier-04.py",
+        "sha": "fec13f21dff004b6d7864cc2369293d03ad1b2cf",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/original-reviewed-publisher-04.yml",
+        "sha": "712529847807e1d0a7135654703a13b7a63a1e1e",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/preflight-execution.json",
+        "sha": "2c307c6eb2e2c147eaba6ec7622b1b1a34b025b3",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/preflight.py",
+        "sha": "0215b608d574090b5d1e24fc69d522d2d52d17fe",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/reader-driver-binding.diff",
+        "sha": "e654b4f36fe54e97f9632692037b995f5edfc5cb",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/reader-source-comparison.json",
+        "sha": "e3c8e052772e8d552a78188a7917147b8fb0b7f0",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/source-binding-and-preservation.json",
+        "sha": "ed36c3a2fff4c948ab9c7f03f6c7aad124f031b2",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/sparse-source-setup.json",
+        "sha": "a01bb967f5b137bc002ae5fd6178a5d5f56077a0",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax-driver.original.log",
+        "sha": "a8bdc6a121fc9192167a0ea894525353a1868812",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax-result.json",
+        "sha": "061b54e5a08e422d597bd0f46267dc538a753db5",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/python-01.py",
+        "sha": "694654cb80a7fc7aa62d1592c093f7da6c17518f",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/python-02.py",
+        "sha": "fa130d08da05d721b82bff73f207325dfa3f597f",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/python-03.py",
+        "sha": "372c77ee709053a4932b8281f3c33817858fa9b5",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/python-04.py",
+        "sha": "e1027434c9db78ef1d110d0a1a2127a58e253150",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-02.sh",
+        "sha": "826171301346b42f367ff1f492a98f88c556ae0f",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-03.sh",
+        "sha": "e8a801eed8c686be9087abe42ed83b5b582592d9",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-04.sh",
+        "sha": "10466bffc746c8ee3c1b0ec030f494de47d2dd74",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-07.sh",
+        "sha": "223f3deca0e3e742dfb74e3dbf30ec9067879b74",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-08.sh",
+        "sha": "37174588be507654f37f455cfef46120dea0f5fb",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-09.sh",
+        "sha": "525d5b494c8abe76aacc69b1fd4b4bc251110bd3",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-10.sh",
+        "sha": "53b34f655dc18fbc6a496f744123dc4c34c880fa",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/syntax/step-11.sh",
+        "sha": "1673a625e226e400fac5675ea2c81d4b7172ac71",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/test_additional_acceptance.py",
+        "sha": "5cac6f3b404554d3c7b04f07874c811525e5d270",
+        "mode": "100644",
+        "type": "blob"
+      },
+      {
+        "path": "docs/evidence/publisher-ec936873-preflight-20261114/verify_additional_acceptance.py",
+        "sha": "694654cb80a7fc7aa62d1592c093f7da6c17518f",
+        "mode": "100644",
+        "type": "blob"
+      }
+    ],
+    "changed": [],
+    "removed": []
+  },
+  "workflow_equals_independent_seven_value_derivation": true,
+  "tests": 51,
+  "failures": 0,
+  "skips": 0,
+  "seconds": 0.06,
+  "original_test_log_blob": "d895ce841fdb751ef37ab8ea01773b17a001bca8",
+  "manifest_blob": "835a6df49acc0462981baaaeac0a5a5e71ba6fe7",
+  "reader_review_blob": "e3c8e052772e8d552a78188a7917147b8fb0b7f0",
+  "all_source_files_preserved": 4999,
+  "source_bindings_match_actual_metadata": true,
+  "originals_read_by_root": true,
+  "publication_activated": false,
+  "complete_original_replay_activated": false
+}

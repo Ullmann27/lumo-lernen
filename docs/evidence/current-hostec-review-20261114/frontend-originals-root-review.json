@@ -1,0 +1,174 @@
+{
+  "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+  "native_run": 43613299144,
+  "main_run": 43633922088,
+  "feature_run": 43633918165,
+  "attempt": 1,
+  "feature": {
+    "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "run": 43633918165,
+    "attempt": 1,
+    "job": 132566422728,
+    "artifact": 14129211522,
+    "artifact_bytes": 1173118,
+    "sha256": "b37096982a441331ff6ee43810e9a5b8fdb5a04d71e06a58884f007be8be0f50",
+    "pass": 30,
+    "fail": 0,
+    "skip": 0,
+    "source_files": 4999,
+    "source_preservation": {
+      "tracked_files": 4999,
+      "before_after_differences": [
+        "phase"
+      ],
+      "all_recorded_blob_ids_match_actual_bytes": true,
+      "before_after_file_records_identical": true,
+      "index_bytes_identical": true,
+      "index_sha256": "a34366f62f56a570d8dfff5ed7f534ed22b1c07dffa568ee3323638a55e4b3ab",
+      "before_after_git_status_empty": true
+    },
+    "original_summary": "7f817e45ed1a7b9c07263a4cf55455e0be4ce588",
+    "original_jsonl": "b0380c1c09b86bb6eddc34952c35bec505408a43",
+    "evidence_commit": "5a82d73b42dc5b840f73e605d4f847525e6ee5f2",
+    "root_original_event_recount": true,
+    "delayed_safari": [
+      {
+        "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+        "result": "success",
+        "skipped": false
+      }
+    ],
+    "original_non_event_stdout_lines": [
+      7,
+      8,
+      9,
+      10,
+      62,
+      63
+    ],
+    "scope": "Actual focused 30 cases; do not add this count to the overlapping full Flutter suite.",
+    "framework_events_excluded": 5,
+    "framework_events_note": "Three loading events, one setUpAll and one tearDownAll; all successful and hidden."
+  },
+  "full_suite": {
+    "source_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+    "source_tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+    "run_id": 43633922088,
+    "job_id": 132568119078,
+    "original_jsonl_bytes": 1791618,
+    "original_jsonl_sha256": "156630824c8cd23b14cb4b5228ee713065f35e1d638215eb1f24d16bf1bdf539",
+    "original_jsonl_blob": "e3c77e672a8f648ac9d091c397e295029e4263cd",
+    "passed": 2651,
+    "failed": 0,
+    "skipped": 0,
+    "event_errors": 0,
+    "terminal": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 458649
+      }
+    ],
+    "auxiliary_counts": {
+      "auxiliary-array": 394
+    },
+    "delayed_safari_cases": [
+      "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "Live safari wrong answer keeps its delayed continuation bound during profile change"
+    ],
+    "rendered_png_count": 566,
+    "all_members_count": 568,
+    "selected_images": [
+      {
+        "path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/home-premium/fold-open-learning-cards.png",
+        "bytes": 1804878,
+        "pixels": [
+          1680,
+          1920
+        ],
+        "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+        "git_blob": "efdb7159ba2c4a6707129cfa3a5b330ea96d1515"
+      },
+      {
+        "path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/village/village-fold-open.png",
+        "bytes": 595416,
+        "pixels": [
+          690,
+          829
+        ],
+        "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+        "git_blob": "8d52f1bce929ab0f6f81b221a0d51705d6f9c2ed"
+      }
+    ]
+  },
+  "full_artifact": {
+    "id": 14130021635,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEzMDAyMTYzNQ==",
+    "name": "lumo-candidate-all-flutter-tests-and-captures",
+    "size_in_bytes": 364047895,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130021635",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130021635/zip",
+    "expired": false,
+    "digest": "sha256:378b6ef4a5d81f179a9cc1454e4d662017e253d5dbfba690d3f678aeb3baa04b",
+    "created_at": "2026-11-14T20:02:18Z",
+    "updated_at": "2026-11-14T20:02:18Z",
+    "expires_at": "2026-12-14T20:02:10Z",
+    "workflow_run": {
+      "id": 43633922088,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e"
+    }
+  },
+  "evidence_commit": "1f58bb3c60a29bd0b1dcd4b19e306a7339355d28",
+  "evidence_tree": "3274359968d1405ee5a8c14ccd27d3510251b4a8",
+  "current_source_entries_preserved": 4999,
+  "all_source_entries_verified": true,
+  "overlap_note": "The focused 30 cases are included in the full 2651 suite and are not additive."
+}

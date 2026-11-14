@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "tree": "c7d6541e474f8d8ba64b204beb6466c811fb246b",
+  "run": 43633922088,
+  "attempt": 1,
+  "artifact": 14130021635,
+  "personally_opened_by_root": true,
+  "images": [
+    {
+      "path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "pixels": [
+        1680,
+        1920
+      ],
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "git_blob": "efdb7159ba2c4a6707129cfa3a5b330ea96d1515",
+      "observation": "The captured learning section visibly contains all eleven subject cards and their progress areas, including Verkehr and Technik. This is a section capture, not a full-page Home screenshot."
+    },
+    {
+      "path": "/tmp/lumo-flutterec-909ddb52fe7b/full-suite/originals/village/village-fold-open.png",
+      "bytes": 595416,
+      "pixels": [
+        690,
+        829
+      ],
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "git_blob": "8d52f1bce929ab0f6f81b221a0d51705d6f9c2ed",
+      "observation": "The games capture visibly includes eleven game entry cards, complete single-line Dorfwirtschaft and readable main controls. Additional modes at the bottom extend outside the viewport."
+    }
+  ],
+  "other_independent_current_reviews": {
+    "village": "1f58bb3c60a29bd0b1dcd4b19e306a7339355d28",
+    "home": "860e072aa0d029ec1d0d1a2c30c9e9ad8da60060"
+  },
+  "actual_portal_contracts": {
+    "test_cases": 3,
+    "unique_game_portals": 11
+  },
+  "scope": "Current Flutter original PNGs and critical test identities; no new Android result inferred."
+}

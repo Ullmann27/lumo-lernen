@@ -1,0 +1,26 @@
+{
+  "source": "ec936873a45ffeb9ab347cc6bdb10951e38fac5e",
+  "run": 43633922088,
+  "attempt": 1,
+  "job": 132568119078,
+  "artifact": 14129773237,
+  "tests": 963,
+  "failures": 0,
+  "skips": 0,
+  "seconds": 251.43,
+  "bytes": 29490,
+  "artifact_sha256": "77db1bfccce74077f98f342ee317ae5f983af7c953ad7513e15b81d868c2356a",
+  "original_log_blob": "cc258ec1f015901e0b4bd21e3dadf426ed4c1896",
+  "evidence_commit": "944edd12e53e44851b0aa0cf150981492e9a6e1d",
+  "unittest_result_lines": [
+    1088,
+    1090
+  ],
+  "following_original_markers": [
+    "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+    "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+    "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47"
+  ],
+  "read_by_root": true,
+  "scope": "Completed build-contract step; later original speech checks explicitly use synthetic JVM boundaries, with no Android playback claim. Entire main job remains running."
+}
