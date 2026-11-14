@@ -1,0 +1,41 @@
+{
+  "baseline_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "files": [
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "changed_definitions": [
+        "Tour.native",
+        "Tour.observe",
+        "Tour.leave",
+        "Tour.jump"
+      ],
+      "other_definitions_ast_unchanged": 39,
+      "only_orientation_argument_and_forwarding_ast_difference": {
+        "Tour.native": true,
+        "Tour.observe": true,
+        "Tour.leave": true,
+        "Tour.jump": true
+      },
+      "baseline_sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+      "patched_sha256": "ff097e3050f52556215e547afac416340fbe401ace3528943e511e8e2b4e41b4"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "changed_definitions": [
+        "leave"
+      ],
+      "other_definitions_ast_unchanged": 20,
+      "only_orientation_argument_and_forwarding_ast_difference": {
+        "leave": true
+      },
+      "baseline_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "patched_sha256": "112ddf4dad2ac5039b7203d8dcc2fa82ee91c517c6e393b5b5409211dcc50870"
+    }
+  ],
+  "unchanged_existing_creative_tests": true,
+  "limits": [
+    "AST comparison proves no other edits in the two isolated Python files",
+    "No native source, active host source, APK, timeout, frame count, geometry limit, input duration, recorder or save assertion was modified",
+    "leave delta still requires controlled integration on separately published gold OCR helper a446f3c1; this phase remains exactly 4ab-based"
+  ]
+}

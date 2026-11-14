@@ -1,0 +1,220 @@
+{
+  "status": "FAIL",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "probe_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "probe_sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+  "candidate_binding": {
+    "artifact": {
+      "id": 14089507933,
+      "node_id": "MDg6QXJ0aWZhY3QxNDA4OTUwNzkzMw==",
+      "name": "lumo-studio-2019-candidate",
+      "size_in_bytes": 647462973,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14089507933",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14089507933/zip",
+      "expired": false,
+      "digest": "sha256:2bc81726454a0b79e3e7ab9c0668c9359745e4d308e5af6f8b49072e7600ae7c",
+      "created_at": "2026-11-14T00:56:51Z",
+      "updated_at": "2026-11-14T00:56:51Z",
+      "expires_at": "2026-12-14T00:56:44Z",
+      "workflow_run": {
+        "id": 43530667812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-20261113",
+        "head_sha": "4ab96666f954baf258422d6ed277fc297b7ddeef"
+      }
+    },
+    "build_job_id": 132247240154,
+    "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "build_run": 43530667812,
+    "scope": "Original build artifact; other main-run tours are independent"
+  },
+  "build_run": 43530667812,
+  "games": {
+    "jump": {
+      "status": "FAIL",
+      "error": "Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 0.47129786699997567 seconds",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 938, in run\n    result['games'][name] = getattr(self, name)()\n                            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 776, in jump\n    self.native('Pause', tap=True, exact=True)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 479, in native\n    self.probe.native_text(self.out, label, self.tag('native-' + self.probe.normalized(label)),\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 458, in native_text\n    return native_tap(out, label, tag, exact=exact, orientation=orientation)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 393, in native_tap\n    snapshot = capture(out, name, timeout=deadline - time.monotonic())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 74, in capture\n    data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 2116, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n  File \"/usr/lib/python3.12/subprocess.py\", line 1253, in _check_timeout\n    raise TimeoutExpired(\nsubprocess.TimeoutExpired: Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 0.47129786699997567 seconds\n"
+    },
+    "build": {
+      "status": "PASS",
+      "added_piece": {
+        "part": "sand",
+        "turn": 0,
+        "uid": 198,
+        "x": -3,
+        "y": 0,
+        "z": 2
+      },
+      "undo_exact_pieces": true,
+      "redo_exact_pieces": true,
+      "durable_resume": true,
+      "original_starter_house_reward": {
+        "stars": 3,
+        "xp": 24,
+        "replay_deduplicated": true
+      },
+      "scope": "One real new block; existing starter house is separately labelled, not newly built"
+    },
+    "puzzle": {
+      "status": "FAIL",
+      "error": "Actual menu touches did not persist six-piece motif1 rotation mode",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 938, in run\n    result['games'][name] = getattr(self, name)()\n                            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 691, in puzzle\n    require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 49, in require\n    raise RuntimeError(message)\nRuntimeError: Actual menu touches did not persist six-piece motif1 rotation mode\n"
+    },
+    "treasure": {
+      "status": "FAIL",
+      "error": "First clue remained unreachable after bounded genuine movement",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 938, in run\n    result['games'][name] = getattr(self, name)()\n                            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 738, in treasure\n    raise RuntimeError('First clue remained unreachable after bounded genuine movement')\nRuntimeError: First clue remained unreachable after bounded genuine movement\n"
+    }
+  },
+  "scope": "Additional disposable API35 real-input probe of the same unchanged candidate APK",
+  "not_tested": [
+    "Samsung Fold7 hardware",
+    "Android17",
+    "thermal/latency/FPS",
+    "production child data",
+    "full game completion"
+  ],
+  "apk_identity": {
+    "apk_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+    "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "godot_revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "godot_pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "direct_apk_pck_read": {
+    "sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "bytes": 66234596
+  },
+  "root": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.005,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "restarting adbd as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 1.218,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 1.227,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 1.289,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 1.328
+  },
+  "runtime": {
+    "sdk": "35",
+    "release": "15",
+    "model": "sdk_gphone64_x86_64",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys"
+  },
+  "installed": {
+    "userId": "10209",
+    "firstInstallTime": "2026-11-14 01:00:55",
+    "versionCode": "2019 minSdk=24 targetSdk=36",
+    "versionName": "0.13.7"
+  },
+  "onboarding": {
+    "status": "PASS",
+    "profile_name": "LumoTest",
+    "captures": [
+      {
+        "file": "07_home_after_onboarding.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "df6163c8122a1a785df11d0f33fa77b4c8a14c0eb4b5e106b51c005e86ebee51",
+        "render_readiness": {
+          "width": 1080,
+          "height": 1920,
+          "content_entropy_bits": 6.464,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      {
+        "file": "08_games_after_navigation.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "9a29cee4607c8f2504a0deb1d0061e18613f252f0cfc3307fbbf91785a0d535d"
+      }
+    ],
+    "games_label": "Spiele"
+  },
+  "offline": true,
+  "fatal_crashes": 0,
+  "error": "At least one required genuine-input game contract failed; original evidence retained",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 962, in run\n    require(all(row.get('status') in ('PASS', 'INPUTS_RECORDED_SAVE_RESUMED')\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/studio_creative_android_probe.py\", line 49, in require\n    raise RuntimeError(message)\nRuntimeError: At least one required genuine-input game contract failed; original evidence retained\n",
+  "elapsed_seconds": 2148.389076224
+}

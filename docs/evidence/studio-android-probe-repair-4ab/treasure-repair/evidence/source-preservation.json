@@ -1,0 +1,49 @@
+{
+  "created_utc": "2026-11-14T01:58:12.076668+00:00",
+  "original_host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "original_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "protected_sources": [
+    {
+      "file": "host/.github/probes/studio_creative_android_probe.py",
+      "original_artifact_source_sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+      "after_sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+      "unchanged": true
+    },
+    {
+      "file": "host/.github/probes/creative_android_probe.py",
+      "original_artifact_source_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "after_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "unchanged": true
+    },
+    {
+      "file": "native/scripts/creative/treasure_world.gd",
+      "original_artifact_source_sha256": "c46d260fef1c4f6ee88db1b5e5704707b35771f2fc64522fc5927a25c3bd34cf",
+      "after_sha256": "c46d260fef1c4f6ee88db1b5e5704707b35771f2fc64522fc5927a25c3bd34cf",
+      "unchanged": true
+    },
+    {
+      "file": "native/scripts/creative/treasure_state.gd",
+      "original_artifact_source_sha256": "8a11898f66d1db922158d3169dd9ddcd7985bb7e3639c64fbfc60e3980064288",
+      "after_sha256": "8a11898f66d1db922158d3169dd9ddcd7985bb7e3639c64fbfc60e3980064288",
+      "unchanged": true
+    },
+    {
+      "file": "native/scripts/games/kart_joystick.gd",
+      "original_artifact_source_sha256": "040d901a499e97c18086579047d1f1332e4c46244fe0b5b10f1512effc49671e",
+      "after_sha256": "040d901a499e97c18086579047d1f1332e4c46244fe0b5b10f1512effc49671e",
+      "unchanged": true
+    }
+  ],
+  "existing_definitions": 43,
+  "unchanged_definitions": 42,
+  "changed_definitions": [
+    "Tour.treasure"
+  ],
+  "new_definitions": [
+    "Tour.move_treasure_stick",
+    "approach_treasure",
+    "treasure_position"
+  ],
+  "complete_original_success_suffix_ast_equal": true,
+  "scope": "AST comparison and SHA checks, not runtime acceptance"
+}

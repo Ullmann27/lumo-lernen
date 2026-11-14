@@ -1,0 +1,152 @@
+--- original4ab/.github/probes/studio_creative_android_probe.py
++++ isolated/.github/probes/studio_creative_android_probe.py
+@@ -47,6 +47,102 @@
+ def require(condition: bool, message: str) -> None:
+     if not condition:
+         raise RuntimeError(message)
++
++
++def treasure_position(saved: dict) -> list[float]:
++    position = saved.get('position')
++    require(isinstance(position, list) and len(position) == 3
++            and all(type(value) in (int, float) and math.isfinite(value) for value in position),
++            'Treasure position must contain three finite coordinates')
++    return position
++
++
++def approach_treasure(before: dict, move, checkpoint, journal: Path,
++                      *, timeout_seconds: float = 900) -> tuple[dict, list[list[float]]]:
++    """Reach the original first-clue radius using observed, read-only save feedback.
++
++    Input duration is wall time; the engine's speed is per simulation second.
++    Twelve segments remain the limit. Their duration follows actual progress,
++    with a six-second single hold and sixty-second cumulative hold ceiling.
++    The Linux deadline also interrupts a stalled OCR/save subprocess. No caller
++    may replace an existing alarm, and the previous signal handler is restored.
++    """
++    require(0 < timeout_seconds <= 900 and math.isfinite(timeout_seconds),
++            'Invalid Treasure wall-clock budget')
++    require(signal.getitimer(signal.ITIMER_REAL) == (0.0, 0.0),
++            'Treasure cannot replace an existing alarm')
++    current = before
++    positions = [treasure_position(before)]
++    distance = math.hypot(positions[-1][0] + 12, positions[-1][2] + 8)
++    started = time.monotonic()
++    evidence = {'status': 'MOVING', 'scope': 'First clue approach, not a game completion or FPS test',
++                'target_world_xz': [-12, -8], 'required_distance': 3.4,
++                'limits': {'segments': 12, 'single_hold_ms': 6000,
++                           'total_hold_ms': 60000, 'wall_seconds': timeout_seconds},
++                'initial_readback': before,
++                'observations': [{'position': positions[-1], 'distance': distance}],
++                'inputs': []}
++    previous_handler = signal.getsignal(signal.SIGALRM)
++
++    def expired(_signum, _frame):
++        raise TimeoutError('Treasure wall-clock budget exhausted')
++
++    signal.signal(signal.SIGALRM, expired)
++    signal.setitimer(signal.ITIMER_REAL, timeout_seconds)
++    total_held = 0
++    rate = None
++    try:
++        for _ in range(12):
++            if distance < 3.4:
++                break
++            require(time.monotonic() - started < timeout_seconds,
++                    'Treasure wall-clock budget exhausted')
++            duration = 1500 if rate is None else math.ceil((distance - 2.8) / rate)
++            duration = min(6000, max(220, duration))
++            duration = min(duration, 60000 - total_held)
++            require(duration >= 220, 'Treasure held-input budget exhausted before reaching first clue')
++            position = positions[-1]
++            direction = [-12 - position[0], -8 - position[2]]
++            event = {'axis_direction': direction, 'hold_ms': duration,
++                     'measured_progress_units_per_ms': rate,
++                     'before_distance': distance, 'started_after_seconds': time.monotonic() - started}
++            evidence['inputs'].append(event)
++            write(journal, evidence)
++            move(direction, duration)
++            total_held += duration
++            previous_discoveries = set(current.get('discoveries', []))
++            current = checkpoint()
++            evidence['last_readback'] = current
++            new_position = treasure_position(current)
++            new_distance = math.hypot(new_position[0] + 12, new_position[2] + 8)
++            movement = math.dist(position, new_position)
++            progress = distance - new_distance
++            event.update(after_distance=new_distance, movement=movement, progress=progress)
++            evidence['observations'].append({'position': new_position, 'distance': new_distance})
++            for key in ('result_id', 'version', 'chapter', 'solved_clues', 'wrong_attempts',
++                        'streak', 'best_streak'):
++                require(current.get(key) == before.get(key),
++                        'Treasure ' + key + ' changed during movement')
++            require(previous_discoveries <= set(current.get('discoveries', [])),
++                    'Treasure prior discoveries changed during movement')
++            require(movement > .2 and progress > .2,
++                    'Real joystick segment made no verified progress toward the first clue')
++            positions.append(new_position)
++            distance = new_distance
++            rate = progress / duration
++            write(journal, evidence)
++        require(distance < 3.4,
++                'Treasure segment budget exhausted before reaching first clue')
++        evidence['status'] = 'TARGET_REACHED'
++        return current, positions
++    except Exception as error:
++        evidence.update(status='FAIL', error=str(error))
++        raise
++    finally:
++        signal.setitimer(signal.ITIMER_REAL, 0)
++        signal.signal(signal.SIGALRM, previous_handler)
++        evidence.update(elapsed_seconds=time.monotonic() - started, total_held_ms=total_held)
++        write(journal, evidence)
+ 
+ 
+ def verify_candidate_metadata(run: dict, artifacts: dict, jobs: dict, expected: dict) -> dict:
+@@ -513,6 +609,17 @@
+         self.touch(point, {**target, 'axis_direction': axis,
+                           'input': 'Single real pointer; no simultaneous jump'}, milliseconds)
+ 
++    def move_treasure_stick(self, axis, milliseconds):
++        # The approach controller alone permits longer, bounded real holds.
++        # Jump and every existing move_stick caller retain their original cap.
++        length = math.hypot(*axis)
++        require(length > 0 and math.isfinite(length) and 220 <= milliseconds <= 6000,
++                'Invalid bounded Treasure stick gesture')
++        target = self.current_stick()
++        point = [target['center'][i] + axis[i] / length * target['diameter'] * .36 for i in range(2)]
++        self.touch(point, {**target, 'axis_direction': axis,
++                          'input': 'Single real pointer; readback-controlled Treasure hold'}, milliseconds)
++
+     def portal(self, title):
+         for direction in (-1, 1):
+             # Ten gestures need eleven observations, including the state
+@@ -720,22 +827,13 @@
+     def treasure(self):
+         self.enter('Schatzsuche', 'LUMOS STERNENSCHATZ')
+         before = self.pause_save('treasure')
+-        current, positions = before, [before['position']]
+-        for _ in range(12):
+-            x, _, z = current['position']
+-            direction = [-12 - x, -8 - z]
+-            distance = math.hypot(*direction)
+-            if distance < 3.4:
+-                break
+-            duration = round(min(1500, max(220, (distance - 2.8) / 6 * 1000)))
+-            self.move_stick(direction, duration)
++
++        def checkpoint():
+             time.sleep(.3)
+-            current = self.pause_save('treasure')
+-            positions.append(current['position'])
+-            require(math.dist(positions[-2], positions[-1]) > .2,
+-                    'Real joystick segment did not change the persisted player position')
+-        else:
+-            raise RuntimeError('First clue remained unreachable after bounded genuine movement')
++            return self.pause_save('treasure')
++
++        current, positions = approach_treasure(before, self.move_treasure_stick, checkpoint,
++                                               self.out / 'treasure-approach.json')
+         require(math.dist(before['position'], current['position']) > 3,
+                 'Treasure movement not established by actual saved positions')
+         self.native('ANSEHEN', tap=True, exact=True)

@@ -1,0 +1,32 @@
+{
+  "name": "existing-native-surface",
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_native_surface_readiness.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "environment_overrides": {
+    "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_THREAD_LIMIT": "1",
+    "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+  },
+  "started_utc": "2026-11-14T02:08:13.379024+00:00",
+  "elapsed_seconds": 0.41531925500021316,
+  "exit_code": 0,
+  "exception": null,
+  "test_count": 22,
+  "unittest_seconds": 0.265,
+  "skip_count": 0,
+  "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/existing-native-surface-corrected.log",
+  "log_bytes": 4552,
+  "log_sha256": "7c132348c320b26fbcb90637f502c44e856f214d0935290d5e0cbd92e7ee6568"
+}

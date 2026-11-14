@@ -1,0 +1,85 @@
+--- a/.github/probes/studio_creative_android_probe.py
++++ b/.github/probes/studio_creative_android_probe.py
+@@ -475,11 +475,11 @@
+         finally:
+             self.context = {}
+ 
+-    def native(self, label, tap=False, exact=False):
++    def native(self, label, tap=False, exact=False, *, orientation='landscape'):
+         self.probe.native_text(self.out, label, self.tag('native-' + self.probe.normalized(label)),
+-                               tap=tap, exact=exact)
+-
+-    def observe(self, label, exact=False):
++                               tap=tap, exact=exact, orientation=orientation)
++
++    def observe(self, label, exact=False, *, orientation='landscape'):
+         previous = None
+         for _ in range(3):
+             path, shot = self.shot('observe-' + self.probe.normalized(label))
+@@ -490,7 +490,7 @@
+                         else self.probe.normalized(label) in self.probe.normalized(x['text']))]
+             require(bool(matches), 'Caption absent from actual screenshot: ' + label)
+             found = min(matches, key=lambda x: len(x['text']))
+-            frame = self.probe.inspect_surface(path, orientation='landscape')
++            frame = self.probe.inspect_surface(path, orientation=orientation)
+             observed = self.probe.target_observation(frame, found['bounds'], previous)
+             if observed['stable_observed_target']:
+                 return {**found, 'capture': shot, 'stable': observed}
+@@ -564,8 +564,9 @@
+         self.native(header)
+         self.shot('entered-' + self.probe.normalized(title))
+ 
+-    def leave(self, label='Zur Spielewelt', already_pause=False):
+-        self.probe.leave(self.out, self.tag('leave'), already_menu=already_pause, return_label=label)
++    def leave(self, label='Zur Spielewelt', already_pause=False, *, orientation='landscape'):
++        self.probe.leave(self.out, self.tag('leave'), already_menu=already_pause,
++                         return_label=label, orientation=orientation)
+         # A true foreground + current Flutter accessibility AND visible text
+         # avoids accepting the last native buffer as a Flutter return image.
+         tag = self.tag('flutter-return')
+@@ -773,10 +774,10 @@
+ 
+     def jump(self):
+         self.enter('Jump & Run', 'Halten = höher springen')
+-        self.native('Pause', tap=True, exact=True)
++        self.native('Pause', tap=True, exact=True, orientation='responsive')
+         initial = self.jump_save()
+-        self.native('Weiterspielen', tap=True, exact=True)
+-        jump_target = self.observe('SPRINGEN', exact=True)
++        self.native('Weiterspielen', tap=True, exact=True, orientation='responsive')
++        jump_target = self.observe('SPRINGEN', exact=True, orientation='responsive')
+         remote = '/sdcard/lumo-studio-creative-jump.mp4'
+         log = (self.out / 'jump-screenrecord.log').open('wb')
+         started = time.monotonic()
+@@ -797,7 +798,7 @@
+                 time.sleep(.8)
+             for duration in (80, 650):
+                 # Re-read the actual caption before each independent press.
+-                target = self.observe('SPRINGEN', exact=True)
++                target = self.observe('SPRINGEN', exact=True, orientation='responsive')
+                 rect = target['bounds']
+                 at = time.monotonic() - started
+                 self.touch([(rect[0] + rect[2]) / 2, (rect[1] + rect[3]) / 2], target, duration)
+@@ -841,17 +842,19 @@
+             subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(second), '-i', str(movie),
+                             '-frames:v', '1', str(target)], check=True, capture_output=True, timeout=30)
+             samples.append({'file': target.name, 'sha256': sha(target), 'requested_seconds': second})
+-        self.native('Pause', tap=True, exact=True)
++        self.native('Pause', tap=True, exact=True, orientation='responsive')
+         saved = self.jump_save()
+         require(initial['result_id'] == saved['result_id'], 'Jump session identity changed during input recording')
+         self.shot('jump-paused-after-real-input')
+-        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True)
++        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True,
++                   orientation='responsive')
+         # Production restores checkpoints directly into its genuine pause
+         # modal and changes the HUD sentence; do not tap a covered Pause.
+         self.enter('Jump & Run', 'Kleine Pause')
+         resumed = self.jump_save()
+         resume_equal(saved, resumed, tuple(saved))
+-        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True)
++        self.leave('Zur Spieleauswahl · Abenteuer behalten', already_pause=True,
++                   orientation='responsive')
+         return {'status': 'INPUTS_RECORDED_SAVE_RESUMED', 'video': movie.name,
+                 'sha256': sha(movie), 'fully_decoded': True, 'samples': samples,
+                 'separate_pointer_actions': record['actions'], 'checkpoint_resume': True,

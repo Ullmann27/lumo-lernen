@@ -1,0 +1,32 @@
+{
+  "name": "existing-native-dim",
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_native_dim_caption.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "environment_overrides": {
+    "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_THREAD_LIMIT": "1",
+    "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+  },
+  "started_utc": "2026-11-14T02:08:13.395031+00:00",
+  "elapsed_seconds": 5.652869835001184,
+  "exit_code": 0,
+  "exception": null,
+  "test_count": 2,
+  "unittest_seconds": 5.549,
+  "skip_count": 0,
+  "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/existing-native-dim-corrected.log",
+  "log_bytes": 422,
+  "log_sha256": "a6a11affe1b9986dba6d562159f28ce366641eb8d8402c54d1629f27afad14ed"
+}

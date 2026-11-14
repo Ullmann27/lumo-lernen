@@ -1,0 +1,132 @@
+test_actual_default_three_reaches_motif_one_through_observed_titles (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_actual_default_three_reaches_motif_one_through_observed_titles) ... ERROR
+test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) ... 
+  test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=0) ... FAIL
+  test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=1) ... ERROR
+  test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=2) ... ERROR
+  test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=3) ... ERROR
+  test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=4) ... ERROR
+test_final_target_confirmation_must_precede_start (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_final_target_confirmation_must_precede_start) ... FAIL
+test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch) ... 
+  test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch) (captions=[]) ... FAIL
+  test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch) (captions=['Bild: Unbekannt']) ... FAIL
+  test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch) (captions=['Bild: Leuchtturm-Bucht', 'Bild: Blütenwiese']) ... FAIL
+test_saved_count_motif_and_rotation_conditions_are_still_mandatory (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_saved_count_motif_and_rotation_conditions_are_still_mandatory) ... ok
+test_unchanged_caption_after_a_touch_stops_without_blind_extra_taps (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_unchanged_caption_after_a_touch_stops_without_blind_extra_taps) ... FAIL
+
+======================================================================
+ERROR: test_actual_default_three_reaches_motif_one_through_observed_titles (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_actual_default_three_reaches_motif_one_through_observed_titles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 140, in test_actual_default_three_reaches_motif_one_through_observed_titles
+    self.method(device)
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 691, in puzzle
+    require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 49, in require
+    raise RuntimeError(message)
+RuntimeError: Actual menu touches did not persist six-piece motif1 rotation mode
+
+======================================================================
+ERROR: test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 151, in test_every_actual_start_caption_is_observed_without_fixed_tap_count
+    self.method(device)
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 691, in puzzle
+    require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 49, in require
+    raise RuntimeError(message)
+RuntimeError: Actual menu touches did not persist six-piece motif1 rotation mode
+
+======================================================================
+ERROR: test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 151, in test_every_actual_start_caption_is_observed_without_fixed_tap_count
+    self.method(device)
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 691, in puzzle
+    require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 49, in require
+    raise RuntimeError(message)
+RuntimeError: Actual menu touches did not persist six-piece motif1 rotation mode
+
+======================================================================
+ERROR: test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 151, in test_every_actual_start_caption_is_observed_without_fixed_tap_count
+    self.method(device)
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 691, in puzzle
+    require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 49, in require
+    raise RuntimeError(message)
+RuntimeError: Actual menu touches did not persist six-piece motif1 rotation mode
+
+======================================================================
+ERROR: test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 151, in test_every_actual_start_caption_is_observed_without_fixed_tap_count
+    self.method(device)
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 691, in puzzle
+    require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/.github/probes/studio_creative_android_probe.py", line 49, in require
+    raise RuntimeError(message)
+RuntimeError: Actual menu touches did not persist six-piece motif1 rotation mode
+
+======================================================================
+FAIL: test_every_actual_start_caption_is_observed_without_fixed_tap_count (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_every_actual_start_caption_is_observed_without_fixed_tap_count) (start=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 153, in test_every_actual_start_caption_is_observed_without_fixed_tap_count
+    self.assertTrue(all(x["observed_before"] for x in device.image_taps))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_final_target_confirmation_must_precede_start (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_final_target_confirmation_must_precede_start)
+----------------------------------------------------------------------
+RuntimeError: Actual menu touches did not persist six-piece motif1 rotation mode
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 187, in test_final_target_confirmation_must_precede_start
+    with self.assertRaisesRegex(RuntimeError, "target disappeared"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "target disappeared" does not match "Actual menu touches did not persist six-piece motif1 rotation mode"
+
+======================================================================
+FAIL: test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch) (captions=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 163, in test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch
+    self.assertFalse(device.image_taps)
+AssertionError: [{'label': 'Bild:', 'before': 3, 'observed_before': False}] is not false
+
+======================================================================
+FAIL: test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch) (captions=['Bild: Unbekannt'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 163, in test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch
+    self.assertFalse(device.image_taps)
+AssertionError: [{'label': 'Bild:', 'before': 3, 'observed_before': False}] is not false
+
+======================================================================
+FAIL: test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch) (captions=['Bild: Leuchtturm-Bucht', 'Bild: Blütenwiese'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 163, in test_missing_unknown_and_ambiguous_caption_never_send_a_selector_touch
+    self.assertFalse(device.image_taps)
+AssertionError: [{'label': 'Bild:', 'before': 3, 'observed_before': False}] is not false
+
+======================================================================
+FAIL: test_unchanged_caption_after_a_touch_stops_without_blind_extra_taps (test_studio_puzzle_menu_selection.PuzzleSelectionTests.test_unchanged_caption_after_a_touch_stops_without_blind_extra_taps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lumo-puzzle-red-original-ycv2wjk1/tools/android_qa/tests/test_studio_puzzle_menu_selection.py", line 172, in test_unchanged_caption_after_a_touch_stops_without_blind_extra_taps
+    self.assertFalse(device.started)
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.043s
+
+FAILED (failures=6, errors=5)

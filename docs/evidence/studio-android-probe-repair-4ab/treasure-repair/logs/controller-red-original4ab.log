@@ -1,0 +1,35 @@
+test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second) ... ERROR
+test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure) ... ERROR
+
+======================================================================
+ERROR: test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/scripts/tests/test_studio_treasure_movement.py", line 117, in test_measured_slow_response_reaches_actual_clue_without_assumed_six_units_per_second
+    result = self.run_tour(simulated)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/scripts/tests/test_studio_treasure_movement.py", line 112, in run_tour
+    return probe.Tour.treasure(simulated.tour)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/.github/probes/studio_creative_android_probe.py", line 738, in treasure
+    raise RuntimeError('First clue remained unreachable after bounded genuine movement')
+RuntimeError: First clue remained unreachable after bounded genuine movement
+
+======================================================================
+ERROR: test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure (scripts.tests.test_studio_treasure_movement.TreasureControllerContracts.test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/scripts/tests/test_studio_treasure_movement.py", line 131, in test_target_reached_by_twelfth_allowed_segment_is_observed_before_failure
+    result = self.run_tour(simulated)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/scripts/tests/test_studio_treasure_movement.py", line 112, in run_tour
+    return probe.Tour.treasure(simulated.tour)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/.github/probes/studio_creative_android_probe.py", line 738, in treasure
+    raise RuntimeError('First clue remained unreachable after bounded genuine movement')
+RuntimeError: First clue remained unreachable after bounded genuine movement
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+FAILED (errors=2)

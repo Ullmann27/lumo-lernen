@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "tested_apk_host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "tested_apk_native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "apk_bytes_unchanged": true,
+  "source_paths": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 59073,
+      "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+    },
+    {
+      "path": "tools/android_qa/tests/test_native_caption_ocr.py",
+      "bytes": 8918,
+      "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+      "bytes": 557393,
+      "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+      "bytes": 556055,
+      "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+      "bytes": 555537,
+      "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+      "bytes": 556003,
+      "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435"
+    }
+  ],
+  "active_checkout_reader_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+  "frozen_at_utc": "2026-11-14T01:36:37.428403+00:00"
+}

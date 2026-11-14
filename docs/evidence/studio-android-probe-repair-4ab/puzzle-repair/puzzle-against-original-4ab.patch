@@ -1,0 +1,54 @@
+--- a/.github/probes/studio_creative_android_probe.py
++++ b/.github/probes/studio_creative_android_probe.py
+@@ -683,9 +683,50 @@
+         for label in ('12 Teile', '24 Teile', '48 Teile', '96 Teile'):
+             self.native(label, tap=True)
+         self.native('6 Teile')
+-        self.native('Bild:', tap=True)  # Source default0 -> actual selected motif1.
++        motif_captions = (
++            'Bild: Lumos Mondschloss', 'Bild: Candy Cloud Circuit', 'Bild: Volcano Night Run',
++            'Bild: Leuchtturm-Bucht', 'Bild: Blütenwiese',
++        )
++        target_caption = motif_captions[1]
++        caption_by_text = {self.probe.normalized(caption): caption for caption in motif_captions}
++        selection_path = self.out / (self.tag('puzzle-motif-selection') + '.json')
++        selection = {'status': 'OBSERVING', 'target_motif': 1, 'target_caption': target_caption,
++                     'observations': [], 'actual_caption_touches': [],
++                     'scope': 'Fresh visible motif captions and original guarded input; no default assumption or save write'}
++        visited = set()
++        try:
++            # One complete observed menu cycle is the limit, not an assumed number of taps.
++            for _ in range(len(motif_captions)):
++                path, shot = self.shot('puzzle-motif-current')
++                lines = self.probe.image_lines(self.out, path.stem, self.probe.normalized('Bild:'),
++                                               source_path=path, timeout=60)
++                observed = {caption_by_text[self.probe.normalized(line['text'])] for line in lines
++                            if self.probe.normalized(line['text']) in caption_by_text}
++                require(len(observed) == 1, 'Actual puzzle menu motif caption is missing, unknown or ambiguous')
++                current = observed.pop()
++                selection['observations'].append({'caption': current, 'capture': shot,
++                    'ocr_matches': [line for line in lines if self.probe.normalized(line['text']) ==
++                                    self.probe.normalized(current)]})
++                if current == target_caption:
++                    selection['status'] = 'TARGET_OBSERVED'
++                    break
++                require(current not in visited, 'Actual puzzle motif did not advance or repeated before the target')
++                visited.add(current)
++                # The original two-frame touch guard must freshly locate this exact current caption.
++                self.native(current, tap=True, exact=True)
++                selection['actual_caption_touches'].append(current)
++            require(selection['status'] == 'TARGET_OBSERVED',
++                    'Candy Cloud Circuit was not observed within one bounded motif cycle')
++        except Exception as error:
++            selection.update(status='FAIL', error=str(error))
++            raise
++        finally:
++            write(selection_path, selection)
+         for label in ('Modus: Bilderpuzzle', 'Modus: Drehpuzzle', 'Modus: Bilderpuzzle'):
+             self.native(label, tap=True)
++        selection['confirmation_before_start'] = self.observe(target_caption, exact=True)
++        selection['status'] = 'TARGET_CONFIRMED_BEFORE_START'
++        write(selection_path, selection)
+         self.native('Neues Puzzle beginnen', tap=True, exact=True)
+         before = self.pause_save('puzzle')
+         require(before['count'] == 6 and before['motif'] == 1 and before['rotation_enabled'] is True,

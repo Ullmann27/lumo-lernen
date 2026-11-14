@@ -1,0 +1,71 @@
+{
+  "status": "READ_ONLY_REVIEW_NO_ADDITIONAL_CONCRETE_BLOCKER",
+  "reviewer": "character_animation",
+  "baseline_host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "original_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "source_bindings": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/puzzle/.github/probes/studio_creative_android_probe.py",
+      "bytes": 58630,
+      "sha256": "622ca4b037bd4b5722a279a2c45a01990ec9d7a920dfc9fdd2cde97a91f732cc",
+      "git_blob": "f350edf6e7eede3691198d635918578f502c3475"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/puzzle/tools/android_qa/tests/test_studio_puzzle_menu_selection.py",
+      "bytes": 8681,
+      "sha256": "745620771d6db0a8edf28774c0f3e918baea4466d3586f7e8a8a0bf5abf5c2b8",
+      "git_blob": "52cf6d9cfae97e9aaf7ede767bf7f9c142451f60"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/.github/probes/studio_creative_android_probe.py",
+      "bytes": 61176,
+      "sha256": "c6711c8891eac622b2833c7ecf92de650034a60dd8e8ab43babdaa9af695b4a7",
+      "git_blob": "35c7da0247aa46cfa1f8025e28f51f91239cd6fe"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/scripts/tests/test_studio_treasure_movement.py",
+      "bytes": 12241,
+      "sha256": "d6401252f81e249751dc6d031efe2ceba91759255a0528496bbc249ef877fc8f",
+      "git_blob": "910d8fd814654a82f09a7c915200e7ef6e2819d1"
+    }
+  ],
+  "puzzle": {
+    "findings": [
+      "Die tatsächliche Anfangsauswahl wird aus einem aktuellen Bild vollständig erkannt; unbekannte, fehlende oder mehrdeutige Motive erzeugen keinen Auswahltouch.",
+      "Maximal fünf Beobachtungen decken alle fünf möglichen Startmotive und höchstens vier Umschaltungen bis zum Ziel ab. Der Zustand nach der letzten zulässigen Bewegung wird noch beobachtet.",
+      "Jeder Umschalttouch verwendet die exakt beobachtete Beschriftung im unveränderten Zwei-Frame-Guard; vor Start folgt eine neue stabile Bestätigung.",
+      "Count-, Motiv- und Drehmodus-Savebedingungen sowie der komplette spätere Rotation-/Save-/Wiederaufnahmeabschnitt sind bytegleich zum Original."
+    ],
+    "saved_condition_and_remaining_method_bytes_identical": true,
+    "reported_test_log_read": {
+      "path": "/tmp/lumo-puzzle-menu-selection-green-final.log",
+      "bytes": 1266,
+      "sha256": "7a0833d99353eeb70a7d1f78ab997d04a26f2e99619914ba45edb0eb9f913975",
+      "git_blob": "ed1c51e011479e2c46456ace9e0f6d45f0a74f11"
+    },
+    "reported_results": "6/6 PASS im gelesenen Originalprotokoll; keine Wiederholung durch Reviewer"
+  },
+  "treasure": {
+    "findings": [
+      "Steuerung liest echte Checkpoints nach jeder begrenzten Eingabe; sie schreibt keine produktiven Spielstände. Geschwindigkeit wird ausschließlich aus dem vorherigen räumlichen Fortschritt pro Haltezeit geschätzt.",
+      "Zwölf Segmente, maximal 6000 ms pro Hold, maximal 60000 ms Gesamt-Hold und 900 s echter Linux-Timer sind explizit. Der unveränderte Zielabstand bleibt strikt kleiner als 3,4.",
+      "Der letzte zulässige Readback wird vor der endgültigen Distanzprüfung ausgewertet. Kein Fortschritt, falsche Richtung, geänderte Runde, unerwartet gelöste Hinweise und nichtendliche Positionen brechen ab.",
+      "Ein vorhandener Alarm wird vor Änderung abgelehnt; im finally werden der eigene Timer deaktiviert und der vorherige Signalhandler wiederhergestellt.",
+      "Die Originalreihe mit Endabstand 8,478 bleibt ein Fehlerfall. Synthetische Folgepositionen der Tests sind keine Android-Bewegungsevidenz.",
+      "Der komplette folgende ANSEHEN-/Frage-/Antwort-/Rucksack-/Speicher-/Wiederaufnahmeabschnitt bleibt bytegleich zum Original."
+    ],
+    "remaining_interaction_method_bytes_identical": true,
+    "reported_test_log_read": {
+      "path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/logs/controller-and-existing-green.log",
+      "bytes": 4200,
+      "sha256": "56fd1efb612f1539ea72ad4f2a9f9e4d96b3fd24ff92c7d3cbc8e9c90921ecf2",
+      "git_blob": "e55a5e651567a23e5872e257c9f34c65a040cf76"
+    },
+    "reported_results": "20/20 PASS (11 neue + 9 bestehende) im gelesenen Originalprotokoll; keine Wiederholung durch Reviewer"
+  },
+  "limits": [
+    "Keine eigenen Android-, Godot- oder Testläufe bei diesem Review.",
+    "Neue reale OCR-/Touch-/Bewegungs-/Rotations-/Inventar-/Wiederaufnahmeabnahme bleibt der nächsten unveränderten APK-Ausführung vorbehalten.",
+    "Patches müssen zusammen mit dem unabhängigen Jump-/leave- und Gold-OCR-Delta kontrolliert integriert werden."
+  ]
+}

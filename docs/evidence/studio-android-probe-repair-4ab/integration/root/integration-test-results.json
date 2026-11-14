@@ -1,0 +1,78 @@
+[
+  {
+    "name": "scripts-repair-contracts",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-p",
+      "test_studio_*",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 25.115483550995123,
+    "log": "scripts-repair-contracts.log",
+    "log_sha256": "aeacba5d07f5b779cd038b5b70c15e3c34e352e5a5e39eea4d532150abf11605"
+  },
+  {
+    "name": "puzzle-observed-menu",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_studio_puzzle_menu_selection.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.09597870899597183,
+    "log": "puzzle-observed-menu.log",
+    "log_sha256": "7a0833d99353eeb70a7d1f78ab997d04a26f2e99619914ba45edb0eb9f913975"
+  },
+  {
+    "name": "real-original-caption-replay",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "replay_native_caption_ocr.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 15.747699715007911,
+    "log": "real-original-caption-replay.log",
+    "log_sha256": "f5d342b0dd8d15c7ec5d5f067aa08570c6609636022e8b4c4934fac6a5bff223"
+  },
+  {
+    "name": "existing-native-surface",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_native_surface_readiness.py",
+      "-v"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 0.338317828005529,
+    "log": "existing-native-surface.log",
+    "log_sha256": "02c3b92d4d4008a6d0d4f3230aeda41daf9f2c63a7731fef8a3a1ed9e95759d0"
+  }
+]

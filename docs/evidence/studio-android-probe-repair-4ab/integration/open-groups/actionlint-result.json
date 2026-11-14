@@ -1,0 +1,24 @@
+{
+  "name": "actionlint",
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    ".github/workflows/lumo-studio-2019.yml"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "environment_overrides": {
+    "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_THREAD_LIMIT": "1",
+    "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+  },
+  "started_utc": "2026-11-14T02:08:13.377285+00:00",
+  "elapsed_seconds": 0.03431724201072939,
+  "exit_code": 0,
+  "exception": null,
+  "test_count": null,
+  "unittest_seconds": null,
+  "skip_count": 0,
+  "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/actionlint-corrected.log",
+  "log_bytes": 0,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
