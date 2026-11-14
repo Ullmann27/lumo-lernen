@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "observed_at": "2026-11-14T01:00:27.134892+00:00",
+  "status": "PASS_EXACT_DOWNLOADED_ARM64_PACKAGE_BYTES",
+  "artifact_id": 14089503005,
+  "run": 43530667812,
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "version": "0.13.7+2019",
+  "apk_bytes": 322140841,
+  "apk_sha256": "639d9d4f94fc1b1ce4447995eb673643ec4f2ade2717d701d73e0562ccf5e2aa",
+  "apk_zip_entries": 1078,
+  "all_apk_zip_crc_valid": true,
+  "native_pack": {
+    "member": "assets/lumo_game.pck",
+    "bytes": 66234596,
+    "sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "format_version": 3,
+    "engine": [
+      4,
+      6,
+      3
+    ],
+    "embedded_provenance_equal_to_ci": true
+  },
+  "abis": [
+    "arm64-v8a"
+  ],
+  "elf_16k_load_alignment": [
+    {
+      "library": "lib/arm64-v8a/libapp.so",
+      "load_segment_alignments": [
+        65536,
+        65536,
+        65536
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libc++_shared.so",
+      "load_segment_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libdartjni.so",
+      "load_segment_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libdatastore_shared_counter.so",
+      "load_segment_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libflutter.so",
+      "load_segment_alignments": [
+        65536,
+        65536,
+        65536
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libgodot_android.so",
+      "load_segment_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libmlkit_google_ocr_pipeline.so",
+      "load_segment_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libonnxruntime.so",
+      "load_segment_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libonnxruntime4j_jni.so",
+      "load_segment_alignments": [
+        16384,
+        16384
+      ]
+    }
+  ],
+  "resources_arsc": {
+    "stored": true,
+    "offset": 321724884,
+    "four_byte_aligned": true
+  },
+  "offline_voice_model_hashes_rechecked": 7,
+  "signature": {
+    "actual_ci_verifier_report_certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "locally_reran_apksigner": false,
+    "note": "Signature and manifest verification were performed by the successful source-bound CI job. This local review independently matched exact APK bytes, all APK ZIP CRCs, embedded PCK/voice-model hashes and ELF/resource alignment, not a second apksigner execution."
+  },
+  "limits": [
+    "API35/API37/update/creative are running; no delivery approval yet.",
+    "No physical Fold7, device60FPS, thermals, native GPU frame time or touch-latency measurement.",
+    "ARM64 package inspected in memory directly from original ZIP; no second322MB APK copy created."
+  ]
+}
