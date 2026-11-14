@@ -465,7 +465,7 @@ class CurrentGarageProbeWiringTests(unittest.TestCase):
             session.path = '/observed/kart_sonnenhafen_session.cfg'
             order = []
             def touch(out, label, tag, **kwargs):
-                self.assertEqual((label, kwargs), ('Weiterfahren', {'tap': True, 'exact': True}))
+                self.assertEqual((label, kwargs), ('Weiterfahren', {'tap': True, 'exact': True, 'standalone_caption': True}))
                 order.append('touch')
                 (out / (tag + '-surface-readiness.json')).write_text(
                     '{"status":"TOUCH_SENT","touch":[123,456]}')
