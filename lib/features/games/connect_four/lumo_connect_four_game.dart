@@ -927,6 +927,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
               child: LumoPressable(
                 enabled: !_busy && !_clock.value,
                 radius: 12,
+                pressedScale: 1,
                 child: IconButton(
                   key: ValueKey('connect-column-$c'),
                   tooltip: 'Stein in Spalte ${c + 1}',
