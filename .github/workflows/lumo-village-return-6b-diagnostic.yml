@@ -44,6 +44,7 @@ jobs:
             tools.android_qa.tests.test_kart_driver_word_evidence \
             tools.android_qa.tests.test_village_android_evidence \
             scripts.tests.test_6b_roundtrip_diagnostic \
+            tools.android_qa.tests.test_connect_four_probe_deadlines \
             2>&1 | tee diagnostic-contracts.log
           if grep -Eq '^OK \(skipped=|^FAILED.*skipped=' diagnostic-contracts.log; then
             echo 'Diagnostic contracts cannot be skipped.' >&2

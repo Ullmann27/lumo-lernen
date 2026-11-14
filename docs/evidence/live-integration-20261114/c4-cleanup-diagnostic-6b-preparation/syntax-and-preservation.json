@@ -1,0 +1,95 @@
+{
+  "base_qa": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+  "base_tree": "b3fecc83c5e58471fb2be25dc1d1015937505961",
+  "workflow_git_blob": "2d40651abd44b2b13f58e202ff4b747cd7e084ee",
+  "workflow_only_one_additive_test_module": true,
+  "old_contract_modules": [
+    "scripts.tests.test_verify_unchanged_6b_village_diagnostic",
+    "tools.android_qa.tests.test_kart_garage_evidence",
+    "tools.android_qa.tests.test_kart_garage_observed_scroll",
+    "tools.android_qa.tests.test_kart_scroll_word_evidence",
+    "tools.android_qa.tests.test_kart_driver_word_evidence",
+    "tools.android_qa.tests.test_village_android_evidence",
+    "scripts.tests.test_6b_roundtrip_diagnostic"
+  ],
+  "final_contract_modules": [
+    "scripts.tests.test_verify_unchanged_6b_village_diagnostic",
+    "tools.android_qa.tests.test_kart_garage_evidence",
+    "tools.android_qa.tests.test_kart_garage_observed_scroll",
+    "tools.android_qa.tests.test_kart_scroll_word_evidence",
+    "tools.android_qa.tests.test_kart_driver_word_evidence",
+    "tools.android_qa.tests.test_village_android_evidence",
+    "scripts.tests.test_6b_roundtrip_diagnostic",
+    "tools.android_qa.tests.test_connect_four_probe_deadlines"
+  ],
+  "apk_source_native_bindings_and_android_job_structurally_identical": true,
+  "only_three_source_changes": {
+    ".github/probes/lumo_connect_four_android_probe.py": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+    "tools/android_qa/tests/test_connect_four_probe_deadlines.py": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+    ".github/workflows/lumo-village-return-6b-diagnostic.yml": "2d40651abd44b2b13f58e202ff4b747cd7e084ee"
+  },
+  "all_other_materialized_sources_and_original_fixtures_byte_identical": true,
+  "verified_source_files": 220,
+  "yaml_duplicate_keys": false,
+  "bash_blocks": [
+    {
+      "job": "probe-contracts",
+      "step": 1,
+      "name": "Verify source binding and actual observation contracts",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "1dcbf6d689b5642cf06ca974414ecc62814066a653e28c2cc37d3ec845ab806a"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 4,
+      "name": "Install the existing real UI readers",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "55144ed7b551ef6c328ef481a58ce44c46eb583ac9f2dfb4c61bde7c49c4a34b"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 5,
+      "name": "Preserve original candidate and diagnostic run metadata separately",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "6a44c60d855e77c6c492e1ef76f7bcb6b9823212ac003ef89cd8f57f79498a7d"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 6,
+      "name": "Bind exact sources, successful builds, original APKs and embedded PCKs",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "421e4aa76243a1bbb1b8f4a57bbf07f6985b3672f1ac513b903a4871e543fae4"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 7,
+      "name": "Enable the existing disposable KVM emulator",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "db1035151032b3e0e2b7feea814f83244ea37c3f05cd7c20b7a582f9a9aa8b97"
+    },
+    {
+      "job": "android-diagnostic",
+      "step": 8,
+      "name": "Start the same software display",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "41154a01b7243515aaff49d56c1c88677151786d696ffcf2a5e0359c346e9eb3"
+    }
+  ],
+  "runner_bash_n_exit": 0,
+  "actionlint_exit": 0,
+  "actionlint_sha256": "c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4",
+  "python_compile": "PASS",
+  "device_or_workflow_commands_executed": false
+}

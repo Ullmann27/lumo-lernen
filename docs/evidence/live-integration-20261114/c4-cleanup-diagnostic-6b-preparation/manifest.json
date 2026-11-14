@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "base_qa_source": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+  "base_qa_tree": "b3fecc83c5e58471fb2be25dc1d1015937505961",
+  "observer_checkpoint": "d04ac2596fdd383dc49b1a111d9f6d699bd7cb76",
+  "changed_files": {
+    ".github/probes/lumo_connect_four_android_probe.py": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+    "tools/android_qa/tests/test_connect_four_probe_deadlines.py": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+    ".github/workflows/lumo-village-return-6b-diagnostic.yml": "2d40651abd44b2b13f58e202ff4b747cd7e084ee"
+  },
+  "workflow_change": "Only append tools.android_qa.tests.test_connect_four_probe_deadlines to the existing seven-module contract invocation; all other workflow bytes are identical.",
+  "unchanged_apk": {
+    "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "build_run": 43616038272,
+    "attempt": 1,
+    "build_job": 132512734271,
+    "artifact": 14125990109,
+    "artifact_bytes": 665918783,
+    "artifact_sha256": "1332b1d6604ae45c622bc70fa08a6d40991f5e8c9332466c17622135b81b11a6",
+    "apk_bytes": 334516947,
+    "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+    "pck_bytes": 75401304,
+    "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4"
+  },
+  "preservation": {
+    "qa_and_apk_sources_remain_distinct": true,
+    "complete_main_village_c4_journeys_unchanged": true,
+    "adapter_and_binding_verifier_bytes_unchanged": true,
+    "no_new_update_matrix_case": true,
+    "no_timeout_increase": true,
+    "no_device_input_restart_delete_added": true,
+    "no_publication_steps_or_permissions_added": true,
+    "source_context_files_verified_against_remote_tree": 220
+  },
+  "verification": {
+    "module_count": 8,
+    "modules": [
+      "scripts.tests.test_verify_unchanged_6b_village_diagnostic",
+      "tools.android_qa.tests.test_kart_garage_evidence",
+      "tools.android_qa.tests.test_kart_garage_observed_scroll",
+      "tools.android_qa.tests.test_kart_scroll_word_evidence",
+      "tools.android_qa.tests.test_kart_driver_word_evidence",
+      "tools.android_qa.tests.test_village_android_evidence",
+      "scripts.tests.test_6b_roundtrip_diagnostic",
+      "tools.android_qa.tests.test_connect_four_probe_deadlines"
+    ],
+    "tests": 155,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "test_seconds": 162.582,
+    "exit_code": 0,
+    "yaml_duplicates": false,
+    "actionlint_exit": 0,
+    "runner_bash_n_exit": 0,
+    "all_workflow_run_blocks_bash_n": true,
+    "python_compile": "PASS",
+    "source_before_after_identical": true,
+    "original_log": "contracts.original.log",
+    "execution_receipt": "contracts.execution.json",
+    "executed_driver": "preflight.py",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "pillow": "13.0.0",
+    "pyyaml": "6.0.3"
+  },
+  "limits": [
+    "This inactive checkpoint did not execute an Android emulator, rebuild/download an APK or start a workflow.",
+    "Pillow in this local contract run was13.0.0; the unchanged actual diagnostic workflow installs12.3.0.",
+    "No QA trigger, central branch, release or publisher was activated. Root owns activation.",
+    "A diagnostic pass would still not replace seven-job acceptance on the current integrated Host."
+  ]
+}

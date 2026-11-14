@@ -1,0 +1,2230 @@
+{
+  "base_qa": "91b5aece4060cd625b27e4cfa967122b5d4b5b92",
+  "started_at": "2026-11-14T19:46:52.106250+00:00",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_verify_unchanged_6b_village_diagnostic",
+    "tools.android_qa.tests.test_kart_garage_evidence",
+    "tools.android_qa.tests.test_kart_garage_observed_scroll",
+    "tools.android_qa.tests.test_kart_scroll_word_evidence",
+    "tools.android_qa.tests.test_kart_driver_word_evidence",
+    "tools.android_qa.tests.test_village_android_evidence",
+    "scripts.tests.test_6b_roundtrip_diagnostic",
+    "tools.android_qa.tests.test_connect_four_probe_deadlines"
+  ],
+  "elapsed_seconds": 165.65092638600254,
+  "exit_code": 0,
+  "skipped_summary": false,
+  "before": [
+    {
+      "path": ".github/probes/candidate_update_android_probe.py",
+      "git_blob": "7327e6da57261469efd069c303db2e1edaf07bbc",
+      "bytes": 9666
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "bytes": 65137
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+      "bytes": 4078
+    },
+    {
+      "path": ".github/probes/kart_complete_android_probe.py",
+      "git_blob": "98163d522970675f977260df84bb445e864ad9d1",
+      "bytes": 59785
+    },
+    {
+      "path": ".github/probes/lumo_1934_android_acceptance.py",
+      "git_blob": "2724b74bdd03f4eee73084a076f17043af658229",
+      "bytes": 3122
+    },
+    {
+      "path": ".github/probes/lumo_1939_flutter_navigation.py",
+      "git_blob": "b61fadcf99683e9f2c4275735b916ed6a1fef764",
+      "bytes": 3221
+    },
+    {
+      "path": ".github/probes/lumo_1939_pause_navigation.py",
+      "git_blob": "51bca5f4ce224685bce0b0fc4f69268e576ef632",
+      "bytes": 6008
+    },
+    {
+      "path": ".github/probes/lumo_1939_visual_acceptance.py",
+      "git_blob": "719d28e37b68962519e61edff54ffb2d26da5880",
+      "bytes": 7794
+    },
+    {
+      "path": ".github/probes/lumo_2000_update_android_probe.py",
+      "git_blob": "ca94d11226f4fa84584faa116edc93913046f15f",
+      "bytes": 9705
+    },
+    {
+      "path": ".github/probes/lumo_2001_update_android_probe.py",
+      "git_blob": "e344436205582e404d0d41d74929599cfe639a54",
+      "bytes": 9705
+    },
+    {
+      "path": ".github/probes/lumo_2002_update_android_probe.py",
+      "git_blob": "bde3b8f10fcee8b7a14da7d73e025e66a06abb6b",
+      "bytes": 9184
+    },
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "git_blob": "f8afca6f798fd4c309ee97737a2fcb983081d65a",
+      "bytes": 10588
+    },
+    {
+      "path": ".github/probes/lumo_2014_update_android_probe.py",
+      "git_blob": "8f5caddea46f6b0d336c9efd8c44a8f1147c1ef6",
+      "bytes": 1104
+    },
+    {
+      "path": ".github/probes/lumo_2015_update_android_probe.py",
+      "git_blob": "36779c61be7f5c4cf4562aad73c98cd4d9353cae",
+      "bytes": 1786
+    },
+    {
+      "path": ".github/probes/lumo_2016_update_android_probe.py",
+      "git_blob": "cf47b00eff2303cd1de1208c295d1c39d4fcec9d",
+      "bytes": 1786
+    },
+    {
+      "path": ".github/probes/lumo_2017_update_android_probe.py",
+      "git_blob": "091d9371444231d1e7c37161aa20a772f4ddd5a5",
+      "bytes": 1843
+    },
+    {
+      "path": ".github/probes/lumo_2018_update_android_probe.py",
+      "git_blob": "4ef289c84f6325cf5a348ca733c31cbe9630946e",
+      "bytes": 1899
+    },
+    {
+      "path": ".github/probes/lumo_2019_surfaces_android_probe.py",
+      "git_blob": "759894d3580ad5dfd37c7b1a1818cdd12548aaff",
+      "bytes": 236
+    },
+    {
+      "path": ".github/probes/lumo_2019_update_android_probe.py",
+      "git_blob": "7a59bf3842b49737115005c452e36565582b6410",
+      "bytes": 1894
+    },
+    {
+      "path": ".github/probes/lumo_2020_update_android_probe.py",
+      "git_blob": "5f770cd9efc0704c8659e34af46b2725a67ab5c8",
+      "bytes": 1894
+    },
+    {
+      "path": ".github/probes/lumo_6b_roundtrip_diagnostic.py",
+      "git_blob": "276daa83fada8c9d1014c930dd39bd72c92b0947",
+      "bytes": 16984
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "bytes": 29336
+    },
+    {
+      "path": ".github/probes/lumo_education_android_probe.py",
+      "git_blob": "a19c7f4062a568569562699dfd19ee32ce866533",
+      "bytes": 35294
+    },
+    {
+      "path": ".github/probes/lumo_free_voice_android_probe.py",
+      "git_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "bytes": 18897
+    },
+    {
+      "path": ".github/probes/lumo_games_android_controls.py",
+      "git_blob": "a93b71abe97646666528d876704600ae72dc2330",
+      "bytes": 1628
+    },
+    {
+      "path": ".github/probes/lumo_games_android_probe.py",
+      "git_blob": "b5229c36bc47350a47c4dda75c9f9ac58696a9b9",
+      "bytes": 9752
+    },
+    {
+      "path": ".github/probes/lumo_learning_journey_probe.py",
+      "git_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "bytes": 16929
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "git_blob": "7f2407c168a87af5e351b58f64141e1a18d78be1",
+      "bytes": 36488
+    },
+    {
+      "path": ".github/probes/lumo_speech_android_probe.py",
+      "git_blob": "51299db715f09cd697b2ac414896b43d222d150a",
+      "bytes": 14682
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "git_blob": "f22376dbb33464ce6591fbcd7e2c9b95d8947159",
+      "bytes": 50962
+    },
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "git_blob": "3e601644198f0b8c62fdaebcf783e3f631974bb1",
+      "bytes": 17484
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "f20bf864576f2474b563da29d2d718557702679c",
+      "bytes": 73307
+    },
+    {
+      "path": ".github/probes/sonnenhafen_update_probe.py",
+      "git_blob": "30c80321a67938ac8f6b2bfd368f5e94516d911a",
+      "bytes": 5710
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f",
+      "bytes": 79294
+    },
+    {
+      "path": ".github/workflows/lumo-village-return-6b-diagnostic.yml",
+      "git_blob": "2d40651abd44b2b13f58e202ff4b747cd7e084ee",
+      "bytes": 9632
+    },
+    {
+      "path": "config/godot-source.json",
+      "git_blob": "9a5d4fed3c7cec6318c9a7345505ab18ede7d235",
+      "bytes": 145
+    },
+    {
+      "path": "config/kart-graphics-2019-visual-review.json",
+      "git_blob": "f8b300cb0aced2dd3ab1d77df7a13536a9ca191a",
+      "bytes": 9167
+    },
+    {
+      "path": "config/lumo-notices.json",
+      "git_blob": "6bfb5f7bec41c91af963f47fc80d66977135ab74",
+      "bytes": 1313
+    },
+    {
+      "path": "config/lumo-offline-voice.json",
+      "git_blob": "200b67029cd4e19f27118f77b52e683c49461a6b",
+      "bytes": 1877
+    },
+    {
+      "path": "config/nextgen-2018-visual-review.json",
+      "git_blob": "1064a8070e78e2911d76fee69f493bf493bdf6c4",
+      "bytes": 12964
+    },
+    {
+      "path": "config/nextgen-2019-visual-review.json",
+      "git_blob": "bfae7f881b889573757adabc5a54e12b660e1a7f",
+      "bytes": 28462
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "bytes": 2718
+    },
+    {
+      "path": "scripts/android_console_transport.py",
+      "git_blob": "f0160eb3ba7f344e73547293ceb736d70b88c8b8",
+      "bytes": 21029
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "git_blob": "884adc1b6422f901d6c386f608d59b2a0386b19c",
+      "bytes": 60327
+    },
+    {
+      "path": "scripts/build_version.py",
+      "git_blob": "f73182ab00069c5b39282d2fb4ba3e58788f5e45",
+      "bytes": 1099
+    },
+    {
+      "path": "scripts/cleanup_obsolete_github_assets.py",
+      "git_blob": "a97ba59eac4646b3efc0c2f2d2b2f29899912870",
+      "bytes": 5241
+    },
+    {
+      "path": "scripts/compare_lumo_games_visuals.py",
+      "git_blob": "b35e8a462ef01f604ffcf1f8dde52a14e766b3a7",
+      "bytes": 4678
+    },
+    {
+      "path": "scripts/export_creative_evidence_parts.py",
+      "git_blob": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9",
+      "bytes": 12904
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba",
+      "bytes": 8642
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+      "bytes": 6926
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "git_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+      "bytes": 13367
+    },
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "git_blob": "29c7a3cf3684ecdb50f3aa166f5491c58587260f",
+      "bytes": 21702
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "git_blob": "f017808bc88c0262f27bdfe7a73ebbb686479eeb",
+      "bytes": 9486
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "git_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "bytes": 10377
+    },
+    {
+      "path": "scripts/prepare_launcher_icons.py",
+      "git_blob": "ebd6cb5586fd721d8e321a4ba68db26efe1a8845",
+      "bytes": 5914
+    },
+    {
+      "path": "scripts/prepare_offline_voice.py",
+      "git_blob": "e9d91a8d41ea520cade4f73a2dd078e4e54865f0",
+      "bytes": 5050
+    },
+    {
+      "path": "scripts/probes/parent_games_20261007_apply.py",
+      "git_blob": "d96ed39a43316b4df3ab8cf6e856d1b659951314",
+      "bytes": 18384
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "bytes": 14884
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "git_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+      "bytes": 2032
+    },
+    {
+      "path": "scripts/record_kart_graphics_review.py",
+      "git_blob": "49d855caa24408a9cac34f8f2f749bd64748cf68",
+      "bytes": 13649
+    },
+    {
+      "path": "scripts/record_nextgen_visual_review.py",
+      "git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+      "bytes": 5870
+    },
+    {
+      "path": "scripts/record_studio_visual_review.py",
+      "git_blob": "2012da21c756c7245b6d32437147b887a76a9efe",
+      "bytes": 7062
+    },
+    {
+      "path": "scripts/release_pipeline_gates.py",
+      "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+      "bytes": 9853
+    },
+    {
+      "path": "scripts/render_learning_island.py",
+      "git_blob": "557b067d5868583c831e7ce213edb6416cc1b868",
+      "bytes": 17605
+    },
+    {
+      "path": "scripts/run_connect_four_runtime.py",
+      "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5",
+      "bytes": 15683
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "git_blob": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+      "bytes": 6615
+    },
+    {
+      "path": "scripts/run_unchanged_6b_village_diagnostic.sh",
+      "git_blob": "7a1428595c8a51682e7f2d1c58cfaa0ccb10d68e",
+      "bytes": 6361
+    },
+    {
+      "path": "scripts/run_unchanged_creative_diagnostic.py",
+      "git_blob": "a8ed9acb0f48c390538226ff5f45f5d4fa8f06a1",
+      "bytes": 9941
+    },
+    {
+      "path": "scripts/tests/test_6b_roundtrip_diagnostic.py",
+      "git_blob": "247b943be29a25564e7f8f3602b3a86eabbc94ce",
+      "bytes": 10652
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_6b_village_diagnostic.py",
+      "git_blob": "067e16cd95527d1c63be4354ae06e53e974f28b5",
+      "bytes": 31568
+    },
+    {
+      "path": "scripts/verify_android_apk.py",
+      "git_blob": "02b08f5aff49e9dc71c30ff9f37fa686c4d73d64",
+      "bytes": 3688
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "git_blob": "0bb9f91493a07100935bdb88e796676ae1ee20f5",
+      "bytes": 39349
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "bytes": 11403
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "git_blob": "42d54aa5293750f64f1c0307b5d97aace354471d",
+      "bytes": 75399
+    },
+    {
+      "path": "scripts/verify_kart_graphics_delivery.py",
+      "git_blob": "07df73ba74322727538de33a79c43978df7c805b",
+      "bytes": 13414
+    },
+    {
+      "path": "scripts/verify_kart_graphics_review.py",
+      "git_blob": "98b2c1bc705e8959428b8e418ac940807cabe5bc",
+      "bytes": 15253
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "git_blob": "d78beb43b018a26894c3fdb08f1672624d36fba0",
+      "bytes": 10709
+    },
+    {
+      "path": "scripts/verify_nextgen_delivery.py",
+      "git_blob": "fd472458d3c19574bf501090d2dccbb7c5194467",
+      "bytes": 26996
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+      "bytes": 17151
+    },
+    {
+      "path": "scripts/verify_studio_creative_android.py",
+      "git_blob": "d6734844affced809e76fd644330a2504ff8a010",
+      "bytes": 9762
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "git_blob": "ceeb0a5123acb229f7ff0329ee8730aff63cecb0",
+      "bytes": 66296
+    },
+    {
+      "path": "scripts/verify_unchanged_6b_village_diagnostic.py",
+      "git_blob": "c267eadbac17f163cd24c4c149c5640e9b32c9b7",
+      "bytes": 26923
+    },
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "git_blob": "11749337af0aff31d7541702890459126675fd08",
+      "bytes": 19885
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+      "bytes": 13676
+    },
+    {
+      "path": "scripts/visual_before_after_report.py",
+      "git_blob": "322a82928c826640709f925cf59debbbf55c70d1",
+      "bytes": 6544
+    },
+    {
+      "path": "tools/android_qa/android_ui.py",
+      "git_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771",
+      "bytes": 15599
+    },
+    {
+      "path": "tools/android_qa/cache_built_apk.py",
+      "git_blob": "6c7bea63c28b80b94b29a61c2d207eb9ce1a9cb1",
+      "bytes": 2568
+    },
+    {
+      "path": "tools/android_qa/caption_scroll_recovery.py",
+      "git_blob": "aef9c9a8a84d82f19ae050ec829576084e231d1f",
+      "bytes": 4972
+    },
+    {
+      "path": "tools/android_qa/cards_android_round.py",
+      "git_blob": "9ea9ff5bc4eede9d6fbec6b1f78085cf4a1f00b1",
+      "bytes": 13548
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68",
+      "bytes": 36432
+    },
+    {
+      "path": "tools/android_qa/download_apk.py",
+      "git_blob": "36c1419ea48152c01a5577ab4c4eda329a95268d",
+      "bytes": 5943
+    },
+    {
+      "path": "tools/android_qa/emulator_diagnostics.py",
+      "git_blob": "460ed3a6fd9b49ca883de624568632c1cd3a81f0",
+      "bytes": 9254
+    },
+    {
+      "path": "tools/android_qa/export_delivery.py",
+      "git_blob": "82d3365a5c85a95b2461862f96e958a0c69daba5",
+      "bytes": 5777
+    },
+    {
+      "path": "tools/android_qa/flutter_flows.py",
+      "git_blob": "c7307c38ec7c9a0b814eb497a4e464b73226c91c",
+      "bytes": 18698
+    },
+    {
+      "path": "tools/android_qa/flutter_return_readiness.py",
+      "git_blob": "5ffa079db10fbaf178071ec1a932a4b26ea21407",
+      "bytes": 10257
+    },
+    {
+      "path": "tools/android_qa/fold_device_capture.py",
+      "git_blob": "500c8728602593e3ff34be62cbc81d32f7cdfbe5",
+      "bytes": 23101
+    },
+    {
+      "path": "tools/android_qa/fresh_ui_hierarchy.py",
+      "git_blob": "ad3c87375c5490a8d5674fe0cd49d2a41a4de95e",
+      "bytes": 4244
+    },
+    {
+      "path": "tools/android_qa/kart_android_race.py",
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2",
+      "bytes": 39513
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "git_blob": "09da24805ad89446eacfe2593d8f0a1b34adcdf4",
+      "bytes": 27185
+    },
+    {
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "bytes": 9299
+    },
+    {
+      "path": "tools/android_qa/memory_android_round.py",
+      "git_blob": "a2d98da161e031d348a89e0f9a9fde3319ce0367",
+      "bytes": 22165
+    },
+    {
+      "path": "tools/android_qa/native_handoff_evidence_recovery.py",
+      "git_blob": "0ea732262fdb80fc0cf2104fd555f31652ea0367",
+      "bytes": 6552
+    },
+    {
+      "path": "tools/android_qa/native_lap_evidence_recovery.py",
+      "git_blob": "80b6aa75b7de86100590fdb949b017b85e6c0d58",
+      "bytes": 37829
+    },
+    {
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "git_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+      "bytes": 8243
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "bytes": 4401
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "bytes": 28512
+    },
+    {
+      "path": "tools/android_qa/prepare_built_apk.py",
+      "git_blob": "19f4804f17262a8bb05f278397060cbc519e6391",
+      "bytes": 3372
+    },
+    {
+      "path": "tools/android_qa/prepare_system_image.py",
+      "git_blob": "55b5c404b9ac6822213d966f274a047401c37b26",
+      "bytes": 16572
+    },
+    {
+      "path": "tools/android_qa/prepare_ui_snapshot.py",
+      "git_blob": "bd54bf518ede58aaaa32098cdf2cfe74fcd1e411",
+      "bytes": 5009
+    },
+    {
+      "path": "tools/android_qa/preserved_source_proof.py",
+      "git_blob": "cc883433a2cbeaaff7d588165cd03d9d051ee183",
+      "bytes": 11966
+    },
+    {
+      "path": "tools/android_qa/publish_authorized_1928.py",
+      "git_blob": "49f1622b4d1618029b59e77bde461ab22dd93899",
+      "bytes": 9599
+    },
+    {
+      "path": "tools/android_qa/release_lookup.py",
+      "git_blob": "5dea5c3333b38651252bdb36cec8fb0056ecaf39",
+      "bytes": 1948
+    },
+    {
+      "path": "tools/android_qa/rooted_emulator.py",
+      "git_blob": "862bcc834e0092a25e339f2bf3a074e50477b16b",
+      "bytes": 12111
+    },
+    {
+      "path": "tools/android_qa/run_ui_checks.py",
+      "git_blob": "f8fb9d6fe255de38143262bde1a4e0daebd0884f",
+      "bytes": 19006
+    },
+    {
+      "path": "tools/android_qa/runtime_resource_evidence.py",
+      "git_blob": "caf093f18059272d7c3a5c9ceada574747519212",
+      "bytes": 5371
+    },
+    {
+      "path": "tools/android_qa/system_ui.py",
+      "git_blob": "5c57d0e932b75f3d80a55f73604297e710a7ad96",
+      "bytes": 3854
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "git_blob": "af252cc88dc95bd4a37234b225dec6c86d91f5b1",
+      "bytes": 4356
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "2921c810c6dd46ffac1386cd8a94f1504a8b8c0b",
+      "bytes": 3557
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "git_blob": "5ddf712b91506f07d97095faa728823fcf222929",
+      "bytes": 3202
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "git_blob": "02904427cbddc8159d16e0a6f9fc8c9c9d5fc74a",
+      "bytes": 3753
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "cf836c4d8b8ca0362ff72d19a44a6d961a68b12b",
+      "bytes": 5124
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "git_blob": "1527db533fb57a4c727c4aafb2df7fde07cc992f",
+      "bytes": 3527
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "git_blob": "e830d558853fbf8f511d1a9c3edec5328da7970e",
+      "bytes": 3567
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr.json",
+      "git_blob": "08570b2e858ecc7e9ca396e5ef5a64d48f367de2",
+      "bytes": 24660
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0.png",
+      "git_blob": "abc348f5a479c2aedf4493d69df08fa09b801fa2",
+      "bytes": 785894
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "git_blob": "777b661caf575d680330f179bd7101b71a361c62",
+      "bytes": 1011
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/provenance.json",
+      "git_blob": "58cf9abba377e361ef85fef47f1ce23ec06d2cbd",
+      "bytes": 6626
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "git_blob": "d9075247fd68c11834d38e734c54d1209cd54ddb",
+      "bytes": 4859
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "1636c358380c690d4b8867bf8b2ae7e33b29b5ba",
+      "bytes": 1997
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "git_blob": "720e63eff51c361550cb61f0f75403ba02526f62",
+      "bytes": 4113
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "git_blob": "c393c4090b2045ea7fae707258385915e928cbe8",
+      "bytes": 2997
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "936b6774912f092c0bcb5fb97efbad283a1ded8c",
+      "bytes": 6020
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "git_blob": "859043002f90c214d7a9f7014eb0539178b4b4e5",
+      "bytes": 3518
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "git_blob": "9253ca958a73d3e9aa83c8dbff047b68b034a615",
+      "bytes": 3523
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr.json",
+      "git_blob": "1dd30e56e59d16464f90986c51fe943737761f52",
+      "bytes": 26195
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0.png",
+      "git_blob": "524493b5b1bffb8342eb2a32b3faaccf5529f414",
+      "bytes": 761058
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "git_blob": "0b35c40db72a8d34ff120996f316fa33314fcebe",
+      "bytes": 1003
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+      "git_blob": "d5f03367e2fc528d8ba69bbcdf676726341955c3",
+      "bytes": 4628
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "fd0eacfc661272d329bcd9f47c8cd9f89fddfb4e",
+      "bytes": 3386
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+      "git_blob": "defeb5be752a7f6bc66ac9ce27be93ae139ff189",
+      "bytes": 3828
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+      "git_blob": "2c5d617b14a7e8cf674d20dae38a576aaa67b178",
+      "bytes": 5219
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "b138866d2a7cb9c188e11117a0c17ab5e54cc7cf",
+      "bytes": 5000
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+      "git_blob": "d9b66536a03b995bdd9a65050333dd36dd07f1e9",
+      "bytes": 2933
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+      "git_blob": "6a38ac5d3e26543cc83764b87459aee7f4556d26",
+      "bytes": 2968
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "08f8062acdce8d41501c2e9239e31c2b427e561f",
+      "bytes": 21121
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0.png",
+      "git_blob": "d32146de353274bd19c4fbc458161c72755ea432",
+      "bytes": 788919
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+      "git_blob": "ebb311ac7ae8411adeeda4cfe8e720441127b4cc",
+      "bytes": 4860
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+      "git_blob": "9fe7a102a1e98a6d8472f4741120004b6cc4f0fc",
+      "bytes": 2452
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+      "git_blob": "eabf54a7d84e24e97df8ff1a875b085215550476",
+      "bytes": 3059
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+      "git_blob": "2c96019945a0da783ec6e6e77b1b676a97c888b0",
+      "bytes": 4423
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+      "git_blob": "4e4a6ab969afe0fc21e98ebf5146bda7068f1356",
+      "bytes": 5652
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+      "git_blob": "750e86b2bea3c5f9d44afcb02fb6e504b7df0fa5",
+      "bytes": 3485
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+      "git_blob": "a06c0e659fd3302a467e953eca04dde9b7dc3123",
+      "bytes": 3521
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr.json",
+      "git_blob": "df4aa7c0807db41cf15600f60c40df66c38f534f",
+      "bytes": 20512
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1.png",
+      "git_blob": "d66c0813f69d486ee24d22cc537efce46eb8706f",
+      "bytes": 792428
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "ea82fb2ff860a046d2375cbd5ed888f12ff5f912",
+      "bytes": 5488
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "32c9442578e050d8452b9bd393455bcde569f038",
+      "bytes": 2666
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "3dce4b348890112852ead40b32a8adb589690127",
+      "bytes": 3671
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "601c290513151e3899fe3273f90d9e8de805c31c",
+      "bytes": 3901
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "f3c69497073b170463acbaf5c38cbab8b933dd88",
+      "bytes": 5782
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "a40a40c569869bf0f9b5abadc762d822c18fcedf",
+      "bytes": 3341
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "66d7d5563d420fa3194e64929e5bcdefe5e26811",
+      "bytes": 3376
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "aac13ab0f2b2c268f360287c33538c5fa43f260b",
+      "bytes": 20046
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2.png",
+      "git_blob": "1bf7cb619b38e551c973928bc7587d00a354baa9",
+      "bytes": 784389
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "35f223159028b79ec4090a593cd5db2adf50d3dd",
+      "bytes": 3833
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/provenance.json",
+      "git_blob": "abc05a0ec63e96acceac3b67e9f511c2ca346bd4",
+      "bytes": 16650
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+      "git_blob": "4871828bf143fe4eb9fb8ffb23206625d741fda3",
+      "bytes": 5759
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "cb30a214c514d618f955980b6f3bb73c8fe55d90",
+      "bytes": 2748
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+      "git_blob": "8ad3d0f7b446a2c402a8bed766aa442e83b41b04",
+      "bytes": 2754
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+      "git_blob": "3e752405b59fbe7b04de363f7167e8298f635f91",
+      "bytes": 3849
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "0804fc79b8de1b9dbe7f72d2a93d00ca6aecc479",
+      "bytes": 6138
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+      "git_blob": "ff589ce1b3874865fee046cfa924f52076e026c1",
+      "bytes": 3283
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+      "git_blob": "e825ddb01279ea06007cd522f8f9ef9645955549",
+      "bytes": 3294
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "9c2857b105d886f957009c76d65634e8c94d4dae",
+      "bytes": 20989
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0.png",
+      "git_blob": "657919b1b4127a6d33bb9858317d77a73217afaf",
+      "bytes": 766876
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+      "git_blob": "753abb1738337c1ef052054b1af1f7d0ad71f349",
+      "bytes": 5438
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+      "git_blob": "3a51b2af235fb5e3c874e4062a6c674e60166040",
+      "bytes": 2382
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+      "git_blob": "ecde6d9553db6b57f6e5479af16730c84de46a8a",
+      "bytes": 2190
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+      "git_blob": "bc83632ef5370ac00dddad4700c6de3a46deb5aa",
+      "bytes": 4098
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+      "git_blob": "f0f406d03798ef2d2a7a7d937c0366bcfc0b9202",
+      "bytes": 5364
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+      "git_blob": "9ce398a71b0136309b0bbdd05178a697f5238600",
+      "bytes": 3383
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+      "git_blob": "983a8fba0f1d8db61d9ffb342675f68bcb674914",
+      "bytes": 3347
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr.json",
+      "git_blob": "30f2ec296f28f11083a573a713315b2504782940",
+      "bytes": 19640
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1.png",
+      "git_blob": "5a72b00ad209355f5de24816e374e42103751f2c",
+      "bytes": 769329
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "e873e27a4710f4f2d4303e8971a25b31152a78ab",
+      "bytes": 6459
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "2ea6ca5598e96613e4ce8f02f9a277dc01520793",
+      "bytes": 3247
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "d979c4943d291aa77cc08549d923b4b00786a54f",
+      "bytes": 2504
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "18f6a899e95353c47ccf0b9839f41953e5c3b53b",
+      "bytes": 3774
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "d0798d35007ff5367d9464dc89225ddfabedec7a",
+      "bytes": 5396
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "fe3a29d96b6b6c63c80b4ebd13a478694ca8c45d",
+      "bytes": 3460
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "7b8191d88c591c3a6c5004342cae4c7d17343dbc",
+      "bytes": 3568
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "59b3c937f0292a1aa4a78ec0b7c8d1ec26298c5b",
+      "bytes": 20942
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2.png",
+      "git_blob": "eb6b3651f6e1013b82cb759781550c38b79e4493",
+      "bytes": 760982
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "18aaf388f90d20043fe9e715637aa425736c3ea3",
+      "bytes": 3841
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "c783718ec55bbb43bf35fce9567e1cb22e800015",
+      "bytes": 22111
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0.png",
+      "git_blob": "c52ea1af7b3e177f5e187ffa287164d38ec465b9",
+      "bytes": 790695
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "977cbeaeafc73f20e7da8ba77e03c542cfdf75f7",
+      "bytes": 5014
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "ac54992d61917291b0eb7542799ce61e15bbc2e9",
+      "bytes": 2502
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "bab0f2f4cb226f3a9aa6062e45447524c3f2994b",
+      "bytes": 4156
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "1d62d918dfbebb35d9f9549b33400201e25d3ee6",
+      "bytes": 4794
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "7ea4c2c1821623a84bff2443ea5987ba673ee085",
+      "bytes": 6552
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "7416b5452293e5664ea2c8a2d1714fc81072b9fe",
+      "bytes": 2974
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "df99f3456b8de4e939b09fd2f84dd2dbac20c2a2",
+      "bytes": 2972
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "c204245477c52956f864ebafccc41fd2cb445bda",
+      "bytes": 21249
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+      "git_blob": "928e78cac6aa289fac70f4fdc318cc1e8d908436",
+      "bytes": 787362
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "58a2ee61e1936b3d6d661fce57f8fd451ea661ab",
+      "bytes": 3842
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/provenance.json",
+      "git_blob": "9a1e0b10ed23daa546b9fe183dcbceb5234713f3",
+      "bytes": 3992
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "git_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+      "bytes": 19927
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_driver_word_evidence.py",
+      "git_blob": "b5bb8e3c5f53d79d7a64b5723698292b427c7cf8",
+      "bytes": 8461
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "git_blob": "b727e447caf8da1e0f0619b32bc0960e918b5226",
+      "bytes": 30297
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_observed_scroll.py",
+      "git_blob": "0efb0928d1c8575dc6134165f2f30182fcd5aa49",
+      "bytes": 10121
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "git_blob": "ced952881090f4c76e1c4229bf3669b75e31a41d",
+      "bytes": 15159
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "git_blob": "d21f941b2f5cff410f8e4cd7ae23fbbbf894743a",
+      "bytes": 36944
+    },
+    {
+      "path": "tools/android_qa/update_artifact_identity.py",
+      "git_blob": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+      "bytes": 1105
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "git_blob": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+      "bytes": 10258
+    },
+    {
+      "path": "tools/android_qa/upload_proof.py",
+      "git_blob": "fc0b507a4ecf85003707e89e660e5d553f017d62",
+      "bytes": 2172
+    },
+    {
+      "path": "tools/android_qa/upload_tested_apk.py",
+      "git_blob": "652d452addb2eacbaf720aa3f1f5e927564c3991",
+      "bytes": 2871
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+      "bytes": 20967
+    },
+    {
+      "path": "tools/android_qa/tests/test_modernization_tour_identity.py",
+      "git_blob": "fc5dfc4d656462c8e98821589ecc1fcda690e56f",
+      "bytes": 17607
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "git_blob": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc",
+      "bytes": 28636
+    }
+  ],
+  "after": [
+    {
+      "path": ".github/probes/candidate_update_android_probe.py",
+      "git_blob": "7327e6da57261469efd069c303db2e1edaf07bbc",
+      "bytes": 9666
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "bytes": 65137
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "git_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950",
+      "bytes": 4078
+    },
+    {
+      "path": ".github/probes/kart_complete_android_probe.py",
+      "git_blob": "98163d522970675f977260df84bb445e864ad9d1",
+      "bytes": 59785
+    },
+    {
+      "path": ".github/probes/lumo_1934_android_acceptance.py",
+      "git_blob": "2724b74bdd03f4eee73084a076f17043af658229",
+      "bytes": 3122
+    },
+    {
+      "path": ".github/probes/lumo_1939_flutter_navigation.py",
+      "git_blob": "b61fadcf99683e9f2c4275735b916ed6a1fef764",
+      "bytes": 3221
+    },
+    {
+      "path": ".github/probes/lumo_1939_pause_navigation.py",
+      "git_blob": "51bca5f4ce224685bce0b0fc4f69268e576ef632",
+      "bytes": 6008
+    },
+    {
+      "path": ".github/probes/lumo_1939_visual_acceptance.py",
+      "git_blob": "719d28e37b68962519e61edff54ffb2d26da5880",
+      "bytes": 7794
+    },
+    {
+      "path": ".github/probes/lumo_2000_update_android_probe.py",
+      "git_blob": "ca94d11226f4fa84584faa116edc93913046f15f",
+      "bytes": 9705
+    },
+    {
+      "path": ".github/probes/lumo_2001_update_android_probe.py",
+      "git_blob": "e344436205582e404d0d41d74929599cfe639a54",
+      "bytes": 9705
+    },
+    {
+      "path": ".github/probes/lumo_2002_update_android_probe.py",
+      "git_blob": "bde3b8f10fcee8b7a14da7d73e025e66a06abb6b",
+      "bytes": 9184
+    },
+    {
+      "path": ".github/probes/lumo_2003_update_android_probe.py",
+      "git_blob": "f8afca6f798fd4c309ee97737a2fcb983081d65a",
+      "bytes": 10588
+    },
+    {
+      "path": ".github/probes/lumo_2014_update_android_probe.py",
+      "git_blob": "8f5caddea46f6b0d336c9efd8c44a8f1147c1ef6",
+      "bytes": 1104
+    },
+    {
+      "path": ".github/probes/lumo_2015_update_android_probe.py",
+      "git_blob": "36779c61be7f5c4cf4562aad73c98cd4d9353cae",
+      "bytes": 1786
+    },
+    {
+      "path": ".github/probes/lumo_2016_update_android_probe.py",
+      "git_blob": "cf47b00eff2303cd1de1208c295d1c39d4fcec9d",
+      "bytes": 1786
+    },
+    {
+      "path": ".github/probes/lumo_2017_update_android_probe.py",
+      "git_blob": "091d9371444231d1e7c37161aa20a772f4ddd5a5",
+      "bytes": 1843
+    },
+    {
+      "path": ".github/probes/lumo_2018_update_android_probe.py",
+      "git_blob": "4ef289c84f6325cf5a348ca733c31cbe9630946e",
+      "bytes": 1899
+    },
+    {
+      "path": ".github/probes/lumo_2019_surfaces_android_probe.py",
+      "git_blob": "759894d3580ad5dfd37c7b1a1818cdd12548aaff",
+      "bytes": 236
+    },
+    {
+      "path": ".github/probes/lumo_2019_update_android_probe.py",
+      "git_blob": "7a59bf3842b49737115005c452e36565582b6410",
+      "bytes": 1894
+    },
+    {
+      "path": ".github/probes/lumo_2020_update_android_probe.py",
+      "git_blob": "5f770cd9efc0704c8659e34af46b2725a67ab5c8",
+      "bytes": 1894
+    },
+    {
+      "path": ".github/probes/lumo_6b_roundtrip_diagnostic.py",
+      "git_blob": "276daa83fada8c9d1014c930dd39bd72c92b0947",
+      "bytes": 16984
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "836cf90f170545ce6d6393d5034dc149f5f6cf8c",
+      "bytes": 29336
+    },
+    {
+      "path": ".github/probes/lumo_education_android_probe.py",
+      "git_blob": "a19c7f4062a568569562699dfd19ee32ce866533",
+      "bytes": 35294
+    },
+    {
+      "path": ".github/probes/lumo_free_voice_android_probe.py",
+      "git_blob": "351c96cec03cdbf79fbfcfe78e52a9a9c0870a1f",
+      "bytes": 18897
+    },
+    {
+      "path": ".github/probes/lumo_games_android_controls.py",
+      "git_blob": "a93b71abe97646666528d876704600ae72dc2330",
+      "bytes": 1628
+    },
+    {
+      "path": ".github/probes/lumo_games_android_probe.py",
+      "git_blob": "b5229c36bc47350a47c4dda75c9f9ac58696a9b9",
+      "bytes": 9752
+    },
+    {
+      "path": ".github/probes/lumo_learning_journey_probe.py",
+      "git_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "bytes": 16929
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "git_blob": "7f2407c168a87af5e351b58f64141e1a18d78be1",
+      "bytes": 36488
+    },
+    {
+      "path": ".github/probes/lumo_speech_android_probe.py",
+      "git_blob": "51299db715f09cd697b2ac414896b43d222d150a",
+      "bytes": 14682
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "git_blob": "f22376dbb33464ce6591fbcd7e2c9b95d8947159",
+      "bytes": 50962
+    },
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "git_blob": "3e601644198f0b8c62fdaebcf783e3f631974bb1",
+      "bytes": 17484
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "f20bf864576f2474b563da29d2d718557702679c",
+      "bytes": 73307
+    },
+    {
+      "path": ".github/probes/sonnenhafen_update_probe.py",
+      "git_blob": "30c80321a67938ac8f6b2bfd368f5e94516d911a",
+      "bytes": 5710
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f",
+      "bytes": 79294
+    },
+    {
+      "path": ".github/workflows/lumo-village-return-6b-diagnostic.yml",
+      "git_blob": "2d40651abd44b2b13f58e202ff4b747cd7e084ee",
+      "bytes": 9632
+    },
+    {
+      "path": "config/godot-source.json",
+      "git_blob": "9a5d4fed3c7cec6318c9a7345505ab18ede7d235",
+      "bytes": 145
+    },
+    {
+      "path": "config/kart-graphics-2019-visual-review.json",
+      "git_blob": "f8b300cb0aced2dd3ab1d77df7a13536a9ca191a",
+      "bytes": 9167
+    },
+    {
+      "path": "config/lumo-notices.json",
+      "git_blob": "6bfb5f7bec41c91af963f47fc80d66977135ab74",
+      "bytes": 1313
+    },
+    {
+      "path": "config/lumo-offline-voice.json",
+      "git_blob": "200b67029cd4e19f27118f77b52e683c49461a6b",
+      "bytes": 1877
+    },
+    {
+      "path": "config/nextgen-2018-visual-review.json",
+      "git_blob": "1064a8070e78e2911d76fee69f493bf493bdf6c4",
+      "bytes": 12964
+    },
+    {
+      "path": "config/nextgen-2019-visual-review.json",
+      "git_blob": "bfae7f881b889573757adabc5a54e12b660e1a7f",
+      "bytes": 28462
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "bytes": 2718
+    },
+    {
+      "path": "scripts/android_console_transport.py",
+      "git_blob": "f0160eb3ba7f344e73547293ceb736d70b88c8b8",
+      "bytes": 21029
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "git_blob": "884adc1b6422f901d6c386f608d59b2a0386b19c",
+      "bytes": 60327
+    },
+    {
+      "path": "scripts/build_version.py",
+      "git_blob": "f73182ab00069c5b39282d2fb4ba3e58788f5e45",
+      "bytes": 1099
+    },
+    {
+      "path": "scripts/cleanup_obsolete_github_assets.py",
+      "git_blob": "a97ba59eac4646b3efc0c2f2d2b2f29899912870",
+      "bytes": 5241
+    },
+    {
+      "path": "scripts/compare_lumo_games_visuals.py",
+      "git_blob": "b35e8a462ef01f604ffcf1f8dde52a14e766b3a7",
+      "bytes": 4678
+    },
+    {
+      "path": "scripts/export_creative_evidence_parts.py",
+      "git_blob": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9",
+      "bytes": 12904
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "git_blob": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba",
+      "bytes": 8642
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "git_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+      "bytes": 6926
+    },
+    {
+      "path": "scripts/prepare_android.py",
+      "git_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a",
+      "bytes": 13367
+    },
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "git_blob": "29c7a3cf3684ecdb50f3aa166f5491c58587260f",
+      "bytes": 21702
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "git_blob": "f017808bc88c0262f27bdfe7a73ebbb686479eeb",
+      "bytes": 9486
+    },
+    {
+      "path": "scripts/prepare_embedded_games.py",
+      "git_blob": "a1615455b5ea6251926d5037900e025d46971c18",
+      "bytes": 10377
+    },
+    {
+      "path": "scripts/prepare_launcher_icons.py",
+      "git_blob": "ebd6cb5586fd721d8e321a4ba68db26efe1a8845",
+      "bytes": 5914
+    },
+    {
+      "path": "scripts/prepare_offline_voice.py",
+      "git_blob": "e9d91a8d41ea520cade4f73a2dd078e4e54865f0",
+      "bytes": 5050
+    },
+    {
+      "path": "scripts/probes/parent_games_20261007_apply.py",
+      "git_blob": "d96ed39a43316b4df3ab8cf6e856d1b659951314",
+      "bytes": 18384
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "git_blob": "7b7897578bf101cf84c3adf38259e5d7107e51b8",
+      "bytes": 14884
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "git_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe",
+      "bytes": 2032
+    },
+    {
+      "path": "scripts/record_kart_graphics_review.py",
+      "git_blob": "49d855caa24408a9cac34f8f2f749bd64748cf68",
+      "bytes": 13649
+    },
+    {
+      "path": "scripts/record_nextgen_visual_review.py",
+      "git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+      "bytes": 5870
+    },
+    {
+      "path": "scripts/record_studio_visual_review.py",
+      "git_blob": "2012da21c756c7245b6d32437147b887a76a9efe",
+      "bytes": 7062
+    },
+    {
+      "path": "scripts/release_pipeline_gates.py",
+      "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c",
+      "bytes": 9853
+    },
+    {
+      "path": "scripts/render_learning_island.py",
+      "git_blob": "557b067d5868583c831e7ce213edb6416cc1b868",
+      "bytes": 17605
+    },
+    {
+      "path": "scripts/run_connect_four_runtime.py",
+      "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5",
+      "bytes": 15683
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "git_blob": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+      "bytes": 6615
+    },
+    {
+      "path": "scripts/run_unchanged_6b_village_diagnostic.sh",
+      "git_blob": "7a1428595c8a51682e7f2d1c58cfaa0ccb10d68e",
+      "bytes": 6361
+    },
+    {
+      "path": "scripts/run_unchanged_creative_diagnostic.py",
+      "git_blob": "a8ed9acb0f48c390538226ff5f45f5d4fa8f06a1",
+      "bytes": 9941
+    },
+    {
+      "path": "scripts/tests/test_6b_roundtrip_diagnostic.py",
+      "git_blob": "247b943be29a25564e7f8f3602b3a86eabbc94ce",
+      "bytes": 10652
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_6b_village_diagnostic.py",
+      "git_blob": "067e16cd95527d1c63be4354ae06e53e974f28b5",
+      "bytes": 31568
+    },
+    {
+      "path": "scripts/verify_android_apk.py",
+      "git_blob": "02b08f5aff49e9dc71c30ff9f37fa686c4d73d64",
+      "bytes": 3688
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "git_blob": "0bb9f91493a07100935bdb88e796676ae1ee20f5",
+      "bytes": 39349
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "bytes": 11403
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "git_blob": "42d54aa5293750f64f1c0307b5d97aace354471d",
+      "bytes": 75399
+    },
+    {
+      "path": "scripts/verify_kart_graphics_delivery.py",
+      "git_blob": "07df73ba74322727538de33a79c43978df7c805b",
+      "bytes": 13414
+    },
+    {
+      "path": "scripts/verify_kart_graphics_review.py",
+      "git_blob": "98b2c1bc705e8959428b8e418ac940807cabe5bc",
+      "bytes": 15253
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "git_blob": "d78beb43b018a26894c3fdb08f1672624d36fba0",
+      "bytes": 10709
+    },
+    {
+      "path": "scripts/verify_nextgen_delivery.py",
+      "git_blob": "fd472458d3c19574bf501090d2dccbb7c5194467",
+      "bytes": 26996
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "git_blob": "1a7aac51f55132aac2d607867e3bdee8bf5787ab",
+      "bytes": 17151
+    },
+    {
+      "path": "scripts/verify_studio_creative_android.py",
+      "git_blob": "d6734844affced809e76fd644330a2504ff8a010",
+      "bytes": 9762
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "git_blob": "ceeb0a5123acb229f7ff0329ee8730aff63cecb0",
+      "bytes": 66296
+    },
+    {
+      "path": "scripts/verify_unchanged_6b_village_diagnostic.py",
+      "git_blob": "c267eadbac17f163cd24c4c149c5640e9b32c9b7",
+      "bytes": 26923
+    },
+    {
+      "path": "scripts/verify_unchanged_apk_diagnostic.py",
+      "git_blob": "11749337af0aff31d7541702890459126675fd08",
+      "bytes": 19885
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "git_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+      "bytes": 13676
+    },
+    {
+      "path": "scripts/visual_before_after_report.py",
+      "git_blob": "322a82928c826640709f925cf59debbbf55c70d1",
+      "bytes": 6544
+    },
+    {
+      "path": "tools/android_qa/android_ui.py",
+      "git_blob": "dbf40dab0b0fdd29ebaecb3013ce7d642be3b771",
+      "bytes": 15599
+    },
+    {
+      "path": "tools/android_qa/cache_built_apk.py",
+      "git_blob": "6c7bea63c28b80b94b29a61c2d207eb9ce1a9cb1",
+      "bytes": 2568
+    },
+    {
+      "path": "tools/android_qa/caption_scroll_recovery.py",
+      "git_blob": "aef9c9a8a84d82f19ae050ec829576084e231d1f",
+      "bytes": 4972
+    },
+    {
+      "path": "tools/android_qa/cards_android_round.py",
+      "git_blob": "9ea9ff5bc4eede9d6fbec6b1f78085cf4a1f00b1",
+      "bytes": 13548
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68",
+      "bytes": 36432
+    },
+    {
+      "path": "tools/android_qa/download_apk.py",
+      "git_blob": "36c1419ea48152c01a5577ab4c4eda329a95268d",
+      "bytes": 5943
+    },
+    {
+      "path": "tools/android_qa/emulator_diagnostics.py",
+      "git_blob": "460ed3a6fd9b49ca883de624568632c1cd3a81f0",
+      "bytes": 9254
+    },
+    {
+      "path": "tools/android_qa/export_delivery.py",
+      "git_blob": "82d3365a5c85a95b2461862f96e958a0c69daba5",
+      "bytes": 5777
+    },
+    {
+      "path": "tools/android_qa/flutter_flows.py",
+      "git_blob": "c7307c38ec7c9a0b814eb497a4e464b73226c91c",
+      "bytes": 18698
+    },
+    {
+      "path": "tools/android_qa/flutter_return_readiness.py",
+      "git_blob": "5ffa079db10fbaf178071ec1a932a4b26ea21407",
+      "bytes": 10257
+    },
+    {
+      "path": "tools/android_qa/fold_device_capture.py",
+      "git_blob": "500c8728602593e3ff34be62cbc81d32f7cdfbe5",
+      "bytes": 23101
+    },
+    {
+      "path": "tools/android_qa/fresh_ui_hierarchy.py",
+      "git_blob": "ad3c87375c5490a8d5674fe0cd49d2a41a4de95e",
+      "bytes": 4244
+    },
+    {
+      "path": "tools/android_qa/kart_android_race.py",
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2",
+      "bytes": 39513
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "git_blob": "09da24805ad89446eacfe2593d8f0a1b34adcdf4",
+      "bytes": 27185
+    },
+    {
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "bytes": 9299
+    },
+    {
+      "path": "tools/android_qa/memory_android_round.py",
+      "git_blob": "a2d98da161e031d348a89e0f9a9fde3319ce0367",
+      "bytes": 22165
+    },
+    {
+      "path": "tools/android_qa/native_handoff_evidence_recovery.py",
+      "git_blob": "0ea732262fdb80fc0cf2104fd555f31652ea0367",
+      "bytes": 6552
+    },
+    {
+      "path": "tools/android_qa/native_lap_evidence_recovery.py",
+      "git_blob": "80b6aa75b7de86100590fdb949b017b85e6c0d58",
+      "bytes": 37829
+    },
+    {
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "git_blob": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+      "bytes": 8243
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "bytes": 4401
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "bytes": 28512
+    },
+    {
+      "path": "tools/android_qa/prepare_built_apk.py",
+      "git_blob": "19f4804f17262a8bb05f278397060cbc519e6391",
+      "bytes": 3372
+    },
+    {
+      "path": "tools/android_qa/prepare_system_image.py",
+      "git_blob": "55b5c404b9ac6822213d966f274a047401c37b26",
+      "bytes": 16572
+    },
+    {
+      "path": "tools/android_qa/prepare_ui_snapshot.py",
+      "git_blob": "bd54bf518ede58aaaa32098cdf2cfe74fcd1e411",
+      "bytes": 5009
+    },
+    {
+      "path": "tools/android_qa/preserved_source_proof.py",
+      "git_blob": "cc883433a2cbeaaff7d588165cd03d9d051ee183",
+      "bytes": 11966
+    },
+    {
+      "path": "tools/android_qa/publish_authorized_1928.py",
+      "git_blob": "49f1622b4d1618029b59e77bde461ab22dd93899",
+      "bytes": 9599
+    },
+    {
+      "path": "tools/android_qa/release_lookup.py",
+      "git_blob": "5dea5c3333b38651252bdb36cec8fb0056ecaf39",
+      "bytes": 1948
+    },
+    {
+      "path": "tools/android_qa/rooted_emulator.py",
+      "git_blob": "862bcc834e0092a25e339f2bf3a074e50477b16b",
+      "bytes": 12111
+    },
+    {
+      "path": "tools/android_qa/run_ui_checks.py",
+      "git_blob": "f8fb9d6fe255de38143262bde1a4e0daebd0884f",
+      "bytes": 19006
+    },
+    {
+      "path": "tools/android_qa/runtime_resource_evidence.py",
+      "git_blob": "caf093f18059272d7c3a5c9ceada574747519212",
+      "bytes": 5371
+    },
+    {
+      "path": "tools/android_qa/system_ui.py",
+      "git_blob": "5c57d0e932b75f3d80a55f73604297e710a7ad96",
+      "bytes": 3854
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "git_blob": "af252cc88dc95bd4a37234b225dec6c86d91f5b1",
+      "bytes": 4356
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "2921c810c6dd46ffac1386cd8a94f1504a8b8c0b",
+      "bytes": 3557
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "git_blob": "5ddf712b91506f07d97095faa728823fcf222929",
+      "bytes": 3202
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "git_blob": "02904427cbddc8159d16e0a6f9fc8c9c9d5fc74a",
+      "bytes": 3753
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "cf836c4d8b8ca0362ff72d19a44a6d961a68b12b",
+      "bytes": 5124
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "git_blob": "1527db533fb57a4c727c4aafb2df7fde07cc992f",
+      "bytes": 3527
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "git_blob": "e830d558853fbf8f511d1a9c3edec5328da7970e",
+      "bytes": 3567
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr.json",
+      "git_blob": "08570b2e858ecc7e9ca396e5ef5a64d48f367de2",
+      "bytes": 24660
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0.png",
+      "git_blob": "abc348f5a479c2aedf4493d69df08fa09b801fa2",
+      "bytes": 785894
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "git_blob": "777b661caf575d680330f179bd7101b71a361c62",
+      "bytes": 1011
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/provenance.json",
+      "git_blob": "58cf9abba377e361ef85fef47f1ce23ec06d2cbd",
+      "bytes": 6626
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "git_blob": "d9075247fd68c11834d38e734c54d1209cd54ddb",
+      "bytes": 4859
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "1636c358380c690d4b8867bf8b2ae7e33b29b5ba",
+      "bytes": 1997
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "git_blob": "720e63eff51c361550cb61f0f75403ba02526f62",
+      "bytes": 4113
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "git_blob": "c393c4090b2045ea7fae707258385915e928cbe8",
+      "bytes": 2997
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "936b6774912f092c0bcb5fb97efbad283a1ded8c",
+      "bytes": 6020
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "git_blob": "859043002f90c214d7a9f7014eb0539178b4b4e5",
+      "bytes": 3518
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "git_blob": "9253ca958a73d3e9aa83c8dbff047b68b034a615",
+      "bytes": 3523
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr.json",
+      "git_blob": "1dd30e56e59d16464f90986c51fe943737761f52",
+      "bytes": 26195
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0.png",
+      "git_blob": "524493b5b1bffb8342eb2a32b3faaccf5529f414",
+      "bytes": 761058
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "git_blob": "0b35c40db72a8d34ff120996f316fa33314fcebe",
+      "bytes": 1003
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+      "git_blob": "d5f03367e2fc528d8ba69bbcdf676726341955c3",
+      "bytes": 4628
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "fd0eacfc661272d329bcd9f47c8cd9f89fddfb4e",
+      "bytes": 3386
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+      "git_blob": "defeb5be752a7f6bc66ac9ce27be93ae139ff189",
+      "bytes": 3828
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+      "git_blob": "2c5d617b14a7e8cf674d20dae38a576aaa67b178",
+      "bytes": 5219
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "b138866d2a7cb9c188e11117a0c17ab5e54cc7cf",
+      "bytes": 5000
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+      "git_blob": "d9b66536a03b995bdd9a65050333dd36dd07f1e9",
+      "bytes": 2933
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+      "git_blob": "6a38ac5d3e26543cc83764b87459aee7f4556d26",
+      "bytes": 2968
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "08f8062acdce8d41501c2e9239e31c2b427e561f",
+      "bytes": 21121
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-0.png",
+      "git_blob": "d32146de353274bd19c4fbc458161c72755ea432",
+      "bytes": 788919
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+      "git_blob": "ebb311ac7ae8411adeeda4cfe8e720441127b4cc",
+      "bytes": 4860
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+      "git_blob": "9fe7a102a1e98a6d8472f4741120004b6cc4f0fc",
+      "bytes": 2452
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+      "git_blob": "eabf54a7d84e24e97df8ff1a875b085215550476",
+      "bytes": 3059
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+      "git_blob": "2c96019945a0da783ec6e6e77b1b676a97c888b0",
+      "bytes": 4423
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+      "git_blob": "4e4a6ab969afe0fc21e98ebf5146bda7068f1356",
+      "bytes": 5652
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+      "git_blob": "750e86b2bea3c5f9d44afcb02fb6e504b7df0fa5",
+      "bytes": 3485
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+      "git_blob": "a06c0e659fd3302a467e953eca04dde9b7dc3123",
+      "bytes": 3521
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1-ocr.json",
+      "git_blob": "df4aa7c0807db41cf15600f60c40df66c38f534f",
+      "bytes": 20512
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-1.png",
+      "git_blob": "d66c0813f69d486ee24d22cc537efce46eb8706f",
+      "bytes": 792428
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "ea82fb2ff860a046d2375cbd5ed888f12ff5f912",
+      "bytes": 5488
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "32c9442578e050d8452b9bd393455bcde569f038",
+      "bytes": 2666
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "3dce4b348890112852ead40b32a8adb589690127",
+      "bytes": 3671
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "601c290513151e3899fe3273f90d9e8de805c31c",
+      "bytes": 3901
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "f3c69497073b170463acbaf5c38cbab8b933dd88",
+      "bytes": 5782
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "a40a40c569869bf0f9b5abadc762d822c18fcedf",
+      "bytes": 3341
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "66d7d5563d420fa3194e64929e5bcdefe5e26811",
+      "bytes": 3376
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "aac13ab0f2b2c268f360287c33538c5fa43f260b",
+      "bytes": 20046
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-2.png",
+      "git_blob": "1bf7cb619b38e551c973928bc7587d00a354baa9",
+      "bytes": 784389
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/android/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "35f223159028b79ec4090a593cd5db2adf50d3dd",
+      "bytes": 3833
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/provenance.json",
+      "git_blob": "abc05a0ec63e96acceac3b67e9f511c2ca346bd4",
+      "bytes": 16650
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-contrast.tsv",
+      "git_blob": "4871828bf143fe4eb9fb8ffb23206625d741fda3",
+      "bytes": 5759
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin-1x.tsv",
+      "git_blob": "cb30a214c514d618f955980b6f3bb73c8fe55d90",
+      "bytes": 2748
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-navy-latin.tsv",
+      "git_blob": "8ad3d0f7b446a2c402a8bed766aa442e83b41b04",
+      "bytes": 2754
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-raw.tsv",
+      "git_blob": "3e752405b59fbe7b04de363f7167e8298f635f91",
+      "bytes": 3849
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-teal-text-1x.tsv",
+      "git_blob": "0804fc79b8de1b9dbe7f72d2a93d00ca6aecc479",
+      "bytes": 6138
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-latin.tsv",
+      "git_blob": "ff589ce1b3874865fee046cfa924f52076e026c1",
+      "bytes": 3283
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr-white-text.tsv",
+      "git_blob": "e825ddb01279ea06007cd522f8f9ef9645955549",
+      "bytes": 3294
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "9c2857b105d886f957009c76d65634e8c94d4dae",
+      "bytes": 20989
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-0.png",
+      "git_blob": "657919b1b4127a6d33bb9858317d77a73217afaf",
+      "bytes": 766876
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-contrast.tsv",
+      "git_blob": "753abb1738337c1ef052054b1af1f7d0ad71f349",
+      "bytes": 5438
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin-1x.tsv",
+      "git_blob": "3a51b2af235fb5e3c874e4062a6c674e60166040",
+      "bytes": 2382
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-navy-latin.tsv",
+      "git_blob": "ecde6d9553db6b57f6e5479af16730c84de46a8a",
+      "bytes": 2190
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-raw.tsv",
+      "git_blob": "bc83632ef5370ac00dddad4700c6de3a46deb5aa",
+      "bytes": 4098
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-teal-text-1x.tsv",
+      "git_blob": "f0f406d03798ef2d2a7a7d937c0366bcfc0b9202",
+      "bytes": 5364
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-latin.tsv",
+      "git_blob": "9ce398a71b0136309b0bbdd05178a697f5238600",
+      "bytes": 3383
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr-white-text.tsv",
+      "git_blob": "983a8fba0f1d8db61d9ffb342675f68bcb674914",
+      "bytes": 3347
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1-ocr.json",
+      "git_blob": "30f2ec296f28f11083a573a713315b2504782940",
+      "bytes": 19640
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-1.png",
+      "git_blob": "5a72b00ad209355f5de24816e374e42103751f2c",
+      "bytes": 769329
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "e873e27a4710f4f2d4303e8971a25b31152a78ab",
+      "bytes": 6459
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "2ea6ca5598e96613e4ce8f02f9a277dc01520793",
+      "bytes": 3247
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "d979c4943d291aa77cc08549d923b4b00786a54f",
+      "bytes": 2504
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "18f6a899e95353c47ccf0b9839f41953e5c3b53b",
+      "bytes": 3774
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "d0798d35007ff5367d9464dc89225ddfabedec7a",
+      "bytes": 5396
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "fe3a29d96b6b6c63c80b4ebd13a478694ca8c45d",
+      "bytes": 3460
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "7b8191d88c591c3a6c5004342cae4c7d17343dbc",
+      "bytes": 3568
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "59b3c937f0292a1aa4a78ec0b7c8d1ec26298c5b",
+      "bytes": 20942
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-2.png",
+      "git_blob": "eb6b3651f6e1013b82cb759781550c38b79e4493",
+      "bytes": 760982
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-1e22/update/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "18aaf388f90d20043fe9e715637aa425736c3ea3",
+      "bytes": 3841
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0-ocr.json",
+      "git_blob": "c783718ec55bbb43bf35fce9567e1cb22e800015",
+      "bytes": 22111
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-0.png",
+      "git_blob": "c52ea1af7b3e177f5e187ffa287164d38ec465b9",
+      "bytes": 790695
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "git_blob": "977cbeaeafc73f20e7da8ba77e03c542cfdf75f7",
+      "bytes": 5014
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "git_blob": "ac54992d61917291b0eb7542799ce61e15bbc2e9",
+      "bytes": 2502
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "git_blob": "bab0f2f4cb226f3a9aa6062e45447524c3f2994b",
+      "bytes": 4156
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "git_blob": "1d62d918dfbebb35d9f9549b33400201e25d3ee6",
+      "bytes": 4794
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "git_blob": "7ea4c2c1821623a84bff2443ea5987ba673ee085",
+      "bytes": 6552
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "git_blob": "7416b5452293e5664ea2c8a2d1714fc81072b9fe",
+      "bytes": 2974
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "git_blob": "df99f3456b8de4e939b09fd2f84dd2dbac20c2a2",
+      "bytes": 2972
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2-ocr.json",
+      "git_blob": "c204245477c52956f864ebafccc41fd2cb445bda",
+      "bytes": 21249
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-2.png",
+      "git_blob": "928e78cac6aa289fac70f4fdc318cc1e8d908436",
+      "bytes": 787362
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/21_stage_select_gecko_velo-surface-readiness.json",
+      "git_blob": "58a2ee61e1936b3d6d661fce57f8fd451ea661ab",
+      "bytes": 3842
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-scroll-3d91/provenance.json",
+      "git_blob": "9a1e0b10ed23daa546b9fe183dcbceb5234713f3",
+      "bytes": 3992
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "git_blob": "da877b93d3ae61c54b1743f8aba006bac614cdea",
+      "bytes": 19927
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_driver_word_evidence.py",
+      "git_blob": "b5bb8e3c5f53d79d7a64b5723698292b427c7cf8",
+      "bytes": 8461
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "git_blob": "b727e447caf8da1e0f0619b32bc0960e918b5226",
+      "bytes": 30297
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_observed_scroll.py",
+      "git_blob": "0efb0928d1c8575dc6134165f2f30182fcd5aa49",
+      "bytes": 10121
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "git_blob": "ced952881090f4c76e1c4229bf3669b75e31a41d",
+      "bytes": 15159
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "git_blob": "d21f941b2f5cff410f8e4cd7ae23fbbbf894743a",
+      "bytes": 36944
+    },
+    {
+      "path": "tools/android_qa/update_artifact_identity.py",
+      "git_blob": "2f039f067f809e830aa9ff1bef7f57a586f04366",
+      "bytes": 1105
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "git_blob": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+      "bytes": 10258
+    },
+    {
+      "path": "tools/android_qa/upload_proof.py",
+      "git_blob": "fc0b507a4ecf85003707e89e660e5d553f017d62",
+      "bytes": 2172
+    },
+    {
+      "path": "tools/android_qa/upload_tested_apk.py",
+      "git_blob": "652d452addb2eacbaf720aa3f1f5e927564c3991",
+      "bytes": 2871
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+      "bytes": 20967
+    },
+    {
+      "path": "tools/android_qa/tests/test_modernization_tour_identity.py",
+      "git_blob": "fc5dfc4d656462c8e98821589ecc1fcda690e56f",
+      "bytes": 17607
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "git_blob": "669bc2b1962208cf0bdc3cd2d845fc4c2d1fd2dc",
+      "bytes": 28636
+    }
+  ],
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "pillow": "13.0.0",
+  "pyyaml": "6.0.3",
+  "scope": "Eight actual diagnostic contract modules; original fixtures retained; no device, SDK, renderer or workflow execution"
+}
