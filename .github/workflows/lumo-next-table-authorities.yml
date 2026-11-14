@@ -166,18 +166,33 @@ jobs:
               state = reader.snapshot_source(project, folder, phase)
               if not all(row['materialized'] and not row['skip_worktree'] for row in state['tracked']):
                   raise ValueError('Qualification requires every tracked source and asset, without sparse exclusions')
+              index_stage = git(project, 'ls-files', '--stage', '-z')
+              index_flags = git(project, 'ls-files', '-v', '-z')
+              index_path = Path(os.fsdecode(git(project, 'rev-parse', '--git-path', 'index')).strip())
+              if not index_path.is_absolute():
+                  index_path = project / index_path
+              index_raw = index_path.read_bytes()
+              if hashlib.sha256(index_raw).hexdigest() != state['index_sha256']:
+                  raise ValueError(name + ': binary Git index changed while recording its original')
+              for label, data in (('binary', index_raw), ('stage', index_stage), ('flags', index_flags)):
+                  with (folder / ('source-index-' + label + '-' + phase + '.raw')).open('xb') as stream:
+                      stream.write(data)
               if phase == 'before':
                   commit = git(project, 'cat-file', 'commit', 'HEAD')
                   if hashlib.sha1(b'commit ' + str(len(commit)).encode() + b'\0' + commit).hexdigest() != expected[name]:
                       raise ValueError('Original Git commit object does not match ' + name)
                   (folder / 'source-commit.raw').write_bytes(commit)
                   (folder / 'source-tree.raw').write_bytes(git(project, 'ls-tree', '-rz', '--full-tree', 'HEAD'))
-                  (folder / 'source-index-stage.raw').write_bytes(git(project, 'ls-files', '--stage', '-z'))
+                  (folder / 'source-index-stage.raw').write_bytes(index_stage)
               else:
                   before = json.loads((folder / 'source-inventory-before.json').read_bytes())
-                  for key in ('head', 'tree', 'index_sha256', 'tracked'):
+                  for key in ('head', 'tree', 'tracked'):
                       if state[key] != before[key]:
                           raise ValueError(name + ': source invariant changed: ' + key)
+                  if index_stage != (folder / 'source-index-stage-before.raw').read_bytes():
+                      raise ValueError(name + ': staged paths, modes, blobs or merge stages changed')
+                  if index_flags != (folder / 'source-index-flags-before.raw').read_bytes():
+                      raise ValueError(name + ': Git index flags changed')
                   generated = [row for row in state['untracked_import_inventory']
                                if row['category'] in ('generated_uid', 'generated_import_metadata')]
                   if generated:
@@ -195,11 +210,14 @@ jobs:
                               if member.name != row['path'] or tar.extractfile(member).read() != (project / row['path']).read_bytes():
                                   raise ValueError('Generated import archive bytes differ')
               states[name] = {'head': state['head'], 'tree': state['tree'], 'index_sha256': state['index_sha256'],
+                              'index_stage_sha256': hashlib.sha256(index_stage).hexdigest(),
+                              'index_flags_sha256': hashlib.sha256(index_flags).hexdigest(),
+                              'binary_index_changed': phase == 'after' and state['index_sha256'] != before['index_sha256'],
                               'tracked_count': len(state['tracked']), 'untracked_import_count': len(state['untracked_import_inventory'])}
           summary = {'schema': 1, 'phase': phase, 'group': os.environ['QUALIFICATION_GROUP'],
                      'run_id': os.environ['GITHUB_RUN_ID'], 'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
                      'sources': states, 'snapshot_helper': identity,
-                     'scope': 'Tracked bytes, modes and index are strict; generated/import outputs are recorded separately and never cleaned'}
+                     'scope': 'Tracked bytes, modes, commit/tree, staged entries and index flags are strict; binary index originals and generated/import outputs are retained separately without cleanup'}
           (proof / ('source-' + phase + '.json')).write_text(json.dumps(summary, indent=2) + '\n')
           print('SOURCE_' + phase.upper() + '_BOUND host=' + expected['host'] + ' native=' + expected['native'])
           PY
