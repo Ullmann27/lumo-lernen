@@ -1,0 +1,100 @@
+name: LUMO 2020 signed ARM64 APK candidate
+
+on:
+  push:
+    branches:
+      - release/lumo-2020-arm64-one-apk-20261114
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-2020-arm64-candidate
+  cancel-in-progress: true
+
+jobs:
+  build-one-real-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify exact host version, native source and reviewed source policy
+        run: |
+          set -euo pipefail
+          mkdir -p delivery
+          git rev-parse HEAD > delivery/host-commit.txt
+          python3 scripts/verify_legacy_release_pin.py | tee delivery/native-pin.txt
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          pubspec=Path('pubspec.yaml').read_text()
+          source=json.loads(Path('config/godot-source.json').read_text())
+          assert 'version: 0.13.8+2020' in pubspec
+          assert source == {
+              'repository':'https://github.com/Ullmann27/lumo-godot.git',
+              'revision':'ec1fb3c3236bde8db1faac2cb3531a7d5e772fe0',
+              'engine':'4.6.3'
+          }
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+      - name: Prepare real pinned Godot and immutable Flutter dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 fonts-noto-color-emoji ffmpeg
+          bash scripts/install_godot_for_build.sh
+          flutter pub get --enforce-lockfile
+      - name: Compile current real signed APK plus x86 emulator-only variant
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee delivery/build.log
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/x86_64/Lumo-Lernen-Neu.apk
+      - name: Independently check signed package, native PCK and APK digests
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a | tee delivery/verified-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 | tee delivery/verified-x86.json
+          sha256sum dist/Lumo-Lernen-Neu.apk > delivery/Lumo-Lernen-Neu.apk.sha256
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          grep -F 'ec1fb3c3236bde8db1faac2cb3531a7d5e772fe0' dist/BUILD-PROVENANCE.json
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: Lumo-Lernen-2020-ARM64-one-APK
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            delivery/Lumo-Lernen-Neu.apk.sha256
+            delivery/host-commit.txt
+            delivery/native-pin.txt
+            delivery/verified-arm64.json
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: lumo-2020-build-failure-logs
+          path: delivery/
+          if-no-files-found: warn
+          retention-days: 14
