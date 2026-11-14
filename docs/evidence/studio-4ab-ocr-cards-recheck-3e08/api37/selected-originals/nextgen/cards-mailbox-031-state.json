@@ -1,0 +1,105 @@
+{
+  "protocol": 1,
+  "token": "98950002416eeebe7349d59afa58ba79",
+  "revision": 7,
+  "ack": 2,
+  "roundId": "cards-b6ea8eed619cd6d8e01e21d044163df0",
+  "phase": "playing",
+  "paused": false,
+  "reduceMotion": true,
+  "viewer": 0,
+  "current": 0,
+  "players": [
+    {
+      "name": "Du",
+      "count": 9,
+      "stars": 0
+    },
+    {
+      "name": "Lumo",
+      "count": 5,
+      "stars": 0
+    }
+  ],
+  "hand": [
+    {
+      "id": "num-69",
+      "color": "blue",
+      "type": "number",
+      "number": 9,
+      "playable": false
+    },
+    {
+      "id": "num-56",
+      "color": "blue",
+      "type": "number",
+      "number": 2,
+      "playable": false
+    },
+    {
+      "id": "wind-50",
+      "color": "purple",
+      "type": "whirlwind",
+      "number": null,
+      "playable": true
+    },
+    {
+      "id": "num-3",
+      "color": "orange",
+      "type": "number",
+      "number": 2,
+      "playable": false
+    },
+    {
+      "id": "rain-23",
+      "color": "orange",
+      "type": "starRain",
+      "number": null,
+      "playable": false
+    },
+    {
+      "id": "think-25",
+      "color": "orange",
+      "type": "thinkPause",
+      "number": null,
+      "playable": false
+    },
+    {
+      "id": "num-57",
+      "color": "blue",
+      "type": "number",
+      "number": 3,
+      "playable": false
+    },
+    {
+      "id": "num-40",
+      "color": "purple",
+      "type": "number",
+      "number": 7,
+      "playable": true
+    },
+    {
+      "id": "num-86",
+      "color": "green",
+      "type": "number",
+      "number": 4,
+      "playable": false
+    }
+  ],
+  "top": {
+    "id": "num-28",
+    "color": "purple",
+    "type": "number",
+    "number": 1
+  },
+  "selectedColor": "purple",
+  "drawCount": 95,
+  "canDraw": true,
+  "message": "Lumo legt purple 1.",
+  "error": false,
+  "winner": null,
+  "canCall": false,
+  "round": 1,
+  "totalRounds": 1,
+  "difficulty": "Schlau"
+}

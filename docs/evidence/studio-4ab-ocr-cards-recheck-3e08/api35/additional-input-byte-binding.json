@@ -1,0 +1,85 @@
+{
+  "artifact": 14094852782,
+  "zip_sha256": "b60b4ca93749fa105858328eb4044c643faa9a8a254630e7de0febecf0db7409",
+  "file_count": 11,
+  "total_bytes": 27443,
+  "files": [
+    {
+      "member": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "sha256": "11113763bb759e0569b4775b99d879055ce18a0c872b1b0f88898ba3106c1773",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-006-request.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-023-request.json",
+      "bytes": 103,
+      "sha256": "ac908073029388b9a6aff35252acb9ff83dc0e7d566586993908ca28b5327360",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-023-request.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2757,
+      "sha256": "0986d7c136764308a78fb3649ffdc9b1afe758dc7404fc46d8bfcad0cfa1048e",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-draw-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-surface-readiness.json",
+      "bytes": 2767,
+      "sha256": "8a20421ff63546ad73e2aaae33f4c75fa0be642af390409ac7b51936539ad1a1",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-late-draw-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-native-back-surface-readiness.json",
+      "bytes": 2749,
+      "sha256": "1e519ab5181ee01a5ddef8fd5326ae8ab8290b0293c19863e6e4c76348ac3320",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-back-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-reopened-back-surface-readiness.json",
+      "bytes": 2753,
+      "sha256": "482f933443ae37cb434721ef9997a2ebf1921b1f79a92ab12d8bbc3dfc270a84",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-reopened-back-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "bf091a2857dbd398af81f1cec1c08ef6ab2033e42d3828695f41c4ee07be407c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-2-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "f8324dfe5f8e73f8c60eb5a89854d544c2e40e42b8a7346ad6f4e496201f6c0e",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-2-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-3-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "c745189d55b31548bb7d12ef4d509c3ecef95e74b766aa63c5451d8c96d0d907",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-3-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-4-surface-readiness.json",
+      "bytes": 3559,
+      "sha256": "3310a96f76a3c08295f949f778214f5321f3f310bf2973f756becab75441affb",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-4-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-5-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "0c081e439ec05ed4d8fa86f2becf4df5e6fa65b0e29900f4508ea196be795ca4",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-5-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    }
+  ]
+}

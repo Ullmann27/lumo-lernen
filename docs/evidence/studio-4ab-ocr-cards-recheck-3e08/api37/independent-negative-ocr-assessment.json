@@ -1,0 +1,457 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T03:12:03.478299+00:00",
+  "scope": "Independent hypothesis assessment only; no implementation, OCR execution, product change, timeout change or retry.",
+  "test_source": "QA 3e08, run 43546627017/job132299721937; installed APK 4ab/native803",
+  "original_zip_sha256": "3f143f91cd5b642e34ae1c087b1918a75f2f8b713071c19197c894adab181dfb",
+  "actual_existing_source": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/.github/probes/creative_android_probe.py",
+      "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+    }
+  ],
+  "actual_first_pass": {
+    "variant": "contrast",
+    "observed_exact_caption": "Die Spielwelt wird geöffnet",
+    "observed_bounds_original_pixels": [
+      182,
+      2048,
+      900,
+      2098
+    ],
+    "words": [
+      {
+        "level": "5",
+        "page_num": "1",
+        "block_num": "35",
+        "par_num": "1",
+        "line_num": "1",
+        "word_num": "1",
+        "left": "364",
+        "top": "4096",
+        "width": "164",
+        "height": "80",
+        "conf": "96.436531",
+        "text": "Die"
+      },
+      {
+        "level": "5",
+        "page_num": "1",
+        "block_num": "35",
+        "par_num": "1",
+        "line_num": "1",
+        "word_num": "2",
+        "left": "568",
+        "top": "4096",
+        "width": "490",
+        "height": "100",
+        "conf": "96.373589",
+        "text": "Spielwelt"
+      },
+      {
+        "level": "5",
+        "page_num": "1",
+        "block_num": "35",
+        "par_num": "1",
+        "line_num": "1",
+        "word_num": "3",
+        "left": "1092",
+        "top": "4096",
+        "width": "228",
+        "height": "80",
+        "conf": "96.717979",
+        "text": "wird"
+      },
+      {
+        "level": "5",
+        "page_num": "1",
+        "block_num": "35",
+        "par_num": "1",
+        "line_num": "1",
+        "word_num": "4",
+        "left": "1360",
+        "top": "4096",
+        "width": "440",
+        "height": "100",
+        "conf": "95.916054",
+        "text": "geöffnet"
+      }
+    ],
+    "tsv_timestamp_utc": [
+      2026,
+      11,
+      14,
+      2,
+      59,
+      54
+    ],
+    "tsv_sha256": "8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56"
+  },
+  "observed_subsequent_work": {
+    "remaining_whole_frame_variants": 6,
+    "gold_component_tsv_count": 3,
+    "tile_tsv_count": 12,
+    "final_ocr_json_timestamp_utc": [
+      2026,
+      11,
+      14,
+      3,
+      0,
+      14
+    ],
+    "timestamp_scope": "ZIP member file mtimes with two-second granularity; the 20-second timestamp difference is not a per-command CPU or OCR benchmark."
+  },
+  "code_path": [
+    "capture_returned_flutter sets one 30-second deadline and a maximum of 12 observations.",
+    "image_lines runs contrast first and can already observe the actual launch caption in that pass.",
+    "Its current early stop condition checks only the requested positive caption, here Spiel pausiert.",
+    "Because that positive caption is absent on the actual launch cover, all remaining masks plus component and tile fallbacks process the same saved image.",
+    "After rejection and the next activity/process checks only 0.7764820609997969 seconds remains for the second screencap, which times out."
+  ],
+  "assessment": "A narrowly opted-in negative early rejection is justified for this observed state; a product renderer or overlay lifecycle change is not justified by this evidence alone.",
+  "minimum_proposed_contract": {
+    "opt_in_only": "Only capture_returned_flutter supplies explicitly rejected launch-state captions; default image_lines/native_tap callers retain existing behavior.",
+    "negative_observation": "Use only actually OCR-observed exact launch caption from the same unmodified captured image, with valid in-image bounds and existing word-confidence floor.",
+    "preserve_original_evidence": "Write the actually observed first-pass OCR rows and rejection reason before returning or raising. Keep the original PNG.",
+    "negative_priority": "An observed launch-state caption rejects that candidate even if an expected caption also appears; a negative observation can never count as acceptance.",
+    "retry": "Reset consecutive confirmations and continue the existing bounded loop; preserve the original 30-second deadline and 12-observation cap.",
+    "positive_acceptance": "Still require two genuinely fresh consecutive complete frames, exact expected captions, valid bounds, pixel readiness, original same-process/activity guards before and after inspection, and deadline checks.",
+    "unchanged_scope": "No inputs, app-state writes, save alterations, cached old frames, defaults, synthetic OCR captions or API substitution."
+  },
+  "remaining_limits": [
+    "The later failure screenshot proves eventual pause visibility, but not when its first complete raster was available.",
+    "This analysis does not prove a future real Android run will obtain two valid frames before the unchanged deadline.",
+    "A missing or inexact negative caption must fall back to the existing strict reader rather than be presumed."
+  ],
+  "original_sidecar_bindings": [
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-components.json",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        6
+      ],
+      "bytes": 1815,
+      "sha256": "51287924b68e31ebfb594046f5d4db597943935db65c00c6159e06040c722e3d"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        2,
+        59,
+        54
+      ],
+      "bytes": 6071,
+      "sha256": "8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-gold-component-0.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        6
+      ],
+      "bytes": 110,
+      "sha256": "19bb51b144123887c01406bb191671a2a915ce79114a8602ed76bb90c491144e"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-gold-component-1.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        6
+      ],
+      "bytes": 222,
+      "sha256": "33ed1a2c5716791b3e817d54cecda6edc2f688671a84759183687e1591409c87"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-gold-component-2.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        6
+      ],
+      "bytes": 221,
+      "sha256": "523e70947d3b994efa08218be5ed688dbf24bef95e6a59730e72b98b84bafcc6"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-navy-latin-1x.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        4
+      ],
+      "bytes": 6156,
+      "sha256": "ad7b3b07328c1475c9142bf5e709e2ab8320b6e557b1f165a005f9e40878eb94"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-navy-latin.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        4
+      ],
+      "bytes": 6226,
+      "sha256": "1804262fc9b0e858055be689baf7b3cc9d9ecd02fcd23ce21a99bb0cafc6f8a8"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-raw.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        0
+      ],
+      "bytes": 7631,
+      "sha256": "29ab66cd64dec229df962e428d835594ec0b9cc3b28434a23af2a0e873dcebc5"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-teal-text-1x.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        6
+      ],
+      "bytes": 6490,
+      "sha256": "2008329f29c8ba65415705f60db36a13bdf14500c78b184a2d53c4863ade67d3"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-tiles.json",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        14
+      ],
+      "bytes": 5832,
+      "sha256": "e27644b22debed4fe8b7a97323b7695bb13a57b571a1279c3882ca41804d8b1f"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-dim-tile-0.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        10
+      ],
+      "bytes": 1783,
+      "sha256": "fc7635a7612c893c850ae1c5d76e0fa648cdfc228ab623045ffad9c0bead5738"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-dim-tile-1.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        10
+      ],
+      "bytes": 748,
+      "sha256": "291591c47d89ecd5527ccfd6bca76391b66f23e74bec96cd8ee0780916e64cc4"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-dim-tile-2.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        12
+      ],
+      "bytes": 2794,
+      "sha256": "6fa21db5c24a983e56c88fd7f1c30edfa9553d25f5545a3a2331dbdfce6fc152"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-dim-tile-3.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        12
+      ],
+      "bytes": 1981,
+      "sha256": "a355059b693a7c5b45bfc16b34784df370f795aca6de9900c8b37043d74f87e6"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-dim-tile-4.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        12
+      ],
+      "bytes": 2694,
+      "sha256": "d2b88a6e8fe88657f95c2ae89b7559b3a0d32e33b2a16e9d427533b0e2393ba2"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-dim-tile-5.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        14
+      ],
+      "bytes": 2019,
+      "sha256": "6329b64c7763b7c77ca104884cfb03241875985e422e34f91be973c6f4e61e32"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-tile-0.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        8
+      ],
+      "bytes": 1443,
+      "sha256": "7706279b332f6809fbfe912f1946c86df8c925dc9f9170753edf064065c34eb3"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-tile-1.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        8
+      ],
+      "bytes": 882,
+      "sha256": "7a4188f94cc3fa9e03de390c2a68d761ce9a6564730939145d11e6b8168d0abd"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-tile-2.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        8
+      ],
+      "bytes": 1990,
+      "sha256": "701505d4c0ef39023d1d6ba85d9175291478c98c4e48d0f47dde1f2aa70f6552"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-tile-3.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        8
+      ],
+      "bytes": 1397,
+      "sha256": "d580f8ca2eb19d5dbb92aaae40a2d1a791e46b58f8e48a09f20697741de2af72"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-tile-4.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        10
+      ],
+      "bytes": 2951,
+      "sha256": "66a97c38031d8753402c41de9e6f3739fbdd4970666f87a2ac661299d8f3cec6"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin-tile-5.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        10
+      ],
+      "bytes": 860,
+      "sha256": "d997f8d605e0f5d3f978ad10c3a3d01ddc9e1975d2fdd0026b03790fd510fe5c"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-latin.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        2
+      ],
+      "bytes": 5839,
+      "sha256": "7d8c9afc8c1998233654f269cd8907eea03f8f092f66fe283f157cf9d0eb5d87"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-white-text.tsv",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        2
+      ],
+      "bytes": 5761,
+      "sha256": "0e2f129c9f2d3b9289cf6efa2daf197289a17d02109d5daba686cd5d23e8f9ab"
+    },
+    {
+      "entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr.json",
+      "file_timestamp_utc": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        14
+      ],
+      "bytes": 32262,
+      "sha256": "c65a2c94214d998146f4ce10275e5db49d14950afe24c4ca2ff39d1dfea2ae04"
+    }
+  ]
+}

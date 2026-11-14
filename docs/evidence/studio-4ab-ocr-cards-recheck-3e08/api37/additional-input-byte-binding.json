@@ -1,0 +1,92 @@
+{
+  "artifact": 14095356997,
+  "zip_sha256": "3f143f91cd5b642e34ae1c087b1918a75f2f8b713071c19197c894adab181dfb",
+  "file_count": 12,
+  "total_bytes": 31784,
+  "files": [
+    {
+      "member": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "sha256": "a391a64136c04def6a2b832abb794b4007b8eba1a6c61833f722c1118c26ebc1",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-006-request.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-022-request.json",
+      "bytes": 103,
+      "sha256": "dfddda0a18e44071dc5cce9f2132a6ed89096663f409629503bea44c829ea5a5",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-022-request.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2758,
+      "sha256": "0eccfdd39f43e17e7c50ee0fb020eef7339c27b53d0a760473786c4442e36348",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-native-draw-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-native-late-draw-surface-readiness.json",
+      "bytes": 2768,
+      "sha256": "14f698bd48af1ee3f90a52925c62069a0c8c270e5f3b1cbfe1985521443b7715",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-native-late-draw-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-native-back-surface-readiness.json",
+      "bytes": 2748,
+      "sha256": "76fa862342308c45ef5185ec7491d107bc30c85d7dfe45b9d7a0043c55d1b94c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-native-back-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "f3c393f10ab6f341a497ef43823bb6d30e5ffb2bfb890ee0c13a72e4f8c7bfe9",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-2-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "840a9f9a98b2faaef626dbd7f8c35b425545731fdd0595bc073e3ebbd2ee2f55",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-2-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-3-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "92c313fad34441d9dd196918ac7f8bc3e2e01cd77899e5a71da67161e6f34ee5",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-3-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-4-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "73bf84e52d2c7e72ddacbf4f4163b14981ee4279a3e0517831c3acb880bf4c03",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-4-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-move-5-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "d60bdd4ff18a1cba55efb691b730f9169724fe2800c108595bbc32d29bb376c7",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-5-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 6071,
+      "sha256": "8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-components.json",
+      "bytes": 1815,
+      "sha256": "51287924b68e31ebfb594046f5d4db597943935db65c00c6159e06040c722e3d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-components.json",
+      "byte_equal_to_original_zip": true
+    }
+  ]
+}

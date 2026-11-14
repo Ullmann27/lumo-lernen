@@ -1,0 +1,302 @@
+{
+  "artifact": 14094852782,
+  "zip_sha256": "b60b4ca93749fa105858328eb4044c643faa9a8a254630e7de0febecf0db7409",
+  "file_count": 42,
+  "total_bytes": 8793015,
+  "files": [
+    {
+      "member": "recheck/preflight.json",
+      "bytes": 11387,
+      "sha256": "c1e3450ca8da49881a2fba07f02656f450648652f8bda159db019bb2a098492c",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/preflight.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "recheck/before.json",
+      "bytes": 10906,
+      "sha256": "63e7d8a0639e7a9ff62eec3be39b09d78f8dcb824ef951db19ca958197a73fd2",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/before.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "recheck/after.json",
+      "bytes": 10906,
+      "sha256": "63e7d8a0639e7a9ff62eec3be39b09d78f8dcb824ef951db19ca958197a73fd2",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/after.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "recheck/result.json",
+      "bytes": 3124,
+      "sha256": "8e00956cae492d6d46377ce630ac681906f26c969532802593ab0d768c868f85",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/result.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "tour-result.json",
+      "bytes": 9658,
+      "sha256": "62a1d615c798daaa909d60c220b2882f25bd19bf894c007b81f5e1458cc9d15b",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/tour-result.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/native-surfaces-result.json",
+      "bytes": 211165,
+      "sha256": "a881665c9af2ada9ead176241e42523c9cee3c8ce1f2cf3c6c4e8c7e80cd40c0",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/native-surfaces-result.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-actual-display-density.txt",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "bytes": 1326,
+      "sha256": "d8998559a91937fbc67913b4282430da72dd09f53cdedf5a97255dcd61bd4ab9",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw-face-check-06-before-layout.json",
+      "bytes": 1326,
+      "sha256": "50ea3de55c3d9991850d670e42cbc45f09118bfb19678257b6ea47c90154788a",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-06-before-layout.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-07-before-layout.json",
+      "bytes": 1329,
+      "sha256": "c213ad3ed8f56bfaec85d3a5a36cca4b0435ae9a99e5f615b8f80127b70de5e3",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-07-before-layout.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-native-pause-surface-readiness.json",
+      "bytes": 2755,
+      "sha256": "58268e417f3bed0ff2725ac9640009520f8afed14a387be91a7aaed60fae8f8b",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-pause-surface-readiness.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "bytes": 2623,
+      "sha256": "265b515b98f6cc3da0c67191e27332e00c1016d186560eb0ba1dfedf7dd608f6",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "bytes": 2543,
+      "sha256": "ddfee66833b01fd7dd773ae88a72d8c9f5377f1353fb0674d1e15a5503885768",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "bytes": 2006,
+      "sha256": "ccc6d4a82f4c5aa8163265353c89dd53aa5f6cb97e1a2ec4a2bc6fb10862fac5",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return.xml",
+      "bytes": 34267,
+      "sha256": "21ae6f029a4c9f847282b937bae13ab12116f679326179f899cdbb74f3d51e1a",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/learning-return-academy.xml",
+      "bytes": 28416,
+      "sha256": "b519a03326ec9fac103b92dbdd77ffd1b5a43256f5845f656a75d53ba58dee45",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-return-academy.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-001-state.json",
+      "bytes": 1911,
+      "sha256": "2918397836ce77ed82f39f695a12e597c7d17ad4aed8c8e52e66a27d4ac74df4",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-001-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-002-state.json",
+      "bytes": 1646,
+      "sha256": "635a5f2ce8603c3c4571a3e147b970e34185e697f79a6dc97c05085b767b0a14",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-002-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-008-state.json",
+      "bytes": 1759,
+      "sha256": "b288d751aefd745c9a55c11bce82ee5f4606c399f02a74f144a076f254da3183",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-008-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-022-state.json",
+      "bytes": 1759,
+      "sha256": "b288d751aefd745c9a55c11bce82ee5f4606c399f02a74f144a076f254da3183",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-022-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-026-state.json",
+      "bytes": 1911,
+      "sha256": "111ad4f3bc7e331eca816fc5ba49b008f65aac6fd7abc7234d98048a1f0d88e2",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-026-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-036-state.json",
+      "bytes": 1911,
+      "sha256": "111ad4f3bc7e331eca816fc5ba49b008f65aac6fd7abc7234d98048a1f0d88e2",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-036-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-037-state.json",
+      "bytes": 1912,
+      "sha256": "dd1b96158ae905a1acfb94c65248a6b3ade6719d02916129b3614cb4b0003ddc",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-037-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-mailbox-038-state.json",
+      "bytes": 1912,
+      "sha256": "dd1b96158ae905a1acfb94c65248a6b3ade6719d02916129b3614cb4b0003ddc",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-038-state.json",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-save-001-preferences.xml",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-001-preferences.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-save-005-preferences.xml",
+      "bytes": 5978,
+      "sha256": "502fa9a6949c23386bf5931e13deaf7e48d48b8398d886071b91bc125b504444",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-005-preferences.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-save-022-preferences.xml",
+      "bytes": 5978,
+      "sha256": "8f3d549b9dac4789b06a5754cf91d1dbf44d52573520f9d3c2877211cd300187",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-022-preferences.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-save-036-preferences.xml",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-036-preferences.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-save-037-preferences.xml",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-037-preferences.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/cards-save-038-preferences.xml",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-038-preferences.xml",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/02_learning_native_eight_plus_five.png",
+      "bytes": 553917,
+      "sha256": "3006a596dbc722317ecd684744ba219bc751212ac6e2191a1ce342572f3fbe25",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/04_learning_native_thirteen.png",
+      "bytes": 582010,
+      "sha256": "d7743d5d374816d130e78a91aa267d08a817684de2176691df7e3523692708d5",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/04_learning_native_thirteen.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1509160,
+      "sha256": "289c07a49454ed0eb38d88543362815bab2aa7c1402ede64fc211f0ff2ba72b7",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 959284,
+      "sha256": "a9629a4138e4a5fd2ba0731bcc8662bdf9fbd3a9c9ddde8ce2144408c59401ba",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/12_cards_real_table_persisted_draw.png",
+      "bytes": 945600,
+      "sha256": "3adcd65fc170b9089143ae33bcfcf2fee0aecd3d00ff11f8cf76d23cb161c65a",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 939477,
+      "sha256": "96a1752cc85139e82ef00b20bdf6bb380ffae8f44bbbbbf5626f40ff6356bdbe",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/13_cards_native_pause.png",
+      "bytes": 940465,
+      "sha256": "b72f2f2d14ea7b0642263590d98a439a842f9ce4f9ce1c27a13a991bc8954b6d",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/13_cards_native_pause.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/14_cards_same_flutter_round.png",
+      "bytes": 519056,
+      "sha256": "bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/14_cards_same_flutter_round.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/15_cards_reopened_same_round.png",
+      "bytes": 939945,
+      "sha256": "1c92ac231288a6ba4e654a726e0b1e1ba1dd7d736445acc854f566c02aa5f3f2",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/15_cards_reopened_same_round.png",
+      "byte_equal_to_original_zip": true
+    },
+    {
+      "member": "nextgen/16_cards_final_flutter_return.png",
+      "bytes": 519505,
+      "sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return.png",
+      "byte_equal_to_original_zip": true
+    }
+  ]
+}

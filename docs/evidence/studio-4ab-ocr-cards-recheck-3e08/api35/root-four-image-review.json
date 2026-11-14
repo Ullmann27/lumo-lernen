@@ -1,0 +1,47 @@
+{
+  "reviewer": "/root",
+  "at_utc": "2026-11-14T03:05:39.433955+00:00",
+  "source_host_apk": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "source_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "qa_source": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "run_id": 43546627017,
+  "job_id": 132299721965,
+  "artifact_id": 14094852782,
+  "files_viewed": 4,
+  "files": [
+    {
+      "file": "selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 939477,
+      "sha256": "96a1752cc85139e82ef00b20bdf6bb380ffae8f44bbbbbf5626f40ff6356bdbe",
+      "viewed_directly_with_image_tool": true,
+      "finding": "Native room, table/deck thickness, three readable player-card faces, hand count9 and Lumo count5, page1/3, visible Ziehen/Pause controls. Still image proves rendered state only; exact deck/save/ack consistency comes from original machine records."
+    },
+    {
+      "file": "selected-originals/nextgen/13_cards_native_pause.png",
+      "bytes": 940465,
+      "sha256": "b72f2f2d14ea7b0642263590d98a439a842f9ce4f9ce1c27a13a991bc8954b6d",
+      "viewed_directly_with_image_tool": true,
+      "finding": "Native header reads Dein Zug wird gespeichert…, Pause/Ziehen appear disabled. This frame documents the save/transition state; it alone is not proof of completed Flutter return."
+    },
+    {
+      "file": "selected-originals/nextgen/15_cards_reopened_same_round.png",
+      "bytes": 939945,
+      "sha256": "1c92ac231288a6ba4e654a726e0b1e1ba1dd7d736445acc854f566c02aa5f3f2",
+      "viewed_directly_with_image_tool": true,
+      "finding": "Reopened native scene visibly retains the same three front cards, 9/5 counts and page1/3. Pause/Ziehen are visible again. Original mailbox/save records are required for full round identity."
+    },
+    {
+      "file": "selected-originals/nextgen/16_cards_final_flutter_return.png",
+      "bytes": 519505,
+      "sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880",
+      "viewed_directly_with_image_tool": true,
+      "finding": "Actual Flutter pause dialog is plainly visible: Spiel pausiert, Dein aktueller Zug wartet auf dich, Fortsetzen, Zur Spieleauswahl and Neu starten. This is visual return evidence, not a stale native table frame."
+    }
+  ],
+  "limits": [
+    "API35 same-old-APK diagnostic only; no86445 APK result.",
+    "Hard/jagged shadows and simple room materials remain visible. No AAA-quality, stable60FPS or physicalFold7 claim.",
+    "Still images establish no facial rig, lipsync or continuous character animation.",
+    "Full gameplay acceptance also depends on original state/projection/save checks and the completed job; this image review does not replace them."
+  ]
+}

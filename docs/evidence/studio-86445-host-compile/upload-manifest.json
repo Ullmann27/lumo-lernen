@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "kind": "docs-only original evidence; no source changes",
+  "tested_head": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "run_id": 43549076631,
+  "job_id": 132307097883,
+  "file_count": 15,
+  "total_bytes": 367795,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/README.md",
+      "target_path": "docs/evidence/studio-86445-host-compile/README.md",
+      "bytes": 1749,
+      "sha256": "a5f0784c110b6214dead4668cc3efe9b2e1c8ea49b648f7f45d464218a6378a8",
+      "git_blob": "8cc8d19dc752ee82d248a9a75dd02001aa9b7b08",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/artifact-members.json",
+      "target_path": "docs/evidence/studio-86445-host-compile/artifact-members.json",
+      "bytes": 714,
+      "sha256": "2f27f2b072b34126cc0e622e0f62b688d1bc201d5c37fb0fa31936c81a1d4de6",
+      "git_blob": "9f380e42a36a9042a1307b84a9777c2d4f985960",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/artifact-metadata-normalized.json",
+      "target_path": "docs/evidence/studio-86445-host-compile/artifact-metadata-normalized.json",
+      "bytes": 763,
+      "sha256": "fe5697883c75cf1b574785aef1ff5abd3a6cd452349c92ed242657a094f9f456",
+      "git_blob": "931471615cee7da45bcef0d45b31476e0ebe4447",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/jobs-completed-original.json",
+      "target_path": "docs/evidence/studio-86445-host-compile/jobs-completed-original.json",
+      "bytes": 9832,
+      "sha256": "289b3015d2cd78b7ea60ab6364be9088c1d26b7491fdb64b495bf00a14154086",
+      "git_blob": "47f9ea88937ebd8d05ff7f4237298385a98eb393",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/original-artifact.zip",
+      "target_path": "docs/evidence/studio-86445-host-compile/original-artifact.zip",
+      "bytes": 5390,
+      "sha256": "7775b9346f9a065b5f036de12c3f8407b847b4b561deb264a125eedc0d4bdca8",
+      "git_blob": "5b4d6445f81fd75c4364c6e50aed393e9e4dadfc",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/original-job.log",
+      "target_path": "docs/evidence/studio-86445-host-compile/original-job.log",
+      "bytes": 238082,
+      "sha256": "4e5e05c78a29b6e3dd5e73ac4ca9c04ed781a126e44933675f1c2173ca4eb5d5",
+      "git_blob": "ba786373295dc471dbab85643e938e7373471f50",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/cards-authority-registry.log",
+      "target_path": "docs/evidence/studio-86445-host-compile/originals/cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "29e65be1e0d6e34fdbf44ee1c53cfc837581fcded91598a24c4dbd9b94f654c3",
+      "git_blob": "9d75ed9911a0d839740cee65636a194f75e1cc7d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/compile.log",
+      "target_path": "docs/evidence/studio-86445-host-compile/originals/compile.log",
+      "bytes": 33778,
+      "sha256": "a47ee890f571e79f7e23d1080cb6069436350f5d5b84aa32d205ad947a6d91f5",
+      "git_blob": "5f77e917cd2c6ad6df7d3c9ce57616991633f286",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/flutter-version.txt",
+      "target_path": "docs/evidence/studio-86445-host-compile/originals/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/result.json",
+      "target_path": "docs/evidence/studio-86445-host-compile/originals/result.json",
+      "bytes": 2769,
+      "sha256": "ed50d8c3ecc1a7b4ac2d9a5bc5900e5e673ae71881f38a2c5d5dc5df5d9aa0a1",
+      "git_blob": "065690cd6dd94fa3a0cc3ab233d194d171a42eb3",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/source-sha.txt",
+      "target_path": "docs/evidence/studio-86445-host-compile/originals/source-sha.txt",
+      "bytes": 41,
+      "sha256": "3a2ed8a36ceb65cd3ec95f675000e55cea3ed77b56bf95119da3b49cf6c11382",
+      "git_blob": "6c7dd1320f33c98b8e547453fa21c8acbd339f9d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/review.json",
+      "target_path": "docs/evidence/studio-86445-host-compile/review.json",
+      "bytes": 9502,
+      "sha256": "39ef7d20d51821af84df3e85b46e1b27b8c206fe574683c814b7a7d4690e6b8d",
+      "git_blob": "ed0e4565cc111c07d9e248c0a0a661876de4fd80",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/run-metadata-original.json",
+      "target_path": "docs/evidence/studio-86445-host-compile/run-metadata-original.json",
+      "bytes": 13396,
+      "sha256": "08420362afb9b24d97693ef2135d141d488738ea778e6d96bd3294cd8b001f97",
+      "git_blob": "08711fd92de6605be909e1460109be7787fe0964",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/source/lumo-studio-2019.yml",
+      "target_path": "docs/evidence/studio-86445-host-compile/source/lumo-studio-2019.yml",
+      "bytes": 49746,
+      "sha256": "7cc0d3355ee80bdc58e1648e5e41259ca15994c283a5572ad8841d94953cf8d8",
+      "git_blob": "4c1f4a5c2b963278b0d9c5facb8d4abfc74eb2be",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/source-transfer-binding.json",
+      "target_path": "docs/evidence/studio-86445-host-compile/source-transfer-binding.json",
+      "bytes": 387,
+      "sha256": "96851ff6b03f614587f3ba9d4cede76ca268a8d69484f9f4023eda5af6099d0d",
+      "git_blob": "65754bc42ad04440f0f499320695f87835c6afe7",
+      "mode": "100644"
+    }
+  ]
+}

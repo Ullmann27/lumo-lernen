@@ -1,0 +1,744 @@
+{
+  "schema": 1,
+  "status": "SOURCE_BOUND_PARTIAL_IMPLEMENTATION_NO_OVERALL_RELEASE",
+  "recorded_at_utc": "2026-11-14T03:14:04.076228+00:00",
+  "reviewer": "/root/games_worlds",
+  "new_tests_run": false,
+  "new_renderer_or_android_runs": false,
+  "new_images_opened_by_this_review": [],
+  "historical_documents_modified": false,
+  "source_status": {
+    "baseline": {
+      "host": "3c712129fef8f144d8946fad567b9ed11c628a60",
+      "native": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
+    },
+    "native": {
+      "commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+      "run": 43524051371,
+      "status": "SUCCESS",
+      "required_jobs": 8,
+      "archive_job": "SUCCESS",
+      "studio_gates": 16,
+      "studio_pngs": 37,
+      "individually_reviewed_receipt_images": 32,
+      "physical_fold7": false
+    },
+    "host_current": {
+      "commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+      "parent": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+      "tree": "2389b97232041bb77307e47ecc0e550772339a4e",
+      "run": 43549076631,
+      "full_run_status_at_snapshot": "IN_PROGRESS_REPORTED_BY_INTEGRATOR",
+      "host_compile": "SUCCESS_REPORTED_BY_INTEGRATOR",
+      "new_apk_accepted": false,
+      "delta_from_parent": "Only two orientation=landscape exact mock expectations in one testfile;4144 other blobs/modes unchanged."
+    },
+    "tested_apk": {
+      "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+      "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "x86_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+      "x86_bytes": 325295610,
+      "pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+      "pck_bytes": 66234596
+    },
+    "separate_same_apk_recheck": {
+      "qa_commit": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+      "run": 43546627017,
+      "api35_job": 132299721965,
+      "api35_status": "SUCCESS",
+      "api35_artifact": 14094852782,
+      "api35_artifact_bytes": 140941270,
+      "api35_artifact_sha256": "b60b4ca93749fa105858328eb4044c643faa9a8a254630e7de0febecf0db7409",
+      "api37_job": 132299721937,
+      "api37_status": "FAILURE",
+      "api37_scope": "Original surface result reports screencap timeout during first Cards Flutter-return capture. A/B report a genuine Flutter loading overlay followed later by the completed pause card; no measured transition time or proven root cause. Overall FAILURE remains."
+    },
+    "not_granted": [
+      "Masterauftrag vollständig",
+      "neuer86445-Android-Gesamtnachweis",
+      "Publisher-/APK-Gesamtfreigabe",
+      "60FPS/Fold7/Temperatur/Latenz",
+      "neue3D-Memory-/Connect4-/Quiz-/Englischwelten"
+    ]
+  },
+  "modules": [
+    {
+      "id": "math",
+      "module": "Mathematik",
+      "productive_entry": "Aktuelle unterstützte Aufgabe → Mit Lumo in 3D ausprobieren → learning",
+      "prior_existing": [
+        "Reale Addition/Zehnerübergang (auch 8 + 5), Subtraktion, gleiche Gruppen, Hunderterübergang und Bruchteile waren bereits Nextgen."
+      ],
+      "new_product_work": [
+        "Rundenweise gleichmäßige Division; Drag, Tap und Aktion verändern denselben Zustand.",
+        "Korrekte aktuelle Multiplikations-/Divisions-/Bruch-Payloads und rationale Antworten; reale 3D-Hunderterbeschriftung korrigiert.",
+        "Echtes gemeinsames Blender-Atelier statt einer losen Vorschau."
+      ],
+      "new_verification_only": [
+        "Native803-Originale und begrenzte Android8+5-Hilfe belegt; letztere ist keine neu erfundene Addition."
+      ],
+      "still_open": [
+        "Division 2–6 Gruppen mit je 1–6 Objekten, Multiplikation höchstens 6×6, gleichnamige Bruchaddition höchstens 12 Teile innerhalb eines Ganzen.",
+        "Zahlenstrahl, Maße/Flächen, Uhr/Geld noch nicht vollständig als neue 3D-Lernwelten."
+      ],
+      "code_paths": [
+        "H:lib/domain/tutoring/native_learning_activity.dart",
+        "H:lib/features/learning/adapters/legacy_lumo_task_adapter.dart",
+        "G:scripts/learning/learning_activity.gd",
+        "G:scripts/learning/learning_world.gd",
+        "G:scripts/learning/learning_atelier.gd"
+      ],
+      "evidence_ids": [
+        "scope",
+        "learning_host",
+        "learning_review",
+        "learning_native",
+        "native",
+        "api35_surfaces"
+      ],
+      "android_scope": "3e08-Prüfcode auf unveränderter4ab-APK: fünf echte Objektbewegungen, nach zwei ist die Zehn voll, danach drei; gleiche Flutterlektion, keine Meisterschaft durch Hilfenutzung. API35-PASS; API37-Learning ebenfalls protokolliert, Gesamtjob dort FAIL.",
+      "master_module_complete": false
+    },
+    {
+      "id": "german",
+      "module": "Deutsch / Silben",
+      "productive_entry": "Passende aktuelle Silbenlektion → learning",
+      "prior_existing": [
+        "Extrudierte Silben und Wortzusammensetzung sowie bestehende Rechtschreib-/Grammatikübungen."
+      ],
+      "new_product_work": [
+        "Gemeinsames neues Lernatelier; keine neue vollständige Grammatikengine."
+      ],
+      "new_verification_only": [
+        "Bestehende Silben- und Lernverträge erhalten."
+      ],
+      "still_open": [
+        "Freie Buchstaben, Satzbau und Grammatik in eigenständigen neuen 3D-Welten."
+      ],
+      "code_paths": [
+        "G:scripts/learning/learning_world.gd",
+        "H:lib/domain/tutoring/native_learning_activity.dart"
+      ],
+      "evidence_ids": [
+        "scope",
+        "learning_host",
+        "learning_native"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "writing",
+      "module": "Schreiben / Journal",
+      "productive_entry": "Bestehende Schreibtrainer- und Journal-Screens",
+      "prior_existing": [
+        "Produktive umfangreiche Trainer, Vorlagen, Schreibflächen und Journal."
+      ],
+      "new_product_work": [
+        "Bestandsschutz und bestehende Schnittstellen, kein neuer 3D-Trainer."
+      ],
+      "new_verification_only": [],
+      "still_open": [
+        "3D-Schreibgesten und Erkläranimationen; umfassende historische Journal-/Mehrkind-Migration ist hier nicht neu belegt."
+      ],
+      "code_paths": [
+        "H:lib/features/writing/",
+        "H:lib/features/journal/"
+      ],
+      "evidence_ids": [
+        "scope"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "reading",
+      "module": "Lesen / Sprache",
+      "productive_entry": "Lesebereich / Reading Buddy",
+      "prior_existing": [
+        "Geschichten, Sprachausgabe/Markierung, Verständnisfragen zu 24 Texten; ASR-Fehler werden bereits in Nextgen nicht automatisch als Leseschwäche gewertet."
+      ],
+      "new_product_work": [
+        "Bestand erhalten; native Sprach-/Rückkehrdiagnostik verbessert, keine neue begehbare Geschichtenwelt."
+      ],
+      "new_verification_only": [
+        "Echte lokale Sprach-Start-/Abschlusszustände im API35-Lernlauf; hörbare Qualität und Lip-Sync ausdrücklich nicht verifiziert."
+      ],
+      "still_open": [
+        "Begehbare 3D-Geschichten und durchgängige satzgenaue Inszenierung."
+      ],
+      "code_paths": [
+        "H:lib/features/reading/reading_comprehension.dart",
+        "H:lib/features/reading/lumo_reading_buddy_screen.dart"
+      ],
+      "evidence_ids": [
+        "scope",
+        "api35_surfaces"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "science",
+      "module": "Sachunterricht",
+      "productive_entry": "Geführte Pflanzenlektion → learning; weitere Sachthemen im Lernbereich",
+      "prior_existing": [
+        "Vereinfachtes interaktives 3D-Pflanzenmodell mit Wurzel/Stängel/Blatt/Blüte, Wasser und Licht; Tiere/Wetter/Jahreszeiten in Flutter."
+      ],
+      "new_product_work": [
+        "Blender-Atelier/Garten mit echter Geometrie, Materialien und Blattbewegungs-Shader."
+      ],
+      "new_verification_only": [
+        "Tatsächliche Produktions- und Atelierbilder; keine vollständige neue Naturbibliothek."
+      ],
+      "still_open": [
+        "Ausgebaute Tier-, Wetter-, Experiment- und Alltagswelten."
+      ],
+      "code_paths": [
+        "G:scripts/learning/learning_atelier.gd",
+        "G:assets/learning/studio/learning_studio.glb",
+        "G:assets/learning/studio/studio_leaf_motion.gdshader",
+        "G:tools/art/build_learning_studio.py"
+      ],
+      "evidence_ids": [
+        "scope",
+        "learning_native",
+        "integration"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "english",
+      "module": "Englisch",
+      "productive_entry": "Lernbereich / English Adventure",
+      "prior_existing": [
+        "Vorhandene klassenbezogene Englischaufgaben, lokaler Wortschatz und Offline-Rückfall."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [
+        "23 Quellen exakt geprüft; konkreter zukünftiger Objektanschluss beschrieben, nicht implementiert."
+      ],
+      "still_open": [
+        "Kein nativer Englisch-Deskriptor: der vorhandene 3D-Hilfeknopf wird für Englisch nicht erzeugt.",
+        "Lokaler Sprachvertrag ist Deutsch(de-DE/de/F2); englische Aussprache benötigt eigenen verifizierten Anschluss."
+      ],
+      "code_paths": [
+        "H:lib/core/school_exercise_generator.dart",
+        "H:lib/core/english_vocabulary_extensions.dart",
+        "H:lib/domain/tutoring/native_learning_activity.dart"
+      ],
+      "evidence_ids": [
+        "english",
+        "english_binding"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "character",
+      "module": "Original-Lumo / Lehrer",
+      "productive_entry": "Produktive Lernwelt, Jump und Bauwelt-Explorer",
+      "prior_existing": [
+        "OriginalskinnedGLB mit 65 Knochen und neun vorhandenen Clips; Teacher-Gesten vorhanden."
+      ],
+      "new_product_work": [
+        "Sechs in Blender authorierte Clips: Gehen, Sprint, Aufstieg, Abstieg, Landen, Bremsen.",
+        "Ruheachsenkorrektur, konstante Beinlängen, Neutralpose und bewegungsabhängige Mischung in den echten Szenen."
+      ],
+      "new_verification_only": [
+        "OriginalGLB-SHA3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5 erhalten; echte Posebilder und Runtimefilme."
+      ],
+      "still_open": [
+        "Gesichtsmorphs, eigene Lider/Augen/Kiefer und echtes Lip-Sync nicht umgesetzt; mouth_supported=false.",
+        "Zusätzliche Rigarbeit ist mit Blender möglich, keine nachgewiesene externe Werkzeugblockade. Nicht jeder vereinfachte Begleiter ist ersetzt."
+      ],
+      "code_paths": [
+        "G:assets/characters/lumo_animated/lumo_studio_clips.gd",
+        "G:scripts/characters/lumo/lumo_rigged_actor.gd",
+        "G:scripts/characters/lumo/lumo_platform_pose.gd",
+        "G:tools/lumo_animation/author_platform_clips.py"
+      ],
+      "evidence_ids": [
+        "character",
+        "native",
+        "native_visual_root",
+        "native_visual_b"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "learning_profiles",
+      "module": "Lernintelligenz / Kinder / Bestandsschutz",
+      "productive_entry": "Bestehende Aufgabenplanung; Einstellungen → 3D-Spielstände",
+      "prior_existing": [
+        "Adaptive Aufgaben, Fehler-/Kompetenzprofile, Offlinefunktionen, Elternfreigaben und bestehende Belohnungen."
+      ],
+      "new_product_work": [
+        "Stabile Kinder-ID → dauerhafter nativer Schlüssel; Lease-/Generation-Schutz.",
+        "Explizite elterngeschützte Altstandzuordnung, keine automatische Kopie/Mehrfachzuordnung historischer Dateien."
+      ],
+      "new_verification_only": [
+        "Lokale gleichnamige Kinder-/Klassenwechsel-/Writefail-/Leasefälle; echte Ein-Kind-Updateprobe4ab2017→2019."
+      ],
+      "still_open": [
+        "Kein neues vollständiges KI-Tutorsystem; globale Wallet nicht pauschal pro Kind getrennt.",
+        "Geräteupdatefixture beweist nicht zwei Kinder, alte native Dateien oder Journal-/Schreibtrainer-Migration."
+      ],
+      "code_paths": [
+        "H:lib/core/native_profile_key_repository.dart",
+        "H:lib/features/lumo3d/lumo3d_launcher.dart",
+        "H:lib/features/lumo3d/native_game_saves_screen.dart",
+        "H:lib/features/settings/native_game_saves_card.dart"
+      ],
+      "evidence_ids": [
+        "profile",
+        "profile_results",
+        "update4ab"
+      ],
+      "android_scope": "4ab-Update erhielt UID/firstInstallTime, sieben geschützte Schlüssel, zehn Altlernfelder plus vorgesehenes independentEvidence,1 Stern / 5 XP. Neuer 86445-Build muss seine eigenen Gates bestehen.",
+      "master_module_complete": false
+    },
+    {
+      "id": "kart",
+      "module": "Lumo Kart",
+      "productive_entry": "kart → Garage / Lack / Teile / Rennmodi",
+      "prior_existing": [
+        "Tempo, Extremgegner, Lasso, Schanzen/Loops und zwölf Strecken sowie Rennen/Cup/Ghost/Training/Arena.",
+        "Räumliche Garage, Original-Lumo, Zoom und Streckenziele bereits Nextgen."
+      ],
+      "new_product_work": [
+        "Werkstatt: tatsächliche ≥48-dp-Flächen, durchgängige Scrollgesten, sichere Kauf-/Refundaktionen; gemeinsame Android-Insets."
+      ],
+      "new_verification_only": [
+        "33 neue tatsächliche stationäre Produktionsrenderer-Bilder von elf vorhandenen weiteren Strecken;1175 Quellen vor/nach803-gleich. Keine neuen Strecken."
+      ],
+      "still_open": [
+        "Gleichmäßiger höherer Produktionsstandard aller zwölf Strecken, zusätzliche Fahrstile/Routen/Ereignisse und Geräte-Fahrgefühl.",
+        "Audit zeigt unter anderem einfache Materialien, harte Schatten, sehr helle Schnee- und dunkle Vulkanansichten."
+      ],
+      "code_paths": [
+        "G:scripts/games/kart_island.gd",
+        "G:scripts/games/kart_workshop.gd"
+      ],
+      "evidence_ids": [
+        "scope",
+        "integration",
+        "kart_audit"
+      ],
+      "android_scope": "Native Gameplay-/Bestandsgates und ausgewählte Android-Tourabschnitte sind keine vollständige neue Android-Abnahme aller Strecken.",
+      "master_module_complete": false
+    },
+    {
+      "id": "cards",
+      "module": "Lumo Cards",
+      "productive_entry": "Flutter-Showcase → native Runde cards → dieselbe Flutterrunde",
+      "prior_existing": [
+        "Dart-Regelautorität,112 Karten, KI-Stile und Saves;3D-Tisch, Kartenkörper/Originaltexturen und Pokal bereits Nextgen."
+      ],
+      "new_product_work": [
+        "Activity-Lifecycle-Heartbeat unabhängig vom Renderpoll; 2.500-ms-Dartlimit und Autoritäts-/Pause-Epoch bleiben erhalten.",
+        "Tatsächliche AndroidInsets/RenderView, gemeinsamer Cache und sichere Bedien-/Kartenprojektion; atomare beruhigte Layoutbeobachtungen.",
+        "Enger deutscher Controllertextfix im neueren Host; keine neue Regelengine."
+      ],
+      "new_verification_only": [
+        "Unabhängige reale Layout-/Projektions-/Pixelprüfung; Reader wartet begrenzt auf absichtlich zeitweise entfernte Layoutdatei.",
+        "Neu3e08/API35: vier Frontphasen mit jeweils zwei stabilen akzeptierten Frames, zwei echte Ziehaktionen,35s sichtbare Wartephase, gespeicherte Pause und dieselbe Runde nach Wiederöffnung mit neuem Token.",
+        "Root öffnete vier Originalbilder inklusive tatsächlicher abschließender Flutter-Pauseansicht."
+      ],
+      "still_open": [
+        "API37-Nachtest bleibt beim Cards-Flutter-Rückkehr-Capture fehlgeschlagen; genaue Ursache separat in Untersuchung.",
+        "Kein vollständiger neuer Turnier-/KI-Ausbau, kein Android-Matchsieg als Nachweis. Neuer 86445-Kandidat noch nicht vollständig abgenommen."
+      ],
+      "code_paths": [
+        "H:tools/auto_install/LumoGameActivity.kt",
+        "H:lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+        "G:scripts/games/cards/cards_table.gd",
+        "G:scripts/app/android_safe_area.gd",
+        "G:scripts/app/mobile_runtime.gd"
+      ],
+      "evidence_ids": [
+        "integration",
+        "api35_result",
+        "api35_surfaces",
+        "api35_visual_root",
+        "api37_result",
+        "api37_surfaces",
+        "host86445",
+        "api35_review",
+        "api37_return_review"
+      ],
+      "android_scope": "API35-SUCCESS gilt ausschließlichQA3e08/APK4ab/Native803. API37 desselben NachtestsFAIL. Alte318/API35 hatte keine automatischen Kartenfront-PASS; drei damals visuell gesichtete Bilder waren kein Pixel-/Drawnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "build",
+      "module": "Bauwelt",
+      "productive_entry": "build → echte Bauwerkzeuge / Projekte",
+      "prior_existing": [
+        "Reales Platzieren, Versetzen, Drehen, Raster, Kollisionen, Undo/Redo,41 Bauteile/Projekte und begehbarer Originalfuchs."
+      ],
+      "new_product_work": [
+        "Originalclips; begrenzte scrollbare Auswahl-/Abbruchdialoge, Bauauftragzugang bei kleiner Höhe, nicht überdeckte Kameraaktionen und Gesten; gemeinsame Insets."
+      ],
+      "new_verification_only": [
+        "4ab-Android: ein tatsächlich hinzugefügtes Sandteil,197→198→197→198 Teile durch Undo/Redo, Save/Reopen identisch. Vorgegebenes197-Teile-Haus ist Bestand."
+      ],
+      "still_open": [
+        "Breitere Projekte-/Bauregel-/Geräteabnahme; die einzelne geprüfte Änderung erfüllt nicht den gesamten Masterausbau."
+      ],
+      "code_paths": [
+        "G:scripts/creative/build_world.gd",
+        "G:scripts/creative/build_state.gd",
+        "G:scripts/creative/build_explorer.gd"
+      ],
+      "evidence_ids": [
+        "scope",
+        "integration",
+        "creative4ab"
+      ],
+      "android_scope": "Originaler Creative-Gesamtjob4abFAIL; Bauwelt ist der eine darin bestandene echte Aktionsvertrag. Kein grüner Gesamt-Creativejob daraus.",
+      "master_module_complete": false
+    },
+    {
+      "id": "settlement",
+      "module": "Siedlung / Wettbau",
+      "productive_entry": "Bauwelt-Auswahl → settlement",
+      "prior_existing": [
+        "Ressourcen, Gebäude, Produktion, Handel, Bevölkerung, Erweiterung, eigener Save, Umzug/Rückbau und lokaler KI-Rivale bereits Nextgen."
+      ],
+      "new_product_work": [
+        "Gemeinsamer Inset-/Layoutanschluss; keine neue Wirtschaft."
+      ],
+      "new_verification_only": [
+        "Produktive native Spiel-/Speicherprüfungen und ausgewähltes803-Umzugsbild."
+      ],
+      "still_open": [
+        "Neue tatsächliche Android-Spielsequenz und weiterer wirtschaftlicher Inhalt."
+      ],
+      "code_paths": [
+        "G:scripts/creative/build_settlement_world.gd",
+        "G:scripts/creative/build_settlement_state.gd"
+      ],
+      "evidence_ids": [
+        "scope",
+        "integration",
+        "native_visual_b"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "jump",
+      "module": "Jump & Run",
+      "productive_entry": "Spielwelt → jump",
+      "prior_existing": [
+        "Analogstick, variabler Sprung, Sprungpuffer/Kantentoleranz, Kollisionen, zwölf Inseln und drei Expeditionen bereits Nextgen."
+      ],
+      "new_product_work": [
+        "Sechs angeschlossene Originalclips aus den aktuellen Bewegungsphasen; gemeinsame Insets."
+      ],
+      "new_verification_only": [
+        "Native Produktionsbilder und historischer echter Runtimefilm. Falscher Landscape-Zwang im Android-Prüfer eng korrigiert."
+      ],
+      "still_open": [
+        "Neue Android-Kurz-/Langsprungaufnahme mit echten Eingaben und Wiederaufnahme sowie physisches Steuergefühl. Keine vollständige neue Physikengine/Kampagne."
+      ],
+      "code_paths": [
+        "G:scripts/games/jump_islands.gd",
+        "G:scripts/games/jump_touch_button.gd",
+        "G:scripts/characters/lumo/lumo_platform_pose.gd"
+      ],
+      "evidence_ids": [
+        "scope",
+        "character",
+        "integration",
+        "creative4ab"
+      ],
+      "android_scope": "4ab-Creative erreichte den tatsächlichen Portraitstart;28 Portraitframes wurden vor Touch durch falsche Prüferorientierung verworfen. Daraus kein Jump-Gameplay-/Videonachweis. Korrektur in c081/86445 noch ohne neue Android-Abnahme.",
+      "master_module_complete": false
+    },
+    {
+      "id": "puzzle",
+      "module": "Drehpuzzle",
+      "productive_entry": "Spielwelt → puzzle → Drehmodus",
+      "prior_existing": [
+        "Dicke 3D-Teile, fünf Motive,6/12/24/48/96 Teile, Drag/Snap und Save-v1."
+      ],
+      "new_product_work": [
+        "Echte Vierteldrehung, orientierungsabhängiges Einrasten und Hilfe, optionale rückwärtskompatible v1-Felder.",
+        "Kleine HUD-/Kameraflächen korrigiert; Menüabbau hide+queue_free statt synchronem Entfernen; gemeinsame Insets."
+      ],
+      "new_verification_only": [
+        "Echte native Touch-/Save-/Menüprüfungen und aktuelle803-Bilder. Android-Prüfer benutzt beobachtetes Motiv statt falscher Startannahme."
+      ],
+      "still_open": [
+        "Neue tatsächliche Android-Vierteldrehung/Snap/Save/Reopen-Abnahme; weiterer Puzzleinhalt."
+      ],
+      "code_paths": [
+        "G:scripts/creative/puzzle_state.gd",
+        "G:scripts/creative/puzzle_world.gd"
+      ],
+      "evidence_ids": [
+        "puzzle_treasure",
+        "integration",
+        "creative4ab"
+      ],
+      "android_scope": "4ab kam ins Menü/Drehmodus; der Prüfer erwartete ein anderes Ausgangsmotiv. Rotation/Resume wurden dabei nicht erreicht. Der spätere Controllerfix ist ein Prüfcodefix, kein neues Puzzlefeature.",
+      "master_module_complete": false
+    },
+    {
+      "id": "rhythm",
+      "module": "Rhythm Party",
+      "productive_entry": "Spielwelt → rhythm",
+      "prior_existing": [
+        "3D-Bühne, vier Originalsongs, Tap/Hold/Slide, Sterne/Kombos, Tour und Mehrfingerinteraktion bereits Nextgen."
+      ],
+      "new_product_work": [
+        "Gemeinsamer Inset-/Layoutanschluss; kein neuer Musikkatalog oder Timingkern."
+      ],
+      "new_verification_only": [
+        "Native Timing-/Spielprüfungen und ausgewähltes803-Slidebild."
+      ],
+      "still_open": [
+        "Neue tatsächliche Android-Audio-/Eingabe-Synchronitätsabnahme und zusätzliche Inhalte."
+      ],
+      "code_paths": [
+        "G:scripts/creative/rhythm_world.gd",
+        "G:scripts/creative/rhythm_state.gd",
+        "G:scripts/creative/rhythm_tour.gd"
+      ],
+      "evidence_ids": [
+        "scope",
+        "integration"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "treasure",
+      "module": "Schatzsuche",
+      "productive_entry": "Spielwelt → treasure",
+      "prior_existing": [
+        "Begehbare Insel, sieben Hinweise, Inventar und v1-Fortschritt zunächst linear."
+      ],
+      "new_product_work": [
+        "Nach der Brücke echter Kristall-/Gartenabzweig in beliebiger Reihenfolge; Pfade/Marker und kompatible solved_clues.",
+        "Dichtegerechte Tasten, begrenzte scrollbare Dialoge, geordneter Abschluss und gemeinsame Insets."
+      ],
+      "new_verification_only": [
+        "Beide Zweige/finale Abgabe in nativen Spieltests; manche Zustände werden dort gezielt positioniert, keine vollständige manuelle Reise.",
+        "Android-Controller nach Originalbefund auf gelesenen Fortschritt statt konstante Weg-pro-Wallzeit-Annahme korrigiert."
+      ],
+      "still_open": [
+        "Erster Android-Baumfund, Inventar und Wiederaufnahme im reparierten Lauf noch zu belegen.",
+        "Vereinfachter Schatzsuchefuchs ist kein vollwertiges Originalgesichtsrig; weitere Inseln/Inhalte offen."
+      ],
+      "code_paths": [
+        "G:scripts/creative/treasure_world.gd",
+        "G:scripts/creative/treasure_state.gd"
+      ],
+      "evidence_ids": [
+        "puzzle_treasure",
+        "creative4ab",
+        "treasure_original",
+        "integration"
+      ],
+      "android_scope": "4ab: zwölf echte Bewegungssegmente, 13 Saves, Abstand18,439→8,478; erste Fundbedingung nicht erreicht. Kein belegter Joystick-/Kollisionsfehler. Androidvertrag umfasst ersten Baumfund/Rucksack/Resume, nicht die gesamte Reise.",
+      "master_module_complete": false
+    },
+    {
+      "id": "memory",
+      "module": "Memory",
+      "productive_entry": "Flutter LumoMemoryScreen",
+      "prior_existing": [
+        "Vier Themen, fünf Paarzahlen, KI erinnert nur gesehene Karten; kindgebundene Bestwerte."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [
+        "20-Dateien-Anschlussanalyse mit vorhandenen Dartregeln, keine neue Szene."
+      ],
+      "still_open": [
+        "Echter 3D-Spieltisch und gemeinsame Dart-Sitzung; laufende Verteilung/offene Karten/KI-Gedächtnis werden im vorhandenen Pfad nicht vollständig gespeichert."
+      ],
+      "code_paths": [
+        "H:lib/domain/games/memory_board.dart",
+        "H:lib/features/games/memory/lumo_memory_game.dart"
+      ],
+      "evidence_ids": [
+        "scope",
+        "future_games",
+        "future_games_binding"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "connect4",
+      "module": "Vier Gewinnt",
+      "productive_entry": "Flutter LumoConnectFourScreen",
+      "prior_existing": [
+        "7×6-Brett, drei Botstufen und bestehende getrennte Suchengine."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [
+        "Kleinster künftiger Anschluss vorgeschlagen; noch keineImplementierung."
+      ],
+      "still_open": [
+        "Echte native 3D-Stein-/Brettdarstellung, Sitzungscontroller und vollständiger Rundensave."
+      ],
+      "code_paths": [
+        "H:lib/features/games/connect_four/connect_four_engine.dart",
+        "H:lib/features/games/connect_four/lumo_connect_four_game.dart"
+      ],
+      "evidence_ids": [
+        "scope",
+        "future_games",
+        "future_games_binding"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "quiz",
+      "module": "Quizshow",
+      "productive_entry": "Flutter QuizShowContent",
+      "prior_existing": [
+        "20 Fragen, Kategorien, drei Joker und bestehende Quizengine."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [
+        "Vorhandene Auszahlung als Sterne anhand securedStarsAfterIndex→awardedStars→addStars geprüft, nicht aus Punktetext abgeleitet."
+      ],
+      "still_open": [
+        "Native 3D-Studiobühne, Kamerainszenierung, vollständige Rundenspeicherung und idempotente Fortsetzungsabrechnung.",
+        "Vorhandene 50/200/800/5000-Sternstufen und bestehende Grenzen unverändert; globale Walletmigration gehört nicht in einen Darstellungswechsel."
+      ],
+      "code_paths": [
+        "H:lib/domain/quiz/quiz_show.dart",
+        "H:lib/features/quiz/quiz_show_content.dart"
+      ],
+      "evidence_ids": [
+        "scope",
+        "future_games",
+        "future_games_binding"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "hub",
+      "module": "Spielwelt-Portale / Bedienzugang",
+      "productive_entry": "SpielweltRoutes und GamesContent",
+      "prior_existing": [
+        "Zehn Hauptportale mit Flutter- bzw. nativen Zielrouten."
+      ],
+      "new_product_work": [
+        "Zwei Semantics-Anschlüsse machen vorhandene freigeschaltete Kacheln tatsächlich als Android-Tapaktionen erreichbar."
+      ],
+      "new_verification_only": [
+        "4ab-Creative erreichte alle vier dort geprüften nativen Einstiege; nachfolgende Teilfehler bleiben separat."
+      ],
+      "still_open": [
+        "Portalzugang ist kein Beweis vollständiger Spieltiefe oder aller Modulsaves."
+      ],
+      "code_paths": [
+        "H:lib/features/games/spielwelt/spielwelt_routes.dart",
+        "H:lib/features/games/spielwelt/spielwelt_hub.dart",
+        "H:lib/features/games/games_content.dart"
+      ],
+      "evidence_ids": [
+        "scope",
+        "creative4ab"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "extra_minigames",
+      "module": "Zusatzspiele: Würfelrennen / Star Trail / Flammenabenteuer",
+      "productive_entry": "Weitere GamesContent-Einstiege",
+      "prior_existing": [
+        "Würfelrennen mit 30 Feldern/Würfel-/Trefferlogik; kooperatives StarTrail-Karten-/Ressourcenspiel; separates 2D-Flammenabenteuer."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [],
+      "still_open": [
+        "Keine neue native 3D-Umsetzung dieser drei Spiele inStudio. StarTrail ist nicht LumoCards; Flammenabenteuer ist nicht GodotJump."
+      ],
+      "code_paths": [
+        "H:lib/features/games/games_content.dart"
+      ],
+      "evidence_ids": [
+        "scope"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "level_catalog",
+      "module": "Levelkatalog",
+      "productive_entry": "Vorhandener Flutter-Levelkatalog",
+      "prior_existing": [
+        "50 Level je Klasse: starsPath,numberHouse,colorBoxes,letterFill,numberPath,wordForest,mixedQuiz."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [],
+      "still_open": [
+        "Die vorhandenen Katalogeinträge sind keine 50 neu gebauten 3D-Level pro Klasse."
+      ],
+      "code_paths": [
+        "H:lib/features/games/games_content.dart"
+      ],
+      "evidence_ids": [
+        "scope"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "academy",
+      "module": "Akademie / Fachportale",
+      "productive_entry": "20 registrierte Themen mit 19 Screens",
+      "prior_existing": [
+        "Zahlen/Plus/Minus 10, Formen, Tiere, Farben, Uhr, Geld, Zahlen 100, Artikel, Mehrzahl, Jahreszeiten, Wetter, Verkehr, Wortarten, Zeitformen, Diktat, kleines/volles Einmaleins und Brüche."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [],
+      "still_open": [
+        "Registrierungen nicht als eigenständige neue native 3D-Welten abzählen."
+      ],
+      "code_paths": [
+        "H:lib/features/learning/learning_content.dart"
+      ],
+      "evidence_ids": [
+        "scope"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    },
+    {
+      "id": "legacy_native",
+      "module": "Weitere registrierte Godot-Routen",
+      "productive_entry": "SceneRouter-Legacypfade",
+      "prior_existing": [
+        "reading_hub,alphabet,word_picture_match,sound_letter_match,word_build,learn_old sowie boot/intro/home/loading/games/stars/parent."
+      ],
+      "new_product_work": [],
+      "new_verification_only": [],
+      "still_open": [
+        "Registrierter Szenenpfad ist weder neuer Flutter-Startpfad noch neuer durchgeprüfter Androidinhalt."
+      ],
+      "code_paths": [
+        "G:scripts/app/scene_router.gd"
+      ],
+      "evidence_ids": [
+        "scope"
+      ],
+      "android_scope": "Kein neuer vollständiger Android-Modulnachweis.",
+      "master_module_complete": false
+    }
+  ]
+}
