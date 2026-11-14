@@ -1,0 +1,450 @@
+{
+  "schema": 1,
+  "host_commit": "bd07b82fd01fcb8ceecb21894bf825d7c5ff0761",
+  "native_commit": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "receipt_blob": "f830ad2a124fbe4dad8adb94dd0eb47719f31856",
+  "scope": "Copy existing exact current Host image blob references into the evidence branch so the final report's relative image links resolve. No new image generation or new runtime test.",
+  "entries": [
+    {
+      "path": "docs/evidence/studio-2020-reviewed/55089d40b1c3f7b7e7ff77066006fbba85df74d367744dae2bd454eb2d5d2377-cards-cards-table-1280x720.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7de6847d7ee4af098810d6214957c97c8d2f22d1",
+      "expected_sha256": "55089d40b1c3f7b7e7ff77066006fbba85df74d367744dae2bd454eb2d5d2377",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/86a462dbb002106e96dd943c546755e080a720db072944f32c0fb5bba9543e18-cards-cards-table-412x915.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c39bbd562a7f89d7f03fbf2dba59ca167b46d2b",
+      "expected_sha256": "86a462dbb002106e96dd943c546755e080a720db072944f32c0fb5bba9543e18",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b-treasure-treasure-2176x1812-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65b7ada510c6a15e8cb17b58eaf3ce334ff99caf",
+      "expected_sha256": "9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/ae53121f34679850bd86163c6a1f3245accd8369710cd5815efd7a6c12145a8d-cards-android35_portrait-playing.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af10b0a63a693d4096eef2614feec42c1ba33e0a",
+      "expected_sha256": "ae53121f34679850bd86163c6a1f3245accd8369710cd5815efd7a6c12145a8d",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/bc1a5465f83736f8c0db00a7188075a02503f6d33eecaf58e2ece62d813e1a45-cards-android35_portrait-paused.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63b97a082c335a66f44707415175c22353495158",
+      "expected_sha256": "bc1a5465f83736f8c0db00a7188075a02503f6d33eecaf58e2ece62d813e1a45",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/e97b23764222326565d07e46023869467c2333861c4f9e19223a9b6eaf4fb93b-cards-landscape_cutout_fixture-playing.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd58805253ac462cfceabd430c1a6dc7b3d1218b",
+      "expected_sha256": "e97b23764222326565d07e46023869467c2333861c4f9e19223a9b6eaf4fb93b",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/bb4b6d491fb5d81c96732c92e6165103953ec5e83a002d2888314ec6108768b9-treasure-treasure-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d893c8567694f23499aef6b28b1d6ee4a441ad4",
+      "expected_sha256": "bb4b6d491fb5d81c96732c92e6165103953ec5e83a002d2888314ec6108768b9",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195-connect_four-c4-paused-small.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7806e7f57e122d27342bbd6342325cf96b96ef55",
+      "expected_sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/6b1c76e597737636fc344b4eef3fe2c2cad0ff1d591b61fbd9eb3de64ff72279-treasure-treasure-title-fold.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d61d73d761b6984b57c0ca0dc4d08a6ad5f28bd1",
+      "expected_sha256": "6b1c76e597737636fc344b4eef3fe2c2cad0ff1d591b61fbd9eb3de64ff72279",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/bccfcf79f4938d448e01756ff37761f6b15afe2ec6b1288b714b35a5d3779073-connect_four-c4-empty-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea6eabb0cd0940066ebf0751c7c023191f4a5341",
+      "expected_sha256": "bccfcf79f4938d448e01756ff37761f6b15afe2ec6b1288b714b35a5d3779073",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/f76a72a732a6a08c659db5e4e4a3737b9ac4c7064ca40de8f816935b1693515c-connect_four-c4-win-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0b174357c1d8eedad26498e8f910b6bfad3ad66",
+      "expected_sha256": "f76a72a732a6a08c659db5e4e4a3737b9ac4c7064ca40de8f816935b1693515c",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c-connect_four-c4-playing-phone.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93f1122761f944ff0ec85829d666dea0fc491cc0",
+      "expected_sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/5358811004c350bd8c0e4362ed2546fb0bf259d9a9a9c9469f0bfd87f5c87f77-treasure-treasure-title-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e787bdb4b779687ae532507b86bd75aef2a00d4f",
+      "expected_sha256": "5358811004c350bd8c0e4362ed2546fb0bf259d9a9a9c9469f0bfd87f5c87f77",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3-learning-sharing-complete-1280x720.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eaddeb0eff8e91211cefadfb6d0307e1461bfe3a",
+      "expected_sha256": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709-learning-sharing-first-round-412x915.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b234b00e4d75d1051412c9c3a350f112a5772de2",
+      "expected_sha256": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075-learning-bridge_hundred-complete-2400x1080.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "696f4e7dd2e1e2e7136d9306c2c8acb37284c3b5",
+      "expected_sha256": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45-learning-bridge_hundred-complete-412x915.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4164e34b8d8d768e4a0f672fa8ae3e104e3c593a",
+      "expected_sha256": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe-garage-garage-1280x720.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64ccf185d0ab662789ba6607b9b2e2360500ea46",
+      "expected_sha256": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b-garage-workshop-1080x2400-refund.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b81accdc6b88a1e975d61bbd01ec7fff65f6cc90",
+      "expected_sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/a08282b78b4619f339234eb819e920b5e8a162148b7fae4ef5800c1e212fe64c-treasure-treasure-title-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d2b179c4e62fb509a1610a47edb491794471b5d",
+      "expected_sha256": "a08282b78b4619f339234eb819e920b5e8a162148b7fae4ef5800c1e212fe64c",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/d50db1c35fc74fc5c995dc7505ee617a1a4ec31d3a1346457920e1111927fbd7-treasure-treasure-title-portrait.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26cd10ab5d863cf8029fd819fa20e7707da97974",
+      "expected_sha256": "d50db1c35fc74fc5c995dc7505ee617a1a4ec31d3a1346457920e1111927fbd7",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/21b4712aad8d0e07e2795509b389ddfee4114a26088d0e7ce8f3159ecf943027-treasure-treasure-title-compact.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9be6cc02a87f47be365ad49c05040d16f8356bfb",
+      "expected_sha256": "21b4712aad8d0e07e2795509b389ddfee4114a26088d0e7ce8f3159ecf943027",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/fca50c2cbf0a0bfe6ca3f2a62b22ad389cd880b9fd1bb13662a7df6ec3ff1c57-jump-jump_690x829_touch_ascent.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6640daef5a1c728b0a387e282ccb665df8a58dd",
+      "expected_sha256": "fca50c2cbf0a0bfe6ca3f2a62b22ad389cd880b9fd1bb13662a7df6ec3ff1c57",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/2561fbf0953953cce91dcf43fae6274ac25a5517475245eedf8cdfddeae19f24-jump-jump_412x915_landed.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98b86563bb0e1305fec15cab3d147267885bac7a",
+      "expected_sha256": "2561fbf0953953cce91dcf43fae6274ac25a5517475245eedf8cdfddeae19f24",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/6f0f0c7eab4d16b4d294821a66022c85fc58c8434c56a2bb7832e491284ed80a-rhythm-02_rhythm_slide.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cb6a46ebeeb719bcacb0c2d02f316623175db2e",
+      "expected_sha256": "6f0f0c7eab4d16b4d294821a66022c85fc58c8434c56a2bb7832e491284ed80a",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/ca5c0e21ad762bc58c0c2c0e6e9079c4e1998e1f69f2e1244197975444578555-jump-jump-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26400d53984c57affc90012fbb2839575b3287fe",
+      "expected_sha256": "ca5c0e21ad762bc58c0c2c0e6e9079c4e1998e1f69f2e1244197975444578555",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55-learning-teacher_scene.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efb39582dec4efb6352c1a2915f60d6f760af5f4",
+      "expected_sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/teacher_scene.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163-learning-gaze_left.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67e626fd8edf3af3bf3c4955fd905047d9897e7c",
+      "expected_sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/gaze_left.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703-learning-neutral.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8645e70de9f6badf6e4c260eaf02957c6e4ad147",
+      "expected_sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/neutral.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1-learning-muted.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87810252dcc1e0e627c267320a43e2cc8346f277",
+      "expected_sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/muted.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973-learning-blink.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22808f200b3258d7ec2f25d3bac6ad3302742b0e",
+      "expected_sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52-learning-stopped.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c1e879ffaadce433c9cba63fdcf0d37e3b4b36b",
+      "expected_sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/stopped.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554-learning-blink_intermediate.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f7ca9f42343c3653990403225db5529808207da",
+      "expected_sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/blink_intermediate.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9-learning-audio_jaw.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24726cedcaf53ed7cd2589594c54cdfb6d0034a8",
+      "expected_sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/lumo_facial_capture/audio_jaw.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/0abe31a9da071d3a58ec841204fb9297c11a4cfae5a252c92eb13ddca086d5ca-build-02_build_moved.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b016e786ff466e071f06a43c63460fff64051fb",
+      "expected_sha256": "0abe31a9da071d3a58ec841204fb9297c11a4cfae5a252c92eb13ddca086d5ca",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/3cecaad0266b7aadfe894f0736e51dddd9cc5fc0ca59ac16e1c61bd61a11121a-build-build-dialog-640x360-current-goal.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4bbe8bcdd603036b132cf16728391130553e9c87",
+      "expected_sha256": "3cecaad0266b7aadfe894f0736e51dddd9cc5fc0ca59ac16e1c61bd61a11121a",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/aa2cc71d6070dad41ece420119b669099a03a0b8578bc62bab6055d326850332-build-build-dialog-1080x2400-templates-bottom.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55aa98f3eb99cc2d73b65865dac84620421fa2d3",
+      "expected_sha256": "aa2cc71d6070dad41ece420119b669099a03a0b8578bc62bab6055d326850332",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc-settlement-06_settlement_relocation.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d1ac3ca603e3be8b6fbba0efbb7e8705a0ab2b6",
+      "expected_sha256": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/67e8ca45d30825868e9b703b5b450ea210d43eaaca9d31acb6853776cbb3b829-puzzle-puzzle_rotation_640x360.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bdf7fda13e917527f7b11ded8f4a691c7532adc",
+      "expected_sha256": "67e8ca45d30825868e9b703b5b450ea210d43eaaca9d31acb6853776cbb3b829",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9-puzzle-puzzle_rotation_placed.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8412a3a4c796c45d4c8cc117a50debce1e49dcc0",
+      "expected_sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/0df2ae372487275460ff9cd987c17e98ab4115da8a39c7f870329ded536a309d-treasure-treasure_choose_route.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f393197c6d2c2cb11a9f497440aa43e5950043bb",
+      "expected_sha256": "0df2ae372487275460ff9cd987c17e98ab4115da8a39c7f870329ded536a309d",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb-puzzle-960x540-rotation-menu.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "675a26db62e43f6a38631708a5dddd4cfe3aaa0d",
+      "expected_sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f-puzzle-960x540-rotation-play.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1645831925d262c2aa9d276d525a286ce80cadd",
+      "expected_sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/96ff13eb4370bef6964f8e428dc76f8abbaef13df60c826ba79f4624b7e0b2de-puzzle-960x540-classic-play.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46b1bb9744952359881eb890535412f3f2c218b4",
+      "expected_sha256": "96ff13eb4370bef6964f8e428dc76f8abbaef13df60c826ba79f4624b7e0b2de",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec-puzzle-640x360-rotation-menu.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b81b9e1303e4bbe15dc70e3f95ac893f5e58f8c",
+      "expected_sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/932f5b2023b9311eebe53405a174bccf9b5c6ab700395037bb350df498c17fb4-puzzle-640x360-rotation-play.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d56d3fe327960d92a5af1066b1d3e9aceb437e49",
+      "expected_sha256": "932f5b2023b9311eebe53405a174bccf9b5c6ab700395037bb350df498c17fb4",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/265de3d2eecaeb019e5708c91183ff0d545187a44bf3ba37e0d66307b620f275-puzzle-640x360-classic-play.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a559c6fa1f84266ab2673ca7875cfb57d3b608ae",
+      "expected_sha256": "265de3d2eecaeb019e5708c91183ff0d545187a44bf3ba37e0d66307b620f275",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/04c77e2634b3f35924c623c26f5b540c1dce3f724f65f39bd75cae826393f2d5-build-build-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4fe717e36575ae007ee84a3ecc4867b97e6d8189",
+      "expected_sha256": "04c77e2634b3f35924c623c26f5b540c1dce3f724f65f39bd75cae826393f2d5",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png"
+    },
+    {
+      "path": "docs/evidence/studio-2020-reviewed/6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719-puzzle-puzzle-landscape-cutout.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b471abf6bb881f6b55eedbd582fb8c33ca988bf5",
+      "expected_sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native29080-full-acceptance-20261114/extracted/studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png"
+    }
+  ]
+}
