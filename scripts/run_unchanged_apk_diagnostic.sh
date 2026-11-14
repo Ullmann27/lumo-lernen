@@ -2,9 +2,9 @@
 # Run repaired observers against the independently checked, unchanged 7b16 APK.
 set -euo pipefail
 
-diagnostic_case="${1:?Expected api35, api37-host, api37-swiftshader or update2017}"
+diagnostic_case="${1:?Expected api35, api37-host, api37-swiftshader, api37-swangle or update2017}"
 case "$diagnostic_case" in
-  api35|api37-host|api37-swiftshader|update2017) ;;
+  api35|api37-host|api37-swiftshader|api37-swangle|update2017) ;;
   *) echo "Unknown diagnostic case: $diagnostic_case" >&2; exit 2 ;;
 esac
 
@@ -35,11 +35,13 @@ finish_android17() {
 }
 
 if [[ "$diagnostic_case" == api37-* ]]; then
-  # The already running startup monitor remains the same process across the
-  # guard, APK installation, both tours and the final original system dumps.
+  # Keep the full startup stream. Before root can restart its ADB transport,
+  # prove overlap with an independent device logger that covers root, both
+  # tours and the final system dumps without reconnecting or clearing its file.
   "$diagnostic_python" "$diagnostic_root/scripts/verify_android_runtime_anr.py" begin \
     --framework-out "$diagnostic_out/framework-start" \
-    --out "$diagnostic_out/runtime-anr" --serial emulator-5554
+    --out "$diagnostic_out/runtime-anr" --serial emulator-5554 --preserve-through-adb-root
+  export LUMO_RUNTIME_ANR_START="$diagnostic_out/runtime-anr/runtime-start.json"
   trap finish_android17 EXIT
   trap 'exit 143' TERM
   trap 'exit 130' INT
@@ -50,6 +52,7 @@ if [[ "$diagnostic_case" == api37-* ]]; then
 import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 
 root, case = Path(sys.argv[1]), sys.argv[2]
@@ -71,10 +74,15 @@ package_files = {}
 for relative in baseline['package_files']:
     data = (framework / 'cli22/packages-guard' / relative).read_bytes()
     package_files[relative] = {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
-gpu = 'swiftshader' if case == 'api37-swiftshader' else 'host'
+gpu = {'api37-host': 'host', 'api37-swiftshader': 'swiftshader',
+       'api37-swangle': 'swangle'}[case]
 gles = [line.strip() for line in (out / 'surfaceflinger-start.stdout').read_text().splitlines()
         if line.strip().startswith('GLES:')]
 renderer_marker = 'swiftshader' if gpu == 'swiftshader' else 'llvmpipe'
+renderer_matches = len(gles) == 1 and (
+    bool(re.search(r'\bANGLE\b', gles[0], re.I)) and
+    bool(re.search(r'\bSwiftShader\b', gles[0], re.I))
+    if gpu == 'swangle' else renderer_marker in gles[0].casefold())
 checks = {
     'same_original_package_descriptor_and_properties': package_files == baseline['package_files'],
     'same_observed_android_fingerprint': bool(readiness['samples']) and all(
@@ -82,7 +90,7 @@ checks = {
     'same_effective_non_graphics_hardware': all(
         hardware.get(key) == value for key, value in baseline['effective_hardware_unchanged'].items()),
     'effective_gpu_mode_matches_requested_case': hardware.get('hw.gpu.mode') == gpu,
-    'one_actual_gles_renderer_matches_case': len(gles) == 1 and renderer_marker in gles[0].casefold(),
+    'one_actual_gles_renderer_matches_case': renderer_matches,
     'actual_framework_guard_passed': readiness.get('status') == 'PASS',
 }
 report = {

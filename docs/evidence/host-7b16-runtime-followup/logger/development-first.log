@@ -1,0 +1,20 @@
+test_actual_diagnostic_runner_requires_the_new_positive_protocol (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_actual_diagnostic_runner_requires_the_new_positive_protocol) ... ok
+test_actual_root_closed_response_requires_independent_uid0 (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_actual_root_closed_response_requires_independent_uid0) ... ok
+test_changed_pre_root_prefix_remains_a_failure (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_changed_pre_root_prefix_remains_a_failure) ... ok
+test_current_original_monitor_failures_are_not_relabelled (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_current_original_monitor_failures_are_not_relabelled) ... ok
+test_file_inode_change_at_root_is_not_tolerated (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_file_inode_change_at_root_is_not_tolerated) ... ok
+test_filtered_device_command_cannot_establish_the_session (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_filtered_device_command_cannot_establish_the_session) ... ok
+test_host_transport_termination_outside_the_root_phase_stays_a_failure (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_host_transport_termination_outside_the_root_phase_stays_a_failure) ... ok
+test_missing_positive_host_device_overlap_fails_before_root (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_missing_positive_host_device_overlap_fails_before_root) ... ok
+test_other_root_stderr_is_not_ignored (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_other_root_stderr_is_not_ignored) ... ok
+test_process_birth_change_at_root_is_not_a_reconnect (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_process_birth_change_at_root_is_not_a_reconnect) ... ok
+test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger) ... ok
+test_protocol_cannot_be_enabled_by_changing_a_report_only (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_protocol_cannot_be_enabled_by_changing_a_report_only) ... ok
+test_real_gms_original_is_terminal_even_when_later_events_are_empty (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_real_gms_original_is_terminal_even_when_later_events_are_empty) ... ok
+test_tour_failure_cannot_be_overridden_by_continuous_logs (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_tour_failure_cannot_be_overridden_by_continuous_logs) ... ok
+test_unsolicited_device_exit_is_not_accepted (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_unsolicited_device_exit_is_not_accepted) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.363s
+
+OK

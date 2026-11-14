@@ -52,8 +52,17 @@ QA_JOBS = (
 CREATIVE_QA_WORKFLOW = '.github/workflows/lumo-creative-7b16-diagnostic.yml'
 CREATIVE_QA_BRANCH = 'qa/lumo-creative-7b16-20261114'
 CREATIVE_QA_JOB = 'unchanged-apk-creative-api35'
+FOLLOWUP_QA_WORKFLOW = '.github/workflows/lumo-android-runtime-7b16-followup.yml'
+FOLLOWUP_QA_BRANCH = 'qa/lumo-android-runtime-7b16-followup-20261114'
+FOLLOWUP_QA_JOBS = (
+    'unchanged-apk-followup-api35', 'unchanged-apk-followup-api37-host',
+    'unchanged-apk-followup-api37-swiftshader', 'unchanged-apk-followup-api37-swangle',
+    'unchanged-apk-followup-update2017',
+)
 QA_ROUTES = {name: (QA_WORKFLOW, QA_BRANCH) for name in QA_JOBS}
 QA_ROUTES[CREATIVE_QA_JOB] = (CREATIVE_QA_WORKFLOW, CREATIVE_QA_BRANCH)
+QA_ROUTES.update({name: (FOLLOWUP_QA_WORKFLOW, FOLLOWUP_QA_BRANCH)
+                  for name in FOLLOWUP_QA_JOBS})
 BUILD_STEPS = (
     'Build unified real Android APK',
     'Verify APK archive and collect reproducible source hashes',

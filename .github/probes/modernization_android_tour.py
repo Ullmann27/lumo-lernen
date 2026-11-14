@@ -67,6 +67,44 @@ LOG_IMAGES = (
 )
 
 
+def diagnostic_logcat_context(out: Path) -> dict | None:
+    """Preserve logd only for this tour's positively bound API37 recorder."""
+    import hashlib
+
+    requested = os.environ.get('LUMO_RUNTIME_ANR_START')
+    if requested is None:
+        return None
+    path = Path(requested)
+    expected = out / 'runtime-anr/runtime-start.json'
+    if (not requested or not path.is_absolute() or path.is_symlink()
+            or path.resolve(strict=True) != expected.resolve(strict=True)):
+        raise RuntimeError('Diagnostic log preservation requires this exact runtime interval')
+    raw = path.read_bytes()
+    start = json.loads(raw)
+    device_path = path.parent / 'device-logger/start.json'
+    if device_path.is_symlink() or not device_path.is_file():
+        raise RuntimeError('Diagnostic device recorder start is unavailable')
+    device_raw = device_path.read_bytes()
+    device = json.loads(device_raw)
+    identity = {'bytes': len(device_raw), 'sha256': hashlib.sha256(device_raw).hexdigest()}
+    if (start.get('recording_protocol') != 'independent-device-session-v1'
+            or start.get('root_prepared_before_installation') is not True
+            or start.get('device_start') != identity or start.get('serial') != device.get('serial')
+            or device.get('status') != 'PASS' or device.get('errors')
+            or device.get('root', {}).get('uid_after') != '0'
+            or device.get('root', {}).get('boot_completed') != '1'
+            or not re.fullmatch(r'[0-9a-f]{32}', device.get('token', ''))
+            or any((path.parent / name).exists() for name in
+                   ('runtime-end.json', 'device-logger/finish.json', 'device-logger/stop-error.json'))):
+        raise RuntimeError('Diagnostic device recorder is not a bound active interval')
+    if (base.adb('get-serialno').strip() != start['serial']
+            or base.adb('shell', 'getprop', 'ro.build.version.sdk').strip() != '37'):
+        raise RuntimeError('Diagnostic log preservation requires the same actual API37 emulator')
+    return {'runtime_start_sha256': hashlib.sha256(raw).hexdigest(),
+            'device_start_sha256': identity['sha256'], 'serial': start['serial'],
+            'token': device['token']}
+
+
 def logcat_fatal() -> list[str]:
     text = base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
     lines = text.splitlines()
@@ -1108,7 +1146,8 @@ def main() -> int:
             raise RuntimeError('Refusing to tour an APK that is not the verified build')
         result['emulator_root_readiness'] = probe.ensure_rooted_emulator(base.adb, out)
         result['android_sdk'] = base.adb('shell', 'getprop', 'ro.build.version.sdk').strip()
-        base.adb('logcat', '-c', check=False)
+        if diagnostic_logcat_context(out) is None:
+            base.adb('logcat', '-c', check=False)
         base.display(1080, 2400, 420)
         install = base.adb('install', '-r', '--no-streaming', str(args.apk), timeout=300)
         (out / 'install.txt').write_text(install)

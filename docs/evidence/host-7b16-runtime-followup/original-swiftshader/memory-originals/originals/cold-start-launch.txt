@@ -1,0 +1,15 @@
+bash arg: -p
+  bash arg: dev.ullmann.lumo.lumo_lernen.coachpreview
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+args: [-p, dev.ullmann.lumo.lumo_lernen.coachpreview, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "dev.ullmann.lumo.lumo_lernen.coachpreview"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="dev.ullmann.lumo.lumo_lernen.coachpreview"
+data="android.intent.category.LAUNCHER"
+Events injected: 1
+## Network stats: elapsed time=21ms (0ms mobile, 0ms wifi, 21ms not connected)

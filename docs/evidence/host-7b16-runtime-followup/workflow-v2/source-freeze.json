@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T04:33:02.221228+00:00",
+  "previous_freeze": {
+    "bytes": 1202,
+    "sha256": "f8305a2f383777f478a7f84bd4027eb688834bd8aecf5cbdb7576c6cfeecbe5c"
+  },
+  "files": [
+    {
+      "path": ".github/workflows/lumo-android-runtime-7b16-followup.yml",
+      "bytes": 13521,
+      "sha256": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31",
+      "before": {
+        "bytes": 13465,
+        "sha256": "b6573b0ee0a2364b305e69693813b358a65245e1143876c09c8b0aecb809a71c"
+      }
+    },
+    {
+      "path": "scripts/tests/test_runtime_followup_workflow.py",
+      "bytes": 10381,
+      "sha256": "15d0d7aa8a37aff6ff6d419135d73674a9a5ea236d03174238a14eb325adad83",
+      "before": {
+        "bytes": 10332,
+        "sha256": "6c65b0957e388eedb53d973de12aa8a799accde6a2a968678ec584bc8be1c473"
+      }
+    }
+  ],
+  "unchanged_wrapper": {
+    "path": "scripts/run_unchanged_apk_diagnostic.sh",
+    "bytes": 7218,
+    "sha256": "e8d724d5a6da0d12d193cfb1de851d520eac68ead0f8777b2965c0469da3ae50"
+  },
+  "scope": "Exactly one extra Root route-test module in the actual Contractjob and its corresponding test inventory; V1 and logger source packs remain unchanged."
+}

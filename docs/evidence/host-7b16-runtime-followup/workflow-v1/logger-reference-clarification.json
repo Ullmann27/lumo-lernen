@@ -1,0 +1,13 @@
+{
+  "scope": "Documentation-only clarification; frozen source, tests, original CI records and pack bytes remain unchanged.",
+  "pack_manifest_sha256": "405514a50539e216e3167b79616ded2b871c332f32cbc58112a66f1c6d0dadca",
+  "field": "original-ci-binding.json primary_references[1].url",
+  "correction": "The observed object is a Git blob, not a commit revision. Use the actually retrieved main-branch URL below and record the blob separately; the earlier blob-as-revision URL is not a verified link.",
+  "verified_url": "https://android.googlesource.com/platform/system/logging/+/refs/heads/main/logcat/logcat.cpp",
+  "observed_blob": "7e79c6d75743f4a54f0359f6dccccb348e3a9918",
+  "verified_content": [
+    "Blocking stdout output is explicitly flushed after each processed message.",
+    "When no explicit filterspec exists, ANDROID_LOG_TAGS can provide the filter. The new wrapper unsets it."
+  ],
+  "version_limit": "Observed public branch source, not proof of the exact running Android binary. Actual device continuity remains pending."
+}

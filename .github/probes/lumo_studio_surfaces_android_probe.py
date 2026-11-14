@@ -215,7 +215,7 @@ def local_voice_permission(out: Path) -> dict:
             'audible_quality_verified': False, 'lip_sync_verified': False}
 
 
-def _speech_logcat() -> str:
+def _speech_logcat(*, boundary=None) -> str:
     """Collect real native speech and Godot events without draining every system log.
 
     CI emulators may return adb/logcat 255 on a disconnected logd stream.
@@ -223,9 +223,29 @@ def _speech_logcat() -> str:
     """
     for attempt in range(3):
         try:
-            return base.adb('logcat', '-d', '-v', 'brief', '-s',
-                            'LumoLearningSpeech:I', 'godot:I', 'Godot:I', '*:S',
-                            timeout=60)
+            if boundary is None:
+                return base.adb('logcat', '-d', '-v', 'brief', '-s',
+                                'LumoLearningSpeech:I', 'godot:I', 'Godot:I', '*:S',
+                                timeout=60)
+            marker = boundary['marker']
+            if not re.fullmatch(r'lumo-[0-9a-f]{32}-speech-[0-9a-f]{32}', marker):
+                raise RuntimeError('Invalid observed speech section identity')
+            raw = base.adb('logcat', '-d', '-v', 'brief', '-s',
+                           'LumoLearningSpeech:I', 'godot:I', 'Godot:I',
+                           'LumoSpeechSection:I', '*:S', timeout=60)
+            boundary['reads'] += 1
+            with (boundary['out'] / f"{boundary['reads']:04d}-full-filtered-logcat.txt").open('x') as stream:
+                stream.write(raw)
+            lines = raw.splitlines(keepends=True)
+            matches = [(index, line) for index, line in enumerate(lines) if re.fullmatch(
+                r'I/LumoSpeechSection\s*\(\s*[1-9][0-9]*\):\s*' + re.escape(marker) + r'\s*', line)]
+            if len(matches) != 1:
+                raise RuntimeError('A unique actual speech section boundary is missing or ambiguous')
+            index, observed = matches[0]
+            if boundary.get('observed_line') not in (None, observed):
+                raise RuntimeError('The observed speech section boundary changed')
+            boundary['observed_line'] = observed
+            return ''.join(lines[index + 1:])
         except RuntimeError as error:
             if "Command failed (255): ('adb', 'logcat'" not in str(error) or attempt == 2:
                 raise
@@ -233,9 +253,30 @@ def _speech_logcat() -> str:
     raise RuntimeError('Unreachable speech logcat retry state')
 
 
-def completed_native_speech(out: Path, *, after_final_move=False) -> dict:
+def _start_learning_speech_section(out: Path, context: dict) -> dict:
+    """Observe a fresh log marker without clearing the complete ANR history."""
+    import secrets
+
+    directory = out / 'learning-speech-section'
+    directory.mkdir()
+    boundary = {'marker': 'lumo-' + context['token'] + '-speech-' + secrets.token_hex(16),
+                'out': directory, 'reads': 0}
+    base.adb('shell', 'log', '-p', 'i', '-t', 'LumoSpeechSection', boundary['marker'])
+    # The command's successful return alone is not a section boundary. Read the
+    # actual marker back before entering the native lesson; preserve that raw read.
+    _speech_logcat(boundary=boundary)
+    with (directory / 'observed-start.json').open('x') as stream:
+        json.dump({**context, 'marker': boundary['marker'],
+                   'observed_line': boundary['observed_line'],
+                   'scope': 'Actual log section before native entry; full ANR logs remain unchanged'},
+                  stream, indent=2)
+        stream.write('\n')
+    return boundary
+
+
+def completed_native_speech(out: Path, *, after_final_move=False, boundary=None) -> dict:
     def observe():
-        log = _speech_logcat()
+        log = _speech_logcat(boundary=boundary)
         (out / 'learning-speech-logcat.txt').write_text(log)
         try:
             return require_learning_voice(log, after_final_move=after_final_move)
@@ -260,12 +301,18 @@ def learning_roundtrip(out: Path) -> dict:
     must_see(out, 'Acht und fünf', 'guided-current-example')
     probe.capture_flutter_ready(out, '01_learning_flutter_before')
     before = probe.prefs(out, 'learning-before-native')
-    # Only clear the emulator diagnostic log. Application data is untouched.
-    base.adb('logcat', '-c')
+    # The API37 recorder must keep the complete boot/root/app history. Its
+    # functional speech proof uses an actually observed fresh section instead.
+    context = tour.diagnostic_logcat_context(out.parent)
+    boundary = None
+    if context is None:
+        base.adb('logcat', '-c')
+    else:
+        boundary = _start_learning_speech_section(out, context)
     tap_flutter(out, ['Mit Lumo in 3D ausprobieren'], 'learning-native-entry')
     native_ready(out, 'Zahlen zum Anfassen', 'learning-native-title')
     probe.capture(out, '02_learning_native_eight_plus_five')
-    initial_voice = completed_native_speech(out)
+    initial_voice = completed_native_speech(out, boundary=boundary)
     for index in range(5):
         probe.native_text(out, 'Ein Objekt zeigen', f'learning-move-{index + 1}',
                           tap=True, exact=True, settle=True, orientation='responsive')
@@ -277,10 +324,10 @@ def learning_roundtrip(out: Path) -> dict:
     probe.native_text(out, 'gefüllt', 'learning-complete', settle=True,
                       orientation='responsive')
     probe.capture(out, '04_learning_native_thirteen')
-    movement_log = _speech_logcat()
+    movement_log = _speech_logcat(boundary=boundary)
     (out / 'learning-movement-logcat.txt').write_text(movement_log)
     moves = require_learning_bridge_moves(movement_log)
-    final_voice = completed_native_speech(out, after_final_move=True)
+    final_voice = completed_native_speech(out, after_final_move=True, boundary=boundary)
     if (initial_voice['native_process_pid'] != final_voice['native_process_pid'] or
             min(final_voice['completed_utterance_ids']) <= max(initial_voice['completed_utterance_ids'])):
         raise RuntimeError('The spoken result was not a new utterance in the same native lesson')

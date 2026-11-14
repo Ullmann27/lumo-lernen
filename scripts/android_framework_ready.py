@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Observe the real API37 framework and unlocked foreground before app setup.
 
-This program never installs an APK, sets a property, supplies adb responses, or
-suppresses an upstream failure. One observed nonsecure keyguard may receive a
+The framework guard never installs an APK, supplies adb responses, or suppresses
+an upstream failure. One observed nonsecure keyguard may receive a
 bounded dismissal request; only subsequent stable window observations can pass.
 The separate monitor records unfiltered startup logcat, including the crash buffer.
+The explicitly requested runtime handoff also starts a detached device logger
+before the observed root transition; it neither clears nor rotates either log.
 """
 
 from __future__ import annotations
@@ -16,6 +18,8 @@ import json
 import os
 from pathlib import Path
 import re
+import secrets
+import shlex
 import signal
 import subprocess
 import sys
@@ -155,9 +159,12 @@ class Recorder:
         (out / "commands").mkdir(parents=True, exist_ok=True)
 
     def run(self, name: str, arguments: list[str], timeout: float) -> dict:
+        return self.run_adb(name, ["shell", *arguments], timeout)
+
+    def run_adb(self, name: str, arguments: list[str], timeout: float) -> dict:
         self.counter += 1
         base = f"commands/{self.counter:04d}-{name}"
-        command = [self.adb, "-s", self.serial, "shell", *arguments]
+        command = [self.adb, "-s", self.serial, *arguments]
         started = utc()
         timed_out = False
         process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
@@ -172,6 +179,305 @@ class Recorder:
         record = {"command": command, "started_at": started, "finished_at": utc(), "returncode": process.returncode, "timed_out": timed_out, "stdout_file": base + ".stdout", "stderr_file": base + ".stderr"}
         write_json(self.out / (base + ".json"), record)
         return {**record, "stdout": stdout.decode("utf-8", errors="replace"), "stderr": stderr.decode("utf-8", errors="replace")}
+
+
+DEVICE_LOG_TAG = "LumoRuntimeRecorder"
+DEVICE_LOG_PATH = re.compile(r"/data/local/tmp/lumo-runtime-[0-9a-f]{32}")
+DEVICE_LOG_FILES = ("logcat.stdout", "logcat.stderr", "session.stdout", "session.stderr", "wait.stderr", "run.sh")
+ROOT_RESTART_CLOSED = "adb: unable to connect for root: closed"
+
+
+def expected_root_disconnect(result: dict) -> bool:
+    return (result["returncode"] == 1 and not result["timed_out"] and
+            ((not result["stdout"] and result["stderr"].strip() == ROOT_RESTART_CLOSED) or
+             (not result["stderr"] and result["stdout"].strip() == ROOT_RESTART_CLOSED)))
+
+
+def device_logger_script(remote: str) -> str:
+    if not DEVICE_LOG_PATH.fullmatch(remote):
+        raise ValueError("Invalid private device logger directory")
+    # nohup and setsid are checked on the real emulator. The shell waits for
+    # its actual logcat child and preserves that child's exit status.
+    return ("#!/system/bin/sh\nset -u\numask 077\nunset ANDROID_LOG_TAGS\ncd " + remote + " || exit 91\n"
+            "printf '%s\\n' \"$$\" > session.pid\n: > wait.stderr\n"
+            "/system/bin/logcat -b all -v threadtime > logcat.stdout 2> logcat.stderr &\n"
+            "logger=$!\nprintf '%s\\n' \"$logger\" > logger.pid\n"
+            "attempt=0\nwhile [ ! -s logcat.stdout ] && [ \"$attempt\" -lt 50 ]; do\n"
+            "  sleep 0.1\n  attempt=$((attempt + 1))\ndone\n"
+            "if [ -s logcat.stdout ]; then printf 'ready\\n' > ready; fi\n"
+            "wait \"$logger\" 2> wait.stderr\n"
+            "result=$?\nprintf '%s\\n' \"$result\" > logger.exit\nexit \"$result\"\n")
+
+
+def device_logger_launch(remote: str) -> str:
+    script = device_logger_script(remote)
+    return ("set -eu\numask 077\n"
+            "test -x /system/bin/toybox && test -x /system/bin/logcat\n"
+            "mkdir " + remote + "\ncat > " + remote + "/run.sh <<'LUMO_LOGGER_SOURCE'\n" + script +
+            "LUMO_LOGGER_SOURCE\n"
+            "/system/bin/toybox nohup /system/bin/toybox setsid /system/bin/sh " + remote +
+            "/run.sh > " + remote + "/session.stdout 2> " + remote + "/session.stderr < /dev/null &\n"
+            "attempt=0\nwhile [ ! -s " + remote + "/ready ] && [ \"$attempt\" -lt 100 ]; do\n"
+            "  sleep 0.1\n  attempt=$((attempt + 1))\ndone\ntest -s " + remote + "/ready\n")
+
+
+def device_snapshot_script(remote: str, *, live: bool = True) -> str:
+    device_logger_script(remote)  # Validate before any shell interpolation.
+    script = "set -eu\ntest ! -L " + remote + "\ncd " + remote + "\n"
+    if live:
+        for role in ("session", "logger"):
+            script += ("pid=$(cat " + role + ".pid)\ncase \"$pid\" in ''|*[!0-9]*) exit 92;; esac\n"
+                       "printf '__" + role + "_stat__\\n'\ncat /proc/$pid/stat\n"
+                       "printf '__" + role + "_argv__\\n'\nod -An -v -tx1 /proc/$pid/cmdline\n")
+    for name in DEVICE_LOG_FILES:
+        script += ("test -f " + name + " && test ! -L " + name + "\n"
+                   "printf '__file_" + name + "__\\n'\nstat -c '%d:%i:%s:%f' " + name + "\n")
+    script += "printf '__script_hash__\\n'\nsha256sum run.sh\n"
+    return script
+
+
+def parse_device_snapshot(raw: str, remote: str, *, live: bool = True) -> dict:
+    expected = {"file_" + name for name in DEVICE_LOG_FILES} | {"script_hash"}
+    if live:
+        expected |= {role + suffix for role in ("session", "logger") for suffix in ("_stat", "_argv")}
+    sections, current = {}, None
+    for line in raw.splitlines():
+        match = re.fullmatch(r"__([a-z_.]+)__", line)
+        if match:
+            current = match[1]
+            if current in sections or current not in expected:
+                raise ValueError("Unknown or duplicate device snapshot section")
+            sections[current] = []
+        elif current is None:
+            raise ValueError("Unframed device snapshot output")
+        else:
+            sections[current].append(line)
+    if set(sections) != expected:
+        raise ValueError("Incomplete device snapshot")
+    result = {"files": {}}
+    for name in DEVICE_LOG_FILES:
+        match = re.fullmatch(r"([0-9]+):([0-9]+):([0-9]+):([0-9a-fA-F]+)", "".join(sections["file_" + name]))
+        if not match or int(match[4], 16) & 0xF000 != 0x8000:
+            raise ValueError("Device evidence must be a regular file")
+        result["files"][name] = {"device": int(match[1]), "inode": int(match[2]),
+                                  "bytes": int(match[3]), "mode": int(match[4], 16)}
+    expected_hash = hashlib.sha256(device_logger_script(remote).encode()).hexdigest()
+    if sections["script_hash"] != [expected_hash + "  run.sh"]:
+        raise ValueError("Device logger script differs from the literal source")
+    result["script_sha256"] = expected_hash
+    if live:
+        for role in ("session", "logger"):
+            stat = " ".join(sections[role + "_stat"])
+            match = re.fullmatch(r"([0-9]+) \(.*\) (.*)", stat)
+            fields = match[2].split() if match else []
+            if len(fields) < 20 or fields[0] in ("Z", "X", "x"):
+                raise ValueError("Device logger process is absent or dead")
+            argv = bytes.fromhex("".join(sections[role + "_argv"]).replace(" ", "")).decode().rstrip("\0").split("\0")
+            wanted = (["/system/bin/sh", remote + "/run.sh"] if role == "session" else
+                      ["/system/bin/logcat", "-b", "all", "-v", "threadtime"])
+            if argv != wanted:
+                raise ValueError("Device logger process command changed")
+            result[role] = {"pid": int(match[1]), "ppid": int(fields[1]), "pgrp": int(fields[2]),
+                            "session": int(fields[3]), "start_ticks": fields[19], "argv": argv}
+        session, logger = result["session"], result["logger"]
+        if (session["pid"] != session["session"] or session["pgrp"] != session["session"]
+                or logger["session"] != session["session"] or logger["pgrp"] != session["session"]
+                or logger["ppid"] != session["pid"]):
+            raise ValueError("Device logger does not belong to its independent session")
+    return result
+
+
+def same_device_session(before: dict, after: dict) -> None:
+    # The detached shell may be reparented to init after the launch shell exits;
+    # its PID, birth time, session and literal command must remain identical.
+    for role in ("session", "logger"):
+        for key in ("pid", "pgrp", "session", "start_ticks", "argv"):
+            if before[role][key] != after[role][key]:
+                raise ValueError("Device logger process identity changed: " + role + ":" + key)
+    for name in DEVICE_LOG_FILES:
+        for key in ("device", "inode", "mode"):
+            if before["files"][name][key] != after["files"][name][key]:
+                raise ValueError("Device logger file identity changed: " + name)
+        if after["files"][name]["bytes"] < before["files"][name]["bytes"]:
+            raise ValueError("Device logger file was truncated: " + name)
+    if before["script_sha256"] != after["script_sha256"]:
+        raise ValueError("Device logger source changed")
+
+
+def device_marker_line(raw: bytes, marker: str) -> bytes | None:
+    pattern = re.compile(rb"^(?:[0-9]{4}-)?[0-9]{2}-[0-9]{2} [0-9:.]+\s+[0-9]+\s+[0-9]+\s+I\s+"
+                         + DEVICE_LOG_TAG.encode() + rb"\s*:\s?" + re.escape(marker.encode()) + rb"$")
+    matches = [line for line in raw.splitlines() if pattern.fullmatch(line)]
+    if len(matches) > 1:
+        raise ValueError("Device continuity marker is not unique")
+    return matches[0] if matches else None
+
+
+class DeviceLogSession:
+    """A real detached logcat, with raw command receipts and no reconnect path."""
+
+    def __init__(self, out: Path, adb: str, serial: str, remote: str, timeout: float = 30):
+        if not DEVICE_LOG_PATH.fullmatch(remote) or not re.fullmatch(r"emulator-[0-9]+", serial):
+            raise ValueError("Expected one private logger on an exact emulator")
+        if out.exists():
+            raise ValueError("Refusing to overwrite a device logger observation phase")
+        self.out, self.remote = out, remote
+        self.recorder = Recorder(out, adb, serial)
+        self.deadline = time.monotonic() + timeout
+        self.records = []
+
+    def run(self, name: str, arguments: list[str], *, direct: bool = False,
+            accept: tuple[int, ...] = (0,)) -> dict:
+        remaining = self.deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError("Device logger observation deadline expired")
+        method = self.recorder.run_adb if direct else self.recorder.run
+        result = method(name, arguments, min(15, remaining))
+        self.records.append({key: value for key, value in result.items() if key not in ("stdout", "stderr")})
+        closed = (name == "root-request" and direct and arguments == ["root"] and expected_root_disconnect(result))
+        if result["timed_out"] or result["returncode"] not in accept or (result["stderr"] and not closed):
+            raise RuntimeError("Device logger command failed: " + name)
+        return result
+
+    def shell(self, name: str, script: str) -> dict:
+        return self.run(name, ["sh", "-c", shlex.quote(script)])
+
+    def snapshot(self, name: str, *, live: bool = True) -> tuple[dict, dict]:
+        record = self.shell(name, device_snapshot_script(self.remote, live=live))
+        return parse_device_snapshot(record["stdout"], self.remote, live=live), record
+
+    def marker(self, name: str, marker: str, host_log: Path | None = None) -> dict:
+        if not re.fullmatch(r"lumo-[0-9a-f]{32}-(start|end)", marker):
+            raise ValueError("Invalid continuity marker")
+        sent = self.run(name + "-write", ["log", "-p", "i", "-t", DEVICE_LOG_TAG, marker])
+        while time.monotonic() < self.deadline:
+            result = self.run(name + "-read", ["grep", "-F", marker, self.remote + "/logcat.stdout"], accept=(0, 1))
+            device = device_marker_line((self.out / result["stdout_file"]).read_bytes(), marker)
+            host = device_marker_line(host_log.read_bytes(), marker) if host_log is not None else device
+            if device is not None and device == host:
+                return {"value": marker, "line_hex": device.hex(), "sent": sent["started_at"],
+                        "observed_at": result["finished_at"], "record": result["stdout_file"],
+                        "host_overlap_observed": host_log is not None}
+            time.sleep(min(.1, max(0, self.deadline - time.monotonic())))
+        raise TimeoutError("Actual device and host continuity marker was not observed")
+
+    def originals(self) -> dict:
+        return {str(file.relative_to(self.out)): {"bytes": file.stat().st_size,
+                "sha256": hashlib.sha256(file.read_bytes()).hexdigest()}
+                for file in sorted((self.out / "commands").glob("*")) if file.is_file()}
+
+
+def start_device_log(out: Path, framework_out: Path, serial: str) -> dict:
+    if out.exists():
+        raise ValueError("Refusing to replace device logger evidence")
+    token = secrets.token_hex(16)
+    remote = "/data/local/tmp/lumo-runtime-" + token
+    session = DeviceLogSession(out / "start", adb_path(), serial, remote, timeout=45)
+    value = {"schema": 1, "started_at": utc(), "remote": remote, "serial": serial,
+             "adb": adb_path(), "token": token, "status": "FAIL", "errors": []}
+    try:
+        session.shell("launch", device_logger_launch(remote))
+        first, _ = session.snapshot("initial")
+        value["initial"] = first
+        value["marker"] = session.marker("start-marker", "lumo-" + token + "-start",
+                                          framework_out / "logcat-all.stdout")
+        prefix = session.run("prefix", ["cat", remote + "/logcat.stdout"])
+        value["prefix"] = prefix["stdout_file"]
+        second, _ = session.snapshot("before-root")
+        same_device_session(first, second)
+        value["before_root"] = second
+        root = {"started_at": utc(), "requested": False}
+        value["root"] = root
+        uid = session.run("root-before-uid", ["id", "-u"])["stdout"].strip()
+        if uid not in ("0", "2000"):
+            raise ValueError("Unrecognized real emulator shell UID")
+        root["uid_before"] = uid
+        if uid != "0":
+            root["requested"] = True
+            command = session.run("root-request", ["root"], direct=True, accept=(0, 1))
+            if (command["returncode"] == 1 and not expected_root_disconnect(command)) or "cannot run as root" in command["stdout"]:
+                raise RuntimeError("The emulator did not accept the explicit root request")
+            root["command"] = {key: item for key, item in command.items() if key not in ("stdout", "stderr")}
+        session.run("root-wait", ["wait-for-device"], direct=True)
+        root["uid_after"] = session.run("root-after-uid", ["id", "-u"])["stdout"].strip()
+        root["boot_completed"] = session.run("root-boot", ["getprop", "sys.boot_completed"])["stdout"].strip()
+        if root["uid_after"] != "0" or root["boot_completed"] != "1":
+            raise ValueError("Root preparation lacks an actual UID0 and boot1")
+        after, _ = session.snapshot("after-root")
+        same_device_session(first, after)
+        value["after_root"] = after
+        root["finished_at"] = utc()
+        value["status"] = "PASS"
+    except (OSError, ValueError, RuntimeError, TimeoutError) as error:
+        value["errors"].append(type(error).__name__ + ": " + str(error))
+        raise
+    finally:
+        value.update(finished_at=utc(), records=session.records, files=session.originals())
+        write_json(out / "start.json", value)
+    return value
+
+
+def observe_device_log(out: Path, label: str) -> dict:
+    start = json.loads((out / "start.json").read_text())
+    session = DeviceLogSession(out / label, start["adb"], start["serial"], start["remote"], timeout=10)
+    value = {"started_at": utc(), "status": "FAIL"}
+    try:
+        snapshot, _ = session.snapshot("identity")
+        same_device_session(start["initial"], snapshot)
+        value.update(status="PASS", snapshot=snapshot)
+        return value
+    finally:
+        value.update(finished_at=utc(), records=session.records, files=session.originals())
+        write_json(out / (label + ".json"), value)
+
+
+def finish_device_log(out: Path) -> dict:
+    start = json.loads((out / "start.json").read_text())
+    session = DeviceLogSession(out / "finish", start["adb"], start["serial"], start["remote"], timeout=45)
+    value = {"schema": 1, "status": "FAIL", "started_at": utc(), "errors": []}
+    try:
+        before, _ = session.snapshot("before-stop")
+        same_device_session(start["initial"], before)
+        value["before_stop"] = before
+        value["marker"] = session.marker("end-marker", "lumo-" + start["token"] + "-end")
+        current, _ = session.snapshot("checked-stop-target")
+        same_device_session(before, current)
+        value["stop_target"] = current
+        value["stop_requested_at"] = utc()
+        session.run("stop", ["kill", "-TERM", str(current["logger"]["pid"])])
+        while time.monotonic() < session.deadline:
+            result = session.shell("exit", "if [ -s " + start["remote"] + "/logger.exit ]; then cat " + start["remote"] + "/logger.exit; fi")
+            if result["stdout"].strip():
+                if result["stdout"].strip() != "143":
+                    raise ValueError("The original device logger did not stop by the requested TERM")
+                value["exit_code"] = 143
+                break
+            time.sleep(min(.1, max(0, session.deadline - time.monotonic())))
+        if "exit_code" not in value:
+            raise TimeoutError("Device logger exit was not observed")
+        stopped, _ = session.snapshot("stopped-files", live=False)
+        value["stopped"] = stopped
+        for name in DEVICE_LOG_FILES:
+            if any(stopped["files"][name][key] != current["files"][name][key] for key in ("device", "inode", "mode")):
+                raise ValueError("Stopped device log file changed identity")
+            if stopped["files"][name]["bytes"] > 512 * 1024 * 1024:
+                raise ValueError("Original device log exceeds the explicit 512MiB read bound; not truncated")
+            result = session.run("original-" + name.replace(".", "-"), ["cat", start["remote"] + "/" + name])
+            path = session.out / result["stdout_file"]
+            if path.stat().st_size != stopped["files"][name]["bytes"]:
+                raise ValueError("The complete original device file was not retrieved")
+            value[name] = result["stdout_file"]
+        final, _ = session.snapshot("files-after-read", live=False)
+        if final != stopped:
+            raise ValueError("Device originals changed during complete retrieval")
+        value["status"] = "PASS"
+    except (OSError, ValueError, RuntimeError, TimeoutError) as error:
+        value["errors"].append(type(error).__name__ + ": " + str(error))
+        raise
+    finally:
+        value.update(finished_at=utc(), records=session.records, files=session.originals())
+        write_json(out / "finish.json", value)
+    return value
 
 
 def input_dispatch_state(input_dump: str) -> dict:
