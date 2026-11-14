@@ -1,0 +1,75 @@
+{
+  "kind": "new_archive_integrity_review",
+  "artifact": {
+    "id": 14127483896,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyNzQ4Mzg5Ng==",
+    "name": "lumo-connect-four-2020-learning-curriculum-audit",
+    "size_in_bytes": 212133,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14127483896",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14127483896/zip",
+    "expired": false,
+    "digest": "sha256:d55ec4eb2c147de836b162357ac50ea73325c153eed7c5baecc290a1c0476f7a",
+    "created_at": "2026-11-14T19:13:09Z",
+    "updated_at": "2026-11-14T19:13:09Z",
+    "expires_at": "2026-12-14T19:13:08Z",
+    "workflow_run": {
+      "id": 43630328343,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-agent-execution-20261114",
+      "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848"
+    }
+  },
+  "archive_path": "/dev/shm/lumo-learning-198dd3-early/learning/original.zip",
+  "extracted_path": "/dev/shm/lumo-learning-198dd3-early/learning/extracted",
+  "whole_zip_bytes": 212133,
+  "whole_zip_sha256": "d55ec4eb2c147de836b162357ac50ea73325c153eed7c5baecc290a1c0476f7a",
+  "all_regular_members_fully_read_and_CRC_validated": true,
+  "original_file_count": 7,
+  "original_files": [
+    {
+      "path": "audit.stdout.log",
+      "bytes": 372,
+      "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184",
+      "crc32": "c00cf4d6"
+    },
+    {
+      "path": "issues.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "crc32": "0d4cbb29"
+    },
+    {
+      "path": "audit.stderr.log",
+      "bytes": 44,
+      "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6",
+      "crc32": "87283fd7"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 2257,
+      "sha256": "8092eac69f58c4d15804d29765c9980befc90cc6a0a3b5e2eca4e377a71507f3",
+      "crc32": "ba073d6c"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67",
+      "crc32": "b9f20b53"
+    },
+    {
+      "path": "task-families.json",
+      "bytes": 34450,
+      "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703",
+      "crc32": "187cefeb"
+    },
+    {
+      "path": "task-samples.jsonl",
+      "bytes": 3174060,
+      "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051",
+      "crc32": "1d49c948"
+    }
+  ],
+  "semantic_original_report_review": "pending",
+  "candidate_acceptance": false
+}

@@ -1,0 +1,52 @@
+{
+  "kind": "new_final_original_immutability_review",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "run": 43630328343,
+  "attempt": 1,
+  "archives": [
+    {
+      "kind": "compile",
+      "artifact_id": 14128226184,
+      "archive_bytes": 6283,
+      "archive_sha256": "252f1f4adebe25b0779a9e1a3de2d24d6bd6c5e871d25f9ff05f20a3239a319f",
+      "original_files": 6,
+      "all_original_member_hashes_unchanged_after_readers": true
+    },
+    {
+      "kind": "desktop",
+      "artifact_id": 14128445002,
+      "archive_bytes": 22145116,
+      "archive_sha256": "2dd59cc48c1d64b2623cac9dfbd91b42ed0600805beae40990ae2c3152b31691",
+      "original_files": 399,
+      "all_original_member_hashes_unchanged_after_readers": true
+    },
+    {
+      "kind": "learning",
+      "artifact_id": 14127483896,
+      "archive_bytes": 212133,
+      "archive_sha256": "d55ec4eb2c147de836b162357ac50ea73325c153eed7c5baecc290a1c0476f7a",
+      "original_files": 7,
+      "all_original_member_hashes_unchanged_after_readers": true
+    },
+    {
+      "kind": "flutter",
+      "artifact_id": 14128122934,
+      "archive_bytes": 332356829,
+      "archive_sha256": "4a6390212b19401565b7848d9e3883ca0c3d5217624d9bc3aa07bed905060fae",
+      "original_files": 548,
+      "all_original_member_hashes_unchanged_after_readers": true
+    },
+    {
+      "kind": "contracts",
+      "artifact_id": 14128931138,
+      "archive_bytes": 26370,
+      "archive_sha256": "717ef69bd55303adc81448f4877f972dc5b15fa50f2a3d2d33390bb31473ce6b",
+      "original_files": 1,
+      "all_original_member_hashes_unchanged_after_readers": true
+    }
+  ],
+  "all_original_member_hashes_unchanged_after_readers": true,
+  "total_original_archive_files": 961,
+  "source_checkout_clean": true,
+  "candidate_acceptance": false
+}

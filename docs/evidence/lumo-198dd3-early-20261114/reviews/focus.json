@@ -1,0 +1,107 @@
+{
+  "kind": "current_focus_original_log_review",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+  "run": 43630322241,
+  "attempt": 1,
+  "jobs": [
+    {
+      "id": 132555257375,
+      "name": "core-learning",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "completed_at": "2026-11-14T19:08:13Z"
+    },
+    {
+      "id": 132555257551,
+      "name": "connect-four-flutter",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "completed_at": "2026-11-14T19:07:59Z"
+    }
+  ],
+  "actual_pass_summaries": {
+    "core": [
+      9,
+      7,
+      7
+    ],
+    "core_total": 23,
+    "c4": [
+      2,
+      6
+    ],
+    "c4_total": 8
+  },
+  "audit_summary": {
+    "status": "SAMPLED_CONTRACT_PASS",
+    "grades": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "familyCount": 236,
+    "generatedSamples": 7552,
+    "issues": 0,
+    "allExistingTasksReviewed": false,
+    "officialCurriculumApproval": false,
+    "allVariantsEnumerated": false,
+    "scope": "ExerciseFactory core only. Other reading, handwriting, games, lesson banks need separate review."
+  },
+  "original_logs": [
+    {
+      "kind": "core",
+      "bytes": 34003,
+      "sha256": "76d77fdc973347ceaa3c46a540283a0965245d37e62ba9e90f8f6142499538a6",
+      "git_sha1": "f21c74ed469aa61566e55caa7279ea2f6dbc87b0",
+      "retrieved_once": true
+    },
+    {
+      "kind": "c4",
+      "bytes": 28433,
+      "sha256": "85aa0d5696426bfbdbe1848e0524dd97c6ccb1567c93079853877aa8303de2b5",
+      "git_sha1": "42ab0e06277a17cd994a33e5ec8ee6d460cf6242",
+      "retrieved_once": true
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 14128355199,
+      "name": "lumo-agent-c4-flutter",
+      "bytes": 2100666,
+      "digest": "sha256:01941644c9cc8f2d7633e83c1689c14197be605546a2565272f5970c6e0503c3",
+      "run": {
+        "id": 43630322241,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-agent-execution-20261114",
+        "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848"
+      }
+    },
+    {
+      "id": 14127802480,
+      "name": "lumo-learning-grades1-4-sampled-contracts",
+      "bytes": 211477,
+      "digest": "sha256:877fb0e2a59a88d183c3ecdcc11d58e93320bde74562963af9796f1e1c0898d8",
+      "run": {
+        "id": 43630322241,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-agent-execution-20261114",
+        "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848"
+      }
+    }
+  ],
+  "verification_limits": {
+    "job_logs_read_original": true,
+    "artifact_digests_are_API_and_original_upload_metadata": true,
+    "ZIPs_downloaded": false,
+    "PNGs_decoded": false,
+    "PNGs_visually_reviewed": false,
+    "full_Flutter_suite_not_yet_reviewed": true,
+    "Android_or_release_acceptance": false
+  }
+}

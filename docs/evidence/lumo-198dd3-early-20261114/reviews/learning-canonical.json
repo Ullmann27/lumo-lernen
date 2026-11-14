@@ -1,0 +1,95 @@
+{
+  "kind": "new_unmodified_learning_canonical_replay",
+  "status": "ORIGINAL_LEARNING_AUDIT_REPLAY_PASS",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+  "run": 43630328343,
+  "attempt": 1,
+  "artifact": 14127483896,
+  "canonical_reader_git_blob": "28601267bc5d317244598b4304314bbd77107e0f",
+  "canonical_function": "checked_learning_audit",
+  "real_sparse_checkout": "/dev/shm/lumo-learning-198dd3-early/host-checkout",
+  "full_source_materialized": false,
+  "actual_git_HEAD_tree_diff_and_six_git_show_checks_executed": true,
+  "source_before": {
+    "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+    "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+    "status": ""
+  },
+  "source_after": {
+    "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+    "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+    "status": ""
+  },
+  "result": {
+    "family_count": 236,
+    "generated_samples": 7552,
+    "structural_issues": 0,
+    "official_curriculum_approval": false,
+    "all_variants_enumerated": false,
+    "scope": "Current core ExerciseFactory samples only; no semantic, Android or 3D approval",
+    "originals": {
+      "summary.json": {
+        "bytes": 371,
+        "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67"
+      },
+      "task-families.json": {
+        "bytes": 34450,
+        "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703"
+      },
+      "task-samples.jsonl": {
+        "bytes": 3174060,
+        "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"
+      },
+      "issues.json": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "audit.stdout.log": {
+        "bytes": 372,
+        "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184"
+      },
+      "audit.stderr.log": {
+        "bytes": 44,
+        "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+      }
+    },
+    "source": {
+      "commit": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "files": {
+        ".github/workflows/lumo-connect-four-2020.yml": {
+          "bytes": 44259,
+          "sha256": "8e900e17ee623501838b570a7aaee45f06d531043adb1cd1ac3c35831f6553ef"
+        },
+        "lib/core/school_exercise_generator.dart": {
+          "bytes": 83871,
+          "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778"
+        },
+        "pubspec.lock": {
+          "bytes": 24467,
+          "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97"
+        },
+        "pubspec.yaml": {
+          "bytes": 2675,
+          "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5"
+        },
+        "test/learning/learning_exact_selection_test.dart": {
+          "bytes": 2701,
+          "sha256": "c7c29db55aa5121ae6f9d23bde48e5a6f220ed5218efa22fcb1803d0352755e7"
+        },
+        "tools/audit_learning_tasks_all_grades.dart": {
+          "bytes": 4169,
+          "sha256": "9431ab50e3329998953853fb3c77bdb025456044e048a1ff435ee7a787e417bb"
+        }
+      },
+      "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6"
+    },
+    "binding": {
+      "bytes": 2257,
+      "sha256": "8092eac69f58c4d15804d29765c9980befc90cc6a0a3b5e2eca4e377a71507f3"
+    }
+  },
+  "original_output_replay_only": true,
+  "new_Dart_Flutter_or_game_execution": false,
+  "candidate_acceptance": false
+}

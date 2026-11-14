@@ -1,0 +1,69 @@
+{
+  "kind": "new_archive_integrity_review",
+  "artifact": {
+    "id": 14128226184,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyODIyNjE4NA==",
+    "name": "lumo-connect-four-2020-android-host-compile",
+    "size_in_bytes": 6283,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14128226184",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14128226184/zip",
+    "expired": false,
+    "digest": "sha256:252f1f4adebe25b0779a9e1a3de2d24d6bd6c5e871d25f9ff05f20a3239a319f",
+    "created_at": "2026-11-14T19:12:13Z",
+    "updated_at": "2026-11-14T19:12:13Z",
+    "expires_at": "2026-12-14T19:12:13Z",
+    "workflow_run": {
+      "id": 43630328343,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-agent-execution-20261114",
+      "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848"
+    }
+  },
+  "archive_path": "/dev/shm/lumo-learning-198dd3-early/compile/original.zip",
+  "extracted_path": "/dev/shm/lumo-learning-198dd3-early/compile/extracted",
+  "whole_zip_bytes": 6283,
+  "whole_zip_sha256": "252f1f4adebe25b0779a9e1a3de2d24d6bd6c5e871d25f9ff05f20a3239a319f",
+  "all_regular_members_fully_read_and_CRC_validated": true,
+  "original_file_count": 6,
+  "original_files": [
+    {
+      "path": "cards-authority-registry.log",
+      "bytes": 2556,
+      "sha256": "871f2668ad15939d9f713e72d2647c920b15c80f4c69f81d9b88bbb1c06aefe9",
+      "crc32": "03fe6cd2"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 34085,
+      "sha256": "ea003b92db9becfceb2e1bdf12598330a10dbccc68a2a4eef036af9ff6ce13d3",
+      "crc32": "342dd0cd"
+    },
+    {
+      "path": "connect-four-classes.json",
+      "bytes": 927,
+      "sha256": "63045bb17b135e1f2fa9f24b52f8fc71ad1861a90ade8eb452d4e8e1f90dcd92",
+      "crc32": "e528040b"
+    },
+    {
+      "path": "flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "crc32": "ef6cb86f"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2769,
+      "sha256": "0b1d99ebd729efac273b0ec3248204b103f0fc0c5242d111c57739ec6bf5078e",
+      "crc32": "07ff2025"
+    },
+    {
+      "path": "source-sha.txt",
+      "bytes": 41,
+      "sha256": "c514a74a6eec189529b2c18fa17dfc640f9668998817a5e475b9e567efa6344c",
+      "crc32": "c8b69f91"
+    }
+  ],
+  "semantic_original_report_review": "pending",
+  "candidate_acceptance": false
+}

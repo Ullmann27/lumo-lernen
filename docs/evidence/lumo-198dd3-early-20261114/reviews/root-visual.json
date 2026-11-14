@@ -1,0 +1,31 @@
+{
+  "kind": "new_limited_Root_visual_review",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "run": 43630328343,
+  "attempt": 1,
+  "artifact": 14128122934,
+  "reviewer": "Root",
+  "original_member_byte_identity_independently_confirmed_by_Root": true,
+  "personally_viewed_members": [
+    {
+      "path": "modernization/trainer_B_phone_geuebt.png",
+      "bytes": 558344,
+      "sha256": "b29974e44e52d0055de6d9dd17bacbab02ecefa546ccfcfe13d5c505b4060fc6"
+    },
+    {
+      "path": "reading/retry-fold-cover.png",
+      "bytes": 658882,
+      "sha256": "3d86e91d39ce0a6abdadd3dd013e1cbb68457d1c843846d6d0921e37fd744db0"
+    },
+    {
+      "path": "modernization/journal_fold-open.png",
+      "bytes": 2348916,
+      "sha256": "21f03e9387a686d1d3b9623d74b23ffca9a42b34c4792fb8f4fbd0b9e32979c3"
+    }
+  ],
+  "journal_observation": "Existing empty journal state and a readable call to action were seen.",
+  "journal_data_persistence_claim": false,
+  "all_546_PNGs_personally_viewed": false,
+  "pixel_decoding_vs_human_review": "The Desktop helper decoded all 259 desktop PNGs. The full Flutter reader verified current capture counts; this visual review covers only the three named Flutter PNGs.",
+  "candidate_acceptance": false
+}

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "classes": {
+    "ConnectFourGameActivity": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/ConnectFourGameActivity.class",
+        "bytes": 13297,
+        "sha256": "62a52e94a0ee9c976d62e72180b6b19fdd8311e373ead886659aa29337c99c98"
+      }
+    ],
+    "ConnectFourAuthorityService": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/ConnectFourAuthorityService.class",
+        "bytes": 2552,
+        "sha256": "9b179b88f63f2197bf476de1965af84876e2283ab840c1a31996146c92938aaa"
+      }
+    ],
+    "ConnectFourBridge": [
+      {
+        "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/ConnectFourBridge.class",
+        "bytes": 22994,
+        "sha256": "d32a52ab426bdd2a7b3e30a6201c0292079d214067077c91f911de31d8857986"
+      }
+    ]
+  }
+}

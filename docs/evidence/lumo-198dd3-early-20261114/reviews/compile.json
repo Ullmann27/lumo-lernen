@@ -1,0 +1,84 @@
+{
+  "kind": "new_original_compile_reports_review",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "run": 43630328343,
+  "attempt": 1,
+  "artifact": 14128226184,
+  "status": "SOURCE_BOUND_ORIGINAL_REPORTS_AND_LOG_PASS",
+  "original_build_marker": "BUILD SUCCESSFUL in 3m 29s",
+  "recorded_core_class_groups": 9,
+  "recorded_C4_class_groups": 3,
+  "original_registry_tests": 10,
+  "original_registry_seconds": 19.531,
+  "original_registry_markers": [
+    "CARDS_WINDOW_CALLS_PASS cards (JVM boundary adapters; no Android pixels or measured insets)",
+    "CARDS_WINDOW_CALLS_PASS delayed-engine (JVM boundary adapters; no Android pixels or measured insets)",
+    "CARDS_WINDOW_CALLS_PASS authority (JVM boundary adapters; no Android pixels or measured insets)",
+    "CARDS_WINDOW_CALLS_PASS non-cards (JVM boundary adapters; no Android pixels or measured insets)"
+  ],
+  "original_compile_warnings": [
+    "WARNING: The option setting 'android.builtInKotlin=false' is deprecated.",
+    "WARNING: The option setting 'android.newDsl=false' is deprecated.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:7:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:49:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:70:1: 'fun Project.android(configure: Action<BaseAppModuleExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:98:5: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/build.gradle.kts:109:34: 'val Project.android: BaseAppModuleExtension' is deprecated. Replaced by com.android.build.api.dsl.ApplicationExtension.",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35/android/build.gradle.kts:26:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+25/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/build.gradle.kts:40:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.33/android/build.gradle.kts:34:1: 'fun Project.android(configure: Action<LibraryExtension>): Unit' is deprecated. Replaced by com.android.build.api.dsl.LibraryExtension.",
+    "w: \u26a0\ufe0f Deprecated 'org.jetbrains.kotlin.android' plugin usage",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/AudioplayersPlugin.kt:72:30 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0/android/src/main/kotlin/xyz/luan/audioplayers/player/WrappedPlayer.kt:172:22 'var isSpeakerphoneOn: Boolean' is deprecated. Deprecated in Java.",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:381:23 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:386:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:390:35 Unnecessary safe call on a non-null receiver of type 'SpeechRecognizer'.",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0/android/src/main/kotlin/com/csdcorp/speech_to_text/SpeechToTextPlugin.kt:575:45 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.",
+    "w: file:///home/runner/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28/android/src/main/kotlin/io/flutter/plugins/sharedpreferences/SharedPreferencesPlugin.kt:450:52 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/ConnectFourGameActivity.kt:78:27 The corresponding parameter in the supertype 'GodotActivity' is named 'savedInstanceState'. This may cause problems when calling this function with named arguments.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:190:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.kt:191:51 Unnecessary non-null assertion (!!) on a non-null receiver of type 'MediaPlayer'.",
+    "w: file:///home/runner/work/lumo-lernen/lumo-lernen/android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt:270:97 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'.",
+    "Deprecated Gradle features were used in this build, making it incompatible with Gradle 10."
+  ],
+  "original_files": {
+    "source-sha.txt": {
+      "bytes": 41,
+      "sha256": "c514a74a6eec189529b2c18fa17dfc640f9668998817a5e475b9e567efa6344c"
+    },
+    "result.json": {
+      "bytes": 2769,
+      "sha256": "0b1d99ebd729efac273b0ec3248204b103f0fc0c5242d111c57739ec6bf5078e"
+    },
+    "flutter-version.txt": {
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    "connect-four-classes.json": {
+      "bytes": 927,
+      "sha256": "63045bb17b135e1f2fa9f24b52f8fc71ad1861a90ade8eb452d4e8e1f90dcd92"
+    },
+    "compile.log": {
+      "bytes": 34085,
+      "sha256": "ea003b92db9becfceb2e1bdf12598330a10dbccc68a2a4eef036af9ff6ce13d3"
+    },
+    "cards-authority-registry.log": {
+      "bytes": 2556,
+      "sha256": "871f2668ad15939d9f713e72d2647c920b15c80f4c69f81d9b88bbb1c06aefe9"
+    }
+  },
+  "local_recompilation": false,
+  "original_bytecode_files_present_in_this_archive": false,
+  "limitation": "Original reports record actual CI Kotlin/Java class hashes and the original log records the successful build; the archive contains no class binaries for a separate local bytecode replay. No APK/runtime approval."
+}

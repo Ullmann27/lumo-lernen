@@ -1,0 +1,35 @@
+{
+  "kind": "new_desktop_original_semantic_review",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "run": 43630328343,
+  "attempt": 1,
+  "artifact": 14128445002,
+  "status": "ORIGINAL_DESKTOP_REPLAY_PASS",
+  "canonical_reader_git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5",
+  "functions": [
+    "validate_native_log",
+    "validate_results"
+  ],
+  "results": {
+    "native_checks": 170,
+    "frames": 250,
+    "observed_moving_frames": 90,
+    "observed_winning_frames": 43,
+    "actual_recording_format_fps": 24,
+    "device_fps_claim": false,
+    "backend": "production Dart controller with test SharedPreferences and local file transport",
+    "android_binder_or_disk_claim": false
+  },
+  "verified_original_pngs": 259,
+  "original_godot_log": {
+    "bytes": 2551,
+    "sha256": "e107eb01927fd40b21601ef5d8f8bf80392bdc2b5a306300dac5adb48b67fede",
+    "errors": []
+  },
+  "original_source_snapshots_equal": true,
+  "current_local_source_provision": "Nine hash-verified candidate source files; not a Git checkout",
+  "local_full_git_checkout_verification": false,
+  "new_engine_or_test_execution": false,
+  "human_visual_review": false,
+  "candidate_acceptance": false
+}

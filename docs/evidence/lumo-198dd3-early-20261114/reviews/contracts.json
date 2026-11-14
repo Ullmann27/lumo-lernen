@@ -1,0 +1,33 @@
+{
+  "kind": "new_current_original_contracts_replay",
+  "status": "ORIGINAL_FULL_CONTRACTS_AND_PCM_REPLAY_PASS",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+  "run": 43630328343,
+  "attempt": 1,
+  "job": 132556738917,
+  "artifact": 14128931138,
+  "canonical_reader_git_blob": "28601267bc5d317244598b4304314bbd77107e0f",
+  "canonical_function": "checked_pcm_log",
+  "result": {
+    "tests": 845,
+    "skips": 0,
+    "pcm_assertions": 70,
+    "scope": "Synthetic JVM boundary compiled from current production Kotlin; no Android audio claim",
+    "original_log": {
+      "bytes": 167905,
+      "sha256": "31cfafd21d7009889a91a68adf0d2a47a1088ff1090d8cf79060f77087603247"
+    },
+    "required_markers": [
+      "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47",
+      "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+      "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    ]
+  },
+  "original_elapsed_seconds": 302.249,
+  "original_summary": "Ran 845 tests in 302.249s",
+  "real_sparse_checkout": "/dev/shm/lumo-learning-198dd3-early/host-checkout",
+  "source_clean_before_after": true,
+  "new_tests_or_compilation": false,
+  "candidate_acceptance": false
+}

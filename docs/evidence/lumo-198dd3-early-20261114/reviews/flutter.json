@@ -1,0 +1,150 @@
+{
+  "kind": "new_current_full_Flutter_original_replay",
+  "source": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+  "run": 43630328343,
+  "attempt": 1,
+  "job": 132556738917,
+  "artifact": 14128122934,
+  "reviewed_pure_reader_git_blob": "f09cb8efe458c7fd8f3ab8c0485334e58833c6ae",
+  "function_called": "checked_flutter_originals(evidence_root, candidate_root)",
+  "actual_current_summarizer_git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+  "result": {
+    "status": "ORIGINAL_FULL_FLUTTER_REPLAY_PASS",
+    "scope": "Read-only original machine-log and capture-count verification; no new tests, render or human visual review",
+    "summarizer_git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+    "passed": 2576,
+    "failed": [],
+    "skipped": [],
+    "completed_test_records": 3141,
+    "hidden_completed_records": 565,
+    "event_type_counts": {
+      "allSuites": 1,
+      "done": 1,
+      "group": 469,
+      "print": 323,
+      "start": 1,
+      "suite": 385,
+      "testDone": 3141,
+      "testStart": 3141
+    },
+    "process_notifications": 385,
+    "blank_protocol_separators": 385,
+    "machine_lines": 8232,
+    "nonempty_unparsed_lines": 0,
+    "done_success": true,
+    "flutter_exit_code": 0,
+    "capture_error_files": [],
+    "capture_png_counts": {
+      "LUMO_TUTORING_CAPTURE_DIR": {
+        "directory": "tutoring",
+        "pngs": 6
+      },
+      "LUMO_RIG_STRESS": {
+        "directory": "rig-stress",
+        "pngs": 27
+      },
+      "LUMO_CARDS_OPPONENT_CAPTURE": {
+        "directory": "cards-opponents",
+        "pngs": 4
+      },
+      "LUMO_STREAM_E_CAPTURE": {
+        "directory": "cards-memory",
+        "pngs": 8
+      },
+      "LUMO_NAVIGATION_CAPTURES": {
+        "directory": "navigation",
+        "pngs": 26
+      },
+      "LUMO_GUIDED_CAPTURE_DIR": {
+        "directory": "guided-learning",
+        "pngs": 170
+      },
+      "LUMO_VISUAL_CAPTURE_DIR": {
+        "directory": "reasoning",
+        "pngs": 15
+      },
+      "LUMO_TOUR_DIR": {
+        "directory": "tour",
+        "pngs": 62
+      },
+      "LUMO_FLUTTER_GAMES_CAPTURE": {
+        "directory": "games",
+        "pngs": 16
+      },
+      "LUMO_LEARNING_CAPTURE_DIR": {
+        "directory": "learning-adventure",
+        "pngs": 80
+      },
+      "LUMO_COMPANION_CAPTURE_DIR": {
+        "directory": "companion",
+        "pngs": 6
+      },
+      "LUMO_SPATIAL_CAPTURES": {
+        "directory": "reading",
+        "pngs": 12
+      },
+      "LUMO_CAPTURE_DIR": {
+        "directory": "modernization",
+        "pngs": 42
+      },
+      "LUMO_CARD_FACE_EXPORT_DIR": {
+        "directory": "card-face-exports",
+        "pngs": 56
+      },
+      "LUMO_NEXTGEN_READING_CAPTURES": {
+        "directory": "nextgen-reading",
+        "pngs": 6
+      },
+      "LUMO_READING_CAPTURES": {
+        "directory": "reading-passages",
+        "pngs": 3
+      },
+      "LUMO_ASSISTED_LEARNING_CAPTURES": {
+        "directory": "assisted-learning",
+        "pngs": 2
+      },
+      "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+        "directory": "native-profiles",
+        "pngs": 4
+      }
+    },
+    "capture_file_outputs": {
+      "LUMO_CARDS_CUP_CAPTURE": {
+        "path": "cards-cup/trophy.png",
+        "created": true
+      }
+    },
+    "rendered_png_count": 546,
+    "png_decode_performed_by_this_function": false,
+    "originals": [
+      {
+        "path": "acceptance-summary.json",
+        "bytes": 2118,
+        "sha256": "4b42a006f29da124641e5d97792dc7301ba8e86141941288969dd28a66e0bac3"
+      },
+      {
+        "path": "flutter-machine.jsonl",
+        "bytes": 1740940,
+        "sha256": "6545ad343a39245a5aac14ea70e85e3037e3263364e35d253ebcb09257948c07"
+      }
+    ]
+  },
+  "actual_source_before": {
+    "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+    "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+    "status": ""
+  },
+  "actual_source_after": {
+    "head": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+    "tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+    "status": ""
+  },
+  "real_sparse_checkout": "/dev/shm/lumo-learning-198dd3-early/host-checkout",
+  "full_source_materialized": false,
+  "orchestration_from_older_audit_invoked": false,
+  "original_files_rewritten": false,
+  "new_tests_or_rendering": false,
+  "human_visual_review": false,
+  "candidate_acceptance": false
+}
