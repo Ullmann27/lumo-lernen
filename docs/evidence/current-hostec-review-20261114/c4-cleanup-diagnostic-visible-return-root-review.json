@@ -1,0 +1,88 @@
+{
+  "observed_at": "2026-11-14T20:38:00Z",
+  "root_opened_original_images": true,
+  "run_id": 43634531860,
+  "attempt": 1,
+  "artifact_id": 14130249406,
+  "apk_host": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "qa_head": "3cae9c407a6eef1970e24bc9a61516b13fe0af52",
+  "first_return": {
+    "intermediate": {
+      "path": "c4/return-first-flutter.png",
+      "sha256": "ba51f3f5b757acc8975983beee9c8fede197e10c53649c2f2045ddb392f3fb4e",
+      "bytes": 177008,
+      "visible": "Native C4 pause with Bitte kurz warten; stale intermediate retained"
+    },
+    "visible_target": {
+      "path": "c4/return-first-to-games-00-frame.png",
+      "sha256": "b90d1e9c4715032a4990d5694e740024ce5e9a3dcfa6b8a696904540d7824beb",
+      "bytes": 514101,
+      "visible": "Flutter pause card; Fortsetzen, Zur Spieleauswahl and Neu starten visible before original tap"
+    },
+    "second_target": {
+      "path": "c4/return-first-to-games-01-frame.png",
+      "same_bytes_as_target": true,
+      "root_hash_and_pixel_verified": true
+    },
+    "after_tap": {
+      "path": "c4/return-first-games-001-frame.png",
+      "sha256": "5310fb1aaa50702f9fe321e642b4b6b9e92dd35c95562cfcd7127b18339189c9",
+      "bytes": 1918601,
+      "visible": "Flutter games page with visible 4. Gewinnt card"
+    },
+    "comparison_to_final_return": {
+      "path": "c4/return-final-flutter.png",
+      "sha256": "0903eaed33e4191c70beec64f824c5c7e5c66df39969a23ee08cf405c6f3d2e1",
+      "content_below_y100_pixel_identical": true,
+      "difference_bbox": [
+        933,
+        53,
+        966,
+        86
+      ]
+    }
+  },
+  "correction": "Provisional team statement that later first-return target frames were also stale was wrong; actual bytes, pixel comparisons and Root visual review show visible Flutter before the tap. No added product/probe patch is warranted.",
+  "limits": [
+    "This is the separate unchanged 6b APK diagnosis, not ec APK acceptance.",
+    "Two child/bot move pairs and saved-board reopening are exercised; no Android C4 win claim.",
+    "The original intermediate native frame remains in evidence without replacement."
+  ],
+  "originals_modified": false,
+  "new_capture_or_render": false,
+  "original_touch": {
+    "path": "c4/return-first-to-games-flutter-touch.json",
+    "target_bounds": [
+      116,
+      1377,
+      964,
+      1503
+    ],
+    "point": [
+      540,
+      1440
+    ],
+    "observed_monotonic": [
+      1648.19152293,
+      1649.359171192
+    ],
+    "command_original": "commands/0335-return-first-to-games-touch.stdout",
+    "read_by_root": true
+  },
+  "original_games_ready": {
+    "path": "c4/return-first-games-flutter-ready.json",
+    "first_rejected": {
+      "monotonic": 1652.492745978,
+      "reason": "The previous Flutter pause is still visible"
+    },
+    "accepted": {
+      "monotonic": 1654.264608993,
+      "frame": "return-first-games-001-frame.png"
+    },
+    "read_by_root": true
+  },
+  "linked_terminal_log": {
+    "blob": "ea8be56e6a94462d2fb86ef0360fed70a5b5adf2",
+    "path": "docs/evidence/current-hostec-review-20261114/c4-cleanup-diagnostic-132568698911.original.log"
+  }
+}
