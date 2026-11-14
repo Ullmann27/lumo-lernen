@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CHECKPOINT_BEFORE_EXECUTION",
+  "source_files": 3,
+  "parent": "f44ec248fc73be1fc0032f35bf41199400e7a5b5",
+  "producer": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+  "actual_test_runs": 0,
+  "actual_android_device_runs": 0,
+  "original_verifier_methods_preserved": 31,
+  "new_deadline_cases": 3,
+  "pending_total_verifier_cases": 34,
+  "fix": "Reject the actual process result when its arrival is at or after the local deadline, even while global time remains.",
+  "preserved": "Original 900-second global budget and all other producer probe methods, complete producer verifier and source/provenance/state/PID/save/ACK/PNG/ANR rules.",
+  "root_original_archive_members_checked": 23,
+  "root_original_archive_bytes_checked": 894880,
+  "ten_dependencies_bound_to_actual_parent": true,
+  "source_pin_unchanged": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "workflow_delivery_candidate_connection": "Separate next additive source pack; no device success inferred."
+}

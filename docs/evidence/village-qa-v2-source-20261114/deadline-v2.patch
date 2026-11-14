@@ -1,0 +1,85 @@
+--- a/.github/probes/lumo_village_android_probe.py
++++ b/.github/probes/lumo_village_android_probe.py
+@@ -39,7 +39,10 @@
+         failures = []
+         while time.monotonic() < deadline:
+             try:
+-                return self.processes(tag+'-'+str(len(failures)), native=native)
++                observed = self.processes(tag+'-'+str(len(failures)), native=native)
++                if time.monotonic() >= deadline:
++                    raise TimeoutError('The actual Village/Flutter process arrived at or after its observation deadline: '+tag)
++                return observed
+             except (ValueError, RuntimeError) as error:
+                 failures.append(str(error))
+                 time.sleep(min(.5, max(0, deadline-time.monotonic())))
+--- a/tools/android_qa/tests/test_village_android_evidence.py
++++ b/tools/android_qa/tests/test_village_android_evidence.py
+@@ -9,6 +9,7 @@
+ import sys
+ import tempfile
+ import unittest
++from unittest import mock
+ import xml.etree.ElementTree as ET
+ from PIL import Image, ImageChops
+ 
+@@ -19,6 +20,9 @@
+ from native_surface_readiness import inspect_surface, target_observation
+ from native_ocr_tiles import observed_matches, tile_boxes
+ from test_connect_four_android_evidence import SyntheticEvidence, STUDENT, prefs, state
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[3]/'.github/probes'))
++import lumo_village_android_probe as village_probe
+ 
+ 
+ class SyntheticVillage(SyntheticEvidence):
+@@ -380,5 +384,50 @@
+                 self.fixture.write(journal.name, value)
+                 with self.assertRaisesRegex(ValueError, 'source differs'):
+                     village.caption(self.root, self.root/image_name, tag, 'Spiele')
++
++
++class VillageProcessDeadlineTests(unittest.TestCase):
++    """Synthetic clock/process inputs exercise the real wait method; no device proof."""
++
++    def observation(self, *, native, elapsed):
++        probe = village_probe.VillageProbe.__new__(village_probe.VillageProbe)
++        probe.deadline = 900.0
++        now = [0.0]
++        observed = {'host_pid': 'original-host', 'native_pid': 'original-native' if native else ''}
++        def processes(tag, *, native):
++            now[0] = elapsed
++            return observed
++        probe.processes = mock.Mock(side_effect=processes)
++        return probe, now, observed
++
++    def test_late_process_arrival_is_rejected_while_global_budget_remains(self):
++        for native, timeout in ((False, 60), (True, 90)):
++            with self.subTest(native=native, timeout=timeout):
++                probe, now, observed = self.observation(native=native, elapsed=timeout+.001)
++                with mock.patch.object(village_probe.time, 'monotonic', side_effect=lambda: now[0]):
++                    with self.assertRaisesRegex(TimeoutError, 'at or after its observation deadline'):
++                        probe.await_processes('wait', native=native, timeout=timeout)
++                    self.assertGreater(probe.deadline-now[0], 0)
++                probe.processes.assert_called_once_with('wait-0', native=native)
++                self.assertEqual(probe.deadline, 900.0)
++
++    def test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return(self):
++        for native, timeout in ((False, 60), (True, 90)):
++            with self.subTest(native=native, timeout=timeout):
++                probe, now, observed = self.observation(native=native, elapsed=timeout)
++                with mock.patch.object(village_probe.time, 'monotonic', side_effect=lambda: now[0]):
++                    with self.assertRaisesRegex(TimeoutError, 'at or after its observation deadline'):
++                        probe.await_processes('wait', native=native, timeout=timeout)
++                probe.processes.assert_called_once_with('wait-0', native=native)
++
++    def test_timely_arrival_returns_the_same_process_observation(self):
++        for native, timeout in ((False, 60), (True, 90)):
++            with self.subTest(native=native, timeout=timeout):
++                probe, now, observed = self.observation(native=native, elapsed=timeout-.001)
++                with mock.patch.object(village_probe.time, 'monotonic', side_effect=lambda: now[0]):
++                    result = probe.await_processes('wait', native=native, timeout=timeout)
++                self.assertIs(result, observed)
++                probe.processes.assert_called_once_with('wait-0', native=native)
++
+ if __name__ == '__main__':
+     unittest.main()

@@ -1,0 +1,74 @@
+{
+  "baseHead": "f44ec248fc73be1fc0032f35bf41199400e7a5b5",
+  "baseTree": "944e6fc63e8ca1ff52d7585fa7f7aa535a767a23",
+  "sourceFiles": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "expected": null,
+      "actual": null
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "expected": null,
+      "actual": null
+    }
+  ],
+  "dependencies": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "expected": "c996a022d388632ed13965b392181aef773d9025",
+      "actual": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "expected": "09ee796b4724644b433ada6257c31e2dd3f2da50",
+      "actual": "09ee796b4724644b433ada6257c31e2dd3f2da50"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "expected": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa",
+      "actual": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+    },
+    {
+      "path": "tools/android_qa/native_ocr_tiles.py",
+      "expected": "f5aecc82db6bac1420ab1622f240cf4fa59faadd",
+      "actual": "f5aecc82db6bac1420ab1622f240cf4fa59faadd"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "expected": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4",
+      "actual": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "expected": "701d1dab0a7224803fe2780c6a0674400b081795",
+      "actual": "701d1dab0a7224803fe2780c6a0674400b081795"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "expected": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+      "actual": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "expected": "b10d2ba20c93d17f723b9c190652060968505b53",
+      "actual": "b10d2ba20c93d17f723b9c190652060968505b53"
+    },
+    {
+      "path": "config/godot-source.json",
+      "expected": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+      "actual": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad"
+    },
+    {
+      "path": "pubspec.yaml",
+      "expected": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "actual": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    }
+  ],
+  "mismatches": []
+}
