@@ -1,0 +1,320 @@
+{
+  "status": "NO_ALTERNATE_PUBLICATION_PATH_REACHABLE_FOR_OBSERVED_C081_PR_RUNS",
+  "observation_time_utc": "2026-11-14T02:25:04Z",
+  "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "actual_event": "pull_request",
+  "current_branch": "chatgpt/lumo-studio-20261113",
+  "main_run": 43545886722,
+  "main_run_status_at_initial_observation": "in_progress",
+  "head_run_inventory_count": 16,
+  "inventory_scope": "All first-page runs returned for exact head SHA; 16 total so no next-page gap.",
+  "family_actual_jobs": {
+    "verify_pipeline": "success",
+    "build_and_verify": "skipped",
+    "upload_family_draft": "skipped"
+  },
+  "historical_unified_publication_jobs_count": 7,
+  "historical_unified_branch_guards_all_exclude_current_head": true,
+  "workflows": [
+    {
+      "workflow": "lumo-1965-cards-reference-hub.yml",
+      "sha256": "220c643421e6c93da07e174c8a66b66ea68aec8c02247410f084f181970c2ebd",
+      "permissions": {
+        "contents": "read"
+      },
+      "publication_jobs": [],
+      "has_publication_path": false
+    },
+    {
+      "workflow": "lumo-1999-update-gate.yml",
+      "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1",
+      "permissions": {
+        "contents": "read",
+        "actions": "read"
+      },
+      "publication_jobs": [],
+      "has_publication_path": false
+    },
+    {
+      "workflow": "lumo-astra-script-recovery.yml",
+      "sha256": "19b5544720c3d03def287d1cecffcad4d8f9daa65f0b35c6aaea027c5ca6bbac",
+      "permissions": {
+        "contents": "read"
+      },
+      "publication_jobs": [],
+      "has_publication_path": false
+    },
+    {
+      "workflow": "lumo-family-draft-release.yml",
+      "sha256": "5fd9d6faac4e42cb14a32217ddbe5bfc81cd299a7bd9b9f4465bf279579e2bed",
+      "permissions": {
+        "contents": "read"
+      },
+      "publication_jobs": [
+        {
+          "job": "upload-family-draft",
+          "if_expression": "github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'draft-release'",
+          "needs": "build-and-verify",
+          "permissions": {
+            "contents": "write"
+          },
+          "allowed_head_branches": [],
+          "current_run_interpretation": "Unreachable in this actual pull_request run: workflow_dispatch and draft-release required",
+          "actual_release_steps": [
+            {
+              "name": "Create a DRAFT GitHub release only",
+              "if": null
+            }
+          ]
+        }
+      ],
+      "has_publication_path": true
+    },
+    {
+      "workflow": "lumo-living-intelligence-core.yml",
+      "sha256": "98871f913900c8dcd7de71b60dc323ba4372fbe681ab254165628fd44c59bcdd",
+      "permissions": {
+        "contents": "read"
+      },
+      "publication_jobs": [],
+      "has_publication_path": false
+    },
+    {
+      "workflow": "lumo-living-workshop-visual-qa.yml",
+      "sha256": "87c6ce0c11fff9931b7c23360162d0241882eea3619ef80212ac85454f1db64a",
+      "permissions": {
+        "contents": "read"
+      },
+      "publication_jobs": [],
+      "has_publication_path": false
+    },
+    {
+      "workflow": "lumo-studio-2019.yml",
+      "sha256": "7cc0d3355ee80bdc58e1648e5e41259ca15994c283a5572ad8841d94953cf8d8",
+      "permissions": {
+        "contents": "read"
+      },
+      "publication_jobs": [
+        {
+          "job": "publish-reviewed-2019",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'chatgpt/lumo-studio-20261113' && needs.verify-and-build.result == 'success' && needs.android-tour.result == 'success' && needs.android-host-compile.result == 'success' && needs.update-2019-from-2017.result == 'success' && needs.creative-android.result == 'success'",
+          "needs": [
+            "verify-and-build",
+            "android-host-compile",
+            "android-tour",
+            "update-2019-from-2017",
+            "creative-android"
+          ],
+          "permissions": {
+            "contents": "write",
+            "actions": "read"
+          },
+          "allowed_head_branches": [
+            "chatgpt/lumo-studio-20261113"
+          ],
+          "current_run_interpretation": "Studio publisher: all five declared prerequisite jobs must succeed",
+          "actual_release_steps": [
+            {
+              "name": "Publish the tested file once under the installed family update channel",
+              "if": "steps.release-state.outputs.mode == 'create'"
+            }
+          ]
+        }
+      ],
+      "has_publication_path": true
+    },
+    {
+      "workflow": "lumo-unified-integration-2026.yml",
+      "sha256": "a93cd262dc3c22517d86cd19e57e7a163b209a336b2bdd372058c3231bbf58b6",
+      "permissions": {
+        "contents": "read"
+      },
+      "publication_jobs": [
+        {
+          "job": "publish-reading-adventure-prerelease",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'chatgpt/lumo-fair-cards-buildworld-release-gates-2026-10-19'",
+          "needs": [
+            "verify-and-build",
+            "android-tour"
+          ],
+          "permissions": {
+            "actions": "write",
+            "contents": "write"
+          },
+          "allowed_head_branches": [
+            "chatgpt/lumo-fair-cards-buildworld-release-gates-2026-10-19"
+          ],
+          "current_run_interpretation": "Unreachable for current Studio head branch: all allowlisted historical branches differ",
+          "actual_release_steps": [
+            {
+              "name": "Publish a mobile-visible prerelease only after Android tour PASS",
+              "if": null
+            }
+          ]
+        },
+        {
+          "job": "publish-1989-android-test-prerelease",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'chatgpt/lumo-1989-premium-learning-cards-2026-10-19'",
+          "needs": [
+            "verify-and-build",
+            "android-tour"
+          ],
+          "permissions": {
+            "contents": "write"
+          },
+          "allowed_head_branches": [
+            "chatgpt/lumo-1989-premium-learning-cards-2026-10-19"
+          ],
+          "current_run_interpretation": "Unreachable for current Studio head branch: all allowlisted historical branches differ",
+          "actual_release_steps": [
+            {
+              "name": "Publish one safe prerelease for human device testing",
+              "if": null
+            }
+          ]
+        },
+        {
+          "job": "publish-nextgen-20261021",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'chatgpt/lumo-crystal-depth-integration-20261021'",
+          "needs": [
+            "verify-and-build",
+            "android-tour"
+          ],
+          "permissions": {
+            "contents": "write"
+          },
+          "allowed_head_branches": [
+            "chatgpt/lumo-crystal-depth-integration-20261021"
+          ],
+          "current_run_interpretation": "Unreachable for current Studio head branch: all allowlisted historical branches differ",
+          "actual_release_steps": [
+            {
+              "name": "Publish unique, immutable test APK without touching existing Releases",
+              "if": null
+            }
+          ]
+        },
+        {
+          "job": "publish-0-12-85-1997",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'claude/lumo-android-integration-m0-aloove'",
+          "needs": [
+            "verify-and-build",
+            "android-tour"
+          ],
+          "permissions": {
+            "contents": "write"
+          },
+          "allowed_head_branches": [
+            "claude/lumo-android-integration-m0-aloove"
+          ],
+          "current_run_interpretation": "Unreachable for current Studio head branch: all allowlisted historical branches differ",
+          "actual_release_steps": [
+            {
+              "name": "Publish once per version; never replace an existing release",
+              "if": null
+            }
+          ]
+        },
+        {
+          "job": "publish-0-12-86-1998",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'design/lumo-spielwelt-kart-quiz-20261022'",
+          "needs": [
+            "verify-and-build",
+            "android-tour"
+          ],
+          "permissions": {
+            "contents": "write"
+          },
+          "allowed_head_branches": [
+            "design/lumo-spielwelt-kart-quiz-20261022"
+          ],
+          "current_run_interpretation": "Unreachable for current Studio head branch: all allowlisted historical branches differ",
+          "actual_release_steps": [
+            {
+              "name": "Publish once per version; never replace an existing release",
+              "if": null
+            }
+          ]
+        },
+        {
+          "job": "publish-0-12-87-1999",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && (github.event.pull_request.head.ref == 'release/lumo-nextgen-1999-integrated-20261024' ||\n github.event.pull_request.head.ref == 'repair/lumo-1999-update-learning-hub-20261026')",
+          "needs": [
+            "verify-and-build",
+            "android-tour"
+          ],
+          "permissions": {
+            "actions": "read",
+            "contents": "write"
+          },
+          "allowed_head_branches": [
+            "release/lumo-nextgen-1999-integrated-20261024",
+            "repair/lumo-1999-update-learning-hub-20261026"
+          ],
+          "current_run_interpretation": "Unreachable for current Studio head branch: all allowlisted historical branches differ",
+          "actual_release_steps": [
+            {
+              "name": "Publish once per version; never replace an existing release",
+              "if": null
+            }
+          ]
+        },
+        {
+          "job": "publish-0-13-5-2017",
+          "if_expression": "github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'chatgpt/lumo-spielewelt-stage-20261112' && needs.verify-and-build.result == 'success' && needs.android-tour.result == 'success' && needs.update-2017-from-2015.result == 'success'",
+          "needs": [
+            "verify-and-build",
+            "android-tour",
+            "update-2017-from-2015"
+          ],
+          "permissions": {
+            "contents": "write",
+            "actions": "read"
+          },
+          "allowed_head_branches": [
+            "chatgpt/lumo-spielewelt-stage-20261112"
+          ],
+          "current_run_interpretation": "Unreachable for current Studio head branch: all allowlisted historical branches differ",
+          "actual_release_steps": [
+            {
+              "name": "Publish the tested file once under the installed family update channel",
+              "if": "steps.release-state.outputs.mode == 'create'"
+            }
+          ]
+        }
+      ],
+      "has_publication_path": true
+    }
+  ],
+  "completed_log_bindings": [
+    {
+      "file": "family-download-gates-original.log",
+      "bytes": 24655,
+      "sha256": "8b73fe98822e8dcf57cfbf1036eb62cbdde384c9a8bace4ce6d16779419c4630",
+      "actual_checked_out_sha": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+      "is_exact_c081_head": true,
+      "conclusion": "success",
+      "release_or_draft_created": false
+    },
+    {
+      "file": "reference-cards-original.log",
+      "bytes": 65147,
+      "sha256": "881fe3fbecb32562415518e1c43b4c2996289cb4ce9d606bbb85af46af37c31e",
+      "actual_checked_out_sha": "a8c66d826f8c90e2428a35066294d6aa71464fde",
+      "is_exact_c081_head": false,
+      "conclusion": "success",
+      "release_or_draft_created": false
+    }
+  ],
+  "important_source_scope": "Reference Cards success used GitHub-generated PR merge a8c66d826f8c90e2428a35066294d6aa71464fde, not an exact c081 checkout; it is not substituted for required Studio acceptance.",
+  "current_studio_prerequisites": [
+    "verify-and-build",
+    "android-host-compile",
+    "android-tour (API35 and API37 matrix)",
+    "update-2019-from-2017",
+    "creative-android"
+  ],
+  "observed_mutations_by_reviewer": false,
+  "cancel_or_retry_requested": false,
+  "no_current_apk_or_full_studio_pass_claimed": true
+}

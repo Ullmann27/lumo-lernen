@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "reviewed_at_utc": "2026-11-14T02:29:07.991820+00:00",
+  "status": "NO_ADDITIONAL_BLOCKER_IN_FROZEN_SAME_APK_BINDER_AND_WORKFLOW",
+  "source_manifest": {
+    "path": "source-upload-manifest.json",
+    "sha256": "3bcb3962ac85e77dd1ef241995a34672d45fc847e552154660ffd6ce09523c14",
+    "files": 16,
+    "all_bytes_sha256_gitblob_and_modes_independently_checked": true,
+    "unchanged_a446_ocr_paths": 6,
+    "exactly_seven_cards_paths_match_independently_reviewed_B_freeze": true
+  },
+  "identities": {
+    "qa_basis": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+    "tested_host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "original_run": 43530667812,
+    "original_attempt": 1,
+    "original_build_job": 132247240154,
+    "original_artifact": 14089507933,
+    "original_archive_bytes": 647462973,
+    "original_archive_digest_from_GitHub_metadata": "2bc81726454a0b79e3e7ab9c0668c9359745e4d308e5af6f8b49072e7600ae7c",
+    "actual_x86_apk_bytes_required": 325295610,
+    "actual_x86_apk_sha256_required": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+    "actual_pck_bytes_required": 66234596,
+    "actual_pck_sha256_required": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e"
+  },
+  "independent_static_comparisons": {
+    "changed_binder_definitions": [
+      "Expected",
+      "git_tree",
+      "verify_sources",
+      "run_tours"
+    ],
+    "unchanged_binder_definitions": [
+      "require",
+      "read_json",
+      "sha256",
+      "file_record",
+      "write_json",
+      "git",
+      "working_blob",
+      "source_checkout",
+      "verify_metadata",
+      "verify_apk",
+      "verify_runtime_reports",
+      "collect_binding",
+      "execute",
+      "main"
+    ],
+    "android_job_equal_except_name_and_artifact_label": true,
+    "permissions_and_concurrency_unchanged": true,
+    "android_jobs_require_regression_job": true
+  },
+  "review_findings": [
+    "Getrennte tatsächliche Checkoutwurzeln, echte vollständige Git-HEADs, saubere gespeicherte Quellen, selbst gehashte Arbeitsdateien und Modi sowie abgewiesene unerklärte Dateien bleiben vor und nach der Tour erforderlich. assume-unchanged reicht nicht zum Verbergen geänderter Bytes.",
+    "QA muss von exakt a446 abstammen. Genau16 Pfade dürfen gegenüber4ab abweichen; alle sechs ursprünglichen OCR-Pfade bleiben dessen exakte Gitblobs/Modi. Der ursprüngliche Modernisierungstourpfad ist byte-/modusgleich4ab. Die gesamte geänderte Surfaces-Datei ist zusätzlich an den unabhängigen Reader-Freeze gebunden, keine freie Pfadausnahme.",
+    "Originaler Artefakt-/Run-/Attempt-/Builderstatus und drei erfolgreiche Buildschritte bleiben gebunden. Tatsächliche APK-Bytes, eingebettete PCK-Bytes und native Metadaten werden erneut gemessen; Provenienz, Prüfsummen, Paket, Version und ursprüngliches Signaturzertifikat bleiben unverändert.",
+    "Die absoluten QA-Proben laufen weiterhin aus dem unveränderten candidate-source-CWD. Identitäts-Preflight ist vor der Tour exakt erneut gleich zu messen; alte Runtimeberichte werden abgewiesen. Auch nach Tourfehlern wird der tatsächliche Postzustand gebunden; Quellen-/APK-Abweichung verhindert PASS.",
+    "Beide Androidjobs verlangen den vorgeschalteten fehlerschließenden Lauf der12 Original-OCR-,6 Cards- und18 Binderverträge. Tesseract5.3.4 samt deu/eng und Pillow12.3.0 sind explizit. tee verdeckt durch set-euo-pipefail keine Testfehler.",
+    "API35-/API37-Tourparameter, echte SDK-/Release-Guards, CLI22-/Framework-Stabilität, Root-Outputpfade und Capturebudgets sind unverändert. Neues Cardsverhalten beschränkt sich auf die bereits gesicherte JSONDecodeError-Behandlung;60s, Zwei-Frame-,Session-/Layout-/Pixelgates bleiben erhalten.",
+    "Es gibt keinen APK-Build oder Publisher in diesem Nachtest. Ein erfolgreicher Nachtest würde die historischen Fehlresultate nicht umschreiben."
+  ],
+  "observed_existing_logs": [
+    {
+      "path": "validation/binder.log",
+      "sha256": "9761ea74b83275e183917caa828f57e8d17c5ac418a88a92ea55f74fc7a10a83",
+      "result": "18/18 PASS, 0 Skip, 1.103 s"
+    },
+    {
+      "path": "validation/cards-readiness.log",
+      "sha256": "f2cffdb197117c1e1885e9d6518f2b60a2da5a43d4c069354d57bc08b66d2dda",
+      "result": "6/6 PASS, 0 Skip, 1.064 s"
+    },
+    {
+      "path": "validation/static-integration-review.json",
+      "sha256": "5391e33330d327ffee9d1da6f63acfd1b5319a10e46c63fdb5f14d9077a11d61",
+      "result": "11 Bashblöcke und actionlint PASS; actionlint ohne shellcheck"
+    }
+  ],
+  "scope_limits": [
+    "Kein Test durch den Reviewer erneut ausgeführt.",
+    "Noch kein neuer Androidlauf und keine neue Cards-/Learning-/Gerätefreigabe.",
+    "Der gemeinsame Archiv-Digest ist Metadatenbindung; echte APK/PCK-Bytes werden vom Binder unabhängig gemessen.",
+    "Keine Quellen-/Git-/CI-Mutation durch den Reviewer."
+  ],
+  "files": [
+    {
+      "repository_path": ".github/probes/creative_android_probe.py",
+      "bytes": 59073,
+      "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c",
+      "git_blob": "41d5b1b1f1600bf1547b30b3839f8b768b7b87bd",
+      "mode": "100644",
+      "change_vs_a446": "unchanged"
+    },
+    {
+      "repository_path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48183,
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad",
+      "mode": "100644",
+      "change_vs_a446": "modified"
+    },
+    {
+      "repository_path": ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
+      "bytes": 14774,
+      "sha256": "6db11aba49cf3dc7322ce756ac245952a5b1f7cdbe54f9e952743ab08e0ef9c3",
+      "git_blob": "9c54d46545429d02f1f8105ae1b87088855dee3d",
+      "mode": "100644",
+      "change_vs_a446": "modified"
+    },
+    {
+      "repository_path": "scripts/recheck_studio_4ab.py",
+      "bytes": 25518,
+      "sha256": "667edf06c082d3d48302b7aab6a2e1d3aac92a4581d2fbf62624504208fe9e5b",
+      "git_blob": "33ed5d0fc71a3282bb3fb7de6bdf2ff3c2cbc6b2",
+      "mode": "100644",
+      "change_vs_a446": "modified"
+    },
+    {
+      "repository_path": "scripts/tests/test_studio_4ab_recheck.py",
+      "bytes": 18540,
+      "sha256": "467c8554fffa95773423eed0705968929025b324b007f4a558f725515cf17848",
+      "git_blob": "e836e7c25a7d68f4d47ff19a15de982f7e241fdb",
+      "mode": "100644",
+      "change_vs_a446": "modified"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+      "bytes": 1163505,
+      "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9",
+      "git_blob": "9c20cac7b42fb285cac1d476bbdf840662a68e2b",
+      "mode": "100644",
+      "change_vs_a446": "new"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+      "bytes": 33358,
+      "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef",
+      "git_blob": "befd8c7c5147beb3754bde89ca4ea18a10b44a7c",
+      "mode": "100644",
+      "change_vs_a446": "new"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1",
+      "git_blob": "e24a002fcefa4e000ad2336880b639b636131af8",
+      "mode": "100644",
+      "change_vs_a446": "new"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+      "bytes": 1567,
+      "sha256": "3a2345f16439c7dba61fb19aecb611c7a230b8c9e90150543338ec00c5009dca",
+      "git_blob": "e2040ad2c440daafd36972f98462f052a19bd6f9",
+      "mode": "100644",
+      "change_vs_a446": "new"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+      "git_blob": "8c5735507c17ecfe1d516e044a0587fd8266ba5e",
+      "mode": "100644",
+      "change_vs_a446": "new"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+      "bytes": 557393,
+      "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+      "git_blob": "772eef801ef8cabc05c04dc61de9a530c5c73cc1",
+      "mode": "100644",
+      "change_vs_a446": "unchanged"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+      "bytes": 556055,
+      "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+      "git_blob": "49566dbbef40cc7dc17a38bb67f1dbee508c77ed",
+      "mode": "100644",
+      "change_vs_a446": "unchanged"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+      "bytes": 555537,
+      "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "git_blob": "816498d883f8f481c754b06817e26af449f7112f",
+      "mode": "100644",
+      "change_vs_a446": "unchanged"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+      "bytes": 556003,
+      "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+      "git_blob": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c",
+      "mode": "100644",
+      "change_vs_a446": "unchanged"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/test_cards_layout_readiness.py",
+      "bytes": 9037,
+      "sha256": "e4e1617794a3026a947d135e0883f82664f220a6c430ce0721e611f7b0bd1dc0",
+      "git_blob": "9d2b4a75bc3353dd579f261c1c99229af30c07c1",
+      "mode": "100644",
+      "change_vs_a446": "new"
+    },
+    {
+      "repository_path": "tools/android_qa/tests/test_native_caption_ocr.py",
+      "bytes": 8918,
+      "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce",
+      "git_blob": "5238a7a69190233590eefb50d647bcd244ecbc3f",
+      "mode": "100644",
+      "change_vs_a446": "unchanged"
+    }
+  ]
+}

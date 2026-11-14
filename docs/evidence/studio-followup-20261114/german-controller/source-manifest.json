@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SINGLE_GERMAN_TEXT_CORRECTION",
+  "base_host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/patched/lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "repo_path": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "base_git_blob_sha1": "6b6b22504cc0ff431cf03d4f3496b296282d24b4",
+      "bytes": 17240,
+      "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245",
+      "git_blob_sha1": "52beeb4f154045e54cf8f6a8e35a3bcb7255eda3",
+      "mode": "100644"
+    }
+  ],
+  "file_count": 1,
+  "new_tests": 0,
+  "other_languages_changed": false,
+  "save_schema_changed": false,
+  "rules_changed": false
+}

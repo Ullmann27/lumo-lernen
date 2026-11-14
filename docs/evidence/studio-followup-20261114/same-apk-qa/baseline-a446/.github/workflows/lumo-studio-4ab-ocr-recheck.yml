@@ -1,0 +1,254 @@
+name: Lumo Studio exact 4ab APK OCR recheck
+on:
+  push:
+    branches: [chatgpt/lumo-studio-4ab-ocr-recheck-20261114]
+    paths:
+      - .github/workflows/lumo-studio-4ab-ocr-recheck.yml
+      - .github/probes/creative_android_probe.py
+      - scripts/recheck_studio_4ab.py
+      - scripts/tests/test_studio_4ab_recheck.py
+      - tools/android_qa/tests/test_native_caption_ocr.py
+      - tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png
+      - tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png
+      - tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png
+      - tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-studio-4ab-ocr-recheck-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  ocr-regression:
+    name: Original Android PNG captions on CI Tesseract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Install the actual OCR language readers
+        run: |
+          set -euo pipefail
+          mkdir -p ocr-regression
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          tesseract --version > ocr-regression/tesseract-version.txt 2>&1
+          grep -Fxq 'tesseract 5.3.4' ocr-regression/tesseract-version.txt
+          tesseract --list-langs 2>&1 | tee ocr-regression/tesseract-languages.txt
+          grep -Fxq 'deu' ocr-regression/tesseract-languages.txt
+          grep -Fxq 'eng' ocr-regression/tesseract-languages.txt
+          python3 -m venv .ocr-venv
+          .ocr-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Replay exact original image bytes and identity counterexamples
+        run: |
+          set -euo pipefail
+          .ocr-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_native_caption_ocr.py -v 2>&1 | tee ocr-regression/original-caption-replay.log
+          .ocr-venv/bin/python -B -m unittest discover -s scripts/tests -p test_studio_4ab_recheck.py -v 2>&1 | tee ocr-regression/source-binding-counterexamples.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-studio-4ab-original-caption-replay-${{ github.run_id }}
+          path: ocr-regression/
+          if-no-files-found: error
+          retention-days: 30
+
+  android-recheck:
+    needs: ocr-regression
+    name: Exact 4ab APK API ${{ matrix.api }} OCR recheck
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [35, 37]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Checkout the exact unchanged APK product source separately
+        uses: actions/checkout@v4
+        with:
+          ref: 4ab96666f954baf258422d6ed277fc297b7ddeef
+          path: candidate-source
+          persist-credentials: false
+      - name: Read original build run, artifact and successful builder metadata
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const params = {owner: 'Ullmann27', repo: 'lumo-lernen', run_id: 43530667812};
+            const run = (await github.rest.actions.getWorkflowRun(params)).data;
+            const artifacts = (await github.rest.actions.listWorkflowRunArtifacts({...params, per_page: 100})).data;
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100, filter: 'latest'})).data;
+            const chosenArtifacts = artifacts.artifacts.filter(x => x.id === 14089507933);
+            const builders = jobs.jobs.filter(x => x.id === 132247240154);
+            if (run.run_attempt !== 1 || chosenArtifacts.length !== 1 || builders.length !== 1) {
+              throw new Error('The immutable attempt-1 build metadata is not available exactly once');
+            }
+            fs.mkdirSync('tour/build-metadata', {recursive: true});
+            for (const [name, value] of Object.entries({
+              'run.json': run, 'artifact.json': chosenArtifacts[0], 'build-job.json': builders[0]
+            })) {
+              fs.writeFileSync('tour/build-metadata/' + name, JSON.stringify(value, null, 2) + '\n');
+            }
+      - name: Checkout exact upstream action only for Android 17
+        if: matrix.api == 37
+        uses: actions/checkout@v4
+        with:
+          repository: ReactiveCircus/android-emulator-runner
+          ref: a421e43855164a8197daf9d8d40fe71c6996bb0d
+          path: runner-actions/android-emulator-runner
+          persist-credentials: false
+      - name: Verify framework guard before the Android 17 emulator
+        if: matrix.api == 37
+        env:
+          LUMO_ACTION_TEST_SOURCE: ${{ github.workspace }}/runner-actions/android-emulator-runner
+        run: |
+          set -euo pipefail
+          mkdir -p tour/framework-start
+          python3 -B -m unittest discover -s scripts/tests -p test_android_framework_ready.py -v 2>&1 | tee tour/framework-start/local-contracts.log
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-studio-2019-candidate
+          github-token: ${{ github.token }}
+          run-id: 43530667812
+          path: candidate/dist/
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --version > tour/tesseract-version.txt 2>&1
+          grep -Fxq 'tesseract 5.3.4' tour/tesseract-version.txt
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_studio_surfaces_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+          .probe-venv/bin/python scripts/recheck_studio_4ab.py --qa-source . --candidate-source candidate-source --metadata-dir tour/build-metadata --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --expected-qa-source "$GITHUB_SHA" --expected-api ${{ matrix.api }} --out tour --verify-only
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Verify the Android 17 CLI22 source and AVD counterexamples
+        if: matrix.api == 37
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s scripts/tests -p test_android37_cli22.py -v 2>&1 | tee tour/framework-start/cli22-contracts.log
+      - name: Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes
+        if: matrix.api == 37
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python3 scripts/prepare_android37_cli22.py prepare --action-dir runner-actions/android-emulator-runner --out tour/framework-start/cli22
+      - name: Bind the Android 17 guard to separate QA and unchanged APK sources
+        if: matrix.api == 37
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          native_revision="$(python3 -c 'import json; print(json.load(open("candidate-source/config/godot-source.json"))["revision"])')"
+          python3 scripts/prepare_android37_emulator_action.py --action-dir runner-actions/android-emulator-runner --out tour/framework-start --probe-source "$SOURCE_SHA" --workflow .github/workflows/lumo-studio-4ab-ocr-recheck.yml --context unchanged-apk-diagnostic --apk-source 4ab96666f954baf258422d6ed277fc297b7ddeef --native-source "$native_revision"
+          node --check runner-actions/android-emulator-runner/lib/emulator-manager.js
+      - name: Install and tour the exact APK
+        if: matrix.api == 35
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        env:
+          LUMO_NATIVE_STAGE_MENU: '1'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.api == 37 && '37.0' || matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: ${{ matrix.api == 35 && '14472402' || '' }}
+          ram-size: ${{ matrix.api == 37 && '4096M' || '3072M' }}
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+            adb shell getprop ro.build.version.release > tour/android-release.txt
+            "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+            .probe-venv/bin/python scripts/recheck_studio_4ab.py --qa-source . --candidate-source candidate-source --metadata-dir tour/build-metadata --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --expected-qa-source "$GITHUB_SHA" --expected-api ${{ matrix.api }} --out tour
+      - name: Install and tour the exact APK after Android 17 framework readiness
+        if: matrix.api == 37
+        uses: ./runner-actions/android-emulator-runner
+        env:
+          LUMO_NATIVE_STAGE_MENU: '1'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.api == 37 && '37.0' || matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: ${{ matrix.api == 35 && '14472402' || '' }}
+          ram-size: ${{ matrix.api == 37 && '4096M' || '3072M' }}
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-port: 5554
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          pre-emulator-launch-script: |
+            python3 "$GITHUB_WORKSPACE/scripts/prepare_android37_cli22.py" inspect --out "$GITHUB_WORKSPACE/tour/framework-start/cli22" --phase before-boot
+            python3 "$GITHUB_WORKSPACE/scripts/android_framework_ready.py" start --out "$GITHUB_WORKSPACE/tour/framework-start" --serial emulator-5554
+          script: |
+            python3 "$GITHUB_WORKSPACE/scripts/android_framework_ready.py" stop --out "$GITHUB_WORKSPACE/tour/framework-start" --serial emulator-5554
+            adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+            adb shell getprop ro.build.version.release > tour/android-release.txt
+            "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+            .probe-venv/bin/python scripts/recheck_studio_4ab.py --qa-source . --candidate-source candidate-source --metadata-dir tour/build-metadata --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --expected-qa-source "$GITHUB_SHA" --expected-api ${{ matrix.api }} --out tour
+      - name: Preserve actual Android 17 generated hardware and disk configuration
+        if: always() && matrix.api == 37
+        run: |
+          if [ -f tour/framework-start/cli22/prepared.json ]; then
+            python3 scripts/prepare_android37_cli22.py inspect --out tour/framework-start/cli22 --phase after-action
+          fi
+      - name: Preserve Android 17 startup diagnostics even after action failure
+        if: always() && matrix.api == 37
+        run: python3 scripts/android_framework_ready.py stop --out tour/framework-start --serial emulator-5554 --allow-not-started
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-studio-4ab-ocr-recheck-api-${{ matrix.api }}-${{ github.run_id }}
+          path: tour/
+          retention-days: 30
+

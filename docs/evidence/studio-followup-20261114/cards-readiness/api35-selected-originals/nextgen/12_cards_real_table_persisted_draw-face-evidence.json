@@ -1,0 +1,111 @@
+{
+  "status": "FAIL",
+  "stage": "12_cards_real_table_persisted_draw",
+  "frames": [
+    {
+      "revision": 6,
+      "public_before": {
+        "protocol": 1,
+        "token": "3da4f5967f373bef837d51b6967b001e",
+        "revision": 6,
+        "ack": 1,
+        "roundId": "cards-b1462d49a6d385e002322930585242b1",
+        "phase": "playing",
+        "paused": false,
+        "reduceMotion": true,
+        "viewer": 0,
+        "current": 0,
+        "players": [
+          {
+            "name": "Du",
+            "count": 8,
+            "stars": 0
+          },
+          {
+            "name": "Lumo",
+            "count": 5,
+            "stars": 0
+          }
+        ],
+        "hand": [
+          {
+            "id": "num-39",
+            "color": "purple",
+            "type": "number",
+            "number": 7,
+            "playable": false
+          },
+          {
+            "id": "rain-20",
+            "color": "orange",
+            "type": "starRain",
+            "number": null,
+            "playable": false
+          },
+          {
+            "id": "super-111",
+            "color": "orange",
+            "type": "superRain",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-29",
+            "color": "purple",
+            "type": "number",
+            "number": 2,
+            "playable": false
+          },
+          {
+            "id": "num-55",
+            "color": "blue",
+            "type": "number",
+            "number": 2,
+            "playable": true
+          },
+          {
+            "id": "wind-73",
+            "color": "blue",
+            "type": "whirlwind",
+            "number": null,
+            "playable": true
+          },
+          {
+            "id": "num-12",
+            "color": "orange",
+            "type": "number",
+            "number": 6,
+            "playable": false
+          },
+          {
+            "id": "num-2",
+            "color": "orange",
+            "type": "number",
+            "number": 1,
+            "playable": false
+          }
+        ],
+        "top": {
+          "id": "num-67",
+          "color": "blue",
+          "type": "number",
+          "number": 8
+        },
+        "selectedColor": "blue",
+        "drawCount": 96,
+        "canDraw": true,
+        "message": "Lumo legt blue 8.",
+        "error": false,
+        "winner": null,
+        "canCall": false,
+        "round": 1,
+        "totalRounds": 1,
+        "difficulty": "Schlau"
+      },
+      "status": "CHECKING"
+    }
+  ],
+  "scope": "Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim",
+  "error": "Expecting value: line 1 column 1 (char 0)",
+  "elapsed_seconds": 0.104349
+}

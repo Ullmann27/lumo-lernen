@@ -1,0 +1,28 @@
+--- a/lib/features/games/lumo_cards/lumo_cards_game_controller.dart
++++ b/lib/features/games/lumo_cards/lumo_cards_game_controller.dart
+@@ -153,6 +153,9 @@
+       drawPile = [...drawPile, drawn.first];
+     }
+ 
++    final openingMessage = _player1Name == 'Du'
++        ? 'Du fängst an.'
++        : '$_player1Name fängt an.';
+     _state = LumoCardsGameState(
+       players: [
+         LumoPlayer(id: 'p1', name: _player1Name, hand: hand1),
+@@ -168,12 +171,12 @@
+       selectedColor: topCard.color,
+       phase: GamePhase.playing,
+       lastActionMessage: vsBot
+-          ? '$_player1Name fängt an. Lege eine passende Karte!'
+-          : '$_player1Name fängt an. Lege eine passende Karte oder ziehe eine.',
++          ? '$openingMessage Lege eine passende Karte!'
++          : '$openingMessage Lege eine passende Karte oder ziehe eine.',
+     );
+     _speak(vsBot
+         ? 'Willkommen bei Lumo Cards! Du fängst an.'
+-        : 'Willkommen bei Lumo Cards! $_player1Name fängt an.');
++        : 'Willkommen bei Lumo Cards! $openingMessage');
+   }
+ 
+   /// Karte spielen (wenn moeglich).

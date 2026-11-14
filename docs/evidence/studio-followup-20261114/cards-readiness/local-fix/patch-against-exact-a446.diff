@@ -1,0 +1,16 @@
+--- a/.github/probes/lumo_studio_surfaces_android_probe.py
++++ b/.github/probes/lumo_studio_surfaces_android_probe.py
+@@ -554,7 +554,12 @@
+     source.write_text(raw)
+     if len(raw.encode()) > 128 * 1024:
+         raise RuntimeError('Native Cards layout observation exceeds its diagnostic bound')
+-    layout = json.loads(raw)
++    try:
++        layout = json.loads(raw)
++    except json.JSONDecodeError as error:
++        raise RuntimeError(
++            'Native Cards layout not yet available as complete JSON; '
++            'original reply preserved in ' + source.name) from error
+     if not isinstance(layout, dict) or layout.get('token') != box.token:
+         raise RuntimeError('Native Cards layout belongs to another private session')
+     return {'layout': layout, 'source': source.name, 'source_sha256': probe.digest(source)}

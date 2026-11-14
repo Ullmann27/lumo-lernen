@@ -1,0 +1,47 @@
+{
+  "artifact": 14093674287,
+  "run": 43546627017,
+  "job": 132299378978,
+  "source": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "zip_bytes": 3121,
+  "zip_sha256": "528eb10497b0d5b97cf99f34361db7073ecd42db69b341f00c40f32b64683658",
+  "github_digest_equal": true,
+  "crc": "PASS",
+  "members": [
+    {
+      "member": "cards-layout-readiness.log",
+      "bytes": 1302,
+      "sha256": "76b9c9c1ed8d3d7967540988280dc7d0c9d4cbacff99feca224a0d31f95a6e05",
+      "crc32": "471d9668",
+      "extracted_byte_equal": true
+    },
+    {
+      "member": "original-caption-replay.log",
+      "bytes": 2036,
+      "sha256": "06dae1be2b677d22d6af5ca40d02a1772033c50d72f6fa813e9c5bd281705065",
+      "crc32": "34911de1",
+      "extracted_byte_equal": true
+    },
+    {
+      "member": "source-binding-counterexamples.log",
+      "bytes": 5361,
+      "sha256": "0da7fcd034979f0f79f1788c201febb3d59427adc1419d6ffc44f5f5668109cb",
+      "crc32": "aee57ea0",
+      "extracted_byte_equal": true
+    },
+    {
+      "member": "tesseract-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+      "crc32": "d3854710",
+      "extracted_byte_equal": true
+    },
+    {
+      "member": "tesseract-version.txt",
+      "bytes": 551,
+      "sha256": "b0244d9f75aa00508fdb60e44c34390b452fbce9c0773fae505aed6fc1fb51bf",
+      "crc32": "aa17a1a9",
+      "extracted_byte_equal": true
+    }
+  ]
+}

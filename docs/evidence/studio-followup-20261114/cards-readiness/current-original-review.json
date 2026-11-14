@@ -1,0 +1,627 @@
+{
+  "status": "BOTH_ORIGINAL_ANDROID_JOBS_FAILED_AT_SAME_LAYOUT_READINESS_GAP",
+  "run_id": 43542310963,
+  "attempt": 1,
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_metadata": {
+    "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/run-completed-original.json",
+    "bytes": 12960,
+    "sha256": "e210b94424e9a76d949b8aebeb8757b183b162c51b74db550f98572271184a6e"
+  },
+  "artifact_metadata": {
+    "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/artifacts-completed-original.json",
+    "bytes": 2634,
+    "sha256": "99ef5b3e79038828c9772e65fed598a599256b7768a30567db0e4f1d1ec3215a"
+  },
+  "actual_runs": [
+    {
+      "requested_api": 35,
+      "job_id": 132285770589,
+      "actual_runtime": {
+        "sdk": 35,
+        "release": "15",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+        "model": "sdk_gphone64_x86_64"
+      },
+      "artifact_id": 14093032556,
+      "archive": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-original.zip",
+        "bytes": 110769126,
+        "sha256": "a3ce928355c8af0054d5dba738213385b86059a3e579555134a91111acf4b171"
+      },
+      "archive_crc_all_members_pass": true,
+      "archive_member_count": 893,
+      "original_job_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-original-job.log",
+        "bytes": 1709886,
+        "sha256": "2ccdef012a6b125e0101cc4031df91e8ecd71d1c4246c6a4c9dd74cebf2f3695"
+      },
+      "actual_result": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/native-surfaces-result.json",
+        "bytes": 6114,
+        "sha256": "900af236fbf121ccfe20055b9d33a12a592d3ca3f2161af6eba39615ad65b5e6"
+      },
+      "reported_apk_identity": {
+        "apk_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+        "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+        "godot_revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "godot_pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+        "versionName": "0.13.7",
+        "versionCode": 2019,
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "checks": {
+          "sha256_matches_provenance": true,
+          "sha256_matches_build_sums": true,
+          "flutter_source_is_this_commit": true,
+          "tracked_source_clean": true,
+          "godot_revision_is_pinned": true,
+          "signing_certificate": true,
+          "version_matches_pubspec": true,
+          "x86_64_native_code": true
+        }
+      },
+      "apk_bytes_downloaded_or_rehashed_by_this_reviewer": false,
+      "learning": {
+        "moves": {
+          "moved_objects": 5,
+          "ten_filled_after": 2,
+          "remainder": 3,
+          "target_indices": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "complete": true
+        },
+        "preservation": {
+          "profile": {
+            "id": "1794620968295427",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T01:49:28.295427"
+          },
+          "learning_keys_compared": 2,
+          "learning_keys_added": []
+        },
+        "same_lesson_after_return": true,
+        "speech": {
+          "initial": {
+            "native_process_pid": 6870,
+            "completed_utterance_ids": [
+              3
+            ],
+            "profile": "lumo-free-supertonic-de-v1",
+            "preset": "F2",
+            "audible_quality_verified": false,
+            "lip_sync_verified": false
+          },
+          "result": {
+            "native_process_pid": 6870,
+            "completed_utterance_ids": [
+              18
+            ],
+            "profile": "lumo-free-supertonic-de-v1",
+            "preset": "F2",
+            "audible_quality_verified": false,
+            "lip_sync_verified": false
+          },
+          "native_process_gone_on_return": true,
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "illustration_did_not_award_mastery": true
+      },
+      "five_actual_touch_observations": [
+        {
+          "action": 1,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            104.0,
+            2029.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 2,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/learning-move-1-surface-readiness.json",
+            "bytes": 2766,
+            "sha256": "7d0741951cc2b23912582d9a3eed69ba0482a7fed8250cd1115fa5d9c09c5432"
+          }
+        },
+        {
+          "action": 2,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 2,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/learning-move-2-surface-readiness.json",
+            "bytes": 2765,
+            "sha256": "d8591e0f5547a60e0dfec945e2a1238657752f9161229ea166e2b4bab9666d8e"
+          }
+        },
+        {
+          "action": 3,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 2,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/learning-move-3-surface-readiness.json",
+            "bytes": 2766,
+            "sha256": "765224a46e0fab152ec65b1bea0d5204cad1469851bcd989e1b49d7dde5b0d98"
+          }
+        },
+        {
+          "action": 4,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 3,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/learning-move-4-surface-readiness.json",
+            "bytes": 3559,
+            "sha256": "9f099c2314343b57d383c2cf5e1e215260639fc8be9c73c96b29cc2f58fd103d"
+          }
+        },
+        {
+          "action": 5,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 2,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/learning-move-5-surface-readiness.json",
+            "bytes": 2766,
+            "sha256": "1822cd3db3ed4aa4aa6b86db1fbb38330300bb3132cadf78bd200943f662e2c5"
+          }
+        }
+      ],
+      "five_original_runtime_lines": [
+        "I/godot   ( 6870): [LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false",
+        "I/godot   ( 6870): [LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false",
+        "I/godot   ( 6870): [LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false",
+        "I/godot   ( 6870): [LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false",
+        "I/godot   ( 6870): [LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true"
+      ],
+      "runtime_movement_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/learning-movement-logcat.txt",
+        "bytes": 2603,
+        "sha256": "e4818bb1dd6484057c51871c860cd51d210b685aa4e8ff4c1bbe07964ab679a2"
+      },
+      "cards_before_draw": {
+        "status": "PASS",
+        "consecutive_same_revision_frames": 2,
+        "revision": 3,
+        "layout_sequence": 1,
+        "elapsed_seconds": 10.792211,
+        "evidence": {
+          "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/11_cards_real_table_before_draw-face-evidence.json",
+          "bytes": 33358,
+          "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef"
+        }
+      },
+      "cards_after_draw_first_read": {
+        "status": "FAIL",
+        "elapsed_seconds": 0.104349,
+        "captured_complete_frames": 0,
+        "frame_statuses": [
+          "CHECKING"
+        ],
+        "observed_public_revision": 6,
+        "observed_request_ack": 1,
+        "observed_hand_count": 8,
+        "observed_message": "Lumo legt blue 8.",
+        "error": "Expecting value: line 1 column 1 (char 0)",
+        "raw_reply": "cat: /data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/cards_layout_v1.json: No such file or directory",
+        "raw_binding": {
+          "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+          "bytes": 113,
+          "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679"
+        },
+        "evidence": {
+          "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+          "bytes": 2706,
+          "sha256": "2f533744170db46190339c286552072a5410d1dd6a03a9655a55f50789e2af16"
+        }
+      },
+      "framework_readiness": null,
+      "not_reached": [
+        "Full post-draw two-frame geometry and pixel check",
+        "Subsequent require_cards_draw and matching durable save assertion",
+        "35-second idle/resume contract",
+        "Cards return to Flutter and Cards round reopening"
+      ]
+    },
+    {
+      "requested_api": 37,
+      "job_id": 132285770547,
+      "actual_runtime": {
+        "sdk": 37,
+        "release": "17",
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys",
+        "model": "sdk_gphone64_x86_64"
+      },
+      "artifact_id": 14093670723,
+      "archive": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-original.zip",
+        "bytes": 117884820,
+        "sha256": "131290ad1a01c825e9856cd48538437cc52eee7c34c3427ede1ffa693b299c3d"
+      },
+      "archive_crc_all_members_pass": true,
+      "archive_member_count": 1343,
+      "original_job_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-original-job.log",
+        "bytes": 1743508,
+        "sha256": "cfb46da51a9d94da73e019e26ca4151f76cab8ad07eef2e61fe9d720818118a7"
+      },
+      "actual_result": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/native-surfaces-result.json",
+        "bytes": 6117,
+        "sha256": "304902169dca65239170f0bc4f6d65e34d78d7aa386fa2fc2ee4366c3f39183c"
+      },
+      "reported_apk_identity": {
+        "apk_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+        "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+        "godot_revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "godot_pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+        "versionName": "0.13.7",
+        "versionCode": 2019,
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "checks": {
+          "sha256_matches_provenance": true,
+          "sha256_matches_build_sums": true,
+          "flutter_source_is_this_commit": true,
+          "tracked_source_clean": true,
+          "godot_revision_is_pinned": true,
+          "signing_certificate": true,
+          "version_matches_pubspec": true,
+          "x86_64_native_code": true
+        }
+      },
+      "apk_bytes_downloaded_or_rehashed_by_this_reviewer": false,
+      "learning": {
+        "moves": {
+          "moved_objects": 5,
+          "ten_filled_after": 2,
+          "remainder": 3,
+          "target_indices": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "complete": true
+        },
+        "preservation": {
+          "profile": {
+            "id": "1794621016975105",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T01:50:16.975105"
+          },
+          "learning_keys_compared": 2,
+          "learning_keys_added": []
+        },
+        "same_lesson_after_return": true,
+        "speech": {
+          "initial": {
+            "native_process_pid": 7185,
+            "completed_utterance_ids": [
+              3
+            ],
+            "profile": "lumo-free-supertonic-de-v1",
+            "preset": "F2",
+            "audible_quality_verified": false,
+            "lip_sync_verified": false
+          },
+          "result": {
+            "native_process_pid": 7185,
+            "completed_utterance_ids": [
+              18
+            ],
+            "profile": "lumo-free-supertonic-de-v1",
+            "preset": "F2",
+            "audible_quality_verified": false,
+            "lip_sync_verified": false
+          },
+          "native_process_gone_on_return": true,
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "illustration_did_not_award_mastery": true
+      },
+      "five_actual_touch_observations": [
+        {
+          "action": 1,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            104.0,
+            2029.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 2,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-surface-readiness.json",
+            "bytes": 2766,
+            "sha256": "ee61119796010713cdf6a0eea7832dc22c5765357722947abcff0441c5c877c9"
+          }
+        },
+        {
+          "action": 2,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 3,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-surface-readiness.json",
+            "bytes": 3558,
+            "sha256": "ae7dbffd4e01d66eaa1ccdbdc71a01f68833cc8b27fc535c423f4196f4c073d6"
+          }
+        },
+        {
+          "action": 3,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 2,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-surface-readiness.json",
+            "bytes": 2765,
+            "sha256": "59ec04272510aa7c35319deaccf0c9a1afca1a67e9472684a0069f9345eb5b39"
+          }
+        },
+        {
+          "action": 4,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 2,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-surface-readiness.json",
+            "bytes": 2765,
+            "sha256": "2fbc70031fdde3b9d496ab6c630907ea0dd226902b6df7cd9f31a02e178890ae"
+          }
+        },
+        {
+          "action": 5,
+          "caption": "Ein Objekt zeigen",
+          "status": "TOUCH_SENT",
+          "actual_touch_px": [
+            286,
+            2050
+          ],
+          "current_caption_bounds_px": [
+            105.0,
+            2030.0,
+            467.0,
+            2071.0
+          ],
+          "observation_count": 3,
+          "evidence": {
+            "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-surface-readiness.json",
+            "bytes": 3560,
+            "sha256": "c6bf2cf584264ad17cdc47df5e30371a862c0529cc765153305bf431cde3adc2"
+          }
+        }
+      ],
+      "five_original_runtime_lines": [
+        "I/godot   ( 7185): [LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false",
+        "I/godot   ( 7185): [LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false",
+        "I/godot   ( 7185): [LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false",
+        "I/godot   ( 7185): [LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false",
+        "I/godot   ( 7185): [LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true"
+      ],
+      "runtime_movement_log": {
+        "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-movement-logcat.txt",
+        "bytes": 2603,
+        "sha256": "2bd456ae0cf607603c847c18b28cc6c2573f76b12fa65196285b27a4f422a68f"
+      },
+      "cards_before_draw": {
+        "status": "PASS",
+        "consecutive_same_revision_frames": 2,
+        "revision": 3,
+        "layout_sequence": 1,
+        "elapsed_seconds": 9.019299,
+        "evidence": {
+          "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-evidence.json",
+          "bytes": 33235,
+          "sha256": "4e09373348ea1c29665d65d34e70cd205d721282d1c5c0ea6d64956d04b85181"
+        }
+      },
+      "cards_after_draw_first_read": {
+        "status": "FAIL",
+        "elapsed_seconds": 0.123735,
+        "captured_complete_frames": 0,
+        "frame_statuses": [
+          "CHECKING"
+        ],
+        "observed_public_revision": 5,
+        "observed_request_ack": 1,
+        "observed_hand_count": 8,
+        "observed_message": "Lumo legt green 9.",
+        "error": "Expecting value: line 1 column 1 (char 0)",
+        "raw_reply": "cat: /data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview/files/cards_layout_v1.json: No such file or directory",
+        "raw_binding": {
+          "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+          "bytes": 113,
+          "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679"
+        },
+        "evidence": {
+          "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+          "bytes": 2696,
+          "sha256": "1fa333795922b5312c3261efbf8cfdee8578394dc774056024afc0ff78bc845b"
+        }
+      },
+      "framework_readiness": {
+        "status": "PASS",
+        "evidence": {
+          "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/framework-readiness.json",
+          "bytes": 32975,
+          "sha256": "ad083008fc3410eb23009765614bcbd36f5409982fcf9827f6b01a87bcda4c55"
+        }
+      },
+      "not_reached": [
+        "Full post-draw two-frame geometry and pixel check",
+        "Subsequent require_cards_draw and matching durable save assertion",
+        "35-second idle/resume contract",
+        "Cards return to Flutter and Cards round reopening"
+      ]
+    }
+  ],
+  "original_api35_api37_raw_bytes_identical": true,
+  "diagnosis_de": "Beide tatsächlichen Rohantworten melden eine fehlende cards_layout_v1.json. json.loads lässt JSONDecodeError aus dem vorhandenen begrenzten RuntimeError-Wartepfad entkommen. Es ist kein Nachweis eines nichtatomaren oder abgeschnittenen JSON-Schreibens.",
+  "writer_source_facts": [
+    "Native _mark_layout_changed removes the prior settled observation and requires two settle frames.",
+    "_publish_layout_observation waits for pending state, visible UI and completed card tweens; it writes .tmp, flushes/closes and renames.",
+    "The original first complete pre-draw table layout/pixel check passed in both runs."
+  ],
+  "source_bindings": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/source/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+      "source_commit": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+      "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/source/cards_table.gd",
+      "bytes": 41353,
+      "sha256": "5abea79b066e16f32f3951eda277db5cfdeced51ed3cbd85685be1aac0ae62d1",
+      "source_commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "git_blob": "d2d68ea69756e25936f3f44d59b01d0c1b17f2d4"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/source/nextgen_evidence.py",
+      "bytes": 28512,
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8",
+      "source_commit": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419"
+    }
+  ],
+  "proposed_fix": {
+    "source_upload_manifest": {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/source-upload-manifest.json",
+      "bytes": 4417,
+      "sha256": "ff16947c97f211d83201c118b73b99d72d5675b2edc099fc22f7095b50e3108e"
+    },
+    "patch": {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patch-against-exact-a446.diff",
+      "bytes": 840,
+      "sha256": "f9df86959c77702d8a0c5d7f50d21c80016adf37402ffbddf912b67b5931ca0a"
+    },
+    "scope": "Catch only JSONDecodeError after preserving original raw text, raise RuntimeError for the unchanged bounded two-frame loop. No defaults, stale-layout reuse, token/revision bypass or longer budgets.",
+    "local_red_original_tests": 2,
+    "local_green_contracts": 6,
+    "red_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/red-original-a446.log",
+      "bytes": 4223,
+      "sha256": "54a6fcc5d0b49076dfd807ee64e2ac76023ced8814ccfe98517d929883e36d0b"
+    },
+    "green_log": {
+      "path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/green-six-contracts.log",
+      "bytes": 1440,
+      "sha256": "03b69e7f5d52ea58c878f8cfa06b786159bcbb40e203e874a47991a50d109ccf"
+    },
+    "new_android_run_executed": false
+  },
+  "image_reviews": {
+    "api35": {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/root-api35-image-review.json",
+      "bytes": 2555,
+      "sha256": "8ac094ba23d56e65fcc9bf52e7b03626ccb25b5b8f5b4462050dc8259833c707"
+    },
+    "api37": {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-image-review.json",
+      "bytes": 3812,
+      "sha256": "85e83d698d8666c6deb995cca4a7eff5cc0f734d0c07e3069a89ef0526e3981b"
+    }
+  },
+  "limits": [
+    "No complete Cards or Android-tour PASS.",
+    "No additional Creative Jump/Build/Puzzle/Treasure exercise in this diagnostic.",
+    "No physical Fold7, native FPS, audio-quality or lip-sync validation.",
+    "Local contract sequences use original pre-draw fixtures and a synthetic clock/transport; they are not an actual post-draw Android success."
+  ]
+}

@@ -1,0 +1,3148 @@
+{
+  "artifact_id": 14093670723,
+  "run_id": 43542310963,
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "archive_sha256": "131290ad1a01c825e9856cd48538437cc52eee7c34c3427ede1ffa693b299c3d",
+  "extracted_files": 523,
+  "extracted_bytes": 11120574,
+  "files": [
+    {
+      "artifact_entry": "framework-start/action-patch-manifest.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/action-patch-manifest.json",
+      "bytes": 3508,
+      "sha256": "d59aa6bf44b058ef8af0a24ef46a631541c709065f8464f2340986d5ab0698cd"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/avd-after-action/snapshot.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/avd-after-action/snapshot.json",
+      "bytes": 9636,
+      "sha256": "7d6a54465bdeca5f21fdae9b6fd4abf54d48940554c6823270477392181a6f9c"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/avd-before-boot/snapshot.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/avd-before-boot/snapshot.json",
+      "bytes": 5782,
+      "sha256": "7c3f23e2dc11e7df2e803eb538404daac5fcaeacb96f70ce8292a54eeb2a0068"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/avd-guard/snapshot.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/avd-guard/snapshot.json",
+      "bytes": 9524,
+      "sha256": "9ced42f3d335c4cb73553e20db3c7eabcad58be1d80cad7214200f62e14f320f"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/avd-original/snapshot.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/avd-original/snapshot.json",
+      "bytes": 5852,
+      "sha256": "eaf107b515a3a7f6d6d490c519a563b248717614d2e769c1f0ef20cb4de2d6df"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/commands/01-original-cli-version/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/commands/01-original-cli-version/result.json",
+      "bytes": 296,
+      "sha256": "e6396e3b7274c5530e2e9a0b63085cece701638b6e9ed1e5b81f7d6307499bb8"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/commands/02-install-same-sdk-packages/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/commands/02-install-same-sdk-packages/result.json",
+      "bytes": 482,
+      "sha256": "ef5bf66d16ddd8e4fc794c5b21385464654d3c56591231aa5c3e7765147dc4ea"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/commands/03-original-emulator-version/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/commands/03-original-emulator-version/result.json",
+      "bytes": 279,
+      "sha256": "301a6adee59d10c7e023785a6489f61f549b17334f69f1ef1bb8ea4d31e5ff3c"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/commands/04-original-real-avd/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/commands/04-original-real-avd/result.json",
+      "bytes": 1090,
+      "sha256": "72d6d980e83065dd1dc66ae7f5c934fb865ae2fb51306038488081b2f284774a"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/commands/05-download-official-cli22/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/commands/05-download-official-cli22/result.json",
+      "bytes": 486,
+      "sha256": "c6980f1e116e4ff4341fd7030fbb7a5ed8a62e1486ca3c7f93ec943de505004d"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/commands/06-installed-cli22-version/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/commands/06-installed-cli22-version/result.json",
+      "bytes": 297,
+      "sha256": "6c8428f6b2e10b08b520aaca2d1f929356a6b291ca275816a8d8b2260a9ad34f"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/observed-after-action.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/observed-after-action.json",
+      "bytes": 14312,
+      "sha256": "65557d628ab0b34e8414d6799f92ee8c5c7bf88d79afed42251ab6b0aa7f0bfb"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/observed-guard.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/observed-guard.json",
+      "bytes": 14200,
+      "sha256": "5569bcf09a174d1e40bf6e3351e50018305be166db557310c99f5cf523a5c2c2"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/observed-before-boot.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/observed-before-boot.json",
+      "bytes": 10458,
+      "sha256": "b3520261e9a16de4f1d207fb9d83b36dadd25ccf8ace562753a152cf9ec860aa"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/original-tools.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/original-tools.json",
+      "bytes": 18323,
+      "sha256": "95dc66b01c290c69ae0e5e51135d11f4b5e8e636facae5cb68455316636f870a"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/packages-after-action/packages.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/packages-after-action/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/packages-before-boot/packages.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/packages-before-boot/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/packages-guard/packages.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/packages-guard/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/packages-original/packages.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/packages-original/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/prepared.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/prepared.json",
+      "bytes": 48082,
+      "sha256": "9ba29eddf15c0db25652f8762023fe1954cae14f5dcadb9a6dc1bff362637f69"
+    },
+    {
+      "artifact_entry": "framework-start/cli22/verified-guard.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22/verified-guard.json",
+      "bytes": 38200,
+      "sha256": "d4610c537108b3dad06de188ff503666a52c80c54263007f577d09a57efc4f5c"
+    },
+    {
+      "artifact_entry": "framework-start/cli22-avd-verify.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/cli22-avd-verify.json",
+      "bytes": 280,
+      "sha256": "93b116e5cc215905d4ca7a14b45c98726879f99a82687fa725be3d7d608a1ff8"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0001-data-filesystem.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0001-data-filesystem.json",
+      "bytes": 412,
+      "sha256": "1e90a5f22167e8f2dd97da391f72cff7d548802782fae387240f8d108f51cbca"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0002-memory-info.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0002-memory-info.json",
+      "bytes": 403,
+      "sha256": "9a26054526595c1f57cfd4e9fd85956a91645a63c5e131420f8445a13c51d9e4"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0003-mounted-filesystems.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0003-mounted-filesystems.json",
+      "bytes": 418,
+      "sha256": "749fe61f0caecc18083537c438e0608011340f089c817b12af31c1979df4c0f3"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0004-properties.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0004-properties.json",
+      "bytes": 384,
+      "sha256": "dbef9ecd70f32825f1ac6a97c16d6a05cfbf010bade97406a0fd339f5282aa3b"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0005-pid-before.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0005-pid-before.json",
+      "bytes": 403,
+      "sha256": "bc17bbd90797204c39d28af6f21f1ed686bb80bbd38691d2f0da5027ddf97d08"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0006-service-input.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0006-service-input.json",
+      "bytes": 416,
+      "sha256": "3e62acc379b537c324a1fb10252626703fbc27c28ee68240b1e2aa68765bcab6"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0007-service-settings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0007-service-settings.json",
+      "bytes": 425,
+      "sha256": "70cfda79c0dd58d334e7c7434ce4b2046ddad61a694e52723ccfa966d20ed90a"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0008-service-activity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0008-service-activity.json",
+      "bytes": 425,
+      "sha256": "14ce61bc4199085734871e472ef6980222d624feb5bd4e8479719eaafb598e41"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0009-service-package.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0009-service-package.json",
+      "bytes": 422,
+      "sha256": "8c3824fc493b30c6fd8f0fbe282bfd014b30dcd4bad6151c04c9b4ce8e2ad48d"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0010-service-window.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0010-service-window.json",
+      "bytes": 419,
+      "sha256": "2ac240da62040458d3db563fd985527af7e8cc162a2240da55a38cb3a83239fd"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0011-settings-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0011-settings-read.json",
+      "bytes": 434,
+      "sha256": "e4de7a59c6981d1903fdd9f887587aba4bcbfec1179d7680ef4293376e0ab76b"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0012-package-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0012-package-read.json",
+      "bytes": 426,
+      "sha256": "5361a5bbc133e9514bb3d98b445c45a7518b28affd7619f160257d718d5c3e51"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0013-window-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0013-window-read.json",
+      "bytes": 393,
+      "sha256": "4e6340d668180d7de4dc896a3af2884b107414430e29e59e34154f1617551a50"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0014-pid-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0014-pid-after.json",
+      "bytes": 401,
+      "sha256": "74d7b0a0da6b86711a7ee87b143ff18b9932c4b21988e7b4b02f1674eabd3a1a"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0015-count-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0015-count-after.json",
+      "bytes": 423,
+      "sha256": "ccac74494cc98cb5b82a0cc51ab0a39e699db6f6f55d5375c2d7ff92f3e571fb"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0016-properties.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0016-properties.json",
+      "bytes": 384,
+      "sha256": "4ccdc5c9cf159b7ad45ffbe2e46e45b3282cad71bef8c9368d576afc7ea75508"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0017-pid-before.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0017-pid-before.json",
+      "bytes": 403,
+      "sha256": "8424ee8c1ee23bf8e43b6e3a9bee27c149bb8cf14255b9a26f9ee4844ea0e62b"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0018-service-input.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0018-service-input.json",
+      "bytes": 416,
+      "sha256": "be6479979ce6ad8fad8208059f0c2fc5bc59d101c7dafc65f25f84c099ce9f26"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0019-service-settings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0019-service-settings.json",
+      "bytes": 425,
+      "sha256": "5b256854c5d167c9ff4f3edf78ad39339d5c199129e4734476837f31ad802642"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0020-service-activity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0020-service-activity.json",
+      "bytes": 425,
+      "sha256": "8fb173ac7735b1fa2c6948b4b736fe007dda5cc76198ea995e6693f6989e7aaa"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0021-service-package.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0021-service-package.json",
+      "bytes": 422,
+      "sha256": "7b572e2dcc0943d90c74f2b3d77d2bc7b44a075e502fa7cc48053f1336e2c5bb"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0022-service-window.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0022-service-window.json",
+      "bytes": 419,
+      "sha256": "ace28c6b32c897813b1c6e43096a811f8e5e676463bf534e7ffa541e6d7b8fbf"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0023-settings-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0023-settings-read.json",
+      "bytes": 434,
+      "sha256": "8bd1abafff4896e5904a3f07e22de6139886efb1c5944a3bbb82736517c4ec21"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0024-package-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0024-package-read.json",
+      "bytes": 426,
+      "sha256": "693a84031fff546ade4c853417fd4c7742ec6c7f3154c808d75826528721280f"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0025-window-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0025-window-read.json",
+      "bytes": 393,
+      "sha256": "ca02358c07656cdf68e7c77be1cee0dfe123e1b8a0ea5eb6611eece776874aa4"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0026-pid-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0026-pid-after.json",
+      "bytes": 401,
+      "sha256": "46824c7bdc1c6d051e8b840bf998a8ebe27c6b3a7de8578063a150e763576f99"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0027-count-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0027-count-after.json",
+      "bytes": 423,
+      "sha256": "87513f0e5ff75766d66d775e1fc4dbda29b3a92c24cbd1815b063fbf5b2e5a81"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0028-properties.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0028-properties.json",
+      "bytes": 384,
+      "sha256": "e838df6c1df418f4d56d2e08c0aae1be10943d24a75e59ce95849198d25c05b3"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0029-pid-before.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0029-pid-before.json",
+      "bytes": 403,
+      "sha256": "01390a96c885ce2741fdae77c0178a50f6617762238910c3da3ec95c76a6327e"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0030-service-input.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0030-service-input.json",
+      "bytes": 416,
+      "sha256": "2efd5dc9d02d542aafd0cce0c90a0ac7a805887581ad610fe389d2f205e09efa"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0031-service-settings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0031-service-settings.json",
+      "bytes": 425,
+      "sha256": "cc1218602499c39ca0d9f237386d0e142c255735a6b9cde7f81d631a0b6a3e2a"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0032-service-activity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0032-service-activity.json",
+      "bytes": 425,
+      "sha256": "9da7dace193faf8eb71442e59903a0bb2986bbec6e1ee41bb4e55d678988c7a5"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0033-service-package.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0033-service-package.json",
+      "bytes": 422,
+      "sha256": "2eee138e60cb2940a343de2b0ee9f3c81763ea100ed7e1ab942dba295a8d43fd"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0034-service-window.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0034-service-window.json",
+      "bytes": 419,
+      "sha256": "636612d083f97bce7e07a20068f17890469d38024d9ffc17ef1d0886f0d1db80"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0035-settings-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0035-settings-read.json",
+      "bytes": 434,
+      "sha256": "1259cc50a49961dabe370fb0b487baedb3e9ce3f25cf3635fd6a544e6339a207"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0036-package-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0036-package-read.json",
+      "bytes": 426,
+      "sha256": "1cb0cf1ce99b83b8278c20cb6aaa6a60121208228498e380f6162043f0aa0553"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0037-window-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0037-window-read.json",
+      "bytes": 393,
+      "sha256": "308b3c1d127f1c5c0064512e21f773923c88bb84e6c79706d597baf154d8cceb"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0038-pid-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0038-pid-after.json",
+      "bytes": 401,
+      "sha256": "e60a7f0896cde615c44b33448644b2f7c5bd86d8de8b5ce79e0c2aaf6474626a"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0039-count-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0039-count-after.json",
+      "bytes": 423,
+      "sha256": "47e3cd3073ec7a59035cfca980118888972e7dde5d76db5084c0fd0a26b2f237"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0040-properties.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0040-properties.json",
+      "bytes": 384,
+      "sha256": "745397856c9b2e33f92bbb64e38f33b9738fafc242a51ffe649c15e104c7f8a3"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0041-pid-before.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0041-pid-before.json",
+      "bytes": 403,
+      "sha256": "bdd3cd94482d4729dde4d3448a2474ac993d7a7cd5786fa35f4035b4f19fbeb0"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0042-service-input.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0042-service-input.json",
+      "bytes": 416,
+      "sha256": "3be1e2d4af23670735aae1b7c1427851129fd0c5af592f8d7b5c6c4de1d5a685"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0043-service-settings.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0043-service-settings.json",
+      "bytes": 425,
+      "sha256": "ea4f80723e1f2fbd3298f4bd30f8e1c9527bf15acd7999c10eb9a5c2ebe854dc"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0044-service-activity.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0044-service-activity.json",
+      "bytes": 425,
+      "sha256": "56d7388e11cf9d3d4af7a9fa3f3f6b95cd6c909773b82db5e26a5627752211d4"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0045-service-package.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0045-service-package.json",
+      "bytes": 422,
+      "sha256": "f32872bd41f1924163c0ed0d2dd57952073ccc4102fbf7b933ce863b84863a75"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0046-service-window.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0046-service-window.json",
+      "bytes": 419,
+      "sha256": "8bb4ad64a01d148b4b4774e57535b8e53c68b73e45a89115b7a41e0020c163ae"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0047-settings-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0047-settings-read.json",
+      "bytes": 434,
+      "sha256": "1856dcb5ed6274a37aa15d240ccba2da8a3c4bccb3db5adf182114965d29bbde"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0048-package-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0048-package-read.json",
+      "bytes": 426,
+      "sha256": "2318168196d3b15a4067d94673eefd1ca2dc26d6b3ce3bd0391473a8103f933d"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0049-window-read.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0049-window-read.json",
+      "bytes": 393,
+      "sha256": "d51235461218568274c4888adf915622f5acc8d6656c366fe98c71b37054c6ae"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0050-pid-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0050-pid-after.json",
+      "bytes": 401,
+      "sha256": "78ede900598f294b7831198154f6999c5f0a3a39e7cf348a8a2be20ad0ffdb6c"
+    },
+    {
+      "artifact_entry": "framework-start/commands/0051-count-after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/commands/0051-count-after.json",
+      "bytes": 423,
+      "sha256": "4f3df3a8b94f4550c26246a9d8aeceaaac3389bbbcc71c2bb7a42c3682b70c24"
+    },
+    {
+      "artifact_entry": "framework-start/framework-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/framework-readiness.json",
+      "bytes": 32975,
+      "sha256": "ad083008fc3410eb23009765614bcbd36f5409982fcf9827f6b01a87bcda4c55"
+    },
+    {
+      "artifact_entry": "framework-start/monitor-commands.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/monitor-commands.json",
+      "bytes": 964,
+      "sha256": "0bfb49b9636372b639eb967f5287d5b1ee812b68654948a2378576ea875bb056"
+    },
+    {
+      "artifact_entry": "framework-start/monitor-finished.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/monitor-finished.json",
+      "bytes": 1072,
+      "sha256": "167fd9667567cb699e9a3b74f465ad701e7724ee60d1d1126867fcd1f737a6f7"
+    },
+    {
+      "artifact_entry": "framework-start/monitor-process.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/monitor-process.json",
+      "bytes": 471,
+      "sha256": "c29839a3a8a1e0880b794b91108af0172520cc80e841cec717c9d5f2c598ce84"
+    },
+    {
+      "artifact_entry": "framework-start/monitor-stop.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/framework-start/monitor-stop.json",
+      "bytes": 38103,
+      "sha256": "f6c28b0b66aa6e27d852ab6ffcef874b68a4d2d85c7e57fc6363119d68af6190"
+    },
+    {
+      "artifact_entry": "nextgen/00a_voice_local_model_assent-render-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/00a_voice_local_model_assent-render-readiness.json",
+      "bytes": 566,
+      "sha256": "80b08e7f87afdd1c195971878404978b7ab64e6432a27f3104af38fdcb99e627"
+    },
+    {
+      "artifact_entry": "nextgen/00b_voice_local_model_enabled-render-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/00b_voice_local_model_enabled-render-readiness.json",
+      "bytes": 568,
+      "sha256": "9557a24a8b41fbe8f175388e0861437afdeccc0f416aab5ab570dec83ef8c770"
+    },
+    {
+      "artifact_entry": "nextgen/01_learning_flutter_before-render-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/01_learning_flutter_before-render-readiness.json",
+      "bytes": 562,
+      "sha256": "7676dde463c384fee0768edcd05c0f2c05daa4cdfaf6e10731d60c0413194f3f"
+    },
+    {
+      "artifact_entry": "nextgen/03_learning_native_ten_and_three.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/03_learning_native_ten_and_three.png",
+      "bytes": 571140,
+      "sha256": "86c1bd65e4491d72ab502bb65159dc3f9b9049009dcc84f751c3cf28f03aa533"
+    },
+    {
+      "artifact_entry": "nextgen/04_learning_native_thirteen.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/04_learning_native_thirteen.png",
+      "bytes": 581478,
+      "sha256": "6ee38bfca33caa9c04d287352b9dc2e3e11935b3ffbd23286f04557e6dca23e9"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson-0.xml",
+      "bytes": 24928,
+      "sha256": "a4d39b539e44f2afabe008ccd92e3a726dd788f95eaeb08e7f9a813dc6679a9b"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 7421,
+      "sha256": "823b32fcb8b263cc74f5d3c2a8c92cd5cd5fde4a397d8a81061ef95ab9fb7092"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr.json",
+      "bytes": 5145,
+      "sha256": "f06f50939447a94b78277247fbf2ed2d198a7e166dbdf738d0a2e3d57954158d"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr-contrast.tsv",
+      "bytes": 7421,
+      "sha256": "823b32fcb8b263cc74f5d3c2a8c92cd5cd5fde4a397d8a81061ef95ab9fb7092"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr.json",
+      "bytes": 5145,
+      "sha256": "f06f50939447a94b78277247fbf2ed2d198a7e166dbdf738d0a2e3d57954158d"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "bytes": 2623,
+      "sha256": "fb6383567cf188c302bbb05cc5f0b250ffbaf7206961b043aacc0730e89d9605"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1508438,
+      "sha256": "e5e22f2f0e10ee35dd8d1670d6cc80d820d384ba489d52dfee18c75d4fb7b4b0"
+    },
+    {
+      "artifact_entry": "nextgen/10_cards_flutter_round-render-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/10_cards_flutter_round-render-readiness.json",
+      "bytes": 939,
+      "sha256": "2324ccc1d7116b40cc1cb4bc95754e7c6cb7e26bc6d19128245a1fbe36e62b8b"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-after-layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-00-after-layout.json",
+      "bytes": 1324,
+      "sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-before-layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-00-before-layout.json",
+      "bytes": 1324,
+      "sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-00-ocr-contrast.tsv",
+      "bytes": 5500,
+      "sha256": "53d6064952c343968f9f83700cd6503886cceeaaa152ad105bef468a63f3eaf2"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-00-ocr.json",
+      "bytes": 4085,
+      "sha256": "b449e5dea846c96250ece63834bb2b920933decaa46da8c00e1429076e95fd10"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-after-layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-after-layout.json",
+      "bytes": 1324,
+      "sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "bytes": 1324,
+      "sha256": "53e04adffee80238af29db728015c025aa43b00fdcbe0dd7a8e7946a6b6bfb37"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-ocr-contrast.tsv",
+      "bytes": 5500,
+      "sha256": "53d6064952c343968f9f83700cd6503886cceeaaa152ad105bef468a63f3eaf2"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-ocr.json",
+      "bytes": 4085,
+      "sha256": "b449e5dea846c96250ece63834bb2b920933decaa46da8c00e1429076e95fd10"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 951833,
+      "sha256": "71e71bc60c043bc4a81195974b8bca4d7c673e33bd18b46295703f47e24a478e"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 33235,
+      "sha256": "4e09373348ea1c29665d65d34e70cd205d721282d1c5c0ea6d64956d04b85181"
+    },
+    {
+      "artifact_entry": "nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679"
+    },
+    {
+      "artifact_entry": "nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "bytes": 2696,
+      "sha256": "1fa333795922b5312c3261efbf8cfdee8578394dc774056024afc0ff78bc845b"
+    },
+    {
+      "artifact_entry": "nextgen/99_nextgen_failure.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/99_nextgen_failure.png",
+      "bytes": 952021,
+      "sha256": "9f47fd26afaff2399bd5dd256e85dfd8052382a38d5625274f2eb0486268f00d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-actual-display-density.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee"
+    },
+    {
+      "artifact_entry": "nextgen/cards-before-native-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-before-native-preferences.xml",
+      "bytes": 5979,
+      "sha256": "d7ea39e53bf133b162ee402a7539a1825cceefdacefc3560d25559c0bd549e40"
+    },
+    {
+      "artifact_entry": "nextgen/cards-flutter.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-flutter.xml",
+      "bytes": 30222,
+      "sha256": "6d8d85528b3ed73e0acd257a1dd18d12c37caa120c565fddf108dc2639c61198"
+    },
+    {
+      "artifact_entry": "nextgen/cards-games-tab-7--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-games-tab-7--1-0.xml",
+      "bytes": 29328,
+      "sha256": "c57cf7c4a9a2210ea68eeb775469795d1e39b63be6f2eea151a18600494fa6e4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-initial-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-initial-readiness.json",
+      "bytes": 493,
+      "sha256": "d903549ac4afa874c31f2babb7fb719dac1e5a9a2be3adf0274302e5285a5f6b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-001.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-001.json",
+      "bytes": 629,
+      "sha256": "b7d3f4cdfbedf9b62f78605267d895b64c2667f75f41991a50bca6503da96faf"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-002.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-002.json",
+      "bytes": 629,
+      "sha256": "3aa8fe016d739e67ed80b9dc9e49909b0404891f4e39b22484bd763806659e7f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-001.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-001.txt",
+      "bytes": 80,
+      "sha256": "a90114db39d96f5469174161b64dbbb0f7149603a62524dd6f7a68bde68e8cd9"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-002.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-002.txt",
+      "bytes": 80,
+      "sha256": "b0ebc03f8ec3055aa351f0c65372c6a861e9edb887332cc254a415b6a93018da"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-003.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-003.json",
+      "bytes": 629,
+      "sha256": "a65600eee06b51a51ea9aae3136fe65e7f0572d3a10649e312e56037ac7515b2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-003.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-003.txt",
+      "bytes": 80,
+      "sha256": "03f433193a49f9246f03d7e49c482b47782bcda008a7a38e5f55e56ff410b3dd"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-004.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-004.json",
+      "bytes": 629,
+      "sha256": "aba5639c55f17af43591cbecb2295bae7efda78f084855e74c161ff55c62f13d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-004.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-004.txt",
+      "bytes": 80,
+      "sha256": "7b8659a13c3b0f5cd7e7a21bb623de6d8dfe75452287f576b3f0f00704fa4b27"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-005.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-005.json",
+      "bytes": 629,
+      "sha256": "a5407e9400ff2598129f700e9bf9fa8e873dae11e08f83e2cd85bf6433ec7471"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-005.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-005.txt",
+      "bytes": 80,
+      "sha256": "1fe1ab11d9187c6f51c6d216872e147c48f39dcd8e20ff02896e4630c50f8335"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-006.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-006.json",
+      "bytes": 629,
+      "sha256": "252c34aeebf9cf2b1f8d4cc979a9ecce4c776cfea74e8a846e61b7172bbccd07"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-006.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-006.txt",
+      "bytes": 80,
+      "sha256": "9a6a9c55724c42d286b90ecb7a1e1f920cfff48266556a67a24e08834db58850"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-007.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-007.json",
+      "bytes": 629,
+      "sha256": "3168e5bbf8a094e639725e0f9a0525f199aed801ebba6c3617a647709ce4531d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-007.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-007.txt",
+      "bytes": 80,
+      "sha256": "5a288a7bb792f8fb5890792b8ccda33128ecc2a89e26e7a684c7053a3e03d4bb"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-008.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-008.json",
+      "bytes": 628,
+      "sha256": "243124dda24739d2235904949da6537e23713ef61acd17c044cf4c93c61db55f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-001-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-001-state.json",
+      "bytes": 1643,
+      "sha256": "98819711d6117b1759989784ccdeb165e5603a27acdeec9106c82cfa6c9161b1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-008.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-lifecycle-008.txt",
+      "bytes": 80,
+      "sha256": "1b4f4ea9817a9446cdf2061c2f07630b316c6e09761228336e82291c2d34cf87"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-002-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-002-state.json",
+      "bytes": 1643,
+      "sha256": "98819711d6117b1759989784ccdeb165e5603a27acdeec9106c82cfa6c9161b1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-003-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-003-state.json",
+      "bytes": 1643,
+      "sha256": "98819711d6117b1759989784ccdeb165e5603a27acdeec9106c82cfa6c9161b1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-004-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-004-state.json",
+      "bytes": 1643,
+      "sha256": "98819711d6117b1759989784ccdeb165e5603a27acdeec9106c82cfa6c9161b1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-005-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-005-state.json",
+      "bytes": 1643,
+      "sha256": "98819711d6117b1759989784ccdeb165e5603a27acdeec9106c82cfa6c9161b1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-006-request.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "sha256": "e13e2970ec2d5c66c19b6f0ed2ce30f3938e48abdb2f31ab5c41737858efd959"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-007-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-007-state.json",
+      "bytes": 1755,
+      "sha256": "d2dbf104da5ad7bf279626bb7c0583759ba2e43293fbe7154f30b469fd00bbe3"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-008-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-008-state.json",
+      "bytes": 1749,
+      "sha256": "c073aad68c1d9fb03107479525360cb2847b3904a9dd8b908fd3a0e3b089e9c3"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-009-state.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-mailbox-009-state.json",
+      "bytes": 1749,
+      "sha256": "c073aad68c1d9fb03107479525360cb2847b3904a9dd8b908fd3a0e3b089e9c3"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-draw-0-ocr-contrast.tsv",
+      "bytes": 5500,
+      "sha256": "53d6064952c343968f9f83700cd6503886cceeaaa152ad105bef468a63f3eaf2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-draw-0-ocr.json",
+      "bytes": 4087,
+      "sha256": "efee73fda9896ebf996b49b69a77fefc3b5a495c424e1c0a6d6bb42ec47d0668"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-draw-1-ocr-contrast.tsv",
+      "bytes": 5500,
+      "sha256": "53d6064952c343968f9f83700cd6503886cceeaaa152ad105bef468a63f3eaf2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-draw-1-ocr.json",
+      "bytes": 4087,
+      "sha256": "efee73fda9896ebf996b49b69a77fefc3b5a495c424e1c0a6d6bb42ec47d0668"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2757,
+      "sha256": "3f935baf3a91d56a54bea0c1a8899e4d9264c04ab5c7dca8319fad280e761a4b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-1.xml",
+      "bytes": 31089,
+      "sha256": "6a53dc6d1233d641b93ff84234af9a8fe241390831854713d11cc2c002d7d348"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-11.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-11.xml",
+      "bytes": 31089,
+      "sha256": "879e6d1c12d1d3e8f08cc2c13eea7156f2975a1af2f753d7c0bddc3c94b535dd"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-10.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-10.xml",
+      "bytes": 31089,
+      "sha256": "cdff4d3993af95eaf2a14b17584135b1c1aa597bd94612e4bb94e8feb9585735"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-0.xml",
+      "bytes": 31089,
+      "sha256": "ad317d463942af82fd26c4ff9a62ad05002354a0984c21f31bb3ab86f54923c6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-12.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-12.xml",
+      "bytes": 31089,
+      "sha256": "e37c5d5da991c10a0c4c458637766816dd54545370a7ba57e488f13ffd1c2a26"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-13.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-13.xml",
+      "bytes": 31089,
+      "sha256": "cc5ad61e9438da0a822b35f36a987b1bada66f77cb5a5ec898f8f175a51eb9f2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-14.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-14.xml",
+      "bytes": 31089,
+      "sha256": "b48f7c47eb94fdce380efaa5f70e4868878717c3e40e9f216585e5c7c2e12e4e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-15.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-15.xml",
+      "bytes": 31089,
+      "sha256": "023173ade3c4cdd042a8af3cca9f57563ee9b0988663595e776aacc78752e5d5"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-16.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-16.xml",
+      "bytes": 31089,
+      "sha256": "829f46ceebf4284da58af4a04b4fdb462d4290bce4bce1550aa4ef4103177eaf"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-2.xml",
+      "bytes": 31089,
+      "sha256": "b48f7c47eb94fdce380efaa5f70e4868878717c3e40e9f216585e5c7c2e12e4e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-3.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-3.xml",
+      "bytes": 31089,
+      "sha256": "a168630cf62550fd26c72d14b656c93a4193ce8b61a47f5c0b471ddecc43f9b1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-4.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-4.xml",
+      "bytes": 31089,
+      "sha256": "ad317d463942af82fd26c4ff9a62ad05002354a0984c21f31bb3ab86f54923c6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-5.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-5.xml",
+      "bytes": 31089,
+      "sha256": "6a53dc6d1233d641b93ff84234af9a8fe241390831854713d11cc2c002d7d348"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-6.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-6.xml",
+      "bytes": 31089,
+      "sha256": "cdff4d3993af95eaf2a14b17584135b1c1aa597bd94612e4bb94e8feb9585735"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-8.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-8.xml",
+      "bytes": 31089,
+      "sha256": "e7cdcd43a6c5c475ad4365a3c55ca46df1f046dee3d82ad19397ce352e8dced5"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-7.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-7.xml",
+      "bytes": 31089,
+      "sha256": "5943e7fedc55d35cd047efa96f21b438b7cc6d1655cd7102ad3a521737561350"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-9.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19--1-9.xml",
+      "bytes": 31089,
+      "sha256": "43952ab682881002259afca1b1e18f676a22fdd57699c2599f223b50558a9893"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-0.xml",
+      "bytes": 31089,
+      "sha256": "879e6d1c12d1d3e8f08cc2c13eea7156f2975a1af2f753d7c0bddc3c94b535dd"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-1.xml",
+      "bytes": 31089,
+      "sha256": "b48f7c47eb94fdce380efaa5f70e4868878717c3e40e9f216585e5c7c2e12e4e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-10.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-10.xml",
+      "bytes": 31089,
+      "sha256": "e7cdcd43a6c5c475ad4365a3c55ca46df1f046dee3d82ad19397ce352e8dced5"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-11.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-11.xml",
+      "bytes": 31089,
+      "sha256": "a2177394168c641fa71fa4463c8015aced6040128a4fce25929faf9fdb34c7db"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-13.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-13.xml",
+      "bytes": 31089,
+      "sha256": "a2177394168c641fa71fa4463c8015aced6040128a4fce25929faf9fdb34c7db"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-12.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-12.xml",
+      "bytes": 31089,
+      "sha256": "cdff4d3993af95eaf2a14b17584135b1c1aa597bd94612e4bb94e8feb9585735"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-14.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-14.xml",
+      "bytes": 31089,
+      "sha256": "e7cdcd43a6c5c475ad4365a3c55ca46df1f046dee3d82ad19397ce352e8dced5"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-15.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-15.xml",
+      "bytes": 31089,
+      "sha256": "1525b466d215808b264c7ce8d9774419b8107abfbd5a2230b318556b74262459"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-16.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-16.xml",
+      "bytes": 31089,
+      "sha256": "b48f7c47eb94fdce380efaa5f70e4868878717c3e40e9f216585e5c7c2e12e4e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-2.xml",
+      "bytes": 31089,
+      "sha256": "829f46ceebf4284da58af4a04b4fdb462d4290bce4bce1550aa4ef4103177eaf"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-4.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-4.xml",
+      "bytes": 31089,
+      "sha256": "152ffc884a329575d2c696a0f7cad6b5c0b410073f68b43aaeb959bf63e625a0"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-3.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-3.xml",
+      "bytes": 31089,
+      "sha256": "09fc326d17b8d440d1a6551afd0181003e3aa9b74ba0434a3d4c962fb01b1b27"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-6.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-6.xml",
+      "bytes": 31089,
+      "sha256": "023173ade3c4cdd042a8af3cca9f57563ee9b0988663595e776aacc78752e5d5"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-5.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-5.xml",
+      "bytes": 31089,
+      "sha256": "cfef3adb5f63331b3059713b1360dfe63abe86c3c3deead179c58d32b469ac6b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-7.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-7.xml",
+      "bytes": 31089,
+      "sha256": "829f46ceebf4284da58af4a04b4fdb462d4290bce4bce1550aa4ef4103177eaf"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-8.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-8.xml",
+      "bytes": 31089,
+      "sha256": "cdff4d3993af95eaf2a14b17584135b1c1aa597bd94612e4bb94e8feb9585735"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-9.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-19-1-9.xml",
+      "bytes": 31089,
+      "sha256": "1525b466d215808b264c7ce8d9774419b8107abfbd5a2230b318556b74262459"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-2--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-entry-2--1-0.xml",
+      "bytes": 31089,
+      "sha256": "e37c5d5da991c10a0c4c458637766816dd54545370a7ba57e488f13ffd1c2a26"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-components.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-components.json",
+      "bytes": 458,
+      "sha256": "e13431a18b46f979bd58f5a49030c66ae50cb5cbe1e66ea34c908c5ef962e6d6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-contrast.tsv",
+      "bytes": 841,
+      "sha256": "a822e1ee302e6d2a5efdf99b6ff83f6ac1bd9263f6012c020c5e113b3b1d49b8"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "d69fbd7737ffb11d9322aee50de163859af4d659af6a1bc94260edf21bd54d9c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-raw.tsv",
+      "bytes": 895,
+      "sha256": "f6f4f06d46e026814e8d2411e604424e3f74bf0861696b1c26ebacd828bffe4e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-teal-text-1x.tsv",
+      "bytes": 1242,
+      "sha256": "a6a3b435c8d675f7098366849b1011907b9321652bd0f78d7eb260cad60cd67d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-tiles.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-tiles.json",
+      "bytes": 4836,
+      "sha256": "bd9586926f26535265803b0e377b18dec54abfafffaab9360257a14ccef45c2a"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 248,
+      "sha256": "2eafa9cc1cb59d889c6aab5f4b8436de5bef0cfad5dc339ece28484dc4431fdf"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 257,
+      "sha256": "3d951f5aa4c97a4ed003608c740bb406f9c7f04b4c8b011e7ad3260797e1b461"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 566,
+      "sha256": "2bc7821eb87567032253f81280d9a526b6efd0d8cf4aedf120f4e2870f7b5822"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 381,
+      "sha256": "4b40568f69cd86eab4f58173245de6d26fdc5135856d13addd96c48ecfa78f9d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 248,
+      "sha256": "7b6e9559172a34e29619d15b584c8ad4af6403d149a68b3eb45a3df0c2b4d530"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 257,
+      "sha256": "5f1d9cc083b3aa6a5133afa2018eed994fe28f2c3f7e8ca8a6fa9d17d7065cf0"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 567,
+      "sha256": "67d2cb4cc920d026cea3326624f36c51056bfbf0ee566a72f15ca5f97c0413e4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 381,
+      "sha256": "f30412a5e61e70639f1f4d918c1b8b68556d84b89ba6b8a1634a420d72e7230f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-latin.tsv",
+      "bytes": 841,
+      "sha256": "483f8ca1cb945957d477c53c6081f9b5db71018fa3fb2ac6d3c9fca4f07cf10f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr-white-text.tsv",
+      "bytes": 841,
+      "sha256": "c034afb0e3cae88bbc4a02c5394b5cc1b697119468ed82c8d6624af5971ea86a"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-0-ocr.json",
+      "bytes": 3641,
+      "sha256": "171a1ed46bb48e09aa1b76b2fb68d640a171578c5fbffa24004253a6bbc6ed6d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-components.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-components.json",
+      "bytes": 2307,
+      "sha256": "c021d551814fde76fe6dc5e0bd203f36923df073f72615782ee125ffc5aecc5b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-contrast.tsv",
+      "bytes": 6721,
+      "sha256": "b68b4d47d8fea02ef9c97cf331489c9c6b3dcda15f8cbdb4c05c1d8301089069"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-gold-component-0.tsv",
+      "bytes": 229,
+      "sha256": "4d36c13ccc1d00965cc6fbc189d5d8f5f422df629ec5e28f89d15e9564124d89"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-gold-component-1.tsv",
+      "bytes": 222,
+      "sha256": "501aa68507600ef1a25fbdf32403b17fce9990487a9a3ca0fe113264ca15b6ec"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-gold-component-2.tsv",
+      "bytes": 222,
+      "sha256": "65f6ab685c1e1febcf6b8bdb9563b0e698921b515c2240eedf3e5b49fd84298e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-gold-component-3.tsv",
+      "bytes": 222,
+      "sha256": "1be0e9012b6463d5fa7ce4de2e3ca869615a9bd71aa1aef936929e41c40645be"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-gold-component-4.tsv",
+      "bytes": 221,
+      "sha256": "650f461f544f7463db3e0078c5416e2dc3146735d8a2fdd67fe03b8e00d0fa54"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-navy-latin-1x.tsv",
+      "bytes": 3984,
+      "sha256": "f619802cf17de41e57ef26d2291f84e4db2f91454df562dd21184445d582c624"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-navy-latin.tsv",
+      "bytes": 4614,
+      "sha256": "82ba57e5356574e9017c2dba32b50693bbfa4d4e0f925b006120314ca5119ff3"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-teal-text-1x.tsv",
+      "bytes": 8037,
+      "sha256": "dd7d719ecc51c9e696c966effc729257ba0c677404a347156ea148e132506b41"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-raw.tsv",
+      "bytes": 4736,
+      "sha256": "d1afd9c7d1fa247cd71f28d256fb0eda7cdf4c3220c91500777045673a10aaf5"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-tiles.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-tiles.json",
+      "bytes": 4885,
+      "sha256": "684720fec6e8740e05ab20c717bb19e1b2bc2d489884f4bf478eef19b0bc3dcd"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1073,
+      "sha256": "50558a723393282248c48ef71958dc401d8c2869e44d64610caee54fac62894f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1417,
+      "sha256": "b11d20151cbad8c18b086734ee9e1387ddd6be4d8eeb1c0f8c3528eac3cb2cfc"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 3138,
+      "sha256": "0bf3794be2988b26452ecc3abb3e83714668de30f6cabb3a05c189f06b3ff1c3"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 3170,
+      "sha256": "af9dfceb5b554a63a9f0b3fb9617f540593323e721756d102ada07c97a8c209e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 5673,
+      "sha256": "ea9c1b31cdb1b375c2ea6ab35fe3de005e94b358f421675131f8499a7e1d42f5"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 4372,
+      "sha256": "5964b1f8e2208a3ccd08a9cd4191b61617c8bd8f8e20f6d431596e21ca451435"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-tile-0.tsv",
+      "bytes": 1251,
+      "sha256": "9e83e02b0a6c71410e0e82213459d9a1015768903e8f0207634a701e3475b35c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-tile-1.tsv",
+      "bytes": 979,
+      "sha256": "6072b28d8dc2013acd0270d4894a2b84a933918b88371a616385fb073d464400"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-tile-2.tsv",
+      "bytes": 2155,
+      "sha256": "ff92cc1d86492db1e57a1bdf09c096e41245f8558caaf07b0b28918c94955b8b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-tile-3.tsv",
+      "bytes": 2447,
+      "sha256": "5065d667d9a4040a2dbe11eaa0e8a4c27289bf672760c56f9ec75d8217901006"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-tile-4.tsv",
+      "bytes": 2803,
+      "sha256": "3da65cefbc13234ee669d5ab343f6b42beead78dc33e08489d1b3ef361c9138f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin-tile-5.tsv",
+      "bytes": 2980,
+      "sha256": "57967ac5b8660791cd2456d5c3edaf1425d9f21f8fc34f4f49861ef0e9769cf0"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-text.tsv",
+      "bytes": 8241,
+      "sha256": "dca16095a421af7a650d4d997503cc2a7cb27dfc31e95ac26cb8081c3a82a85d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr-white-latin.tsv",
+      "bytes": 8223,
+      "sha256": "03beaa2abd764dbdd68ae724078418070b563daddf3460eaf39c41cc6ccc7f4e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-1-ocr.json",
+      "bytes": 32789,
+      "sha256": "fa11bd383f0faab9ac881a7fc8ed0b048ae7d2128b5e4a83e0a6ee97aa98c3a1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-2-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-2-ocr-contrast.tsv",
+      "bytes": 5500,
+      "sha256": "53d6064952c343968f9f83700cd6503886cceeaaa152ad105bef468a63f3eaf2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-2-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-native-title-2-ocr.json",
+      "bytes": 4096,
+      "sha256": "1d4b1486a8ec3d0eac1c20869cf5a3cb582206dc6ebfbeec0652807860f112a1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-portal-46--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-portal-46--1-0.xml",
+      "bytes": 26141,
+      "sha256": "578e483788141a60f97903b04956b424d8cb8f51c5fe92831883a04452fd33c6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-save-005-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-save-005-preferences.xml",
+      "bytes": 5979,
+      "sha256": "d7ea39e53bf133b162ee402a7539a1825cceefdacefc3560d25559c0bd549e40"
+    },
+    {
+      "artifact_entry": "nextgen/cards-solo-12--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/cards-solo-12--1-0.xml",
+      "bytes": 16801,
+      "sha256": "43f8a87680030c2eee4583f2175dac997e4ff79ebe2a88c57a615ca6fac4eb93"
+    },
+    {
+      "artifact_entry": "nextgen/guided-answer-six-1--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-answer-six-1--1-0.xml",
+      "bytes": 29797,
+      "sha256": "125dca376271d62746908d295b0bf89016003cf276d3a2b4ee773b8117f70dfe"
+    },
+    {
+      "artifact_entry": "nextgen/guided-bridge-actual-target.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-bridge-actual-target.json",
+      "bytes": 242,
+      "sha256": "f575d9fc8eb85c85c7f3ba198b64e1166585da5cffa8cae64aa6b96694156ddb"
+    },
+    {
+      "artifact_entry": "nextgen/guided-bridge-card.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-bridge-card.xml",
+      "bytes": 20477,
+      "sha256": "851db57be5bec1dc63cc69b708c11323bf2695ca6bb468baf6be568bd6c1c556"
+    },
+    {
+      "artifact_entry": "nextgen/guided-bridge-observed-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-bridge-observed-0.xml",
+      "bytes": 20477,
+      "sha256": "851db57be5bec1dc63cc69b708c11323bf2695ca6bb468baf6be568bd6c1c556"
+    },
+    {
+      "artifact_entry": "nextgen/guided-current-example.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-current-example.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/guided-example-6--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-example-6--1-0.xml",
+      "bytes": 28967,
+      "sha256": "eff0a4465796b4d6a8d03bc8a06812f0c4994e6483818b017d231c918bc4d271"
+    },
+    {
+      "artifact_entry": "nextgen/guided-foundation.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-foundation.xml",
+      "bytes": 29797,
+      "sha256": "125dca376271d62746908d295b0bf89016003cf276d3a2b4ee773b8117f70dfe"
+    },
+    {
+      "artifact_entry": "nextgen/guided-greeting.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-greeting.xml",
+      "bytes": 26356,
+      "sha256": "405e8992dbcf8a1cc5371c6fa900fae76e7f788f2e24469a249d739df5b7bf2b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-0.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-1.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-10.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-10.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-11.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-11.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-12.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-12.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-14.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-14.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-13.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-13.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-15.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-15.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-16.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-16.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-2.xml",
+      "bytes": 28877,
+      "sha256": "1d0007e3bba5d3b7df7bbca85d8321cce1c35588f07c4243e81c8c4655e65382"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-3.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-3.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-4.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-4.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-5.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-5.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-6.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-6.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-7.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-7.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-8.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-8.xml",
+      "bytes": 28412,
+      "sha256": "4ae73a1322da6d6f5a5ad748c754aa435538114dcf1f6d42b8322f8b505f88ef"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19--1-9.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19--1-9.xml",
+      "bytes": 28413,
+      "sha256": "9391e527a4c3cb08a49095802d9084cfeb09b9b197880eb015302623668eae3a"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19-1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19-1-0.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-hub-19-1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-hub-19-1-1.xml",
+      "bytes": 29328,
+      "sha256": "191c7ee45f5db833e0bf11bbe0b06dd5a7c1500c96a7daa9d7cd80d9b641f1ec"
+    },
+    {
+      "artifact_entry": "nextgen/guided-next-6--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-next-6--1-0.xml",
+      "bytes": 26356,
+      "sha256": "405e8992dbcf8a1cc5371c6fa900fae76e7f788f2e24469a249d739df5b7bf2b"
+    },
+    {
+      "artifact_entry": "nextgen/guided-tools-27--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-tools-27--1-0.xml",
+      "bytes": 29352,
+      "sha256": "f695505f939aeb19ece41f8f7daeac777b229c512457c24206b660ac5054b72f"
+    },
+    {
+      "artifact_entry": "nextgen/guided-tools-open.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/guided-tools-open.xml",
+      "bytes": 28417,
+      "sha256": "68187fd3f060c2af2083c38286216a8ca7e82afd14da74e87330e070cb4b4d0b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-after-native-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-after-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "b6eec53d92abbcec2a586bd3508c687ccd480bb833195a09dc7c511d9f47fbd8"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-back-0-ocr-contrast.tsv",
+      "bytes": 4250,
+      "sha256": "517f5ed9efd49b47a2b8bd1dc850e1f94b4036547e9fdddf7916e46bd6ec8efe"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-back-0-ocr.json",
+      "bytes": 2704,
+      "sha256": "6db443f0641bd5cbc6afd9b5fa973b2ec5c95893a8387ec3cde576c70cd353a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-back-1-ocr-contrast.tsv",
+      "bytes": 3547,
+      "sha256": "6513308415484cafe88c016d44a4a270862aca2654102c36b54e78d6e178477e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-back-1-ocr.json",
+      "bytes": 2321,
+      "sha256": "c149310bb9a366ecd645053aaab4a727244cea4d2d7fd487dd4a10005a48d76a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-back-surface-readiness.json",
+      "bytes": 2754,
+      "sha256": "b08c5bfad394da63ef49e494cea62304e935ca95457df3de2277e9831af042ea"
+    },
+    {
+      "artifact_entry": "nextgen/learning-complete-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-complete-0-ocr-contrast.tsv",
+      "bytes": 3602,
+      "sha256": "681c2ac0596e92168597f9e54808ead760255241e9a45f2aa36898967558a553"
+    },
+    {
+      "artifact_entry": "nextgen/learning-before-native-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-before-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "b6eec53d92abbcec2a586bd3508c687ccd480bb833195a09dc7c511d9f47fbd8"
+    },
+    {
+      "artifact_entry": "nextgen/learning-complete-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-complete-0-ocr.json",
+      "bytes": 2443,
+      "sha256": "eb6e1f9266a880be867782c2c01758340d57c2c7069cdd875fcd1ac2d133a337"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-components.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-components.json",
+      "bytes": 2117,
+      "sha256": "d9c233268a91768f11f6512134c1878cb7b873c1dad343323647c914048e09fc"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "bytes": 3105,
+      "sha256": "0453a5182aa60fa637988ed8d79f14a5a75b0d02e8faeffa7e1c4a0bfec1b6dd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-gold-component-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-gold-component-0.tsv",
+      "bytes": 322,
+      "sha256": "e528cb6d8305209d6ed45d8d569b29d4558a33f512fb4998ec79837c4b007916"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "bytes": 374,
+      "sha256": "5fd2edb670e8f2dcc9e9e79e82d33913599337707bbaf9b724a86fb1d2064923"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-raw.tsv",
+      "bytes": 3182,
+      "sha256": "7470a7c9ced50dd4fe4f6a9e98c49cbaf6dd1a3ea95ebacf276514dc280403b5"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "bytes": 4149,
+      "sha256": "d98cc276068bde31fdfa7994e1bce21bd40b884c89963af648b8cc26cd6aa1ae"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "bytes": 2839,
+      "sha256": "7f24846f1748923f883572e78ce7e84c90c1246f6c0319456e10f04e9c386c18"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "bytes": 2842,
+      "sha256": "5e8ecb6bbfa357fe724324e6a43268568bbfa0896e09f0303ab1830c2b509c72"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-0-ocr.json",
+      "bytes": 10225,
+      "sha256": "bb039ebe13ea70e7bd3c5ebff528659cc91f2d9478cdc51beb43d2f186b6e95f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-components.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-components.json",
+      "bytes": 2116,
+      "sha256": "3e447a4e08ac0945133b54fda2f03026034bd3977bb65ea732a1466ca217733e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-contrast.tsv",
+      "bytes": 2967,
+      "sha256": "028b063ccdbfc0b2e3365a0bd769e9535e03d10635f38c876c08ec3c753e34f2"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-gold-component-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-gold-component-0.tsv",
+      "bytes": 322,
+      "sha256": "e528cb6d8305209d6ed45d8d569b29d4558a33f512fb4998ec79837c4b007916"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-navy-latin.tsv",
+      "bytes": 485,
+      "sha256": "c30a25f4d1acff45ba638de8399e958b3f5164e6dfb5e030a45d777c0c6f66bd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-raw.tsv",
+      "bytes": 3109,
+      "sha256": "ad62810e99f5c26848152f5576f3b228dafb2f8845a168b151a882e1689adacf"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-teal-text-1x.tsv",
+      "bytes": 4110,
+      "sha256": "a4949c7bb52e79d4dcf28fec730d81c62c0bd5bf571052e0f938e87d655bdf5b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-white-latin.tsv",
+      "bytes": 2883,
+      "sha256": "390e741bda77fdbcdde6aaf4e99e49137365f64eacc037aea5ad8efe10769f7a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr-white-text.tsv",
+      "bytes": 2925,
+      "sha256": "c4868b4b24def820381176c781c3efbc8a49fdf3d4a1279949f87c91a783a83d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-1-ocr.json",
+      "bytes": 10747,
+      "sha256": "25d7c6b886496e5e9d647b17559ccd016d8015fb442291e0bdddcff82989c324"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "ee61119796010713cdf6a0eea7832dc22c5765357722947abcff0441c5c877c9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-components.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-components.json",
+      "bytes": 6222,
+      "sha256": "f9dee18bd9fd536af50470bf4be8e385ba2259ce6314faab87f42dd76a7db719"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-contrast.tsv",
+      "bytes": 3072,
+      "sha256": "36cc57ec728bb4d49f3f2c84244cb43edbbd789f9f6e376733d5d75a396947ec"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-0.tsv",
+      "bytes": 232,
+      "sha256": "b803d0998b7e752303db3a504c4baf25e3bd3e9b7d6e27e3354fab1e6e880e83"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-1.tsv",
+      "bytes": 226,
+      "sha256": "85d83bc71c6950971957cb7ec4a1ca7a5cea35e193fa7108a1a4dcc5817d09e4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-10.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-10.tsv",
+      "bytes": 226,
+      "sha256": "56d1950a89a40ea421c0f561de02cb6950117fc5d034fb4066e7ef4f6610de8d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-11.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-11.tsv",
+      "bytes": 226,
+      "sha256": "19af41061063063c902e7e8021cb75401a909c221abcf624d79022770735704a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-12.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-12.tsv",
+      "bytes": 226,
+      "sha256": "03431adbe9480c9cae5cfd239a3732c5f98ad184797af80554278422e096b7bd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-13.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-13.tsv",
+      "bytes": 226,
+      "sha256": "526dfaa2ccc33fc0c27d8b521f23d48b35dae6a3311a3d28bd4ba92f54d1017b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-14.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-14.tsv",
+      "bytes": 226,
+      "sha256": "af364c3142b61051de114b5c71671ca41a0413c298b16ae3683cd0fd8c62cd99"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-15.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-15.tsv",
+      "bytes": 226,
+      "sha256": "499a7b7f204512ea6e3cf9d9bfedc0397766857aa0728f2954030c139b6ada61"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-2.tsv",
+      "bytes": 226,
+      "sha256": "47eeb40afcbdc758882eb4f5d90c0bcef129783e84ef800756b47e4c5181370d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-3.tsv",
+      "bytes": 261,
+      "sha256": "6814bc12afbc28a6366fd642cbb2b77130bd851d82d5007910af8ee0fe1acb4e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-4.tsv",
+      "bytes": 110,
+      "sha256": "315bb0a45af5cfcc720a57c85d60cc5cd675145aec7bb38963275993a30340ca"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-5.tsv",
+      "bytes": 226,
+      "sha256": "7f35d6a754306cad176280551544289ed6f25f7e4983e1bc5c6062906a37789e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-6.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-6.tsv",
+      "bytes": 263,
+      "sha256": "8743c33e863c4c10a390502afab6fca54c9a9493c1440d6bef7c62fe778e07eb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-7.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-7.tsv",
+      "bytes": 228,
+      "sha256": "14e98cf058c01afc1ab5a3edfebf6bfee0f4f73e978684c4081c78b2d48bedd3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-8.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-8.tsv",
+      "bytes": 226,
+      "sha256": "bac2e68d79acc1b47c6b9d00ace661474267237c367c35726a616fc69816e21f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-gold-component-9.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-gold-component-9.tsv",
+      "bytes": 226,
+      "sha256": "af5b73b77e41d931a80dddccd8de42a982802d7a0588b3532edc2dc3cfbaf756"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-navy-latin.tsv",
+      "bytes": 240,
+      "sha256": "9349295e404fd57fbcf9bde8c523c2fe8a4772f5f26876315a38fe3436f91abd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-raw.tsv",
+      "bytes": 2942,
+      "sha256": "e6e4b19b19daf659f385bd3516057d4f94156c8253d98536d3ef5fd23642c172"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-tiles.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-tiles.json",
+      "bytes": 5170,
+      "sha256": "6c6a59d25d247bdd784c3ad51d9102138e9234cd5d8289e4303949602b5ce531"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-teal-text-1x.tsv",
+      "bytes": 3937,
+      "sha256": "0b3919ae567fd82d834b9c90c1bec272054200b2fde3b153ea9ac2a7ca23d641"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1492,
+      "sha256": "0f46cb730e026d553e056cf5917dbf713ea679c6356f5ccc4c1fcf65d616399a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1048,
+      "sha256": "9fa417cafd2cca3f4b96b0637404322a5648eaa34e7051ea6349a3ce2d846e42"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1910,
+      "sha256": "02fbfa61b01327deae68f16f8b9458c340fdb055a55394aa2be87bebcbb461b7"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 871,
+      "sha256": "8279f6c48a090668baf1804722ed69f599a5de3c1f1c5f6eab8106a0e0603c2d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 875,
+      "sha256": "f22a8138c76553c3da49171039ceb5b6cb7ed647de8be10c5977a7ef5a78f8ce"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-dim-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 385,
+      "sha256": "e565dd96f15cd9aeaf9003fc09ab14158f806d25b7f5f88dc94470184501a996"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1619,
+      "sha256": "bdf6f967cb86be4f7c621efe3fd4792416a712b76e5f81e60a3a287c4b3b6418"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "sha256": "f0de3ef2a17e5bd0e9a8403c64452e8dbf6560cf660e4108da1182e40043c84d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 873,
+      "sha256": "a47e75648ded41c9f7bbdaa9c2d2ebde67016a96fdc95409b08fff8ed64cdf72"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 705,
+      "sha256": "583a75b04779bdde07c8c6f2fa366bd19c3c2573a1ea4ad973a2a504973844cb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1081,
+      "sha256": "aa2a7f4271ffa490fa06fedc1e10ef524878eb4c362cd508c58ab2935d0d67ae"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 385,
+      "sha256": "1d5617efeb0b9eeb50b469dd1713f193e7ebdf31b336c524ec79c54ac0b08f3e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-latin.tsv",
+      "bytes": 3901,
+      "sha256": "40b254cd51a43ab1bfb6f869195c3c2f6f556bec26927c4b0ba58bb73c11f422"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr-white-text.tsv",
+      "bytes": 3996,
+      "sha256": "6196a84d6d782b12ad78fcf52b33243fc926e4335256d84183fd31ebfb480f70"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-0-ocr.json",
+      "bytes": 11828,
+      "sha256": "c52b84e055940b990a97e3f5bf7bf17969f2d3322547718a5aaf8f10cc0d4f2b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-1-ocr-contrast.tsv",
+      "bytes": 3838,
+      "sha256": "a1bd9390dd9ea773cb389db27786afccee7f44f8f4f8e503432d719d2114bcd4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-1-ocr-raw.tsv",
+      "bytes": 2855,
+      "sha256": "328981c7c13aeb20b5afaf1d6362b31590723cb2cd78ebd311fe53022cecabf3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-1-ocr-white-text.tsv",
+      "bytes": 4134,
+      "sha256": "849b420d30ae9bcd0d63ea4f00c1672fb5db7c614121528f9acb6ac741c9f559"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-1-ocr.json",
+      "bytes": 8059,
+      "sha256": "a3a8723ece9e533dc46a88ee032483ca3a67612866b55a728239b82bf25e0ad4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-2-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-2-ocr-contrast.tsv",
+      "bytes": 4263,
+      "sha256": "71fb75bf98cfc19bfbc7b1fe18e6de170878f09847973d78e0fd04e080e44d17"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-2-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-2-ocr-raw.tsv",
+      "bytes": 2762,
+      "sha256": "3d2bd14bce1455a4561883570bf8e6b19de62e38adf7731e5d60782f20921bb9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-2-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-2-ocr-white-text.tsv",
+      "bytes": 3138,
+      "sha256": "b6ee7cf21ce984326097a72d37d1bc32e8d83de33bea2fe6832e03ae1f404da3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-2-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-2-ocr.json",
+      "bytes": 7163,
+      "sha256": "2139da9184f3bc26b63b27d1f7ed23ae8d57c74b1418b1620ff5fa0d02cd42f4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-2-surface-readiness.json",
+      "bytes": 3558,
+      "sha256": "ae7dbffd4e01d66eaa1ccdbdc71a01f68833cc8b27fc535c423f4196f4c073d6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-0-ocr-raw.tsv",
+      "bytes": 2938,
+      "sha256": "9322ede69db06d093af892eeddf88cc841b2dd8d3c7109bfb53ddf2584928f17"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-0-ocr-contrast.tsv",
+      "bytes": 3062,
+      "sha256": "3b6a47d097a4a220bfc5fe77f108ebb4e3430feef1ddc388a65f659f0756b657"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-0-ocr-white-text.tsv",
+      "bytes": 4406,
+      "sha256": "6310261322047e9f5ae040635619188e67aedfdc7496c4478f4bff1e5f536995"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-0-ocr.json",
+      "bytes": 6726,
+      "sha256": "c80ae473fcea8ca9aca82953874833493991412f24fd5a514c0bcfc0f1492d2d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-1-ocr-contrast.tsv",
+      "bytes": 2903,
+      "sha256": "7c7fa0d842b76b3a7a9dc6457124c88d2b5aa37a6503f119381a0bdad7200de7"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-1-ocr-raw.tsv",
+      "bytes": 3204,
+      "sha256": "fde177701018891b2100a984ba4bc7691b07dd5635b214bc15b1cf7341dcd438"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-1-ocr-white-text.tsv",
+      "bytes": 4265,
+      "sha256": "094feeb8f2e2c629bd045632e21274fd9daef6990fb1ac804082fffbc43f1a56"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-1-ocr.json",
+      "bytes": 6712,
+      "sha256": "857927df64e6c6dc47760ebcb27db4ded192f3fdf863b1ba33b880faa8613d0c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-3-surface-readiness.json",
+      "bytes": 2765,
+      "sha256": "59ec04272510aa7c35319deaccf0c9a1afca1a67e9472684a0069f9345eb5b39"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-0-ocr-contrast.tsv",
+      "bytes": 3210,
+      "sha256": "699c5cc1983c5acea2999f3579eca6a14ea338c2ee490029d5962d38b1a9f9f4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-0-ocr-raw.tsv",
+      "bytes": 3096,
+      "sha256": "8dd51bf3740cfbd48fe21d91ef76e49e4f08510954100d3f278cb0447370efb1"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-0-ocr-white-text.tsv",
+      "bytes": 3367,
+      "sha256": "8637097b1c3795321875fb624722fe8105b20f8fcab9f774d3ba05ee4dfa063b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-0-ocr.json",
+      "bytes": 6294,
+      "sha256": "77e7a5b384bfd915bbca54141fcf7109f73bcbf3a896877a09f7f214a05ac227"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-1-ocr-contrast.tsv",
+      "bytes": 3117,
+      "sha256": "940e671dd77c6396faf01956f3a1efea0d9500782910bbceaf73c3dd3ddaf029"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-1-ocr-raw.tsv",
+      "bytes": 2860,
+      "sha256": "369e8aceaa39408fd0ff8fbdf937853904cfa1209ea000bf58922c5fe07f3417"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-1-ocr.json",
+      "bytes": 6956,
+      "sha256": "770420823b464800d0e88cfff73325e56be129a6a1384ee9567e0b4aa737c824"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-1-ocr-white-text.tsv",
+      "bytes": 4196,
+      "sha256": "956863aa0e3d23d304528ba98609a383d0c5ce30a6b9de829cc6230bf425892f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-4-surface-readiness.json",
+      "bytes": 2765,
+      "sha256": "2fbc70031fdde3b9d496ab6c630907ea0dd226902b6df7cd9f31a02e178890ae"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-components.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-components.json",
+      "bytes": 6224,
+      "sha256": "be30e3ff5e5963db7a6384f6c73fb31cd2c25267f948b4d46f112786872cec6b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-contrast.tsv",
+      "bytes": 3545,
+      "sha256": "38a2a2bf0ae654008d58eeae1729133c5fa7bb0305415dc515399779fd4d9201"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-0.tsv",
+      "bytes": 111,
+      "sha256": "b7c8a95dedaf98dbc225a3772981fe10c52ba0eaf218a43b059635fa73410842"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-1.tsv",
+      "bytes": 111,
+      "sha256": "b7c8a95dedaf98dbc225a3772981fe10c52ba0eaf218a43b059635fa73410842"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-10.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-10.tsv",
+      "bytes": 226,
+      "sha256": "bac2e68d79acc1b47c6b9d00ace661474267237c367c35726a616fc69816e21f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-11.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-11.tsv",
+      "bytes": 226,
+      "sha256": "af5b73b77e41d931a80dddccd8de42a982802d7a0588b3532edc2dc3cfbaf756"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-12.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-12.tsv",
+      "bytes": 226,
+      "sha256": "56d1950a89a40ea421c0f561de02cb6950117fc5d034fb4066e7ef4f6610de8d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-13.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-13.tsv",
+      "bytes": 226,
+      "sha256": "19af41061063063c902e7e8021cb75401a909c221abcf624d79022770735704a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-14.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-14.tsv",
+      "bytes": 226,
+      "sha256": "03431adbe9480c9cae5cfd239a3732c5f98ad184797af80554278422e096b7bd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-15.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-15.tsv",
+      "bytes": 226,
+      "sha256": "526dfaa2ccc33fc0c27d8b521f23d48b35dae6a3311a3d28bd4ba92f54d1017b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-2.tsv",
+      "bytes": 226,
+      "sha256": "c0934aedaccf27b252ea306e06be37149b706182b1e62244d59f513a3500d3e5"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-3.tsv",
+      "bytes": 226,
+      "sha256": "747b97afbceadb15bd41ddf5d55250f6d15ed5dbeacc7837683894aa8d93c1de"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-4.tsv",
+      "bytes": 298,
+      "sha256": "ed370b8e8cba82cb919f3154adbdb84fc5c3ec2689b2361fd8a90fde8ac88561"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-5.tsv",
+      "bytes": 110,
+      "sha256": "315bb0a45af5cfcc720a57c85d60cc5cd675145aec7bb38963275993a30340ca"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-6.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-6.tsv",
+      "bytes": 226,
+      "sha256": "8215f76b21466094b60bf522f11504467d78a1aec14fdba5f2e76d3040a34364"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-7.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-7.tsv",
+      "bytes": 236,
+      "sha256": "869c3d5eeaff130fd810a51f16f3df5114ee13d26e783790d1016c2328550b52"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-9.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-9.tsv",
+      "bytes": 227,
+      "sha256": "6b225e6e792373af8fca13c3d298c7f57fb026d26031076443062aab483a1ff9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-gold-component-8.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-gold-component-8.tsv",
+      "bytes": 261,
+      "sha256": "58866ef6cb53d5ef931e95b2e8c2bd0e37d5facc90d3a7a64b2379e50a87eb71"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "d69fbd7737ffb11d9322aee50de163859af4d659af6a1bc94260edf21bd54d9c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-raw.tsv",
+      "bytes": 2651,
+      "sha256": "0c22c903001afda15a05870000cc7f5f97a2c0fdfec407a1a57d2de02e04d38d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-teal-text-1x.tsv",
+      "bytes": 5793,
+      "sha256": "e131f6fee5f80d64da876f184c03bad95a5df04ac495c525df77a605773dfb02"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-tiles.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-tiles.json",
+      "bytes": 5168,
+      "sha256": "4b000fb8a288ca2ccc2a2d572c3f5f5a1232893190e4f0727353d6bef81b3380"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1495,
+      "sha256": "0b358c0f6de908505213384b7bff7a978232cf3416bb633c86ab54ffc0e545c8"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1048,
+      "sha256": "f96a174871dfa916f164c211ddd2afb12e5f646fdc730daa4ff5116aca83a324"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1121,
+      "sha256": "8e89b88cfa0938d6f15bd6134cf18c47fe4845d22f6accf1d8ee116de5906d79"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 871,
+      "sha256": "8279f6c48a090668baf1804722ed69f599a5de3c1f1c5f6eab8106a0e0603c2d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 876,
+      "sha256": "0322bdf4249a73efee57a031da4614be171a85868d2a953efe5c73c06abe926f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-dim-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 385,
+      "sha256": "e565dd96f15cd9aeaf9003fc09ab14158f806d25b7f5f88dc94470184501a996"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1767,
+      "sha256": "77cd84e34dd094c151b2da9efcd087f048283e2816c7c082cf2336586dbde19e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 576,
+      "sha256": "e0801ad428b236aa6fae7d1373886f1fcf6f6637ad485284fadb920885b01904"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1624,
+      "sha256": "2422e68390822ab296c2ae2aa90b1cf5153ff24de8c67c530e56e4fb08651c94"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 1082,
+      "sha256": "41b773abcc076a0762e75865581cae824146a808560dfaaa89bbdd63f5ed4928"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 705,
+      "sha256": "583a75b04779bdde07c8c6f2fa366bd19c3c2573a1ea4ad973a2a504973844cb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 385,
+      "sha256": "1d5617efeb0b9eeb50b469dd1713f193e7ebdf31b336c524ec79c54ac0b08f3e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-latin.tsv",
+      "bytes": 2714,
+      "sha256": "5dd445a116155e0fd4f0bd4ed77a5bf32461a36ea4b7b5b14777f79b9d0f0a7a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr-white-text.tsv",
+      "bytes": 2673,
+      "sha256": "0207bd5d739e11e158c58e4ec0570978b8fefd30663b23a6a4669f4ae3b104ce"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-0-ocr.json",
+      "bytes": 11231,
+      "sha256": "74612f43149def1aa84c7a9def5169da43285d00686e3812ab3cbc0e07619a6e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-1-ocr-contrast.tsv",
+      "bytes": 3079,
+      "sha256": "6f09e5f2e85bbfef780ac130f3d7f9ee2d0661f1f55581ec898f1378dc233548"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-1-ocr-raw.tsv",
+      "bytes": 2817,
+      "sha256": "fe0c21c9c9e84d02f8d84a120836751e0769a952da09ca45a8af774a3882b5bc"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-1-ocr-white-text.tsv",
+      "bytes": 3639,
+      "sha256": "7d8287d33241ddde36b46232601bd4a4a6371acd4038b558595926c20fe7a94a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-1-ocr.json",
+      "bytes": 6553,
+      "sha256": "17cd2153895560dcaa635fa25d345b8b9e43f288ff8e7e2314cf2dcb275a5d22"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-2-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-2-ocr-contrast.tsv",
+      "bytes": 3078,
+      "sha256": "8826e1235be4ee920417d846a0dd741023f15cdf38bc0d43bcd4a3919f99131b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-2-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-2-ocr-raw.tsv",
+      "bytes": 2816,
+      "sha256": "b426a679eefe391a91c040c97c18e7e18de88a7ba8f0ce0e8bd389dca0f27f04"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-2-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-2-ocr-white-text.tsv",
+      "bytes": 3644,
+      "sha256": "10ad6e8d39369d57f5b5196823159a2800382807f66b1e0f44e0c1c7c6432144"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-2-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-2-ocr.json",
+      "bytes": 6308,
+      "sha256": "e3c36d87994d3730680e45cacd8d6cd951fbc4ef8955c165674b7f0d11a4864e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-move-5-surface-readiness.json",
+      "bytes": 3560,
+      "sha256": "c6bf2cf584264ad17cdc47df5e30371a862c0529cc765153305bf431cde3adc2"
+    },
+    {
+      "artifact_entry": "nextgen/learning-movement-logcat.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-movement-logcat.txt",
+      "bytes": 2603,
+      "sha256": "2bd456ae0cf607603c847c18b28cc6c2573f76b12fa65196285b27a4f422a68f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-0.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-1.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-10.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-10.xml",
+      "bytes": 29003,
+      "sha256": "aa17d4ac68f28b9ea23ae294749f7902b69961fd27ebab33bcb478a6bdc41809"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-11.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-11.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-12.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-12.xml",
+      "bytes": 28553,
+      "sha256": "c3763127ade79b40646e9bf0337abb50f4a26074d51ebebe36d02a075ee77411"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-13.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-13.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-14.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-14.xml",
+      "bytes": 29004,
+      "sha256": "7aa0e2ae1c6b60f172584b3cefbe626245d1866ca767a8e498606be1d5449071"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-15.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-15.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-16.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-16.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-2.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-3.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-3.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-4.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-4.xml",
+      "bytes": 28118,
+      "sha256": "1e405432323fa90b45eb958fd0b3d480f8701b05a01c6b02ab3a3816c1d6e950"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-5.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-5.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-6.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-6.xml",
+      "bytes": 29002,
+      "sha256": "7ac634710d9788b9052987ce1e6e7f47e80cbfd3bb10745a66f6d80b73df95ac"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-7.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-7.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-8.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-8.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-9.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27--1-9.xml",
+      "bytes": 29004,
+      "sha256": "b3680325d4cd85ac10a6e28323183af44af5059cb89bb1afb5f6e349e106eb49"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27-1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27-1-0.xml",
+      "bytes": 28118,
+      "sha256": "23e77b35ddc3a93a1e39cd726b1bf12854fcb93bf92253fd170e975b3ee1d9a9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27-1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-entry-27-1-1.xml",
+      "bytes": 24928,
+      "sha256": "0ac1e943c576f1646e23abcf29eca95bcad34392d64d8283d18ec51e2c3378d0"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-components.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-components.json",
+      "bytes": 462,
+      "sha256": "1e995b29035864c2838c0956efb2701c1b69c9cbbef98923287578f8021ca020"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-contrast.tsv",
+      "bytes": 841,
+      "sha256": "197c169a0c70f21f3ed5c1bc91a303b9a55d00ef47dd73a175cb282bb2c6ac63"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "d69fbd7737ffb11d9322aee50de163859af4d659af6a1bc94260edf21bd54d9c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-raw.tsv",
+      "bytes": 895,
+      "sha256": "a9ec4324b44f462894c7b1db16726a9a831adb5ee929ec713a4593d31134a76d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-teal-text-1x.tsv",
+      "bytes": 1135,
+      "sha256": "2b597e2e6ca2b59148107284e2dcfa2722c0b47a0185b42ec0ee9a1285c61182"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-tiles.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-tiles.json",
+      "bytes": 4912,
+      "sha256": "d8a6c30966bb13a3bce3a47a5d83c58a11b2b3add770657edd4b2f8e5cdfe864"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 248,
+      "sha256": "8b00ae2fd1ee21a998bd3e30421dbbe0478d3b2be6d7093987fa46063ae7f3f3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 257,
+      "sha256": "3d951f5aa4c97a4ed003608c740bb406f9c7f04b4c8b011e7ad3260797e1b461"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 566,
+      "sha256": "2bc7821eb87567032253f81280d9a526b6efd0d8cf4aedf120f4e2870f7b5822"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 381,
+      "sha256": "4b40568f69cd86eab4f58173245de6d26fdc5135856d13addd96c48ecfa78f9d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 248,
+      "sha256": "f765bafd81de7b4fe377129056d5d2ce798ddd0dc3d834f2183308fec0ece4a2"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 257,
+      "sha256": "5f1d9cc083b3aa6a5133afa2018eed994fe28f2c3f7e8ca8a6fa9d17d7065cf0"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 567,
+      "sha256": "67d2cb4cc920d026cea3326624f36c51056bfbf0ee566a72f15ca5f97c0413e4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 381,
+      "sha256": "f30412a5e61e70639f1f4d918c1b8b68556d84b89ba6b8a1634a420d72e7230f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "976d65282670c27eb67373ef4df59f9eb5d69112d0466e59941d450428f91af4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-latin.tsv",
+      "bytes": 841,
+      "sha256": "ae0bb365b4910ecf6c944b98cfb81ce301c3172f8751a89538f19970807d7043"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr-white-text.tsv",
+      "bytes": 841,
+      "sha256": "252458d29fd70ae5d87468b2ac44a17a18d4a4bf86e77b9be37e5f123f86a3c3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-0-ocr.json",
+      "bytes": 3514,
+      "sha256": "c4ce61fcf8b33d24b6e0c958b269e8d44b7bf1cc95b747db5b1ca35e471fbea8"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-1-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-1-ocr-contrast.tsv",
+      "bytes": 2961,
+      "sha256": "b0d5bd39149887660f02a3583665a1c8c3b18097145dfd96279b2b175658dc70"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-native-title-1-ocr.json",
+      "bytes": 2038,
+      "sha256": "c47dbb9b15c9f992ac6db586b84efcbb676195e97583e83be1f961eee91582c2"
+    },
+    {
+      "artifact_entry": "nextgen/learning-return-academy.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-return-academy.xml",
+      "bytes": 29328,
+      "sha256": "c57cf7c4a9a2210ea68eeb775469795d1e39b63be6f2eea151a18600494fa6e4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-return-hub.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-return-hub.xml",
+      "bytes": 20477,
+      "sha256": "33418278241c368e74ce1b0da60faa8581c071fe4a9b45ff24fa01203225a446"
+    },
+    {
+      "artifact_entry": "nextgen/learning-return-navigation.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-return-navigation.xml",
+      "bytes": 29328,
+      "sha256": "c57cf7c4a9a2210ea68eeb775469795d1e39b63be6f2eea151a18600494fa6e4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-tab-6--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-tab-6--1-0.xml",
+      "bytes": 27241,
+      "sha256": "bd34452c264d16415dedf3c97c2f3cd762ffd1b76cf4830d6a1ab0a6bb3d1d73"
+    },
+    {
+      "artifact_entry": "nextgen/learning-speech-logcat.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-speech-logcat.txt",
+      "bytes": 2726,
+      "sha256": "8a7a0a3409d4539e503f8af3cfdb486319fcba25dfb7bc1ded2c45fa2aaac0de"
+    },
+    {
+      "artifact_entry": "nextgen/learning-ten-filled-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-ten-filled-0-ocr-contrast.tsv",
+      "bytes": 3144,
+      "sha256": "f9fe2d40338c0a712c1708272df296841c48bd7e097cb33d0fa832273567d5de"
+    },
+    {
+      "artifact_entry": "nextgen/learning-ten-filled-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/learning-ten-filled-0-ocr.json",
+      "bytes": 2177,
+      "sha256": "0c4281c6002c84ca62a5986fe62145cbe44abeab3995c2c4dd9e75a8438b336a"
+    },
+    {
+      "artifact_entry": "nextgen/logcat.txt",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/logcat.txt",
+      "bytes": 1282151,
+      "sha256": "273b7cc2cf9729ec90ababa515d2dec2dc998623d41e94c8d6998a9bdd7aa058"
+    },
+    {
+      "artifact_entry": "nextgen/native-surfaces-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/native-surfaces-result.json",
+      "bytes": 6117,
+      "sha256": "304902169dca65239170f0bc4f6d65e34d78d7aa386fa2fc2ee4366c3f39183c"
+    },
+    {
+      "artifact_entry": "nextgen/rooted-emulator.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/rooted-emulator.json",
+      "bytes": 1553,
+      "sha256": "e707885cf6990cc367617cb95a5b087af754f9cbdbbdfe779d9f60c86c7d6a18"
+    },
+    {
+      "artifact_entry": "nextgen/uiautomator-config.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/uiautomator-config.json",
+      "bytes": 189,
+      "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+    },
+    {
+      "artifact_entry": "nextgen/voice-games-entry-7--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-games-entry-7--1-0.xml",
+      "bytes": 29812,
+      "sha256": "65aebef34b4ebb507f53fa51864da6569fcb53f7199b0487d1faff99ec454976"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-checkbox-145--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-checkbox-145--1-0.xml",
+      "bytes": 34714,
+      "sha256": "60e5d881795c87045ebbfa770262ab940c14a79d298691f25dbe61a738497e68"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-dialog.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-dialog.xml",
+      "bytes": 34714,
+      "sha256": "60e5d881795c87045ebbfa770262ab940c14a79d298691f25dbe61a738497e68"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-confirm-23--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-confirm-23--1-0.xml",
+      "bytes": 34711,
+      "sha256": "097f2ec1dbe07d5b24ed2f480e4a52399add49373178f56e1ff427143651ea34"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-observed-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-observed-preferences.xml",
+      "bytes": 2757,
+      "sha256": "b6eec53d92abbcec2a586bd3508c687ccd480bb833195a09dc7c511d9f47fbd8"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-1.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-10.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-10.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-0.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-11.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-11.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-13.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-13.xml",
+      "bytes": 28155,
+      "sha256": "ab7f4300d558f083b6acca16aea4ad2d369d5da8f4d9e4b2d4af0a9ca1854a62"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-12.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-12.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-14.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-14.xml",
+      "bytes": 28157,
+      "sha256": "df00be5a0f9c0a5890e5a9bf14331ff8c0b34f5f4d60457d3067ec54c3e9db02"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-15.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-15.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-16.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-16.xml",
+      "bytes": 28157,
+      "sha256": "80f1f749080f336d34e04e9bdcab4ef08e1dabbae1c28e1231e6b2351681b853"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-2.xml",
+      "bytes": 28157,
+      "sha256": "df00be5a0f9c0a5890e5a9bf14331ff8c0b34f5f4d60457d3067ec54c3e9db02"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-4.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-4.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-3.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-3.xml",
+      "bytes": 28157,
+      "sha256": "80f1f749080f336d34e04e9bdcab4ef08e1dabbae1c28e1231e6b2351681b853"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-5.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-5.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-6.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-6.xml",
+      "bytes": 28157,
+      "sha256": "80f1f749080f336d34e04e9bdcab4ef08e1dabbae1c28e1231e6b2351681b853"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-7.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-7.xml",
+      "bytes": 28157,
+      "sha256": "d656dd91488ae489e045ed6f1d80e0ebfbafe7444c5d9d91728a6d70f3e017f6"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-8.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-8.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-9.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27--1-9.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-0.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-1.xml",
+      "bytes": 27774,
+      "sha256": "ece0392b686ef8cb44be4f2bb16a1bbe2793b2ceac505f4cc781a48db2f18841"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-10.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-10.xml",
+      "bytes": 31973,
+      "sha256": "977a8964322861226687ff028fd0c278ee0a0c08eb7a8289356f5a9ef19ccbc8"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-11.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-11.xml",
+      "bytes": 29009,
+      "sha256": "925f3ff092675f555de0ff188bb1164351303ac6562f261a6775f41c41e91653"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-12.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-12.xml",
+      "bytes": 26541,
+      "sha256": "b1ab8b33cfab6eebf6d8b04774cace924044fea11dc5d702d16f3d851afda109"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-13.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-13.xml",
+      "bytes": 26814,
+      "sha256": "fd5ff51c5e9b9521f47b42a01d16843e94e852a17e5e808301e5a6a3aa9767af"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-3.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-3.xml",
+      "bytes": 27919,
+      "sha256": "9375cb4a6cdfb618e54a7913faf766696d8f31655f4b8bd8cd34f35cca123e6f"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-2.xml",
+      "bytes": 26425,
+      "sha256": "bd59e91f79290a6c9d12cd11854a5da9f4dbb84e810271ce4ffd90fca295ddc4"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-14.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-14.xml",
+      "bytes": 26816,
+      "sha256": "51accd09e0da22c821f7bab390ba2b8c17b7473b0087e4fddcbb75a61c20be35"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-4.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-4.xml",
+      "bytes": 29076,
+      "sha256": "bd617a32600c57516d8b7b09674cf4b2934b16c7aefc6f16839e4055c0e16960"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-5.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-5.xml",
+      "bytes": 27732,
+      "sha256": "df3d1232d8d596a6e80c8f584cbe2730856ebc7f832ab802ca8ca940182d9de6"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-6.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-6.xml",
+      "bytes": 25127,
+      "sha256": "a11c6b4c5e9d00696deafe36224e795a7b7fe7e75d0e3e9e21235d137ec6678b"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-7.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-7.xml",
+      "bytes": 29060,
+      "sha256": "f127055ab680ef225b61f71dbf6096a67b75f80872f9980bce570f9fe01ba339"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-9.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-9.xml",
+      "bytes": 30185,
+      "sha256": "97a96bef908312c6f4a401242a75425091b5550a8027c3694afab72bf0eb2a64"
+    },
+    {
+      "artifact_entry": "nextgen/voice-setting-autoReadEnabled-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-setting-autoReadEnabled-preferences.xml",
+      "bytes": 2757,
+      "sha256": "b6eec53d92abbcec2a586bd3508c687ccd480bb833195a09dc7c511d9f47fbd8"
+    },
+    {
+      "artifact_entry": "nextgen/voice-setting-calmMode-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-setting-calmMode-preferences.xml",
+      "bytes": 2757,
+      "sha256": "b6eec53d92abbcec2a586bd3508c687ccd480bb833195a09dc7c511d9f47fbd8"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-8.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-license-open-27-1-8.xml",
+      "bytes": 28706,
+      "sha256": "bbb28760e4232933112e2134cf9e524abc504c92e0cd564ecc62c5a300e536b2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-setting-voiceEnabled-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-setting-voiceEnabled-preferences.xml",
+      "bytes": 2757,
+      "sha256": "b6eec53d92abbcec2a586bd3508c687ccd480bb833195a09dc7c511d9f47fbd8"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-after-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-after-preferences.xml",
+      "bytes": 2757,
+      "sha256": "b6eec53d92abbcec2a586bd3508c687ccd480bb833195a09dc7c511d9f47fbd8"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-before-preferences.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-before-preferences.xml",
+      "bytes": 2011,
+      "sha256": "20d6546f424c9dab4afb64e420a80e9e2ba9e71374cf6f35b04a8aa51f4a9072"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-0.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-1.xml",
+      "bytes": 26141,
+      "sha256": "fc35f82727b09591b9be33bf4cb3de7d55d34964658a32d0dbfdded9154d1b43"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-11.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-11.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-12.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-12.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-10.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-10.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-13.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-13.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-14.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-14.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-16.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-16.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-15.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-15.xml",
+      "bytes": 26141,
+      "sha256": "d994d6e75fcfbe4d3c69cd5b4b3232c02b6a84dfd4cd7b44b5a5971f8b9e7068"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-2.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-3.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-3.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-4.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-4.xml",
+      "bytes": 26141,
+      "sha256": "60f06cccff443953ccc0c726dfdd548f195877225d85cdec7a1487d72800df56"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-5.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-5.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-6.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-6.xml",
+      "bytes": 25707,
+      "sha256": "b69c9754b6a6af291b0c028d18ab4cc86beb54a32fffa06510638f9da50b8fa2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-7.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-7.xml",
+      "bytes": 26139,
+      "sha256": "049e2f464f741b71aa53e8f7d3acb047f216c86d0a2fe0e32f61faf86d049058"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-8.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-8.xml",
+      "bytes": 26141,
+      "sha256": "a71aa976b698fe5c452438425a62c5400dcc5ef39ed5203e87c8f85a5272d972"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-9.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13--1-9.xml",
+      "bytes": 26137,
+      "sha256": "2c72e6eb02841e64eacbf7c69001d112f06df3b321d085d3af46d593433abdce"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13-1-0.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13-1-0.xml",
+      "bytes": 26141,
+      "sha256": "01249ee364b5f3ea719183b32a859f89cc8d7012e69ebbde1f6cc3a559d5fed2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13-1-1.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13-1-1.xml",
+      "bytes": 25642,
+      "sha256": "0b0f9f3c91522d09f48f979c9ffe9e72915f0176abf6b389b3f845e4dc573c47"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13-1-2.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-entry-13-1-2.xml",
+      "bytes": 25632,
+      "sha256": "fe1726ddc01b8911daf381256b26d836a23c942fc9cfb84823f6d5c3290fa8e9"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-open.xml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/nextgen/voice-settings-open.xml",
+      "bytes": 28157,
+      "sha256": "f9d09ed5c5b11411d1c61a18d06802e90e7fad52a0c0ddd2dda9c36bb0ecb94c"
+    },
+    {
+      "artifact_entry": "recheck/after.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/recheck/after.json",
+      "bytes": 7779,
+      "sha256": "4a5de8bbd166af0e25738dc8b11373d15f69ca3d8c899ab3bcdd0368ac5f8548"
+    },
+    {
+      "artifact_entry": "recheck/before.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/recheck/before.json",
+      "bytes": 7779,
+      "sha256": "4a5de8bbd166af0e25738dc8b11373d15f69ca3d8c899ab3bcdd0368ac5f8548"
+    },
+    {
+      "artifact_entry": "recheck/preflight.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/recheck/preflight.json",
+      "bytes": 8260,
+      "sha256": "649175877e1d964c058fcc3e638413e35c1430a51b2fa2bb4cad0231a35537d9"
+    },
+    {
+      "artifact_entry": "recheck/result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/recheck/result.json",
+      "bytes": 2612,
+      "sha256": "97248a89d63cf192c1ad0de37170b1857adcf63497534b6e47e9ac1d702df0c9"
+    },
+    {
+      "artifact_entry": "tour-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api37-selected-originals/tour-result.json",
+      "bytes": 9746,
+      "sha256": "1d4d69de8bd8e70b5e4b33fe715049d8c4320c621c739acec3f0b9e4a4ce6a06"
+    }
+  ]
+}

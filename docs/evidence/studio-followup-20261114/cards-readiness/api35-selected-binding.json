@@ -1,0 +1,1877 @@
+{
+  "artifact_id": 14093032556,
+  "archive_sha256": "a3ce928355c8af0054d5dba738213385b86059a3e579555134a91111acf4b171",
+  "extracted_bytes": 8924089,
+  "entries": [
+    {
+      "artifact_entry": "nextgen/00a_voice_local_model_assent-render-readiness.json",
+      "bytes": 565,
+      "sha256": "532fa7159a0d622551db48332ca366674e1437d1e58950c3e43c41654af1cb03"
+    },
+    {
+      "artifact_entry": "nextgen/00b_voice_local_model_enabled-render-readiness.json",
+      "bytes": 568,
+      "sha256": "f8e57f365bdb72d24e5c37e5079746842c9bc68d20468e612cdc99be714c80e6"
+    },
+    {
+      "artifact_entry": "nextgen/01_learning_flutter_before-render-readiness.json",
+      "bytes": 562,
+      "sha256": "f032b7d178c842131243e05bc4a64c24ec11b1d695116e1642f581172532022e"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-0.xml",
+      "bytes": 23588,
+      "sha256": "9246b3f3d4ced0dbfec55fa7fc64fdf8a8c304f5e232fff1eec8b359c1a7d1c0"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "bytes": 7326,
+      "sha256": "774b5c0ea2b147e4506b842d39d324b9c0bfd28ab2fcfddccfdcd37d579a9eb6"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-1-caption-0-ocr.json",
+      "bytes": 5024,
+      "sha256": "3d5d996f69dcdd075743517eae88e6c41a352c7be20d3812ac127a15b5f53395"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr-contrast.tsv",
+      "bytes": 7326,
+      "sha256": "774b5c0ea2b147e4506b842d39d324b9c0bfd28ab2fcfddccfdcd37d579a9eb6"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-candidate-2-caption-0-ocr.json",
+      "bytes": 5024,
+      "sha256": "3d5d996f69dcdd075743517eae88e6c41a352c7be20d3812ac127a15b5f53395"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "bytes": 2623,
+      "sha256": "315a4b54668b6e10952e3f5bda318844bce58021acab10792031d387bcd50e56"
+    },
+    {
+      "artifact_entry": "nextgen/10_cards_flutter_round-render-readiness.json",
+      "bytes": 940,
+      "sha256": "9e3430601a834585eda02b072d66b95efd629bbd10f0e651ca8194cc73b364d3"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-after-layout.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-before-layout.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-ocr-contrast.tsv",
+      "bytes": 6375,
+      "sha256": "a03c7676d75fe6535722589ac18f51fa693d9801e10b6ec4a1d712e691a13145"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-00-ocr.json",
+      "bytes": 4344,
+      "sha256": "7222ad038db966ba6031966001132687a4963778a6360e925e940b7697b0cecd"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-after-layout.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-ocr-contrast.tsv",
+      "bytes": 6375,
+      "sha256": "a03c7676d75fe6535722589ac18f51fa693d9801e10b6ec4a1d712e691a13145"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-ocr.json",
+      "bytes": 4344,
+      "sha256": "7222ad038db966ba6031966001132687a4963778a6360e925e940b7697b0cecd"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 33358,
+      "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef"
+    },
+    {
+      "artifact_entry": "nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679"
+    },
+    {
+      "artifact_entry": "nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "bytes": 2706,
+      "sha256": "2f533744170db46190339c286552072a5410d1dd6a03a9655a55f50789e2af16"
+    },
+    {
+      "artifact_entry": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee"
+    },
+    {
+      "artifact_entry": "nextgen/cards-flutter.xml",
+      "bytes": 29795,
+      "sha256": "0edc0fa847fb311f48b58f2af7d6d9b37e53962244b5b510074f3643cd8dc701"
+    },
+    {
+      "artifact_entry": "nextgen/cards-before-native-preferences.xml",
+      "bytes": 5980,
+      "sha256": "24262f9a7cab15b346979d0882b2b3f80bfb689e1a30cfc78b8d9a9532a0d54c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-initial-readiness.json",
+      "bytes": 493,
+      "sha256": "07acdfa938a78de3b2b7104adad30182907368b5798c657a4bf939c1c122040d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-games-tab-7--1-0.xml",
+      "bytes": 27947,
+      "sha256": "c58d1719296b248c57fcecfc575280fdc7c00ed1008d41ee533b77e9c1ac513f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-001.json",
+      "bytes": 629,
+      "sha256": "639d80bec73642dc99a4e07c5e00dc40851e1969dfeae00924342f95f3d81ad2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-001.txt",
+      "bytes": 80,
+      "sha256": "7ddb58717738d0e72a8e87fca90d8b44c13b0bbe948bcfc5399bc03cd8eceeb9"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-002.json",
+      "bytes": 629,
+      "sha256": "83e749771358f005fd19c56910002ee3e5437aeaaad77850dd8b2f5011402653"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-002.txt",
+      "bytes": 80,
+      "sha256": "11c671da45c455fbfd654f37eae122bf4c60aa4224aad0f95326b093a7ad2970"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-003.json",
+      "bytes": 628,
+      "sha256": "08eafa1bf2c5098ce10ada060ffa5b0966028e788ee3a7afe96b9918735127af"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-004.json",
+      "bytes": 629,
+      "sha256": "87f6186044282d561646d04bcbbfd7767a23903dafb9bb9a5c3b7283c549d12c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-003.txt",
+      "bytes": 80,
+      "sha256": "1aa5b4ae357f5b7e292856a40268f1989fb0b0a0c4c67b74452226785fc4488d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-004.txt",
+      "bytes": 80,
+      "sha256": "72d821cc83ac9aa677408b8d1407e20b560380f4c5dfea3452a12841d21e6db1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-005.json",
+      "bytes": 631,
+      "sha256": "c161e224217c7142cfc8cca70ec8663e00e29872ede732a012a0d8a82a88e4b6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-005.txt",
+      "bytes": 80,
+      "sha256": "7f45a7ffb1b0eeb90c274dd13d5a71b5320afb0ab39c2fc36ea28ee333f3c9c3"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-006.json",
+      "bytes": 629,
+      "sha256": "5ba2c7cb5726be860120bf96da10cdfe6a37fd04004ac4e3b08a5b8ee8eb8623"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-006.txt",
+      "bytes": 80,
+      "sha256": "3794b656e54d75e40280d55ab92a7a97755c3f4f69bc3aa2bd91312e70ac86de"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-007.json",
+      "bytes": 629,
+      "sha256": "f17a5ec7942a0c5691c54b89047c5247e0ec30d2b39d41bccee4ddd938cbcef7"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-007.txt",
+      "bytes": 80,
+      "sha256": "fb5724318a50f96a148e4c1fbb38d09469d0ef8c2d524e1f93c3accfee20014b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-008.json",
+      "bytes": 629,
+      "sha256": "654b5b1c851e96d739a06856b5bc111fcc8a95a08e42e391c35c8cc439c3ef38"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-008.txt",
+      "bytes": 80,
+      "sha256": "8533e3967088f8e11a305f6da80245c68819f208f138f601882e45b4b1ad679a"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-009.json",
+      "bytes": 627,
+      "sha256": "f4d56b4e6e8c0dcb362ba802d1317959bac6cb1d24c2169e27d38312ea172812"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-009.txt",
+      "bytes": 80,
+      "sha256": "42e9cc890e2c4561f6cf10f93a467948b7a8d2545f30b5936bfa16e77733b846"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-010.json",
+      "bytes": 629,
+      "sha256": "11d040772965cf5ac6861bbd339c501bab49ccb026d826e74a91e65bc12e23df"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-010.txt",
+      "bytes": 80,
+      "sha256": "995a720aeaf5a8fb14a457ba7804410a8984e06bb7dee9ead6b1b91b3a7382b1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-011.json",
+      "bytes": 629,
+      "sha256": "e91579fb9baa385012e5539b45aed688da5bb5810a850f9865ed935ecfb1c4c0"
+    },
+    {
+      "artifact_entry": "nextgen/cards-lifecycle-011.txt",
+      "bytes": 80,
+      "sha256": "9ed6ccad711149284bedac4fbdafe22d1870407d75e710ba8efc873b3248b725"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-001-state.json",
+      "bytes": 1665,
+      "sha256": "10220ee2d5f3e8f5df58f8922e8e00185146101f8d3994b00af74080f9679087"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-002-state.json",
+      "bytes": 1665,
+      "sha256": "10220ee2d5f3e8f5df58f8922e8e00185146101f8d3994b00af74080f9679087"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-004-state.json",
+      "bytes": 1665,
+      "sha256": "10220ee2d5f3e8f5df58f8922e8e00185146101f8d3994b00af74080f9679087"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-003-state.json",
+      "bytes": 1665,
+      "sha256": "10220ee2d5f3e8f5df58f8922e8e00185146101f8d3994b00af74080f9679087"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-005-state.json",
+      "bytes": 1665,
+      "sha256": "10220ee2d5f3e8f5df58f8922e8e00185146101f8d3994b00af74080f9679087"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "sha256": "fc1f2beb5dced9fa63fb3e70498ef81b705a27add1439689d1039ddf39134af9"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-007-state.json",
+      "bytes": 1776,
+      "sha256": "3af9b96ff875b976cd96a2e69de7e4afa3dc83cb1381ba1da3e58afd84043b0d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-008-state.json",
+      "bytes": 1778,
+      "sha256": "ee7cd0c6b1a6d530fa56adc9c84182ca9b8d8135b93b2ada0e203ceca323026f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-009-state.json",
+      "bytes": 1778,
+      "sha256": "ee7cd0c6b1a6d530fa56adc9c84182ca9b8d8135b93b2ada0e203ceca323026f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-010-state.json",
+      "bytes": 1778,
+      "sha256": "ee7cd0c6b1a6d530fa56adc9c84182ca9b8d8135b93b2ada0e203ceca323026f"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-011-state.json",
+      "bytes": 1759,
+      "sha256": "f75d899102ed6a5fe98acd8ef8470890c886486add9834a94dfd109ec8afc5e4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-mailbox-012-state.json",
+      "bytes": 1759,
+      "sha256": "f75d899102ed6a5fe98acd8ef8470890c886486add9834a94dfd109ec8afc5e4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-0-ocr-contrast.tsv",
+      "bytes": 6375,
+      "sha256": "a03c7676d75fe6535722589ac18f51fa693d9801e10b6ec4a1d712e691a13145"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-0-ocr.json",
+      "bytes": 4346,
+      "sha256": "42faecd972c7b65c3f419fa2797255f742a5d6665ecee7baf43d05413477ae9a"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-1-ocr-contrast.tsv",
+      "bytes": 6375,
+      "sha256": "a03c7676d75fe6535722589ac18f51fa693d9801e10b6ec4a1d712e691a13145"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-1-ocr.json",
+      "bytes": 4346,
+      "sha256": "42faecd972c7b65c3f419fa2797255f742a5d6665ecee7baf43d05413477ae9a"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2759,
+      "sha256": "90157cb403305d0474e4762c8edc9938e323e47cc0bc11cb08670fadccfd1578"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-0.xml",
+      "bytes": 29795,
+      "sha256": "d51e800df701ef208db6df0039f79313c22be4205d2ba72793ee6ec14ba717f6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-1.xml",
+      "bytes": 29795,
+      "sha256": "dda32efd0584d23e8f4583af6be732da7fb08f13cc53874cc0c1f7a2235a473b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-10.xml",
+      "bytes": 29795,
+      "sha256": "1ff40c36f2f92807b75cf577ec49b7ac9245f74b07d45bd010351c131831572c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-11.xml",
+      "bytes": 29795,
+      "sha256": "6d25db3ed62d16a4315165b8626a752642cb5d1b618eef98835c0b0f11d31ad8"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-12.xml",
+      "bytes": 29795,
+      "sha256": "016058a4a834da9168329ed9c4a04817e8815735067fc4fd31d808b1aad500b6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-13.xml",
+      "bytes": 29795,
+      "sha256": "885dfc95790790726b2b97073e389827582f3015db03d7c0ea6e2e19ab88b136"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-14.xml",
+      "bytes": 29795,
+      "sha256": "fb56bbc8ca11a5bdf9d807fa87cf2be01c98437df305d9b5e9a3bb26845cd5f1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-15.xml",
+      "bytes": 29795,
+      "sha256": "6d25db3ed62d16a4315165b8626a752642cb5d1b618eef98835c0b0f11d31ad8"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-16.xml",
+      "bytes": 29795,
+      "sha256": "1ff40c36f2f92807b75cf577ec49b7ac9245f74b07d45bd010351c131831572c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-2.xml",
+      "bytes": 29795,
+      "sha256": "0edc0fa847fb311f48b58f2af7d6d9b37e53962244b5b510074f3643cd8dc701"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-3.xml",
+      "bytes": 29795,
+      "sha256": "4a3f2a71ef2404bf9e1cff0ef892179ce8ed45e7775deb1e021a5ffdad69f851"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-4.xml",
+      "bytes": 29795,
+      "sha256": "fba734919f18c2d8fac5ade16fcf15c0427ae8cf6f120ad650fe92bb76b3eace"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-5.xml",
+      "bytes": 29795,
+      "sha256": "dda32efd0584d23e8f4583af6be732da7fb08f13cc53874cc0c1f7a2235a473b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-6.xml",
+      "bytes": 29795,
+      "sha256": "366af48d4707bba66a68f8e1dc9694d08ccc9a783a470e31b778b1ac3f038c35"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-7.xml",
+      "bytes": 29795,
+      "sha256": "6d25db3ed62d16a4315165b8626a752642cb5d1b618eef98835c0b0f11d31ad8"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-8.xml",
+      "bytes": 29795,
+      "sha256": "cd5922ff99094763f7305033c3b8b46d32fc47c10ad0649026665cdd7249d1ee"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19--1-9.xml",
+      "bytes": 29795,
+      "sha256": "dda32efd0584d23e8f4583af6be732da7fb08f13cc53874cc0c1f7a2235a473b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-0.xml",
+      "bytes": 29795,
+      "sha256": "bb1f88d532027a2676c26a9903a84e2ee0285a9ae2dda175d5a24ca61f1fcc06"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-10.xml",
+      "bytes": 29795,
+      "sha256": "2996c04ef52c621f7f9f4c527efc45e74c83577039738ae65020b6f1928d2081"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-1.xml",
+      "bytes": 29795,
+      "sha256": "52a4f4ea19b851ead21e86e1448f3342c938c944414c3f404d9f0486b1ac117d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-11.xml",
+      "bytes": 29795,
+      "sha256": "5e8707f1eed18fa8c91bf5a08a04995707873b1e0e31272554e3c133f2aa2549"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-12.xml",
+      "bytes": 29795,
+      "sha256": "1e3d263b26a9878b37e85a78994210652a741e9399686b3d3a23c1b16587bb85"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-13.xml",
+      "bytes": 29795,
+      "sha256": "b6035219e6906054c5ca4a42390f9f8e5b8b0acbaa9da2872776d8cceae3e4b4"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-14.xml",
+      "bytes": 29795,
+      "sha256": "2996c04ef52c621f7f9f4c527efc45e74c83577039738ae65020b6f1928d2081"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-15.xml",
+      "bytes": 29795,
+      "sha256": "394dfabd99db4b89aff4174e3894037d59270e70aef6e3f5929e88dffd29ea57"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-16.xml",
+      "bytes": 29795,
+      "sha256": "60a4738b99a4919c43eededbbb566d948041a1b9459bfb515b6fafa3288441f2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-2.xml",
+      "bytes": 29795,
+      "sha256": "cd5922ff99094763f7305033c3b8b46d32fc47c10ad0649026665cdd7249d1ee"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-3.xml",
+      "bytes": 29795,
+      "sha256": "cd5922ff99094763f7305033c3b8b46d32fc47c10ad0649026665cdd7249d1ee"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-4.xml",
+      "bytes": 29795,
+      "sha256": "dda32efd0584d23e8f4583af6be732da7fb08f13cc53874cc0c1f7a2235a473b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-5.xml",
+      "bytes": 29795,
+      "sha256": "f7d4f05d5c668f0ac92d8af7426074d0f0d6bafa4d8b47036b0cc29d44c290c0"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-6.xml",
+      "bytes": 29795,
+      "sha256": "6d25db3ed62d16a4315165b8626a752642cb5d1b618eef98835c0b0f11d31ad8"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-7.xml",
+      "bytes": 29795,
+      "sha256": "c1ade986d5b26f61e7707dea082125360ebc66f3343eaf5ee99be7f01b737e60"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-8.xml",
+      "bytes": 29795,
+      "sha256": "1e3d263b26a9878b37e85a78994210652a741e9399686b3d3a23c1b16587bb85"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-19-1-9.xml",
+      "bytes": 29795,
+      "sha256": "086744e9cd05978c102268771a7b0bd47f8ac37fdb9150d65145c8ff46d152ff"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-entry-2--1-0.xml",
+      "bytes": 29795,
+      "sha256": "63a0f69df5add82b74b7db7ecbffa8881767f38f2eced0f68f36108fe6891395"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-contrast.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-components.json",
+      "bytes": 458,
+      "sha256": "6f95095ac6aa5469f88f57b13f8af440d7176d558ec2c03ae3da9c522fd70115"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-raw.tsv",
+      "bytes": 414,
+      "sha256": "800742ff568ff14f7ce5d8a77f8098dbad2e8146602904b9f83e18680b516a9e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-tiles.json",
+      "bytes": 2467,
+      "sha256": "11f242b6bbd3a7166e674c9d1f4bf9cb3b0370c2577b2c3f1ea14e3d3b8e4257"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "549dd3760a12f28b0ee031dd93ff14dcf8589d10060bc950e2b8a7f23029741b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "549dd3760a12f28b0ee031dd93ff14dcf8589d10060bc950e2b8a7f23029741b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-latin.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr-white-text.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-0-ocr.json",
+      "bytes": 248,
+      "sha256": "514787201156c1b577ec1b1a894ee9d4960c6236b584d023d17026d3e188973c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-components.json",
+      "bytes": 2307,
+      "sha256": "84809f1055455da0657eda5b80f8fdbe64d7d58edb70046969a62bddaa3decba"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-contrast.tsv",
+      "bytes": 6887,
+      "sha256": "9d6122a5a2acef7d36a93eb28bf9b1247687d15ff0328864c29bd96da1382b9d"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-0.tsv",
+      "bytes": 229,
+      "sha256": "d1a62333be201cc7eff4f4cf4aa774d1b34c44ee061b3520ce4b6180d8de3d84"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-1.tsv",
+      "bytes": 222,
+      "sha256": "501aa68507600ef1a25fbdf32403b17fce9990487a9a3ca0fe113264ca15b6ec"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-2.tsv",
+      "bytes": 222,
+      "sha256": "65f6ab685c1e1febcf6b8bdb9563b0e698921b515c2240eedf3e5b49fd84298e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-3.tsv",
+      "bytes": 222,
+      "sha256": "9b7a637628275a12e94625c98a462a89e6d37f8b61cdd5c63fce9027a7ddda76"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-gold-component-4.tsv",
+      "bytes": 221,
+      "sha256": "650f461f544f7463db3e0078c5416e2dc3146735d8a2fdd67fe03b8e00d0fa54"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-navy-latin-1x.tsv",
+      "bytes": 4527,
+      "sha256": "ac2d7292f7f4aa7fc85f4a057b6501c6bec26230650355476086502cf1ee8cbd"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-navy-latin.tsv",
+      "bytes": 5014,
+      "sha256": "9cef40e2afc847f027530672912d740248805cb02a85b97ec990791a9a1f84e1"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-raw.tsv",
+      "bytes": 4676,
+      "sha256": "2ab97a6aff1bcc1dc40e57d26ae2e9b59f2d7217336927bfc99ffadbbd123cbf"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-teal-text-1x.tsv",
+      "bytes": 8036,
+      "sha256": "9cd63f5a43b29f42a59b2a8eec908c4d73ba2633b11fe36536abd4e14f00e6fe"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-tiles.json",
+      "bytes": 4885,
+      "sha256": "bf17a1688990b4f68eeb1b12fd532c7d2159ca6494ce89248a665397b639e512"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1899,
+      "sha256": "de419553ff4a83912a2786fe4dd97292be9792c58533646a4f379ebabf9cc328"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1417,
+      "sha256": "b11d20151cbad8c18b086734ee9e1387ddd6be4d8eeb1c0f8c3528eac3cb2cfc"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 3139,
+      "sha256": "f6e541a8de4b2f6b0f3c0b24267a9e4d07f93630d45214e5c0943919c5604235"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 3170,
+      "sha256": "af9dfceb5b554a63a9f0b3fb9617f540593323e721756d102ada07c97a8c209e"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 5555,
+      "sha256": "002d94e6a3b15c48c12b328aa07c1799bb578cd00cf7a4b6dedc360483cc21c2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 4372,
+      "sha256": "62bf5af07a7016246dbba9ee7a017088163228e94112be7d31c298bc6d6989ef"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-0.tsv",
+      "bytes": 1293,
+      "sha256": "b52c12d6065a21262ad8f14fe3e94e3c26546bcf6108a0524258e570b941159a"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-1.tsv",
+      "bytes": 979,
+      "sha256": "6072b28d8dc2013acd0270d4894a2b84a933918b88371a616385fb073d464400"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-2.tsv",
+      "bytes": 2155,
+      "sha256": "ff92cc1d86492db1e57a1bdf09c096e41245f8558caaf07b0b28918c94955b8b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-3.tsv",
+      "bytes": 2447,
+      "sha256": "5065d667d9a4040a2dbe11eaa0e8a4c27289bf672760c56f9ec75d8217901006"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-4.tsv",
+      "bytes": 2808,
+      "sha256": "e5167f10912d7452dabba42faa362bae544718731af2ec4cbef99c4f33f2b429"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin-tile-5.tsv",
+      "bytes": 2980,
+      "sha256": "57967ac5b8660791cd2456d5c3edaf1425d9f21f8fc34f4f49861ef0e9769cf0"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-latin.tsv",
+      "bytes": 8320,
+      "sha256": "627d5490b130519466baf3cffeee781132a77fa490303bf92e92985b59950807"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr-white-text.tsv",
+      "bytes": 8341,
+      "sha256": "6f7f06e23fd7c65ab85f3fd2bdefb01c56910547d318d4fe8fbfa61ed9f57a7b"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-1-ocr.json",
+      "bytes": 33205,
+      "sha256": "f33747897b3992d69e4d8e53d04eb815604ded8d72cd3743962643ab51165dbe"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-2-ocr.json",
+      "bytes": 4355,
+      "sha256": "ebb77ee721abf39b5250885559b5a1242704085cc126b095535eb8a2032435d2"
+    },
+    {
+      "artifact_entry": "nextgen/cards-native-title-2-ocr-contrast.tsv",
+      "bytes": 6375,
+      "sha256": "a03c7676d75fe6535722589ac18f51fa693d9801e10b6ec4a1d712e691a13145"
+    },
+    {
+      "artifact_entry": "nextgen/cards-portal-46--1-0.xml",
+      "bytes": 24801,
+      "sha256": "41606bc10cf2431edc2d64a8b7ce9b7135b9edeb59ae535e3a1df1c2325ce420"
+    },
+    {
+      "artifact_entry": "nextgen/cards-save-005-preferences.xml",
+      "bytes": 5980,
+      "sha256": "24262f9a7cab15b346979d0882b2b3f80bfb689e1a30cfc78b8d9a9532a0d54c"
+    },
+    {
+      "artifact_entry": "nextgen/cards-solo-12--1-0.xml",
+      "bytes": 15461,
+      "sha256": "b94e214e626a85771ac9618cc9dfdca4f79a904a25213610b61ae0194d82866a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-after-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "26426eeb95a3b30ea6663971b63b079e8bdf11d3b6bb0d4de435c68228f09582"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-0-ocr.json",
+      "bytes": 2200,
+      "sha256": "dd59a7100023df352f1b714b3f357def5c8f9c668d96d05401d50a2a6e037835"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-0-ocr-contrast.tsv",
+      "bytes": 3492,
+      "sha256": "5ff22c4cfd2473f139799704b9b5ae597aced1f69eb219db777bebfd13c398c0"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-1-ocr-contrast.tsv",
+      "bytes": 3366,
+      "sha256": "1e9b879f4d3d2e5c7e42d30ac35c7abcc328f5744aa62a1d33729226710b673c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-1-ocr.json",
+      "bytes": 2075,
+      "sha256": "9ea1a5187acb54699d310e3f0ee47abfc8cca709c76fa314f5fe3ec89f45a165"
+    },
+    {
+      "artifact_entry": "nextgen/learning-back-surface-readiness.json",
+      "bytes": 2753,
+      "sha256": "4fdead3338ee7f2b51f68086847c066b4567091f9c0591866326c22bd811a24d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2757,
+      "sha256": "26426eeb95a3b30ea6663971b63b079e8bdf11d3b6bb0d4de435c68228f09582"
+    },
+    {
+      "artifact_entry": "nextgen/learning-complete-0-ocr.json",
+      "bytes": 2195,
+      "sha256": "9af21c250fde828e32df6bb098c4548fc7053dcf481a274024661bc08c232187"
+    },
+    {
+      "artifact_entry": "nextgen/learning-complete-0-ocr-contrast.tsv",
+      "bytes": 3400,
+      "sha256": "df22de1d3f9d6f1f4470d082d95d7d27afe8e74b2e58c06e64ee2001f03f21eb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-components.json",
+      "bytes": 2116,
+      "sha256": "ebdef1e83aecb0084c0c543e36059e3d4ee4750868bb5d2b08f07c9a9e682105"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "bytes": 2910,
+      "sha256": "6c9d15249cfbd17f29cd20e1733f69c7abef907174dfca27fcf89a4fc0172b63"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-gold-component-0.tsv",
+      "bytes": 322,
+      "sha256": "e528cb6d8305209d6ed45d8d569b29d4558a33f512fb4998ec79837c4b007916"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "d69fbd7737ffb11d9322aee50de163859af4d659af6a1bc94260edf21bd54d9c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-raw.tsv",
+      "bytes": 2697,
+      "sha256": "089f9195a6ea1edd9c1bc9e2589d1cd97e2217f79b0305e4aa11ec95b6a50f5f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "bytes": 4386,
+      "sha256": "2884002f3855d547726f7c91f01b0145e30e0a2dfd903df98ec3b0026e77dfeb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "bytes": 3479,
+      "sha256": "2e5bbce824566de18b566dcf4dc6c7b80fd67eecf2a9b22514499f488937fc0b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr.json",
+      "bytes": 11185,
+      "sha256": "3bc65099404215f49c45569bd15dda949b841303fde5f5deb1d4411b1836553e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "bytes": 3520,
+      "sha256": "da44d4057970877c11afe47a71e9db17fb73382d9c021f784f1e5afa992b9bf9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-components.json",
+      "bytes": 2116,
+      "sha256": "9c9b6567bab37fd24604f37abb41a0dc9d97db6b2f3e24d5e24ab4e288ed3221"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-contrast.tsv",
+      "bytes": 2945,
+      "sha256": "e10697895db85d775eb403ba1ad42d86e78d4afa96b7c29d868e0f116d2ef7fe"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-gold-component-0.tsv",
+      "bytes": 322,
+      "sha256": "e528cb6d8305209d6ed45d8d569b29d4558a33f512fb4998ec79837c4b007916"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-navy-latin-1x.tsv",
+      "bytes": 234,
+      "sha256": "932836071549f732fdd6c5e7a0bcbfcdc3988738cf4966bf31dc720b74fa6089"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-navy-latin.tsv",
+      "bytes": 246,
+      "sha256": "76a0b15e14bfd3afe646c92d960a9f5c243c849cf55fbb296306c8c63074642a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-teal-text-1x.tsv",
+      "bytes": 4112,
+      "sha256": "7bef6683d29fc46e219ed4cca50cfec770a062776237bd640872bf61e3b6d79d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-white-latin.tsv",
+      "bytes": 2784,
+      "sha256": "ff8a6fbcea64e3d7411ca0eaf1bcc348b37b5293f9c9120eb557dd351fa27220"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-raw.tsv",
+      "bytes": 3364,
+      "sha256": "13643f6142c0d7bf25940aab3de1c43c96371b200e11f049d68e8603cc8f8b4d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr-white-text.tsv",
+      "bytes": 2826,
+      "sha256": "60e911d5525b9bf17e47c826e2d472f94827facb00490369e3c08d670e251afb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-1-ocr.json",
+      "bytes": 10497,
+      "sha256": "f94ce2cda18653e2e2d5aebbc1b891663ee6e3c5e75956a30d9e58224757ab59"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "7d0741951cc2b23912582d9a3eed69ba0482a7fed8250cd1115fa5d9c09c5432"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-contrast.tsv",
+      "bytes": 2966,
+      "sha256": "a5c5eefc8cf29f0f2d109f33192fa06284f211fb5dd622b76df40d9ea8eb09da"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-raw.tsv",
+      "bytes": 2637,
+      "sha256": "07a68c169057b5795f0c98e7f89a6f1d2e8437daefeadd46c0c3028a16e71ca6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr-white-text.tsv",
+      "bytes": 4074,
+      "sha256": "6bcc9a13ab4b3615d65d52f12eafdfca572f005c587257ad87e9fd642626d5c0"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-0-ocr.json",
+      "bytes": 6568,
+      "sha256": "085a5ad53295d411cde416e87f868171e595ced4bd3b3981ae856c95b30fb20d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr-contrast.tsv",
+      "bytes": 2678,
+      "sha256": "7a590d1d4347f46b83761bf74db676f64b17ebe7b33e9e52c5e4160bfe9a923f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr-raw.tsv",
+      "bytes": 2675,
+      "sha256": "2d9686a0f50b038c39f16435a6efcaeb93f86e349d8d7e0366294dfdfd35027c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr-white-text.tsv",
+      "bytes": 4073,
+      "sha256": "b9ecd54776c3f47d3bd44d539b7b566ea9d3d64e0910d0d2edc86c8f34cbbdb9"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-1-ocr.json",
+      "bytes": 6186,
+      "sha256": "5659966940b725c94955f63c773cacdaaa7ffe2bf5b628c889250e9c819f9ada"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-2-surface-readiness.json",
+      "bytes": 2765,
+      "sha256": "d8591e0f5547a60e0dfec945e2a1238657752f9161229ea166e2b4bab9666d8e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr-contrast.tsv",
+      "bytes": 2993,
+      "sha256": "9156082f12a8a69728a126b6213bbbb74bb436bf92e7ba958195f3d9d8caaaf6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr-raw.tsv",
+      "bytes": 2984,
+      "sha256": "49ed6c720a22533bc58f650cac54edfc5d9fea3a57d10078fe0b37ff8655b5b1"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr-white-text.tsv",
+      "bytes": 4252,
+      "sha256": "c6930a297d4a013da13dc7fc5a86d98e5c2e79fa44b3ee93668f9b73889d1d91"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-0-ocr.json",
+      "bytes": 6494,
+      "sha256": "a433194e7f8bc16e7d54fd173089707a39283261a26f3e2efb90f17e64975736"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr-contrast.tsv",
+      "bytes": 2993,
+      "sha256": "cdcae304902c58ad083a7cee348fff8eccbc4eb6954dec954739d2f5788e33db"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr-raw.tsv",
+      "bytes": 2885,
+      "sha256": "9ebbbccfa089c4f3ba9a22e5a7f57250242d646ac6fa2ba98306d90112785768"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr-white-text.tsv",
+      "bytes": 4243,
+      "sha256": "a532b24a0d4ea6ee01da2387d96ff3e745e24b84d6e2575b9ef2362ee36bfbdb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-1-ocr.json",
+      "bytes": 6368,
+      "sha256": "2767ed1afce3e6d34213c243ba241fa0dab5aadb25c18b86c1fc73654020249d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-components.json",
+      "bytes": 6224,
+      "sha256": "05f82f01936a242aca21bd5e6b82fdad1f73814b7f2f2fbb8cafd49d33601faa"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-3-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "765224a46e0fab152ec65b1bea0d5204cad1469851bcd989e1b49d7dde5b0d98"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-contrast.tsv",
+      "bytes": 3211,
+      "sha256": "354456e1af964267c895e590d39808eb56f21ebf36ded433aadd368ce1316678"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-0.tsv",
+      "bytes": 111,
+      "sha256": "b7c8a95dedaf98dbc225a3772981fe10c52ba0eaf218a43b059635fa73410842"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-1.tsv",
+      "bytes": 111,
+      "sha256": "b7c8a95dedaf98dbc225a3772981fe10c52ba0eaf218a43b059635fa73410842"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-10.tsv",
+      "bytes": 226,
+      "sha256": "bac2e68d79acc1b47c6b9d00ace661474267237c367c35726a616fc69816e21f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-11.tsv",
+      "bytes": 226,
+      "sha256": "af5b73b77e41d931a80dddccd8de42a982802d7a0588b3532edc2dc3cfbaf756"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-12.tsv",
+      "bytes": 226,
+      "sha256": "56d1950a89a40ea421c0f561de02cb6950117fc5d034fb4066e7ef4f6610de8d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-13.tsv",
+      "bytes": 226,
+      "sha256": "19af41061063063c902e7e8021cb75401a909c221abcf624d79022770735704a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-14.tsv",
+      "bytes": 226,
+      "sha256": "03431adbe9480c9cae5cfd239a3732c5f98ad184797af80554278422e096b7bd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-15.tsv",
+      "bytes": 226,
+      "sha256": "526dfaa2ccc33fc0c27d8b521f23d48b35dae6a3311a3d28bd4ba92f54d1017b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-2.tsv",
+      "bytes": 226,
+      "sha256": "8ebae987ac1406573083fcec51a7ecab2814e4f56f0f41d356d17f73634f6776"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-3.tsv",
+      "bytes": 226,
+      "sha256": "f6119143de4976320f1a2ba494a102eb84f4313e539ea15aaec96bda45a5ce90"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-4.tsv",
+      "bytes": 300,
+      "sha256": "7f38d501799af0d2697167d46a2f8da093e267e6004d5debec7c5ee7d5b0d5a0"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-5.tsv",
+      "bytes": 110,
+      "sha256": "315bb0a45af5cfcc720a57c85d60cc5cd675145aec7bb38963275993a30340ca"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-6.tsv",
+      "bytes": 226,
+      "sha256": "7f35d6a754306cad176280551544289ed6f25f7e4983e1bc5c6062906a37789e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-7.tsv",
+      "bytes": 263,
+      "sha256": "e42005efc7cffa586c570a5442328de888bc9df2a0a7da19a873bdd66856359a"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-8.tsv",
+      "bytes": 228,
+      "sha256": "14e98cf058c01afc1ab5a3edfebf6bfee0f4f73e978684c4081c78b2d48bedd3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-gold-component-9.tsv",
+      "bytes": 111,
+      "sha256": "9277421af08920730db360123e10eb2ce129e2eb75824e2e764237fb566019b0"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "d69fbd7737ffb11d9322aee50de163859af4d659af6a1bc94260edf21bd54d9c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-raw.tsv",
+      "bytes": 2901,
+      "sha256": "546dbd4b52cf22694ff4ae9d57b582a7e01b0af3d540749bbccdcfc30f2fae94"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-teal-text-1x.tsv",
+      "bytes": 4895,
+      "sha256": "ef301cd8b7e039e368e0dd852dfd823116d4d2a5f3c2ea07045d7e5fe71732db"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-tiles.json",
+      "bytes": 5170,
+      "sha256": "4dad1407305c22eb61d856182258981c1097cfd9438d1f55dd8f93a1cb96f4c3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1492,
+      "sha256": "3913ddaee6898f28561108ef5c723b559c786e8b97386fa74f8562cbff943810"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 1048,
+      "sha256": "7bdba3e655df94fbe1271b0e58c9b35e96982dbf7057a12664ba7c09550f1021"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 1331,
+      "sha256": "8716e1c06d59262875aaa4f06f4baaae0515e2a06da8879a1e4302c75c7972a3"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 871,
+      "sha256": "8279f6c48a090668baf1804722ed69f599a5de3c1f1c5f6eab8106a0e0603c2d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 782,
+      "sha256": "229521ac30e9615268e092c5f40c56090d4da096e987980471f44cbb139fb412"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 385,
+      "sha256": "e565dd96f15cd9aeaf9003fc09ab14158f806d25b7f5f88dc94470184501a996"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1628,
+      "sha256": "bb00a854a4214d48603ababd0ac3b87d9f8325ce8685a0a6ed7c1698eb88e945"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 575,
+      "sha256": "1dfbea55a34f2dd77406d3cff72992b3411c07c9991f9c06fc0b4f8e00baf407"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 1663,
+      "sha256": "35dbccaf87d2806bcd3d8d2e4b02cc7201f64953967d66800383fd191ac3431c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 705,
+      "sha256": "583a75b04779bdde07c8c6f2fa366bd19c3c2573a1ea4ad973a2a504973844cb"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 988,
+      "sha256": "1cc282f9c4ef2cb1a29a1b5eb30f4e5ddc04b2b8ad27716fe3e2fb48fba9a8f4"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 385,
+      "sha256": "1d5617efeb0b9eeb50b469dd1713f193e7ebdf31b336c524ec79c54ac0b08f3e"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-latin.tsv",
+      "bytes": 3037,
+      "sha256": "49ed3c748b4fed0ce791de6670e06be2814cfd05f50d92c150fbaf1567ed98a8"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr-white-text.tsv",
+      "bytes": 3118,
+      "sha256": "fb02aaa82f01d160dcaf967b8c85ea710566d5f6d5cd8628a2aa0611dd701d84"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-0-ocr.json",
+      "bytes": 10592,
+      "sha256": "afa578f8e245505388eb5a23c51f8f170fd98faed09315dbee47f5e6dd78384b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr-contrast.tsv",
+      "bytes": 3155,
+      "sha256": "759a2180d7240b46aab87f0850482d14ec1ed7d2b6f7fc0c5a20fb9c71ce7617"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr-raw.tsv",
+      "bytes": 2860,
+      "sha256": "1e54597634b92a712b995426e734ccd13e9ed7ec5d06395d244fb632fc53c572"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr-white-text.tsv",
+      "bytes": 3763,
+      "sha256": "94316f943d5ebcec9f997aa991d6916b29fcb9664e589e2a26a12c02b687c246"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-1-ocr.json",
+      "bytes": 6455,
+      "sha256": "4a252d153cab38b70b26b85350108f400be5dd3fdd05a8ee5dc520d677b1c0b5"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-2-ocr-contrast.tsv",
+      "bytes": 3056,
+      "sha256": "3e18fa6964fde5f0dfd7729ded20daf4f5116094dc4cfc9c285443091e79b777"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-2-ocr-raw.tsv",
+      "bytes": 3295,
+      "sha256": "1a8c007a907f31822bf54a0d2f274e8f98964627a3e9a6fabf982ef5588d9965"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-2-ocr-white-text.tsv",
+      "bytes": 4173,
+      "sha256": "98064080b74c209acb270c19a438411af4cb8bd051839299a7af539ea9c12a4c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-2-ocr.json",
+      "bytes": 6950,
+      "sha256": "03c782f799c83161477c432153fcc06d123bfb53d019557fc589a08a13a9b588"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-4-surface-readiness.json",
+      "bytes": 3559,
+      "sha256": "9f099c2314343b57d383c2cf5e1e215260639fc8be9c73c96b29cc2f58fd103d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-contrast.tsv",
+      "bytes": 3162,
+      "sha256": "87b3c9fd39326a46ed0b6b6a30ea8a15909ccaec565bc21e3b2c9b1c6a6a22dc"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-raw.tsv",
+      "bytes": 2870,
+      "sha256": "c06af22548b71241e8a4fa13a117f3b7e4c50c68a5c0bf1cced1b1a90c537291"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr-white-text.tsv",
+      "bytes": 3312,
+      "sha256": "33eba1fc3506cd5e71c3ef9c4b682eb6080e932fd273471467ab0866138673b1"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-0-ocr.json",
+      "bytes": 6071,
+      "sha256": "87140fc636845f588b95be7e7290c8ce0e6a557da2456318f6dbafbc995a5200"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr-contrast.tsv",
+      "bytes": 3157,
+      "sha256": "de2f14c77f0c150806014172de468e9f1415eec637769f3c34b572548c983b30"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr-raw.tsv",
+      "bytes": 2867,
+      "sha256": "cc2089be3a6b46a7dea6cb6f220659236294ed0304d88a1c536ac97baa5bdbe8"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr-white-text.tsv",
+      "bytes": 3712,
+      "sha256": "9452e153ec1b431c39d617d77d8a0f9ae767cb64bdb42228d185040cc593ff53"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-1-ocr.json",
+      "bytes": 6329,
+      "sha256": "93bd607b9a33860f28d4df19b5226a128eb06d7e4a92840cbcc1ca1c29a132c7"
+    },
+    {
+      "artifact_entry": "nextgen/learning-move-5-surface-readiness.json",
+      "bytes": 2766,
+      "sha256": "1822cd3db3ed4aa4aa6b86db1fbb38330300bb3132cadf78bd200943f662e2c5"
+    },
+    {
+      "artifact_entry": "nextgen/learning-movement-logcat.txt",
+      "bytes": 2603,
+      "sha256": "e4818bb1dd6484057c51871c860cd51d210b685aa4e8ff4c1bbe07964ab679a2"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-0.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-1.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-10.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-11.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-12.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-13.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-14.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-15.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-16.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-2.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-3.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-4.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-5.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-6.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-7.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-8.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27--1-9.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27-1-0.xml",
+      "bytes": 26778,
+      "sha256": "3216188ef4f1b19266b51090ebea5144646ccd13d94ae0b918ddc3cafa77562f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-entry-27-1-1.xml",
+      "bytes": 23588,
+      "sha256": "8f212bc86b32150fb82dde6c495711b8ddac7c393a00ee1691e1e64c49e3e323"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-components.json",
+      "bytes": 461,
+      "sha256": "ba878ed0952e6efb105c762f097f9ae38ea03febf231c90d14c9f770baacf339"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-contrast.tsv",
+      "bytes": 414,
+      "sha256": "2884b32ffffbbadc2a50659fad5e89763d2838fd5b74a6841a0b7667f9bd5860"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-raw.tsv",
+      "bytes": 414,
+      "sha256": "0bb73cef02b2ad84533b6de9f3f167b8cd926a4dcb9251edaaba9a74e53e96cd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-teal-text-1x.tsv",
+      "bytes": 410,
+      "sha256": "85e8a2400e255c9cf256bc12c63fe2d0e762ade7aa550107dc304609269eb1d6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-tiles.json",
+      "bytes": 4733,
+      "sha256": "062656a362eac7bb325ba9402b0199987c5d5fc5dbd29b3caaa4956bb2c7e744"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 285,
+      "sha256": "037be8a4c9a3e70bb4e5706f6dacd0b58c78dac81a6ec8326b4de0e21bdc0149"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "549dd3760a12f28b0ee031dd93ff14dcf8589d10060bc950e2b8a7f23029741b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "549dd3760a12f28b0ee031dd93ff14dcf8589d10060bc950e2b8a7f23029741b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 282,
+      "sha256": "ce9971c81e1570a1f701be712721b37bc89158ca6348b1c5ade6a7a4f4265b2b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 244,
+      "sha256": "262a1af24615e514f3fbe239cdbb0e41c0934fbef5393ebd9e4c656fb31ad0bf"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 113,
+      "sha256": "549dd3760a12f28b0ee031dd93ff14dcf8589d10060bc950e2b8a7f23029741b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 113,
+      "sha256": "549dd3760a12f28b0ee031dd93ff14dcf8589d10060bc950e2b8a7f23029741b"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 288,
+      "sha256": "70aae7496a36c56232a5d2f1554268d2a1bfb4859c6adf3668db2b20c1b4c992"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 113,
+      "sha256": "a97877679e136e5226fed46ef894f5d93a4e1d3eff60eb2f7d47cf33a6ac18d6"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-latin.tsv",
+      "bytes": 450,
+      "sha256": "aa6c795d37d9ddd96389a0f5bd38d5a1678bd7ae76e416c4828e8c947736b8ce"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr-white-text.tsv",
+      "bytes": 414,
+      "sha256": "0a688dcf275785d7cc95191b5258b5d751534fd1c1044a3b08c226321e1d9a59"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-0-ocr.json",
+      "bytes": 1291,
+      "sha256": "34efba3c6b98665ad042987760e098af49204f7f3ba4cfa36cc9c993dc42d2ba"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-1-ocr-contrast.tsv",
+      "bytes": 2486,
+      "sha256": "76577f41a03f19354bae844310811fdfc562e45d0962e2eba636d042bebf2461"
+    },
+    {
+      "artifact_entry": "nextgen/learning-native-title-1-ocr.json",
+      "bytes": 1801,
+      "sha256": "1d25a83bb94ec53cf2ff17edc7ca9e91b43aaed22070e36c1f9872c57d9f0999"
+    },
+    {
+      "artifact_entry": "nextgen/learning-return-academy.xml",
+      "bytes": 27947,
+      "sha256": "c58d1719296b248c57fcecfc575280fdc7c00ed1008d41ee533b77e9c1ac513f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-return-hub.xml",
+      "bytes": 19137,
+      "sha256": "5c4c088381de6c7967e094d5a77cb4fd385cbc7f5868fbc8c34282df74aa614d"
+    },
+    {
+      "artifact_entry": "nextgen/learning-return-navigation.xml",
+      "bytes": 27947,
+      "sha256": "c58d1719296b248c57fcecfc575280fdc7c00ed1008d41ee533b77e9c1ac513f"
+    },
+    {
+      "artifact_entry": "nextgen/learning-speech-logcat.txt",
+      "bytes": 2726,
+      "sha256": "53885d205a8b6901e34ec1438af3969cb8768c5ce7f90d37e596246923ce16ca"
+    },
+    {
+      "artifact_entry": "nextgen/learning-ten-filled-0-ocr-contrast.tsv",
+      "bytes": 3134,
+      "sha256": "0826d9aa0867b79bb82cd103d340b95a379dab8a72649f2b0ec9175d83b690be"
+    },
+    {
+      "artifact_entry": "nextgen/learning-tab-6--1-0.xml",
+      "bytes": 25830,
+      "sha256": "f0d2297c07cce338b16c533f10ce84fd2ef4b2bf11820a9f1896b1ca0dddcb1c"
+    },
+    {
+      "artifact_entry": "nextgen/learning-ten-filled-0-ocr.json",
+      "bytes": 2173,
+      "sha256": "9f515d4f7c42644a4042fd1258b40f65ebf5485302e01e537afcc5a404565745"
+    },
+    {
+      "artifact_entry": "nextgen/native-surfaces-result.json",
+      "bytes": 6114,
+      "sha256": "900af236fbf121ccfe20055b9d33a12a592d3ca3f2161af6eba39615ad65b5e6"
+    },
+    {
+      "artifact_entry": "nextgen/voice-games-entry-7--1-0.xml",
+      "bytes": 28472,
+      "sha256": "4ec263d31ecf36b8e7e58f21c3337f10669936a8f6bb9a7072a127bb145cf959"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-checkbox-145--1-0.xml",
+      "bytes": 33374,
+      "sha256": "05f6c960c2308bd5eaefa85949c6ccf6d4846b233314df21ad11c771d24b929d"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-confirm-23--1-0.xml",
+      "bytes": 33371,
+      "sha256": "fd531ffdbde8d1d3e723ea81ac7b9203ddaa9ab87e0feccb8ec0ed16160461cc"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-dialog.xml",
+      "bytes": 33374,
+      "sha256": "05f6c960c2308bd5eaefa85949c6ccf6d4846b233314df21ad11c771d24b929d"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-observed-preferences.xml",
+      "bytes": 2757,
+      "sha256": "26426eeb95a3b30ea6663971b63b079e8bdf11d3b6bb0d4de435c68228f09582"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-0.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-1.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-10.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-11.xml",
+      "bytes": 26817,
+      "sha256": "5f4478bb7bc8e44b23bf706f0aeb015d3a6c20e7317ce8e9b36dda5fcf18cba5"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-12.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-14.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-15.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-13.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-16.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-2.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-3.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-4.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-5.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-7.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-6.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-8.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27--1-9.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-0.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-1.xml",
+      "bytes": 25982,
+      "sha256": "11c53045e950cb943b2e85e9668a1c2aaa4f0ed54f8f554cdd0635bbef7c8dd1"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-10.xml",
+      "bytes": 29665,
+      "sha256": "ba181e101ded88cc5f0e5e4f910633163aa024edd5dbe61e4c3be11547a9d11f"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-11.xml",
+      "bytes": 28920,
+      "sha256": "cc0e5e7b8b898246910a90ec44c06cbbbfc9f4e150e9fc2ea16983c1cbec5c82"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-13.xml",
+      "bytes": 26511,
+      "sha256": "9b9c390e109e8d53bbf75b1a16b1c0c13c506c55f80baeb8db94322a63532d14"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-14.xml",
+      "bytes": 26083,
+      "sha256": "2f71a479c49b844bac7b6339e05e69a8c115fb2437a442f06ea58a391bb5b83e"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-12.xml",
+      "bytes": 27665,
+      "sha256": "fda55dd57273a5de19f15c76833050105c3899ea3cd6e5143abe13a0aec2b302"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-15.xml",
+      "bytes": 25405,
+      "sha256": "b65d9f22910aa0ad7a459a2b9c4efbbd688ce7591206d4928157d3910fce507e"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-2.xml",
+      "bytes": 25080,
+      "sha256": "a4ae40d6ab4bf2cad1cbbaf2c2ccddef5887036324c3616a3df212248b049976"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-3.xml",
+      "bytes": 25605,
+      "sha256": "29c7b9e1edc0eeb995e922922765a1840dc75b50bc3a90706844aa9c65bb8ffa"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-4.xml",
+      "bytes": 26871,
+      "sha256": "3b28670ee6d1936286ee2822fc171ab0bc25129a7561ec106cf7f035483eba03"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-5.xml",
+      "bytes": 27715,
+      "sha256": "70fbef52035dcac317ea3e94f213ca9cb6e8867d2a0dd7750f6fa206fd2b594a"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-6.xml",
+      "bytes": 25564,
+      "sha256": "3bc92ac0cb4bef2a61e926d82e2fa6df30d87f698caeb7dafb3ac9e35ab8ec56"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-8.xml",
+      "bytes": 28163,
+      "sha256": "c1cdeb4723d6bc57e3a0daaf605d7b6717980b423ce72f4005ada57a71bf3b0c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-7.xml",
+      "bytes": 26859,
+      "sha256": "ea00df90e76979d495c26adcd51385fda9f98e77ffd2a5f643664ed22f58962c"
+    },
+    {
+      "artifact_entry": "nextgen/voice-license-open-27-1-9.xml",
+      "bytes": 29097,
+      "sha256": "ec3a5be533032cc743aa1b620cf3905a0d5d9f77d5f0dc2c4fb3063c8b9e2515"
+    },
+    {
+      "artifact_entry": "nextgen/voice-setting-autoReadEnabled-preferences.xml",
+      "bytes": 2757,
+      "sha256": "26426eeb95a3b30ea6663971b63b079e8bdf11d3b6bb0d4de435c68228f09582"
+    },
+    {
+      "artifact_entry": "nextgen/voice-setting-calmMode-preferences.xml",
+      "bytes": 2757,
+      "sha256": "26426eeb95a3b30ea6663971b63b079e8bdf11d3b6bb0d4de435c68228f09582"
+    },
+    {
+      "artifact_entry": "nextgen/voice-setting-voiceEnabled-preferences.xml",
+      "bytes": 2757,
+      "sha256": "26426eeb95a3b30ea6663971b63b079e8bdf11d3b6bb0d4de435c68228f09582"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-after-preferences.xml",
+      "bytes": 2757,
+      "sha256": "26426eeb95a3b30ea6663971b63b079e8bdf11d3b6bb0d4de435c68228f09582"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-before-preferences.xml",
+      "bytes": 2011,
+      "sha256": "9a8b08003b0d00da08c7c27e91bf4ed5b1522a445d23e6d2028215bdac8125e8"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-0.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-1.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-10.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-11.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-12.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-13.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-14.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-15.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-16.xml",
+      "bytes": 24801,
+      "sha256": "2daa059b2e676ece5895227eb2104948976d69e6ffc78d5d770b539382edd775"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-2.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-3.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-4.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-5.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-6.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-7.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-8.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13--1-9.xml",
+      "bytes": 24801,
+      "sha256": "bf94016175ebafea169bf7f1dccd7dfb088a8ffec22c479f90cce2ac17be3490"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13-1-0.xml",
+      "bytes": 24801,
+      "sha256": "2daa059b2e676ece5895227eb2104948976d69e6ffc78d5d770b539382edd775"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13-1-1.xml",
+      "bytes": 22973,
+      "sha256": "f1e7a8c260bbfdae8685b4ad7b7474971a4648bb042d818c5c6dac5588f478c2"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-entry-13-1-2.xml",
+      "bytes": 24292,
+      "sha256": "1f4427d5e7af69f7e98e75afee32e26e85946bb125aff8c61fe757ced17b6567"
+    },
+    {
+      "artifact_entry": "nextgen/voice-settings-open.xml",
+      "bytes": 26817,
+      "sha256": "fef22d5d5f1ff594e0e8d3a5e4f69f08b4fda7159d084b7c30d7e671fda4d435"
+    },
+    {
+      "artifact_entry": "recheck/result.json",
+      "bytes": 2612,
+      "sha256": "899dca662daac2ca6a865d8ec3b1e46f22280956d6902de878c1140a8a5e02fe"
+    },
+    {
+      "artifact_entry": "tour-result.json",
+      "bytes": 9656,
+      "sha256": "d010fcb1b6305858614107509bb7669d746d08f3286a247f94d952ac8717ab7e"
+    },
+    {
+      "artifact_entry": "nextgen/03_learning_native_ten_and_three.png",
+      "bytes": 571019,
+      "sha256": "99641cda068858e10f31ce653c9f88ad88123080114eb31ab0eed54c75ad8704"
+    },
+    {
+      "artifact_entry": "nextgen/04_learning_native_thirteen.png",
+      "bytes": 581143,
+      "sha256": "6e8b9643b2eef59b06b2466b85485a750c2df25a7075bba60a4e21b7ccf54739"
+    },
+    {
+      "artifact_entry": "nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1509007,
+      "sha256": "630495be79a5699b798c016cec8b5b7ad46f74c03af0ad5124ec444523735f18"
+    },
+    {
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 1163505,
+      "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9"
+    },
+    {
+      "artifact_entry": "nextgen/99_nextgen_failure.png",
+      "bytes": 1155462,
+      "sha256": "a00086d4dad1a154d4da63286bbc6a43fd9ee2cae0948b17fe585d65d878d120"
+    }
+  ]
+}

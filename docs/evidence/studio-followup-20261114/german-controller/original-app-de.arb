@@ -1,0 +1,361 @@
+{
+  "@@locale": "de",
+  "@@author": "Lumo Lernen Team",
+  "@@context": "UI strings for the Lumo Lernen children's learning app, primarily for the Lumo Cards mini-game and the app shell. Source language: German (Austria).",
+
+  "cardsIntroTitle": "LUMO CARDS",
+  "@cardsIntroTitle": {
+    "description": "Big logo text shown on the intro splash. Brand name - do NOT translate."
+  },
+
+  "cardsIntroSubtitle": "Tippe zum Starten",
+  "@cardsIntroSubtitle": {
+    "description": "Hint below the logo to start the game"
+  },
+
+  "cardsTurnPillMy": "DEIN ZUG",
+  "@cardsTurnPillMy": {
+    "description": "Pill indicator when it's the child's turn"
+  },
+
+  "cardsTurnPillOpponent": "GEGNER",
+  "@cardsTurnPillOpponent": {
+    "description": "Pill indicator when it's the opponent's turn"
+  },
+
+  "cardsActionDraw": "Karte ziehen",
+  "@cardsActionDraw": {
+    "description": "Action button to draw a card"
+  },
+
+  "cardsLumoThinking": "Lumo überlegt …",
+  "@cardsLumoThinking": {
+    "description": "Shown while the bot 'Lumo' is deciding its move. Lumo is the fox mascot's name - do NOT translate."
+  },
+
+  "cardsNoCardsLeft": "Keine Karten – du gewinnst gleich!",
+  "@cardsNoCardsLeft": {
+    "description": "Shown when the player has 0 cards left, just before victory"
+  },
+
+  "cardsPassDeviceTitle": "Gib das Tablet an {name}",
+  "@cardsPassDeviceTitle": {
+    "description": "Pass-and-play handoff between two humans",
+    "placeholders": { "name": { "type": "String" } }
+  },
+
+  "cardsPassDeviceReady": "Bereit",
+  "@cardsPassDeviceReady": {
+    "description": "Button to confirm handoff in pass-and-play"
+  },
+
+  "cardsAvatarChange": "Avatar wechseln",
+  "@cardsAvatarChange": {
+    "description": "Title of the avatar picker dialog"
+  },
+
+  "cardsLumoCallButton": "LUMO!",
+  "@cardsLumoCallButton": {
+    "description": "Button to call 'Lumo!' when down to 1-2 cards. Brand-related call - do NOT translate."
+  },
+
+  "cardsLumoCallSnackbar": "LUMO! +1 Stern – jetzt die letzte Karte legen!",
+  "@cardsLumoCallSnackbar": {
+    "description": "Snackbar shown after the player presses the LUMO! button"
+  },
+
+  "cardsDrawerCardsLabel": "{count} Karten",
+  "@cardsDrawerCardsLabel": {
+    "description": "Label below the draw pile showing remaining cards",
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "hintNoPlayable": "Keine passende Karte – zieh eine!",
+  "@hintNoPlayable": {
+    "description": "Hint when no card in hand matches"
+  },
+
+  "hintNormal": "Lege eine passende Farbe oder Zahl.",
+  "@hintNormal": {
+    "description": "Default hint when the player has playable cards"
+  },
+
+  "hintOpponentOneBlock": "Lumo hat nur 1 Karte – leg eine Spezialkarte!",
+  "@hintOpponentOneBlock": {
+    "description": "Hint when opponent has 1 card AND player has a blocker"
+  },
+
+  "hintOpponentOneNoBlock": "Achtung: Lumo gewinnt fast! Halt ihn auf!",
+  "@hintOpponentOneNoBlock": {
+    "description": "Hint when opponent has 1 card AND player has no blocker"
+  },
+
+  "hintOpponentTwoBlock": "Lumo hat nur 2 Karten – jetzt blockieren!",
+  "@hintOpponentTwoBlock": {
+    "description": "Hint when opponent has 2 cards"
+  },
+
+  "hintPlayHigh": "Spiel deine grossen Zahlen zuerst!",
+  "@hintPlayHigh": {
+    "description": "Hint when the player's hand is large"
+  },
+
+  "hintWildOnly": "Spiel die Wild und wähle eine Farbe!",
+  "@hintWildOnly": {
+    "description": "Hint when the only playable card is a Wild"
+  },
+
+  "hintSuperOnly": "Sternensturm! Lumo muss 4 Karten ziehen!",
+  "@hintSuperOnly": {
+    "description": "Hint when the only playable card is a Wild Draw 4"
+  },
+
+  "resultWonKid": "Du hast gewonnen!",
+  "@resultWonKid": {
+    "description": "Result dialog header when the child wins"
+  },
+
+  "resultLostKid": "Lumo hat gewonnen.",
+  "@resultLostKid": {
+    "description": "Result dialog header when the bot wins"
+  },
+
+  "resultConsolationStar": "Du bekommst 1 Trost-Stern. Nächstes Mal du!",
+  "@resultConsolationStar": {
+    "description": "Consolation message when the child loses"
+  },
+
+  "resultRewardStars": "Du bekommst {count} Sterne!",
+  "@resultRewardStars": {
+    "description": "Reward stars when the child wins",
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "resultStreakLabel": "{streak} Siege in Folge!",
+  "@resultStreakLabel": {
+    "description": "Streak indicator when the child has multiple consecutive wins",
+    "placeholders": { "streak": { "type": "int" } }
+  },
+
+  "resultRestart": "Neue Runde",
+  "@resultRestart": {
+    "description": "Button to start a new round"
+  },
+
+  "resultExit": "Beenden",
+  "@resultExit": {
+    "description": "Button to exit the game"
+  },
+
+  "colorOrange": "Orange",
+  "@colorOrange": { "description": "Color name shown in UI" },
+
+  "colorPurple": "Lila",
+  "@colorPurple": { "description": "Color name shown in UI" },
+
+  "colorBlue": "Blau",
+  "@colorBlue": { "description": "Color name shown in UI" },
+
+  "colorGreen": "Grün",
+  "@colorGreen": { "description": "Color name shown in UI" },
+
+  "colorRed": "Rot",
+  "@colorRed": { "description": "Color name shown in UI" },
+
+  "colorYellow": "Gelb",
+  "@colorYellow": { "description": "Color name shown in UI" },
+
+  "actionPlayerPlaysNumber": "{player} legt {color} {number}.",
+  "@actionPlayerPlaysNumber": {
+    "description": "Turn-banner message when a player plays a number card",
+    "placeholders": {
+      "player": { "type": "String" },
+      "color": { "type": "String" },
+      "number": { "type": "int" }
+    }
+  },
+
+  "actionLumoJump": "Lumo-Sprung! {player} setzt aus.",
+  "@actionLumoJump": {
+    "description": "Turn-banner message when a Skip card is played",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "actionStarRain": "Sternenregen! {player} zieht 2 Karten.",
+  "@actionStarRain": {
+    "description": "Turn-banner message when a +2 card is played",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "actionSuperRain": "Super-Sternenregen! {player} zieht 4 Karten – jetzt Farbe wählen.",
+  "@actionSuperRain": {
+    "description": "Turn-banner message when a +4 card is played",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "actionColorMagic": "Farbzauber! {player} wählt eine Farbe.",
+  "@actionColorMagic": {
+    "description": "Turn-banner message when a Wild card is played",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "actionColorChosen": "{player} wählt {color}.",
+  "@actionColorChosen": {
+    "description": "Turn-banner message when a player picks a color after a Wild",
+    "placeholders": {
+      "player": { "type": "String" },
+      "color": { "type": "String" }
+    }
+  },
+
+  "actionWhirlwindSkip": "Wirbelwind! {player} setzt aus.",
+  "@actionWhirlwindSkip": {
+    "description": "2-player reverse-as-skip",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "actionReverseDir": "Wirbelwind! Richtung wechselt.",
+  "@actionReverseDir": {
+    "description": "3-4 player reverse-flip-direction"
+  },
+
+  "actionThinkPause": "Denkpause! Lumo hat eine kleine Frage für {player}.",
+  "@actionThinkPause": {
+    "description": "Turn-banner message when a Pause/Learning card is played",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "actionDrawCard": "{player} zieht eine Karte.",
+  "@actionDrawCard": {
+    "description": "Turn-banner message when a player draws",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "actionNoCardsToDraw": "Keine Karten mehr zum Ziehen.",
+  "@actionNoCardsToDraw": {
+    "description": "Edge case when both piles are empty"
+  },
+
+  "actionPlayerWon": "{player} hat alle Karten abgelegt!",
+  "@actionPlayerWon": {
+    "description": "Turn-banner message when someone wins",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "voiceWelcomeBot": "Willkommen bei Lumo Cards! Du fängst an.",
+  "@voiceWelcomeBot": {
+    "description": "TTS line at game start in bot mode"
+  },
+
+  "voiceWelcomePass": "Willkommen bei Lumo Cards! {player} fängt an.",
+  "@voiceWelcomePass": {
+    "description": "TTS line at game start in pass-and-play",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "voiceYouDraw": "Du ziehst eine Karte.",
+  "@voiceYouDraw": { "description": "TTS line when the child draws" },
+
+  "voiceLumoDraws": "Lumo zieht eine Karte.",
+  "@voiceLumoDraws": { "description": "TTS line when the bot draws" },
+
+  "learningCorrect": "Richtig! {player} bekommt einen Stern und darf nochmal.",
+  "@learningCorrect": {
+    "description": "Result after a correct learning answer",
+    "placeholders": { "player": { "type": "String" } }
+  },
+
+  "learningWrong": "Schade. {hint}",
+  "@learningWrong": {
+    "description": "Result after a wrong learning answer",
+    "placeholders": { "hint": { "type": "String" } }
+  },
+
+  "learningDefaultHint": "Beim nächsten Mal klappt es!",
+  "@learningDefaultHint": {
+    "description": "Fallback hint when none is set on the question"
+  },
+
+  "errorTitle": "Hier hat Lumo eine Pause gebraucht.",
+  "@errorTitle": {
+    "description": "Global error widget title shown when a Flutter widget crashes"
+  },
+
+  "errorSubtitle": "Tippe oben links zurück zur Startseite.\nDeine Fortschritte sind sicher.",
+  "@errorSubtitle": {
+    "description": "Global error widget subtitle"
+  },
+
+  "scoreRoundLabel": "Runde",
+  "@scoreRoundLabel": { "description": "Label in score header" },
+
+  "scoreTargetLabel": "Ziel",
+  "@scoreTargetLabel": { "description": "Label in score header for target points" },
+
+  "playerYou": "Du",
+  "@playerYou": {
+    "description": "Default name of the human player. Singular informal you."
+  },
+
+  "playerLumoBot": "Lumo",
+  "@playerLumoBot": {
+    "description": "Bot opponent's name. Mascot name - do NOT translate."
+  },
+
+  "playerBotLuna": "AI Luna",
+  "@playerBotLuna": {
+    "description": "Optional second bot character name (4-player mode)"
+  },
+
+  "playerBotPudding": "AI Pudding",
+  "@playerBotPudding": {
+    "description": "Optional third bot character name (4-player mode)"
+  },
+
+  "playerBotDusty": "AI Dusty",
+  "@playerBotDusty": {
+    "description": "Optional fourth bot character name (4-player mode)"
+  },
+
+  "genericClose": "Schließen",
+  "@genericClose": { "description": "Generic close button" },
+
+  "genericCancel": "Abbrechen",
+  "@genericCancel": { "description": "Generic cancel button" },
+
+  "genericConfirm": "Bestätigen",
+  "@genericConfirm": { "description": "Generic confirm button" },
+
+  "genericContinue": "Weiter",
+  "@genericContinue": { "description": "Generic continue button" },
+
+  "genericBack": "Zurück",
+  "@genericBack": { "description": "Generic back button" },
+
+  "genericYes": "Ja",
+  "@genericYes": { "description": "Generic yes" },
+
+  "genericNo": "Nein",
+  "@genericNo": { "description": "Generic no" },
+
+  "settingsMuteSfx": "Sound-Effekte stumm",
+  "@settingsMuteSfx": { "description": "Toggle for SFX mute" },
+
+  "settingsMuteMusic": "Musik stumm",
+  "@settingsMuteMusic": { "description": "Toggle for music mute" },
+
+  "settingsLanguage": "Sprache",
+  "@settingsLanguage": { "description": "Language selection label" },
+
+  "languageGerman": "Deutsch",
+  "@languageGerman": { "description": "Language name for German" },
+
+  "languageEnglish": "English",
+  "@languageEnglish": { "description": "Language name for English" },
+
+  "languageTurkish": "Türkçe",
+  "@languageTurkish": { "description": "Language name for Turkish (Wien-Schule)" },
+
+  "languageBosnian": "Bosanski",
+  "@languageBosnian": { "description": "Language name for Bosnian (Wien-Schule)" }
+}

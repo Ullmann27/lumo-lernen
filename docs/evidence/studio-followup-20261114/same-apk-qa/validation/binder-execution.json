@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_studio_4ab_recheck.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab",
+  "started_at": "2026-11-14T02:24:35.365252+00:00",
+  "finished_at": "2026-11-14T02:24:36.592959+00:00",
+  "duration_seconds": 1.227740565998829,
+  "exit_code": 0,
+  "raw_log": "binder.log",
+  "scope": "Local contract execution only; no emulator, APK build or Android PASS"
+}
