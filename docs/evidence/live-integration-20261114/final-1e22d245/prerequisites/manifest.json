@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "kind": "current_exact_acceptance_prerequisite_originals",
+  "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "host_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run_id": 43596913210,
+  "run_attempt": 1,
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "branch": "integration/lumo-live-connections-20261114",
+  "pull_request": 497,
+  "jobs": [
+    {
+      "name": "connect-four-runtime",
+      "id": 132453271437,
+      "run_id": 43596913210,
+      "run_attempt": 1,
+      "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T12:52:17Z",
+      "completed_at": "2026-11-14T12:55:06Z",
+      "log_path": "docs/evidence/live-integration-20261114/final-1e22d245/connect-four-runtime/job-132453271437-original.log",
+      "log_utf8_bytes": 291306,
+      "log_sha256": "311e1bb04108b78f3ea945d161f59db9a23a9282d7365293ca8f8a8408659556",
+      "markers": [
+        {
+          "line": 3053,
+          "text": "2026-11-14T12:54:08.8796645Z CONNECT_FOUR_RETURN_PASS checks=21"
+        },
+        {
+          "line": 3077,
+          "text": "2026-11-14T12:54:09.3560158Z [TreasureWisp] PASS checks=14"
+        },
+        {
+          "line": 3086,
+          "text": "2026-11-14T12:54:59.8839392Z {\"passed\": true, \"output\": \"/home/runner/work/lumo-lernen/lumo-lernen/c4-runtime/runtime\", \"error\": null, \"exit_codes\": {\"dart\": 0, \"godot\": 0}}"
+        }
+      ],
+      "actual_engine_or_github_error_lines": [],
+      "log_downloads": 1
+    },
+    {
+      "name": "android-host-compile",
+      "id": 132453271671,
+      "run_id": 43596913210,
+      "run_attempt": 1,
+      "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T12:52:16Z",
+      "completed_at": "2026-11-14T12:56:02Z",
+      "log_path": "docs/evidence/live-integration-20261114/final-1e22d245/android-host-compile/job-132453271671-original.log",
+      "log_utf8_bytes": 241658,
+      "log_sha256": "fb9639a83bc2ab2122837a1f6691a193929435cb6bc0c5cad4bda932428e64b0",
+      "markers": [
+        {
+          "line": 1303,
+          "text": "2026-11-14T12:53:05.1006484Z Ran 10 tests in 11.009s"
+        },
+        {
+          "line": 1308,
+          "text": "2026-11-14T12:53:05.1008740Z CARDS_WINDOW_CALLS_PASS cards (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1309,
+          "text": "2026-11-14T12:53:05.1009361Z CARDS_WINDOW_CALLS_PASS delayed-engine (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1310,
+          "text": "2026-11-14T12:53:05.1009985Z CARDS_WINDOW_CALLS_PASS authority (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1311,
+          "text": "2026-11-14T12:53:05.1010572Z CARDS_WINDOW_CALLS_PASS non-cards (JVM boundary adapters; no Android pixels or measured insets)"
+        },
+        {
+          "line": 1744,
+          "text": "2026-11-14T12:55:58.4115041Z BUILD SUCCESSFUL in 2m 28s"
+        },
+        {
+          "line": 1747,
+          "text": "2026-11-14T12:55:59.0421725Z [AndroidHostCompile] PASS: actual Kotlin/Java bytecode for native lifecycle, Cards IPC and offline speech"
+        }
+      ],
+      "actual_engine_or_github_error_lines": [],
+      "log_downloads": 1
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 14115026558,
+      "name": "lumo-connect-four-2020-learning-curriculum-audit",
+      "size_in_bytes": 212135,
+      "digest": "sha256:a1a78a3661ec4b41a784662605ccc987bdcf49038b67d2ba57bb9abc62f0570e",
+      "expired": false,
+      "workflow_run": {
+        "id": 43596913210,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    },
+    {
+      "id": 14114548704,
+      "name": "lumo-connect-four-2020-android-host-compile",
+      "size_in_bytes": 6287,
+      "digest": "sha256:d17611d1329b51b03fd385835d0b09d158d53aeaeb72fd632215f16600a8ff6d",
+      "expired": false,
+      "workflow_run": {
+        "id": 43596913210,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    },
+    {
+      "id": 14114408787,
+      "name": "lumo-connect-four-2020-desktop-runtime",
+      "size_in_bytes": 22148477,
+      "digest": "sha256:2ea72b69b30c4fbe154dc497c57c39bd69f418acb8c6548d90e0c7df38639438",
+      "expired": false,
+      "workflow_run": {
+        "id": 43596913210,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    }
+  ],
+  "limits": [
+    "Only the two named prerequisite jobs are complete in this evidence checkpoint.",
+    "No current APK, Android tour, update tour, candidate delivery or publication is claimed.",
+    "The Home visual review is a separate current-source Flutter-capture artifact, not an Android APK capture.",
+    "Artifact bytes have not been downloaded by this prerequisite log checkpoint."
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/prerequisites/run-original.json",
+      "bytes": 13647,
+      "sha256": "4a8aa28ac2e4c333c5e89ce532b2d45da09786fd672be623e7d62f6b45659579"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/prerequisites/jobs-original.json",
+      "bytes": 13963,
+      "sha256": "7b5d668876a9fbb783917d3e94307ad7a8440c2b60ae8ab6c3597620d569deab"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/prerequisites/artifacts-original.json",
+      "bytes": 2287,
+      "sha256": "5cfc23ecb417229cccfc1435ba73dbcb7f21203b41795d7ddeeb68db56ceef16"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/prerequisites/host-commit-original.json",
+      "bytes": 2142,
+      "sha256": "3058c751a2d2d2fa5cc0008b6b03e5e6dfa55910cf5caf606dff1cb558cd10aa"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/prerequisites/native-pin-original.json",
+      "bytes": 145,
+      "sha256": "65b166cfadfcc64160f8bf4648a87b29cefd538f08513fd6b896656fbcfba9ee"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/home-capture-independent-review.json",
+      "bytes": 4239,
+      "sha256": "f67d8e0dd17828fa3f1ec3e2f5e7466961ed09a925fe1321599f5cf21dd61854"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/connect-four-runtime/job-132453271437-original.log",
+      "bytes": 291306,
+      "sha256": "311e1bb04108b78f3ea945d161f59db9a23a9282d7365293ca8f8a8408659556"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/android-host-compile/job-132453271671-original.log",
+      "bytes": 241658,
+      "sha256": "fb9639a83bc2ab2122837a1f6691a193929435cb6bc0c5cad4bda932428e64b0"
+    }
+  ]
+}

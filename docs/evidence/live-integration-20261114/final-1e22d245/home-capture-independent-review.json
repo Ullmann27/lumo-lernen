@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "kind": "independent_visual_review_of_original_current_home_captures",
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "head": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "run": 43596913225,
+    "attempt": 1,
+    "job": 132453271395,
+    "status": "success",
+    "home_tests": 13,
+    "world_tests": 8,
+    "visual_review_completed": true
+  },
+  "artifact_id": 14115111878,
+  "archive_sha256": "4681a6b646cfa2f643a75ff78f4e77a52090c125f4cdbfdab8b70596745742e3",
+  "images_actually_opened": [
+    {
+      "path": "fold-cover-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "fold-open-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "fold-cover-start.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "large-text-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "phone-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "width": 786,
+      "height": 1704
+    }
+  ],
+  "images_sha256_independently_verified": true,
+  "method": "Original PNG files opened directly with view_image; no editing, generated substitutes, extra download or SDK execution.",
+  "findings": [
+    {
+      "image": "fold-cover-start.png",
+      "result": "No new visible blocker",
+      "observation": "The full Belohnungen label fits within its card. The original fox, visible main controls and card text are legible. The compact Kart banner intentionally displays shortened strings; lower content continues outside the scroll viewport."
+    },
+    {
+      "image": "fold-cover-learning-cards.png",
+      "result": "No new visible blocker",
+      "observation": "Mathe and Deutsch cards are completely visible with readable titles, descriptions and progress labels. The next Lesen card continues below the captured viewport; this is not evidence of its whole card."
+    },
+    {
+      "image": "phone-learning-cards.png",
+      "result": "No new visible blocker",
+      "observation": "Mathe, Deutsch and Lesen cards are fully visible and separated. The Schreiben card continues below the viewport. The section heading is partly above the visible scroll position."
+    },
+    {
+      "image": "fold-open-learning-cards.png",
+      "result": "No new visible blocker",
+      "observation": "All eleven subject cards and the separate Logik row are visible. Titles, descriptions, decorative icons and progress labels remain separated with no visible text clipping or overlay."
+    },
+    {
+      "image": "large-text-learning-cards.png",
+      "result": "No new visible blocker",
+      "observation": "The enlarged text of Mathe, Deutsch, Lesen and Schreiben remains legible with no collisions. The responsive single-column layout leaves the next card partly below the viewport."
+    }
+  ],
+  "limits": [
+    "Visual inspection does not establish touch sizes or executed navigation by itself.",
+    "This review is of these five named PNGs only; no current native/Android APK visual claim.",
+    "Other Home test and run provenance is separately recorded by the capture owner."
+  ]
+}
