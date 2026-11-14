@@ -1,0 +1,304 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T11:06:32.785Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43587032836,
+  "attempt": 1,
+  "job_id": 132423646790,
+  "conclusion": "PASS",
+  "qa_source": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+  "apk_source": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_source": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "original_failure": {
+    "run_id": 43580229005,
+    "job_id": 132408947901,
+    "status": "FAIL",
+    "replaced": false
+  },
+  "main_studio_run": {
+    "run_id": 43580228966,
+    "status": "FAIL",
+    "not_replaced_by_this_countercheck": true
+  },
+  "original_log": {
+    "bytes": 1481906,
+    "sha256": "c03dfaad9502a29a92274904b20d5b5c9933137124dea8908f86486198242a32"
+  },
+  "artifact_metadata": [
+    {
+      "id": 14110986739,
+      "name": "lumo-studio-078-kart-countercheck-43587032836-1",
+      "size_in_bytes": 71743019,
+      "digest": "sha256:568844700a939578ca358ddc1ecd40c499d0ab673a4c16088849827e62470b4d",
+      "expired": false
+    }
+  ],
+  "verified_from_original_job": {
+    "tour_steps_total": 21,
+    "tour_steps_all_ok": true,
+    "hard_steps": [
+      "apk-identity",
+      "launch",
+      "onboarding",
+      "navigate-start",
+      "navigate-lernen",
+      "atelier-roundtrip",
+      "navigate-spiele",
+      "open-kart",
+      "start-kart-race",
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu",
+      "return-from-kart",
+      "learning-state-after-kart",
+      "lernen-usable-after-kart",
+      "profile-after-kart",
+      "restart-keeps-learning-state"
+    ],
+    "identity": {
+      "step": "apk-identity",
+      "ok": true,
+      "apk_sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe",
+      "flutter_source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+      "godot_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "godot_pck_sha256": "aafe4afc0c5c38656b08b86ec382762d0af6b1ae7116b1187db4f2b04bb949a3",
+      "versionName": "0.13.8",
+      "versionCode": 2020,
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "checks": {
+        "sha256_matches_provenance": true,
+        "sha256_matches_build_sums": true,
+        "flutter_source_is_this_commit": true,
+        "tracked_source_clean": true,
+        "godot_revision_is_pinned": true,
+        "signing_certificate": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      }
+    },
+    "preview": {
+      "status": "TOUCH_SENT",
+      "touch": [
+        1267,
+        418
+      ],
+      "initial_remaining_seconds": 32.851609302999975,
+      "elapsed_seconds": 12.396425,
+      "cue_witnesses": [
+        {
+          "source": "21_kart_preview_skip_touch-0.png",
+          "source_sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+          "ocr_file": "21_kart_preview_skip_touch-0-ocr.json",
+          "ocr_sha256": "bbc1ca62baa0ec569432a493f97aba88f48d471a80f0de5246114fb0c95e24a6",
+          "observed_matches": [
+            {
+              "text": "Tippen zum Überspringen",
+              "bounds": [
+                1124,
+                404,
+                1410,
+                431
+              ],
+              "variant": "contrast"
+            },
+            {
+              "text": "Tippen zum Überspringen",
+              "bounds": [
+                1124,
+                404,
+                1410,
+                431
+              ],
+              "variant": "contrast"
+            }
+          ]
+        },
+        {
+          "source": "21_kart_preview_skip_touch-1.png",
+          "source_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+          "ocr_file": "21_kart_preview_skip_touch-1-ocr.json",
+          "ocr_sha256": "e142712e766cb35541d9daf9b872fd977de3b0a0acd62c39c00319495884c0ed",
+          "observed_matches": [
+            {
+              "text": "Tippen zum Uberspringen",
+              "bounds": [
+                1124,
+                402,
+                1410,
+                434
+              ],
+              "variant": "contrast"
+            },
+            {
+              "text": "Tippen zum Uberspringen",
+              "bounds": [
+                1124,
+                402,
+                1410,
+                434
+              ],
+              "variant": "contrast"
+            }
+          ]
+        }
+      ],
+      "after_capture": {
+        "file": "21_kart_preview_after_touch.png",
+        "width": 2400,
+        "height": 1080,
+        "sha256": "3e146c1124f5173efe93b92fb0954bf50d2a04ed7f01d2b09a813779092570b1"
+      }
+    },
+    "race_running": {
+      "step": "race-running",
+      "ok": true,
+      "state": {
+        "result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631",
+        "countdown": 0,
+        "elapsed": 1.0000000000000013,
+        "distance": 0.0000039689185,
+        "checkpoint_index": 0
+      }
+    },
+    "race_drive": {
+      "step": "race-drive",
+      "ok": true,
+      "gas_touch": [
+        2242,
+        936
+      ],
+      "hold_ms": 9000,
+      "gas_pulses": 3,
+      "world_moved": {
+        "changed_fraction": 0.728,
+        "mean_channel_delta": 66.99
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1,
+          1,
+          1
+        ],
+        "detail": [
+          {
+            "colour_bins": 1017,
+            "bright_fraction": 0.885
+          },
+          {
+            "colour_bins": 930,
+            "bright_fraction": 0.929
+          },
+          {
+            "colour_bins": 1165,
+            "bright_fraction": 0.768
+          }
+        ]
+      },
+      "native_progress": {
+        "result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631",
+        "distance_gain": 107.19,
+        "elapsed_gain": 5.02,
+        "checkpoint_index": 0
+      }
+    },
+    "pause": {
+      "step": "pause-menu",
+      "ok": true,
+      "frozen_while_paused": {
+        "result_id": "b5b6b1c5-df62-4589-9ab6-c11eb7915a9a-1794653722444-44280631",
+        "distance": 128.42012001792318,
+        "elapsed": 6.516666666666649,
+        "checkpoint_index": 0,
+        "finished": false
+      }
+    },
+    "post_race": [
+      {
+        "step": "return-from-kart",
+        "ok": true,
+        "capture": "23_zurueck_in_flutter.png",
+        "foreground_is_flutter": true
+      },
+      {
+        "step": "learning-state-after-kart",
+        "ok": true,
+        "profile": {
+          "id": "1794653597782579",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:53:17.782579"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      {
+        "step": "lernen-usable-after-kart",
+        "ok": true,
+        "labels_before": 39,
+        "labels_after": 39,
+        "kept_fraction": 1
+      },
+      {
+        "step": "profile-after-kart",
+        "ok": true,
+        "profile_name_visible": "LumoTest",
+        "observed_after_scrolls": 4,
+        "source": "live Android accessibility tree"
+      },
+      {
+        "step": "restart-keeps-learning-state",
+        "ok": true,
+        "profile": {
+          "id": "1794653597782579",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:53:17.782579"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      }
+    ],
+    "countercheck": {
+      "status": "PASS",
+      "before_binding_verified": true,
+      "after_binding_matches": true,
+      "probe_returncode": 0,
+      "diagnostic_only": true,
+      "built_or_published_apk": false
+    }
+  },
+  "ci_contracts": [
+    {
+      "suite": "test_kart_preview_skip.py",
+      "passed": 23,
+      "skipped": 0,
+      "seconds": 1.084
+    },
+    {
+      "suite": "test_studio_078_kart_recheck.py",
+      "passed": 24,
+      "skipped": 0,
+      "seconds": 0.275
+    }
+  ],
+  "raw_diagnostics": {
+    "libunwind_bad_fde_lines": 1658,
+    "retained_in_original_log": true
+  },
+  "limits": [
+    "No APK or original ZIP was downloaded by this reviewer; archive CRC and image review belong to Root's separate verification.",
+    "No screenshot opened by this reviewer; original PNG/OCR identities here are read from the actual completed job and its strict binder result.",
+    "API35 emulator only, no API37 or physical Fold7 performance/FPS claim.",
+    "The21 steps comprise18 unchanged hard gates plus3 display checks; no arithmetic merger with unit suites or main Studio gates.",
+    "The regular observed skip path succeeds on the same APK; this is not a measured frame/physics trace or a latency/performance comparison.",
+    "The stored learning/profile comparison covers the observed test profile and two existing learning keys, not every possible family/save state.",
+    "The original failed workflow and main Studio failure remain unchanged."
+  ]
+}

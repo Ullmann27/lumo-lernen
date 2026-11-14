@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T11:16:45.580578+00:00",
+  "scope": "Read-only source review of the isolated Unified-workflow integration; no execution, tests, product mutation or Git ref changes.",
+  "base_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "baseline": {
+    "remote_blob_freshly_read": "b393e64d87874794742be4a44052fb188aef6b95",
+    "bytes": 81391,
+    "sha256": "a93cd262dc3c22517d86cd19e57e7a163b209a336b2bdd372058c3231bbf58b6",
+    "git_blob_sha": "b393e64d87874794742be4a44052fb188aef6b95"
+  },
+  "reviewed_workflow": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-unified-preview-integration-20261114/patched/.github/workflows/lumo-unified-integration-2026.yml",
+    "bytes": 81587,
+    "sha256": "fd1eae6b16d6fb9ef1971b35cebb549bb83f9cdecbd424ac710280e70d2ae41e",
+    "git_blob_sha": "bea1a0e7ee59565c34aff3e453ad0154d2d3bc18"
+  },
+  "reviewed_diff": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-unified-preview-integration-20261114/implementation-against-exact-078774dd.patch",
+    "bytes": 1554,
+    "sha256": "e05123441ddc06fc1010c183a630836076f64a2188e4d0ad02fde4d12bf2f269",
+    "git_blob_sha": "d9168017ea17b586fad29d4212c7a0d0e6ac5122"
+  },
+  "new_test_source_read": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+    "bytes": 26899,
+    "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+    "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7"
+  },
+  "findings": [
+    {
+      "blocking": false,
+      "observation": "Inverse removal of exactly the two preparatory shell lines and the single tour flag reproduces the complete freshly read 078 Gitblob byte for byte. All other jobs, permissions, conditions, dependencies, emulator settings and deadlines therefore remain unchanged."
+    },
+    {
+      "blocking": false,
+      "observation": "The new file-existence check and 23-case unittest command are inside the existing set -euo pipefail preparation step. Missing test source or a failing test exits before the tour."
+    },
+    {
+      "blocking": false,
+      "observation": "The test module was read: imports are Python standard library; actual helper definitions are loaded through AST with explicit synthetic raster/transport boundaries. It does not require the venv-installed Pillow or uiautomator2 to execute its new contracts."
+    },
+    {
+      "blocking": false,
+      "observation": "Only the existing android-tour call opts into --skip-observed-kart-preview. Its APK/provenance/checksum arguments and the existing emulator/action execution stay unchanged."
+    }
+  ],
+  "concrete_blockers": [],
+  "limits": [
+    "No local test or syntax rerun was performed by this reviewer.",
+    "This is an isolated staged workflow, not a new completed Android execution.",
+    "Successful integration requires the corresponding already reviewed probe and test to be present in the same candidate tree.",
+    "The negative cue/deadline cases remain permitted failures; this workflow does not manufacture a successful race state."
+  ]
+}

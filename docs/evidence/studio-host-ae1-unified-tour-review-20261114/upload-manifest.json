@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T12:34:06.333Z",
+  "repository": "Ullmann27/lumo-lernen",
+  "evidence_base_commit": "946ed588e4976312bcfc67364a3bde3ffdaa55a8",
+  "scope": "Six finite docs from completed ae1 Unified job; no binary artifact, source, image, release or main mutation",
+  "job_id": 132443762303,
+  "run_id": 43592240534,
+  "host": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+  "files": [
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/android-tour-original-job.log",
+      "mode": "100644",
+      "bytes": 1539461,
+      "sha256": "da078abf166df6f517b9cd6a0ad3da52b677285fd6b23633d0673e96ab530af3",
+      "git_blob_sha": "207d3edde77be0e29b3ed0022a8fd75d85ce1bfa"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/run-terminal-original.json",
+      "mode": "100644",
+      "bytes": 13459,
+      "sha256": "f912d859fd4de573de79a7d1b011329280c85352cd8410ea4a7bce44b1bf29ea",
+      "git_blob_sha": "1b3cf8b72e52154902de59b1b421fcf568d5e203"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/jobs-terminal-original.json",
+      "mode": "100644",
+      "bytes": 20971,
+      "sha256": "0c6a42b2a0855f8a3541f500b74f9db163b49de527c055e7477c07e7f292cd3e",
+      "git_blob_sha": "c0c936d507b8ff37c48ce3e680302015d3f3a4c1"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/artifacts-terminal-original.json",
+      "mode": "100644",
+      "bytes": 4435,
+      "sha256": "00c5c47258d9d38a481fd9bddf1080662ededbc27e3317cb73de268d66d9cd46",
+      "git_blob_sha": "82e897c0249a20196f61ffd6a63aebd8c4da6d76"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/review.json",
+      "mode": "100644",
+      "bytes": 9813,
+      "sha256": "ef51be075ef921d6964577c67e305b910669975c7ab4fd98e186afa6d02790ed",
+      "git_blob_sha": "6b3eccb094e38ece70c035d9d1b7b2d34f2218e6"
+    },
+    {
+      "path": "docs/evidence/studio-host-ae1-unified-tour-review-20261114/tour-result-from-original-job.json",
+      "mode": "100644",
+      "bytes": 19172,
+      "sha256": "efa166799985a1966df82d98c6e1f41393394fca8a05991d871f8a64c8f8187f",
+      "git_blob_sha": "98d36761ed3900865cf28fe5e30a8c459b270d2d"
+    }
+  ],
+  "environment": "Filesystem became unavailable after original log/run/artifact files were saved. These exact GitHub UTF8 responses and new derived review strings are retained in functions.store.",
+  "limits": [
+    "The main Studio workflow is still in progress; no Studio release approval.",
+    "Actual new feature staging is separate from source ae1.",
+    "No artifact/PNG/APK download or personal visual approval in this document set."
+  ]
+}

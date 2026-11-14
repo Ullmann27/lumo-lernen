@@ -1,0 +1,331 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "snapshot_utc": "2026-11-14T12:30:56.985Z",
+  "status": "Completed Unified-tour original-log review; original APK and artifact binary/visual review remain with Root",
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+    "native": "34421df83566dd4773420cc2a225887956459435",
+    "run_id": 43592240534,
+    "job_id": 132443762303,
+    "attempt": 1,
+    "job_conclusion": "success",
+    "started_at": "2026-11-14T12:13:34Z",
+    "completed_at": "2026-11-14T12:24:15Z"
+  },
+  "original_job_log": {
+    "file": "android-tour-original-job.log",
+    "bytes": 1539461,
+    "sha256": "da078abf166df6f517b9cd6a0ad3da52b677285fd6b23633d0673e96ab530af3",
+    "git_blob_sha": "207d3edde77be0e29b3ed0022a8fd75d85ce1bfa"
+  },
+  "checkout_evidence": {
+    "lines": [
+      39,
+      95,
+      104,
+      172,
+      174,
+      175
+    ],
+    "sha_from_actual_git_log": "ae1ba5e68438e0acc89b4df92650d28c9328bed4"
+  },
+  "final_report": {
+    "start_line": 2459,
+    "end_line": 3077,
+    "format": "Actual final JSON serialized in the timestamped original job log; timestamp removal only for parsing",
+    "steps": 21,
+    "all_ok": true,
+    "step_names": [
+      "apk-identity",
+      "launch",
+      "onboarding",
+      "navigate-start",
+      "atelier-roundtrip",
+      "navigate-lernen",
+      "navigate-spiele",
+      "open-kart",
+      "start-kart-race",
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu",
+      "return-from-kart",
+      "learning-state-after-kart",
+      "lernen-usable-after-kart",
+      "profile-after-kart",
+      "restart-keeps-learning-state",
+      "display-fold_offen",
+      "display-fold_aussen",
+      "display-quer"
+    ]
+  },
+  "actual_apk_report": {
+    "step": "apk-identity",
+    "ok": true,
+    "apk_sha256": "db75d78731b3d5e4e3c65bca5cfd2e896e4c7ae08e564577de7ea27ff7fbfcb2",
+    "flutter_source_commit": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+    "godot_revision": "34421df83566dd4773420cc2a225887956459435",
+    "godot_pck_sha256": "1d3b27cd3ed59a6acf6ec7ec47f956fb370884f22d309056950f1c6bcb24b56e",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "runtime_identity_limit": "Action input is API35; this log review does not establish independent getprop release/model/fingerprint or local APK bytes.",
+  "observed_skip": {
+    "status": "TOUCH_SENT",
+    "deadline_policy": "original race-world-ready55s",
+    "initial_remaining_seconds": 32.40123741999997,
+    "elapsed_seconds": 25.178088,
+    "cue": {
+      "source": "21_kart_preview_skip_touch-3.png",
+      "source_sha256": "bff2bfbbb4dea519284336f77136b29ff6eea70cac69f3de0dac02811c7b1b97",
+      "ocr_file": "21_kart_preview_skip_touch-3-ocr.json",
+      "ocr_sha256": "51d6cf1e003a465b79a5f48cd1f8c6e78bb67b7492d616b56a13e3049ef3aa07",
+      "observed_matches": [
+        {
+          "text": "Tippen zum Uberspringen",
+          "bounds": [
+            1055,
+            409,
+            1341,
+            431
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Tippen zum Uberspringen",
+          "bounds": [
+            1055,
+            409,
+            1341,
+            431
+          ],
+          "variant": "contrast"
+        }
+      ]
+    },
+    "cue_witnesses": [
+      {
+        "source": "21_kart_preview_skip_touch-2.png",
+        "source_sha256": "05aa92d19f88a8fc7eb5213c34767bc220cfa09b36a743b0a52c40af44321f63",
+        "ocr_file": "21_kart_preview_skip_touch-2-ocr.json",
+        "ocr_sha256": "ef70af3a41a1160be031b926583b6deb61515bda5db801fb76655a2472c12578",
+        "observed_matches": [
+          {
+            "text": "Tippen zum Überspringen",
+            "bounds": [
+              1055,
+              404,
+              1341.5,
+              431
+            ],
+            "variant": "raw"
+          },
+          {
+            "text": "Tippen zum Überspringen",
+            "bounds": [
+              1055,
+              404,
+              1341.5,
+              431
+            ],
+            "variant": "raw"
+          }
+        ]
+      },
+      {
+        "source": "21_kart_preview_skip_touch-3.png",
+        "source_sha256": "bff2bfbbb4dea519284336f77136b29ff6eea70cac69f3de0dac02811c7b1b97",
+        "ocr_file": "21_kart_preview_skip_touch-3-ocr.json",
+        "ocr_sha256": "51d6cf1e003a465b79a5f48cd1f8c6e78bb67b7492d616b56a13e3049ef3aa07",
+        "observed_matches": [
+          {
+            "text": "Tippen zum Uberspringen",
+            "bounds": [
+              1055,
+              409,
+              1341,
+              431
+            ],
+            "variant": "contrast"
+          },
+          {
+            "text": "Tippen zum Uberspringen",
+            "bounds": [
+              1055,
+              409,
+              1341,
+              431
+            ],
+            "variant": "contrast"
+          }
+        ]
+      }
+    ],
+    "touch": [
+      1198,
+      420
+    ],
+    "after_capture": {
+      "file": "21_kart_preview_after_touch.png",
+      "width": 2400,
+      "height": 1080,
+      "sha256": "d74c8ac3e6434ac9c158e6ec2a3557179d099feba3c2f01c53613da119a29efc"
+    }
+  },
+  "gameplay_and_return": [
+    {
+      "step": "race-running",
+      "ok": true,
+      "state": {
+        "result_id": "99e31c71-f667-48ff-8ad8-6759d6604855-1794658789538-42148725",
+        "countdown": 0,
+        "elapsed": 1.0000000000000013,
+        "distance": 0.0000039689185,
+        "checkpoint_index": 0
+      }
+    },
+    {
+      "step": "race-drive",
+      "ok": true,
+      "gas_touch": [
+        2242,
+        936
+      ],
+      "hold_ms": 9000,
+      "gas_pulses": 2,
+      "world_moved": {
+        "changed_fraction": 0.707,
+        "mean_channel_delta": 62.29
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1,
+          0.999,
+          1
+        ],
+        "detail": [
+          {
+            "colour_bins": 949,
+            "bright_fraction": 0.893
+          },
+          {
+            "colour_bins": 851,
+            "bright_fraction": 0.883
+          },
+          {
+            "colour_bins": 1227,
+            "bright_fraction": 0.73
+          }
+        ]
+      },
+      "native_progress": {
+        "result_id": "99e31c71-f667-48ff-8ad8-6759d6604855-1794658789538-42148725",
+        "distance_gain": 60.11,
+        "elapsed_gain": 5.02,
+        "checkpoint_index": 0
+      }
+    },
+    {
+      "step": "pause-menu",
+      "ok": true,
+      "frozen_while_paused": {
+        "result_id": "99e31c71-f667-48ff-8ad8-6759d6604855-1794658789538-42148725",
+        "distance": 67.03797886779648,
+        "elapsed": 6.383333333333316,
+        "checkpoint_index": 0,
+        "finished": false
+      }
+    },
+    {
+      "step": "return-from-kart",
+      "ok": true,
+      "capture": "23_zurueck_in_flutter.png",
+      "foreground_is_flutter": true
+    },
+    {
+      "step": "learning-state-after-kart",
+      "ok": true,
+      "profile": {
+        "id": "1794658672594124",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T12:17:52.594124"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    {
+      "step": "lernen-usable-after-kart",
+      "ok": true,
+      "labels_before": 39,
+      "labels_after": 39,
+      "kept_fraction": 1
+    },
+    {
+      "step": "profile-after-kart",
+      "ok": true,
+      "profile_name_visible": "LumoTest",
+      "observed_after_scrolls": 3,
+      "source": "live Android accessibility tree"
+    },
+    {
+      "step": "restart-keeps-learning-state",
+      "ok": true,
+      "profile": {
+        "id": "1794658672594124",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T12:17:52.594124"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    }
+  ],
+  "existing_probe_contracts": {
+    "tests": 23,
+    "seconds": 0.926,
+    "log_lines": [
+      466,
+      492
+    ],
+    "scope": "Completed CI unit contract group before emulator execution; no local rerun"
+  },
+  "artifact_metadata": {
+    "id": 14114021990,
+    "name": "lumo-unified-android-tour",
+    "bytes": 77173849,
+    "github_digest": "sha256:603cc973a3f02fc03227c85ecde8fb465ea634f54c69e7006fde129894407565",
+    "downloaded_by_reviewer": false
+  },
+  "limits": [
+    "This is the separate Unified candidate APK, not the still-running main Studio candidate.",
+    "No current new Memory/Quiz/English feature is present in source ae1.",
+    "No original artifact download, APK rehash or personal screenshot/video inspection in this review.",
+    "Recorded display-size changes are emulator scenarios; no physical Fold7 performance claim.",
+    "Skipped legacy update/publisher jobs establish only that those jobs did not run; they do not establish release approval."
+  ],
+  "retained_log_diagnostics": [
+    "Emulator startup adb calls returned exit1 transiently before the later successful tour.",
+    "The original log retains libunwind FDE/CIE diagnostics and action Node deprecation warnings; no claim that they are all harmless.",
+    "Some live one-line TourEvidence emissions are interleaved with native diagnostics. The complete later final JSON at the stated line range parses without such alteration."
+  ]
+}

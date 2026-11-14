@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "reviewer": "games_worlds",
+  "reviewed_at": "2026-11-14T11:04:47.995Z",
+  "scope": "Read-only full GitHub blob comparison; no CLI, workflow execution or test repetition.",
+  "baseline": {
+    "host_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "git_blob_sha": "4987a607fd3bb1531eff243500ed05cfec50ec57",
+    "sha256": "d00475970f5bbff3bdb1cd75a38dff85b482b28bb45cd2def26df8ef87c083ab"
+  },
+  "patched": {
+    "git_blob_sha": "bc1d497ab87a5211c13b0cafeb2a6e5493fe04d4",
+    "sha256": "c333c4d33c37fd1f08bfce9b750f348e2ecd8fb16f3c25a6adc7543f546d30a6"
+  },
+  "inverse_delta_reconstructs_entire_baseline": true,
+  "decision": "No additional concrete blocker in this narrow workflow delta.",
+  "findings": [
+    "Only verify-and-build's native prerequisite step adds ffmpeg to its existing apt installation.",
+    "Both executables must be found; each version command writes its actual output after native_logs exists.",
+    "Existing set -euo pipefail makes a missing executable, failed command or failed tee terminate the step.",
+    "All remaining workflow bytes including permissions, pins, time budgets, gates, Android/provenance/publishing conditions and existing Creativeffmpeg install are identical."
+  ],
+  "limitations": [
+    "YAML/actionlint and a new hosted job are not executed by this read-only review.",
+    "The corrected workflow still requires the separate Native budget change and a new complete candidate run."
+  ]
+}

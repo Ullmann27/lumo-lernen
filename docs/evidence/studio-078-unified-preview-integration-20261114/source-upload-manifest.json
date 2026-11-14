@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "file_count": 1,
+  "files": [
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-078-unified-preview-integration-20261114/patched/.github/workflows/lumo-unified-integration-2026.yml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 81587,
+      "sha256": "fd1eae6b16d6fb9ef1971b35cebb549bb83f9cdecbd424ac710280e70d2ae41e",
+      "git_blob_sha": "bea1a0e7ee59565c34aff3e453ad0154d2d3bc18"
+    }
+  ],
+  "required_unchanged_dependencies": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob_sha": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob_sha": "ca2477afc4708385e705645613d45e3374f829f7",
+      "unchanged": true
+    }
+  ],
+  "operations_allowed": "create_blob only; Root owns integration; no ref/tree/commit operations"
+}

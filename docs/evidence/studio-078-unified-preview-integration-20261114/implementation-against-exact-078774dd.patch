@@ -1,0 +1,20 @@
+--- 078774dd/.github/workflows/lumo-unified-integration-2026.yml
++++ patched/.github/workflows/lumo-unified-integration-2026.yml
+@@ -354,6 +354,8 @@
+           python3 -m venv .probe-venv
+           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+           python3 -m py_compile .github/probes/modernization_android_tour.py
++          test -s tools/android_qa/tests/test_kart_preview_skip.py
++          python3 -B -m unittest discover -s tools/android_qa/tests -p test_kart_preview_skip.py -v
+           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+       - name: Enable accelerated disposable emulator
+         run: |
+@@ -394,7 +396,7 @@
+           disable-animations: true
+           emulator-boot-timeout: 300
+           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+-          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
++          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --skip-observed-kart-preview --out tour
+       - uses: actions/upload-artifact@v4
+         if: always()
+         with:
