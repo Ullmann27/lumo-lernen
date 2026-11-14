@@ -223,6 +223,59 @@ class Probe:
         write(self.out / (tag + '-transition.json'), item)
         return after
 
+    def wait_for_flutter_control(self, label: str, tag: str, *, timeout=30) -> str:
+        """Observe the destination after a proved tap without sending another input."""
+        deadline = time.monotonic() + self.remaining(timeout)
+        observations = []
+        while time.monotonic() < deadline:
+            self.remaining()
+            name = f'{tag}-{len(observations):03d}'
+            observed = {'ui':name + '.xml'}
+            observations.append(observed)
+            nodes = self.ui.read_live_nodes(self.out, name)
+            left = deadline - time.monotonic()
+            if left <= 0:
+                observed['reason'] = 'Current hierarchy arrived after the navigation deadline'
+                break
+            capture = self.ui.capture_flutter_ready(self.out, name + '-frame',
+                                                    timeout=min(left, self.remaining(30)))
+            observed['capture'] = capture
+            if time.monotonic() >= deadline:
+                observed['reason'] = 'Current frame arrived after the navigation deadline'
+                break
+            density, density_file = self.density()
+            observed.update(density=density_file, observed_monotonic=time.monotonic())
+            captions = {line for node in nodes if node.get('package') == contract.PACKAGE
+                        for key in ('text', 'content-desc')
+                        for line in node.get(key, '').splitlines()}
+            try:
+                contract.demand('Spiel pausiert' not in captions,
+                                'The previous Flutter pause is still visible')
+                target = contract.flutter_control(nodes, label,
+                    (capture['width'], capture['height']), density)
+            except ValueError as error:
+                observed['reason'] = str(error)
+            else:
+                contract.demand(contract.sha256(self.out / capture['file']) == capture['sha256'],
+                                'Flutter navigation frame changed before acceptance')
+                observed['target'] = target
+            self.remaining()
+            if time.monotonic() >= deadline:
+                observed['reason'] = 'Current destination completed after the navigation deadline'
+                break
+            if 'target' in observed:
+                record = tag + '-flutter-ready.json'
+                write(self.out / record, {'label':label, 'observations':observations})
+                self.remaining()
+                if time.monotonic() >= deadline:
+                    observed['reason'] = 'Destination evidence completed after the navigation deadline'
+                    break
+                return record
+            time.sleep(min(.6, max(0, deadline-time.monotonic())))
+        write(self.out / (tag + '-wait-failure.json'),
+              {'label':label, 'timeout_seconds':timeout, 'observations':observations})
+        raise TimeoutError('No qualifying actual Flutter destination: ' + label)
+
     def flutter_touch(self, label: str, tag: str, *, scrolls=12) -> str:
         previous = None
         for index in range(scrolls + 1):
@@ -303,6 +356,7 @@ class Probe:
                 'touch':tag + '-touch.json'}
         item['to_games_touch'] = self.flutter_touch('Zur Spieleauswahl', tag + '-to-games', scrolls=3)
         self.returns.append(item)
+        item['games_ready'] = self.wait_for_flutter_control(contract.PORTAL, tag + '-games')
         write(self.out / (tag + '-return.json'), item)
         return before
 

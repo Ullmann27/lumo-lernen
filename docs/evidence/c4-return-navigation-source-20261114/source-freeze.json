@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "base_commit": "146b5199d0a6d5e2d158e7be15db6d226ed18204",
+  "base_tree": "09cf7b51d98ebcefd9e3c6af09c1be52439d03ad",
+  "producer_commit": "6f42fa8c0f18ea27dac90d7799ca06a1f9f0614a",
+  "producer_tree": "7732acb45cd26887608b001c2ae19040774a7b83",
+  "sources": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_flutter_navigation.py",
+      "mode": "100644",
+      "bytes": 10716,
+      "sha256": "4e60efb31942c5d0ce1054024140b282f10042dffd7827f876986c925ab7c99a",
+      "git_blob": "37ef806cd79e06273950753bd1442d05472f7106"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_probe_deadlines.py",
+      "mode": "100644",
+      "bytes": 11092,
+      "sha256": "eefb4dd4633a2aa113cb8d50e732b090d10ac804b01b876b42bb2b990e75e630",
+      "git_blob": "c7e8bf69d8dc07980d4a84ad1fd31222beb5e147"
+    }
+  ],
+  "test_status": "NOT_RUN; source checkpoint required before the explicitly authorized targeted validation",
+  "excluded_producer_path": ".github/workflows/lumo-connect-four-2020.yml"
+}
