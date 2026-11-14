@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1568,
+      "sha256": "c990d5757c8e82feeff520679bc26626b6fd297f6b2991650af1c26ad13e3065"
+    },
+    {
+      "path": "actionlint-one-result.json",
+      "bytes": 717,
+      "sha256": "9b9b48158e21388b32a84e4b34914759c4df6db5869589ac07af60ef2e636c47"
+    },
+    {
+      "path": "actionlint-one.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-binding.json",
+      "bytes": 536,
+      "sha256": "6e982b834070d0d9b13250a040ae4cedcf100d1644717410831e08c222af4e25"
+    },
+    {
+      "path": "after-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-sources.json.gz",
+      "bytes": 176911,
+      "sha256": "8e99331ee702f0bbda35ac8bc363a2c21a9788be565aaf71ee46d9b5724226b3"
+    },
+    {
+      "path": "before-binding.json",
+      "bytes": 536,
+      "sha256": "321b430c108a225ed83ea11f01f62f5cb9d31c88d91fd4a809dba651cf08faf5"
+    },
+    {
+      "path": "before-git-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-sources.json.gz",
+      "bytes": 176911,
+      "sha256": "8e99331ee702f0bbda35ac8bc363a2c21a9788be565aaf71ee46d9b5724226b3"
+    },
+    {
+      "path": "execution-environment.json",
+      "bytes": 823,
+      "sha256": "b89433f8fb3b45128514898826c519f07e706f9457e8179c58f5ca58a8a74f24"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3313,
+      "sha256": "4d51df52db344a95c7a3937a69543caa58338e1cca0576d92d1f8d306e70b849"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3457,
+      "sha256": "5ce3ca3d4bbda2e8e882451ef8e51cd3a982ab7a76cad07d62c1d1b32b3ecff6"
+    },
+    {
+      "path": "run_validation.py",
+      "bytes": 8095,
+      "sha256": "8883c70f60cc62aacdd62b348d9e8c28913f8159cf6db1943ade4dee6503dc65"
+    },
+    {
+      "path": "targeted-20-result.json",
+      "bytes": 1178,
+      "sha256": "d2cf6e509aa72f8ac7388ef122a7a46f3798ac71547fbc6c1caf9289888195d8"
+    },
+    {
+      "path": "targeted-20.log",
+      "bytes": 6304,
+      "sha256": "019c33dd4598d7bbf9a8ca9ddd9e1fc0ffd7a38f1ae9ca03622eac696b2394de"
+    }
+  ],
+  "total_bytes": 380349
+}

@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "status": "SOURCE_FROZEN_NOT_TESTED",
+  "source": {
+    "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+    "bytes": 8453,
+    "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+    "git_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+    "before_bytes": 8194,
+    "before_sha256": "d1e4f1392f4d3e3b3312729e8a5d1e91e6a9f5d91d997640b40a900b66ba3568",
+    "before_git_blob": "3b545455d4ce98b4cb31c238aa2e38df37cbf6e1"
+  },
+  "base_commit": "7fe0b85dd3b51384efed5c94af0618951574b857",
+  "base_tree": "3c3232daf3c14e8819f639128ededabb5fc603ec",
+  "historical_result": "Original7fe20-method run:19PASS/1ERROR/0SKIP. It remains unchanged; full raw log copied byte-for-byte.",
+  "changed_behavior": "Actual PIL.Image is imported at test-module load time and original PNGs are opened and verified in setUpClass before patch.dict(sys.modules). Existing production probes then share the stable, normally registered decoder.",
+  "preservation": "All9testmethod source segments and ASTs are unchanged. No production/selector/workflow/Git changes.",
+  "validation_pending": "After Root checkpoint: exactly9Pause cases, then one original positive case against bound0d before sources. No other passed suites repeated.",
+  "worktree_unchanged": true
+}

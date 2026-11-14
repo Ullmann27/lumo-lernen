@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "parent": "7fe0b85dd3b51384efed5c94af0618951574b857",
+  "source_files": 1,
+  "status": "TEST_HARNESS_SOURCE_CHECKPOINT_NOT_RERUN",
+  "original_result": {
+    "methods": 20,
+    "pass": 19,
+    "error": 1,
+    "skip": 0,
+    "actionlint_pass": 1
+  },
+  "change": "Initialize real Pillow decoder modules and verify original PNGs before temporary sys.modules adapters. All9 test methods unchanged.",
+  "production_selector_workflow_and247_contract_roster_unchanged": true,
+  "pending": "Rerun9 pause cases and one bound positive replay against original0d production sources."
+}

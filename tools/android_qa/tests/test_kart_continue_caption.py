@@ -11,6 +11,8 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
 
+from PIL import Image
+
 ROOT = Path(__file__).resolve().parents[3]
 SOURCE_ROOT = Path(os.environ.get('LUMO_PAUSE_SOURCE_ROOT', str(ROOT)))
 FIXTURES = Path(__file__).with_name('fixtures') / 'kart-continue-08e'
@@ -50,6 +52,10 @@ class KartContinueCaptionTests(unittest.TestCase):
             data = (FIXTURES / row['file']).read_bytes()
             if len(data) != row['bytes'] or hashlib.sha256(data).hexdigest() != row['sha256']:
                 raise AssertionError('Original pause bytes changed')
+            if row['file'].endswith('.png'):
+                # Register the real decoder before patch.dict restores sys.modules.
+                with Image.open(FIXTURES / row['file']) as original:
+                    original.verify()
 
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
