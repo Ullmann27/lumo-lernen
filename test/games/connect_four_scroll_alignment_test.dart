@@ -51,8 +51,13 @@ void main() {
         final viewport = tester.getRect(scroll);
         final target = tester.getRect(control);
         expect(control.hitTestable(), findsOneWidget);
-        expect(target.width, greaterThanOrEqualTo(48));
-        expect(target.height, greaterThanOrEqualTo(48));
+        final targetSize = tester.getSize(control);
+        expect(targetSize.width, greaterThanOrEqualTo(48));
+        expect(targetSize.height, greaterThanOrEqualTo(48));
+        // Global-coordinate subtraction permits only arithmetic roundoff;
+        // the actual RenderBox must still provide a full 48dp touch target.
+        expect(target.width, closeTo(targetSize.width, 1e-9));
+        expect(target.height, closeTo(targetSize.height, 1e-9));
         expect(target.left, greaterThanOrEqualTo(viewport.left - .01));
         expect(target.right, lessThanOrEqualTo(viewport.right + .01));
         Rect? previous;

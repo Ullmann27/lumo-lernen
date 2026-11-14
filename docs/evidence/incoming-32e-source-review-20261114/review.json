@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Read-only review of exactly two requested product files and five Flutter test files; no runtime/test execution or ref changes.",
+  "refs": {
+    "current": "182e5e236a9a08fa4e8b33778338ac22ac05575a",
+    "incoming": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+    "ancestor": "2b586530db4f2cb20c28f426e2549342316151bf"
+  },
+  "ancestor_to_incoming": {
+    "ahead_by": 3,
+    "behind_by": 0,
+    "merge_base": "2b586530db4f2cb20c28f426e2549342316151bf"
+  },
+  "verdict": {
+    "identical_files": 2,
+    "preservable_new_improvements": 5,
+    "source_conflicts": 0,
+    "confirmed_blockers": 0,
+    "execution_pending": true
+  },
+  "files": [
+    {
+      "path": "lib/core/lumo_image_generator.dart",
+      "ancestor_blob": "c9e8e01014362f2d1f9ab1b8dd1de893928fe3b4",
+      "current_blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "incoming_blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "source_bytes_identical": true,
+      "current_equals_ancestor": false,
+      "classification": "identical",
+      "decision": "Keep the common blob; the incoming branch already contains the exact Orange prompt-privacy fix.",
+      "evidence": [
+        "Current and incoming source strings and blob IDs are identical."
+      ]
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "ancestor_blob": "4d2bb14a89f0988e8d61567225403ee9416cf681",
+      "current_blob": "4d2bb14a89f0988e8d61567225403ee9416cf681",
+      "incoming_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "source_bytes_identical": false,
+      "current_equals_ancestor": true,
+      "classification": "preservable new improvement",
+      "decision": "Take incoming blob together with its pressed-geometry regression.",
+      "evidence": [
+        "The entire source delta is one argument at incoming line 930: pressedScale: 1 on column LumoPressable.",
+        "Column minimumSize remains 48; board layout, scroll coupling, actions, game state, native session, and assets do not change.",
+        "Dependency lumo_motion.dart blob 2f92e6319cda41d73abbc677545e02f2d509eb53 defines default .955 at line 41 and Transform.scale at lines 113–114; the explicit 1 retains scale during pressing while keeping glow behavior."
+      ]
+    },
+    {
+      "path": "test/core/lumo_image_generator_test.dart",
+      "ancestor_blob": "a6d7315ecf417519126ae0536bdf1321b1c61fb5",
+      "current_blob": "59fe89a46a5d52e2f97529a21832240ecf2a8a46",
+      "incoming_blob": "59fe89a46a5d52e2f97529a21832240ecf2a8a46",
+      "source_bytes_identical": true,
+      "current_equals_ancestor": false,
+      "classification": "identical",
+      "decision": "Keep the common regression blob; no manual merge or duplicate test is needed.",
+      "evidence": [
+        "Current and incoming source strings and blob IDs are identical."
+      ]
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "ancestor_blob": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "current_blob": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "incoming_blob": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "source_bytes_identical": false,
+      "current_equals_ancestor": true,
+      "classification": "preservable new improvement",
+      "decision": "Take incoming test, retaining actual-gameplay and five-size capture checks.",
+      "evidence": [
+        "Lines64,76–98 wait for actual playable controls, require the mode control to be hit-testable, execute six real UI moves, and require six occupied cells.",
+        "Lines108–121 retain per-column alignment and require untransformed targets>=48 plus global dimensions equal within1e-9; this is arithmetic-roundoff allowance, not a smaller target.",
+        "Lines142–152 use bounded five-second readiness and fail if still blocked; wallet/plugin teardown isolates fixtures."
+      ]
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "ancestor_blob": "92956444dee338921853aea037ca32033bcd3b2e",
+      "current_blob": "92956444dee338921853aea037ca32033bcd3b2e",
+      "incoming_blob": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+      "source_bytes_identical": false,
+      "current_equals_ancestor": true,
+      "classification": "preservable new improvement",
+      "decision": "Take incoming test with the production pressedScale fix.",
+      "evidence": [
+        "Lines49–73 preserve48dp controls and add shared-center checks before/after horizontal scroll, full last-target viewport bounds, and hit-testability.",
+        "Lines74–92 hold an actual WidgetTester pointer for 150 ms, compare pressed global geometry to >=48 RenderBox size within1e-9, release it, and require a real placed child stone.",
+        "Original assertions remain; cleanup now runs via teardown."
+      ]
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "ancestor_blob": "29cd071778aae6d5b643e48df7c6a67a4d993db6",
+      "current_blob": "29cd071778aae6d5b643e48df7c6a67a4d993db6",
+      "incoming_blob": "b05fa2ececfef096db3c4c6f7b116ac79e61d197",
+      "source_bytes_identical": false,
+      "current_equals_ancestor": true,
+      "classification": "preservable new improvement",
+      "decision": "Take incoming arithmetic-roundoff-safe assertion change.",
+      "evidence": [
+        "Lines54–60 require actual RenderBox width/height>=48 and transformed/global bounds equal to that size within1e-9.",
+        "Original 0→6→0 touches, per-column alignment, nonoverlap, viewport checks, and resulting board-cell checks remain."
+      ]
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "ancestor_blob": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "current_blob": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "incoming_blob": "254267c9f84d5c8e507307178015d281db238e4f",
+      "source_bytes_identical": false,
+      "current_equals_ancestor": true,
+      "classification": "preservable new improvement",
+      "decision": "Take incoming full-flow and delayed-native-refusal tests.",
+      "evidence": [
+        "Lines23–55 wait for real enabled IconButtons with a bounded deadline and contextual failure output; the board is not mocked.",
+        "Lines174–251 retain full touch game/result/reward assertions, add hit-testability on replay, and require no child/lumo stones after restart plus old bot time.",
+        "Lines254–312 use an explicit platform-channel mock and delayed refusal, require no playable moves while opening, then real fallback readiness and a placed child stone.",
+        "Non-C4 product code is untouched by this test-file change."
+      ]
+    }
+  ],
+  "dependency_read": {
+    "path": "lib/widgets/design/lumo_motion.dart",
+    "blob": "2f92e6319cda41d73abbc677545e02f2d509eb53",
+    "purpose": "Verify existing pressedScale API and transform semantics only; no separate change recommendation."
+  },
+  "not_reviewed": [
+    "Workflow/Python changes are owned by Root.",
+    "No new full candidate, Flutter, native or Android test result."
+  ],
+  "refs_updated": false
+}
