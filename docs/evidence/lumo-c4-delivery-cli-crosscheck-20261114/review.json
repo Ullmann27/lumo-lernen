@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "reviewer": "/root/flutter_integration",
+  "created_at": "2026-11-14T07:08:45.442315+00:00",
+  "status": "NO_CONCRETE_CLI_OR_SOURCE_BLOCKER_FOUND",
+  "scope": "Narrow independent read-only CLI/proof-path/current-job cross-check, plus separate deadline-hunk review. No source edits, tests, download, APK or publication.",
+  "source_freeze": {
+    "path": "/tmp/lumo-c4-delivery-20261114/source-freeze.json",
+    "bytes": 2547,
+    "sha256": "3921641b874b9c1c2672b272e3dbbe6ba5a1c453efbdaa919fd1d7e55b566578"
+  },
+  "files": [
+    {
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 41022,
+      "sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3"
+    },
+    {
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/scripts/tests/test_connect_four_delivery.py",
+      "bytes": 37374,
+      "sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f"
+    },
+    {
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/scripts/tests/test_connect_four_pipeline.py",
+      "bytes": 14309,
+      "sha256": "113ba57248fe3a12dffb9249e9d62c60db023b7861935819a08e9b2d325fb6b0"
+    },
+    {
+      "path": "/tmp/lumo-c4-delivery-20261114/proposed/scripts/verify_connect_four_delivery.py",
+      "bytes": 39637,
+      "sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8"
+    }
+  ],
+  "exact_prepare_cli_options": [
+    "android",
+    "artifact-digest",
+    "artifact-id",
+    "build-contracts",
+    "build-run",
+    "candidate",
+    "facts",
+    "host-compile",
+    "metadata",
+    "native-evidence",
+    "native-source",
+    "out",
+    "pull-request",
+    "run-attempt",
+    "runtime",
+    "source",
+    "update"
+  ],
+  "findings": [
+    "All17 supplied prepare options correspond to the actual parser and existing candidate-verifier namespace. runtime is proofs/runtime/runtime, Android report proofs/android/c4/c4-result.json, update update-result.json, and final facts proofs/final/C4-CANDIDATE-FACTS.json.",
+    "Seventh prepare job requires all six current mandatory jobs to succeed, remains contents/actions read-only, and reexecutes the candidate/APK verifier before staging. No active publisher or release mutation is introduced.",
+    "Three source-bound PCM JVM markers23/17/30 and their exact executed test methods are checked in the complete original script log. Native52 modes, source/tree/engine/clean stamps and actual raster/movie replay are mandatory. No Android PCM/FPS/API37/hardware acceptance follows from those desktop/JVM results.",
+    "Four old roster helpers in the pinned Native source read their capture subtree and write only replay manifests, so the disposable captures-only mirror supplies their required paths; downloaded original JSONs stay untouched.",
+    "Separate deadline patch checks both global observation completion and local90/45-second arrival before accepting state or return. No additional touch or widened timeout is introduced."
+  ],
+  "deadline": {
+    "freeze": {
+      "path": "/tmp/host-c4-android-deadline-20261114/source-freeze.json",
+      "bytes": 921,
+      "sha256": "484e5a69551edd00ac4d353b3ab8fb6c5840aec4d192724962717fd152ccc309"
+    },
+    "patch": {
+      "path": "/tmp/host-c4-android-deadline-20261114/deadline.patch",
+      "bytes": 13003,
+      "sha256": "67dd884f5092aa6c3f52b7c40cb1efd61474765bfec00d3c8cdcf7532c40278f"
+    }
+  },
+  "limits": [
+    "Peer-reported test counts were not rerun by this reviewer.",
+    "This is source/CLI review, not an actual2020 candidate/build/renderer/device/publication acceptance.",
+    "Existing independent review at /tmp/lumo-c4-delivery-independent-review-20261114 was found and left unchanged."
+  ]
+}
