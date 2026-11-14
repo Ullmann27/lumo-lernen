@@ -1,0 +1,436 @@
+{
+  "schema": 1,
+  "kind": "android-small-won-result-actions-coverage-and-source-equivalence-review",
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+  "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+  "source_bindings": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958",
+      "bytes": 28798,
+      "materialized_bytes_matched_immutable_tree": true
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "git_blob": "9f39b85fb1559a6229f0b381afa5d85a081703bd",
+      "bytes": 36248,
+      "materialized_bytes_matched_immutable_tree": true
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "git_blob": "79e0aaeaef37bc66f8dcb676bc4b88a74105974b",
+      "bytes": 51196,
+      "materialized_bytes_matched_immutable_tree": true
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "bytes": 11403,
+      "materialized_bytes_matched_immutable_tree": true
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521",
+      "bytes": 72474,
+      "materialized_bytes_matched_immutable_tree": true
+    }
+  ],
+  "observed_source_facts": [
+    {
+      "id": "workflow_callsite",
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "lines": [
+        [
+          565,
+          581
+        ],
+        [
+          624,
+          659
+        ]
+      ],
+      "finding": "Dedicated android-c4 job checks out the PR head and binds source/native/artifact inputs. It invokes main-tour, Village and then the dedicated C4 probe on the same x86_64 candidate APK in an API35 Pixel5 emulator. This source review does not assert that the current Android job has passed."
+    },
+    {
+      "id": "main_tour_not_result_menu",
+      "path": ".github/probes/modernization_android_tour.py",
+      "lines": [
+        [
+          1,
+          18
+        ],
+        [
+          51,
+          56
+        ],
+        [
+          1345,
+          1354
+        ]
+      ],
+      "finding": "Prior main-tour scope is onboarding/learning/Kart/return/preservation. Its final size changes are general post-Kart Fold captures, restored to1080x2400; they do not create a C4 won result-menu interaction."
+    },
+    {
+      "id": "current_c4_sequence",
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "lines": [
+        [
+          363,
+          394
+        ],
+        [
+          395,
+          429
+        ]
+      ],
+      "finding": "C4 explicitly sets portrait, starts untouched single-player, performs two child/bot pairs with pause/resume, returns to Flutter, reopens the same round, pauses and returns again. No deterministic win, small-landscape result state, restart touch or mode touch is requested."
+    },
+    {
+      "id": "native_input_and_flutter_scroll_separated",
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "lines": [
+        [
+          193,
+          224
+        ],
+        [
+          279,
+          325
+        ]
+      ],
+      "finding": "Native control input is an observed/stable-target 120ms stationary Android swipe (a touch). The real coordinate-changing400ms scroll is in flutter_touch and finds Flutter accessibility scroll containers. It does not implement a native won-modal swipe."
+    },
+    {
+      "id": "roster_is_not_action_proof",
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "lines": [
+        [
+          209,
+          217
+        ],
+        [
+          220,
+          248
+        ]
+      ],
+      "finding": "Layout roster requires restart/mode identities, but dispatchable target captions are only back, pause, Fortsetzen and columns. Mere presence of the two IDs is not a result-menu input assertion."
+    },
+    {
+      "id": "transition_contract_excludes_actions",
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "lines": [
+        [
+          263,
+          292
+        ],
+        [
+          518,
+          558
+        ]
+      ],
+      "finding": "acknowledged keeps roundId/twoPlayers unchanged and supports only drop, pause and resume. verify_report requires exactly drop,pause,resume,drop,pause,pause and four stored discs. Restart/mode from a won round are not accepted or verified by this contract."
+    },
+    {
+      "id": "delivery_replays_same_narrow_contract",
+      "path": "scripts/verify_connect_four_candidate.py",
+      "lines": [
+        [
+          129,
+          156
+        ]
+      ],
+      "finding": "Candidate verification replays current desktop originals and calls this exact Android verify_report after binding the same APK. It does not add won-modal action execution."
+    }
+  ],
+  "current_android_won_small_landscape_both_actions_proved_by_existing_tour": false,
+  "interpretation": "An explicit coverage boundary, not a demonstrated current product defect.",
+  "limits": {
+    "new_tests": false,
+    "new_renderer_runs": false,
+    "new_archive_downloads": false,
+    "source_or_workflow_changes": false,
+    "refs_or_triggers": false,
+    "physical_android_acceptance": false,
+    "historical_execution_relabelled": false
+  },
+  "status": "completed_bounded_source_and_original_evidence_review",
+  "conclusion": "The current Android tour does not scroll to or activate the two lower actions of a won compact-landscape C4 modal. Historical R3 exercised both through Godot ScreenTouch/ScreenDrag and production Dart state transitions on the relevant unchanged product code. Repeating that identical desktop case solely for this merge is not supported by a concrete source change; the remaining acceptance question is Android OS input/window-insets/Binder behavior for this narrow path.",
+  "historical_r3": {
+    "review_path": "docs/evidence/runtime-057a-20261114/r3-source-equivalence-review.json",
+    "review_blob": "e6fec685c0364e99c7bcc724878fa9ea88da8048",
+    "full_child_report_read_by_parent": true,
+    "current_cited_product_blobs_independently_rebound_by_parent": [
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "lib/features/games/connect_four/connect_four_engine.dart",
+        "git_blob": "0ad49aeaab65ea34ceb387e73788cdb886a210db"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "lib/features/games/connect_four/connect_four_round.dart",
+        "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+        "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "git_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+        "git_blob": "84c5ff9949a216331d228128f02415a47833396b"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "lib/core/reward_wallet_repository.dart",
+        "git_blob": "63a3d4c4fe6c5c9249f3531e685cc541646747ee"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "lib/core/legacy_learning_data.dart",
+        "git_blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1"
+      },
+      {
+        "repository": "Ullmann27/lumo-godot",
+        "path": "project.godot",
+        "git_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02"
+      },
+      {
+        "repository": "Ullmann27/lumo-godot",
+        "path": "scenes/games/connect_four_table.tscn",
+        "git_blob": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d"
+      },
+      {
+        "repository": "Ullmann27/lumo-godot",
+        "path": "scripts/games/connect_four/connect_four_table.gd",
+        "git_blob": "f2ae17e7edf8ac1b2d0d72a0d477d7e1459b1458"
+      },
+      {
+        "repository": "Ullmann27/lumo-godot",
+        "path": "scripts/app/mobile_runtime.gd",
+        "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+      },
+      {
+        "repository": "Ullmann27/lumo-godot",
+        "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+        "git_blob": "e4b6a6081a922a137f68491de66f51e096528510"
+      },
+      {
+        "repository": "Ullmann27/lumo-godot",
+        "path": "scripts/systems/host_bridge.gd",
+        "git_blob": "1845617ed2659dd377f433209799b12ddf310deb"
+      },
+      {
+        "repository": "Ullmann27/lumo-godot",
+        "path": "scripts/tests/connect_four_runtime_regression.gd",
+        "git_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "tools/auto_install/ConnectFourGameActivity.kt",
+        "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "tools/auto_install/ConnectFourAuthorityService.kt",
+        "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "tools/auto_install/ConnectFourBridge.kt",
+        "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+      },
+      {
+        "repository": "Ullmann27/lumo-lernen",
+        "path": "test/games/connect_four_runtime_bridge.dart",
+        "git_blob": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0"
+      }
+    ],
+    "run": {
+      "run": 43596764202,
+      "attempt": 1,
+      "job": 132452818400,
+      "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+      "qa_tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+      "production_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+      "production_host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+      "production_native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "production_native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+      "artifact": 14114498334,
+      "archive_bytes": 1619461,
+      "archive_sha256": "415ce3b5f51d510983c0184d37e479dc00844fa50f9dcd70c4f0493454228f64",
+      "local_original_root": "/workspace/scratch/2708c7907f28/r3-original-43596764202/original",
+      "existing_archive_rehashed": true,
+      "archive_redownloaded": false,
+      "original_log_result": {
+        "godot": "4.6.3.stable.official.7d41c59c4",
+        "platform": "Linux/X11 Mesa llvmpipe",
+        "godot_checks": 283,
+        "godot_actions": 2,
+        "dart_tests_passed": 1,
+        "godot_exit": 0,
+        "dart_exit": 0
+      }
+    },
+    "input_mechanism": {
+      "helper": {
+        "path": "scripts/tests/connect_four_runtime_regression.gd",
+        "blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+      },
+      "scroll_lines": [
+        131,
+        171
+      ],
+      "scroll": "Programmatically injected Godot InputEventScreenTouch press, eight InputEventScreenDrag steps per swipe, then ScreenTouch release; submitted through Input.parse_input_event and flush_buffered_events. No mouse-wheel event and no direct scroll_vertical assignment.",
+      "tap_lines": [
+        96,
+        128
+      ],
+      "tap": "X11 pointer position is first established with InputEventMouseMotion; then ScreenTouch press/release is injected at the exposed button center.",
+      "boundary": "Rendered Linux/X11 desktop probe with synthetic Godot input events, not physical touch or Android OS MotionEvent/Binder execution.",
+      "viewport_px": [
+        640,
+        360
+      ],
+      "density": 1,
+      "injected_system_insets_px": [
+        0,
+        24,
+        0,
+        24
+      ],
+      "qa_setup_lines": [
+        393,
+        429
+      ],
+      "qa_setup": "Overlay assigns HostBridge options and a MobileRuntime safe-area reader, sets the table's host object to AuditedDartBridge, and loads unchanged production table code.",
+      "logical_frames": 437,
+      "performance_claim": false
+    },
+    "actions": [
+      {
+        "action": "restart",
+        "drags": 8,
+        "scroll": [
+          61,
+          89
+        ],
+        "ack": [
+          10,
+          11
+        ],
+        "revision": [
+          18,
+          19
+        ],
+        "new_round": true,
+        "empty_playing": true,
+        "two_players_after": true,
+        "state_and_request_in_dart": true
+      },
+      {
+        "action": "mode",
+        "drags": 16,
+        "scroll": [
+          59,
+          148
+        ],
+        "ack": [
+          19,
+          20
+        ],
+        "revision": [
+          33,
+          34
+        ],
+        "new_round": true,
+        "empty_playing": true,
+        "two_players_after": false,
+        "state_and_request_in_dart": true
+      }
+    ],
+    "original_consistency": {
+      "requests": 21,
+      "dart_state_events": 35,
+      "awards": 2,
+      "stars": 10,
+      "xp": 80,
+      "before_after_source_bytes_equal": true
+    },
+    "source_exception": {
+      "old_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb",
+      "new_blob": "1845617ed2659dd377f433209799b12ddf310deb",
+      "only_settlement_branch_added": true,
+      "start_line": 40,
+      "last_added_line": 50,
+      "old_allowlist_if_becomes_elif": true,
+      "scope": "Whole file differs, but removing only the new settlement branch at lines40–50 and restoring elif to if reconstructs the exact old file. Existing connect_four allowlist, launch_options, durable_ack and return behavior remain unchanged.",
+      "r3_boundary": "The QA setup assigns HostBridge._options directly and uses an AuditedDartBridge for table requests, so the Android launch-options singleton route is not exercised by R3."
+    },
+    "android_bridge_source_matrix": [
+      {
+        "path": "tools/auto_install/ConnectFourGameActivity.kt",
+        "aab_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+        "host057_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "tools/auto_install/ConnectFourAuthorityService.kt",
+        "aab_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3",
+        "host057_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "tools/auto_install/ConnectFourBridge.kt",
+        "aab_blob": "f6e41ada005cc01f3b75d05370e5098048188d37",
+        "host057_blob": "f6e41ada005cc01f3b75d05370e5098048188d37",
+        "mode": "100644",
+        "identical": true
+      }
+    ],
+    "android_bridge_limitation": "These three tools/auto_install Kotlin sources are independently byte-bound through the actual aab and057 Git trees. They were not included in the R3 HOST_PATHS source snapshot and were not run as Android/Binder by that desktop test. Byte equality does not establish current APK content or Android interaction success."
+  },
+  "remaining_risk": {
+    "type": "specific_platform_input_coverage_gap",
+    "confirmed_product_failure": false,
+    "explanation": "The current640x360 standard screenshot does not show the lower actions. R3 proves Godot scrolling/input and production controller effects with injected desktop events and safe-area input. It cannot prove the complete Android OS swipe/tap, real density/insets, private Activity and Binder path. Current Android source code does not request or validate these actions even if its existing tour passes.",
+    "latest_current_runtime_review_blob": "75e36ebf630f69580fa9c74563c7f6d0d0cc7cdf",
+    "latest_current_runtime_visual_blob": "7727c268a280e75ce78094f0a1fb5a62a08af9b5",
+    "no_transfer_of_historical_run_to_current_commit": true
+  },
+  "minimum_additional_qa_if_requested": {
+    "proposal_only_not_implemented_or_triggered": true,
+    "target": "Exact already-built current057/a69 APK once its actual artifact identity is available; an API35 emulator proof remains distinct from physical ARM64 acceptance.",
+    "unchanged_scope": "Retain the existing Android six-transition preservation contract and all release/source gates. Add a separately validated short result-action sequence.",
+    "operations": [
+      "If Android-specific acceptance of this narrow path is required, reuse the exact current already-built and verified APK in a separate short bounded QA scope. Do not rebuild the full APK or rerun all52 Native modes.",
+      "Reach two-player wins through real UI inputs, observe the actual compact-landscape window/density/insets, then use real coordinate-changing Android swipes within the result scroll viewport. Record the previously clipped and subsequently fully visible target.",
+      "Tap each of Neue Runde and Gegen Lumo spielen only after stable current PNG/layout observations, and bind the actual Android request/ACK, intended new-round/mode effects and unchanged owner/session. Compare rewards immediately before/after each result action so only the already earned real win awards remain; do not apply the old no-win tour's globally unchanged-reward assertion to a new won-round sequence. Reach the second won state through real UI inputs.",
+      "Keep the existing six-step Android preservation contract unchanged and validate the additional action sequence separately. No private-state injection, direct callback invocation or programmatic scroll offset as input proof."
+    ],
+    "geometry_clarification": "Record actual screenshot pixels, native viewport, Android density and window insets. Name the measured logical compact-landscape size explicitly instead of equating a640px screenshot with640dp.",
+    "excluded_repetitions": [
+      "No additional APK build for this isolated question.",
+      "No52-mode Native replay.",
+      "No duplicate unchanged desktop R3 game run."
+    ],
+    "evidence": "Original OS input commands, source/APK identities, bounded scrolling before/after geometry and PNGs, visible >=48dp targets, matching request/ACK and new-round/mode states; no extra reward attributed to either menu action."
+  },
+  "related_tree_entries": [
+    {
+      "path": "docs/evidence/runtime-057a-20261114/r3-source-equivalence-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6fec685c0364e99c7bcc724878fa9ea88da8048"
+    }
+  ]
+}

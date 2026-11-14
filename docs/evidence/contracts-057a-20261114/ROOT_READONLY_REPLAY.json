@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "kind": "actual_original_build_contract_readonly_replay",
+  "recorded_at_utc": "2026-11-14T15:20:14.927431+00:00",
+  "performed": true,
+  "passed": true,
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "run_id": 43607156921,
+  "run_attempt": 1,
+  "artifact_id": 14119418657,
+  "archive": {
+    "bytes": 29035,
+    "sha256": "b5c387703c46c27dc7627b68dae16029758fd49b133a72127a2fe95276d68893",
+    "git_blob": "1d0c72ddcfdebd13a018156e08676995f41bc977"
+  },
+  "reader": {
+    "path": "scripts/verify_connect_four_delivery.py",
+    "bytes": 67199,
+    "sha256": "f03796adaf7d01601c7a26f42d5dc6b9d9fed35d334abea14163e116180728b4",
+    "git_blob": "214e21a6300b361985615c0a90b79d48a43ca2fd"
+  },
+  "actual_reader_calls": [
+    "checked_pcm_log(original/build-contracts.log)",
+    "committed_pcm_sources()"
+  ],
+  "result": {
+    "tests": 947,
+    "skips": 0,
+    "pcm_assertions": 70,
+    "scope": "Synthetic JVM boundary compiled from current production Kotlin; no Android audio claim",
+    "original_log": {
+      "bytes": 188556,
+      "sha256": "5c633c6a4299c9d56489a2c5c4464cc3f94eea1de6bfba8117a0bd4345761cad"
+    },
+    "required_markers": [
+      "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47",
+      "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+      "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    ]
+  },
+  "original_unittest_seconds": 306.843,
+  "committed_pcm_source_bindings": {
+    "tools/auto_install/LumoLearningSpeech.kt": {
+      "bytes": 8921,
+      "sha256": "ff154885806c7c8fcf0fe730367b8fd2d25760584037ea6f5e0851324bd2c1e0"
+    },
+    "tools/auto_install/LumoSpeechEnvelope.kt": {
+      "bytes": 4697,
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8"
+    },
+    "scripts/prepare_android.py": {
+      "bytes": 13367,
+      "sha256": "4d5a55148f440c8b42d4def6bc864505329a073a384112288d67519923d90c2a"
+    },
+    "scripts/tests/test_speech_envelope_contract.py": {
+      "bytes": 3660,
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f"
+    },
+    "scripts/tests/test_prepare_android.py": {
+      "bytes": 9930,
+      "sha256": "9fa4421ab6647ef884039797929fdebc4c8023a15cd59a919bfd075f63eb9ce9"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt": {
+      "bytes": 4948,
+      "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt": {
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt": {
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/apfel.wav": {
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt": {
+      "bytes": 462,
+      "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt": {
+      "bytes": 172,
+      "sha256": "c42bc41b86360bc28f84f59fbec760a633460ffab930439921c344cafc093950"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt": {
+      "bytes": 318,
+      "sha256": "bfadda67fce0bcfd940e6d275f0e4184c2a592febb7ab3c5639a40c1f6ec21ac"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt": {
+      "bytes": 992,
+      "sha256": "2baa97b0f65a6a7cc59a26f5f80e823608d5e18f546236db7850d902c7963dce"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt": {
+      "bytes": 964,
+      "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt": {
+      "bytes": 73,
+      "sha256": "d9bef1b203ec4e7cfe515061ee7cae2d333c7bce7fdee8e460e8554c00ec43e6"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt": {
+      "bytes": 1466,
+      "sha256": "26dadd1a5347836a72d034e925f3098221a86055ede2c4e80906fb41893dd962"
+    },
+    "scripts/tests/fixtures/speech_envelope_contract/provenance.json": {
+      "bytes": 5131,
+      "sha256": "f24e2f2007e4a88a98b8aebae423e7e746b34bd5a33ddbeb734df2d49826fda3"
+    }
+  },
+  "original_log_unchanged": true,
+  "reader_and_source_unchanged": true,
+  "reader_elapsed_seconds": 0.1188910830005625,
+  "limitations": [
+    "The original current CI test log was parsed; no new contract tests or JVM compilation were executed in this replay.",
+    "The 70 assertions are a synthetic PCM/JVM boundary, not audible Android device acceptance."
+  ]
+}

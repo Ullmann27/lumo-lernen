@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/2708c7907f28/contracts-057a-originals-14119418657/replay.py"
+  ],
+  "exit": 0,
+  "stdout": "{\n  \"passed\": true,\n  \"tests\": 947,\n  \"skips\": 0,\n  \"pcm_assertions\": 70,\n  \"original_unittest_seconds\": 306.843,\n  \"bound_source_files\": 17,\n  \"reader_elapsed_seconds\": 0.1188910830005625,\n  \"original_log_unchanged\": true\n}\n",
+  "stderr": "",
+  "elapsed_seconds": 0.2805626389999816,
+  "new_tests_executed": false
+}

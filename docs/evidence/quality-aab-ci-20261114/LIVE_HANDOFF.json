@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 15:14:57 UTC",
+  "recorded_at_utc": "2026-11-14 15:28:30 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -38,18 +38,16 @@
     "trigger": "pull_request",
     "job_budget_minutes": 150,
     "android_tour_budget_minutes": 80,
-    "last_read_utc": "2026-11-14 15:14:57 UTC",
+    "last_read_utc": "2026-11-14 15:22:00 UTC",
     "main_job_id": 132485496250,
     "main_job_started_at": "2026-11-14T14:58:03Z",
     "main_job_deadline_utc": "2026-11-14T17:28:03Z",
     "active_steps": [
       {
-        "name": "Verify all build and preservation contracts",
-        "status": "in_progress",
-        "conclusion": null,
-        "number": 20,
-        "started_at": "2026-11-14T15:09:53Z",
-        "completed_at": null
+        "number": 31,
+        "name": "Require actual gameplay gates on the exact pinned native source",
+        "started_at": "2026-11-14T15:17:24Z",
+        "status": "in_progress"
       }
     ],
     "jobs_snapshot": [
@@ -77,7 +75,8 @@
         "started_at": "2026-11-14T14:58:03Z",
         "completed_at": null
       }
-    ]
+    ],
+    "latest_status_source": "ReleaseLead actual original API read; no uncompleted Native result inferred"
   },
   "completed_original_evidence": {
     "android_host_compile": {
@@ -133,12 +132,46 @@
       "original_machine_done_time_ms": 548409,
       "exact_topic_test_id": 608,
       "original_reports_zip_blob": "b209f91a7e9a1ac1ab88343a9caa87bdd58b8b4f",
-      "root_visual_review": "pending selected current screenshots",
-      "preservation_scope": "Complete original machine and summary reports in the small storage ZIP, complete554-member hash index and actual readonly execution checkpointed; full336MB image archive remains local and in original Actions artifact, not wholly in Git."
+      "root_visual_review": "Three original current Schreibcoach/Journal/Reading pictures actually opened; Child opened exactly six new Village tile pictures and one profile capture. Scope limits retained.",
+      "preservation_scope": "Complete original machine/summary reports,554-member hash index, actual readonly execution and all10 selected original PNGs checkpointed. Full336MB ZIP remains local and in original Actions, not wholly in Git.",
+      "root_opened_images": 3,
+      "independent_opened_images": 7,
+      "total_selected_distinct_images": 10,
+      "root_visual_review_blob": "8dcdb7a0366c2811b979b91bb67cfbbbc0c7b4a1",
+      "independent_visual_review_blob": "740b255ead03a3f06d3852c0bc10beb54f3d80b5"
+    },
+    "build_contracts": {
+      "artifact": 14119418657,
+      "archive_bytes": 29035,
+      "archive_sha256": "b5c387703c46c27dc7627b68dae16029758fd49b133a72127a2fe95276d68893",
+      "whole_original_zip_blob": "1d0c72ddcfdebd13a018156e08676995f41bc977",
+      "original_log_blob": "d8df1f42c4bdc71ab42719826927ee0eb724bce0",
+      "actual_root_reader_exit_code": 0,
+      "tests": 947,
+      "skips": 0,
+      "original_seconds": 306.843,
+      "pcm_assertions": 70,
+      "committed_pcm_source_files": 17,
+      "scope": "Original current947-test CI log; pure readonly reader.70 PCM assertions use a synthetic JVM boundary, not audible Android acceptance."
+    },
+    "focused_flutter_captures": {
+      "artifact": 14119369270,
+      "archive_bytes": 38345151,
+      "archive_sha256": "f33ce27cea68774f8cf706412a2b893b9a947bcd6fae46e781781b7d485f6a9f",
+      "original_pngs": 54,
+      "byte_identical_to_full_archive": 30,
+      "different_from_full_by_sha256": 24,
+      "root_opened_images": 3,
+      "root_review_blob": "bc57a5bc4dd745dc6c0d29a64786613240b5f040",
+      "remaining_assigned_images": 0,
+      "scope": "All14 specifically selected lesson/C4/atelier original PNGs actually viewed across Root and Child and preserved individually with full54-member index. Two bounded cosmetic edge cuts are recorded. No Android/modal/drag/audio/FPS acceptance; full38MB archive not in Git.",
+      "independent_opened_images": 11,
+      "total_distinct_selected_originals": 14,
+      "independent_review_blob": "436d3b0e8eb4caca09332b9c9b2c8672356ff75a"
     }
   },
   "remaining": [
-    "Complete current057a/a69 build-contract/native/Dream/Discovery gates and signed APK build",
+    "Complete current057a/a69 native/Dream/Discovery gates and signed APK build; full Flutter and947 build contracts now verified",
     "Verify six packaged-notice members and exact original bytes in the actual new APK",
     "Complete actual current Android main/Village/C4 tours and2017-to2020 update preservation",
     "Resolve the bounded current Android won-dialog lower-action evidence gap without repeating unchanged desktop cases",
@@ -170,13 +203,13 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "checkpoint_before_this_record": "eeefc4901c2e545e8d80d080960712a9e80f5329",
+    "checkpoint_before_this_record": "0088dc93387df78cb882f87ee92013ece856c25f",
     "merge_prefix": "docs/evidence/host-7793-0b7-merge-20261114/",
     "native_merge_prefix": "docs/evidence/native-baf-e2-merge-20261114/",
     "current_main": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43607156921",
     "scope": "Current runtime/prebuild/learning/Flutter originals and read-only readers, current Play source review, complete old1375 terminal scope and actual local recovery preserved."
   },
-  "resume": "ReleaseLead owns current main/native monitoring and completed main-log/contract evidence. LearningLead/Child finish bounded Android won-dialog coverage proposal and inspect selected existing current Village/profile PNGs. Root owns current Flutter/learning originals, APK/Android/update/delivery, refs and publication. Four-agent hierarchy unchanged.",
+  "resume": "ReleaseLead monitors current main/native and prepares pure original-reader bindings. LearningLead prepares isolated same-APK Android result-action QA; Child now independently reviews that QA proposal after completing the11 focused originals. Root owns APK/Android/update/delivery, refs and public-release preparation. Four-agent hierarchy unchanged.",
   "local_execution": {
     "actual_existing_git_checkout": "/workspace/scratch/2708c7907f28/lumo-host-current",
     "last_verified_git_head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
@@ -1634,6 +1667,24 @@
       "parent_review_blob": "c0ca0e9e29be8f83391446c2f71206d32698c916",
       "child_ai_review_blob": "e27680ebc4b97440e6ccdbc544280cef3fe04874",
       "scope": "Current source review only; no actual Play signing/AAB, deployed backend audit, operator publication or Play approval."
+    },
+    "android_result_actions": {
+      "parent_review_blob": "e0826a95126f4dde51e936c63d9e98736123efab",
+      "child_equivalence_blob": "e6fec685c0364e99c7bcc724878fa9ea88da8048",
+      "current_android_existing_tour_covers_both_won_actions": false,
+      "old_r3_scope": "Real historical Godot ScreenTouch/ScreenDrag over file transport and production Dart ACK/state effects. Relevant C4 code identical, existing Native shared bridge change only adds Settlement. Historical result remains bound to aab/e2.",
+      "next": "Prepare isolated real Android OS swipe/tap proof using only the exact new already-built057 APK; no product/current workflow changes, APK rebuild,52-mode rerun or activation yet."
+    },
+    "render_access": {
+      "state": "No active workspace selected",
+      "read_operations_completed": [
+        "get_selected_workspace",
+        "list_workspaces"
+      ],
+      "scoped_service_inspection_performed": false,
+      "reason": "Render-MCP skill reference and actual connector require user identification of the intended workspace first. Other authorized app delivery work continues.",
+      "no_configuration_changes": true,
+      "no_secret_values_requested": true
     }
   }
 }
