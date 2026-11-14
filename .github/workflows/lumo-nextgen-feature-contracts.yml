@@ -115,6 +115,8 @@ jobs:
           packages: platform-tools
       - name: Compile the actual Android classes including Memory and Quiz
         run: bash scripts/compile_android_host.sh
+      - name: Verify local speech composition and cancellation with the compiled JVM toolchain
+        run: python3 -B scripts/run_speech_jvm_contracts.py --output host-compile-evidence/speech
       - name: Exercise the private table transport using the compiled JVM toolchain
         run: |
           set -euo pipefail

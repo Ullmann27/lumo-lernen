@@ -28,6 +28,9 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     private val allowed = options.optString("game") == "learning" &&
         options.optBoolean("learningVoiceEnabled", false) &&
         options.optBoolean("localVoiceLicenseAccepted", false)
+    private val englishLesson = options.optJSONObject("learning")
+        ?.optString("kind") == "english_objects"
+    private val englishWord = boundEnglishWord(options)
     private val speed = options.optDouble("learningVoiceRate", 1.0)
         .takeIf { it.isFinite() }?.coerceIn(0.70, 1.60)?.toFloat() ?: 1.0f
     private var player: MediaPlayer? = null
@@ -75,7 +78,8 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
     }
 
     fun speak(payload: String): Boolean {
-        if (!allowed || payload.length > 1400) return false
+        if (!allowed || payload.length > 1400 ||
+            (englishLesson && englishWord == null)) return false
         val request = try { JSONObject(payload) } catch (_: Exception) { return false }
         val text = request.optString("text", "")
         val id = request.optInt("id", 0)
@@ -89,10 +93,19 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             utterance = id
             state = "preparing"
             publish()
-            bridge.synthesize(text, style, true, object : MethodChannel.Result {
+            val result = object : MethodChannel.Result {
                 override fun success(result: Any?) {
                     if (token != generation || !active || destroyed) return
-                    val bytes = (result as? Map<*, *>)?.get("wav") as? ByteArray
+                    val data = result as? Map<*, *>
+                    if (englishWord != null && (data == null || data["englishWord"] != englishWord ||
+                        data["language"] != "en-de" || data["local"] != true ||
+                        data["profile"] != LumoOfflineSpeechEngine.PROFILE ||
+                        data["preset"] != LumoOfflineSpeechEngine.PRESET ||
+                        data["sampleRate"] != LumoOfflineSpeechEngine.SAMPLE_RATE)) {
+                        failed(token)
+                        return
+                    }
+                    val bytes = data?.get("wav") as? ByteArray
                     if (bytes == null || bytes.size < 44) {
                         failed(token)
                         return
@@ -118,7 +131,12 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
 
                 override fun error(code: String, message: String?, details: Any?) { failed(token) }
                 override fun notImplemented() { failed(token) }
-            })
+            }
+            if (englishWord == null) {
+                bridge.synthesize(text, style, true, result)
+            } else {
+                bridge.synthesizeEnglishLesson(englishWord, text, style, true, result)
+            }
         }
         return true
     }
@@ -197,6 +215,33 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
             .put("positionMs", position).put("durationMs", duration)
             .put("audible", audible).put("envelopeAvailable", envelope.available)
             .put("envelope", if (audible) envelope.amplitudeAt(position) else 0.0).toString()
+    }
+
+    /** Capture only the host's checked, closed current-task descriptor.
+     * Native requests cannot replace the word, language, meaning or object set.
+     */
+    private fun boundEnglishWord(options: JSONObject): String? {
+        val lesson = options.optJSONObject("learning") ?: return null
+        if (lesson.optString("kind") != "english_objects") return null
+        val meanings = mapOf(
+            "book" to setOf("Buch"), "pen" to setOf("Kugelschreiber", "Stift"),
+            "ruler" to setOf("Lineal"), "ball" to setOf("Ball"),
+            "car" to setOf("Auto"), "sun" to setOf("Sonne"),
+            "apple" to setOf("Apfel"), "bag" to setOf("Tasche"),
+            "rubber" to setOf("Radiergummi"), "school bag" to setOf("Schultasche"),
+            "desk" to setOf("Schreibtisch"), "chair" to setOf("Sessel"),
+            "pencil case" to setOf("Federpennal"), "paper" to setOf("Papier")
+        )
+        val word = lesson.optString("word")
+        if (lesson.optString("meaning") !in (meanings[word] ?: return null)) return null
+        val objects = lesson.optJSONArray("objects") ?: return null
+        if (objects.length() != 3) return null
+        val seen = mutableSetOf<String>()
+        for (index in 0 until objects.length()) {
+            val item = objects.opt(index) as? String ?: return null
+            if (item !in meanings || !seen.add(item)) return null
+        }
+        return word.takeIf { it in seen }
     }
 
     fun destroy() {

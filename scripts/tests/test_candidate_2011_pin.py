@@ -23,7 +23,7 @@ GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
 STUDIO_2019_REVISION = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
-STUDIO_2020_REVISION = "34421df83566dd4773420cc2a225887956459435"
+STUDIO_2020_REVISION = "29080ef8cd1a5b385eeeec97976fbefd31280427"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -310,6 +310,10 @@ class Candidate2011PinTests(unittest.TestCase):
             "8be3a95d5d948d457c4c39bc6694138d60b70027",
             # The next source passed CI but failed the actual image review.
             "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+            # The earlier reviewed source lacks the current three authorities.
+            "34421df83566dd4773420cc2a225887956459435",
+            # The immediate predecessor failed its actual runner contract gate.
+            "47ca642aad9290c9ba274b08e7dadfc953854d4f",
         }
         for revision in sorted(invalid):
             with self.subTest(revision=revision):
