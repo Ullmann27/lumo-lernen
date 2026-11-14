@@ -41,11 +41,21 @@ class PreferencesMemoryStore implements MemoryStore {
   final String roundKey;
   final String statsKey;
 
-  @override
-  Future<String?> readRound() async => preferences.getString(roundKey);
+  // The legacy Preferences API changes its cache before the platform replies.
+  // A failed write can therefore leave the requested value in that cache.
+  // Every read, including a new adapter's first read, must successfully reload
+  // the platform snapshot. A failed reload throws; it never authorizes a later
+  // cached read as the controller's write-recovery acknowledgement.
+  Future<String?> _readConfirmed(String key) async {
+    await preferences.reload();
+    return preferences.getString(key);
+  }
 
   @override
-  Future<String?> readStats() async => preferences.getString(statsKey);
+  Future<String?> readRound() => _readConfirmed(roundKey);
+
+  @override
+  Future<String?> readStats() => _readConfirmed(statsKey);
 
   @override
   Future<void> writeRound(String value) async {
