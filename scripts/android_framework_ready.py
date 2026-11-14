@@ -24,6 +24,8 @@ import time
 
 SERVICES = ("input", "settings", "activity", "package", "window")
 STOP_REQUESTED = False
+DEFAULT_MONITOR_SECONDS = 450
+MAX_MONITOR_SECONDS = 7200
 
 
 def utc() -> str:
@@ -59,20 +61,29 @@ def monitor_alive(out: Path) -> bool:
     return bool(identity and identity[0] != "Z" and identity[1] == info["start_ticks"])
 
 
-def start_monitor(out: Path, serial: str) -> None:
+def monitor_budget(seconds: int) -> int:
+    if type(seconds) is not int or not 1 <= seconds <= MAX_MONITOR_SECONDS:
+        raise ValueError(f"Monitor duration must be an integer from 1 to {MAX_MONITOR_SECONDS} seconds")
+    return seconds
+
+
+def start_monitor(out: Path, serial: str, monitor_seconds: int = DEFAULT_MONITOR_SECONDS) -> None:
+    monitor_seconds = monitor_budget(monitor_seconds)
     out.mkdir(parents=True, exist_ok=True)
     if (out / "monitor-process.json").exists():
         raise ValueError("Refusing to replace existing framework start evidence")
-    command = [sys.executable, str(Path(__file__).resolve()), "_monitor", "--out", str(out), "--serial", serial]
+    command = [sys.executable, str(Path(__file__).resolve()), "_monitor", "--out", str(out), "--serial", serial,
+               "--monitor-seconds", str(monitor_seconds)]
     with (out / "monitor.stdout").open("xb") as stdout, (out / "monitor.stderr").open("xb") as stderr:
+        started_at = utc()
         process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True)
     identity = process_identity(process.pid)
     if identity is None:
         raise RuntimeError("Framework log monitor did not start")
-    write_json(out / "monitor-process.json", {"pid": process.pid, "start_ticks": identity[1], "command": command, "started_at": utc(), "serial": serial, "adb": adb_path(), "budget_seconds": 450})
+    write_json(out / "monitor-process.json", {"pid": process.pid, "start_ticks": identity[1], "command": command, "started_at": started_at, "serial": serial, "adb": adb_path(), "budget_seconds": monitor_seconds})
 
 
-def collect_monitor(out: Path, serial: str) -> int:
+def collect_monitor(out: Path, serial: str, monitor_seconds: int = DEFAULT_MONITOR_SECONDS) -> int:
     global STOP_REQUESTED
 
     def stop(_signum: int, _frame: object) -> None:
@@ -81,7 +92,7 @@ def collect_monitor(out: Path, serial: str) -> int:
 
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
-    deadline = time.monotonic() + 450
+    deadline = time.monotonic() + monitor_budget(monitor_seconds)
     commands = (("wait-for-device", [adb_path(), "-s", serial, "wait-for-device"]), ("logcat-all", [adb_path(), "-s", serial, "logcat", "-b", "all", "-v", "threadtime"]))
     records = []
     for name, command in commands:
@@ -501,16 +512,21 @@ def main() -> int:
     parser.add_argument("--minimum-samples", type=int, default=3)
     parser.add_argument("--cli22-proof", type=Path)
     parser.add_argument("--allow-not-started", action="store_true")
+    parser.add_argument("--monitor-seconds", type=int, default=DEFAULT_MONITOR_SECONDS)
     args = parser.parse_args()
     if not re.fullmatch(r"emulator-[0-9]+", args.serial):
         parser.error("Expected the exact emulator serial")
     if not 0 < args.stable_seconds < args.timeout <= 120 or args.minimum_samples < 3:
         parser.error("Readiness needs a positive bounded window and at least three observations")
+    try:
+        monitor_budget(args.monitor_seconds)
+    except ValueError as error:
+        parser.error(str(error))
     out = args.out.resolve()
     if args.mode == "start":
-        start_monitor(out, args.serial)
+        start_monitor(out, args.serial, args.monitor_seconds)
     elif args.mode == "_monitor":
-        return collect_monitor(out, args.serial)
+        return collect_monitor(out, args.serial, args.monitor_seconds)
     elif args.mode == "wait":
         return wait_for_framework(out, args.serial, args.timeout, args.stable_seconds, args.minimum_samples, args.cli22_proof)
     else:
