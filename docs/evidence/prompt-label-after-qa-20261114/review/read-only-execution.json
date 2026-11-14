@@ -1,0 +1,13 @@
+{
+  "schema": "lumo-original-read-only-execution-v1",
+  "command": [
+    "python3",
+    "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/review-original.py"
+  ],
+  "tool": "exec_command",
+  "tool_chunk_id": "96ce27",
+  "exit_code": 0,
+  "reported_wall_time_seconds": 0.262462616,
+  "stdout_report": "read-only-original-review.json",
+  "actual_scope": "Read-only artifact bytes, original JSON/PNG headers and immutable pure summarize() reader; no Flutter test or render"
+}

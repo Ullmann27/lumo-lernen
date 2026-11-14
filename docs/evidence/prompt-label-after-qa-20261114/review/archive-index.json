@@ -1,0 +1,373 @@
+{
+  "archive": {
+    "bytes": 37588911,
+    "sha256": "a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7",
+    "git_blob": "ee7bf86a7d27c8eec528ee4b59505eac7c63849b"
+  },
+  "zip_crc_valid": true,
+  "canonical_paths": true,
+  "file_count": 60,
+  "members": [
+    {
+      "path": "command.txt",
+      "bytes": 241,
+      "sha256": "4b28574d056b29d3123dfe699b0b74144bb6fd9caad9f1f417b68e3737087562",
+      "git_blob": "9f0f5e937e88c9155f52db5b2ab91c5d5867592a"
+    },
+    {
+      "path": "flutter-version.json",
+      "bytes": 635,
+      "sha256": "fa870a17f35a877ccff979e8e27a1922732ecc7b53bef245c5f82b2b49286a08",
+      "git_blob": "ce1df4d3a2b71ecf9dc9b5680b1b7d750474b1e1"
+    },
+    {
+      "path": "capture-verification.json",
+      "bytes": 9528,
+      "sha256": "ed221d173104993580818d7f67b15e2cf94b8b96e7e802d23138bf345f6f857e",
+      "git_blob": "30db4bf84f3fd92b319334844b2e5156fcd5e33d"
+    },
+    {
+      "path": "focused/acceptance-summary.json",
+      "bytes": 2100,
+      "sha256": "33fdae628d4de7a18a075bafc090b73683a7f77849a785fe1cd05b0a5d425097",
+      "git_blob": "e5fb1a7fc49e5f97356b07eb947975c1bb203895"
+    },
+    {
+      "path": "focused/flutter-machine.jsonl",
+      "bytes": 18481,
+      "sha256": "fa72ce61966da7cb9f519e5ad1569e9ff3b18783ba9b5c41b4cad8fa545429a9",
+      "git_blob": "c442a31cb06d143228c4ea5fbda0bd4ae3193fde"
+    },
+    {
+      "path": "focused/modernization/achievements_fold-open.png",
+      "bytes": 986908,
+      "sha256": "f463e2c6720b8a3817d4b415dd882cb72f806ec151c82f4071f5dee171b88d43",
+      "git_blob": "ed0a95b63f3ccac7ae7a54ee6234fd6348760601"
+    },
+    {
+      "path": "focused/modernization/achievements_fold-cover.png",
+      "bytes": 692042,
+      "sha256": "84c50d3df7c7b057bafa237e673b6a71b07ba34465bb07d18e79f7a9473e2be8",
+      "git_blob": "be61812f018c767526acbbf1cd3e0c95e9d8031f"
+    },
+    {
+      "path": "focused/modernization/achievements_phone.png",
+      "bytes": 822071,
+      "sha256": "b883ab24760c235cad25788ca08dc218f52281266bf2c26854e8605f258d12b1",
+      "git_blob": "b946339d7d96d71a0217f098ea25df36d4cb9e63"
+    },
+    {
+      "path": "focused/modernization/foto_lektion_fold-cover.png",
+      "bytes": 1229380,
+      "sha256": "e229d4ca74b2e1a6437e19307c561cea1920a04400af19aa5dbfcf186deeccbc",
+      "git_blob": "b5d136b8718f72ae8353381f8a467e7a88bea61f"
+    },
+    {
+      "path": "focused/modernization/foto_lektion_fold-open.png",
+      "bytes": 2169731,
+      "sha256": "c8081122a5a6c7000f10352df5e1cf56f124781c74ddf41b0bb9ce8e833a3b2a",
+      "git_blob": "bdc6f4b2fc1234c9c0d3c9bbe70ebdea9864814f"
+    },
+    {
+      "path": "focused/modernization/foto_lektion_phone.png",
+      "bytes": 1506221,
+      "sha256": "b176c65640aa90367b68664063b591015e65c83c0fe715bfc088931abdd8d4f6",
+      "git_blob": "30eff63bbef33c88496c9311034258452b4cd23c"
+    },
+    {
+      "path": "focused/modernization/journal_fold-cover.png",
+      "bytes": 1313410,
+      "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054",
+      "git_blob": "41cb6de427028cd582339615b2eafac491d6ab6f"
+    },
+    {
+      "path": "focused/modernization/journal_fold-open.png",
+      "bytes": 2348916,
+      "sha256": "21f03e9387a686d1d3b9623d74b23ffca9a42b34c4792fb8f4fbd0b9e32979c3",
+      "git_blob": "dbc3b22fb2851e3739c74dde6f82673f0f460725"
+    },
+    {
+      "path": "focused/modernization/journal_phone.png",
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d",
+      "git_blob": "b5d1df905e54b40a0926b59ed377409a3f6be397"
+    },
+    {
+      "path": "focused/modernization/lumo_magic_fold-cover.png",
+      "bytes": 1175667,
+      "sha256": "77c94690406f4acb500ad63b2377d297df1456608b5ddee759f990828d2ab979",
+      "git_blob": "1132a84b477b75042e5091192d34af99786d0bcc"
+    },
+    {
+      "path": "focused/modernization/lumo_magic_fold-open.png",
+      "bytes": 2040482,
+      "sha256": "79691f85233b7bed71ead246ce66f663dac7c893255d91a8554a780dcc43fc8d",
+      "git_blob": "a3dccb69e5a7b57252d14ce72f7d1205e0c45f58"
+    },
+    {
+      "path": "focused/modernization/lumo_magic_phone.png",
+      "bytes": 1460798,
+      "sha256": "011a4f374d535f18fdbbcb95979c2b74d1d37894df4c3c4590dec18addda15ef",
+      "git_blob": "2f6764ca57b879aba2b75984a4ddfc01f3a053d6"
+    },
+    {
+      "path": "focused/modernization/lumo_quest_fold-cover.png",
+      "bytes": 855842,
+      "sha256": "2f6bb64832fcfdd5e81dc8195dc94a59df3aaa9ffcba9685a2604c6a214df986",
+      "git_blob": "9d9134f23b8b7e497643f10e3fe95b961c09b648"
+    },
+    {
+      "path": "focused/modernization/lumo_quest_fold-open.png",
+      "bytes": 1538204,
+      "sha256": "c26ab28647581ae98cf68d1e5849162dc0cf03ad038891669f09558c4fe133e1",
+      "git_blob": "f4eb71ce4b91a9f91adaa0947a1c4aeddb85fb30"
+    },
+    {
+      "path": "focused/modernization/lumo_quest_phone.png",
+      "bytes": 1181846,
+      "sha256": "9fe6e43d0dd9dd58f981d6add36325eadd110fa9a643ff647b72b4f53916fe26",
+      "git_blob": "6451b152bdafd0f62487ac9a8e42c1381647b3ce"
+    },
+    {
+      "path": "focused/modernization/lumo_welt_fold-cover.png",
+      "bytes": 774121,
+      "sha256": "7b0c3e614ebb276a11814d801b2ab548dcb781ed73443ba2cb586793d71f9dc0",
+      "git_blob": "d2406cc3fbc441c12dbf42c56f3d270321263a89"
+    },
+    {
+      "path": "focused/modernization/lumo_welt_fold-open.png",
+      "bytes": 1135928,
+      "sha256": "3230ac08b9d7428611f542c586fbbb94cc78dce59f5c65b1920a1c8fa407a5ca",
+      "git_blob": "8eeddc4f771bb7267c10a3ac7f5be3a4ff833852"
+    },
+    {
+      "path": "focused/modernization/lumo_welt_phone.png",
+      "bytes": 881813,
+      "sha256": "d68921ae22d8285cd1f847f86252f9ee426f18f27628747313ff1ad238cd3441",
+      "git_blob": "ccb0849d7d98c53c5f25580f651ec1237085d190"
+    },
+    {
+      "path": "focused/modernization/reading_buddy_fold-cover.png",
+      "bytes": 700926,
+      "sha256": "222c0352db3b2ec3a25037b42f594837181fad4dcb5747d68e6aa18a0b951737",
+      "git_blob": "0786d4551ffc4489b25e1bfc5aa5e5f810b24382"
+    },
+    {
+      "path": "focused/modernization/reading_buddy_fold-open.png",
+      "bytes": 1056781,
+      "sha256": "8c553d8941f75c3896f18941691a504d6be7e81498f8bc221d9e5be5ee90401d",
+      "git_blob": "04ad2619577aa69992096107fcf792bf73a02f1d"
+    },
+    {
+      "path": "focused/modernization/reading_buddy_phone.png",
+      "bytes": 824343,
+      "sha256": "0bc9f2901eb7bf26cd0ac79f2752b5e9a52e11c15470a8a83389f4bc1fe30f23",
+      "git_blob": "29257f2eb4c2c36bcf5fc9b15a908b9cd0f1ceca"
+    },
+    {
+      "path": "focused/modernization/rechentricks_fold-cover.png",
+      "bytes": 957403,
+      "sha256": "756254a8f333eeca54a546fb05b75a9750a35b77d14882746fef9f458bd25b90",
+      "git_blob": "e83ed3d98b0908fc85123bb7749ae3d280bdcdb0"
+    },
+    {
+      "path": "focused/modernization/rechentricks_fold-open.png",
+      "bytes": 1533696,
+      "sha256": "79639deca82eab8f9924423e4ce6bf485629644fbc00c997e644e44c2fddadb3",
+      "git_blob": "057fa181e195a8566a6c4a00d9395cfeef84d895"
+    },
+    {
+      "path": "focused/modernization/schreibaufgabe_fold-cover.png",
+      "bytes": 331307,
+      "sha256": "d37e9d9d238bb8edca618d71c8b1aaf3c63fa56f31f50651b26a8374a8f05e19",
+      "git_blob": "f83bc1b0db946d60666565ee0bd91e7d1060e4db"
+    },
+    {
+      "path": "focused/modernization/rechentricks_phone.png",
+      "bytes": 1184203,
+      "sha256": "dc9b747301963ffa3e8abe16ddd880c2fcfef06eaec1bd5e650dfd118ce7c66b",
+      "git_blob": "1469480bd1bbe3629c62d11cfaf7989e17a3742c"
+    },
+    {
+      "path": "focused/modernization/schreibaufgabe_fold-open.png",
+      "bytes": 495048,
+      "sha256": "7fd42c976ac55b61164474cc1ba1ed54f3c177a90032a7f7a1e143efb461d87a",
+      "git_blob": "daf345a411f7c1b24e20d9bcf2d6e8515cb24e5b"
+    },
+    {
+      "path": "focused/modernization/schreibaufgabe_phone.png",
+      "bytes": 372820,
+      "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b",
+      "git_blob": "84fbbc34213a394f68e741df40a166c31aa064c0"
+    },
+    {
+      "path": "focused/modernization/schreibcoach_fold-cover.png",
+      "bytes": 119662,
+      "sha256": "3b9cb685ed110fbfe4f18e234eca203577c5814170952621b49e624b925ab93f",
+      "git_blob": "39e0ac476f1a7d26c16d1f2a86e465cbeaa479e4"
+    },
+    {
+      "path": "focused/modernization/schreibcoach_fold-open.png",
+      "bytes": 176913,
+      "sha256": "acab4d0f71b0f5ad98cfe9fcef94890b282f21bd9bd3142c928bf9cd5bf895ea",
+      "git_blob": "933ddc4806a659bfbe1e80512f634bffe3bfa873"
+    },
+    {
+      "path": "focused/modernization/schreibcoach_phone.png",
+      "bytes": 133033,
+      "sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129",
+      "git_blob": "1f301f386e5dc257a7a7fb77d38cc2b6a7a3d279"
+    },
+    {
+      "path": "focused/modernization/trainer_B_fold-cover_geuebt.png",
+      "bytes": 448685,
+      "sha256": "443107e75ca5dccb62aac20bd1fcf19ae53d2e55e843a053c62ce5b9ab76a6d9",
+      "git_blob": "87e3c54443d88d3564119fb822c4a84113d7cc47"
+    },
+    {
+      "path": "focused/modernization/trainer_B_fold-cover_leer.png",
+      "bytes": 384350,
+      "sha256": "061d8e9fcbc45579382126fc671eed3e20e64644b02d2a19ea64b94c172e01dd",
+      "git_blob": "a3fa76b870bbd50a88fa5114dfe7106e757b2d20"
+    },
+    {
+      "path": "focused/modernization/trainer_B_fold-open_geuebt.png",
+      "bytes": 667884,
+      "sha256": "188a30d90e523428c5fb8f69a754307c442dfb4fe263f4bb05d212c41107418f",
+      "git_blob": "00cfd0dd15033397d5a61eaa6b18559fcea85ec8"
+    },
+    {
+      "path": "focused/modernization/trainer_B_fold-open_leer.png",
+      "bytes": 643243,
+      "sha256": "9a78b135d805762bf213c71854fa279793b19dbce2ffc31e3fc33b6337a5367f",
+      "git_blob": "0bf7f70356ba98b9923cad29b2fd7ae5aca1b35c"
+    },
+    {
+      "path": "focused/modernization/trainer_B_phone_geuebt.png",
+      "bytes": 558344,
+      "sha256": "b29974e44e52d0055de6d9dd17bacbab02ecefa546ccfcfe13d5c505b4060fc6",
+      "git_blob": "e1e8075e7c5ba386320f07cafd0fa2d55d7dee11"
+    },
+    {
+      "path": "focused/modernization/trainer_B_phone_leer.png",
+      "bytes": 489085,
+      "sha256": "386f180138813ebb38bdbe6167b1e2f3b7573f2aebc7eea12c69018d4c479387",
+      "git_blob": "87d24b608d61572c29b8c908e123bc75c46d98c8"
+    },
+    {
+      "path": "focused/modernization/trainer_klein_a_fold-cover_geuebt.png",
+      "bytes": 429285,
+      "sha256": "44dd0054530f0971915838edf4bdf081ed305c8947f5ece34268ea0ed0a96462",
+      "git_blob": "8e6fc1d1a9fc343ea1cab23fb14524c2d35b4f28"
+    },
+    {
+      "path": "focused/modernization/trainer_klein_a_fold-cover_leer.png",
+      "bytes": 358743,
+      "sha256": "2f4eb9af583a401782f63011d5c80fa0cacabfacbb964cdc6279889b66273206",
+      "git_blob": "d7bd1e6e8c76ca4d2e0d57f0b2486316615a8ea5"
+    },
+    {
+      "path": "focused/modernization/trainer_klein_a_fold-open_geuebt.png",
+      "bytes": 635561,
+      "sha256": "fa4a4fd1878ae502b22b8bd85676ec7007d69b82948c710f3c06f7906d42fccc",
+      "git_blob": "2314edc1308230755e51b5667a6bf5825d7aa400"
+    },
+    {
+      "path": "focused/modernization/trainer_klein_a_fold-open_leer.png",
+      "bytes": 599242,
+      "sha256": "4784592e8dcaaad29d60b78e85941651a392eccc8a758140b5313eee0fd304f5",
+      "git_blob": "2fdf618090ff7c9aa187aa48f6bd69ccdbc81322"
+    },
+    {
+      "path": "focused/modernization/trainer_klein_a_phone_geuebt.png",
+      "bytes": 533225,
+      "sha256": "7dbd13e6b812a74f4c86bdb334a68c6703ff15ed8a5eb9aa4c2bd76be031a68f",
+      "git_blob": "4c821cc56dc96ddfeed9f2848c059098a9e6c78a"
+    },
+    {
+      "path": "focused/modernization/trainer_klein_a_phone_leer.png",
+      "bytes": 457713,
+      "sha256": "79c215c448a5717c48b287fc3c99812d37e91f76f1f75063417ad25bcd36d23d",
+      "git_blob": "33aebc5c85023a756ef2b2ae65aaf4e6d0afeedd"
+    },
+    {
+      "path": "git-version.txt",
+      "bytes": 19,
+      "sha256": "0eff67955296e123526d7f9b9146fff8d8dc8d6dbf4f49ba5f838923d2b4af71",
+      "git_blob": "eeec1d5a23b1d1fbff5fc0b5e16d084870c8ad1c"
+    },
+    {
+      "path": "linux-emoji-font.sha256",
+      "bytes": 116,
+      "sha256": "69c4dc6e65ed177255ecbf2f0089af38109114a6de1b1cd4693058d94f3d030f",
+      "git_blob": "12831a3f07a821ae7a00103fb984ba09bc91ef08"
+    },
+    {
+      "path": "original-index.json",
+      "bytes": 10590,
+      "sha256": "f1c1a014e5469d6dff016a01966e6d84e74658d8b7cb1e2f878f083b1a017876",
+      "git_blob": "da708cd1e4bb680b2767f7c53808d7d6aa1ce109"
+    },
+    {
+      "path": "prompt-card-after.dart",
+      "bytes": 4255,
+      "sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70",
+      "git_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+    },
+    {
+      "path": "prompt-card-before.dart",
+      "bytes": 4255,
+      "sha256": "7b0b85783355a772c1abec5886577b30d2770db04d5d40e8368f811d1e4d014a",
+      "git_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd"
+    },
+    {
+      "path": "pub-get.log",
+      "bytes": 1389,
+      "sha256": "577560d210a6640a33866c46a576544ac86fda242d27422b74e36e2c0cdb1cec",
+      "git_blob": "6a75eb667bf44806dc0d83d3710a3e8c61e96292"
+    },
+    {
+      "path": "python-version.txt",
+      "bytes": 14,
+      "sha256": "5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366",
+      "git_blob": "4e0cbc8df831391cb93cba378c5b05925a2a6898"
+    },
+    {
+      "path": "runner-exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    {
+      "path": "runner-stdout.log",
+      "bytes": 1640,
+      "sha256": "56cfd69624378f3aabf20d881e2601f0ce8271df3f35ae6d1ccbd030b7e869a7",
+      "git_blob": "10747ddcb574593d95e06fc571852f6ddeceb2fa"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 4081,
+      "sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+      "git_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 4081,
+      "sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+      "git_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a"
+    },
+    {
+      "path": "source-verification.json",
+      "bytes": 184,
+      "sha256": "1758b915e01059c1cc54a5286afbaf066b6cf043ae04419b880fc80f2f5e15ab",
+      "git_blob": "0369c7b80ed14e6caf12fd94543fedbe4172d767"
+    },
+    {
+      "path": "tracked-source-tree.txt",
+      "bytes": 522142,
+      "sha256": "96ecb4d3f91d7f5c84dc97653b7a79d6b34234df842840047d60528e308d2072",
+      "git_blob": "f601d29ce0706c5280c92d11e2ef36afabd861f5"
+    }
+  ],
+  "archive_code_executed": false
+}

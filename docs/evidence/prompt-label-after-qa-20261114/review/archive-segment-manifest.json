@@ -1,0 +1,123 @@
+{
+  "schema": "lumo-original-artifact-segment-checkpoint-v1",
+  "artifact_id": 14116624494,
+  "run_id": 43603068259,
+  "attempt": 1,
+  "head_sha": "21e0368603e38d1dfd063485f5307ec201f0d872",
+  "original_archive": {
+    "name": "lumo-prompt-label-contrast-originals",
+    "bytes": 37588911,
+    "sha256": "a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7",
+    "calculated_git_blob_of_reconstructed_zip": "ee7bf86a7d27c8eec528ee4b59505eac7c63849b"
+  },
+  "storage": "Original ZIP bytes in 13 consecutive raw byte segments, each uploaded and verified against its calculated Git blob identity",
+  "reconstruction": "Concatenate the files in the exact numeric order below without separators; verify the total byte count and SHA256 before opening the ZIP. No archived code needs to be executed.",
+  "archive_code_executed": false,
+  "segment_size_except_final": 2949120,
+  "segments": [
+    {
+      "number": 0,
+      "path": "archive/artifact.zip.part00",
+      "bytes": 2949120,
+      "sha256": "e125837e6566aae07ee734a93f5139e8fc07387eb1e3fb234e56df2f0c7b5456",
+      "git_blob": "008bc0fce1eda2dd0a9e533521c6d0715b02ff67",
+      "offset": 0
+    },
+    {
+      "number": 1,
+      "path": "archive/artifact.zip.part01",
+      "bytes": 2949120,
+      "sha256": "570dba62b7e5f19018cd730c381bcd8e7043cefaf0d62ddc80ce63c4fb89effc",
+      "git_blob": "78e90b1a375e91afe6401403e390ef778bbfa5f5",
+      "offset": 2949120
+    },
+    {
+      "number": 2,
+      "path": "archive/artifact.zip.part02",
+      "bytes": 2949120,
+      "sha256": "5d5192fd3249b5ae3a814c933b7e22336b9c43782ad364c5122b953eba8808bc",
+      "git_blob": "ed84751efcb15694f20bf53b8ad1fe052b929a0d",
+      "offset": 5898240
+    },
+    {
+      "number": 3,
+      "path": "archive/artifact.zip.part03",
+      "bytes": 2949120,
+      "sha256": "f0b5c473f8bdf83983625f20afd23643c8796017a9999f2a913428ff4de2c925",
+      "git_blob": "41403d9f6ac5854b0460a74b905f96471b3076d2",
+      "offset": 8847360
+    },
+    {
+      "number": 4,
+      "path": "archive/artifact.zip.part04",
+      "bytes": 2949120,
+      "sha256": "944c69dfb6eecb1f0268a8ccf2c65f55459385a7480b365ed5aa9eb0b545a248",
+      "git_blob": "c9749310d449d9c998e64e8ecb9fd21ff04d8cc6",
+      "offset": 11796480
+    },
+    {
+      "number": 5,
+      "path": "archive/artifact.zip.part05",
+      "bytes": 2949120,
+      "sha256": "5da30770ba953ae42661a03f9dbe813b8a741f05f29fc40370903aecf31e330f",
+      "git_blob": "80b8548043b64c48afb38fde3fb7157f8d40ac06",
+      "offset": 14745600
+    },
+    {
+      "number": 6,
+      "path": "archive/artifact.zip.part06",
+      "bytes": 2949120,
+      "sha256": "bed5f2fc93ba2f256716baff5ca525efca7e2157f593f8b8a1a19750f36dbb79",
+      "git_blob": "e811b5d7df852d4d13e999d2a05ccca560b0f284",
+      "offset": 17694720
+    },
+    {
+      "number": 7,
+      "path": "archive/artifact.zip.part07",
+      "bytes": 2949120,
+      "sha256": "0c92522f54ecf5d0f44754c6fab5b488b51270425e3da6dc4b8ddcdab3ecd66d",
+      "git_blob": "873858fb2be2af40433236ee8b3d123bd401ff87",
+      "offset": 20643840
+    },
+    {
+      "number": 8,
+      "path": "archive/artifact.zip.part08",
+      "bytes": 2949120,
+      "sha256": "96d188f37d13202f883fc1f8f01248780c6bb4a8212ea32aefbe88c774bcd8d4",
+      "git_blob": "ff0f43ad52b3bd8cb50cbfeb47a0dafb4590c913",
+      "offset": 23592960
+    },
+    {
+      "number": 9,
+      "path": "archive/artifact.zip.part09",
+      "bytes": 2949120,
+      "sha256": "aa06c60dca451085f37daeff4583b84f03a846645330c6da78a76f98b3daffa6",
+      "git_blob": "adf8785cbede21e463a71427d46bef25097e2efc",
+      "offset": 26542080
+    },
+    {
+      "number": 10,
+      "path": "archive/artifact.zip.part10",
+      "bytes": 2949120,
+      "sha256": "77ab600ff33c18ee7b6e0bb1403cea7e81b9eed1b620b197ff4c191e10d9b95b",
+      "git_blob": "8b916e2be00d483176427d7c3ae48e90e9ac982d",
+      "offset": 29491200
+    },
+    {
+      "number": 11,
+      "path": "archive/artifact.zip.part11",
+      "bytes": 2949120,
+      "sha256": "bce0f876ac4d7b5d6df8b2ce5f2241ddf54c43a016af8316603d161304ed5c22",
+      "git_blob": "5ec0deb0be20a279d34a314ffdae2430ac531803",
+      "offset": 32440320
+    },
+    {
+      "number": 12,
+      "path": "archive/artifact.zip.part12",
+      "bytes": 2199471,
+      "sha256": "1046b4a0e66956706cf1030f4c6459410ecd6927ed0f55ee1018dcef0cbd59c5",
+      "git_blob": "583367c1edab90ddebfdc0cb25750ffb8aeec669",
+      "offset": 35389440
+    }
+  ]
+}

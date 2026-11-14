@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 14:07:42 UTC",
+  "recorded_at_utc": "2026-11-14 14:18:44 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -152,7 +152,7 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "bcee066fd0edefb16fbf0426cc3146b08f593562",
+    "prior_head": "6930802a2e03fb46871c8f74ca0f6e42087bf05b",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
@@ -1121,11 +1121,12 @@
       "actual_capture": "modernization/schreibcoach_phone.png",
       "capture_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42",
       "observed": "Small hint is visibly pale on white; source color #C8DDF0 on #FFFFFF gives calculated sRGB luminance ratio 1.3947273062300911.",
-      "status": "Separate QA branch21e03686 activated and actual push run43603068259 in_progress at last read; current1375 product branch unchanged. After-render acceptance pending.",
+      "status": "Exact isolated QA completed success;36 cases,42PNG,4524 source entries and unchanged source snapshots checked. Child reviewed3 pairs, Root phone plus confined pixel diff. Exact one-line product blob accepted for joint integration; quality branch1375 remains unchanged.",
       "prepared_product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
       "source_review_blob": "9eb1fb29bf40cd5715914c12a540398ea7b362ca",
       "proposed_color": "#28486D",
-      "proposed_srgb_ratio": 9.383400982456404
+      "proposed_srgb_ratio": 9.383400982456404,
+      "final_qa_handoff_blob": "42998c8743b5476ce70409a19892728881e92270"
     },
     {
       "id": "writing_capture_emoji_glyph",
@@ -1135,7 +1136,15 @@
     {
       "id": "packaged_third_party_notices",
       "status": "Actual historical803 APK/PCK lacks the four specified existing Native notice paths and an explicit outer Nunito notice in inspected filenames/consolidated literals. Five Host packaging files plus five Native export/notice files are byte-identical to1375/e2. Explicit packaging repair is being prepared; no new1375 APK or legal finding.",
-      "historical_root_review_blob": "d430b2fec927ce57b990e966409b7c9a99c91b68"
+      "historical_root_review_blob": "d430b2fec927ce57b990e966409b7c9a99c91b68",
+      "implementation_state": "First five Host-only production files preserved in evidence6930802; static Root review found no blocker, focused tests/final review ongoing.",
+      "actual_historical_apk_negative": {
+        "reader_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+        "result_blob": "1d20d751b25dc9416a03b5c05d56907e6fe00a83",
+        "exit_code": 0,
+        "result": "EXPECTED_REJECTION",
+        "current_positive_apk_check": false
+      }
     },
     {
       "id": "reading_capture_answer_glyphs",
@@ -1205,7 +1214,117 @@
       "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259",
       "api_push_run_count": 1
     },
-    "scope": "One isolated existing renderer focus for the one-line PromptCard label color change. No production quality branch update, APK build or publication; result remains pending at this snapshot."
+    "scope": "One isolated existing renderer focus for the one-line PromptCard label color change. No production quality branch update, APK build or publication; result remains pending at this snapshot.",
+    "terminal": {
+      "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+      "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+      "tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+      "sole_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "remote_compare": {
+        "commits": 1,
+        "files": 2,
+        "workflow_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+        "prompt_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+      },
+      "run_id": 43603068259,
+      "attempt": 1,
+      "event": "push",
+      "job_id": 132471773636,
+      "started_at": "2026-11-14T14:05:56Z",
+      "completed_at": "2026-11-14T14:07:03Z",
+      "terminal_status": "completed",
+      "terminal_conclusion": "success",
+      "actual_runs_for_head": 1,
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259"
+    },
+    "original_artifact": {
+      "id": 14116624494,
+      "name": "lumo-prompt-label-contrast-originals",
+      "bytes": 37588911,
+      "sha256": "a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7",
+      "files": 60,
+      "zip_crc_valid": true,
+      "canonical_paths_valid": true,
+      "downloaded_once_by": "/root/lumo_release_lead/learning_ux_lead",
+      "local_archive": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/artifact.zip",
+      "local_originals": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/original",
+      "complete_archive_checkpoint": {
+        "format": "13 consecutive raw ZIP byte segments, all uploaded SHA-verified",
+        "manifest_path": "docs/evidence/prompt-label-after-qa-20261114/review/archive-segment-manifest.json",
+        "manifest_blob": "d0dbbbb711dd6c6233774a360d782e187f762840",
+        "segment_paths_relative_to": "docs/evidence/prompt-label-after-qa-20261114/",
+        "reconstruction": "Concatenate segments in numeric order without separators; verify the original byte count and SHA256 before reading the ZIP. The complete60-file original is preserved, including all42 original PNGs.",
+        "whole_zip_git_blob_calculated_for_reconstruction_only": "ee7bf86a7d27c8eec528ee4b59505eac7c63849b",
+        "single_large_blob_checkpoint_not_confirmed": true,
+        "segment_blobs_verified": true
+      }
+    },
+    "technical_result": {
+      "test": "test/design/lumo_modernization_capture_test.dart",
+      "runner_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "unchanged_test_blob": "2b3f8adcd1dbf9b968b9bc640ef212257f845586",
+      "unchanged_capture_helper_blob": "439c2a8862effae26907ef655304e0c57f76a56c",
+      "flutter_version": "3.44.9",
+      "passed_non_hidden": 36,
+      "failed": 0,
+      "skipped": 0,
+      "flutter_exit_code": 0,
+      "runner_exit_code": 0,
+      "original_pngs": 42,
+      "original_summary_blob": "e5fb1a7fc49e5f97356b07eb947975c1bb203895",
+      "original_machine_blob": "c442a31cb06d143228c4ea5fbda0bd4ae3193fde",
+      "original_source_before_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a",
+      "original_source_after_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a",
+      "source_snapshot_sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+      "source_snapshots_byte_identical": true
+    },
+    "independent_reader": {
+      "executed": true,
+      "exit_code": 0,
+      "report_blob": "20077408a1b73542bb6331543c572a6a0c252dcd",
+      "reader_blob": "81c630d1f3781d3e63326c5228a6171633877974",
+      "execution_blob": "098cb0368d8ea2fcc3cce872ad2792d263ef4146",
+      "archive_files": 60,
+      "ci_index_entries": 59,
+      "tracked_source_entries": 4524,
+      "specific_source_bindings": 16,
+      "actual_original_png_names_hashes_dimensions": 42,
+      "immutable_original_summarize_function_replayed": true,
+      "new_flutter_tests_or_renderer_executed": false,
+      "all_original_bytes_unchanged_during_review": true
+    },
+    "visual_review": {
+      "report_blob": "2910e4dbb4b800cc68a27fb869d1025c349716a5",
+      "new_original_images_opened": 3,
+      "matching_baseline_originals_opened": 3,
+      "viewports": [
+        "phone",
+        "fold-cover",
+        "fold-open"
+      ],
+      "verdict": "The complete one-line hint is visibly dark blue and readable on white in all three selected after images, with no new visible label clipping, overlap or layout shift",
+      "unchanged_observations": [
+        "Existing replacement-glyph outlines",
+        "Existing horizontal category clipping in Phone and Fold-Cover"
+      ],
+      "root_separate_phone_review_blob": "a1532ab16fd1be50ca4fb9f84f8e3e6ac267d319",
+      "root_actual_rgb_pixel_comparison": {
+        "different_pixels": 2631,
+        "bounding_box": [
+          182,
+          219,
+          505,
+          241
+        ],
+        "dimensions": [
+          824,
+          1830
+        ],
+        "method": "Read-only comparison of the original pair; no edited evidence image"
+      }
+    },
+    "final_handoff_blob": "42998c8743b5476ce70409a19892728881e92270",
+    "product_integrated": false
   },
   "store_copy_current_source_binding": {
     "blob": "82486503971c2419aa5dc0e72193e74aa8a29a7e",

@@ -1,0 +1,307 @@
+{
+  "status": "PASS",
+  "scope": [
+    "test/design/lumo_modernization_capture_test.dart"
+  ],
+  "expected_passed": 36,
+  "expected_pngs": 42,
+  "visual_review_performed": false,
+  "passed": 36,
+  "originals": [
+    {
+      "path": "modernization/achievements_fold-cover.png",
+      "bytes": 692042,
+      "sha256": "84c50d3df7c7b057bafa237e673b6a71b07ba34465bb07d18e79f7a9473e2be8",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/achievements_fold-open.png",
+      "bytes": 986908,
+      "sha256": "f463e2c6720b8a3817d4b415dd882cb72f806ec151c82f4071f5dee171b88d43",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/achievements_phone.png",
+      "bytes": 822071,
+      "sha256": "b883ab24760c235cad25788ca08dc218f52281266bf2c26854e8605f258d12b1",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/foto_lektion_fold-cover.png",
+      "bytes": 1229380,
+      "sha256": "e229d4ca74b2e1a6437e19307c561cea1920a04400af19aa5dbfcf186deeccbc",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/foto_lektion_fold-open.png",
+      "bytes": 2169731,
+      "sha256": "c8081122a5a6c7000f10352df5e1cf56f124781c74ddf41b0bb9ce8e833a3b2a",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/foto_lektion_phone.png",
+      "bytes": 1506221,
+      "sha256": "b176c65640aa90367b68664063b591015e65c83c0fe715bfc088931abdd8d4f6",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/journal_fold-cover.png",
+      "bytes": 1313410,
+      "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/journal_fold-open.png",
+      "bytes": 2348916,
+      "sha256": "21f03e9387a686d1d3b9623d74b23ffca9a42b34c4792fb8f4fbd0b9e32979c3",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/journal_phone.png",
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/lumo_magic_fold-cover.png",
+      "bytes": 1175667,
+      "sha256": "77c94690406f4acb500ad63b2377d297df1456608b5ddee759f990828d2ab979",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/lumo_magic_fold-open.png",
+      "bytes": 2040482,
+      "sha256": "79691f85233b7bed71ead246ce66f663dac7c893255d91a8554a780dcc43fc8d",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/lumo_magic_phone.png",
+      "bytes": 1460798,
+      "sha256": "011a4f374d535f18fdbbcb95979c2b74d1d37894df4c3c4590dec18addda15ef",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/lumo_quest_fold-cover.png",
+      "bytes": 855842,
+      "sha256": "2f6bb64832fcfdd5e81dc8195dc94a59df3aaa9ffcba9685a2604c6a214df986",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/lumo_quest_fold-open.png",
+      "bytes": 1538204,
+      "sha256": "c26ab28647581ae98cf68d1e5849162dc0cf03ad038891669f09558c4fe133e1",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/lumo_quest_phone.png",
+      "bytes": 1181846,
+      "sha256": "9fe6e43d0dd9dd58f981d6add36325eadd110fa9a643ff647b72b4f53916fe26",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/lumo_welt_fold-cover.png",
+      "bytes": 774121,
+      "sha256": "7b0c3e614ebb276a11814d801b2ab548dcb781ed73443ba2cb586793d71f9dc0",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/lumo_welt_fold-open.png",
+      "bytes": 1135928,
+      "sha256": "3230ac08b9d7428611f542c586fbbb94cc78dce59f5c65b1920a1c8fa407a5ca",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/lumo_welt_phone.png",
+      "bytes": 881813,
+      "sha256": "d68921ae22d8285cd1f847f86252f9ee426f18f27628747313ff1ad238cd3441",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/reading_buddy_fold-cover.png",
+      "bytes": 700926,
+      "sha256": "222c0352db3b2ec3a25037b42f594837181fad4dcb5747d68e6aa18a0b951737",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/reading_buddy_fold-open.png",
+      "bytes": 1056781,
+      "sha256": "8c553d8941f75c3896f18941691a504d6be7e81498f8bc221d9e5be5ee90401d",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/reading_buddy_phone.png",
+      "bytes": 824343,
+      "sha256": "0bc9f2901eb7bf26cd0ac79f2752b5e9a52e11c15470a8a83389f4bc1fe30f23",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/rechentricks_fold-cover.png",
+      "bytes": 957403,
+      "sha256": "756254a8f333eeca54a546fb05b75a9750a35b77d14882746fef9f458bd25b90",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/rechentricks_fold-open.png",
+      "bytes": 1533696,
+      "sha256": "79639deca82eab8f9924423e4ce6bf485629644fbc00c997e644e44c2fddadb3",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/rechentricks_phone.png",
+      "bytes": 1184203,
+      "sha256": "dc9b747301963ffa3e8abe16ddd880c2fcfef06eaec1bd5e650dfd118ce7c66b",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-cover.png",
+      "bytes": 331307,
+      "sha256": "d37e9d9d238bb8edca618d71c8b1aaf3c63fa56f31f50651b26a8374a8f05e19",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-open.png",
+      "bytes": 495048,
+      "sha256": "7fd42c976ac55b61164474cc1ba1ed54f3c177a90032a7f7a1e143efb461d87a",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/schreibaufgabe_phone.png",
+      "bytes": 372820,
+      "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/schreibcoach_fold-cover.png",
+      "bytes": 119662,
+      "sha256": "3b9cb685ed110fbfe4f18e234eca203577c5814170952621b49e624b925ab93f",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/schreibcoach_fold-open.png",
+      "bytes": 176913,
+      "sha256": "acab4d0f71b0f5ad98cfe9fcef94890b282f21bd9bd3142c928bf9cd5bf895ea",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "bytes": 133033,
+      "sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_geuebt.png",
+      "bytes": 448685,
+      "sha256": "443107e75ca5dccb62aac20bd1fcf19ae53d2e55e843a053c62ce5b9ab76a6d9",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_leer.png",
+      "bytes": 384350,
+      "sha256": "061d8e9fcbc45579382126fc671eed3e20e64644b02d2a19ea64b94c172e01dd",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_geuebt.png",
+      "bytes": 667884,
+      "sha256": "188a30d90e523428c5fb8f69a754307c442dfb4fe263f4bb05d212c41107418f",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_leer.png",
+      "bytes": 643243,
+      "sha256": "9a78b135d805762bf213c71854fa279793b19dbce2ffc31e3fc33b6337a5367f",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_B_phone_geuebt.png",
+      "bytes": 558344,
+      "sha256": "b29974e44e52d0055de6d9dd17bacbab02ecefa546ccfcfe13d5c505b4060fc6",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_B_phone_leer.png",
+      "bytes": 489085,
+      "sha256": "386f180138813ebb38bdbe6167b1e2f3b7573f2aebc7eea12c69018d4c479387",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_geuebt.png",
+      "bytes": 429285,
+      "sha256": "44dd0054530f0971915838edf4bdf081ed305c8947f5ece34268ea0ed0a96462",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_leer.png",
+      "bytes": 358743,
+      "sha256": "2f4eb9af583a401782f63011d5c80fa0cacabfacbb964cdc6279889b66273206",
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_geuebt.png",
+      "bytes": 635561,
+      "sha256": "fa4a4fd1878ae502b22b8bd85676ec7007d69b82948c710f3c06f7906d42fccc",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_leer.png",
+      "bytes": 599242,
+      "sha256": "4784592e8dcaaad29d60b78e85941651a392eccc8a758140b5313eee0fd304f5",
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_geuebt.png",
+      "bytes": 533225,
+      "sha256": "7dbd13e6b812a74f4c86bdb334a68c6703ff15ed8a5eb9aa4c2bd76be031a68f",
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_leer.png",
+      "bytes": 457713,
+      "sha256": "79c215c448a5717c48b287fc3c99812d37e91f76f1f75063417ad25bcd36d23d",
+      "width": 824,
+      "height": 1830
+    }
+  ],
+  "font_scope": "Unchanged Nunito/MaterialIcons helper; no emoji-helper change"
+}

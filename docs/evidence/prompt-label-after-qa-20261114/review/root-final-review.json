@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "kind": "root_review_of_completed_isolated_prompt_qa",
+  "recorded_at_utc": "2026-11-14 14:18:44 UTC",
+  "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+  "run_id": 43603068259,
+  "attempt": 1,
+  "handoff_blob": "42998c8743b5476ce70409a19892728881e92270",
+  "root_independent_api_read": {
+    "job_id": 132471773636,
+    "conclusion": "success",
+    "artifact_id": 14116624494,
+    "archive_bytes": 37588911,
+    "archive_digest": "sha256:a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7"
+  },
+  "root_read_full_evidence": [
+    "Final handoff",
+    "Full read-only original reader and its actual exit0 execution receipt",
+    "Full36/42/4524 reader result",
+    "Child complete three-pair visual report",
+    "Complete13-part archive manifest and continuity/tree-entry identity"
+  ],
+  "root_own_visual_review_blob": "a1532ab16fd1be50ca4fb9f84f8e3e6ac267d319",
+  "archive_storage": {
+    "segments": 13,
+    "continuous": true,
+    "total_bytes": 37588911,
+    "tree_blobs_match_manifest": true,
+    "root_did_not_repeat_download_or_remote_binary_reconstruction": true
+  },
+  "decision": "Accept exact single product blob643c3bd6868da34550bbc9fa7761818c7b1e6afb for later reviewed product integration. Do not include the isolated QA workflow in the product patch.",
+  "scope": "The original focus passed36 nonhidden cases and42 PNG checks. Child visually reviewed exactly3 after/baseline pairs; Root independently opened the afterPhone and compared original RGB pixels. No broader Android, word-coach, glyph, touch, FPS or release acceptance."
+}
