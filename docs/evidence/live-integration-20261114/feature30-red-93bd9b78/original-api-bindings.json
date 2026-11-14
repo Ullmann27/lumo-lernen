@@ -1,0 +1,470 @@
+{
+  "run": {
+    "id": 43615128301,
+    "name": "Lumo feature connections focused Flutter contracts",
+    "node_id": "WFR_kwLOSNzcp88AAAAKJ6oK7Q",
+    "head_branch": "integration/lumo-live-connections-20261114",
+    "head_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+    "path": ".github/workflows/lumo-feature-connections.yml",
+    "display_title": "ci(lumo): run full acceptance of the integrated 2020 source",
+    "run_number": 2,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow_id": 418253513,
+    "check_suite_id": 118093738310,
+    "check_suite_node_id": "CS_kwDOSNzcp88AAAAbfu9xRg",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43615128301",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43615128301",
+    "pull_requests": [
+      {
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls/497",
+        "id": 5309537942,
+        "number": 497,
+        "head": {
+          "ref": "integration/lumo-live-connections-20261114",
+          "sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+          "repo": {
+            "id": 1222433959,
+            "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+            "name": "lumo-lernen"
+          }
+        },
+        "base": {
+          "ref": "work/lumo-play-quality-20261114",
+          "sha": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+          "repo": {
+            "id": 1222433959,
+            "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+            "name": "lumo-lernen"
+          }
+        }
+      }
+    ],
+    "created_at": "2026-11-14T16:21:05Z",
+    "updated_at": "2026-11-14T16:22:17Z",
+    "actor": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-14T16:21:05Z",
+    "triggering_actor": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43615128301/jobs",
+    "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43615128301/logs",
+    "check_suite_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-suites/118093738310",
+    "artifacts_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43615128301/artifacts",
+    "cancel_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43615128301/cancel",
+    "rerun_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43615128301/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/workflows/418253513",
+    "head_commit": {
+      "id": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+      "tree_id": "ad9c129f91bd2ec8a7ee010be49ab626481f77d8",
+      "message": "ci(lumo): run full acceptance of the integrated 2020 source\n\nPreserve the complete 1e22/057 host union, Native847, observed garage repair and Safari ownership fix. Add unchanged local preflight originals and an explicit record of six environment errors and three skips; no local full-suite pass is claimed. The isolated previous-APK Android diagnostic is successful but does not replace the new seven-job, Feature30, Native, APK, Village/C4, update and delivery acceptance.",
+      "timestamp": "2026-11-14T16:20:22Z",
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com"
+      }
+    },
+    "repository": {
+      "id": 1222433959,
+      "node_id": "R_kgDOSNzcpw",
+      "name": "lumo-lernen",
+      "full_name": "Ullmann27/lumo-lernen",
+      "private": false,
+      "owner": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/Ullmann27/lumo-lernen",
+      "description": "Lumo Lernen Flutter Android App",
+      "fork": false,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+      "forks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/forks",
+      "keys_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/teams",
+      "hooks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/hooks",
+      "issue_events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/events",
+      "assignees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/tags",
+      "blobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/languages",
+      "stargazers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/stargazers",
+      "contributors_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contributors",
+      "subscribers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscribers",
+      "subscription_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscription",
+      "commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/merges",
+      "archive_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/downloads",
+      "issues_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/labels{/name}",
+      "releases_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/deployments"
+    },
+    "head_repository": {
+      "id": 1222433959,
+      "node_id": "R_kgDOSNzcpw",
+      "name": "lumo-lernen",
+      "full_name": "Ullmann27/lumo-lernen",
+      "private": false,
+      "owner": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/Ullmann27/lumo-lernen",
+      "description": "Lumo Lernen Flutter Android App",
+      "fork": false,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen",
+      "forks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/forks",
+      "keys_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/teams",
+      "hooks_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/hooks",
+      "issue_events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/events",
+      "assignees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/tags",
+      "blobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/languages",
+      "stargazers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/stargazers",
+      "contributors_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contributors",
+      "subscribers_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscribers",
+      "subscription_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/subscription",
+      "commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/merges",
+      "archive_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/downloads",
+      "issues_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/labels{/name}",
+      "releases_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/deployments"
+    }
+  },
+  "jobs": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 132508389205,
+        "run_id": 43615128301,
+        "workflow_name": "Lumo feature connections focused Flutter contracts",
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43615128301",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOSNzcp88AAAAe2h2PVQ",
+        "head_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132508389205",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43615128301/job/132508389205",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-14T16:21:05Z",
+        "started_at": "2026-11-14T16:21:07Z",
+        "completed_at": "2026-11-14T16:22:17Z",
+        "name": "feature-widget-contracts",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T16:21:07Z",
+            "completed_at": "2026-11-14T16:21:08Z"
+          },
+          {
+            "name": "Checkout the exact feature push",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T16:21:08Z",
+            "completed_at": "2026-11-14T16:21:20Z"
+          },
+          {
+            "name": "Bind original source and lock bytes before setup",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T16:21:20Z",
+            "completed_at": "2026-11-14T16:21:22Z"
+          },
+          {
+            "name": "Install the repository Flutter version",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T16:21:22Z",
+            "completed_at": "2026-11-14T16:21:34Z"
+          },
+          {
+            "name": "Prepare fonts, Pillow and the immutable locked packages",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T16:21:34Z",
+            "completed_at": "2026-11-14T16:21:55Z"
+          },
+          {
+            "name": "Bind the six original test assets",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T16:21:55Z",
+            "completed_at": "2026-11-14T16:21:55Z"
+          },
+          {
+            "name": "Execute exactly the 30 feature cases",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 7,
+            "started_at": "2026-11-14T16:21:55Z",
+            "completed_at": "2026-11-14T16:22:12Z"
+          },
+          {
+            "name": "Require completed tests, zero skips and the exact case count",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 8,
+            "started_at": "2026-11-14T16:22:12Z",
+            "completed_at": "2026-11-14T16:22:12Z"
+          },
+          {
+            "name": "Require identical source and lock bytes after the attempt",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-14T16:22:12Z",
+            "completed_at": "2026-11-14T16:22:14Z"
+          },
+          {
+            "name": "Preserve complete original logs and source stamps",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-14T16:22:14Z",
+            "completed_at": "2026-11-14T16:22:15Z"
+          },
+          {
+            "name": "Post Install the repository Flutter version",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-14T16:22:15Z",
+            "completed_at": "2026-11-14T16:22:15Z"
+          },
+          {
+            "name": "Post Checkout the exact feature push",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-11-14T16:22:15Z",
+            "completed_at": "2026-11-14T16:22:16Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-11-14T16:22:16Z",
+            "completed_at": "2026-11-14T16:22:16Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132508389205",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000018671,
+        "runner_name": "GitHub Actions 1000018671",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  },
+  "artifact": {
+    "id": 14121736536,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyMTczNjUzNg==",
+    "name": "lumo-feature-connections-93bd9b7804e2c352303d58552cc48e0a89a1c3cb-attempt-1",
+    "size_in_bytes": 1167994,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14121736536",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14121736536/zip",
+    "expired": false,
+    "digest": "sha256:0414b2d45bf26f9fe7b5e8bc658feac726a736ce6bb7bd40221229d2a04d5e35",
+    "created_at": "2026-11-14T16:22:15Z",
+    "updated_at": "2026-11-14T16:22:15Z",
+    "expires_at": "2026-12-14T16:22:15Z",
+    "workflow_run": {
+      "id": 43615128301,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb"
+    }
+  },
+  "source": {
+    "sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+    "node_id": "C_kwDOSNzcp9oAKDkzYmQ5Yjc4MDRlMmMzNTIzMDNkNTg1NTJjYzQ4ZTBhODlhMWMzY2I",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T16:20:22Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T16:20:22Z"
+    },
+    "tree": {
+      "sha": "ad9c129f91bd2ec8a7ee010be49ab626481f77d8",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/ad9c129f91bd2ec8a7ee010be49ab626481f77d8"
+    },
+    "message": "ci(lumo): run full acceptance of the integrated 2020 source\n\nPreserve the complete 1e22/057 host union, Native847, observed garage repair and Safari ownership fix. Add unchanged local preflight originals and an explicit record of six environment errors and three skips; no local full-suite pass is claimed. The isolated previous-APK Android diagnostic is successful but does not replace the new seven-job, Feature30, Native, APK, Village/C4, update and delivery acceptance.",
+    "parents": [
+      {
+        "sha": "b2f7493bda3bc22c1296f2284888ff7302f18883",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/b2f7493bda3bc22c1296f2284888ff7302f18883",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/b2f7493bda3bc22c1296f2284888ff7302f18883"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "expected_safari": [
+    "Live safari correct answer keeps its delayed continuation bound during word magic",
+    "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+    "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+    "Live safari correct answer keeps its delayed continuation bound during profile change",
+    "Live safari wrong answer keeps its delayed continuation bound during word magic",
+    "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+    "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+    "Live safari wrong answer keeps its delayed continuation bound during profile change"
+  ],
+  "sdk": {
+    "ticker": {
+      "sha": "8087aafed75be57189c912b1fbbceef49f750902",
+      "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter/lib/src/scheduler/ticker.dart"
+    },
+    "binding": {
+      "sha": "44b74b7d6be7726228605cce77c04231c6070bd6",
+      "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter_test/lib/src/binding.dart"
+    },
+    "animation": {
+      "sha": "1baef4d5d92f1b73a69506752c022996d4bd7cc7",
+      "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter/lib/src/animation/animation_controller.dart"
+    },
+    "pages": {
+      "sha": "3ef119ac56f16b13bc521e6dc2173e5e3867b7fd",
+      "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter/lib/src/widgets/pages.dart"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "status": "FAIL",
+  "passed": 26,
+  "failed": [
+    "Live safari correct answer keeps its delayed continuation bound during word magic",
+    "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+    "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+    "Live safari correct answer keeps its delayed continuation bound during profile change"
+  ],
+  "skipped": [],
+  "capture_error_files": [],
+  "flutter_exit_code": 1,
+  "runner_completed_successfully": false,
+  "source_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+  "scope": [
+    "test/wort_diktat_gesture_regression_test.dart",
+    "test/feature_permission_regression_test.dart",
+    "test/profile_screen_test.dart"
+  ],
+  "expected_cases": 30,
+  "event_errors": [
+    {
+      "testID": 29,
+      "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during word magic",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 13260
+    },
+    {
+      "testID": 30,
+      "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 13687
+    },
+    {
+      "testID": 33,
+      "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 14041
+    },
+    {
+      "testID": 34,
+      "error": "Test failed. See exception logs above.\nThe test description was: Live safari correct answer keeps its delayed continuation bound during profile change",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 14360
+    }
+  ],
+  "non_event_stdout_lines": [
+    7,
+    8,
+    9,
+    10,
+    62,
+    63
+  ],
+  "raw_stdout": "flutter.stdout.jsonl",
+  "raw_stderr": "flutter.stderr.log"
+}

@@ -1,0 +1,431 @@
+{
+  "status": "ORIGINAL_FAILURE_CONFIRMED",
+  "source_sha": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+  "tree": "ad9c129f91bd2ec8a7ee010be49ab626481f77d8",
+  "run_id": 43615128301,
+  "run_attempt": 1,
+  "job_id": 132508389205,
+  "passed": 26,
+  "failed": [
+    "Live safari correct answer keeps its delayed continuation bound during word magic",
+    "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+    "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+    "Live safari correct answer keeps its delayed continuation bound during profile change"
+  ],
+  "skipped": [],
+  "cases": [
+    {
+      "name": "Live word magic offers explanations without a picture promise",
+      "test_id": 8,
+      "result": "success",
+      "skipped": false,
+      "start_line": 18,
+      "done_line": 20,
+      "suite_id": 2
+    },
+    {
+      "name": "actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)",
+      "test_id": 6,
+      "result": "success",
+      "skipped": false,
+      "start_line": 15,
+      "done_line": 22,
+      "suite_id": 0
+    },
+    {
+      "name": "Live safari displays its existing animal and advances the round",
+      "test_id": 9,
+      "result": "success",
+      "skipped": false,
+      "start_line": 21,
+      "done_line": 24,
+      "suite_id": 2
+    },
+    {
+      "name": "Live photo quiz checks camera consent before capture",
+      "test_id": 11,
+      "result": "success",
+      "skipped": false,
+      "start_line": 25,
+      "done_line": 27,
+      "suite_id": 2
+    },
+    {
+      "name": "actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)",
+      "test_id": 10,
+      "result": "success",
+      "skipped": false,
+      "start_line": 23,
+      "done_line": 29,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz cancellation keeps capture ready without rewards",
+      "test_id": 12,
+      "result": "success",
+      "skipped": false,
+      "start_line": 28,
+      "done_line": 31,
+      "suite_id": 2
+    },
+    {
+      "name": "Live photo quiz recovers from a native camera rejection",
+      "test_id": 14,
+      "result": "success",
+      "skipped": false,
+      "start_line": 32,
+      "done_line": 33,
+      "suite_id": 2
+    },
+    {
+      "name": "WortDiktat keeps its first contact across rows; foreign ends first=true",
+      "test_id": 13,
+      "result": "success",
+      "skipped": false,
+      "start_line": 30,
+      "done_line": 35,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz offers a spoken answer only after a real photo",
+      "test_id": 15,
+      "result": "success",
+      "skipped": false,
+      "start_line": 34,
+      "done_line": 37,
+      "suite_id": 2
+    },
+    {
+      "name": "Live photo quiz discards a pending capture after a mode round trip",
+      "test_id": 17,
+      "result": "success",
+      "skipped": false,
+      "start_line": 38,
+      "done_line": 39,
+      "suite_id": 2
+    },
+    {
+      "name": "WortDiktat keeps its first contact across rows; foreign ends first=false",
+      "test_id": 16,
+      "result": "success",
+      "skipped": false,
+      "start_line": 36,
+      "done_line": 41,
+      "suite_id": 0
+    },
+    {
+      "name": "a WortDiktat tap alone is not a completed writing attempt",
+      "test_id": 19,
+      "result": "success",
+      "skipped": false,
+      "start_line": 42,
+      "done_line": 43,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz rejects a delayed camera error after profile change",
+      "test_id": 18,
+      "result": "success",
+      "skipped": false,
+      "start_line": 40,
+      "done_line": 45,
+      "suite_id": 2
+    },
+    {
+      "name": "a cancelled WortDiktat stroke is not a completed attempt",
+      "test_id": 20,
+      "result": "success",
+      "skipped": false,
+      "start_line": 44,
+      "done_line": 47,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz rejects a delayed camera error after lease reset",
+      "test_id": 21,
+      "result": "success",
+      "skipped": false,
+      "start_line": 46,
+      "done_line": 49,
+      "suite_id": 2
+    },
+    {
+      "name": "Live photo quiz rejects a delayed camera error after mode round trip",
+      "test_id": 23,
+      "result": "success",
+      "skipped": false,
+      "start_line": 50,
+      "done_line": 51,
+      "suite_id": 2
+    },
+    {
+      "name": "WortDiktat cancel preserves completed strokes in other rows",
+      "test_id": 22,
+      "result": "success",
+      "skipped": false,
+      "start_line": 48,
+      "done_line": 53,
+      "suite_id": 0
+    },
+    {
+      "name": "Live Pro opens without initializing microphone; denied tap stays local",
+      "test_id": 24,
+      "result": "success",
+      "skipped": false,
+      "start_line": 52,
+      "done_line": 56,
+      "suite_id": 2
+    },
+    {
+      "name": "Photo lesson checks saved camera consent before opening the scanner",
+      "test_id": 26,
+      "result": "success",
+      "skipped": false,
+      "start_line": 57,
+      "done_line": 60,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "test_id": 29,
+      "result": "error",
+      "skipped": false,
+      "start_line": 61,
+      "done_line": 66,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 30,
+      "result": "error",
+      "skipped": false,
+      "start_line": 67,
+      "done_line": 73,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 33,
+      "result": "error",
+      "skipped": false,
+      "start_line": 74,
+      "done_line": 77,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "test_id": 34,
+      "result": "error",
+      "skipped": false,
+      "start_line": 78,
+      "done_line": 81,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "test_id": 35,
+      "result": "success",
+      "skipped": false,
+      "start_line": 82,
+      "done_line": 83,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 36,
+      "result": "success",
+      "skipped": false,
+      "start_line": 84,
+      "done_line": 85,
+      "suite_id": 2
+    },
+    {
+      "name": "Profil zeigt echte Werte und führt in Einstellungen und Laden",
+      "test_id": 32,
+      "result": "success",
+      "skipped": false,
+      "start_line": 70,
+      "done_line": 87,
+      "suite_id": 27
+    },
+    {
+      "name": "Profil-Extras öffnet die vorhandenen Einstellungen als echte Schaltfläche",
+      "test_id": 38,
+      "result": "success",
+      "skipped": false,
+      "start_line": 88,
+      "done_line": 89,
+      "suite_id": 27
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 37,
+      "result": "success",
+      "skipped": false,
+      "start_line": 86,
+      "done_line": 91,
+      "suite_id": 2
+    },
+    {
+      "name": "Level-Titel steigen mit dem Level",
+      "test_id": 39,
+      "result": "success",
+      "skipped": false,
+      "start_line": 90,
+      "done_line": 93,
+      "suite_id": 27
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+      "test_id": 40,
+      "result": "success",
+      "skipped": false,
+      "start_line": 92,
+      "done_line": 94,
+      "suite_id": 2
+    }
+  ],
+  "safari_cases": [
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "test_id": 29,
+      "result": "error",
+      "skipped": false,
+      "start_line": 61,
+      "done_line": 66,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 30,
+      "result": "error",
+      "skipped": false,
+      "start_line": 67,
+      "done_line": 73,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 33,
+      "result": "error",
+      "skipped": false,
+      "start_line": 74,
+      "done_line": 77,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "test_id": 34,
+      "result": "error",
+      "skipped": false,
+      "start_line": 78,
+      "done_line": 81,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "test_id": 35,
+      "result": "success",
+      "skipped": false,
+      "start_line": 82,
+      "done_line": 83,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 36,
+      "result": "success",
+      "skipped": false,
+      "start_line": 84,
+      "done_line": 85,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 37,
+      "result": "success",
+      "skipped": false,
+      "start_line": 86,
+      "done_line": 91,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+      "test_id": 40,
+      "result": "success",
+      "skipped": false,
+      "start_line": 92,
+      "done_line": 94,
+      "suite_id": 2
+    }
+  ],
+  "exceptions": [
+    {
+      "line": 64,
+      "testID": 29,
+      "messageType": "print",
+      "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during word magic\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+      "type": "print",
+      "time": 13249
+    },
+    {
+      "line": 71,
+      "testID": 30,
+      "messageType": "print",
+      "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during safari round trip\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+      "type": "print",
+      "time": 13686
+    },
+    {
+      "line": 75,
+      "testID": 33,
+      "messageType": "print",
+      "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during unchanged safari\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+      "type": "print",
+      "time": 14039
+    },
+    {
+      "line": 79,
+      "testID": 34,
+      "messageType": "print",
+      "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TextWidgetFinder:<Found 1 widget with text \"+10 XP\": [\n            Text(\"+10 XP\", inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,\nblue: 1.0000, colorSpace: ColorSpace.sRGB), family: Nunito, size: 14.0, weight: 900, letterSpacing:\n0.2, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart:599:9)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///home/runner/work/lumo-lernen/lumo-lernen/test/feature_permission_regression_test.dart line 599\nThe test description was:\n  Live safari correct answer keeps its delayed continuation bound during profile change\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+      "type": "print",
+      "time": 14360
+    }
+  ],
+  "non_event_lines": [
+    7,
+    8,
+    9,
+    10,
+    62,
+    63
+  ],
+  "source_unchanged": true,
+  "tracked_files": 4974,
+  "scope_limit": "All four correct cases stop at the common reward-route removal assertion before the continuation-specific mode/profile action. No corrected widget run has occurred.",
+  "runtime_review": {
+    "sdk": "Flutter 3.44.9",
+    "sources": {
+      "ticker": {
+        "sha": "8087aafed75be57189c912b1fbbceef49f750902",
+        "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter/lib/src/scheduler/ticker.dart"
+      },
+      "binding": {
+        "sha": "44b74b7d6be7726228605cce77c04231c6070bd6",
+        "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter_test/lib/src/binding.dart"
+      },
+      "animation": {
+        "sha": "1baef4d5d92f1b73a69506752c022996d4bd7cc7",
+        "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter/lib/src/animation/animation_controller.dart"
+      },
+      "pages": {
+        "sha": "3ef119ac56f16b13bc521e6dc2173e5e3867b7fd",
+        "url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter/lib/src/widgets/pages.dart"
+      }
+    },
+    "mechanism": "An idle-started ticker first records its start timestamp in its first frame. Automated pump(duration) advances fake time before drawing that frame. A zero-duration pump after the actual tap starts the reverse route before the unchanged 300ms pump.",
+    "forward_route_ms": 250,
+    "default_reverse_route_ms": 300
+  }
+}
