@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "kind": "Read-only source review, not a test run",
+  "base_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "reviewed_sources": [
+    {
+      "path": ".github/workflows/lumo-village-return-6b-diagnostic.yml",
+      "bytes": 9561,
+      "sha256": "33756983ead8071b1eb6348b867f298e8becc5a82b6311b405aced4739b257cc",
+      "git_blob": "33e0483133c8eab58b121ee532d78d7a75930c4b"
+    },
+    {
+      "path": ".github/probes/lumo_6b_roundtrip_diagnostic.py",
+      "bytes": 16984,
+      "sha256": "2601b1b6169e0e73db498733613333de691d1bbd57e219c5859f3e24027a80c8",
+      "git_blob": "276daa83fada8c9d1014c930dd39bd72c92b0947"
+    },
+    {
+      "path": "scripts/verify_unchanged_6b_village_diagnostic.py",
+      "bytes": 26923,
+      "sha256": "927bf4ca2aac319a7d70c752d74c69c83ca3f2458ebd477a85f72bf5abfdfa26",
+      "git_blob": "c267eadbac17f163cd24c4c149c5640e9b32c9b7"
+    },
+    {
+      "path": "scripts/run_unchanged_6b_village_diagnostic.sh",
+      "bytes": 6361,
+      "sha256": "833003f898f1966f424d890a25ab4e01a5f780f4b4df5f08b0d8d1a66aa00bf4",
+      "git_blob": "7a1428595c8a51682e7f2d1c58cfaa0ccb10d68e"
+    },
+    {
+      "path": "scripts/tests/test_6b_roundtrip_diagnostic.py",
+      "bytes": 10652,
+      "sha256": "ac2d0cee1815b765a9ca4673b37eb106ff45f0f599e3212c90ea58a6a1a3f44a",
+      "git_blob": "247b943be29a25564e7f8f3602b3a86eabbc94ce"
+    },
+    {
+      "path": "scripts/tests/test_verify_unchanged_6b_village_diagnostic.py",
+      "bytes": 31568,
+      "sha256": "2ab1347cdbfa3a5d2ac6119c63928d562b429d88ca1568d23fda1a51ac3f6d91",
+      "git_blob": "067e16cd95527d1c63be4354ae06e53e974f28b5"
+    },
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "bytes": 17484,
+      "sha256": "351d9ee6560b5dc5694f61b07c8d75b1a71d3cb4201fdbc953731891d04c1351",
+      "git_blob": "3e601644198f0b8c62fdaebcf783e3f631974bb1"
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "bytes": 36944,
+      "sha256": "a8ea017f8979e16ef44f15acd1d7044d88309f2d43c9abf78fb6f8eea2979c13",
+      "git_blob": "d21f941b2f5cff410f8e4cd7ae23fbbbf894743a"
+    }
+  ],
+  "adapter_ast_parity": [
+    {
+      "kind": "village",
+      "original_source": ".github/probes/lumo_village_android_probe.py",
+      "original_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+      "whole_function_ast_identical_after_explicit_identity_and_label_adjustments": true,
+      "added_binding_call": "require_bound_diagnostic(self.args)",
+      "normalized_differences": {
+        "qa_identity": 1,
+        "apk_binding_keyword": 1,
+        "apk_identity": 1,
+        "scope": 1,
+        "print_label": 1
+      },
+      "journey_actions_assertions_and_exception_finalization_preserved": true
+    },
+    {
+      "kind": "c4",
+      "original_source": ".github/probes/lumo_connect_four_android_probe.py",
+      "original_blob": "681e25d4654ce9827db8f208da5a608b458fa958",
+      "whole_function_ast_identical_after_explicit_identity_and_label_adjustments": true,
+      "added_binding_call": "require_bound_diagnostic(self.args)",
+      "normalized_differences": {
+        "qa_identity": 1,
+        "apk_binding_keyword": 1,
+        "apk_identity": 1,
+        "scope": 1,
+        "print_label": 1
+      },
+      "journey_actions_assertions_and_exception_finalization_preserved": true
+    }
+  ],
+  "unchanged_production_journeys_and_verifiers": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "f20bf864576f2474b563da29d2d718557702679c"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "git_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "git_blob": "091e250702b41c8ff0a1eef2eaa554a83c2cff68"
+    },
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "git_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+    }
+  ]
+}

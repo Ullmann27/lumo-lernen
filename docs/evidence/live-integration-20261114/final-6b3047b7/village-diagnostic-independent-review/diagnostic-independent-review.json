@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "reviewed_source": "df9536ebf82fe070c0e068533448f3dd5b273406",
+  "reviewed_tree": "c4063429e04052e5b4a280d918d123122a06a636",
+  "source_base": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "scope": "Independent read-only review of six separate diagnostic files plus the two exact previously reviewed observer files. No activation, new Actions download, repeated tests or Android run.",
+  "conclusion": "No concrete blocker found in the exact eight reviewed blobs.",
+  "source_binding": "Every local reviewed Git blob was independently confirmed at immutable remote checkpoint df9536eb. The two observer blobs are exactly 3e601644198f0b8c62fdaebcf783e3f631974bb1 and d21f941b2f5cff410f8e4cd7ae23fbbbf894743a.",
+  "findings": [
+    "The QA workflow is restricted to its own qa/lumo-village-return-6b-20261114 branch and push/workflow_dispatch events. It has a contract job and one main API35 matrix entry; the dormant update path is not scheduled. Permissions are contents:read/actions:read; no release or central branch write is present.",
+    "Candidate source is checked out separately at exact 6b; the existing tour runs from that checkout while absolute observer modules come from the QA checkout. QA source must be distinct and match its actual run/job/attempt/tree.",
+    "The preflight checks original repository/run/head/tree/workflow, complete unique metadata collections, exact artifact ID/digest/size and the successful original compile/runtime/build with the three required build/upload steps. Original Android failure is retained; it is not promoted to a successful full run.",
+    "APK and PCK hashes/sizes, package, ABI, signer provenance, version, native revision and outer source identity match already existing original API metadata and Update-report provenance. The runtime preflight hashes the actual APK and reads the one regular unencrypted PCK member completely.",
+    "The candidate ZIP digest/size are bound through original metadata; this preflight does not claim to rehash the entire ZIP. Actual APK/PCK hashing remains mandatory. The reviewer did not download that archive again.",
+    "Actual git roots, heads, trees and tracked cleanliness are checked; committed reader bytes are inventoried, imports are checked against their QA paths, and inputs/sources are rechecked before the binding receipt is emitted. The shell performs the binding again after the device sequence.",
+    "Independent AST normalization of both complete Village/C4 run functions confirms all original journey actions, assertions, error handling and final original-evidence collection. Only explicit separate identities, the new binding call and diagnostic labels/scope differ. C4 gains an explicit APK-source assertion.",
+    "The shell requires the unchanged actual main tour first, then Village, then C4. Village retains the unchanged full evidence replay; C4 receives explicit unchanged verifier replay as well. Any process, replay or postflight-binding failure yields a failing receipt and exit.",
+    "Diagnostic report fields explicitly record separate QA/APK sources and seven_job_acceptance=false. The wrapper cannot label these two workflow jobs as a seven-job acceptance or publication approval.",
+    "Existing Root logs were read and independently counted: 35/35 contracts with no skips, followed by 4/4 integrated observer parity cases with no skips. Bash syntax and actionlint success are recorded in the original existing receipts; none was executed again by this reviewer."
+  ],
+  "limits": [
+    "These source and offline preflight results do not establish real device success. A new actual diagnosis must still provide fresh main/Village/C4 originals.",
+    "The unchanged live XML reader has no caller timeout parameter; the reviewed observer checks before/after it and rejects late results, but cannot cancel an in-flight RPC. This remains documented in the earlier independent observer review.",
+    "The diagnostic APK remains the old immutable 6b build. Even a successful diagnosis does not replace the new complete 04a8e850 source acceptance."
+  ],
+  "related_observer_review": "ff6928999a2b425ea6c7446daef7b2d2dbd715bf",
+  "original_android_evidence_checkpoint": "c2485ac8d96547f0ccebd0e895047bd394f9a96e"
+}
