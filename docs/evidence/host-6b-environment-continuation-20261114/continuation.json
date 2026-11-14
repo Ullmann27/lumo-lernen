@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-14 17:19:56 UTC",
+  "reason": "The user environment context reports the local environment unavailable. No further local shell, image or binary-archive calls are being attempted.",
+  "authoritative": {
+    "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "main_run": 43616038272,
+    "feature_run": 43616035099,
+    "native_run": 43613299144,
+    "attempt": 1
+  },
+  "current_main_stage": {
+    "run": 43616038272,
+    "attempt": 1,
+    "job": 132512734271,
+    "step": 31,
+    "step_name": "Require actual gameplay gates on the exact pinned native source",
+    "started_at": "2026-11-14T16:53:17Z",
+    "last_metadata_check": "2026-11-14T17:17:30Z",
+    "status": "in_progress",
+    "completed_failure_steps": [],
+    "apk_created": false
+  },
+  "completed_frontend": {
+    "commit": "e10a171a76ae4aaf05b70e704c9ad7f52754e161",
+    "tree": "ccee3ffa2224471bc22deb5ff6a333f8a706a7d5",
+    "branch": "evidence/lumo-final-flutter-6b3047b7-20261114",
+    "passed": 2651,
+    "failed": 0,
+    "skipped": 0,
+    "png": 566,
+    "artifact": 14122179663,
+    "original_summary": "74e2bfcc2400832fe55afc7fee5da97f6d2a92a0",
+    "independent_recount": "23a8ad11454444a93516960355c3ab1900cca657",
+    "root_original_summary_read_and_hash_verified": true,
+    "root_recount_and_village_review_read": true
+  },
+  "root_review_evidence": {
+    "commit": "82fbbe9e65250b2432436beb10966f08d56fd8c7",
+    "tree": "67110eb23101bc2a9a005bdc4bfb4bca2be8ee1c",
+    "parent": "60e9a7aa7d3891c774f19b464ae644c0b3f4b04b",
+    "branch": "evidence/lumo-root-6b-review-20261114",
+    "added": 6,
+    "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "source_files_unchanged": 4975,
+    "total_files": 5004,
+    "added_files_total": 29,
+    "full_tree_untruncated": true,
+    "original_job_logs": 12,
+    "all_original_logs_readback_exact": true,
+    "differences": []
+  },
+  "latest_source_refs": {
+    "checked": "2026-11-14 17:05:24 UTC",
+    "records": [
+      {
+        "label": "host_producer",
+        "repo": "Ullmann27/lumo-lernen",
+        "branch": "work/lumo-play-quality-20261114",
+        "sha": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+        "expected": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+        "unchanged": true
+      },
+      {
+        "label": "host_integration",
+        "repo": "Ullmann27/lumo-lernen",
+        "branch": "integration/lumo-live-connections-20261114",
+        "sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+        "expected": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+        "unchanged": true
+      },
+      {
+        "label": "native_integration",
+        "repo": "Ullmann27/lumo-godot",
+        "branch": "integration/lumo-live-connections-20261114",
+        "sha": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "expected": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "unchanged": true
+      },
+      {
+        "label": "host_main",
+        "repo": "Ullmann27/lumo-lernen",
+        "branch": "main",
+        "sha": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+        "expected": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+        "unchanged": true
+      }
+    ]
+  },
+  "publisher": {
+    "prepared_commit": "361f409f4bded479858e392aff8494863c4c0b1a",
+    "tree": "6adc42d7fa7f9500ea1474497eb1c325b173de55",
+    "activated": false
+  },
+  "continuation": [
+    "Continue existing exact seven-job Host acceptance through final APK, Android main/direct Village/C4 and actual 2017-to-2020 update.",
+    "Preserve terminal original job logs and complete artifact metadata through GitHub GitData; no original download counted unless bytes can actually be processed.",
+    "Review a separate remote execution of the already existing original artifact validators as a possible replacement for unavailable local CRC/hash/parser replays; not yet prepared, launched or passed.",
+    "A remote parser replay is not a local visual review. Existing Native847 and Flutter6b original visual findings remain source-bound and retain their exact scope.",
+    "Activate the already reviewed publisher only after actual full acceptance and required original review. Fresh source, PR/run/attempt, release/tag and original APK checks remain mandatory.",
+    "Do not modify main, weaken conditions, substitute the old1e APK, or claim a public6b APK before verified release and public download."
+  ],
+  "owners": {
+    "root": "Refs, publication, immutable evidence, remote fallback preparation.",
+    "android_qa": "Current main metadata, terminal main/Android/update/delivery originals.",
+    "godot_integration": "Read-only source investigation of remote original Native replay; no workflow started.",
+    "flutter_integration": "Completed current frontend evidence e10a171a; no more tests running."
+  }
+}
