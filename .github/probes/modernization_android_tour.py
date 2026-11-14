@@ -373,7 +373,102 @@ def _inspect_spatial_kart_menu(out: Path) -> dict:
     return report
 
 
-def _start_actual_embedded_race(out: Path) -> dict:
+def _skip_observed_kart_preview(out: Path, source: Path, deadline: float) -> dict:
+    """Opt-in UI countercheck; never infer a running race from skipping its preview.
+
+    The caller's existing 55-second world-ready deadline includes this entire
+    observation, the unchanged two-frame touch guard and the after-capture.
+    A naturally absent cue authorizes no touch and does not isolate the issue.
+    The initial world frame may still be fading in. It is retained only as
+    context; the existing touch helper observes fresh frames within this same
+    deadline and supplies both actual OCR witnesses for the real touch.
+    """
+    started = time.monotonic()
+    caption = 'Tippen zum Überspringen'
+    journal = out / '21_kart_preview_skip.json'
+    touch_tag = '21_kart_preview_skip_touch'
+    report = {'schema': 1, 'status': 'WAITING', 'countercheck_scope': 'NOT_ISOLATED',
+              'caption': caption, 'deadline_policy': 'original race-world-ready55s',
+              'initial_remaining_seconds': deadline - started}
+
+    def remaining() -> float:
+        value = deadline - time.monotonic()
+        if value <= 0:
+            raise TimeoutError('Original55s race-ready deadline expired during preview skip')
+        return value
+
+    readiness_path = out / (touch_tag + '-surface-readiness.json')
+    report['readiness_file'] = readiness_path.name
+    try:
+        remaining()
+        report['initial_capture'] = {'source': source.name,
+                                     'source_sha256': probe.digest(source),
+                                     'scope': 'Context only; never a touch prerequisite'}
+        if not godot_alive():
+            raise RuntimeError('Godot quit before the observed preview touch')
+        foreground = base.foreground()
+        if 'LumoGameActivity' not in foreground:
+            raise RuntimeError('Native Kart activity is not foreground before preview touch')
+        report['foreground_before_touch'] = foreground
+        # This existing helper takes two NEW full-surface screenshots, checks
+        # the exact caption and stable observed bounds, and sends one real ADB
+        # input swipe with identical endpoints (a120ms touch). No fixed target.
+        probe.native_tap(out, caption, touch_tag, timeout=remaining(), exact=True,
+                         orientation='landscape')
+        remaining()
+        readiness = json.loads(readiness_path.read_text())
+        report['readiness'] = readiness
+        observed = readiness.get('frames', [])[-2:]
+        if (readiness.get('status') != 'TOUCH_SENT'
+                or readiness.get('exact_caption_required') is not True
+                or readiness.get('orientation_policy') != 'landscape'
+                or len(observed) < 2
+                or any(frame.get('acceptable_for_target_sampling') is not True
+                       or frame.get('target', {}).get('target_geometry_valid') is not True
+                       for frame in observed)
+                or observed[-1]['target'].get('stable_observed_target') is not True):
+            raise RuntimeError('Preview touch lacks the existing two-frame readiness proof')
+        witnesses = []
+        for frame in observed:
+            name = frame.get('source', '')
+            if not name or Path(name).name != name or Path(name).suffix != '.png':
+                raise RuntimeError('Preview touch witness has no local original PNG')
+            witness = out / name
+            if probe.digest(witness) != frame['source_sha256']:
+                raise RuntimeError('Preview touch witness changed after the guarded input')
+            ocr_path = out / (witness.stem + '-ocr.json')
+            rows = json.loads(ocr_path.read_text())
+            matches = [row for row in rows
+                       if probe.normalized(row['text']) == probe.normalized(caption)
+                       and row.get('bounds') == frame['target']['bounds']]
+            if not matches:
+                raise RuntimeError('Preview touch lacks its exact observed OCR words and bounds')
+            witnesses.append({'source': name, 'source_sha256': frame['source_sha256'],
+                              'ocr_file': ocr_path.name, 'ocr_sha256': probe.digest(ocr_path),
+                              'observed_matches': matches})
+        report['cue_witnesses'] = witnesses
+        report['cue'] = witnesses[-1]
+        report['touch'] = readiness['touch']
+        report['after_capture'] = probe.capture(
+            out, '21_kart_preview_after_touch', timeout=remaining())
+        remaining()
+        report['status'] = 'TOUCH_SENT'
+        report['countercheck_scope'] = 'OBSERVED_UI_TOUCH_ONLY'
+        return report
+    except Exception as error:
+        report.update(status='FAIL', error=f'{type(error).__name__}: {error}')
+        if 'readiness' not in report and readiness_path.exists():
+            try:
+                report['readiness'] = json.loads(readiness_path.read_text())
+            except (OSError, ValueError) as observation_error:
+                report['readiness_error'] = str(observation_error)
+        raise
+    finally:
+        report['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+
+
+def _start_actual_embedded_race(out: Path, *, skip_preview: bool = False) -> dict:
     if not godot_alive():
         raise RuntimeError('Native Godot game process is not alive')
     evidence_taps = []
@@ -453,10 +548,23 @@ def _start_actual_embedded_race(out: Path) -> dict:
                           'rendered_frame': evidence.rendered_race_frame(screen)}
                 if spatial_navigation is not None:
                     report['spatial_menu_navigation'] = spatial_navigation
-                (out / '21_kart_race_frame_check.json').write_text(json.dumps(report, indent=2))
-                return report
             except RuntimeError as error:
                 last_error = str(error)
+            else:
+                if skip_preview:
+                    skipped = _skip_observed_kart_preview(
+                        out, out / '21_lumo_kart_real_race.png', deadline)
+                    report['preview_skip'] = skipped
+                    if skipped['status'] == 'TOUCH_SENT':
+                        evidence_taps.append({
+                            'step': 'preview-skip', 'button': skipped['caption'],
+                            'tap': skipped['touch'], 'input': 'swipe', 'duration_ms': 120,
+                            'readiness_file': skipped['readiness_file'],
+                        })
+                        (out / '21_kart_real_touches.json').write_text(
+                            json.dumps(evidence_taps, indent=2))
+                (out / '21_kart_race_frame_check.json').write_text(json.dumps(report, indent=2))
+                return report
         time.sleep(2)
     raise RuntimeError(f'Native Android kart race did not visibly replace the garage: {last_error}')
 
@@ -502,6 +610,21 @@ def wait_race_running(session: RaceSession, timeout: float = 150) -> dict:
             last = str(error)
         attempt += 1
         time.sleep(2)
+    # The acceptance window is already over. This read-only diagnostic cannot
+    # turn a late frame/state into PASS or hide the original running-clock error.
+    diagnostic = {'status': 'GATE_ALREADY_FAILED', 'timeout_seconds': timeout,
+                  'last_persisted_observation': last,
+                  'scope': 'Screenshot after deadline; no additional acceptance wait'}
+    try:
+        diagnostic['capture'] = probe.capture(
+            session.out, '21_race_running_timeout', timeout=10)
+    except Exception as error:
+        diagnostic['capture_error'] = f'{type(error).__name__}: {error}'
+    try:
+        (session.out / '21_race_running_timeout.json').write_text(
+            json.dumps(diagnostic, indent=2, ensure_ascii=False) + '\n')
+    except Exception as error:
+        print('[KartRaceTimeoutDiagnostic]', f'{type(error).__name__}: {error}', flush=True)
     raise RuntimeError(f'Saved race never showed a running race clock: {last}')
 
 
@@ -689,6 +812,9 @@ def main() -> int:
     parser.add_argument('--provenance', type=Path, required=True)
     parser.add_argument('--sums', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--skip-observed-kart-preview', action='store_true',
+                        help='QA countercheck: touch only an actually observed preview cue; '
+                             'all race/save/return checks and deadlines stay unchanged')
     args = parser.parse_args()
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
@@ -775,7 +901,8 @@ def main() -> int:
                 time.sleep(wait)
                 probe.capture(out, f'21_lumo_kart_{wait}s')
             step('open-kart', godot_alive(), label=kart)
-            race_launch = attempt('start-kart-race', lambda: _start_actual_embedded_race(out))
+            race_launch = attempt('start-kart-race', lambda: _start_actual_embedded_race(
+                out, skip_preview=args.skip_observed_kart_preview))
             race_started = race_launch is not None
         else:
             step('open-kart', False, label=None)

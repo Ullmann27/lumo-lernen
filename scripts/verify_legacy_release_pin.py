@@ -144,7 +144,7 @@ APPROVED = {
     # 2020: exact Native source passed all nine Studio jobs and the actual
     # current49-image review. This approves source identity only; the new
     # APK, Android35/37, Creative, C4 and update gates remain mandatory.
-    2020: "785413d395292a243eaa0a0748671eb15d3f80ff",
+    2020: "34421df83566dd4773420cc2a225887956459435",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
