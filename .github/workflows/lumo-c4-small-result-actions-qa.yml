@@ -1,0 +1,106 @@
+name: Lumo C4 small result actions QA
+
+on:
+  push:
+    branches:
+      - qa/lumo-c4-small-result-actions-20261114-2708-r3
+    paths:
+      - .github/workflows/lumo-c4-small-result-actions-qa.yml
+      - scripts/run_connect_four_small_result_actions_qa.py
+      - test/games/connect_four_small_result_actions_qa.dart
+      - tools/qa/connect_four_small_result_actions_qa.gd
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-c4-small-result-actions-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  small-result-actions:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/qa/lumo-c4-small-result-actions-20261114-2708-r3'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out the separately reviewed QA commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: qa-source
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Check out the immutable host product
+        uses: actions/checkout@v4
+        with:
+          ref: aab09275ec6b5808de9be539ca4e1a7e70921249
+          path: frozen-host
+          persist-credentials: false
+      - name: Check out the immutable native product
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: e2d15dbc5f3709306decb139eeb70a1cf30c0b73
+          path: frozen-native
+          persist-credentials: false
+      - name: Bind the four QA additions and both unchanged products before preparation
+        env:
+          QA_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git -C qa-source rev-parse HEAD)" = "$QA_SHA"
+          python3 qa-source/scripts/run_connect_four_small_result_actions_qa.py \
+            --qa "$GITHUB_WORKSPACE/qa-source" \
+            --host "$GITHUB_WORKSPACE/frozen-host" \
+            --native "$GITHUB_WORKSPACE/frozen-native" \
+            --output "$GITHUB_WORKSPACE/qa-evidence/preflight" --preflight
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Prepare the same proven desktop dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 fonts-noto-color-emoji
+          python3 -m venv .qa-python
+          .qa-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          (cd frozen-host && flutter pub get --enforce-lockfile)
+          command -v xvfb-run
+      - name: Install the unchanged host's pinned Godot engine
+        working-directory: frozen-host
+        run: bash scripts/install_godot_for_build.sh
+      - name: Import only the exact native product required by the two actions
+        run: |
+          set -euo pipefail
+          test "$(git -C frozen-native rev-parse HEAD)" = e2d15dbc5f3709306decb139eeb70a1cf30c0b73
+          export XDG_DATA_HOME="$RUNNER_TEMP/c4-small-import/data"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/c4-small-import/config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/c4-small-import/cache"
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          (cd frozen-native && timeout 300s godot --headless --audio-driver Dummy --editor --import) 2>&1 | tee qa-evidence/original-import.log
+          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|Assertion failed' qa-evidence/original-import.log; then
+            echo 'The original native import reported an error' >&2
+            exit 1
+          fi
+      - name: Scroll to and activate both lower actions in the actual winning dialog
+        run: |
+          set -euo pipefail
+          .qa-python/bin/python qa-source/scripts/run_connect_four_small_result_actions_qa.py \
+            --qa "$GITHUB_WORKSPACE/qa-source" \
+            --host "$GITHUB_WORKSPACE/frozen-host" \
+            --native "$GITHUB_WORKSPACE/frozen-native" \
+            --output "$GITHUB_WORKSPACE/qa-evidence/runtime"
+      - name: Preserve the original inputs, ACKs, source identities and four captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-c4-small-result-actions-aab092
+          path: qa-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
