@@ -1,0 +1,54 @@
+{
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "head": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "run": 43616038272,
+    "attempt": 1,
+    "branch": "integration/lumo-live-connections-20261114",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+  },
+  "reviewed_at": "2026-11-14 17:36:46 UTC",
+  "source_sha256": {
+    ".github/probes/lumo_connect_four_android_probe.py": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+    ".github/probes/lumo_village_android_probe.py": "b6a3ef510ffd29369896bedb57a6d870d000b36e46138c7e7b59be95efacb9ab",
+    ".github/probes/modernization_android_tour.py": "965b45ee66d0f88ac73411719ba47858bb34bb49d5ceb2b129dc370bccddf1ae",
+    ".github/probes/lumo_2020_update_android_probe.py": "a95e27a02f3a021848d887f238fdd498f4d22c387beb5dbb0c0de60dfc44669c",
+    ".github/probes/lumo_2003_update_android_probe.py": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7",
+    ".github/probes/creative_android_probe.py": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+    ".github/probes/flutter_surface_readiness.py": "26219bb28b51e599bf220d639eb0ec38fd41881a07c6d4fa4503e1b0e3a1d6dc"
+  },
+  "android_scope": "Two real child moves with bot responses, pause/resume, return and restored native round. The actual API35 C4 probe does not play a complete winning game.",
+  "desktop_win": "runtime/connect_four_win.png",
+  "android_images": {
+    "village_native": "village/ + village-result.json.native.frame.file",
+    "village_before_return": "village/ + village-return-surface-readiness.json.frames[-1].source",
+    "village_return": "village/returned-flutter-frame.png",
+    "c4_initial": "c4/ + observations/<c4-result.initial>.json.frame",
+    "c4_move": "c4/ + observations/<c4-result.transitions[action=drop].after>.json.frame",
+    "c4_return": "c4/return-final-flutter.png",
+    "c4_games": "c4/ + JSON(c4-result.returns[-1].games_ready).observations[-1].capture.file",
+    "main_before_gas": "main/21_race_before_gas.png",
+    "main_driving": "main/21_race_driving_late_{gas_pulses-1}.png; gas_pulses from successful tour-result step race-drive",
+    "main_return": "main/23_zurueck_in_flutter.png"
+  },
+  "update_images": {
+    "before_gas": "21_race_before_gas.png",
+    "driving": "21_race_driving_late_{gas_pulses-1}.png; gas_pulses from update-result.native_tour.drive",
+    "return": "23_zurueck_in_flutter.png",
+    "profile": "updated-profile-offline.png",
+    "restart": "restart-profile-offline.png",
+    "fold": [
+      "fold-cover.png",
+      "fold-open.png",
+      "fold-landscape.png"
+    ]
+  },
+  "limits": [
+    "Paths are derived from exact current source, not observations of not-yet-created APK artifacts.",
+    "Use accepted original report references for dynamic attempts, never assume first attempt.",
+    "Original PNG bytes only; no image transformation or new captures.",
+    "21_lumo_kart_real_race.png can be track intro and is not itself proof of driving."
+  ]
+}
