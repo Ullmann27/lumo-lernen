@@ -265,7 +265,7 @@ class MemoryRoundController {
     _guard();
     final confirmation = store;
     if (confirmation is MemoryReadbackConfirmation) {
-      await confirmation.confirmRoundReadback(value);
+      await (confirmation as MemoryReadbackConfirmation).confirmRoundReadback(value);
       _guard();
     }
   }
@@ -274,7 +274,7 @@ class MemoryRoundController {
     _guard();
     final confirmation = store;
     if (confirmation is MemoryReadbackConfirmation) {
-      await confirmation.confirmStatsReadback(value);
+      await (confirmation as MemoryReadbackConfirmation).confirmStatsReadback(value);
       _guard();
     }
   }
