@@ -1,0 +1,16 @@
+{
+  "reviewed_at_utc": "2026-11-14 10:47:02 UTC",
+  "source_base": "f4df466ed004879fc56284b024475a0ab0661259",
+  "available_code_identical_parent": "faaf9d906bd72c2ffe9ab677c76355fe538cddfe",
+  "production_before": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa",
+  "production_after": "9f39b85fb1559a6229f0b381afa5d85a081703bd",
+  "tests_before": "701d1dab0a7224803fe2780c6a0674400b081795",
+  "tests_after": "b64071e3c99ebe6529a3fa9237192208e03a16ee",
+  "exact_changes": "Two approved-branch constant declarations and one existing branch predicate; every other production byte unchanged. Three added BindingTests methods; every preexisting test byte unchanged.",
+  "verified_guards": [
+    "Only exact integration/lumo-c4-connections-20261114 and work/lumo-play-quality-20261114 are admitted.",
+    "Source, event, workflow, repository, run/attempt, artifact identity/digest/availability, bound source/run and required successful jobs remain byte-identical.",
+    "Added tests independently exercise allowed branches, unapproved prefix/suffix/main/null branches and source/artifact/job mismatches."
+  ],
+  "scope": "Independent read-only source review. Red/green original metadata replay and 15-method execution are separate release-lead evidence, not new Android or game execution."
+}
