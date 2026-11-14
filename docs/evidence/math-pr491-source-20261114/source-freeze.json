@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_NOT_TESTED",
+  "created_at_utc": "2026-11-14T12:49:44.288793+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "base": {
+    "head": "0411b62f59425bc4f36226ca59e9ed5ef901709a",
+    "tree": "6a439dddafaaf7319cfabe28a2149e8de8c363df"
+  },
+  "producer": {
+    "head": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "pr": 491
+  },
+  "source_count": 3,
+  "source_files": [
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 49668,
+        "sha256": "65469d7e9095ad597271204e5c1953848ee2e98533ec095e8e7a530372d06cae",
+        "git_blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89"
+      },
+      "after": {
+        "bytes": 49784,
+        "sha256": "5db29aaa2d18a8b8eb3dc4f3dffd433b13ec364e7768fb27a90a7d16926854d2",
+        "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39"
+      },
+      "producer_source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/math_exact_topic_selection_test.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 402,
+        "sha256": "bde1d7a8e48f9ebaa97fb043d9a27ae5a00f31e13189f52d73c05bca168463cc",
+        "git_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+      },
+      "producer_source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+      "kind": "exact_published_producer_blob"
+    },
+    {
+      "path": "test/support/math_exact_topic_selection_contract.dart",
+      "mode": "100644",
+      "before": null,
+      "after": {
+        "bytes": 7699,
+        "sha256": "645b5522f49de05500da645a0961f8c00c5a8b628e2a81fb9a4759a0c434668b",
+        "git_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+      },
+      "producer_source": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+      "kind": "exact_published_producer_blob"
+    }
+  ],
+  "integration_patch": {
+    "bytes": 10758,
+    "sha256": "8b5a461729c74e972967a6608744474685ca31f31da0c3f0e452995913139539",
+    "git_blob": "281faf44a1979dc01c99136e99b1800a9cc0a2cc"
+  },
+  "dependency_binding": {
+    "bytes": 5225,
+    "sha256": "3a9c64dfd9f33c1034fb6e735bbc4d4f7264e07998d97e1cfd0f11415306207d",
+    "git_blob": "2157b2de11e6bcff714552aa026d1472883e83cd"
+  },
+  "source_review": {
+    "bytes": 3240,
+    "sha256": "81e9cf52aebeca2957f053a0d02078b6290601ba97f1b9d0da874f5a9b4a9eca",
+    "git_blob": "b94dc484b73e14e908010c788e73714bd4b9f4fb"
+  },
+  "tests": "NOT_RUN; Root checkpoint required before any Dart/Flutter execution",
+  "mutations": {
+    "product_checkout": false,
+    "git_index": false,
+    "git_refs": false,
+    "ci": false
+  },
+  "constraints": "Only the three assigned paths are proposed. No foreign pins, branches, workflows, planner files, package changes, or unrelated491 sources."
+}

@@ -1,0 +1,80 @@
+{
+  "kind": "actual_exact_host0411_validation",
+  "files": [
+    {
+      "path": "actionlint.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actionlint.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after.json",
+      "bytes": 1056674,
+      "sha256": "7fb0f364d7b14fed53f944b3202cb97904bb69bd0e8db2b73830e9eaaee6f483"
+    },
+    {
+      "path": "autosave-once.log",
+      "bytes": 72,
+      "sha256": "549d7d8384a19dceec1301e275b505ffb1ae75a0e45bb08a17a09b4582f746dd"
+    },
+    {
+      "path": "before.json",
+      "bytes": 1056674,
+      "sha256": "7fb0f364d7b14fed53f944b3202cb97904bb69bd0e8db2b73830e9eaaee6f483"
+    },
+    {
+      "path": "result.json",
+      "bytes": 904,
+      "sha256": "90e87f980fe007c21efae7ccac09cc1785cb15e7d0bf4a58878a26010549d3db"
+    },
+    {
+      "path": "unittest.stderr.log",
+      "bytes": 19162,
+      "sha256": "ec7f1a596870bdd01c9e609fca98c2c86307b710e92cb3735b187ba37026d307"
+    },
+    {
+      "path": "unittest.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "watcher.json",
+      "bytes": 33,
+      "sha256": "f15a8eb53baa372b2791daa03fd652732c8c5e0d9ed929b9b76c3d1858eb40b9"
+    }
+  ],
+  "result": {
+    "commit": "0411b62f59425bc4f36226ca59e9ed5ef901709a",
+    "tree": "6a439dddafaaf7319cfabe28a2149e8de8c363df",
+    "started_at": "2026-11-14T12:54:00.024940+00:00",
+    "finished_at": "2026-11-14T12:54:07.559658+00:00",
+    "test_argv": [
+      "/tmp/lumo-root-recovery-1242/py/bin/python",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.tests.test_connect_four_pipeline",
+      "scripts.tests.test_connect_four_delivery"
+    ],
+    "test_exit": 0,
+    "test_count": 88,
+    "seconds": 6.62,
+    "actionlint_argv": [
+      "/tmp/lumo-root-recovery-1242/bin/actionlint",
+      "-color",
+      "-oneline",
+      ".github/workflows/lumo-connect-four-2020.yml"
+    ],
+    "actionlint_exit": 0,
+    "actionlint_binary_sha256": "c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4",
+    "pillow": "12.3.0",
+    "tracked": 4373,
+    "materialized": 1648,
+    "sources_index_status_unchanged": true,
+    "source_only_tests_not_apk": true
+  }
+}
