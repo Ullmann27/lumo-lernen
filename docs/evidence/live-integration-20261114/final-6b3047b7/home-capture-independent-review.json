@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "source_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "source_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "native_sha": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run_id": 43616038272,
+  "run_attempt": 1,
+  "job_id": 132512734271,
+  "artifact_id": 14122179663,
+  "original_archive_sha256": "a7c841acff29e762f19fcd11a55e34bb070ae37a2ac91d112d345fed051a390b",
+  "reviewer": "android_qa",
+  "reviewed_at": "2026-11-14 16:52:48 UTC",
+  "method": "Opened each of five unmodified extracted PNGs with view_image; independently reread their original bytes and compared SHA256 and byte counts with the source-bound Flutter agent manifest.",
+  "images": [
+    {
+      "path": "home-premium/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "zip_crc32": "a3a1d53d",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "zip_crc32": "b7817218",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "zip_crc32": "5bf2994b",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "home-premium/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "zip_crc32": "4a0891e5",
+      "extracted_original_text": false,
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "home-premium/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "zip_crc32": "24934edb",
+      "extracted_original_text": false,
+      "width": 786,
+      "height": 1704
+    }
+  ],
+  "observations": [
+    "fold-cover-start.png: Belohnungen label is fully visible; Lernen, Spielen and Tests labels are readable; the compact Lumo Kart promotional title and subtitle remain visibly ellipsized.",
+    "fold-cover-learning-cards.png and phone-learning-cards.png: opened subject cards display readable titles, descriptions and progress counters; viewport edges intersect subsequent cards, so the captures do not show the entire scrollable list simultaneously.",
+    "fold-open-learning-cards.png: all eleven subject cards and their progress regions are completely visible within the reviewed image.",
+    "large-text-learning-cards.png: Mathe, Deutsch, Lesen and Schreiben titles, subtitles and progress text are readable without internal glyph clipping in the reviewed region.",
+    "No yellow-black overflow stripe or unreadable title was observed. Decorative light stars overlap a few subtitle glyphs; those words remain readable in these original images."
+  ],
+  "limits": [
+    "Visual review of the stated five Flutter captures only; no Android/runtime acceptance implied.",
+    "No new screenshot, image transformation or duplicate archive download.",
+    "Hit testing and tap behavior are covered by the original test artifacts, not inferred from pixel inspection."
+  ]
+}
