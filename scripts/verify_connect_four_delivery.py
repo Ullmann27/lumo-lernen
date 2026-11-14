@@ -47,9 +47,16 @@ DELIVERY_ASSETS = {
     'C4-ANDROID-RESULT.json', 'C4-DESKTOP-RUNTIME.json', 'UPDATE-2020-RESULT.json',
     'C4-DELIVERY-FACTS.json', 'PUBLISH-VERIFICATION.json',
 }
+ADDITIONAL_NATIVE_LOGS = {
+    'acknowledged_exit': ('return-recovery.log', 'CONNECT_FOUR_RETURN_PASS checks=21', 21),
+    'treasure_wisps': ('wisps.log', '[TreasureWisp] PASS checks=14', 14),
+}
+ADDITIONAL_ENGINE_BANNER = 'Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org'
 REQUIRED_STEPS = {
     'connect-four-runtime': (
         'Import the exact configured native source in its own directory',
+        'Retry the acknowledged native exit after a transient Android refusal',
+        'Require the additional pinned native Treasure wisp regression',
         'Require the actual production Dart and rendered Godot two-process gate',
     ),
     'android-host-compile': (
@@ -538,6 +545,25 @@ def checked_native_extension(root: Path, source: Path, revision: str, tree: str)
     return before
 
 
+def checked_additional_native_logs(runtime: Path) -> dict:
+    """Bind original logs from the two additionally required native CI steps."""
+    result = {}
+    for name, (filename, marker, checks) in ADDITIONAL_NATIVE_LOGS.items():
+        path = regular(runtime.parent/filename)
+        original = record(path)
+        text = path.read_bytes().decode('utf-8')
+        lines = text.splitlines()
+        require(lines.count(ADDITIONAL_ENGINE_BANNER) == 1 and lines.count(marker) == 1,
+                'Incomplete or duplicate additional native result: '+name)
+        require(not re.search(r'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|\[ProbeRunner\] (?:FAIL|timeout)', text),
+                'Original additional native regression failed: '+name)
+        require(record(path) == original, 'Additional native log changed during verification: '+name)
+        result[name] = {'filename': filename, 'checks': checks, 'marker': marker,
+                        'original_log': original}
+    return {'status': 'PASS', 'gates': result,
+            'scope': 'Pinned-source desktop regressions; acknowledged exit uses an explicit Android host fixture. No real device or FPS claim.'}
+
+
 def committed_pcm_sources() -> dict:
     paths = [ROOT/'tools/auto_install/LumoLearningSpeech.kt',
              ROOT/'tools/auto_install/LumoSpeechEnvelope.kt', ROOT/'scripts/prepare_android.py',
@@ -572,6 +598,7 @@ def prepare(args) -> dict:
     pcm = checked_pcm_log(args.build_contracts/'build-contracts.log')
     pcm['sources'] = committed_pcm_sources()
     native = checked_native(args.native_evidence, args.native_source, binding['native_source'])
+    additional_native = checked_additional_native_logs(args.runtime)
     learning = checked_learning_audit(args.learning_audit, binding)
     selected = checked_release_catalog(read(args.metadata/'releases.json'),
                                        read(args.metadata/'tags.json'), fresh)
@@ -586,6 +613,7 @@ def prepare(args) -> dict:
         'native_source': binding['native_source'], 'versionName': fresh['versionName'],
         'versionCode': fresh['versionCode'], 'binding': binding, 'jobs': jobs,
         'original_artifacts': artifacts, 'pcm': pcm, 'native': native, 'learning_audit': learning,
+        'additional_native_regressions': additional_native,
         'original_candidate_facts': record(args.facts), 'apks': fresh['apks'],
         'api37_approved': False, 'physical_arm64_tested': False,
         'published': False, 'release_approved': False,
@@ -624,6 +652,13 @@ def prepare(args) -> dict:
     write_new(args.out/'publication-plan.json', plan)
     for name in ('run', 'jobs', 'artifacts', 'pull', 'releases', 'tags'):
         shutil.copyfile(args.metadata/(name+'.json'), audit/('original-'+name+'.json'))
+    native_additional_originals = audit/'native-additional'
+    native_additional_originals.mkdir()
+    for gate in additional_native['gates'].values():
+        filename = gate['filename']
+        shutil.copyfile(regular(args.runtime.parent/filename), native_additional_originals/filename)
+        require(record(native_additional_originals/filename) == gate['original_log'],
+                'Additional native staging changed original bytes: '+filename)
     learning_originals = audit/'learning-curriculum'
     learning_originals.mkdir()
     for name in (*LEARNING_AUDIT_FILES, 'source-binding.json'):

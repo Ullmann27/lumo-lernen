@@ -528,10 +528,65 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     return result
 
 
+def standalone_caption_target(lines: list[dict], label: str, *, pixels: list[int]) -> tuple[dict | None, dict]:
+    """Separate a complete caption from its word span inside another OCR line."""
+    wanted = normalized(label)
+    if (len(pixels) != 2 or any(type(value) is not int or value <= 0 for value in pixels)):
+        raise RuntimeError('Invalid observed standalone-caption dimensions')
+
+    def rectangle(row):
+        box = row.get('bounds')
+        if (not isinstance(box, (list, tuple)) or len(box) != 4
+                or any(isinstance(value, bool) or not isinstance(value, (int, float))
+                       or not math.isfinite(value) for value in box)
+                or not 0 <= box[0] < box[2] <= pixels[0]
+                or not 0 <= box[1] < box[3] <= pixels[1]):
+            raise RuntimeError('Invalid observed standalone-caption bounds')
+        return box
+
+    independent, embedded = [], []
+    for row in lines:
+        if normalized(row['text']) != wanted:
+            continue
+        box = rectangle(row)
+        contexts = []
+        for other in lines:
+            text = normalized(other['text'])
+            if (other.get('variant') != row.get('variant') or text == wanted
+                    or wanted not in text):
+                continue
+            outer = rectangle(other)
+            if outer[0] <= box[0] and outer[1] <= box[1] and outer[2] >= box[2] and outer[3] >= box[3]:
+                contexts.append(other)
+        if contexts:
+            embedded.append({'caption': row, 'containing_lines': contexts})
+        else:
+            independent.append(row)
+    selection = {'policy': 'exact caption outside a longer same-variant OCR line',
+                 'independent': independent, 'embedded_word_spans': embedded}
+    if not independent:
+        return None, selection
+    for index, left in enumerate(independent):
+        a = rectangle(left)
+        for right in independent[index + 1:]:
+            b = rectangle(right)
+            overlap = max(0, min(a[2], b[2]) - max(a[0], b[0])) * max(0, min(a[3], b[3]) - max(a[1], b[1]))
+            union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - overlap
+            if overlap / union < .6:
+                raise RuntimeError('Ambiguous distinct standalone caption controls: ' + label)
+    # All surviving observations refer to the same physical caption. Choose a
+    # deterministic original rectangle, independent of the OCR result order.
+    selected = min(independent, key=lambda row: tuple(row['bounds']))
+    selection['selected'] = selected
+    return selected, selection
+
+
 def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
                exact: bool = False, missing_caption=None, *,
-               orientation: str = 'landscape') -> None:
+               orientation: str = 'landscape', standalone_caption: bool = False) -> None:
     """Wait for current full-surface evidence and two observed targets, then press once."""
+    if standalone_caption and not exact:
+        raise ValueError('Standalone caption selection requires an exact caption')
     wanted = normalized(label)
     anchors = {'rucksack': 'right-toolbar', 'neuespuzzlebeginnen': 'center-panel',
                'gespeichertespuzzlefortsetzen': 'center-panel'}
@@ -562,11 +617,18 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 break
-            lines = image_lines(out, name, wanted, source_path=source, timeout=remaining,
-                                exact=exact)
-            matches = [line for line in lines
-                       if (wanted == normalized(line['text']) if exact
-                           else wanted in normalized(line['text']))]
+            if standalone_caption:
+                lines = image_lines(out, name, wanted, source_path=source, timeout=remaining,
+                                    exact=True, all_caption_regions=True)
+                selected, selection = standalone_caption_target(lines, label, pixels=frame['pixels'])
+                frame['caption_selection'] = selection
+                matches = [selected] if selected is not None else []
+            else:
+                lines = image_lines(out, name, wanted, source_path=source, timeout=remaining,
+                                    exact=exact)
+                matches = [line for line in lines
+                           if (wanted == normalized(line['text']) if exact
+                               else wanted in normalized(line['text']))]
             if not matches:
                 frame['reasons'].append('actual requested caption not observed')
                 previous = None
@@ -610,11 +672,17 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
 
 
 def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False,
-                exact: bool = False, *, orientation: str = 'landscape') -> None:
+                exact: bool = False, *, orientation: str = 'landscape',
+                standalone_caption: bool = False) -> None:
     # All native presses need this guard, including Puzzle's previously
     # settle=False first start. Keep the existing keyword for callers.
     if tap:
+        if standalone_caption:
+            return native_tap(out, label, tag, exact=exact, orientation=orientation,
+                              standalone_caption=True)
         return native_tap(out, label, tag, exact=exact, orientation=orientation)
+    if standalone_caption:
+        raise ValueError('Standalone caption selection is reserved for an exact press')
     wanted = normalized(label)
     for attempt in range(10):
         lines = image_lines(out, f'{tag}-{attempt}', wanted, exact=exact)

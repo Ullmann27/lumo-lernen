@@ -121,6 +121,17 @@ class OriginalAcceptanceTests(unittest.TestCase):
                         self.check()
                 step['conclusion'] = 'success'
 
+    def test_missing_or_duplicate_added_native_step_blocks_otherwise_successful_jobs(self):
+        row = next(row for row in self.jobs['jobs'] if row['name'] == 'connect-four-runtime')
+        original = copy.deepcopy(row['steps'])
+        for label in ('Retry the acknowledged native exit after a transient Android refusal', 'Require the additional pinned native Treasure wisp regression'):
+            selected = next(step for step in original if step['name'] == label)
+            for changed in ([step for step in original if step['name'] != label], original+[selected]):
+                row['steps'] = changed
+                with self.subTest(label=label, length=len(changed)), self.assertRaises(ValueError):
+                    self.check()
+            row['steps'] = copy.deepcopy(original)
+
     def test_stale_or_foreign_branch_event_or_pull_request_is_rejected(self):
         for obj, key, value in [(self.run, 'event', 'workflow_dispatch'),
                                 (self.run, 'path', '.github/workflows/lumo-kart-graphics-2019.yml'),
@@ -201,6 +212,57 @@ class PcmOriginalLogTests(unittest.TestCase):
             self.path.write_text(text)
             with self.subTest(text=text[-100:]), self.assertRaises(ValueError):
                 delivery.checked_pcm_log(self.path)
+
+
+class AdditionalNativeLogTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.runtime = self.root/'runtime'; self.runtime.mkdir()
+        self.originals = {}
+        for name, (filename, marker, checks) in delivery.ADDITIONAL_NATIVE_LOGS.items():
+            text = delivery.ADDITIONAL_ENGINE_BANNER+'\n\n'+marker+'\n'
+            self.originals[filename] = text.encode()
+            (self.root/filename).write_bytes(text.encode())
+
+    def test_both_original_logs_are_required_and_bound_without_mutation(self):
+        result = delivery.checked_additional_native_logs(self.runtime)
+        self.assertEqual({name: row['checks'] for name,row in result['gates'].items()},
+                         {'acknowledged_exit': 21, 'treasure_wisps': 14})
+        for row in result['gates'].values():
+            raw = self.originals[row['filename']]
+            self.assertEqual((self.root/row['filename']).read_bytes(), raw)
+            self.assertEqual(row['original_log']['sha256'], hashlib.sha256(raw).hexdigest())
+
+    def test_truncated_duplicate_failed_or_foreign_engine_results_are_rejected(self):
+        for filename,marker,checks in delivery.ADDITIONAL_NATIVE_LOGS.values():
+            original = self.originals[filename]
+            variants = [b'', original.replace(marker.encode(), b''),
+                        original+marker.encode()+b'\n',
+                        original.replace(b'v4.6.3.', b'v4.5.0.'),
+                        original+b'SCRIPT ERROR: actual assertion failed\n',
+                        original+b'ERROR: renderer failed\n',
+                        original+b'[ProbeRunner] FAIL: unclean process exit\n',
+                        original+b'[ProbeRunner] timeout after 180s\n',
+                        original+b'\xff']
+            for data in variants:
+                (self.root/filename).write_bytes(data)
+                with self.subTest(filename=filename, data=data[-80:]), \
+                     self.assertRaises((ValueError, UnicodeDecodeError)):
+                    delivery.checked_additional_native_logs(self.runtime)
+            (self.root/filename).write_bytes(original)
+
+    def test_missing_directory_or_symlink_cannot_replace_an_original_log(self):
+        for filename in self.originals:
+            path = self.root/filename; path.unlink()
+            with self.assertRaises(ValueError): delivery.checked_additional_native_logs(self.runtime)
+            path.mkdir()
+            with self.assertRaises(ValueError): delivery.checked_additional_native_logs(self.runtime)
+            path.rmdir()
+            other = self.root/(filename+'.outside'); other.write_bytes(self.originals[filename])
+            path.symlink_to(other)
+            with self.assertRaises(ValueError): delivery.checked_additional_native_logs(self.runtime)
+            path.unlink(); path.write_bytes(self.originals[filename])
 
 
 class CurrentLearningAuditTests(unittest.TestCase):
@@ -560,6 +622,8 @@ class RealFilesAndCommandsTests(unittest.TestCase):
                          for method in delivery.PCM_CONTRACTS]
                         +['Ran 600 tests in 120.005s', 'OK', *delivery.PCM_CONTRACTS.values(), ''])
         (root/'build_contracts/build-contracts.log').write_text(log)
+        for filename, marker, _ in delivery.ADDITIONAL_NATIVE_LOGS.values():
+            (root/filename).write_text(delivery.ADDITIONAL_ENGINE_BANNER+'\n\n'+marker+'\n')
         learning_fixture(root/'learning_audit')
         args = SimpleNamespace(**{name: root/name for name in ('candidate', 'runtime', 'host_compile', 'android',
                                'update', 'metadata', 'build_contracts', 'native_evidence', 'native_source', 'learning_audit')},
@@ -611,6 +675,11 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             self.assertIs(report['published'], False)
             self.assertIs(report['release_approved'], False)
             self.assertEqual(report['learning_audit']['generated_samples'], 7552)
+            self.assertEqual(set(report['additional_native_regressions']['gates']),
+                             {'acknowledged_exit', 'treasure_wisps'})
+            for filename, _, _ in delivery.ADDITIONAL_NATIVE_LOGS.values():
+                self.assertEqual((args.out/'audit/native-additional'/filename).read_bytes(),
+                                 (args.runtime.parent/filename).read_bytes())
             for name in (*delivery.LEARNING_AUDIT_FILES, 'source-binding.json'):
                 self.assertEqual((args.out/'audit/learning-curriculum'/name).read_bytes(),
                                  (args.learning_audit/name).read_bytes())
