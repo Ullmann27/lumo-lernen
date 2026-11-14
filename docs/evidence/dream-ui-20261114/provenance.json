@@ -1,0 +1,55 @@
+{
+  "source_sha": "f3a79f01fc5fb11d9cd9faa033dfdab3aeb8c3c4",
+  "source_tree": "778845211931070c9ab14beee6109976ce49bcbf",
+  "ci_checkout": "e668242c89f71161022eb94efc8cf0be6081b67f",
+  "ci_checkout_tree": "778845211931070c9ab14beee6109976ce49bcbf",
+  "source_sha256": {
+    "lib/widgets/design/lumo_scene_atmosphere.dart": "4d619957b93597fbe093f48a3a7a520ad8422c0f2ef900e79b6cce7958f6a315",
+    "lib/widgets/design/lumo_adventure_card.dart": "ddffa3ec8ca5046a600f8b77679fa00f2767a6cdceb1fa7fff9fb3b30b32a1d7",
+    "lib/features/home/widgets/lumo_home_hero.dart": "1364bb4d984e6432441205b606243142866adbe532e51b567c21cf3adfe4b49e",
+    "test/lumo_scene_atmosphere_test.dart": "3b1f6990446561d3fbe81ce9cc14e4cbbc38940aadcaccd544637a7301323009",
+    "pubspec.yaml": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+    "pubspec.lock": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97"
+  },
+  "flutter_version": "3.44.9",
+  "dart_version": "3.12.2",
+  "local_atmosphere_tests": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "scope": "Exact atmosphere test and transitive production files in sparse visual harness using unchanged application pubspec and lock."
+  },
+  "ci_visual_run": 43573964195,
+  "ci_visual_job": 132384049622,
+  "ci_visual_tests": {
+    "home_cards_navigation": 13,
+    "magic_mirror_quest": 8
+  },
+  "artifact_id": 14105287507,
+  "artifact_sha256": "926496879144f28c300e77d008c8033747c4a01fae9a9520702ac5048296ad47",
+  "images": {
+    "phone-start.png": {
+      "sha256": "2257cf09cfc52e066dfedf32a01e51c1d4acb7fa0fdb8d3f2a3ca378acc55289",
+      "bytes": 1782890,
+      "git_blob": "993244990e95aeb46dae5fe94540b550da9e6e44"
+    },
+    "fold-open-start.png": {
+      "sha256": "7aea83b94a8bb2803acfc3df00ce0225af43342f470f490697209d50ba7e6940",
+      "bytes": 3568320,
+      "git_blob": "607edf01c854e9818ecdd86a75374f1f8044d7c2"
+    }
+  },
+  "full_flutter_run": 43573964099,
+  "full_flutter_job": 132384049345,
+  "full_flutter_result": {
+    "passed": 2365,
+    "skipped": 196,
+    "failed": 3,
+    "failed_cases": [
+      "games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot",
+      "design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0",
+      "design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0"
+    ]
+  }
+}

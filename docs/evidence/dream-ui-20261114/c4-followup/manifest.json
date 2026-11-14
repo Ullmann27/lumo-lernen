@@ -1,0 +1,121 @@
+{
+  "kind": "independent-composed-source-widget-validation",
+  "date": "2026-11-14",
+  "baseline": {
+    "commit": "f3a79f01fc5fb11d9cd9faa033dfdab3aeb8c3c4",
+    "sourceTree": "778845211931070c9ab14beee6109976ce49bcbf",
+    "passed": 5,
+    "failed": 3,
+    "log": "original-local-failures.txt",
+    "scope": "Two original test files, eight total cases. Same three failures as original unified CI. C4 files were unchanged from 4564ad40."
+  },
+  "testedComposition": {
+    "dreamUI": "f3a79f01fc5fb11d9cd9faa033dfdab3aeb8c3c4",
+    "upstreamFix": "95f12c7173e6ee718b03dce67ca2d7c6543fe716",
+    "upstreamTree": "754e1b5fd28c45dba6a65827cd8b7c81b437ab5d",
+    "note": "All lib/test Dart changes from 4564ad40 to 95f12c71 were fetched by immutable SHA and git-blob-hash verified onto the exact f3a79f01 source. This checkpoint adds navigation coverage and evidence; it does not duplicate upstream production fixes. Final integration must include both branches.",
+    "upstreamFiles": [
+      {
+        "path": "test/design/connect_four_visual_test.dart",
+        "gitBlob": "8ea60303632a0ff1f25c240244deb1c95a1e4621"
+      },
+      {
+        "path": "test/games/games_screen_flow_test.dart",
+        "gitBlob": "59d99f0568a122742abaa0d07fa8a91b0e2af041"
+      },
+      {
+        "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "gitBlob": "4d2bb14a89f0988e8d61567225403ee9416cf681"
+      },
+      {
+        "path": "test/games/connect_four_scroll_alignment_test.dart",
+        "gitBlob": "29cd071778aae6d5b643e48df7c6a67a4d993db6"
+      },
+      {
+        "path": "lib/widgets/scan_screen.dart",
+        "gitBlob": "bc8dd3881a234c6d21be1dc3aa229dad2cffa5fb"
+      }
+    ],
+    "additionalFile": {
+      "path": "test/games/connect_four_navigation_test.dart",
+      "sha256": "dc2116b01e71d7e4edbddd7192f6ef118b0581d40ce3fc96c392b36fcf44e619"
+    }
+  },
+  "executions": [
+    {
+      "log": "targeted-tests.txt",
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "scope": "Five actual C4 visual layouts; complete Cards/C4/Dice touch flows; three C4 scroll/alignment cases; native bridge return/resume; Fold; C4 interactions/difficulty; all seven atmosphere tests."
+    },
+    {
+      "log": "navigation-tests.txt",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "scope": "Real Flutter Navigator push/pop/reopen at 320x740 and 640x360. Missing native plugin is explicit; missed input is fatal. Actual stored child disc and subsequent Gold turn checked."
+    },
+    {
+      "log": "navigation-analysis.txt",
+      "exitCode": 0,
+      "issues": 0,
+      "scope": "Only the added navigation test."
+    }
+  ],
+  "runtime": {
+    "flutter": "3.44.9",
+    "dart": "3.12.2",
+    "platform": "Linux Flutter widget tests",
+    "deviceOrFpsClaim": false
+  },
+  "captures": [
+    {
+      "file": "360x800.png",
+      "bytes": 209255,
+      "sha256": "ed8ccb2bd35234188350d1a93eccb3bf0df3a3eb5bf821c2eb4c58f4585995a4",
+      "gitBlob": "27cf03fb2e95e508975deb6a3ba6fae9a9aba247",
+      "method": "Unmodified upstream connect_four_visual_test.dart, RenderRepaintBoundary.toImage(pixelRatio: 1), actual six placed discs",
+      "visualReview": "Opened actual PNG; original mascot, board and controls visible.",
+      "sameExistingUpstreamBlob": true
+    },
+    {
+      "file": "640x360.png",
+      "bytes": 151234,
+      "sha256": "08a46fc1c39e8e071f0596fb83ae17fe5e582b65b9773e3a5677ef9c377e6388",
+      "gitBlob": "33658f6feb76a7ca34de1869e245f1e8d7cbc85c",
+      "method": "Unmodified upstream connect_four_visual_test.dart, RenderRepaintBoundary.toImage(pixelRatio: 1), actual six placed discs",
+      "visualReview": "Opened actual PNG; original mascot, board and controls visible.",
+      "sameExistingUpstreamBlob": true
+    }
+  ],
+  "logs": [
+    {
+      "file": "targeted-tests.txt",
+      "bytes": 4889,
+      "sha256": "437b4ddd3f8b0b5aa6d0562ba1297d9b3574b37095494572f8a5e42fefdf3532"
+    },
+    {
+      "file": "navigation-tests.txt",
+      "bytes": 291,
+      "sha256": "da6de72f02a81cb7e0283f078a5cf92f2596e0bf2d100b0dd915ac73f2b487f9"
+    },
+    {
+      "file": "navigation-analysis.txt",
+      "bytes": 64,
+      "sha256": "09ca619e15e085c5195010bfa8e3f8dccdc327de5398cf1cf7e235ddb3573dce"
+    },
+    {
+      "file": "original-local-failures.txt",
+      "bytes": 86607,
+      "sha256": "68ca5ccbb8e020d6745a02baba47584a74dd97af8bdf2712c49f48277798190c"
+    }
+  ],
+  "limitations": [
+    "This is not the complete suite on the final combined native/host revision.",
+    "The native route test drives the actual Flutter bridge code with a mocked Android transport; it is not an Android device run.",
+    "No APK, signing, physical-device or sustained frame-rate result is asserted."
+  ]
+}

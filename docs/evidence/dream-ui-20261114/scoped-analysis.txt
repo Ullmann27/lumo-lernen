@@ -1,0 +1,6 @@
+Analyzing lumo_scene_atmosphere.dart, lumo_adventure_card.dart, lumo_scene_atmosphere_test.dart...
+
+   info - lib/widgets/design/lumo_scene_atmosphere.dart:100:33 - 'of' is deprecated and shouldn't be used. Use TickerMode.valuesOf to get both enabled and forceFrames. This feature was deprecated after v3.35.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - test/lumo_scene_atmosphere_test.dart:119:37 - 'of' is deprecated and shouldn't be used. Use TickerMode.valuesOf to get both enabled and forceFrames. This feature was deprecated after v3.35.0-0.0.pre. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+
+2 issues found.

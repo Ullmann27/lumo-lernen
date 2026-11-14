@@ -6,6 +6,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import 'lumo_glass_optics.dart';
 import 'lumo_motion.dart';
 import 'lumo_scene_artwork.dart';
+import 'lumo_scene_atmosphere.dart';
 
 /// A real navigation surface with independent landscape, object and labels.
 /// Compact cards provide secondary routes without another disclosure step.
@@ -44,9 +45,12 @@ class LumoAdventureCard extends StatelessWidget {
               color: LumoVisualTokens.navigation,
               borderRadius: BorderRadius.circular(22),
               clipBehavior: Clip.antiAlias,
-              child: Stack(fit: StackFit.expand, children: [
-                LumoSceneArtwork(
+              child: LumoSceneAtmosphere(
+                accent: accent,
+                compact: true,
+                scenery: LumoSceneArtwork(
                     asset: scene, alignment: const Alignment(.3, -.45)),
+                child: Stack(fit: StackFit.expand, children: [
                 DecoratedBox(
                     decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -125,7 +129,8 @@ class LumoAdventureCard extends StatelessWidget {
                       focusColor: accent.withValues(alpha: .22),
                       hoverColor: accent.withValues(alpha: .08),
                     )),
-              ]),
+                ]),
+              ),
             ),
           ),
         );

@@ -1,0 +1,40 @@
+00:00 +0: loading /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart
+00:00 +0: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: (setUpAll)
+00:00 +0: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0
+00:01 +1: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0
+00:01 +2: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 1280.0x720.0
+00:02 +3: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 740.0x840.0
+00:02 +4: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 1200.0x896.0
+00:02 +5: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: (tearDownAll)
+00:02 +5: loading /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart
+00:03 +5: /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:05 +6: /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot
+00:06 +7: /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Dice full touch game, saved result, restart and pause during rolling
+00:06 +8: loading /tmp/lumo-dream-c4-de96/test/games/connect_four_scroll_alignment_test.dart
+00:07 +8: /tmp/lumo-dream-c4-de96/test/games/connect_four_scroll_alignment_test.dart: 48dp columns stay aligned and playable while scrolling at Size(320.0, 740.0)
+00:08 +9: /tmp/lumo-dream-c4-de96/test/games/connect_four_scroll_alignment_test.dart: 48dp columns stay aligned and playable while scrolling at Size(360.0, 800.0)
+00:09 +10: /tmp/lumo-dream-c4-de96/test/games/connect_four_scroll_alignment_test.dart: 48dp columns stay aligned and playable while scrolling at Size(640.0, 360.0)
+00:09 +11: loading /tmp/lumo-dream-c4-de96/test/games/connect_four_native_route_test.dart
+00:09 +11: /tmp/lumo-dream-c4-de96/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:10 +12: loading /tmp/lumo-dream-c4-de96/test/games/connect_four_fold_controls_test.dart
+00:11 +12: /tmp/lumo-dream-c4-de96/test/games/connect_four_fold_controls_test.dart: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+00:12 +13: loading /tmp/lumo-dream-c4-de96/test/games/connect_four_interaction_test.dart
+00:12 +13: /tmp/lumo-dream-c4-de96/test/games/connect_four_interaction_test.dart: tapping the board selects its column and locks repeated taps
+00:13 +14: /tmp/lumo-dream-c4-de96/test/games/connect_four_interaction_test.dart: double taps are locked and paused bot never advances
+00:13 +15: /tmp/lumo-dream-c4-de96/test/games/connect_four_interaction_test.dart: local two-player win rewards once and replay preserves wallet
+00:14 +16: /tmp/lumo-dream-c4-de96/test/games/connect_four_interaction_test.dart: restart mid-fall invalidates old animation and bot callbacks
+00:14 +17: loading /tmp/lumo-dream-c4-de96/test/games/connect_four_lumo_level_test.dart
+00:15 +17: /tmp/lumo-dream-c4-de96/test/games/connect_four_lumo_level_test.dart: default Lumo level stays mittel and still blocks at column 3
+00:15 +18: /tmp/lumo-dream-c4-de96/test/games/connect_four_lumo_level_test.dart: every level takes an immediate win instead of only blocking
+00:15 +19: /tmp/lumo-dream-c4-de96/test/games/connect_four_lumo_level_test.dart: schlau avoids setting up an immediate child win
+00:15 +20: /tmp/lumo-dream-c4-de96/test/games/connect_four_lumo_level_test.dart: choices are deterministic for a seed and leicht can skip a block
+00:15 +21: /tmp/lumo-dream-c4-de96/test/games/connect_four_lumo_level_test.dart: difficulty chips show against Lumo and hide in two-player
+00:15 +22: loading /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart
+00:16 +22: /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart: HIGH requires measured headroom; repeated slow frames stop effects
+00:16 +23: /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart: one isolated expensive frame does not downgrade a smooth window
+00:16 +24: /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart: reduced motion and hidden routes stop the scene clock
+00:16 +25: /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart: landscape moves while text and tap targets remain fixed
+00:16 +26: /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart: quiet scenery preserves functional child ticker mode
+00:17 +27: /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart: background and resume stop and restart decorative frames
+00:17 +28: /tmp/lumo-dream-c4-de96/test/lumo_scene_atmosphere_test.dart: scene pauses when scrolled out and resumes when visible
+00:17 +29: All tests passed!
