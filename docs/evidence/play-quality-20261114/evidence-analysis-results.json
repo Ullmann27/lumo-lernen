@@ -1,0 +1,16 @@
+[
+  {
+    "name": "evidence-analysis-before",
+    "exit": 3,
+    "errors": 127,
+    "analysis_server_crash": false,
+    "log": "/home/agent/lumo-quality-2708/validation/evidence-analysis-before-materialized.log"
+  },
+  {
+    "name": "evidence-analysis-after",
+    "exit": 0,
+    "errors": 0,
+    "analysis_server_crash": false,
+    "log": "/home/agent/lumo-quality-2708/validation/evidence-analysis-after-materialized.log"
+  }
+]

@@ -1,0 +1,14 @@
+Analyzing lumo_connect_four_game_baseline_analysis.dart...
+
+   info - lumo_connect_four_game_baseline_analysis.dart:88:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:130:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:143:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:143:37 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+   info - lumo_connect_four_game_baseline_analysis.dart:153:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:163:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:173:48 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:269:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:287:46 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lumo_connect_four_game_baseline_analysis.dart:476:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+10 issues found.

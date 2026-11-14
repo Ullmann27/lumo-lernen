@@ -1,3 +1,209 @@
+# Aktueller LUMO-2020-Kandidat – 14. November 2026
+
+Review: [PR 491](https://github.com/Ullmann27/lumo-lernen/pull/491). Arbeitszweig: `work/lumo-play-quality-20261114`. Wiederaufnahme: `checkpoint/lumo-next-quality-20261114-2708`. Version **0.13.8+2020** bleibt ein unveröffentlichter Testkandidat. Main und bestehende Releases bleiben geschützt.
+
+Dieser Stand führt den Qualitätscheckpoint `38c2fe8cb9e1b1021842e886c1a7cfa199e687ca` und den Integrationsstand `3d91bd8355a539c3c2413760959684cd3fee985a` mit beiden tatsächlichen Eltern zusammen. Der gemeinsame Host-Vorfahr ist `32e7efbff427fef64e90b3a1fcecd3b52f00af42`. Die exakt gebundene Native-Revision ist `e2d15dbc5f3709306decb139eeb70a1cf30c0b73` (Tree `ea0f73ae6aad8792a963cadaa483c290a2f2a62e`), ein tatsächlicher Merge mit den Eltern `bd0712259bb64908a5649ee1999638826c9eb597` und `6ecc560ea16202b935c4f1d32b08b93cda358e02`. Originale: [Native-Zusammenführung](https://github.com/Ullmann27/lumo-godot/tree/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/docs/evidence/native-dream-minimap-merge-20261114). Der Kandidat wird für den vollständigen Lauf auf diesen Quellen eingefroren; spätere parallele Erweiterungen werden während dieser Abnahme nicht automatisch übernommen.
+
+## Enthaltene Korrekturen
+
+- Die Mathematik-Auswahl behält das ausdrücklich gewählte Thema auch bei Wiederholungen aus früheren Klassen. Ein Alias der aktuellen Klasse ersetzt kein anderes exakt angefordertes Thema. Zulässige Aufgabenmischungen innerhalb eines Themas bleiben erhalten.
+- Die passive Kart-Minimap berücksichtigt das tatsächliche sichere Bildschirmrechteck, Steuerelemente, Pedalgrafik und eingeblendete Hinweise. Sie reagiert auch auf das Erscheinen und Verschwinden des Sprunghinweises. Fahrphysik und vorhandene Steuerung bleiben erhalten.
+- Connect Four behält seine vollständigen Touchflächen beim Drücken. Android erkennt die alleinstehende Continue-Beschriftung. Die Quellenbindung akzeptiert den Qualitätszweig ausdrücklich und prüft weiterhin genau den aktuellen PR-Kopf, Run, Workflow, Branch und Artefaktinhalt.
+- Die bisherigen 52 Native-Prüfmodi, die strenge Return-21-Stufe und die zusätzlichen frühen Return-/Wisp-Stufen bleiben unverändert. Die Traumwelt ergänzt fünf Pflichtmodi mit sieben tatsächlichen PNGs und zwei Originalberichten. Ihr Reader wird vor dem Import an den freigegebenen Git-Blob und SHA-256 gebunden; die Auslieferungsprüfung wiederholt seine Prüfung ohne Veränderung der Originale.
+- Frühere Formeingabe-, Navigations-, Datenschutz- und Family-/Play-Korrekturen bleiben erhalten. Schreibtrainer, Journal, Profile, Lernstände und der vollständige bisherige Host-Assetbaum werden durch diese Zusammenführung nicht ersetzt.
+
+## Tatsächlich vorhandene eng begrenzte Nachweise
+
+**Mathematik:** Derselbe Vertrag lief mit echten Produktions-Dart-Dateien gegen beide Fassungen. Der alte Generator verletzte 386 Bedingungen; die Korrektur bestand 29.845 erreichte Prüfungen. Geprüft wurden 145 kumulative Klassen-/Themenkombinationen mit 32 Seeds, 4.640 tatsächliche Factory-Aufrufe und 3.955 direkte Template-Aufrufe. Der Flutter-Testwrapper ist enthalten; seine Ausführung gehört zum nächsten vollständigen Kandidatenlauf. Originale: `docs/evidence/math-exact-cumulative-20261114/EXECUTION.md`.
+
+**Minimap:** Dieselbe Godot-4.6.3-Probe meldete beim alten Produktionscode 380 Prüfungen mit 26 Fehlern, bei der Korrektur 380 ohne Fehler. Auch die Kombination mit den neuen Dream-Quellen bestand die tatsächlichen 380 Prüfungen. Alle 15 bisherigen SafeArea-Ziele bleiben erhalten. Die lokale Geometrieprobe enthält keine Rasterbilder und bescheinigt keine Android-Bildrate; der vollständige Renderer-Lauf bleibt erforderlich.
+
+**Bisheriger Host-Zwischenstand:** Auf `dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f` bestanden 226 gezielte Python-Tests sowie Actionlint und die Bash-Syntaxprüfungen der vier bisherigen Native-Blöcke. Ein erster Fehler beim Modul-Suchpfad ist zusammen mit dem unveränderten erfolgreichen Wiederholungslauf gesichert. Auf `38c2fe8cb9e1b1021842e886c1a7cfa199e687ca` bestanden zusätzlich die 65 aktuellen und historischen Pin-Verträge. Originale: `docs/evidence/quality-32e7-merge-20261114/local-execution/`.
+
+**Gemeinsamer Host-/Dream-Stand:** Auf dem tatsächlichen Merge `dc966e8e4e4f69c5cb19e53822625025bb0fe766` (Tree `883461f7827d92eb4175b191bb66202a98251f60`) bestanden 237 gezielte Python-Tests in 26,816 Sekunden, Actionlint und Bash-Syntaxprüfungen aller fünf relevanten Native-Blöcke. HEAD, Tree, verfolgte Dateien und Index blieben unverändert. Vollständige Originale und der tatsächlich ausgeführte Treiber: `docs/evidence/quality-dream-merge-20261114/execution/` und `run_committed_source_checks.py`.
+
+Der abschließende Freigabe-Commit ergänzt ausschließlich diese Nachweise und die Statusdokumente; der geprüfte Produkt-, Test-, Policy- und Workflow-Code bleibt bytegleich. Der vollständige CI-Lauf auf genau diesem neuen PR-Kopf wird damit angefordert und muss noch tatsächlich bestehen. Frühere Erfolge werden diesem Stand nicht als APK- oder Android-Freigabe zugerechnet.
+
+## Abgeschlossener Vorgängerlauf und seine Grenzen
+
+Run [43578509499](https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509499) auf Host `803a4e960ffb804a46b6d09417731c031f00f680` endete insgesamt mit **Fehler**. Der Hauptjob bestand 2.569 Flutter-Tests, 872 Build-Verträge, 929 Android-Probe-Verträge und 52 Native-Modi und erzeugte eine signierte Family-Test-APK. Das echte Update 2017→2020 erhielt das eine geprüfte Kinderprofil und seine gespeicherten Ergebnisse über sechs Snapshots auf einem API-35-Emulator.
+
+Die allgemeine Android-Tour bestand 21 Schritte ohne erfassten fatalen Absturz. Connect Four brach aber vor dem Spiel wegen des damals nicht erlaubten Qualitätszweigs ab: null Spielbeobachtungen, Übergänge und Rückgaben. Die abschließenden Freigabe- und Auslieferungsjobs wurden übersprungen. Originale sind im Evidence-Commit [6a5ae5327570fc60434672074f246c95e1c59283](https://github.com/Ullmann27/lumo-lernen/commit/6a5ae5327570fc60434672074f246c95e1c59283) erhalten. Diese alte APK enthält die neueren Korrekturen nicht.
+
+Der separate Integrationslauf `43583493817` auf 32e7 scheiterte an einer von 938 Android-Probe-Vertragsprüfungen: Die Continue-Mock-Erwartung enthielt das erforderliche `standalone_caption=True` noch nicht. Das vollständige ursprüngliche Fehlerprotokoll und die korrigierte enge Erwartung bleiben gesichert.
+
+## Noch erforderliche Auslieferung und Play-Abnahme
+
+Den vollständigen Workflow auf dem exakten eingefrorenen PR-Kopf ausführen. Frische Flutter-/Native-/Android-Originale und das echte 2017-Update prüfen, die daraus gebaute signierte ARM64-APK samt Herkunft, Zertifikat, Größe und SHA-256 verifizieren und sämtliche Abschlussgates verlangen.
+
+Der bestehende 2020-Workflow bereitet danach ein Actions-Auslieferungsartefakt vor. Die verfügbare GitHub-Anbindung stellt zurzeit keinen Weg für die Erstellung, den APK-Upload und die Veröffentlichung eines neuen öffentlichen Releases bereit; das lokale `gh` ist nicht angemeldet. Die alten Publisher sind an ihre historischen Kandidaten gebunden. Ihr Umnutzen ersetzt keinen berechtigten 2020-Upload. Der tatsächlich geprüfte Zugang und die Grenzen stehen in `docs/evidence/c4-delivery-access-review-20261114/review.json`. Ein geplanter Downloadpfad ist kein existierender öffentlicher APK-Link.
+
+Der Play-AAB-Builder und seine Prüfungen sind vorhanden. Tatsächliche Play-Upload-Signierung, ein damit gebautes AAB und Play-Console-Abnahme fehlen. Die veröffentlichungsfähige Datenschutzerklärung und die Meldemöglichkeit für Online-KI-Inhalte benötigen noch die verifizierten Betreiber-, Kontakt- und Backend-Angaben. Für die Backend-Inspektion verlangt der Anbieter die ausdrückliche Auswahl eines Workspaces. Keine privaten Konto- oder Profildaten als öffentliche Kontaktdaten verwenden. Datenprüfung: `docs/evidence/play-data-audit-20261114-2708/`. Der belegte deutsche Store-Text liegt als unveröffentlichter Entwurf unter `docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md`.
+
+Physische Android-Bildraten, Frame-Pacing und thermisches Dauerverhalten sind ungemessen. Weder konstante 60 FPS, eine Nintendo-Freigabe noch Play-Store-Reife werden bescheinigt.
+
+## Wiederaufnahme
+
+Originalcode und Nachweise sind in Git gesichert. Lokale Änderungen vor jeder Aktualisierung prüfen und das vorgeschriebene Autosave ausführen. Aktuelle PR-/Run-Metadaten vor der Fortsetzung lesen. Die aktive Arbeit nutzt höchstens vier gleichzeitige Agenten in der bestehenden Hierarchie; die Rollenbeschreibung erzeugt keine unbegrenzten oder dauerhaften Hintergrundprozesse.
+
+---
+
+# Historical handoff before the current integration
+
+The following earlier notes are retained as history. Older pins, pending-test statements and proposed actions below do not override the current source and results above.
+
+## Earlier 803a quality candidate
+
+Active review: https://github.com/Ullmann27/lumo-lernen/pull/491
+Working branch: `work/lumo-play-quality-20261114`.
+Base review: PR485, `integration/lumo-c4-connections-20261114`.
+Version remains `0.13.8+2020`. Integration base `729585db3f49ecff7f0632439f90edb882f09454`
+is merged with the actual ancestry retained. Its native integration pin is
+`0e26153f0e58cc05739e72923b4c563a4cf380b8`.
+Main is protected.
+
+## Implemented and independently checked
+
+- Shape drawing uses the existing ink surface, keeps the primary pointer,
+  does not scroll the parent, and drops cancelled unfinished strokes.
+- Left navigation respects reduced-animation and calm settings. The recovered
+  exact learning selector and the 7,552-sample / 236-family audit are preserved;
+  this is structural sample evidence, not a curriculum-wide approval.
+- Family and Play distribution are separated in Android metadata, updater
+  behavior and signing preparation. The new local `scripts/build_play_bundle.sh`
+  prepares a canonical, externally signed AAB and verifies the actual bundle.
+- Connect Four's board and minimum-48dp controls share a horizontal viewport.
+  Phone margins adapt before scrolling is necessary. Older Flutter-only tests
+  now explicitly establish the unavailable-native-plugin boundary.
+- The historical APK diagnostic uses a stable QA pin fixture while the actual
+  production verifier still rejects a wrong native revision/repository.
+- The scanner accurately describes on-device text recognition. Unsupported
+  app-wide tracking/Families assertions are removed from its developer header.
+
+Focused final evidence is in:
+`docs/evidence/connect-four-scroll-20261114/` (15 tests, five real PNGs,
+0 analyzer errors/warnings and ten unchanged informational diagnostics);
+`docs/evidence/play-aab-local-20261114/` (52 tests run together by root);
+and `docs/evidence/play-quality-20261114/ci-followup/` (19 diagnostic tests
+after reproducing the original failure). Root opened all five final C4 images.
+The small landscape scroll mask still clips some decorative edge pixels; the
+actual board cells and controls remain visible.
+
+The preserved source checkpoints are C4
+`43d66732d9450657147fb9a12a7811121a9557dc` and Play
+`864452466627b366bd67f53ce2d581a05897ed62`. Their real ancestry is retained
+when combining the next candidate. Earlier shape/learning/distribution evidence
+under the 2026-11-14 directories remains applicable only to its recorded scope.
+
+## Integration merge verification
+
+Checkpoint `c1fef2d548ceaf42ccde8c8d8553d81f8400c349`, tree
+`a2c9c60f56d536241ccc6ac84d8bf90b26734044`, joins the previous quality
+candidate `95f12c7173e6ee718b03dce67ca2d7c6543fe716` with integration
+`729585db3f49ecff7f0632439f90edb882f09454`. The two add/add conflicts were
+resolved by retaining the formatted audit and stronger current-grade negative
+checks. The complete live-source learning audit, console/decoder repairs and
+17-raster native contract remain mandatory; the two exact permitted branches
+still share every source/run/PR-head gate.
+
+On the committed merged source: 123 focused Python contract methods passed,
+workflow actionlint passed, and actual Dart generation plus the production
+output verifier checked 7,552 samples across all 236 selected families.
+This was a local check, with no invented GitHub run binding. The first attempt
+before local HEAD advanced correctly failed the immutable-helper check; its
+raw failure is preserved alongside the successful committed-source run.
+Evidence: `docs/evidence/quality-integration-20261114/`.
+
+## Actual predecessor CI and the next candidate
+
+Host `01575aafc3f5b9032900bb57520ee65e98d7546c`, run 43576227541,
+passed Android host compilation and the actual Dart/rendered-Godot C4 job.
+The native runtime reported 170 successful checks; root rechecked all 259
+recorded image hashes and opened seven original screenshots. The complete
+Flutter/capture suite passed 2,564 tests, with no failures, skips or capture
+errors, and produced 546 PNGs. Root separately opened six actual Home,
+Journal and handwriting originals; a missing glyph in the Schreibcoach
+capture remains an explicitly bounded visual observation. All 872 build-contract
+tests passed. The subsequent 928-test Android-probe regression failed with
+11 errors: the historical 2019 test invoked the real wrapper against current
+2020 configuration. APK build and actual Android acceptance were not reached.
+These are partial results of that exact predecessor, not Android/APK approval
+of this follow-up. Original artifact identities, the
+unmodified Flutter summary and root observations are preserved under
+`docs/evidence/quality-01575-ci-20261114/`.
+
+The independent Astra run 43576227534 failed with one class-setup error in
+its 868-test inventory because FFmpeg was absent. The repaired workflow
+installs FFmpeg and explicitly verifies ffmpeg and ffprobe before retaining
+the original complete MP4/test inventory. Actual decoded failure logs,
+actionlint, shell syntax checks and eight existing contract tests are in
+`docs/evidence/astra-ffmpeg-20261114/`.
+
+The bounded Orange URL-builder repair removes the free-text fallback when
+a recognized color also names a fruit. The identical seven tests gave five
+passes and two failures on the original code, then seven passes with the fix.
+Default online opt-in remains false. The independent review and raw logs are
+under `docs/evidence/image-prompt-privacy-20261114-2708/` and
+`docs/evidence/play-data-audit-20261114-2708/`.
+
+
+The historical 2019 test now uses a temporary 2019 source fixture with the
+byte-identical real wrapper and real reviewed-pin policy, preserving every
+original artifact identity negative case. Two additional rejected configurations
+exercise the actual entry point before a blocked runner. Production version and
+pin guards remain unchanged. See `docs/evidence/studio-2019-fixture-20261114/`.
+
+
+After the local environment returned, the exact repaired test blob was actually
+executed with ten unchanged, blob-checked predecessor dependencies. All three
+StudioUpdateWrapperExecutionTests passed in 0.043 seconds; the eleven source
+blobs were identical before and after execution. This is a focused Python
+fixture result, not Android acceptance; the original failed CI remains preserved.
+
+The combined follow-up needs a fresh `lumo-connect-four-2020.yml` run on its
+actual PR head. Retain all full Flutter, build-contract, native, APK,
+Android-C4, 2017-to-2020 preservation and delivery-verifier gates. A green
+checkpoint test or an older source's APK does not approve this candidate.
+
+## Release items still requiring real evidence
+
+No Play-upload-signed AAB was produced: authorized external upload signing
+inputs were not supplied. The builder and validator are executable source,
+not proof of Play acceptance, generated-APK runtime, download size or physical
+16-KiB compatibility. See `docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md`.
+
+The direct native child `0e26153f` already contains the narrow Treasure
+visibility correction, the five-profile/ten-state regression and the strict
+17-raster compatibility update. Independent exact-blob review found production
+and regression byte-identical to the separately tested port. The old source
+failed 40 of 3,221 headless checks; the corrected source passed all 3,341.
+Two local X11 attempts ended with SIGKILL before producing PNGs, so no local
+render approval is claimed. The actual full 52-mode rendered CI gate is still
+required. Directly replacing integration with PR167's divergent `785413d3`
+would lose modules; its whole tree was not substituted.
+
+
+The bounded data/SDK review at the exact predecessor is preserved under
+`docs/evidence/play-data-audit-20261114-2708/`. It identifies the missing full
+in-app privacy disclosure and content-reporting route, plus unverified actual
+operator/hosting/retention facts. Prepared manifests and static SDK inspection
+are not final AAB/network evidence. The local environment disconnected during
+final evidence collection; the report explicitly lists missing raw outputs.
+
+Actual child-data/backend disclosures, Play Console declarations, signed AAB
+testing, and physical device frame-rate/thermal measurements remain separate
+acceptance work. No Google Play publication or Nintendo-level performance is
+claimed by this source checkpoint.
+
+The delegated work used a coordinator, a release lead, a specialist and its
+review worker within four concurrent sessions total. Recover work from the
+published branches and immutable evidence; role files alone do not launch
+persistent workers.
+
+Earlier notes below are retained as historical context, not current approval.
+
+---
+
 # Integration follow-up: repair the real Android Cup selector
 
 Updated: 2026-11-13. This follows published Host51e92fb5/treea13ab981.

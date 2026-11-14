@@ -1,0 +1,11 @@
+00:00 +0: loading /home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart
+00:00 +0: /home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart: vertical shape strokes keep the lesson stationary
+00:00 +1: /home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart: a second finger cannot replace or finish the active shape stroke
+00:00 +2: /home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart: cancelling a pointer discards its unfinished shape stroke
+00:00 +3: loading /home/agent/lumo-quality-2708/touch/test/shape_trace_retry_test.dart
+00:01 +3: /home/agent/lumo-quality-2708/touch/test/shape_trace_retry_test.dart: shape tracing honours allowRetry=true after a mistake
+00:02 +4: /home/agent/lumo-quality-2708/touch/test/shape_trace_retry_test.dart: shape tracing honours allowRetry=false after a mistake
+00:02 +5: loading /home/agent/lumo-quality-2708/touch/test/lumo_ink_surface_regression_test.dart
+00:03 +5: /home/agent/lumo-quality-2708/touch/test/lumo_ink_surface_regression_test.dart: vertical letter stroke does not scroll its learning page
+00:03 +6: /home/agent/lumo-quality-2708/touch/test/lumo_ink_surface_regression_test.dart: a second finger never creates a second ink stroke
+00:03 +7: All tests passed!

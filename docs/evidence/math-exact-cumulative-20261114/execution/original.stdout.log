@@ -1,0 +1,3916 @@
+{
+  "scope": "pure Dart production generator contract; no widget or Android assertions",
+  "checks": 29565,
+  "template_calls": 3955,
+  "factory_calls": 4640,
+  "seeds_per_cumulative_topic": 32,
+  "cumulative_topic_count": 145,
+  "units_by_grade": {
+    "1": [
+      "Textaufgaben",
+      "Plus bis 10",
+      "Minus bis 10",
+      "Plus bis 20",
+      "Minus bis 20",
+      "Zahlenstrahl",
+      "Mengenvergleich",
+      "Zahl in Worten",
+      "Geometrie Formen",
+      "Geld",
+      "Zeit",
+      "Symmetrie",
+      "Formen Nachzeichnen",
+      "Rechengeschichten",
+      "Zahlenmauer",
+      "Zahlenrätsel",
+      "Marktstand",
+      "Platzhalter-Rätsel",
+      "Größer, kleiner, gleich"
+    ],
+    "2": [
+      "Textaufgaben",
+      "Plus bis 20",
+      "Minus bis 20",
+      "Plus bis 100",
+      "Minus bis 100",
+      "Einmaleins",
+      "Einmaleins Vorbereitung",
+      "Geld wechseln",
+      "Uhrzeit",
+      "Längen",
+      "Gerade und ungerade",
+      "Verdoppeln und Halbieren",
+      "Zehner und Einer",
+      "Formen Nachzeichnen",
+      "Plus bis 10",
+      "Minus bis 10",
+      "Zahlenstrahl",
+      "Mengenvergleich",
+      "Zahl in Worten",
+      "Geometrie Formen",
+      "Geld",
+      "Zeit",
+      "Symmetrie",
+      "Rechengeschichten",
+      "Zahlenmauer",
+      "Zahlenrätsel",
+      "Marktstand",
+      "Platzhalter-Rätsel",
+      "Größer, kleiner, gleich",
+      "Uhr-Abenteuer"
+    ],
+    "3": [
+      "Einmaleins",
+      "Schriftliche Addition",
+      "Schriftliche Subtraktion",
+      "Brüche Vorbereitung",
+      "Sachaufgaben zwei Schritte",
+      "Umfang",
+      "Plus bis 100",
+      "Minus bis 100",
+      "Plus bis 1000",
+      "Minus bis 1000",
+      "Division einstellig",
+      "Geld bis 100 Euro",
+      "Massen Kilogramm und Gramm",
+      "Textaufgaben",
+      "Plus bis 20",
+      "Minus bis 20",
+      "Einmaleins Vorbereitung",
+      "Geld wechseln",
+      "Uhrzeit",
+      "Längen",
+      "Gerade und ungerade",
+      "Verdoppeln und Halbieren",
+      "Zehner und Einer",
+      "Formen Nachzeichnen",
+      "Plus bis 10",
+      "Minus bis 10",
+      "Zahlenstrahl",
+      "Mengenvergleich",
+      "Zahl in Worten",
+      "Geometrie Formen",
+      "Geld",
+      "Zeit",
+      "Symmetrie",
+      "Rechengeschichten",
+      "Zahlenmauer",
+      "Zahlenrätsel",
+      "Marktstand",
+      "Platzhalter-Rätsel",
+      "Größer, kleiner, gleich",
+      "Uhr-Abenteuer"
+    ],
+    "4": [
+      "Schriftliche Multiplikation",
+      "Schriftliche Division",
+      "Bruchrechnen einfach",
+      "Dezimalzahlen",
+      "Sachaufgaben drei Schritte",
+      "Diagramme lesen",
+      "Vergleichen",
+      "Plus bis 10000",
+      "Minus bis 10000",
+      "Zahlenraum bis 1 Million",
+      "Zeit Minuten und Stunden",
+      "Hohlmaße Liter und Milliliter",
+      "Brüche erweitern",
+      "Mittelwert",
+      "Flächeninhalt",
+      "Symmetrieachsen",
+      "Einmaleins",
+      "Schriftliche Addition",
+      "Schriftliche Subtraktion",
+      "Brüche Vorbereitung",
+      "Sachaufgaben zwei Schritte",
+      "Umfang",
+      "Plus bis 100",
+      "Minus bis 100",
+      "Plus bis 1000",
+      "Minus bis 1000",
+      "Division einstellig",
+      "Geld bis 100 Euro",
+      "Massen Kilogramm und Gramm",
+      "Textaufgaben",
+      "Plus bis 20",
+      "Minus bis 20",
+      "Einmaleins Vorbereitung",
+      "Geld wechseln",
+      "Uhrzeit",
+      "Längen",
+      "Gerade und ungerade",
+      "Verdoppeln und Halbieren",
+      "Zehner und Einer",
+      "Formen Nachzeichnen",
+      "Plus bis 10",
+      "Minus bis 10",
+      "Zahlenstrahl",
+      "Mengenvergleich",
+      "Zahl in Worten",
+      "Geometrie Formen",
+      "Geld",
+      "Zeit",
+      "Symmetrie",
+      "Rechengeschichten",
+      "Zahlenmauer",
+      "Zahlenrätsel",
+      "Marktstand",
+      "Platzhalter-Rätsel",
+      "Größer, kleiner, gleich",
+      "Uhr-Abenteuer"
+    ]
+  },
+  "fixed_cases": [
+    {
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 1,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    }
+  ],
+  "same_topic_observed_grades": [
+    1,
+    2
+  ],
+  "failure_count": 386,
+  "failures": [
+    {
+      "contract": "template preserves exact topic",
+      "group": "reported counterexample",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 1,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "reported counterexample",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 1,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "reported counterexample",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "reported counterexample",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "reported counterexample",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "reported counterexample",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 0,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 1,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 1,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 1,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 2,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 2,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 2,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 3,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 3,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 3,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 5,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 5,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 5,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 6,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 6,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 6,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 7,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 7,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 7,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 8,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 9,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 9,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 9,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 10,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 10,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 10,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 11,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 11,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 11,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 12,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 13,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 13,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 14,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 14,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 15,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 15,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 15,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 16,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 17,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 17,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 17,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 18,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 18,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 18,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 19,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 19,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 19,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 20,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 21,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 21,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 21,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 22,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 22,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 22,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 23,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 23,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 23,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 24,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 25,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 25,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 25,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 26,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 26,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 26,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 27,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 27,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 27,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 29,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 29,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 29,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 30,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 30,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 30,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 31,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 31,
+      "actual_unit": "Geld wechseln",
+      "actual_difficulty": 2,
+      "actual_pattern": "geld-wechseln"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 2,
+      "requested_unit": "Geld",
+      "seed": 31,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 0,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 1,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 1,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 1,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 2,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 2,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 2,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 3,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 3,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 3,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 5,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 5,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 5,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 6,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 6,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 6,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 7,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 7,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 7,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 8,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 9,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 9,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 9,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 10,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 10,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 10,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 11,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 11,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 11,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 12,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 13,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 13,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 14,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 14,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 15,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 15,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 15,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 16,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 17,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 17,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 17,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 18,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 18,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 18,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 19,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 19,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 19,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 20,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 21,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 21,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 21,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 22,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 22,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 22,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 23,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 23,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 23,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 24,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 25,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 25,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 25,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 26,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 26,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 26,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 27,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 27,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 27,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 29,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 29,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 29,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 30,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 30,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 30,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 31,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 31,
+      "actual_unit": "Sachaufgaben zwei Schritte",
+      "actual_difficulty": 3,
+      "actual_pattern": "sachaufgabe-zwei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Textaufgaben",
+      "seed": 31,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 0,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 2,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 2,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 2,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 3,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 3,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 3,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 5,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 5,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 5,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 6,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 6,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 6,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 7,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 7,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 7,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 8,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 9,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 9,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 9,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 10,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 10,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 10,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 11,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 11,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 11,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 12,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 13,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 13,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 14,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 14,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 15,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 15,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 15,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 16,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 17,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 17,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 17,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 18,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 18,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 18,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 19,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 19,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 19,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 20,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 21,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 21,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 21,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 22,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 22,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 22,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 23,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 23,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 23,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 24,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 25,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 25,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 25,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 26,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 26,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 26,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 27,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 27,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 27,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 29,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 29,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 29,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 30,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 30,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 30,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 31,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 31,
+      "actual_unit": "Umfang",
+      "actual_difficulty": 3,
+      "actual_pattern": "umfang-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 3,
+      "requested_unit": "Geometrie Formen",
+      "seed": 31,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 0,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 1,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 1,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 1,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 2,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 2,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 2,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 3,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 3,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 3,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 5,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 5,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 5,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 6,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 6,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 6,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 7,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 7,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 7,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 8,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 9,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 9,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 9,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 10,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 10,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 10,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 11,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 11,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 11,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 12,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 13,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 13,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 14,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 14,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 15,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 15,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 15,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 16,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 17,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 17,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 17,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 18,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 18,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 18,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 19,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 19,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 19,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 20,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 21,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 21,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 21,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 22,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 22,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 22,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 23,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 23,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 23,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 24,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 25,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 25,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 25,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 26,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 26,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 26,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 27,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 27,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 27,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 29,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 29,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 29,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 30,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 30,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 30,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 31,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 31,
+      "actual_unit": "Sachaufgaben drei Schritte",
+      "actual_difficulty": 4,
+      "actual_pattern": "sachaufgabe-drei-schritte"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Textaufgaben",
+      "seed": 31,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 0,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 1,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 2,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 2,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 2,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 3,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 3,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 3,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 5,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 5,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 5,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 6,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 6,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 6,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 7,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 7,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 7,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 8,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 9,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 9,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 9,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 10,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 10,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 10,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 11,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 11,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 11,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 12,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 13,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 13,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 14,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 14,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 15,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 15,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 15,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 16,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 17,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 17,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 17,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 18,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 18,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 18,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 19,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 19,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 19,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 20,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 21,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 21,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 21,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 22,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 22,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 22,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 23,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 23,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 23,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 24,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 25,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 25,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 25,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 26,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 26,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 26,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 27,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 27,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 27,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 29,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 29,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 29,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 30,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 30,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 30,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    },
+    {
+      "contract": "template preserves exact topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 31,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "pattern and difficulty belong to the selected allowed topic",
+      "group": "cumulative topic",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 31,
+      "actual_unit": "Flächeninhalt",
+      "actual_difficulty": 4,
+      "actual_pattern": "flaeche-rechteck"
+    },
+    {
+      "contract": "nextExact accepts every allowed cumulative topic",
+      "group": "cumulative nextExact",
+      "grade": 4,
+      "requested_unit": "Geometrie Formen",
+      "seed": 31,
+      "error_type": "StateError",
+      "error": "Bad state: Generator changed an explicit grade, subject or unit"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary (tools.android_qa.tests.test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary) ... ok
+test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity (tools.android_qa.tests.test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_does_not_bypass_baseline_or_candidate_identity) ... ok
+test_actual_wrapper_rejects_2020_and_unreviewed_2019_before_runner (tools.android_qa.tests.test_update_2019_preservation.StudioUpdateWrapperExecutionTests.test_actual_wrapper_rejects_2020_and_unreviewed_2019_before_runner) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.043s
+
+OK

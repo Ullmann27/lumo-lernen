@@ -1,0 +1,14 @@
+Analyzing lumo_connect_four_game.dart, games_screen_flow_test.dart, connect_four_visual_test.dart, connect_four_scroll_alignment_test.dart...
+
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:94:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:136:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:149:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:149:37 - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check. - use_build_context_synchronously
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:159:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:169:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:179:48 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:275:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:293:46 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib/features/games/connect_four/lumo_connect_four_game.dart:482:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+10 issues found.

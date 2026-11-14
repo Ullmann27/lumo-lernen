@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "scope": "Read-only integration source review; no local Python, actionlint, Flutter, Godot, or Android execution.",
+  "combined_blobs": {
+    "workflow": "c7d2ce90ffb9f502cb0c69ae97c75e1a01d606a8",
+    "verifier": "5f64dfd544c24cbae04e79092bf44fd22f259065",
+    "tests": "782210e49c47750265358e0ab39d6f1e54ccd98c"
+  },
+  "parents": {
+    "ancestor": {
+      "host": "2b586530db4f2cb20c28f426e2549342316151bf",
+      "workflow": "83546f7e1fed0ce6943128167aada51a73ee0251"
+    },
+    "current": {
+      "host": "182e5e236a9a08fa4e8b33778338ac22ac05575a",
+      "workflow": "6d281c42e2997a8a421721e9b80ff5d8e6439570",
+      "verifier": "8c79b9ea748944b2601f59795014af70df0b929f",
+      "tests": "11bea238317d8436a6babe35262f437039ce74d6"
+    },
+    "incoming": {
+      "host": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+      "workflow": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+      "verifier": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+      "tests": "c7b9461ed056521a5da1fb528afe614b7cdeecee"
+    }
+  },
+  "exact_step_comparisons": [
+    {
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "parent": "ancestor",
+      "parent_start_line": 379,
+      "combined_start_line": 404,
+      "byte_equal": true,
+      "lines": 36
+    },
+    {
+      "name": "Require acknowledged Connect Four return retry",
+      "parent": "current",
+      "parent_start_line": 418,
+      "combined_start_line": 440,
+      "byte_equal": true,
+      "lines": 22
+    },
+    {
+      "name": "Retry the acknowledged native exit after a transient Android refusal",
+      "parent": "incoming",
+      "parent_start_line": 80,
+      "combined_start_line": 81,
+      "byte_equal": true,
+      "lines": 13
+    },
+    {
+      "name": "Require the additional pinned native Treasure wisp regression",
+      "parent": "incoming",
+      "parent_start_line": 93,
+      "combined_start_line": 94,
+      "byte_equal": true,
+      "lines": 9
+    },
+    {
+      "name": "Preserve every original C4 runtime result and rendered frame",
+      "parent": "incoming",
+      "parent_start_line": 106,
+      "combined_start_line": 107,
+      "byte_equal": true,
+      "lines": 10
+    }
+  ],
+  "test_method_union": [
+    {
+      "parent": "current",
+      "parent_count": 43,
+      "combined_count": 47,
+      "removed": [],
+      "changed": [
+        "RealFilesAndCommandsTests.test_preparation_preserves_originals_and_writes_only_unpublished_bundle_inputs"
+      ],
+      "new_methods": [
+        "OriginalAcceptanceTests.test_missing_or_duplicate_added_native_step_blocks_otherwise_successful_jobs",
+        "AdditionalNativeLogTests.test_both_original_logs_are_required_and_bound_without_mutation",
+        "AdditionalNativeLogTests.test_truncated_duplicate_failed_or_foreign_engine_results_are_rejected",
+        "AdditionalNativeLogTests.test_missing_directory_or_symlink_cannot_replace_an_original_log"
+      ]
+    },
+    {
+      "parent": "incoming",
+      "parent_count": 45,
+      "combined_count": 47,
+      "removed": [],
+      "changed": [
+        "RealFilesAndCommandsTests.test_readonly_preparation_and_every_explicit_success_input_are_required"
+      ],
+      "new_methods": [
+        "OriginalAcceptanceTests.test_quality_branch_requires_the_same_current_pull_branch",
+        "OriginalAcceptanceTests.test_unapproved_branch_cannot_reuse_all_green_jobs"
+      ]
+    }
+  ],
+  "retained_controls": [
+    {
+      "file": "scripts/verify_connect_four_delivery.py",
+      "lines": [
+        29,
+        31,
+        152,
+        200
+      ],
+      "finding": "Only the two exact approved branches; same PR head ref as run branch, same source/run/attempt, same repository, exact six mandatory green jobs plus delivery phase."
+    },
+    {
+      "file": ".github/workflows/lumo-connect-four-2020.yml",
+      "lines": [
+        773,
+        786
+      ],
+      "finding": "Delivery requires all six original needs success and same-repository PR on either exact approved branch."
+    },
+    {
+      "file": ".github/workflows/lumo-connect-four-2020.yml",
+      "lines": [
+        440,
+        461
+      ],
+      "finding": "Separately hardened return retry retains exact expected PASS and total RETURN terminal count, engine-error rejection, before/after HEAD pin and tracked file diff."
+    },
+    {
+      "file": "scripts/verify_connect_four_delivery.py",
+      "lines": [
+        57,
+        85
+      ],
+      "finding": "Old native aggregate and hardened return retry remain mandatory; both early incoming C4/Wisp steps are additionally mandatory."
+    },
+    {
+      "file": ".github/workflows/lumo-connect-four-2020.yml",
+      "lines": [
+        107,
+        115,
+        830,
+        833,
+        879,
+        885
+      ],
+      "finding": "Original entire c4-runtime archive is retained; downloaded proofs/runtime and runtime argument proofs/runtime/runtime preserve the sibling original-log paths."
+    },
+    {
+      "file": "scripts/verify_connect_four_delivery.py",
+      "lines": [
+        552,
+        568,
+        605,
+        620,
+        659,
+        665
+      ],
+      "finding": "Original early native logs require the expected engine banner and marker, reject engine/failure output, retain original bytes/hash and are copied without mutation into audit/native-additional."
+    }
+  ],
+  "interpretation_limits": [
+    "The early incoming steps are preserved as supplied; this review does not add hardening to them.",
+    "The stricter separate return retry and all original native aggregate checks remain intact.",
+    "Synthetic Python fixtures are not native runtime evidence.",
+    "All reviewed source equality checks concern the supplied exact blob identities."
+  ],
+  "verdict": {
+    "confirmed_static_merge_blockers": 0,
+    "execution_status": "pending",
+    "refs_changed": false
+  }
+}

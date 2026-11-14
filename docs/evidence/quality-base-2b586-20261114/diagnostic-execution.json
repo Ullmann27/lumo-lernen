@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_runtime_followup_workflow",
+    "scripts.tests.test_android_runtime_wait_notification",
+    "-v"
+  ],
+  "exit_code": 0,
+  "seconds": 1.3753058300062548,
+  "log_bytes": 4192,
+  "log_sha256": "b2f0221e12372cf1cb59c0d6a78c8effe56460b7c586b58f86d8469a30c72670",
+  "source": "d14924407f7d63339693eb8a53ecddef0a64d602",
+  "watcher_pid": 6
+}
