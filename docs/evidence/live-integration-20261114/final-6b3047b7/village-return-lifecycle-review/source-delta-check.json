@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "kind": "Read-only source delta inspection; not a test/build/device run",
+  "base_commit": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "reviewed_checkpoint": "a7e06055f70929e918d48a1397bf656c1880adb4",
+  "sources": [
+    {
+      "path": ".github/probes/lumo_village_android_probe.py",
+      "original_blob": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99",
+      "reviewed_blob": "3e601644198f0b8c62fdaebcf783e3f631974bb1",
+      "reviewed_sha256": "351d9ee6560b5dc5694f61b07c8d75b1a71d3cb4201fdbc953731891d04c1351"
+    },
+    {
+      "path": "tools/android_qa/tests/test_village_android_evidence.py",
+      "original_blob": "f515e404428edc8003f1191c77df214384f0eac7",
+      "reviewed_blob": "d21f941b2f5cff410f8e4cd7ae23fbbbf894743a",
+      "reviewed_sha256": "a8ea017f8979e16ef44f15acd1d7044d88309f2d43c9abf78fb6f8eea2979c13"
+    }
+  ],
+  "changed_methods": [
+    "VillageProbe.remaining",
+    "VillageProbe.visible_return"
+  ],
+  "new_methods": [
+    "VillageProbe.observe_flutter_return"
+  ],
+  "removed_methods": [],
+  "run_and_main_suffix_byte_identical": true,
+  "old_test_methods": 34,
+  "total_test_methods": 43,
+  "old_tests_ast_identical": true,
+  "added_tests": [
+    "VillageVisibleReturnObservationTests.test_accepted_copy_preserves_actual_component_and_tile_source_binding",
+    "VillageVisibleReturnObservationTests.test_caption_alone_cannot_accept_wrong_disabled_or_native_accessibility",
+    "VillageVisibleReturnObservationTests.test_capture_ocr_ui_and_final_process_success_at_deadline_is_rejected",
+    "VillageVisibleReturnObservationTests.test_native_transition_frame_is_preserved_before_current_flutter_passes",
+    "VillageVisibleReturnObservationTests.test_never_overwrites_an_existing_canonical_return_frame",
+    "VillageVisibleReturnObservationTests.test_permanent_native_or_missing_caption_fails_with_original_frames",
+    "VillageVisibleReturnObservationTests.test_success_that_reaches_deadline_while_copying_is_never_reported_pass",
+    "VillageVisibleReturnObservationTests.test_time_spent_across_phases_is_one_shared_90_second_budget",
+    "VillageVisibleReturnObservationTests.test_timely_first_current_frame_does_not_need_an_extra_action"
+  ],
+  "unchanged_helpers": [
+    {
+      "path": "tools/android_qa/village_android_evidence.py",
+      "unchanged_blob": "013fe059fdbe1dd49ded63b3378f302f10fface3"
+    },
+    {
+      "path": ".github/probes/flutter_surface_readiness.py",
+      "unchanged_blob": "1e6324b865ce5ecf8371edcfc06cd80d5c085950"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "unchanged_blob": "c996a022d388632ed13965b392181aef773d9025"
+    },
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "unchanged_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "unchanged_blob": "2966b08fab11ff05f67a587a3a564e6fdc1e6cfe"
+    }
+  ]
+}
