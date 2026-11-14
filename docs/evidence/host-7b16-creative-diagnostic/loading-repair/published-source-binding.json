@@ -1,0 +1,83 @@
+{
+  "head": "7d7b703f18100b82ce59591ce48fe2d90852ec5e",
+  "base": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "tree": "9254883a0723c7ad1544b01949e9db5c1175fd97",
+  "parent_shas": [
+    "3e08c7953b84aed6fff30e9e55665de75f79ec77"
+  ],
+  "original_delta_sha256": "5eb8727583201d680de4074102648ca6a9573a5bc32c370feed82206fbb41861",
+  "selected_files": [
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78",
+      "published_git_blob": "752b0e82eecc7f3dee6c2106e13ad044590aa83e",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png",
+      "bytes": 519505,
+      "sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880",
+      "published_git_blob": "079ef467b495fbeee65dde5577e56f1e31037079",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e",
+      "published_git_blob": "5123bc5603466b885147057a0dc2da437fc4022e",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png",
+      "bytes": 519056,
+      "sha256": "bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9",
+      "published_git_blob": "395f6df8112fe13e85d2a2438bcae90e8be4297b",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png",
+      "bytes": 520559,
+      "sha256": "8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71",
+      "published_git_blob": "c59914e7412dc42ae223bf9ea9ff146906784605",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv",
+      "bytes": 6071,
+      "sha256": "8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56",
+      "published_git_blob": "a5b02c00874f623724f11b7eaaaa50b949f6c726",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
+      "bytes": 2673455,
+      "sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf",
+      "published_git_blob": "87ac5dcf26440b0142c9425a49e1c5c0a5f4856e",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json",
+      "bytes": 4818,
+      "sha256": "31fa110427af3528835df32174a07acb71cc7e3bd86f94fab1213752204daee0",
+      "published_git_blob": "6ce0a25604c0bcd7f6d33eec7416bd82b6d33bcc",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json"
+    },
+    {
+      "path": "tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+      "bytes": 4793,
+      "sha256": "4c8f154a259ce22b734977ef5c2dd7257d8ed4968cf370abf8dd62a09e853d81",
+      "published_git_blob": "ce969e7a1236b8ed601b598ce13810a088f91f60",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/replay_flutter_loading_frame_ocr.py"
+    },
+    {
+      "path": "tools/android_qa/tests/test_flutter_loading_frame_rejection.py",
+      "bytes": 9631,
+      "sha256": "4cb4ba9c25293f46534ff5b90ee712f866f6f12d23ee58b3db32d39844390529",
+      "published_git_blob": "20fe9e8d8640fe9aa41695b9dd10b4b4a38a23ce",
+      "read_only_source": "/workspace/scratch/5987865ae883/qa/android-return-loading-recheck-4ab/tools/android_qa/tests/test_flutter_loading_frame_rejection.py"
+    }
+  ],
+  "old_creative_helper_sha256": "9a769e99d8671260f45dd86684f8d5fa3cadc20f11e2dc888ce0f63493133f0f",
+  "original_creative_freeze_sha256": "718830b2dc1d1261159f78c3c81fa94da617110f31f96b154dd59b09ca306364"
+}

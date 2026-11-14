@@ -49,6 +49,11 @@ QA_JOBS = (
     'unchanged-apk-api35', 'unchanged-apk-api37-host',
     'unchanged-apk-api37-swiftshader', 'unchanged-apk-update2017',
 )
+CREATIVE_QA_WORKFLOW = '.github/workflows/lumo-creative-7b16-diagnostic.yml'
+CREATIVE_QA_BRANCH = 'qa/lumo-creative-7b16-20261114'
+CREATIVE_QA_JOB = 'unchanged-apk-creative-api35'
+QA_ROUTES = {name: (QA_WORKFLOW, QA_BRANCH) for name in QA_JOBS}
+QA_ROUTES[CREATIVE_QA_JOB] = (CREATIVE_QA_WORKFLOW, CREATIVE_QA_BRANCH)
 BUILD_STEPS = (
     'Build unified real Android APK',
     'Verify APK archive and collect reproducible source hashes',
@@ -145,14 +150,15 @@ def verify_qa(run: dict, jobs: dict, *, source: str, run_id: int, attempt: int, 
             and source != HOST, 'An explicit, distinct QA head SHA is required')
     require(type(run_id) is int and run_id > 0 and run_id != BUILD_RUN
             and type(attempt) is int and attempt > 0, 'Distinct QA run and attempt are required')
-    require(job_name in QA_JOBS, 'Unsupported diagnostic job name')
+    require(job_name in QA_ROUTES, 'Unsupported diagnostic job name')
+    workflow, branch = QA_ROUTES[job_name]
     require(run.get('id') == run_id and run.get('head_sha') == source
             and run.get('head_commit', {}).get('id') == source
             and type(run.get('run_attempt')) is int and run['run_attempt'] == attempt,
             'QA run source or attempt differs; use the PR head, not its merge SHA')
     require(run.get('repository', {}).get('full_name') == REPOSITORY
             and run.get('repository', {}).get('id') == REPOSITORY_ID
-            and run.get('path') == QA_WORKFLOW and run.get('head_branch') == QA_BRANCH,
+            and run.get('path') == workflow and run.get('head_branch') == branch,
             'QA repository, workflow or branch differs')
     tree = run.get('head_commit', {}).get('tree_id')
     require(isinstance(tree, str) and re.fullmatch(r'[a-f0-9]{40}', tree), 'QA source tree is missing')
@@ -163,7 +169,7 @@ def verify_qa(run: dict, jobs: dict, *, source: str, run_id: int, attempt: int, 
             and type(job.get('run_attempt')) is int and job['run_attempt'] == attempt,
             'QA job source, run or attempt differs')
     return {'source': source, 'tree': tree, 'run_id': run_id, 'run_attempt': attempt,
-            'workflow_path': QA_WORKFLOW, 'branch': QA_BRANCH, 'job_id': job['id'],
+            'workflow_path': workflow, 'branch': branch, 'job_id': job['id'],
             'job_name': job_name, 'run_status': run.get('status'),
             'run_conclusion': run.get('conclusion'), 'job_status': job.get('status'),
             'job_conclusion': job.get('conclusion')}
@@ -328,7 +334,7 @@ def main(argv=None) -> int:
     parser.add_argument('--expected-qa-source', required=True)
     parser.add_argument('--expected-qa-run', type=int, required=True)
     parser.add_argument('--expected-qa-attempt', type=int, required=True)
-    parser.add_argument('--qa-job-name', choices=QA_JOBS, required=True)
+    parser.add_argument('--qa-job-name', choices=tuple(QA_ROUTES), required=True)
     args = parser.parse_args(argv)
     try:
         require(not args.out.exists() and not args.out.is_symlink(), 'Refusing to overwrite a diagnostic report')

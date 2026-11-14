@@ -1,0 +1,22 @@
+{
+  "status": "NO_CONCRETE_SOURCE_BLOCKER",
+  "reviewer": "root",
+  "scope": "Independent read-only source review and one direct original fixture view; no additional tests or device acceptance.",
+  "loading_freeze_sha256": "385d1d3bc3d5546700c9eb939fdc5f933a34d40c8690ab6a065f2ba3dcb783d8",
+  "helper_sha256": "e31118906b577cdb1bca5312d47d227378786b273de13b559847339cd79744c2",
+  "changed_top_level_functions": [
+    "image_lines"
+  ],
+  "unchanged_other_functions": 22,
+  "observations": [
+    "Only complete actually observed loading caption with in-frame bounds rejects the frame.",
+    "Source bytes and current deadline are rechecked before writing negative evidence.",
+    "Default rejection set is empty; two current accepted Flutter frames remain required.",
+    "Existing all-caption-region and multiple-Gold-component behavior remains in the function."
+  ],
+  "direct_visual_review": {
+    "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-checkpoint-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
+    "sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf",
+    "visible": "Lumo Cards title and Die Spielwelt wird ge\u00f6ffnet caption; loading view is not evidence of the returned Cards menu."
+  }
+}
