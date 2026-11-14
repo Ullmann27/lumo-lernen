@@ -1,0 +1,166 @@
+name: Test LUMO original archive reader and unchanged image transport
+
+on:
+  push:
+    branches:
+      - qa/lumo-original-replay-selftest-6b-20261114
+    paths:
+      - .github/workflows/lumo-original-replay-selftest-6b.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-original-replay-selftest-6b3047b7
+  cancel-in-progress: false
+
+jobs:
+  reader-selftest:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/qa/lumo-original-replay-selftest-6b-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      actions: read
+    env:
+      GIT_OPTIONAL_LOCKS: '0'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the accepted host for read-only helper tests
+        uses: actions/checkout@v4
+        with:
+          ref: 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+          persist-credentials: false
+
+      - name: Load exact prepared sources and fixed reader dependencies
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p publication/reader-replay/code
+          python3 -B - <<'PY'
+          import base64, hashlib, json, os, subprocess
+          from pathlib import Path
+          bindings = {
+              "original_replay.py": "3c81457f029952ea4125bdb20da9e89a4f15d3b8",
+              "test_original_replay.py": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+              "review-workflow.yml": "5bc0b97f8b76f9f1500c41bd1eec90f3dc483847",
+              "publisher-reviewed.yml": "c4a901a649f49b80cd16e22ece3c40b1a3cbd12d",
+          }
+          root = Path("publication/reader-replay/code")
+          for name, expected in bindings.items():
+              raw = subprocess.check_output(["gh", "api", "repos/Ullmann27/lumo-lernen/git/blobs/" + expected])
+              item = json.loads(raw)
+              assert item["sha"] == expected and item["encoding"] == "base64"
+              content = base64.b64decode("".join(item["content"].split()), validate=True)
+              assert hashlib.sha1(b"blob " + str(len(content)).encode() + b"\0" + content).hexdigest() == expected
+              content.decode("utf-8")
+              with (root / name).open("xb") as handle:
+                  handle.write(content)
+              print("BOUND_READER_SOURCE " + json.dumps({"path": name, "git_blob": expected, "bytes": len(content), "sha256": hashlib.sha256(content).hexdigest()}, sort_keys=True))
+          PY
+          python3 -m venv "$RUNNER_TEMP/lumo-original-replay-python"
+          "$RUNNER_TEMP/lumo-original-replay-python/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0 PyYAML==6.0.3
+          printf '%s\n' "$RUNNER_TEMP/lumo-original-replay-python/bin" >> "$GITHUB_PATH"
+
+      - name: Check real workflow syntax and execute archive tamper regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import ast, json, re, subprocess
+          from pathlib import Path
+          import yaml
+          root = Path("publication/reader-replay/code")
+          workflow_text = (root / "review-workflow.yml").read_text()
+          workflow = yaml.load(workflow_text, Loader=yaml.BaseLoader)
+          publisher = yaml.load((root / "publisher-reviewed.yml").read_text(), Loader=yaml.BaseLoader)
+          assert set(workflow["jobs"]) == {"read-current-originals"}
+          job = workflow["jobs"]["read-current-originals"]
+          assert job["permissions"] == {"actions": "read", "contents": "read"}
+          assert workflow["on"]["push"]["branches"] == ["qa/lumo-original-replay-6b-20261114"]
+          assert workflow["on"]["push"]["paths"] == [".github/workflows/lumo-original-replay-6b.yml"]
+          assert job["env"]["SOURCE_SHA"] == "6b3047b7979dfb86d837e74a21b0fd890e4f9e66"
+          assert job["env"]["ACCEPTANCE_RUN"] == "43616038272"
+          assert job["env"]["ACCEPTANCE_ATTEMPT"] == "1"
+          assert job["env"]["GIT_OPTIONAL_LOCKS"] == "0"
+          assert job["env"]["PYTHONDONTWRITEBYTECODE"] == "1"
+          assert not re.search(r"contents: write|gh api --method (?:POST|PATCH|PUT|DELETE)|gh release|git push|continue-on-error", workflow_text)
+          steps = job["steps"]
+          original_steps = publisher["jobs"]["publish-verified-test-apk"]["steps"][:7]
+          assert len(original_steps) == 7
+          for original in original_steps:
+              matching = [step for step in steps if step.get("name") == original.get("name")]
+              assert matching == [original], "Existing readonly publisher step changed: " + original["name"]
+          native = [step for step in steps if step.get("with", {}).get("repository") == "Ullmann27/lumo-godot"]
+          assert len(native) == 1
+          assert native[0]["with"]["ref"] == "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+          bash_blocks = python_blocks = 0
+          for number, step in enumerate(steps, 1):
+              if "run" not in step:
+                  continue
+              script = step["run"]
+              subprocess.run(["bash", "-n"], input=script, text=True, check=True)
+              bash_blocks += 1
+              for part, block in enumerate(re.findall(r"<<'PY'\n(.*?)\nPY(?:\n|$)", script, re.S), 1):
+                  ast.parse(block, filename=f"workflow-step-{number}-python-{part}.py")
+                  python_blocks += 1
+          for filename in ("original_replay.py", "test_original_replay.py"):
+              ast.parse((root / filename).read_text(), filename=filename)
+          result = {"status": "PASS_STATIC_SOURCE_AND_SYNTAX", "bash_blocks": bash_blocks,
+                    "python_heredocs": python_blocks, "standalone_python_files": 2,
+                    "original_publisher_steps_unchanged": 7, "write_permissions": False,
+                    "original_acceptance_executed": False}
+          with Path("publication/reader-replay/syntax-result.json").open("x") as handle:
+              handle.write(json.dumps(result, indent=2, sort_keys=True) + "\n")
+          print("ORIGINAL_READER_SYNTAX " + json.dumps(result, sort_keys=True))
+          PY
+          python3 -B publication/reader-replay/code/test_original_replay.py 2>&1 | tee publication/reader-replay/selftests.original.log
+
+      - name: Transfer one unchanged previously reviewed original PNG without the local executor
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import base64, hashlib, io, json, subprocess
+          from pathlib import Path
+          from PIL import Image
+          expected = "d26cb04b370a3af9211b51f4dacb3c3956bdd2a2"
+          item = json.loads(subprocess.check_output(["gh", "api", "repos/Ullmann27/lumo-godot/git/blobs/" + expected]))
+          assert item["sha"] == expected and item["encoding"] == "base64"
+          payload = base64.b64decode("".join(item["content"].split()), validate=True)
+          assert len(payload) == 1852218
+          assert hashlib.sha256(payload).hexdigest() == "2a340a7bb05ae9cbf70feb02d8b2deead48578aae08990b9d08c2884d96aeed9"
+          assert hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\0" + payload).hexdigest() == expected
+          with Image.open(io.BytesIO(payload)) as picture:
+              assert picture.format == "PNG" and picture.size == (2400, 1080)
+              picture.verify()
+          encoded = base64.b64encode(payload).decode("ascii")
+          chunks = [encoded[start:start + 8192] for start in range(0, len(encoded), 8192)]
+          metadata = {"id": "native847-dense-left-cutout", "kind": "unchanged_previously_reviewed_original",
+                      "source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+                      "evidence_commit": "1a96e90bcbd927e458ccc2c2626d2e4b979a429e",
+                      "path": "docs/evidence/native-discovery-847-43613299144/originals/mobile-minimap/captures/minimap/dense-left-cutout.png",
+                      "git_blob": expected, "sha256": hashlib.sha256(payload).hexdigest(),
+                      "bytes": len(payload), "mime_type": "image/png", "width": 2400, "height": 1080,
+                      "encoded_characters": len(encoded), "parts": len(chunks)}
+          with Path("publication/reader-replay/image-transport-metadata.json").open("x") as handle:
+              handle.write(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
+          print("LUMO_PNG_BEGIN " + json.dumps(metadata, sort_keys=True), flush=True)
+          for index, chunk in enumerate(chunks):
+              print("LUMO_PNG_PART " + json.dumps({"id": metadata["id"], "index": index, "data": chunk}, sort_keys=True), flush=True)
+          print("LUMO_PNG_END " + json.dumps({"id": metadata["id"], "parts": len(chunks), "sha256": metadata["sha256"]}, sort_keys=True), flush=True)
+          PY
+
+      - name: Preserve actual selftest and transport originals
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-original-reader-selftest-${{ github.run_id }}-${{ github.run_attempt }}
+          path: publication/reader-replay/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
