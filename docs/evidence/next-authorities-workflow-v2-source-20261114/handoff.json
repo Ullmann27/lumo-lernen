@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY",
+  "root": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114",
+  "source_count": 1,
+  "workflow": {
+    "path": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114/final-source/.github/workflows/lumo-next-table-authorities.yml",
+    "bytes": 56951,
+    "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+    "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+  },
+  "freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114/source-freeze.json",
+    "bytes": 1642,
+    "sha256": "703d612e4b0a4e33da962046e0d671d57608353217d0b3af911a0da787f94f74",
+    "git_blob": "c89452efcba1e9985e6e19eceb7fc234491c77cc"
+  },
+  "manifest": {
+    "path": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114/manifest.json",
+    "bytes": 13349,
+    "sha256": "30db2df6b516cfc9a9f25938fc2a1548f8d1d69c14a5d113c856216b1c555c91",
+    "git_blob": "4f97b5b2f64b6fda1562ff28f3c88d50dc58b408"
+  },
+  "archive": {
+    "path": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114/host-next-authorities-v2-source-originals.tar.gz",
+    "bytes": 208895,
+    "sha256": "98a2bc1d2dcce9ca226e3c208c716db5bb81653530704cf622489708a911cd66",
+    "git_blob": "89d9dd9bda92d5ab15351ace2ff2da268b828134",
+    "members": 57
+  },
+  "roundtrip": {
+    "path": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114/roundtrip.json",
+    "bytes": 14093,
+    "sha256": "7219625a19355a6da94795043adcf191217ab3fadc60beeff13984955b170e69",
+    "git_blob": "ae1a6a00c4257791a25f3a6913a8c85c225139e3"
+  },
+  "delta": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114/v1-to-v2.patch",
+  "full_integration_patch": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-v2-20261114/integration.patch",
+  "v1_unchanged": true,
+  "review": "Root, Flutter and Pipeline independent review pending",
+  "tests_lint_imports_engine_or_CI": "Not executed; Root checkpoint first"
+}

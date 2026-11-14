@@ -1,0 +1,226 @@
+diff --git a/.github/workflows/lumo-next-table-authorities.yml b/.github/workflows/lumo-next-table-authorities.yml
+--- a/.github/workflows/lumo-next-table-authorities.yml
++++ b/.github/workflows/lumo-next-table-authorities.yml
+@@ -311,12 +311,121 @@
+           test "$result" = 0
+           if grep -En 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|ObjectDB instances leaked|resources still in use at exit' "$LUMO_QUAL_EVIDENCE/godot-import.log"; then exit 1; fi
+           test "$(grep -Fxc 'Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org' "$LUMO_QUAL_EVIDENCE/godot-import.log")" = 1
+-      - name: "Resolve the actual Host lockfile for the focused renderer or Flutter group"
+-        if: matrix.group != 'android-host-compile'
++      - name: "Resolve and bind the actual Host Pub package paths before the group"
++        id: packages_before
+         working-directory: host-source
+         run: |
+           set -euo pipefail
+           flutter pub get --enforce-lockfile 2>&1 | tee "$LUMO_QUAL_EVIDENCE/flutter-pub-get.log"
++          test ! -e "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py"
++          cat > "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py" <<'PY'
++          import hashlib, json, os, sys
++          from pathlib import Path
++          from urllib.parse import unquote_to_bytes, urljoin, urlsplit
++
++          phase = sys.argv[1]
++          if phase not in ('before', 'after'):
++              raise ValueError('Package binding phase must be before or after')
++          host = (Path(os.environ['GITHUB_WORKSPACE']) / 'host-source').resolve(strict=True)
++          proof = Path(os.environ['LUMO_QUAL_EVIDENCE'])
++          output = proof / 'packages' / phase
++          output.mkdir(parents=True, exist_ok=False)
++
++          def identity(data):
++              return {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
++                      'git_blob': hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()}
++
++          inputs, raw_inputs = {}, {}
++          for relative in ('.dart_tool/package_config.json', '.dart_tool/package_graph.json', 'pubspec.lock'):
++              path = host / relative
++              if path.is_symlink():
++                  raise ValueError('Package-resolution input is a symlink: ' + relative)
++              present = path.exists()
++              inputs[relative] = {'source_path': str(path), 'present': present, 'original_name': path.name}
++              if not present:
++                  if relative != '.dart_tool/package_graph.json':
++                      raise ValueError('Required actual Pub input is missing: ' + relative)
++                  continue
++              if not path.is_file():
++                  raise ValueError('Package-resolution input is not a regular file: ' + relative)
++              raw = path.read_bytes()
++              (output / path.name).write_bytes(raw)
++              if (output / path.name).read_bytes() != raw:
++                  raise ValueError('Original Pub input copy differs: ' + relative)
++              inputs[relative].update(identity(raw))
++              raw_inputs[relative] = raw
++
++          source = json.loads((proof / 'source/host/source-inventory-before.json').read_bytes())
++          lock = next(row for row in source['tracked'] if row['path'] == 'pubspec.lock')
++          if source['head'] != os.environ['EXPECTED_HOST'] or any(inputs['pubspec.lock'][key] != lock[key] for key in ('bytes', 'sha256', 'git_blob')):
++              raise ValueError('Actual Pub lockfile is not the current committed Host lockfile')
++          config_path = host / '.dart_tool/package_config.json'
++          config = json.loads(raw_inputs['.dart_tool/package_config.json'])
++          if not isinstance(config, dict) or type(config.get('configVersion')) is not int or config['configVersion'] != 2:
++              raise ValueError('Expected actual package_config version 2')
++          entries = config.get('packages')
++          if not isinstance(entries, list) or not entries:
++              raise ValueError('Actual Pub package list is empty or malformed')
++          if '.dart_tool/package_graph.json' in raw_inputs:
++              graph = json.loads(raw_inputs['.dart_tool/package_graph.json'])
++              if not isinstance(graph, dict):
++                  raise ValueError('Actual optional package graph is not a JSON object')
++
++          def local_directory(uri, *, require_exists):
++              parts = urlsplit(uri)
++              if parts.scheme != 'file' or parts.netloc not in ('', 'localhost') or parts.query or parts.fragment:
++                  raise ValueError('Pub resolution must identify a local file directory')
++              decoded = unquote_to_bytes(parts.path).decode('utf-8')
++              if not decoded.startswith('/') or any(character in decoded for character in ('\0', '\r', '\n')):
++                  raise ValueError('Invalid local Pub directory URI')
++              resolved = Path(decoded).resolve(strict=require_exists)
++              if require_exists and not resolved.is_dir():
++                  raise ValueError('Actual dependency package root is not a directory: ' + str(resolved))
++              return resolved
++
++          packages = {}
++          for entry in entries:
++              if not isinstance(entry, dict):
++                  raise ValueError('Malformed actual Pub package entry')
++              name, root_uri, package_uri = entry.get('name'), entry.get('rootUri'), entry.get('packageUri')
++              if not isinstance(name, str) or not name or name in packages or not isinstance(root_uri, str):
++                  raise ValueError('Missing or duplicate actual Pub package identity')
++              if package_uri is not None and not isinstance(package_uri, str):
++                  raise ValueError('Invalid actual Pub packageUri')
++              if any(character in root_uri + (package_uri or '') for character in ('\0', '\r', '\n')):
++                  raise ValueError('Control character in actual Pub URI')
++              absolute_root_uri = urljoin(config_path.as_uri(), root_uri)
++              if not absolute_root_uri.endswith('/'):
++                  absolute_root_uri += '/'
++              absolute_package_uri = urljoin(absolute_root_uri, package_uri) if package_uri is not None else absolute_root_uri
++              root_path = local_directory(absolute_root_uri, require_exists=True)
++              package_path = local_directory(absolute_package_uri, require_exists=False)
++              packages[name] = {'name': name, 'rootUri': root_uri, 'packageUri': package_uri,
++                                'absolute_root_uri': absolute_root_uri, 'absolute_package_uri': absolute_package_uri,
++                                'resolved_root': str(root_path), 'resolved_package': str(package_path),
++                                'package_directory_exists': package_path.is_dir()}
++          own = packages.get('lumo_lernen')
++          if own is None or own['resolved_root'] != str(host) or own['resolved_package'] != str((host / 'lib').resolve(strict=True)) or not (host / 'lib').is_dir():
++              raise ValueError('lumo_lernen must resolve exactly to the current host-source and host-source/lib')
++          state = {'schema': 1, 'status': 'PASS', 'phase': phase, 'host': os.environ['EXPECTED_HOST'],
++                   'config_location': str(config_path), 'original_directory': str(output.relative_to(proof)),
++                   'inputs': inputs, 'own_package': own, 'packages': [packages[name] for name in sorted(packages)],
++                   'scope': 'Actual local Pub input bytes and all resolved package roots; third-party lib directories are recorded, not required',
++                   'errors': []}
++          if phase == 'after':
++              previous = json.loads((proof / 'packages/before/binding.json').read_bytes())
++              for key in ('host', 'config_location', 'inputs', 'own_package', 'packages'):
++                  if previous[key] != state[key]:
++                      state['errors'].append('Actual Pub binding changed: ' + key)
++              if state['errors']:
++                  state['status'] = 'FAIL'
++          (output / 'binding.json').write_text(json.dumps(state, indent=2) + '\n')
++          if state['errors']:
++              raise ValueError('; '.join(state['errors']))
++          print('PUB_PACKAGES_' + phase.upper() + '_BOUND packages=' + str(len(packages)) + ' own=' + own['resolved_package'])
++          PY
++          "$LUMO_QUAL_PYTHON" "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py" before \
++            2>&1 | tee "$LUMO_QUAL_EVIDENCE/package-before.log"
+       - name: "Produce the current Dart English task input required by the actual renderer"
+         if: matrix.group == 'english'
+         working-directory: host-source
+@@ -618,19 +727,61 @@
+           error_events = [event for event in events if event.get('type') == 'error']
+           if error_events:
+               errors.append('Actual machine stream contains error events')
+-          suite_paths = {str(Path(event['suite']['path']).resolve()) for event in events
+-                         if event.get('type') == 'suite' and isinstance(event.get('suite'), dict) and isinstance(event['suite'].get('path'), str)}
+-          if suite_paths != {str((host / path).resolve()) for path in tests}:
++          suites, starts, finishes = {}, {}, {}
++          for event in events:
++              if event.get('type') == 'suite':
++                  suite = event.get('suite')
++                  if not isinstance(suite, dict) or type(suite.get('id')) is not int or not isinstance(suite.get('path'), str):
++                      errors.append('Malformed original suite identity')
++                      continue
++                  if suite['id'] in suites:
++                      errors.append('Duplicate original suite ID')
++                  suites[suite['id']] = {'original': suite, 'resolved_path': str(Path(suite['path']).resolve())}
++              elif event.get('type') == 'testStart':
++                  test = event.get('test')
++                  if not isinstance(test, dict) or type(test.get('id')) is not int or type(test.get('suiteID')) is not int or not isinstance(test.get('name'), str):
++                      errors.append('Malformed original test start identity')
++                      continue
++                  if test['id'] in starts:
++                      errors.append('Duplicate original test start ID')
++                  starts[test['id']] = event
++              elif event.get('type') == 'testDone':
++                  if type(event.get('testID')) is not int:
++                      errors.append('Malformed original test completion identity')
++                      continue
++                  if event['testID'] in finishes:
++                      errors.append('Duplicate original test completion ID')
++                  finishes[event['testID']] = event
++          suite_paths = {suite['resolved_path'] for suite in suites.values()}
++          expected_paths = {str((host / path).resolve()): path for path in tests}
++          if suite_paths != set(expected_paths):
+               errors.append('Actual machine stream did not execute precisely the seven requested file suites')
+-          starts = {event['test']['id'] for event in events if event.get('type') == 'testStart'}
+-          finishes = {event['testID'] for event in events if event.get('type') == 'testDone'}
+-          if starts != finishes:
++          if set(starts) != set(finishes):
+               errors.append('At least one actual started test lacks its completion event')
++          suite_results = {path: {'requested_file': relative, 'resolved_path': path,
++                                 'original_suites': [], 'test_events': [], 'visible_passed': 0}
++                           for path, relative in expected_paths.items()}
++          for suite in suites.values():
++              if suite['resolved_path'] in suite_results:
++                  suite_results[suite['resolved_path']]['original_suites'].append(suite['original'])
++          for test_id, start_event in starts.items():
++              suite = suites.get(start_event['test']['suiteID'])
++              if suite is None or suite['resolved_path'] not in suite_results:
++                  errors.append('Actual test start does not belong to a requested original suite')
++                  continue
++              result = suite_results[suite['resolved_path']]
++              done_event = finishes.get(test_id)
++              result['test_events'].append({'start': start_event, 'done': done_event})
++              if done_event is not None and done_event.get('result') == 'success' and not done_event.get('skipped') and not done_event.get('hidden'):
++                  result['visible_passed'] += 1
++          for result in suite_results.values():
++              if result['visible_passed'] < 1:
++                  errors.append('No actual visible successful test completed in ' + result['requested_file'])
+           if sum(event.get('type') == 'done' for event in events) != 1:
+               errors.append('Exactly one final done event is required')
+           summary = module.summarize(events, exit_code, errors)
+           summary.update({'schema': 1, 'host': os.environ['EXPECTED_HOST'], 'requested_files': tests,
+-                          'suite_paths': sorted(suite_paths), 'timed_out': timed_out,
++                          'suite_paths': sorted(suite_paths), 'suite_results': list(suite_results.values()), 'timed_out': timed_out,
+                           'elapsed_wall_seconds': time.monotonic() - started, 'non_event_original_lines': unparsed,
+                           'machine_error_events': error_events, 'source': 'Unmodified original stdout/stderr retained separately'})
+           (proof / 'acceptance-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+@@ -639,6 +790,13 @@
+               raise SystemExit(1)
+           print('FOCUSED_FLUTTER_PASS files=7 skipped=0 passed=' + str(summary['passed']))
+           PY
++      - name: "Preserve and require unchanged actual Pub inputs and package roots after the group"
++        id: packages_after
++        if: always() && steps.packages_before.outcome == 'success'
++        run: |
++          set -euo pipefail
++          "$LUMO_QUAL_PYTHON" "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py" after \
++            2>&1 | tee "$LUMO_QUAL_EVIDENCE/package-after.log"
+       - name: "Preserve and require unchanged tracked sources and index after the actual group"
+         id: source_after
+         if: always() && steps.source_before.outcome == 'success'
+@@ -674,12 +832,12 @@
+               'scope': 'This separate group only. Existing C4, full Native, Android device and release gates are not replaced.'}, indent=2) + '\n')
+           print('NEXT_AUTHORITY_QUALIFICATION_PASS group=' + os.environ['QUALIFICATION_GROUP'])
+           PY
+-      - name: Upload complete original qualification evidence on every outcome
+-        if: always()
++      - name: Upload complete prepared qualification evidence on every outcome
++        if: always() && steps.prepare.outcome == 'success'
+         uses: actions/upload-artifact@v4
+         with:
+           name: lumo-next-authorities-${{ matrix.group }}-${{ github.run_id }}-${{ github.run_attempt }}
+-          path: ${{ env.LUMO_QUAL_EVIDENCE }}/
++          path: ${{ runner.temp }}/lumo-next-authorities-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.group }}/evidence/
+           include-hidden-files: true
+           if-no-files-found: error
+           retention-days: 30

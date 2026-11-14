@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "scope": "Separate exact-source qualification, not a C4 release or APK approval",
+  "workflow": ".github/workflows/lumo-next-table-authorities.yml",
+  "trigger": {
+    "event": "push",
+    "repository": "Ullmann27/lumo-lernen",
+    "branch": "integration/lumo-next-table-authorities-20261114"
+  },
+  "host": "Actual github.sha of the newly checkpointed workflow, including any intervening approved QA-only correction",
+  "native": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+  "native_tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+  "permissions": {
+    "contents": "read"
+  },
+  "source_count": 1,
+  "groups": [
+    {
+      "name": "memory",
+      "job_timeout_minutes": 35,
+      "commands": [
+        "run_godot_probe.py --timeout 900 --required MEMORY_VIEW_PASS -- xvfb-run ... memory_table_regression.gd -- --capture",
+        "xvfb-run ... run_memory_native_authority.py --expected-native ce909c4d3bab3a5514b653bf945a0ef46adfa539 --expected-host \"$EXPECTED_HOST\" --capture"
+      ],
+      "pair_timeout_seconds": 330,
+      "required_original_pngs": 28,
+      "png_scope": "8 geometry fixtures + 8 actual production-authority gameplay frames + 12 actual motion frames",
+      "original_reports": [
+        "memory-view/memory-view-result.json",
+        "memory-pair/pair-result.json",
+        "memory-pair/native/memory-runtime-report.json"
+      ]
+    },
+    {
+      "name": "quiz",
+      "job_timeout_minutes": 35,
+      "pair_timeout_seconds": 330,
+      "required_original_pngs": 6,
+      "original_reports": [
+        "quiz-pair/pair-result.json",
+        "quiz-pair/native/quiz-runtime-report.json"
+      ]
+    },
+    {
+      "name": "english",
+      "job_timeout_minutes": 35,
+      "renderer_timeout_seconds": 900,
+      "required_original_pngs": 17,
+      "fixture_producer": "dart run tool/check_native_english_activity.dart --out .../english-activity.json",
+      "original_reports": [
+        "english-activity.json",
+        "english-native/learning-english-report.json"
+      ],
+      "fixture_binding": "Actual current Dart examples and their original SHA are required by the Native report"
+    },
+    {
+      "name": "android-host-compile",
+      "job_timeout_minutes": 35,
+      "command": "bash scripts/compile_android_host.sh",
+      "unchanged_script_sha256": "fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03",
+      "required_table_classes": [
+        "TableGameActivity",
+        "TableGamesHostPlugin",
+        "TableGamesBridge",
+        "TableAuthorityService",
+        "TableGameIntent"
+      ],
+      "retained_c4_classes": [
+        "ConnectFourGameActivity",
+        "ConnectFourAuthorityService",
+        "ConnectFourBridge"
+      ],
+      "originals": "Full compile stdout and helper reports plus byte-identical compiled classes; no APK assembly or device acceptance"
+    },
+    {
+      "name": "flutter-contracts",
+      "job_timeout_minutes": 35,
+      "single_process_wall_seconds": 1200,
+      "argv": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "--concurrency=1",
+        "test/games/memory_native_entry_test.dart",
+        "test/games/memory_result_frame_test.dart",
+        "test/quiz_native_roundtrip_lifecycle_test.dart",
+        "test/reward_wallet_queue_zone_test.dart",
+        "test/table_games_launcher_binding_test.dart",
+        "test/table_games_wallet_profile_test.dart",
+        "test/tutoring/native_english_activity_test.dart"
+      ],
+      "no_skip_parser": "Unmodified scripts/run_full_flutter_acceptance.py:summarize, SHA d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d",
+      "requirements": [
+        "Exactly seven actual suite paths",
+        "Every started test finishes",
+        "One successful done event",
+        "Positive real visible passed count",
+        "No failed or skipped test",
+        "No machine error event",
+        "Exit zero and no timeout",
+        "At least one successful visible non-skipped original test completion in each of the seven requested suites"
+      ],
+      "originals": "Exact binary stdout/stderr retained; non-JSON/non-object stdout lines are indexed separately and never rewritten"
+    }
+  ],
+  "all_groups": [
+    "Full Host and Native checkouts, no sparse exclusion",
+    "All pubspec-declared assets/fonts are current committed bytes, including cards docs WebP",
+    "Exact Godot snapshot helper SHA plus Git blob verified before import",
+    "Actual Host/Native commit objects, trees, all tracked bytes/modes and raw index bound before/after",
+    "Generated UID/import outputs inventoried/archived separately, no git clean",
+    "Pillow 12.3.0; Flutter 3.44.9; actual Host lockfile enforced",
+    "Complete fresh original evidence uploaded on every outcome after successful Prepare, using a fixed run/attempt/group-specific path, for 30 days",
+    "Actual Pub Config/optional Graph/Lock bytes and every resolved package root bound before and after; own package exactly current Host/lib"
+  ],
+  "renderer_toolchain": {
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "zip_sha256": "d0bc2113065e481c9c2c2b2c37daa4e8be3fe9e27f0ab9ab0b6096e9a37907f3",
+    "binary_sha256": "f64d4ed19fc9df9440321653fcc80df8c6e365ba7b6de0a29e2cfa9fa71bfeb3",
+    "import_wall_seconds": 300,
+    "display": "Actual Xvfb screen 2560x2560x24",
+    "backend": "gl_compatibility with LIBGL_ALWAYS_SOFTWARE=1"
+  },
+  "retained_old_validation": "Local four Dart contracts, 99 Android probe contracts, 45 JVM methods and six Native Python counterexamples remain their original separate evidence. The new workflow does not relabel or redundantly count those as fresh renderer/device results. The existing compile helper retains its own mandatory tests.",
+  "new_fixture_generation": "English repeats the Dart producer only because its fresh output bytes are an input to the exact paired Native renderer.",
+  "not_executed_for_this_pack": [
+    "actionlint",
+    "Python tests",
+    "Dart or Flutter",
+    "Godot imports",
+    "renderer",
+    "Android compilation",
+    "CI"
+  ],
+  "revision": 2,
+  "v1_source": {
+    "bytes": 46286,
+    "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+    "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+  },
+  "corrections": [
+    {
+      "name": "actual_pub_package_identity",
+      "before": "A fresh enforce-lockfile invocation runs in actual host-source before each group; the unchanged compile helper keeps its existing internal Pub calls",
+      "original_inputs": [
+        ".dart_tool/package_config.json",
+        ".dart_tool/package_graph.json when present",
+        "pubspec.lock"
+      ],
+      "checks": [
+        "Exact current committed lockfile bytes, SHA256 and Git blob",
+        "Config rootUri is resolved against its actual file URI, not a prior machine mapping",
+        "lumo_lernen resolves exactly to current host-source and host-source/lib",
+        "All actual dependency root directories must exist; third-party package/lib directories are observed, not required",
+        "After the actual group, all input presence/bytes/hash identities and resolved package rows must equal before"
+      ],
+      "evidence": [
+        "tools/package_snapshot.py",
+        "packages/before/*",
+        "packages/after/*",
+        "package-before.log",
+        "package-after.log"
+      ]
+    },
+    {
+      "name": "visible_success_per_requested_flutter_suite",
+      "checks": [
+        "Original suite.id/path and testStart.test.suiteID/test.id link actual testDone.testID",
+        "Exactly the seven requested suite paths; every requested suite has at least one visible successful non-skipped completion",
+        "Unknown, malformed or duplicate IDs and missing start/done pairs fail",
+        "Original suite metadata, names, IDs and complete start/done objects remain in per-suite evidence",
+        "The existing summarize function and global no-error/no-failure/no-skip/successful-final-done/exit-zero requirements are unchanged"
+      ],
+      "static_test_count_assertion": null
+    },
+    {
+      "name": "prepared_fixed_artifact_path",
+      "if": "always() && steps.prepare.outcome == 'success'",
+      "path": "${{ runner.temp }}/lumo-next-authorities-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.group }}/evidence/",
+      "scope": "All later success and failure originals upload; no upload runs before a successful Prepare, so empty env cannot expand to the filesystem root"
+    }
+  ]
+}

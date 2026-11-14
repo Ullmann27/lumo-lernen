@@ -1,0 +1,843 @@
+name: LUMO next table authorities exact source qualification
+
+on:
+  push:
+    branches: [integration/lumo-next-table-authorities-20261114]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-next-table-authorities-${{ github.sha }}
+  cancel-in-progress: false
+
+env:
+  EXPECTED_HOST: ${{ github.sha }}
+  EXPECTED_NATIVE: ce909c4d3bab3a5514b653bf945a0ef46adfa539
+  EXPECTED_NATIVE_TREE: e2a374b2154f7ecb080f693c4bc90def53a20a00
+  GIT_OPTIONAL_LOCKS: '0'
+  PYTHONDONTWRITEBYTECODE: '1'
+  LIBGL_ALWAYS_SOFTWARE: '1'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  DART_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  qualification:
+    name: ${{ matrix.group }} exact source qualification
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/integration/lumo-next-table-authorities-20261114'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [memory, quiz, english, android-host-compile, flutter-contracts]
+    env:
+      QUALIFICATION_GROUP: ${{ matrix.group }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out the actual pushed Host with every tracked asset
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: host-source
+          persist-credentials: false
+      - name: Check out the immutable combined Native source
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: ce909c4d3bab3a5514b653bf945a0ef46adfa539
+          path: native-source
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        if: matrix.group == 'android-host-compile'
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        if: matrix.group == 'android-host-compile'
+        with:
+          packages: platform-tools
+      - name: "Create fresh external original-evidence and tool directories"
+        id: prepare
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/integration/lumo-next-table-authorities-20261114
+          test "$GITHUB_SHA" = "$EXPECTED_HOST"
+          root="$RUNNER_TEMP/lumo-next-authorities-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${QUALIFICATION_GROUP}"
+          test ! -e "$root"
+          mkdir -p "$root/evidence" "$root/tmp" "$root/xdg/data" "$root/xdg/config" "$root/xdg/cache"
+          cp "$GITHUB_EVENT_PATH" "$root/evidence/github-event.original.json"
+          {
+            printf 'LUMO_QUAL_ROOT=%s\n' "$root"
+            printf 'LUMO_QUAL_EVIDENCE=%s/evidence\n' "$root"
+            printf 'LUMO_QUAL_PYTHON=%s/venv/bin/python\n' "$root"
+            printf 'TMPDIR=%s/tmp\n' "$root"
+            printf 'XDG_DATA_HOME=%s/xdg/data\n' "$root"
+            printf 'XDG_CONFIG_HOME=%s/xdg/config\n' "$root"
+            printf 'XDG_CACHE_HOME=%s/xdg/cache\n' "$root"
+          } >> "$GITHUB_ENV"
+      - name: "Install the external original-reader environment and bind tool versions"
+        run: |
+          set -euo pipefail
+          python3 -m venv "$LUMO_QUAL_ROOT/venv"
+          "$LUMO_QUAL_PYTHON" -m pip install --disable-pip-version-check --no-cache-dir Pillow==12.3.0 \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/pillow-install.log"
+          "$LUMO_QUAL_PYTHON" -c 'import PIL; print(PIL.__version__); assert PIL.__version__ == "12.3.0"' \
+            > "$LUMO_QUAL_EVIDENCE/pillow-version.txt"
+          printf '%s/venv/bin\n' "$LUMO_QUAL_ROOT" >> "$GITHUB_PATH"
+          flutter --version --machine > "$LUMO_QUAL_EVIDENCE/flutter-version.json"
+          dart --version > "$LUMO_QUAL_EVIDENCE/dart-version.txt" 2>&1
+          "$LUMO_QUAL_PYTHON" - <<'PY'
+          import json, os
+          from pathlib import Path
+          data = json.loads((Path(os.environ['LUMO_QUAL_EVIDENCE']) / 'flutter-version.json').read_bytes())
+          if data.get('frameworkVersion') != '3.44.9':
+              raise ValueError('Actual Flutter version differs')
+          PY
+      - name: "Bind actual Host and Native commits, trees, full index and tracked bytes before execution"
+        id: source_before
+        run: |
+          set -euo pipefail
+          cat > "$LUMO_QUAL_ROOT/source_snapshot.py" <<'PY'
+          import hashlib, importlib.util, json, os, subprocess, sys, tarfile
+          from pathlib import Path
+          sys.dont_write_bytecode = True
+          phase = sys.argv[1]
+          if phase not in ('before', 'after'):
+              raise ValueError('Source phase must be before or after')
+          proof = Path(os.environ['LUMO_QUAL_EVIDENCE'])
+          workspace = Path(os.environ['GITHUB_WORKSPACE'])
+          host, native = workspace / 'host-source', workspace / 'native-source'
+          expected = {'host': os.environ['EXPECTED_HOST'], 'native': os.environ['EXPECTED_NATIVE']}
+          if os.environ['GITHUB_SHA'] != expected['host'] or os.environ['GITHUB_EVENT_NAME'] != 'push':
+              raise ValueError('This qualification requires the actual pushed Host commit')
+          if os.environ['GITHUB_REPOSITORY'] != 'Ullmann27/lumo-lernen' or os.environ['GITHUB_REF'] != 'refs/heads/integration/lumo-next-table-authorities-20261114':
+              raise ValueError('Unapproved repository or qualification branch')
+          def git(root, *args):
+              return subprocess.check_output(['git', '-C', str(root), *args],
+                                             env={**os.environ, 'GIT_OPTIONAL_LOCKS': '0'})
+          def digest(data):
+              return {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
+                      'git_blob': hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()}
+          for name, project in (('host', host), ('native', native)):
+              if git(project, 'rev-parse', 'HEAD').decode().strip() != expected[name]:
+                  raise ValueError(name + ': actual HEAD differs')
+              if git(project, 'diff', '--name-only', 'HEAD', '--'):
+                  raise ValueError(name + ': tracked source differs from HEAD')
+              if git(project, 'diff', '--cached', '--name-only', 'HEAD', '--'):
+                  raise ValueError(name + ': Git index differs from HEAD')
+          if git(native, 'rev-parse', 'HEAD^{tree}').decode().strip() != os.environ['EXPECTED_NATIVE_TREE']:
+              raise ValueError('Native tree differs from the approved immutable source')
+          helper = native / 'tools/verify_dream_rasters.py'
+          raw = helper.read_bytes()
+          identity = digest(raw)
+          if identity['sha256'] != 'f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d' or identity['git_blob'] != 'da8eed7d6383fcbc82a03596518a5fcc3b9a00c5':
+              raise ValueError('Unapproved source snapshot/PNG reader bytes')
+          if git(native, 'show', expected['native'] + ':tools/verify_dream_rasters.py') != raw:
+              raise ValueError('Snapshot helper is not the actual committed Native blob')
+          original = proof / 'tools/verify_dream_rasters.py'
+          original.parent.mkdir(parents=True, exist_ok=True)
+          if phase == 'before':
+              if original.exists():
+                  raise ValueError('Source proof must be fresh')
+              original.write_bytes(raw)
+          elif original.read_bytes() != raw:
+              raise ValueError('Original snapshot helper changed')
+          spec = importlib.util.spec_from_file_location('bound_source_reader', original)
+          reader = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(reader)
+          states = {}
+          for name, project in (('host', host), ('native', native)):
+              folder = proof / 'source' / name
+              folder.mkdir(parents=True, exist_ok=True)
+              destination = folder / ('source-inventory-' + phase + '.json')
+              if destination.exists():
+                  raise ValueError('Refusing to replace a source inventory')
+              state = reader.snapshot_source(project, folder, phase)
+              if not all(row['materialized'] and not row['skip_worktree'] for row in state['tracked']):
+                  raise ValueError('Qualification requires every tracked source and asset, without sparse exclusions')
+              if phase == 'before':
+                  commit = git(project, 'cat-file', 'commit', 'HEAD')
+                  if hashlib.sha1(b'commit ' + str(len(commit)).encode() + b'\0' + commit).hexdigest() != expected[name]:
+                      raise ValueError('Original Git commit object does not match ' + name)
+                  (folder / 'source-commit.raw').write_bytes(commit)
+                  (folder / 'source-tree.raw').write_bytes(git(project, 'ls-tree', '-rz', '--full-tree', 'HEAD'))
+                  (folder / 'source-index-stage.raw').write_bytes(git(project, 'ls-files', '--stage', '-z'))
+              else:
+                  before = json.loads((folder / 'source-inventory-before.json').read_bytes())
+                  for key in ('head', 'tree', 'index_sha256', 'tracked'):
+                      if state[key] != before[key]:
+                          raise ValueError(name + ': source invariant changed: ' + key)
+                  generated = [row for row in state['untracked_import_inventory']
+                               if row['category'] in ('generated_uid', 'generated_import_metadata')]
+                  if generated:
+                      archive = folder / 'generated-import-originals.tar.gz'
+                      with tarfile.open(archive, 'x:gz') as tar:
+                          for row in generated:
+                              source = project / row['path']
+                              if source.is_symlink() or digest(source.read_bytes())['sha256'] != row['sha256']:
+                                  raise ValueError('Generated import original changed')
+                              tar.add(source, arcname=row['path'], recursive=False)
+                      with tarfile.open(archive, 'r:gz') as tar:
+                          if len(tar.getmembers()) != len(generated):
+                              raise ValueError('Generated import archive member count differs')
+                          for member, row in zip(tar.getmembers(), generated):
+                              if member.name != row['path'] or tar.extractfile(member).read() != (project / row['path']).read_bytes():
+                                  raise ValueError('Generated import archive bytes differ')
+              states[name] = {'head': state['head'], 'tree': state['tree'], 'index_sha256': state['index_sha256'],
+                              'tracked_count': len(state['tracked']), 'untracked_import_count': len(state['untracked_import_inventory'])}
+          summary = {'schema': 1, 'phase': phase, 'group': os.environ['QUALIFICATION_GROUP'],
+                     'run_id': os.environ['GITHUB_RUN_ID'], 'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+                     'sources': states, 'snapshot_helper': identity,
+                     'scope': 'Tracked bytes, modes and index are strict; generated/import outputs are recorded separately and never cleaned'}
+          (proof / ('source-' + phase + '.json')).write_text(json.dumps(summary, indent=2) + '\n')
+          print('SOURCE_' + phase.upper() + '_BOUND host=' + expected['host'] + ' native=' + expected['native'])
+          PY
+          "$LUMO_QUAL_PYTHON" "$LUMO_QUAL_ROOT/source_snapshot.py" before 2>&1 | tee "$LUMO_QUAL_EVIDENCE/source-before.log"
+      - name: "Verify every declared pubspec asset and font against the actual source"
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" - <<'PY'
+          import hashlib, json, os, re
+          from pathlib import Path, PurePosixPath
+          proof = Path(os.environ['LUMO_QUAL_EVIDENCE'])
+          host = Path(os.environ['GITHUB_WORKSPACE']) / 'host-source'
+          inventory = json.loads((proof / 'source/host/source-inventory-before.json').read_bytes())
+          tracked = {row['path']: row for row in inventory['tracked']}
+          text = (host / 'pubspec.yaml').read_text()
+          lines = text.splitlines()
+          inside, section, declarations = False, None, []
+          for line in lines:
+              if line == 'flutter:':
+                  inside = True
+                  continue
+              if inside and line and not line.startswith((' ', '#')):
+                  inside = False
+              if not inside:
+                  continue
+              if re.fullmatch(r'  assets:\s*', line):
+                  section = 'assets'
+                  continue
+              if re.fullmatch(r'  fonts:\s*', line):
+                  section = 'fonts'
+                  continue
+              if re.match(r'^  [^ ]', line):
+                  section = None
+              if section == 'assets' and line.strip() and not line.lstrip().startswith('#'):
+                  match = re.fullmatch(r'    - ((?:assets|docs)/[^#\s]+)\s*', line)
+                  if not match:
+                      raise ValueError('Unsupported asset declaration; refusing an incomplete preflight: ' + line)
+                  declarations.append(match.group(1))
+              elif section == 'fonts' and re.search(r'\basset\s*:', line):
+                  match = re.fullmatch(r'        - asset: ((?:assets|docs)/[^#\s]+)\s*', line)
+                  if not match:
+                      raise ValueError('Unsupported font asset declaration: ' + line)
+                  declarations.append(match.group(1))
+          if not declarations or 'docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp' not in declarations:
+              raise ValueError('Required complete pubspec asset declarations are absent')
+          records = []
+          for declaration in declarations:
+              relative = PurePosixPath(declaration)
+              if relative.is_absolute() or '..' in relative.parts:
+                  raise ValueError('Unsafe declared asset')
+              names = sorted(name for name in tracked if name.startswith(declaration)) if declaration.endswith('/') else [declaration]
+              if not names:
+                  raise ValueError('No committed files in declared asset directory: ' + declaration)
+              entries = []
+              for name in names:
+                  source = host / name
+                  if name not in tracked or not source.is_file() or source.is_symlink():
+                      raise ValueError('Missing actual committed asset: ' + name)
+                  data = source.read_bytes()
+                  if hashlib.sha256(data).hexdigest() != tracked[name]['sha256']:
+                      raise ValueError('Declared asset differs from the source snapshot: ' + name)
+                  entries.append({'path': name, 'bytes': len(data), 'sha256': tracked[name]['sha256'], 'git_blob': tracked[name]['git_blob']})
+              records.append({'declaration': declaration, 'files': entries})
+          (proof / 'pubspec-assets.json').write_text(json.dumps({'schema': 1, 'status': 'PASS',
+              'source': inventory['head'], 'declarations': records,
+              'unique_file_count': len({row['path'] for item in records for row in item['files']})}, indent=2) + '\n')
+          print('PUBSPEC_ASSETS_BOUND declarations=' + str(len(declarations)))
+          PY
+      - name: "Install the exact verified Godot binary and real Xvfb renderer"
+        if: matrix.group == 'memory' || matrix.group == 'quiz' || matrix.group == 'english'
+        run: |
+          set -euo pipefail
+          mkdir "$LUMO_QUAL_ROOT/engine"
+          {
+            sudo apt-get update &&
+            sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0 &&
+            curl -fL --retry 3 -o "$LUMO_QUAL_ROOT/engine/godot.zip" \
+              https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip &&
+            printf '%s  %s\n' d0bc2113065e481c9c2c2b2c37daa4e8be3fe9e27f0ab9ab0b6096e9a37907f3 \
+              "$LUMO_QUAL_ROOT/engine/godot.zip" | sha256sum -c - &&
+            unzip -q "$LUMO_QUAL_ROOT/engine/godot.zip" -d "$LUMO_QUAL_ROOT/engine" &&
+            printf '%s  %s\n' f64d4ed19fc9df9440321653fcc80df8c6e365ba7b6de0a29e2cfa9fa71bfeb3 \
+              "$LUMO_QUAL_ROOT/engine/Godot_v4.6.3-stable_linux.x86_64" | sha256sum -c -
+          } 2>&1 | tee "$LUMO_QUAL_EVIDENCE/engine-setup.log"
+          chmod +x "$LUMO_QUAL_ROOT/engine/Godot_v4.6.3-stable_linux.x86_64"
+          printf 'GODOT_BIN=%s/engine/Godot_v4.6.3-stable_linux.x86_64\n' "$LUMO_QUAL_ROOT" >> "$GITHUB_ENV"
+          "$LUMO_QUAL_ROOT/engine/Godot_v4.6.3-stable_linux.x86_64" --version > "$LUMO_QUAL_EVIDENCE/godot-version.txt"
+          test "$(cat "$LUMO_QUAL_EVIDENCE/godot-version.txt")" = 4.6.3.stable.official.7d41c59c4
+      - name: "Validate and import the exact combined Native source once"
+        id: import_native
+        if: matrix.group == 'memory' || matrix.group == 'quiz' || matrix.group == 'english'
+        run: |
+          set -euo pipefail
+          printf '%s  %s\n' e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13 \
+            native-source/tools/run_godot_probe.py | sha256sum -c -
+          test "$(git -C native-source rev-parse HEAD:tools/run_godot_probe.py)" = c23859ece2d62101d000d7a89556fda5d3fe4105
+          cp native-source/tools/run_godot_probe.py "$LUMO_QUAL_EVIDENCE/tools/run_godot_probe.py"
+          cp native-source/tools/run_memory_native_authority.py "$LUMO_QUAL_EVIDENCE/tools/run_memory_native_authority.py"
+          cp native-source/tools/run_quiz_native_authority.py "$LUMO_QUAL_EVIDENCE/tools/run_quiz_native_authority.py"
+          "$LUMO_QUAL_PYTHON" native-source/tools/validate_project.py \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/validate-project.log"
+          set +e
+          timeout --signal=TERM --kill-after=5s 300s "$GODOT_BIN" --headless --path native-source --editor --import --quit \
+            > "$LUMO_QUAL_EVIDENCE/godot-import.log" 2>&1
+          result=$?
+          set -e
+          printf '%s\n' "$result" > "$LUMO_QUAL_EVIDENCE/godot-import.exit-code.txt"
+          cat "$LUMO_QUAL_EVIDENCE/godot-import.log"
+          test "$result" = 0
+          if grep -En 'SCRIPT ERROR|Parse Error|ERROR:|Assertion failed|ObjectDB instances leaked|resources still in use at exit' "$LUMO_QUAL_EVIDENCE/godot-import.log"; then exit 1; fi
+          test "$(grep -Fxc 'Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org' "$LUMO_QUAL_EVIDENCE/godot-import.log")" = 1
+      - name: "Resolve and bind the actual Host Pub package paths before the group"
+        id: packages_before
+        working-directory: host-source
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee "$LUMO_QUAL_EVIDENCE/flutter-pub-get.log"
+          test ! -e "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py"
+          cat > "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py" <<'PY'
+          import hashlib, json, os, sys
+          from pathlib import Path
+          from urllib.parse import unquote_to_bytes, urljoin, urlsplit
+
+          phase = sys.argv[1]
+          if phase not in ('before', 'after'):
+              raise ValueError('Package binding phase must be before or after')
+          host = (Path(os.environ['GITHUB_WORKSPACE']) / 'host-source').resolve(strict=True)
+          proof = Path(os.environ['LUMO_QUAL_EVIDENCE'])
+          output = proof / 'packages' / phase
+          output.mkdir(parents=True, exist_ok=False)
+
+          def identity(data):
+              return {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
+                      'git_blob': hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()}
+
+          inputs, raw_inputs = {}, {}
+          for relative in ('.dart_tool/package_config.json', '.dart_tool/package_graph.json', 'pubspec.lock'):
+              path = host / relative
+              if path.is_symlink():
+                  raise ValueError('Package-resolution input is a symlink: ' + relative)
+              present = path.exists()
+              inputs[relative] = {'source_path': str(path), 'present': present, 'original_name': path.name}
+              if not present:
+                  if relative != '.dart_tool/package_graph.json':
+                      raise ValueError('Required actual Pub input is missing: ' + relative)
+                  continue
+              if not path.is_file():
+                  raise ValueError('Package-resolution input is not a regular file: ' + relative)
+              raw = path.read_bytes()
+              (output / path.name).write_bytes(raw)
+              if (output / path.name).read_bytes() != raw:
+                  raise ValueError('Original Pub input copy differs: ' + relative)
+              inputs[relative].update(identity(raw))
+              raw_inputs[relative] = raw
+
+          source = json.loads((proof / 'source/host/source-inventory-before.json').read_bytes())
+          lock = next(row for row in source['tracked'] if row['path'] == 'pubspec.lock')
+          if source['head'] != os.environ['EXPECTED_HOST'] or any(inputs['pubspec.lock'][key] != lock[key] for key in ('bytes', 'sha256', 'git_blob')):
+              raise ValueError('Actual Pub lockfile is not the current committed Host lockfile')
+          config_path = host / '.dart_tool/package_config.json'
+          config = json.loads(raw_inputs['.dart_tool/package_config.json'])
+          if not isinstance(config, dict) or type(config.get('configVersion')) is not int or config['configVersion'] != 2:
+              raise ValueError('Expected actual package_config version 2')
+          entries = config.get('packages')
+          if not isinstance(entries, list) or not entries:
+              raise ValueError('Actual Pub package list is empty or malformed')
+          if '.dart_tool/package_graph.json' in raw_inputs:
+              graph = json.loads(raw_inputs['.dart_tool/package_graph.json'])
+              if not isinstance(graph, dict):
+                  raise ValueError('Actual optional package graph is not a JSON object')
+
+          def local_directory(uri, *, require_exists):
+              parts = urlsplit(uri)
+              if parts.scheme != 'file' or parts.netloc not in ('', 'localhost') or parts.query or parts.fragment:
+                  raise ValueError('Pub resolution must identify a local file directory')
+              decoded = unquote_to_bytes(parts.path).decode('utf-8')
+              if not decoded.startswith('/') or any(character in decoded for character in ('\0', '\r', '\n')):
+                  raise ValueError('Invalid local Pub directory URI')
+              resolved = Path(decoded).resolve(strict=require_exists)
+              if require_exists and not resolved.is_dir():
+                  raise ValueError('Actual dependency package root is not a directory: ' + str(resolved))
+              return resolved
+
+          packages = {}
+          for entry in entries:
+              if not isinstance(entry, dict):
+                  raise ValueError('Malformed actual Pub package entry')
+              name, root_uri, package_uri = entry.get('name'), entry.get('rootUri'), entry.get('packageUri')
+              if not isinstance(name, str) or not name or name in packages or not isinstance(root_uri, str):
+                  raise ValueError('Missing or duplicate actual Pub package identity')
+              if package_uri is not None and not isinstance(package_uri, str):
+                  raise ValueError('Invalid actual Pub packageUri')
+              if any(character in root_uri + (package_uri or '') for character in ('\0', '\r', '\n')):
+                  raise ValueError('Control character in actual Pub URI')
+              absolute_root_uri = urljoin(config_path.as_uri(), root_uri)
+              if not absolute_root_uri.endswith('/'):
+                  absolute_root_uri += '/'
+              absolute_package_uri = urljoin(absolute_root_uri, package_uri) if package_uri is not None else absolute_root_uri
+              root_path = local_directory(absolute_root_uri, require_exists=True)
+              package_path = local_directory(absolute_package_uri, require_exists=False)
+              packages[name] = {'name': name, 'rootUri': root_uri, 'packageUri': package_uri,
+                                'absolute_root_uri': absolute_root_uri, 'absolute_package_uri': absolute_package_uri,
+                                'resolved_root': str(root_path), 'resolved_package': str(package_path),
+                                'package_directory_exists': package_path.is_dir()}
+          own = packages.get('lumo_lernen')
+          if own is None or own['resolved_root'] != str(host) or own['resolved_package'] != str((host / 'lib').resolve(strict=True)) or not (host / 'lib').is_dir():
+              raise ValueError('lumo_lernen must resolve exactly to the current host-source and host-source/lib')
+          state = {'schema': 1, 'status': 'PASS', 'phase': phase, 'host': os.environ['EXPECTED_HOST'],
+                   'config_location': str(config_path), 'original_directory': str(output.relative_to(proof)),
+                   'inputs': inputs, 'own_package': own, 'packages': [packages[name] for name in sorted(packages)],
+                   'scope': 'Actual local Pub input bytes and all resolved package roots; third-party lib directories are recorded, not required',
+                   'errors': []}
+          if phase == 'after':
+              previous = json.loads((proof / 'packages/before/binding.json').read_bytes())
+              for key in ('host', 'config_location', 'inputs', 'own_package', 'packages'):
+                  if previous[key] != state[key]:
+                      state['errors'].append('Actual Pub binding changed: ' + key)
+              if state['errors']:
+                  state['status'] = 'FAIL'
+          (output / 'binding.json').write_text(json.dumps(state, indent=2) + '\n')
+          if state['errors']:
+              raise ValueError('; '.join(state['errors']))
+          print('PUB_PACKAGES_' + phase.upper() + '_BOUND packages=' + str(len(packages)) + ' own=' + own['resolved_package'])
+          PY
+          "$LUMO_QUAL_PYTHON" "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py" before \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/package-before.log"
+      - name: "Produce the current Dart English task input required by the actual renderer"
+        if: matrix.group == 'english'
+        working-directory: host-source
+        run: |
+          set -euo pipefail
+          dart run tool/check_native_english_activity.dart --out "$LUMO_QUAL_EVIDENCE/english-activity.json" \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/english-dart-fixtures.log"
+      - name: "Run actual English scene, input, safe layouts and current Dart tasks"
+        if: matrix.group == 'english'
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" native-source/tools/run_godot_probe.py \
+            --log "$LUMO_QUAL_EVIDENCE/english-render.log" --timeout 900 --required LEARNING_ENGLISH_PASS -- \
+            xvfb-run -a -s '-screen 0 2560x2560x24' "$GODOT_BIN" --path native-source \
+            --rendering-method gl_compatibility --audio-driver Dummy --disable-vsync \
+            --script res://scripts/tests/learning_english_regression.gd -- --capture \
+            --output="$LUMO_QUAL_EVIDENCE/english-native" \
+            --task-fixtures="$LUMO_QUAL_EVIDENCE/english-activity.json" \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/english-render-runner.log"
+      - name: "Run the actual Memory view and eight geometry captures"
+        if: matrix.group == 'memory'
+        run: |
+          set -euo pipefail
+          export LUMO_MEMORY_CAPTURE_DIR="$LUMO_QUAL_EVIDENCE/memory-view"
+          "$LUMO_QUAL_PYTHON" native-source/tools/run_godot_probe.py \
+            --log "$LUMO_QUAL_EVIDENCE/memory-view.log" --timeout 900 --required MEMORY_VIEW_PASS -- \
+            xvfb-run -a -s '-screen 0 2560x2560x24' "$GODOT_BIN" --path native-source \
+            --rendering-method gl_compatibility --audio-driver Dummy --fixed-fps 60 --disable-vsync \
+            --script res://scripts/tests/memory_table_regression.gd -- --capture \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/memory-view-runner.log"
+      - name: "Run the actual Memory or Quiz Dart/Godot authority pair with its unchanged 330-second deadline"
+        if: matrix.group == 'memory' || matrix.group == 'quiz'
+        run: |
+          set -euo pipefail
+          runner="$LUMO_QUAL_EVIDENCE/${QUALIFICATION_GROUP}-pair-runner.log"
+          xvfb-run -a -s '-screen 0 2560x2560x24' "$LUMO_QUAL_PYTHON" \
+            "native-source/tools/run_${QUALIFICATION_GROUP}_native_authority.py" \
+            --native native-source --host host-source \
+            --expected-native "$EXPECTED_NATIVE" --expected-host "$EXPECTED_HOST" \
+            --output "$LUMO_QUAL_EVIDENCE/${QUALIFICATION_GROUP}-pair" --capture --godot "$GODOT_BIN" \
+            2>&1 | tee "$runner"
+          cp "$runner" "$LUMO_QUAL_EVIDENCE/${QUALIFICATION_GROUP}-pair/runner.log"
+      - name: "Independently decode every reported renderer PNG and bind actual pair originals"
+        if: matrix.group == 'memory' || matrix.group == 'quiz' || matrix.group == 'english'
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" - <<'PY'
+          import hashlib, importlib.util, json, math, os, re, sys
+          from pathlib import Path
+          sys.dont_write_bytecode = True
+          root = Path(os.environ['LUMO_QUAL_EVIDENCE'])
+          native = Path(os.environ['GITHUB_WORKSPACE']) / 'native-source'
+          group = os.environ['QUALIFICATION_GROUP']
+          helper = root / 'tools/verify_dream_rasters.py'
+          raw = helper.read_bytes()
+          if hashlib.sha256(raw).hexdigest() != 'f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d':
+              raise ValueError('Original PNG reader changed')
+          if hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() != 'da8eed7d6383fcbc82a03596518a5fcc3b9a00c5':
+              raise ValueError('Original PNG reader blob differs')
+          spec = importlib.util.spec_from_file_location('bound_renderer_reader', helper)
+          reader = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(reader)
+          decoded = []
+          sidecars = []
+          def log_marker(relative, expression, *, engine=False):
+              text, record = reader.original_text(root, relative)
+              reader.require(not reader.ERRORS.search(text), 'Engine error, timeout or leak in ' + relative)
+              reader.require(sum(bool(re.fullmatch(expression, line)) for line in text.splitlines()) == 1,
+                             'Required unique original marker missing: ' + relative)
+              if engine:
+                  reader.require(text.splitlines().count('Godot Engine v' + reader.ENGINE + ' - https://godotengine.org') == 1,
+                                 'Exactly one actual approved engine invocation is required: ' + relative)
+              return record
+          def positive_count(value):
+              reader.require(type(value) in (int, float) and math.isfinite(value) and value == int(value) and 0 < value <= 1000000000,
+                             'Positive integral original count required')
+              return int(value)
+          def png(folder, entry, *, name_key='file', dimensions_key=None):
+              name = entry.get(name_key)
+              reader.require(isinstance(name, str) and Path(name).name == name, 'Nonlocal capture path')
+              relative = folder + '/' + name
+              dimensions = entry.get(dimensions_key) if dimensions_key else [entry.get('width'), entry.get('height')]
+              reader.require(isinstance(dimensions, list) and len(dimensions) == 2, 'Missing actual framebuffer dimensions')
+              normalized = []
+              for value in dimensions:
+                  reader.require(type(value) in (int, float) and value == int(value), 'Nonintegral original framebuffer dimension')
+                  normalized.append(int(value))
+              record, pixels = reader.png(root, relative, normalized)
+              reader.require(record['sha256'] == entry.get('sha256'), 'PNG/report byte identity differs')
+              decoded.append({**record, 'decoded_rgb_sha256': hashlib.sha256(pixels.tobytes()).hexdigest()})
+          def pair_sources(pair):
+              reader.require(pair.get('success') is True and pair.get('capture_requested') is True, 'Actual captured authority pair did not pass')
+              for phase in ('source_before', 'source_after'):
+                  identity = pair.get(phase, {})
+                  for name, expected in [('host', os.environ['EXPECTED_HOST']), ('native', os.environ['EXPECTED_NATIVE'])]:
+                      reader.require(identity.get(name, {}).get('commit') == expected, 'Pair uses foreign ' + name + ' source')
+                  reader.require(identity['native']['tree'] == os.environ['EXPECTED_NATIVE_TREE'], 'Pair uses foreign Native tree')
+                  source_before = json.loads((root / 'source-before.json').read_bytes())
+                  reader.require(identity['host']['tree'] == source_before['sources']['host']['tree'], 'Pair uses foreign Host tree')
+              reader.require(pair['source_before'] == pair['source_after'], 'Pair source identity changed')
+              exits = pair.get('process_exit_codes', {})
+              reader.require(len(exits) == 2 and all(type(value) is int and value == 0 for value in exits.values()),
+                             'Both real authority children must exit successfully')
+          if group == 'english':
+              report, _ = reader.original_json(root, 'english-native/learning-english-report.json')
+              fixtures, fixture_record = reader.original_json(root, 'english-activity.json')
+              reader.require(fixtures.get('failures') == 0 and len(fixtures.get('examples', {})) == 14,
+                             'Current Dart English task producer did not supply the complete catalogue')
+              reader.require(report.get('fixture_kind') == 'actual_dart_producer_report' and
+                             report.get('task_fixture_sha256') == fixture_record['sha256'], 'Actual Dart/Native fixture binding differs')
+              reader.require(report.get('failures') == [] and report.get('renderer') not in (None, '', 'headless'), 'English renderer failed or absent')
+              reader.require(type(report.get('checks')) in (int, float) and report['checks'] > 0, 'English checks absent')
+              captures = report.get('captures', [])
+              reader.require(len(captures) == 17, 'Seventeen actual English captures required')
+              for entry in captures:
+                  png('english-native', entry, name_key='png', dimensions_key='window_px')
+                  stem = Path(entry['png']).stem
+                  for suffix in ('.json', '.layout.json'):
+                      _, record = reader.original_json(root, 'english-native/' + stem + suffix)
+                      sidecars.append(record)
+              reader.require(bool(report.get('source_sha256')) and bool(report.get('input_events')), 'English source/input observations absent')
+              for path, sha in report.get('source_sha256', {}).items():
+                  reader.require(hashlib.sha256((native / path).read_bytes()).hexdigest() == sha, 'English measured source differs')
+              log_marker('english-render.log', r'LEARNING_ENGLISH_PASS checks=' + str(positive_count(report['checks'])) +
+                         r' captures=17 input_events=' + str(len(report['input_events'])) + r' fixture=actual_dart_producer_report', engine=True)
+          elif group == 'memory':
+              view, _ = reader.original_json(root, 'memory-view/memory-view-result.json')
+              reader.require(view.get('status') == 'PASS' and view.get('errors') == [] and view.get('capture') is True,
+                             'Actual Memory geometry did not pass')
+              reader.require(len(view.get('captures', [])) == 8, 'Eight Memory geometry captures required')
+              for entry in view['captures']:
+                  png('memory-view', entry)
+              log_marker('memory-view.log', r'MEMORY_VIEW_PASS checks=' + str(positive_count(view['checks'])) + r' captures=8', engine=True)
+              pair, _ = reader.original_json(root, 'memory-pair/pair-result.json')
+              pair_sources(pair)
+              runtime, _ = reader.original_json(root, 'memory-pair/native/memory-runtime-report.json')
+              reader.require(runtime.get('success') is True and runtime.get('failures') == [] and
+                             runtime.get('mode') == 'production_dart_disk_authority' and runtime.get('display_driver') not in (None, '', 'headless'),
+                             'Actual Memory authority renderer did not pass')
+              reader.require(len(runtime.get('captures', [])) == 8 and len(runtime.get('motion_frames', [])) == 12,
+                             'Memory gameplay captures or twelve real flip frames missing')
+              for entry in runtime['captures'] + runtime['motion_frames']:
+                  png('memory-pair/native', entry)
+              for entry in runtime['captures']:
+                  layout, record = reader.original_json(root, 'memory-pair/native/' + Path(entry['file']).stem + '.layout.json')
+                  reader.require(layout.get('settled') is True and all(layout.get(key) == entry.get(key) for key in ('token', 'roundId', 'revision')),
+                                 'Memory current layout identity differs')
+                  sidecars.append(record)
+              reader.require(pair.get('checks') == runtime.get('checks') and pair.get('inputs') == len(runtime.get('inputs', [])),
+                             'Memory actual pair/result counts differ')
+              log_marker('memory-pair/godot-runtime.log', r'\[MemoryTableRuntime\] PASS checks=' + str(positive_count(runtime['checks'])) +
+                         r' inputs=' + str(positive_count(len(runtime['inputs']))), engine=True)
+              log_marker('memory-pair/runner.log', r'\[MemoryNativePair\] PASS')
+          elif group == 'quiz':
+              pair, _ = reader.original_json(root, 'quiz-pair/pair-result.json')
+              pair_sources(pair)
+              runtime, _ = reader.original_json(root, 'quiz-pair/native/quiz-runtime-report.json')
+              reader.require(runtime.get('mode') == 'production_dart_disk_authority' and runtime.get('failures') == [] and
+                             runtime.get('display_driver') not in (None, '', 'headless'), 'Actual Quiz authority renderer did not pass')
+              reader.require(len(runtime.get('captures', [])) == 6, 'Six actual Quiz captures required')
+              for entry in runtime['captures']:
+                  png('quiz-pair/native', entry, dimensions_key='size_px')
+                  reader.require(entry.get('layout') == Path(entry['file']).stem + '.layout.json', 'Quiz original layout path differs')
+                  layout, record = reader.original_json(root, 'quiz-pair/native/' + entry['layout'])
+                  reader.require(layout.get('settled') is True and layout.get('pending') == 0 and layout.get('revision') == entry.get('revision'),
+                                 'Quiz current layout identity differs')
+                  sidecars.append(record)
+              reader.require(pair.get('checks') == runtime.get('checks') and pair.get('inputs') == len(runtime.get('inputs', [])),
+                             'Quiz actual pair/result counts differ')
+              log_marker('quiz-pair/godot-runtime.log', r'\[QuizStudioRuntime\] PASS checks=' + str(positive_count(runtime['checks'])) + r' captures=6', engine=True)
+              log_marker('quiz-pair/runner.log', r'\[QuizNativePair\] PASS')
+          else:
+              raise ValueError('Unknown renderer group')
+          names = [row['path'] for row in decoded]
+          reader.require(len(names) == len(set(names)), 'Repeated original PNG entry')
+          actual_pngs = sorted(str(path.relative_to(root)) for path in root.rglob('*.png') if 'user' not in path.relative_to(root).parts)
+          reader.require(sorted(names) == actual_pngs, 'Original PNG roster differs from reports')
+          for path in root.rglob('*.log'):
+              if path.name in ('godot-import.log', 'godot-runtime.log', 'runner.log') or path.name.endswith('-render.log') or path.name == 'memory-view.log':
+                  reader.require(not reader.ERRORS.search(path.read_text()), 'Engine error, timeout or leak in original ' + str(path.relative_to(root)))
+          (root / 'renderer-originals.json').write_text(json.dumps({'schema': 1, 'status': 'PASS', 'group': group,
+              'host': os.environ['EXPECTED_HOST'], 'native': os.environ['EXPECTED_NATIVE'], 'pngs': decoded, 'sidecars': sidecars,
+              'scope': 'Actual desktop renderer/authority and declared QA transport only; no Android, physical-device, audio or FPS acceptance'}, indent=2) + '\n')
+          print('RENDERER_ORIGINALS_PASS group=' + group + ' decoded_pngs=' + str(len(decoded)))
+          PY
+      - name: "Compile the unchanged genuine Android Host contract"
+        if: matrix.group == 'android-host-compile'
+        working-directory: host-source
+        run: |
+          set -euo pipefail
+          printf '%s  %s\n' fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03 \
+            scripts/compile_android_host.sh | sha256sum -c -
+          test "$(git rev-parse HEAD:scripts/compile_android_host.sh)" = 73d0c0d8726e6352f0bf89c25cf17bdf1270ad2f
+          cp scripts/compile_android_host.sh "$LUMO_QUAL_EVIDENCE/tools/compile_android_host.sh"
+          bash scripts/compile_android_host.sh 2>&1 | tee "$LUMO_QUAL_EVIDENCE/android-host-compile.log"
+      - name: "Preserve original Android compilation outputs even on failure"
+        if: always() && matrix.group == 'android-host-compile' && steps.prepare.outcome == 'success'
+        run: |
+          set -euo pipefail
+          if test -d host-source/host-compile-evidence; then
+            cp -a host-source/host-compile-evidence "$LUMO_QUAL_EVIDENCE/android-host-compile"
+          fi
+      - name: "Bind actual current Table and retained C4 Android bytecode"
+        if: matrix.group == 'android-host-compile'
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          host = Path(os.environ['GITHUB_WORKSPACE']) / 'host-source'
+          proof = Path(os.environ['LUMO_QUAL_EVIDENCE']) / 'android-host-compile'
+          report = json.loads((proof / 'result.json').read_bytes())
+          if report.get('status') != 'PASS' or report.get('flutter_source_commit') != os.environ['EXPECTED_HOST']:
+              raise ValueError('Actual Host compile result/source differs')
+          classes = {}
+          required = ('TableGameActivity', 'TableGamesHostPlugin', 'TableGamesBridge', 'TableAuthorityService', 'TableGameIntent',
+                      'ConnectFourGameActivity', 'ConnectFourAuthorityService', 'ConnectFourBridge')
+          for name in required:
+              paths = sorted((host / 'build/app').rglob(name + '.class'))
+              if not paths:
+                  raise ValueError('Actual Android bytecode missing: ' + name)
+              classes[name] = []
+              for number, path in enumerate(paths):
+                  data = path.read_bytes()
+                  if not data.startswith(bytes.fromhex('cafebabe')):
+                      raise ValueError('Invalid actual Android class')
+                  target = proof / 'classes' / (name + '-' + str(number) + '.class')
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(data)
+                  if target.read_bytes() != data:
+                      raise ValueError('Original compiled class copy differs')
+                  row = {'source_path': str(path.relative_to(host)), 'original': str(target.relative_to(proof)),
+                         'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+                  if name.startswith('Table') and not any(entry['path'] == row['source_path'] and entry['sha256'] == row['sha256'] and entry['bytes'] == row['bytes']
+                                                          for entry in report['classes'].get(name, [])):
+                      raise ValueError('Table class differs from the actual compiler report')
+                  classes[name].append(row)
+          (proof / 'table-and-c4-classes.json').write_text(json.dumps({'status': 'PASS', 'source': os.environ['EXPECTED_HOST'],
+              'classes': classes, 'scope': 'Actual Android Kotlin/Java compilation only; no APK, R8 or device approval'}, indent=2) + '\n')
+          print('TABLE_ANDROID_COMPILE_PASS table_classes=5 retained_c4_classes=3')
+          PY
+      - name: "Run precisely the seven focused Flutter files once and reject skips"
+        if: matrix.group == 'flutter-contracts'
+        working-directory: host-source
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" - <<'PY'
+          import hashlib, importlib.util, json, os, signal, subprocess, sys, time
+          from pathlib import Path
+          sys.dont_write_bytecode = True
+          host = Path.cwd()
+          proof = Path(os.environ['LUMO_QUAL_EVIDENCE']) / 'flutter-focused'
+          proof.mkdir(exist_ok=False)
+          tests = ['test/games/memory_native_entry_test.dart', 'test/games/memory_result_frame_test.dart',
+                   'test/quiz_native_roundtrip_lifecycle_test.dart', 'test/reward_wallet_queue_zone_test.dart',
+                   'test/table_games_launcher_binding_test.dart', 'test/table_games_wallet_profile_test.dart',
+                   'test/tutoring/native_english_activity_test.dart']
+          helper = host / 'scripts/run_full_flutter_acceptance.py'
+          raw = helper.read_bytes()
+          if hashlib.sha256(raw).hexdigest() != 'd51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d' or hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() != '9999632174044af584c87147c5347c167b830918':
+              raise ValueError('Unapproved original no-skip summarizer')
+          if subprocess.check_output(['git', 'show', os.environ['EXPECTED_HOST'] + ':scripts/run_full_flutter_acceptance.py']) != raw:
+              raise ValueError('Summarizer differs from actual Host commit')
+          (proof / 'summarizer-original.py').write_bytes(raw)
+          spec = importlib.util.spec_from_file_location('bound_flutter_summary', helper)
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          command = ['flutter', 'test', '--no-pub', '--machine', '--concurrency=1', *tests]
+          started = time.monotonic()
+          invocation = {'schema': 1, 'host': os.environ['EXPECTED_HOST'], 'argv': command, 'cwd': str(host),
+                        'wall_timeout_seconds': 1200, 'timeout_scope': 'Single focused CI Flutter process; no retry',
+                        'summarizer_sha256': hashlib.sha256(raw).hexdigest()}
+          (proof / 'invocation.json').write_text(json.dumps(invocation, indent=2) + '\n')
+          timed_out = False
+          with (proof / 'flutter-machine.stdout').open('wb') as stdout, (proof / 'flutter.stderr').open('wb') as stderr:
+              process = subprocess.Popen(command, stdout=stdout, stderr=stderr, start_new_session=True)
+              try:
+                  exit_code = process.wait(timeout=1200)
+              except subprocess.TimeoutExpired:
+                  timed_out = True
+                  os.killpg(process.pid, signal.SIGTERM)
+                  try:
+                      exit_code = process.wait(timeout=5)
+                  except subprocess.TimeoutExpired:
+                      os.killpg(process.pid, signal.SIGKILL)
+                      exit_code = process.wait(timeout=5)
+          events, unparsed = [], []
+          for number, line in enumerate((proof / 'flutter-machine.stdout').read_bytes().splitlines(), 1):
+              try:
+                  event = json.loads(line)
+              except (json.JSONDecodeError, UnicodeDecodeError):
+                  unparsed.append({'line': number, 'kind': 'non_json_original_line'})
+                  continue
+              if not isinstance(event, dict):
+                  unparsed.append({'line': number, 'kind': 'non_object_original_line'})
+                  continue
+              events.append(event)
+          errors = ['Focused Flutter process exceeded its 1200-second deadline'] if timed_out else []
+          error_events = [event for event in events if event.get('type') == 'error']
+          if error_events:
+              errors.append('Actual machine stream contains error events')
+          suites, starts, finishes = {}, {}, {}
+          for event in events:
+              if event.get('type') == 'suite':
+                  suite = event.get('suite')
+                  if not isinstance(suite, dict) or type(suite.get('id')) is not int or not isinstance(suite.get('path'), str):
+                      errors.append('Malformed original suite identity')
+                      continue
+                  if suite['id'] in suites:
+                      errors.append('Duplicate original suite ID')
+                  suites[suite['id']] = {'original': suite, 'resolved_path': str(Path(suite['path']).resolve())}
+              elif event.get('type') == 'testStart':
+                  test = event.get('test')
+                  if not isinstance(test, dict) or type(test.get('id')) is not int or type(test.get('suiteID')) is not int or not isinstance(test.get('name'), str):
+                      errors.append('Malformed original test start identity')
+                      continue
+                  if test['id'] in starts:
+                      errors.append('Duplicate original test start ID')
+                  starts[test['id']] = event
+              elif event.get('type') == 'testDone':
+                  if type(event.get('testID')) is not int:
+                      errors.append('Malformed original test completion identity')
+                      continue
+                  if event['testID'] in finishes:
+                      errors.append('Duplicate original test completion ID')
+                  finishes[event['testID']] = event
+          suite_paths = {suite['resolved_path'] for suite in suites.values()}
+          expected_paths = {str((host / path).resolve()): path for path in tests}
+          if suite_paths != set(expected_paths):
+              errors.append('Actual machine stream did not execute precisely the seven requested file suites')
+          if set(starts) != set(finishes):
+              errors.append('At least one actual started test lacks its completion event')
+          suite_results = {path: {'requested_file': relative, 'resolved_path': path,
+                                 'original_suites': [], 'test_events': [], 'visible_passed': 0}
+                           for path, relative in expected_paths.items()}
+          for suite in suites.values():
+              if suite['resolved_path'] in suite_results:
+                  suite_results[suite['resolved_path']]['original_suites'].append(suite['original'])
+          for test_id, start_event in starts.items():
+              suite = suites.get(start_event['test']['suiteID'])
+              if suite is None or suite['resolved_path'] not in suite_results:
+                  errors.append('Actual test start does not belong to a requested original suite')
+                  continue
+              result = suite_results[suite['resolved_path']]
+              done_event = finishes.get(test_id)
+              result['test_events'].append({'start': start_event, 'done': done_event})
+              if done_event is not None and done_event.get('result') == 'success' and not done_event.get('skipped') and not done_event.get('hidden'):
+                  result['visible_passed'] += 1
+          for result in suite_results.values():
+              if result['visible_passed'] < 1:
+                  errors.append('No actual visible successful test completed in ' + result['requested_file'])
+          if sum(event.get('type') == 'done' for event in events) != 1:
+              errors.append('Exactly one final done event is required')
+          summary = module.summarize(events, exit_code, errors)
+          summary.update({'schema': 1, 'host': os.environ['EXPECTED_HOST'], 'requested_files': tests,
+                          'suite_paths': sorted(suite_paths), 'suite_results': list(suite_results.values()), 'timed_out': timed_out,
+                          'elapsed_wall_seconds': time.monotonic() - started, 'non_event_original_lines': unparsed,
+                          'machine_error_events': error_events, 'source': 'Unmodified original stdout/stderr retained separately'})
+          (proof / 'acceptance-summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+          print(json.dumps(summary, ensure_ascii=False))
+          if summary['status'] != 'PASS' or summary['failed'] or summary['skipped'] or summary['passed'] < 1:
+              raise SystemExit(1)
+          print('FOCUSED_FLUTTER_PASS files=7 skipped=0 passed=' + str(summary['passed']))
+          PY
+      - name: "Preserve and require unchanged actual Pub inputs and package roots after the group"
+        id: packages_after
+        if: always() && steps.packages_before.outcome == 'success'
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" "$LUMO_QUAL_EVIDENCE/tools/package_snapshot.py" after \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/package-after.log"
+      - name: "Preserve and require unchanged tracked sources and index after the actual group"
+        id: source_after
+        if: always() && steps.source_before.outcome == 'success'
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" "$LUMO_QUAL_ROOT/source_snapshot.py" after \
+            2>&1 | tee "$LUMO_QUAL_EVIDENCE/source-after.log"
+      - name: "Bind the complete original file inventory after successful qualification"
+        run: |
+          set -euo pipefail
+          "$LUMO_QUAL_PYTHON" - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path(os.environ['LUMO_QUAL_EVIDENCE'])
+          before = json.loads((root / 'source-before.json').read_bytes())
+          after = json.loads((root / 'source-after.json').read_bytes())
+          for name in ('host', 'native'):
+              for key in ('head', 'tree', 'index_sha256', 'tracked_count'):
+                  if before['sources'][name][key] != after['sources'][name][key]:
+                      raise ValueError('Final source binding differs')
+          files = []
+          for path in sorted(root.rglob('*')):
+              if path.is_symlink():
+                  raise ValueError('Symlink original in qualification evidence')
+              if path.is_file():
+                  data = path.read_bytes()
+                  files.append({'path': str(path.relative_to(root)), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
+          (root / 'original-file-index.json').write_text(json.dumps({'schema': 1, 'files': files}, indent=2) + '\n')
+          (root / 'qualification-result.json').write_text(json.dumps({'schema': 1, 'status': 'PASS',
+              'group': os.environ['QUALIFICATION_GROUP'], 'host': os.environ['EXPECTED_HOST'],
+              'native': os.environ['EXPECTED_NATIVE'], 'native_tree': os.environ['EXPECTED_NATIVE_TREE'],
+              'run_id': os.environ['GITHUB_RUN_ID'], 'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'scope': 'This separate group only. Existing C4, full Native, Android device and release gates are not replaced.'}, indent=2) + '\n')
+          print('NEXT_AUTHORITY_QUALIFICATION_PASS group=' + os.environ['QUALIFICATION_GROUP'])
+          PY
+      - name: Upload complete prepared qualification evidence on every outcome
+        if: always() && steps.prepare.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-next-authorities-${{ matrix.group }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lumo-next-authorities-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.group }}/evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

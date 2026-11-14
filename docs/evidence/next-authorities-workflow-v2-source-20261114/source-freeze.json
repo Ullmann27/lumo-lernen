@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "revision": 2,
+  "status": "FROZEN_UNTESTED_EXTERNAL_SOURCE_BEFORE_ROOT_CHECKPOINT",
+  "created_utc": "2026-11-14T17:10:24.434745+00:00",
+  "reviewed_host_base": {
+    "head": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+    "index_sha256": "8ce6ca5e2d8ed837f3b3d0b303540fcc6b7c45cbe4b07d63092ac09006698be1",
+    "tracked_diff": ""
+  },
+  "immutable_native": {
+    "head": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+    "tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+    "index_sha256": "83936c685fd385fb86509b61b3d5c70ece3266779993ad595051a96a361b9f20",
+    "tracked_diff": ""
+  },
+  "future_host_execution": "Actual github.sha, including the already authorized intervening QA-only correction",
+  "source_count": 1,
+  "files": [
+    {
+      "path": ".github/workflows/lumo-next-table-authorities.yml",
+      "source_path": "final-source/.github/workflows/lumo-next-table-authorities.yml",
+      "mode": "100644",
+      "v1_before": {
+        "bytes": 46286,
+        "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+        "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+      },
+      "after": {
+        "bytes": 56951,
+        "sha256": "536bc3224df90bd9fd7838912e0847d55ea96d5edbce06b70ef371e2872495e5",
+        "git_blob": "f798a0a5090a326fb9718bc427b9887ff15e9be1"
+      }
+    }
+  ],
+  "scope": "Exactly three Root-approved V1 review corrections; no other workflow or product change",
+  "v1_preserved": true,
+  "git_mutations": false,
+  "remote_mutations": false,
+  "tests_lint_imports_or_generated_code_execution": 0
+}
