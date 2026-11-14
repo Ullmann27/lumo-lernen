@@ -60,15 +60,51 @@ before local HEAD advanced correctly failed the immutable-helper check; its
 raw failure is preserved alongside the successful committed-source run.
 Evidence: `docs/evidence/quality-integration-20261114/`.
 
-## Exact prior full-run result and next gate
+## Actual predecessor CI and the next candidate
 
-Candidate `4564ad40c4d000b764e67719d19bd2445c04c870`, run 43572640442,
-passed the real Dart/rendered-Godot gate, Android host compilation and Flutter
-analysis. Its complete Flutter/capture run passed 2,558 tests, failed exactly
-three C4 tests and skipped none. It produced 546 rendered PNGs. Its APK build
-and Android acceptance were not reached. The separate 799-test Python run
-failed one historical-native-pin fixture; that failure is reproduced and
-repaired above. These original failures remain preserved.
+Host `01575aafc3f5b9032900bb57520ee65e98d7546c`, run 43576227541,
+passed Android host compilation and the actual Dart/rendered-Godot C4 job.
+The native runtime reported 170 successful checks; root rechecked all 259
+recorded image hashes and opened seven original screenshots. The complete
+Flutter/capture suite passed 2,564 tests, with no failures, skips or capture
+errors, and produced 546 PNGs. Root separately opened six actual Home,
+Journal and handwriting originals; a missing glyph in the Schreibcoach
+capture remains an explicitly bounded visual observation. All 872 build-contract
+tests passed. The subsequent 928-test Android-probe regression failed with
+11 errors: the historical 2019 test invoked the real wrapper against current
+2020 configuration. APK build and actual Android acceptance were not reached.
+These are partial results of that exact predecessor, not Android/APK approval
+of this follow-up. Original artifact identities, the
+unmodified Flutter summary and root observations are preserved under
+`docs/evidence/quality-01575-ci-20261114/`.
+
+The independent Astra run 43576227534 failed with one class-setup error in
+its 868-test inventory because FFmpeg was absent. The repaired workflow
+installs FFmpeg and explicitly verifies ffmpeg and ffprobe before retaining
+the original complete MP4/test inventory. Actual decoded failure logs,
+actionlint, shell syntax checks and eight existing contract tests are in
+`docs/evidence/astra-ffmpeg-20261114/`.
+
+The bounded Orange URL-builder repair removes the free-text fallback when
+a recognized color also names a fruit. The identical seven tests gave five
+passes and two failures on the original code, then seven passes with the fix.
+Default online opt-in remains false. The independent review and raw logs are
+under `docs/evidence/image-prompt-privacy-20261114-2708/` and
+`docs/evidence/play-data-audit-20261114-2708/`.
+
+
+The historical 2019 test now uses a temporary 2019 source fixture with the
+byte-identical real wrapper and real reviewed-pin policy, preserving every
+original artifact identity negative case. Two additional rejected configurations
+exercise the actual entry point before a blocked runner. Production version and
+pin guards remain unchanged. See `docs/evidence/studio-2019-fixture-20261114/`.
+
+
+After the local environment returned, the exact repaired test blob was actually
+executed with ten unchanged, blob-checked predecessor dependencies. All three
+StudioUpdateWrapperExecutionTests passed in 0.043 seconds; the eleven source
+blobs were identical before and after execution. This is a focused Python
+fixture result, not Android acceptance; the original failed CI remains preserved.
 
 The combined follow-up needs a fresh `lumo-connect-four-2020.yml` run on its
 actual PR head. Retain all full Flutter, build-contract, native, APK,
@@ -91,6 +127,14 @@ Two local X11 attempts ended with SIGKILL before producing PNGs, so no local
 render approval is claimed. The actual full 52-mode rendered CI gate is still
 required. Directly replacing integration with PR167's divergent `785413d3`
 would lose modules; its whole tree was not substituted.
+
+
+The bounded data/SDK review at the exact predecessor is preserved under
+`docs/evidence/play-data-audit-20261114-2708/`. It identifies the missing full
+in-app privacy disclosure and content-reporting route, plus unverified actual
+operator/hosting/retention facts. Prepared manifests and static SDK inspection
+are not final AAB/network evidence. The local environment disconnected during
+final evidence collection; the report explicitly lists missing raw outputs.
 
 Actual child-data/backend disclosures, Play Console declarations, signed AAB
 testing, and physical device frame-rate/thermal measurements remain separate

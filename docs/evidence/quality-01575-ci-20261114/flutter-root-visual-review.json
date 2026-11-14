@@ -1,0 +1,41 @@
+{
+  "host_source": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "run_id": 43576227541,
+  "job_id": 132391949339,
+  "artifact_id": 14106691339,
+  "archive_bytes": 332514398,
+  "archive_sha256": "b31e19e2b132bf8441026831214f656499bef0672d0c414858cbfbbd327fc42a",
+  "files_opened_by_root": {
+    "tour/phone_home.png": {
+      "bytes": 569390,
+      "sha256": "63f5115d35694e557029ff12c679dba92686eccc3693fc9bb09c639422e5ee7a"
+    },
+    "tour/fold_home.png": {
+      "bytes": 850481,
+      "sha256": "8083c9cec37cf889df5405673c3cb54b380bb908470f94b7056618adf0b77de9"
+    },
+    "modernization/journal_phone.png": {
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d"
+    },
+    "modernization/journal_fold-cover.png": {
+      "bytes": 1313410,
+      "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054"
+    },
+    "modernization/schreibcoach_phone.png": {
+      "bytes": 131666,
+      "sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d"
+    },
+    "modernization/schreibaufgabe_phone.png": {
+      "bytes": 372820,
+      "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b"
+    }
+  },
+  "observations": [
+    "Phone and Fold home screenshots display the original Lumo fox, principal navigation, learning/game cards and readable headings without visible overlapping main controls.",
+    "The original phone and Fold-cover journal empty-state screenshots show the complete heading, new-entry control and primary writing button.",
+    "The phone writing-task screenshot clearly displays the B exemplar, finger-writing call to action and next-task control.",
+    "The original Schreibcoach screenshot has a missing-glyph rectangle in its upper round badge, pale helper copy and a horizontally scrollable category row. The screenshot alone does not establish how the native Android font fallback behaves."
+  ],
+  "scope": "Six selected actual Flutter renderer originals visually opened by root, not inspection of all 546 captures or an Android/physical-device test."
+}
