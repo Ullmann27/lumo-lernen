@@ -1,0 +1,270 @@
+{
+  "recorded_at_utc": "2026-11-14 10:43:23 UTC",
+  "git_object_hashes_verified": true,
+  "entries": [
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/root-download-integrity.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a20e8c156f9718774fd13c84530b08b97a1847c0",
+      "sha256": "b8245e17f3fa96a36c406532a643bab479f7a3b25e8f3e5b300f3713c86e0c1f",
+      "bytes": 137528
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/root-read-only-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc31df4a5e49abe27ab31c41486d8dd6cd53af46",
+      "sha256": "ddcc42f72a8cdc08d2446d90f53f7f1e3b59c01b81ed8586feaedd097ad86ee5",
+      "bytes": 17112
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/root-read-only-replay.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8be3f938f272d808b05c96b3f321bff69ec8feee",
+      "sha256": "7d1cbad50316c37f85dc0ca53ffe1aa85087f10aa78949199fd4094386ff85c4",
+      "bytes": 7880
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/replay-source-803a/update_preservation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+      "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a",
+      "bytes": 10258
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/replay-source-803a/kart_tour_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "bytes": 9299
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/update-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbff9eae22b0296576afbefebd1c89c8cef500be",
+      "sha256": "661fe8b0347f6171c532e466d1ab0553839425dda488f47e0abdd3e22fa91032",
+      "bytes": 41665
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/before-update-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "daa7f4d9f8d4ddebaa7f5021f3889bb0407ae7c0",
+      "sha256": "88d8a62948e88089735195546a14e0dcbc592eba0e3380b20602713db1b4e770",
+      "bytes": 4362
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/after-update-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d2e2520be905c73b0d094d46c6f99b901c2f47c",
+      "sha256": "811e2918246e53a99a2359a395a096c7b66f9575776caab96dc418ff64bd60eb",
+      "bytes": 4514
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/after-kart-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fde5f84afffdf02c7f8120c78f94d12a363858c",
+      "sha256": "15d64f649929e86f0464a261c2bf3f81f7b464f84228893f8bcc74cb4cd78b10",
+      "bytes": 4879
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/after-restart-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58e408ecd4e8551cf52605f2ed4d96d8351a85bf",
+      "sha256": "12f052dd6676ff75b81adb0e6dd2eda7bb4d07d13a0aff2b03cb92afecee0c5d",
+      "bytes": 4879
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/fold-cover-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58e408ecd4e8551cf52605f2ed4d96d8351a85bf",
+      "sha256": "12f052dd6676ff75b81adb0e6dd2eda7bb4d07d13a0aff2b03cb92afecee0c5d",
+      "bytes": 4879
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/fold-open-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58e408ecd4e8551cf52605f2ed4d96d8351a85bf",
+      "sha256": "12f052dd6676ff75b81adb0e6dd2eda7bb4d07d13a0aff2b03cb92afecee0c5d",
+      "bytes": 4879
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/fold-landscape-preferences.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58e408ecd4e8551cf52605f2ed4d96d8351a85bf",
+      "sha256": "12f052dd6676ff75b81adb0e6dd2eda7bb4d07d13a0aff2b03cb92afecee0c5d",
+      "bytes": 4879
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/baseline-package.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43d4172a559917724eaf488d05bcbb26350d92ec",
+      "sha256": "60726253c4c8ca837f63a2210abeba5283a293cde6419604d863488222bac9a8",
+      "bytes": 9968
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/updated-package.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b73c967a5d999443336b9c02736379ade83b1307",
+      "sha256": "c223122850d70696e5c5cb321130c5e25620157a1519a26ed95fdd4a27eb8e77",
+      "bytes": 9339
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/baseline-package-uid.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc0b2c1aa9050c55b713419adbe8754db0a034a9",
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "bytes": 59
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/updated-package-uid.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc0b2c1aa9050c55b713419adbe8754db0a034a9",
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "bytes": 59
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/baseline-install.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "379225b22b1a53183d0983eec12f3578424753ff",
+      "sha256": "4d1e5770c0d0869c9bfa62273e9de842c7cff7382f73d11cbe13fa2d6d260d52",
+      "bytes": 138
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/update-install.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e6ff52d4453599f271dfcc6aa34dd9ef2b32dc3",
+      "sha256": "eb77bb2ca9ec6fb4a249dd3522c5fafb4c1c282340cc0ee923f6cd1302fe1aa1",
+      "bytes": 139
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/tested-apk-sha256.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "138d36244eb4e0940c152f3831a71ceafeeb0642",
+      "sha256": "c77257f5088c339f4ed5e3650179c0d451ad073c722df9e710f369fdfcbc52cc",
+      "bytes": 108
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/rooted-emulator.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d46e846f21494af283d1885d08c33622ff19b58",
+      "sha256": "692c344afa7797d74f2416f6062cbc418789895ba23be6422b2f706835aa50bc",
+      "bytes": 1522
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/fatal-logcat.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/c4/root-download-integrity.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3998d7b4814fb2dfc80ac49007a8c2f56ccfb8ec",
+      "sha256": "e7977168f9540e3ff49fb8bd6cc84d4c7c3f3b785b7cbe57024697b0d74fd2be",
+      "bytes": 157943
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/c4/original/c4/c4-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04944e28351e80331095913b286e95fe258904d7",
+      "sha256": "131569701fffc061340102af7bc4a52eb2f82c81bfbb6471004fd0e4f123155d",
+      "bytes": 2453
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/c4/original/main/tour-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f4b2b8fbd9eaca2bdf44c7181ed201023542f52",
+      "sha256": "50956514414113d183c69cacdcd7ed9ef232720d787572b22e547bf6486425dc",
+      "bytes": 15551
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/c4/original/metadata/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0211dc95dfd401650f80fcdc8055dc9d1de82ec4",
+      "sha256": "8480ba970b217123bebe9167a803a40c19f26c97a1e0f3769fdf58d757eb8f88",
+      "bytes": 13448
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/c4/original/metadata/jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b22b2c32382d3852dd6c76e0042db7f51317b57",
+      "sha256": "ba59afefb85509399fed958506e705cfbb72b853a3d3a5967ca96776d604c2ac",
+      "bytes": 20090
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/c4/original/metadata/artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f79d280270e11d3013a7908bd6acbdd3f5fdeb2",
+      "sha256": "05850b4cebd4be31dd594b4b27ed2eb07efcdaa19cebefb105b800811a2e9a19",
+      "bytes": 8144
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/c4/original/tested-apk-sha256.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "138d36244eb4e0940c152f3831a71ceafeeb0642",
+      "sha256": "c77257f5088c339f4ed5e3650179c0d451ad073c722df9e710f369fdfcbc52cc",
+      "bytes": 108
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/updated-profile-offline.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a674c29dd44ce303af7eff22501d3bcb613f6b0c",
+      "sha256": "5d2bad9f47ba6f67a90f610be71c2d466e11e59ae0c4b232ad0e71a02deb00ba",
+      "bytes": 3100534
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/fold-landscape.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0d0c27bfdf6c6cb5d8448bb0776a2274f62d9f1",
+      "sha256": "1fa069eae5294634e1b27ba21d15266afdebd0a080a0a11d933c7128d77d8bf4",
+      "bytes": 1773340
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/23_zurueck_in_flutter.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ab0d7c42179270b8b954c46d1d844a3886f72d8",
+      "sha256": "79f2146118f295581d47da80b8c432d2b9278961c5574e8d54100aa1e2a8ea1e",
+      "bytes": 1929486
+    },
+    {
+      "path": "docs/evidence/android-803a-original-20261114/upgrade/original/21_race_driving_late_2.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d77817c87f3f2629bc05f1f1b050a13a1d7a0107",
+      "sha256": "d001d59a610941fbd641a33f4312946bc362998f367e3e912fbb20c365338fff",
+      "bytes": 1972454
+    }
+  ]
+}

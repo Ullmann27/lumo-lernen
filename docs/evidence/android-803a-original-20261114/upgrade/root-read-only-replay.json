@@ -1,0 +1,540 @@
+{
+  "started_at_utc": "2026-11-14T10:37:57.838938+00:00",
+  "completed_at_utc": "2026-11-14T10:37:58.112543+00:00",
+  "status": "PASS",
+  "host": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "artifact_id": 14110561328,
+  "source_blobs": [
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "git_blob": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+      "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a"
+    },
+    {
+      "path": "tools/android_qa/kart_tour_evidence.py",
+      "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca"
+    }
+  ],
+  "installation": {
+    "before_version": 2017,
+    "after_version": 2020,
+    "userId": "10209",
+    "firstInstallTime": "2026-11-14 10:16:29"
+  },
+  "preservation_states_replayed": 6,
+  "results": {
+    "after_update": {
+      "profile": {
+        "id": "1794651428217068",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:17:08.217068"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      }
+    },
+    "after_kart": {
+      "profile": {
+        "id": "1794651428217068",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:17:08.217068"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "after_restart": {
+      "profile": {
+        "id": "1794651428217068",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:17:08.217068"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "fold_cover": {
+      "profile": {
+        "id": "1794651428217068",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:17:08.217068"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "fold_open": {
+      "profile": {
+        "id": "1794651428217068",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:17:08.217068"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "fold_landscape": {
+      "profile": {
+        "id": "1794651428217068",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T10:17:08.217068"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794651428217068",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T10:17:08.217068"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-d82c7f53abafbca1cfc697766971b1dc",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    }
+  },
+  "all_original_files_unchanged": 760,
+  "original_pngs_visually_opened_by_root": [
+    {
+      "path": "updated-profile-offline.png",
+      "bytes": 3100534,
+      "sha256": "5d2bad9f47ba6f67a90f610be71c2d466e11e59ae0c4b232ad0e71a02deb00ba",
+      "pixels": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "path": "fold-open.png",
+      "bytes": 4268074,
+      "sha256": "1d5ccc0823724f7dd2c68604477071dc1f186a62e46aef528e485921b337d82c",
+      "pixels": [
+        1812,
+        2176
+      ]
+    },
+    {
+      "path": "fold-cover.png",
+      "bytes": 2584558,
+      "sha256": "1b25986f4b9a070593c28d5a0bcfdd3e9a664f6da5b0738d572f22f98f6847fa",
+      "pixels": [
+        904,
+        2316
+      ]
+    },
+    {
+      "path": "fold-landscape.png",
+      "bytes": 1773340,
+      "sha256": "1fa069eae5294634e1b27ba21d15266afdebd0a080a0a11d933c7128d77d8bf4",
+      "pixels": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "path": "23_zurueck_in_flutter.png",
+      "bytes": 1929486,
+      "sha256": "79f2146118f295581d47da80b8c432d2b9278961c5574e8d54100aa1e2a8ea1e",
+      "pixels": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "path": "21_lumo_kart_real_race.png",
+      "bytes": 1929816,
+      "sha256": "0cb65b511424b83a7354a953518c8578e6e3e37ae3d8c452fe03332ad88815f6",
+      "pixels": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "path": "21_race_driving_late_2.png",
+      "bytes": 1972454,
+      "sha256": "d001d59a610941fbd641a33f4312946bc362998f367e3e912fbb20c365338fff",
+      "pixels": [
+        2400,
+        1080
+      ]
+    }
+  ],
+  "visual_observations": [
+    "Updated Home and three emulated Fold dimensions retain the original fox, grade 1, one star and 5/400 XP; text in these selected states is visible. Portrait content and the short landscape layout require scrolling to see lower sections.",
+    "The actual return capture visibly shows the Flutter games page, labeled game cards, selected Spielen navigation and one star.",
+    "The later race frame visibly shows the original fox in the kart, a rendered track, lap/position/speed and labeled controls. Its minimap extends past the right image edge and overlaps part of the SPEED control. This concrete layout observation has been sent for source triage; no input failure is inferred from the still image.",
+    "The landscape Home frame displays Mathe 82% after the one recorded learning answer. The meaning of that score has been sent for source review; the still image alone does not establish an incorrect calculation."
+  ],
+  "limits": [
+    "Read-only replay of original artifact data using the exact 803a preservation functions; no new app, Android, engine or benchmark run.",
+    "The actual CI run used Android API 35/x86_64 with emulated dimensions, not a physical ARM64 or folding device.",
+    "The genuine preserved journey is one grade-1 profile and one answered 3+2 task, earning one star and five XP. Seven existing learning keys and the explicit additive independentEvidence-v1 migration are checked; this is not every learning subject, profile or history.",
+    "Seven of 225 original PNGs were visually opened by Root. No manual review of every image, audible output, complete two-lap reward, 60 FPS or Nintendo-level quality is claimed.",
+    "The separate C4 Android probe failed its branch-origin guard before any C4 observations; successful upgrade evidence does not override that failure."
+  ]
+}
