@@ -67,6 +67,7 @@ jobs:
       github.head_ref != 'work/lumo-play-quality-20261114' && github.ref_name != 'work/lumo-play-quality-20261114' &&
       github.head_ref != 'integration/lumo-agent-execution-20261114' && github.ref_name != 'integration/lumo-agent-execution-20261114' &&
       github.head_ref != 'integration/lumo-live-connections-20261114' && github.ref_name != 'integration/lumo-live-connections-20261114' &&
+      github.head_ref != 'repair/lumo-single-apk-20261114' && github.ref_name != 'repair/lumo-single-apk-20261114' &&
       github.head_ref != 'qa/lumo-android-runtime-7b16-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-20261114' &&
       github.head_ref != 'qa/lumo-creative-7b16-20261114' && github.ref_name != 'qa/lumo-creative-7b16-20261114' &&
       github.head_ref != 'qa/lumo-android-runtime-7b16-followup-20261114' && github.ref_name != 'qa/lumo-android-runtime-7b16-followup-20261114'

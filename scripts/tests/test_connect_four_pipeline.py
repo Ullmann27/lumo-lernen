@@ -325,6 +325,14 @@ class WorkflowTests(unittest.TestCase):
         live='integration/lumo-live-connections-20261114'
         self.assertFalse(condition(block,{'github.head_ref':live,'github.ref_name':'123/merge'}))
         self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':live}))
+        repair='repair/lumo-single-apk-20261114'
+        self.assertFalse(condition(block,{'github.head_ref':repair,'github.ref_name':'123/merge'}))
+        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':repair}))
+        for unrelated in (repair+'-copy', 'repair/lumo-single-apk-20261115',
+                          'outside/'+repair):
+            with self.subTest(branch=unrelated):
+                self.assertTrue(condition(block,{'github.head_ref':unrelated,'github.ref_name':'123/merge'}))
+                self.assertTrue(condition(block,{'github.head_ref':'','github.ref_name':unrelated}))
         self.assertTrue(condition(block,{'github.head_ref':'unrelated-existing-branch','github.ref_name':'123/merge'}))
         self.assertIn("assert int(version[1]) != 2018",block)
         self.assertIn("assert int(version[1]) != 2019",block)
