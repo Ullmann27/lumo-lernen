@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "head": "36274db2941963c59b1f819ad7bc2358470d3a76",
+  "tree": "39ee9cdf1567271599922d6b991399927affccae",
+  "started_at": "2026-11-14T16:59:40.224558+00:00",
+  "finished_at": "2026-11-14T17:00:27.237170+00:00",
+  "wall_seconds": 47.01255016000141,
+  "exit_code": 0,
+  "timed_out": false,
+  "reported_counts": [
+    {
+      "tests": 45,
+      "seconds": 46.699
+    }
+  ],
+  "successful_method_lines": 44,
+  "failures_or_errors": [],
+  "skipped_method_lines": 0,
+  "sources_and_index_identical": true,
+  "tracked_index_paths": 4642,
+  "materialized_source_files": 14,
+  "skip_worktree_paths": 4628,
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "stderr": {
+    "bytes": 9804,
+    "sha256": "74e3c7689de437685e65b9fb7307b66e70a8e649c16d4fa9bb1de2e95bb0d407",
+    "git_blob": "db40a826a8970ee706f82baa8eef4d22ac3aec3a"
+  },
+  "modules": [
+    "tools.android_qa.tests.test_connect_four_preferences_observation",
+    "tools.android_qa.tests.test_connect_four_android_evidence",
+    "tools.android_qa.tests.test_connect_four_probe_deadlines",
+    "tools.android_qa.tests.test_connect_four_flutter_navigation"
+  ],
+  "scope": "45 local C4 observer contracts on the published exact checkpoint; fake device/clock/screenshot boundaries. No Android, app recovery, engine, APK, CI or release acceptance."
+}

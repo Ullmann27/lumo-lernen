@@ -1,0 +1,109 @@
+{
+  "reviewed_at": "2026-11-14T17:04:08.698501+00:00",
+  "host": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+  "native": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "run_id": 43614047730,
+  "run_attempt": 1,
+  "runtime_job_id": 132505134338,
+  "artifact_id": 14121382850,
+  "original_artifact_sha256": "9af1a71969818a63753e786081774e1dbb79638aa7678c38f983d82668543530",
+  "directly_viewed_originals": [
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_empty.png",
+      "bytes": 82537,
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "width_height": [
+        960,
+        540
+      ],
+      "direct_root_observation": "Landscape empty board, original fox, title, back/pause and seven column controls visible."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_phone_playing.png",
+      "bytes": 235104,
+      "sha256": "daec6b50de75b5932865e7e25d79cd6fa181e974291df26b0371a18b60605dab",
+      "width_height": [
+        1080,
+        2400
+      ],
+      "direct_root_observation": "Portrait empty board and title/back/pause plus seven column controls visible; no motion conclusion from this still."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_phone_bot_response.png",
+      "bytes": 239686,
+      "sha256": "3278b7867f790cc16f60738995404b436d8dd05b02a3132387005872a671ab04",
+      "width_height": [
+        1080,
+        2400
+      ],
+      "direct_root_observation": "Portrait cyan bottom disc and gold disc above in the fourth column; all seven column controls visible."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_pause.png",
+      "bytes": 47760,
+      "sha256": "7203ccc962921b3573febf6a56fcfd60af3178cbbb0ad99cc623857b0e662ee1",
+      "width_height": [
+        960,
+        540
+      ],
+      "direct_root_observation": "Pause overlay shows resume, new round and play against Lumo; column controls visually dimmed."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_win.png",
+      "bytes": 84544,
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "width_height": [
+        960,
+        540
+      ],
+      "direct_root_observation": "Landscape four cyan discs in bottom row are outlined; cyan win message visible, original fox and dimmed columns present."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_fold_landscape.png",
+      "bytes": 123809,
+      "sha256": "aac2efa26eafaf9eebdd9288f4db8b7a7f747860ebaade1a159b54a2747e7e96",
+      "width_height": [
+        2400,
+        1080
+      ],
+      "direct_root_observation": "Fold landscape result overlay shows cyan win/four in a row and board-view button. Further menu items are below its visible scroll region; their reachability is not established by this still."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_phone_portrait.png",
+      "bytes": 170661,
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "width_height": [
+        1080,
+        2400
+      ],
+      "direct_root_observation": "Portrait result overlay shows board view, new round and play against Lumo; cyan-win status and dimmed column controls are visible."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_small_portrait.png",
+      "bytes": 35739,
+      "sha256": "dc189342ac6f0150c5a1a569d4377d484a015a49fbafafe3e924e9f51f1740e1",
+      "width_height": [
+        320,
+        740
+      ],
+      "direct_root_observation": "Small portrait result overlay text and three menu controls are legible. Column strip has a visible horizontal scrollbar; later columns are partly/offscreen in this still."
+    },
+    {
+      "path": "analysis/verified-originals/selected-original-pngs/runtime/connect_four_small_landscape.png",
+      "bytes": 22915,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "width_height": [
+        640,
+        360
+      ],
+      "direct_root_observation": "Small landscape shows the board-view control inside a vertically scrollable result area and all seven dimmed column controls below. Other result-menu controls are not all simultaneously visible."
+    }
+  ],
+  "images_already_preserved_in_git": "b1bec46f996e122f3adde16e89533cc03ea074d8",
+  "limits": [
+    "Only these9 selected original stills were directly viewed by Root, not all259 decoded PNGs.",
+    "Desktop runtime/render evidence; no Android emulator, physical device, actual navigation or update result is inferred.",
+    "No FPS, motion smoothness, audio or measured touch dp claim from still images.",
+    "Scrollbars are observed; Root did not interact with these captured menus."
+  ]
+}

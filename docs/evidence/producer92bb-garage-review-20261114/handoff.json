@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_REVIEW_FROZEN",
+  "verdict": "NO_ADDITIONAL_GARAGE_SOURCE_CHANGE_JUSTIFIED",
+  "review": {
+    "bytes": 20188,
+    "sha256": "8fd4baadf7eb8d19fbb0dbbbf4b96fb84fc3b5cee1325f6158f5891896b197f0",
+    "git_blob": "f3f739fa1aac1fca90e627724f06cc1e60af5da0"
+  },
+  "manifest": {
+    "bytes": 11709,
+    "sha256": "87c6355d5bc3a76cb1c7681f56ae7594c87c6545b6f045bc6da7f7ffbda812f9",
+    "git_blob": "3998a14efd52b956d143c03a2cca4e419ce5876f"
+  },
+  "archive": {
+    "bytes": 3335089,
+    "sha256": "16122e898f3276989d7931b8a95070a7806bc12e92c573e4e3b955b6720e0604",
+    "git_blob": "111a5afcc189cae9cea691e3b1db1c283dbffdb8"
+  },
+  "roundtrip": {
+    "bytes": 279,
+    "sha256": "bf85eced72bc0ad7311088dfa40e019718489526e4d177a1382714210d29318a",
+    "git_blob": "01fc62fa7d3751ed6a8db433386a0164e8980781"
+  },
+  "source_changes": 0,
+  "tests_or_product_imports": 0,
+  "next_step": "Keep current Garage103 implementation; no speculative integration from92bb. Separate C4-XML peer review follows."
+}

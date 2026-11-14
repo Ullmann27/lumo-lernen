@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T17:04:02.825707+00:00",
+  "verdict": "V1_REQUIRES_THREE_NARROW_WORKFLOW_CORRECTIONS",
+  "source": {
+    "workflow": {
+      "bytes": 46286,
+      "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+      "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+    },
+    "line_count": 685,
+    "native": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+    "native_tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+    "host_base": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+    "future_host": "Actual pushed github.sha, not the historical 3fac literal"
+  },
+  "checked_original_inputs": [
+    {
+      "path": "originals/workflow-v1.yml",
+      "source": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-20261114/final-source/.github/workflows/lumo-next-table-authorities.yml",
+      "bytes": 46286,
+      "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+      "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+    },
+    {
+      "path": "originals/workflow-source-freeze.json",
+      "source": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-20261114/source-freeze.json",
+      "bytes": 1262,
+      "sha256": "c78308c9ad99be6517d9c6cfca8e24fb7826300fd4d09f1f7e23943b24565ae4",
+      "git_blob": "9d0ce451a959377ef2c1f6b40ec877f03f53a77d"
+    },
+    {
+      "path": "originals/qualification-contract.json",
+      "source": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-20261114/qualification-contract.json",
+      "bytes": 5734,
+      "sha256": "35998be08062bdb7c23ef6dfa8e5310e6a264626ba08a0646bb9feca81d58f4f",
+      "git_blob": "68ce979dbf69cbebd230a734151cd85238da3180"
+    },
+    {
+      "path": "originals/workflow-handoff.json",
+      "source": "/workspace/scratch/b3485b7bb989/host-next-authorities-qualification-20261114/handoff.json",
+      "bytes": 1547,
+      "sha256": "fc2abc300e321cf1d265b2c52440a43982f7ef12e7185b607696c7642a6854e7",
+      "git_blob": "bdded41e25ef2d1152e28b0cf9468fcd3d3f5126"
+    },
+    {
+      "path": "originals/local-3fac-flutter-invocation.json",
+      "source": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/runs/flutter-new-table-english-after-assets/invocation.json",
+      "bytes": 2037,
+      "sha256": "9764bbd408ed3adbef132975be7e6d6c842a3615386e81f8e7265c401d7db3db",
+      "git_blob": "994e11f3e72294de520963104929ea34fc883c19"
+    },
+    {
+      "path": "originals/local-3fac-own-package-resolution.json",
+      "source": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/setup/own-package-resolution.json",
+      "bytes": 2486,
+      "sha256": "4c6d55f41a1eda363b83e84bfe304bceaafcd204f6561da33253736ac5c4a874",
+      "git_blob": "edfee9f06c0dafff21608a4feb9eb054d03a2aea"
+    },
+    {
+      "path": "originals/local-3fac-final-handoff.json",
+      "source": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/final-handoff.json",
+      "bytes": 1504,
+      "sha256": "791ffb5bc3fd34844c667e3adde5b38027f005adecf2ece3b5a44d2bba733fa4",
+      "git_blob": "1b2e55d609ed21d991466ffa27e582afe2ad0474"
+    },
+    {
+      "path": "originals/run_full_flutter_acceptance.py",
+      "source": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/scripts/run_full_flutter_acceptance.py",
+      "bytes": 6523,
+      "sha256": "d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d",
+      "git_blob": "9999632174044af584c87147c5347c167b830918"
+    },
+    {
+      "path": "originals/pubspec.yaml",
+      "source": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/pubspec.yaml",
+      "bytes": 2718,
+      "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426"
+    },
+    {
+      "path": "originals/verify_dream_rasters.py",
+      "source": "/workspace/scratch/b3485b7bb989/native-ce909c4-import-validation-20261114/checkout/tools/verify_dream_rasters.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    }
+  ],
+  "selected_test_files": [
+    "test/games/memory_native_entry_test.dart",
+    "test/games/memory_result_frame_test.dart",
+    "test/quiz_native_roundtrip_lifecycle_test.dart",
+    "test/reward_wallet_queue_zone_test.dart",
+    "test/table_games_launcher_binding_test.dart",
+    "test/table_games_wallet_profile_test.dart",
+    "test/tutoring/native_english_activity_test.dart"
+  ],
+  "selection_matches_frozen_original_invocation_exactly": true,
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "required_source_binding_missing",
+      "lines": [
+        314,
+        319,
+        561,
+        595
+      ],
+      "finding": "The correct Host-CWD enforce-lockfile resolution is not followed by a package_config own-package or dependency-location binding. Ignored .dart_tool files are also outside the strict tracked-byte inventory. This is a missing required proof, not evidence that the current pub command resolved a foreign Host.",
+      "required_correction": "After actual resolution, retain original package_config/package_graph/lock hashes and bytes; resolve rootUri relative to the actual package_config URI and packageUri relative to that root; require one lumo_lernen entry resolving exactly to the actual host-source directory and its lib subdirectory. Record the actual resolved dependency roots and verify their existence, respecting platform-only package layouts. Bind the same generated inputs before and after execution without substituting old configs."
+    },
+    {
+      "id": "F2",
+      "severity": "per_file_completion_gate_missing",
+      "lines": [
+        621,
+        640
+      ],
+      "finding": "The suite-path set proves declarations for seven files; global starts==finishes proves completion for reported starts; summarize excludes hidden loaders and requires only a global positive pass count. The code does not require a genuine visible successful case in every file.",
+      "logical_counterexample_scope": "Static control-flow reasoning only, never an executed synthetic test or alleged real CI result: seven suite declarations plus completed hidden loaders and one visible successful case in only one suite satisfy the existing aggregate conditions.",
+      "required_correction": "Use original suite.id/path, testStart.test.suiteID/id/name and testDone result/hidden/skipped to retain actual per-suite identities and positive visible completion counts. Require at least one real successful unskipped non-hidden completion for each requested file, while preserving existing errors, no-skip, one-done, start/finish and exit-code gates. No invented total or Dart-syntax test count."
+    },
+    {
+      "id": "F3",
+      "severity": "unsafe_early_failure_upload_path",
+      "lines": [
+        70,
+        88,
+        677,
+        683
+      ],
+      "finding": "The upload always runs, but its output variable is populated only by Prepare via GITHUB_ENV. If earlier checkout/setup fails, Prepare is skipped and the expression path can resolve to root slash; include-hidden-files is enabled.",
+      "required_correction": "Guard the upload with successful Prepare or an equivalently guaranteed nonempty exact evidence path. Continue uploading all originals for failures after successful preparation; never permit fallback to runner filesystem root."
+    }
+  ],
+  "confirmed_contracts": [
+    {
+      "area": "Branch and source",
+      "lines": [
+        3,
+        55,
+        107,
+        206,
+        642,
+        675
+      ],
+      "finding": "Push-only exact isolated branch, contents:read, immutable NativeSHA/tree, checkout of actual Host github.sha, credentials not persisted. Snapshot helper is exact approved Native blob; commit/tree/full-index/tracked-byte checks before/after and complete tracked materialization are enforced."
+    },
+    {
+      "area": "Assets",
+      "lines": [
+        207,
+        270
+      ],
+      "finding": "Current literal pubspec declaration forms are handled. Every committed declared file/directory is required, symlinks rejected, original hashes matched, and the previously missing Cards WebP is explicitly required. No placeholder asset is synthesized."
+    },
+    {
+      "area": "Flutter invocation and raw evidence",
+      "lines": [
+        561,
+        641
+      ],
+      "finding": "Exactly the original seven paths, test --no-pub --machine --concurrency=1. Original stdout/stderr remain separate. Actual child exit is obtained; timeout is an explicit failed result with bounded TERM/KILL. No retry or fallback data."
+    },
+    {
+      "area": "Existing summary",
+      "lines": [
+        577,
+        639
+      ],
+      "finding": "Approved unchanged summarize() source hash and Gitblob are checked. Machine error events, missing completion, wrong file roster, absent/multiple final done, nonzero exit, failure and skips prevent PASS. Hidden loader success alone cannot satisfy its global passed>0, but per-suite positivity still needs F2."
+    },
+    {
+      "area": "Scope",
+      "finding": "Five separate groups retain independent scope. No new APK build, release, active C4 source mutation or claimed Android/FPS/audio success from these qualification results."
+    }
+  ],
+  "limits": [
+    "No workflow, linter, test, product import, engine, package resolution or CI action executed by this reviewer.",
+    "The historical 3fac local Flutter result remains INCOMPLETE with compiler-exit originals; it is not relabelled as success.",
+    "This is a static V1 review. Only a separately frozen corrected V2 can close the three findings.",
+    "Original V1 workflow and source freeze are retained bytewise here and are not edited."
+  ],
+  "tests_or_lints_executed": 0,
+  "source_or_git_mutations": 0
+}

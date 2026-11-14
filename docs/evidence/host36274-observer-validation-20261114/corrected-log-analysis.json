@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "kind": "Read-only corrected interpretation of the already completed original unittest stream",
+  "status": "PASS",
+  "head": "36274db2941963c59b1f819ad7bc2358470d3a76",
+  "tree": "39ee9cdf1567271599922d6b991399927affccae",
+  "actual_test_process_exit": 0,
+  "original_harness_exit": 1,
+  "actual_method_count": 45,
+  "passed": 45,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "single_run_started_at": "2026-11-14T16:59:40.224558+00:00",
+  "single_run_finished_at": "2026-11-14T17:00:27.237170+00:00",
+  "test_seconds": 46.699,
+  "wall_seconds": 47.01255016000141,
+  "original_stderr": {
+    "bytes": 9804,
+    "sha256": "74e3c7689de437685e65b9fb7307b66e70a8e649c16d4fa9bb1de2e95bb0d407"
+  },
+  "original_harness_result": {
+    "bytes": 1465,
+    "sha256": "9c3e869f44f4e5a602dbad469aaa783183d500a36a0d42c329d8723796b20cd4"
+  },
+  "original_harness_result_preserved": true,
+  "parser_defect": "The first successful test prints a real Pillow DeprecationWarning between the method prefix and its standalone ok line. The original regex accepted only single-line completions and counted 44.",
+  "correction": "Read each actual method block; verify the one exact warning block and its actual ok. Match all 45 fully qualified names against the unchanged source AST; require the one Ran45/OK summary and real child exit0.",
+  "methods": [
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_existing_120_second_boundary_after_real_pixel_analysis_stays_closed",
+      "status": "ok",
+      "line": 1,
+      "completion_line": 3,
+      "warning_lines": [
+        1,
+        2
+      ],
+      "exact_warning": "/workspace/scratch/b3485b7bb989/host-36274db-c4-preferences-checkout-20261114/tools/android_qa/connect_four_android_evidence.py:339: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.",
+      "warning_not_test_failure": true
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_global_budget_after_actual_pixel_analysis_cannot_accept_result",
+      "status": "ok",
+      "line": 4,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_global_budget_expiring_during_original_read_blocks_parse",
+      "status": "ok",
+      "line": 5,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_one_touch_missing_then_old_data_requires_fresh_matching_ack",
+      "status": "ok",
+      "line": 6,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_original_fixture_bytes_and_metadata_remain_exact",
+      "status": "ok",
+      "line": 7,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_permanently_missing_or_broken_xml_fails_with_one_touch",
+      "status": "ok",
+      "line": 8,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_reader_preserves_original_bytes_and_parse_cause_without_fallback",
+      "status": "ok",
+      "line": 9,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_valid_old_state_and_ack_never_confirm_the_touch",
+      "status": "ok",
+      "line": 10,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_preferences_observation.OriginalPreferencesObservationTests.test_valid_xml_with_wrong_owner_round_or_revision_never_confirms",
+      "status": "ok",
+      "line": 11,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_actual_upload_digest_is_canonicalized_against_rest_metadata",
+      "status": "ok",
+      "line": 12,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_real_size_identifiers_and_exact_source_contract",
+      "status": "ok",
+      "line": 13,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.BindingTests.test_rejects_wrong_source_workflow_attempt_artifact_and_job",
+      "status": "ok",
+      "line": 14,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.CompleteEvidenceTests.test_complete_synthetic_observation_replay",
+      "status": "ok",
+      "line": 15,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.CompleteEvidenceTests.test_failure_status_cannot_be_relabelled_with_old_binding",
+      "status": "ok",
+      "line": 16,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.CompleteEvidenceTests.test_fresh_heartbeat_and_actual_density_are_mandatory",
+      "status": "ok",
+      "line": 17,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.CompleteEvidenceTests.test_original_byte_change_and_unlisted_file_fail",
+      "status": "ok",
+      "line": 18,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.CompleteEvidenceTests.test_return_cannot_omit_actual_back_touch",
+      "status": "ok",
+      "line": 19,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.CompleteEvidenceTests.test_state_chain_cannot_skip_first_child_bot_pair",
+      "status": "ok",
+      "line": 20,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_ack_requires_actual_bot_and_same_round",
+      "status": "ok",
+      "line": 21,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_actual_complete_target_and_density",
+      "status": "ok",
+      "line": 22,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_anr_and_engine_errors_remain_rejected",
+      "status": "ok",
+      "line": 23,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_flutter_target_requires_actual_package_and_unambiguous_full_control",
+      "status": "ok",
+      "line": 24,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_no_clipped_small_duplicate_fake_or_other_revision_target",
+      "status": "ok",
+      "line": 25,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_owner_and_durable_round_must_match",
+      "status": "ok",
+      "line": 26,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_pixel_evidence_rejects_missing_actual_acknowledged_disc",
+      "status": "ok",
+      "line": 27,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_android_evidence.ObservationTests.test_reopen_requires_same_round_and_new_token",
+      "status": "ok",
+      "line": 28,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_incomplete_actual_surface_still_blocks_observation",
+      "status": "ok",
+      "line": 29,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_observation_rechecks_after_evidence_write_before_successful_return",
+      "status": "ok",
+      "line": 30,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_observation_rejects_late_last_read_pixels_or_target_without_accepting_result",
+      "status": "ok",
+      "line": 31,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_exact_deadline_is_closed_and_timely_return_keeps_full_checks",
+      "status": "ok",
+      "line": 32,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_rejects_slow_pid_or_activity_reads_before_accepting_local_45_second_result",
+      "status": "ok",
+      "line": 33,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_return_still_requires_observed_pause",
+      "status": "ok",
+      "line": 34,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_timely_observation_preserves_state_target_and_original_record",
+      "status": "ok",
+      "line": 35,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_keeps_exact_boundary_closed_and_timely_result_unchanged",
+      "status": "ok",
+      "line": 36,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_rejects_condition_that_finishes_after_the_same_local_deadline",
+      "status": "ok",
+      "line": 37,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_rejects_successful_observation_completed_after_local_90_seconds",
+      "status": "ok",
+      "line": 38,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_probe_deadlines.DeadlineTests.test_wait_still_rejects_incomplete_state_and_expired_global_budget",
+      "status": "ok",
+      "line": 39,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_current_frame_integrity_failure_is_not_retried_or_accepted",
+      "status": "ok",
+      "line": 40,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_evidence_write_cannot_turn_an_expired_observation_into_success",
+      "status": "ok",
+      "line": 41,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_exact_deadline_rejects_late_hierarchy_frame_and_density",
+      "status": "ok",
+      "line": 42,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_global_deadline_remains_mandatory",
+      "status": "ok",
+      "line": 43,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_invalid_destinations_never_authorize_input",
+      "status": "ok",
+      "line": 44,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_one_leave_tap_waits_for_delayed_games_before_fresh_portal_touch",
+      "status": "ok",
+      "line": 45,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_permanent_pause_fails_without_repeating_leave_or_opening_a_route",
+      "status": "ok",
+      "line": 46,
+      "warning_lines": []
+    },
+    {
+      "test": "tools.android_qa.tests.test_connect_four_flutter_navigation.NavigationTests.test_ready_observation_is_not_reused_as_a_portal_touch_authorization",
+      "status": "ok",
+      "line": 47,
+      "warning_lines": []
+    }
+  ],
+  "tracked_index_paths": 4642,
+  "materialized_source_files": 14,
+  "skip_worktree_paths": 4628,
+  "complete_before_after_source_and_index_bytes_identical": true,
+  "new_test_processes_started_for_this_analysis": 0,
+  "scope": "45 local C4 observer contracts on the published exact checkpoint; fake device/clock/screenshot boundaries. No Android, app recovery, engine, APK, CI or release acceptance."
+}
