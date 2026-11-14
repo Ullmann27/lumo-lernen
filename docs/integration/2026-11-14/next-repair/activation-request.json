@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14 20:28:38 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "integration/lumo-c4-connections-20261114",
+  "expected_branch_sha": "7ac736fdbd042769592e88de0f9849632242316d",
+  "source_checkpoint": "ea5748f42c82b8f0690ce32f42dc3a01342af392",
+  "source_tree": "65f2d0aa1fec45cd4c875154fe230a1f8c8e0aa9",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "version": "0.13.8+2020",
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "workflow_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+  "pull_request": 485,
+  "required_jobs": [
+    "connect-four-runtime",
+    "android-host-compile",
+    "verify-and-build",
+    "android-c4",
+    "update-2020-from-2017",
+    "verify-c4-candidate",
+    "prepare-c4-delivery"
+  ],
+  "local_54_validation": {
+    "status": "RUNNING",
+    "root": "/tmp/host-ea5748-c4-optin54-validation-20261114",
+    "actual_result": null,
+    "scope": "One actual local invocation; independent full CI runs all current contracts. No outcome predeclared."
+  },
+  "flutter_catalog": {
+    "expected_visible_selected_cases": 82,
+    "sha256": "4a4bd535610d1f82ba59ce5f6bbb70ba370fc097b5aef030036bd7d6e092af3a",
+    "source_binding_sha256": "ac05ee66eab63bf9c1a2ca2f276916ce179193c862755b8864f7dd0765607b64"
+  },
+  "prior_run": {
+    "id": 43632790204,
+    "attempt": 1,
+    "head": "7ac736fdbd042769592e88de0f9849632242316d",
+    "conclusion": "failure"
+  },
+  "publication_eligible": false,
+  "activation_run": null,
+  "prior_evidence_commit": "8f3d3b6721a41062c99f1ac10bdf122e3ec60709"
+}

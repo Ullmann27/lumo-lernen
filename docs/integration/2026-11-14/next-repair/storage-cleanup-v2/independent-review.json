@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "kind": "independent_read_only_memory_cleanup_review",
+  "created_at": "2026-11-14T20:25:38.102241+00:00",
+  "source_pack": "/tmp/host-pr507-8e64-regression-cleanup-v2-37414-20261114",
+  "source_freeze": {
+    "bytes": 1514,
+    "sha256": "b1a7dcbf4c58dcaa31b204b9221fe652c015312223e6d255c23bc7e563a5ecdc",
+    "git_blob": "9822955b1714c40854391957dc68d2b993a1d534"
+  },
+  "base_host": "37414d0ceeb6db13ddd2b5bbc64789e3260ac1e5",
+  "base_tree": "a2ab2d1883aa764424e48e3b992cc3d09c3a84e5",
+  "file": {
+    "path": "test/games/memory_profile_storage_test.dart",
+    "mode": "100644",
+    "before": {
+      "bytes": 12801,
+      "sha256": "378a2c560ea344a7be832628e993244d4424c396ee55850cb97ed7ab01388388",
+      "git_blob": "cfc75adfea811babde60c96938ba79ee03036475"
+    },
+    "after": {
+      "bytes": 12937,
+      "sha256": "33d2b6b63a139f0cd8b8ef75197d515e7c04a3cc9a043e0b07e5815de7dee20f",
+      "git_blob": "375812cb6b17b638a070dd9382249d2a3c5fef5a"
+    },
+    "derivation": "Minimal integration cleanup over our exact 37414 regression; not a whole producer-file replacement."
+  },
+  "base_tree_preimage_match": true,
+  "concrete_source_blocker_found": false,
+  "findings": [
+    "The only final file is the Memory regression test. It moves initial _open and its original exact opening-confirmation assertion into the already existing try/finally in two gated cases. Failure at either initial operation now reaches the same cleanup.",
+    "Gate configuration still follows successful opening confirmation. finally completes the same gate at most once before draining; existing two pump calls and widget unmount per case remain in their original order.",
+    "Four additive tester.idle calls occur before the existing pump pairs and after widget unmount. The supplied actual Flutter3.44.9 source documents microtask draining plus already scheduled zero-time timers; the report does not infer a historically measured timer cause or a stability PASS.",
+    "All48 full expect expressions are identical after removing formatting whitespace outside string literals, in the same order. All six test names and every existing pump remain unchanged. No Wallet or product-file replacement is included in this one-path patch."
+  ],
+  "assertion_binding": {
+    "expect_calls": 48,
+    "same_order_and_contents": true,
+    "test_names": [
+      "Old unowned record stays byte-identical and is assigned to no child",
+      "Real completed round restores only its child best and difficulty",
+      "Delayed old-child write cannot overwrite the newly selected child",
+      "Delayed identity load cannot expose old best after profile switch",
+      "Pending successive choices retain captured snapshots and final order",
+      "Unreadable existing child stats are preserved instead of reset"
+    ],
+    "new_idle_calls": 4,
+    "pump_count_before": 18,
+    "pump_count_after": 18
+  },
+  "references": [
+    {
+      "path": "repair.patch",
+      "bytes": 2701,
+      "sha256": "655d78cb1f8f904aa35ae0e723faa7c289c96217d4e95694fbd0ddf94f28f907",
+      "git_blob": "c621cd4a249a350b5101518f8ffdab268cf652c2"
+    },
+    {
+      "path": "comparison-and-preservation.json",
+      "bytes": 5207,
+      "sha256": "f8c27df0120acf492b89286b72bf436719fb897d48f49204a6a19c811ef6a6fb",
+      "git_blob": "e4494ea32783f33faeca75bdbf4706dcd71ab729"
+    },
+    {
+      "path": "checkpoint-source-projection.json",
+      "bytes": 1677,
+      "sha256": "bb32c248677c0151324e91302ad7609300491363797e42e13d1528468deb0856",
+      "git_blob": "54e90ef92c05236979fa021443aadf47237d8681"
+    },
+    {
+      "path": "reference-source/binding.dart.excerpt.txt",
+      "bytes": 1570,
+      "sha256": "e691158844ea80d3d31b000b3b1c753dd053050a3f51ff9325a5ba97b9948287",
+      "git_blob": "57d667c65280add5d61f51ff49351a2894533595"
+    },
+    {
+      "path": "reference-source/widget_tester.dart.excerpt.txt",
+      "bytes": 622,
+      "sha256": "d8a8c13b7c05432b62aa2640ecc98955ef1753349599398b2ba7ab3a1dcb99b3",
+      "git_blob": "177fe2408fe0901db9783300aa0261dd64764035"
+    }
+  ],
+  "limits": [
+    "No Dart/Flutter tests, imports, compilation, API reads or source/Git/CI changes were performed.",
+    "The six actual Memory cases and their integration with the full Flutter suite remain pending real execution; producer results are not substituted.",
+    "SDK excerpts were read and hash-bound as supplied; the complete SDK source files were not independently rehashed in this review."
+  ],
+  "tests_executed": 0
+}

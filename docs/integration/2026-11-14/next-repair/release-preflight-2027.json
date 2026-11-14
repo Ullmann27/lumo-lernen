@@ -1,0 +1,51 @@
+{
+  "time": "2026-11-14 20:27:22 UTC",
+  "release": {
+    "status": "fulfilled",
+    "value": {
+      "path": "releases/tags/coachpreview-build-2020",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}"
+          }
+        ],
+        "structuredContent": {
+          "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+          "error_code": "NOT_FOUND",
+          "error_data": {
+            "message": "Not Found",
+            "documentation_url": "https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name",
+            "status": "404"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  "tag": {
+    "status": "fulfilled",
+    "value": {
+      "path": "git/ref/tags/coachpreview-build-2020",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}"
+          }
+        ],
+        "structuredContent": {
+          "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}",
+          "error_code": "NOT_FOUND",
+          "error_data": {
+            "message": "Not Found",
+            "documentation_url": "https://docs.github.com/rest/git/refs#get-a-reference",
+            "status": "404"
+          }
+        },
+        "isError": true
+      }
+    }
+  }
+}

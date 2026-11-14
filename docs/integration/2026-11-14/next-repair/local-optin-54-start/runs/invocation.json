@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "tools.android_qa.tests.test_connect_four_flutter_navigation",
+    "tools.android_qa.tests.test_connect_four_android_evidence",
+    "tools.android_qa.tests.test_connect_four_probe_deadlines",
+    "-v"
+  ],
+  "cwd": "/tmp/host-ea5748-c4-optin54-validation-20261114/source",
+  "start_utc": "2026-11-14T20:24:02.318877+00:00",
+  "outer_timeout_seconds": 600,
+  "host": "ea5748f42c82b8f0690ce32f42dc3a01342af392",
+  "tree": "65f2d0aa1fec45cd4c875154fe230a1f8c8e0aa9",
+  "python": {
+    "version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "resolved_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12"
+  },
+  "pillow": {
+    "version": "13.0.0",
+    "module": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/__init__.py"
+  },
+  "environment_changes": {
+    "removed_override_names": [],
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/tmp/host-ea5748-c4-optin54-validation-20261114/temporary"
+  },
+  "probe_deadlines_unchanged": true,
+  "no_device_engine_flutter_or_ci_execution": true
+}

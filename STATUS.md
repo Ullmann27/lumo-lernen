@@ -1,3 +1,86 @@
+# Current candidate: confirmed storage and explicit 3D entry
+
+Updated: 2026-11-14 20:28:38 UTC. This documentation/evidence activation follows
+Host `ea5748f42c82b8f0690ce32f42dc3a01342af392`, tree
+`65f2d0aa1fec45cd4c875154fe230a1f8c8e0aa9`.
+Version remains **0.13.8+2020** with exact Native
+`f9d9772bb932d7ee8702eeb5bca6d98c286f3b98`, tree
+`4036a20ab80de78bcdf0d074b585be88c2946492`.
+
+## Connected repairs
+
+Memory now requires a positive storage write response before acknowledging a
+validated restored or recovered snapshot. A matching native preference cache
+does not itself prove a committed write. The earlier 7ac description overstated
+what reload alone establishes; the explicit confirmation barrier supersedes it.
+Existing corrupt, historical unowned and foreign-child data remain protected.
+Wallet retries confirm the same saved result without granting another reward.
+
+Four-in-a-row opens its playable Flutter board first. Native 3D starts after the
+visible "In 3D weiterspielen" action. The existing failed-bot and terminal-reward
+retry mechanisms are retained together with the new opening guard.
+Both actual Android openings now observe the loaded 3D control within the
+existing 30-second destination wait, then require fresh original UI/PNG
+observations before the touch. Return, mailbox closure and the 900-second total
+budget remain. The saved-route test now covers 320x740 and 640x360 displays.
+
+The two synthetic JVM speech adapters now match the production signatures,
+constants and optional JSON object/array access. The production speech sources
+and all original 23/17/30 PCM, lifecycle and consent/rate assertions are unchanged.
+English synthesis is not simulated by these German-only fixtures.
+
+Garage observation reuses the current hash-bound original frame analysis and
+waits only for a changed or unqualified observation. Existing Boru word recovery,
+two-frame acceptance, clipping, gesture and time limits remain.
+
+## Validation state at activation
+
+Source checkpoint ea5748 changes 19 existing source paths and adds four tests;
+all other existing paths are preserved. Native pins, all historical releases,
+the complete C4 workflow and publication verifiers are unchanged. Independent
+source reviews and the selected **82 visible Flutter-case catalogue** are bound
+to the exact checkpoint in the accompanying evidence.
+
+One isolated **54-method Python invocation is running** on the exact checkpoint.
+It uses eleven hash-bound materialized sources with the other 4,914 tracked paths
+explicitly absent. Its completed original result will be preserved separately;
+no local PASS is claimed by this activation. The full workflow independently
+executes the entire current Android-contract suite. Running these validations
+in parallel does not waive either result or permit publication after a failure.
+
+The preceding 7ac run **43632790204/1** remains FAILURE: native runtime and actual
+Android compilation succeeded, its complete Flutter stage passed 2,686 visible
+cases with zero failures/skips, then the build-contract stage failed because its
+old speech fixtures lacked the production API. Four downstream jobs were skipped.
+The complete historical originals are preserved in evidence commit
+`8f3d3b6721a41062c99f1ac10bdf122e3ec60709`.
+The earlier local Garage invocation also remains incomplete: 51 explicit
+successes before its 240-second outer interruption, not a 109-case acceptance.
+A static follow-up found no demonstrated fake-clock loop in the last named case;
+the actual duration cause remains unestablished.
+
+## Complete delivery gate
+
+This activation requests the existing seven-job workflow through PR485 on
+`integration/lumo-c4-connections-20261114`. Bind its actual activating Host/tree,
+run and attempt after the event. Every runtime, compilation, full test, signed
+ARM64/x86 APK, real Android tour, 2017-to-2020 preserved-data update, candidate
+verification and delivery-bundle gate remains mandatory.
+
+A public APK requires the accepted same-source bundle, current PR head, exact
+signature/native/source identity and complete unauthenticated HTTPS APK byte
+verification. Release and tag coachpreview-build-2020 were both absent at the
+20:27 UTC preflight. No APK or new complete Android acceptance is claimed here.
+Keep the active head stable while its run executes; prepare later producer work
+on a separate branch. Main and producer refs remain protected.
+
+---
+
+# Historical source notes below
+
+The following records retain their original source identities. In particular,
+their older reload-only storage claim is superseded by the correction above.
+
 # Activate the complete Memory, Quiz, English and return-repair candidate
 
 Updated: 2026-11-14. This activation follows the fully published source checkpoint

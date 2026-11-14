@@ -1,3 +1,40 @@
+# Continue the actual repaired 2020 APK build
+
+The complete source checkpoint is
+`ea5748f42c82b8f0690ce32f42dc3a01342af392` /
+`65f2d0aa1fec45cd4c875154fe230a1f8c8e0aa9`.
+This documentation-only successor activates the unchanged C4 workflow through
+PR485. Record the actual successor SHA/tree/run/attempt; do not reuse 7ac results.
+
+- Central Pipeline owns the one current-run status watch and original terminal
+  API/log collection. Flutter owns the new complete machine stream, exact
+  82-case catalogue and Android-compile originals. Godot owns the one already
+  running 54-method local replay and then the exact native runtime originals.
+- The local replay was running when this activation was prepared. Preserve its
+  actual child exit, complete output, warnings and any recorder error; recounting
+  originals does not rerun tests. Its result belongs to ea5748. Full CI must also
+  execute all current contracts before any APK acceptance.
+- Require the unchanged three Speech JVM contracts (23/17/30), every full
+  Flutter/script/Android-QA gate, Native52/Dream/Discovery, signed ARM64/x86 APKs,
+  actual main/Village/C4 tour and the preserved 2017-to-2020 update.
+- 7ac run43632790204 remains failed at speech fixture compilation. Its 2,686
+  Flutter successes, runtime and host compile cannot approve changed sources.
+  The complete originals are in evidence commit8f3d3b6721a41062c99f1ac10bdf122e3ec60709.
+- The separate publisher branch still holds the reviewed CLI at
+  72143d3586109967773d6442072d486c11dc1449. Its older 7ac-bound plan is obsolete.
+  Rebind the executable workflow to the actual fully successful new candidate,
+  its run/attempt and original delivery artifact ID/digest/size before activating
+  publication. The activating publisher SHA/tree must identify the new workflow
+  commit, while the reviewed CLI bytes stay unchanged.
+- Verify the new immutable public ARM64 HTTPS APK bytes and signature before
+  returning the direct download URL. No Main/producer reset, forced update,
+  old-release overwrite, external message or unattended automation is authorized
+  by this continuation. Automation_ef722d06b7cc81918d0f36265bdbdf43 remains disabled.
+
+---
+
+# Preserved earlier continuation records
+
 # Activate the complete Memory, Quiz, English and return-repair candidate
 
 Updated: 2026-11-14. This activation follows the fully published source checkpoint

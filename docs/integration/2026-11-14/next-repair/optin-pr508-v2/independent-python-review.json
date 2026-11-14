@@ -1,0 +1,81 @@
+{
+  "schema": 2,
+  "kind": "independent_read_only_source_review",
+  "reviewer": "pipeline_repair",
+  "created_at": "2026-11-14T20:22:20.938Z",
+  "source_pack": "/tmp/host-pr508-c4-optin-followup-v2-20261114",
+  "source_freeze_sha256": "496d06277b19412d73491b862e88aaf769bcdcd6bb591bc6ae567126854f8906",
+  "base_host": "37414d0ceeb6db13ddd2b5bbc64789e3260ac1e5",
+  "base_tree": "a2ab2d1883aa764424e48e3b992cc3d09c3a84e5",
+  "native_unchanged": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "scope": {
+    "files": [
+      ".github/probes/lumo_connect_four_android_probe.py",
+      "tools/android_qa/connect_four_android_evidence.py",
+      "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "tools/android_qa/tests/test_connect_four_flutter_navigation.py"
+    ],
+    "comparison": "Complete current preimages, frozen V1 and final V2; exact current 37414 publication and 4,901-entry tree reconstructed from the supplied original flat entries.",
+    "excluded": "The five Dart product/widget source paths in the nine-path pack are the separate Flutter/Root review. No source approval for those paths is inferred here."
+  },
+  "result": {
+    "concrete_source_blocker_found": false,
+    "v1_readiness_gap_addressed_in_source": true,
+    "device_or_test_acceptance_claimed": false
+  },
+  "findings": [
+    {
+      "id": "opening_sequence",
+      "status": "source_verified",
+      "detail": "Both first entry and reopen execute the observed portal touch, the unchanged wait_for_flutter_control(NATIVE_ENTRY, unique-native-ready-tag, timeout=30), then the unchanged flutter_touch for the same exact 'In 3D weiterspielen' control. The wait result is stored separately as native_entry_ready or reopen.native_ready. The readiness observation is not reused as either touch observation."
+    },
+    {
+      "id": "wait_deadlines_and_inputs",
+      "status": "source_verified",
+      "detail": "The existing wait method body is byte-identical to the current base and V1. It creates a local deadline from min(remaining global time,30), captures with the remaining local/global budget, checks expiry after hierarchy, frame and target/density evaluation, and again after writing a ready record. It sends no input. Missing/disabled/ambiguous/clipped/small/foreign controls remain unready; exact local-boundary or global expiry cannot produce an accepted return. The unchanged global 900-second budget and bounded commands remain in force."
+    },
+    {
+      "id": "deadline_scope_limit",
+      "status": "explicit_boundary",
+      "detail": "This is a source check of the existing acceptance deadlines, not a newly measured wall-clock bound for each Android operation. The inherited hierarchy/density operations keep their existing command limits and post-read local-deadline rejection. No tighter per-call device-time guarantee is claimed and no timeout was increased."
+    },
+    {
+      "id": "readiness_original_replay",
+      "status": "source_verified",
+      "detail": "checked_flutter_readiness requires the exact label and a nonempty list of observation objects. Every original readiness PNG must match its SHA, decode as PNG and match recorded dimensions; the XML must be a hierarchy and the actual density command must be valid. It re-evaluates the same package/caption/pause/control checks as the live wait. Every earlier observation must contain the exact reproduced rejection reason with no target; the last must contain the recomputed accepted target with no reason. A prior accepted control followed by more observations is rejected."
+    },
+    {
+      "id": "chronology_and_nonreuse",
+      "status": "source_verified",
+      "detail": "checked_native_opening requires three distinct record names and includes every readiness observation between the two portal observations and the two fresh native-touch observations. All hierarchy paths and capture paths must be distinct; finite nonnegative timestamps must strictly increase through the eventual native state. First-entry readiness reused at reopen, readiness used as a touch frame, missing readiness, stale/corrupt images and malformed/currently ineligible controls cannot qualify."
+    },
+    {
+      "id": "preserved_original_guards",
+      "status": "byte_and_ast_verified",
+      "detail": "All pre-existing probe bodies except the narrowly updated run orchestration remain byte-identical, including remaining/bounded_command, observation/wait_observation, real touches, existing navigation wait, transitions and return_to_flutter. All pre-existing verifier functions except verify_report remain byte-identical. Reversing only its two new opening-call replacements reproduces the complete original verify_report body. The one Back, 45-second native process/foreground/mailbox closure, persisted same round, owner/ACK/child-bot order, pause state, new token/PID, learning preservation, all-buffer fatal/ANR rejection and APK/source/API35 binding are preserved."
+    },
+    {
+      "id": "test_source_review",
+      "status": "not_executed",
+      "detail": "All original 36 focused methods remain AST-identical (17 Evidence,8 Navigation,11 Deadline). V2 has 27 Evidence and16 Navigation plus the same11 Deadline methods:54 planned,18 added versus original and7 beyond V1. New delayed-button and never-ready navigation cases use the real observer with explicit synthetic device/time boundaries; the latter keeps one portal touch and forbids native input. Five V2 evidence negatives reject missing/reused readiness, changed control or earlier frame, reused ready-as-touch, and an ignored earlier accepted control. V1 opt-in negatives remain effective; their five changed navigation methods now account for the additional wait observation rather than removing the original input/control conditions."
+    }
+  ],
+  "limits": [
+    "No tests, engine/device runs, imports of product/test modules, lints, downloads, API polls or Git/ref/CI mutations were performed.",
+    "The future 54-method result is pending the actual authorized checkpoint/CI execution; no original Android opt-in result exists for this new source.",
+    "V1 source and review remain unchanged and historical. V2 resolves the earlier source-level lack of an explicit destination wait; actual delayed navigation remains to be observed on the eventual exact-source APK.",
+    "Historical 7ac run 43632790204 remains FAILURE with four skipped downstream jobs; this source review does not alter that outcome."
+  ],
+  "binding_report": {
+    "path": "source-bindings.json",
+    "bytes": 9276,
+    "sha256": "c701c72f341e28e8543fa5254415e455df5ed2fe411438029642a9c36ac6395f",
+    "git_blob": "a4479557de642f6350e8073bc5013cee7ce12a6d"
+  },
+  "operations": {
+    "static_ast_and_hash_only": true,
+    "tests_executed": 0,
+    "product_imports": 0,
+    "source_changes": 0
+  }
+}
