@@ -1,0 +1,65 @@
+name: LUMO current 2020 real visual display proof
+on:
+  push:
+    branches: [qa/lumo-2020-visible-flutter-20261114]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-renders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve exact locked dependencies and real capture fonts
+        run: |
+          flutter pub get --enforce-lockfile
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+      - name: Capture real Home on phone and Fold after opening actual learning cards
+        env:
+          LUMO_1989_CARD_CAPTURES: proof/home
+        run: |
+          set -euo pipefail
+          mkdir -p proof/home
+          flutter test --no-pub --reporter=expanded --timeout=60s test/design/home_1989_premium_cards_capture_test.dart
+          test -s proof/home/phone-start.png
+          test -s proof/home/fold-open-start.png
+      - name: Capture all eleven real game portals on Fold and phone
+        env:
+          LUMO_HUB_CAPTURES: proof/spielewelt
+        run: |
+          set -euo pipefail
+          mkdir -p proof/spielewelt
+          flutter test --no-pub --reporter=expanded --timeout=60s test/games/spielwelt_hub_capture_test.dart
+          test -s proof/spielewelt/phone.png
+          test -s proof/spielewelt/fold7-open-portrait.png
+      - name: Bind original image evidence to the exact product source
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD | tee proof/checkout-source.txt
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root=Path('proof')
+          manifest=[{'file':str(p.relative_to(root)), 'size':p.stat().st_size,
+                     'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+                    for p in sorted(root.rglob('*.png'))]
+          assert len(manifest)>=10, 'Expected real Flutter captures'
+          (root/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          print('Verified',len(manifest),'current-source original PNGs')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Lumo-2020-real-home-and-11-game-portals
+          path: proof/
+          if-no-files-found: warn
+          retention-days: 30
