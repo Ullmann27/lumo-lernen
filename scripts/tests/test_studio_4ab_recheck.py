@@ -65,13 +65,21 @@ class GitBindingTests(unittest.TestCase):
         put(base / "pubspec.yaml", "version: 0.13.7+2019\n")
         command(base, "add", ".")
         command(base, "commit", "-qm", "Synthetic immutable product")
-        self.expected = replace(MODULE.EXPECTED, host=command(base, "rev-parse", "HEAD"))
+        self.expected = replace(MODULE.EXPECTED, host=command(base, "rev-parse", "HEAD"),
+                                original_surfaces_sha256=MODULE.sha256(base / MODULE.SURFACES_PATH))
         self.qa = Path(self.temp.name) / "qa"
         subprocess.run(["git", "clone", "-q", "--no-hardlinks", str(base), str(self.qa)], check=True)
         configure(self.qa)
-        for name in MODULE.ALLOWLIST:
+        for name in MODULE.OCR_FILES | MODULE.BINDER_FILES:
             put(self.qa / name, ("# reviewed QA-only fixture " + name + "\n").encode())
             command(self.qa, "add", "--", name)
+        command(self.qa, "commit", "-qm", "Synthetic original nine-path QA basis")
+        self.expected = replace(self.expected, qa_basis=command(self.qa, "rev-parse", "HEAD"))
+        for name in MODULE.CARDS_FILES:
+            put(self.qa / name, ("# reviewed Cards-only fixture " + name + "\n").encode())
+            command(self.qa, "add", "--", name)
+        self.expected = replace(self.expected,
+                                approved_surfaces_sha256=MODULE.sha256(self.qa / MODULE.SURFACES_PATH))
         command(self.qa, "commit", "-qm", "Synthetic exact QA delta")
         self.qa_head = command(self.qa, "rev-parse", "HEAD")
         self.product = self.qa / "candidate-source"
@@ -81,13 +89,27 @@ class GitBindingTests(unittest.TestCase):
     def verify(self):
         return MODULE.verify_sources(self.qa, self.product, self.qa_head, self.runtime, self.expected)
 
-    def test_exact_nine_file_delta_and_real_worktree_pass(self):
+    def test_exact_sixteen_file_delta_and_real_worktree_pass(self):
         result = self.verify()
-        self.assertEqual(len(result["reviewed_delta"]), 9)
+        self.assertEqual(len(result["reviewed_delta"]), 16)
         self.assertEqual(result["product"]["head"], self.expected.host)
         self.assertEqual(result["qa"]["head"], self.qa_head)
         self.assertTrue(result["qa"]["tracked_source_clean"])
-        self.assertEqual(result["unchanged_other_git_entries"], 5)
+        self.assertEqual(result["unchanged_other_git_entries"], 4)
+        self.assertEqual(result["qa_basis"], self.expected.qa_basis)
+        self.assertEqual(result["surface_reader_binding"]["original_sha256"],
+                         self.expected.original_surfaces_sha256)
+        self.assertEqual(result["surface_reader_binding"]["approved_sha256"],
+                         self.expected.approved_surfaces_sha256)
+
+    def test_committed_surface_change_cannot_use_the_reviewed_path_as_a_blanket_exception(self):
+        # A clean committed file still fails when it is not the exact reviewed correction.
+        put(self.qa / MODULE.SURFACES_PATH, "# unrelated clean committed surface change\n")
+        command(self.qa, "add", "--", MODULE.SURFACES_PATH)
+        command(self.qa, "commit", "-qm", "Tampered allowed surface-reader path")
+        self.qa_head = command(self.qa, "rev-parse", "HEAD")
+        with self.assertRaisesRegex(RuntimeError, "exact approved read-only correction"):
+            self.verify()
 
     def test_product_change_outside_allowlist_is_rejected(self):
         put(self.qa / "lib/product.dart", "void main() { throw 1; }\n")
@@ -248,7 +270,7 @@ class ExecutionBoundaryTests(unittest.TestCase):
                                       sums=qa / "candidate/dist/ANDROID-TOUR-SHA256SUMS.txt", out=qa / "tour",
                                       expected_qa_source="a" * 40, expected_api=37, verify_only=False)
 
-    def test_both_unchanged_clis_use_absolute_qa_paths_and_product_cwd(self):
+    def test_both_bound_clis_use_absolute_qa_paths_and_product_cwd(self):
         calls = []
         def runner(cmd, **kwargs):
             calls.append((cmd, kwargs))

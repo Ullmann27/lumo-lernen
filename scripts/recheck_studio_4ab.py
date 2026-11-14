@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Run the unchanged Studio tours against the immutable 4ab APK with a bound QA helper.
+"""Run bound Studio tours against the immutable 4ab APK with reviewed QA readers.
 
 This is a diagnostic on an existing binary, never a build, publication or replacement
 for the original Studio workflow. Metadata comes from authenticated GitHub read calls.
+The modernization tour is unchanged. The Studio surface reader has one explicitly
+hash-pinned read-only correction; its remaining runtime gates are preserved.
 """
 from __future__ import annotations
 
@@ -25,6 +27,9 @@ import zipfile
 class Expected:
     host: str = "4ab96666f954baf258422d6ed277fc297b7ddeef"
     native: str = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+    qa_basis: str = "a446f3c1a320ad5297e17606727d801c5e993ce1"
+    original_surfaces_sha256: str = "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6"
+    approved_surfaces_sha256: str = "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
     run: int = 43530667812
     build_job: int = 132247240154
     artifact: int = 14089507933
@@ -39,20 +44,33 @@ class Expected:
 
 
 EXPECTED = Expected()
-ALLOWLIST = frozenset({
+OCR_FILES = frozenset({
     ".github/probes/creative_android_probe.py",
     "tools/android_qa/tests/test_native_caption_ocr.py",
     "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
     "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
     "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
     "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+})
+BINDER_FILES = frozenset({
     "scripts/recheck_studio_4ab.py",
     "scripts/tests/test_studio_4ab_recheck.py",
     ".github/workflows/lumo-studio-4ab-ocr-recheck.yml",
 })
+SURFACES_PATH = ".github/probes/lumo_studio_surfaces_android_probe.py"
+CARDS_FILES = frozenset({
+    SURFACES_PATH,
+    "tools/android_qa/tests/test_cards_layout_readiness.py",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+})
+ALLOWLIST = OCR_FILES | BINDER_FILES | CARDS_FILES
 TOURS = (
     ".github/probes/modernization_android_tour.py",
-    ".github/probes/lumo_studio_surfaces_android_probe.py",
+    SURFACES_PATH,
 )
 BUILD_STEPS = (
     "Build unified real Android APK",
@@ -101,9 +119,9 @@ def git(root: Path, *arguments: str) -> bytes:
     )
 
 
-def git_tree(root: Path) -> dict[str, dict]:
+def git_tree(root: Path, revision: str = "HEAD") -> dict[str, dict]:
     result = {}
-    for entry in git(root, "ls-tree", "-r", "-z", "HEAD").split(b"\0"):
+    for entry in git(root, "ls-tree", "-r", "-z", revision).split(b"\0"):
         if not entry:
             continue
         header, name = entry.split(b"\t", 1)
@@ -174,22 +192,39 @@ def verify_sources(qa: Path, candidate: Path, expected_qa: str, runtime_roots: t
     require(qa != candidate and not qa.is_relative_to(candidate), "QA and product checkouts must be distinct")
     qa_report, qa_tree = source_checkout(qa, expected_qa, runtime_roots)
     product_report, product_tree = source_checkout(candidate, expected.host)
+    require(git(qa, "merge-base", expected.qa_basis, expected_qa).decode().strip() == expected.qa_basis,
+            "QA source does not descend from the exact reviewed a446 basis")
+    basis_tree = git_tree(qa, expected.qa_basis)
     changed = {name for name in qa_tree.keys() | product_tree.keys()
                if qa_tree.get(name) != product_tree.get(name)}
     require(changed == ALLOWLIST,
-            f"QA delta differs from the exact nine reviewed paths: unexpected={sorted(changed - ALLOWLIST)}, missing={sorted(ALLOWLIST - changed)}")
+            f"QA delta differs from the exact sixteen reviewed paths: unexpected={sorted(changed - ALLOWLIST)}, missing={sorted(ALLOWLIST - changed)}")
     for name in ALLOWLIST:
         require(qa_tree.get(name, {}).get("mode") in {"100644", "100755"},
                 f"Allowed QA file is missing or not regular: {name}")
+    for name in OCR_FILES:
+        require(qa_tree[name] == basis_tree.get(name),
+                f"Previously reviewed a446 OCR source or fixture changed: {name}")
     for root in (qa, candidate):
         require(read_json(root / "config/godot-source.json").get("revision") == expected.native,
                 "Actual checkout native pin changed")
         match = re.search(r"^version:\s*(\S+)\s*$", (root / "pubspec.yaml").read_text(), re.M)
         require(match is not None and match[1] == "0.13.7+2019", "Actual checkout version changed")
-    for name in TOURS:
-        require(name in product_tree and qa_tree[name] == product_tree[name], "An original tour changed")
+    require(TOURS[0] in product_tree and qa_tree[TOURS[0]] == product_tree[TOURS[0]],
+            "The original modernization tour changed")
+    require(SURFACES_PATH in product_tree and basis_tree.get(SURFACES_PATH) == product_tree[SURFACES_PATH],
+            "The a446 surface-reader basis differs from the original product reader")
+    require(sha256(candidate / SURFACES_PATH) == expected.original_surfaces_sha256,
+            "Original Studio surface-reader bytes differ from the reviewed baseline")
+    require(sha256(qa / SURFACES_PATH) == expected.approved_surfaces_sha256,
+            "Studio surface-reader bytes differ from the exact approved read-only correction")
     return {
         "qa": qa_report, "product": product_report,
+        "qa_basis": expected.qa_basis,
+        "tour_execution_scope": "Modernization unchanged; Studio surface reader bound to the exact approved read-only correction",
+        "surface_reader_binding": {"path": SURFACES_PATH,
+                                   "original_sha256": expected.original_surfaces_sha256,
+                                   "approved_sha256": expected.approved_surfaces_sha256},
         "unchanged_other_git_entries": len((qa_tree.keys() | product_tree.keys()) - changed),
         "reviewed_delta": [{"path": name, "before": product_tree.get(name), "after": qa_tree[name],
                             "sha256": sha256(qa / name)} for name in sorted(changed)],
@@ -324,7 +359,7 @@ def run_tours(args: argparse.Namespace, commands: list, runner=subprocess.run) -
         commands.append(entry)
         completed = runner(command, cwd=args.candidate_source, check=False)
         entry.update(returncode=completed.returncode, finished_at=datetime.now(timezone.utc).isoformat())
-        require(completed.returncode == 0, f"Unchanged original tour failed with exit {completed.returncode}: {command[2]}")
+        require(completed.returncode == 0, f"Bound Studio tour failed with exit {completed.returncode}: {command[2]}")
 
 
 def execute(args: argparse.Namespace) -> int:
