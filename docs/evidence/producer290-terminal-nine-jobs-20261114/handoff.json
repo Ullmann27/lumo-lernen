@@ -1,0 +1,25 @@
+{
+  "status": "PRODUCER_FULL_RUN_API_AND_NINE_ORIGINAL_LOGS_SUCCESS",
+  "report": {
+    "path": "terminal-full-run-proof/report.json",
+    "bytes": 8892,
+    "sha256": "70def8002a7585e860f4f4fc5189ec7a4f9b9105d5f9bc9f4bd1d3f5c19d5c01",
+    "git_blob": "a68b060870b0305b6d73a06e1df6fe6a87f3d2f2"
+  },
+  "manifest": {
+    "path": "terminal-full-run-proof/manifest.json",
+    "bytes": 3556,
+    "sha256": "811ccab974f8a5b5747ea3465391ea4a81c66031e1202ee816b69b428cd38937",
+    "git_blob": "22ee17fbefb191a1d57f5c1b0e1ebf9550746391"
+  },
+  "archive": {
+    "path": "terminal-full-run-proof/producer-29080-full-run-originals.tar.gz",
+    "bytes": 329698,
+    "sha256": "45ee6d10bb7cdfe261d6abd2583e0f39157cf6069ca9cc6813d56e9e6d86e200",
+    "git_blob": "a57e896b2b0316976363df4a93152568ad5992bb"
+  },
+  "member_count": 14,
+  "all_members_byte_equal": true,
+  "no_more_polls_needed": true,
+  "artifact_payloads_downloaded": 0
+}

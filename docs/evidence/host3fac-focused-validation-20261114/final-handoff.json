@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_CONTRACTS_PASS_FLUTTER_QUALIFICATION_INCOMPLETE",
+  "host": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+  "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+  "files": {
+    "handoff.json": {
+      "bytes": 4427,
+      "sha256": "9d0dcba4425ed9ec0672f63cdf3ddda7ebbacbf2be8d5b94f97229fc877ad2cb",
+      "git_blob": "59435161903db5390fe8988b62643f381ad99eeb"
+    },
+    "manifest.json": {
+      "bytes": 36140,
+      "sha256": "f45e6d25bd396557563a8624f7e5ccc877e7686220882c645516ad0a5d790e65",
+      "git_blob": "6e61d9c535eb18967b7c71900ed8017d73b0a9b0"
+    },
+    "README.md": {
+      "bytes": 4251,
+      "sha256": "e8b96077384be3f6ac7ac432fac6575839bc598f9d5e87698d9a92098b54c17a",
+      "git_blob": "48db4726a133beffc06a3fc69ea8c2b82a5f4387"
+    },
+    "compact-originals.tar.gz": {
+      "bytes": 4950147,
+      "sha256": "05b6c45f0d2f7496c3f5d723b0ad14baf29b03e1edb0711c9ca01f0d3d1d8928",
+      "git_blob": "497e7d9510e07563dd0853f41e964c6ffaef14b9"
+    },
+    "archive-binding.json": {
+      "bytes": 325,
+      "sha256": "8718e48021097200abb34ab5aad367bc284fac4e6159eaae49a70d19e297b09b",
+      "git_blob": "ab6ff30a0b344b5adface9e9a8847d47729deb04"
+    },
+    "archive-roundtrip.json": {
+      "bytes": 36427,
+      "sha256": "30a14796a6bbf7ed9a83a01a524abf42750c660c183efd3bf2e1f684e91e0d32",
+      "git_blob": "4674bb7961ad8b2f7ce715a56bf6ccd1c83036a3"
+    }
+  },
+  "freeze": "No subsequent changes to the included evidence or original streams."
+}

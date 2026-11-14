@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "status": "FROZEN_LOCAL_CONTRACTS_PASS_FLUTTER_QUALIFICATION_INCOMPLETE",
+  "host": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+  "tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+  "checkout": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout",
+  "expected_later_native_pair": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+  "actual_results": {
+    "python_probe_contracts": {
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit": 0,
+      "seconds": 0.728
+    },
+    "jvm_table_embedded_return": {
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit": 0,
+      "seconds": 39.13,
+      "table_actual_jvm_markers": 28
+    },
+    "dart_contracts": [
+      {
+        "label": "dart-memory-round",
+        "cases": 30,
+        "checks": 1694,
+        "exit": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "label": "dart-memory-scheduler",
+        "cases": 7,
+        "checks": 13,
+        "exit": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "label": "dart-quiz-round",
+        "cases": 28,
+        "checks": 1786,
+        "exit": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "label": "dart-english-activity",
+        "cases": 10,
+        "checks": 2955,
+        "exit": 0,
+        "stderr_bytes": 0
+      }
+    ],
+    "flutter_attempt1": {
+      "status": "FAIL_BEFORE_WIDGET_EXECUTION",
+      "actual_widget_results": 0,
+      "child_exit": 1,
+      "cause": "The exact declared cards WebP was not materialized by the initial docs-sparse checkout.",
+      "original_directory": "runs/flutter-new-table-english"
+    },
+    "flutter_attempt2": {
+      "status": "INCOMPLETE_COMPILER_EXIT_WITHOUT_WIDGET_EXECUTION",
+      "actual_widget_results": 0,
+      "original_directory": "runs/flutter-new-table-english-after-assets",
+      "reported_error": "The Dart compiler exited unexpectedly.",
+      "outer_controlled_command_exit": 130,
+      "inner_flutter_exit": null,
+      "compiler_exit_or_signal": null,
+      "cause": "Not established. No source diagnostic or attributable OOM evidence.",
+      "termination": "Own previously stalled Exec session interrupted once after original compiler error; no third local attempt."
+    }
+  },
+  "source_binding": {
+    "all68_end_sources_exact": true,
+    "all4628_index_paths_unchanged": true,
+    "final2340_materialized_files_byte_equal_to_HEAD": true,
+    "only_added_materialization": "Already-committed cards WebP8495b34a,356822 bytes; index/sparse configuration unchanged.",
+    "full_comparison": "final-source-and-input-comparison.json",
+    "package_binding": "setup/own-package-resolution.json"
+  },
+  "toolchain": {
+    "flutter": "3.44.9",
+    "dart": "3.12.2",
+    "java": "OpenJDK21.0.13",
+    "kotlin_compiler": "2.2.0 existing jars",
+    "explicit_package_map": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/.dart_tool/package_config.json",
+    "own_package_root": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout",
+    "own_package_lib": "/workspace/scratch/b3485b7bb989/host-3fac2cfa-focused-validation-20261114/checkout/lib",
+    "new_pub_resolutions_or_downloads": 0,
+    "jvm_heap_limit": "JAVA_TOOL_OPTIONS=-Xmx512m, original test commands unchanged"
+  },
+  "required_remaining": "One separate checkpoint-bound CI qualification of exactly the same seven Flutter files with every case enabled and no skips. Root/Godot own workflow; no local repetition planned. Paired Native renderer/authority, Android, APK and Delivery remain separate.",
+  "originals": "All per-run separate emitted stdout/stderr, complete case/marker summaries, command/env records and before/after raw source/index inventories are included. Successful inner compiler output suppressed by the unchanged JVM harness is not claimed as retained.",
+  "archive": "compact-originals.tar.gz",
+  "archive_binding": "archive-binding.json",
+  "archive_readback": "archive-roundtrip.json",
+  "excluded_large_reproducible_data": [
+    "Complete own source checkout and Git object database (exact published SHA/Tree and complete inventories bind them).",
+    "SDK/pub-cache/JDK/Kotlin jars (read-only original path/hash/version inventories included).",
+    "Ignored build caches and ephemeral compilation directories under tmp/checkout."
+  ],
+  "source_ref_ci_device_mutations": 0
+}

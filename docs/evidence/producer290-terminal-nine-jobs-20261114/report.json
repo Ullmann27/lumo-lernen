@@ -1,0 +1,238 @@
+{
+  "status": "PRODUCER_FULL_RUN_API_AND_NINE_ORIGINAL_LOGS_SUCCESS",
+  "native_head": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "run": 43611803408,
+  "attempt": 1,
+  "workflow": ".github/workflows/lumo-studio-2020.yml",
+  "event": "push",
+  "branch": "chatgpt/lumo-nextgen-feature-20261114",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "job_id": 132498257241,
+      "name": "gameplay",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:44:40Z",
+      "completed_at": "2026-11-14T15:59:55Z",
+      "log": {
+        "path": "originals/jobs/gameplay-132498257241.log",
+        "bytes": 533491,
+        "sha256": "18c5817802d77ce75f2880d7cc31f61c62a1083a249c7600713d5d6fa2ec3a70",
+        "git_blob": "b7d5aacd67a04c27f4a21942d825a5411f6a6512"
+      }
+    },
+    {
+      "job_id": 132498257435,
+      "name": "learning-preview",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:44:40Z",
+      "completed_at": "2026-11-14T15:54:19Z",
+      "log": {
+        "path": "originals/jobs/learning-preview-132498257435.log",
+        "bytes": 268286,
+        "sha256": "5df66bcd80f7a2ba16668ae399a9f073cebe50b614ccc4edd1b8f9e0591f3ed9",
+        "git_blob": "ec801de5adba14a58818f0b8c9324601a8ae5cf6"
+      }
+    },
+    {
+      "job_id": 132498257475,
+      "name": "touch-workshop",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:44:40Z",
+      "completed_at": "2026-11-14T16:07:38Z",
+      "log": {
+        "path": "originals/jobs/touch-workshop-132498257475.log",
+        "bytes": 268169,
+        "sha256": "54f0316b41359be43cd61e8930b67e47a4ce7b7bc4f9750a889de56a31a43c61",
+        "git_blob": "daa1723cf6a774804da4fc786bba8be1ef1940dc"
+      }
+    },
+    {
+      "job_id": 132498257483,
+      "name": "touch-build",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:44:40Z",
+      "completed_at": "2026-11-14T16:01:38Z",
+      "log": {
+        "path": "originals/jobs/touch-build-132498257483.log",
+        "bytes": 262466,
+        "sha256": "8c4673babd2756382eacab3985d7905f2bddcc5dd83c37b8880b7f3399be319d",
+        "git_blob": "d6c205918a6997a37f0e8a23de68def5f126ee62"
+      }
+    },
+    {
+      "job_id": 132498257493,
+      "name": "touch-treasure",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:44:40Z",
+      "completed_at": "2026-11-14T16:00:53Z",
+      "log": {
+        "path": "originals/jobs/touch-treasure-132498257493.log",
+        "bytes": 259952,
+        "sha256": "5219eba892cdabf3a517888097b6af2ff4745a08dd9683cd7a33f79039d4b7c4",
+        "git_blob": "a48d10c2dbce2380afc01a90510affce435bd588"
+      }
+    },
+    {
+      "job_id": 132498257499,
+      "name": "studio",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T15:44:40Z",
+      "completed_at": "2026-11-14T16:03:32Z",
+      "log": {
+        "path": "originals/jobs/studio-132498257499.log",
+        "bytes": 374505,
+        "sha256": "6d8b814a2a96b057d9fe315d49abe39d010a5765edca3e3b05e3ecd5f4aff37e",
+        "git_blob": "92d68e83fc73110000ea216d7cc56cb1d411269b"
+      }
+    },
+    {
+      "job_id": 132503450540,
+      "name": "new-worlds",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T16:03:33Z",
+      "completed_at": "2026-11-14T16:22:11Z",
+      "log": {
+        "path": "originals/jobs/new-worlds-132503450540.log",
+        "bytes": 582035,
+        "sha256": "517532a5438492cce3c8045850fcd426c90a6dce7de13e8538b139eaffa4cc40",
+        "git_blob": "723711a205dcd144140b672a9487b652d785cf7f"
+      }
+    },
+    {
+      "job_id": 132508701385,
+      "name": "bundle-evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T16:22:13Z",
+      "completed_at": "2026-11-14T16:22:35Z",
+      "log": {
+        "path": "originals/jobs/bundle-evidence-132508701385.log",
+        "bytes": 11693,
+        "sha256": "86ab5709e3bad5fb6d13094d0d91b074e7570a9a65c1daa1168692c6cdfed6c9",
+        "git_blob": "3b768a311a91de0d560fb72c878815cf9cec403f"
+      }
+    },
+    {
+      "job_id": 132508814681,
+      "name": "archive-evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T16:22:38Z",
+      "completed_at": "2026-11-14T16:23:17Z",
+      "log": {
+        "path": "originals/jobs/archive-evidence-132508814681.log",
+        "bytes": 9758,
+        "sha256": "e6a81ec0d360a2ff178eca46cd8e229dd3d47e434db48f29d229dd3a1e08f899",
+        "git_blob": "40edee7a3c10b9c39f4b8651e88758ac4529f737"
+      }
+    }
+  ],
+  "markers": [
+    {
+      "job_id": 132498257241,
+      "log": "originals/jobs/gameplay-132498257241.log",
+      "line": 307,
+      "original_line": "2026-11-14T15:45:01.3065478Z SUMMARY: 117 PASS / 7 WARN / 0 FAIL"
+    },
+    {
+      "job_id": 132498257435,
+      "log": "originals/jobs/learning-preview-132498257435.log",
+      "line": 2775,
+      "original_line": "2026-11-14T15:54:16.2717206Z [LearningCapture] PASS captures=25"
+    },
+    {
+      "job_id": 132498257499,
+      "log": "originals/jobs/studio-132498257499.log",
+      "line": 3422,
+      "original_line": "2026-11-14T15:46:12.7338654Z CARDS_SAFE_AREA_PASS checks=662 failures=0 profiles=5 images=0"
+    },
+    {
+      "job_id": 132498257499,
+      "log": "originals/jobs/studio-132498257499.log",
+      "line": 3466,
+      "original_line": "2026-11-14T15:46:22.6415753Z MOBILE_SAFE_AREA_PASS checks=112 failures=0 controls=15 images=0 scope=platform_boundary_fixture"
+    },
+    {
+      "job_id": 132498257499,
+      "log": "originals/jobs/studio-132498257499.log",
+      "line": 3662,
+      "original_line": "2026-11-14T15:53:45.6083718Z CARDS_SAFE_AREA_PASS checks=671 failures=0 profiles=5 images=3"
+    },
+    {
+      "job_id": 132498257499,
+      "log": "originals/jobs/studio-132498257499.log",
+      "line": 3714,
+      "original_line": "2026-11-14T15:55:38.8948846Z MOBILE_SAFE_AREA_PASS checks=124 failures=0 controls=15 images=4 scope=platform_boundary_fixture"
+    },
+    {
+      "job_id": 132498257499,
+      "log": "originals/jobs/studio-132498257499.log",
+      "line": 3726,
+      "original_line": "2026-11-14T15:55:39.6440137Z LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false"
+    },
+    {
+      "job_id": 132498257499,
+      "log": "originals/jobs/studio-132498257499.log",
+      "line": 3745,
+      "original_line": "2026-11-14T15:56:05.1952969Z LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true"
+    },
+    {
+      "job_id": 132503450540,
+      "log": "originals/jobs/new-worlds-132503450540.log",
+      "line": 308,
+      "original_line": "2026-11-14T16:03:58.5366044Z SUMMARY: 117 PASS / 7 WARN / 0 FAIL"
+    },
+    {
+      "job_id": 132503450540,
+      "log": "originals/jobs/new-worlds-132503450540.log",
+      "line": 5101,
+      "original_line": "2026-11-14T16:07:19.0802683Z [CreativeBuild] PASS: support, collision, crossing, meaningful goals, undo/redo, rejected corrupt save"
+    },
+    {
+      "job_id": 132503450540,
+      "log": "originals/jobs/new-worlds-132503450540.log",
+      "line": 5108,
+      "original_line": "2026-11-14T16:07:32.9288969Z [CreativeBuild] PASS: actual world, successful JSON reload, pause, 4 rendered screenshots"
+    },
+    {
+      "job_id": 132503450540,
+      "log": "originals/jobs/new-worlds-132503450540.log",
+      "line": 5251,
+      "original_line": "2026-11-14T16:07:53.0219480Z [LearningWorld] PASS checks=5340"
+    },
+    {
+      "job_id": 132503450540,
+      "log": "originals/jobs/new-worlds-132503450540.log",
+      "line": 5682,
+      "original_line": "2026-11-14T16:17:26.1183143Z [LearningCapture] PASS captures=25"
+    },
+    {
+      "job_id": 132503450540,
+      "log": "originals/jobs/new-worlds-132503450540.log",
+      "line": 5916,
+      "original_line": "2026-11-14T16:21:59.1206339Z [LumoNextgen] PASS: new production learning, platforming, building, cards, rhythm and garage checks; logs /home/runner/work/lumo-godot/lumo-godot/nextgen-evidence/nextgen"
+    }
+  ],
+  "artifact_metadata_only": {
+    "path": "originals/full-artifacts-terminal.json",
+    "bytes": 5912,
+    "sha256": "99c0792dc1d529fccd54134e5560163a27aac7f1ddfac9706cfa672e01d38286",
+    "git_blob": "03c14baf971d47eff70dbfbc51735681f60ec35e"
+  },
+  "limits": [
+    "No artifact payload downloaded or decoded for this producer follow-up",
+    "No new image or film sighting",
+    "No transfer to combined Nativece909c4 or Host3fac",
+    "The separate authority run uses Host50503, not Host2e or Host3fac",
+    "The Producer LearningWorld marker is 5340; it is not the current integrated Wisp-preserving 5347 contract"
+  ]
+}

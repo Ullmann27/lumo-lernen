@@ -1,0 +1,23 @@
+{
+  "status": "FROZEN_SECOND_ACTUAL_IMPORT_SIGKILL",
+  "root": "/workspace/scratch/b3485b7bb989/native-ce909c4-import-attempt2-20261114",
+  "report": {
+    "bytes": 1332,
+    "sha256": "b9888724da401c1f5fdd9f16b2bfc0a3461a19e1f2db58d4c0c76c135a82117f",
+    "git_blob": "79ff72c338e732584f7aa82e027133b7228a4b1b"
+  },
+  "manifest": {
+    "bytes": 5332,
+    "sha256": "83460001f4d827a408d904a59992c77261bd91febd7b1d5516b53a4089131bd3",
+    "git_blob": "a2834c44e5273e55c8804cd578d2f7dc79236f78"
+  },
+  "archive": {
+    "path": "native-ce909c4-import-attempt2-originals.tar.gz",
+    "bytes": 1065554,
+    "sha256": "dd8f93dfd39118c52c6507be41c5350fc7791a61e5dda838e9ebff59764a5a25",
+    "git_blob": "8922f9aab9e6cf1780c966f0804593380be64341",
+    "member_count": 22
+  },
+  "git_unchanged": true,
+  "followup": "Separate exact-source rendered authority qualification; no more local engine attempts"
+}
