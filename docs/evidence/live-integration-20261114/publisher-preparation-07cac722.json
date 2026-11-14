@@ -1,0 +1,54 @@
+{
+  "status": "PREPARED_NOT_ACTIVATED",
+  "workflow_sha256": "ffafb6d9a78f5bf73ea224197108419264173133b58d8e2f13fff5788732604b",
+  "origin_template_sha256": "887b4ab2893d8eda7b58935029e23822c2870ac6cb1daf454a29b50eafd9b28c",
+  "acceptance_identity": {
+    "SOURCE_SHA": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "ACCEPTANCE_RUN": "43586101225",
+    "ACCEPTANCE_ATTEMPT": "1",
+    "ACCEPTANCE_PR": "497",
+    "VERSION_TAG": "coachpreview-build-2020"
+  },
+  "host_tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+  "native_source": "71a4c1e2304b52005950b12490d070c286c45438",
+  "final_source_binding_pending": false,
+  "activation_pending_complete_seven_job_success": true,
+  "yaml_parse": "PASS",
+  "bash_checks": [
+    {
+      "step": "Read the complete current acceptance and download its original bundle",
+      "bash_n_exit_code": 0
+    },
+    {
+      "step": "Verify and safely unpack every original delivery byte",
+      "bash_n_exit_code": 0
+    },
+    {
+      "step": "Require a genuinely new version before creating its tag and draft",
+      "bash_n_exit_code": 0
+    },
+    {
+      "step": "Upload the exact verified original assets without replacing files",
+      "bash_n_exit_code": 0
+    },
+    {
+      "step": "Recheck current acceptance and publish only the checked new draft",
+      "bash_n_exit_code": 0
+    },
+    {
+      "step": "Download the public APK without authentication and verify its exact bytes",
+      "bash_n_exit_code": 0
+    }
+  ],
+  "inline_python_blocks_parsed": 2,
+  "fresh_tag_and_uploaded_draft_checked_before_publish": true,
+  "github_publication_writes_performed": false,
+  "actionlint": {
+    "version": "1.7.12",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "checkpoint_branch": "checkpoint/lumo-live-publisher-20261114",
+  "activation_branch": "delivery/lumo-live-2020-20261114"
+}
