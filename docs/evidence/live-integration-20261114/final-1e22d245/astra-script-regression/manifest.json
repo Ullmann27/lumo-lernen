@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "kind": "actual_current_complete_script_regression",
+  "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "host_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "actual_checkout": "67ab955d0844b9021090bf019a798611d1f0f56f",
+  "actual_checkout_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "full_source_tree_equal": true,
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43596913321,
+  "run_attempt": 1,
+  "job_id": 132453271428,
+  "job_name": "full-app-script-regression",
+  "workflow": ".github/workflows/lumo-astra-script-recovery.yml",
+  "head_branch": "integration/lumo-live-connections-20261114",
+  "status": "completed",
+  "conclusion": "success",
+  "started_at": "2026-11-14T12:52:16Z",
+  "completed_at": "2026-11-14T12:57:25Z",
+  "tests": 932,
+  "test_seconds": 247.727,
+  "skipped": 0,
+  "original_summary": [
+    {
+      "line": 1904,
+      "text": "2026-11-14T12:57:22.7043423Z Ran 932 tests in 247.727s"
+    },
+    {
+      "line": 1906,
+      "text": "2026-11-14T12:57:22.7044127Z OK"
+    }
+  ],
+  "error_rows": [],
+  "skip_rows": [],
+  "original_joblog_downloads": 1,
+  "artifacts": [
+    {
+      "id": 14114778134,
+      "name": "lumo-astra-app-script-full-log-43596913321",
+      "size_in_bytes": 28654,
+      "digest": "sha256:c1343b19039174e693f7bf83d002f5df30ce1a1f802b3be2de749826c996ddd8",
+      "expired": false,
+      "workflow_run": {
+        "id": 43596913321,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-live-connections-20261114",
+        "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/astra-script-regression/job-132453271428-original.log",
+      "bytes": 300759,
+      "sha256": "313110235447dd87928c2e37877ff83f0141d1e7b747b7340d661ad30f11805f"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/astra-script-regression/run-original.json",
+      "bytes": 13672,
+      "sha256": "ddf0e8197e8b2960c8fa1d0c8ab4baa6e080332e301f5486df857c3dca2fb663"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/astra-script-regression/jobs-original.json",
+      "bytes": 2780,
+      "sha256": "8cf64f4d3f1d46577a550e331727fcaf5b52bf279f3551f8a4b4475224c6c350"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/astra-script-regression/actual-pr-merge-original.json",
+      "bytes": 2674,
+      "sha256": "69c4990901914a7487df5e99ade6db6c2bb874c371541624eca64e3f43d35798"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/astra-script-regression/artifacts-original.json",
+      "bytes": 781,
+      "sha256": "e47b73b4fb07fedcceccabbca16e9cc791a56c18836cab5158be2f6f914d7544"
+    }
+  ],
+  "scope": "Existing full scripts/tests regression in its already-started CI workflow; no new run, Android device, APK build or publication initiated or inferred."
+}
