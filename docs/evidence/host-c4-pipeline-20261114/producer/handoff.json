@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "status": "IMPLEMENTED_AS_EXTERNAL_REVIEWABLE_DRAFT",
+  "source_freeze_sha256": "dfeddf79d75361ae351f32eb3e46448353ae38c4ac0c040110e6b75b3b18167d",
+  "patch": {
+    "path": "proposed.patch",
+    "bytes": 148723,
+    "sha256": "348398c3022c2233fb5c6b4c1c01eb48c9ab0f1c8da471f815446de16848ab8b"
+  },
+  "paths": [
+    ".github/probes/lumo_connect_four_android_probe.py",
+    ".github/workflows/lumo-connect-four-2020.yml",
+    ".github/workflows/lumo-unified-integration-2026.yml",
+    "scripts/tests/test_connect_four_pipeline.py",
+    "scripts/verify_connect_four_candidate.py",
+    "tools/android_qa/connect_four_android_evidence.py",
+    "tools/android_qa/tests/test_connect_four_android_evidence.py"
+  ],
+  "local_validation": {
+    "tests": 26,
+    "errors": 0,
+    "skips": 0,
+    "full_logs": [
+      "evidence/focused-final/suite-1.log",
+      "evidence/focused-final/suite-2.log"
+    ],
+    "sources_before_after": "evidence/focused-final/",
+    "actionlint_exit": 0,
+    "patch_check_exit": 0
+  },
+  "original_draft_red": "evidence/upload-digest-draft-red/",
+  "independent_review": "Requested from Flutter agent; separate source-bound report, not claimed here",
+  "actual_runtime_status": "NOT_RUN: no APK build, no desktop engine/Flutter/Xvfb run, no Android C4 run",
+  "release_status": "No publisher in this v1; no release or CI action",
+  "next_delivery_scope": "Root separately authorized a new external host-c4-delivery-20261114 patch after preserving this v1",
+  "reference_source_heads": {
+    "host": [
+      "43db2662e890b6468cf77f7044da16364a259482",
+      "4a70b60c254d3ee35832cb2a4b5eb9aa819e02fd"
+    ],
+    "native": [
+      "27ae427029a5199699c95a79a84b0027d7571752",
+      "c389c0de01d9a6ca9fd6e9332fafdf2dedbc8153"
+    ]
+  },
+  "worktree_mutation": false,
+  "git_index_ref_mutation": false
+}

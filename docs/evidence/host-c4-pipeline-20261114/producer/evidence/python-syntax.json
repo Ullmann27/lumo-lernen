@@ -1,0 +1,26 @@
+{
+  "method": "ast.parse only; no device/engine execution",
+  "files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "sha256": "4249de4352a32694f28bb45786b73437eb2d32f360fb754a4ab48c9d5212f77c"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "sha256": "d072f3fc1d0c7d460deb71b2251b2ad90d11e8843d05370be6013fd07d186bb4"
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "sha256": "9e06d785cac7f09f8a0af3cdcfef6ceed866632625f4415079dcea2c2bd3d5f8"
+    },
+    {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "sha256": "df4ed66f20fa7a35ee1912b10cf0adc203e94d3fc2f9b2fdcf60bca0e04e813d"
+    }
+  ],
+  "passed": true
+}

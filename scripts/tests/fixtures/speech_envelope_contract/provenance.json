@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "stage_only": true,
+  "scope": "Original Kotlin test sources and explicitly synthetic platform fixtures are byte-preserved from the frozen producer stage. The WAV is the existing original voice asset. No Android/device playback result is claimed.",
+  "frozen_stage_source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e",
+  "producer_source_freeze_sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+  "producer_host_base": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "integration_host_base": "43db2662e890b6468cf77f7044da16364a259482",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/SpeechEnvelopeContract.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
+      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/LearningSpeechLifecycleContract.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
+      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/runtime/assets/audio/voice/words/apfel.wav",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/apfel.wav",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
+      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Bridge.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "bytes": 462,
+      "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6",
+      "git_blob": "3560fa5b3537dcd6b881dc9090ef4f0099b20e50",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Channel.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt",
+      "bytes": 172,
+      "sha256": "c42bc41b86360bc28f84f59fbec760a633460ffab930439921c344cafc093950",
+      "git_blob": "56fe64be87d4489133e83855df5a612b6225a174",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Context.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt",
+      "bytes": 318,
+      "sha256": "bfadda67fce0bcfd940e6d275f0e4184c2a592febb7ab3c5639a40c1f6ec21ac",
+      "git_blob": "0685bbdf9b4cf3efe20bbb4d0e646e94e647c33c",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Handler.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt",
+      "bytes": 992,
+      "sha256": "2baa97b0f65a6a7cc59a26f5f80e823608d5e18f546236db7850d902c7963dce",
+      "git_blob": "855d09cd8dbc4af5bd91b29fa1db1e52488dbd9e",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Json.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "bytes": 964,
+      "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9",
+      "git_blob": "8bf77f00b631df5027e17d6eb84dd29f5594f462",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Log.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+      "bytes": 73,
+      "sha256": "d9bef1b203ec4e7cfe515061ee7cae2d333c7bce7fdee8e460e8554c00ec43e6",
+      "git_blob": "c060a6b11c5e44f72ea3b0204b49d69995ec0e04",
+      "byte_equal_to_frozen_original": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Media.kt",
+      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt",
+      "bytes": 1466,
+      "sha256": "26dadd1a5347836a72d034e925f3098221a86055ede2c4e80906fb41893dd962",
+      "git_blob": "6857f886fada7cdba117053b559024ef2c0386bd",
+      "byte_equal_to_frozen_original": true
+    }
+  ],
+  "new_neighbor_harness": "LearningSpeechBuildContract.kt is a new integration-only synthetic JVM boundary contract; it is not presented as a producer original."
+}
