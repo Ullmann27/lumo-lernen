@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "status": "FROZEN_TWO_COMPLETED_JOB_ORIGINALS",
+  "run_id": 43589206933,
+  "attempt": 1,
+  "host": "3d91bd8355a539c3c2413760959684cd3fee985a",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "analysis": {
+    "bytes": 9001,
+    "sha256": "3edc793ecebcc5c046c30dd052bc7f4f4335b7574cab704a3bca9fb23550f2ee",
+    "git_blob": "82e6087bc3e82aa6146c92022e6a8e00233816d8"
+  },
+  "original_file_count": 58,
+  "all_original_gzip_roundtrips_verified": true,
+  "source_mutations": false,
+  "tests_engine_or_device_executed_by_reviewer": false,
+  "original_zips": [
+    {
+      "path": "/tmp/host-pr485-3d91bd83-pipeline-evidence-20261114/artifacts/14112126601/original.zip",
+      "bytes": 22146786,
+      "sha256": "899c497e3c68bf7baf2f8d4c92241cb876f430adb702a9bcbf714b047eff92ce"
+    },
+    {
+      "path": "/tmp/host-pr485-3d91bd83-pipeline-evidence-20261114/artifacts/14111162845/original.zip",
+      "bytes": 6286,
+      "sha256": "b9909d512ba9ad4203d814c7ae0b4df9b3737c29e2a6479f78b3a31726ef60b1"
+    }
+  ]
+}

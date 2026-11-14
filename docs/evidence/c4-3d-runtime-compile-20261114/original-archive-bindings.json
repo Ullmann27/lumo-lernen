@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "runtime-compile-originals.tar.gz",
+      "bytes": 919765,
+      "sha256": "b38b84f03cfaeb52ed9160e5eb4aed8764e262362cefa93fc758901bf1cac514",
+      "source": "/tmp/host-pr485-3d91bd83-pipeline-evidence-20261114/runtime-compile-checkpoint.tar.gz"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1034,
+      "sha256": "540a5408480daf27d3f18bb4b052db362ec46c5bba0f80f8cee4eb72fafab95e",
+      "source": "/tmp/host-pr485-3d91bd83-pipeline-evidence-20261114/runtime-compile-checkpoint/handoff.json"
+    },
+    {
+      "path": "original-manifest.json",
+      "bytes": 16644,
+      "sha256": "b9075ac77f5243eb278a0100f2491af1d16418d3616370a3eeb1801a64b7f8af",
+      "source": "/tmp/host-pr485-3d91bd83-pipeline-evidence-20261114/runtime-compile-checkpoint/manifest.json"
+    }
+  ]
+}
