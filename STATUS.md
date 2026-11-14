@@ -1,3 +1,38 @@
+# LUMO 2020 – erneute Gesamtabnahme nach beobachtetem Testfehler
+
+Stand: 14. November 2026, 16:30 UTC. Der vorbereitete Korrekturstand
+`407e3503c2777b76647c841867d278977160cbba` basiert unmittelbar auf dem gemeinsam
+integrierten Host93. Sein vollständiger Baum ändert genau eine Testdatei:
+Ein Nullzeit-`pump()` startet unmittelbar nach dem echten Antippen der
+Belohnungsanzeige deren Rückanimation. Die anschließenden 300 ms, alle 30 Fälle,
+sämtliche Erfolgskriterien und alle Produktdateien bleiben bytegleich.
+Die unabhängige vollständige Baum-/Byteprüfung steht in
+`docs/evidence/feature-reward-frame-20261114/root-activation-review.json`.
+
+Der ursprüngliche [Featurelauf 43615128301/1](https://github.com/Ullmann27/lumo-lernen/actions/runs/43615128301)
+auf93 ist tatsächlich fehlgeschlagen: 26 erfolgreiche und vier fehlgeschlagene
+Fälle, kein Skip. Alle vier Fehler liegen vor dem jeweiligen Modus-/Profilwechsel
+an derselben Overlay-Abbau-Erwartung. Die richtigen Antworten, zwei Sterne,
+zehn XP und der sichtbare Tap wurden zuvor bestätigt. Der vollständige unveränderte
+[Rotbeleg](https://github.com/Ullmann27/lumo-lernen/tree/c4a6692e97b6a1e47edc40d70e05f7a0ca76a435)
+bleibt erhalten. Der korrigierte Teststand ist vor dem neuen CI-Lauf noch nicht
+ausgeführt; eine grüne Widgetabnahme wird hier nicht behauptet.
+
+Der Produktblob bleibt `f42eb9e1f206fe87c64008906c6b911d59a49fe4`,
+der Native-Pin bleibt `84789d0c2c6fb4b6ecd2897ce1951b89f958b604`.
+Die zusätzliche Native-Abnahme43613299144/1 ist jetzt terminal erfolgreich;
+ihre echten Originale bestätigen auch identische vollständige Quelle und
+rohe Indexbytes. Das ersetzt keine neue Host-Abnahme.
+
+Dieser neue Aktivierungsschritt ergänzt nur diesen Status und den Reviewbeleg.
+Der exakt neue Hostkopf muss erneut Feature30, die vollständige Flutter-Suite
+und alle sieben Pflichtjobs mit neuer signierter APK, direkter Village-/C4-
+Androidprüfung, Updateerhalt und Original-Delivery-Replay durchlaufen.
+Host93 und der alte1e-Lauf sind keine Veröffentlichungsgrundlage.
+Der Publisher bleibt bis zu allen tatsächlichen neuen Originalnachweisen inaktiv.
+
+## Archiv: vorheriger Aktivierungsstand
+
 # LUMO 2020 – vollständige Abnahme des gemeinsamen Stands
 
 Stand: 14. November 2026, 16:18 UTC. Dieser Aktivierungsschritt ergänzt ausschließlich
