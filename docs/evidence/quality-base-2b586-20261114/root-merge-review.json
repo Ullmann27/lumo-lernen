@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "status": "RESOLVED_SOURCE_PENDING_TARGETED_TESTS",
-  "checked_at_utc": "2026-11-14T09:31:00Z",
+  "status": "RESOLVED_SOURCE_DIAGNOSTIC_TESTS_PASS_FLUTTER_NOT_STARTED",
+  "checked_at_utc": "2026-11-14T09:29:48Z",
   "candidate": "803a4e960ffb804a46b6d09417731c031f00f680",
   "new_integration_base": "2b586530db4f2cb20c28f426e2549342316151bf",
   "common_base": "729585db3f49ecff7f0632439f90edb882f09454",
@@ -342,5 +342,18 @@
       "sha": "422072266d892b8a1b124663db2cd7a3d09f3a31"
     }
   ],
-  "scope": "Source review and real Git merge conflict determination only. No inherited 803a test result is claimed for this new merged tree. Running 803a candidate branch and CI remain unchanged."
+  "scope": "Source review and real Git merge conflict determination only. No inherited 803a test result is claimed for this new merged tree. Running 803a candidate branch and CI remain unchanged.",
+  "followup_source": "d14924407f7d63339693eb8a53ecddef0a64d602",
+  "followup": {
+    "checked_at_utc": "2026-11-14T09:33:00.688495+00:00",
+    "head": "d14924407f7d63339693eb8a53ecddef0a64d602",
+    "original_index_equals_current": true,
+    "tracked_source_clean": true,
+    "status_porcelain": "",
+    "shell_syntax_exit_code": 0,
+    "flutter_targeted_execution": "NOT_STARTED",
+    "flutter_preflight": "99 cached dependency directories referenced by the existing package config are absent after the home-directory reset; no Flutter test was counted or claimed. Flutter SDK itself is present.",
+    "native_android_claim": false,
+    "android_diagnostic_tests": "19 test methods passed in 1.224s; original fixture protocol and genuine original ANR-negative retained; no device run."
+  }
 }
