@@ -76,5 +76,37 @@
     "verification_will_be_executed_on_activation": true,
     "actual_apk_verified_by_this_prepared_step": false
   },
-  "independent_remote_source_review": "REQUESTED"
+  "independent_remote_source_review": {
+    "status": "PASS_STATIC_SOURCE_REVIEW_ONLY",
+    "reviewer": "godot_integration",
+    "workflow_blob": "04247c39f61e138bcca767447b1b0bec5aeac611",
+    "compared_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "compared_blobs": {
+      "scripts/verify_unified_apk.py": "455a69423b887843efc4477568d5f2cd094d6088",
+      "scripts/verify_android_apk.py": "02b08f5aff49e9dc71c30ff9f37fa686c4d73d64",
+      "scripts/LumoApkCertificateVerifier.java": "2267e553326a4034677a3a94c17fda71d7e543e0",
+      "scripts/verify_connect_four_delivery.py": "82326232f3ca29655acc1e095d148951230bfe25"
+    },
+    "additional_exact_source_paths": [
+      "scripts/build_unified_apk.sh",
+      ".github/workflows/lumo-connect-four-2020.yml"
+    ],
+    "findings": "No concrete command, field, SDK-selection or mutation-order error found.",
+    "confirmations": [
+      "The unchanged verifier accepts --abi arm64-v8a and stdout is its deterministic verification JSON.",
+      "Actual build provenance preserves the verifier fields and adds the recorded source/clean metadata.",
+      "PUBLISH-VERIFICATION.json is exactly the ARM64 candidate verification stored in delivery facts.",
+      "Java 17 supports the existing source-file verifier and HexFormat API.",
+      "The explicit build-tools 36.0.0 PATH selects the same apksigner, aapt and adjacent apksigner.jar.",
+      "The pinned Android setup action/packages match the current C4 pipeline and accept SDK licenses.",
+      "pipefail and fail-closed commands precede the first tag or release write.",
+      "Original delivery/APK bytes are read only; all new output is outside the delivery directory and always archived."
+    ],
+    "root_review": {
+      "original_chain_byte_preserved_after_removing_exact_three_steps_and_one_upload_path": true,
+      "actual_build_writer_and_fresh_provenance_fields_reviewed": true
+    },
+    "local_execution": false,
+    "actual_apk_acceptance": false
+  }
 }
