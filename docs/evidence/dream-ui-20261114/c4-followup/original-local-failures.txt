@@ -1,0 +1,576 @@
+00:00 +0: loading /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart
+00:00 +0: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: (setUpAll)
+00:00 +0: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a numeric value within <1> of <46.62857142857142>
+  Actual: <48.0>
+   Which:  differs by <1.3714285714285808>
+Each drop button must align with its board column.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:81:9)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart line 81
+The test description was:
+  Connect Four layout 360.0x800.0
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0 [E]
+  Test failed. See exception logs above.
+  The test description was: Connect Four layout 360.0x800.0
+  
+00:01 +0 -1: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-mode-true'>]: [
+  FilledButton-[<'connect-mode-true'>](style: ButtonStyle#8d1bc(textStyle: WidgetStatePropertyAll(TextStyle(inherit: true, family: Nunito, size: 16.0, weight: 900)), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 0.9216, red: 0.0471, green: 0.1725, blue: 0.3451, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), padding: WidgetStatePropertyAll(EdgeInsets(12.0, 0.0, 12.0, 0.0)), minimumSize: WidgetStatePropertyAll(Size(104.0, 48.0)), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#ed03e]], state: _ButtonStyleState#737cb),
+]" derived an Offset (Offset(504.0, 208.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#f441a relayoutBoundary=up21
+The hit test result at that offset is: HitTestResult(RenderPointerListener#1bd06@Offset(376.0, 17.5), RenderSemanticsAnnotations#32fab@Offset(376.0, 17.5), RenderMouseRegion#cc506@Offset(376.0, 17.5), RenderSemanticsAnnotations#e4e5b@Offset(376.0, 17.5), _RenderInkFeatures#1accf@Offset(376.0, 17.5), RenderCustomPaint#811f9@Offset(376.0, 17.5), RenderPhysicalShape#039b2@Offset(376.0, 17.5), RenderConstrainedBox#d7daa@Offset(376.0, 17.5), _RenderInputPadding#fa856@Offset(376.0, 19.5), RenderSemanticsAnnotations#b8e99@Offset(376.0, 19.5), RenderFlex#de998@Offset(376.0, 126.5), RenderPadding#bf085@Offset(394.0, 138.5), RenderDecoratedBox#e53b6@Offset(394.0, 138.5), RenderConstrainedBox#b5ae2@Offset(394.0, 138.5), RenderPadding#39365@Offset(402.0, 146.5), _RenderSingleChildViewport#4b43c@Offset(402.0, 146.5), RenderIgnorePointer#c35d4@Offset(402.0, 146.5), RenderSemanticsAnnotations#1dea8@Offset(402.0, 146.5), RenderPointerListener#1d04c@Offset(402.0, 146.5), RenderSemanticsGestureHandler#f692a@Offset(402.0, 146.5), RenderPointerListener#743d7@Offset(402.0, 146.5), _RenderScrollSemantics#6678c@Offset(402.0, 146.5), RenderClipRect#c8e46@Offset(402.0, 146.5), RenderPositionedBox#cbdb9@Offset(504.0, 208.0), _RenderLayoutBuilder#ef493@Offset(504.0, 208.0), RenderPadding#a9d12@Offset(504.0, 208.0), RenderStack#686b0@Offset(504.0, 208.0), _RenderInkFeatures#4365c@Offset(504.0, 208.0), RenderCustomPaint#ba0dc@Offset(504.0, 208.0), RenderClipPath#78b73@Offset(504.0, 208.0), RenderStack#28564@Offset(504.0, 208.0), RenderRepaintBoundary#69a4e@Offset(504.0, 208.0), RenderSemanticsAnnotations#747ee@Offset(504.0, 208.0), RenderRepaintBoundary#ffc9f@Offset(504.0, 208.0), RenderIgnorePointer#84a31@Offset(504.0, 208.0), RenderAnimatedOpacity#f9c49@Offset(504.0, 208.0), RenderAnimatedOpacity#3c6f4@Offset(504.0, 208.0), RenderRepaintBoundary#fd6aa@Offset(504.0, 208.0), RenderSemanticsAnnotations#5bd71@Offset(504.0, 208.0), RenderOffstage#458b3@Offset(504.0, 208.0), RenderSemanticsAnnotations#0709a@Offset(504.0, 208.0), _RenderTheater#b9512@Offset(504.0, 208.0), RenderAbsorbPointer#72686@Offset(504.0, 208.0), RenderPointerListener#25528@Offset(504.0, 208.0), RenderSemanticsAnnotations#aa3a0@Offset(504.0, 208.0), RenderCustomPaint#b8145@Offset(504.0, 208.0), RenderSemanticsAnnotations#f1a09@Offset(504.0, 208.0), RenderSemanticsAnnotations#cbb9b@Offset(504.0, 208.0), RenderSemanticsAnnotations#0de15@Offset(504.0, 208.0), RenderTapRegionSurface#1d5cc@Offset(504.0, 208.0), RenderSemanticsAnnotations#b560d@Offset(504.0, 208.0), RenderSemanticsAnnotations#de91c@Offset(504.0, 208.0), HitTestEntry<HitTestTarget>#465ab(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#a4b26(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:60:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-3'>]: [
+  IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#ed03e]]),
+]" derived an Offset (Offset(259.7, 320.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#7e475 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#9bf5d(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#27f2e(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with key [<'connect-column-2'>]: []" (used in a call to "tap()") could
+not find any matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Connect Four layout 640.0x360.0
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -2: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0 [E]
+  Test failed. See exception logs above.
+  The test description was: Connect Four layout 640.0x360.0
+  
+00:01 +0 -2: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 1280.0x720.0
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-mode-true'>]: [
+  FilledButton-[<'connect-mode-true'>](style: ButtonStyle#9cddd(textStyle: WidgetStatePropertyAll(TextStyle(inherit: true, family: Nunito, size: 16.0, weight: 900)), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 0.9216, red: 0.0471, green: 0.1725, blue: 0.3451, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), padding: WidgetStatePropertyAll(EdgeInsets(16.0, 0.0, 16.0, 0.0)), minimumSize: WidgetStatePropertyAll(Size(116.0, 48.0)), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#d1ddc]], state: _ButtonStyleState#ac6f8),
+]" derived an Offset (Offset(1016.0, 214.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#216da relayoutBoundary=up21
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#cca29@Offset(1016.0, 214.0), RenderBackdropFilter#d5463@Offset(1016.0, 214.0), RenderStack#6a621@Offset(1016.0, 214.0), _RenderInkFeatures#14ff7@Offset(1016.0, 214.0), RenderCustomPaint#dd4ef@Offset(1016.0, 214.0), RenderClipPath#c3ae2@Offset(1016.0, 214.0), RenderStack#d2a06@Offset(1016.0, 214.0), RenderRepaintBoundary#8c975@Offset(1016.0, 214.0), RenderSemanticsAnnotations#cefc3@Offset(1016.0, 214.0), RenderRepaintBoundary#eab42@Offset(1016.0, 214.0), RenderIgnorePointer#9f0b2@Offset(1016.0, 214.0), RenderAnimatedOpacity#cc8da@Offset(1016.0, 214.0), RenderAnimatedOpacity#36dc8@Offset(1016.0, 214.0), RenderRepaintBoundary#1619b@Offset(1016.0, 214.0), RenderSemanticsAnnotations#51994@Offset(1016.0, 214.0), RenderOffstage#970b5@Offset(1016.0, 214.0), RenderSemanticsAnnotations#78f76@Offset(1016.0, 214.0), _RenderTheater#78c5c@Offset(1016.0, 214.0), RenderAbsorbPointer#45442@Offset(1016.0, 214.0), RenderPointerListener#dd134@Offset(1016.0, 214.0), RenderSemanticsAnnotations#09d24@Offset(1016.0, 214.0), RenderCustomPaint#0846a@Offset(1016.0, 214.0), RenderSemanticsAnnotations#230aa@Offset(1016.0, 214.0), RenderSemanticsAnnotations#5c6f6@Offset(1016.0, 214.0), RenderSemanticsAnnotations#69536@Offset(1016.0, 214.0), RenderTapRegionSurface#4a756@Offset(1016.0, 214.0), RenderSemanticsAnnotations#a1f58@Offset(1016.0, 214.0), RenderSemanticsAnnotations#99f93@Offset(1016.0, 214.0), HitTestEntry<HitTestTarget>#918f8(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#859ac(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:60:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-3'>]: [
+  IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#d1ddc]]),
+]" derived an Offset (Offset(386.0, 680.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#fc937 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#cca29@Offset(386.0, 680.0), RenderBackdropFilter#d5463@Offset(386.0, 680.0), RenderStack#6a621@Offset(386.0, 680.0), _RenderInkFeatures#14ff7@Offset(386.0, 680.0), RenderCustomPaint#dd4ef@Offset(386.0, 680.0), RenderClipPath#c3ae2@Offset(386.0, 680.0), RenderStack#d2a06@Offset(386.0, 680.0), RenderRepaintBoundary#8c975@Offset(386.0, 680.0), RenderSemanticsAnnotations#cefc3@Offset(386.0, 680.0), RenderRepaintBoundary#eab42@Offset(386.0, 680.0), RenderIgnorePointer#9f0b2@Offset(386.0, 680.0), RenderAnimatedOpacity#cc8da@Offset(386.0, 680.0), RenderAnimatedOpacity#36dc8@Offset(386.0, 680.0), RenderRepaintBoundary#1619b@Offset(386.0, 680.0), RenderSemanticsAnnotations#51994@Offset(386.0, 680.0), RenderOffstage#970b5@Offset(386.0, 680.0), RenderSemanticsAnnotations#78f76@Offset(386.0, 680.0), _RenderTheater#78c5c@Offset(386.0, 680.0), RenderAbsorbPointer#45442@Offset(386.0, 680.0), RenderPointerListener#dd134@Offset(386.0, 680.0), RenderSemanticsAnnotations#09d24@Offset(386.0, 680.0), RenderCustomPaint#0846a@Offset(386.0, 680.0), RenderSemanticsAnnotations#230aa@Offset(386.0, 680.0), RenderSemanticsAnnotations#5c6f6@Offset(386.0, 680.0), RenderSemanticsAnnotations#69536@Offset(386.0, 680.0), RenderTapRegionSurface#4a756@Offset(386.0, 680.0), RenderSemanticsAnnotations#a1f58@Offset(386.0, 680.0), RenderSemanticsAnnotations#99f93@Offset(386.0, 680.0), HitTestEntry<HitTestTarget>#b79a7(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#62d22(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-2'>]: [
+  IconButton-[<'connect-column-2'>](tooltip: Stein in Spalte 3, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#d1ddc]]),
+]" derived an Offset (Offset(296.8, 680.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#08f2b relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#cca29@Offset(296.8, 680.0), RenderBackdropFilter#d5463@Offset(296.8, 680.0), RenderStack#6a621@Offset(296.8, 680.0), _RenderInkFeatures#14ff7@Offset(296.8, 680.0), RenderCustomPaint#dd4ef@Offset(296.8, 680.0), RenderClipPath#c3ae2@Offset(296.8, 680.0), RenderStack#d2a06@Offset(296.8, 680.0), RenderRepaintBoundary#8c975@Offset(296.8, 680.0), RenderSemanticsAnnotations#cefc3@Offset(296.8, 680.0), RenderRepaintBoundary#eab42@Offset(296.8, 680.0), RenderIgnorePointer#9f0b2@Offset(296.8, 680.0), RenderAnimatedOpacity#cc8da@Offset(296.8, 680.0), RenderAnimatedOpacity#36dc8@Offset(296.8, 680.0), RenderRepaintBoundary#1619b@Offset(296.8, 680.0), RenderSemanticsAnnotations#51994@Offset(296.8, 680.0), RenderOffstage#970b5@Offset(296.8, 680.0), RenderSemanticsAnnotations#78f76@Offset(296.8, 680.0), _RenderTheater#78c5c@Offset(296.8, 680.0), RenderAbsorbPointer#45442@Offset(296.8, 680.0), RenderPointerListener#dd134@Offset(296.8, 680.0), RenderSemanticsAnnotations#09d24@Offset(296.8, 680.0), RenderCustomPaint#0846a@Offset(296.8, 680.0), RenderSemanticsAnnotations#230aa@Offset(296.8, 680.0), RenderSemanticsAnnotations#5c6f6@Offset(296.8, 680.0), RenderSemanticsAnnotations#69536@Offset(296.8, 680.0), RenderTapRegionSurface#4a756@Offset(296.8, 680.0), RenderSemanticsAnnotations#a1f58@Offset(296.8, 680.0), RenderSemanticsAnnotations#99f93@Offset(296.8, 680.0), HitTestEntry<HitTestTarget>#b95c6(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#0ef63(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-3'>]: [
+  IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#d1ddc]]),
+]" derived an Offset (Offset(386.0, 680.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#fc937 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#cca29@Offset(386.0, 680.0), RenderBackdropFilter#d5463@Offset(386.0, 680.0), RenderStack#6a621@Offset(386.0, 680.0), _RenderInkFeatures#14ff7@Offset(386.0, 680.0), RenderCustomPaint#dd4ef@Offset(386.0, 680.0), RenderClipPath#c3ae2@Offset(386.0, 680.0), RenderStack#d2a06@Offset(386.0, 680.0), RenderRepaintBoundary#8c975@Offset(386.0, 680.0), RenderSemanticsAnnotations#cefc3@Offset(386.0, 680.0), RenderRepaintBoundary#eab42@Offset(386.0, 680.0), RenderIgnorePointer#9f0b2@Offset(386.0, 680.0), RenderAnimatedOpacity#cc8da@Offset(386.0, 680.0), RenderAnimatedOpacity#36dc8@Offset(386.0, 680.0), RenderRepaintBoundary#1619b@Offset(386.0, 680.0), RenderSemanticsAnnotations#51994@Offset(386.0, 680.0), RenderOffstage#970b5@Offset(386.0, 680.0), RenderSemanticsAnnotations#78f76@Offset(386.0, 680.0), _RenderTheater#78c5c@Offset(386.0, 680.0), RenderAbsorbPointer#45442@Offset(386.0, 680.0), RenderPointerListener#dd134@Offset(386.0, 680.0), RenderSemanticsAnnotations#09d24@Offset(386.0, 680.0), RenderCustomPaint#0846a@Offset(386.0, 680.0), RenderSemanticsAnnotations#230aa@Offset(386.0, 680.0), RenderSemanticsAnnotations#5c6f6@Offset(386.0, 680.0), RenderSemanticsAnnotations#69536@Offset(386.0, 680.0), RenderTapRegionSurface#4a756@Offset(386.0, 680.0), RenderSemanticsAnnotations#a1f58@Offset(386.0, 680.0), RenderSemanticsAnnotations#99f93@Offset(386.0, 680.0), HitTestEntry<HitTestTarget>#40582(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#c5f9a(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-2'>]: [
+  IconButton-[<'connect-column-2'>](tooltip: Stein in Spalte 3, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#d1ddc]]),
+]" derived an Offset (Offset(296.8, 680.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#08f2b relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#cca29@Offset(296.8, 680.0), RenderBackdropFilter#d5463@Offset(296.8, 680.0), RenderStack#6a621@Offset(296.8, 680.0), _RenderInkFeatures#14ff7@Offset(296.8, 680.0), RenderCustomPaint#dd4ef@Offset(296.8, 680.0), RenderClipPath#c3ae2@Offset(296.8, 680.0), RenderStack#d2a06@Offset(296.8, 680.0), RenderRepaintBoundary#8c975@Offset(296.8, 680.0), RenderSemanticsAnnotations#cefc3@Offset(296.8, 680.0), RenderRepaintBoundary#eab42@Offset(296.8, 680.0), RenderIgnorePointer#9f0b2@Offset(296.8, 680.0), RenderAnimatedOpacity#cc8da@Offset(296.8, 680.0), RenderAnimatedOpacity#36dc8@Offset(296.8, 680.0), RenderRepaintBoundary#1619b@Offset(296.8, 680.0), RenderSemanticsAnnotations#51994@Offset(296.8, 680.0), RenderOffstage#970b5@Offset(296.8, 680.0), RenderSemanticsAnnotations#78f76@Offset(296.8, 680.0), _RenderTheater#78c5c@Offset(296.8, 680.0), RenderAbsorbPointer#45442@Offset(296.8, 680.0), RenderPointerListener#dd134@Offset(296.8, 680.0), RenderSemanticsAnnotations#09d24@Offset(296.8, 680.0), RenderCustomPaint#0846a@Offset(296.8, 680.0), RenderSemanticsAnnotations#230aa@Offset(296.8, 680.0), RenderSemanticsAnnotations#5c6f6@Offset(296.8, 680.0), RenderSemanticsAnnotations#69536@Offset(296.8, 680.0), RenderTapRegionSurface#4a756@Offset(296.8, 680.0), RenderSemanticsAnnotations#a1f58@Offset(296.8, 680.0), RenderSemanticsAnnotations#99f93@Offset(296.8, 680.0), HitTestEntry<HitTestTarget>#e4a55(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#05649(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-4'>]: [
+  IconButton-[<'connect-column-4'>](tooltip: Stein in Spalte 5, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#d1ddc]]),
+]" derived an Offset (Offset(475.2, 680.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ef2ce relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#cca29@Offset(475.2, 680.0), RenderBackdropFilter#d5463@Offset(475.2, 680.0), RenderStack#6a621@Offset(475.2, 680.0), _RenderInkFeatures#14ff7@Offset(475.2, 680.0), RenderCustomPaint#dd4ef@Offset(475.2, 680.0), RenderClipPath#c3ae2@Offset(475.2, 680.0), RenderStack#d2a06@Offset(475.2, 680.0), RenderRepaintBoundary#8c975@Offset(475.2, 680.0), RenderSemanticsAnnotations#cefc3@Offset(475.2, 680.0), RenderRepaintBoundary#eab42@Offset(475.2, 680.0), RenderIgnorePointer#9f0b2@Offset(475.2, 680.0), RenderAnimatedOpacity#cc8da@Offset(475.2, 680.0), RenderAnimatedOpacity#36dc8@Offset(475.2, 680.0), RenderRepaintBoundary#1619b@Offset(475.2, 680.0), RenderSemanticsAnnotations#51994@Offset(475.2, 680.0), RenderOffstage#970b5@Offset(475.2, 680.0), RenderSemanticsAnnotations#78f76@Offset(475.2, 680.0), _RenderTheater#78c5c@Offset(475.2, 680.0), RenderAbsorbPointer#45442@Offset(475.2, 680.0), RenderPointerListener#dd134@Offset(475.2, 680.0), RenderSemanticsAnnotations#09d24@Offset(475.2, 680.0), RenderCustomPaint#0846a@Offset(475.2, 680.0), RenderSemanticsAnnotations#230aa@Offset(475.2, 680.0), RenderSemanticsAnnotations#5c6f6@Offset(475.2, 680.0), RenderSemanticsAnnotations#69536@Offset(475.2, 680.0), RenderTapRegionSurface#4a756@Offset(475.2, 680.0), RenderSemanticsAnnotations#a1f58@Offset(475.2, 680.0), RenderSemanticsAnnotations#99f93@Offset(475.2, 680.0), HitTestEntry<HitTestTarget>#317a8(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#de0ad(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-5'>]: [
+  IconButton-[<'connect-column-5'>](tooltip: Stein in Spalte 6, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#d1ddc]]),
+]" derived an Offset (Offset(564.5, 680.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#941ef relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#cca29@Offset(564.5, 680.0), RenderBackdropFilter#d5463@Offset(564.5, 680.0), RenderStack#6a621@Offset(564.5, 680.0), _RenderInkFeatures#14ff7@Offset(564.5, 680.0), RenderCustomPaint#dd4ef@Offset(564.5, 680.0), RenderClipPath#c3ae2@Offset(564.5, 680.0), RenderStack#d2a06@Offset(564.5, 680.0), RenderRepaintBoundary#8c975@Offset(564.5, 680.0), RenderSemanticsAnnotations#cefc3@Offset(564.5, 680.0), RenderRepaintBoundary#eab42@Offset(564.5, 680.0), RenderIgnorePointer#9f0b2@Offset(564.5, 680.0), RenderAnimatedOpacity#cc8da@Offset(564.5, 680.0), RenderAnimatedOpacity#36dc8@Offset(564.5, 680.0), RenderRepaintBoundary#1619b@Offset(564.5, 680.0), RenderSemanticsAnnotations#51994@Offset(564.5, 680.0), RenderOffstage#970b5@Offset(564.5, 680.0), RenderSemanticsAnnotations#78f76@Offset(564.5, 680.0), _RenderTheater#78c5c@Offset(564.5, 680.0), RenderAbsorbPointer#45442@Offset(564.5, 680.0), RenderPointerListener#dd134@Offset(564.5, 680.0), RenderSemanticsAnnotations#09d24@Offset(564.5, 680.0), RenderCustomPaint#0846a@Offset(564.5, 680.0), RenderSemanticsAnnotations#230aa@Offset(564.5, 680.0), RenderSemanticsAnnotations#5c6f6@Offset(564.5, 680.0), RenderSemanticsAnnotations#69536@Offset(564.5, 680.0), RenderTapRegionSurface#4a756@Offset(564.5, 680.0), RenderSemanticsAnnotations#a1f58@Offset(564.5, 680.0), RenderSemanticsAnnotations#99f93@Offset(564.5, 680.0), HitTestEntry<HitTestTarget>#da3ba(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#79557(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:01 +1 -2: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 740.0x840.0
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-mode-true'>]: [
+  FilledButton-[<'connect-mode-true'>](style: ButtonStyle#9cddd(textStyle: WidgetStatePropertyAll(TextStyle(inherit: true, family: Nunito, size: 16.0, weight: 900)), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 0.9216, red: 0.0471, green: 0.1725, blue: 0.3451, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), padding: WidgetStatePropertyAll(EdgeInsets(16.0, 0.0, 16.0, 0.0)), minimumSize: WidgetStatePropertyAll(Size(116.0, 48.0)), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#f573e]], state: _ButtonStyleState#002ca),
+]" derived an Offset (Offset(594.0, 88.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#673ec relayoutBoundary=up8
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#561f9@Offset(594.0, 88.0), RenderBackdropFilter#976ec@Offset(594.0, 88.0), RenderStack#fd004@Offset(594.0, 88.0), _RenderInkFeatures#c4621@Offset(594.0, 88.0), RenderCustomPaint#0e119@Offset(594.0, 88.0), RenderClipPath#97aa2@Offset(594.0, 88.0), RenderStack#2a299@Offset(594.0, 88.0), RenderRepaintBoundary#62854@Offset(594.0, 88.0), RenderSemanticsAnnotations#6b6a6@Offset(594.0, 88.0), RenderRepaintBoundary#9ffec@Offset(594.0, 88.0), RenderIgnorePointer#9e3a0@Offset(594.0, 88.0), RenderAnimatedOpacity#080e5@Offset(594.0, 88.0), RenderAnimatedOpacity#83f8b@Offset(594.0, 88.0), RenderRepaintBoundary#d6b56@Offset(594.0, 88.0), RenderSemanticsAnnotations#cd123@Offset(594.0, 88.0), RenderOffstage#2305e@Offset(594.0, 88.0), RenderSemanticsAnnotations#e9043@Offset(594.0, 88.0), _RenderTheater#f86bb@Offset(594.0, 88.0), RenderAbsorbPointer#cfe3d@Offset(594.0, 88.0), RenderPointerListener#74214@Offset(594.0, 88.0), RenderSemanticsAnnotations#7ad78@Offset(594.0, 88.0), RenderCustomPaint#8c2d6@Offset(594.0, 88.0), RenderSemanticsAnnotations#8fc15@Offset(594.0, 88.0), RenderSemanticsAnnotations#2620b@Offset(594.0, 88.0), RenderSemanticsAnnotations#6c9e9@Offset(594.0, 88.0), RenderTapRegionSurface#56fcc@Offset(594.0, 88.0), RenderSemanticsAnnotations#c73cc@Offset(594.0, 88.0), RenderSemanticsAnnotations#1f705@Offset(594.0, 88.0), HitTestEntry<HitTestTarget>#b981c(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#05804(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:60:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-3'>]: [
+  IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#f573e]]),
+]" derived an Offset (Offset(370.0, 592.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ae5b6 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#21cc5@Offset(210.0, 353.9), RenderConstrainedBox#9640e@Offset(210.0, 353.9), RenderPadding#90685@Offset(230.0, 373.9), _RenderSingleChildViewport#9a202@Offset(230.0, 373.9), RenderIgnorePointer#ef585@Offset(230.0, 373.9), RenderSemanticsAnnotations#06aa7@Offset(230.0, 373.9), RenderPointerListener#21887@Offset(230.0, 373.9), RenderSemanticsGestureHandler#44149@Offset(230.0, 373.9), RenderPointerListener#65648@Offset(230.0, 373.9), _RenderScrollSemantics#e661d@Offset(230.0, 373.9), RenderClipRect#589bb@Offset(230.0, 373.9), RenderPositionedBox#95d91@Offset(370.0, 592.4), _RenderLayoutBuilder#15790@Offset(370.0, 592.4), RenderPadding#b0e13@Offset(370.0, 592.4), RenderStack#fd004@Offset(370.0, 592.4), _RenderInkFeatures#c4621@Offset(370.0, 592.4), RenderCustomPaint#0e119@Offset(370.0, 592.4), RenderClipPath#97aa2@Offset(370.0, 592.4), RenderStack#2a299@Offset(370.0, 592.4), RenderRepaintBoundary#62854@Offset(370.0, 592.4), RenderSemanticsAnnotations#6b6a6@Offset(370.0, 592.4), RenderRepaintBoundary#9ffec@Offset(370.0, 592.4), RenderIgnorePointer#9e3a0@Offset(370.0, 592.4), RenderAnimatedOpacity#080e5@Offset(370.0, 592.4), RenderAnimatedOpacity#83f8b@Offset(370.0, 592.4), RenderRepaintBoundary#d6b56@Offset(370.0, 592.4), RenderSemanticsAnnotations#cd123@Offset(370.0, 592.4), RenderOffstage#2305e@Offset(370.0, 592.4), RenderSemanticsAnnotations#e9043@Offset(370.0, 592.4), _RenderTheater#f86bb@Offset(370.0, 592.4), RenderAbsorbPointer#cfe3d@Offset(370.0, 592.4), RenderPointerListener#74214@Offset(370.0, 592.4), RenderSemanticsAnnotations#7ad78@Offset(370.0, 592.4), RenderCustomPaint#8c2d6@Offset(370.0, 592.4), RenderSemanticsAnnotations#8fc15@Offset(370.0, 592.4), RenderSemanticsAnnotations#2620b@Offset(370.0, 592.4), RenderSemanticsAnnotations#6c9e9@Offset(370.0, 592.4), RenderTapRegionSurface#56fcc@Offset(370.0, 592.4), RenderSemanticsAnnotations#c73cc@Offset(370.0, 592.4), RenderSemanticsAnnotations#1f705@Offset(370.0, 592.4), HitTestEntry<HitTestTarget>#d615f(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#79f25(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-2'>]: [
+  IconButton-[<'connect-column-2'>](tooltip: Stein in Spalte 3, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#f573e]]),
+]" derived an Offset (Offset(313.4, 592.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#410d6 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#21cc5@Offset(153.4, 353.9), RenderConstrainedBox#9640e@Offset(153.4, 353.9), RenderPadding#90685@Offset(173.4, 373.9), _RenderSingleChildViewport#9a202@Offset(173.4, 373.9), RenderIgnorePointer#ef585@Offset(173.4, 373.9), RenderSemanticsAnnotations#06aa7@Offset(173.4, 373.9), RenderPointerListener#21887@Offset(173.4, 373.9), RenderSemanticsGestureHandler#44149@Offset(173.4, 373.9), RenderPointerListener#65648@Offset(173.4, 373.9), _RenderScrollSemantics#e661d@Offset(173.4, 373.9), RenderClipRect#589bb@Offset(173.4, 373.9), RenderPositionedBox#95d91@Offset(313.4, 592.4), _RenderLayoutBuilder#15790@Offset(313.4, 592.4), RenderPadding#b0e13@Offset(313.4, 592.4), RenderStack#fd004@Offset(313.4, 592.4), _RenderInkFeatures#c4621@Offset(313.4, 592.4), RenderCustomPaint#0e119@Offset(313.4, 592.4), RenderClipPath#97aa2@Offset(313.4, 592.4), RenderStack#2a299@Offset(313.4, 592.4), RenderRepaintBoundary#62854@Offset(313.4, 592.4), RenderSemanticsAnnotations#6b6a6@Offset(313.4, 592.4), RenderRepaintBoundary#9ffec@Offset(313.4, 592.4), RenderIgnorePointer#9e3a0@Offset(313.4, 592.4), RenderAnimatedOpacity#080e5@Offset(313.4, 592.4), RenderAnimatedOpacity#83f8b@Offset(313.4, 592.4), RenderRepaintBoundary#d6b56@Offset(313.4, 592.4), RenderSemanticsAnnotations#cd123@Offset(313.4, 592.4), RenderOffstage#2305e@Offset(313.4, 592.4), RenderSemanticsAnnotations#e9043@Offset(313.4, 592.4), _RenderTheater#f86bb@Offset(313.4, 592.4), RenderAbsorbPointer#cfe3d@Offset(313.4, 592.4), RenderPointerListener#74214@Offset(313.4, 592.4), RenderSemanticsAnnotations#7ad78@Offset(313.4, 592.4), RenderCustomPaint#8c2d6@Offset(313.4, 592.4), RenderSemanticsAnnotations#8fc15@Offset(313.4, 592.4), RenderSemanticsAnnotations#2620b@Offset(313.4, 592.4), RenderSemanticsAnnotations#6c9e9@Offset(313.4, 592.4), RenderTapRegionSurface#56fcc@Offset(313.4, 592.4), RenderSemanticsAnnotations#c73cc@Offset(313.4, 592.4), RenderSemanticsAnnotations#1f705@Offset(313.4, 592.4), HitTestEntry<HitTestTarget>#56048(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#f166a(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-3'>]: [
+  IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#f573e]]),
+]" derived an Offset (Offset(370.0, 592.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ae5b6 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#21cc5@Offset(210.0, 353.9), RenderConstrainedBox#9640e@Offset(210.0, 353.9), RenderPadding#90685@Offset(230.0, 373.9), _RenderSingleChildViewport#9a202@Offset(230.0, 373.9), RenderIgnorePointer#ef585@Offset(230.0, 373.9), RenderSemanticsAnnotations#06aa7@Offset(230.0, 373.9), RenderPointerListener#21887@Offset(230.0, 373.9), RenderSemanticsGestureHandler#44149@Offset(230.0, 373.9), RenderPointerListener#65648@Offset(230.0, 373.9), _RenderScrollSemantics#e661d@Offset(230.0, 373.9), RenderClipRect#589bb@Offset(230.0, 373.9), RenderPositionedBox#95d91@Offset(370.0, 592.4), _RenderLayoutBuilder#15790@Offset(370.0, 592.4), RenderPadding#b0e13@Offset(370.0, 592.4), RenderStack#fd004@Offset(370.0, 592.4), _RenderInkFeatures#c4621@Offset(370.0, 592.4), RenderCustomPaint#0e119@Offset(370.0, 592.4), RenderClipPath#97aa2@Offset(370.0, 592.4), RenderStack#2a299@Offset(370.0, 592.4), RenderRepaintBoundary#62854@Offset(370.0, 592.4), RenderSemanticsAnnotations#6b6a6@Offset(370.0, 592.4), RenderRepaintBoundary#9ffec@Offset(370.0, 592.4), RenderIgnorePointer#9e3a0@Offset(370.0, 592.4), RenderAnimatedOpacity#080e5@Offset(370.0, 592.4), RenderAnimatedOpacity#83f8b@Offset(370.0, 592.4), RenderRepaintBoundary#d6b56@Offset(370.0, 592.4), RenderSemanticsAnnotations#cd123@Offset(370.0, 592.4), RenderOffstage#2305e@Offset(370.0, 592.4), RenderSemanticsAnnotations#e9043@Offset(370.0, 592.4), _RenderTheater#f86bb@Offset(370.0, 592.4), RenderAbsorbPointer#cfe3d@Offset(370.0, 592.4), RenderPointerListener#74214@Offset(370.0, 592.4), RenderSemanticsAnnotations#7ad78@Offset(370.0, 592.4), RenderCustomPaint#8c2d6@Offset(370.0, 592.4), RenderSemanticsAnnotations#8fc15@Offset(370.0, 592.4), RenderSemanticsAnnotations#2620b@Offset(370.0, 592.4), RenderSemanticsAnnotations#6c9e9@Offset(370.0, 592.4), RenderTapRegionSurface#56fcc@Offset(370.0, 592.4), RenderSemanticsAnnotations#c73cc@Offset(370.0, 592.4), RenderSemanticsAnnotations#1f705@Offset(370.0, 592.4), HitTestEntry<HitTestTarget>#d18dd(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#539e2(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-2'>]: [
+  IconButton-[<'connect-column-2'>](tooltip: Stein in Spalte 3, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#f573e]]),
+]" derived an Offset (Offset(313.4, 592.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#410d6 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#21cc5@Offset(153.4, 353.9), RenderConstrainedBox#9640e@Offset(153.4, 353.9), RenderPadding#90685@Offset(173.4, 373.9), _RenderSingleChildViewport#9a202@Offset(173.4, 373.9), RenderIgnorePointer#ef585@Offset(173.4, 373.9), RenderSemanticsAnnotations#06aa7@Offset(173.4, 373.9), RenderPointerListener#21887@Offset(173.4, 373.9), RenderSemanticsGestureHandler#44149@Offset(173.4, 373.9), RenderPointerListener#65648@Offset(173.4, 373.9), _RenderScrollSemantics#e661d@Offset(173.4, 373.9), RenderClipRect#589bb@Offset(173.4, 373.9), RenderPositionedBox#95d91@Offset(313.4, 592.4), _RenderLayoutBuilder#15790@Offset(313.4, 592.4), RenderPadding#b0e13@Offset(313.4, 592.4), RenderStack#fd004@Offset(313.4, 592.4), _RenderInkFeatures#c4621@Offset(313.4, 592.4), RenderCustomPaint#0e119@Offset(313.4, 592.4), RenderClipPath#97aa2@Offset(313.4, 592.4), RenderStack#2a299@Offset(313.4, 592.4), RenderRepaintBoundary#62854@Offset(313.4, 592.4), RenderSemanticsAnnotations#6b6a6@Offset(313.4, 592.4), RenderRepaintBoundary#9ffec@Offset(313.4, 592.4), RenderIgnorePointer#9e3a0@Offset(313.4, 592.4), RenderAnimatedOpacity#080e5@Offset(313.4, 592.4), RenderAnimatedOpacity#83f8b@Offset(313.4, 592.4), RenderRepaintBoundary#d6b56@Offset(313.4, 592.4), RenderSemanticsAnnotations#cd123@Offset(313.4, 592.4), RenderOffstage#2305e@Offset(313.4, 592.4), RenderSemanticsAnnotations#e9043@Offset(313.4, 592.4), _RenderTheater#f86bb@Offset(313.4, 592.4), RenderAbsorbPointer#cfe3d@Offset(313.4, 592.4), RenderPointerListener#74214@Offset(313.4, 592.4), RenderSemanticsAnnotations#7ad78@Offset(313.4, 592.4), RenderCustomPaint#8c2d6@Offset(313.4, 592.4), RenderSemanticsAnnotations#8fc15@Offset(313.4, 592.4), RenderSemanticsAnnotations#2620b@Offset(313.4, 592.4), RenderSemanticsAnnotations#6c9e9@Offset(313.4, 592.4), RenderTapRegionSurface#56fcc@Offset(313.4, 592.4), RenderSemanticsAnnotations#c73cc@Offset(313.4, 592.4), RenderSemanticsAnnotations#1f705@Offset(313.4, 592.4), HitTestEntry<HitTestTarget>#9524d(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#3fb1f(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-4'>]: [
+  IconButton-[<'connect-column-4'>](tooltip: Stein in Spalte 5, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#f573e]]),
+]" derived an Offset (Offset(426.6, 592.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ce017 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#21cc5@Offset(266.6, 353.9), RenderConstrainedBox#9640e@Offset(266.6, 353.9), RenderPadding#90685@Offset(286.6, 373.9), _RenderSingleChildViewport#9a202@Offset(286.6, 373.9), RenderIgnorePointer#ef585@Offset(286.6, 373.9), RenderSemanticsAnnotations#06aa7@Offset(286.6, 373.9), RenderPointerListener#21887@Offset(286.6, 373.9), RenderSemanticsGestureHandler#44149@Offset(286.6, 373.9), RenderPointerListener#65648@Offset(286.6, 373.9), _RenderScrollSemantics#e661d@Offset(286.6, 373.9), RenderClipRect#589bb@Offset(286.6, 373.9), RenderPositionedBox#95d91@Offset(426.6, 592.4), _RenderLayoutBuilder#15790@Offset(426.6, 592.4), RenderPadding#b0e13@Offset(426.6, 592.4), RenderStack#fd004@Offset(426.6, 592.4), _RenderInkFeatures#c4621@Offset(426.6, 592.4), RenderCustomPaint#0e119@Offset(426.6, 592.4), RenderClipPath#97aa2@Offset(426.6, 592.4), RenderStack#2a299@Offset(426.6, 592.4), RenderRepaintBoundary#62854@Offset(426.6, 592.4), RenderSemanticsAnnotations#6b6a6@Offset(426.6, 592.4), RenderRepaintBoundary#9ffec@Offset(426.6, 592.4), RenderIgnorePointer#9e3a0@Offset(426.6, 592.4), RenderAnimatedOpacity#080e5@Offset(426.6, 592.4), RenderAnimatedOpacity#83f8b@Offset(426.6, 592.4), RenderRepaintBoundary#d6b56@Offset(426.6, 592.4), RenderSemanticsAnnotations#cd123@Offset(426.6, 592.4), RenderOffstage#2305e@Offset(426.6, 592.4), RenderSemanticsAnnotations#e9043@Offset(426.6, 592.4), _RenderTheater#f86bb@Offset(426.6, 592.4), RenderAbsorbPointer#cfe3d@Offset(426.6, 592.4), RenderPointerListener#74214@Offset(426.6, 592.4), RenderSemanticsAnnotations#7ad78@Offset(426.6, 592.4), RenderCustomPaint#8c2d6@Offset(426.6, 592.4), RenderSemanticsAnnotations#8fc15@Offset(426.6, 592.4), RenderSemanticsAnnotations#2620b@Offset(426.6, 592.4), RenderSemanticsAnnotations#6c9e9@Offset(426.6, 592.4), RenderTapRegionSurface#56fcc@Offset(426.6, 592.4), RenderSemanticsAnnotations#c73cc@Offset(426.6, 592.4), RenderSemanticsAnnotations#1f705@Offset(426.6, 592.4), HitTestEntry<HitTestTarget>#50448(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#c6457(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-5'>]: [
+  IconButton-[<'connect-column-5'>](tooltip: Stein in Spalte 6, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#f573e]]),
+]" derived an Offset (Offset(483.3, 592.4)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#e60a7 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#21cc5@Offset(323.3, 353.9), RenderConstrainedBox#9640e@Offset(323.3, 353.9), RenderPadding#90685@Offset(343.3, 373.9), _RenderSingleChildViewport#9a202@Offset(343.3, 373.9), RenderIgnorePointer#ef585@Offset(343.3, 373.9), RenderSemanticsAnnotations#06aa7@Offset(343.3, 373.9), RenderPointerListener#21887@Offset(343.3, 373.9), RenderSemanticsGestureHandler#44149@Offset(343.3, 373.9), RenderPointerListener#65648@Offset(343.3, 373.9), _RenderScrollSemantics#e661d@Offset(343.3, 373.9), RenderClipRect#589bb@Offset(343.3, 373.9), RenderPositionedBox#95d91@Offset(483.3, 592.4), _RenderLayoutBuilder#15790@Offset(483.3, 592.4), RenderPadding#b0e13@Offset(483.3, 592.4), RenderStack#fd004@Offset(483.3, 592.4), _RenderInkFeatures#c4621@Offset(483.3, 592.4), RenderCustomPaint#0e119@Offset(483.3, 592.4), RenderClipPath#97aa2@Offset(483.3, 592.4), RenderStack#2a299@Offset(483.3, 592.4), RenderRepaintBoundary#62854@Offset(483.3, 592.4), RenderSemanticsAnnotations#6b6a6@Offset(483.3, 592.4), RenderRepaintBoundary#9ffec@Offset(483.3, 592.4), RenderIgnorePointer#9e3a0@Offset(483.3, 592.4), RenderAnimatedOpacity#080e5@Offset(483.3, 592.4), RenderAnimatedOpacity#83f8b@Offset(483.3, 592.4), RenderRepaintBoundary#d6b56@Offset(483.3, 592.4), RenderSemanticsAnnotations#cd123@Offset(483.3, 592.4), RenderOffstage#2305e@Offset(483.3, 592.4), RenderSemanticsAnnotations#e9043@Offset(483.3, 592.4), _RenderTheater#f86bb@Offset(483.3, 592.4), RenderAbsorbPointer#cfe3d@Offset(483.3, 592.4), RenderPointerListener#74214@Offset(483.3, 592.4), RenderSemanticsAnnotations#7ad78@Offset(483.3, 592.4), RenderCustomPaint#8c2d6@Offset(483.3, 592.4), RenderSemanticsAnnotations#8fc15@Offset(483.3, 592.4), RenderSemanticsAnnotations#2620b@Offset(483.3, 592.4), RenderSemanticsAnnotations#6c9e9@Offset(483.3, 592.4), RenderTapRegionSurface#56fcc@Offset(483.3, 592.4), RenderSemanticsAnnotations#c73cc@Offset(483.3, 592.4), RenderSemanticsAnnotations#1f705@Offset(483.3, 592.4), HitTestEntry<HitTestTarget>#3e6a3(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#71b1d(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:02 +2 -2: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 1200.0x896.0
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-mode-true'>]: [
+  FilledButton-[<'connect-mode-true'>](style: ButtonStyle#9cddd(textStyle: WidgetStatePropertyAll(TextStyle(inherit: true, family: Nunito, size: 16.0, weight: 900)), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 0.9216, red: 0.0471, green: 0.1725, blue: 0.3451, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), padding: WidgetStatePropertyAll(EdgeInsets(16.0, 0.0, 16.0, 0.0)), minimumSize: WidgetStatePropertyAll(Size(116.0, 48.0)), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#85490]], state: _ButtonStyleState#f6b58),
+]" derived an Offset (Offset(952.0, 302.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#90a40 relayoutBoundary=up21
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#77f3c@Offset(952.0, 302.0), RenderBackdropFilter#c05dd@Offset(952.0, 302.0), RenderStack#5494c@Offset(952.0, 302.0), _RenderInkFeatures#c89e0@Offset(952.0, 302.0), RenderCustomPaint#58f80@Offset(952.0, 302.0), RenderClipPath#043c6@Offset(952.0, 302.0), RenderStack#1af5e@Offset(952.0, 302.0), RenderRepaintBoundary#269ae@Offset(952.0, 302.0), RenderSemanticsAnnotations#b9e11@Offset(952.0, 302.0), RenderRepaintBoundary#0e11a@Offset(952.0, 302.0), RenderIgnorePointer#051f6@Offset(952.0, 302.0), RenderAnimatedOpacity#b5409@Offset(952.0, 302.0), RenderAnimatedOpacity#cd008@Offset(952.0, 302.0), RenderRepaintBoundary#52722@Offset(952.0, 302.0), RenderSemanticsAnnotations#2500e@Offset(952.0, 302.0), RenderOffstage#480f5@Offset(952.0, 302.0), RenderSemanticsAnnotations#8617e@Offset(952.0, 302.0), _RenderTheater#8bd66@Offset(952.0, 302.0), RenderAbsorbPointer#06652@Offset(952.0, 302.0), RenderPointerListener#baea4@Offset(952.0, 302.0), RenderSemanticsAnnotations#256ef@Offset(952.0, 302.0), RenderCustomPaint#86d58@Offset(952.0, 302.0), RenderSemanticsAnnotations#c2450@Offset(952.0, 302.0), RenderSemanticsAnnotations#564fb@Offset(952.0, 302.0), RenderSemanticsAnnotations#3a229@Offset(952.0, 302.0), RenderTapRegionSurface#a1127@Offset(952.0, 302.0), RenderSemanticsAnnotations#e3499@Offset(952.0, 302.0), RenderSemanticsAnnotations#02c61@Offset(952.0, 302.0), HitTestEntry<HitTestTarget>#58d26(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#62a50(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:60:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-3'>]: [
+  IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#85490]]),
+]" derived an Offset (Offset(362.0, 710.3)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#d3f3b relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#77f3c@Offset(362.0, 710.3), RenderBackdropFilter#c05dd@Offset(362.0, 710.3), RenderStack#5494c@Offset(362.0, 710.3), _RenderInkFeatures#c89e0@Offset(362.0, 710.3), RenderCustomPaint#58f80@Offset(362.0, 710.3), RenderClipPath#043c6@Offset(362.0, 710.3), RenderStack#1af5e@Offset(362.0, 710.3), RenderRepaintBoundary#269ae@Offset(362.0, 710.3), RenderSemanticsAnnotations#b9e11@Offset(362.0, 710.3), RenderRepaintBoundary#0e11a@Offset(362.0, 710.3), RenderIgnorePointer#051f6@Offset(362.0, 710.3), RenderAnimatedOpacity#b5409@Offset(362.0, 710.3), RenderAnimatedOpacity#cd008@Offset(362.0, 710.3), RenderRepaintBoundary#52722@Offset(362.0, 710.3), RenderSemanticsAnnotations#2500e@Offset(362.0, 710.3), RenderOffstage#480f5@Offset(362.0, 710.3), RenderSemanticsAnnotations#8617e@Offset(362.0, 710.3), _RenderTheater#8bd66@Offset(362.0, 710.3), RenderAbsorbPointer#06652@Offset(362.0, 710.3), RenderPointerListener#baea4@Offset(362.0, 710.3), RenderSemanticsAnnotations#256ef@Offset(362.0, 710.3), RenderCustomPaint#86d58@Offset(362.0, 710.3), RenderSemanticsAnnotations#c2450@Offset(362.0, 710.3), RenderSemanticsAnnotations#564fb@Offset(362.0, 710.3), RenderSemanticsAnnotations#3a229@Offset(362.0, 710.3), RenderTapRegionSurface#a1127@Offset(362.0, 710.3), RenderSemanticsAnnotations#e3499@Offset(362.0, 710.3), RenderSemanticsAnnotations#02c61@Offset(362.0, 710.3), HitTestEntry<HitTestTarget>#a3439(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#ddf07(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-2'>]: [
+  IconButton-[<'connect-column-2'>](tooltip: Stein in Spalte 3, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#85490]]),
+]" derived an Offset (Offset(267.7, 710.3)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#6ad18 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#77f3c@Offset(267.7, 710.3), RenderBackdropFilter#c05dd@Offset(267.7, 710.3), RenderStack#5494c@Offset(267.7, 710.3), _RenderInkFeatures#c89e0@Offset(267.7, 710.3), RenderCustomPaint#58f80@Offset(267.7, 710.3), RenderClipPath#043c6@Offset(267.7, 710.3), RenderStack#1af5e@Offset(267.7, 710.3), RenderRepaintBoundary#269ae@Offset(267.7, 710.3), RenderSemanticsAnnotations#b9e11@Offset(267.7, 710.3), RenderRepaintBoundary#0e11a@Offset(267.7, 710.3), RenderIgnorePointer#051f6@Offset(267.7, 710.3), RenderAnimatedOpacity#b5409@Offset(267.7, 710.3), RenderAnimatedOpacity#cd008@Offset(267.7, 710.3), RenderRepaintBoundary#52722@Offset(267.7, 710.3), RenderSemanticsAnnotations#2500e@Offset(267.7, 710.3), RenderOffstage#480f5@Offset(267.7, 710.3), RenderSemanticsAnnotations#8617e@Offset(267.7, 710.3), _RenderTheater#8bd66@Offset(267.7, 710.3), RenderAbsorbPointer#06652@Offset(267.7, 710.3), RenderPointerListener#baea4@Offset(267.7, 710.3), RenderSemanticsAnnotations#256ef@Offset(267.7, 710.3), RenderCustomPaint#86d58@Offset(267.7, 710.3), RenderSemanticsAnnotations#c2450@Offset(267.7, 710.3), RenderSemanticsAnnotations#564fb@Offset(267.7, 710.3), RenderSemanticsAnnotations#3a229@Offset(267.7, 710.3), RenderTapRegionSurface#a1127@Offset(267.7, 710.3), RenderSemanticsAnnotations#e3499@Offset(267.7, 710.3), RenderSemanticsAnnotations#02c61@Offset(267.7, 710.3), HitTestEntry<HitTestTarget>#86acb(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#dfef5(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-3'>]: [
+  IconButton-[<'connect-column-3'>](tooltip: Stein in Spalte 4, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#85490]]),
+]" derived an Offset (Offset(362.0, 710.3)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#d3f3b relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#77f3c@Offset(362.0, 710.3), RenderBackdropFilter#c05dd@Offset(362.0, 710.3), RenderStack#5494c@Offset(362.0, 710.3), _RenderInkFeatures#c89e0@Offset(362.0, 710.3), RenderCustomPaint#58f80@Offset(362.0, 710.3), RenderClipPath#043c6@Offset(362.0, 710.3), RenderStack#1af5e@Offset(362.0, 710.3), RenderRepaintBoundary#269ae@Offset(362.0, 710.3), RenderSemanticsAnnotations#b9e11@Offset(362.0, 710.3), RenderRepaintBoundary#0e11a@Offset(362.0, 710.3), RenderIgnorePointer#051f6@Offset(362.0, 710.3), RenderAnimatedOpacity#b5409@Offset(362.0, 710.3), RenderAnimatedOpacity#cd008@Offset(362.0, 710.3), RenderRepaintBoundary#52722@Offset(362.0, 710.3), RenderSemanticsAnnotations#2500e@Offset(362.0, 710.3), RenderOffstage#480f5@Offset(362.0, 710.3), RenderSemanticsAnnotations#8617e@Offset(362.0, 710.3), _RenderTheater#8bd66@Offset(362.0, 710.3), RenderAbsorbPointer#06652@Offset(362.0, 710.3), RenderPointerListener#baea4@Offset(362.0, 710.3), RenderSemanticsAnnotations#256ef@Offset(362.0, 710.3), RenderCustomPaint#86d58@Offset(362.0, 710.3), RenderSemanticsAnnotations#c2450@Offset(362.0, 710.3), RenderSemanticsAnnotations#564fb@Offset(362.0, 710.3), RenderSemanticsAnnotations#3a229@Offset(362.0, 710.3), RenderTapRegionSurface#a1127@Offset(362.0, 710.3), RenderSemanticsAnnotations#e3499@Offset(362.0, 710.3), RenderSemanticsAnnotations#02c61@Offset(362.0, 710.3), HitTestEntry<HitTestTarget>#f188f(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#9f8f5(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-2'>]: [
+  IconButton-[<'connect-column-2'>](tooltip: Stein in Spalte 3, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#85490]]),
+]" derived an Offset (Offset(267.7, 710.3)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#6ad18 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#77f3c@Offset(267.7, 710.3), RenderBackdropFilter#c05dd@Offset(267.7, 710.3), RenderStack#5494c@Offset(267.7, 710.3), _RenderInkFeatures#c89e0@Offset(267.7, 710.3), RenderCustomPaint#58f80@Offset(267.7, 710.3), RenderClipPath#043c6@Offset(267.7, 710.3), RenderStack#1af5e@Offset(267.7, 710.3), RenderRepaintBoundary#269ae@Offset(267.7, 710.3), RenderSemanticsAnnotations#b9e11@Offset(267.7, 710.3), RenderRepaintBoundary#0e11a@Offset(267.7, 710.3), RenderIgnorePointer#051f6@Offset(267.7, 710.3), RenderAnimatedOpacity#b5409@Offset(267.7, 710.3), RenderAnimatedOpacity#cd008@Offset(267.7, 710.3), RenderRepaintBoundary#52722@Offset(267.7, 710.3), RenderSemanticsAnnotations#2500e@Offset(267.7, 710.3), RenderOffstage#480f5@Offset(267.7, 710.3), RenderSemanticsAnnotations#8617e@Offset(267.7, 710.3), _RenderTheater#8bd66@Offset(267.7, 710.3), RenderAbsorbPointer#06652@Offset(267.7, 710.3), RenderPointerListener#baea4@Offset(267.7, 710.3), RenderSemanticsAnnotations#256ef@Offset(267.7, 710.3), RenderCustomPaint#86d58@Offset(267.7, 710.3), RenderSemanticsAnnotations#c2450@Offset(267.7, 710.3), RenderSemanticsAnnotations#564fb@Offset(267.7, 710.3), RenderSemanticsAnnotations#3a229@Offset(267.7, 710.3), RenderTapRegionSurface#a1127@Offset(267.7, 710.3), RenderSemanticsAnnotations#e3499@Offset(267.7, 710.3), RenderSemanticsAnnotations#02c61@Offset(267.7, 710.3), HitTestEntry<HitTestTarget>#63eca(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#cfe05(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-4'>]: [
+  IconButton-[<'connect-column-4'>](tooltip: Stein in Spalte 5, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#85490]]),
+]" derived an Offset (Offset(456.3, 710.3)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#84770 relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#77f3c@Offset(456.3, 710.3), RenderBackdropFilter#c05dd@Offset(456.3, 710.3), RenderStack#5494c@Offset(456.3, 710.3), _RenderInkFeatures#c89e0@Offset(456.3, 710.3), RenderCustomPaint#58f80@Offset(456.3, 710.3), RenderClipPath#043c6@Offset(456.3, 710.3), RenderStack#1af5e@Offset(456.3, 710.3), RenderRepaintBoundary#269ae@Offset(456.3, 710.3), RenderSemanticsAnnotations#b9e11@Offset(456.3, 710.3), RenderRepaintBoundary#0e11a@Offset(456.3, 710.3), RenderIgnorePointer#051f6@Offset(456.3, 710.3), RenderAnimatedOpacity#b5409@Offset(456.3, 710.3), RenderAnimatedOpacity#cd008@Offset(456.3, 710.3), RenderRepaintBoundary#52722@Offset(456.3, 710.3), RenderSemanticsAnnotations#2500e@Offset(456.3, 710.3), RenderOffstage#480f5@Offset(456.3, 710.3), RenderSemanticsAnnotations#8617e@Offset(456.3, 710.3), _RenderTheater#8bd66@Offset(456.3, 710.3), RenderAbsorbPointer#06652@Offset(456.3, 710.3), RenderPointerListener#baea4@Offset(456.3, 710.3), RenderSemanticsAnnotations#256ef@Offset(456.3, 710.3), RenderCustomPaint#86d58@Offset(456.3, 710.3), RenderSemanticsAnnotations#c2450@Offset(456.3, 710.3), RenderSemanticsAnnotations#564fb@Offset(456.3, 710.3), RenderSemanticsAnnotations#3a229@Offset(456.3, 710.3), RenderTapRegionSurface#a1127@Offset(456.3, 710.3), RenderSemanticsAnnotations#e3499@Offset(456.3, 710.3), RenderSemanticsAnnotations#02c61@Offset(456.3, 710.3), HitTestEntry<HitTestTarget>#2b1b5(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#feac1(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'connect-column-5'>]: [
+  IconButton-[<'connect-column-5'>](tooltip: Stein in Spalte 6, disabled, disabled, disabled, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#85490]]),
+]" derived an Offset (Offset(550.6, 710.3)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#20c3c relayoutBoundary=up25
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#77f3c@Offset(550.6, 710.3), RenderBackdropFilter#c05dd@Offset(550.6, 710.3), RenderStack#5494c@Offset(550.6, 710.3), _RenderInkFeatures#c89e0@Offset(550.6, 710.3), RenderCustomPaint#58f80@Offset(550.6, 710.3), RenderClipPath#043c6@Offset(550.6, 710.3), RenderStack#1af5e@Offset(550.6, 710.3), RenderRepaintBoundary#269ae@Offset(550.6, 710.3), RenderSemanticsAnnotations#b9e11@Offset(550.6, 710.3), RenderRepaintBoundary#0e11a@Offset(550.6, 710.3), RenderIgnorePointer#051f6@Offset(550.6, 710.3), RenderAnimatedOpacity#b5409@Offset(550.6, 710.3), RenderAnimatedOpacity#cd008@Offset(550.6, 710.3), RenderRepaintBoundary#52722@Offset(550.6, 710.3), RenderSemanticsAnnotations#2500e@Offset(550.6, 710.3), RenderOffstage#480f5@Offset(550.6, 710.3), RenderSemanticsAnnotations#8617e@Offset(550.6, 710.3), _RenderTheater#8bd66@Offset(550.6, 710.3), RenderAbsorbPointer#06652@Offset(550.6, 710.3), RenderPointerListener#baea4@Offset(550.6, 710.3), RenderSemanticsAnnotations#256ef@Offset(550.6, 710.3), RenderCustomPaint#86d58@Offset(550.6, 710.3), RenderSemanticsAnnotations#c2450@Offset(550.6, 710.3), RenderSemanticsAnnotations#564fb@Offset(550.6, 710.3), RenderSemanticsAnnotations#3a229@Offset(550.6, 710.3), RenderTapRegionSurface#a1127@Offset(550.6, 710.3), RenderSemanticsAnnotations#e3499@Offset(550.6, 710.3), RenderSemanticsAnnotations#02c61@Offset(550.6, 710.3), HitTestEntry<HitTestTarget>#5f7a6(_ReusableRenderView#fabcd), HitTestEntry<HitTestTarget>#03a58(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart:63:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:02 +3 -2: /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: (tearDownAll)
+00:02 +3 -2: loading /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart
+00:03 +3 -2: /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Cards outer/inner Fold layouts, full touch game, result, replay, back
+00:07 +4 -2: /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: non-empty
+  Actual: WhereIterable<Finder>:[]
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart:144:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart line 144
+The test description was:
+  Four in a row completes a full touch game and restart cancels old bot
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:08 +4 -3: /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot [E]
+  Test failed. See exception logs above.
+  The test description was: Four in a row completes a full touch game and restart cancels old bot
+  
+00:08 +4 -3: /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Dice full touch game, saved result, restart and pause during rolling
+00:08 +5 -3: Some tests failed.
+
+Failing tests:
+  /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 360.0x800.0
+  /tmp/lumo-dream-c4-de96/test/design/connect_four_visual_test.dart: Connect Four layout 640.0x360.0
+  /tmp/lumo-dream-c4-de96/test/games/games_screen_flow_test.dart: Four in a row completes a full touch game and restart cancels old bot
