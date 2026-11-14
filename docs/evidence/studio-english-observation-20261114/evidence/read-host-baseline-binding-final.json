@@ -1,0 +1,118 @@
+{
+  "exact_host": "50f2a0edf87a0e22f24345d8504f4d83e803bf37",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+      "path": ".github/probes/modernization_android_tour.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/.github/probes/creative_android_probe.py",
+      "bytes": 60697,
+      "sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+      "git_blob": "45ff0d24400ee21673c707b4b6448f914c85ee87",
+      "path": ".github/probes/creative_android_probe.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/.github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "bytes": 36239,
+      "sha256": "6dbda171d05375ef047d49e0cd1b3909daad7004b82a9d31a2f723b0767ed75e",
+      "git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+      "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/.github/probes/lumo_education_android_probe.py",
+      "bytes": 35294,
+      "sha256": "cda3312498917d61265dc7a019576063993f3d23a83494e9e61d087dd2981389",
+      "git_blob": "a19c7f4062a568569562699dfd19ee32ce866533",
+      "path": ".github/probes/lumo_education_android_probe.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/.github/probes/lumo_learning_journey_probe.py",
+      "bytes": 16929,
+      "sha256": "695aa825f506c77a8d68e3d3063eb4eaad3e1678a03028f6081a344b1ba02e63",
+      "git_blob": "6b222823529c83146528159ab15ed88a0dfa0130",
+      "path": ".github/probes/lumo_learning_journey_probe.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/tools/android_qa/kart_tour_evidence.py",
+      "bytes": 9299,
+      "sha256": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+      "git_blob": "c7bd2af82f3912c468bc21212ae017b06f70d116",
+      "path": "tools/android_qa/kart_tour_evidence.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/tools/android_qa/nextgen_evidence.py",
+      "bytes": 28512,
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "path": "tools/android_qa/nextgen_evidence.py"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 7587,
+      "sha256": "1c067ad052a5cabaeeadb6730d15a7618cbeafe1b5c8b83eed9af770c94035d2",
+      "git_blob": "f8bfc0af97806255ec8b72d89963c2831e250089",
+      "path": "lib/domain/tutoring/native_learning_activity.dart"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/lib/domain/tutoring/native_english_vocabulary.dart",
+      "bytes": 2941,
+      "sha256": "66f07be4fb2d573b411f8bda97330edad46003929640bf36a0ede74c2d43102a",
+      "git_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/lib/features/learning/learning_content.dart",
+      "bytes": 134562,
+      "sha256": "4f485a351e787c2411783c2542c5fa15bf7b875b12ab72257eea26d31057b692",
+      "git_blob": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "path": "lib/features/learning/learning_content.dart"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10634,
+      "sha256": "79af6bc42ee5d08004b93b543fc6b7013c646a7c18605ab6184b70ee658d1ddc",
+      "git_blob": "0bfb11538d05bd8bf267bf1e4a06b35f627314ca",
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/lib/core/native_profile_key_repository.dart",
+      "bytes": 10553,
+      "sha256": "27790a3fecd569a57a0c6fb6905636773bc95938fe22f9c8bbe84b677603471c",
+      "git_blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "path": "lib/core/native_profile_key_repository.dart"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/lib/app/app_state.dart",
+      "bytes": 57118,
+      "sha256": "e1c23a42f29bd7dc65df0eedf7b1e4611381484bff258c9be60a76d6f8715f54",
+      "git_blob": "861a5d84ed0b3caaa26fa1eded9527602c8f1f00",
+      "path": "lib/app/app_state.dart"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/lib/core/legacy_learning_data.dart",
+      "bytes": 13768,
+      "sha256": "4a97ae4829b7f64a7f68ca61d77e97951d4cb0fef5c5b8806bf3595ac6955ea3",
+      "git_blob": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+      "path": "lib/core/legacy_learning_data.dart"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/tools/auto_install/MainActivity.kt",
+      "bytes": 18497,
+      "sha256": "92e44f39ba00fc0cb5893ca426bbc082c8d9244a694bd0d479b534ba94a448ee",
+      "git_blob": "3ff5b361e55e05d9f23a8c90dd237c1896cd3065",
+      "path": "tools/auto_install/MainActivity.kt"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/baseline/host/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "git_blob": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+      "path": "tools/auto_install/LumoGameActivity.kt"
+    }
+  ],
+  "limits": "Selected source files, not a complete executable Host checkout; remaining declared imported paths are present in the exact Git tree and will be byte-checked in the actual candidate checkout before/after the Android run."
+}

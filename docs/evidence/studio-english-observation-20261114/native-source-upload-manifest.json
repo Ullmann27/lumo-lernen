@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "base_native": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "status": "FROZEN_LOCAL_RENDERED_REVIEWED_NOT_ANDROID",
+  "entries": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/native/scripts/learning/learning_world.gd",
+      "bytes": 61965,
+      "sha256": "3078e3aaba4bf5a811ddc5878370cdf945ddf8313c0cba6d4f9089e1c4062c6d",
+      "git_blob": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72",
+      "path": "scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/native/scripts/learning/english_object_gallery.gd",
+      "bytes": 9213,
+      "sha256": "7c1eba4dadb6bfea6935da0031e1416536c9e60055721eed893a0e2f593afaf7",
+      "git_blob": "401864874d7dc5fc9a97e057d1a49bdf894b9e0b",
+      "path": "scripts/learning/english_object_gallery.gd",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/native/scripts/tests/learning_english_regression.gd",
+      "bytes": 29246,
+      "sha256": "f9a64251022db5f2e8b8647f17ff0402dac08094e91cceaf0cc301b8193ba4f9",
+      "git_blob": "64dece9ec9619c6bf527c6398feef90b9e1a5298",
+      "path": "scripts/tests/learning_english_regression.gd",
+      "mode": "100644",
+      "repository": "Ullmann27/lumo-godot"
+    }
+  ],
+  "supersedes_only_prior_staging_blobs": [
+    "a65934fc2a7ed57108a2c1b92c3e68e6a1a1cfdf",
+    "b923cbabf62ec5a30b4f38e8d16aeced493aac72"
+  ],
+  "immutable_blobs_created_and_full_utf8_readback_verified": true
+}

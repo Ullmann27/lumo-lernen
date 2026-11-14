@@ -1,0 +1,214 @@
+{
+	"attempts": 0,
+	"background_depth": [
+		29.5917072296143,
+		56.6678237915039
+	],
+	"complete": false,
+	"controls": [
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"text": "1"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				86.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				86.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"text": "2"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				146.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"rect_px": [
+				146.0,
+				777.0,
+				52.0,
+				52.0
+			],
+			"text": "3"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				206.0,
+				777.0,
+				89.0,
+				52.0
+			],
+			"rect_px": [
+				206.0,
+				777.0,
+				89.0,
+				52.0
+			],
+			"text": "Hinweis"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				303.0,
+				777.0,
+				58.0,
+				52.0
+			],
+			"rect_px": [
+				303.0,
+				777.0,
+				58.0,
+				52.0
+			],
+			"text": "Neu"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				26.0,
+				837.0,
+				153.0,
+				52.0
+			],
+			"rect_px": [
+				26.0,
+				837.0,
+				153.0,
+				52.0
+			],
+			"text": "Schritt anhören"
+		},
+		{
+			"enabled": true,
+			"exposed_px": [
+				187.0,
+				837.0,
+				125.0,
+				52.0
+			],
+			"rect_px": [
+				187.0,
+				837.0,
+				125.0,
+				52.0
+			],
+			"text": "Zur Aufgabe"
+		}
+	],
+	"density": 1.0,
+	"explanation": "Tippe auf den Gegenstand zum englischen Wort.",
+	"footer_px": [
+		12.0,
+		735.0,
+		388.0,
+		168.0
+	],
+	"foreground_far_depth": 20.2539596557617,
+	"header_px": [
+		12.0,
+		12.0,
+		388.0,
+		125.0
+	],
+	"hint_level": 0,
+	"lumo_px": [
+		27.4000301361084,
+		205.411834716797,
+		150.787612915039,
+		257.590148925781
+	],
+	"name": "english-book-412x915-start",
+	"objects": [
+		{
+			"bounds_px": [
+				252.578979492188,
+				234.099731445312,
+				132.021026611328,
+				126.047210693359
+			],
+			"spatial_48dp_target_px": [
+				294.589477539062,
+				236.849578857422,
+				48.0,
+				48.0
+			],
+			"triangles": 804,
+			"word": "book"
+		},
+		{
+			"bounds_px": [
+				252.578979492188,
+				380.037078857422,
+				132.021026611328,
+				117.059692382812
+			],
+			"spatial_48dp_target_px": [
+				294.589477539062,
+				373.799407958984,
+				48.0,
+				48.0
+			],
+			"triangles": 1628,
+			"word": "ruler"
+		},
+		{
+			"bounds_px": [
+				252.578979492188,
+				514.215515136719,
+				132.021026611328,
+				152.372680664062
+			],
+			"spatial_48dp_target_px": [
+				294.589477539062,
+				543.005187988281,
+				48.0,
+				48.0
+			],
+			"triangles": 4228,
+			"word": "ball"
+		}
+	],
+	"objects_order": [
+		"book",
+		"ruler",
+		"ball"
+	],
+	"observation_source": "platform_fixture",
+	"stage_px": [
+		16.0,
+		145.0,
+		380.0,
+		582.0
+	],
+	"status": "Tippe den Gegenstand oder seine Zahl an.",
+	"title": "Englisch · book",
+	"window_px": [
+		412,
+		915
+	],
+	"word": "book"
+}

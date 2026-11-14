@@ -1,0 +1,703 @@
+{
+  "schema": 1,
+  "probe": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/host/.github/probes/lumo_english_objects_android_probe.py",
+    "bytes": 54191,
+    "sha256": "bb0fbb24159b38942bf2002062c825640a5b9e0bea9304cc6e5a3e704152c0e6",
+    "git_blob": "88e16570561053c275e6c7051585b7c3e1197117"
+  },
+  "scope": "Read-only final-source validation of actual local Godot PNG/sidecar observations; platform_fixture explicitly enabled for this offline read. No Android, OCR execution or semantic-image-recognition claim.",
+  "images": [
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.layout.json",
+        "bytes": 33302,
+        "sha256": "a5a432c469a09b820400c51d54ccb488b525461768f33d47167a33329cf986c8",
+        "git_blob": "05b5e78ebee18e5fbc9421859cff58d8e305cab2"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.png",
+        "bytes": 168747,
+        "sha256": "1dde63894a348d3afe4b35b432c5316dacf163a9f7fbc502597c2fad0a466bd5",
+        "git_blob": "8423139ce0062fc54c628fa842f7af903602fca8"
+      },
+      "dimensions": [
+        960,
+        540
+      ],
+      "object_pixels": [
+        {
+          "word": "book",
+          "box": [
+            376,
+            268,
+            474,
+            369
+          ],
+          "stddev": [
+            54.70194854425482,
+            68.86337172313506,
+            45.33711869163126
+          ],
+          "colour_bins": 112,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "apple",
+          "box": [
+            549,
+            254,
+            626,
+            350
+          ],
+          "stddev": [
+            70.84477422357575,
+            67.36100495411182,
+            53.7326106960777
+          ],
+          "colour_bins": 104,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "sun",
+          "box": [
+            697,
+            240,
+            804,
+            326
+          ],
+          "stddev": [
+            64.00709109838344,
+            57.47016950378152,
+            46.34556929134851
+          ],
+          "colour_bins": 91,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.layout.json",
+        "bytes": 43006,
+        "sha256": "d5f939e51f0e87418844eaceca715b0b2a5230035144f2b2f985245ed37734e1",
+        "git_blob": "d717fbeba2500095be8ee8f096591abe8f76a71c"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.png",
+        "bytes": 169062,
+        "sha256": "49d26ca02c74bf07eec89042bfde567b0b1266ae032719b3d70bffc771882a91",
+        "git_blob": "f9c83f57c04f4d632d834cdcf1973d6594a2ed27"
+      },
+      "dimensions": [
+        960,
+        540
+      ],
+      "object_pixels": [
+        {
+          "word": "ball",
+          "box": [
+            384,
+            242,
+            466,
+            357
+          ],
+          "stddev": [
+            84.87844498184637,
+            52.23242535549177,
+            45.807801681651085
+          ],
+          "colour_bins": 144,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ruler",
+          "box": [
+            530,
+            298,
+            646,
+            341
+          ],
+          "stddev": [
+            47.83882700090949,
+            38.471148940407865,
+            37.47008453160191
+          ],
+          "colour_bins": 54,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            697,
+            267,
+            805,
+            353
+          ],
+          "stddev": [
+            78.02001974549096,
+            52.16858641677507,
+            42.496768605652754
+          ],
+          "colour_bins": 116,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.layout.json",
+        "bytes": 43007,
+        "sha256": "bc9bf0eb98c94206378debed1d805ac61560270a26634168ba47893c1aff9c97",
+        "git_blob": "1337c39039d0ba42ccd1462599f448d8e948e5e6"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.png",
+        "bytes": 169421,
+        "sha256": "08554fa6a7dca123395da983fdb0cbaa056ded338c926edbf2649b082f16fa36",
+        "git_blob": "c49deda4d041768238e45cb07f09ad8018abe983"
+      },
+      "dimensions": [
+        960,
+        540
+      ],
+      "object_pixels": [
+        {
+          "word": "ball",
+          "box": [
+            384,
+            242,
+            466,
+            357
+          ],
+          "stddev": [
+            84.87844498184637,
+            52.23242535549177,
+            45.807801681651085
+          ],
+          "colour_bins": 144,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ruler",
+          "box": [
+            530,
+            298,
+            646,
+            341
+          ],
+          "stddev": [
+            47.83882700090949,
+            38.471148940407865,
+            37.47008453160191
+          ],
+          "colour_bins": 54,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            697,
+            267,
+            805,
+            353
+          ],
+          "stddev": [
+            78.02001974549096,
+            52.16858641677507,
+            42.496768605652754
+          ],
+          "colour_bins": 116,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.layout.json",
+        "bytes": 42198,
+        "sha256": "3e4dd4cfea24d4b1f39400baa26c5aa2d47ec1865f278715c943f61d1ee05ae6",
+        "git_blob": "c640fcc34fefd8b33c64221239593f6e139d6dab"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.png",
+        "bytes": 168631,
+        "sha256": "14bd48f5a78c745ad3ccd8ee37e534e17fad82866d33a8792db71b25db042698",
+        "git_blob": "d7925c442fbc273d525240d625239e587cc9d91f"
+      },
+      "dimensions": [
+        960,
+        540
+      ],
+      "object_pixels": [
+        {
+          "word": "ball",
+          "box": [
+            384,
+            242,
+            466,
+            357
+          ],
+          "stddev": [
+            84.67419477033596,
+            52.311905104583765,
+            46.0168752198161
+          ],
+          "colour_bins": 138,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ruler",
+          "box": [
+            530,
+            298,
+            646,
+            341
+          ],
+          "stddev": [
+            47.83882700090949,
+            38.471148940407865,
+            37.47008453160191
+          ],
+          "colour_bins": 54,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            697,
+            267,
+            805,
+            353
+          ],
+          "stddev": [
+            78.02001974549096,
+            52.16858641677507,
+            42.496768605652754
+          ],
+          "colour_bins": 116,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.layout.json",
+        "bytes": 36964,
+        "sha256": "4c055336e7b0e2c6807eb1e363b5da7135db20a7f284da0519b0c4e03401ba26",
+        "git_blob": "c9611005fa544b43128cf97f16fcba3c1d1e311e"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.png",
+        "bytes": 122464,
+        "sha256": "911ec06d3a692eb01275d4a2f5a98699f3ccfe414972596d63d2a60d0e02ad4e",
+        "git_blob": "2ebc27e2c2a0b98fb27a0df674ac0108ef9fab61"
+      },
+      "dimensions": [
+        412,
+        915
+      ],
+      "object_pixels": [
+        {
+          "word": "book",
+          "box": [
+            267,
+            236,
+            364,
+            335
+          ],
+          "stddev": [
+            36.95002120245817,
+            69.64823096818324,
+            45.911725877743315
+          ],
+          "colour_bins": 120,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ruler",
+          "box": [
+            259,
+            401,
+            373,
+            443
+          ],
+          "stddev": [
+            47.48449803014942,
+            38.30133069633567,
+            37.08239693310837
+          ],
+          "colour_bins": 56,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ball",
+          "box": [
+            275,
+            513,
+            356,
+            627
+          ],
+          "stddev": [
+            85.22337527123516,
+            52.683124474703305,
+            46.00191755533103
+          ],
+          "colour_bins": 135,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.layout.json",
+        "bytes": 36258,
+        "sha256": "5c6d9cd7eaae6fd73ce5b3583b659a58fb7fd07c794048cfdf008963dead8125",
+        "git_blob": "be184b483179b3bcc8590131933c78222d839394"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.png",
+        "bytes": 122886,
+        "sha256": "12c3b13dfe212b21c14a7d258c7a3a902e7a2d758548124e2e45115402a3f76d",
+        "git_blob": "18927f17bace9fb42bfbec2866ed3f21d30921e8"
+      },
+      "dimensions": [
+        412,
+        915
+      ],
+      "object_pixels": [
+        {
+          "word": "book",
+          "box": [
+            269,
+            234,
+            367,
+            334
+          ],
+          "stddev": [
+            37.93392493829881,
+            69.21513213971254,
+            45.54444104326864
+          ],
+          "colour_bins": 110,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ruler",
+          "box": [
+            261,
+            401,
+            376,
+            443
+          ],
+          "stddev": [
+            47.152397464907466,
+            38.09979334600216,
+            36.75551639729139
+          ],
+          "colour_bins": 53,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ball",
+          "box": [
+            278,
+            514,
+            359,
+            628
+          ],
+          "stddev": [
+            84.0139600665564,
+            51.952170537856894,
+            45.811531169794605
+          ],
+          "colour_bins": 144,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.layout.json",
+        "bytes": 39146,
+        "sha256": "1302655f5965a03ab7a7a754c452c2fd04a9bb7d0d512b907bab880cf04d083a",
+        "git_blob": "600ba80b151371902e1314e81bcdac5c626ac838"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.png",
+        "bytes": 665314,
+        "sha256": "095e4a4c4edda8575bbfa8f7dd4b59eb492e7cce367b110dec1e2151d748a862",
+        "git_blob": "87366bca88f1b1950814ce47d40d5630d5d40fd7"
+      },
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "object_pixels": [
+        {
+          "word": "apple",
+          "box": [
+            1126,
+            514,
+            1243,
+            660
+          ],
+          "stddev": [
+            70.52638625318139,
+            67.07155234544685,
+            53.510102855994354
+          ],
+          "colour_bins": 115,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "car",
+          "box": [
+            1352,
+            534,
+            1516,
+            664
+          ],
+          "stddev": [
+            80.43060380857547,
+            50.14444582672747,
+            42.09506343288885
+          ],
+          "colour_bins": 118,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "sun",
+          "box": [
+            1599,
+            492,
+            1761,
+            624
+          ],
+          "stddev": [
+            64.0791592702134,
+            57.614011906468036,
+            46.550165483189744
+          ],
+          "colour_bins": 103,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.layout.json",
+        "bytes": 37012,
+        "sha256": "05eaf96759aa45efeeb311d9069ea8308d3714e42ee6faf7cfacdcfd981da91f",
+        "git_blob": "e84bcb51734655d3d978fbf8d7bf747034922af3"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.png",
+        "bytes": 595155,
+        "sha256": "5b923efd6bc2ef8d7e901cc705dfa4c57a32ac8ff47c95e4603379fdb13aa5b3",
+        "git_blob": "8f9674d2ea0ae6f5f92f05479a577cddf0d66b26"
+      },
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "object_pixels": [
+        {
+          "word": "ruler",
+          "box": [
+            685,
+            729,
+            986,
+            840
+          ],
+          "stddev": [
+            52.46399298267758,
+            42.599904331571786,
+            38.02114795972712
+          ],
+          "colour_bins": 59,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "book",
+          "box": [
+            707,
+            1026,
+            962,
+            1287
+          ],
+          "stddev": [
+            54.24534401570724,
+            69.42393587439291,
+            45.48508195884296
+          ],
+          "colour_bins": 125,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "pen",
+          "box": [
+            739,
+            1401,
+            924,
+            1612
+          ],
+          "stddev": [
+            100.65616341217205,
+            70.46072853623843,
+            46.13567679148239
+          ],
+          "colour_bins": 131,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.layout.json",
+        "bytes": 45030,
+        "sha256": "20730529ecb32f602c246ff17c02e0d887c2279c014e57f46e4c793ed8d729ff",
+        "git_blob": "962ad4b3737aba09bbca7bab2f044234822c3f1c"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.png",
+        "bytes": 95615,
+        "sha256": "56a77b53674f050ef21f7e594643a502c1962b7dcd350d167fe612be703fc918",
+        "git_blob": "20cc757d2f23dc2ba551547fa015602e3bdf0206"
+      },
+      "dimensions": [
+        640,
+        360
+      ],
+      "object_pixels": [
+        {
+          "word": "ruler",
+          "box": [
+            265,
+            204,
+            322,
+            226
+          ],
+          "stddev": [
+            42.21141701766648,
+            34.477098624833175,
+            38.22415956329034
+          ],
+          "colour_bins": 47,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "book",
+          "box": [
+            348,
+            189,
+            397,
+            239
+          ],
+          "stddev": [
+            57.04103395088274,
+            67.98633984483729,
+            45.42958328814251
+          ],
+          "colour_bins": 82,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "sun",
+          "box": [
+            426,
+            176,
+            478,
+            218
+          ],
+          "stddev": [
+            62.858159165342705,
+            56.3827413450446,
+            45.658896884859665
+          ],
+          "colour_bins": 72,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.layout.json",
+        "bytes": 39174,
+        "sha256": "df3030dd0edd602d16d8e94a27a96d0965eef39b280467026e3cd1ac690c8ea9",
+        "git_blob": "95fdb9487af52fb6c230f439fa21470de10d3846"
+      },
+      "png": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.png",
+        "bytes": 169501,
+        "sha256": "e39e97a8b95870770dc74c48fb246931cfbd9eed6cd0f0d271c232c2c29be824",
+        "git_blob": "fef6c5ab7282490e0e97a28726660c0ea3994dd0"
+      },
+      "dimensions": [
+        960,
+        540
+      ],
+      "object_pixels": [
+        {
+          "word": "car",
+          "box": [
+            372,
+            267,
+            480,
+            353
+          ],
+          "stddev": [
+            80.45017985107131,
+            51.525051272772544,
+            42.857730581205296
+          ],
+          "colour_bins": 112,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "sun",
+          "box": [
+            534,
+            240,
+            641,
+            326
+          ],
+          "stddev": [
+            81.98242271400095,
+            57.72670376000385,
+            41.61049502633892
+          ],
+          "colour_bins": 70,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        },
+        {
+          "word": "ball",
+          "box": [
+            709,
+            242,
+            791,
+            357
+          ],
+          "stddev": [
+            83.5666809221088,
+            50.70683873002975,
+            52.31381410420125
+          ],
+          "colour_bins": 157,
+          "scope": "Visible pixel detail, not semantic image recognition"
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

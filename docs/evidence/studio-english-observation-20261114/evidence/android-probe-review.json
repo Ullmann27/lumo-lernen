@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "status": "PURE_VALIDATORS_PASS_REAL_ANDROID_PENDING",
+  "host_manifest": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/host-source-upload-manifest.json",
+    "bytes": 3491,
+    "sha256": "41d024bb877eccb6d044ff5dfe491b64df73d4616e665c2ebe7be43fff4a50e5",
+    "git_blob": "a0f0dd4225676e51fb80c561447744d379e497da"
+  },
+  "native_manifest": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/native-source-upload-manifest.json",
+    "bytes": 1739,
+    "sha256": "45bba6a1c8252079f3c572ca487cf04a4468664a4197b8de7c18a0b2d920f55e",
+    "git_blob": "9eac6090011772ae556fbbd423941d49457d072d"
+  },
+  "contracts": {
+    "executed": 26,
+    "passed": 26,
+    "skipped": 0,
+    "execution": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/probe-contracts-final/execution.json",
+      "bytes": 466,
+      "sha256": "5690a1ed8fd56fee5713dae8b41ee83ca91730bc69e1adae062af68287c9c1a5",
+      "git_blob": "a0d6b692681b1b6e02bab59e36ea96f6a4158485"
+    },
+    "log": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/probe-contracts-final/original.log",
+      "bytes": 5063,
+      "sha256": "a074e86b741aa2cfbf9dd190b745a4c628fcaefda01af8209df28e44c8804b8e",
+      "git_blob": "e81c188b2aeaf8f2982ecbbac05e19f519ea6223"
+    },
+    "warning": "Pillow emits a getdata deprecation warning in the blank-pixel negative test; no skip or failure. The original warning is preserved."
+  },
+  "final_renderer_replay": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/final-probe-render-replay.json",
+    "bytes": 20688,
+    "sha256": "e255490e6373e6254beff9b1cd771df6dfde93e99fedb9759aba00652285821e",
+    "git_blob": "07bb421639529c27e5d7e3eb68f598e841132046"
+  },
+  "exact_baseline_paths": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/exact-host-native-source-paths.json",
+    "bytes": 5364,
+    "sha256": "3c79aeb6db1f65bf4b049bc02238745629833be1d791804a9e83c036d4fecc49",
+    "git_blob": "81250033254428b83178a78061052686fbc92b6d"
+  },
+  "source_observation": [
+    "The original modernization tour stores android_sdk as text; final probe requires that exact type/value and21 distinct original step names.",
+    "Existing local student IDs are created as local- plus16 random bytes in hex by LegacyLearningDataRepository; AppState selects that ID only without a selected school child. The current opaque native key is read from the original owner registry.",
+    "Current task and answer labels are read through existing public Flutter accessibility/scroll controls; no answer is submitted to select a supported task. Unsupported current words remain an explicit failure until the separately authorized catalogue expansion.",
+    "Learning app-private sidecar must be actual android_window_insets, real PID/session/current task, stable raw hash before/after screenshot and independent camera/mesh/collision projection. Desktop fixtures are never enabled by the CLI.",
+    "State changes use actual observed >=48dp controls: wrong object, two hints, Home/same-session resume, correct visible object or numbered equivalent, then return to the same unsubmitted Flutter question.",
+    "Before/after source/installed APK/embedded PCK and actually present protected prefs must match. The return retains30seconds/12frames/two positive captions and foreground/private-process checks."
+  ],
+  "limits": [
+    "No new Android, installation, emulator, audio, facial, FPS or physical-device run.",
+    "No proof for absent native saves, absent journal/writing data or switching two children.",
+    "German narration policy is retained; English pronunciation is unverified.",
+    "Current supported Schulsachen are book, pen, ruler; seven missing concrete objects are the next separate authorized delta.",
+    "Pure validator fixtures are actual local Godot reports with declared platform/JNI transport, never genuine Android data."
+  ]
+}

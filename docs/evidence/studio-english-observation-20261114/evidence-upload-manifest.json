@@ -1,0 +1,575 @@
+{
+  "schema": 1,
+  "scope": "Explicit documentation/raw final local evidence only. Three Native and six Host source files are published as separate immutable blobs, not copied into product paths by this evidence list. Intermediate logs stay historical; ten final renderer PNGs were actually reviewed. No Android execution.",
+  "entries": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/README.md",
+      "path": "docs/evidence/studio-english-observation-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3996,
+      "sha256": "765d7e046ecd0175cef5fbfb56b829acd1c676bb9d872a8adeea4cbd62891aea",
+      "git_blob": "12768f2aaa64225981e715c4fcd18241ee175354"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/native-source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-observation-20261114/native-source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1739,
+      "sha256": "45bba6a1c8252079f3c572ca487cf04a4468664a4197b8de7c18a0b2d920f55e",
+      "git_blob": "9eac6090011772ae556fbbd423941d49457d072d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/host-source-upload-manifest.json",
+      "path": "docs/evidence/studio-english-observation-20261114/host-source-upload-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3491,
+      "sha256": "41d024bb877eccb6d044ff5dfe491b64df73d4616e665c2ebe7be43fff4a50e5",
+      "git_blob": "a0f0dd4225676e51fb80c561447744d379e497da"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/confirmed-source-blobs.json",
+      "path": "docs/evidence/studio-english-observation-20261114/confirmed-source-blobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5781,
+      "sha256": "8cd3d65a585fefbc003475361a09f861c66ed26afe907bb3c1413a7f1dda56dc",
+      "git_blob": "4d21335f3679024b9d7f53e65b71f9e5ce0be413"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/native-source-baseline.json",
+      "path": "docs/evidence/studio-english-observation-20261114/native-source-baseline.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 796,
+      "sha256": "1fc6cc569ddb8e1a1ee998551a3e152427dce479e00675480d77e7fb2e775450",
+      "git_blob": "f48a6bd403c954f89226879361de8f7a86acb1a2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/source-baseline.json",
+      "path": "docs/evidence/studio-english-observation-20261114/source-baseline.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4260,
+      "sha256": "be70f5a90dc0ba8995f3444e7f1d259e39079159488186cfac9eefa3169fd733",
+      "git_blob": "f8e4bc01ce73f7efb1d9a93368d28a194610f4ce"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/source-observation-first-green.json",
+      "path": "docs/evidence/studio-english-observation-20261114/source-observation-first-green.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1415,
+      "sha256": "f0a07e5f943a70561a961884812e02de270e64a494c92aa404c94afb73f94d5a",
+      "git_blob": "4787949594de6d8aaf8421d65d40bb4a1ac93476"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/fixture-binding.json",
+      "path": "docs/evidence/studio-english-observation-20261114/fixture-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2144,
+      "sha256": "182ab0a0584dbe9878ad916ff9cbd9173be29fe08571cd58cd3dbd1ce1b65328",
+      "git_blob": "42210027056d0e8a4c9f0373a1ed9a015fa19af7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/native-implementation-against-e4e5.patch",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/native-implementation-against-e4e5.patch",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 21406,
+      "sha256": "b5f19c095faeb72b3bede13def8d72ed68646ddc1c4e08a1e9c1f71a1561ea10",
+      "git_blob": "f43f3a9d634a156ab5eb249f89810782b1e0c6e3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/runtime-source-binding.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/runtime-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 21929,
+      "sha256": "a8b3b53ef28fdbaf4fbe2a4518b95d359684987f67033143a3ede71b1413e985",
+      "git_blob": "7eabaf4da83eca222e85070938f3e8b206c04d8c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/final-runtime-source-binding.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/final-runtime-source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 21083,
+      "sha256": "170cb3cef9dff4db3fbabd6c1310b9bc51499a40a6364ba0f31b6ad59baab5ae",
+      "git_blob": "2a8b4cbe1c027b4814044c2f8819c4cc52bb84f7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/final-source-render-review.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/final-source-render-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 15335,
+      "sha256": "208fdc7cf585d034896e7ca2b6cc3b3a8d8dae22b72a47802e5d17993809fcf4",
+      "git_blob": "01d77d51ef10aed0706a664e5518317184ff337b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/final-render-validator-replay.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/final-render-validator-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 17706,
+      "sha256": "ae7e8a86453a2d81bab4c14effd02da7e12682e0f9d570afc5f9a12353f3a728",
+      "git_blob": "9752b3cc226d1dd1c70ec903882dad3c203863cd"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/final-probe-render-replay.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/final-probe-render-replay.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 20688,
+      "sha256": "e255490e6373e6254beff9b1cd771df6dfde93e99fedb9759aba00652285821e",
+      "git_blob": "07bb421639529c27e5d7e3eb68f598e841132046"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/exact-host-native-source-paths.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/exact-host-native-source-paths.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5364,
+      "sha256": "3c79aeb6db1f65bf4b049bc02238745629833be1d791804a9e83c036d4fecc49",
+      "git_blob": "81250033254428b83178a78061052686fbc92b6d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/read-host-baseline-binding-final.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/read-host-baseline-binding-final.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 6551,
+      "sha256": "9f2bd3e185f85555912e3c15b90ffce7f494c7ec62c58a4cba46a93e59a59631",
+      "git_blob": "1bfb0f5dc05af28f45a7c63e44f8280922902f81"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/android-probe-review.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/android-probe-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4136,
+      "sha256": "f2359c430fa286280e45686fbae17b06f02670a25b0769090a6f617905b0b687",
+      "git_blob": "cb08dbdd066d05a7b1fa859ae8413b0492744b3b"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-first/execution.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-headless-first/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 558,
+      "sha256": "1eab0f936939e7d81e93d191ba8f7cbc6c91baa44cb2e7548b3692e3ef65f52f",
+      "git_blob": "1b9f899c2ca66e576533c8ec5fc9024ea0512f45"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-first/original.log",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-headless-first/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3718,
+      "sha256": "62f3327f8f8685f2ae15d72dfe960ee98353a6c303d07ee4b8c05302f12b7169",
+      "git_blob": "1cd6f49cd488ba0b29fdd68bc59a18dba342e8cc"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/execution.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-headless-collision/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 562,
+      "sha256": "72d39a0cdd40423ba6baabede4c3c6372646520139b1ef62632be901e830bf21",
+      "git_blob": "9490599897b3f229a99529ab847748395845d150"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/original.log",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-headless-collision/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3718,
+      "sha256": "e0de69a9cf05bb7f303c8f72115932257338c2acf541042e972f3895df11345f",
+      "git_blob": "b06bffb971dc4f668fc5ccdafa60b804a96de020"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/probe-contracts-first/execution.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/probe-contracts-first/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 438,
+      "sha256": "b5afdbc6fe1d01933c58d068cf2c0dc33348cdb7675fe7fe0c15e7cfe31f6f3f",
+      "git_blob": "e941a3d2e911915a057e304ab80353de0c54e249"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/probe-contracts-first/original.log",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/probe-contracts-first/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4515,
+      "sha256": "5e1c47909e50d5fe0696bae8b4fe64af8a576a7afd794b7f9ead4043b987cd15",
+      "git_blob": "c2ac79e7b511809d57ac681ff5dafd7a9a4f1095"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/probe-contracts-final/execution.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/probe-contracts-final/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 466,
+      "sha256": "5690a1ed8fd56fee5713dae8b41ee83ca91730bc69e1adae062af68287c9c1a5",
+      "git_blob": "a0d6b692681b1b6e02bab59e36ea96f6a4158485"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/probe-contracts-final/original.log",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/probe-contracts-final/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5063,
+      "sha256": "a074e86b741aa2cfbf9dd190b745a4c628fcaefda01af8209df28e44c8804b8e",
+      "git_blob": "e81c188b2aeaf8f2982ecbbac05e19f519ea6223"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-first/run.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-first/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 606,
+      "sha256": "9a5fb8a6e1c09facca6bb80d2e794b70d28ad0167521a898166a62449d57b911",
+      "git_blob": "bce7bd9320729e7b1838772f4feca1e577cdad99"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-first/godot.log",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-first/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4014,
+      "sha256": "9f47070ac58f6e8430a589d03ef2337798b6f9280972779aa91fe7d8034d44c5",
+      "git_blob": "4ed52227f430f46384953fccb2eca8376afca080"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision/run.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 610,
+      "sha256": "088038a2f7146d1193bed6accd19137d71fe64520d1f2ec9afeacd8111d4c37d",
+      "git_blob": "6c754541ae3158437baf0f4cb6b42fc9229c256a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision/godot.log",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision/godot.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4014,
+      "sha256": "13cf3de803be16f4b1d14e245344b4d35b5a9c22764811d9fd275498563e83a6",
+      "git_blob": "a540b0a5dcc72d90ddfa07783f91f94c7d4ffaed"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/import-first/execution.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/import-first/execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 215,
+      "sha256": "ec9da16d31c05fc88f231a63dddf17c2d57c6529047b246cb29061a47701532d",
+      "git_blob": "109c4572efefe8184e57c4ec03c697079b8473ce"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/import-first/original.log",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/import-first/original.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5968,
+      "sha256": "aed286e883e02c6dde70244320afdc3f561e7f3c4ca910e3ebaf76d22214d52a",
+      "git_blob": "48620d7cc6a765238b8ce055dd07ac0c9ca5280d"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-headless-collision/captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 49866,
+      "sha256": "1a0b93cbef6ec52d0a7601d5e50c7115cc0f851ed22b8389a7f4a25e7fc50737",
+      "git_blob": "658bc8a15342a95c0058ad52fefb64def8520d3f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2832,
+      "sha256": "cf9a93321b12dc86261a07d11f3b8ea4aa94f28c01dfc950b277cac598e8071f",
+      "git_blob": "162335ad230852bd6e323ae6794a452780e5edb1"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 33302,
+      "sha256": "a5a432c469a09b820400c51d54ccb488b525461768f33d47167a33329cf986c8",
+      "git_blob": "05b5e78ebee18e5fbc9421859cff58d8e305cab2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 168747,
+      "sha256": "1dde63894a348d3afe4b35b432c5316dacf163a9f7fbc502597c2fad0a466bd5",
+      "git_blob": "8423139ce0062fc54c628fa842f7af903602fca8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2837,
+      "sha256": "b1a287b8b372a400bfc9a07b4f9fb89b44e20bb482464058d4d5007a3c6acf51",
+      "git_blob": "84c33249ebaf78013179f159fb4a8986ec688287"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 43006,
+      "sha256": "d5f939e51f0e87418844eaceca715b0b2a5230035144f2b2f985245ed37734e1",
+      "git_blob": "d717fbeba2500095be8ee8f096591abe8f76a71c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 169062,
+      "sha256": "49d26ca02c74bf07eec89042bfde567b0b1266ae032719b3d70bffc771882a91",
+      "git_blob": "f9c83f57c04f4d632d834cdcf1973d6594a2ed27"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2834,
+      "sha256": "0243931c016dab40f44bd5959f7dac1662744d311fa4ebf53e053e8798a393ee",
+      "git_blob": "7230b7f432e5c8217ed967c49988a2d56c217921"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 43007,
+      "sha256": "bc9bf0eb98c94206378debed1d805ac61560270a26634168ba47893c1aff9c97",
+      "git_blob": "1337c39039d0ba42ccd1462599f448d8e948e5e6"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 169421,
+      "sha256": "08554fa6a7dca123395da983fdb0cbaa056ded338c926edbf2649b082f16fa36",
+      "git_blob": "c49deda4d041768238e45cb07f09ad8018abe983"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2831,
+      "sha256": "ae3f945b328e731259749f3a908d9c8ed879dfd1f3d74bd11a89302e16aa52ff",
+      "git_blob": "889b570b49436037b791989eeca5f39775239127"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 42198,
+      "sha256": "3e4dd4cfea24d4b1f39400baa26c5aa2d47ec1865f278715c943f61d1ee05ae6",
+      "git_blob": "c640fcc34fefd8b33c64221239593f6e139d6dab"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 168631,
+      "sha256": "14bd48f5a78c745ad3ccd8ee37e534e17fad82866d33a8792db71b25db042698",
+      "git_blob": "d7925c442fbc273d525240d625239e587cc9d91f"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2835,
+      "sha256": "d917ac50b3fd87ff57f6610b178ab97456a6a80e1127ad096ea774abbe224902",
+      "git_blob": "976a11c1af124a764a616ba978403f0e701fbd2a"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 36964,
+      "sha256": "4c055336e7b0e2c6807eb1e363b5da7135db20a7f284da0519b0c4e03401ba26",
+      "git_blob": "c9611005fa544b43128cf97f16fcba3c1d1e311e"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 122464,
+      "sha256": "911ec06d3a692eb01275d4a2f5a98699f3ccfe414972596d63d2a60d0e02ad4e",
+      "git_blob": "2ebc27e2c2a0b98fb27a0df674ac0108ef9fab61"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2833,
+      "sha256": "d38d1120ef607a423d7f00af23e282877c68720353d9632add32f7082e5fac59",
+      "git_blob": "a614f8230d403b6becd4a590c232ba58995af647"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 36258,
+      "sha256": "5c6d9cd7eaae6fd73ce5b3583b659a58fb7fd07c794048cfdf008963dead8125",
+      "git_blob": "be184b483179b3bcc8590131933c78222d839394"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 122886,
+      "sha256": "12c3b13dfe212b21c14a7d258c7a3a902e7a2d758548124e2e45115402a3f76d",
+      "git_blob": "18927f17bace9fb42bfbec2866ed3f21d30921e8"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3070,
+      "sha256": "021838619030745fe8660fc461fd93521b56b9f7a7c15e763cb12d366797db14",
+      "git_blob": "67cb3f8e2a4915e333dbb7eaf7de492d3e2db6b2"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 39146,
+      "sha256": "1302655f5965a03ab7a7a754c452c2fd04a9bb7d0d512b907bab880cf04d083a",
+      "git_blob": "600ba80b151371902e1314e81bcdac5c626ac838"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 665314,
+      "sha256": "095e4a4c4edda8575bbfa8f7dd4b59eb492e7cce367b110dec1e2151d748a862",
+      "git_blob": "87366bca88f1b1950814ce47d40d5630d5d40fd7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2944,
+      "sha256": "f84c6fd928708df396460d63cf8a56577d883a05cd5926fdd36853436d6dee76",
+      "git_blob": "54cf8a1db424034f0f80b9bdd142cc71ae3c80f0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 37012,
+      "sha256": "05eaf96759aa45efeeb311d9069ea8308d3714e42ee6faf7cfacdcfd981da91f",
+      "git_blob": "e84bcb51734655d3d978fbf8d7bf747034922af3"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 595155,
+      "sha256": "5b923efd6bc2ef8d7e901cc705dfa4c57a32ac8ff47c95e4603379fdb13aa5b3",
+      "git_blob": "8f9674d2ea0ae6f5f92f05479a577cddf0d66b26"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2824,
+      "sha256": "5b2c11ac3dc388ebca9dea509800c15bedc4bec7b510f2e27d79fc49e66d0169",
+      "git_blob": "b38728027e26453530ec3ea3a4bfdaac6f6a1f25"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 45030,
+      "sha256": "20730529ecb32f602c246ff17c02e0d887c2279c014e57f46e4c793ed8d729ff",
+      "git_blob": "962ad4b3737aba09bbca7bab2f044234822c3f1c"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 95615,
+      "sha256": "56a77b53674f050ef21f7e594643a502c1962b7dcd350d167fe612be703fc918",
+      "git_blob": "20cc757d2f23dc2ba551547fa015602e3bdf0206"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2820,
+      "sha256": "460480accf3447b38331f5cbf46b59c8bcec32d93edd8cea1ff0f7f81d0964fd",
+      "git_blob": "b1bcfe54251cddf4fab0026380e175669654c7fe"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.layout.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 39174,
+      "sha256": "df3030dd0edd602d16d8e94a27a96d0965eef39b280467026e3cd1ac690c8ea9",
+      "git_blob": "95fdb9487af52fb6c230f439fa21470de10d3846"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.png",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 169501,
+      "sha256": "e39e97a8b95870770dc74c48fb246931cfbd9eed6cd0f0d271c232c2c29be824",
+      "git_blob": "fef6c5ab7282490e0e97a28726660c0ea3994dd0"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/learning-english-report.json",
+      "path": "docs/evidence/studio-english-observation-20261114/evidence/sidecar-render-collision-captures/learning-english-report.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 51245,
+      "sha256": "af7a9e9d9541337b1ffa28d0e557c6da8c647405568e81c9e53861b4ea04ce9b",
+      "git_blob": "e5652f41b0858a8e9977baf66e2b0452f8c19847"
+    }
+  ],
+  "count": 63,
+  "bytes": 3163949
+}

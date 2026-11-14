@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "reviewer": "learning_worlds",
+  "status": "No additional concrete source blocker in this limited read-only review",
+  "baseline_native": "9f2e865614262c7176f9fdd987766ff5e45f2551",
+  "original_host": "c0ca5265eb4159e6848317da5f49edabaa75bfa0",
+  "reviewed_product": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/games/quiz/quiz_studio.gd",
+    "bytes": 32524,
+    "sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+    "git_blob_sha": "aa3e4d91f0e64cd466fb087356fbf29264d697a3"
+  },
+  "reviewed_test": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/prepared/native/scripts/tests/quiz_studio_runtime.gd",
+    "bytes": 40358,
+    "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948",
+    "git_blob_sha": "623e76afd47d1cd96fcaebdebacac0a684f38f7b"
+  },
+  "original_source_comparison": {
+    "functions": [
+      {
+        "path": "scripts/games/quiz/quiz_studio.gd",
+        "baseline_bytes": 32033,
+        "baseline_sha256": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+        "current_bytes": 32524,
+        "current_sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+        "changed_functions": [
+          "_valid_state",
+          "_allowed",
+          "_update_ui"
+        ],
+        "added_functions": [
+          "_option_hidden"
+        ],
+        "removed_functions": [],
+        "unchanged_function_count": 27
+      },
+      {
+        "path": "scripts/tests/quiz_studio_runtime.gd",
+        "baseline_bytes": 33632,
+        "baseline_sha256": "8df756dee8e5daee17a88a8899d6189aba8acd8b9148ca3cd0c5e606fdd1d0cd",
+        "current_bytes": 40199,
+        "current_sha256": "5abbd94b53c379caa0bac17db70bd0e8f1243e9d50edd1478812b87c01be162b",
+        "changed_functions": [
+          "_authority_contracts",
+          "_finish",
+          "_source_hashes",
+          "_run"
+        ],
+        "added_functions": [
+          "_disabled_original_touch",
+          "_original_json_contracts"
+        ],
+        "removed_functions": [],
+        "unchanged_function_count": 24
+      }
+    ],
+    "fixture_byte_matches": [
+      {
+        "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-9f2e-ci-20261114/originals/quiz-pair/authority/public-state.json",
+        "target": "scripts/tests/fixtures/quiz_9f2e/public-state.json",
+        "bytes": 845,
+        "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+        "git_blob_sha": "0d6438f6706d875c87f82e694b22a8d0a5f96352"
+      },
+      {
+        "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-9f2e-ci-20261114/originals/quiz-pair/native/quiz-dart-jokers.layout.json",
+        "target": "scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+        "bytes": 4718,
+        "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6",
+        "git_blob_sha": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b"
+      },
+      {
+        "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-9f2e-ci-20261114/originals/quiz-pair/native/quiz-dart-selected-phone.layout.json",
+        "target": "scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+        "bytes": 4692,
+        "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42",
+        "git_blob_sha": "b1e09d14f6c1b01caf6c30b89d2e12d818146031"
+      },
+      {
+        "source": "/workspace/scratch/5987865ae883/qa/studio-quiz-native-9f2e-ci-20261114/originals/quiz-pair/authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+        "target": "scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+        "bytes": 4378,
+        "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+        "git_blob_sha": "7624036f7e342a6d5b0c3430019c98ab13f13baf"
+      }
+    ]
+  },
+  "final_test_addendum": {
+    "removed_two_exact_lines_reconstructs_sha256": "5abbd94b53c379caa0bac17db70bd0e8f1243e9d50edd1478812b87c01be162b",
+    "changes": [
+      "Hide the previous CanvasLayer-owned UI explicitly",
+      "Assert this old UI is not visible before the original-JSON replay"
+    ]
+  },
+  "findings": [
+    "The exact full STATE_KEYS set still requires explanation. A revealed value may now be null or a bounded String, matching the observed production question; other types remain rejected. Before reveal, non-null answer and explanation still fail.",
+    "The original public state really has reveal ack5/revision and matching durable record6; original question e_sk_body_3 has null explanation. Four fixture files are byte-identical to the downloaded CI originals.",
+    "Hidden entries remain checked as finite whole numeric indices0..3 with uniqueness after integer normalization. The new shared numeric predicate is applied both to visible answer captions/disablement and to the outgoing select permission. No authoritative state is rewritten.",
+    "Nullable explanation renders only the actual verdict. No null text, invented explanatory sentence, reward, answer calculation or save is introduced.",
+    "The production apply_state owner/revision/ack/rejected/pending/return functions are unchanged. The test preserves the original startup deadline, bounded input paths and twenty-question authority flow, with additive hidden/null checks.",
+    "The explicitly declared fixture replay performs real Godot touch on disabled controls and verifies no request. The later Dart authority test retains its actual acknowledgement requirement.",
+    "The two-line final QA correction explicitly suppresses the previous CanvasLayer UI; inverse removal reconstructs the earlier reviewed test exactly."
+  ],
+  "read_existing_executions": [
+    {
+      "folder": "red-original-render-final-v2",
+      "checks": 208,
+      "failures": 17,
+      "captures": 9,
+      "exit_code": 1,
+      "elapsed_seconds": 37.19781879400034,
+      "sources_before_equals_after": true,
+      "original_files": [
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final-v2/run.json",
+          "bytes": 420,
+          "sha256": "e29ba56e122b364dfe7e9bd6e1dfff7f8707d29aff05deec1ee008d2a8505361",
+          "git_blob_sha": "0f649c743aba3a1d2699dd52f744f105a5af1725"
+        },
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final-v2/execution.json",
+          "bytes": 1746,
+          "sha256": "c1363513d7396fcb1aec23b9f45a707c1ccc53165b4876ba3fab53d232ad3a4c",
+          "git_blob_sha": "26bd4754d02842c5f8b6fedfa73c560902868085"
+        },
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final-v2/godot.log",
+          "bytes": 10119,
+          "sha256": "88224ef00f21ca13ed563a278f468e652e0003758cfc89e921ec75dc420476f0",
+          "git_blob_sha": "be5f7ffd335ac61c44bad727410a26320cacf752"
+        },
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/red-original-render-final-v2/captures/quiz-runtime-report.json",
+          "bytes": 23118,
+          "sha256": "ad96105d480c2ead9793e39a0acb798872f74016856fb32bde5ebe9d6b06eca3",
+          "git_blob_sha": "d33338402a69ab0ce4d6fc06ae0ff9f7c2fa8c60"
+        }
+      ],
+      "pass_marker_present": false,
+      "scope": "New original Godot presenter and real ScreenTouch/ScreenDrag; fixture acknowledgements are not a production Dart/save result"
+    },
+    {
+      "folder": "green-corrected-render-final-v2",
+      "checks": 215,
+      "failures": 0,
+      "captures": 10,
+      "exit_code": 0,
+      "elapsed_seconds": 46.85953794099987,
+      "sources_before_equals_after": true,
+      "original_files": [
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/run.json",
+          "bytes": 420,
+          "sha256": "111d7ce8a7c5226417a28299d5876b64f87ea117618f2bc12e08859fae7b4f7a",
+          "git_blob_sha": "6537d2de510d5875cb4860ee6b0159db5d30bf39"
+        },
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/execution.json",
+          "bytes": 1754,
+          "sha256": "0ae8d3fb1d963413d6ff1f66e5a103a8f0991774dc079cd5dee20b7afa264e5d",
+          "git_blob_sha": "1da1ed4cc5d0c04b4672e01553141a31f0743807"
+        },
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/godot.log",
+          "bytes": 1066,
+          "sha256": "57e7e9a779b123c4765425463f93f5b5f13c0492caadc3137a7c21fe906689ce",
+          "git_blob_sha": "d845ae1e481a97b6dc6971b7571118aa896321aa"
+        },
+        {
+          "local_path": "/workspace/scratch/5987865ae883/qa/studio-quiz-json-contract-9f2e-20261114/evidence/green-corrected-render-final-v2/captures/quiz-runtime-report.json",
+          "bytes": 24010,
+          "sha256": "26bb29671433fd28772149f30850c81614c9b700da11f322209425df0961d598",
+          "git_blob_sha": "2790d857582756012b472efedb51c199dc4228d7"
+        }
+      ],
+      "pass_marker_present": true,
+      "scope": "New original Godot presenter and real ScreenTouch/ScreenDrag; fixture acknowledgements are not a production Dart/save result"
+    }
+  ],
+  "review_boundaries": {
+    "tests_executed_by_reviewer": 0,
+    "images_opened_by_reviewer": 0,
+    "android_execution": false,
+    "production_dart_reexecution": false,
+    "new_original_ci_pass_claimed": false,
+    "statement": "Existing local renderer results were read and source-bound. Image findings remain the implementing reviewer character_animation’s separate responsibility. The historical9f2 CI remains failed."
+  }
+}

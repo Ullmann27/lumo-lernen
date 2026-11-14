@@ -1,0 +1,17 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-english-observation-e4e5",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/learning_english_regression.gd",
+    "--",
+    "--output=/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/captures",
+    "--task-fixtures=/workspace/scratch/5987865ae883/qa/studio-quiz-native-e4e5-ci-20261114/originals/english-activity.json"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 14.111930373999712
+}

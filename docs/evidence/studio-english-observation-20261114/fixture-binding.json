@@ -1,0 +1,35 @@
+{
+  "source_native_base": "e4e5ce03e644a2f23b01a96f1d340a882a1798c4",
+  "producer_sha256": "489e7179254cfb951fdf0e8c538a75b000c1f5e61ac74f796ee369e9f457e606",
+  "execution": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/execution.json",
+  "files": [
+    {
+      "path": "english-ball-960x540-start.layout.json",
+      "original_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/captures/english-ball-960x540-start.layout.json",
+      "bytes": 42195,
+      "sha256": "e1e79909c444444ac45e467d6abfd9f792f999fe1f37bf9e28425dd17885e6e8",
+      "source": "Actual local production scene; explicit platform/JNI/audio fixture; not Android"
+    },
+    {
+      "path": "english-ball-960x540-hint.layout.json",
+      "original_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/captures/english-ball-960x540-hint.layout.json",
+      "bytes": 43005,
+      "sha256": "d0059e9bf1351b32364747dbbb3214c2cda7dc153b2d04689b503efe015f5682",
+      "source": "Actual local production scene; explicit platform/JNI/audio fixture; not Android"
+    },
+    {
+      "path": "english-ball-960x540-complete.layout.json",
+      "original_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/captures/english-ball-960x540-complete.layout.json",
+      "bytes": 43004,
+      "sha256": "a9d4da5aa6a1666edc1a15324ce9412be42c2ac420e2bda98cb7035fbd1a9a4d",
+      "source": "Actual local production scene; explicit platform/JNI/audio fixture; not Android"
+    },
+    {
+      "path": "english-pen-1080x2400-start.layout.json",
+      "original_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/captures/english-pen-1080x2400-start.layout.json",
+      "bytes": 37009,
+      "sha256": "91c4a6d3ce55a918b9854fd692869bb1b97fcacaa05dfc76c3dbbf711a27166f",
+      "source": "Actual local production scene; explicit platform/JNI/audio fixture; not Android"
+    }
+  ]
+}

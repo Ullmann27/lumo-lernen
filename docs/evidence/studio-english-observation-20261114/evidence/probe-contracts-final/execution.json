@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_english_objects_android_probe.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/prepared/host",
+  "returncode": 0,
+  "elapsed_seconds": 0.3056719760006672,
+  "scope": "Pure validators and timing counterexamples; no ADB, APK, Android, Flutter or new renderer execution"
+}

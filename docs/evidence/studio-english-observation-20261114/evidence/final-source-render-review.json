@@ -1,0 +1,308 @@
+{
+  "schema": 1,
+  "reviewer": "learning_worlds",
+  "reviewed_at_utc": "2026-11-14T14:09:48.961016+00:00",
+  "status": "NO_CONCRETE_BLOCKER_IN_LOCAL_SCOPE",
+  "source_manifest": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/native-source-upload-manifest.json",
+    "bytes": 1739,
+    "sha256": "45bba6a1c8252079f3c572ca487cf04a4468664a4197b8de7c18a0b2d920f55e",
+    "git_blob": "9eac6090011772ae556fbbd423941d49457d072d"
+  },
+  "source_maps_equal_before_headless_after_render": true,
+  "headless": {
+    "checks": 3479,
+    "input_events": 98,
+    "execution": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/execution.json",
+      "bytes": 562,
+      "sha256": "72d39a0cdd40423ba6baabede4c3c6372646520139b1ef62632be901e830bf21",
+      "git_blob": "9490599897b3f229a99529ab847748395845d150"
+    },
+    "log": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-headless-collision/original.log",
+      "bytes": 3718,
+      "sha256": "e0de69a9cf05bb7f303c8f72115932257338c2acf541042e972f3895df11345f",
+      "git_blob": "b06bffb971dc4f668fc5ccdafa60b804a96de020"
+    }
+  },
+  "renderer": {
+    "checks": 3509,
+    "input_events": 98,
+    "captures": 10,
+    "execution": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision/run.json",
+      "bytes": 610,
+      "sha256": "088038a2f7146d1193bed6accd19137d71fe64520d1f2ec9afeacd8111d4c37d",
+      "git_blob": "6c754541ae3158437baf0f4cb6b42fc9229c256a"
+    },
+    "log": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision/godot.log",
+      "bytes": 4014,
+      "sha256": "13cf3de803be16f4b1d14e245344b4d35b5a9c22764811d9fd275498563e83a6",
+      "git_blob": "a540b0a5dcc72d90ddfa07783f91f94c7d4ffaed"
+    },
+    "report": {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/learning-english-report.json",
+      "bytes": 51245,
+      "sha256": "af7a9e9d9541337b1ffa28d0e557c6da8c647405568e81c9e53861b4ea04ce9b",
+      "git_blob": "e5652f41b0858a8e9977baf66e2b0452f8c19847"
+    },
+    "warnings": [
+      {
+        "line": 2,
+        "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      },
+      {
+        "line": 6,
+        "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+      },
+      {
+        "line": 8,
+        "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      }
+    ]
+  },
+  "actual_dart_producer_sha256": "489e7179254cfb951fdf0e8c538a75b000c1f5e61ac74f796ee369e9f457e606",
+  "images": [
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.png",
+      "sha256": "14bd48f5a78c745ad3ccd8ee37e534e17fad82866d33a8792db71b25db042698",
+      "git_blob": "d7925c442fbc273d525240d625239e587cc9d91f",
+      "bytes": 168631,
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-start.layout.json",
+        "bytes": 42198,
+        "sha256": "3e4dd4cfea24d4b1f39400baa26c5aa2d47ec1865f278715c943f61d1ee05ae6",
+        "git_blob": "c640fcc34fefd8b33c64221239593f6e139d6dab"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Ball, Lineal und Auto sind als drei getrennte Gegenstände sichtbar; Titel und Nummern sind lesbar. Lumo ist vollständig vor dem Boden sichtbar."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.png",
+      "sha256": "08554fa6a7dca123395da983fdb0cbaa056ded338c926edbf2649b082f16fa36",
+      "git_blob": "c49deda4d041768238e45cb07f09ad8018abe983",
+      "bytes": 169421,
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-hint.layout.json",
+        "bytes": 43007,
+        "sha256": "bc9bf0eb98c94206378debed1d805ac61560270a26634168ba47893c1aff9c97",
+        "git_blob": "1337c39039d0ba42ccd1462599f448d8e948e5e6"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Der tatsächliche zweite Hinweis umrandet ausschließlich den Ball. Keine automatische Antwort wird als Kindantwort dargestellt. Titel und Rückkehr bleiben lesbar."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.png",
+      "sha256": "49d26ca02c74bf07eec89042bfde567b0b1266ae032719b3d70bffc771882a91",
+      "git_blob": "f9c83f57c04f4d632d834cdcf1973d6594a2ed27",
+      "bytes": 169062,
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ball-960x540-complete.layout.json",
+        "bytes": 43006,
+        "sha256": "d5f939e51f0e87418844eaceca715b0b2a5230035144f2b2f985245ed37734e1",
+        "git_blob": "d717fbeba2500095be8ee8f096591abe8f76a71c"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Die Zuordnung ball = Ball und die Aufforderung Zur Aufgabe sind sichtbar. Auswahl und Hinweis sind nach Abschluss deaktiviert; Neu und Rückkehr bleiben vorhanden."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.png",
+      "sha256": "12c3b13dfe212b21c14a7d258c7a3a902e7a2d758548124e2e45115402a3f76d",
+      "git_blob": "18927f17bace9fb42bfbec2866ed3f21d30921e8",
+      "bytes": 122886,
+      "dimensions": [
+        412,
+        915
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-start.layout.json",
+        "bytes": 36258,
+        "sha256": "5c6d9cd7eaae6fd73ce5b3583b659a58fb7fd07c794048cfdf008963dead8125",
+        "git_blob": "be184b483179b3bcc8590131933c78222d839394"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Im schmalen Hochformat sind Buch, Lineal und Ball untereinander getrennt und nummeriert. Der erklärende Text umbrecht vollständig; die unteren Aktionen stehen in zwei lesbaren Reihen."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.png",
+      "sha256": "911ec06d3a692eb01275d4a2f5a98699f3ccfe414972596d63d2a60d0e02ad4e",
+      "git_blob": "2ebc27e2c2a0b98fb27a0df674ac0108ef9fab61",
+      "bytes": 122464,
+      "dimensions": [
+        412,
+        915
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-book-412x915-complete.layout.json",
+        "bytes": 36964,
+        "sha256": "4c055336e7b0e2c6807eb1e363b5da7135db20a7f284da0519b0c4e03401ba26",
+        "git_blob": "c9611005fa544b43128cf97f16fcba3c1d1e311e"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Die vollständige deutsche Buch-Zuordnung und Rückkehraufforderung passen auch im Hochformat. Der korrekte Gegenstand ist umrandet; Lumo und die Rückkehraktion sind sichtbar."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.png",
+      "sha256": "56a77b53674f050ef21f7e594643a502c1962b7dcd350d167fe612be703fc918",
+      "git_blob": "20cc757d2f23dc2ba551547fa015602e3bdf0206",
+      "bytes": 95615,
+      "dimensions": [
+        640,
+        360
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-ruler-640x360-start.layout.json",
+        "bytes": 45030,
+        "sha256": "20730529ecb32f602c246ff17c02e0d887c2279c014e57f46e4c793ed8d729ff",
+        "git_blob": "962ad4b3737aba09bbca7bab2f044234822c3f1c"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Im kurzen Querformat bleiben die drei sichtbaren Gegenstände und die sieben unteren Ziele innerhalb des Bildes. Der kompakte Anhören-Text und Zur Aufgabe sind vollständig; die Gegenstände sind kleiner, echte 52dp-Nummernziele bleiben vorhanden."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.png",
+      "sha256": "095e4a4c4edda8575bbfa8f7dd4b59eb492e7cce367b110dec1e2151d748a862",
+      "git_blob": "87366bca88f1b1950814ce47d40d5630d5d40fd7",
+      "bytes": 665314,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-car-2400x1080-start.layout.json",
+        "bytes": 39146,
+        "sha256": "1302655f5965a03ab7a7a754c452c2fd04a9bb7d0d512b907bab880cf04d083a",
+        "git_blob": "600ba80b151371902e1314e81bcdac5c626ac838"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Apfel, rotes Auto und Sonne sind getrennt, nummeriert und erkennbar. Der linke Cutoutabstand bleibt in der Fixture frei; Lumo und der vollständige Fußbereich sind sichtbar."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.png",
+      "sha256": "5b923efd6bc2ef8d7e901cc705dfa4c57a32ac8ff47c95e4603379fdb13aa5b3",
+      "git_blob": "8f9674d2ea0ae6f5f92f05479a577cddf0d66b26",
+      "bytes": 595155,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-pen-1080x2400-start.layout.json",
+        "bytes": 37012,
+        "sha256": "05eaf96759aa45efeeb311d9069ea8308d3714e42ee6faf7cfacdcfd981da91f",
+        "git_blob": "e84bcb51734655d3d978fbf8d7bf747034922af3"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Das blaue Schreibgerät mit Spitze und Clip ist als Gegenstand sichtbar; drei Nummern und zwei Reihen Aktionen sind lesbar. Der beobachtungsbasierte obere und untere Rand bleibt frei; dies ist eine Desktop-Insetfixture."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.png",
+      "sha256": "e39e97a8b95870770dc74c48fb246931cfbd9eed6cd0f0d271c232c2c29be824",
+      "git_blob": "fef6c5ab7282490e0e97a28726660c0ea3994dd0",
+      "bytes": 169501,
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-sun-960x540-start.layout.json",
+        "bytes": 39174,
+        "sha256": "df3030dd0edd602d16d8e94a27a96d0965eef39b280467026e3cd1ac690c8ea9",
+        "git_blob": "95fdb9487af52fb6c230f439fa21470de10d3846"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Das Sonnenobjekt mit Strahlen ist neben Auto und Ball klar sichtbar, Titel sun und die drei Nummern sind lesbar."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.png",
+      "sha256": "1dde63894a348d3afe4b35b432c5316dacf163a9f7fbc502597c2fad0a466bd5",
+      "git_blob": "8423139ce0062fc54c628fa842f7af903602fca8",
+      "bytes": 168747,
+      "dimensions": [
+        960,
+        540
+      ],
+      "layout": {
+        "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/sidecar-render-collision-captures/english-apple-960x540-start.layout.json",
+        "bytes": 33302,
+        "sha256": "a5a432c469a09b820400c51d54ccb488b525461768f33d47167a33329cf986c8",
+        "git_blob": "05b5e78ebee18e5fbc9421859cff58d8e305cab2"
+      },
+      "reviewed": true,
+      "blocking_issue": false,
+      "findings": [
+        "Der rote Apfel mit Stiel und Blatt ist zwischen Buch und Sonne sichtbar; die drei Objekte und ihre Nummern überdecken sich nicht."
+      ],
+      "smallest_exposed_control_dp": 52.0
+    }
+  ],
+  "read_only_validator_replay": {
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-android-50f2-20261114/evidence/final-render-validator-replay.json",
+    "bytes": 17706,
+    "sha256": "ae7e8a86453a2d81bab4c14effd02da7e12682e0f9d570afc5f9a12353f3a728",
+    "git_blob": "9752b3cc226d1dd1c70ec903882dad3c203863cd"
+  },
+  "design": [
+    "State/layout/lifecycle-driven atomically replaced app-private observation only; no injected answers, requests or product saves.",
+    "Immediate invalidation before transitions, two settled frames, removal on accepted return and exit; repeated idle frames preserve bytes.",
+    "Actual camera, mesh bounds and collision volume are observed. Independent Python projection verifies supplied geometry; a ray target need not be inside the narrower visible mesh when it is inside the actual collision volume.",
+    "Current closed seven-word catalog and original rules, German speech policy and return behavior remain unchanged."
+  ],
+  "limits": [
+    "Local production Godot scene with explicit platform/JNI/audio fixtures.",
+    "No actual Android execution or installed-APK acceptance for these new bytes.",
+    "No English pronunciation, audio listening, phoneme sync, physical Fold7, thermal or 60FPS claim.",
+    "Recognizable objects use simple geometry/materials and hard shadows. Pixel detail checks are not semantic image recognition.",
+    "The seven additional Schulsachen entries remain a separately authorized future source delta."
+  ]
+}
