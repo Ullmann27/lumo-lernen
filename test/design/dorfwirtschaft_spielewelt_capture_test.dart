@@ -41,10 +41,12 @@ void main() {
       expect(village, findsOneWidget);
       await tester.ensureVisible(village);
       await tester.pump(const Duration(milliseconds: 150));
-      await captureLumoBoundary(
-          tester, key, '$dir/village-' + config.key + '.png', pixelRatio: 1);
+      if (dir != null && dir.isNotEmpty) {
+        await captureLumoBoundary(
+            tester, key, '$dir/village-' + config.key + '.png', pixelRatio: 1);
+      }
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
-    }, skip: dir == null);
+    });
   }
 }

@@ -30,9 +30,10 @@ void main() {
 
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('routing table lists ten unique portals and unique covers', () {
+  test('routing table lists eleven unique portals and unique covers', () {
     expect(SpielweltRoutes.all.map((r) => r.identity), SpielweltRoutes.identities);
-    expect(SpielweltRoutes.all, hasLength(10));
+    expect(SpielweltRoutes.all, hasLength(11));
+    expect(SpielweltRoutes.byIdentity('village').target, 'settlement');
     final covers = [
       for (final route in SpielweltRoutes.all)
         if (route.coverAsset.isNotEmpty) route.coverAsset
