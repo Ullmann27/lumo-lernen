@@ -1,4 +1,53 @@
-# Active LUMO 2020 Play-quality candidate — 2026-11-14
+# Current LUMO 2020 quality candidate — 2026-11-14
+
+Review: [PR491](https://github.com/Ullmann27/lumo-lernen/pull/491). Candidate branch: `work/lumo-play-quality-20261114`. Recovery branch: `checkpoint/lumo-next-quality-20261114-2708`. Version remains **0.13.8+2020**, an unpublished test candidate; no existing release is replaced. Main stays protected.
+
+The current source combines quality checkpoint182e and integration32e with actual ancestry, recorded in merge `dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f`. Its pinned native source is now **`6ecc560ea16202b935c4f1d32b08b93cda358e02`**, a direct descendant of f052, itself retaining the acknowledged Connect Four return repair. The next complete candidate CI has not run at the time this handoff is written. Use the actual PR head and run metadata; do not attach predecessor approvals to this source.
+
+## Changes carried into the candidate
+
+- Exact cumulative Math topics remain selected even when the current grade has a legacy alias for a different topic. Current-grade practice and allowed earlier-grade review continue within the selected topic.
+- Kart's passive minimap fits the actual safe rectangle, stays clear of controls, pedal artwork and instructions, and responds when the real jump hint appears or hides. Driving physics, controls and original assets are unchanged.
+- Incoming Connect Four buttons retain their full pressed size. Played-board and delayed-native-fallback tests remain strict. The Android Continue probe distinguishes the actual standalone button caption from the same word inside longer instructions.
+- The quality branch is explicitly accepted by the Android source binding while run/source/workflow/artifact identity checks remain intact. The delivery verifier still requires the exact current PR head and the same permitted branch.
+- All 52 original native validation modes are retained, together with the separate hardened acknowledged-return gate and the additional early return/wisp gates. Their original logs remain required for delivery.
+- Earlier shape-input, calm-navigation, online-image privacy, historical APK-fixture and Family/Play distribution work remains integrated. Twenty checked trainer, journal, profile, persistence, ink and navigation sources and the entire original host assets tree are unchanged by the latest integration.
+
+## Actual focused evidence
+
+**Math:** the identical production-Dart contract was executed against both source versions. The original produced 386 failed conditions; the correction produced zero across 29,845 reached checks. Coverage includes 145 cumulative grade/topic combinations over32 seeds,4,640 actual factory calls,3,955 direct template calls and valid same-topic grade mixing. The actual Flutter wrapper is present but has not yet run on this final candidate. Exact logs and source identities: `docs/evidence/math-exact-cumulative-20261114/EXECUTION.md`.
+
+**Minimap:** the same real Godot4.6.3 test produced380 checks/26 failures on old production, then380/zero on the reviewed correction. All original15 safe-area targets and the four fixed native capture names remain. New local raster capture was blocked by Xorg/AF_UNIX EPERM; headless geometry is not image or device-performance proof. Original logs and independent review: [native evidence](https://github.com/Ullmann27/lumo-godot/tree/6ecc560ea16202b935c4f1d32b08b93cda358e02/docs/evidence/kart-minimap-safe-area-20261114).
+
+**Host integration:** 226 focused Python methods passed on dfc3; actionlint and Bash syntax checks passed on the actual merged workflow and its four native run blocks. Source/index remained unchanged. The initial invocation's sibling-import setup error is preserved separately; no production/test assertion was weakened. See `docs/evidence/quality-32e7-merge-20261114/LOCAL_EXECUTION.md`.
+
+## Completed predecessor results and exact limits
+
+Host803a (`803a4e960ffb804a46b6d09417731c031f00f680`), run[43578509499](https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509499), completed with **failure overall**. Its main job succeeded:2,569 Flutter tests,872 build contracts,929 Android-probe contracts,52 native validation modes and a real signed Family-preview APK. The actual2017→2020 upgrade job also passed, preserving the one test profile's recorded learning state through six snapshots on an API35 x86_64 emulator.
+
+Its Android general tour passed21 steps with zero recorded fatal crashes, but C4 stopped before gameplay because the then-current source allowlist omitted the quality branch. C4 recorded zero observations/transitions/returns. Final candidate/delivery gates were skipped. Original complete logs, metadata, update evidence and independently checked images are anchored at [6a5ae5327570fc60434672074f246c95e1c59283](https://github.com/Ullmann27/lumo-lernen/commit/6a5ae5327570fc60434672074f246c95e1c59283). That APK is not this newer source.
+
+Incoming integration32e's separate run43583493817 failed one of938 Android-probe contract tests because its Continue mock had not yet included standalone_caption=True. The original failure is preserved; the corrected full-tuple expectation is included in the actual226-method green run.
+
+## Remaining release work
+
+Run the complete workflow on the exact frozen next PR head, inspect its fresh native/Flutter/Android evidence, verify that exact signed ARM64 APK and actual2017 upgrade, and require all final gates. Do not mark the app Play-ready from the focused results above.
+
+The Play AAB builder and validator exist, but authorized external Play upload-signing inputs and a real Play-signed AAB/Console acceptance are absent. Full in-app privacy and content-reporting work still needs verified operator/contact/backend retention facts. Live backend metadata has not been inspected because the provider requires explicit workspace selection. The data review remains under `docs/evidence/play-data-audit-20261114-2708/`; never invent a contact from account or profile data.
+
+Physical-device frame pacing, thermals and sustained60FPS are unmeasured. No Nintendo-quality or Google Play approval is claimed. A public immutable APK download must actually exist before its URL is given. At this checkpoint the existing C4 workflow prepares a delivery artifact; available release-upload access is being checked. Never replace an old asset or claim an unpublished URL.
+
+## Recovery
+
+The local runtime disconnected and /home was reset; committed source and original evidence survived remotely. It later returned and the focused executions above genuinely ran. Preserve any current local changes, use the exact remote source/evidence identities, and run the required autosave procedure when a local checkout is available. Role assignments do not create persistent background workers. This task uses at most four simultaneous agents: coordinator, release lead, specialist and its worker.
+
+---
+
+# Historical handoff before the current integration
+
+The following earlier notes are retained as history. Older pins, pending-test statements and proposed actions below do not override the current source and results above.
+
+## Earlier 803a quality candidate
 
 Active review: https://github.com/Ullmann27/lumo-lernen/pull/491
 Working branch: `work/lumo-play-quality-20261114`.

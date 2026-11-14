@@ -145,7 +145,7 @@ APPROVED = {
     # with the installed PCM envelope and acknowledged Android return retry.
     # The independent return regression is green; fresh 52-mode native, Android
     # and preserved-update gates remain mandatory. This binds source identity.
-    2020: "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    2020: "6ecc560ea16202b935c4f1d32b08b93cda358e02",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

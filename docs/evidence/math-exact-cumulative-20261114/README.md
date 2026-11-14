@@ -1,3 +1,5 @@
+> **Execution update:** The identical final Dart contract has now run against both exact sources: original red, corrected green. See [EXECUTION.md](EXECUTION.md) and the unchanged raw logs under `execution/`. The source-only report below records the earlier pre-execution checkpoint.
+
 # Exact cumulative Math-topic selection — source checkpoint
 
 This checkpoint contains a focused source fix and a new shared Dart regression. **The new regression has not yet run.** The runtime became unavailable before its staging/execution completed. The original three-case diagnostic below did run against unchanged production Dart. No new Flutter, Android, or complete-candidate result is claimed.
