@@ -1,0 +1,126 @@
+{
+  "source_commit": "6f42fa8c0f18ea27dac90d7799ca06a1f9f0614a",
+  "full_python_tree_files": 317,
+  "verified_git_blobs": 317,
+  "download_failures": [],
+  "direct_calls": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "line": 383,
+      "name": "stage_garage_scroll_observation",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": false
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "line": 408,
+      "name": "_stage_kart_scroll_recovery",
+      "positional_args": 0,
+      "keywords": [],
+      "historical_evidence": false
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "line": 677,
+      "name": "_select_stage_kart",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": false
+    },
+    {
+      "path": "docs/evidence/host-7b16-runtime-followup/logger/after/.github/probes/modernization_android_tour.py",
+      "line": 383,
+      "name": "stage_garage_scroll_observation",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": true
+    },
+    {
+      "path": "docs/evidence/host-7b16-runtime-followup/logger/after/.github/probes/modernization_android_tour.py",
+      "line": 408,
+      "name": "_stage_kart_scroll_recovery",
+      "positional_args": 0,
+      "keywords": [],
+      "historical_evidence": true
+    },
+    {
+      "path": "docs/evidence/host-7b16-runtime-followup/logger/after/.github/probes/modernization_android_tour.py",
+      "line": 677,
+      "name": "_select_stage_kart",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": true
+    },
+    {
+      "path": "docs/evidence/host-7b16-runtime-followup/logger/before-clear-speech/.github/probes/modernization_android_tour.py",
+      "line": 345,
+      "name": "stage_garage_scroll_observation",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": true
+    },
+    {
+      "path": "docs/evidence/host-7b16-runtime-followup/logger/before-clear-speech/.github/probes/modernization_android_tour.py",
+      "line": 370,
+      "name": "_stage_kart_scroll_recovery",
+      "positional_args": 0,
+      "keywords": [],
+      "historical_evidence": true
+    },
+    {
+      "path": "docs/evidence/host-7b16-runtime-followup/logger/before-clear-speech/.github/probes/modernization_android_tour.py",
+      "line": 639,
+      "name": "_select_stage_kart",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "line": 98,
+      "name": "stage_garage_scroll_observation",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "line": 116,
+      "name": "_stage_kart_scroll_recovery",
+      "positional_args": 0,
+      "keywords": [],
+      "historical_evidence": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "line": 109,
+      "name": "stage_garage_scroll_observation",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "line": 413,
+      "name": "_select_stage_kart",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": false
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "line": 417,
+      "name": "_select_stage_kart",
+      "positional_args": 2,
+      "keywords": [],
+      "historical_evidence": false
+    }
+  ],
+  "notes": [
+    "Only active direct callers are modernization_android_tour.py and the updated test_kart_garage_evidence.py.",
+    "test_kart_menu_return.py and test_modernization_tour_identity.py replace the entire two-argument _select_stage_kart; their existing call interfaces remain unchanged.",
+    "Two docs/evidence logger snapshots retain historical source and are not edited.",
+    "No scripts/ verifier callsite references these three functions."
+  ]
+}
