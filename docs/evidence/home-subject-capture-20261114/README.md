@@ -59,3 +59,23 @@ configuration are missing). A major local setup was explicitly avoided.
 The next combined host CI must execute all four actual Home variants and
 produce and review fresh subject-card images. The preceding original PNGs
 must not be relabelled as after-fix evidence.
+
+## First strict focused run and animation-frame correction
+
+Home run 43583996815, attempt 1, job 132414506217 ran the first strict
+test at QA head 857b91c4aab28bd0552194c7223216489bb6766c
+(PR merge checkout c06e00c967d3d0a576f6cbec2d1f065d21ce4e37).
+It reported nine passes and four failures. All four Home sizes failed in the
+second scrollUntilVisible at original line 161, after the real header tap
+and expanded subject heading had succeeded. The original job log is retained
+as first-strict-run-original.log.
+
+The Mathe key belongs directly to the production InkWell. Inspection of the
+actual SDK Ticker.start/_tick implementation showed that its first scheduled
+frame initializes elapsed time at zero. The fixture now pumps that initial
+frame immediately after the real expansion tap, then advances the existing
+650ms interval before scrolling toward the card. A pre-scroll diagnostic
+records the actual Mathe rectangle, home scroll position and hit-test count.
+All actual InkWell hit tests, complete viewport bounds and post-rasterization
+stability checks remain. This correction requires a new executed result;
+the preceding four failures are not retrospectively called passes.
