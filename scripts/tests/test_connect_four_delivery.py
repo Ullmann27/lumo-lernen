@@ -1042,6 +1042,8 @@ class RealFilesAndCommandsTests(unittest.TestCase):
                      'build_contracts', 'native_evidence', 'native_source', 'learning_audit'):
             (root/name).mkdir()
         (root/'android/c4').mkdir()
+        (root/'android/village').mkdir()
+        delivery.write_new(root/'android/village/village-result.json', {'synthetic_fixture': True})
         payload = b'explicitly-synthetic-byte-transport-fixture-not-a-real-signed-APK'
         (root/'candidate/Lumo-Lernen-Neu.apk').write_bytes(payload)
         apk = {'package': 'dev.ullmann.lumo.lumo_lernen.coachpreview', 'versionCode': 2020,
@@ -1050,7 +1052,9 @@ class RealFilesAndCommandsTests(unittest.TestCase):
                'signingCertificateSha256': 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702',
                'godot': {'revision': 'b'*40, 'pck_sha256': 'd'*64}}
         facts = {'schema': 1, 'status': 'PASS', 'versionCode': 2020, 'versionName': '0.13.8',
-                 'binding': binding, 'apks': {'arm64-v8a': apk, 'x86_64': {**apk, 'abis': ['x86_64']}}}
+                 'binding': binding, 'apks': {'arm64-v8a': apk, 'x86_64': {**apk, 'abis': ['x86_64']}},
+                 'village_android': {'status': 'PASS',
+                     'raw_report_sha256': delivery.record(root/'android/village/village-result.json')['sha256']}}
         delivery.write_new(root/'facts.json', facts)
         for name, value in [('run', run), ('jobs', jobs), ('artifacts', artifacts), ('pull', pull),
                             ('releases', [[]]), ('tags', [])]:
@@ -1268,6 +1272,71 @@ class RealFilesAndCommandsTests(unittest.TestCase):
             self.assertEqual(receipt['public_apk'], delivery.record(original))
             self.assertIs(receipt['github_immutable'], False)
             self.assertFalse((bundle/'PUBLIC-DELIVERY-RECEIPT.json').exists())
+
+
+
+
+class VillageDeliveryBoundaryTests(unittest.TestCase):
+    """The expensive actual APK/device boundary is stubbed explicitly, never claimed."""
+
+    def test_preparation_requires_bound_village_original_before_any_output(self):
+        for mode in ('missing-fact','failed-fact','other-report','missing-original',
+                     'changed-original','symlink-original'):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as temporary:
+                root=Path(temporary)
+                source,args,facts=RealFilesAndCommandsTests().preparation_fixture(root)
+                original=args.android/'village/village-result.json'
+                if mode=='missing-fact':
+                    facts.pop('village_android')
+                elif mode=='failed-fact':
+                    facts['village_android']['status']='FAIL'
+                elif mode=='other-report':
+                    facts['village_android']['raw_report_sha256']='f'*64
+                elif mode=='missing-original':
+                    original.unlink()
+                elif mode=='changed-original':
+                    original.write_bytes(original.read_bytes()+b'\n')
+                else:
+                    target=root/'synthetic-symlink-target.json'
+                    target.write_bytes(original.read_bytes())
+                    original.unlink(); original.symlink_to(target)
+                args.facts.write_text(json.dumps(facts))
+                with mock.patch('verify_connect_four_candidate.verify',return_value=facts) as candidate:
+                    with self.assertRaises((ValueError,FileNotFoundError)):
+                        delivery.prepare(args)
+                    candidate.assert_called_once_with(args)
+                self.assertFalse(args.out.exists())
+
+    def test_preparation_keeps_exact_village_report_and_adds_no_device_approval(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            source,args,facts=RealFilesAndCommandsTests().preparation_fixture(Path(temporary))
+            original=(args.android/'village/village-result.json').read_bytes()
+            with mock.patch('verify_connect_four_candidate.verify',return_value=facts), \
+                 mock.patch.object(delivery,'committed_pcm_sources',return_value={'fixture':{}}), \
+                 mock.patch.object(delivery,'learning_source_identity',return_value=learning_identity()), \
+                 mock.patch.object(delivery,'checked_native',return_value={'fixture':True,'core_modes':52}) as native, \
+                 mock.patch.object(delivery,'ROOT',source), \
+                 mock.patch.object(delivery.subprocess,'check_output',return_value='e'*40+'\n'), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                plan=delivery.prepare(args)
+            native.assert_called_once_with(args.native_evidence,args.native_source,'b'*40)
+            staged=args.out/'assets/VILLAGE-ANDROID-RESULT.json'
+            self.assertEqual(staged.read_bytes(),original)
+            self.assertEqual(delivery.record(staged)['sha256'],facts['village_android']['raw_report_sha256'])
+            self.assertEqual(set(plan['assets']),delivery.DELIVERY_ASSETS)
+            self.assertEqual(len(plan['assets']),11)
+            self.assertEqual(delivery.checked_plan(args.out),plan)
+            actual=delivery.read(args.out/'assets/C4-DELIVERY-FACTS.json')
+            self.assertEqual(actual['village_android'],facts['village_android'])
+            for key in ('published','release_approved','api37_approved','physical_arm64_tested',
+                        'audible_android_pcm_approved','separate_human_visual_receipt'):
+                self.assertIs(actual[key],False)
+            self.assertIsNone(actual['measured_device_fps'])
+            body=delivery.read(args.out/'audit/create-release.json')['body']
+            for scope in ('52 native modes with 17','five additional Dream modes',
+                          'ten additional Discovery modes with 38','direct Flutter→Village→Flutter',
+                          'No API37, physical ARM64, audible device PCM'):
+                self.assertIn(scope,body)
 
 
 if __name__ == '__main__':

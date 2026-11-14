@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "source-freeze.json",
+      "bytes": 3650,
+      "sha256": "d03db589e77b5d6069a96606eb6c1fb671fe00c5232809551740ae5bb0b99902",
+      "source": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-integration-4f5d66f-20261114/source-freeze.json"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2586,
+      "sha256": "7c69d7ac6dd225677cdee8466043df0583cf7d1b7b5e2d30f201bcf0b4d8a104",
+      "source": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-integration-4f5d66f-20261114/handoff.json"
+    },
+    {
+      "path": "gate-originals.tar.gz",
+      "bytes": 419177,
+      "sha256": "0de5a6d1aaf6c52efc8dbc2104262a1203153f4e62e62f916bb85070d8c747b0",
+      "source": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-integration-4f5d66f-20261114/compact-originals.tar.gz"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 20405,
+      "sha256": "4573190c21ce4f1ccba071fedc3791d4594c15d067a62ee761ffa06968972518",
+      "source": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-integration-4f5d66f-20261114/integration.patch"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 13119,
+      "sha256": "40bb4811ece377090074b825cb29461bbc8403a942a3564f6b226bbe0a64463d",
+      "source": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-independent-review-20261114/review.json"
+    },
+    {
+      "path": "root-base-binding.json",
+      "bytes": 1261,
+      "sha256": "ab001c9c51cab416cd029bd137ec6d3f0d543c079bae3c07c7f790fde28884e4",
+      "source": "/tmp/lumo-root-recovery-1105/village-gate-root-base-binding.json"
+    },
+    {
+      "path": "root-archive-review.json",
+      "bytes": 250,
+      "sha256": "70bca6dc2c242f60c4893848490ccf651f39cc0d04961662164b10eeb7170d67",
+      "source": "/tmp/lumo-root-recovery-1105/village-gate-root-archive-review.json"
+    },
+    {
+      "path": "host-ad623-targeted/summary.json",
+      "bytes": 2013,
+      "sha256": "efdc51f0c4011dbdda501f85e0a07dbadf045d1b3c4b81642264fdfa2cb24a18",
+      "source": "/tmp/host-ad623b8-village-targeted-validation-20261114/summary.json"
+    },
+    {
+      "path": "host-ad623-targeted/original-deadline-counterexample.stdout.log",
+      "bytes": 2962,
+      "sha256": "38685d21696aa3665428e493b94237c0d22616129326cdb8092ff54f9f4912d5",
+      "source": "/tmp/host-ad623b8-village-targeted-validation-20261114/original-deadline-counterexample.stdout.log"
+    },
+    {
+      "path": "host-ad623-targeted/village-34.stderr.log",
+      "bytes": 6513,
+      "sha256": "c3656721a68766b0d9b0402cb857496585fbfb675077d4fbe90f55b37cd4f109",
+      "source": "/tmp/host-ad623b8-village-targeted-validation-20261114/village-34.stderr.log"
+    },
+    {
+      "path": "host-ad623-targeted/complete-originals.tar.gz",
+      "bytes": 518317,
+      "sha256": "7d3cd2e1fccd004a7a5407f8d8923c16850d3e2d22392072dc8f4b58ca55279e",
+      "source": "/tmp/host-ad623b8-village-targeted-validation-20261114",
+      "members": 13,
+      "original_manifest_sha256": "b7b7b808345d736345cba51edfc43183ff3bccfdfce471ebfe1838b37f8bc40a",
+      "all_members_read_back_equal": true
+    }
+  ]
+}

@@ -262,5 +262,95 @@ class OriginalUpdateReplayTests(unittest.TestCase):
         with self.assertRaises(RuntimeError): final.update_proof(self.root,self.candidate,'a'*40)
 
 
+
+
+class VillageCandidateOriginalEvidenceTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0,str(ROOT/'tools/android_qa/tests'))
+        from test_village_android_evidence import SyntheticVillage
+        self.temporary=tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root=Path(self.temporary.name)
+        self.village=self.root/'village'; self.village.mkdir()
+        self.prior=self.root/'tour-result.json'
+        self.prior.write_text(json.dumps({'synthetic_fixture':True}))
+        self.fixture=SyntheticVillage(self.village)
+        self.report=self.fixture.build()
+        self.report['prior_tour']['sha256']=final.c4.sha256(self.prior)
+        self.fixture.refresh()
+
+    def verify(self):
+        return final.village_proof(self.village,self.fixture.binding,self.fixture.identity,self.prior)
+
+    def test_candidate_replays_the_complete_original_village_contract(self):
+        value=self.verify()
+        self.assertEqual(value['status'],'PASS')
+        self.assertEqual(value['raw_report_sha256'],final.c4.sha256(self.village/'village-result.json'))
+
+    def test_candidate_rejects_a_different_original_main_tour(self):
+        self.prior.write_text('changed')
+        with self.assertRaisesRegex(ValueError,'same complete original main tour'):
+            self.verify()
+
+    def test_candidate_rejects_missing_or_mutated_original_native_frame(self):
+        (self.village/self.report['native']['frame']['file']).unlink()
+        with self.assertRaises(ValueError): self.verify()
+
+    def test_candidate_rejects_a_still_running_native_process(self):
+        self.fixture.replace_original(self.report['returned']['native_pid'],'200\n',returncode=0)
+        self.fixture.refresh()
+        with self.assertRaisesRegex(ValueError,'process absence'):
+            self.verify()
+
+
+class VillageWorkflowConnectionsTests(unittest.TestCase):
+    def test_village_uses_same_current_apk_once_after_main_before_c4(self):
+        import shlex
+        workflow=(ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
+        android=job(workflow,'android-c4')
+        script=android.split('          script: |\n',1)[1]
+        village_lines=[line for line in script.splitlines() if 'lumo_village_android_probe.py' in line]
+        self.assertEqual(len(village_lines),1)
+        c4_line=next(line for line in script.splitlines() if 'lumo_connect_four_android_probe.py' in line)
+        village_args=shlex.split(village_lines[0]); c4_args=shlex.split(c4_line)
+        self.assertEqual(village_args[:2],['.probe-venv/bin/python','.github/probes/lumo_village_android_probe.py'])
+        def values(arguments):
+            self.assertEqual(len(arguments[2:])%2,0)
+            pairs=list(zip(arguments[2::2],arguments[3::2]))
+            self.assertEqual(len(pairs),len(dict(pairs)))
+            return dict(pairs)
+        actual,existing=values(village_args),values(c4_args)
+        self.assertEqual(set(actual),set(existing))
+        self.assertEqual({k:v for k,v in actual.items() if k!='--out'},
+                         {k:v for k,v in existing.items() if k!='--out'})
+        self.assertEqual(actual['--out'],'tour/village')
+        self.assertEqual(actual['--prior-tour'],'tour/main/tour-result.json')
+        for key,value in {'--expected-source':'$SOURCE_SHA','--expected-native':'$NATIVE_REVISION',
+                          '--build-run':'$GITHUB_RUN_ID','--run-attempt':'$GITHUB_RUN_ATTEMPT',
+                          '--artifact-id':'$CANDIDATE_ARTIFACT_ID',
+                          '--artifact-digest':'$CANDIDATE_ARTIFACT_DIGEST'}.items():
+            self.assertEqual(actual[key],value)
+        self.assertLess(script.index('modernization_android_tour.py'),script.index('lumo_village_android_probe.py'))
+        self.assertLess(script.index('lumo_village_android_probe.py'),script.index('lumo_connect_four_android_probe.py'))
+        self.assertNotIn('||',village_lines[0])
+
+    def test_existing_full_gates_and_original_upload_cover_the_village(self):
+        workflow=(ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
+        build=job(workflow,'verify-and-build')
+        full=step(build,'Full Flutter regression suite including every capture')
+        self.assertIn("REQUIRE_ALL_TESTS: 'true'",full)
+        self.assertIn('python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-acceptance',full)
+        self.assertIn(".ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v",build)
+        runner=(ROOT/'scripts/run_full_flutter_acceptance.py').read_text()
+        self.assertIn("'LUMO_VILLAGE_CAPTURES': 'village',",runner)
+        android=job(workflow,'android-c4')
+        compile_line=next(line for line in android.splitlines() if 'python3 -m py_compile' in line)
+        self.assertIn('.github/probes/lumo_village_android_probe.py',compile_line)
+        upload=step(android,'Preserve complete actual main-tour and C4 Android evidence')
+        for value in ('if: always()','path: tour/','include-hidden-files: true','if-no-files-found: error',
+                      'name: lumo-connect-four-2020-android-c4'):
+            self.assertIn(value,upload)
+
+
 if __name__=='__main__':
     unittest.main()

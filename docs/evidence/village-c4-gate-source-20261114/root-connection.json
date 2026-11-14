@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CHECKPOINT_BEFORE_EIGHT_NEW_CONNECTION_CASES",
+  "parent": "ad623b8a149caf5e4339fd544cef4c4736c0d218",
+  "source_paths": 5,
+  "source_scope": "Same API35 APK Main→Village→C4; unconditional pure original replay and exact Village report in delivery.",
+  "preserved_previous_test_methods": 80,
+  "new_connection_methods": 8,
+  "pending_connection_methods_total": 88,
+  "native_pin": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "native_pin_changed": false,
+  "outer_job_budgets_changed": false,
+  "actual_qa_validation": {
+    "head": "ad623b8a149caf5e4339fd544cef4c4736c0d218",
+    "successful_methods": 34,
+    "skips": 0,
+    "original_producer_control_methods": 3,
+    "expected_original_failing_subtests": 4,
+    "tracked_paths": 4353,
+    "materialized_paths": 1850,
+    "source_and_index_unchanged": true,
+    "device_runs": 0,
+    "widget_runs": 0
+  },
+  "protected_gates": "52/17, Dream5/7/2, Discovery10/38/2, C4, PCM, original main tour, current APK identity, preserved 2017 update and immutable release policy.",
+  "pending": "Separate reviewed native c300 source pin and measured outer job budgets; actual combined full build and Android acceptance."
+}

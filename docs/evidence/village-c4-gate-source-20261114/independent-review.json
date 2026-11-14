@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "reviewer": "/root/pipeline_repair",
+  "created_at_utc": "2026-11-14T12:19:59Z",
+  "status": "READ_ONLY_REVIEW_COMPLETE_NO_CONCRETE_SOURCE_BLOCKER",
+  "source_pack": "/workspace/scratch/b3485b7bb989/host-village-c4-gate-integration-4f5d66f-20261114",
+  "base": {
+    "head": "4f5d66f96c5ad84939e4cd09bc66fb4744ae2a6b",
+    "tree": "0e89490ea5d877c8249c8d461270b8e364d2c986"
+  },
+  "source_freeze": {
+    "bytes": 3650,
+    "sha256": "d03db589e77b5d6069a96606eb6c1fb671fe00c5232809551740ae5bb0b99902",
+    "git_blob": "37b5d2d6a116187f6a76115172cb9e365d7a68a0"
+  },
+  "integration_patch": {
+    "bytes": 20405,
+    "sha256": "4573190c21ce4f1ccba071fedc3791d4594c15d067a62ee761ffa06968972518",
+    "git_blob": "584f2784de47c784fbc07091992fa30ae6256a2f"
+  },
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before": {
+        "bytes": 48514,
+        "sha256": "b98c9fd932ea56f33f17dcd73fe1c8841901ea1882598682dddb798b58cc26e8",
+        "git_blob": "e33ae242ad70efe73ec923ec2fba87cb8e0af632"
+      },
+      "after": {
+        "bytes": 49102,
+        "sha256": "cb65111034d95d63475de7d556f7d16f6217365119251de6a076a2caf1b78f1c",
+        "git_blob": "152295fba33a15be64185921b00c71f1b7319dd6"
+      }
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 10811,
+        "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1",
+        "git_blob": "67ae17290e898a995003f065ce3a7c97202509ab"
+      },
+      "after": {
+        "bytes": 11403,
+        "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea",
+        "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be"
+      }
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 66477,
+        "sha256": "331f1e907f898ee50473e7fb9ca9279669a4005be5eb96605f90e414f8bd4f76",
+        "git_blob": "1fdbf66634b4e932e922b785ad8419f898373d8b"
+      },
+      "after": {
+        "bytes": 67003,
+        "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+        "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+      }
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 16787,
+        "sha256": "4e4bcc28bd1ac677178d42c16c240c5f0ee890ad520eb1322c4987814a728647",
+        "git_blob": "aaa033cdf4cc3a453f26382ae2ae94c7eed71cc5"
+      },
+      "after": {
+        "bytes": 21996,
+        "sha256": "5a0f31c2cbfc987639e46e8e2c1103eb94ccee77c065cdb7f5491e21cd7046a3",
+        "git_blob": "f950a85185302b78951908a1a201f61b81c54415"
+      }
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 82309,
+        "sha256": "0a4ae03274aa1a669525780f628af4d794b929414916f6d9a7530d8339f3cce4",
+        "git_blob": "3ac2a960cdad4589ea18067a4f03f4fd5281f313"
+      },
+      "after": {
+        "bytes": 86756,
+        "sha256": "58b7436afff9760d25ff01c0ef7a1fd0f5861da25a5cb31722199d25bcb0d560",
+        "git_blob": "bd568dbc81f73b4c12fe60dd07c189a241ee06be"
+      }
+    }
+  ],
+  "scope": "Exactly five additive workflow/candidate/delivery/test files, against the complete captured 4f5 originals and the independently reviewed Village product16 and QA3 V2 contracts.",
+  "checks": [
+    {
+      "area": "Exact preservation of workflow",
+      "result": "Removing only the added Village py_compile argument and the one Village probe command reconstructs all 48,514 original workflow bytes exactly. Existing jobs, needs, conditions, permissions, emulator/image/backend, package download IDs, original artifact uploads, job timeouts and all build/native/Dream/Discovery/update gates remain byte-identical."
+    },
+    {
+      "area": "Actual order and APK identity",
+      "result": "The single new Village command is after the existing complete modernization main tour and before the unchanged C4 probe. All CLI key/value arguments match the C4 invocation except its isolated tour/village output. APK, provenance, SUMS, main report, metadata, exact checked-out Host/Native, run/attempt and upload ID/digest are identical. There is no fallback operator or optional condition on the new command. The same API35 emulator runs all three."
+    },
+    {
+      "area": "Complete original upload and test discovery",
+      "result": "The existing always upload of tour/ includes Village originals with hidden files enabled and missing files treated as an error. The build's complete Flutter acceptance and tools/android_qa/tests/test_*.py discovery remain unchanged and will discover the new Village captures and 34 QA methods. No duplicate workflow or extra whole-suite invocation is added. Existing installed Pillow/UI/Tesseract dependencies are reused."
+    },
+    {
+      "area": "Candidate cannot omit Village",
+      "result": "verify_connect_four_candidate.verify now calls village_proof unconditionally before returning final candidate facts. The helper first requires the Village prior_tour SHA256 to equal the actual original main/tour-result.json, then invokes the full pure Village verifier with the same independently derived candidate binding and APK identity used for C4. Missing/failed/stale/replaced originals propagate failure; a report-level PASS alone does not satisfy this step."
+    },
+    {
+      "area": "Stable identity across separate observations",
+      "result": "Read the real unchanged modernization verify_apk_identity implementation, blob 3eedf585448f1c844a3b6f1dddd95fa0b31101bc. Its returned APK/PCK/Host/Native/version/signature/checks dictionary contains no observation timestamp or per-probe nonce, so two current checks of these identical inputs can satisfy the required complete dictionary equality without relaxing provenance. This function reads the actual checkout and current configured pin."
+    },
+    {
+      "area": "Existing candidate gates retained",
+      "result": "Only verify changes among existing candidate functions; read, module, update_proof and main are AST-identical. Both signed ABI verifications and identical native PCK remain mandatory; actual current compile bytecode and Dart/Godot runtime originals are replayed, the original complete main and C4 device evidence are checked, and the full 2017→2020 update/fold/UID/restart preservation proof is unchanged. Village adds a mandatory result without substituting any prior evidence."
+    },
+    {
+      "area": "Delivery before output",
+      "result": "prepare still reexecutes the entire actual candidate verifier and requires exact equality with the original candidate facts. Before creating the delivery output it additionally demands Village status PASS and equality between its replayed raw_report_sha256 and the current regular original village-result.json. The source must exist and cannot be a symlink. All six job checks and build/native/PCM/learning-audit/catalog checks still precede output."
+    },
+    {
+      "area": "Exact delivered bytes and no approval escalation",
+      "result": "VILLAGE-ANDROID-RESULT.json is added to the required exact asset set and copied from the original report. Existing record equality checks prove staged bytes match the source; publication-plan hashes cover the new asset and checked_plan keeps its exact asset-set requirement. Delivery facts carry the rechecked Village result. Published/release/API37/physical-ARM64/audible-PCM/human-visual flags remain false and device FPS remains null. Existing draft-only publication inputs and no-overwrite tag/release rules are untouched."
+    },
+    {
+      "area": "Native and discovery boundaries preserved",
+      "result": "The 29 existing delivery functions other than prepare are AST-identical, including checked_native, complete52, studio17, checked_native_dream, checked_native_discovery, checked_additional_native_logs, PCM70, candidate bundle, current release and source/catalog guards. The complete workflows also preserve their previous bytes. No pin/engine/receipt/52/17/Dream5/7/2/Discovery10/38/2/Return21/Wisp14 constraint is changed by these five files."
+    },
+    {
+      "area": "Focused new contracts and preserved neighbors",
+      "result": "All 80 prior test methods are AST-identical: 11 pipeline plus 69 delivery. Six new pipeline methods exercise the real village_proof on explicit synthetic original-file fixtures and check exact workflow invocation/order/discovery/upload. Two new delivery methods exercise actual prepare with the expensive APK/device boundary explicitly mocked; missing/failed/foreign/changed/symlinked Village inputs must fail before any output, while exact original-report staging and retained false approval flags are checked. The shared preparation_fixture alone is extended to include the required explicit synthetic Village report/fact so old methods exercise the stronger boundary. New totals are 17 pipeline plus 71 delivery = 88, not a test result."
+    }
+  ],
+  "preservation": {
+    "workflow_reconstructed_before_exact": true,
+    "all_five_final_hashes_match_freeze_after_review": true,
+    "existing_candidate_function_changes": [
+      "verify"
+    ],
+    "new_candidate_function": "village_proof",
+    "existing_delivery_function_changes": [
+      "prepare"
+    ],
+    "delivery_unchanged_functions": [
+      "require",
+      "regular",
+      "digest",
+      "record",
+      "read",
+      "write_new",
+      "checked_jobs",
+      "checked_artifacts",
+      "checked_pcm_log",
+      "learning_source_identity",
+      "checked_learning_outputs",
+      "bind_learning_audit",
+      "checked_learning_audit",
+      "checked_release_catalog",
+      "checked_tag",
+      "checked_release",
+      "native_module",
+      "checked_native_results",
+      "checked_native_runner_log",
+      "checked_native",
+      "checked_native_extension",
+      "checked_native_dream",
+      "checked_native_discovery",
+      "checked_additional_native_logs",
+      "committed_pcm_sources",
+      "checked_plan",
+      "checked_bundle",
+      "checked_current",
+      "main"
+    ],
+    "old_test_methods": 80,
+    "old_test_methods_ast_identical": true,
+    "new_test_methods": 8,
+    "static_total_methods": 88,
+    "modified_shared_test_fixture": "RealFilesAndCommandsTests.preparation_fixture",
+    "tests_executed": 0,
+    "actionlint_executed": 0,
+    "device_commands_executed": 0,
+    "source_or_git_changes": false
+  },
+  "findings": [],
+  "limits": [
+    "Source review only. The five proposed files have not been executed by this reviewer; their actual checkpointed test/actionlint and future integrated API35 results remain necessary.",
+    "The Village16 and VillageQA3 V2 files must be present in the final source checkpoint before these new imports/calls. The final Native pin must contain the independently checked Village route and marker. This pack changes no pin.",
+    "The current live Host 3d91/Native bd CI does not include this Village integration and cannot be used as its Android proof.",
+    "The author's final aggregate archive/manifest was not yet present during the final source read. This report binds the finalized source-freeze, exact patch and all five before/after identities directly; it does not assert verification of a later author archive.",
+    "The unchanged 90-minute build and 65-minute Android job deadlines are not validated by a source review. Root requested a separate comparison of actual observed durations; this review does not infer that all added work fits those deadlines.",
+    "The new delivered Village report is the exact report, while the complete raw Village evidence remains in the existing full Android artifact. No new full-evidence copy is claimed inside the eleven-asset delivery bundle."
+  ],
+  "references": {
+    "village_product_review": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-product-independent-review-20261114/review.json",
+      "sha256": "6448e6663f8cb9831d0fe5460226bd9ed837e415812c0086a9fa52b4a7119367"
+    },
+    "village_qa_review": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr497-village-qa-v2-independent-review-20261114/review.json",
+      "sha256": "b941a9d21836038b0fdbb1baf43a11cd39d10d358fd93e220173bd119bc1dd3f"
+    },
+    "prior_discovery_review": {
+      "path": "/workspace/scratch/b3485b7bb989/host-discovery-delivery-independent-review-20261114/review.json",
+      "sha256": "f1253ea033d1175f7414c73af5fe839143378b399f3d3d258ed17610881c3633"
+    },
+    "stable_identity_dependency": {
+      "path": "/tmp/lumo-root-recovery-1105/host-discovery/.github/probes/modernization_android_tour.py",
+      "bytes": 71930,
+      "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+      "git_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc"
+    }
+  },
+  "disposition": "No concrete source blocker found for the next exact checkpoint. Preserve all existing acceptance gates and obtain actual new validation before claiming Village acceptance."
+}

@@ -45,7 +45,7 @@ DELIVERY_ASSETS = {
     'Lumo-Lernen-Neu.apk', 'Lumo-Lernen-Neu.apk.sha256',
     'BUILD-PROVENANCE.json', 'GODOT-SOURCE.json', 'C4-CANDIDATE-FACTS.json',
     'C4-ANDROID-RESULT.json', 'C4-DESKTOP-RUNTIME.json', 'UPDATE-2020-RESULT.json',
-    'C4-DELIVERY-FACTS.json', 'PUBLISH-VERIFICATION.json',
+    'C4-DELIVERY-FACTS.json', 'PUBLISH-VERIFICATION.json', 'VILLAGE-ANDROID-RESULT.json',
 }
 ADDITIONAL_NATIVE_LOGS = {
     'acknowledged_exit': ('return-recovery.log', 'CONNECT_FOUR_RETURN_PASS checks=21', 21),
@@ -823,10 +823,13 @@ def prepare(args) -> dict:
     from release_pipeline_gates import evaluate_verification
     require(not args.out.exists(), 'Refusing to overwrite a delivery snapshot')
     original_facts = read(args.facts)
-    # Re-execute the existing verifier against actual APKs and original C4,
+    # Re-execute the existing verifier against actual APKs and original C4/Village,
     # runtime, compile and update evidence; no reported PASS substitutes for it.
     fresh = verify_candidate(args)
     require(fresh == original_facts, 'Fresh complete candidate replay differs from original final facts')
+    require(fresh.get('village_android', {}).get('status') == 'PASS'
+            and fresh['village_android'].get('raw_report_sha256') == record(regular(args.android/'village/village-result.json'))['sha256'],
+            'Fresh candidate facts do not bind the original direct Village roundtrip')
     binding = fresh['binding']
     jobs = checked_jobs(read(args.metadata/'run.json'), read(args.metadata/'jobs.json'),
                         read(args.metadata/'pull.json'), binding, args.pull_request)
@@ -850,12 +853,13 @@ def prepare(args) -> dict:
         'versionCode': fresh['versionCode'], 'binding': binding, 'jobs': jobs,
         'original_artifacts': artifacts, 'pcm': pcm, 'native': native, 'learning_audit': learning,
         'additional_native_regressions': additional_native,
+        'village_android': fresh['village_android'],
         'original_candidate_facts': record(args.facts), 'apks': fresh['apks'],
         'api37_approved': False, 'physical_arm64_tested': False,
         'published': False, 'release_approved': False,
         'measured_device_fps': None, 'audible_android_pcm_approved': False,
         'separate_human_visual_receipt': False,
-        'scope': 'Signed ARM64 test delivery; real API35 C4/update and desktop gates only',
+        'scope': 'Signed ARM64 test delivery; real API35 C4/Village/update and desktop gates only',
         'publication_policy': 'Only a newly created version tag and release; never replace or resume existing assets',
     }
     assets, audit = args.out/'assets', args.out/'audit'
@@ -866,6 +870,7 @@ def prepare(args) -> dict:
         'GODOT-SOURCE.json': args.candidate/'GODOT-SOURCE.json',
         'C4-CANDIDATE-FACTS.json': args.facts,
         'C4-ANDROID-RESULT.json': args.android/'c4/c4-result.json',
+        'VILLAGE-ANDROID-RESULT.json': args.android/'village/village-result.json',
         'C4-DESKTOP-RUNTIME.json': args.runtime/'runtime-gate.json',
         'UPDATE-2020-RESULT.json': args.update/'update-result.json',
     }
@@ -912,7 +917,8 @@ def prepare(args) -> dict:
         '52 native modes with 17 additional face/C4/treasure rasters and movie, '
         'five additional Dream modes with seven original renderer PNGs and two reports, '
         'ten additional Discovery modes with 38 original renderer PNGs and two reports, '
-        'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return and 2017→2020 preservation '
+        'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return, '
+        'direct Flutter→Village→Flutter and 2017→2020 preservation '
         'passed and their originals were rechecked before this new version was published.\n'
         'The learning audit is not semantic or official curriculum approval. '
         'PCM contracts use a synthetic JVM boundary. No API37, physical ARM64, audible device PCM, '

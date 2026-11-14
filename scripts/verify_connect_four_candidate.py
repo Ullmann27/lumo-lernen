@@ -12,6 +12,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools/android_qa'))
 import connect_four_android_evidence as c4
+import village_android_evidence as village
 from update_preservation import (require_learning_preserved,
                                 require_post_update_learning_preserved,
                                 require_in_place_update)
@@ -82,6 +83,13 @@ def update_proof(root: Path, candidate: dict, source: str) -> dict:
             'candidate_apk_sha256':candidate['sha256'], 'raw_report_sha256':c4.sha256(root/'update-result.json')}
 
 
+def village_proof(root: Path, binding: dict, identity: dict, prior_tour: Path) -> dict:
+    report = read(root/'village-result.json')
+    c4.demand(report.get('prior_tour', {}).get('sha256') == c4.sha256(prior_tour),
+              'The Village roundtrip was not performed after the same complete original main tour')
+    return village.verify_report(root, binding, identity)
+
+
 def verify(args) -> dict:
     source = subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT,text=True).strip()
     c4.demand(source == args.source, 'Final verifier is not on the exact candidate head')
@@ -145,11 +153,12 @@ def verify(args) -> dict:
               and c4.sha256(args.android/'main/tour-result.json') == android['prior_tour']['sha256'],
               'The original complete existing main tour differs')
     device = c4.verify_report(args.android/'c4',binding,identity)
+    village_device = village_proof(args.android/'village',binding,identity,args.android/'main/tour-result.json')
     update = update_proof(args.update,x86,source)
     return {'schema':1,'status':'PASS','versionName':version_name,'versionCode':2020,
-            'binding':binding,'apks':apks,'c4_android':device,'update':update,
+            'binding':binding,'apks':apks,'c4_android':device,'village_android':village_device,'update':update,
             'runtime_gate_sha256':c4.sha256(args.runtime/'runtime-gate.json'),
-            'scope':'Signed 2020 test candidate with real desktop/API35 C4 and 2017 update evidence',
+            'scope':'Signed 2020 test candidate with real desktop/API35 C4, direct Village roundtrip and 2017 update evidence',
             'release_approved':False,'api37_approved':False,'physical_arm64_tested':False}
 
 
