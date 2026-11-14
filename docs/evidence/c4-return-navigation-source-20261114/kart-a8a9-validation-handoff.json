@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "kind": "actual_authorized_targeted_validation",
+  "created_at": "2026-11-14T13:08:25.148166+00:00",
+  "head": "a8a9b84cffd9819d4c8c2dddb55e870f448a9f13",
+  "tree": "6f737f9d2a57005ec4a32495af62d118bfcea28a",
+  "result": "PASS",
+  "green": {
+    "methods": 70,
+    "module_counts": {
+      "test_kart_scroll_word_evidence": 14,
+      "test_kart_garage_evidence": 25,
+      "test_kart_driver_word_evidence": 9,
+      "test_native_surface_readiness": 22
+    },
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "exit_code": 0,
+    "stderr": {
+      "bytes": 14183,
+      "sha256": "aed4f2e421e911d35a7dc46d2d3e9d62a574814be78bb0b64869876c51a44406",
+      "git_blob": "64894b7cf72263d5fe9f476bfa999815f55c3a23"
+    }
+  },
+  "original_red": {
+    "methods": 1,
+    "errors": 1,
+    "failures": 0,
+    "skips": 0,
+    "exit_code": 1,
+    "expected_error": "No currently visible vehicle card in the actual left list",
+    "stderr": {
+      "bytes": 1810,
+      "sha256": "1e700621a788cfaf8b902fabe1f1a9a0c599817c0d9b60869b8f514749804452",
+      "git_blob": "1cf500fe06fbe9c8b504e579b0f18b96182689c3"
+    }
+  },
+  "source_unchanged": true,
+  "tracked_count": 4406,
+  "materialized_count": 628,
+  "sparse_absent_count": 3778,
+  "source_freeze_sha256": "5fe35ce27466d60e975774eaed2cf6077b18ee80125a255034d1a5c134f569ac",
+  "source_pack_handoff": {
+    "path": "/tmp/host-3d91-kart-word-repair-20261114/handoff.json",
+    "bytes": 2610,
+    "sha256": "31ce6c856914fea2a3fcb13ae53f92a80ffa40b5816918cc21efd44e0c035fb7",
+    "git_blob": "5442096302b60a5cd1dbfaf733080330efd6e691"
+  },
+  "result_json": {
+    "bytes": 3809,
+    "sha256": "d1a40797f28aadb2a58936caa996925c746764096eb1ad230615d61b3b021809",
+    "git_blob": "50a817cda0d5c36b35898ac6271315ee96c440f9"
+  },
+  "limits": [
+    "No new Android/OCR/engine/CI execution.",
+    "Synthetic repeated observation does not create a second Android original.",
+    "Historical full Android and update FAIL results remain unchanged."
+  ]
+}

@@ -13,6 +13,7 @@ import zipfile
 from prepare_android import DISTRIBUTION_METADATA, validate_play_signing
 from verify_android_apk import find_java_tool
 from verify_unified_apk import SUPPORTED_ABIS, validate_abis, validate_offline_voice
+from package_notices import POLICY_PATH, validate_packaged_notices
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = 'dev.ullmann.lumo.lumo_lernen'
@@ -242,9 +243,11 @@ def validate_payload(archive: zipfile.ZipFile, root: Path) -> dict:
     catalog = json.loads((root / 'assets/audio/voice/lumo_free/catalog.json').read_text(encoding='utf-8'))
     voice = validate_offline_voice(BaseModuleArchive(archive), abis, config, catalog)
     voice['scope'] = 'Actual AAB package validation, not audible playback acceptance'
+    notices = validate_packaged_notices(
+        BaseModuleArchive(archive), (root / POLICY_PATH).read_bytes(), source)
     return {
         'abis': sorted(abis), 'nativeLibraries': native, 'elfLoadSegments16KiBAligned': True,
-        'godot': proof, 'offlineVoice': voice,
+        'godot': proof, 'offlineVoice': voice, 'notices': notices,
         'baseArchiveCompressedBytes': sum(info.compress_size for name, info in entries.items()
                                           if name.startswith('base/')),
         'baseSizeScope': 'ZIP compressed bytes; not the Play per-device download estimate',

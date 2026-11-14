@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14 13:13:26 UTC",
+  "source": "GitHub public job annotation expanded in actual CUA browser; no authentication or mutation",
+  "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/job/132436033818",
+  "run_id": 43590864772,
+  "job_id": 132436033818,
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "job_annotation_exact": "The job has exceeded the maximum execution time of 1h30m0s",
+  "step_annotation_exact": "The operation was canceled.",
+  "step": "Build unified real Android APK",
+  "observed_ui_duration": "1h 30m 16s",
+  "joblog_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+  "interpretation": "The displayed service annotation explicitly identifies the job-wide 90-minute limit. Native and Dream steps completed success. APK build was interrupted; dependent Android/update/final/delivery jobs were skipped. No new APK success is claimed.",
+  "changes_allowed_for_next_attempt": "Only increase the verify-and-build job budget after exact-byte, existing-contract and independent review; retain all tests, source pins, signatures, downstream checks and permissions."
+}

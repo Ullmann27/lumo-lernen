@@ -1,3 +1,52 @@
+# LUMO 2020 – laufende gemeinsame Integration, 14. November 2026
+
+Der aktuelle Arbeitsstand führt Host `1e22d2455937e2640d1e44e153d290746f3afe49`
+und den neuen Entwicklungsstand `057a4e8d067872c4f3514b126aa04c3706d2e5b5`
+zusammen. Beide tatsächlichen Eltern und alle bestehenden Originalbelege bleiben
+im Git-Verlauf erhalten. Der neue Native-Pin und die Garagenkorrektur werden erst
+nach ihrem konkreten unabhängigen Review gebunden. Dies ist noch keine Abnahme.
+
+## Tatsächlich abgeschlossener Lauf auf 1e22
+
+Run [43596913210](https://github.com/Ullmann27/lumo-lernen/actions/runs/43596913210),
+Versuch 1: C4-Runtime, Android-Host-Kompilierung und Verify-and-build bestanden.
+2.627 Flutter-Tests ohne Fehler/Skip, 566 erfasste PNGs, 932 Scriptverträge,
+Native52/17, Return21, Dream5/7/2, Live9/7 und Discovery10/38 sind belegt.
+Die signierten Test-APKs wurden gebaut und ihre tatsächlichen Bytes überprüft.
+Der ARM64-SHA256 ist `44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd`.
+
+Beide anschließenden API35-Jobs scheiterten bei der Garagenauswahl nach dem
+Wischen: `No currently visible vehicle card in the actual left list`.
+Die Originalbilder zeigen abgeschnittene Fahrzeugnamen und einen Wischendpunkt
+oberhalb der tatsächlich sichtbaren Liste. Race/Drive/Pause, Village und C4
+wurden auf diesem Androidlauf nicht abschließend erreicht; die beiden
+Auslieferungsjobs wurden übersprungen. Eine Veröffentlichung bleibt gesperrt.
+
+Das reale 2017→2020-Update selbst gelang mit gleicher UID und Installationszeit.
+Die 15 vorhandenen Preference-Keys, darunter sieben Lernkeys, wurden erhalten;
+ein korrektes Mathematikresultat, ein Stern und fünf XP sind dokumentiert.
+Die erlaubte independentEvidence-v1-Migration wurde erkannt. Es waren keine
+Journal- oder Schreibinhalte angelegt; deren konkrete Inhaltsmigration wird
+hieraus nicht behauptet. Die anschließende Kart-/Restart-/Fold-Abnahme blieb offen.
+
+## Nächste verbindliche Schritte
+
+1. Neue Producer-Änderungen, eigene Live-/Ink-/Village-Ergänzungen und aktuelle
+   Originalhinweise vollständig vereinigen; unveränderte geschützte Module prüfen.
+2. Den beobachtungsgebundenen Garagenprüfschritt mit Originalfixtures und einem
+   echten API35-Lauf auf der unveränderten 1e22-APK prüfen. QA-Quelle und APK-Quelle
+   bleiben getrennt gebunden. Alle Touch-/Zeit-/Race-/Speicher-Grenzen gelten weiter.
+3. Den exakten neuen gemeinsamen Stand durch sämtliche sieben Pflichtjobs führen.
+   Eine Diagnostikfreigabe ersetzt diesen vollständigen neuen Lauf nicht.
+4. Erst nach vollständiger Originalprüfung einen neuen Publisher exakt an Quelle,
+   Lauf und Versuch binden; öffentliches ARM64-Asset frisch laden und byteprüfen.
+   Der vorbereitete Publisher 9448c47 bleibt gegen den gescheiterten Lauf inaktiv.
+
+Die folgenden früheren Abschnitte sind Archivstände; sie bescheinigen keine
+Abnahme oder Veröffentlichung des hier vorbereiteten neuen gemeinsamen Stands.
+
+## Archiv: bisheriger Integrationsstand 1e22
+
 # Aktueller gemeinsamer LUMO-2020-Integrationsstand — 14. November 2026
 
 Host-Review: [PR 497](https://github.com/Ullmann27/lumo-lernen/pull/497).
@@ -263,6 +312,37 @@ and the delivery verifier replays both original native connection helpers.
 
 ## Hinzugekommener Qualitätsstand aab09275
 
+## Archiv: eingegangener Entwicklungsstand 057a
+
+# LUMO 2020: zusammengeführter Abnahmekandidat – 14. November 2026
+
+Arbeitszweig: `work/lumo-play-quality-20261114`. Review: [PR 491](https://github.com/Ullmann27/lumo-lernen/pull/491). Version **0.13.8+2020** ist weiterhin ein unveröffentlichter Testkandidat.
+
+Dieser Stand führt die tatsächlichen Host-Eltern `77936fae6ce7b7bcbddb93dda19fb0104f696e12` und `0b7bacadd3cdc45d22a8e038c5df50ba8b739d62` zusammen. Der gemeinsame Host-Vorfahr ist `3d91bd8355a539c3c2413760959684cd3fee985a`. Der Native-Pin lautet `a69f53518b2510873d88f00ff2783d616ab53702`, Tree `607643d9e109079925e21dfcf9c991a8250d4a46`, mit den tatsächlichen geordneten Eltern `e2d15dbc5f3709306decb139eeb70a1cf30c0b73` und `baf148b03a7a32c6ad9f737d731f900eb9113ea1`.
+
+## Zusammenführung und erhaltene Funktionen
+
+Die vollständigen Git-Bäume ergeben 221 nur im neuen Integrationsstand geänderte Host-Pfade, drei bereits identische Änderungen und zehn Überschneidungen. Fünf Quell-/Testdateien wurden konfliktfrei durch einen echten Dreiwegevergleich vereinigt und unabhängig erneut geprüft. Die drei Native-Pin-Stellen wurden gemeinsam an den geprüften Zweieltern-Commit gebunden. Beide älteren Status-Vorspänne bleiben unten unverändert als historische Aufzeichnungen erhalten.
+
+Die fünf ursprünglichen Lizenz-/Herkunftstexte werden weiterhin als kontrollierte Android-Assets beigepackt; die 10 zugehörigen Code-/Testdateien und die geprüfte dunkle Prompt-Beschriftung bleiben bytegleich aus Host7793 erhalten. Die neuen Dorfwelt-, Kamera-, Profil-, Diktat- und Android-Verbindungen bleiben aus Host0b7 erhalten. Der native Baum bewahrt alle 3.689 Einträge aus baf148b und ergänzt ausschließlich 32 ursprüngliche e2-Nachweisdateien. Die beiden gemeinsamen Kart-/SafeArea-Änderungen waren bereits identisch. Historische Tests werden dadurch nicht zu Ergebnissen dieses neuen Standes.
+
+## Tatsächlich geprüfter Umfang vor dem vollständigen Build
+
+Die aufgelösten Quellen wurden mit zehn bestehenden Python-Vertragsmodulen geprüft: insgesamt **248 unterschiedliche Testfälle erfolgreich**, verteilt auf drei tatsächliche Aufrufe. Der erste Aufruf meldete 200 erfolgreiche Fälle und drei Importfehler, weil der Test-Fixture-Suchpfad im lokalen Aufruf fehlte. Nach dessen Korrektur liefen 47 weitere Fälle erfolgreich; ein weiterer Fall benötigte den im lokalen Teilauszug fehlenden unveränderten Sprachkatalog. Nach Wiederherstellung dieses Originalinputs lief auch dieser eine Fall erfolgreich. Sämtliche ursprünglichen Fehlerprotokolle bleiben erhalten. Es wurden dafür keine Produkt- oder Testdateien verändert; alle ursprünglichen 1.641 materialisierten Quelldateien blieben identisch, hinzu kam genau der ursprüngliche Katalog.
+
+Der zusammengeführte Workflow wurde als YAML gelesen und alle **48 Shell-Blöcke** bestanden `bash -n`. Dies ist eine Syntaxprüfung und keine ausgeführte Workflow-Abnahme. Die unabhängigen Host- und Native-Reviews bestätigten den Erhalt der jeweiligen Änderungen und Prüfungen.
+
+## Nächster verbindlicher Schritt
+
+Der vollständige Ablauf muss auf diesem neuen Host-/Native-Paar erneut laufen: Android-Hostkompilierung, sämtliche Flutter- und Build-Verträge, reale C4-, Native52-, Dream- und Discovery-Prüfungen, neue signierte APKs, die aktuellen Android-Touren einschließlich Village/C4 sowie die Erhaltung beim Update 2017→2020. Erst die Originalartefakte dieses Standes dürfen für seine Auslieferung verwendet werden. Ein neuer geprüfter APK-Download oder eine Play-Freigabe liegt zum Zeitpunkt dieser Zusammenführung nicht vor.
+
+Die bisherigen Ergebnisse, Grenzen und tatsächlichen Fehlläufe stehen in den folgenden historischen Aufzeichnungen. Der aktuelle Ausführungsstand wird zusätzlich im Evidenzzweig `checkpoint/lumo-aab-ci-20261114-2708` unter `docs/evidence/quality-aab-ci-20261114/LIVE_HANDOFF.json` fortgeführt. Produktiver Main und bestehende Releases bleiben unverändert.
+
+---
+
+## Bewahrter Stand des Qualitätszweigs vor dieser Zusammenführung
+
+
 # Aktueller LUMO-2020-Kandidat – 14. November 2026
 
 Review: [PR 491](https://github.com/Ullmann27/lumo-lernen/pull/491). Arbeitszweig: `work/lumo-play-quality-20261114`. Wiederaufnahme: `checkpoint/lumo-next-quality-20261114-2708`. Version **0.13.8+2020** bleibt ein unveröffentlichter Testkandidat. Main und bestehende Releases bleiben geschützt.
@@ -469,6 +549,219 @@ published branches and immutable evidence; role files alone do not launch
 persistent workers.
 
 Earlier notes below are retained as historical context, not current approval.
+
+---
+
+
+## Bewahrter Stand des Integrationszweigs vor dieser Zusammenführung
+
+# Diktat progress fixture repaired and checked — 2026-11-14
+
+This documentation/evidence-only activation follows Host
+`cfa4725263f15e9cc3f75d8f6dfae0949fbb86ab`, tree
+`d0fedc2ceeb02e7eefea61b2667195a43f14bdf6`. The sole executable delta from
+Host79c7 is the existing Diktat progress test helper: it now selects the actual
+four `LumoInkSurface` rows inside the actual `WortDiktatScreen`, makes the first
+row visible and performs the unchanged real drag/Fertig/self-rating flow.
+All original test bodies and progress, persistence and bonus assertions remain
+byte-identical. No product, Writer, InkSurface, Journal or child-data code changed.
+
+The complete existing test file ran exactly once on cfa4725: **17 PASS,
+0 failures, 0 skips, exit 0**, in 59.552 seconds with the existing locked packages
+and `--no-pub`. The original machine stream ends with success=true. All 4,475
+index entries, 2,342 materialized files, HEAD/tree, raw index and package inputs
+are unchanged. Full original evidence and the independent source review are in
+[the Diktat acceptance pack](docs/evidence/host-diktat-acceptance-20261114/).
+
+Both earlier complete C4 Flutter results remain failures: Host37ec recorded
+2,605 passes and the three obsolete-finder errors before its later cancellation;
+Host79c7 run43603036260 ended FAILURE at 14:23:35 UTC with the same 2,605
+passes, three errors and zero skips. These are not runtime-product successes
+and are not relabelled by this focused repair. The full pipeline must now
+run on this exact successor, with its own attempt and original artifacts.
+
+The fixed Native source remains
+`baf148b03a7a32c6ad9f737d731f900eb9113ea1`. Its separate original Native run
+43600806315/attempt1/job132464933411 succeeded: 47 Python methods, four
+headless groups, Dream5/7/2, Discovery10/38/2, Village339/42/46 and rendered
+Mobile428 with 4 safe-area plus 9 minimap PNGs. All 60 PNGs were technically
+decoded; Root directly inspected exactly the 15 new Village/Mobile/Minimap
+images. This does not claim Android, device FPS or a full Host acceptance.
+[Native result and Root observations](docs/evidence/host-diktat-acceptance-20261114/native-handoff.json).
+
+Outer Host/Android budgets remain **150/80 minutes**; every inner deadline,
+release verifier and historical pin is unchanged. PR485 is still the integration
+candidate. The separate publisher is preserved on
+`integration/lumo-c4-publisher-20261114` at 72143d3586109967773d6442072d486c11dc1449;
+its actual source9799d1d passed 32 isolated contracts once, without any live
+release operation. Publication requires a complete successful new seven-job
+C4 run, the authenticated prepared bundle and verified public APK bytes.
+
+## Preserved preceding activation and evidence records
+
+# Activate the verified complete-build budget
+
+This documentation/evidence-only activation follows published Host
+`c77e2456ac8eb7e02a9950e7b764684da6f5eb7b`, tree
+`d124623c936de7d2fe142a22c2683dfbb1343ac2`. Its actual single Delivery
+regression invocation passed all **71 methods**, with exit 0 and no failures,
+errors or skips. One Actionlint invocation passed the exact changed workflow.
+All 4,460 index paths, 749 materialized sources, HEAD, tree, raw index and
+Git status remained unchanged. Full original streams, invocation and inventories
+are preserved in [the actual validation pack](docs/evidence/host-budget150-acceptance-20261114/).
+
+The effective outer Host build/Android budgets are **150/80 minutes**.
+Individual probes, exact Native pin, every runtime/product file and all
+release verifiers are unchanged by this activation. The actual complete
+C4 workflow must bind this successor, its attempt and original artifacts.
+Previous run 43601673844 remains bound to Host37ec; its successful Runtime
+and Android compile do not substitute for this new source run.
+
+## Preserved correction and preceding activation records
+
+# Current build-budget correction — 2026-11-14
+
+This narrowly scoped successor follows Host
+`37ec6c6aee67c31ce16550cd59d616c80e80e305`, tree
+`6ab0e6cafc9fb37d3b3d95d76805aff4b6810d7a`. Its unchanged Native pin is
+`baf148b03a7a32c6ad9f737d731f900eb9113ea1`. The current outer Host build
+budget is **150 minutes**; the Android budget remains **80 minutes**.
+Every individual probe limit, required gate, source/PR binding, signature
+policy and publication check remains unchanged. Only one workflow value
+and its two existing Delivery-test expectations change.
+
+The reason is original predecessor run 43590864772, job 132436033818:
+the service recorded a 90-minute whole-job timeout during APK construction.
+Its original API timeline shows 22m06 before Native, 64m07 for the Native
+step and 1m17 for Dream. The current integration also includes the additional
+Discovery stage (19m05 actually observed on c300). The new outer limit leaves
+reserve for the real APK build, verification, upload and runner variation.
+Root read the original API and the separately published timeout observation;
+no current-candidate timeout or new Android success is claimed.
+
+The 37ec run 43601673844 belongs to the previous source, even though its
+Runtime and Android-compile stages completed successfully. The corrected
+successor requires its own exact-source complete workflow. Local verification
+of the budget correction follows its published source checkpoint. Originals:
+[`docs/evidence/host-build-budget150-20261114/`](docs/evidence/host-build-budget150-20261114/).
+
+## Previous activation notes retained verbatim
+
+The following 120-minute references describe the preceding activation and
+are superseded only by the current outer build budget stated above.
+
+# Combined 2020 candidate: fixed-source acceptance activation
+
+Updated: 2026-11-14. This documentation-only activation follows the published
+Host pin checkpoint
+[68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697](https://github.com/Ullmann27/lumo-lernen/commit/68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697),
+tree ecd5df0797c2b4102f2c7bbc30146f3061d713ce, whose parent is evidence
+checkpoint a9e03188083db5517d0614b2acfa289342f2de8b. Version remains
+0.13.8+2020. The actual acceptance run must bind its own final Host commit,
+including this documentation change.
+
+All three current 2020 pin locations now identify Native
+[baf148b03a7a32c6ad9f737d731f900eb9113ea1](https://github.com/Ullmann27/lumo-godot/commit/baf148b03a7a32c6ad9f737d731f900eb9113ea1),
+tree 0c18a0ca5200ade267cfedb4c12d5c4b0a761a00. Historical approved pins
+are unchanged.
+
+At activation preparation, Native run
+[43600806315](https://github.com/Ullmann27/lumo-godot/actions/runs/43600806315),
+attempt 1, job 132464933411, is in progress and has no final renderer
+acceptance. Actionlint and Mobile 380 checks passed on parent
+4d2cbb6ea235c7bf519aa5f3873a16f6b177be2b with the same product/workflow
+blobs; their original proofs are preserved in the Native activation commit.
+Those parent-source results are not a completed new renderer run or a new
+combined Android acceptance.
+
+## Final pin check before activation
+
+On published Host 68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697 with Native
+baf148b03a7a32c6ad9f737d731f900eb9113ea1, one actual local invocation
+passed all 64 existing pin contracts (24 Candidate and 40 Legacy), with
+exit 0 and zero errors, failures or skips. All 4,440 index paths and all
+seven required materialized original sources remained unchanged; the other
+4,433 index paths were explicitly sparse-absent. Complete original streams,
+invocation, preparation and before/after source inventories are preserved in
+[the activation evidence](docs/evidence/host-final-activation-20261114/).
+This is local pin acceptance only; the complete new Android workflow remains required.
+
+## Integrated scope of this candidate
+
+The Host combines the exact-topic Math correction, the separate Dorfwirtschaft
+route, the current native Discovery/Dream connection, the original-frame Kart
+word recovery and the bounded C4 return-to-Flutter observation. These are
+selective connections on the existing product source. The handwriting trainer,
+journal, original Lumo assets, child profiles, learning saves and existing
+consent/ownership boundaries remain protected.
+
+Math now selects an available exact unit before grade/alias fallback. The Dorf
+portal identifies the settlement scene explicitly, keeps profile/session
+ownership and acknowledged return, and is included in the actual API35 tour
+using the same candidate APK. The Kart fallback only recovers exact known card
+word sequences from the current original TSV inside the observed list region;
+ambiguity, image hashes, two stable observations, gesture limits and deadlines
+remain enforced. C4 observes the returned Flutter games control after one leave
+touch, within its local and global deadlines, before the existing two fresh
+portal observations.
+
+The complete C4 workflow retains 52 native modes and 17 bound rasters, the
+separate Dream gates, Discovery's 10 probes / 38 PNGs / 2 reports, signed
+ARM64/x86 APK identity, current-source Android evidence, actual Village
+entry/return and learning/profile preservation, and the in-place 2017-to-2020
+update. Its outer build/Android budgets are 120/80 minutes; the individual
+probe deadlines remain unchanged. Its delivery job prepares a verified bundle
+and does not publish a release.
+
+## Actual completed evidence, separated by source
+
+| Source | Actual result | Evidence scope |
+| --- | --- | --- |
+| 0411b62f59425bc4f36226ca59e9ed5ef901709a | 88 Pipeline/Delivery methods passed, no skips; C4 Actionlint passed | Local Python/source contracts |
+| bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7 | Three old-source Math failures reproduced; current shared Dart contract passed 29,845 checks; strict pub resolution succeeded without changing pubspec/lock | Actual isolated Dart RED and current production-generator GREEN |
+| bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7 | 9 focused Flutter methods passed, no skips: Math 1, Village routing 2, Village captures 6 | Actual Flutter widgets; native bridge mocked |
+| a8a9b84cffd9819d4c8c2dddb55e870f448a9f13 | 70 focused Kart/Garage/Driver/Readiness methods passed, no skips; original Boru failure reproduced separately | Original-fixture and callback contracts, no new Android/OCR run |
+| adb88bef880861e23b451166c04ee7d28c96a95d | 36 C4 Evidence/Deadline/Navigation methods passed, no skips | Local source contracts, no new device run |
+
+All six bb97 Village widget PNGs were decoded, hashed and then directly viewed
+independently and by Root. The Village title/image are complete and distinct
+from Bauwelt in every frame, without visible Village-card overlap or overflow.
+Lower scroll-content boundaries are not reclassified as Village-card failures.
+This is static widget evidence, not Android/native entry, audio, FPS or
+screenreader acceptance.
+
+The first Math-only Flutter attempt retains an incomplete execution receipt:
+its test stream succeeded, but the external evidence adapter failed before
+persisting the child exit. That exit remains unknown. The separately authorized
+nine-case follow-up recorded the actual exit before parsing and passed with
+exit 0; no test or production expectation was changed.
+
+The source-bound compact originals and reviews are preserved in
+[focused acceptance evidence](docs/evidence/host-focused-acceptance-20261114/),
+with the earlier 88-method record in
+[Math source evidence](docs/evidence/math-pr491-source-20261114/) and the
+70-method record in
+[C4 return source evidence](docs/evidence/c4-return-navigation-source-20261114/).
+Each result retains its original source; none is relabelled as a new combined
+Android acceptance.
+
+## Required current-source acceptance
+
+Historical C4 run
+[43589206933](https://github.com/Ullmann27/lumo-lernen/actions/runs/43589206933)
+remains Android-failed and unpublished. Its real failure and original
+APK/probe evidence remain intact. Source fixes and local green contracts do
+not alter that run or approve its APK.
+
+The exact newly activated Host/Native combination must complete its own full
+C4 workflow and downstream verification before any delivery claim. No new
+feature or producer branch is to be added during that candidate's acceptance.
+
+## Preserved historical STATUS
+
+The complete original STATUS.md begins below, byte-for-byte unchanged. Its
+older candidates, pins, pending items and release instructions describe their
+original historical sources, not this activation.
 
 ---
 

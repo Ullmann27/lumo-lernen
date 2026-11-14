@@ -20,6 +20,7 @@ SCRIPTS = Path(__file__).resolve().parents[1]
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 import verify_play_bundle as verifier
+from notice_fixtures import fixture as notice_fixture
 
 
 def synthetic_manifest():
@@ -255,6 +256,9 @@ class SyntheticPayloadContracts(unittest.TestCase):
             for library in ('libapp.so', 'libflutter.so', 'libgodot_android.so',
                             'libonnxruntime.so', 'libonnxruntime4j_jni.so'):
                 self.entries[f'base/lib/{abi}/{library}'] = synthetic_elf(machine=machine)
+        policy, notices, _ = notice_fixture(self.pin)
+        (self.root / 'config/lumo-notices.json').write_bytes(policy)
+        self.entries.update({'base/' + name: data for name, data in notices.items()})
 
     def validate(self):
         with zipfile.ZipFile(archive_bytes(self.entries.items())) as archive:
@@ -266,6 +270,23 @@ class SyntheticPayloadContracts(unittest.TestCase):
         self.assertEqual(result['offlineVoice']['clipCount'], 150)
         self.assertEqual(len(result['nativeLibraries']), 10)
         self.assertIn('not the Play', result['baseSizeScope'])
+        self.assertEqual(result['notices']['status'], 'verified')
+        self.assertEqual(len(result['notices']['files']), 5)
+
+    def test_notice_members_and_current_policy_are_required_by_payload_verifier(self):
+        for name in list(self.entries):
+            if not name.startswith('base/assets/lumo_notices/'):
+                continue
+            original = self.entries.pop(name)
+            with self.subTest(member=name):
+                try:
+                    with self.assertRaisesRegex(RuntimeError, 'notice.*inventory'):
+                        self.validate()
+                finally:
+                    self.entries[name] = original
+        (self.root / 'config/lumo-notices.json').unlink()
+        with self.assertRaises(FileNotFoundError):
+            self.validate()
 
     def test_changed_pck_and_voice_bytes_are_rejected(self):
         for name in ('base/assets/lumo_game.pck',

@@ -39,7 +39,10 @@ class VillageProbe(Probe):
         failures = []
         while time.monotonic() < deadline:
             try:
-                return self.processes(tag+'-'+str(len(failures)), native=native)
+                observed = self.processes(tag+'-'+str(len(failures)), native=native)
+                if time.monotonic() >= deadline:
+                    raise TimeoutError('The actual Village/Flutter process arrived at or after its observation deadline: '+tag)
+                return observed
             except (ValueError, RuntimeError) as error:
                 failures.append(str(error))
                 time.sleep(min(.5, max(0, deadline-time.monotonic())))

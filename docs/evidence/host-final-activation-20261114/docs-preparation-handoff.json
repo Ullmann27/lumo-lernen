@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "COMPLETE_DOCUMENTS_READY_FOR_ROOT_PUBLICATION",
+  "parent": "68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697",
+  "base_tree": "ecd5df0797c2b4102f2c7bbc30146f3061d713ce",
+  "files": [
+    {
+      "path": "STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 15553,
+        "sha256": "fb2d6bb7bd099d5c2d6eaf2497411e1b6749d9726b7fc8581a97c8f7d185a294",
+        "git_blob": "f9e60663c3f504a6e87d837a970474600d132f5d"
+      },
+      "after": {
+        "bytes": 21600,
+        "sha256": "fa3cc8a7741ca7a6618caf2c0197e8ff231dc0ea912c24d1b8e6b6c36cab7fb5",
+        "git_blob": "c8a4221d49c67980553eba9954ffa4f678ee4ffe"
+      },
+      "prefix_bytes": 6047,
+      "historical_suffix_offset": 6047,
+      "historical_suffix_bytes_identical": true,
+      "independently_reviewed_body_sha256": "16eb3add78cf1ab8627e819d1bf422f0722054a992df37321e8bcc5054a18c89"
+    },
+    {
+      "path": "CONTINUE.md",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 24784,
+        "sha256": "dcfc45b996be831e29efa23dc82b618f60cbef07afc9cf0f2496ae0dcb216402",
+        "git_blob": "87a0b8fe25e45de326c78cdfb361e10bff240767"
+      },
+      "after": {
+        "bytes": 30675,
+        "sha256": "321ccfb22bc77ef35a58be4609a03f76358a11450840a06990db7c9e5a604498",
+        "git_blob": "e73c17ac0a5c72b95e0a8cc4b8c7311edcbdb241"
+      },
+      "prefix_bytes": 5891,
+      "historical_suffix_offset": 5891,
+      "historical_suffix_bytes_identical": true,
+      "independently_reviewed_body_sha256": "f8c6ad657ecaad6b34742a667a033e404a7e7495074d66a1643a10d3d8c355df"
+    }
+  ],
+  "source_freeze_sha256": "150e0896e3d315c25cadaf25b84a9b8c4fe72d82908180d97bb3b4372d263858",
+  "patch_sha256": "0b22b3b8ccdf42b269189ae85da5ea5ab30f1ecbb6c794b501436175f8f6295b",
+  "plan_path": "/workspace/scratch/b3485b7bb989/host-final-activation-docs-20261114/publication/plan.json",
+  "plan_sha256": "16303b03ae060655572ac31d938ea62984b6c5806a14d99184fbee987b1c6ba9",
+  "exactly_two_docs_only": true,
+  "original_histories_preserved_byte_for_byte": true,
+  "native_renderer_acceptance": "OPEN",
+  "pin_tests_not_claimed": "Root adds its actual completed original pack separately",
+  "own_remote_mutation": false
+}

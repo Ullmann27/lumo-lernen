@@ -1,0 +1,308 @@
+--- a/.github/workflows/lumo-connect-four-2020.yml
++++ b/.github/workflows/lumo-connect-four-2020.yml
+@@ -572,7 +572,7 @@
+           grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+           python3 -m venv .probe-venv
+           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+-          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_connect_four_android_probe.py
++          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_connect_four_android_probe.py .github/probes/lumo_village_android_probe.py
+           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
+           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
+           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+@@ -630,6 +630,7 @@
+             adb shell getprop ro.build.version.release > tour/android-release.txt
+             "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour/main
++            .probe-venv/bin/python .github/probes/lumo_village_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/main/tour-result.json --metadata-dir tour/metadata --expected-source "$SOURCE_SHA" --expected-native "$NATIVE_REVISION" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --out tour/village
+             .probe-venv/bin/python .github/probes/lumo_connect_four_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/main/tour-result.json --metadata-dir tour/metadata --expected-source "$SOURCE_SHA" --expected-native "$NATIVE_REVISION" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" --artifact-id "$CANDIDATE_ARTIFACT_ID" --artifact-digest "$CANDIDATE_ARTIFACT_DIGEST" --out tour/c4
+       - name: Preserve complete actual main-tour and C4 Android evidence
+         if: always()
+--- a/scripts/verify_connect_four_candidate.py
++++ b/scripts/verify_connect_four_candidate.py
+@@ -12,6 +12,7 @@
+ ROOT = Path(__file__).resolve().parents[1]
+ sys.path.insert(0, str(ROOT / 'tools/android_qa'))
+ import connect_four_android_evidence as c4
++import village_android_evidence as village
+ from update_preservation import (require_learning_preserved,
+                                 require_post_update_learning_preserved,
+                                 require_in_place_update)
+@@ -82,6 +83,13 @@
+             'candidate_apk_sha256':candidate['sha256'], 'raw_report_sha256':c4.sha256(root/'update-result.json')}
+ 
+ 
++def village_proof(root: Path, binding: dict, identity: dict, prior_tour: Path) -> dict:
++    report = read(root/'village-result.json')
++    c4.demand(report.get('prior_tour', {}).get('sha256') == c4.sha256(prior_tour),
++              'The Village roundtrip was not performed after the same complete original main tour')
++    return village.verify_report(root, binding, identity)
++
++
+ def verify(args) -> dict:
+     source = subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT,text=True).strip()
+     c4.demand(source == args.source, 'Final verifier is not on the exact candidate head')
+@@ -145,11 +153,12 @@
+               and c4.sha256(args.android/'main/tour-result.json') == android['prior_tour']['sha256'],
+               'The original complete existing main tour differs')
+     device = c4.verify_report(args.android/'c4',binding,identity)
++    village_device = village_proof(args.android/'village',binding,identity,args.android/'main/tour-result.json')
+     update = update_proof(args.update,x86,source)
+     return {'schema':1,'status':'PASS','versionName':version_name,'versionCode':2020,
+-            'binding':binding,'apks':apks,'c4_android':device,'update':update,
++            'binding':binding,'apks':apks,'c4_android':device,'village_android':village_device,'update':update,
+             'runtime_gate_sha256':c4.sha256(args.runtime/'runtime-gate.json'),
+-            'scope':'Signed 2020 test candidate with real desktop/API35 C4 and 2017 update evidence',
++            'scope':'Signed 2020 test candidate with real desktop/API35 C4, direct Village roundtrip and 2017 update evidence',
+             'release_approved':False,'api37_approved':False,'physical_arm64_tested':False}
+ 
+ 
+--- a/scripts/verify_connect_four_delivery.py
++++ b/scripts/verify_connect_four_delivery.py
+@@ -45,7 +45,7 @@
+     'Lumo-Lernen-Neu.apk', 'Lumo-Lernen-Neu.apk.sha256',
+     'BUILD-PROVENANCE.json', 'GODOT-SOURCE.json', 'C4-CANDIDATE-FACTS.json',
+     'C4-ANDROID-RESULT.json', 'C4-DESKTOP-RUNTIME.json', 'UPDATE-2020-RESULT.json',
+-    'C4-DELIVERY-FACTS.json', 'PUBLISH-VERIFICATION.json',
++    'C4-DELIVERY-FACTS.json', 'PUBLISH-VERIFICATION.json', 'VILLAGE-ANDROID-RESULT.json',
+ }
+ ADDITIONAL_NATIVE_LOGS = {
+     'acknowledged_exit': ('return-recovery.log', 'CONNECT_FOUR_RETURN_PASS checks=21', 21),
+@@ -823,10 +823,13 @@
+     from release_pipeline_gates import evaluate_verification
+     require(not args.out.exists(), 'Refusing to overwrite a delivery snapshot')
+     original_facts = read(args.facts)
+-    # Re-execute the existing verifier against actual APKs and original C4,
++    # Re-execute the existing verifier against actual APKs and original C4/Village,
+     # runtime, compile and update evidence; no reported PASS substitutes for it.
+     fresh = verify_candidate(args)
+     require(fresh == original_facts, 'Fresh complete candidate replay differs from original final facts')
++    require(fresh.get('village_android', {}).get('status') == 'PASS'
++            and fresh['village_android'].get('raw_report_sha256') == record(regular(args.android/'village/village-result.json'))['sha256'],
++            'Fresh candidate facts do not bind the original direct Village roundtrip')
+     binding = fresh['binding']
+     jobs = checked_jobs(read(args.metadata/'run.json'), read(args.metadata/'jobs.json'),
+                         read(args.metadata/'pull.json'), binding, args.pull_request)
+@@ -850,12 +853,13 @@
+         'versionCode': fresh['versionCode'], 'binding': binding, 'jobs': jobs,
+         'original_artifacts': artifacts, 'pcm': pcm, 'native': native, 'learning_audit': learning,
+         'additional_native_regressions': additional_native,
++        'village_android': fresh['village_android'],
+         'original_candidate_facts': record(args.facts), 'apks': fresh['apks'],
+         'api37_approved': False, 'physical_arm64_tested': False,
+         'published': False, 'release_approved': False,
+         'measured_device_fps': None, 'audible_android_pcm_approved': False,
+         'separate_human_visual_receipt': False,
+-        'scope': 'Signed ARM64 test delivery; real API35 C4/update and desktop gates only',
++        'scope': 'Signed ARM64 test delivery; real API35 C4/Village/update and desktop gates only',
+         'publication_policy': 'Only a newly created version tag and release; never replace or resume existing assets',
+     }
+     assets, audit = args.out/'assets', args.out/'audit'
+@@ -866,6 +870,7 @@
+         'GODOT-SOURCE.json': args.candidate/'GODOT-SOURCE.json',
+         'C4-CANDIDATE-FACTS.json': args.facts,
+         'C4-ANDROID-RESULT.json': args.android/'c4/c4-result.json',
++        'VILLAGE-ANDROID-RESULT.json': args.android/'village/village-result.json',
+         'C4-DESKTOP-RUNTIME.json': args.runtime/'runtime-gate.json',
+         'UPDATE-2020-RESULT.json': args.update/'update-result.json',
+     }
+@@ -912,7 +917,8 @@
+         '52 native modes with 17 additional face/C4/treasure rasters and movie, '
+         'five additional Dream modes with seven original renderer PNGs and two reports, '
+         'ten additional Discovery modes with 38 original renderer PNGs and two reports, '
+-        'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return and 2017→2020 preservation '
++        'the real Dart/Godot C4 pair, actual API35 C4 touches/IPC/return, '
++        'direct Flutter→Village→Flutter and 2017→2020 preservation '
+         'passed and their originals were rechecked before this new version was published.\n'
+         'The learning audit is not semantic or official curriculum approval. '
+         'PCM contracts use a synthetic JVM boundary. No API37, physical ARM64, audible device PCM, '
+--- a/scripts/tests/test_connect_four_pipeline.py
++++ b/scripts/tests/test_connect_four_pipeline.py
+@@ -262,5 +262,95 @@
+         with self.assertRaises(RuntimeError): final.update_proof(self.root,self.candidate,'a'*40)
+ 
+ 
++
++
++class VillageCandidateOriginalEvidenceTests(unittest.TestCase):
++    def setUp(self):
++        sys.path.insert(0,str(ROOT/'tools/android_qa/tests'))
++        from test_village_android_evidence import SyntheticVillage
++        self.temporary=tempfile.TemporaryDirectory()
++        self.addCleanup(self.temporary.cleanup)
++        self.root=Path(self.temporary.name)
++        self.village=self.root/'village'; self.village.mkdir()
++        self.prior=self.root/'tour-result.json'
++        self.prior.write_text(json.dumps({'synthetic_fixture':True}))
++        self.fixture=SyntheticVillage(self.village)
++        self.report=self.fixture.build()
++        self.report['prior_tour']['sha256']=final.c4.sha256(self.prior)
++        self.fixture.refresh()
++
++    def verify(self):
++        return final.village_proof(self.village,self.fixture.binding,self.fixture.identity,self.prior)
++
++    def test_candidate_replays_the_complete_original_village_contract(self):
++        value=self.verify()
++        self.assertEqual(value['status'],'PASS')
++        self.assertEqual(value['raw_report_sha256'],final.c4.sha256(self.village/'village-result.json'))
++
++    def test_candidate_rejects_a_different_original_main_tour(self):
++        self.prior.write_text('changed')
++        with self.assertRaisesRegex(ValueError,'same complete original main tour'):
++            self.verify()
++
++    def test_candidate_rejects_missing_or_mutated_original_native_frame(self):
++        (self.village/self.report['native']['frame']['file']).unlink()
++        with self.assertRaises(ValueError): self.verify()
++
++    def test_candidate_rejects_a_still_running_native_process(self):
++        self.fixture.replace_original(self.report['returned']['native_pid'],'200\n',returncode=0)
++        self.fixture.refresh()
++        with self.assertRaisesRegex(ValueError,'process absence'):
++            self.verify()
++
++
++class VillageWorkflowConnectionsTests(unittest.TestCase):
++    def test_village_uses_same_current_apk_once_after_main_before_c4(self):
++        import shlex
++        workflow=(ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
++        android=job(workflow,'android-c4')
++        script=android.split('          script: |\n',1)[1]
++        village_lines=[line for line in script.splitlines() if 'lumo_village_android_probe.py' in line]
++        self.assertEqual(len(village_lines),1)
++        c4_line=next(line for line in script.splitlines() if 'lumo_connect_four_android_probe.py' in line)
++        village_args=shlex.split(village_lines[0]); c4_args=shlex.split(c4_line)
++        self.assertEqual(village_args[:2],['.probe-venv/bin/python','.github/probes/lumo_village_android_probe.py'])
++        def values(arguments):
++            self.assertEqual(len(arguments[2:])%2,0)
++            pairs=list(zip(arguments[2::2],arguments[3::2]))
++            self.assertEqual(len(pairs),len(dict(pairs)))
++            return dict(pairs)
++        actual,existing=values(village_args),values(c4_args)
++        self.assertEqual(set(actual),set(existing))
++        self.assertEqual({k:v for k,v in actual.items() if k!='--out'},
++                         {k:v for k,v in existing.items() if k!='--out'})
++        self.assertEqual(actual['--out'],'tour/village')
++        self.assertEqual(actual['--prior-tour'],'tour/main/tour-result.json')
++        for key,value in {'--expected-source':'$SOURCE_SHA','--expected-native':'$NATIVE_REVISION',
++                          '--build-run':'$GITHUB_RUN_ID','--run-attempt':'$GITHUB_RUN_ATTEMPT',
++                          '--artifact-id':'$CANDIDATE_ARTIFACT_ID',
++                          '--artifact-digest':'$CANDIDATE_ARTIFACT_DIGEST'}.items():
++            self.assertEqual(actual[key],value)
++        self.assertLess(script.index('modernization_android_tour.py'),script.index('lumo_village_android_probe.py'))
++        self.assertLess(script.index('lumo_village_android_probe.py'),script.index('lumo_connect_four_android_probe.py'))
++        self.assertNotIn('||',village_lines[0])
++
++    def test_existing_full_gates_and_original_upload_cover_the_village(self):
++        workflow=(ROOT/'.github/workflows/lumo-connect-four-2020.yml').read_text()
++        build=job(workflow,'verify-and-build')
++        full=step(build,'Full Flutter regression suite including every capture')
++        self.assertIn("REQUIRE_ALL_TESTS: 'true'",full)
++        self.assertIn('python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-acceptance',full)
++        self.assertIn(".ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v",build)
++        runner=(ROOT/'scripts/run_full_flutter_acceptance.py').read_text()
++        self.assertIn("'LUMO_VILLAGE_CAPTURES': 'village',",runner)
++        android=job(workflow,'android-c4')
++        compile_line=next(line for line in android.splitlines() if 'python3 -m py_compile' in line)
++        self.assertIn('.github/probes/lumo_village_android_probe.py',compile_line)
++        upload=step(android,'Preserve complete actual main-tour and C4 Android evidence')
++        for value in ('if: always()','path: tour/','include-hidden-files: true','if-no-files-found: error',
++                      'name: lumo-connect-four-2020-android-c4'):
++            self.assertIn(value,upload)
++
++
+ if __name__=='__main__':
+     unittest.main()
+--- a/scripts/tests/test_connect_four_delivery.py
++++ b/scripts/tests/test_connect_four_delivery.py
+@@ -1042,6 +1042,8 @@
+                      'build_contracts', 'native_evidence', 'native_source', 'learning_audit'):
+             (root/name).mkdir()
+         (root/'android/c4').mkdir()
++        (root/'android/village').mkdir()
++        delivery.write_new(root/'android/village/village-result.json', {'synthetic_fixture': True})
+         payload = b'explicitly-synthetic-byte-transport-fixture-not-a-real-signed-APK'
+         (root/'candidate/Lumo-Lernen-Neu.apk').write_bytes(payload)
+         apk = {'package': 'dev.ullmann.lumo.lumo_lernen.coachpreview', 'versionCode': 2020,
+@@ -1050,7 +1052,9 @@
+                'signingCertificateSha256': 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702',
+                'godot': {'revision': 'b'*40, 'pck_sha256': 'd'*64}}
+         facts = {'schema': 1, 'status': 'PASS', 'versionCode': 2020, 'versionName': '0.13.8',
+-                 'binding': binding, 'apks': {'arm64-v8a': apk, 'x86_64': {**apk, 'abis': ['x86_64']}}}
++                 'binding': binding, 'apks': {'arm64-v8a': apk, 'x86_64': {**apk, 'abis': ['x86_64']}},
++                 'village_android': {'status': 'PASS',
++                     'raw_report_sha256': delivery.record(root/'android/village/village-result.json')['sha256']}}
+         delivery.write_new(root/'facts.json', facts)
+         for name, value in [('run', run), ('jobs', jobs), ('artifacts', artifacts), ('pull', pull),
+                             ('releases', [[]]), ('tags', [])]:
+@@ -1270,5 +1274,70 @@
+             self.assertFalse((bundle/'PUBLIC-DELIVERY-RECEIPT.json').exists())
+ 
+ 
++
++
++class VillageDeliveryBoundaryTests(unittest.TestCase):
++    """The expensive actual APK/device boundary is stubbed explicitly, never claimed."""
++
++    def test_preparation_requires_bound_village_original_before_any_output(self):
++        for mode in ('missing-fact','failed-fact','other-report','missing-original',
++                     'changed-original','symlink-original'):
++            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as temporary:
++                root=Path(temporary)
++                source,args,facts=RealFilesAndCommandsTests().preparation_fixture(root)
++                original=args.android/'village/village-result.json'
++                if mode=='missing-fact':
++                    facts.pop('village_android')
++                elif mode=='failed-fact':
++                    facts['village_android']['status']='FAIL'
++                elif mode=='other-report':
++                    facts['village_android']['raw_report_sha256']='f'*64
++                elif mode=='missing-original':
++                    original.unlink()
++                elif mode=='changed-original':
++                    original.write_bytes(original.read_bytes()+b'\n')
++                else:
++                    target=root/'synthetic-symlink-target.json'
++                    target.write_bytes(original.read_bytes())
++                    original.unlink(); original.symlink_to(target)
++                args.facts.write_text(json.dumps(facts))
++                with mock.patch('verify_connect_four_candidate.verify',return_value=facts) as candidate:
++                    with self.assertRaises((ValueError,FileNotFoundError)):
++                        delivery.prepare(args)
++                    candidate.assert_called_once_with(args)
++                self.assertFalse(args.out.exists())
++
++    def test_preparation_keeps_exact_village_report_and_adds_no_device_approval(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            source,args,facts=RealFilesAndCommandsTests().preparation_fixture(Path(temporary))
++            original=(args.android/'village/village-result.json').read_bytes()
++            with mock.patch('verify_connect_four_candidate.verify',return_value=facts), \
++                 mock.patch.object(delivery,'committed_pcm_sources',return_value={'fixture':{}}), \
++                 mock.patch.object(delivery,'learning_source_identity',return_value=learning_identity()), \
++                 mock.patch.object(delivery,'checked_native',return_value={'fixture':True,'core_modes':52}) as native, \
++                 mock.patch.object(delivery,'ROOT',source), \
++                 mock.patch.object(delivery.subprocess,'check_output',return_value='e'*40+'\n'), \
++                 contextlib.redirect_stdout(io.StringIO()):
++                plan=delivery.prepare(args)
++            native.assert_called_once_with(args.native_evidence,args.native_source,'b'*40)
++            staged=args.out/'assets/VILLAGE-ANDROID-RESULT.json'
++            self.assertEqual(staged.read_bytes(),original)
++            self.assertEqual(delivery.record(staged)['sha256'],facts['village_android']['raw_report_sha256'])
++            self.assertEqual(set(plan['assets']),delivery.DELIVERY_ASSETS)
++            self.assertEqual(len(plan['assets']),11)
++            self.assertEqual(delivery.checked_plan(args.out),plan)
++            actual=delivery.read(args.out/'assets/C4-DELIVERY-FACTS.json')
++            self.assertEqual(actual['village_android'],facts['village_android'])
++            for key in ('published','release_approved','api37_approved','physical_arm64_tested',
++                        'audible_android_pcm_approved','separate_human_visual_receipt'):
++                self.assertIs(actual[key],False)
++            self.assertIsNone(actual['measured_device_fps'])
++            body=delivery.read(args.out/'audit/create-release.json')['body']
++            for scope in ('52 native modes with 17','five additional Dream modes',
++                          'ten additional Discovery modes with 38','direct Flutter→Village→Flutter',
++                          'No API37, physical ARM64, audible device PCM'):
++                self.assertIn(scope,body)
++
++
+ if __name__ == '__main__':
+     unittest.main()

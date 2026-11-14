@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "status": "FIVE_SOURCE_CONNECTION_FROZEN_NOT_EXECUTED",
+  "base": {
+    "head": "4f5d66f96c5ad84939e4cd09bc66fb4744ae2a6b",
+    "tree": "0e89490ea5d877c8249c8d461270b8e364d2c986"
+  },
+  "source_count": 5,
+  "source_freeze": {
+    "path": "source-freeze.json",
+    "bytes": 3650,
+    "sha256": "d03db589e77b5d6069a96606eb6c1fb671fe00c5232809551740ae5bb0b99902",
+    "git_blob": "37b5d2d6a116187f6a76115172cb9e365d7a68a0"
+  },
+  "patch": {
+    "path": "integration.patch",
+    "bytes": 20405,
+    "sha256": "4573190c21ce4f1ccba071fedc3791d4594c15d067a62ee761ffa06968972518",
+    "git_blob": "584f2784de47c784fbc07091992fa30ae6256a2f"
+  },
+  "ownership_paths": [
+    ".github/workflows/lumo-connect-four-2020.yml",
+    "scripts/verify_connect_four_candidate.py",
+    "scripts/verify_connect_four_delivery.py",
+    "scripts/tests/test_connect_four_pipeline.py",
+    "scripts/tests/test_connect_four_delivery.py"
+  ],
+  "dependencies_published_by_root": {
+    "village_product16": "f44ec248fc73be1fc0032f35bf41199400e7a5b5",
+    "village_qa3_v2": "ad623b8a149caf5e4339fd544cef4c4736c0d218"
+  },
+  "old_test_methods_preserved": 80,
+  "new_test_methods": 8,
+  "planned_test_methods": {
+    "scripts.tests.test_connect_four_pipeline": 17,
+    "scripts.tests.test_connect_four_delivery": 71
+  },
+  "tests_lint_devices_executed": 0,
+  "prior_34_root_result_is_separate": true,
+  "new_workflow_or_duplicate_34_execution": false,
+  "same_actual_apk_api35_village_entry_return_and_original_replay_required": true,
+  "native_pin_policy_owner": "Root",
+  "independent_review": "Requested from pipeline_repair; report remains separate",
+  "workspace_checkout_index_head_status_unchanged": true,
+  "large_apk_asset_payloads_copied": false,
+  "linked_only_evidence": [
+    {
+      "origin": "/tmp/host-ad623b8-village-targeted-validation-20261114/source-inventory-before.json",
+      "copied": false,
+      "reason": "Full source inventory remains in the separately preserved Root validation pack",
+      "bytes": 1339273,
+      "sha256": "8c985ffc4d10f10640016d4d167d9ef92d07e46fdfa508ed612e98f6b4314ebf",
+      "git_blob": "278c1d64de9e30387e0fed3e8bc0cd76d9e803a7"
+    },
+    {
+      "origin": "/tmp/host-ad623b8-village-targeted-validation-20261114/source-inventory-after.json",
+      "copied": false,
+      "reason": "Full source inventory remains in the separately preserved Root validation pack",
+      "bytes": 1339273,
+      "sha256": "8c985ffc4d10f10640016d4d167d9ef92d07e46fdfa508ed612e98f6b4314ebf",
+      "git_blob": "278c1d64de9e30387e0fed3e8bc0cd76d9e803a7"
+    }
+  ]
+}

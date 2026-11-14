@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "status": "FROZEN_NOT_RUN",
+  "pack": "/tmp/host37-build-budget150-20261114",
+  "base": {
+    "commit": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+    "tree": "6ab0e6cafc9fb37d3b3d95d76805aff4b6810d7a",
+    "repository": "Ullmann27/lumo-lernen"
+  },
+  "native_pin": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 49103,
+        "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e",
+        "git_blob": "2110d672ede7c80819fe3ff365339936b5406d8c"
+      },
+      "after": {
+        "bytes": 49103,
+        "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226",
+        "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064"
+      },
+      "changed_budget_lines": 1
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "type": "blob",
+      "before": {
+        "bytes": 86764,
+        "sha256": "eab724190785e4714a6b9766d10a7ad0d68177513bcd425e8708d66065999f88",
+        "git_blob": "2b3650bda8e2ba92545e2566c534c1ec664c5c16"
+      },
+      "after": {
+        "bytes": 86764,
+        "sha256": "baf14a20e411ff725a50a9c058148f8c029273e018c64fec398ea8bbf160e6a0",
+        "git_blob": "12ca0d0ce5298ebe9e07511db9320f012f013687"
+      },
+      "changed_budget_lines": 2
+    }
+  ],
+  "source_freeze": "source-freeze.json",
+  "patch": "budget.patch",
+  "upload": "upload-plan.json",
+  "source_preservation": "source-preservation.json",
+  "historical_evidence_source": "Root's independently read historical Run43590864772 / Job132436033818; original evidence separately preserved by Root at /workspace/scratch/b3485b7bb989/root-c4-budget-originals-20261114/. Current37ec has not timed out.",
+  "next_step": "Root source checkpoint, then exactly71 existing Delivery methods plus one actionlint on this workflow, then Root-controlled active replacement if accepted.",
+  "active_run": "No cancellation, rerun, ref/PR or CI mutation performed."
+}

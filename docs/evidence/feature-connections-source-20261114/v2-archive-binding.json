@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-11-14T11:30:12.195037+00:00",
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 53702,
+    "sha256": "cafe1df51596cfbaf64b3c0ffcba3f00b0af819ef1779c90c0e969b77f93b647",
+    "git_blob": "32b1b0bef7b997c783c95a6e3b321db876d09249"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 4186,
+    "sha256": "1e827b2d208b371ec21fbbfb5c57fbddaeef244f651ddddfbadef74b210164e2",
+    "git_blob": "a4b211f461c9556cc347f1e89ca9b7de44e592dc"
+  },
+  "full_member_readback": true,
+  "member_count": 18,
+  "members": [
+    {
+      "path": "README.md",
+      "bytes": 4593,
+      "sha256": "53ec7b059c3684c9b2c98d4db0a9befaadd1ca1e28dfa65cbad91bc38919f446",
+      "git_blob": "124a52b5aebd91753a6df0b58379d0745df85a55"
+    },
+    {
+      "path": "dependency-source/lib/core/school_repository.dart",
+      "bytes": 8279,
+      "sha256": "c7fb332684b64339b70428d84d3e1485534e5029dafec8fabec5517e789756e5",
+      "git_blob": "91e2bd74c742eddd877b111740a54550f05fe511"
+    },
+    {
+      "path": "final-source/lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 26157,
+      "sha256": "4998825fad2ffff107d16474e1c85cc4f600b898846e2bdae5321f1d72b7ed9e",
+      "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c"
+    },
+    {
+      "path": "final-source/lib/features/live/lumo_live_pro_screen.dart",
+      "bytes": 29612,
+      "sha256": "47a5142a9e9957bda0160dfa51c5bf5bf1b0b2f15ff14d5c566d0fa99003fa8f",
+      "git_blob": "f592b2459a6b79a1b2fe685c15671df908c5ad15"
+    },
+    {
+      "path": "final-source/test/feature_permission_regression_test.dart",
+      "bytes": 18339,
+      "sha256": "7747fa4e0cc1bac081ffced3e28daad51d8613ff0e6cc49f24a4419876894064",
+      "git_blob": "613aad5272caacc668908baa9b899469e7caec17"
+    },
+    {
+      "path": "final-source/test/wort_diktat_gesture_regression_test.dart",
+      "bytes": 12858,
+      "sha256": "0e34bcbdbcd3cfcd2a690c49935753bda9cb7b5c2b283507f2caf722841671e6",
+      "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 5925,
+      "sha256": "c300b794bf0987b835391a3c7e7c94a7e43b4b3e3873d23723762241658b9544",
+      "git_blob": "6ad934ad2449758088a8d469fa00134b497b3c11"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 4186,
+      "sha256": "1e827b2d208b371ec21fbbfb5c57fbddaeef244f651ddddfbadef74b210164e2",
+      "git_blob": "a4b211f461c9556cc347f1e89ca9b7de44e592dc"
+    },
+    {
+      "path": "original-v1-source/lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "bytes": 26048,
+      "sha256": "dfed43007709824f7043093e02feaa923e680d12bc4fed7c760d3061d1046f12",
+      "git_blob": "429580f71de6b5d60a7378140d5f6db469fd0a2a"
+    },
+    {
+      "path": "original-v1-source/lib/features/live/lumo_live_pro_screen.dart",
+      "bytes": 28962,
+      "sha256": "4013c9fa36615c9618b51670a1a11c30ea37341431f084ce8776d148420e6893",
+      "git_blob": "27e0ecdb93ac5eff674c73fc7dadcb5262a60d7d"
+    },
+    {
+      "path": "original-v1-source/test/feature_permission_regression_test.dart",
+      "bytes": 13917,
+      "sha256": "3ea97057bd0ada76f48b8aebdc7742a7680f94483fb7507603ccada0db65ad21",
+      "git_blob": "55bc542d4bc7d230aaf74b3baab021740d5a914d"
+    },
+    {
+      "path": "original-v1-source/test/wort_diktat_gesture_regression_test.dart",
+      "bytes": 9507,
+      "sha256": "b7aa00464087f453497bba8575a8bcbba7f7a538cb8b0b18e94140c4579f31fa",
+      "git_blob": "1747317cf3e7004464140e0c78f53b247c7e4cd0"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 1708,
+      "sha256": "3b3ee162d86511408d09f77d0546749fb87290f52e583b083502b6f9de84255b",
+      "git_blob": "9b5e5afc0ca8529ce6107f640babb21df87bfe82"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 14307,
+      "sha256": "d7c589bd86b20a9af277fd3b31f619ab072003461900ec74b8a6ce8a37c1a92b",
+      "git_blob": "d253afcc257eabd89ee13cacc7bb17c6910974b3"
+    },
+    {
+      "path": "source-readback.json",
+      "bytes": 4491,
+      "sha256": "d250b954d909ef439361d476a235efc47dc4c058a9ff187e73a0d453571b0716",
+      "git_blob": "3a4bbbb2c6823c3f6ee80527da396432118e4da4"
+    },
+    {
+      "path": "v1-manifest.json",
+      "bytes": 8747,
+      "sha256": "11a8b2dc6107471ffc7233dc2e35a6bc5bb47cce4b9d1ccea0bbff38761995a7",
+      "git_blob": "4f666debab0494486f1198631dde3738c6e2f44f"
+    },
+    {
+      "path": "v1-source-freeze.json",
+      "bytes": 11328,
+      "sha256": "5850bd374da9bcdf74507e8929af8741d55b6a40caea54b2cb65af496d08d24b",
+      "git_blob": "2ec292cf5576eab62c6efb184138534600cd4507"
+    },
+    {
+      "path": "v1-to-v2.patch",
+      "bytes": 12465,
+      "sha256": "e84d49b9089fd15b605d395839b64e465a5c50b8c8fb480b3c7ba1ebf7cab89b",
+      "git_blob": "1f362eca0dcc7219a462c41e44b26ac6e15bd328"
+    }
+  ],
+  "excluded_inherited_sources": "The four unchanged V1 final sources remain in the byte-bound V1 archive. source-freeze.json gives the complete combined eight-source mapping.",
+  "runtime_tests": "NOT_RUN"
+}

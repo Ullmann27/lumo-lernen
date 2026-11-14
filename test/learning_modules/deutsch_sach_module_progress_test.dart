@@ -16,8 +16,8 @@ import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
 import 'package:lumo_lernen/features/learning_modules/wort_diktat/wort_diktat_screen.dart';
-import 'package:lumo_lernen/features/writing/widgets/lumo_ink_surface.dart';
 import 'package:lumo_lernen/features/teacher_mode/topic_curriculum.dart';
+import 'package:lumo_lernen/features/writing/widgets/lumo_ink_surface.dart';
 import 'package:lumo_lernen/widgets/design/lumo_learning_module_frame.dart';
 
 class _ControlledWallet extends RewardWalletRepository {
@@ -188,13 +188,14 @@ Finder _firstVisibleAnswer() => find
 
 Future<void> _revealWrittenWord(WidgetTester tester) async {
   expect(find.text('Das richtige Wort war:'), findsNothing);
-  final writingRows = find.descendant(
-    of: find.byType(WortDiktatScreen),
+  final screen = find.byType(WortDiktatScreen);
+  expect(screen, findsOneWidget);
+  final rows = find.descendant(
+    of: screen,
     matching: find.byType(LumoInkSurface),
   );
-  expect(writingRows, findsWidgets,
-      reason: 'Draw through the real Diktat input surface');
-  final canvas = writingRows.first;
+  expect(rows, findsNWidgets(4));
+  final canvas = rows.at(0);
   await tester.ensureVisible(canvas);
   await tester.pump();
   expect(canvas.hitTestable(), findsOneWidget);

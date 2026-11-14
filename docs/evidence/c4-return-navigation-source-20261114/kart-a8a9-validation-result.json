@@ -1,0 +1,103 @@
+{
+  "started_at": "2026-11-14T13:06:49.082078+00:00",
+  "head": "a8a9b84cffd9819d4c8c2dddb55e870f448a9f13",
+  "tree": "6f737f9d2a57005ec4a32495af62d118bfcea28a",
+  "scope": "One authorized 70-method targeted run plus one original callback red replay; no Android/OCR/engine run",
+  "phases": [
+    {
+      "name": "targeted-green",
+      "argv": [
+        "/tmp/lumo-root-recovery-1242/py/bin/python",
+        "-m",
+        "unittest",
+        "test_kart_scroll_word_evidence",
+        "test_kart_garage_evidence",
+        "test_kart_driver_word_evidence",
+        "test_native_surface_readiness",
+        "-v"
+      ],
+      "cwd": "/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "REQUIRE_ALL_TESTS": "true",
+        "PYTHONPATH": "/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout/tools/android_qa/tests:/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout/tools/android_qa:/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout"
+      },
+      "started_at": "2026-11-14T13:06:49.100480+00:00",
+      "ended_at": "2026-11-14T13:06:57.871427+00:00",
+      "duration_seconds": 8.770956534000106,
+      "exit_code": 0,
+      "reported_tests": 70,
+      "reported_seconds": 8.408,
+      "stdout": {
+        "path": "targeted-green.stdout.log",
+        "bytes": 29,
+        "sha256": "55d7ff5664b5d66b98364039aae51e6a45ecd4c86650f60b5907775d612523d7"
+      },
+      "stderr": {
+        "path": "targeted-green.stderr.log",
+        "bytes": 14183,
+        "sha256": "aed4f2e421e911d35a7dc46d2d3e9d62a574814be78bb0b64869876c51a44406"
+      },
+      "errors": 0,
+      "failures": 0,
+      "skips": 0,
+      "unittest_plain_ok": true
+    },
+    {
+      "name": "original-boru-red",
+      "argv": [
+        "/tmp/lumo-root-recovery-1242/py/bin/python",
+        "-m",
+        "unittest",
+        "test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_original_boru_frame_recovers_only_scroll_after_two_bound_frames",
+        "-v"
+      ],
+      "cwd": "/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "REQUIRE_ALL_TESTS": "true",
+        "PYTHONPATH": "/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout/tools/android_qa/tests:/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout/tools/android_qa:/tmp/host-a8a9-kart-word-targeted-validation-20261114/checkout",
+        "LUMO_KART_WORD_SOURCE_ROOT": "/tmp/host-3d91-kart-word-repair-20261114/before-source"
+      },
+      "started_at": "2026-11-14T13:06:57.873719+00:00",
+      "ended_at": "2026-11-14T13:06:58.093827+00:00",
+      "duration_seconds": 0.22012095900026907,
+      "exit_code": 1,
+      "reported_tests": 1,
+      "reported_seconds": 0.02,
+      "stdout": {
+        "path": "original-boru-red.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "original-boru-red.stderr.log",
+        "bytes": 1810,
+        "sha256": "1e700621a788cfaf8b902fabe1f1a9a0c599817c0d9b60869b8f514749804452"
+      },
+      "errors": 1,
+      "failures": 0,
+      "skips": 0,
+      "unittest_plain_ok": false
+    }
+  ],
+  "outcome": "PASS",
+  "expected_original_red_verified": true,
+  "source_unchanged": {
+    "head": true,
+    "tree": true,
+    "index": true,
+    "stage_sha256": true,
+    "flags_sha256": true,
+    "status_utf8": true,
+    "status_sha256": true,
+    "untracked_utf8": true,
+    "tracked_count": true,
+    "materialized_count": true,
+    "absent_count": true,
+    "sources": true
+  },
+  "ended_at": "2026-11-14T13:06:58.817672+00:00"
+}

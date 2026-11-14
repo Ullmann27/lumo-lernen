@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "host_commit": "68f86b7dafa2dcd1e42ee019c4be46b9e9bdc697",
+  "host_tree": "ecd5df0797c2b4102f2c7bbc30146f3061d713ce",
+  "native_commit": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "methods": 64,
+  "method_counts": {
+    "test_candidate_2011_pin.py": 24,
+    "test_legacy_release_pin.py": 40
+  },
+  "passed_method_lines": 64,
+  "errors": 0,
+  "failures": 0,
+  "skipped_method_lines": 0,
+  "source_index_status_unchanged": true,
+  "indexed_paths": 4440,
+  "materialized_paths": 7,
+  "sparse_absent_paths": 4433,
+  "index_sha256": "bac1910eac440acf484e889d26fc3c13d8d8e13eba26b76846431beb7b3af616",
+  "process": {
+    "argv": [
+      "/tmp/lumo-root-recovery-1242/py/bin/python",
+      "-m",
+      "unittest",
+      "scripts.tests.test_candidate_2011_pin",
+      "scripts.tests.test_legacy_release_pin",
+      "-v"
+    ],
+    "cwd": "/tmp/host-68f86b7-final-pin-validation-20261114/checkout",
+    "started_at": "2026-11-14T13:45:57.261233+00:00",
+    "ended_at": "2026-11-14T13:45:57.389660+00:00",
+    "elapsed_seconds": 0.1283994020004684,
+    "exit_code": 0,
+    "test_invocations": 1,
+    "stdout": {
+      "path": "unittest.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "unittest.stderr.log",
+      "bytes": 12267,
+      "sha256": "856bf81fa60db7c7c087f6b4f2fd388553a6bc8ea4fd0ee76d4d8c031f953e44"
+    }
+  },
+  "scope": "One local 64-method pin/source contract invocation only; no workflow/engine/renderer/Android or release acceptance."
+}

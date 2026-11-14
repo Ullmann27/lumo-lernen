@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "recorded_at": "2026-11-14T14:25:33.984330+00:00",
+  "source": "cfa4725263f15e9cc3f75d8f6dfae0949fbb86ab",
+  "root_actual_machine_readback": {
+    "cases": 17,
+    "all_original_names_preserved": true,
+    "errors": 0,
+    "skips": 0,
+    "child_exit": 0,
+    "terminal_success": true,
+    "stdout_sha256": "c21fafc262708b9fc86316530976d5bf2d171870ead7ddfe454bb546ef6a6c2c"
+  },
+  "complete_before_after_inventory_equality_except_recorded_at": true,
+  "raw_index_byte_equality": true,
+  "previous_status_and_continue_preserved_as_full_suffix": true,
+  "activation_source_changes": 0,
+  "scope": "Focused local test evidence and docs-only activation; new complete C4/Android/build remains required."
+}

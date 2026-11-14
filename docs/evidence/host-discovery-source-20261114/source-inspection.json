@@ -1,0 +1,66 @@
+{
+  "source_parsing_only": true,
+  "tests_executed": false,
+  "actionlint_executed": false,
+  "comparisons": {
+    "scripts/tests/test_connect_four_delivery.py": {
+      "unchanged_previous_functions": 78,
+      "changed_previous_functions": [],
+      "added_functions": [
+        "DiscoveryOriginalBoundaryTests.check",
+        "DiscoveryOriginalBoundaryTests.member",
+        "DiscoveryOriginalBoundaryTests.setUp",
+        "DiscoveryOriginalBoundaryTests.test_categorized_proof_or_wrapper_cannot_escape_the_complete_index",
+        "DiscoveryOriginalBoundaryTests.test_changed_missing_or_symlinked_original_payload_fails_before_native_replay",
+        "DiscoveryOriginalBoundaryTests.test_changed_missing_or_uncommitted_reader_collector_and_original_helpers_fail",
+        "DiscoveryOriginalBoundaryTests.test_complete_original_transport_uses_exact_pure_native_replay_without_writes",
+        "DiscoveryOriginalBoundaryTests.test_duplicate_unsafe_and_false_original_hash_records_fail",
+        "DiscoveryOriginalBoundaryTests.test_even_same_value_rewrites_or_index_mutation_by_replay_are_rejected",
+        "DiscoveryOriginalBoundaryTests.test_foreign_or_dirty_native_checkout_is_rejected_before_import",
+        "DiscoveryOriginalBoundaryTests.test_foreign_reduced_and_overclaimed_manifests_cannot_authorize_delivery",
+        "DiscoveryOriginalBoundaryTests.test_fresh_native_decoder_failure_or_difference_is_not_overridden",
+        "DiscoveryOriginalBoundaryTests.test_real_reader_and_collector_bindings_are_not_synthetic_fixtures",
+        "DiscoveryOriginalBoundaryTests.test_unique_collection_pass_cannot_hide_late_leak_timeout_or_failure",
+        "DiscoveryRequiredStepTests.test_missing_duplicate_skipped_or_failed_discovery_step_blocks_successful_build",
+        "DiscoveryRequiredStepTests.test_new_workflow_step_binds_every_helper_after_full52_and_dream_without_budget_change"
+      ],
+      "previous_test_methods": 56,
+      "new_test_methods": 13
+    },
+    "scripts/verify_connect_four_delivery.py": {
+      "unchanged_previous_functions": 27,
+      "changed_previous_functions": [
+        "checked_native",
+        "prepare"
+      ],
+      "added_functions": [
+        "checked_native_discovery"
+      ],
+      "previous_test_methods": 0,
+      "new_test_methods": 0
+    }
+  },
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "before_sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+      "after_sha256": "b98c9fd932ea56f33f17dcd73fe1c8841901ea1882598682dddb798b58cc26e8",
+      "after_blob": "e33ae242ad70efe73ec923ec2fba87cb8e0af632",
+      "bytes": 48514
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "before_sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+      "after_sha256": "0a4ae03274aa1a669525780f628af4d794b929414916f6d9a7530d8339f3cce4",
+      "after_blob": "3ac2a960cdad4589ea18067a4f03f4fd5281f313",
+      "bytes": 82309
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "before_sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+      "after_sha256": "331f1e907f898ee50473e7fb9ca9279669a4005be5eb96605f90e414f8bd4f76",
+      "after_blob": "1fdbf66634b4e932e922b785ad8419f898373d8b",
+      "bytes": 66477
+    }
+  ]
+}

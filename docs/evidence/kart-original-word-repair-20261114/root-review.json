@@ -1,0 +1,32 @@
+{
+  "reviewed_at": "2026-11-14T13:01:41.450312+00:00",
+  "actual_apply_base": {
+    "commit": "bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7",
+    "tree": "e2db771277ed3d181ed34410a7a736252bcdf0df"
+  },
+  "original_source_base": {
+    "commit": "0411b62f59425bc4f36226ca59e9ed5ef901709a",
+    "tree": "6a439dddafaaf7319cfabe28a2149e8de8c363df"
+  },
+  "scope": "Root independently read complete source patch, imports, unchanged scroll/selection controller and all14 regression methods; source-only checkpoint before tests.",
+  "root_viewed_original": {
+    "path": "selected-originals/main/21_stage_select_gecko_velo-2.png",
+    "sha256": "06b0a39e612271df34b4a8522ba609234ad4890b3dda7b7de4a16d33d6ac355c",
+    "observed": "Visible Boru Rally card in left list; Gecko Velo is not visible. Original raw OCR line has decoration prefix. This is not a successful target selection or race."
+  },
+  "decision": "Accept fallback only for original no-visible-card error, using complete contiguous known names from original same-line TSV word positions. Keep original region, ambiguity, original PNG hash, fresh second frame, five swipes and150-second selection deadline, exact target touch and saved-race identity.",
+  "pending_tests": [
+    "14 original replay and negative methods",
+    "Actual old-source Boru callback failure",
+    "Affected previous Garage/Driver/readiness suites"
+  ],
+  "current_old_run": {
+    "run": 43589206933,
+    "head": "3d91bd8355a539c3c2413760959684cd3fee985a",
+    "conclusion": "failure",
+    "android": "failure",
+    "update": "failure",
+    "candidate_and_delivery": "skipped"
+  },
+  "terminal_originals": "Originals remain preserved in terminal pack and remote workflow artifact; separate durable archive checkpoint follows."
+}
