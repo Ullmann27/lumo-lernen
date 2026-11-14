@@ -124,7 +124,7 @@ def begin(framework_out: Path, out: Path, serial: str, *, preserve_through_adb_r
              "framework_readiness": file_identity(framework_out / "framework-readiness.json"),
              "scope": "Workflow boundary before the first APK installation and tour commands."}
     if device is not None:
-        value.update(recording_protocol="independent-device-session-v1",
+        value.update(recording_protocol=FRAMEWORK.CONSOLE.PROTOCOL,
                      device_start=file_identity(out / "device-logger/start.json"),
                      root_prepared_before_installation=True)
     write_new(out / "runtime-start.json", value)
@@ -141,7 +141,7 @@ def capture_end(framework_out: Path, out: Path, serial: str, tour_exit_code: int
     try:
         value["monitor_alive_before"] = FRAMEWORK.monitor_alive(framework_out)
         start = read_json(out / "runtime-start.json")
-        durable = start.get("recording_protocol") == "independent-device-session-v1"
+        durable = start.get("recording_protocol") == FRAMEWORK.CONSOLE.PROTOCOL
         if durable:
             FRAMEWORK.observe_device_log(out / "device-logger", "before-endpoint")
         adb = FRAMEWORK.adb_path()
@@ -191,11 +191,22 @@ def verify_device_recording(framework_out: Path, out: Path, start: dict, end: di
             or start.get("device_start") != file_identity(original(base, "start.json"))
             or start.get("root_prepared_before_installation") is not True):
         raise ValueError("Independent device logger source/device binding changed")
+    console = FRAMEWORK.CONSOLE.verify(base / "console", FRAMEWORK.device_logger_launch(remote).encode(), token, serial,
+                ("launched", "before-root", "after-root", "before-endpoint", "after-endpoint", "before-close"))
+    receipts = {row["label"]: row for row in console["observations"]}
+    if (initial.get("console_launch") != receipts["launched"]
+            or initial.get("console_before_root") != receipts["before-root"]
+            or initial.get("console_after_root") != receipts["after-root"]
+            or before.get("console_connection") != receipts["before-endpoint"]
+            or after.get("console_connection") != receipts["after-endpoint"]
+            or final.get("console_finish") != console["finished"]):
+        raise ValueError("Console lifecycle receipts differ from their original observations")
     prefix = [adb, "-s", serial]
     snapshot_live = ["shell", "sh", "-c", shlex.quote(FRAMEWORK.device_snapshot_script(remote))]
     snapshot_stopped = ["shell", "sh", "-c", shlex.quote(FRAMEWORK.device_snapshot_script(remote, live=False))]
     commands = {
-        "launch": ["shell", "sh", "-c", shlex.quote(FRAMEWORK.device_logger_launch(remote))],
+        "launch-stdout": ["shell", "cat", remote + "/launch.stdout"],
+        "launch-stderr": ["shell", "cat", remote + "/launch.stderr"],
         **{name: snapshot_live for name in ("initial", "before-root", "after-root", "identity", "before-stop", "checked-stop-target")},
         **{name: snapshot_stopped for name in ("stopped-files", "files-after-read")},
         "prefix": ["shell", "cat", remote + "/logcat.stdout"],
@@ -249,9 +260,9 @@ def verify_device_recording(framework_out: Path, out: Path, start: dict, end: di
         if set(report["files"]) != expected_files:
             raise ValueError("Device command file inventory differs")
         sequence = ",".join(labels)
-        pattern = (r"launch,initial,start-marker-write,(?:start-marker-read,)+prefix,before-root,root-before-uid,(?:root-request,)?root-wait,root-after-uid,root-boot,after-root"
+        pattern = (r"launch-stdout,launch-stderr,initial,start-marker-write,(?:start-marker-read,)+prefix,before-root,root-before-uid,(?:root-request,)?root-wait,root-after-uid,root-boot,after-root"
                    if phase == "start" else r"identity" if phase != "finish" else
-                   r"before-stop,end-marker-write,(?:end-marker-read,)+checked-stop-target,stop,(?:exit,)+stopped-files,original-logcat-stdout,original-logcat-stderr,original-session-stdout,original-session-stderr,original-wait-stderr,original-run-sh,files-after-read")
+                   r"before-stop,end-marker-write,(?:end-marker-read,)+checked-stop-target,stop,(?:exit,)+stopped-files,original-logcat-stdout,original-logcat-stderr,original-session-stdout,original-session-stderr,original-wait-stderr,original-run-sh,original-console-pid,original-launch-stdout,original-launch-stderr,files-after-read")
         if not re.fullmatch(pattern, sequence):
             raise ValueError("Independent logger protocol is incomplete or contains extra actions")
     def snapshot(phase: str, label: str, *, live: bool = True) -> dict:
@@ -301,7 +312,9 @@ def verify_device_recording(framework_out: Path, out: Path, start: dict, end: di
         data = loaded["finish"]["original-" + name.replace(".", "-")][0]
         if len(data) != final_file["bytes"] or data != original(base / "finish", final[name]).read_bytes():
             raise ValueError("Complete device file was not preserved")
-    for name in ("logcat.stderr", "session.stdout", "session.stderr"):
+    if loaded["start"]["launch-stdout"] != [b""] or loaded["start"]["launch-stderr"] != [b""]:
+        raise ValueError("Actual console launch program emitted output or errors")
+    for name in ("logcat.stderr", "session.stdout", "session.stderr", "launch.stdout", "launch.stderr"):
         if loaded["finish"]["original-" + name.replace(".", "-")] != [b""]:
             raise ValueError("Device logger emitted unexpected output/errors")
     # Some POSIX shells print this exact notification from the wait builtin
@@ -311,6 +324,8 @@ def verify_device_recording(framework_out: Path, out: Path, start: dict, end: di
         raise ValueError("Unrecognized wait notification from the device logger shell")
     if loaded["finish"]["original-run-sh"] != [FRAMEWORK.device_logger_script(remote).encode()]:
         raise ValueError("Retrieved device script differs from the fixed source")
+    if loaded["finish"]["original-console-pid"] != [(str(anchor["console"]["pid"]) + "\n").encode()]:
+        raise ValueError("Actual init-console PID differs from the originally supplied shell PID")
     log = original(base / "finish", final["logcat.stdout"])
     original_bytes = log.read_bytes()
     old_prefix = original(base / "start", initial["prefix"]).read_bytes()
@@ -336,12 +351,14 @@ def verify_device_recording(framework_out: Path, out: Path, start: dict, end: di
                 or FRAMEWORK.device_marker_line(original(framework_out, "logcat-all.stdout").read_bytes(), marker) != line
                 or FRAMEWORK.device_marker_line(old_prefix, marker) != line):
             raise ValueError("The initial host and device recordings do not demonstrably overlap")
-    times = [ready["finished_at"], initial["started_at"], initial["marker"]["observed_at"],
-             root["started_at"], root["finished_at"], initial["finished_at"], start["began_at"],
+    times = [ready["finished_at"], initial["started_at"], console["launch"]["sent_at"], receipts["launched"]["observed_at"],
+             initial["marker"]["observed_at"], receipts["before-root"]["observed_at"],
+             root["started_at"], receipts["after-root"]["observed_at"], root["finished_at"], initial["finished_at"], start["began_at"],
              end["started_at"], before["started_at"], before["finished_at"],
              end["commands"]["properties"]["started_at"], end["commands"]["events-anr"]["finished_at"],
              after["started_at"], after["finished_at"], end["finished_at"], final["started_at"],
-             final["marker"]["observed_at"], final["stop_requested_at"], final["finished_at"]]
+             final["marker"]["observed_at"], final["stop_requested_at"], receipts["before-close"]["observed_at"],
+             console["finished"]["finished_at"], final["finished_at"]]
     parsed = [timestamp(value) for value in times]
     if not all(left <= right for left, right in zip(parsed, parsed[1:])):
         raise ValueError("Device logger does not cover root and all endpoint observations")
@@ -353,7 +370,7 @@ def verify_device_recording(framework_out: Path, out: Path, start: dict, end: di
         errors.append("empty_or_truncated_device_logcat")
     return {"status": "FAIL" if errors else "PASS", "errors": errors, "root": root,
             "start_marker": initial["marker"], "end_marker": final["marker"],
-            "logcat": scan, "start_identity": anchor, "finished_at": final["finished_at"],
+            "logcat": scan, "console_transport": console, "start_identity": anchor, "finished_at": final["finished_at"],
             "scope": "Unfiltered device session with original boot-stream overlap, positive root preparation and endpoint continuity."}
 
 
@@ -424,8 +441,8 @@ def verify(framework_out: Path, out: Path, serial: str) -> dict:
             require(ready.get("status") == "PASS" and ready.get("monitor_alive_at_finish") is True,
                     "original_framework_guard_not_positive")
             protocol = start.get("recording_protocol")
-            require(protocol in (None, "independent-device-session-v1"), "unknown_recording_protocol")
-            if protocol == "independent-device-session-v1":
+            require(protocol in (None, FRAMEWORK.CONSOLE.PROTOCOL), "unknown_recording_protocol")
+            if protocol == FRAMEWORK.CONSOLE.PROTOCOL:
                 try:
                     device_recording = verify_device_recording(framework_out, out, start, end, monitor, ready)
                     errors.extend(device_recording["errors"])
@@ -525,7 +542,7 @@ def verify(framework_out: Path, out: Path, serial: str) -> dict:
             "serial": serial, "errors": errors, "logcat": scan, "device_recording": device_recording,
             "endpoint": endpoint, "adb_start": adb_start,
             "inputs": inputs, "observer_sources": {name: file_identity(Path(__file__).with_name(name))
-                                                    for name in ("verify_android_runtime_anr.py", "android_framework_ready.py")},
+                                                    for name in ("verify_android_runtime_anr.py", "android_framework_ready.py", "android_console_transport.py")},
             "scope": SCOPE, "verified_at": FRAMEWORK.utc()}
 
 
@@ -559,7 +576,7 @@ def main() -> int:
             raise ValueError("Refusing to replace an existing verification report")
         if args.mode == "finish":
             capture_end(framework_out, out, args.serial, args.tour_exit_code)
-            if read_json(out / "runtime-start.json").get("recording_protocol") == "independent-device-session-v1":
+            if read_json(out / "runtime-start.json").get("recording_protocol") == FRAMEWORK.CONSOLE.PROTOCOL:
                 try:
                     FRAMEWORK.finish_device_log(out / "device-logger")
                 except (OSError, ValueError, KeyError, RuntimeError) as error:

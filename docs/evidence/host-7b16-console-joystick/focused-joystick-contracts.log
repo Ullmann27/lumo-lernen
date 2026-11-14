@@ -1,0 +1,12 @@
+test_absolute_and_proportional_minima_still_reject_small_rings (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_absolute_and_proportional_minima_still_reject_small_rings) ... ok
+test_blank_and_filled_circles_are_not_joystick_rings (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_blank_and_filled_circles_are_not_joystick_rings) ... ok
+test_both_unmodified_device_frames_select_only_the_original_outer_ring (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_both_unmodified_device_frames_select_only_the_original_outer_ring) ... ok
+test_elongated_or_outside_control_region_rings_are_rejected (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_elongated_or_outside_control_region_rings_are_rejected) ... ok
+test_landscape_original_contract_still_selects_the_same_ring (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_landscape_original_contract_still_selects_the_same_ring) ... ok
+test_synthetic_resampling_of_the_original_preserves_observed_coordinates (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_synthetic_resampling_of_the_original_preserves_observed_coordinates) ... ok
+test_two_valid_portrait_rings_remain_ambiguous (scripts.tests.test_studio_joystick_portrait.PortraitJoystickContracts.test_two_valid_portrait_rings_remain_ambiguous) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.588s
+
+OK
