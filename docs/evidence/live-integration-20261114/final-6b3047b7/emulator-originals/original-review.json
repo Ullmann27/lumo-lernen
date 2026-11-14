@@ -1,0 +1,816 @@
+{
+  "source_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "source_tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "native_sha": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+  "run_id": 43616038272,
+  "run_attempt": 1,
+  "scope": "Independent read-only verification and actual visual review of already completed 6b Android/update originals. This is not a rerun and is not release acceptance.",
+  "original_archives": [
+    {
+      "artifact_id": 14125719765,
+      "job_id": 132536740615,
+      "archive_bytes": 137718662,
+      "archive_sha256": "fb3733ea6b97851aa2def5adbf25b9f94438ea5e894de2a841df9c83f8f52afc",
+      "zip_crc_pass": true
+    },
+    {
+      "artifact_id": 14125789358,
+      "job_id": 132536740578,
+      "archive_bytes": 119921837,
+      "archive_sha256": "fa29fc23aa2be2112e81b107245237d5bc466e26d73cc98a17c15865a02b18d3",
+      "zip_crc_pass": true
+    }
+  ],
+  "android": {
+    "overall": "FAIL",
+    "main_tour": "PASS",
+    "main_steps": [
+      {
+        "step": "apk-identity",
+        "ok": true
+      },
+      {
+        "step": "launch",
+        "ok": true
+      },
+      {
+        "step": "onboarding",
+        "ok": true
+      },
+      {
+        "step": "navigate-start",
+        "ok": true
+      },
+      {
+        "step": "atelier-roundtrip",
+        "ok": true
+      },
+      {
+        "step": "navigate-lernen",
+        "ok": true
+      },
+      {
+        "step": "navigate-spiele",
+        "ok": true
+      },
+      {
+        "step": "open-kart",
+        "ok": true
+      },
+      {
+        "step": "start-kart-race",
+        "ok": true
+      },
+      {
+        "step": "race-running",
+        "ok": true
+      },
+      {
+        "step": "race-hud",
+        "ok": true
+      },
+      {
+        "step": "race-drive",
+        "ok": true
+      },
+      {
+        "step": "pause-menu",
+        "ok": true
+      },
+      {
+        "step": "return-from-kart",
+        "ok": true
+      },
+      {
+        "step": "learning-state-after-kart",
+        "ok": true
+      },
+      {
+        "step": "lernen-usable-after-kart",
+        "ok": true
+      },
+      {
+        "step": "profile-after-kart",
+        "ok": true
+      },
+      {
+        "step": "restart-keeps-learning-state",
+        "ok": true
+      },
+      {
+        "step": "display-fold_offen",
+        "ok": true
+      },
+      {
+        "step": "display-fold_aussen",
+        "ok": true
+      },
+      {
+        "step": "display-quer",
+        "ok": true
+      }
+    ],
+    "village": "FAIL",
+    "first_error": "ValueError: Actual original TSV/PNG does not establish caption: Spielen",
+    "c4": "NOT_REACHED",
+    "candidate_delivery": "SKIPPED",
+    "original_report_files": [
+      "android:main/tour-result.json",
+      "android:village/village-result.json"
+    ],
+    "return_boundary": "The original ACK, native process termination and resumed MainActivity were observed before the sole post-return screenshot. That screenshot still contains native pixels; no later Flutter frame was observed in this failed run.",
+    "ack_original": "village/commands/0072-village-final-all-buffer-logcat.stdout",
+    "native_pid": 6477,
+    "host_pid": 6150,
+    "ack_time": "2026-11-14 18:21:26.686",
+    "single_touch": "adb shell input swipe 309 158 309 158 120",
+    "unchanged_preferences_sha256": "1829d906ac3f6d945f37ee7377ed1a9b826fe26c2d6b56f630284b472dfec8fc"
+  },
+  "update": {
+    "status": "PASS",
+    "installation": {
+      "before_version": 2017,
+      "after_version": 2020,
+      "userId": "10209",
+      "firstInstallTime": "2026-11-14 18:05:42"
+    },
+    "baseline_source": "47889f74a651b073965def70743417cf320b1eb9",
+    "baseline_version": {
+      "versionCode": 2017,
+      "versionName": "0.13.5",
+      "apk_sha256": "03063cdc0956b3c1df00f604de504841e1a5fed4cabf31c9418a9167a11140e8"
+    },
+    "candidate_version": {
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "apk_sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765"
+    },
+    "task": {
+      "prompt": "4 + 5 = ?",
+      "answer": 9
+    },
+    "reward_delta": {
+      "stars": 1,
+      "xp": 5
+    },
+    "saved_correct_answers": 1,
+    "after_update": {
+      "profile": {
+        "id": "1794679582563076",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T18:06:22.563076"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      }
+    },
+    "after_kart": {
+      "profile": {
+        "id": "1794679582563076",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T18:06:22.563076"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794679582563076",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T18:06:22.563076"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794679582563076",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T18:06:22.563076"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "after_restart": {
+      "profile": {
+        "id": "1794679582563076",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T18:06:22.563076"
+      },
+      "learning_keys_compared": 7,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5,
+      "approved_migration": {
+        "from_version": 2017,
+        "to_version": 2020,
+        "kind": "independentEvidence-v1",
+        "records": [
+          {
+            "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+            "skill_id": "mathematik::plus bis 10",
+            "added_independent_evidence": {
+              "version": 1,
+              "correct": 1,
+              "wrong": 0,
+              "correctStreak": 1,
+              "wrongStreak": 0
+            }
+          }
+        ],
+        "existing_fields_preserved": true
+      },
+      "after_update_exact": {
+        "profile": {
+          "id": "1794679582563076",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T18:06:22.563076"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "baseline_history": {
+        "profile": {
+          "id": "1794679582563076",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T18:06:22.563076"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        }
+      }
+    },
+    "fold": {
+      "cover": {
+        "profile": {
+          "id": "1794679582563076",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T18:06:22.563076"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        },
+        "after_update_exact": {
+          "profile": {
+            "id": "1794679582563076",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T18:06:22.563076"
+          },
+          "learning_keys_compared": 7,
+          "learning_keys_added": [],
+          "correct_answers_preserved": 1,
+          "earned_stars": 1,
+          "earned_xp": 5
+        },
+        "baseline_history": {
+          "profile": {
+            "id": "1794679582563076",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T18:06:22.563076"
+          },
+          "learning_keys_compared": 7,
+          "learning_keys_added": [],
+          "correct_answers_preserved": 1,
+          "earned_stars": 1,
+          "earned_xp": 5,
+          "approved_migration": {
+            "from_version": 2017,
+            "to_version": 2020,
+            "kind": "independentEvidence-v1",
+            "records": [
+              {
+                "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+                "skill_id": "mathematik::plus bis 10",
+                "added_independent_evidence": {
+                  "version": 1,
+                  "correct": 1,
+                  "wrong": 0,
+                  "correctStreak": 1,
+                  "wrongStreak": 0
+                }
+              }
+            ],
+            "existing_fields_preserved": true
+          }
+        }
+      },
+      "open": {
+        "profile": {
+          "id": "1794679582563076",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T18:06:22.563076"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        },
+        "after_update_exact": {
+          "profile": {
+            "id": "1794679582563076",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T18:06:22.563076"
+          },
+          "learning_keys_compared": 7,
+          "learning_keys_added": [],
+          "correct_answers_preserved": 1,
+          "earned_stars": 1,
+          "earned_xp": 5
+        },
+        "baseline_history": {
+          "profile": {
+            "id": "1794679582563076",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T18:06:22.563076"
+          },
+          "learning_keys_compared": 7,
+          "learning_keys_added": [],
+          "correct_answers_preserved": 1,
+          "earned_stars": 1,
+          "earned_xp": 5,
+          "approved_migration": {
+            "from_version": 2017,
+            "to_version": 2020,
+            "kind": "independentEvidence-v1",
+            "records": [
+              {
+                "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+                "skill_id": "mathematik::plus bis 10",
+                "added_independent_evidence": {
+                  "version": 1,
+                  "correct": 1,
+                  "wrong": 0,
+                  "correctStreak": 1,
+                  "wrongStreak": 0
+                }
+              }
+            ],
+            "existing_fields_preserved": true
+          }
+        }
+      },
+      "landscape": {
+        "profile": {
+          "id": "1794679582563076",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-14T18:06:22.563076"
+        },
+        "learning_keys_compared": 7,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5,
+        "approved_migration": {
+          "from_version": 2017,
+          "to_version": 2020,
+          "kind": "independentEvidence-v1",
+          "records": [
+            {
+              "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+              "skill_id": "mathematik::plus bis 10",
+              "added_independent_evidence": {
+                "version": 1,
+                "correct": 1,
+                "wrong": 0,
+                "correctStreak": 1,
+                "wrongStreak": 0
+              }
+            }
+          ],
+          "existing_fields_preserved": true
+        },
+        "after_update_exact": {
+          "profile": {
+            "id": "1794679582563076",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T18:06:22.563076"
+          },
+          "learning_keys_compared": 7,
+          "learning_keys_added": [],
+          "correct_answers_preserved": 1,
+          "earned_stars": 1,
+          "earned_xp": 5
+        },
+        "baseline_history": {
+          "profile": {
+            "id": "1794679582563076",
+            "name": "LumoTest",
+            "age": 7,
+            "grade": 1,
+            "createdAt": "2026-11-14T18:06:22.563076"
+          },
+          "learning_keys_compared": 7,
+          "learning_keys_added": [],
+          "correct_answers_preserved": 1,
+          "earned_stars": 1,
+          "earned_xp": 5,
+          "approved_migration": {
+            "from_version": 2017,
+            "to_version": 2020,
+            "kind": "independentEvidence-v1",
+            "records": [
+              {
+                "preference_key": "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+                "skill_id": "mathematik::plus bis 10",
+                "added_independent_evidence": {
+                  "version": 1,
+                  "correct": 1,
+                  "wrong": 0,
+                  "correctStreak": 1,
+                  "wrongStreak": 0
+                }
+              }
+            ],
+            "existing_fields_preserved": true
+          }
+        }
+      }
+    },
+    "offline": true,
+    "fatal_crashes": 0,
+    "baseline_optional_tour": {
+      "t1-deutsch": "FAIL: Kein Bedienelement beginnt mit: Deutsch. ",
+      "t2-englisch": "FAIL: Kein Bedienelement beginnt mit: Englisch. ",
+      "t3-spiele": "PASS",
+      "t4-tests": "PASS",
+      "t5-belohnungen": "PASS",
+      "t6-lumo-agent": "PASS",
+      "t7-elternbereich": "PASS",
+      "t8-start": "PASS",
+      "t9-fold-cover-start": "PASS",
+      "t9-fold-cover-lernen": "PASS",
+      "t9-fold-inner-start": "PASS",
+      "t9-fold-inner-lernen": "PASS"
+    },
+    "limitations": [
+      "physical ARM64 device",
+      "GPU frame times / 60 FPS",
+      "audio output",
+      "complete two-lap race reward",
+      "Baseline contains no populated journal/writing preference key; preservation of separately authored journal or handwriting content was not tested.",
+      "The optional baseline Deutsch and Englisch navigation checks failed as explicitly recorded; the required baseline mathematics journey and update preservation contract passed."
+    ],
+    "preferences": [
+      {
+        "file": "before-update-preferences.xml",
+        "bytes": 4364,
+        "sha256": "0dbc59c47f73f9b6f8a6e0f1072425d0da26b376e00e1f35ff9bda1fb737affd",
+        "git_blob_sha": "62441f6465bc1f3252218e67854b37ffa132b9fc",
+        "keys": [
+          "flutter.lumo.achievements.counters",
+          "flutter.lumo.games.curriculum50.local_lumotest_1",
+          "flutter.lumo.reward_shop.local_lumotest_1",
+          "flutter.lumo_active_profile",
+          "flutter.lumo_attempt_log_v1",
+          "flutter.lumo_cosmos_v2::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_daily_mission_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_game_unlocks_v1",
+          "flutter.lumo_intro_seen",
+          "flutter.lumo_learning_local_student_id_v1",
+          "flutter.lumo_progress_daily::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_journey_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_last::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_reward_wallet_v1"
+        ],
+        "journal_writing_keys": []
+      },
+      {
+        "file": "after-update-preferences.xml",
+        "bytes": 4516,
+        "sha256": "d83d7f199f896f76f55ea0a48d7de773dd4cdcb3a2ca68000ed9b109fad293b8",
+        "git_blob_sha": "40ee10f62f1b7f7712e1c949bc74e66494d438ab",
+        "keys": [
+          "flutter.lumo.achievements.counters",
+          "flutter.lumo.games.curriculum50.local_lumotest_1",
+          "flutter.lumo.reward_shop.local_lumotest_1",
+          "flutter.lumo_active_profile",
+          "flutter.lumo_attempt_log_v1",
+          "flutter.lumo_cosmos_v2::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_daily_mission_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_game_unlocks_v1",
+          "flutter.lumo_intro_seen",
+          "flutter.lumo_learning_local_student_id_v1",
+          "flutter.lumo_progress_daily::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_journey_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_last::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_reward_wallet_v1"
+        ],
+        "journal_writing_keys": []
+      },
+      {
+        "file": "after-kart-preferences.xml",
+        "bytes": 4881,
+        "sha256": "a1d35a633a0defd6ebaa651fdd7fb0afa5526c53805edde95e98e8c8ad3937f4",
+        "git_blob_sha": "6835216040a13062ddde13f3f95ea6eb3a831c31",
+        "keys": [
+          "flutter.lumo.achievements.counters",
+          "flutter.lumo.games.curriculum50.local_lumotest_1",
+          "flutter.lumo.reward_shop.local_lumotest_1",
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1",
+          "flutter.lumo_active_profile",
+          "flutter.lumo_attempt_log_v1",
+          "flutter.lumo_cosmos_v2::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_daily_mission_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_game_unlocks_v1",
+          "flutter.lumo_intro_seen",
+          "flutter.lumo_learning_local_student_id_v1",
+          "flutter.lumo_progress_daily::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_journey_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_last::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_reward_wallet_v1"
+        ],
+        "journal_writing_keys": []
+      },
+      {
+        "file": "after-restart-preferences.xml",
+        "bytes": 4881,
+        "sha256": "771ea1d3252d5937585e13e36022d7e2c35d9794a311e54845e24c2c7bfb94d5",
+        "git_blob_sha": "21f6cb69d163f31da1bd507292fa5a8278bf103a",
+        "keys": [
+          "flutter.lumo.achievements.counters",
+          "flutter.lumo.games.curriculum50.local_lumotest_1",
+          "flutter.lumo.reward_shop.local_lumotest_1",
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1",
+          "flutter.lumo_active_profile",
+          "flutter.lumo_attempt_log_v1",
+          "flutter.lumo_cosmos_v2::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_daily_mission_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_game_unlocks_v1",
+          "flutter.lumo_intro_seen",
+          "flutter.lumo_learning_local_student_id_v1",
+          "flutter.lumo_progress_daily::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_journey_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_last::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_reward_wallet_v1"
+        ],
+        "journal_writing_keys": []
+      },
+      {
+        "file": "fold-cover-preferences.xml",
+        "bytes": 4881,
+        "sha256": "771ea1d3252d5937585e13e36022d7e2c35d9794a311e54845e24c2c7bfb94d5",
+        "git_blob_sha": "21f6cb69d163f31da1bd507292fa5a8278bf103a",
+        "keys": [
+          "flutter.lumo.achievements.counters",
+          "flutter.lumo.games.curriculum50.local_lumotest_1",
+          "flutter.lumo.reward_shop.local_lumotest_1",
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1",
+          "flutter.lumo_active_profile",
+          "flutter.lumo_attempt_log_v1",
+          "flutter.lumo_cosmos_v2::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_daily_mission_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_game_unlocks_v1",
+          "flutter.lumo_intro_seen",
+          "flutter.lumo_learning_local_student_id_v1",
+          "flutter.lumo_progress_daily::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_journey_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_last::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_reward_wallet_v1"
+        ],
+        "journal_writing_keys": []
+      },
+      {
+        "file": "fold-open-preferences.xml",
+        "bytes": 4881,
+        "sha256": "771ea1d3252d5937585e13e36022d7e2c35d9794a311e54845e24c2c7bfb94d5",
+        "git_blob_sha": "21f6cb69d163f31da1bd507292fa5a8278bf103a",
+        "keys": [
+          "flutter.lumo.achievements.counters",
+          "flutter.lumo.games.curriculum50.local_lumotest_1",
+          "flutter.lumo.reward_shop.local_lumotest_1",
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1",
+          "flutter.lumo_active_profile",
+          "flutter.lumo_attempt_log_v1",
+          "flutter.lumo_cosmos_v2::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_daily_mission_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_game_unlocks_v1",
+          "flutter.lumo_intro_seen",
+          "flutter.lumo_learning_local_student_id_v1",
+          "flutter.lumo_progress_daily::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_journey_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_last::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_reward_wallet_v1"
+        ],
+        "journal_writing_keys": []
+      },
+      {
+        "file": "fold-landscape-preferences.xml",
+        "bytes": 4881,
+        "sha256": "771ea1d3252d5937585e13e36022d7e2c35d9794a311e54845e24c2c7bfb94d5",
+        "git_blob_sha": "21f6cb69d163f31da1bd507292fa5a8278bf103a",
+        "keys": [
+          "flutter.lumo.achievements.counters",
+          "flutter.lumo.games.curriculum50.local_lumotest_1",
+          "flutter.lumo.reward_shop.local_lumotest_1",
+          "flutter.lumo_3d_profile_keys_v1",
+          "flutter.lumo_3d_save_salt_v1",
+          "flutter.lumo_active_profile",
+          "flutter.lumo_attempt_log_v1",
+          "flutter.lumo_cosmos_v2::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_daily_mission_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_game_unlocks_v1",
+          "flutter.lumo_intro_seen",
+          "flutter.lumo_learning_local_student_id_v1",
+          "flutter.lumo_progress_daily::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_journey_v1::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_last::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_progress_skills::local-fbbf97cff3ef628f088b3fe6e69ee54b",
+          "flutter.lumo_reward_wallet_v1"
+        ],
+        "journal_writing_keys": []
+      }
+    ]
+  },
+  "images": "selected-original-pngs-manifest.json",
+  "durable_original_texts": {
+    "android": {
+      "file": "android-original-texts.zip",
+      "bytes": 3023942,
+      "sha256": "d6cad62a8afc2a68eaf7cdd86cf4c80bd71bc2cbb5b49d5c4598c7932bd0369a",
+      "git_blob_sha": "4642432443c46660c9f016acf7f4dc5de71e0a06",
+      "original_member_count": 923
+    },
+    "update": {
+      "file": "update-original-texts.zip",
+      "bytes": 2288946,
+      "sha256": "01701b8befe06f29ca4736ab865bb5c829569884d6d96200a009c6faa4c81a8c",
+      "git_blob_sha": "43e12f9def5b3f8426577c44961e62bcb6ed7202",
+      "original_member_count": 580
+    }
+  },
+  "new_probe_execution": false,
+  "publisher_activated": false
+}
