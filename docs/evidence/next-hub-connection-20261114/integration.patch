@@ -1,0 +1,138 @@
+--- a/lib/features/games/games_content.dart
++++ b/lib/features/games/games_content.dart
+@@ -507,6 +507,10 @@
+                         GameId.jumpRun,
+                         () => _launch3D('jump'),
+                       ),
++                      onEnterNative3D: () async {
++                        if (!await _allowLaunch() || !mounted) return;
++                        await _launch3D('games');
++                      },
+                       onHome: () =>
+                           widget.onSection?.call(LumoSection.home),
+                       onLearn: () =>
+--- a/lib/features/games/spielwelt/spielwelt_hub.dart
++++ b/lib/features/games/spielwelt/spielwelt_hub.dart
+@@ -102,6 +102,7 @@
+     super.key,
+     required this.portals,
+     required this.onAdventure,
++    this.onEnterNative3D,
+     required this.onHome,
+     required this.onLearn,
+     required this.onTests,
+@@ -114,6 +115,8 @@
+ 
+   final List<SpielweltPortal> portals;
+   final VoidCallback onAdventure;
++  /// Entry to the existing native Godot game hub. Null in legacy callers.
++  final VoidCallback? onEnterNative3D;
+   final VoidCallback onHome;
+   final VoidCallback onLearn;
+   final VoidCallback onTests;
+@@ -352,6 +355,30 @@
+                           wide
+                               ? math.min(4, _other.length)
+                               : SpielweltLayout.tileColumns(width)),
++                    ],
++                    if (widget.onEnterNative3D != null) ...[
++                      const SizedBox(height: 12),
++                      SizedBox(
++                        height: 56,
++                        child: OutlinedButton.icon(
++                          key: const ValueKey('spielwelt-native-3d-hub'),
++                          onPressed: widget.onEnterNative3D,
++                          icon: const Icon(Icons.view_in_ar),
++                          label: const Text(
++                            'Magische 3D-Spielewelt betreten',
++                            maxLines: 1,
++                            overflow: TextOverflow.ellipsis,
++                          ),
++                          style: OutlinedButton.styleFrom(
++                            foregroundColor: const Color(0xFFFFE7A0),
++                            backgroundColor: const Color(0xFF123354),
++                            side: const BorderSide(color: Color(0xFF53DDFD), width: 1.5),
++                            shape: RoundedRectangleBorder(
++                              borderRadius: BorderRadius.circular(14),
++                            ),
++                          ),
++                        ),
++                      ),
+                     ],
+                     const SizedBox(height: 19),
+                     _HubActions(
+--- a/test/games/native_3d_hub_entry_test.dart
++++ b/test/games/native_3d_hub_entry_test.dart
+@@ -0,0 +1,61 @@
++import 'package:flutter/foundation.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/features/games/games_content.dart';
++
++void main() {
++  TestWidgetsFlutterBinding.ensureInitialized();
++  setUp(() => SharedPreferences.setMockInitialValues({}));
++
++  testWidgets('real native 3D games hub is visibly enterable from Flutter',
++      (tester) async {
++    debugDefaultTargetPlatformOverride = TargetPlatform.android;
++    const bridge = MethodChannel('lumo_lernen/bridge');
++    final calls = <MethodCall>[];
++    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
++        .setMockMethodCallHandler(bridge, (call) async {
++      calls.add(call);
++      return {'destination': 'games'};
++    });
++    try {
++      await tester.binding.setSurfaceSize(const Size(412, 915));
++      final app = LumoAppState();
++      addTearDown(app.dispose);
++      await tester.pumpWidget(
++        MaterialApp(home: Scaffold(body: GamesContent(appState: app))),
++      );
++      await tester.runAsync(
++        () => Future<void>.delayed(const Duration(milliseconds: 300)),
++      );
++      await tester.pump(const Duration(milliseconds: 700));
++      const key = ValueKey('spielwelt-native-3d-hub');
++      final entry = find.byKey(key);
++      expect(entry, findsOneWidget,
++          reason: 'The existing Godot game_hub must not remain unreachable');
++      await tester.ensureVisible(entry);
++      await tester.pump();
++      expect(tester.getSize(entry).height, greaterThanOrEqualTo(48));
++      await tester.tap(entry);
++      await tester.runAsync(
++        () => Future<void>.delayed(const Duration(milliseconds: 300)),
++      );
++      await tester.pump(const Duration(milliseconds: 700));
++      final launches = calls.where((call) => call.method == 'launch3D').toList();
++      expect(launches.length, 1);
++      final request = launches.single.arguments as Map;
++      expect(request['scene'], 'games',
++          reason: 'Never silently replace the real 3D hub with Kart');
++      expect(request['grade'], inInclusiveRange(1, 4));
++      expect(request['childKey'], isNotNull);
++      expect(tester.takeException(), isNull);
++    } finally {
++      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
++          .setMockMethodCallHandler(bridge, null);
++      debugDefaultTargetPlatformOverride = null;
++      await tester.binding.setSurfaceSize(null);
++    }
++  });
++}
+--- a/tools/auto_install/MainActivity.kt
++++ b/tools/auto_install/MainActivity.kt
+@@ -185,7 +185,7 @@
+                             result.error("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.", null)
+                             return@setMethodCallHandler
+                         }
+-                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four")) requested!! else "kart"
++                        val game = if (requested in setOf("kart", "jump", "puzzle", "build", "settlement", "rhythm", "treasure", "learning", "cards", "connect_four", "games")) requested!! else "kart"
+                         val options = JSONObject()
+                             .put("game", game)
+                             .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))

@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T15:08:46.069882+00:00",
+  "status": "SOURCE_CHECKPOINT_FOR_SEPARATE_FOLLOWUP_ONLY",
+  "host_base": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "host_base_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+  "native_pin_unchanged": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "target_branch": "integration/lumo-next-hub-20261114",
+  "active_c4_branch_changed": false,
+  "full_apk_candidate": false,
+  "source_files": [
+    {
+      "path": ".github/workflows/lumo-native-3d-hub-entry-qa.yml",
+      "bytes": 5339,
+      "blob": "b3b97d4bdde3607677ffe00cb6f16b36481150c0",
+      "sha256": "859971ac0ef9d3af08476b16d26027eb82f18b4d5d55e73dd29c686d90b8f9d2"
+    },
+    {
+      "path": "lib/features/games/games_content.dart",
+      "bytes": 60394,
+      "blob": "dceef2af05226ba4310df1546f96282e9600c4c4",
+      "sha256": "7349825672c6d3e7a43e5398fd644ed70cdc65c057385f5ad2c3a8beff2d2ad1"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 31543,
+      "blob": "41202eac77fb0b77d83cb417cb8cd2f4ef4d1bb7",
+      "sha256": "0af6e0ae729f6465f9d8116755b4c005dd5226d693ccdef3e6e595d73598bfa9"
+    },
+    {
+      "path": "test/games/native_3d_hub_entry_test.dart",
+      "bytes": 2568,
+      "blob": "9911c1c472a4a06248f10fa11ed7fbb9fd4baab6",
+      "sha256": "acb5236fdbce38cd312d8cd454a1e68a91709165118a30ff9bc4ccb1b18221e0"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "bytes": 18365,
+      "blob": "57764e62e8db623395f0d2c93a840920805b267f",
+      "sha256": "a2d805e0e7d749c01a4ed8bb2cbbb0613bcb78fa45668e6aa05614ab01313f8c"
+    }
+  ],
+  "base_file_count": 4485,
+  "existing_source_changes": 3,
+  "new_meaningful_entry_test": 1,
+  "new_isolated_focus_workflow": 1,
+  "mainactivity_only_new_games_allowlist_literal": true,
+  "producer_source": "5259bfe08ff637a907a50411670fc4ee223dea00",
+  "producer_focused_gate": {
+    "run_id": 43603768152,
+    "flutter_job": 132473875732,
+    "actual_tests_passed": 6,
+    "android_compile_job": 132473876000,
+    "both_jobs_success": true,
+    "flutter_analysis_issues_visible": 147,
+    "proof_is_for_producer_source_only": true
+  },
+  "not_imported": {
+    "pr505": "90401bf148b5ea34fd6010f89f743629233ef40c",
+    "actual_change_review_job": 132477494096,
+    "passed": 2423,
+    "skipped": 202,
+    "failed": 3,
+    "reason": "Two native navigation failures and delayed native refusal failure remain in its actual complete log; none of its three changes are imported."
+  },
+  "root_validation": {
+    "actionlint_exit_code": 0,
+    "current_source_flutter_execution": "NOT_RUN",
+    "current_source_android_compile": "NOT_RUN",
+    "current_source_android_device": "NOT_RUN"
+  },
+  "preservation": "All other base leaves, source pins, version, existing C4 workflow, Writer/InkSurface/Journal and saved-profile/data modules are unchanged. Existing MainActivity bytes differ only by the additional games allowlist string."
+}

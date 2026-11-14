@@ -1,0 +1,19 @@
+{
+  "status": "SOURCE_CHECKPOINT_FOR_SEPARATE_FOLLOWUP_ONLY",
+  "base": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "branch": "integration/lumo-next-hub-20261114",
+  "source_file_count": 5,
+  "archive": {
+    "path": "complete-originals.tar.gz",
+    "bytes": 364641,
+    "sha256": "9ff5129c02da7284eca7ecbad317a26eec7d13f03a43aa95b04d1a2a4ff7cdb2",
+    "members": 24
+  },
+  "activation": "Root may activate the isolated two-job focus workflow after remote source checkpoint and independent review. Current full C4 run remains on0b7.",
+  "pending": [
+    "actual combined-source Flutter entry/routes",
+    "actual combined-source Kotlin/Java compilation"
+  ],
+  "full_candidate_accepted": false
+}

@@ -1,0 +1,132 @@
+{
+  "source_sha256": "e6dc123a1e0e6dcdc434320ca838d28ae86e8dc9ef016fce219372a727acea6f",
+  "archive": {
+    "path": "complete-originals.tar.gz",
+    "bytes": 364641,
+    "sha256": "9ff5129c02da7284eca7ecbad317a26eec7d13f03a43aa95b04d1a2a4ff7cdb2",
+    "members": 24
+  },
+  "all_members_byte_equal": true,
+  "files": [
+    {
+      "path": "integration/README.md",
+      "bytes": 1968,
+      "sha256": "6260f87aae755303b25a91c5a50d6a1ab6ab0e222108baa445f83cb7e4c7d82b"
+    },
+    {
+      "path": "integration/actionlint-final-tool-result.json",
+      "bytes": 125,
+      "sha256": "9c80eff807af75a7b962106fae1b400680dae8ef1700b6a84d5d8452348ae06d"
+    },
+    {
+      "path": "integration/actionlint-first-observation.json",
+      "bytes": 393,
+      "sha256": "047c303a9fba8c9944501932dac722575843fb4afe4dd9147c99e503cc7f6568"
+    },
+    {
+      "path": "integration/integration.patch",
+      "bytes": 6353,
+      "sha256": "ee01929c1ff32cc3f0812472e70aef391a7e7b167abc97dc637442c40db0a0ae"
+    },
+    {
+      "path": "integration/native-source-review.json",
+      "bytes": 5153,
+      "sha256": "b855fbf092403c5cc5619855153e06885c83d21be61e7ad617746687194a9d01"
+    },
+    {
+      "path": "integration/originals/lib/features/games/games_content.dart",
+      "bytes": 60198,
+      "sha256": "7b69bd88bb6651c65981e1d64252614848999326b0d14881b86aa305e96db5ca"
+    },
+    {
+      "path": "integration/originals/lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 30182,
+      "sha256": "be8a64d99829b60f974c9c907126c1f0f11597fb9ce88ef61c50ce56d851ffc4"
+    },
+    {
+      "path": "integration/originals/root-workflow-before-actionlint-fix.yml",
+      "bytes": 5013,
+      "sha256": "f84cd32ec5fd68c00e27afbb42ca24fadfb1701d7724e9da2dcf73d9ea5c4325"
+    },
+    {
+      "path": "integration/originals/tools/auto_install/MainActivity.kt",
+      "bytes": 18356,
+      "sha256": "5a375bca191a12ae09d7480f6c21ce39d1097e35112dd5ca65ca1043e54433a1"
+    },
+    {
+      "path": "integration/proposed/.github/workflows/lumo-native-3d-hub-entry-qa.yml",
+      "bytes": 5339,
+      "sha256": "859971ac0ef9d3af08476b16d26027eb82f18b4d5d55e73dd29c686d90b8f9d2"
+    },
+    {
+      "path": "integration/proposed/lib/features/games/games_content.dart",
+      "bytes": 60394,
+      "sha256": "7349825672c6d3e7a43e5398fd644ed70cdc65c057385f5ad2c3a8beff2d2ad1"
+    },
+    {
+      "path": "integration/proposed/lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 31543,
+      "sha256": "0af6e0ae729f6465f9d8116755b4c005dd5226d693ccdef3e6e595d73598bfa9"
+    },
+    {
+      "path": "integration/proposed/test/games/native_3d_hub_entry_test.dart",
+      "bytes": 2568,
+      "sha256": "acb5236fdbce38cd312d8cd454a1e68a91709165118a30ff9bc4ccb1b18221e0"
+    },
+    {
+      "path": "integration/proposed/tools/auto_install/MainActivity.kt",
+      "bytes": 18365,
+      "sha256": "a2d805e0e7d749c01a4ed8bb2cbbb0613bcb78fa45668e6aa05614ab01313f8c"
+    },
+    {
+      "path": "integration/source-freeze.json",
+      "bytes": 2974,
+      "sha256": "e6dc123a1e0e6dcdc434320ca838d28ae86e8dc9ef016fce219372a727acea6f"
+    },
+    {
+      "path": "producer-originals/host-pulls-inventory.original.json",
+      "bytes": 966245,
+      "sha256": "ee65403c9843b2d4ef1eb8ed304a9f9626e32f25e3bf5e22a4d620634da240ca"
+    },
+    {
+      "path": "producer-originals/job-132473875732.original.log",
+      "bytes": 61962,
+      "sha256": "5330aacda13eecef3c9bb21024643e42ca2c7b94d2b97542f88a9d861459b636"
+    },
+    {
+      "path": "producer-originals/job-132473876000.original.log",
+      "bytes": 83461,
+      "sha256": "23b5d028036f54c05514a9def627208147a8eadd00964fc0f6ac4ee9b351c0a7"
+    },
+    {
+      "path": "producer-originals/job-132477494096.original.log",
+      "bytes": 665349,
+      "sha256": "490abdf816e9017ed3917b01fd6f12f9da6194b3ee69a23439f7d9038b43f0a0"
+    },
+    {
+      "path": "producer-originals/native-pulls-inventory.original.json",
+      "bytes": 914295,
+      "sha256": "d7a16850c215f22caf31d92a0e6e70cb856f28b988ae483f7e91fe65965a1850"
+    },
+    {
+      "path": "producer-originals/pr504-focused-jobs.original.json",
+      "bytes": 5241,
+      "sha256": "064670696838b6791d88f066eee45b0a1554f0f80ea7460d25a5d78f5a12cbff"
+    },
+    {
+      "path": "producer-originals/pr504-vs-base.original.json",
+      "bytes": 24051,
+      "sha256": "1a25ae7fc98de6e6835ad72efb7fab8743ab95a1aefef2f3897252895b75c017"
+    },
+    {
+      "path": "producer-originals/pr505-change-review-jobs.original.json",
+      "bytes": 5960,
+      "sha256": "7fbef5b5182975e84d2122fefad67bcf81630a7aa549900a4eee4da80f5a7268"
+    },
+    {
+      "path": "producer-originals/pr505-vs-504.original.json",
+      "bytes": 22187,
+      "sha256": "6ca85aa34724a0fd12e60b5d529bf971cd40cde3aa58ba4f93cc48ecd657fbfc"
+    }
+  ]
+}
