@@ -1,0 +1,25 @@
+{
+  "kind": "new_root_independent_original_ARM64_byte_review",
+  "host": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "tracked_source_clean": true,
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43630328343,
+  "run_attempt": 1,
+  "artifact_id": 14131302016,
+  "original_complete_archive_bytes": 331007042,
+  "original_complete_archive_sha256": "f4fd9df427771ee18f9545d48166e5a660b2028fb9f3dff9ba075f61e67f2a2f",
+  "all_six_original_files_rehashed": true,
+  "actual_APK": {
+    "bytes": 330996629,
+    "sha256": "a98f00df32c1390e74c2847619e4de24d8af39841590f69ec16c5d02be5b307f",
+    "abi": "arm64-v8a",
+    "entries": 1078
+  },
+  "actual_PCK": {
+    "bytes": 75059556,
+    "sha256": "85dde8cb64f8d117885a97832fa6fc088d2738b74f1b811b5926e648e4bf6baf"
+  },
+  "original_build_provenance_sha256": "9cc29e1d131ecbc83421bc803142946792700b3f39f0c5f712472ef325b34c93",
+  "signing_certificate_from_original_completed_CI": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "scope": "Original current full ARM64 ZIP and six original file hashes independently read; actual embedded source/PCK and ABI read. Signature validated in originalCI on same APKbytes. No local x86/full665MBcandidate/apksigner or new producttest claim."
+}

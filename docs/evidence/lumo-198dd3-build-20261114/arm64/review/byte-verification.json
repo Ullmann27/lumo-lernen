@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "kind": "new_read_only_original_ARM64_byte_review",
+  "host": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43630328343,
+  "run_attempt": 1,
+  "producer_job_id": 132556738917,
+  "artifact_id": 14131302016,
+  "zip_bytes": 331007042,
+  "zip_sha256": "f4fd9df427771ee18f9545d48166e5a660b2028fb9f3dff9ba075f61e67f2a2f",
+  "all_original_ZIP_CRCs_verified": true,
+  "all_six_extracted_originals_byte_equal_to_ZIP": true,
+  "inventory": [
+    {
+      "path": "Lumo-Lernen-Neu.apk",
+      "bytes": 330996629,
+      "sha256": "a98f00df32c1390e74c2847619e4de24d8af39841590f69ec16c5d02be5b307f",
+      "crc32": "5851be09"
+    },
+    {
+      "path": "APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "0addc3e3f94aabe72d606a94a9c34aaaeae80b31405753c068d11123aad3db4c",
+      "crc32": "202d108c"
+    },
+    {
+      "path": "APK-VERIFICATION.json",
+      "bytes": 1779,
+      "sha256": "b2ddb816a161b2db89812c7cac14c0d12aae6c092dba99ba6907597e34ac7361",
+      "crc32": "47370641"
+    },
+    {
+      "path": "BUILD-PROVENANCE.json",
+      "bytes": 7589,
+      "sha256": "9cc29e1d131ecbc83421bc803142946792700b3f39f0c5f712472ef325b34c93",
+      "crc32": "0c1c7e01"
+    },
+    {
+      "path": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf",
+      "crc32": "0545a883"
+    },
+    {
+      "path": "APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "c013ca7f211e5bc15f7449705ab8c325c7e41164828301f8b0f2c51174ac8f68",
+      "crc32": "0d27d171"
+    }
+  ],
+  "actual_ARM64_APK": {
+    "path": "/dev/shm/lumo-198dd3-arm64-byte-review/extracted/Lumo-Lernen-Neu.apk",
+    "bytes": 330996629,
+    "sha256": "a98f00df32c1390e74c2847619e4de24d8af39841590f69ec16c5d02be5b307f",
+    "all_APK_entry_CRCs_verified": true,
+    "entry_count": 1078,
+    "actual_abis": [
+      "arm64-v8a"
+    ],
+    "original_checksum_line": "a98f00df32c1390e74c2847619e4de24d8af39841590f69ec16c5d02be5b307f  dist/Lumo-Lernen-Neu.apk\n",
+    "original_checksum_path": "/dev/shm/lumo-198dd3-arm64-byte-review/extracted/APK-SHA256.txt",
+    "original_verification_path": "/dev/shm/lumo-198dd3-arm64-byte-review/extracted/APK-VERIFICATION.json",
+    "original_provenance_path": "/dev/shm/lumo-198dd3-arm64-byte-review/extracted/BUILD-PROVENANCE.json",
+    "actual_host_from_original_provenance": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+    "tracked_source_clean": true,
+    "actual_embedded_source": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+      "engine": "4.6.3",
+      "pck_sha256": "85dde8cb64f8d117885a97832fa6fc088d2738b74f1b811b5926e648e4bf6baf",
+      "bytes": 75059556
+    },
+    "embedded_source_copy_path": "/dev/shm/lumo-198dd3-arm64-byte-review/actual-embedded-lumo_game_source.json",
+    "signing_certificate_sha256_from_original_CI_verifier": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"
+  },
+  "signature_scope": "Original completed CI ran apksigner on these exact matching signed APK bytes; no second local apksigner execution is claimed.",
+  "reader_filename_correction": "Separate ARM64 upload contains APK-SHA256.txt with literal dist/Lumo-Lernen-Neu.apk from workflow step 34. No original was renamed or regenerated; this continuation uses the original ZIP already downloaded once.",
+  "oversized_candidate_download_error": {
+    "error": "InvalidInputException: Artifact exceeds max size of 536870912 bytes: 665175329 bytes.",
+    "error_code": "UNKNOWN"
+  },
+  "local_full_candidate_ZIP_review": false,
+  "local_x86_APK_review": false,
+  "new_download_in_this_continuation": false,
+  "product_tests_executed": false,
+  "complete_candidate_acceptance": false
+}

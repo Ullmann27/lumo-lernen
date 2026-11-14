@@ -1,0 +1,285 @@
+{
+  "schema": 1,
+  "kind": "new_derived_current_build_and_ARM64_original_evidence_index",
+  "host": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "host_tree": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+  "native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43630328343,
+  "run_attempt": 1,
+  "producer_job_id": 132556738917,
+  "producer_conclusion": "success",
+  "producer_completed_at": "2026-11-14T20:37:51Z",
+  "scope": "Completed original build evidence and independent local ARM64 byte review only. Current Android and update jobs are still separate mandatory gates; this checkpoint grants no release acceptance.",
+  "actual_script_tests": {
+    "count": 845,
+    "seconds": 302.249,
+    "result": "OK"
+  },
+  "actual_Android_QA_tests": {
+    "count": 987,
+    "seconds": 127.102,
+    "result": "OK"
+  },
+  "original_test_summary_blocks": [
+    {
+      "line": 2562,
+      "lines": [
+        "2026-11-14T19:30:04.0447592Z Ran 845 tests in 302.249s",
+        "2026-11-14T19:30:04.0448113Z ",
+        "2026-11-14T19:30:04.0448636Z OK",
+        "2026-11-14T19:30:04.0448835Z ",
+        "2026-11-14T19:30:04.0449557Z Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected"
+      ]
+    },
+    {
+      "line": 3943,
+      "lines": [
+        "2026-11-14T19:32:17.7041696Z Ran 987 tests in 127.102s",
+        "2026-11-14T19:32:17.7041950Z ",
+        "2026-11-14T19:32:17.7042088Z OK",
+        "2026-11-14T19:32:17.7425450Z ##[group]Run set -euo pipefail",
+        "2026-11-14T19:32:17.7425849Z \u001b[36;1mset -euo pipefail\u001b[0m"
+      ]
+    },
+    {
+      "line": 3963,
+      "lines": [
+        "2026-11-14T19:32:17.8787138Z Ran 3 tests in 0.073s",
+        "2026-11-14T19:32:17.8787377Z ",
+        "2026-11-14T19:32:17.8787507Z OK",
+        "2026-11-14T19:32:18.1801401Z FONT_VISUAL_QA {'file': 'visual-evidence/abc_premium_fold_cover_320x780.png', 'width': 480, 'height': 1170, 'max_near_white_run': 21, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}",
+        "2026-11-14T19:32:18.1802698Z FONT_VISUAL_QA {'file': 'visual-evidence/abc_premium_fold_open_840x760.png', 'width': 1260, 'height': 1140, 'max_near_white_run': 28, 'continuous_solid_bar_rows': 0, 'status': 'PASS'}"
+      ]
+    },
+    {
+      "line": 4008,
+      "lines": [
+        "2026-11-14T19:32:18.4357532Z Ran 23 tests in 0.169s",
+        "2026-11-14T19:32:18.4357704Z ",
+        "2026-11-14T19:32:18.4357816Z OK",
+        "2026-11-14T19:32:18.4358357Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg",
+        "2026-11-14T19:32:18.4359190Z [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg"
+      ]
+    },
+    {
+      "line": 10284,
+      "lines": [
+        "2026-11-14T20:30:00.7259113Z Ran 8 tests in 2.633s",
+        "2026-11-14T20:30:00.7259339Z ",
+        "2026-11-14T20:30:00.7259593Z OK",
+        "2026-11-14T20:30:00.7260445Z [LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f",
+        "2026-11-14T20:30:00.7261894Z [LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f"
+      ]
+    }
+  ],
+  "actual_host_checkout_output": [
+    "2026-11-14T19:12:34.2251055Z 198dd3d1a5862797a37f0d1d638ea929009b8848",
+    "2026-11-14T19:12:34.3304487Z 198dd3d1a5862797a37f0d1d638ea929009b8848"
+  ],
+  "original_APK_report_locations": [
+    {
+      "start_line": 14443,
+      "end_line": 14483,
+      "timestamp": "2026-11-14T20:37:18.3677351Z",
+      "ABI": "arm64-v8a",
+      "original_JSON_blob": "c6450a4a12fa09bc11fe069104e62b04f5f1f209",
+      "bytes": 1779,
+      "sha256": "b2ddb816a161b2db89812c7cac14c0d12aae6c092dba99ba6907597e34ac7361"
+    },
+    {
+      "start_line": 14484,
+      "end_line": 14524,
+      "timestamp": "2026-11-14T20:37:24.5114156Z",
+      "ABI": "x86_64",
+      "original_JSON_blob": "0b835e860863486e2db8139d32f5d42fbaf83b50",
+      "bytes": 1776,
+      "sha256": "6b54c7437b61514219f712ab4d357f44e57dabb579d7f81ec5777651a7772a68"
+    },
+    {
+      "start_line": 14543,
+      "end_line": 14583,
+      "timestamp": "2026-11-14T20:37:31.2803680Z",
+      "ABI": "arm64-v8a",
+      "original_JSON_blob": "c6450a4a12fa09bc11fe069104e62b04f5f1f209",
+      "bytes": 1779,
+      "sha256": "b2ddb816a161b2db89812c7cac14c0d12aae6c092dba99ba6907597e34ac7361"
+    },
+    {
+      "start_line": 14585,
+      "end_line": 14625,
+      "timestamp": "2026-11-14T20:37:37.2040009Z",
+      "ABI": "x86_64",
+      "original_JSON_blob": "0b835e860863486e2db8139d32f5d42fbaf83b50",
+      "bytes": 1776,
+      "sha256": "6b54c7437b61514219f712ab4d357f44e57dabb579d7f81ec5777651a7772a68"
+    }
+  ],
+  "package_reports_are_not_augmented_with_host_fields": true,
+  "original_actual_ARM64_provenance_blob": "1718b37376dd1e68f791e25ad61508142c13a63b",
+  "source_binding": "The actual ARM64 BUILD-PROVENANCE.json from the original archive independently supplies flutter_source_commit=198dd3 and tracked_source_clean=true; all package fields equal the original APK report. No host field is inserted into original APK-VERIFICATION JSON.",
+  "original_candidate_artifact": {
+    "id": 14130628343,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEzMDYyODM0Mw==",
+    "name": "lumo-connect-four-2020-candidate",
+    "size_in_bytes": 665175329,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130628343",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14130628343/zip",
+    "expired": false,
+    "digest": "sha256:489ef5eea94725c37d4737716405ce110ca73517a711fe0a42f84e475aad4e80",
+    "created_at": "2026-11-14T20:37:42Z",
+    "updated_at": "2026-11-14T20:37:42Z",
+    "expires_at": "2026-12-14T20:37:37Z",
+    "workflow_run": {
+      "id": 43630328343,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-agent-execution-20261114",
+      "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848"
+    }
+  },
+  "original_ARM64_artifact": {
+    "id": 14131302016,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEzMTMwMjAxNg==",
+    "name": "lumo-connect-four-2020-arm64-verified",
+    "size_in_bytes": 331007042,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14131302016",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14131302016/zip",
+    "expired": false,
+    "digest": "sha256:f4fd9df427771ee18f9545d48166e5a660b2028fb9f3dff9ba075f61e67f2a2f",
+    "created_at": "2026-11-14T20:37:46Z",
+    "updated_at": "2026-11-14T20:37:46Z",
+    "expires_at": "2026-12-14T20:37:43Z",
+    "workflow_run": {
+      "id": 43630328343,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-agent-execution-20261114",
+      "head_sha": "198dd3d1a5862797a37f0d1d638ea929009b8848"
+    }
+  },
+  "original_ARM64_upload_lines": [
+    "2026-11-14T20:37:46.1357880Z Uploaded bytes 327155712",
+    "2026-11-14T20:37:46.2351242Z Uploaded bytes 331007042",
+    "2026-11-14T20:37:46.2826177Z Finished uploading artifact content to blob storage!",
+    "2026-11-14T20:37:46.2829557Z SHA256 digest of uploaded artifact zip is f4fd9df427771ee18f9545d48166e5a660b2028fb9f3dff9ba075f61e67f2a2f",
+    "2026-11-14T20:37:46.2831904Z Finalizing artifact upload",
+    "2026-11-14T20:37:46.6283572Z Artifact lumo-connect-four-2020-arm64-verified.zip successfully finalized. Artifact ID 14131302016",
+    "2026-11-14T20:37:46.6284492Z Artifact lumo-connect-four-2020-arm64-verified has been successfully uploaded! Final size is 331007042 bytes. Artifact ID is 14131302016",
+    "2026-11-14T20:37:46.6290762Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43630328343/artifacts/14131302016"
+  ],
+  "local_ARM64_byte_review": {
+    "report_blob": "0bf884da27791a6d709dceaa2136407591bbcb8b",
+    "root_independent_receipt_blob": "ccc2dbab43ea37795d9662790e6f93893dbb9068",
+    "zip_bytes": 331007042,
+    "zip_sha256": "f4fd9df427771ee18f9545d48166e5a660b2028fb9f3dff9ba075f61e67f2a2f",
+    "all_six_original_CRCs_and_extracted_byte_equality": true,
+    "actual_APK_bytes": 330996629,
+    "actual_APK_sha256": "a98f00df32c1390e74c2847619e4de24d8af39841590f69ec16c5d02be5b307f",
+    "all_1078_APK_entry_CRCs": true,
+    "actual_PCK_bytes": 75059556,
+    "actual_PCK_sha256": "85dde8cb64f8d117885a97832fa6fc088d2738b74f1b811b5926e648e4bf6baf",
+    "literal_original_checksum_path": "dist/Lumo-Lernen-Neu.apk"
+  },
+  "signing_scope": {
+    "certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "original_completed_CI_apksigner_and_source_verifier": true,
+    "exact_matching_signed_ARM64_bytes_locally_hashed": true,
+    "second_local_apksigner_execution": false
+  },
+  "oversized_candidate_download": {
+    "artifact_id": 14130628343,
+    "bytes": 665175329,
+    "connector_maximum_bytes": 536870912,
+    "bytes_delivered": 0,
+    "error_record": {
+      "error": "InvalidInputException: Artifact exceeds max size of 536870912 bytes: 665175329 bytes.",
+      "error_code": "UNKNOWN"
+    }
+  },
+  "local_full_candidate_ZIP_review": false,
+  "local_x86_APK_byte_review": false,
+  "new_APK_build_or_device_test": false,
+  "complete_candidate_acceptance": false,
+  "publication_authorized_by_this_checkpoint": false,
+  "original_logs_and_files_unchanged": true,
+  "derived_reviews_and_reader_explicitly_distinguished": true,
+  "files": [
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/review/byte-verification.json",
+      "git_blob": "0bf884da27791a6d709dceaa2136407591bbcb8b",
+      "bytes": 3810,
+      "sha256": "3ae4f1d99ecdf021a54a109f1131094064e043907f1d9b2e1829ded3bd97c29e",
+      "kind": "new_derived_read_only_review"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/original/embedded-lumo_game_source.json",
+      "git_blob": "257f9930384fe850c609ebcda766b13ea5708189",
+      "bytes": 250,
+      "sha256": "23dd0219afda59e1a72c1306c0f1e7cd40493df2e7a5725e256bcfe18e849702",
+      "kind": "unchanged_original_APK_entry_assets_lumo_game_source_json"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/original/APK-SHA256.txt",
+      "git_blob": "b5969e40ca02b722ffb794446c8c150a5fcf2cc2",
+      "bytes": 91,
+      "sha256": "0addc3e3f94aabe72d606a94a9c34aaaeae80b31405753c068d11123aad3db4c",
+      "kind": "unchanged_original_ARM64_archive_member"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/original/APK-VERIFICATION.json",
+      "git_blob": "c6450a4a12fa09bc11fe069104e62b04f5f1f209",
+      "bytes": 1779,
+      "sha256": "b2ddb816a161b2db89812c7cac14c0d12aae6c092dba99ba6907597e34ac7361",
+      "kind": "unchanged_original_ARM64_archive_member"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/original/BUILD-PROVENANCE.json",
+      "git_blob": "1718b37376dd1e68f791e25ad61508142c13a63b",
+      "bytes": 7589,
+      "sha256": "9cc29e1d131ecbc83421bc803142946792700b3f39f0c5f712472ef325b34c93",
+      "kind": "unchanged_original_ARM64_archive_member"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/original/GODOT-SOURCE.json",
+      "git_blob": "04f2065c1efb95e5cbb47da237ae9339ca3f6582",
+      "bytes": 145,
+      "sha256": "82dad3d6ad603794ba7794601f4f826f9e664e924f967cbe13e1fb470da92faf",
+      "kind": "unchanged_original_ARM64_archive_member"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/original/APP-VERSION.txt",
+      "git_blob": "ec57ab30d1189b2a3ab2ef00d59eb6a159b750a5",
+      "bytes": 21,
+      "sha256": "c013ca7f211e5bc15f7449705ab8c325c7e41164828301f8b0f2c51174ac8f68",
+      "kind": "unchanged_original_ARM64_archive_member"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/review/verify_existing_arm64_originals.py",
+      "git_blob": "11329116771d47e416523d9ec7d44edf54d6d0a7",
+      "bytes": 7894,
+      "sha256": "d56e9ec42a8bb6de397795bc376874946abb49d69804699f2ecc3b08363f9856",
+      "kind": "new_read_only_local_review_code"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/arm64/review/root-byte-review.json",
+      "git_blob": "ccc2dbab43ea37795d9662790e6f93893dbb9068",
+      "bytes": 1260,
+      "sha256": "322f57e012e9e815b0f778d71c7dbf1ebeaa11f01b2e193db4b0c7c25d80fa0f",
+      "kind": "new_independent_root_byte_review"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/build/main-job.log",
+      "git_blob": "2aaaa3239a873ce74ea0f580820209ca3ece7084",
+      "bytes": 1821377,
+      "sha256": "107a12e9f72bcf212b5dfa850c8ddb67593d3ba04aea7f1a41bc5aa4ee710830",
+      "kind": "complete_original_decoded_producer_job_log"
+    },
+    {
+      "path": "docs/evidence/lumo-198dd3-build-20261114/build/original-x86-package.json",
+      "git_blob": "0b835e860863486e2db8139d32f5d42fbaf83b50",
+      "bytes": 1776,
+      "sha256": "6b54c7437b61514219f712ab4d357f44e57dabb579d7f81ec5777651a7772a68",
+      "kind": "original_CI_package_JSON_with_only_log_timestamps_removed"
+    }
+  ]
+}
