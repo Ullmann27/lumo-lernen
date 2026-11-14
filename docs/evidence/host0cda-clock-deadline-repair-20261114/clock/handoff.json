@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "status": "READY_FOR_ROOT_SOURCE_CHECKPOINT_NOT_RUN",
+  "base_host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "source_freeze": {
+    "bytes": 1163,
+    "sha256": "f44ecdbb7e73155d309ab147748b612f619010b4229007b05577bc969d05ef0b",
+    "git_blob": "3a34c3d415e6c71986e54eb00cdd27918c99d638"
+  },
+  "review": {
+    "bytes": 7342,
+    "sha256": "f5211ad49c768ea1f30d6533b832074c8ba0ffc3a78db634cb778d51ef541f66",
+    "git_blob": "785cf885d87b1a2916bee0ea7101aabfff1afde8"
+  },
+  "patch": {
+    "bytes": 4182,
+    "sha256": "7ce220c8942cd8fbb3bba44d66d00fa1cdd2d0b208dd2152d42a71e2637d5d10",
+    "git_blob": "a8e25ccb63ef4130b74bd4159723230c4c381192"
+  },
+  "sources": [
+    {
+      "path": "test/games/connect_four_bot_save_retry_test.dart",
+      "mode": "100644",
+      "before": {
+        "bytes": 10816,
+        "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+        "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+      },
+      "after": {
+        "bytes": 11449,
+        "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+        "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+      },
+      "provenance": "Exact Root-supplied producer-prepared immutable GitHub blob 830b3f661c2a289f5ae76ed545cfed60fe27b36a; fetched once and fully UTF-8/Gitblob checked. No new producer commit identity is assumed."
+    }
+  ],
+  "current_actual_result": "0cda full Flutter2732PASS/1FAIL/0SKIP;82roster81/1. The failed source remains unchanged until Root checkpoints this separate test repair.",
+  "next_validation": "One subsequent actual CI must execute the corrected case and unchanged suite; no local rerun or active source change was performed."
+}

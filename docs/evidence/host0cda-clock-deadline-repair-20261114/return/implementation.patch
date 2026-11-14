@@ -1,0 +1,101 @@
+--- a/.github/probes/lumo_connect_four_android_probe.py
++++ b/.github/probes/lumo_connect_four_android_probe.py
+@@ -58,14 +58,14 @@
+     def bounded_command(self, *args, timeout=60, check=True):
+         return self.old_command(*args, timeout=self.remaining(timeout), check=check)
+ 
+-    def original(self, tag: str, *arguments: str, check=True, bound=1024*1024) -> tuple[str, str]:
++    def original(self, tag: str, *arguments: str, check=True, bound=1024*1024, timeout=45) -> tuple[str, str]:
+         self.counter += 1
+         prefix = f'commands/{self.counter:04d}-{tag}'
+         stem = self.out / prefix
+         stem.parent.mkdir(parents=True, exist_ok=True)
+         started = time.monotonic()
+         result = subprocess.run(['adb', *arguments], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+-                                timeout=self.remaining(45), check=False)
++                                timeout=self.remaining(timeout), check=False)
+         for suffix, data in (('.stdout', result.stdout), ('.stderr', result.stderr)):
+             with Path(str(stem) + suffix).open('xb') as stream:
+                 stream.write(data)
+@@ -342,16 +342,27 @@
+         before = self.native_touch(tag, 'back')
+         contract.demand(before['state']['paused'], 'Return must follow the proved actual pause')
+         deadline = time.monotonic() + self.remaining(45)
++
++        def return_remaining() -> float:
++            self.remaining()
++            left = deadline - time.monotonic()
++            if left <= 0:
++                raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
++            return left
++
+         while time.monotonic() < deadline:
+-            native, pf = self.original(tag + '-native-exit', 'shell', 'pidof', contract.PACKAGE + ':lumo_game', check=False)
+-            activity, af = self.original(tag + '-return-activity', 'shell', 'dumpsys', 'activity', 'activities')
++            native, pf = self.original(tag + '-native-exit', 'shell', 'pidof', contract.PACKAGE + ':lumo_game',
++                                       check=False, timeout=return_remaining())
++            activity, af = self.original(tag + '-return-activity', 'shell', 'dumpsys', 'activity', 'activities',
++                                         timeout=return_remaining())
+             active = [line for line in activity.splitlines() if 'mResumedActivity' in line or 'topResumedActivity' in line]
+             if not native.strip() and active and all('MainActivity' in line and contract.PACKAGE in line for line in active):
+                 self.remaining()
+                 if time.monotonic() >= deadline:
+                     raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+                 closed, closed_file = self.original(tag + '-closed-mailbox', 'shell', 'find',
+-                    self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json')
++                    self.mailbox.rsplit('/',1)[0], '-maxdepth','2','-type','f','-name','state.json',
++                    timeout=return_remaining())
+                 self.remaining()
+                 if time.monotonic() >= deadline:
+                     raise TimeoutError('The actual native C4 return exceeded its 45-second observation deadline')
+--- a/tools/android_qa/tests/test_connect_four_return_observation.py
++++ b/tools/android_qa/tests/test_connect_four_return_observation.py
+@@ -329,6 +329,48 @@
+                 self.assert_no_acceptance(boundary)
+                 self.assertFalse(any(item['kind'] == 'find' for item in boundary.commands))
+ 
++    def test_each_read_receives_only_the_remaining_local_budget_across_retries(self):
++        for final_elapsed, accepted in ((0.01, True), (0.4, False)):
++            with self.subTest(final_elapsed=final_elapsed):
++                delayed = derived(REMAINDER)
++                delayed['metadata']['elapsed_seconds'] = 44.0
++                empty = derived(REMAINDER, stdout=b'')
++                empty['metadata']['elapsed_seconds'] = final_elapsed
++                boundary = self.boundary([sample(mailbox=delayed), sample(mailbox=empty)])
++                budgets = []
++
++                def bounded_command(arguments, **kwargs):
++                    if arguments[:3] in (
++                            ['adb', 'shell', 'pidof'],
++                            ['adb', 'shell', 'dumpsys'],
++                            ['adb', 'shell', 'find']):
++                        budgets.append({
++                            'kind': arguments[2],
++                            'started': boundary.clock.value,
++                            'timeout': kwargs['timeout'],
++                        })
++                    return boundary.command(arguments, **kwargs)
++
++                with mock.patch.object(PROBE.subprocess, 'run', bounded_command):
++                    if accepted:
++                        self.assertIs(boundary.value.return_to_flutter('return-final'), boundary.before)
++                        self.assert_one_back(boundary)
++                    else:
++                        with self.assertRaisesRegex(TimeoutError, '45-second observation deadline'):
++                            boundary.value.return_to_flutter('return-final')
++                        self.assert_no_acceptance(boundary)
++
++                self.assertEqual([item['kind'] for item in budgets],
++                                 ['pidof', 'dumpsys', 'find'] * 2)
++                for item in budgets:
++                    remaining = 45.0 - (item['started'] - boundary.return_start)
++                    self.assertGreater(item['timeout'], 0)
++                    self.assertLessEqual(item['timeout'], remaining + 1e-9)
++                self.assertLess(budgets[-1]['timeout'], 0.25)
++                originals = sorted((boundary.out / 'commands').glob('*-closed-mailbox.stdout'))
++                self.assertEqual([path.read_bytes() for path in originals],
++                                 [REMAINDER['stdout'], b''])
++
+     def test_failed_find_is_not_an_empty_mailbox_proof(self):
+         for response in (derived(REMAINDER, stdout=b'', returncode=1),
+                          derived(REMAINDER, stdout=b'', stderr=b'Permission denied\n')):

@@ -329,6 +329,48 @@ class ReturnObservationTests(unittest.TestCase):
                 self.assert_no_acceptance(boundary)
                 self.assertFalse(any(item['kind'] == 'find' for item in boundary.commands))
 
+    def test_each_read_receives_only_the_remaining_local_budget_across_retries(self):
+        for final_elapsed, accepted in ((0.01, True), (0.4, False)):
+            with self.subTest(final_elapsed=final_elapsed):
+                delayed = derived(REMAINDER)
+                delayed['metadata']['elapsed_seconds'] = 44.0
+                empty = derived(REMAINDER, stdout=b'')
+                empty['metadata']['elapsed_seconds'] = final_elapsed
+                boundary = self.boundary([sample(mailbox=delayed), sample(mailbox=empty)])
+                budgets = []
+
+                def bounded_command(arguments, **kwargs):
+                    if arguments[:3] in (
+                            ['adb', 'shell', 'pidof'],
+                            ['adb', 'shell', 'dumpsys'],
+                            ['adb', 'shell', 'find']):
+                        budgets.append({
+                            'kind': arguments[2],
+                            'started': boundary.clock.value,
+                            'timeout': kwargs['timeout'],
+                        })
+                    return boundary.command(arguments, **kwargs)
+
+                with mock.patch.object(PROBE.subprocess, 'run', bounded_command):
+                    if accepted:
+                        self.assertIs(boundary.value.return_to_flutter('return-final'), boundary.before)
+                        self.assert_one_back(boundary)
+                    else:
+                        with self.assertRaisesRegex(TimeoutError, '45-second observation deadline'):
+                            boundary.value.return_to_flutter('return-final')
+                        self.assert_no_acceptance(boundary)
+
+                self.assertEqual([item['kind'] for item in budgets],
+                                 ['pidof', 'dumpsys', 'find'] * 2)
+                for item in budgets:
+                    remaining = 45.0 - (item['started'] - boundary.return_start)
+                    self.assertGreater(item['timeout'], 0)
+                    self.assertLessEqual(item['timeout'], remaining + 1e-9)
+                self.assertLess(budgets[-1]['timeout'], 0.25)
+                originals = sorted((boundary.out / 'commands').glob('*-closed-mailbox.stdout'))
+                self.assertEqual([path.read_bytes() for path in originals],
+                                 [REMAINDER['stdout'], b''])
+
     def test_failed_find_is_not_an_empty_mailbox_proof(self):
         for response in (derived(REMAINDER, stdout=b'', returncode=1),
                          derived(REMAINDER, stdout=b'', stderr=b'Permission denied\n')):

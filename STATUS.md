@@ -1,3 +1,32 @@
+# LUMO 2020 – beobachteten C4-Testfehler und begrenzte Rückkehrabfragen reparieren
+
+Der vollständige Lauf 43637785992 / Versuch 1 auf Host
+`0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9` ist tatsächlich fehlgeschlagen.
+Die unveränderte Originalsummary nennt 2.732 bestandene Fälle, einen Fehler
+in „Lifecycle pause during reward retry defers the settled result“ und keine
+Skips. Android-Host-Compile und der gesonderte native C4-Runtimejob bestanden;
+Script-/Native-Buildverträge, APK-Bau und die vier Folgejobs wurden nicht erreicht.
+Der fehlende Contract-Uploadpfad ist ein Folgefehler des übersprungenen Schritts.
+Eine Freigabe oder Veröffentlichung dieses Hosts ist ausgeschlossen.
+
+Der vorbereitete Nachtrag führt vor der bestehenden Retry-Eintrittsassertion
+die tatsächlich benötigte Millisekunde der Widget-Testuhr aus. Er erhält die
+bisherigen Lifecycle-, Speicher-, Figuren- und Belohnungsassertionen, ergänzt
+Pre-ACK-Prüfungen und sicheres Fixture-Cleanup. Produktionsdateien bleiben
+unverändert. Zusätzlich erhalten die drei rein beobachtenden C4-Rückkehrabfragen
+jeweils nur die verbleibende Zeit des bestehenden 45-Sekunden-Fensters. Der
+bedingte Mailbox-Read, genau ein Zurück-Tap und alle nachfolgenden Prüfungen bleiben
+bestehen; ein gezielter Test kontrolliert die tatsächlichen subprocess-Timeouts.
+
+Dieser Commit ist ein Quellcheckpoint vor der begrenzten lokalen Nachprüfung.
+Ein neuer erfolgreicher Gesamtlauf wird hier nicht behauptet. Native bleibt
+`f9d9772bb932d7ee8702eeb5bca6d98c286f3b98`, Version `0.13.8+2020`; der komplette
+siebenstufige Workflow und sämtliche Freigabebedingungen bleiben unverändert.
+Neue Kartentwicklungen aus PR 183/184 werden separat geprüft. Main, frühere
+Releases und vorhandene Nutzer-/Lernstände werden nicht verändert.
+
+## Archiv: voriger Aktivierungsstand
+
 # Current candidate: confirmed storage and explicit 3D entry
 
 Updated: 2026-11-14 20:28:38 UTC. This documentation/evidence activation follows

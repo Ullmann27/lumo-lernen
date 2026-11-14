@@ -243,43 +243,55 @@ void main() {
   testWidgets('Lifecycle pause during reward retry defers the settled result',
       (tester) async {
     final fixture = await _open(tester);
-    fixture.platform.rejectSecondMove = false;
-    fixture.platform.rejectRewards = true;
-    await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
-    await tester.pump();
-    for (final column in [0, 6, 1, 6, 2, 5, 3]) {
-      await tester.tap(find.byKey(ValueKey('connect-column-$column')));
-      await tester.pump(const Duration(milliseconds: 1));
-      await tester.pump();
-    }
-    expect(find.text('Spiel pausiert'), findsOneWidget);
-    fixture.platform.rejectRewards = false;
     final held = _HeldReward();
-    fixture.platform.nextRewardGate = held;
-    await tester.tap(find.text('Fortsetzen'));
-    await tester.pump();
-    expect(held.entered.isCompleted, isTrue);
+    try {
+      fixture.platform.rejectSecondMove = false;
+      fixture.platform.rejectRewards = true;
+      await tester.tap(find.byKey(const ValueKey('connect-mode-true')));
+      await tester.pump();
+      for (final column in [0, 6, 1, 6, 2, 5, 3]) {
+        await tester.tap(find.byKey(ValueKey('connect-column-$column')));
+        await tester.pump(const Duration(milliseconds: 1));
+        await tester.pump();
+      }
+      expect(find.text('Spiel pausiert'), findsOneWidget);
+      fixture.platform.rejectRewards = false;
+      fixture.platform.nextRewardGate = held;
+      await tester.tap(find.text('Fortsetzen'));
+      // The resumed production clock queues a zero-delay Timer. Advance fake
+      // time so the test reaches the held platform ACK before sending inactive.
+      await tester.pump(const Duration(milliseconds: 1));
+      expect(held.entered.isCompleted, isTrue);
+      expect(held.release.isCompleted, isFalse);
+      expect(fixture.app.state.stars, 0);
+      expect(find.byType(AlertDialog), findsNothing);
 
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    await tester.pump();
-    expect(find.text('Spiel pausiert'), findsOneWidget);
-    held.release.complete();
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 2500));
-    expect(fixture.app.state.stars, 5);
-    expect(find.byType(AlertDialog), findsNothing);
-    expect(_pieces(tester, 'child'), 4);
-    expect(_pieces(tester, 'lumo'), 3);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      await tester.pump();
+      expect(find.text('Spiel pausiert'), findsOneWidget);
+      held.release.complete();
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 2500));
+      expect(fixture.app.state.stars, 5);
+      expect(find.byType(AlertDialog), findsNothing);
+      expect(_pieces(tester, 'child'), 4);
+      expect(_pieces(tester, 'lumo'), 3);
 
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-    await tester.pump();
-    expect(find.text('Spiel pausiert'), findsOneWidget);
-    await tester.tap(find.text('Fortsetzen'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 2500));
-    expect(find.byType(AlertDialog), findsOneWidget);
-    expect(fixture.app.state.stars, 5);
-    expect(tester.takeException(), isNull);
-    await _close(tester, fixture.app);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump();
+      expect(find.text('Spiel pausiert'), findsOneWidget);
+      await tester.tap(find.text('Fortsetzen'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 2500));
+      expect(find.byType(AlertDialog), findsOneWidget);
+      expect(fixture.app.state.stars, 5);
+      expect(tester.takeException(), isNull);
+    } finally {
+      if (!held.release.isCompleted) held.release.complete();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.idle();
+      await _close(tester, fixture.app);
+      await tester.idle();
+    }
   });
 }

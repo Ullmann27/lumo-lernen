@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "path": "before/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 10816,
+      "sha256": "54f95464b1a887d66803733d5b2469fc451c1cefb90d6c8ddce52119c2d98fd1",
+      "git_blob": "c4b90bc73b76a2df23acdb253fa4213b798fed21"
+    },
+    {
+      "path": "final-source/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    },
+    {
+      "path": "freeze_pack.py",
+      "bytes": 11584,
+      "sha256": "4c60e22b9ecd8233aeca7ea626e2d803527c13c2f4c90c3e1f11b827511394df",
+      "git_blob": "381fef58e59a4afc0607a15f1a14bf595141be0c"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1735,
+      "sha256": "aaf90a7c64d4decd88c7b83c5ecbff63c30b80023f118f3e3e26c8844d832cf7",
+      "git_blob": "6f21f93011f7ba3c6258955d82617babe53ce24d"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 4182,
+      "sha256": "7ce220c8942cd8fbb3bba44d66d00fa1cdd2d0b208dd2152d42a71e2637d5d10",
+      "git_blob": "a8e25ccb63ef4130b74bd4159723230c4c381192"
+    },
+    {
+      "path": "original-source/test/games/connect_four_bot_save_retry_test.dart",
+      "bytes": 11449,
+      "sha256": "c1d1ac7a23a61a69ccd73c1d7f2935de863246fd1a350e5dd0d6800d88f3b9cf",
+      "git_blob": "830b3f661c2a289f5ae76ed545cfed60fe27b36a"
+    },
+    {
+      "path": "originals/blob-830b3f66.connector-response.json",
+      "bytes": 11905,
+      "sha256": "91f2caac0b577cc985304f5b5da31a0074d59b308491501d518527dd6248716f",
+      "git_blob": "9d3086214ffb522168fc1823873d47392cf9bea0"
+    },
+    {
+      "path": "originals/current-0cda-failure-events.json",
+      "bytes": 6214,
+      "sha256": "38836054ebfb75444c376ac6f66bf085aee2f7e64c12097e227c6f6c9a393fa2",
+      "git_blob": "d6661662e3046c1669b6468002053191b97f2519"
+    },
+    {
+      "path": "originals/current-activation-binding.json",
+      "bytes": 7947,
+      "sha256": "08dea040864a59a8288888ea3d15a01aa5c0ee7fce7ceb33cc281e733e4e770c",
+      "git_blob": "b8f12b32a28b3cd99aff61d179f908438a30eaf2"
+    },
+    {
+      "path": "originals/current-flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b"
+    },
+    {
+      "path": "originals/producer-8e64/0-README.md",
+      "bytes": 5107,
+      "sha256": "516d2a0fb8c3d3af5c2d56a41a4a93e0375a27d1be4f3a17dc0a17981d8579e5",
+      "git_blob": "728fae38a1c513e595f9122b4518c50bac3ebfcb"
+    },
+    {
+      "path": "originals/producer-8e64/1-failure-test-original-events.json",
+      "bytes": 3729,
+      "sha256": "401d68138b13feb728cf123b0575a3011be4642833bc8914072792ae058fb1b0",
+      "git_blob": "d0c9011f8a1bb5d280bd8b82bf7fb5aa29c60882"
+    },
+    {
+      "path": "originals/producer-8e64/2-implementation-against-exact-8e64.patch",
+      "bytes": 5022,
+      "sha256": "8add49e73d786616e1de75e9ec48731049752a7f48650ccf88fb23ace59c90f2",
+      "git_blob": "1eec53ea38921536ef9cf03ef464a25712b65049"
+    },
+    {
+      "path": "originals/producer-8e64/3-review.json",
+      "bytes": 6638,
+      "sha256": "fff5dc4e3435e7de97021f4df07edc635149826627a28a074526b219c13b1584",
+      "git_blob": "a5123038d4e5151ae941569df09741e782ef129b"
+    },
+    {
+      "path": "originals/producer-8e64/4-README.md",
+      "bytes": 1818,
+      "sha256": "e55b3d1c14bdcd242628c7e4bbd71dbc781ed6d89b3b6d32fd630799ada2a7fb",
+      "git_blob": "d10706ba8aae50c6af3e89deb6bd679cce2664d2"
+    },
+    {
+      "path": "reference-source/flutter-3.44.9/packages/flutter_test/lib/src/binding.dart",
+      "bytes": 118336,
+      "sha256": "3841b362c87d7dfd9fb07272338a20a0dd6bdd09ed916dd096b5dce4a99b162f",
+      "git_blob": "44b74b7d6be7726228605cce77c04231c6070bd6"
+    },
+    {
+      "path": "reference-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 45094,
+      "sha256": "5ea73c94211bb0286aba1167da845d4ccc08ae31d3888dc6b6789b8df86b2772",
+      "git_blob": "6c9ee29c314bf999349c73da6faf9226ac0f8916"
+    },
+    {
+      "path": "reference-source/lib/features/games/shared/lumo_game_pause_scope.dart",
+      "bytes": 12273,
+      "sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+      "git_blob": "9ffc5f25494bb03c64a68cd704d5069aae41013e"
+    },
+    {
+      "path": "review.json",
+      "bytes": 7342,
+      "sha256": "f5211ad49c768ea1f30d6533b832074c8ba0ffc3a78db634cb778d51ef541f66",
+      "git_blob": "785cf885d87b1a2916bee0ea7101aabfff1afde8"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 1163,
+      "sha256": "f44ecdbb7e73155d309ab147748b612f619010b4229007b05577bc969d05ef0b",
+      "git_blob": "3a34c3d415e6c71986e54eb00cdd27918c99d638"
+    }
+  ]
+}
