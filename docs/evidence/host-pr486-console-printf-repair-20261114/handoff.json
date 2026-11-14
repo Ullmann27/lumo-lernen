@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T07:39:51.922829+00:00",
+  "status": "FOCUSED_PRINTF_REPAIR_FROZEN_ANDROID_RUN_REQUIRED",
+  "pack": "/tmp/host-pr486-console-printf-repair-20261114",
+  "source_freeze": {
+    "path": "/tmp/host-pr486-console-printf-repair-20261114/source-freeze.json",
+    "bytes": 3801,
+    "sha256": "73c42515a10bbd2dd40345942fd010ed75d076dc57433fa3b3ff2df94cd0bcd9"
+  },
+  "production_patch": {
+    "path": "/tmp/host-pr486-console-printf-repair-20261114/production.patch",
+    "bytes": 840,
+    "sha256": "d5b5417495e314cb2c6b94f7113ce2506ac23a0d208fa6f01703a8267a67f757"
+  },
+  "complete_patch": {
+    "path": "/tmp/host-pr486-console-printf-repair-20261114/complete.patch",
+    "bytes": 64889,
+    "sha256": "3b65f2e4d22ff1822e71f3248d7259474b30356a63c7332616cfff8123ad22a8"
+  },
+  "source_files": 15,
+  "before_framework_sha256": "a9c8b2d8e7eeb0c93eb81250a308a272cfa09f035fd2659b28620bcb0095d921",
+  "after_framework_sha256": "d1dcf55c0a4c64a1eb1b2ea51abdb6ce87da71e17a82716c562f2c14fd80e102",
+  "unchanged_definitions": 29,
+  "logger_payload_unchanged": true,
+  "payload_comparison": {
+    "path": "/tmp/host-pr486-console-printf-repair-20261114/payload-comparison.json",
+    "bytes": 4640,
+    "sha256": "046253c67ae1f76aa977ff7ea1a342431702493f7bbf8f5efd75e6c516245c10"
+  },
+  "red": {
+    "methods": 6,
+    "assertion_failures": 8,
+    "errors": 0,
+    "log": {
+      "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/original-red-v2/original-source.log",
+      "bytes": 11803,
+      "sha256": "09ff61ae909de60d38da69974abe59d42c43615b8b6ddee0dab548e5ce4c4844"
+    }
+  },
+  "green": {
+    "new_methods": 6,
+    "unchanged_start_neighbors": 4,
+    "total_pass": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "inputs_unchanged": 34,
+    "log": {
+      "path": "/tmp/host-pr486-console-printf-repair-20261114/evidence/green/focused-green.log",
+      "bytes": 2229,
+      "sha256": "9cfbecefa151b0b371070fd3c190cca77fe5c45bf20b41dbc84a71ee4c4be535"
+    }
+  },
+  "local_shell_executions": 8,
+  "local_mksh_reproduction": false,
+  "runtime_red_source": "Three actual PR486 Android original launch-stderr streams and unchanged nonzero Console frames",
+  "tests_excluded": [
+    "86-method Console/AF_UNIX suite",
+    "Android/emulator",
+    "Flutter/Godot",
+    "CI"
+  ],
+  "required_followup": "Explicitly add scripts.tests.test_console_logger_printf to the dedicated QA contract list before a new run; root owns that workflow change.",
+  "no_worktree_git_ci_mutation": true
+}

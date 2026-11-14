@@ -131,10 +131,10 @@ class ConsoleStartWorkflowTests(unittest.TestCase):
         self.assertEqual(re.findall(r'scripts\.tests\.(\w+)', block), [
             'test_android_console_transport', 'test_android_runtime_device_logger',
             'test_runtime_logcat_sections', 'test_android_framework_ready', 'test_verify_android_runtime_anr'])
-        for label, count in (('console', 86), ('parser', 7), ('launch-diagnostic', 9)):
+        for label, count in (('console', 86), ('parser', 7), ('launch-diagnostic', 9), ('printf', 6)):
             self.assertIn(f"grep -Eq '^Ran {count} tests in ' {label}-contracts.log", text)
             self.assertIn(f"grep -Fx 'OK' {label}-contracts.log", text)
-        for module in ('test_console_launch_originals', 'test_console_launch_failure_diagnostics', 'test_console_start_workflow'):
+        for module in ('test_console_launch_originals', 'test_console_launch_failure_diagnostics', 'test_console_logger_printf', 'test_console_start_workflow'):
             self.assertIn('scripts.tests.' + module, text)
         self.assertIn('set -euo pipefail', text)
         self.assertIn("'^OK \\(skipped=|^FAILED.*skipped='", text)
@@ -176,7 +176,7 @@ class ConsoleStartWorkflowTests(unittest.TestCase):
         self.assertIn('          path: tour/', device)
         contracts = job(self.text, 'probe-contracts')
         self.assertIn('        if: always()', contracts)
-        for name in ('diagnostic-contracts.log', 'console-contracts.log', 'parser-contracts.log', 'launch-diagnostic-contracts.log'):
+        for name in ('diagnostic-contracts.log', 'console-contracts.log', 'parser-contracts.log', 'launch-diagnostic-contracts.log', 'printf-contracts.log'):
             self.assertIn('            ' + name, contracts)
         self.assertIn('if-no-files-found: error', device)
         self.assertIn('cancel-in-progress: false', self.text)

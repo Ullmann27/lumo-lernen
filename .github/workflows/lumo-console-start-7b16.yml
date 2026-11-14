@@ -66,6 +66,10 @@ jobs:
             2>&1 | tee launch-diagnostic-contracts.log
           grep -Eq '^Ran 9 tests in ' launch-diagnostic-contracts.log
           grep -Fx 'OK' launch-diagnostic-contracts.log
+          .probe-venv/bin/python -B -m unittest -v scripts.tests.test_console_logger_printf \
+            2>&1 | tee printf-contracts.log
+          grep -Eq '^Ran 6 tests in ' printf-contracts.log
+          grep -Fx 'OK' printf-contracts.log
           .probe-venv/bin/python -B -m unittest -v \
             scripts.tests.test_android_framework_ready_android17 \
             scripts.tests.test_android37_cli22 \
@@ -92,6 +96,7 @@ jobs:
             console-contracts.log
             parser-contracts.log
             launch-diagnostic-contracts.log
+            printf-contracts.log
           if-no-files-found: error
           retention-days: 30
 

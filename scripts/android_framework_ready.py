@@ -225,8 +225,7 @@ def device_logger_launch(remote: str) -> str:
             "test -x /system/bin/toybox && test -x /system/bin/logcat\n"
             "mkdir " + remote + "\nexec > " + remote + "/launch.stdout 2> " + remote + "/launch.stderr\n"
             "printf '%s\\n' \"$1\" > " + remote + "/console.pid\n"
-            "cat > " + remote + "/run.sh <<'LUMO_LOGGER_SOURCE'\n" + script +
-            "LUMO_LOGGER_SOURCE\n"
+            "printf '%s' " + shlex.quote(script) + " > " + remote + "/run.sh\n"
             "/system/bin/toybox nohup /system/bin/toybox setsid /system/bin/sh " + remote +
             "/run.sh > " + remote + "/session.stdout 2> " + remote + "/session.stderr < /dev/null &\n"
             "attempt=0\nwhile [ ! -s " + remote + "/ready ] && [ \"$attempt\" -lt 100 ]; do\n"
