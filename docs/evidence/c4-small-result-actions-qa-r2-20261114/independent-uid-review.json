@@ -1,0 +1,114 @@
+{
+  "schema": "lumo.read-only.godot-import-uid-review.v1",
+  "scope": "Existing isolated parser copy only; not a new engine/import/test and not the failed CI archive",
+  "production_native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "parser_source": "/home/agent/lumo-c4-small-modal-qa-2708/parser-source",
+  "counts": {
+    "total": 522,
+    "tracked": 188,
+    "untracked": 334
+  },
+  "newly_generated_format": {
+    "rule": "Exactly uid:// + 1..13 base34 digits [a-y0-8] + LF; canonical 0..2^63-1 encoding",
+    "invalid_paths": []
+  },
+  "source_binding": {
+    "all_corresponding_sources_tracked": true,
+    "all_corresponding_source_git_blobs_exact": true,
+    "all_sidecars_regular_not_symlink": true
+  },
+  "qa_overlay_uid": {
+    "path": "scripts/tests/connect_four_small_result_actions_qa.gd.uid",
+    "exists": false,
+    "symlink": false,
+    "regular": false
+  },
+  "sources": [
+    {
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/io/resource_uid.cpp",
+      "blob": "4a03a4b83430af226b16481cdb4945b823b9b21e",
+      "lines": "40–108, 111–152"
+    },
+    {
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/io/resource_loader.cpp",
+      "blob": "952a7e93cc597d88c55fba11d75731f5654e50c1",
+      "lines": "114–124, 1224–1235"
+    },
+    {
+      "url": "https://godotengine.org/article/uid-changes-coming-to-godot-4-4/"
+    },
+    {
+      "url": "https://docs.godotengine.org/en/4.6/classes/class_resourceuid.html"
+    }
+  ],
+  "recommendations": [
+    "Keep tracked sources and tracked UID bytes guarded by the existing exact pinned source checks.",
+    "Allow only new regular .gd.uid/.gdshader.uid adjacent to exact tracked regular source blobs, with no symlink or unsafe path traversal.",
+    "Keep any explicitly authorized QA overlay UID separate from product metadata.",
+    "Record exact sidecar path set, raw byte hashes, base paths and expected source blobs after import and require equality through the actual QA run.",
+    "Reject unrelated untracked files, invalid or multiline content, missing/nontracked bases, wrong source blobs, removed/added/changed sidecars.",
+    "Do not apply new generator-only UID format validation retroactively to tracked historical UID strings."
+  ],
+  "limitations": [
+    "UID values are resource identifiers, not a substitute for source content integrity checks.",
+    "Observed local sidecar counts are not attributed to the failed CI artifact.",
+    "No QA runtime, renderer, import, test or product/ref change occurred in this review."
+  ],
+  "runner_review": {
+    "result": "No concrete blocker found within the requested metadata-guard diff",
+    "review_method": "Read-only complete old/new runner comparison and read-only fixture source review; reviewer did not execute the runner or fixtures",
+    "old": {
+      "path": "scripts/run_connect_four_small_result_actions_qa.py",
+      "git_blob": "d5038a4e41c5cbf45b7df7e40f936f3091cf40c5",
+      "sha256": "8fcd13fe421b9dce90fbbae6d47b6a22a23df4670004cb7cec45acd181cc0435",
+      "bytes": 18764
+    },
+    "candidate": {
+      "path": "scripts/run_connect_four_small_result_actions_qa.py",
+      "git_blob": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+      "sha256": "6ac05e59737a8ffb342a20024a25de08308278721550b4b106d0e54c66c57183",
+      "bytes": 21346
+    },
+    "fixtures": {
+      "path": "test_uid_metadata_boundary.py",
+      "git_blob": "915b29e9c704bb2a94dc16069be623f8f4866ccf",
+      "sha256": "56022f3ecfe114edfbd1d89dece069bf0492d34d991c34e0f38fa310d80bd279",
+      "bytes": 5500,
+      "methods": 9,
+      "execution_by_reviewer": false
+    },
+    "frozen_production": {
+      "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+      "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+    },
+    "preserved_guards": [
+      "Exact pinned Host/Native HEAD, tree and clean tracked index/worktree checks still run before metadata validation.",
+      "The dedicated QA commit remains constrained to the original four added QA paths and the frozen Host parent.",
+      "Tracked UID bytes remain included in the existing tracked-source snapshots and are not reinterpreted by new-generator format rules.",
+      "The exact GDScript and Dart overlay bytes remain independently compared with their committed QA originals.",
+      "All non-allowed untracked native paths in the existing monitored source scope are still rejected."
+    ],
+    "verified_changes": [
+      "Only .gd.uid/.gdshader.uid suffixes are considered; their basename must resolve to one HEAD tree entry with regular source mode and exact current source blob.",
+      "Sidecar itself must be a regular non-symlink file and exactly one ASCII LF-terminated UID line using the actual generator alphabet.",
+      "The integer must fit the engine's signed-63-bit range; leading-a zero aliases are rejected except the canonical single-character zero encoding.",
+      "The sorted generated_native_uid_metadata inventory contains path, source path, expected source Git blob, UID text, byte length, SHA256 and Git blob of sidecar bytes.",
+      "The existing finally-path requires the entire before/after snapshot equality, including the separate UID inventory; additions, removals and edits cannot silently pass.",
+      "No blanket exception for the untracked QA-overlay UID remains; a newly observed such file would fail rather than silently enter product metadata."
+    ],
+    "source_lines": {
+      "native_untracked_metadata": 82,
+      "full_snapshot_equality": 122,
+      "caller_guards": 126,
+      "inventory_snapshot": 154,
+      "final_snapshot_check": 349
+    },
+    "practical_limits": [
+      "No change to the original Dart or Native QA assertions was part of this review.",
+      "The metadata fixture outcomes belong to the implementing parent's execution evidence, not to this source review.",
+      "No claim is made that UID formatting alone authenticates a resource binding or that this replaces actual QA execution.",
+      "No new game runtime, renderer, screenshot, Android run or measured performance was observed here.",
+      "The original failed QA run had not reached the actual Dart/Godot probe; its failure is not a game-input result."
+    ]
+  }
+}

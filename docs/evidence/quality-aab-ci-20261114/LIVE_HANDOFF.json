@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14 12:26:27 UTC",
+  "recorded_at_utc": "2026-11-14 12:31:59 UTC",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -97,9 +97,17 @@
       "product_bug_claim": false
     },
     "qa2": {
-      "state": "preparing narrow runner correction; not yet approved or triggered",
-      "planned_branch": "qa/lumo-c4-small-result-actions-20261114-2708-r2",
-      "constraints": "New direct child of aab with exactly four QA files; only workflow branch and strict tracked-source UID metadata validation may change. Preserve original failure. No force/reset, no product or release-allowlist mutation."
+      "head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+      "tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+      "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r2",
+      "run": 43595002861,
+      "attempt": 1,
+      "job": 132447521284,
+      "status": "completed",
+      "conclusion": "failure",
+      "last_read_utc": "2026-11-14 12:31:59 UTC",
+      "changes": "Only workflow branch and strict generated Godot UID sidecar guard; Dart/native QA assertions byte-identical",
+      "runtime_result_not_yet_independently_read": true
     }
   },
   "remaining": [
@@ -119,9 +127,19 @@
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
-    "prior_head": "8002c05a0b77ead7536740fbf1db684d3551e43c",
+    "prior_head": "296e7b098f2fcb8c592c44486ae2e46e55b31772",
     "original_803_evidence": "6a5ae5327570fc60434672074f246c95e1c59283",
     "old_803_apk_is_not_current_candidate": true
   },
-  "resume": "Keep the candidate source frozen; ReleaseLead owns main/native artifact download, LearningLead owns additional QA artifact download, Root owns APK/Android/update/delivery. Use existing four agents. Read actual terminal outputs before any success claim."
+  "resume": "Keep the candidate source frozen; ReleaseLead owns main/native artifact download, LearningLead owns additional QA artifact download, Root owns APK/Android/update/delivery. Use existing four agents. Read actual terminal outputs before any success claim.",
+  "local_execution": {
+    "status": "unavailable",
+    "observed_at": "2026-11-14 12:29:06 UTC",
+    "reported_by_environment": true,
+    "exec_error": "exec-server transport disconnected",
+    "file_loss_confirmed": false,
+    "remote_ci_still_accessible": true,
+    "runtime_skill_read": "Package unavailable in current environment",
+    "restart_tool_exposed": false
+  }
 }

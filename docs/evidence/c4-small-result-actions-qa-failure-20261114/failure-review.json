@@ -1,0 +1,24 @@
+{
+  "status": "FAILURE_BEFORE_PROCESS_START",
+  "run_id": 43594135818,
+  "job_id": 132444932236,
+  "qa_commit": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+  "exact_source_inventory": {
+    "host": 447,
+    "native": 1256,
+    "qa": 4
+  },
+  "host_native_match_previously_remote_tree_verified_same_aab_e2_source_inventory": true,
+  "qa_all_four_local_blobs_and_sha256_match": true,
+  "rejected_sidecars": 334,
+  "rejected_gd_uids": 329,
+  "rejected_shader_uids": 5,
+  "sidecars_without_a_committed_counterpart": [],
+  "original_exit_codes": {
+    "dart": null,
+    "godot": null
+  },
+  "runtime_commands_present": false,
+  "png_count": 0,
+  "interpretation": "The runner rejected generated UID metadata after successful import. Neither the Dart harness nor the renderer was launched. No action behavior or new Flutter compiler result is established. CI sidecar bytes are not in the archive; their content must not be invented."
+}

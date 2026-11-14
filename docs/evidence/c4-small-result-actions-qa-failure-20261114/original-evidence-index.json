@@ -1,0 +1,69 @@
+{
+  "artifact_id": 14113587571,
+  "run_id": 43594135818,
+  "attempt": 1,
+  "qa_sha": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+  "bytes": 146035,
+  "sha256": "38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
+  "crc_valid": true,
+  "members": [
+    {
+      "path": "preflight/small-result-actions-gate.json",
+      "bytes": 349,
+      "sha256": "f75f1f5bba1d8851216a0a99c1923078925ac9effeba7b1274f0102c5a2b94b4",
+      "git_blob": "6bccec7235abb4beaa07dfa4810b30c72dae5307"
+    },
+    {
+      "path": "original-import.log",
+      "bytes": 167304,
+      "sha256": "b06a061bbf7f64c233ca3836ebe52b469fe59c69f7bab3a186e364a8623516d2",
+      "git_blob": "43f343f7714d9cfa422e08cfda1203742a79a3c0"
+    },
+    {
+      "path": "preflight/source-pristine.json",
+      "bytes": 478361,
+      "sha256": "9be37ab3e21e4d6d81d2d44d9eb203334752c86928d534eb11c5eac6a87138b5",
+      "git_blob": "23a0c4883f0ce845789162ab7b41a95c2dc7a3dc"
+    },
+    {
+      "path": "runtime/small-result-actions-gate.json",
+      "bytes": 17940,
+      "sha256": "3f68fdeb6494d53cb62af6bd296505e001dbe8b8eef5fcf3e0438d860413a447",
+      "git_blob": "38abc90b53beb95853123319946981a4901088c4"
+    }
+  ],
+  "reports": [
+    {
+      "path": "runtime/small-result-actions-gate.json",
+      "passed": false,
+      "preflight_only": false,
+      "exit_codes": {
+        "dart": null,
+        "godot": null
+      },
+      "error_prefix": "ValueError: Unexpected untracked executable/input source: ['assets/characters/lumo_animated/lumo_studio_clips.gd.uid', 'assets/creative/puzzle/puzzle_alive.gdshader.uid', 'assets/creative/puzzle/puzzl",
+      "rejected_sidecars": 334,
+      "extensions": {
+        ".gd.uid": 329,
+        ".gdshader.uid": 5
+      },
+      "commands_present": false
+    },
+    {
+      "path": "preflight/small-result-actions-gate.json",
+      "passed": true,
+      "preflight_only": true,
+      "exit_codes": {
+        "dart": null,
+        "godot": null
+      },
+      "error_prefix": null,
+      "rejected_sidecars": 0,
+      "extensions": {
+        ".gd.uid": 0,
+        ".gdshader.uid": 0
+      },
+      "commands_present": false
+    }
+  ]
+}

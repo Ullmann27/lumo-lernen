@@ -1,0 +1,22 @@
+{
+  "scripts/run_connect_four_small_result_actions_qa.py": {
+    "bytes": 21346,
+    "sha256": "6ac05e59737a8ffb342a20024a25de08308278721550b4b106d0e54c66c57183",
+    "git_blob": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3"
+  },
+  "test/games/connect_four_small_result_actions_qa.dart": {
+    "bytes": 9498,
+    "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b",
+    "git_blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e"
+  },
+  ".github/workflows/lumo-c4-small-result-actions-qa.yml": {
+    "bytes": 4486,
+    "sha256": "19db5547d2cd2d4f2d465d4f4d80d0a97b09aeffab8fd69a97682cabbe6e318f",
+    "git_blob": "b480b4664efa0d2d9dcd04c09d50a74848b9d9ca"
+  },
+  "tools/qa/connect_four_small_result_actions_qa.gd": {
+    "bytes": 16807,
+    "sha256": "2c0e7d1aedec11140dd6004c4023a63e8671de973c2cd67986f6f6efb5c44469",
+    "git_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f"
+  }
+}

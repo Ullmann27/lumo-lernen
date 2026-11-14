@@ -1,0 +1,504 @@
+{
+  "schema": 1,
+  "scope": "Complete original failed QA run plus narrow UID-only r2 correction and real local metadata-boundary checks. Cloud-only checkpoint after local transport became unavailable; no r2 runtime success claimed.",
+  "product": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+  },
+  "failed_run": {
+    "id": 43594135818,
+    "attempt": 1,
+    "head": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+    "job": 132444932236,
+    "conclusion": "failure",
+    "artifact_id": 14113587571,
+    "archive_sha256": "38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
+    "archive_bytes": 146035,
+    "original_process_exit_codes": {
+      "dart": null,
+      "godot": null
+    },
+    "rejected_sidecars": 334,
+    "pngs": 0
+  },
+  "qa": {
+    "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r2",
+    "head_reported_by_root": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+    "tree_reported_by_root": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+    "required_single_parent": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "source_entries": [
+      {
+        "path": ".github/workflows/lumo-c4-small-result-actions-qa.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b480b4664efa0d2d9dcd04c09d50a74848b9d9ca",
+        "sha256": "19db5547d2cd2d4f2d465d4f4d80d0a97b09aeffab8fd69a97682cabbe6e318f",
+        "bytes": 4486
+      },
+      {
+        "path": "scripts/run_connect_four_small_result_actions_qa.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+        "sha256": "6ac05e59737a8ffb342a20024a25de08308278721550b4b106d0e54c66c57183",
+        "bytes": 21346
+      },
+      {
+        "path": "test/games/connect_four_small_result_actions_qa.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+        "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b",
+        "bytes": 9498
+      },
+      {
+        "path": "tools/qa/connect_four_small_result_actions_qa.gd",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+        "sha256": "2c0e7d1aedec11140dd6004c4023a63e8671de973c2cd67986f6f6efb5c44469",
+        "bytes": 16807
+      }
+    ],
+    "new_run_reported_by_root": 43595002861
+  },
+  "actual_local_checks_before_disconnect": {
+    "metadata_boundary_methods": 9,
+    "passed": 9,
+    "seconds": 0.282,
+    "exit_code": 0,
+    "python_compile_exit_code": 0,
+    "actionlint_exit_code": 0,
+    "actual_bash_blocks": 5,
+    "all_bash_exit_codes": 0,
+    "source_bytes_unchanged": true,
+    "game_or_renderer_executed": false,
+    "new_dart_analysis_performed": false
+  },
+  "availability": {
+    "local_environment": "unavailable at checkpoint; do not infer local-file availability",
+    "r2_image_or_archive_verification": "not performed"
+  },
+  "evidence_entries": [
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/api-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "971a07e7e5c8b1351d9d86307789c9295d8b25fd",
+      "sha256": "25c966a8a7e40858baba334c0d363e5056093237ed3a80b885c55b5a65223482",
+      "bytes": 881
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/api-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d8f27630884f49926febe6740ecae5bc424b106",
+      "sha256": "e742a374c3d5ab8c6362e52776263fd448230ac329fd98003570aed2922a6e04",
+      "bytes": 3074
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/api-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2280752111d0c935c71075582ee3b248d73655dc",
+      "sha256": "5eef00cec156dcbbb379a915944b50549aca0df709f9d2276595a454fbb594a3",
+      "bytes": 13782
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/failure-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec1022ccc8ba36c43f04457f7783257e655dfc3c",
+      "sha256": "eca0d7ecccfff34ecbf7fd5b4648ddb414380a277f0bb94f06f0d379e69aa76f",
+      "bytes": 930
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/original-import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43f343f7714d9cfa422e08cfda1203742a79a3c0",
+      "sha256": "b06a061bbf7f64c233ca3836ebe52b469fe59c69f7bab3a186e364a8623516d2",
+      "bytes": 167304
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/preflight/small-result-actions-gate.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bccec7235abb4beaa07dfa4810b30c72dae5307",
+      "sha256": "f75f1f5bba1d8851216a0a99c1923078925ac9effeba7b1274f0102c5a2b94b4",
+      "bytes": 349
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/preflight/source-pristine.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23a0c4883f0ce845789162ab7b41a95c2dc7a3dc",
+      "sha256": "9be37ab3e21e4d6d81d2d44d9eb203334752c86928d534eb11c5eac6a87138b5",
+      "bytes": 478361
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/runtime/small-result-actions-gate.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38abc90b53beb95853123319946981a4901088c4",
+      "sha256": "3f68fdeb6494d53cb62af6bd296505e001dbe8b8eef5fcf3e0438d860413a447",
+      "bytes": 17940
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original-artifact.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7afa8d242b867a02b9282e0ddf126ac6b8b8a7de",
+      "sha256": "38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
+      "bytes": 146035
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original-complete-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b41015df3c814910de4ac64c5478b40ec5da23a9",
+      "sha256": "51eef86aed28436802f7ab6c607408fc756d91cd2b69c070e2e7b2ebc3295a1e",
+      "bytes": 313553
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original-evidence-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b4bf6ca54cfb402f8b6d1fe56b5ccf5a42d5481",
+      "sha256": "1d8dbfc5b6b26c384608a784ff44d89010baba1803b805a167d54df9f770e907",
+      "bytes": 2145
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-03.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-05.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-06.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-07.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-08.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/commands.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c8641c2b80e27993502d73c6a59380863aa1333",
+      "sha256": "862392b24915cb1cb395a9fa7b30bef55dc531de82c769196621ab0dc1ee3d06",
+      "bytes": 2191
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/python-compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c46dbdb8918a13b3c2c43d02a77150359f9ef784",
+      "sha256": "4c1bd0333822470922ed2972bd20308a3e379602198eaf4718ef989edf93aaf2",
+      "bytes": 60
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3cb94d344f7cd2e8712b9247c1a1cb024d5f161",
+      "sha256": "d9781f49f88c7dbbad4e66370e7f3b30f0576c41022ee3a4f41825d9e26d5a56",
+      "bytes": 989
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "017ae5afd5125c7bf11a4d187b646cada4ceee6d",
+      "sha256": "f1c5a5004c33c03ec3095773496e979ed8b537310ed9d9b263f9db9c6e7d9581",
+      "bytes": 901
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/test_uid_metadata_boundary.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "915b29e9c704bb2a94dc16069be623f8f4866ccf",
+      "sha256": "56022f3ecfe114edfbd1d89dece069bf0492d34d991c34e0f38fa310d80bd279",
+      "bytes": 5500
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/uid-boundary-tests.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce0e00dede92ff71da07dd0947ffa8196c3a02ba",
+      "sha256": "2fdaedd17b1afdce6f016aa1bfeceecc82b3ccb6d6c2c64cf9ed2919857dd8b4",
+      "bytes": 1451
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-03.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c64cc51e112fedf46ea5b78de010adc98dcb17b3",
+      "sha256": "e02dfccf86c25277f2cecd05e54d410086e781e3da7740d9794c970faab41adb",
+      "bytes": 338
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-05.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "850027ccf019adb71b8ae9af024462a42502952a",
+      "sha256": "22a9d2081c19ec93df625c986925f83772bb3685e3a593b3d92f1e02d30aac24",
+      "bytes": 349
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-06.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c474adc7216893fc7be5c21e03d321bd443023f6",
+      "sha256": "84cea2f3c679475d8e0d87c5aac20dfb0dca449ba132e61ddd2a59b66f820960",
+      "bytes": 39
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-07.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57a4bc5b53fd2c9bf94859c794fd336893bbebe4",
+      "sha256": "a5829a46fef87e82549c8d2825a98384e418767075f8bd39aac660beb59b6987",
+      "bytes": 654
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-08.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe386451af205233f021ada83df42a734d9df904",
+      "sha256": "e6673ff60dbfc1b0ddbf2909c597737df235840422a6e9c61e87fe215ee3e882",
+      "bytes": 284
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/independent-uid-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8306bef90672946976f6714e91ce9ee148a94d86",
+      "bytes": 6231,
+      "sha256": "7d8133bd83d092c3b49ea33b6e57b5c21fd5829e878522b3135b042da946e315"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dd58caefa5a2b93b34b7200c68549d5c1bac0cb"
+    }
+  ],
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/api-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "971a07e7e5c8b1351d9d86307789c9295d8b25fd"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/api-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d8f27630884f49926febe6740ecae5bc424b106"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/api-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2280752111d0c935c71075582ee3b248d73655dc"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/failure-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec1022ccc8ba36c43f04457f7783257e655dfc3c"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/original-import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43f343f7714d9cfa422e08cfda1203742a79a3c0"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/preflight/small-result-actions-gate.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bccec7235abb4beaa07dfa4810b30c72dae5307"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/preflight/source-pristine.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23a0c4883f0ce845789162ab7b41a95c2dc7a3dc"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original/runtime/small-result-actions-gate.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38abc90b53beb95853123319946981a4901088c4"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original-artifact.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7afa8d242b867a02b9282e0ddf126ac6b8b8a7de"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original-complete-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b41015df3c814910de4ac64c5478b40ec5da23a9"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-failure-20261114/original-evidence-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b4bf6ca54cfb402f8b6d1fe56b5ccf5a42d5481"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/actionlint.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-03.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-05.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-06.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-07.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/bash-step-08.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/commands.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c8641c2b80e27993502d73c6a59380863aa1333"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/python-compile.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c46dbdb8918a13b3c2c43d02a77150359f9ef784"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3cb94d344f7cd2e8712b9247c1a1cb024d5f161"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "017ae5afd5125c7bf11a4d187b646cada4ceee6d"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/test_uid_metadata_boundary.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "915b29e9c704bb2a94dc16069be623f8f4866ccf"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/uid-boundary-tests.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce0e00dede92ff71da07dd0947ffa8196c3a02ba"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-03.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c64cc51e112fedf46ea5b78de010adc98dcb17b3"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-05.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "850027ccf019adb71b8ae9af024462a42502952a"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-06.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c474adc7216893fc7be5c21e03d321bd443023f6"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-07.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57a4bc5b53fd2c9bf94859c794fd336893bbebe4"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/workflow-step-08.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe386451af205233f021ada83df42a734d9df904"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/independent-uid-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8306bef90672946976f6714e91ce9ee148a94d86"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r2-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dd58caefa5a2b93b34b7200c68549d5c1bac0cb"
+    }
+  ]
+}
