@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "kind": "original_image_selection_for_root_review",
+  "source": {
+    "host": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+    "host_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+    "native": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "native_tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+    "run_id": 43581113174,
+    "run_attempt": 1,
+    "event": "pull_request",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "job_id": 132405832474,
+    "job_name": "connect-four-runtime",
+    "job_conclusion": "success",
+    "job_completed_at": "2026-11-14T09:36:16Z"
+  },
+  "artifact_id": 14108381749,
+  "archive_sha256": "575b4ecf1bb4ae372ec79bf0c744706506a2c209c99b323ea28bf5e491b05639",
+  "selected_original_pngs": [
+    {
+      "path": "runtime/connect_four_empty.png",
+      "bytes": 82537,
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA",
+      "local_path": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/review-images/connect_four_empty.png",
+      "purpose": "Default board, landscape",
+      "original_layout_member": "runtime/connect_four_empty.layout.json"
+    },
+    {
+      "path": "runtime/connect_four_phone_bot_response.png",
+      "bytes": 239686,
+      "sha256": "3278b7867f790cc16f60738995404b436d8dd05b02a3132387005872a671ab04",
+      "width": 1080,
+      "height": 2400,
+      "mode": "RGBA",
+      "local_path": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/review-images/connect_four_phone_bot_response.png",
+      "purpose": "Portrait board after bot response",
+      "original_layout_member": "runtime/connect_four_phone_bot_response.layout.json"
+    },
+    {
+      "path": "runtime/connect_four_small_landscape.png",
+      "bytes": 22915,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "width": 640,
+      "height": 360,
+      "mode": "RGBA",
+      "local_path": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/review-images/connect_four_small_landscape.png",
+      "purpose": "Compact landscape layout",
+      "original_layout_member": "runtime/connect_four_small_landscape.layout.json"
+    },
+    {
+      "path": "runtime/connect_four_fold_landscape.png",
+      "bytes": 123809,
+      "sha256": "aac2efa26eafaf9eebdd9288f4db8b7a7f747860ebaade1a159b54a2747e7e96",
+      "width": 2400,
+      "height": 1080,
+      "mode": "RGBA",
+      "local_path": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/review-images/connect_four_fold_landscape.png",
+      "purpose": "Wide fold landscape layout",
+      "original_layout_member": "runtime/connect_four_fold_landscape.layout.json"
+    },
+    {
+      "path": "runtime/connect_four_pause.png",
+      "bytes": 47760,
+      "sha256": "7203ccc962921b3573febf6a56fcfd60af3178cbbb0ad99cc623857b0e662ee1",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA",
+      "local_path": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/review-images/connect_four_pause.png",
+      "purpose": "Pause state and available return controls",
+      "original_layout_member": "runtime/connect_four_pause.layout.json"
+    },
+    {
+      "path": "runtime/connect_four_win.png",
+      "bytes": 84544,
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "width": 960,
+      "height": 540,
+      "mode": "RGBA",
+      "local_path": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/review-images/connect_four_win.png",
+      "purpose": "Completed round and winning board",
+      "original_layout_member": "runtime/connect_four_win.layout.json"
+    }
+  ],
+  "all_selected_bytes_match_verified_archive": true,
+  "visual_review_completed": false,
+  "scope": "Selection by original capture names and their original layout reports; this is not a visual approval receipt.",
+  "absence_boundary": "The archive contains nine named C4 capture PNGs plus 250 runtime frames. It contains no separately named post-return Flutter screenshot or Wisp scene screenshot. Return recovery is proven by its original headless 21-check log, and same-round reopen by the original Dart report; neither is presented as a separately captured return image."
+}

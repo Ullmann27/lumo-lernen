@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETE",
+  "result": "result.json",
+  "result_sha256": "3ba47aa9d67f1762626913bec211c609a7d4d033b4bf0ea097887b4055093d89",
+  "source": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "native": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "python_methods": 132,
+  "actionlint_exit": 0,
+  "source_unchanged": true,
+  "workspace_writes": "none; evidence and test temporary files under this /tmp pack",
+  "archive_excludes": [
+    "source-before.json",
+    "source-after.json",
+    "runtime-tmp/"
+  ],
+  "exclusion_reason": "source manifests are fully preserved as lossless gzip with original hashes; runtime-tmp contains disposable unittest temporary files, not source or evidence"
+}

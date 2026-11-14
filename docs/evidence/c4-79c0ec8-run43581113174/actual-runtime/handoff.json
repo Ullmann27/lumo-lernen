@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "frozen_at": "2026-11-14T09:47:15.898845+00:00",
+  "status": "FROZEN_CURRENT_DESKTOP_RUNTIME_SUCCESS",
+  "source": {
+    "host": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+    "host_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+    "native": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "native_tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+    "run_id": 43581113174,
+    "run_attempt": 1,
+    "event": "pull_request",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "job_id": 132405832474,
+    "job_name": "connect-four-runtime",
+    "job_conclusion": "success",
+    "job_completed_at": "2026-11-14T09:36:16Z"
+  },
+  "result": {
+    "passed": true,
+    "exit_codes": {
+      "dart": 0,
+      "godot": 0
+    },
+    "native_checks": 170,
+    "frames": 250,
+    "moving_frames": 90,
+    "winning_frames": 43,
+    "pngs": 259,
+    "dart_result_passed": true,
+    "same_round_reopen_observed": true,
+    "source_before_after_bytes_equal": true,
+    "source_fingerprint_sha256": "3a945a26fee45206284355936ef8bd65766f67a390fa7ecba9801c62c4ea8f82",
+    "host_fingerprinted_files": 447,
+    "native_fingerprinted_files": 1246
+  },
+  "additional_gates": {
+    "native_return_recovery": {
+      "checks": 21,
+      "marker": "CONNECT_FOUR_RETURN_PASS checks=21",
+      "log_sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2"
+    },
+    "treasure_wisp": {
+      "checks": 14,
+      "marker": "[TreasureWisp] PASS checks=14",
+      "log_sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39"
+    }
+  },
+  "archive": {
+    "id": 14108381749,
+    "bytes": 22151623,
+    "sha256": "575b4ecf1bb4ae372ec79bf0c744706506a2c209c99b323ea28bf5e491b05639",
+    "all399_members_crc_sha_verified": true,
+    "all259_pngs_decoded_and_report_matched": true,
+    "archive_path": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/14108381749-original.zip"
+  },
+  "original_joblog": {
+    "path": "originals/jobs/runtime-job-132405832474.log",
+    "bytes": 286710,
+    "sha256": "58f2b6c534574a542c5c2d42accd33e521f5033aa24ebf6f3657c117d7d048a4",
+    "compact_path": "originals/jobs/runtime-job-132405832474.log.gz"
+  },
+  "reports": {
+    "archive-verification.json": {
+      "bytes": 122307,
+      "sha256": "713e70b2e35e618e35dfbb8454fd343d8432a79d433d41c67ee6dfa4f2020f72"
+    },
+    "engine-banner-binding.json": {
+      "bytes": 4402,
+      "sha256": "84684257fcbe8e809855cdda0658dce57010fd09489b5fb191b39fe5f9e66983"
+    },
+    "log-verification.json": {
+      "bytes": 4296,
+      "sha256": "d4a37a2ce3d864774914fe20a84c4304cafbeda6adcd0b125758b5d8a4e61dd3"
+    },
+    "original-materialization.json": {
+      "bytes": 10371,
+      "sha256": "f26e3f650ba0883f380b28ca8901c919192dfcab8110af55f3756f4ff70b3e00"
+    },
+    "png-index.json": {
+      "bytes": 57989,
+      "sha256": "b03aac6cd03925a0228f7d435ee970a76c4c9e83bf5bd5cf8dac397d6e5f5f47"
+    },
+    "verification.json": {
+      "bytes": 2945,
+      "sha256": "779181c565de7ab18e76df5da83257b74dbe89f72d6332fc202f167a42d56d6d"
+    },
+    "review-selection.json": {
+      "bytes": 4216,
+      "sha256": "aecd1c9335c6e3792e281fe79e990cd9bf7ee1b2b5f149dafb251b428ffcd5c4"
+    }
+  },
+  "compact_checkpoint_directory": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/checkpoint",
+  "images_outside_checkpoint": "/tmp/host-c4-79c0ec86-runtime-evidence-20261114/review-images",
+  "included_artifact_original_members": 25,
+  "included_artifact_logs": 6,
+  "archive_member_count": 399,
+  "fully_decoded_png_count": 259,
+  "image_review_scope": "Six byte-exact originals prepared for Root. No new visual approval receipt.",
+  "overall_run_acceptance": false,
+  "tests_or_device_runs_executed_by_collector": false,
+  "status_polls": 1,
+  "source_git_ref_mutations": false,
+  "preserved_failures": "Historical Android SwiftShader shader-link errors and GMS ANRs are not overridden by this desktop runtime success."
+}

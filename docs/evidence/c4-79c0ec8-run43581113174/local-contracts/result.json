@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "head": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "native": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "python": {
+    "methods": 132,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "reported_seconds": 5.551,
+    "actual_module_counts": {
+      "scripts.tests.test_candidate_2011_pin": 24,
+      "scripts.tests.test_connect_four_delivery": 45,
+      "scripts.tests.test_connect_four_pipeline": 11,
+      "scripts.tests.test_legacy_release_pin": 40,
+      "tools.android_qa.tests.test_kart_continue_caption": 9,
+      "tools.android_qa.tests.test_update_2019_preservation": 3
+    },
+    "execution": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "scripts.tests.test_connect_four_delivery",
+        "scripts.tests.test_connect_four_pipeline",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_legacy_release_pin",
+        "tools.android_qa.tests.test_update_2019_preservation.StudioUpdateWrapperExecutionTests",
+        "tools.android_qa.tests.test_kart_continue_caption",
+        "-v"
+      ],
+      "cwd": "/tmp/lumo-root-recovery-0900/host-c4",
+      "started_utc": "2026-11-14T09:38:43.087397+00:00",
+      "finished_utc": "2026-11-14T09:38:48.801010+00:00",
+      "elapsed_seconds": 5.7136141610099,
+      "exit_code": 0,
+      "stdout_stderr": "combined in original subprocess write order",
+      "log": "python-tests.log"
+    },
+    "original_log": {
+      "bytes": 26827,
+      "sha256": "ca31f17ecbeac43637a801ef4166adeb9acaeeaab721385069c987a444b3f0e6"
+    }
+  },
+  "actionlint": {
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "execution": {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "cwd": "/tmp/lumo-root-recovery-0900/host-c4",
+      "started_utc": "2026-11-14T09:38:43.077296+00:00",
+      "finished_utc": "2026-11-14T09:38:43.093926+00:00",
+      "elapsed_seconds": 0.016645170995616354,
+      "exit_code": 0,
+      "log": "actionlint.log"
+    },
+    "original_log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_binding": {
+    "materialized_files": 2215,
+    "unchanged": true,
+    "missing_sparse_paths_unchanged": 2010,
+    "head_tree_branch_index_status_unchanged": true,
+    "index": {
+      "bytes": 549477,
+      "sha256": "6d35dbb6946ff42ad48b1fd63552a411ffadea3b16f7ad9ec281c3081f231ff8"
+    },
+    "source_manifests": [
+      {
+        "original_path": "source-before.json",
+        "original": {
+          "bytes": 1167816,
+          "sha256": "2865812d967edb420de475d59faff1cfe9549e8d54219b6a44f3d9ad6726bcae"
+        },
+        "stored_path": "source-before.json.gz",
+        "stored": {
+          "bytes": 266742,
+          "sha256": "8db17aab7336edae58b6993985dc040e9ffbfad7d9645658a0e08068716dd2a1"
+        }
+      },
+      {
+        "original_path": "source-after.json",
+        "original": {
+          "bytes": 1167816,
+          "sha256": "b5bf88109e10e7a43587d82e8c0ad4879482d331e086e00d385d381ebc95592c"
+        },
+        "stored_path": "source-after.json.gz",
+        "stored": {
+          "bytes": 266742,
+          "sha256": "9973310a81d82c4ecf649e3790dc3da9134f48dfb08e79b711ce1ba305f6243c"
+        }
+      }
+    ]
+  },
+  "not_run": [
+    "Flutter",
+    "Dart audit",
+    "APK build",
+    "Godot engine/renderer",
+    "Android/emulator",
+    "optional tests"
+  ],
+  "meaning": "Targeted local Python and workflow contracts on exact published source only; no device/visual/audio acceptance"
+}

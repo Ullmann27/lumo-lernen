@@ -1,0 +1,255 @@
+{
+  "schema": 1,
+  "kind": "compact_lossless_current_runtime_checkpoint",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4586,
+      "sha256": "1c20dfb3160628db65fa86375716e971761d2823acd99bd47d09b6e42c6c5e0a"
+    },
+    {
+      "path": "archive-verification.json",
+      "bytes": 122307,
+      "sha256": "713e70b2e35e618e35dfbb8454fd343d8432a79d433d41c67ee6dfa4f2020f72"
+    },
+    {
+      "path": "engine-banner-binding.json",
+      "bytes": 4402,
+      "sha256": "84684257fcbe8e809855cdda0658dce57010fd09489b5fb191b39fe5f9e66983"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 3938,
+      "sha256": "2e64660942cf371c5634a39644d40668c684bbfe60e76a75d310c38fbb294602"
+    },
+    {
+      "path": "log-verification.json",
+      "bytes": 4296,
+      "sha256": "d4a37a2ce3d864774914fe20a84c4304cafbeda6adcd0b125758b5d8a4e61dd3"
+    },
+    {
+      "path": "original-materialization.json",
+      "bytes": 10371,
+      "sha256": "f26e3f650ba0883f380b28ca8901c919192dfcab8110af55f3756f4ff70b3e00"
+    },
+    {
+      "path": "originals/api/artifacts.json",
+      "bytes": 778,
+      "sha256": "b4f23aeafb5f11ecf2b05abe8cc08719140f339f95d7ada0aa1f781f1330622b"
+    },
+    {
+      "path": "originals/api/jobs.json",
+      "bytes": 6678,
+      "sha256": "0d4279578dd4e290044f0d99e693b16c236bdad9f8d0bae4920dea4f082dc545"
+    },
+    {
+      "path": "originals/api/run.json",
+      "bytes": 13002,
+      "sha256": "70062bfa80d5ad0b64b02dad0320ccbd53a5dc71c04edcc061cff43cf5f564ae"
+    },
+    {
+      "path": "originals/artifact/original-import.log.gz",
+      "bytes": 10143,
+      "sha256": "d52e89eb5c876a70291fa29857312bf6835077abd2213687a8f283071496bd1c"
+    },
+    {
+      "path": "originals/artifact/return-recovery.log",
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2"
+    },
+    {
+      "path": "originals/artifact/runtime/closed.json",
+      "bytes": 44,
+      "sha256": "922b529a830f497aae1e84cb1e1b60f62dea9e64f9d168e45037d94d3ac414b9"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_empty.layout.json",
+      "bytes": 19574,
+      "sha256": "53e8f78f3f58508013cba9b1b620df30860c8a7f99d632778d3355897dbbe795"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_fold_landscape.layout.json",
+      "bytes": 20950,
+      "sha256": "db8d406ddca71958edf8c8bec729d8d73b922e6e2adeb41f16df61413ba2409e"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_pause.layout.json",
+      "bytes": 19586,
+      "sha256": "23b9c25ff858c128ef605a84e7eb56f8cbfe7b31a0ed4452e2846391b6d8790d"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_phone_bot_response.layout.json",
+      "bytes": 20996,
+      "sha256": "31fed1393c6a6cb13a78264243565354ccc57410c0a846765ffc73124c788921"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_phone_playing.layout.json",
+      "bytes": 20992,
+      "sha256": "2a92cde81ae3721a0369fef256828c024a4ca0100d14e13808e7de2ac5d9bddd"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_phone_portrait.layout.json",
+      "bytes": 21036,
+      "sha256": "0b853a3bc76122b8a5dd8f692df300334c0b3dcae74dda007101c82c5dda0f2f"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_small_landscape.layout.json",
+      "bytes": 19743,
+      "sha256": "a3a21a887d38531b2de0b85b7af42cae210667657aee26c5c5d03cf46a82ed6d"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_small_portrait.layout.json",
+      "bytes": 19745,
+      "sha256": "df4891f01e6f5c43eb5b9c3cb8fe7cb507f2c09bb5fe425a103a7d7c755f79ea"
+    },
+    {
+      "path": "originals/artifact/runtime/connect_four_win.layout.json",
+      "bytes": 19620,
+      "sha256": "c1ec318a9d13816c370d40ad39095e72e3c1d630b2ab0dfc8820f54e53488a7f"
+    },
+    {
+      "path": "originals/artifact/runtime/dart-result.json",
+      "bytes": 20386,
+      "sha256": "2c8b6f966aa7725b1623a6ee34dc8b60512dc4154e8bc17307b17520f25e50f2"
+    },
+    {
+      "path": "originals/artifact/runtime/done.json",
+      "bytes": 17,
+      "sha256": "baf7c3be410aa877bd98a1776555e86da13a23212e363e0e87e2040768f24710"
+    },
+    {
+      "path": "originals/artifact/runtime/input.json",
+      "bytes": 221,
+      "sha256": "96c53591ef3e53ab0cffdb466488053dede44e8ba247d0c384ecf3f50ced17eb"
+    },
+    {
+      "path": "originals/artifact/runtime/native-result.json.gz",
+      "bytes": 4834,
+      "sha256": "96b06468c771f5f418537689487d71b728160bea5905556131d0de1d1918c29c"
+    },
+    {
+      "path": "originals/artifact/runtime/original-dart.log",
+      "bytes": 325,
+      "sha256": "cfca20b15200fb48008c046eb63f0b6ab63c84d6d047a7bdefd03fe9e66cb995"
+    },
+    {
+      "path": "originals/artifact/runtime/original-godot.log",
+      "bytes": 2551,
+      "sha256": "e107eb01927fd40b21601ef5d8f8bf80392bdc2b5a306300dac5adb48b67fede"
+    },
+    {
+      "path": "originals/artifact/runtime/runtime-gate.json.gz",
+      "bytes": 13618,
+      "sha256": "82700573b9ebb8cb11d67fd558bfd07f347ce3745a09e1214320b3230510d783"
+    },
+    {
+      "path": "originals/artifact/runtime/session.json",
+      "bytes": 164,
+      "sha256": "b1756ef8991ac28d1312f3ad617c466e10f11aa7c4dbad77f560a192a05bd8bd"
+    },
+    {
+      "path": "originals/artifact/runtime/source-after.json.gz",
+      "bytes": 134782,
+      "sha256": "bc1297133e276488cea926a9fac45981b688dd4fc6fc54f8889b8090331d9cfd"
+    },
+    {
+      "path": "originals/artifact/runtime/source-before.json.gz",
+      "bytes": 134782,
+      "sha256": "bc1297133e276488cea926a9fac45981b688dd4fc6fc54f8889b8090331d9cfd"
+    },
+    {
+      "path": "originals/artifact/runtime/state.json",
+      "bytes": 594,
+      "sha256": "0f68313c2801e40a3d2f6409a5042de5990f19f84ee2a751d912b3da082189d7"
+    },
+    {
+      "path": "originals/artifact/runtime/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2545,
+      "sha256": "f88ba26fecbd69849033c87adcbcf787b1c2ae0a10afd42aee4d6550880a99d5"
+    },
+    {
+      "path": "originals/artifact/wisps.log",
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39"
+    },
+    {
+      "path": "originals/engine-api/godot-4.6.3-stable.json",
+      "bytes": 7245,
+      "sha256": "f2d3172bab2e73584d7f25377385874c4a955fea9b5ec6e7549e4cd05b5aa418"
+    },
+    {
+      "path": "originals/engine-api/godot-builds-commit.json",
+      "bytes": 1145,
+      "sha256": "e050d493cc3151b601398fd721c644549c75b56bb402222b25aae55b3697e72f"
+    },
+    {
+      "path": "originals/engine-api/godot-builds-release.json",
+      "bytes": 50110,
+      "sha256": "02bf802869095041786d05528c133e010639a585607d561444d2f5ff22fe4b96"
+    },
+    {
+      "path": "originals/engine-api/godot-builds-tag.json",
+      "bytes": 369,
+      "sha256": "5e2b5f2bb55ce28239e9678ed54603867d7f75fdb9b8d1e9c840ad06db91d892"
+    },
+    {
+      "path": "originals/engine-api/godot-builds-tree.json",
+      "bytes": 84893,
+      "sha256": "e7f69044cad2c5d0f979ed16b3551158480913fd105f9fdde6a1470b135fccb2"
+    },
+    {
+      "path": "originals/engine-api/godot-source-commit.json",
+      "bytes": 1822,
+      "sha256": "3744c8f848df293773011885f8f919fb740d11c4d347cc8f959724c4a83b6eb4"
+    },
+    {
+      "path": "originals/engine-api/godot-source-tag.json",
+      "bytes": 363,
+      "sha256": "5e765efdaf07326dd8e14681b18a025637c9a9831b0537565f30b8621556e9e1"
+    },
+    {
+      "path": "originals/jobs/runtime-job-132405832474.log.gz",
+      "bytes": 35454,
+      "sha256": "a165bf43d81a14df48d07a2ad4defa33efaff5aee65207dfcfb706720aeddf57"
+    },
+    {
+      "path": "originals/source/install_godot_for_build.sh",
+      "bytes": 1176,
+      "sha256": "e130339dcf855d55da730e5f393bfa01b13aa1eff4a0db18e3b9e202d2dbd92f"
+    },
+    {
+      "path": "png-index.json",
+      "bytes": 57989,
+      "sha256": "b03aac6cd03925a0228f7d435ee970a76c4c9e83bf5bd5cf8dac397d6e5f5f47"
+    },
+    {
+      "path": "provenance.json",
+      "bytes": 2030,
+      "sha256": "78d00fee0a359bff87017632d5eb6a8ff804448b103b1df45b1299ca2bb79341"
+    },
+    {
+      "path": "review-selection.json",
+      "bytes": 4216,
+      "sha256": "aecd1c9335c6e3792e281fe79e990cd9bf7ee1b2b5f149dafb251b428ffcd5c4"
+    },
+    {
+      "path": "transport-index.json",
+      "bytes": 17273,
+      "sha256": "12bf31c6ad4f80ece62435fdecf02bf243cd708cef9b87c4c11679a4b909405d"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 2945,
+      "sha256": "779181c565de7ab18e76df5da83257b74dbe89f72d6332fc202f167a42d56d6d"
+    }
+  ],
+  "file_count": 48,
+  "total_bytes": 945639,
+  "excludes": [
+    "manifest.json",
+    "SHA256SUMS"
+  ],
+  "all_copied_original_bytes_verified": true,
+  "gzip_roundtrips_verified": true,
+  "archive_and_png_payloads_included": false
+}
