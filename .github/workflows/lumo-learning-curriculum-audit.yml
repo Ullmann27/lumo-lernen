@@ -29,7 +29,7 @@ jobs:
       - name: Test production topic selection, repeated reading and level changes
         run: |
           set -euo pipefail
-          flutter test --no-pub --no-test-assets test/learning_selection_integration_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/production-selection-tests.log
+          flutter test --no-pub test/learning_selection_integration_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/production-selection-tests.log
       - name: Test exact selection without changing legacy callers
         run: flutter test --no-pub test/learning/learning_exact_selection_test.dart --reporter=expanded
       - name: Sample every registered current-grade core lesson family
