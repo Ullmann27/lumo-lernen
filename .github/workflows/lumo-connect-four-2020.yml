@@ -237,6 +237,8 @@ jobs:
           sudo apt-get -o Acquire::Retries=2 update -qq
           sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
           test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+      - name: Clean generated Flutter build outputs
+        run: flutter clean
       - name: Resolve immutable Flutter dependencies
         run: flutter pub get --enforce-lockfile
       - name: Audit every exact current-grade learning family on this candidate
@@ -483,8 +485,37 @@ jobs:
           path: acceptance-native/
           if-no-files-found: warn
           retention-days: 30
+      - name: Attach full Android lint to the actual release build
+        run: |
+          set -euo pipefail
+          lumo_gradle_init_dir="${GRADLE_USER_HOME:-$HOME/.gradle}/init.d"
+          mkdir -p "$lumo_gradle_init_dir"
+          cp scripts/gradle/lumo-release-lint.init.gradle "$lumo_gradle_init_dir/"
       - name: Build unified real Android APK
         run: bash scripts/build_unified_apk.sh
+      - name: Require full Android lint and R8 outputs
+        run: |
+          set -euo pipefail
+          test -s build/app/reports/lint-results-release.xml
+          test -s build/app/reports/lint-results-release.html
+          test -s build/app/outputs/mapping/release/mapping.txt
+          mkdir -p .ci-results/android-release
+          sha256sum build/app/reports/lint-results-release.xml \
+            build/app/reports/lint-results-release.html \
+            build/app/outputs/mapping/release/mapping.txt \
+            | tee .ci-results/android-release/SHA256SUMS.txt
+      - name: Preserve original Android lint and R8 reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-candidate-android-release-checks
+          path: |
+            build/app/reports/lint-results-release.xml
+            build/app/reports/lint-results-release.html
+            build/app/outputs/mapping/release/mapping.txt
+            .ci-results/android-release/SHA256SUMS.txt
+          if-no-files-found: warn
+          retention-days: 30
       - name: Verify APK archive and collect reproducible source hashes
         run: |
           set -euo pipefail

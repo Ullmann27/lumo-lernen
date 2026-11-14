@@ -1,0 +1,45 @@
+{
+  "run": 43603313843,
+  "host": "c2f2ee019e0e8c2624d1a07c273e68940a0c85ab",
+  "native": "3213d2aca377476cf4959f380701d87177cec959",
+  "cases": {
+    "main": {
+      "job": 132496170653,
+      "artifact": 14120900161,
+      "files": {
+        "21_stage_select_gecko_velo-2.png": {
+          "bytes": 759970,
+          "sha256": "0f5995fe791492290fe8063bf25a5de2d8b9ea709622c5154725faff3b916501"
+        },
+        "21_stage_select_gecko_velo-2-ocr.json": {
+          "bytes": 20067,
+          "sha256": "cc67098913986a1bddc62c373dd1ce0e56d73fb613d007de3bf56adb8f7fb2dc"
+        },
+        "surface-frame.json": {
+          "source": "frame index2 extracted without edits from original journal",
+          "source_journal_sha256": "7c650195613280776293bce7a7459e949df17867de34c7b31025ec22307738a1",
+          "sha256": "e00584a085ad240262147d94720886d254961c09aeced1af9e60f70f8ddbbe7a"
+        }
+      }
+    },
+    "update": {
+      "job": 132496170666,
+      "artifact": 14120752240,
+      "files": {
+        "21_stage_select_gecko_velo-2.png": {
+          "bytes": 766610,
+          "sha256": "88ab568d78ee051e4cbb4f3b5eca20f9b55bf5737e3b2b520657729300c2467b"
+        },
+        "21_stage_select_gecko_velo-2-ocr.json": {
+          "bytes": 3702,
+          "sha256": "8913eb125ec09a4f911331c3df91b5d92ecb2e11d1c50c668766c63b453ca63a"
+        },
+        "surface-frame.json": {
+          "source": "frame index2 extracted without edits from original journal",
+          "source_journal_sha256": "455b4863b299323786aac071aa8fd08ba2dc07cba4277fccab879dfe1f83ce87",
+          "sha256": "afb8d2f5159a669f17cb826b4a68ccd9ee0934aaa02ca8cfa7167b2182f2c8e0"
+        }
+      }
+    }
+  }
+}
