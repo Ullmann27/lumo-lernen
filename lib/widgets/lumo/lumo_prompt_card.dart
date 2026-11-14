@@ -87,7 +87,7 @@ class LumoPromptCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    color: LumoColors.ink600,
+                    color: LumoColors.ink100,
                   ),
                 ),
                 const SizedBox(height: 2),

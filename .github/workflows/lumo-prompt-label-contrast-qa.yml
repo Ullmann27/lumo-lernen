@@ -1,0 +1,313 @@
+name: Lumo prompt label contrast QA
+
+on:
+  push:
+    branches:
+      - qa/lumo-prompt-label-contrast-20261114-2708
+    paths:
+      - .github/workflows/lumo-prompt-label-contrast-qa.yml
+      - lib/widgets/lumo/lumo_prompt_card.dart
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-prompt-label-contrast-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/qa/lumo-prompt-label-contrast-20261114-2708'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      BOT: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - name: Check out the exact separate QA revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Bind the exact two-file child of the frozen candidate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+
+          base = '1375da193af0152af64f91d86577aa9768cd50db'
+          base_tree = 'ebaf259b92a4c7923782e195c3a932112ce81027'
+          workflow = '.github/workflows/lumo-prompt-label-contrast-qa.yml'
+          prompt = 'lib/widgets/lumo/lumo_prompt_card.dart'
+          output = Path(os.environ['RUNNER_TEMP']) / 'lumo-prompt-label-contrast'
+          output.mkdir(exist_ok=False)
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write(f'QA_OUTPUT={output}\n')
+
+          def git(*args):
+              return subprocess.check_output(['git', *args])
+
+          def require(condition, message):
+              if not condition:
+                  raise SystemExit(message)
+
+          def binding(data):
+              return {
+                  'bytes': len(data),
+                  'sha256': hashlib.sha256(data).hexdigest(),
+                  'git_blob': hashlib.sha1(
+                      b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest(),
+              }
+
+          head = git('rev-parse', 'HEAD').decode().strip()
+          require(head == os.environ['GITHUB_SHA'], 'Checkout differs from the push head')
+          require(git('show', '-s', '--format=%P', 'HEAD').decode().strip() == base,
+                  'QA revision must have exactly the frozen candidate as its sole parent')
+          require(git('rev-parse', base + '^{tree}').decode().strip() == base_tree,
+                  'Frozen candidate tree mismatch')
+          changes = git('diff', '--name-status', '--no-renames', base, 'HEAD').decode().splitlines()
+          require(changes == [f'A\t{workflow}', f'M\t{prompt}'],
+                  'QA revision must contain only the workflow and the prompt label change')
+          old = git('show', base + ':' + prompt)
+          new = Path(prompt).read_bytes()
+          require(binding(old)['git_blob'] == '033fb56a1033b7659d6ca7e7386e7ae9cd1074fd',
+                  'Unexpected original prompt card')
+          require(binding(new)['git_blob'] == '643c3bd6868da34550bbc9fa7761818c7b1e6afb',
+                  'Unexpected reviewed prompt card')
+          require(old.count(b'color: LumoColors.ink600,') == 1 and
+                  old.replace(b'color: LumoColors.ink600,', b'color: LumoColors.ink100,') == new,
+                  'Prompt card contains changes beyond the reviewed color line')
+          preserved = [
+              'scripts/run_full_flutter_acceptance.py',
+              'test/design/lumo_modernization_capture_test.dart',
+              'test/helpers/lumo_capture.dart',
+              'pubspec.yaml', 'pubspec.lock', 'config/godot-source.json',
+              'lib/widgets/lumo/lumo_design_kit.dart', 'lib/app/app_theme.dart',
+              'lib/features/writing/lumo_writing_coach_screen.dart',
+              'lib/features/writing/lumo_writing_word_coach_screen.dart',
+              'assets/fonts/Nunito-Regular.ttf', 'assets/fonts/Nunito-Bold.ttf',
+              'assets/fonts/Nunito-ExtraBold.ttf', 'assets/fonts/Nunito-Black.ttf',
+          ]
+          files = {}
+          for path in [workflow, prompt, *preserved]:
+              data = Path(path).read_bytes()
+              require(data == git('show', 'HEAD:' + path), 'Working source differs: ' + path)
+              if path in preserved:
+                  require(data == git('show', base + ':' + path),
+                          'Preserved source differs from candidate: ' + path)
+              files[path] = binding(data)
+          subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], check=True)
+          untracked = git('ls-files', '--others', '--exclude-standard', '--',
+                          'lib', 'test', 'assets', 'config', 'scripts', 'tools').decode().splitlines()
+          require(not untracked, 'Untracked source inputs are not permitted')
+          snapshot = {
+              'repository': os.environ['GITHUB_REPOSITORY'],
+              'ref': os.environ['GITHUB_REF'],
+              'run_id': os.environ['GITHUB_RUN_ID'],
+              'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'head_commit': head,
+              'head_tree': git('rev-parse', 'HEAD^{tree}').decode().strip(),
+              'sole_parent': base, 'base_tree': base_tree,
+              'changes': changes, 'files': files,
+              'tracked_changes': '', 'untracked_source_inputs': [],
+          }
+          (output / 'source-before.json').write_text(json.dumps(snapshot, indent=2) + '\n')
+          (output / 'tracked-source-tree.txt').write_bytes(git('ls-tree', '-r', '--full-tree', 'HEAD'))
+          (output / 'prompt-card-before.dart').write_bytes(old)
+          (output / 'prompt-card-after.dart').write_bytes(new)
+          print(json.dumps({'source_preflight': 'PASS', 'head': head,
+                            'tree': snapshot['head_tree'], 'changed_files': changes}))
+          PY
+
+      - name: Use the existing Flutter version
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Preserve the existing Linux font environment
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+          sha256sum /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf > "$QA_OUTPUT/linux-emoji-font.sha256"
+          flutter --version --machine > "$QA_OUTPUT/flutter-version.json"
+          python3 --version > "$QA_OUTPUT/python-version.txt"
+          git --version > "$QA_OUTPUT/git-version.txt"
+
+      - name: Resolve only the committed dependency lock
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee "$QA_OUTPUT/pub-get.log"
+
+      - name: Run only the unchanged modernization capture test
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          flutter_binary="$(command -v flutter)"
+          printf '%s\n' "python3 scripts/run_full_flutter_acceptance.py --output $QA_OUTPUT/focused --flutter $flutter_binary test/design/lumo_modernization_capture_test.dart" > "$QA_OUTPUT/command.txt"
+          set +e
+          python3 scripts/run_full_flutter_acceptance.py \
+            --output "$QA_OUTPUT/focused" \
+            --flutter "$flutter_binary" \
+            test/design/lumo_modernization_capture_test.dart \
+            > "$QA_OUTPUT/runner-stdout.log" 2>&1
+          runner_exit=$?
+          set -e
+          printf '%s\n' "$runner_exit" > "$QA_OUTPUT/runner-exit-code.txt"
+          cat "$QA_OUTPUT/runner-stdout.log"
+          exit "$runner_exit"
+
+      - name: Bind all expected original focus captures
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import struct
+
+          output = Path(os.environ['RUNNER_TEMP']) / 'lumo-prompt-label-contrast'
+          output.mkdir(exist_ok=True)
+          focus = output / 'focused'
+          test = 'test/design/lumo_modernization_capture_test.dart'
+          report = {'status': 'FAIL', 'scope': [test], 'expected_passed': 36,
+                    'expected_pngs': 42, 'visual_review_performed': False}
+          try:
+              summary = json.loads((focus / 'acceptance-summary.json').read_text())
+              expected = {
+                  'status': 'PASS', 'scope': [test], 'passed': 36, 'failed': [],
+                  'skipped': [], 'capture_error_files': [], 'flutter_exit_code': 0,
+                  'runner_completed_successfully': True, 'runner_errors': [],
+                  'rendered_png_count': 42,
+              }
+              for key, value in expected.items():
+                  if summary.get(key) != value:
+                      raise ValueError(f'Unexpected focused acceptance field {key}')
+              if (output / 'runner-exit-code.txt').read_text().strip() != '0':
+                  raise ValueError('The original runner did not exit successfully')
+              if not (focus / 'flutter-machine.jsonl').stat().st_size:
+                  raise ValueError('The original Flutter machine log is empty')
+              sizes = {'fold-cover': (688, 1764), 'phone': (824, 1830),
+                       'fold-open': (1380, 1658)}
+              screens = [
+                  'rechentricks', 'achievements', 'journal', 'lumo_welt',
+                  'foto_lektion', 'reading_buddy', 'lumo_quest', 'lumo_magic',
+                  'schreibcoach', 'schreibaufgabe',
+              ]
+              expected_pngs = {
+                  f'modernization/{screen}_{size}.png': dimensions
+                  for size, dimensions in sizes.items() for screen in screens
+              }
+              expected_pngs.update({
+                  f'modernization/trainer_{symbol}_{size}_{state}.png': dimensions
+                  for size, dimensions in sizes.items()
+                  for symbol in ['B', 'klein_a'] for state in ['leer', 'geuebt']
+              })
+              actual = {str(path.relative_to(focus)): path for path in focus.rglob('*.png')}
+              if set(actual) != set(expected_pngs):
+                  raise ValueError('The original PNG roster differs from the unchanged focus')
+              frames = []
+              for path, dimensions in sorted(expected_pngs.items()):
+                  data = actual[path].read_bytes()
+                  if data[:16] != b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR':
+                      raise ValueError('Invalid original PNG header: ' + path)
+                  if struct.unpack('>II', data[16:24]) != dimensions:
+                      raise ValueError('Unexpected original PNG dimensions: ' + path)
+                  frames.append({'path': path, 'bytes': len(data),
+                                 'sha256': hashlib.sha256(data).hexdigest(),
+                                 'width': dimensions[0], 'height': dimensions[1]})
+              report.update(status='PASS', passed=summary['passed'], originals=frames,
+                            font_scope='Unchanged Nunito/MaterialIcons helper; no emoji-helper change')
+          except Exception as error:
+              report['error'] = str(error)
+          (output / 'capture-verification.json').write_text(json.dumps(report, indent=2) + '\n')
+          print(json.dumps(report))
+          raise SystemExit(0 if report['status'] == 'PASS' else 1)
+          PY
+
+      - name: Preserve final source identity and original file hashes
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+
+          output = Path(os.environ['RUNNER_TEMP']) / 'lumo-prompt-label-contrast'
+          output.mkdir(exist_ok=True)
+          report = {'status': 'FAIL', 'source_before_after_identical': False}
+          try:
+              before = json.loads((output / 'source-before.json').read_text())
+              after = dict(before)
+              after['head_commit'] = subprocess.check_output(
+                  ['git', 'rev-parse', 'HEAD'], text=True).strip()
+              after['head_tree'] = subprocess.check_output(
+                  ['git', 'rev-parse', 'HEAD^{tree}'], text=True).strip()
+              after['files'] = {}
+              for path in before['files']:
+                  data = Path(path).read_bytes()
+                  after['files'][path] = {
+                      'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
+                      'git_blob': hashlib.sha1(
+                          b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest(),
+                  }
+              after['tracked_changes'] = subprocess.check_output(
+                  ['git', 'diff', 'HEAD', '--'], text=True)
+              after['untracked_source_inputs'] = subprocess.check_output(
+                  ['git', 'ls-files', '--others', '--exclude-standard', '--',
+                   'lib', 'test', 'assets', 'config', 'scripts', 'tools'],
+                  text=True).splitlines()
+              (output / 'source-after.json').write_text(json.dumps(after, indent=2) + '\n')
+              if after != before:
+                  raise ValueError('Source identity changed during the focused capture')
+              report.update(status='PASS', source_before_after_identical=True,
+                            head_commit=after['head_commit'], head_tree=after['head_tree'])
+          except Exception as error:
+              report['error'] = str(error)
+          (output / 'source-verification.json').write_text(json.dumps(report, indent=2) + '\n')
+          files = []
+          for path in sorted(output.rglob('*')):
+              if path.is_file() and path.name != 'original-index.json':
+                  data = path.read_bytes()
+                  files.append({'path': str(path.relative_to(output)), 'bytes': len(data),
+                                'sha256': hashlib.sha256(data).hexdigest()})
+          (output / 'original-index.json').write_text(json.dumps({
+              'repository': os.environ['GITHUB_REPOSITORY'],
+              'head_sha': os.environ['GITHUB_SHA'],
+              'run_id': os.environ['GITHUB_RUN_ID'],
+              'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'files': files,
+          }, indent=2) + '\n')
+          print(json.dumps(report))
+          raise SystemExit(0 if report['status'] == 'PASS' else 1)
+          PY
+
+      - name: Preserve unmodified originals even when the focus fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-prompt-label-contrast-originals
+          path: ${{ runner.temp }}/lumo-prompt-label-contrast/
+          if-no-files-found: error
+          retention-days: 14
