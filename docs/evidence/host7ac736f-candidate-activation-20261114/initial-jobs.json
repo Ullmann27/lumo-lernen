@@ -1,0 +1,253 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 132562871412,
+      "run_id": 43632790204,
+      "workflow_name": "LUMO Connect Four 2020 signed test candidate",
+      "head_branch": "integration/lumo-c4-connections-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43632790204",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAe3VzkdA",
+      "head_sha": "7ac736fdbd042769592e88de0f9849632242316d",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132562871412",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43632790204/job/132562871412",
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-11-14T19:34:03Z",
+      "started_at": "2026-11-14T19:34:05Z",
+      "completed_at": null,
+      "name": "connect-four-runtime",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:34:05Z",
+          "completed_at": "2026-11-14T19:34:07Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T19:34:07Z",
+          "completed_at": "2026-11-14T19:34:20Z"
+        },
+        {
+          "name": "Bind the approved 2020 host and exact native source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T19:34:20Z",
+          "completed_at": "2026-11-14T19:34:20Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T19:34:20Z",
+          "completed_at": "2026-11-14T19:34:26Z"
+        },
+        {
+          "name": "Run subosito/flutter-action@v2",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 5,
+          "started_at": "2026-11-14T19:34:26Z",
+          "completed_at": null
+        },
+        {
+          "name": "Prepare genuine desktop renderer dependencies",
+          "status": "pending",
+          "conclusion": null,
+          "number": 6,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Install the actual pinned Godot engine",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Import the exact configured native source in its own directory",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Retry the acknowledged native exit after a transient Android refusal",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Require the additional pinned native Treasure wisp regression",
+          "status": "pending",
+          "conclusion": null,
+          "number": 10,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Require the actual production Dart and rendered Godot two-process gate",
+          "status": "pending",
+          "conclusion": null,
+          "number": 11,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Preserve every original C4 runtime result and rendered frame",
+          "status": "pending",
+          "conclusion": null,
+          "number": 12,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run subosito/flutter-action@v2",
+          "status": "pending",
+          "conclusion": null,
+          "number": 22,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 23,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 24,
+          "started_at": null,
+          "completed_at": null
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132562871412",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000019016,
+      "runner_name": "GitHub Actions 1000019016",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 132562871774,
+      "run_id": 43632790204,
+      "workflow_name": "LUMO Connect Four 2020 signed test candidate",
+      "head_branch": "integration/lumo-c4-connections-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43632790204",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAe3Vzl3g",
+      "head_sha": "7ac736fdbd042769592e88de0f9849632242316d",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132562871774",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43632790204/job/132562871774",
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-11-14T19:34:03Z",
+      "started_at": "2026-11-14T19:34:06Z",
+      "completed_at": null,
+      "name": "android-host-compile",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T19:34:07Z",
+          "completed_at": "2026-11-14T19:34:11Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 2,
+          "started_at": "2026-11-14T19:34:11Z",
+          "completed_at": null
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 3,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Run subosito/flutter-action@v2",
+          "status": "pending",
+          "conclusion": null,
+          "number": 4,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Run android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407",
+          "status": "pending",
+          "conclusion": null,
+          "number": 5,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Compile actual current Android host before native release pin approval",
+          "status": "pending",
+          "conclusion": null,
+          "number": 6,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Bind actual compiled C4 Activity bridge and Binder bytecode",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 16,
+          "started_at": null,
+          "completed_at": null
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132562871774",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000019017,
+      "runner_name": "GitHub Actions 1000019017",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
